@@ -1,5 +1,17 @@
  /* src/styles/global.css */
 
+@import './colors.css';
+@import './spacing.css';
+@import './typography.css';
+@import './animation.css';
+@import './button.css';
+@import './card.css';
+@import './layout.css';
+@import './components.css';
+@import './page-header.css';
+@import './modal.css';
+@import './accordion.css';
+@import './hero.css';
 * {
   box-sizing: border-box;
 }
