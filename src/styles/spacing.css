@@ -1,4 +1,4 @@
-  /* src/styles/spacing.css */
+ /* src/styles/spacing.css */
 
 :root {
   --space-0: 0;
@@ -9,14 +9,14 @@
   --space-5: 1rem;
   --space-6: 1.25rem;
   --space-8: 1.5rem;
-  --space-10: 2rem;
-  --space-12: 2.5rem;
-  --space-14: 3rem;
-  --space-16: 3.5rem;
-  --space-20: 4rem;
-  --space-24: 5rem;
-  --space-28: 5.5rem;
-  --space-32: 6rem;
+  --space-10: 1.75rem;
+  --space-12: 2rem;
+  --space-14: 2.5rem;
+  --space-16: 3rem;
+  --space-20: 3.5rem;
+  --space-24: 4rem;
+  --space-28: 4.5rem;
+  --space-32: 5rem;
 
   --radius-xs: 0.25rem;
   --radius-sm: 0.5rem;
