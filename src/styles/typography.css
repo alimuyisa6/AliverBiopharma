@@ -1,4 +1,6 @@
- @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=Maven+Pro:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap');
+ /* src/styles/typography.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=Maven+Pro:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap');
 
 :root {
   --font-primary: 'Inter', -apple-system, system-ui, sans-serif;
@@ -7,16 +9,16 @@
   --font-maven-pro: 'Maven Pro', -apple-system, system-ui, sans-serif;
   --font-mono: 'DM Mono', monospace;
 
-  --text-xs: 0.75rem;
-  --text-sm: 0.8125rem;
+  --text-xs: 0.6875rem;
+  --text-sm: 0.75rem;
   --text-base: 0.875rem;
   --text-md: 0.9375rem;
-  --text-lg: 1.0625rem;
-  --text-xl: 1.25rem;
-  --text-2xl: 1.75rem;
-  --text-3xl: 2.125rem;
-  --text-4xl: 2.75rem;
-  --text-5xl: 3.25rem;
+  --text-lg: 1rem;
+  --text-xl: 1.125rem;
+  --text-2xl: 1.375rem;
+  --text-3xl: 1.75rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 2.75rem;
 
   --weight-normal: 400;
   --weight-medium: 500;
@@ -25,11 +27,11 @@
   --weight-extrabold: 700;
   --weight-black: 700;
 
-  --tracking-tight: -0.025em;
-  --tracking-normal: -0.015em;
+  --tracking-tight: -0.02em;
+  --tracking-normal: -0.01em;
   --tracking-wide: 0.02em;
-  --tracking-wider: 0.06em;
-  --tracking-widest: 0.12em;
+  --tracking-wider: 0.05em;
+  --tracking-widest: 0.1em;
 }
 
 body {
