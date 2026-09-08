@@ -1,16 +1,15 @@
-/* src/styles/curriculum.css */
-.curriculum-rail {
+ .curriculum-rail {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: var(--space-4);
+  gap: var(--space-3);
 }
 
 .curriculum-card {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  gap: var(--space-2);
   width: 100%;
-  padding: var(--space-4);
+  padding: var(--space-3);
   background: var(--bg-card);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
@@ -18,10 +17,12 @@
   cursor: pointer;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
+
 .curriculum-card:hover {
   border-color: var(--border-strong);
   box-shadow: var(--shadow-sm);
 }
+
 .curriculum-card-locked {
   opacity: 0.72;
 }
@@ -30,36 +31,57 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: var(--space-3);
+  gap: var(--space-2);
 }
 
 .curriculum-card-badge {
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   border-radius: var(--radius-sm);
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: var(--text-lg);
+  font-size: var(--text-md);
   overflow: hidden;
   background: var(--bg-card-tinted);
   color: var(--text-muted);
 }
+
 .curriculum-card-badge img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.curriculum-card-grey .curriculum-card-badge { background: var(--grey-100); color: var(--grey-600); }
-.curriculum-card-green .curriculum-card-badge { background: var(--green-100); color: var(--green-700); }
-.curriculum-card-blue .curriculum-card-badge { background: var(--blue-100); color: var(--blue-700); }
-.curriculum-card-amber .curriculum-card-badge { background: var(--amber-100); color: var(--amber-700); }
-.curriculum-card-emerald .curriculum-card-badge { background: var(--emerald-100); color: var(--emerald-700); }
+
+.curriculum-card-grey .curriculum-card-badge {
+  background: var(--grey-100);
+  color: var(--grey-600);
+}
+
+.curriculum-card-green .curriculum-card-badge {
+  background: var(--green-100);
+  color: var(--green-700);
+}
+
+.curriculum-card-blue .curriculum-card-badge {
+  background: var(--blue-100);
+  color: var(--blue-700);
+}
+
+.curriculum-card-amber .curriculum-card-badge {
+  background: var(--amber-100);
+  color: var(--amber-700);
+}
+
+.curriculum-card-emerald .curriculum-card-badge {
+  background: var(--emerald-100);
+  color: var(--emerald-700);
+}
 
 .curriculum-card-lock {
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   border-radius: var(--radius-full);
   background: var(--bg-card-tinted);
   color: var(--text-muted);
@@ -74,15 +96,18 @@
   flex-direction: column;
   gap: var(--space-1);
 }
+
 .curriculum-card-title {
   font-weight: var(--weight-semibold);
   font-size: var(--text-sm);
   color: var(--text-main);
-  line-height: var(--leading-snug);
+  line-height: var(--leading-tight);
 }
+
 .curriculum-card-meta {
   font-size: var(--text-xs);
   color: var(--text-muted);
+  line-height: var(--leading-normal);
 }
 
 .curriculum-card-tags {
@@ -94,11 +119,13 @@
 @media (max-width: 480px) {
   .curriculum-rail {
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-3);
+    gap: var(--space-2);
   }
+
   .curriculum-card {
     padding: var(--space-3);
   }
+
   .curriculum-card-badge {
     width: 40px;
     height: 40px;
