@@ -1,21 +1,22 @@
- /* src/styles/spacing.css */
+  /* src/styles/spacing.css */
+
 :root {
   --space-0: 0;
   --space-1: 0.25rem;
   --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-5: 1.25rem;
-  --space-6: 1.5rem;
-  --space-8: 2rem;
-  --space-10: 2.5rem;
-  --space-12: 3rem;
-  --space-14: 3.5rem;
-  --space-16: 4rem;
-  --space-20: 5rem;
-  --space-24: 6rem;
-  --space-28: 7rem;
-  --space-32: 8rem;
+  --space-3: 0.625rem;
+  --space-4: 0.875rem;
+  --space-5: 1rem;
+  --space-6: 1.25rem;
+  --space-8: 1.5rem;
+  --space-10: 2rem;
+  --space-12: 2.5rem;
+  --space-14: 3rem;
+  --space-16: 3.5rem;
+  --space-20: 4rem;
+  --space-24: 5rem;
+  --space-28: 5.5rem;
+  --space-32: 6rem;
 
   --radius-xs: 0.25rem;
   --radius-sm: 0.5rem;
@@ -40,10 +41,10 @@
   --max-width: 1200px;
   --header-height: 64px;
 
-  --leading-tight: 1.25;
+  --leading-tight: 1.2;
   --leading-normal: 1.5;
-  --leading-relaxed: 1.75;
-  --leading-loose: 2;
+  --leading-relaxed: 1.65;
+  --leading-loose: 1.85;
 }
 
 @media (max-width: 768px) {
