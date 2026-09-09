@@ -9,7 +9,7 @@
 }
 
 .empty-state-icon {
-  font-size: 3rem;
+  font-size: var(--text-3xl);
   color: var(--text-muted);
   opacity: 0.5;
 }
@@ -45,7 +45,7 @@
 }
 
 .error-state-icon {
-  font-size: 3rem;
+  font-size: var(--text-3xl);
   color: var(--error);
 }
 
