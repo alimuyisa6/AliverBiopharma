@@ -15,7 +15,7 @@
   align-items: center;
   gap: var(--space-3);
   padding: var(--space-4) var(--space-6);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-sm);
   font-size: var(--text-sm);
   font-weight: var(--weight-medium);
   color: var(--text-inverse);
@@ -27,13 +27,16 @@
 .toast-success {
   background: var(--success);
 }
+
 .toast-error {
   background: var(--error);
 }
+
 .toast-warning {
   background: var(--warning);
   color: var(--text-main);
 }
+
 .toast-info {
   background: var(--info);
 }
