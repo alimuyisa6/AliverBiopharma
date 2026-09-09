@@ -15,7 +15,7 @@
 }
 
 .fcd-empty-icon {
-  font-size: 3rem;
+  font-size: var(--text-3xl);
   color: var(--text-muted);
   margin-bottom: var(--space-4);
 }
@@ -50,7 +50,7 @@
 .fcd-question-card {
   padding: var(--space-8);
   text-align: center;
-  transition: transform var(--ease-smooth), box-shadow var(--ease-smooth);
+  transition: box-shadow var(--ease-fast);
 }
 
 .fcd-question-card.is-flip {
@@ -58,8 +58,8 @@
 }
 
 .fcd-question-card.is-flip:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-lg);
+  transform: none;
+  box-shadow: var(--shadow-sm);
 }
 
 .fcd-question-card-static {
@@ -69,7 +69,7 @@
 
 .fcd-answer-chip {
   margin-bottom: var(--space-4);
-  animation: scaleIn var(--ease-bounce) forwards;
+  animation: none;
 }
 
 .fcd-answer-chip.is-correct {
@@ -84,19 +84,19 @@
 .fcd-card-image {
   max-width: 200px;
   margin: 0 auto;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-sm);
 }
 
 .fcd-structure-image {
   max-width: 300px;
   margin: 0 auto;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-sm);
 }
 
 .fcd-tap-hint {
   color: var(--text-muted);
   font-size: var(--text-sm);
-  animation: pulse 2.4s ease-in-out infinite;
+  animation: none;
 }
 
 .fcd-input-row {
@@ -132,7 +132,7 @@
 }
 
 .fcd-structure-placeholder-icon {
-  font-size: 3rem;
+  font-size: var(--text-3xl);
   margin-bottom: var(--space-4);
 }
 
@@ -150,7 +150,7 @@
 }
 
 .fcd-rate-row .btn:hover:not(:disabled) {
-  transform: translateY(-2px) scale(1.04);
+  transform: none;
 }
 
 .fcd-actions-row {
@@ -201,8 +201,8 @@
   justify-content: center;
   padding: var(--space-8);
   text-align: center;
-  border-radius: var(--radius-2xl);
-  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
 }
 
 .fcw-flip-face.is-back {
@@ -210,7 +210,7 @@
 }
 
 .fcw-emoji {
-  font-size: 3rem;
+  font-size: var(--text-3xl);
   margin-bottom: var(--space-4);
 }
 
@@ -225,10 +225,10 @@
 }
 
 .fcp-trophy {
-  font-size: 3rem;
+  font-size: var(--text-3xl);
   color: var(--warm);
   margin-bottom: var(--space-4);
-  animation: resultPop var(--ease-bounce) forwards;
+  animation: none;
 }
 
 .fcp-message {
@@ -278,7 +278,7 @@
 }
 
 .fc-browse-btn {
-  padding: 10px 20px;
+  padding: var(--space-2) var(--space-5);
 }
 
 .flashcard-subject-section {
@@ -304,13 +304,13 @@
 }
 
 .flashcard-deck-icon {
-  font-size: 2rem;
+  font-size: var(--text-2xl);
   color: var(--primary);
   transition: transform var(--ease-fast);
 }
 
 .flashcard-decks-grid .card-clickable:hover .flashcard-deck-icon {
-  transform: scale(1.15) rotate(-4deg);
+  transform: none;
 }
 
 .flashcard-type-row {
