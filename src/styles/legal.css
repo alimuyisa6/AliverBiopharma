@@ -1,4 +1,4 @@
- /* src/styles/legal.css */
+  /* src/styles/legal.css */
 .legal-section {
   padding: var(--space-16) var(--space-6);
 }
@@ -84,6 +84,7 @@
   .legal-section {
     padding: var(--space-10) var(--space-4);
   }
+
   .legal-title {
     font-size: var(--text-3xl);
   }
