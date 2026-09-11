@@ -34,6 +34,9 @@ import BlogPage from './pages/BlogPage';
 import ContactPage from './pages/ContactPage';
 import CommunityPage from './pages/CommunityPage';
 import Resources from './pages/Resources';
+import Advertise from './pages/Advertise';
+import AdvertiseCreate from './pages/AdvertiseCreate';
+import AdvertisePayment from './pages/AdvertisePayment';
 
 function GlobalLoader() {
   return (
@@ -97,8 +100,24 @@ function AppRoutes() {
     return <GlobalLoader />;
   }
 
-  const publicPaths = ['/login', '/register', '/about', '/terms', '/privacy', '/faq', '/blog', '/contact', '/community', '/'];
-  const needsSetup = !layoutLoading && !level && !publicPaths.some((path) => location.pathname.startsWith(path));
+  const publicPaths = [
+    '/login',
+    '/register',
+    '/about',
+    '/terms',
+    '/privacy',
+    '/faq',
+    '/blog',
+    '/contact',
+    '/community',
+    '/advertise',
+    '/',
+  ];
+
+  const needsSetup =
+    !layoutLoading &&
+    !level &&
+    !publicPaths.some((path) => location.pathname.startsWith(path));
 
   if (needsSetup) {
     return <SetupRequired />;
@@ -114,6 +133,30 @@ function AppRoutes() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Auth />} />
             <Route path="/register" element={<Auth />} />
+
+            <Route
+              path="/advertise"
+              element={<Advertise />}
+            />
+
+            <Route
+              path="/advertise/create"
+              element={
+                <ProtectedRoute>
+                  <AdvertiseCreate />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/advertise/payment"
+              element={
+                <ProtectedRoute>
+                  <AdvertisePayment />
+                </ProtectedRoute>
+              }
+            />
+
             <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
             <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             <Route path="/resources" element={<Resources />} />
@@ -124,7 +167,7 @@ function AppRoutes() {
             <Route path="/classroom/:roomId" element={<ProtectedRoute><FeatureRoute feature="classrooms"><ClassroomRoom /></FeatureRoute></ProtectedRoute>} />
             <Route path="/past-papers" element={<FeatureRoute feature="past_papers"><PastPapers /></FeatureRoute>} />
             <Route path="/notes" element={<ProtectedRoute><NotesPage /></ProtectedRoute>} />
-             <Route path="/notes/read" element={<ProtectedRoute><NoteDetail key={location.search} /></ProtectedRoute>} />
+            <Route path="/notes/read" element={<ProtectedRoute><NoteDetail key={location.search} /></ProtectedRoute>} />
             <Route path="/pdfs" element={<ProtectedRoute><PdfLibraryPage /></ProtectedRoute>} />
             <Route path="/glossary/:slug" element={<ProtectedRoute><FeatureRoute feature="glossary"><Glossary /></FeatureRoute></ProtectedRoute>} />
             <Route path="/glossary" element={<ProtectedRoute><FeatureRoute feature="glossary"><Glossary /></FeatureRoute></ProtectedRoute>} />
