@@ -3155,3 +3155,119 @@ limit
 }
 );
 }
+
+export async function getAdConfig() {
+  return getRequest('ads', 'config');
+}
+
+export async function getAd(
+  placementCode,
+  sessionFingerprint,
+  {
+    levelId = '',
+    className = '',
+    pageContext = '',
+  } = {}
+) {
+  return getRequest('ads', 'serve', {
+    placement_code: placementCode,
+    session_fingerprint: sessionFingerprint,
+    level_id: levelId,
+    class_name: className,
+    page_context: pageContext,
+  });
+}
+
+export async function recordAdClick(
+  impressionId,
+  sessionFingerprint = null
+) {
+  return apiCall(
+    'ads',
+    'click',
+    {
+      impression_id: impressionId,
+      ...(sessionFingerprint
+        ? { session_fingerprint: sessionFingerprint }
+        : {}),
+    },
+    'POST'
+  );
+}
+
+export async function getAdPlacements() {
+  return getRequest('ads', 'placements');
+}
+
+export async function getAdCampaigns(filters = {}) {
+  return getRequest('ads', 'campaigns', filters);
+}
+
+export async function createAdAdvertiser(data) {
+  return apiCall(
+    'ads',
+    'create_advertiser',
+    data,
+    'POST'
+  );
+}
+
+export async function createAdCampaign(data) {
+  return apiCall(
+    'ads',
+    'create_campaign',
+    data,
+    'POST'
+  );
+}
+
+export async function createAdCreative(data) {
+  return apiCall(
+    'ads',
+    'create_creative',
+    data,
+    'POST'
+  );
+}
+
+export async function submitAdPlacement(data) {
+  return apiCall(
+    'ads',
+    'submit_placement',
+    data,
+    'POST'
+  );
+}
+
+export async function verifyAdPayment(
+  campaignPlacementId,
+  paymentId
+) {
+  return apiCall(
+    'ads',
+    'verify_payment',
+    {
+      campaign_placement_id: campaignPlacementId,
+      payment_id: paymentId,
+    },
+    'POST'
+  );
+}
+
+export async function reviewAdPlacement(
+  campaignPlacementId,
+  decision,
+  reason = ''
+) {
+  return apiCall(
+    'ads',
+    'review',
+    {
+      campaign_placement_id: campaignPlacementId,
+      decision,
+      reason,
+    },
+    'POST'
+  );
+}
+
