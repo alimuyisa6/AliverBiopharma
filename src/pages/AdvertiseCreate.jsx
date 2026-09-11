@@ -1,9 +1,10 @@
-/* src/pages/AdvertiseCreate.jsx */
+ /* src/pages/AdvertiseCreate.jsx */
 
 import { useEffect, useMemo, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Icon from '../components/Icon/Icon';
 import AdStepIcon from '../components/Advertising/AdStepIcon';
+import AdCampaignSuccess from '../components/Advertising/AdCampaignSuccess';
 import {
 getAdConfig,
 createAdAdvertiser,
@@ -56,8 +57,6 @@ return date.toISOString().slice(0, 10);
 }
 
 export default function AdvertiseCreate() {
-const navigate = useNavigate();
-
 const [step, setStep] = useState(0);
 const [form, setForm] = useState({
 ...INITIAL_FORM,
@@ -163,7 +162,11 @@ config.levels.find(
 );
 
 const estimatedPrice = useMemo(() => {
-if (!selectedPlacement || !selectedScope || !selectedDuration) {
+if (
+!selectedPlacement ||
+!selectedScope ||
+!selectedDuration
+) {
 return null;
 }
 
@@ -181,7 +184,11 @@ return {
   currency: selectedPlacement.currency || '',
 };
 
-}, [selectedPlacement, selectedScope, selectedDuration]);
+}, [
+selectedPlacement,
+selectedScope,
+selectedDuration,
+]);
 
 const availableGroups = selectedLevel?.groups || [];
 
@@ -302,7 +309,10 @@ if (validationError) {
 
 setError('');
 setStep((current) =>
-  Math.min(current + 1, STEP_TITLES.length - 1)
+  Math.min(
+    current + 1,
+    STEP_TITLES.length - 1
+  )
 );
 
 }
@@ -315,8 +325,8 @@ setStep((current) => Math.max(current - 1, 0));
 async function handleSubmit(event) {
 event.preventDefault();
 
-const validationErrors = STEP_TITLES.map((_, index) =>
-  validateStep(index)
+const validationErrors = STEP_TITLES.map(
+  (_, index) => validateStep(index)
 ).filter(Boolean);
 
 if (validationErrors.length) {
@@ -331,7 +341,8 @@ try {
   const advertiser = await createAdAdvertiser({
     name: form.advertiserName.trim(),
     contact_email: form.contactEmail.trim(),
-    contact_phone: form.contactPhone.trim() || undefined,
+    contact_phone:
+      form.contactPhone.trim() || undefined,
     website: form.website.trim() || undefined,
   });
 
@@ -345,8 +356,10 @@ try {
   const creative = await createAdCreative({
     campaign_id: campaign.id,
     headline: form.headline.trim(),
-    body_text: form.bodyText.trim() || undefined,
-    cta_text: form.ctaText.trim() || 'Learn more',
+    body_text:
+      form.bodyText.trim() || undefined,
+    cta_text:
+      form.ctaText.trim() || 'Learn more',
   });
 
   const placement = await submitAdPlacement({
@@ -361,10 +374,13 @@ try {
   });
 
   setSuccess({
+    campaign,
+    creative,
     campaignId: campaign.id,
     campaignPlacementId:
       placement.campaign_placement_id,
-    placement: placement.placement,
+    placement:
+      placement.placement || placement,
   });
 } catch (requestError) {
   setError(
@@ -379,61 +395,35 @@ try {
 
 if (success) {
 return (
-<main className="advertise-create-page">
-<section className="advertise-create-success">
-<div className="advertise-create-success-icon">
-<AdStepIcon name="review" size={42} />
-</div>
-
-      <span className="eyebrow">
-        Campaign submitted
-      </span>
-
-      <h1>
-        Your campaign is now
-        <br />
-        ready for review.
-      </h1>
-
-      <p>
-        Your advertising request has been submitted successfully.
-        Payment and review can now continue through the advertising
-        process.
-      </p>
-
-      {success.placement?.final_price && (
-        <div className="advertise-create-summary">
-          <span>Campaign amount</span>
-          <strong>
-            {formatMoney(
-              success.placement.final_price,
-              success.placement.currency
-            )}
-          </strong>
-        </div>
-      )}
-
-      <div className="advertise-create-actions">
-        <button
-          type="button"
-          className="btn btn-primary"
-          onClick={() => navigate('/advertise')}
-        >
-          Back to advertising
-          <Icon name="arrow-right" />
-        </button>
-
-        <Link
-          to="/"
-          className="advertise-text-link"
-        >
-          Return home
-        </Link>
-      </div>
-    </section>
-  </main>
+<AdCampaignSuccess
+campaign={success.campaign}
+placement={{
+...(success.placement || {}),
+campaign_placement_id:
+success.campaignPlacementId,
+placement_name:
+success.placement?.placement_name ||
+selectedPlacement?.display_name,
+scope_name:
+success.placement?.scope_name ||
+selectedScope?.description ||
+selectedScope?.scope_type,
+duration_label:
+success.placement?.duration_label ||
+selectedDuration?.label,
+start_date:
+success.placement?.start_date ||
+form.startDate,
+final_price:
+success.placement?.final_price ||
+estimatedPrice?.amount,
+currency:
+success.placement?.currency ||
+estimatedPrice?.currency ||
+selectedPlacement?.currency,
+}}
+/>
 );
-
 }
 
 return (
@@ -459,9 +449,9 @@ Advertising
       </h1>
 
       <p>
-        Complete the campaign details below. Available advertising
-        options and pricing are supplied from the AliverBiopharm
-        advertising system.
+        Complete the campaign details below. Available
+        advertising options and pricing are supplied from
+        the AliverBiopharm advertising system.
       </p>
     </div>
 
@@ -510,8 +500,8 @@ Advertising
             </h2>
 
             <p>
-              These details identify the advertiser responsible for
-              the campaign.
+              These details identify the advertiser
+              responsible for the campaign.
             </p>
           </div>
 
@@ -596,8 +586,9 @@ Advertising
             </h2>
 
             <p>
-              Keep your message clear, useful and appropriate for an
-              education-focused environment.
+              Keep your message clear, useful and
+              appropriate for an education-focused
+              environment.
             </p>
           </div>
 
@@ -635,14 +626,16 @@ Advertising
                   Select a category
                 </option>
 
-                {config.categories.map((category) => (
-                  <option
-                    value={category.id}
-                    key={category.id}
-                  >
-                    {category.label}
-                  </option>
-                ))}
+                {config.categories.map(
+                  (category) => (
+                    <option
+                      value={category.id}
+                      key={category.id}
+                    >
+                      {category.label}
+                    </option>
+                  )
+                )}
               </select>
             </label>
 
@@ -728,8 +721,8 @@ Advertising
             </h2>
 
             <p>
-              Targeting options are controlled by the active advertising
-              configuration.
+              Targeting options are controlled by the
+              active advertising configuration.
             </p>
           </div>
 
@@ -747,17 +740,23 @@ Advertising
                   type="radio"
                   name="scope"
                   value={scope.id}
-                  checked={form.scopeId === scope.id}
+                  checked={
+                    form.scopeId === scope.id
+                  }
                   onChange={(event) =>
-                    handleScopeChange(event.target.value)
+                    handleScopeChange(
+                      event.target.value
+                    )
                   }
                 />
 
                 <span>
                   <strong>
-                    {scope.scope_type === 'all_levels'
+                    {scope.scope_type ===
+                    'all_levels'
                       ? 'All learning levels'
-                      : scope.scope_type === 'specific_level'
+                      : scope.scope_type ===
+                          'specific_level'
                         ? 'Specific learning level'
                         : 'Specific class or programme'}
                   </strong>
@@ -771,7 +770,8 @@ Advertising
           </div>
 
           {selectedScope &&
-            selectedScope.scope_type !== 'all_levels' && (
+            selectedScope.scope_type !==
+              'all_levels' && (
               <div className="advertise-form-stack">
                 <label>
                   Learning level
@@ -789,14 +789,16 @@ Advertising
                       Select a level
                     </option>
 
-                    {config.levels.map((level) => (
-                      <option
-                        value={level.id}
-                        key={level.id}
-                      >
-                        {level.display_name}
-                      </option>
-                    ))}
+                    {config.levels.map(
+                      (level) => (
+                        <option
+                          value={level.id}
+                          key={level.id}
+                        >
+                          {level.display_name}
+                        </option>
+                      )
+                    )}
                   </select>
                 </label>
 
@@ -819,14 +821,16 @@ Advertising
                           Select a class or programme
                         </option>
 
-                        {availableGroups.map((group) => (
-                          <option
-                            value={group.name}
-                            key={group.id}
-                          >
-                            {group.name}
-                          </option>
-                        ))}
+                        {availableGroups.map(
+                          (group) => (
+                            <option
+                              value={group.name}
+                              key={group.id}
+                            >
+                              {group.name}
+                            </option>
+                          )
+                        )}
                       </select>
                     </label>
                   )}
@@ -849,8 +853,9 @@ Advertising
             </h2>
 
             <p>
-              Placement availability is checked by the advertising
-              system when the campaign is submitted.
+              Placement availability is checked by the
+              advertising system when the campaign is
+              submitted.
             </p>
           </div>
 
@@ -858,48 +863,52 @@ Advertising
             <h3>Placement</h3>
 
             <div className="advertise-option-list">
-              {config.placements.map((placement) => (
-                <label
-                  className={`advertise-option${
-                    form.placementId === placement.id
-                      ? ' is-selected'
-                      : ''
-                  }`}
-                  key={placement.id}
-                >
-                  <input
-                    type="radio"
-                    name="placement"
-                    value={placement.id}
-                    checked={
-                      form.placementId === placement.id
-                    }
-                    onChange={(event) =>
-                      updateField(
-                        'placementId',
-                        event.target.value
-                      )
-                    }
-                  />
+              {config.placements.map(
+                (placement) => (
+                  <label
+                    className={`advertise-option${
+                      form.placementId ===
+                      placement.id
+                        ? ' is-selected'
+                        : ''
+                    }`}
+                    key={placement.id}
+                  >
+                    <input
+                      type="radio"
+                      name="placement"
+                      value={placement.id}
+                      checked={
+                        form.placementId ===
+                        placement.id
+                      }
+                      onChange={(event) =>
+                        updateField(
+                          'placementId',
+                          event.target.value
+                        )
+                      }
+                    />
 
-                  <span>
-                    <strong>
-                      {placement.display_name}
-                    </strong>
+                    <span>
+                      <strong>
+                        {placement.display_name}
+                      </strong>
 
-                    <small>
-                      {placement.description}
-                    </small>
-                  </span>
+                      <small>
+                        {placement.description}
+                      </small>
+                    </span>
 
-                  <em>
-                    {formatMoney(
-                      placement.base_price_amount,
-                      placement.currency
-                    )}
-                  </em>
-                </label>
-              ))}
+                    <em>
+                      {formatMoney(
+                        placement.base_price_amount,
+                        placement.currency
+                      )}
+                    </em>
+                  </label>
+                )
+              )}
             </div>
           </div>
 
@@ -907,41 +916,45 @@ Advertising
             <h3>Campaign duration</h3>
 
             <div className="advertise-option-list">
-              {config.duration_tiers.map((tier) => (
-                <label
-                  className={`advertise-option${
-                    form.durationTierId === tier.id
-                      ? ' is-selected'
-                      : ''
-                  }`}
-                  key={tier.id}
-                >
-                  <input
-                    type="radio"
-                    name="duration"
-                    value={tier.id}
-                    checked={
-                      form.durationTierId === tier.id
-                    }
-                    onChange={(event) =>
-                      updateField(
-                        'durationTierId',
-                        event.target.value
-                      )
-                    }
-                  />
+              {config.duration_tiers.map(
+                (tier) => (
+                  <label
+                    className={`advertise-option${
+                      form.durationTierId ===
+                      tier.id
+                        ? ' is-selected'
+                        : ''
+                    }`}
+                    key={tier.id}
+                  >
+                    <input
+                      type="radio"
+                      name="duration"
+                      value={tier.id}
+                      checked={
+                        form.durationTierId ===
+                        tier.id
+                      }
+                      onChange={(event) =>
+                        updateField(
+                          'durationTierId',
+                          event.target.value
+                        )
+                      }
+                    />
 
-                  <span>
-                    <strong>
-                      {tier.label}
-                    </strong>
+                    <span>
+                      <strong>
+                        {tier.label}
+                      </strong>
 
-                    <small>
-                      {tier.duration_days} days
-                    </small>
-                  </span>
-                </label>
-              ))}
+                      <small>
+                        {tier.duration_days} days
+                      </small>
+                    </span>
+                  </label>
+                )
+              )}
             </div>
           </div>
 
@@ -976,20 +989,25 @@ Advertising
             </h2>
 
             <p>
-              Check the information below. Your campaign will still go
-              through the platform's payment and review process.
+              Check the information below. Your campaign
+              will still go through the platform's payment
+              and review process.
             </p>
           </div>
 
           <div className="advertise-review">
             <div className="advertise-review-row">
               <span>Advertiser</span>
-              <strong>{form.advertiserName}</strong>
+              <strong>
+                {form.advertiserName}
+              </strong>
             </div>
 
             <div className="advertise-review-row">
               <span>Campaign</span>
-              <strong>{form.campaignTitle}</strong>
+              <strong>
+                {form.campaignTitle}
+              </strong>
             </div>
 
             <div className="advertise-review-row">
@@ -1002,19 +1020,28 @@ Advertising
             <div className="advertise-review-row">
               <span>Audience</span>
               <strong>
-                {selectedScope?.scope_type === 'all_levels'
+                {selectedScope?.scope_type ===
+                'all_levels'
                   ? 'All learning levels'
                   : selectedScope?.scope_type ===
                       'specific_level'
-                    ? selectedLevel?.display_name || 'Selected level'
-                    : `${selectedLevel?.display_name || 'Selected level'} — ${form.className || 'Selected class'}`}
+                    ? selectedLevel?.display_name ||
+                      'Selected level'
+                    : `${
+                        selectedLevel?.display_name ||
+                        'Selected level'
+                      } — ${
+                        form.className ||
+                        'Selected class'
+                      }`}
               </strong>
             </div>
 
             <div className="advertise-review-row">
               <span>Placement</span>
               <strong>
-                {selectedPlacement?.display_name || '—'}
+                {selectedPlacement?.display_name ||
+                  '—'}
               </strong>
             </div>
 
@@ -1045,7 +1072,9 @@ Advertising
 
           {estimatedPrice && (
             <div className="advertise-create-price">
-              <span>Estimated campaign price</span>
+              <span>
+                Estimated campaign price
+              </span>
 
               <strong>
                 {formatMoney(
@@ -1055,8 +1084,9 @@ Advertising
               </strong>
 
               <small>
-                Final availability and price are confirmed by the
-                advertising system when the placement is submitted.
+                Final availability and price are
+                confirmed by the advertising system when
+                the placement is submitted.
               </small>
             </div>
           )}
@@ -1149,8 +1179,9 @@ Advertising
       </h2>
 
       <p>
-        AliverBiopharm is a learning environment. Campaigns should
-        provide genuine value to the learners they reach.
+        AliverBiopharm is a learning environment.
+        Campaigns should provide genuine value to the
+        learners they reach.
       </p>
 
       <Link
