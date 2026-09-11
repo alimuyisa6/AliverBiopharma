@@ -1,4 +1,4 @@
- /* features/home/HomeView.jsx */
+ /* src/features/home/HomeView.jsx */
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Icon from '../../components/Icon/Icon';
@@ -12,6 +12,7 @@ import { ChatWidget } from '../chat/ChatWidget';
 import { NewsletterForm } from './NewsletterForm';
 import ClassroomTeaser from '../classroom/ClassroomTeaser';
 import TutorMarketplaceTeaser from '../tutor-marketplace/TutorMarketplaceTeaser';
+import AdsHomeSection from '../../components/Advertising/AdsHomeSection';
 import Hero from '../../components/Hero/Hero';
 import HomeDashboardCard from '../../components/dashboard/HomeDashboardCard';
 import { useLayout } from '../../contexts/LayoutContext';
@@ -285,6 +286,8 @@ export default function HomeView(props) {
       <TestimonialSlider quotes={sections?.testimonials?.quotes || []} />
       <ClassroomTeaser />
       <TutorMarketplaceTeaser />
+
+      <AdsHomeSection />
 
       <NewsletterForm email={newsletterEmail} status={newsletterStatus} onChange={(event) => setNewsletterEmail(event.target.value)} onSubmit={handleNewsletterSubmit} />
 
