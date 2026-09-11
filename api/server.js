@@ -37,7 +37,7 @@ const MODULE_MAP = {
   tutors: () => import('../lib/tutors.js'),
   articles: () => import('../lib/articles.js'),
   'pdf-resources': () => import('../lib/pdf-resources.js'),
-  subscriptions: () => import('../lib/subscriptions.js')
+  subscriptions: () => import('../lib/subscriptions.js'),
 ads: () => import('../lib/ads.js')
 };
 
