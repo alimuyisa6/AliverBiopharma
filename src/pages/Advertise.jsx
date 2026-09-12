@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom';
 import Icon from '../components/Icon/Icon';
 import AdStepIcon from '../components/Advertising/AdStepIcon';
-import { useUIComponents } from '../contexts/UIComponentsContext';
+import { useLayout } from '../contexts/LayoutContext';
 
 const BENEFITS = [
   {
@@ -44,15 +44,20 @@ const PROGRAMMES = [
 ];
 
 export default function Advertise() {
-  const { components = {} } = useUIComponents();
+  const { bootstrap } = useLayout();
 
-  const config = components.advertise_hero || {};
+  const uiComponents = bootstrap?.ui_components || [];
+
+  const component = uiComponents.find(
+    (item) => item.component_key === 'advertise_hero'
+  );
 
   const imageUrl =
-    config.image_url || '/images/advertise-hero.jpg';
+    component?.properties?.image_url ||
+    '/images/advertise-hero.jpg';
 
   const imageAlt =
-    config.image_alt ||
+    component?.properties?.image_alt ||
     'Reach relevant learners through AliverBiopharm advertising';
 
   return (
