@@ -1697,14 +1697,3 @@
   .advertise-payment-summary-row strong {
     text-align: left;
   }
-}
-
-The resulting hierarchy is now:
-
-White → main sections
-Grey-50 → alternating sections/forms
-Amber → primary advertising action + important accents
-Emerald → secondary actions, benefits, completed/success states
-Grey → text, borders and supporting UI
-
-That makes the advertising pages visually belong to the same AliverBiopharm design system instead of looking like a separate dark/amber microsite.
