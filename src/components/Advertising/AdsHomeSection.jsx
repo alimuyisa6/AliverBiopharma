@@ -1,8 +1,8 @@
- /* src/components/Advertising/AdsHomeSection.jsx */
-
-import { Link } from 'react-router-dom';
+  /* src/components/Advertising/AdsHomeSection.jsx */
+ import { Link } from 'react-router-dom';
 import Icon from '../Icon/Icon';
 import AdStepIcon from './AdStepIcon';
+import { useUIComponents } from '../../contexts/UIComponentsContext';
 
 const STEPS = [
   {
@@ -59,8 +59,22 @@ const RULES = [
 ];
 
 export default function AdsHomeSection() {
+  const { components = {} } = useUIComponents();
+
+  const config = components.ads_home_section || {};
+
+  const imageUrl =
+    config.image_url || '/images/advertising-illustration.jpg';
+
+  const imageAlt =
+    config.image_alt ||
+    'Educational advertising opportunities for AliverBiopharm learners';
+
   return (
-    <section className="section ads-home-section" aria-labelledby="ads-home-title">
+    <section
+      className="section ads-home-section"
+      aria-labelledby="ads-home-title"
+    >
       <div className="ads-home-panel">
         <div className="ads-home-copy">
           <span className="ads-home-eyebrow">
@@ -97,28 +111,38 @@ export default function AdsHomeSection() {
           </div>
 
           <div className="ads-home-actions">
-            <Link to="/advertise" className="btn btn-primary ads-home-cta">
+            <Link
+              to="/advertise"
+              className="btn btn-primary ads-home-cta"
+            >
               <span>Place Your Ad</span>
               <Icon name="arrow-right" />
             </Link>
 
-            <Link to="/advertise" className="ads-home-secondary-link">
+            <Link
+              to="/advertise"
+              className="ads-home-secondary-link"
+            >
               Learn how advertising works
               <Icon name="arrow-right" />
             </Link>
           </div>
         </div>
 
-        <div className="ads-home-visual" aria-hidden="true">
+        <div className="ads-home-visual">
           <div className="ads-home-image-frame">
-            <div className="ads-home-image-placeholder">
-              <Icon name="megaphone" />
-              <span>Advertising illustration</span>
-            </div>
+            <img
+              className="ads-home-image"
+              src={imageUrl}
+              alt={imageAlt}
+              loading="lazy"
+            />
           </div>
 
           <div className="ads-home-audience-note">
-            <span className="ads-home-audience-label">Audience</span>
+            <span className="ads-home-audience-label">
+              Audience
+            </span>
 
             <div className="ads-home-audience-list">
               <span>Biology O-Level</span>
@@ -147,9 +171,14 @@ export default function AdsHomeSection() {
 
         <div className="ads-home-step-grid">
           {STEPS.map((step) => (
-            <article className="ads-home-step" key={step.number}>
+            <article
+              className="ads-home-step"
+              key={step.number}
+            >
               <div className="ads-home-step-top">
-                <span className="ads-home-step-number">{step.number}</span>
+                <span className="ads-home-step-number">
+                  {step.number}
+                </span>
 
                 <div className="ads-home-step-icon">
                   <AdStepIcon name={step.icon} />
@@ -183,7 +212,10 @@ export default function AdsHomeSection() {
 
         <div className="ads-home-rules-list">
           {RULES.map((rule, index) => (
-            <div className="ads-home-rule" key={rule}>
+            <div
+              className="ads-home-rule"
+              key={rule}
+            >
               <span className="ads-home-rule-number">
                 {String(index + 1).padStart(2, '0')}
               </span>
