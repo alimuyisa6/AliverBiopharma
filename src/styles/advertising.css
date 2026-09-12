@@ -2,8 +2,8 @@
   position: relative;
   overflow: hidden;
   padding: 96px 24px;
-  background: var(--amber-700, #b45309);
-  color: var(--white, #ffffff);
+  background: var(--bg-page, #ffffff);
+  color: var(--text-main, #0f172a);
 }
 
 .ads-home-section::after {
@@ -12,7 +12,7 @@
   inset: auto -10% -35% auto;
   width: 420px;
   height: 420px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1px solid var(--amber-200, #fde68a);
   border-radius: 50%;
   pointer-events: none;
 }
@@ -36,6 +36,7 @@
   display: inline-flex;
   align-items: center;
   margin-bottom: 18px;
+  color: var(--amber-600, #d97706);
   font-family: var(--font-sans, Inter, system-ui, sans-serif);
   font-size: 0.75rem;
   font-weight: 700;
@@ -52,6 +53,7 @@
   font-weight: 800;
   line-height: 0.98;
   letter-spacing: -0.045em;
+  color: var(--text-main, #0f172a);
 }
 
 .ads-home-title span {
@@ -61,10 +63,9 @@
 .ads-home-description {
   max-width: 620px;
   margin-top: 28px;
+  color: var(--text-dim, #475569);
   font-size: 1.0625rem;
   line-height: 1.7;
-.ads-home-description {
-  color: rgba(255, 255, 255, 0.92);
 }
 
 .ads-home-description p {
@@ -84,29 +85,29 @@
 }
 
 .ads-home-actions .btn-primary {
-  background: var(--white, #ffffff);
-  color: var(--amber-700, #b45309);
-  border-color: var(--white, #ffffff);
+  background: var(--primary, #d97706);
+  color: var(--text-inverse, #ffffff);
+  border-color: var(--primary, #d97706);
 }
 
 .ads-home-actions .btn-primary:hover {
-  background: var(--grey-100, #f3f4f6);
-  color: var(--amber-800, #92400e);
-  border-color: var(--grey-100, #f3f4f6);
+  background: var(--primary-hover, #b45309);
+  color: var(--text-inverse, #ffffff);
+  border-color: var(--primary-hover, #b45309);
 }
 
 .ads-home-secondary-link {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  color: var(--white, #ffffff);
+  color: var(--secondary, #059669);
   font-size: 0.9375rem;
   font-weight: 600;
   text-decoration: none;
 }
 
 .ads-home-secondary-link:hover {
-  opacity: 0.82;
+  color: var(--secondary-hover, #047857);
 }
 
 .ads-home-secondary-link svg {
@@ -120,10 +121,10 @@
 
 .ads-home-image-frame {
   min-height: 390px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  border: 1px solid var(--border-default, #e2e8f0);
   border-radius: var(--radius-md, 6px);
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--bg-section-tint, #f8fafc);
 }
 
 .ads-home-image-placeholder {
@@ -133,6 +134,7 @@
   justify-content: center;
   min-height: 390px;
   padding: 32px;
+  color: var(--text-muted, #64748b);
   text-align: center;
 }
 
@@ -140,13 +142,13 @@
   width: 54px;
   height: 54px;
   margin-bottom: 18px;
+  color: var(--amber-600, #d97706);
 }
 
 .ads-home-image-placeholder span {
   max-width: 300px;
   font-size: 0.875rem;
   line-height: 1.6;
-  opacity: 0.82;
 }
 
 .ads-home-audience-note {
@@ -156,6 +158,7 @@
 .ads-home-audience-label {
   display: block;
   margin-bottom: 9px;
+  color: var(--text-muted, #64748b);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -171,6 +174,7 @@
 .ads-home-audience-list span {
   position: relative;
   padding-left: 14px;
+  color: var(--text-dim, #475569);
   font-size: 0.875rem;
   line-height: 1.5;
 }
@@ -183,13 +187,13 @@
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: currentColor;
+  background: var(--emerald-600, #059669);
 }
 
 .ads-home-steps {
   padding: 88px 24px;
-  background: var(--bg-primary, #ffffff);
-  color: var(--text-primary, #202124);
+  background: var(--bg-page, #ffffff);
+  color: var(--text-main, #0f172a);
 }
 
 .ads-home-section-heading {
@@ -210,6 +214,7 @@
 
 .ads-home-section-heading h2 {
   margin: 0;
+  color: var(--text-main, #0f172a);
   font-size: clamp(2rem, 3.5vw, 3rem);
   font-weight: 750;
   line-height: 1.08;
@@ -219,7 +224,7 @@
 .ads-home-section-heading p {
   max-width: 620px;
   margin: 18px auto 0;
-  color: var(--text-secondary, #5f6368);
+  color: var(--text-dim, #475569);
   font-size: 1rem;
   line-height: 1.7;
 }
@@ -234,9 +239,9 @@
 
 .ads-home-step {
   padding: 28px;
-  border: 1px solid var(--border-color, #d9dde2);
+  border: 1px solid var(--border-default, #e2e8f0);
   border-radius: var(--radius-md, 6px);
-  background: var(--surface, #ffffff);
+  background: var(--bg-card, #ffffff);
 }
 
 .ads-home-step-top {
@@ -249,7 +254,7 @@
 
 .ads-home-step-number {
   font-family: var(--font-mono, "DM Mono", monospace);
-  color: var(--text-muted, #73777d);
+  color: var(--text-muted, #64748b);
   font-size: 0.75rem;
   font-weight: 600;
 }
@@ -260,9 +265,10 @@
   justify-content: center;
   width: 42px;
   height: 42px;
-  border: 1px solid var(--border-color, #d9dde2);
+  border: 1px solid var(--border-default, #e2e8f0);
   border-radius: var(--radius-sm, 5px);
   color: var(--emerald-600, #059669);
+  background: var(--emerald-50, #ecfdf5);
 }
 
 .ads-home-step-icon svg {
@@ -272,7 +278,7 @@
 
 .ads-home-step h3 {
   margin: 0;
-  color: var(--text-primary, #202124);
+  color: var(--text-main, #0f172a);
   font-size: 1.125rem;
   font-weight: 700;
   line-height: 1.35;
@@ -280,15 +286,15 @@
 
 .ads-home-step p {
   margin: 10px 0 0;
-  color: var(--text-secondary, #5f6368);
+  color: var(--text-dim, #475569);
   font-size: 0.9375rem;
   line-height: 1.65;
 }
 
 .ads-home-rules {
   padding: 88px 24px;
-  background: var(--bg-secondary, #f7f8f9);
-  color: var(--text-primary, #202124);
+  background: var(--bg-section-tint, #f8fafc);
+  color: var(--text-main, #0f172a);
 }
 
 .ads-home-rules-heading {
@@ -309,6 +315,7 @@
 
 .ads-home-rules-heading h2 {
   margin: 0;
+  color: var(--text-main, #0f172a);
   font-size: clamp(2rem, 3.5vw, 3rem);
   font-weight: 750;
   line-height: 1.08;
@@ -317,7 +324,7 @@
 
 .ads-home-rules-heading p {
   margin: 16px auto 0;
-  color: var(--text-secondary, #5f6368);
+  color: var(--text-dim, #475569);
   font-size: 1rem;
   line-height: 1.7;
 }
@@ -334,9 +341,9 @@
   display: flex;
   gap: 16px;
   padding: 24px;
-  border: 1px solid var(--border-color, #d9dde2);
+  border: 1px solid var(--border-default, #e2e8f0);
   border-radius: var(--radius-md, 6px);
-  background: var(--surface, #ffffff);
+  background: var(--bg-card, #ffffff);
 }
 
 .ads-home-rule-number {
@@ -349,14 +356,14 @@
 
 .ads-home-rule p {
   margin: 0;
-  color: var(--text-secondary, #5f6368);
+  color: var(--text-dim, #475569);
   font-size: 0.9375rem;
   line-height: 1.65;
 }
 
 .advertise-page {
-  color: var(--text-primary, #202124);
-  background: var(--bg-primary, #ffffff);
+  color: var(--text-main, #0f172a);
+  background: var(--bg-page, #ffffff);
 }
 
 .advertise-hero {
@@ -378,7 +385,7 @@
   bottom: -240px;
   width: 500px;
   height: 500px;
-  border: 1px solid var(--border-color, #d9dde2);
+  border: 1px solid var(--amber-200, #fde68a);
   border-radius: 50%;
   pointer-events: none;
 }
@@ -391,6 +398,7 @@
 
 .advertise-hero-copy h1 {
   margin: 0;
+  color: var(--text-main, #0f172a);
   font-size: clamp(2.75rem, 5vw, 4.75rem);
   font-weight: 800;
   line-height: 0.98;
@@ -400,7 +408,7 @@
 .advertise-hero-copy p {
   max-width: 620px;
   margin: 24px 0 0;
-  color: var(--text-secondary, #5f6368);
+  color: var(--text-dim, #475569);
   font-size: 1.0625rem;
   line-height: 1.7;
 }
@@ -414,28 +422,28 @@
 }
 
 .advertise-hero-actions .btn-primary {
-  background: var(--amber-600, #d97706);
-  border-color: var(--amber-600, #d97706);
-  color: var(--white, #ffffff);
+  background: var(--primary, #d97706);
+  border-color: var(--primary, #d97706);
+  color: var(--text-inverse, #ffffff);
 }
 
 .advertise-hero-actions .btn-primary:hover {
-  background: var(--amber-700, #b45309);
-  border-color: var(--amber-700, #b45309);
+  background: var(--primary-hover, #b45309);
+  border-color: var(--primary-hover, #b45309);
 }
 
 .advertise-text-link {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  color: var(--emerald-700, #047857);
+  color: var(--secondary, #059669);
   font-size: 0.9375rem;
   font-weight: 600;
   text-decoration: none;
 }
 
 .advertise-text-link:hover {
-  color: var(--emerald-800, #065f46);
+  color: var(--secondary-hover, #047857);
 }
 
 .advertise-text-link svg {
@@ -451,10 +459,10 @@
 .advertise-hero-art {
   position: relative;
   min-height: 390px;
-  border: 1px solid var(--border-color, #d9dde2);
+  border: 1px solid var(--border-default, #e2e8f0);
   border-radius: var(--radius-md, 6px);
   overflow: hidden;
-  background: var(--bg-secondary, #f7f8f9);
+  background: var(--bg-section-tint, #f8fafc);
 }
 
 .advertise-hero-art-line {
@@ -471,15 +479,15 @@
   bottom: 12%;
   width: 68%;
   padding: 24px;
-  border: 1px solid var(--border-color, #d9dde2);
+  border: 1px solid var(--border-default, #e2e8f0);
   border-radius: var(--radius-md, 6px);
-  background: var(--surface, #ffffff);
+  background: var(--bg-card, #ffffff);
 }
 
 .advertise-hero-art-panel span {
   display: block;
   margin-bottom: 8px;
-  color: var(--text-muted, #73777d);
+  color: var(--text-muted, #64748b);
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -488,7 +496,7 @@
 
 .advertise-hero-art-panel strong {
   display: block;
-  color: var(--text-primary, #202124);
+  color: var(--text-main, #0f172a);
   font-size: 2.25rem;
   font-weight: 800;
   line-height: 1.05;
@@ -503,6 +511,7 @@
   height: 74px;
   border: 1px solid var(--emerald-600, #059669);
   border-radius: var(--radius-md, 6px);
+  background: var(--emerald-50, #ecfdf5);
 }
 
 .advertise-programmes,
@@ -512,7 +521,7 @@
 }
 
 .advertise-programmes {
-  background: var(--bg-secondary, #f7f8f9);
+  background: var(--bg-section-tint, #f8fafc);
 }
 
 .advertise-section-heading {
@@ -533,6 +542,7 @@
 
 .advertise-section-heading h2 {
   margin: 0;
+  color: var(--text-main, #0f172a);
   font-size: clamp(2rem, 3.5vw, 3rem);
   font-weight: 750;
   line-height: 1.08;
@@ -542,7 +552,7 @@
 .advertise-section-heading p {
   max-width: 620px;
   margin: 16px auto 0;
-  color: var(--text-secondary, #5f6368);
+  color: var(--text-dim, #475569);
   font-size: 1rem;
   line-height: 1.7;
 }
@@ -558,9 +568,9 @@
 .advertise-programme {
   position: relative;
   padding: 28px;
-  border: 1px solid var(--border-color, #d9dde2);
+  border: 1px solid var(--border-default, #e2e8f0);
   border-radius: var(--radius-md, 6px);
-  background: var(--surface, #ffffff);
+  background: var(--bg-card, #ffffff);
 }
 
 .advertise-programme-number {
@@ -574,6 +584,7 @@
 
 .advertise-programme h3 {
   margin: 0;
+  color: var(--text-main, #0f172a);
   font-size: 1.125rem;
   font-weight: 700;
   line-height: 1.35;
@@ -581,7 +592,7 @@
 
 .advertise-programme p {
   margin: 10px 0 0;
-  color: var(--text-secondary, #5f6368);
+  color: var(--text-dim, #475569);
   font-size: 0.9375rem;
   line-height: 1.65;
 }
@@ -596,7 +607,7 @@
 }
 
 .advertise-benefits {
-  background: var(--bg-primary, #ffffff);
+  background: var(--bg-page, #ffffff);
 }
 
 .advertise-benefit-list {
@@ -619,9 +630,10 @@
   width: 42px;
   height: 42px;
   margin-bottom: 22px;
-  border: 1px solid var(--border-color, #d9dde2);
+  border: 1px solid var(--border-default, #e2e8f0);
   border-radius: var(--radius-sm, 5px);
   color: var(--emerald-600, #059669);
+  background: var(--emerald-50, #ecfdf5);
 }
 
 .advertise-benefit-icon svg {
@@ -631,6 +643,7 @@
 
 .advertise-benefit h3 {
   margin: 0;
+  color: var(--text-main, #0f172a);
   font-size: 1.125rem;
   font-weight: 700;
   line-height: 1.35;
@@ -638,13 +651,13 @@
 
 .advertise-benefit p {
   margin: 10px 0 0;
-  color: var(--text-secondary, #5f6368);
+  color: var(--text-dim, #475569);
   font-size: 0.9375rem;
   line-height: 1.65;
 }
 
 .advertise-process {
-  background: var(--bg-secondary, #f7f8f9);
+  background: var(--bg-section-tint, #f8fafc);
 }
 
 .advertise-process-heading {
@@ -655,6 +668,7 @@
 .advertise-process-heading h2 {
   max-width: 700px;
   margin: 0;
+  color: var(--text-main, #0f172a);
   font-size: clamp(2rem, 3.5vw, 3rem);
   font-weight: 750;
   line-height: 1.08;
@@ -664,7 +678,7 @@
 .advertise-process-heading p {
   max-width: 680px;
   margin: 16px 0 0;
-  color: var(--text-secondary, #5f6368);
+  color: var(--text-dim, #475569);
   font-size: 1rem;
   line-height: 1.7;
 }
@@ -680,9 +694,9 @@
   max-width: 720px;
   margin: 42px auto 0;
   padding: 26px;
-  border: 1px solid var(--border-color, #d9dde2);
+  border: 1px solid var(--border-default, #e2e8f0);
   border-radius: var(--radius-md, 6px);
-  background: var(--surface, #ffffff);
+  background: var(--bg-card, #ffffff);
 }
 
 .advertise-process-note-icon {
@@ -691,9 +705,10 @@
   justify-content: center;
   width: 42px;
   height: 42px;
-  border: 1px solid var(--border-color, #d9dde2);
+  border: 1px solid var(--border-default, #e2e8f0);
   border-radius: var(--radius-sm, 5px);
   color: var(--amber-600, #d97706);
+  background: var(--amber-50, #fffbeb);
 }
 
 .advertise-process-note-icon svg {
@@ -703,6 +718,7 @@
 
 .advertise-process-note h3 {
   margin: 0;
+  color: var(--text-main, #0f172a);
   font-size: 1rem;
   font-weight: 700;
   line-height: 1.4;
@@ -710,7 +726,7 @@
 
 .advertise-process-note p {
   margin: 7px 0 0;
-  color: var(--text-secondary, #5f6368);
+  color: var(--text-dim, #475569);
   font-size: 0.875rem;
   line-height: 1.6;
 }
@@ -719,7 +735,7 @@
 .advertise-payment-page {
   min-height: 100vh;
   padding: 48px 24px 80px;
-  background: var(--bg-secondary, #f7f8f9);
+  background: var(--bg-section-tint, #f8fafc);
 }
 
 .advertise-create-header,
@@ -733,14 +749,14 @@
   align-items: center;
   gap: 7px;
   margin-bottom: 26px;
-  color: var(--text-secondary, #5f6368);
+  color: var(--text-dim, #475569);
   font-size: 0.875rem;
   font-weight: 600;
   text-decoration: none;
 }
 
 .advertise-back-link:hover {
-  color: var(--text-primary, #202124);
+  color: var(--text-main, #0f172a);
 }
 
 .advertise-back-link svg {
@@ -751,6 +767,7 @@
 .advertise-create-header h1,
 .advertise-payment-header h1 {
   margin: 0;
+  color: var(--text-main, #0f172a);
   font-size: clamp(2.4rem, 4.5vw, 4rem);
   font-weight: 800;
   line-height: 1;
@@ -761,7 +778,7 @@
 .advertise-payment-header > p {
   max-width: 650px;
   margin: 16px 0 0;
-  color: var(--text-secondary, #5f6368);
+  color: var(--text-dim, #475569);
   font-size: 1rem;
   line-height: 1.7;
 }
@@ -770,14 +787,14 @@
   display: flex;
   max-width: 1120px;
   margin: 38px auto 0;
-  border-bottom: 1px solid var(--border-color, #d9dde2);
+  border-bottom: 1px solid var(--border-default, #e2e8f0);
 }
 
 .advertise-create-progress-item {
   position: relative;
   flex: 1;
   padding: 0 10px 16px;
-  color: var(--text-muted, #73777d);
+  color: var(--text-muted, #64748b);
   font-size: 0.75rem;
   text-align: center;
 }
@@ -819,9 +836,9 @@
 
 .advertise-create-form {
   min-width: 0;
-  border: 1px solid var(--border-color, #d9dde2);
+  border: 1px solid var(--border-default, #e2e8f0);
   border-radius: var(--radius-md, 6px);
-  background: var(--surface, #ffffff);
+  background: var(--bg-card, #ffffff);
 }
 
 .advertise-create-loading {
@@ -830,13 +847,13 @@
   justify-content: center;
   min-height: 320px;
   padding: 32px;
-  color: var(--text-secondary, #5f6368);
+  color: var(--text-dim, #475569);
   font-size: 0.9375rem;
 }
 
 .advertise-create-step {
   padding: 34px;
-  border-bottom: 1px solid var(--border-color, #d9dde2);
+  border-bottom: 1px solid var(--border-default, #e2e8f0);
 }
 
 .advertise-create-step:last-of-type {
@@ -849,6 +866,7 @@
 
 .advertise-create-step-heading h2 {
   margin: 0;
+  color: var(--text-main, #0f172a);
   font-size: clamp(1.8rem, 3vw, 2.5rem);
   font-weight: 750;
   line-height: 1.1;
@@ -857,7 +875,7 @@
 
 .advertise-create-step-heading p {
   margin: 9px 0 0;
-  color: var(--text-secondary, #5f6368);
+  color: var(--text-dim, #475569);
   font-size: 0.9375rem;
   line-height: 1.6;
 }
@@ -878,7 +896,7 @@
 .advertise-create-step > label {
   display: grid;
   gap: 8px;
-  color: var(--text-primary, #202124);
+  color: var(--text-main, #0f172a);
   font-size: 0.875rem;
   font-weight: 650;
   line-height: 1.4;
@@ -897,11 +915,11 @@
   width: 100%;
   min-height: 46px;
   padding: 10px 13px;
-  border: 1px solid var(--border-color, #d9dde2);
+  border: 1px solid var(--border-default, #e2e8f0);
   border-radius: var(--radius-sm, 5px);
   outline: none;
-  background: var(--surface, #ffffff);
-  color: var(--text-primary, #202124);
+  background: var(--bg-input, #ffffff);
+  color: var(--text-main, #0f172a);
   font-family: inherit;
   font-size: 1rem;
   line-height: 1.45;
@@ -925,8 +943,8 @@
 .advertise-create-step select:focus,
 .advertise-create-step textarea:focus,
 .advertise-payment-form input:focus {
-  border-color: var(--amber-600, #d97706);
-  box-shadow: 0 0 0 2px var(--amber-100, #fef3c7);
+  border-color: var(--border-focus, #d97706);
+  box-shadow: 0 0 0 2px var(--primary-light, #fffbeb);
 }
 
 .advertise-create-step select {
@@ -940,10 +958,10 @@
 .advertise-create-error {
   margin: 18px 34px 0;
   padding: 13px 15px;
-  border: 1px solid var(--danger-600, #dc2626);
+  border: 1px solid var(--error, #dc2626);
   border-radius: var(--radius-sm, 5px);
-  color: var(--danger-600, #dc2626);
-  background: var(--danger-50, #fef2f2);
+  color: var(--error, #dc2626);
+  background: var(--error-light, #fef2f2);
   font-size: 0.875rem;
   line-height: 1.5;
 }
@@ -954,18 +972,19 @@
   justify-content: flex-end;
   gap: 12px;
   padding: 24px 34px;
-  border-top: 1px solid var(--border-color, #d9dde2);
+  border-top: 1px solid var(--border-default, #e2e8f0);
 }
 
 .advertise-create-summary {
   padding: 26px;
-  border: 1px solid var(--border-color, #d9dde2);
+  border: 1px solid var(--border-default, #e2e8f0);
   border-radius: var(--radius-md, 6px);
-  background: var(--surface, #ffffff);
+  background: var(--bg-card, #ffffff);
 }
 
 .advertise-create-summary h3 {
   margin: 0 0 20px;
+  color: var(--text-main, #0f172a);
   font-size: 1.125rem;
   font-weight: 700;
 }
@@ -979,7 +998,7 @@
   display: grid;
   gap: 5px;
   padding-bottom: 14px;
-  border-bottom: 1px solid var(--border-color, #d9dde2);
+  border-bottom: 1px solid var(--border-default, #e2e8f0);
 }
 
 .advertise-create-summary-item:last-child {
@@ -988,7 +1007,7 @@
 }
 
 .advertise-create-summary-item span {
-  color: var(--text-muted, #73777d);
+  color: var(--text-muted, #64748b);
   font-size: 0.75rem;
   font-weight: 600;
   line-height: 1.35;
@@ -997,7 +1016,7 @@
 }
 
 .advertise-create-summary-item strong {
-  color: var(--text-primary, #202124);
+  color: var(--text-main, #0f172a);
   font-size: 0.875rem;
   font-weight: 650;
   line-height: 1.5;
@@ -1006,12 +1025,12 @@
 .advertise-price-summary {
   margin-top: 22px;
   padding-top: 20px;
-  border-top: 1px solid var(--border-color, #d9dde2);
+  border-top: 1px solid var(--border-default, #e2e8f0);
 }
 
 .advertise-price-label {
   display: block;
-  color: var(--text-muted, #73777d);
+  color: var(--text-muted, #64748b);
   font-size: 0.75rem;
   font-weight: 650;
   letter-spacing: 0.06em;
@@ -1039,6 +1058,7 @@
 
 .ad-campaign-success-header h1 {
   margin: 0;
+  color: var(--text-main, #0f172a);
   font-size: clamp(2.2rem, 4.5vw, 4rem);
   font-weight: 800;
   line-height: 1;
@@ -1048,7 +1068,7 @@
 .ad-campaign-success-header p {
   max-width: 620px;
   margin: 16px auto 0;
-  color: var(--text-secondary, #5f6368);
+  color: var(--text-dim, #475569);
   font-size: 1rem;
   line-height: 1.7;
 }
@@ -1057,16 +1077,16 @@
   max-width: 520px;
   margin: 28px auto 0;
   padding: 18px 20px;
-  border: 1px solid var(--border-color, #d9dde2);
+  border: 1px solid var(--border-default, #e2e8f0);
   border-radius: var(--radius-md, 6px);
-  background: var(--bg-secondary, #f7f8f9);
+  background: var(--bg-section-tint, #f8fafc);
   text-align: center;
 }
 
 .ad-campaign-success-reference-label {
   display: block;
   margin-bottom: 7px;
-  color: var(--text-muted, #73777d);
+  color: var(--text-muted, #64748b);
   font-size: 0.75rem;
   font-weight: 650;
   letter-spacing: 0.08em;
@@ -1076,7 +1096,7 @@
 .ad-campaign-success-reference-value {
   display: block;
   font-family: var(--font-mono, "DM Mono", monospace);
-  color: var(--text-primary, #202124);
+  color: var(--text-main, #0f172a);
   font-size: 0.875rem;
   font-weight: 600;
   word-break: break-word;
@@ -1103,10 +1123,10 @@
   width: 34px;
   height: 34px;
   margin: 0 auto 12px;
-  border: 1px solid var(--border-color, #d9dde2);
+  border: 1px solid var(--border-default, #e2e8f0);
   border-radius: 50%;
-  background: var(--surface, #ffffff);
-  color: var(--text-muted, #73777d);
+  background: var(--bg-card, #ffffff);
+  color: var(--text-muted, #64748b);
   font-family: var(--font-mono, "DM Mono", monospace);
   font-size: 0.6875rem;
   font-weight: 600;
@@ -1119,18 +1139,18 @@
   left: calc(50% + 17px);
   width: calc(100% - 34px);
   height: 1px;
-  background: var(--border-color, #d9dde2);
+  background: var(--border-default, #e2e8f0);
 }
 
 .ad-campaign-success-progress-step.is-complete .ad-campaign-success-progress-marker {
   border-color: var(--emerald-600, #059669);
   background: var(--emerald-600, #059669);
-  color: var(--white, #ffffff);
+  color: var(--text-inverse, #ffffff);
 }
 
 .ad-campaign-success-progress-title {
   display: block;
-  color: var(--text-primary, #202124);
+  color: var(--text-main, #0f172a);
   font-size: 0.875rem;
   font-weight: 700;
   line-height: 1.4;
@@ -1139,7 +1159,7 @@
 .ad-campaign-success-progress-text {
   display: block;
   margin-top: 5px;
-  color: var(--text-muted, #73777d);
+  color: var(--text-muted, #64748b);
   font-size: 0.8125rem;
   line-height: 1.5;
 }
@@ -1147,13 +1167,14 @@
 .ad-campaign-success-summary {
   margin-top: 48px;
   padding: 30px;
-  border: 1px solid var(--border-color, #d9dde2);
+  border: 1px solid var(--border-default, #e2e8f0);
   border-radius: var(--radius-md, 6px);
-  background: var(--surface, #ffffff);
+  background: var(--bg-card, #ffffff);
 }
 
 .ad-campaign-success-summary-title {
   margin: 0 0 24px;
+  color: var(--text-main, #0f172a);
   font-size: 1.125rem;
   font-weight: 700;
 }
@@ -1170,7 +1191,7 @@
 }
 
 .ad-campaign-success-summary-label {
-  color: var(--text-muted, #73777d);
+  color: var(--text-muted, #64748b);
   font-size: 0.75rem;
   font-weight: 650;
   letter-spacing: 0.06em;
@@ -1178,7 +1199,7 @@
 }
 
 .ad-campaign-success-summary-value {
-  color: var(--text-primary, #202124);
+  color: var(--text-main, #0f172a);
   font-size: 0.9375rem;
   font-weight: 650;
   line-height: 1.5;
@@ -1197,7 +1218,7 @@
   align-items: center;
   justify-content: center;
   min-height: 360px;
-  color: var(--text-secondary, #5f6368);
+  color: var(--text-dim, #475569);
 }
 
 .advertise-payment-loading svg {
@@ -1222,28 +1243,28 @@
 .advertise-payment-message {
   margin-bottom: 20px;
   padding: 14px 16px;
-  border: 1px solid var(--border-color, #d9dde2);
+  border: 1px solid var(--border-default, #e2e8f0);
   border-radius: var(--radius-sm, 5px);
   font-size: 0.875rem;
   line-height: 1.5;
 }
 
 .advertise-payment-error {
-  border-color: var(--danger-600, #dc2626);
-  color: var(--danger-600, #dc2626);
-  background: var(--danger-50, #fef2f2);
+  border-color: var(--error, #dc2626);
+  color: var(--error, #dc2626);
+  background: var(--error-light, #fef2f2);
 }
 
 .advertise-payment-message {
-  color: var(--text-secondary, #5f6368);
-  background: var(--surface, #ffffff);
+  color: var(--text-dim, #475569);
+  background: var(--bg-card, #ffffff);
 }
 
 .advertise-payment-empty {
   padding: 54px 30px;
-  border: 1px solid var(--border-color, #d9dde2);
+  border: 1px solid var(--border-default, #e2e8f0);
   border-radius: var(--radius-md, 6px);
-  background: var(--surface, #ffffff);
+  background: var(--bg-card, #ffffff);
   text-align: center;
 }
 
@@ -1254,13 +1275,15 @@
   width: 48px;
   height: 48px;
   margin: 0 auto 18px;
-  border: 1px solid var(--border-color, #d9dde2);
+  border: 1px solid var(--border-default, #e2e8f0);
   border-radius: var(--radius-sm, 5px);
   color: var(--amber-600, #d97706);
+  background: var(--amber-50, #fffbeb);
 }
 
 .advertise-payment-empty h2 {
   margin: 0;
+  color: var(--text-main, #0f172a);
   font-size: 1.5rem;
   font-weight: 750;
   line-height: 1.2;
@@ -1269,7 +1292,7 @@
 .advertise-payment-empty p {
   max-width: 520px;
   margin: 10px auto 0;
-  color: var(--text-secondary, #5f6368);
+  color: var(--text-dim, #475569);
   font-size: 0.9375rem;
   line-height: 1.65;
 }
@@ -1279,9 +1302,9 @@
   grid-template-columns: auto 1fr;
   gap: 18px;
   padding: 26px;
-  border: 1px solid var(--border-color, #d9dde2);
+  border: 1px solid var(--border-default, #e2e8f0);
   border-radius: var(--radius-md, 6px);
-  background: var(--surface, #ffffff);
+  background: var(--bg-card, #ffffff);
 }
 
 .advertise-payment-status-icon {
@@ -1293,10 +1316,12 @@
   border: 1px solid var(--emerald-600, #059669);
   border-radius: var(--radius-sm, 5px);
   color: var(--emerald-600, #059669);
+  background: var(--emerald-50, #ecfdf5);
 }
 
 .advertise-payment-status h2 {
   margin: 0;
+  color: var(--text-main, #0f172a);
   font-size: 1.5rem;
   font-weight: 750;
   line-height: 1.2;
@@ -1304,7 +1329,7 @@
 
 .advertise-payment-status p {
   margin: 7px 0 0;
-  color: var(--text-secondary, #5f6368);
+  color: var(--text-dim, #475569);
   font-size: 0.875rem;
   line-height: 1.6;
 }
@@ -1312,9 +1337,9 @@
 .advertise-payment-summary {
   margin-top: 20px;
   padding: 26px;
-  border: 1px solid var(--border-color, #d9dde2);
+  border: 1px solid var(--border-default, #e2e8f0);
   border-radius: var(--radius-md, 6px);
-  background: var(--surface, #ffffff);
+  background: var(--bg-card, #ffffff);
 }
 
 .advertise-payment-summary-row {
@@ -1323,7 +1348,7 @@
   justify-content: space-between;
   gap: 20px;
   padding: 12px 0;
-  border-bottom: 1px solid var(--border-color, #d9dde2);
+  border-bottom: 1px solid var(--border-default, #e2e8f0);
 }
 
 .advertise-payment-summary-row:first-child {
@@ -1336,13 +1361,13 @@
 }
 
 .advertise-payment-summary-row span {
-  color: var(--text-secondary, #5f6368);
+  color: var(--text-dim, #475569);
   font-size: 0.875rem;
   line-height: 1.5;
 }
 
 .advertise-payment-summary-row strong {
-  color: var(--text-primary, #202124);
+  color: var(--text-main, #0f172a);
   font-size: 0.9375rem;
   font-weight: 700;
   line-height: 1.5;
@@ -1352,9 +1377,9 @@
 .advertise-payment-form {
   margin-top: 20px;
   padding: 30px;
-  border: 1px solid var(--border-color, #d9dde2);
+  border: 1px solid var(--border-default, #e2e8f0);
   border-radius: var(--radius-md, 6px);
-  background: var(--surface, #ffffff);
+  background: var(--bg-card, #ffffff);
 }
 
 .advertise-payment-form-heading {
@@ -1363,6 +1388,7 @@
 
 .advertise-payment-form-heading h2 {
   margin: 0;
+  color: var(--text-main, #0f172a);
   font-size: clamp(1.7rem, 3vw, 2.4rem);
   font-weight: 750;
   line-height: 1.1;
@@ -1371,7 +1397,7 @@
 
 .advertise-payment-form-heading p {
   margin: 9px 0 0;
-  color: var(--text-secondary, #5f6368);
+  color: var(--text-dim, #475569);
   font-size: 0.9375rem;
   line-height: 1.6;
 }
@@ -1380,7 +1406,7 @@
   display: grid;
   gap: 8px;
   margin-bottom: 18px;
-  color: var(--text-primary, #202124);
+  color: var(--text-main, #0f172a);
   font-size: 0.875rem;
   font-weight: 650;
   line-height: 1.4;
@@ -1393,13 +1419,14 @@
 .advertise-payment-next {
   margin-top: 20px;
   padding: 26px;
-  border: 1px solid var(--border-color, #d9dde2);
+  border: 1px solid var(--border-default, #e2e8f0);
   border-radius: var(--radius-md, 6px);
-  background: var(--bg-secondary, #f7f8f9);
+  background: var(--bg-section-tint, #f8fafc);
 }
 
 .advertise-payment-next h2 {
   margin: 0;
+  color: var(--text-main, #0f172a);
   font-size: 1.5rem;
   font-weight: 750;
   line-height: 1.2;
@@ -1407,7 +1434,7 @@
 
 .advertise-payment-next p {
   margin: 9px 0 0;
-  color: var(--text-secondary, #5f6368);
+  color: var(--text-dim, #475569);
   font-size: 0.875rem;
   line-height: 1.6;
 }
@@ -1418,9 +1445,9 @@
 
 .advertise-payment-aside {
   padding: 26px;
-  border: 1px solid var(--border-color, #d9dde2);
+  border: 1px solid var(--border-default, #e2e8f0);
   border-radius: var(--radius-md, 6px);
-  background: var(--surface, #ffffff);
+  background: var(--bg-card, #ffffff);
 }
 
 .advertise-payment-aside-icon {
@@ -1433,10 +1460,12 @@
   border: 1px solid var(--amber-600, #d97706);
   border-radius: var(--radius-sm, 5px);
   color: var(--amber-600, #d97706);
+  background: var(--amber-50, #fffbeb);
 }
 
 .advertise-payment-aside h2 {
   margin: 0;
+  color: var(--text-main, #0f172a);
   font-size: 1.5rem;
   font-weight: 750;
   line-height: 1.2;
@@ -1444,7 +1473,7 @@
 
 .advertise-payment-aside > p {
   margin: 10px 0 0;
-  color: var(--text-secondary, #5f6368);
+  color: var(--text-dim, #475569);
   font-size: 0.875rem;
   line-height: 1.65;
 }
@@ -1471,12 +1500,12 @@
   margin-top: 1px;
   border-radius: 50%;
   background: var(--emerald-600, #059669);
-  color: var(--white, #ffffff);
+  color: var(--text-inverse, #ffffff);
   font-size: 0.625rem;
 }
 
 .advertise-payment-checklist strong {
-  color: var(--text-primary, #202124);
+  color: var(--text-main, #0f172a);
   font-size: 0.8125rem;
   font-weight: 650;
   line-height: 1.5;
@@ -1669,3 +1698,13 @@
     text-align: left;
   }
 }
+
+The resulting hierarchy is now:
+
+White → main sections
+Grey-50 → alternating sections/forms
+Amber → primary advertising action + important accents
+Emerald → secondary actions, benefits, completed/success states
+Grey → text, borders and supporting UI
+
+That makes the advertising pages visually belong to the same AliverBiopharm design system instead of looking like a separate dark/amber microsite.
