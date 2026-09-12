@@ -63,6 +63,8 @@
   margin-top: 28px;
   font-size: 1.0625rem;
   line-height: 1.7;
+.ads-home-description {
+  color: rgba(255, 255, 255, 0.92);
 }
 
 .ads-home-description p {
