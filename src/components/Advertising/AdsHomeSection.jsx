@@ -1,8 +1,8 @@
-  /* src/components/Advertising/AdsHomeSection.jsx */
- import { Link } from 'react-router-dom';
+ /* src/components/Advertising/AdsHomeSection.jsx */
+import { Link } from 'react-router-dom';
 import Icon from '../Icon/Icon';
 import AdStepIcon from './AdStepIcon';
-import { useUIComponents } from '../../contexts/UIComponentsContext';
+import { useLayout } from '../../contexts/LayoutContext';
 
 const STEPS = [
   {
@@ -59,15 +59,20 @@ const RULES = [
 ];
 
 export default function AdsHomeSection() {
-  const { components = {} } = useUIComponents();
+  const { bootstrap } = useLayout();
 
-  const config = components.ads_home_section || {};
+  const uiComponents = bootstrap?.ui_components || [];
+
+  const component = uiComponents.find(
+    (item) => item.component_key === 'ads_home_section'
+  );
 
   const imageUrl =
-    config.image_url || '/images/advertising-illustration.jpg';
+    component?.properties?.image_url ||
+    '/images/advertising-illustration.jpg';
 
   const imageAlt =
-    config.image_alt ||
+    component?.properties?.image_alt ||
     'Educational advertising opportunities for AliverBiopharm learners';
 
   return (
