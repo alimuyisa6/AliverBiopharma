@@ -1,9 +1,9 @@
- import { useState, useEffect } from 'react';
+ /* src/components/Hero/Hero.jsx */
+
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { useLayout } from '../../contexts/LayoutContext';
-import Icon from '../../components/Icon/Icon';
-import Button from '../../components/Button/Button';
 
 const MODULE_LABELS = {
   quiz: 'Quiz',
@@ -35,35 +35,56 @@ export default function Hero() {
   const { level, groups, bootstrap, features } = useLayout();
   const [resume, setResume] = useState(null);
 
-  const resumeFeatureKey = resume ? MODULE_FEATURE_KEYS[resume.module] : null;
-  const resumeAllowed = !resume || !resumeFeatureKey || (features?.[resumeFeatureKey] ?? true);
-
   const levelName = level?.display_name || '';
   const groupName = groups?.length > 0 ? groups[0].name : '';
 
+  const resumeFeatureKey = resume
+    ? MODULE_FEATURE_KEYS[resume.module]
+    : null;
+
+  const resumeAllowed =
+    !resume ||
+    !resumeFeatureKey ||
+    (features?.[resumeFeatureKey] ?? true);
+
   const uiComponents = bootstrap?.ui_components || [];
-  const featuredVideo = uiComponents.find((item) => item.component_key === 'featured_video')?.properties;
-  const heroGallery = uiComponents.find((item) => item.component_key === 'hero_gallery')?.properties;
+
+  const featuredVideo = uiComponents.find(
+    (item) => item.component_key === 'featured_video'
+  )?.properties;
+
+  const heroGallery = uiComponents.find(
+    (item) => item.component_key === 'hero_gallery'
+  )?.properties;
+
   const galleryImages = heroGallery?.images || [];
-  const galleryTitle = heroGallery?.title || 'Major Learning Materials Tailored For You';
+  const galleryTitle =
+    heroGallery?.title || 'Major Learning Materials Tailored For You';
+
   const galleryRowOne = galleryImages.slice(0, 3);
   const galleryRowTwo = galleryImages.slice(3, 6);
 
   useEffect(() => {
     if (!isAuthenticated) {
       setResume(null);
-      return;
+      return undefined;
     }
 
     let cancelled = false;
 
-    fetch('/api/server?module=resume&path=get_resume', { credentials: 'include' })
+    fetch('/api/server?module=resume&path=get_resume', {
+      credentials: 'include'
+    })
       .then((response) => response.json())
       .then((data) => {
-        if (!cancelled) setResume(data?.resume || null);
+        if (!cancelled) {
+          setResume(data?.resume || null);
+        }
       })
       .catch(() => {
-        if (!cancelled) setResume(null);
+        if (!cancelled) {
+          setResume(null);
+        }
       });
 
     return () => {
@@ -73,32 +94,49 @@ export default function Hero() {
 
   return (
     <>
-      <section className="hero hero-enhanced">
-        <div className="hero-image">
+      <section className="hero hero-enhanced" aria-labelledby="hero-title">
+        <div className="hero-image" aria-hidden="true">
           {featuredVideo?.video_url ? (
-            <video autoPlay muted loop playsInline poster={featuredVideo.thumbnail_url}>
-              <source src={featuredVideo.video_url} type="video/mp4" />
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              poster={featuredVideo.thumbnail_url}
+            >
+              <source
+                src={featuredVideo.video_url}
+                type="video/mp4"
+              />
             </video>
           ) : (
             <div className="hero-image-placeholder" />
           )}
         </div>
 
-        <div className="hero-scrim" />
+        <div className="hero-scrim" aria-hidden="true" />
 
         <div className="hero-content">
           <div className="hero-eyebrow">
-            Welcome to <span className="hero-eyebrow-accent">AliverBiopharm</span>
+            <span>Welcome to</span>
+            <span className="hero-eyebrow-accent">
+              AliverBiopharm
+            </span>
           </div>
 
-          <h1 className="hero-title">
+          <h1 id="hero-title" className="hero-title">
             {isAuthenticated && levelName ? (
               <>
-                Master
-                <span className="hero-eyebrow-accent">{levelName}</span>
+                <span>Master</span>
+                <span className="hero-eyebrow-accent">
+                  {levelName}
+                </span>
               </>
             ) : (
-              <>Master Biology<br />and Pharmacy</>
+              <>
+                <span>Master Biology</span>
+                <span>and Pharmacy</span>
+              </>
             )}
           </h1>
 
@@ -110,14 +148,28 @@ export default function Hero() {
 
           {!isAuthenticated && (
             <div className="hero-actions">
-              <Link to="/register" className="btn btn-primary">Start Learning Free</Link>
-              <Link to="/login" className="btn btn-secondary">Sign In</Link>
+              <Link
+                to="/register"
+                className="btn btn-primary"
+              >
+                Start Learning Free
+              </Link>
+
+              <Link
+                to="/login"
+                className="btn btn-secondary"
+              >
+                Sign In
+              </Link>
             </div>
           )}
 
           {isAuthenticated && resume && resumeAllowed && (
             <div className="hero-actions">
-              <Link to={resumeHref(resume)} className="btn btn-primary">
+              <Link
+                to={resumeHref(resume)}
+                className="btn btn-primary"
+              >
                 Continue {MODULE_LABELS[resume.module] || 'Learning'}
               </Link>
             </div>
@@ -126,26 +178,56 @@ export default function Hero() {
       </section>
 
       {galleryImages.length > 0 && (
-        <div className="hero-gallery-section">
-          <h2 className="hero-gallery-title">{galleryTitle}</h2>
+        <section
+          className="hero-gallery-section"
+          aria-labelledby="hero-gallery-title"
+        >
+          <h2
+            id="hero-gallery-title"
+            className="hero-gallery-title"
+          >
+            {galleryTitle}
+          </h2>
 
-          <div className="hero-gallery-row">
-            {galleryRowOne.map((image, index) => (
-              <div className="hero-gallery-item" key={image.url || index}>
-                <img src={image.url} alt={image.alt || galleryTitle} loading="lazy" />
-              </div>
-            ))}
-          </div>
+          {galleryRowOne.length > 0 && (
+            <div className="hero-gallery-row">
+              {galleryRowOne.map((image, index) => (
+                <div
+                  className="hero-gallery-item"
+                  key={image.url || `gallery-one-${index}`}
+                >
+                  <img
+                    src={image.url}
+                    alt={image.alt || galleryTitle}
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
+          )}
 
-          <div className="hero-gallery-row">
-            {galleryRowTwo.map((image, index) => (
-              <div className="hero-gallery-item" key={image.url || index}>
-                <img src={image.url} alt={image.alt || galleryTitle} loading="lazy" />
-              </div>
-            ))}
-          </div>
-        </div>
+          {galleryRowTwo.length > 0 && (
+            <div className="hero-gallery-row">
+              {galleryRowTwo.map((image, index) => (
+                <div
+                  className="hero-gallery-item"
+                  key={image.url || `gallery-two-${index}`}
+                >
+                  <img
+                    src={image.url}
+                    alt={image.alt || galleryTitle}
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
       )}
     </>
   );
 }
+
+This keeps the existing video, authentication, level, resume-learning, feature gating, and gallery behavior while removing the unused imports and making the markup more accessible.
+
+Next: I’d check the actual global token file ("tokens.css"/equivalent) against this hero file, because that is the safest way to ensure we aren't referencing tokens that don't actually exist.
