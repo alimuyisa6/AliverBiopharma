@@ -239,7 +239,7 @@ export default function Profile() {
     if (!levelReqTrack || !levelReqReason.trim()) { addToast('Please complete all fields', 'error'); return; }
     setLevelReqLoading(true);
     try {
-      await requestLevelChange(levelReqTrack, levelReqReason);
+      await requestLevelChange(levelReqTrack, null, levelReqReason);
       setLevelReqTrack('');
       setLevelReqReason('');
       addToast('Level change request submitted', 'success');
