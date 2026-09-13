@@ -228,6 +228,4 @@ export default function Hero() {
   );
 }
 
-This keeps the existing video, authentication, level, resume-learning, feature gating, and gallery behavior while removing the unused imports and making the markup more accessible.
-
-Next: I’d check the actual global token file ("tokens.css"/equivalent) against this hero file, because that is the safest way to ensure we aren't referencing tokens that don't actually exist.
+ 
