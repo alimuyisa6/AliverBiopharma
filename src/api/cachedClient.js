@@ -1009,7 +1009,7 @@ api.getDevices();
 export const revokeSession = (
 sessionId
 ) =>
-api.revokeSession(sessionId);
+api.revokeDevice(sessionId);
 
 export const getNotificationSettings = () =>
 api.getNotificationSettings();
