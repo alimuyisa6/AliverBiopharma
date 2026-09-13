@@ -58,6 +58,7 @@ export default function Hero() {
   )?.properties;
 
   const galleryImages = heroGallery?.images || [];
+
   const galleryTitle =
     heroGallery?.title || 'Major Learning Materials Tailored For You';
 
@@ -94,7 +95,10 @@ export default function Hero() {
 
   return (
     <>
-      <section className="hero hero-enhanced" aria-labelledby="hero-title">
+      <section
+        className="hero hero-enhanced"
+        aria-labelledby="hero-title"
+      >
         <div className="hero-image" aria-hidden="true">
           {featuredVideo?.video_url ? (
             <video
@@ -119,6 +123,7 @@ export default function Hero() {
         <div className="hero-content">
           <div className="hero-eyebrow">
             <span>Welcome to</span>
+
             <span className="hero-eyebrow-accent">
               AliverBiopharm
             </span>
@@ -128,6 +133,7 @@ export default function Hero() {
             {isAuthenticated && levelName ? (
               <>
                 <span>Master</span>
+
                 <span className="hero-eyebrow-accent">
                   {levelName}
                 </span>
@@ -135,6 +141,7 @@ export default function Hero() {
             ) : (
               <>
                 <span>Master Biology</span>
+
                 <span>and Pharmacy</span>
               </>
             )}
@@ -227,5 +234,3 @@ export default function Hero() {
     </>
   );
 }
-
- 
