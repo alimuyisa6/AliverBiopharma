@@ -34,6 +34,7 @@
 @import './why.css';
 @import './advertising.css';
 
+@import './howsec.css';
 .how-it-works-section {
   width: 100%;
 }
