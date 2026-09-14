@@ -1,36 +1,55 @@
-/* src/styles/tutor-dashboard.css */
+ /* src/styles/tutor-dashboard.css */
 
-/* Page container */
 .tutor-dashboard-page .section {
-  padding-top: var(--space-6);
+  padding-block: var(--section-space-y);
 }
 
-/* Intro description */
 .tutor-dashboard-page .page-intro {
+  margin: 0 0 var(--content-gap);
+  color: var(--text-secondary);
+  font-family: var(--font-reading);
   font-size: var(--text-base);
   font-weight: var(--weight-normal);
-  color: var(--text-dim);
   line-height: var(--leading-relaxed);
-  margin-bottom: var(--space-6);
 }
 
-/* Alert override (already defined globally, but kept for safety) */
 .tutor-dashboard-page .alert-success {
-  margin-bottom: var(--space-6);
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  gap: var(--content-gap);
+  margin-bottom: var(--content-gap);
 }
+
 .tutor-dashboard-page .alert-success .btn {
   flex-shrink: 0;
 }
 
-/* Grid override */
 .tutor-dashboard-page .grid-cols-3 {
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
+
 @media (max-width: 768px) {
+  .tutor-dashboard-page .section {
+    padding-block: var(--section-space-y);
+  }
+
   .tutor-dashboard-page .grid-cols-3 {
     grid-template-columns: 1fr;
+  }
+
+  .tutor-dashboard-page .alert-success {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .tutor-dashboard-page .page-intro {
+    font-size: var(--text-sm);
+  }
+
+  .tutor-dashboard-page .alert-success .btn {
+    width: 100%;
   }
 }
