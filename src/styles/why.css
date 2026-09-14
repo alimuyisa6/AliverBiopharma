@@ -9,11 +9,11 @@
 }
 
 .why-choose-section .section-head-left {
-  max-width: 760px;
+  max-width: var(--max-width);
 }
 
 .why-choose-section .section-head-left p {
-  max-width: 680px;
+  max-width: var(--max-width);
   margin-top: var(--space-3);
   line-height: var(--leading-relaxed);
 }
@@ -23,9 +23,9 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   width: 100%;
   overflow: hidden;
-  border: 1px solid var(--border-default);
-  border-radius: var(--radius-sm);
   background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
 }
 
 .why-choose-card {
@@ -33,48 +33,30 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
-  min-height: 250px;
+  min-height: var(--space-28);
   padding: var(--space-6);
-  background: var(--bg-card);
   overflow: hidden;
-  isolation: isolate;
+  background: var(--bg-card);
 }
 
 .why-choose-card:not(:last-child) {
   border-right: 1px solid var(--border-default);
 }
 
-.why-choose-card::after {
-  content: "";
-  position: absolute;
-  right: -34px;
-  bottom: -34px;
-  width: 120px;
-  height: 120px;
-  background: var(--why-soft);
-  border-radius: 50%;
-  opacity: 0.5;
-  z-index: -1;
-}
-
 .why-choose-card-blue {
-  --why-color: var(--blue-600, var(--info));
-  --why-soft: var(--blue-100);
+  --why-color: var(--primary);
 }
 
 .why-choose-card-green {
-  --why-color: var(--green-600, var(--success));
-  --why-soft: var(--green-100);
+  --why-color: var(--secondary);
 }
 
 .why-choose-card-amber {
-  --why-color: var(--amber-600, var(--warm));
-  --why-soft: var(--amber-100);
+  --why-color: var(--accent);
 }
 
 .why-choose-card-grey {
   --why-color: var(--text-muted);
-  --why-soft: var(--bg-card-tinted);
 }
 
 .why-choose-card-top {
@@ -87,36 +69,35 @@
 
 .why-choose-number {
   display: inline-flex;
+  flex: 0 0 var(--space-10);
   align-items: center;
   justify-content: center;
-  flex: 0 0 48px;
-  width: 48px;
-  height: 48px;
-  box-sizing: border-box;
-  border: 0;
-  border-radius: 50%;
-  background: var(--why-color);
-  color: var(--text-inverse, #ffffff);
-  font-family: var(--font-maven-pro);
-  font-size: 1rem;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.02em;
+  width: var(--space-10);
+  height: var(--space-10);
+  padding: var(--space-2);
+  color: var(--text-inverse);
+  font-family: var(--font-maven);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-wide);
   text-align: center;
+  background: var(--why-color);
+  border-radius: var(--radius-full);
 }
 
 .why-choose-label {
   padding-top: var(--space-2);
+  color: var(--text-muted);
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  color: var(--text-muted);
-  line-height: 1.4;
+  line-height: var(--leading-normal);
   text-align: right;
 }
 
 .why-choose-card-body {
   width: 100%;
-  max-width: 420px;
+  max-width: var(--space-32);
 }
 
 .why-choose-card h3 {
@@ -131,8 +112,8 @@
 
 .why-choose-card p {
   margin: 0;
-  color: var(--text-dim);
-  font-family: var(--font-source-sans);
+  color: var(--text-secondary);
+  font-family: var(--font-reading);
   font-size: var(--text-base);
   line-height: var(--leading-relaxed);
 }
@@ -143,11 +124,11 @@
   }
 
   .why-choose-card {
-    min-height: 235px;
+    min-height: var(--space-24);
   }
 
   .why-choose-card:not(:last-child) {
-    border-right: none;
+    border-right: 0;
   }
 
   .why-choose-card:nth-child(odd) {
@@ -171,7 +152,7 @@
 
   .why-choose-card:not(:last-child),
   .why-choose-card:nth-child(odd) {
-    border-right: none;
+    border-right: 0;
     border-bottom: 1px solid var(--border-default);
   }
 
@@ -180,10 +161,9 @@
   }
 
   .why-choose-number {
-    flex-basis: 46px;
-    width: 46px;
-    height: 46px;
-    font-size: 0.95rem;
+    flex-basis: var(--space-10);
+    width: var(--space-10);
+    height: var(--space-10);
   }
 
   .why-choose-card h3 {
@@ -205,13 +185,12 @@
   }
 
   .why-choose-number {
-    flex-basis: 42px;
-    width: 42px;
-    height: 42px;
-    font-size: 0.9rem;
+    flex-basis: var(--space-10);
+    width: var(--space-10);
+    height: var(--space-10);
   }
 
   .why-choose-label {
-    font-size: 0.6875rem;
+    font-size: var(--text-xs);
   }
 }
