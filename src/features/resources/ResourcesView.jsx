@@ -1,4 +1,6 @@
- import Icon from '../../components/Icon/Icon';
+ // src/features/resources/ResourcesView.jsx
+
+import Icon from '../../components/Icon/Icon';
 import Button from '../../components/Button/Button';
 import { useLayout } from '../../contexts/LayoutContext';
 
@@ -67,143 +69,12 @@ export default function ResourcesView({ navigate, user, sections }) {
 
   return (
     <div className="resources-page">
-      <style>{`
-        .resources-page {
-          width: 100%;
-        }
-
-        .resources-hero {
-          padding-bottom: var(--space-8);
-        }
-
-        .resources-hero h1 {
-          margin-bottom: var(--space-4);
-          line-height: 1.12;
-        }
-
-        .resources-hero .section-subtitle {
-          max-width: 760px;
-          margin: 0;
-          line-height: 1.6;
-        }
-
-        .resources-grid-section {
-          padding-top: var(--space-4);
-        }
-
-        .resources-grid {
-          display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: var(--space-6);
-          align-items: stretch;
-        }
-
-        .resource-card {
-          display: flex;
-          flex-direction: column;
-          min-width: 0;
-          overflow: hidden;
-          background: var(--bg-card);
-          border: 1px solid var(--border-default);
-          border-radius: var(--radius-sm);
-        }
-
-        .resource-card-image {
-          width: 100%;
-          height: 190px;
-          overflow: hidden;
-          background: var(--bg-card-hover);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .resource-card-image img {
-          display: block;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-
-        .resource-card-image > svg,
-        .resource-card-image > .icon {
-          font-size: var(--text-3xl);
-          color: var(--text-muted);
-        }
-
-        .resource-card-body {
-          display: flex;
-          flex-direction: column;
-          flex: 1;
-          padding: var(--space-4);
-          gap: var(--space-2);
-        }
-
-        .resource-card-title {
-          font-size: var(--text-lg);
-          line-height: 1.3;
-          font-weight: var(--weight-bold);
-          color: var(--text-main);
-        }
-
-        .resource-card-desc {
-          font-size: var(--text-sm);
-          line-height: 1.55;
-          color: var(--text-dim);
-        }
-
-        .resource-card-actions {
-          display: flex;
-          align-items: center;
-          padding: 0 var(--space-4) var(--space-4);
-        }
-
-        .resource-card-actions .button {
-          min-height: 38px;
-        }
-
-        @media (max-width: 1024px) {
-          .resources-grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: var(--space-5);
-          }
-        }
-
-        @media (max-width: 640px) {
-          .resources-hero {
-            padding-bottom: var(--space-6);
-          }
-
-          .resources-hero h1 {
-            font-size: var(--text-3xl);
-          }
-
-          .resources-hero .section-subtitle {
-            font-size: var(--text-base);
-            line-height: 1.55;
-          }
-
-          .resources-grid {
-            grid-template-columns: 1fr;
-            gap: var(--space-4);
-          }
-
-          .resource-card-image {
-            height: 170px;
-          }
-
-          .resource-card-body {
-            padding: var(--space-4);
-          }
-        }
-      `}</style>
-
       <section className="section resources-hero">
         <span className="eyebrow">Resources</span>
 
         <h1>
           Choose The Best Of You and <br />
-          <span style={{ display: 'inline-block', marginTop: '8px' }}>
+          <span className="resources-hero-break">
             Start Learning.
           </span>
         </h1>
@@ -220,7 +91,7 @@ export default function ResourcesView({ navigate, user, sections }) {
             const imageUrl = getImage(type.key);
 
             return (
-              <div
+              <article
                 key={type.key}
                 className={`resource-card resource-card-${type.color}`}
               >
@@ -237,13 +108,13 @@ export default function ResourcesView({ navigate, user, sections }) {
                 </div>
 
                 <div className="resource-card-body">
-                  <div className="resource-card-title">
+                  <h2 className="resource-card-title">
                     {type.label}
-                  </div>
+                  </h2>
 
-                  <div className="resource-card-desc">
+                  <p className="resource-card-desc">
                     {type.description}
-                  </div>
+                  </p>
                 </div>
 
                 <div className="resource-card-actions">
@@ -257,7 +128,7 @@ export default function ResourcesView({ navigate, user, sections }) {
                     Browse
                   </Button>
                 </div>
-              </div>
+              </article>
             );
           })}
         </div>
