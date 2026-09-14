@@ -30,7 +30,7 @@ export function HowItWorksSection() {
     <section className="section how-it-works-section">
       <div className="section-head">
         <div className="section-head-left">
-          <span className="eyebrow">HOW TO GET STARTEDON OUR PLATFORM</span>
+          <span className="eyebrow">HOW TO GET STARTED ON OUR PLATFORM</span>
 
           <h2>Start learning in three simple steps</h2>
 
