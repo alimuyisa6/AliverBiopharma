@@ -10,7 +10,7 @@ import './styles/global.css';
 import './styles/layout.css';
 import './styles/components.css';
 import './styles/pastpapers.css';
-  
+  import './styles/semantic.css';
 
 function showFatalError(title, message, stack) {
   const root = document.getElementById('root') || document.body;
