@@ -1,36 +1,76 @@
-/* src/styles/tutor-marketplace.css */
+ /* src/styles/tutor-marketplace.css */
 
-/* Page container */
-.tutor-marketplace-page .section-head {
-  margin-bottom: var(--space-6);
+.tutor-marketplace-page {
+  width: min(100%, var(--max-width));
+  margin-inline: auto;
+  padding-inline: var(--page-gutter-x);
 }
 
-/* Section description */
+.tutor-marketplace-page .section-head {
+  margin-bottom: var(--content-gap);
+}
+
 .tutor-marketplace-page .section-description {
+  margin: var(--text-gap-description) 0 0;
+  color: var(--text-secondary);
+  font-family: var(--font-reading);
   font-size: var(--text-base);
   font-weight: var(--weight-normal);
-  color: var(--text-dim);
   line-height: var(--leading-relaxed);
-  margin-top: var(--space-2);
-  margin-bottom: 0;
 }
 
-/* Search and filters (already styled in global, but keep) */
 .tutor-marketplace-page .tutor-search {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-3);
-  margin-bottom: var(--space-6);
+  align-items: center;
+  gap: var(--content-gap-compact);
+  margin-bottom: var(--content-gap);
 }
+
 .tutor-marketplace-page .tutor-search-input {
-  flex: 1;
-  min-width: 200px;
+  flex: 1 1 var(--space-32);
+  min-width: var(--space-24);
 }
+
 .tutor-marketplace-page .filter-select {
+  min-height: var(--space-10);
   padding: var(--space-2) var(--space-4);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
   background: var(--bg-input);
-  font-size: var(--text-sm);
   color: var(--text-main);
+  font-family: var(--font-primary);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-normal);
+  line-height: var(--leading-normal);
+}
+
+@media (max-width: 768px) {
+  .tutor-marketplace-page {
+    padding-inline: var(--page-gutter-x);
+  }
+
+  .tutor-marketplace-page .tutor-search {
+    align-items: stretch;
+  }
+
+  .tutor-marketplace-page .tutor-search-input,
+  .tutor-marketplace-page .filter-select {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .tutor-marketplace-page {
+    padding-inline: var(--page-gutter-x);
+  }
+
+  .tutor-marketplace-page .section-head {
+    margin-bottom: var(--content-gap-compact);
+  }
+
+  .tutor-marketplace-page .section-description {
+    font-size: var(--text-sm);
+  }
 }
