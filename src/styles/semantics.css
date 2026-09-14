@@ -1,4 +1,4 @@
- /* src/styles/semantics.css */
+ /* src/styles/semantic.css */
 
 :root {
   --primary: var(--blue-600);
@@ -129,6 +129,15 @@ body.dark-mode {
   --footer-bg: var(--grey-950);
   --footer-text: var(--grey-400);
   --footer-border: var(--grey-800);
+
+  --level-o: var(--blue-400);
+  --level-o-light: var(--blue-900);
+
+  --level-a: var(--emerald-400);
+  --level-a-light: var(--emerald-900);
+
+  --level-pharmacy: var(--teal-400);
+  --level-pharmacy-light: var(--teal-900);
 
   --section-tint: var(--grey-900);
 }
