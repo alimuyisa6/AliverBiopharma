@@ -16,6 +16,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
+  padding: 0;
   background: var(--bg-page);
   color: var(--text-main);
   font-family: var(--font-primary);
@@ -85,18 +86,48 @@ h3,
 h4,
 h5,
 h6 {
+  margin-bottom: var(--text-gap-title);
   color: var(--text-main);
+  font-family: var(--font-heading);
   font-weight: var(--weight-semibold);
   line-height: var(--leading-tight);
 }
 
 p {
+  margin-bottom: var(--text-gap-paragraph);
   color: var(--text-secondary);
 }
 
+p:last-child {
+  margin-bottom: var(--space-0);
+}
+
+h1 + p,
+h2 + p,
+h3 + p,
+h4 + p,
+h5 + p,
+h6 + p {
+  margin-top: var(--text-gap-description);
+}
+
+p + p {
+  margin-top: var(--text-gap-paragraph);
+}
+
+ul,
+ol {
+  margin-bottom: var(--text-gap-paragraph);
+  padding-left: var(--space-6);
+}
+
+li + li {
+  margin-top: var(--text-gap-list);
+}
+
 :focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: 2px;
+  outline: var(--space-1) solid var(--primary);
+  outline-offset: var(--space-1);
 }
 
 ::selection {
