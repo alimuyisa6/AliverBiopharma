@@ -47,6 +47,191 @@ function persistScrollMap(map) {
   } catch {}
 }
 
+function HamburgerGlyph({ size = 30 }) {
+  const barThickness = Math.round(size * 0.13);
+  const fullWidth = size;
+  const halfWidth = Math.round(size * 0.5);
+
+  return (
+    <span
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: Math.round(size * 0.18) + 'px',
+        width: size + 'px',
+        height: size + 'px'
+      }}
+    >
+      <span
+        style={{
+          display: 'block',
+          width: fullWidth + 'px',
+          height: barThickness + 'px',
+          background: '#000',
+          borderRadius: barThickness + 'px'
+        }}
+      />
+      <span
+        style={{
+          display: 'block',
+          width: halfWidth + 'px',
+          height: barThickness + 'px',
+          background: '#000',
+          borderRadius: barThickness + 'px'
+        }}
+      />
+      <span
+        style={{
+          display: 'block',
+          width: fullWidth + 'px',
+          height: barThickness + 'px',
+          background: '#000',
+          borderRadius: barThickness + 'px'
+        }}
+      />
+    </span>
+  );
+}
+
+function SearchGlyph({ size = 28 }) {
+  const ringSize = Math.round(size * 0.62);
+  const ringThickness = Math.round(size * 0.15);
+  const handleLength = Math.round(size * 0.4);
+  const handleThickness = Math.round(size * 0.15);
+
+  return (
+    <span
+      style={{
+        position: 'relative',
+        display: 'inline-block',
+        width: size + 'px',
+        height: size + 'px'
+      }}
+    >
+      <span
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: ringSize + 'px',
+          height: ringSize + 'px',
+          border: `${ringThickness}px solid #000`,
+          borderRadius: '50%',
+          boxSizing: 'border-box'
+        }}
+      />
+      <span
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          right: 0,
+          width: handleThickness + 'px',
+          height: handleLength + 'px',
+          background: '#000',
+          borderRadius: handleThickness + 'px',
+          transform: 'rotate(45deg)',
+          transformOrigin: 'bottom right'
+        }}
+      />
+    </span>
+  );
+}
+
+function ThemeGlyph({ size = 28, isDark }) {
+  const coreSize = Math.round(size * 0.5);
+  const rayThickness = Math.round(size * 0.14);
+  const rayLength = size;
+  const offset = Math.round((size - coreSize) / 2);
+  const rayOffset = Math.round((size - rayThickness) / 2);
+
+  if (isDark) {
+    return (
+      <span
+        style={{
+          display: 'inline-block',
+          width: size + 'px',
+          height: size + 'px',
+          borderRadius: '50%',
+          background: '#000'
+        }}
+      />
+    );
+  }
+
+  return (
+    <span
+      style={{
+        position: 'relative',
+        display: 'inline-block',
+        width: size + 'px',
+        height: size + 'px'
+      }}
+    >
+      <span
+        style={{
+          position: 'absolute',
+          top: rayOffset + 'px',
+          left: 0,
+          width: rayLength + 'px',
+          height: rayThickness + 'px',
+          background: '#000',
+          borderRadius: rayThickness + 'px',
+          transform: 'rotate(0deg)'
+        }}
+      />
+      <span
+        style={{
+          position: 'absolute',
+          top: rayOffset + 'px',
+          left: 0,
+          width: rayLength + 'px',
+          height: rayThickness + 'px',
+          background: '#000',
+          borderRadius: rayThickness + 'px',
+          transform: 'rotate(45deg)'
+        }}
+      />
+      <span
+        style={{
+          position: 'absolute',
+          top: rayOffset + 'px',
+          left: 0,
+          width: rayLength + 'px',
+          height: rayThickness + 'px',
+          background: '#000',
+          borderRadius: rayThickness + 'px',
+          transform: 'rotate(90deg)'
+        }}
+      />
+      <span
+        style={{
+          position: 'absolute',
+          top: rayOffset + 'px',
+          left: 0,
+          width: rayLength + 'px',
+          height: rayThickness + 'px',
+          background: '#000',
+          borderRadius: rayThickness + 'px',
+          transform: 'rotate(135deg)'
+        }}
+      />
+      <span
+        style={{
+          position: 'absolute',
+          top: offset + 'px',
+          left: offset + 'px',
+          width: coreSize + 'px',
+          height: coreSize + 'px',
+          borderRadius: '50%',
+          background: '#000'
+        }}
+      />
+    </span>
+  );
+}
+
 export default function Layout({ children, showFooter = true }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -273,16 +458,7 @@ export default function Layout({ children, showFooter = true }) {
       icon: 'user-plus'
     };
 
-  const searchIcon =
-    uiMap.search_icon || {
-      icon: 'magnifying-glass',
-      size: 'sm'
-    };
-
-  const themeIcon =
-    theme === 'dark'
-      ? 'sun'
-      : 'moon';
+  const isDarkTheme = theme === 'dark';
 
   return (
     <div className="app-layout">
@@ -346,11 +522,7 @@ export default function Layout({ children, showFooter = true }) {
                 aria-label="Search"
                 type="button"
               >
-                <Icon
-                  name={searchIcon.icon}
-                  size="28px"
-                  plain
-                />
+                <SearchGlyph size={28} />
               </button>
 
               {/* Large, clean theme control */}
@@ -360,11 +532,7 @@ export default function Layout({ children, showFooter = true }) {
                 aria-label="Toggle theme"
                 type="button"
               >
-                <Icon
-                  name={themeIcon}
-                  size="28px"
-                  plain
-                />
+                <ThemeGlyph size={28} isDark={isDarkTheme} />
               </button>
 
               {/* Large, clean hamburger control */}
@@ -376,11 +544,7 @@ export default function Layout({ children, showFooter = true }) {
                 aria-label="Menu"
                 type="button"
               >
-                <Icon
-                  name="bars"
-                  size="30px"
-                  plain
-                />
+                <HamburgerGlyph size={30} />
               </button>
             </div>
           </div>
