@@ -1,4 +1,6 @@
- import { useState, useEffect, useLayoutEffect, useRef } from 'react';
+ /* src/components/Layout/Layout.jsx */
+
+import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate, useNavigationType } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Icon from '../Icon/Icon';
@@ -12,6 +14,19 @@ import NetworkStatus from '../NetworkStatus/NetworkStatus';
 const EXCLUDED_PATHS = ['/login', '/register'];
 const SCROLL_STORAGE_KEY = 'scroll-positions';
 const NO_CHROME_PATHS = ['/recall', '/quiz', '/profile', '/notes', '/past-papers'];
+
+/*
+ * Advertising pages intentionally render without
+ * the global site footer.
+ *
+ * This keeps the advertising flow focused on campaign
+ * creation and payment without unrelated site navigation.
+ */
+const NO_FOOTER_PATHS = [
+  '/advertise',
+  '/advertise/create',
+  '/advertise/payment'
+];
 
 function loadScrollMap() {
   try {
@@ -60,8 +75,13 @@ export default function Layout({ children, showFooter = true }) {
   const isAuthPage = EXCLUDED_PATHS.includes(location.pathname);
   const isNoteDetailPage = location.pathname.startsWith('/notes/read');
   const isRoomPage = location.pathname.startsWith('/classroom/');
+
   const isNoChromePage = NO_CHROME_PATHS.some((path) =>
     location.pathname.startsWith(path)
+  );
+
+  const isNoFooterPage = NO_FOOTER_PATHS.some((path) =>
+    location.pathname === path
   );
 
   const hideHeader =
@@ -71,7 +91,8 @@ export default function Layout({ children, showFooter = true }) {
     isAuthPage ||
     isRoomPage ||
     isNoteDetailPage ||
-    isNoChromePage;
+    isNoChromePage ||
+    isNoFooterPage;
 
   const scrollPositions = useRef(loadScrollMap());
   const persistTimeout = useRef(null);
@@ -316,32 +337,50 @@ export default function Layout({ children, showFooter = true }) {
             </nav>
 
             <div className="nav-actions">
+              {/* Large, clean search control */}
               <button
-                className="btn btn-ghost btn-sm btn-icon"
+                className="btn btn-ghost btn-sm btn-icon header-action-button"
                 onClick={() =>
                   setSearchOpen(true)
                 }
                 aria-label="Search"
+                type="button"
               >
-                <Icon name={searchIcon.icon} />
+                <Icon
+                  name={searchIcon.icon}
+                  size="28px"
+                  plain
+                />
               </button>
 
+              {/* Large, clean theme control */}
               <button
-                className="btn btn-ghost btn-sm btn-icon"
+                className="btn btn-ghost btn-sm btn-icon header-action-button"
                 onClick={toggleTheme}
                 aria-label="Toggle theme"
+                type="button"
               >
-                <Icon name={themeIcon} />
+                <Icon
+                  name={themeIcon}
+                  size="28px"
+                  plain
+                />
               </button>
 
+              {/* Large, clean hamburger control */}
               <button
-                className="hamburger-btn"
+                className="hamburger-btn header-action-button"
                 onClick={() =>
                   setMobileOpen(true)
                 }
                 aria-label="Menu"
+                type="button"
               >
-                <Icon name="bars" />
+                <Icon
+                  name="bars"
+                  size="30px"
+                  plain
+                />
               </button>
             </div>
           </div>
@@ -445,6 +484,7 @@ export default function Layout({ children, showFooter = true }) {
                       className="mobile-nav-link"
                       onClick={handleSignout}
                       disabled={signingOut}
+                      type="button"
                     >
                       <Icon name="right-from-bracket" />
 
