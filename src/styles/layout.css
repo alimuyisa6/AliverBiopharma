@@ -442,17 +442,19 @@ body.dark-mode .site-header.scrolled {
   top: 0;
   left: 0;
   width: 100%;
-  height: 32px;
+  height: var(--space-12);
   overflow: hidden;
-  transform: translateY(-99%);
+  transform: translateY(-98%);
   line-height: 0;
   pointer-events: none;
 }
 
 .footer-wave svg {
   display: block;
-  width: 100%;
-  height: 100%;
+  width: 108%;
+  height: 108%;
+  transform: rotate(-2.5deg) scale(1.04);
+  transform-origin: center bottom;
 }
 
 .footer-wave-path {
@@ -654,6 +656,10 @@ body.dark-mode .site-header.scrolled {
 
   .footer {
     padding: var(--space-10) var(--space-4) var(--space-4);
+  }
+
+  .footer-wave {
+    height: var(--space-10);
   }
 
   .footer-inner {
