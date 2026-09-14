@@ -1,4 +1,4 @@
- /* src/styles/colors.css */
+ /* src/styles/color.css */
 
 :root {
   --blue-50: #eff6ff;
@@ -48,16 +48,24 @@
   --green-50: #f0fdf4;
   --green-100: #dcfce7;
   --green-200: #bbf7d0;
+  --green-300: #86efac;
+  --green-400: #4ade80;
   --green-500: #22c55e;
   --green-600: #16a34a;
   --green-700: #15803d;
+  --green-800: #166534;
+  --green-900: #14532d;
 
   --red-50: #fef2f2;
   --red-100: #fee2e2;
   --red-200: #fecaca;
+  --red-300: #fca5a5;
+  --red-400: #f87171;
   --red-500: #ef4444;
   --red-600: #dc2626;
   --red-700: #b91c1c;
+  --red-800: #991b1b;
+  --red-900: #7f1d1d;
 
   --grey-50: #f9fafb;
   --grey-100: #f3f4f6;
@@ -69,104 +77,8 @@
   --grey-700: #374151;
   --grey-800: #1f2937;
   --grey-900: #111827;
+  --grey-950: #030712;
 
-  --primary: var(--blue-600);
-  --primary-hover: var(--blue-700);
-  --primary-light: var(--blue-50);
-  --primary-border: var(--blue-200);
-  --primary-ring: rgba(37, 99, 235, 0.2);
-
-  --secondary: var(--emerald-600);
-  --secondary-hover: var(--emerald-700);
-  --secondary-light: var(--emerald-50);
-
-  --accent: var(--amber-600);
-  --accent-hover: var(--amber-700);
-  --accent-light: var(--amber-50);
-
-  --info: var(--teal-600);
-  --info-light: var(--teal-50);
-
-  --success: var(--green-600);
-  --success-light: var(--green-50);
-
-  --danger: var(--red-600);
-  --danger-hover: var(--red-700);
-  --danger-light: var(--red-50);
-
-  --bg-page: #ffffff;
-  --bg-card: #ffffff;
-  --bg-card-hover: var(--grey-50);
-  --bg-muted: var(--grey-50);
-  --bg-input: #ffffff;
-  --bg-disabled: var(--grey-100);
-
-  --text-main: var(--grey-900);
-  --text-secondary: var(--grey-600);
-  --text-muted: var(--grey-500);
-  --text-placeholder: var(--grey-400);
-  --text-inverse: #ffffff;
-
-  --border-light: var(--grey-200);
-  --border-default: var(--grey-300);
-  --border-strong: var(--grey-400);
-
-  --hero-bg: var(--blue-50);
-  --hero-border: var(--blue-100);
-
-  --header-bg: #ffffff;
-  --header-border: var(--grey-200);
-
-  --footer-bg: var(--grey-900);
-  --footer-text: var(--grey-300);
-  --footer-border: var(--grey-800);
-
-  --shadow-sm: 0 1px 2px rgba(17, 24, 39, 0.05);
-  --shadow-md: 0 4px 12px rgba(17, 24, 39, 0.08);
-
-  --level-o: var(--blue-600);
-  --level-o-light: var(--blue-50);
-
-  --level-a: var(--emerald-600);
-  --level-a-light: var(--emerald-50);
-
-  --level-pharmacy: var(--teal-600);
-  --level-pharmacy-light: var(--teal-50);
-
-  --section-tint: var(--grey-50);
-}
-
-.dark {
-  --bg-page: #0f172a;
-  --bg-card: #111827;
-  --bg-card-hover: #1f2937;
-  --bg-muted: #111827;
-  --bg-input: #111827;
-  --bg-disabled: #1f2937;
-
-  --text-main: #f9fafb;
-  --text-secondary: #d1d5db;
-  --text-muted: #9ca3af;
-  --text-placeholder: #6b7280;
-  --text-inverse: #111827;
-
-  --border-light: #1f2937;
-  --border-default: #374151;
-  --border-strong: #4b5563;
-
-  --hero-bg: #172554;
-  --hero-border: #1e3a8a;
-
-  --header-bg: #111827;
-  --header-border: #1f2937;
-
-  --footer-bg: #020617;
-  --footer-text: #9ca3af;
-  --footer-border: #1e293b;
-
-  --section-tint: #111827;
-}
-
-.section-tint {
-  background: var(--section-tint);
+  --white: #ffffff;
+  --black: #000000;
 }
