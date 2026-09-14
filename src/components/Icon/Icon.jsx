@@ -5,7 +5,15 @@ const ICON_DATA = {
   'arrow-right': { badge: 'circle', bg: '#9b59b6', r: 0, bgPath: "", glyph: "<path d=\"M8 12h8M12 8l4 4-4 4\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/>" },
   'arrow-up': { badge: 'circle', bg: '#9b59b6', r: 0, bgPath: "", glyph: "<path d=\"M12 16V8M8 12l4-4 4 4\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/>" },
   'atom': { badge: 'circle', bg: '#06b6d4', r: 0, bgPath: "", glyph: "<ellipse cx=\"12\" cy=\"12\" rx=\"8\" ry=\"3\" stroke=\"#fff\" stroke-width=\"1.5\" fill=\"none\"/><ellipse cx=\"12\" cy=\"12\" rx=\"8\" ry=\"3\" stroke=\"#fff\" stroke-width=\"1.5\" fill=\"none\" transform=\"rotate(60 12 12)\"/><ellipse cx=\"12\" cy=\"12\" rx=\"8\" ry=\"3\" stroke=\"#fff\" stroke-width=\"1.5\" fill=\"none\" transform=\"rotate(120 12 12)\"/><circle cx=\"12\" cy=\"12\" r=\"1.8\" fill=\"#fff\"/>" },
-  'bars': { badge: 'rect', bg: '#64748b', r: 4, bgPath: "", glyph: "<path d=\"M6 8h12M6 12h12M6 16h12\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\"/>" },
+
+  'bars': {
+    badge: 'rect',
+    bg: '#64748b',
+    r: 4,
+    bgPath: "",
+    glyph: "<path d=\"M6 8h12M6 12h12M6 16h12\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\"/>"
+  },
+
   'bell': { badge: 'none', bg: '#4caf50', r: 2, bgPath: "<rect x=\"3\" y=\"2\" width=\"18\" height=\"20\" rx=\"2\" stroke=\"#4caf50\" stroke-width=\"2\" fill=\"none\"/>", glyph: "<path d=\"M7 7h10\" stroke=\"#4caf50\" stroke-width=\"2\"/><path d=\"M7 11h10\" stroke=\"#4caf50\" stroke-width=\"2\"/><path d=\"M7 15h6\" stroke=\"#4caf50\" stroke-width=\"2\"/><circle cx=\"18\" cy=\"18\" r=\"3\" fill=\"#8bc34a\"/>" },
   'book-open': { badge: 'rect', bg: '#9b59b6', r: 2, bgPath: "", glyph: "<path d=\"M8 8h8M8 12h8M8 16h5\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\"/>" },
   'book-open-reader': { badge: 'rect', bg: '#9b59b6', r: 2, bgPath: "", glyph: "<path d=\"M8 8h8M8 12h8M8 16h5\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\"/>" },
@@ -71,13 +79,29 @@ const ICON_DATA = {
   'list-check': { badge: 'rect', bg: '#e63946', r: 4, bgPath: "", glyph: "<path d=\"M8 7h8M8 11h8M8 15h5\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\"/>" },
   'location-dot': { badge: 'none', bg: '', r: 0, bgPath: "", glyph: "<path d=\"M12 2C8 2 5 5 5 9c0 5.5 7 13 7 13s7-7.5 7-13c0-4-3-7-7-7z\" fill=\"#ef4444\"/><circle cx=\"12\" cy=\"9\" r=\"2.5\" fill=\"#fff\"/>" },
   'lock': { badge: 'circle', bg: '#64748b', r: 0, bgPath: "", glyph: "<rect x=\"7.5\" y=\"11\" width=\"9\" height=\"7\" rx=\"1.5\" fill=\"#fff\"/><path d=\"M9 11V8.5a3 3 0 016 0V11\" stroke=\"#fff\" stroke-width=\"1.6\" fill=\"none\"/>" },
-  'magnifying-glass': { badge: 'circle', bg: '#64748b', r: 0, bgPath: "", glyph: "<circle cx=\"10.5\" cy=\"10.5\" r=\"5\" stroke=\"#fff\" stroke-width=\"2\" fill=\"none\"/><line x1=\"14.5\" y1=\"14.5\" x2=\"19\" y2=\"19\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\"/>" },
+
+  'magnifying-glass': {
+    badge: 'circle',
+    bg: '#64748b',
+    r: 0,
+    bgPath: "",
+    glyph: "<circle cx=\"10.5\" cy=\"10.5\" r=\"5\" stroke=\"#fff\" stroke-width=\"2\" fill=\"none\"/><line x1=\"14.5\" y1=\"14.5\" x2=\"19\" y2=\"19\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\"/>"
+  },
+
   'medal': { badge: 'none', bg: '', r: 0, bgPath: "", glyph: "<path d=\"M12 2l3 6 6.5 1-4.5 4.5L18 20l-6-3-6 3 1-6.5L2.5 9 9 8z\" fill=\"#f1c40f\"/><path d=\"M12 2l3 6 6.5 1-4.5 4.5L18 20l-6-3V2z\" fill=\"#e67e22\"/>" },
   'message': { badge: 'none', bg: '', r: 0, bgPath: "", glyph: "<path d=\"M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z\" fill=\"#2ecc71\"/><polyline points=\"8 9 12 13 16 9\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/>" },
   'microphone': { badge: 'circle', bg: '#ef4444', r: 0, bgPath: "", glyph: "<rect x=\"9.5\" y=\"4\" width=\"5\" height=\"9\" rx=\"2.5\" fill=\"#fff\"/><path d=\"M7 11a5 5 0 0010 0M12 16v3M9.5 20h5\" stroke=\"#fff\" stroke-width=\"1.6\" stroke-linecap=\"round\" fill=\"none\"/>" },
   'microphone-slash': { badge: 'circle', bg: '#64748b', r: 0, bgPath: "", glyph: "<rect x=\"9.5\" y=\"4\" width=\"5\" height=\"9\" rx=\"2.5\" fill=\"#fff\"/><path d=\"M7 11a5 5 0 0010 0M12 16v3M9.5 20h5\" stroke=\"#fff\" stroke-width=\"1.6\" stroke-linecap=\"round\" fill=\"none\"/><line x1=\"4\" y1=\"20\" x2=\"20\" y2=\"4\" stroke=\"#fff\" stroke-width=\"1.8\" stroke-linecap=\"round\"/>" },
   'microscope': { badge: 'circle', bg: '#06b6d4', r: 0, bgPath: "", glyph: "<path d=\"M10 4l4 4M9 15h6M12 15V9M9 9h4l3 4\" stroke=\"#fff\" stroke-width=\"1.5\" stroke-linecap=\"round\" fill=\"none\"/><rect x=\"6\" y=\"18\" width=\"12\" height=\"2\" rx=\"1\" fill=\"#fff\"/>" },
-  'moon': { badge: 'none', bg: '', r: 0, bgPath: "", glyph: "<path d=\"M20 14.5A8.5 8.5 0 019.5 4 8.5 8.5 0 1020 14.5z\" fill=\"#6366f1\"/>" },
+
+  'moon': {
+    badge: 'none',
+    bg: '',
+    r: 0,
+    bgPath: "",
+    glyph: "<path d=\"M20 14.5A8.5 8.5 0 019.5 4 8.5 8.5 0 1020 14.5z\" fill=\"#6366f1\"/>"
+  },
+
   'paper-plane': { badge: 'none', bg: '#f39c12', r: 0, bgPath: "", glyph: "<path d=\"M12 2L2 7l10 5 10-5-10-5z\" fill=\"#f39c12\"/><path d=\"M2 17l10 5 10-5\" stroke=\"#fff\" stroke-width=\"2\" fill=\"none\"/><path d=\"M2 12l10 5 10-5\" stroke=\"#fff\" stroke-width=\"2\" fill=\"none\"/>" },
   'pen-to-square': { badge: 'rect', bg: '#3b82f6', r: 4, bgPath: "", glyph: "<path d=\"M15 6l3 3-8 8H7v-3l8-8z\" fill=\"#fff\"/><path d=\"M6 18h12\" stroke=\"#fff\" stroke-width=\"1.5\" stroke-linecap=\"round\"/>" },
   'pinterest': { badge: 'rect', bg: '#E60023', r: 7, bgPath: "", glyph: "<circle cx=\"12\" cy=\"12\" r=\"7\" stroke=\"#fff\" stroke-width=\"1.6\" fill=\"none\"/><path d=\"M10 18l2-9c-.6-.3-1-1-1-1.8 0-1.3 1-2.3 2.2-2.3 1 0 1.6.7 1.6 1.6 0 1-.6 2.4-1 3.7-.3 1.1.5 2 1.6 2 1.9 0 3.3-2 3.3-4.9 0-2.5-1.8-4.4-4.9-4.4\" stroke=\"#fff\" stroke-width=\"1.3\" fill=\"none\"/>" },
@@ -90,7 +114,15 @@ const ICON_DATA = {
   'rotate': { badge: 'circle', bg: '#9b59b6', r: 0, bgPath: "", glyph: "<path d=\"M17 8a6.5 6.5 0 10.9 6.5\" stroke=\"#fff\" stroke-width=\"1.8\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M17 4.5V8h-3.5\" stroke=\"#fff\" stroke-width=\"1.8\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>" },
   'route': { badge: 'none', bg: '#f39c12', r: 0, bgPath: "", glyph: "<path d=\"M12 2L2 7l10 5 10-5-10-5z\" fill=\"#f39c12\"/><path d=\"M2 17l10 5 10-5\" stroke=\"#fff\" stroke-width=\"2\" fill=\"none\"/><path d=\"M2 12l10 5 10-5\" stroke=\"#fff\" stroke-width=\"2\" fill=\"none\"/>" },
   'screwdriver-wrench': { badge: 'circle', bg: '#64748b', r: 0, bgPath: "", glyph: "<path d=\"M14 4l-3 3 6 6 3-3a4 4 0 01-6-6z\" fill=\"#fff\"/><path d=\"M11 10L5 16v3h3l6-6\" fill=\"#fff\"/>" },
-  'search': { badge: 'circle', bg: '#64748b', r: 0, bgPath: "", glyph: "<circle cx=\"10.5\" cy=\"10.5\" r=\"5\" stroke=\"#fff\" stroke-width=\"2\" fill=\"none\"/><line x1=\"14.5\" y1=\"14.5\" x2=\"19\" y2=\"19\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\"/>" },
+
+  'search': {
+    badge: 'circle',
+    bg: '#64748b',
+    r: 0,
+    bgPath: "",
+    glyph: "<circle cx=\"10.5\" cy=\"10.5\" r=\"5\" stroke=\"#fff\" stroke-width=\"2\" fill=\"none\"/><line x1=\"14.5\" y1=\"14.5\" x2=\"19\" y2=\"19\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\"/>"
+  },
+
   'seedling': { badge: 'circle', bg: '#22c55e', r: 0, bgPath: "", glyph: "<path d=\"M12 20v-6M12 14c0-4 3-6 6-6 0 4-3 6-6 6zM12 14c0-3-2.5-5-5.5-5 0 3.5 2.5 5.5 5.5 5.5z\" fill=\"#fff\"/>" },
   'share': { badge: 'circle', bg: '#9b59b6', r: 0, bgPath: "", glyph: "<circle cx=\"18\" cy=\"6\" r=\"2.2\" stroke=\"#fff\" stroke-width=\"1.6\" fill=\"none\"/><circle cx=\"6\" cy=\"12\" r=\"2.2\" stroke=\"#fff\" stroke-width=\"1.6\" fill=\"none\"/><circle cx=\"18\" cy=\"18\" r=\"2.2\" stroke=\"#fff\" stroke-width=\"1.6\" fill=\"none\"/><path d=\"M8 10.8l8-3.6M8 13.2l8 3.6\" stroke=\"#fff\" stroke-width=\"1.4\"/>" },
   'shield-halved': { badge: 'none', bg: '', r: 0, bgPath: "", glyph: "<path d=\"M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5l8-3z\" fill=\"#3b82f6\"/><path d=\"M12 2v20c-4.5-2.5-8-6-8-11V5l8-3z\" fill=\"#1d4ed8\"/>" },
@@ -123,19 +155,29 @@ const ICON_DATA = {
   'youtube': { badge: 'rect', bg: '#FF0000', r: 6, bgPath: "", glyph: "<path d=\"M10 8.5l6 3.5-6 3.5v-7z\" fill=\"#fff\"/>" }
 };
 
-const Icon = memo(function Icon({ name, size, className, style, ...props }) {
+const Icon = memo(function Icon({
+  name,
+  size,
+  className,
+  style,
+  plain = false,
+  ...props
+}) {
   const entry = ICON_DATA[name];
   if (!entry) return null;
 
   const { badge, bg, r, bgPath, glyph } = entry;
 
   let bgMarkup = '';
-  if (badge === 'rect') {
-    bgMarkup = `<rect x="1" y="1" width="22" height="22" rx="${r}" fill="${bg}"/>`;
-  } else if (badge === 'circle') {
-    bgMarkup = `<circle cx="12" cy="12" r="11" fill="${bg}"/>`;
-  } else if (bgPath) {
-    bgMarkup = bgPath;
+
+  if (!plain) {
+    if (badge === 'rect') {
+      bgMarkup = `<rect x="1" y="1" width="22" height="22" rx="${r}" fill="${bg}"/>`;
+    } else if (badge === 'circle') {
+      bgMarkup = `<circle cx="12" cy="12" r="11" fill="${bg}"/>`;
+    } else if (bgPath) {
+      bgMarkup = bgPath;
+    }
   }
 
   return (
@@ -146,10 +188,18 @@ const Icon = memo(function Icon({ name, size, className, style, ...props }) {
       className={className || undefined}
       style={style}
       xmlns="http://www.w3.org/2000/svg"
+      aria-hidden={props['aria-hidden'] ?? true}
+      focusable="false"
       {...props}
     >
-      {bgMarkup && <g dangerouslySetInnerHTML={{ __html: bgMarkup }} />}
-      <g dangerouslySetInnerHTML={{ __html: glyph }} />
+      {bgMarkup && (
+        <g dangerouslySetInnerHTML={{ __html: bgMarkup }} />
+      )}
+
+      <g
+        className={plain ? 'icon-plain-glyph' : undefined}
+        dangerouslySetInnerHTML={{ __html: glyph }}
+      />
     </svg>
   );
 });
