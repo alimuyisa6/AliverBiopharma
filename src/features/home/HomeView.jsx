@@ -1,5 +1,4 @@
- /* src/features/home/HomeView.jsx */
-import { useState } from 'react';
+ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Icon from '../../components/Icon/Icon';
 import Button from '../../components/Button/Button';
@@ -26,7 +25,6 @@ function LearningJourneySection({ navigate, sections }) {
   const uiComponents = bootstrap?.ui_components || [];
   const component = uiComponents.find((item) => item.component_key === 'learning_journey_section');
   const primaryImage = component?.properties?.image_url || '/images/students-learning-happy.jpg';
-  const secondaryImage = component?.properties?.secondary_image_url || '/images/students-learning-together.jpg';
   const subtitle = sections?.section_headings?.content_types_subtitle || 'Notes, flashcards, quizzes, past papers and recall — everything you need, all in one place.';
 
   return (
@@ -34,16 +32,10 @@ function LearningJourneySection({ navigate, sections }) {
       <div className="learning-journey-content">
         <span className="eyebrow">Get started</span>
         <h2 className="learning-journey-title">Your learning journey starts from here</h2>
+        <h3 className="section-description">{subtitle}</h3>
         <img
           src={primaryImage}
           alt="Happy students learning together"
-          className="learning-journey-image"
-          loading="lazy"
-        />
-        <h3 className="section-description">{subtitle}</h3>
-        <img
-          src={secondaryImage}
-          alt="Students studying and collaborating"
           className="learning-journey-image"
           loading="lazy"
         />
