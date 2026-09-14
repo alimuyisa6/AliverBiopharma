@@ -1,112 +1,172 @@
  /* src/styles/tutor.css */
+
 .tutor-page-section {
-  padding-top: var(--space-6);
+  width: min(100%, var(--max-width));
+  margin-inline: auto;
+  padding-block: var(--section-space-y);
+  padding-inline: var(--page-gutter-x);
 }
 
 .tutor-page-title {
+  margin: 0 0 var(--text-gap-title);
+  color: var(--text-main);
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
   text-align: left;
-  margin: 0 0 var(--space-2);
 }
 
 .tutor-class-label {
-  color: var(--text-dim);
-  margin-bottom: var(--space-4);
+  margin: 0 0 var(--text-gap-description);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-normal);
 }
 
 .tutor-controls-row {
-  margin-bottom: var(--space-6);
   display: flex;
-  gap: var(--space-4);
-  flex-wrap: wrap;
   align-items: center;
+  flex-wrap: wrap;
+  gap: var(--content-gap-compact);
+  margin-bottom: var(--content-gap);
 }
 
 .tutor-search-wrap {
-  flex: 1;
-  max-width: 320px;
   position: relative;
+  flex: 1 1 var(--space-32);
+  max-width: var(--space-32);
+  min-width: 0;
 }
 
 .tutor-search-icon {
   position: absolute;
-  right: var(--space-3);
   top: 50%;
-  transform: translateY(-50%);
-  color: var(--text-dim);
+  right: var(--space-3);
+  color: var(--text-muted);
   pointer-events: none;
+  transform: translateY(-50%);
 }
 
 .tutor-results-count {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
   font-size: var(--text-sm);
-  color: var(--text-dim);
+  font-weight: var(--weight-normal);
+  line-height: var(--leading-normal);
 }
 
 .tutor-loading-wrap {
+  padding-block: var(--space-10);
+  color: var(--text-secondary);
   text-align: center;
-  padding: var(--space-10);
 }
 
 .tutor-card-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: var(--primary-light);
   color: var(--primary);
 }
 
 .tutor-card-avatar i {
-  /* fixed: was hardcoded 2rem — now coincides exactly with --text-2xl
-     after the type scale update, so it references the token instead of
-     duplicating its value */
   font-size: var(--text-2xl);
 }
 
 .tutor-chip-row {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2);
-  margin-top: var(--space-3);
+  gap: var(--stack-gap-tight);
+  margin-top: var(--text-gap-title);
 }
 
 .tutor-card-footer {
   display: flex;
-  gap: var(--space-2);
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--stack-gap-tight);
 }
 
 .tutor-pagination {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: var(--space-2);
-  margin-top: var(--space-8);
+  justify-content: center;
   flex-wrap: wrap;
+  gap: var(--stack-gap-tight);
+  margin-top: var(--section-space-y-compact);
 }
 
 .tutor-pagination-ellipsis {
   padding: var(--space-2);
   color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
 }
 
 .tutor-section-loading {
   display: flex;
   justify-content: center;
-  padding: var(--space-8) 0;
+  padding-block: var(--section-space-y-compact);
 }
 
 .tutor-section-footer {
+  margin-top: var(--content-gap);
   text-align: center;
-  margin-top: var(--space-6);
 }
 
 .tutor-empty-actions {
   display: flex;
-  gap: var(--space-3);
   justify-content: center;
   flex-wrap: wrap;
+  gap: var(--content-gap-compact);
 }
 
-@media (max-width: 640px) {
-  .tutor-search-wrap {
-    max-width: 100%;
+@media (max-width: 768px) {
+  .tutor-page-section {
+    padding-block: var(--section-space-y);
+    padding-inline: var(--page-gutter-x);
   }
+
   .tutor-page-title {
     font-size: var(--text-2xl);
+  }
+
+  .tutor-search-wrap {
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .tutor-page-section {
+    padding-inline: var(--page-gutter-x);
+  }
+
+  .tutor-page-title {
+    font-size: var(--text-xl);
+  }
+
+  .tutor-controls-row {
+    align-items: stretch;
+  }
+
+  .tutor-search-wrap {
+    flex-basis: 100%;
+    width: 100%;
+  }
+
+  .tutor-results-count {
+    width: 100%;
+  }
+
+  .tutor-card-footer {
+    align-items: stretch;
+  }
+
+  .tutor-empty-actions {
+    align-items: stretch;
   }
 }
