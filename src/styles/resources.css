@@ -128,3 +128,7 @@
     padding: var(--space-4);
   }
 }
+.resources-hero-break {
+  display: inline-block;
+  margin-top: 8px;
+}
