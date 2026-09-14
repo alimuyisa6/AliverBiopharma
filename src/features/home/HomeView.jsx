@@ -258,6 +258,7 @@ export default function HomeView(props) {
       )}
 
       <WhyChooseSection />
+      <HowItWorksSection />
       <LearningJourneySection navigate={navigate} sections={sections} />
 
       {user && (
@@ -272,8 +273,6 @@ export default function HomeView(props) {
       )}
 
       {user && <DailyRecallCard recall={dailyRecall} onReveal={onRevealRecall} onStart={onStartRecall} />}
-
-      <HowItWorksSection />
 
       <TestimonialSlider quotes={sections?.testimonials?.quotes || []} />
       <ClassroomTeaser />
