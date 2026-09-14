@@ -1,0 +1,52 @@
+/* src/styles/file-upload.css */
+
+.file-upload {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.file-upload-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.file-upload-input {
+  display: none;
+}
+
+.file-upload-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.file-upload-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg-card);
+}
+
+.file-upload-icon {
+  color: var(--primary);
+  font-size: var(--text-xl);
+}
+
+.file-upload-icon.pdf {
+  color: var(--error);
+}
+
+.file-upload-name {
+  flex: 1;
+  font-size: var(--text-sm);
+  color: var(--text-main);
+}
+
+.file-upload-size {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
