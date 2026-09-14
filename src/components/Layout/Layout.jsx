@@ -15,13 +15,6 @@ const EXCLUDED_PATHS = ['/login', '/register'];
 const SCROLL_STORAGE_KEY = 'scroll-positions';
 const NO_CHROME_PATHS = ['/recall', '/quiz', '/profile', '/notes', '/past-papers'];
 
-/*
- * Advertising pages intentionally render without
- * the global site footer.
- *
- * This keeps the advertising flow focused on campaign
- * creation and payment without unrelated site navigation.
- */
 const NO_FOOTER_PATHS = [
   '/advertise',
   '/advertise/create',
@@ -47,48 +40,58 @@ function persistScrollMap(map) {
   } catch {}
 }
 
-function HamburgerGlyph({ size = 30 }) {
-  const barThickness = Math.round(size * 0.13);
+const GREY = '#6b7280';
+
+function HamburgerGlyph({ size = 30, isOpen }) {
+  const thickness = Math.round(size * 0.13);
   const fullWidth = size;
   const halfWidth = Math.round(size * 0.5);
+  const centerY = Math.round((size - thickness) / 2);
+
+  const barBase = {
+    position: 'absolute',
+    left: 0,
+    height: thickness + 'px',
+    background: GREY,
+    borderRadius: thickness + 'px',
+    transition: 'transform 0.25s ease, opacity 0.2s ease'
+  };
 
   return (
     <span
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: Math.round(size * 0.18) + 'px',
+        position: 'relative',
+        display: 'inline-block',
         width: size + 'px',
         height: size + 'px'
       }}
     >
       <span
         style={{
-          display: 'block',
+          ...barBase,
+          top: 0,
           width: fullWidth + 'px',
-          height: barThickness + 'px',
-          background: '#000',
-          borderRadius: barThickness + 'px'
+          transform: isOpen
+            ? `translateY(${centerY}px) rotate(45deg)`
+            : 'translateY(0) rotate(0deg)'
         }}
       />
       <span
         style={{
-          display: 'block',
+          ...barBase,
+          top: centerY + 'px',
           width: halfWidth + 'px',
-          height: barThickness + 'px',
-          background: '#000',
-          borderRadius: barThickness + 'px'
+          opacity: isOpen ? 0 : 1
         }}
       />
       <span
         style={{
-          display: 'block',
+          ...barBase,
+          bottom: 0,
           width: fullWidth + 'px',
-          height: barThickness + 'px',
-          background: '#000',
-          borderRadius: barThickness + 'px'
+          transform: isOpen
+            ? `translateY(-${centerY}px) rotate(-45deg)`
+            : 'translateY(0) rotate(0deg)'
         }}
       />
     </span>
@@ -96,10 +99,11 @@ function HamburgerGlyph({ size = 30 }) {
 }
 
 function SearchGlyph({ size = 28 }) {
-  const ringSize = Math.round(size * 0.62);
-  const ringThickness = Math.round(size * 0.15);
-  const handleLength = Math.round(size * 0.4);
-  const handleThickness = Math.round(size * 0.15);
+  const ringSize = Math.round(size * 0.57);
+  const ringThickness = Math.round(size * 0.11);
+  const handleLength = Math.round(size * 0.36);
+  const handleThickness = ringThickness;
+  const handleOffset = Math.round(ringSize * 0.78);
 
   return (
     <span
@@ -117,7 +121,7 @@ function SearchGlyph({ size = 28 }) {
           left: 0,
           width: ringSize + 'px',
           height: ringSize + 'px',
-          border: `${ringThickness}px solid #000`,
+          border: `${ringThickness}px solid ${GREY}`,
           borderRadius: '50%',
           boxSizing: 'border-box'
         }}
@@ -125,14 +129,14 @@ function SearchGlyph({ size = 28 }) {
       <span
         style={{
           position: 'absolute',
-          bottom: 0,
-          right: 0,
+          top: handleOffset + 'px',
+          left: handleOffset + 'px',
           width: handleThickness + 'px',
           height: handleLength + 'px',
-          background: '#000',
+          background: GREY,
           borderRadius: handleThickness + 'px',
           transform: 'rotate(45deg)',
-          transformOrigin: 'bottom right'
+          transformOrigin: 'top left'
         }}
       />
     </span>
@@ -154,7 +158,7 @@ function ThemeGlyph({ size = 28, isDark }) {
           width: size + 'px',
           height: size + 'px',
           borderRadius: '50%',
-          background: '#000'
+          background: GREY
         }}
       />
     );
@@ -176,7 +180,7 @@ function ThemeGlyph({ size = 28, isDark }) {
           left: 0,
           width: rayLength + 'px',
           height: rayThickness + 'px',
-          background: '#000',
+          background: GREY,
           borderRadius: rayThickness + 'px',
           transform: 'rotate(0deg)'
         }}
@@ -188,7 +192,7 @@ function ThemeGlyph({ size = 28, isDark }) {
           left: 0,
           width: rayLength + 'px',
           height: rayThickness + 'px',
-          background: '#000',
+          background: GREY,
           borderRadius: rayThickness + 'px',
           transform: 'rotate(45deg)'
         }}
@@ -200,7 +204,7 @@ function ThemeGlyph({ size = 28, isDark }) {
           left: 0,
           width: rayLength + 'px',
           height: rayThickness + 'px',
-          background: '#000',
+          background: GREY,
           borderRadius: rayThickness + 'px',
           transform: 'rotate(90deg)'
         }}
@@ -212,7 +216,7 @@ function ThemeGlyph({ size = 28, isDark }) {
           left: 0,
           width: rayLength + 'px',
           height: rayThickness + 'px',
-          background: '#000',
+          background: GREY,
           borderRadius: rayThickness + 'px',
           transform: 'rotate(135deg)'
         }}
@@ -225,7 +229,7 @@ function ThemeGlyph({ size = 28, isDark }) {
           width: coreSize + 'px',
           height: coreSize + 'px',
           borderRadius: '50%',
-          background: '#000'
+          background: GREY
         }}
       />
     </span>
@@ -348,8 +352,6 @@ export default function Layout({ children, showFooter = true }) {
     try {
       await signout();
       await refreshUser();
-
-      // After signing out, return to the public Home page.
       navigate('/');
     } catch {
       navigate('/');
@@ -357,33 +359,6 @@ export default function Layout({ children, showFooter = true }) {
       setSigningOut(false);
     }
   };
-
-  /*
-   * Navigation policy
-   * -----------------
-   *
-   * The curriculum is already exposed through dedicated
-   * content-type cards on the platform.
-   *
-   * Therefore curriculum resources should NOT be duplicated
-   * in the global header or footer.
-   *
-   * The following are intentionally excluded:
-   *
-   * - About from the header
-   * - Classroom from the header
-   * - Blog from the header
-   * - Contact from the header
-   * - Notes
-   * - Quizzes
-   * - Flashcards
-   * - Past Papers
-   * - Recall
-   * - PDFs
-   * - Glossary
-   *
-   * About is retained only in the bottom footer navigation.
-   */
 
   const blockedHeaderPaths = [
     '/about',
@@ -513,7 +488,6 @@ export default function Layout({ children, showFooter = true }) {
             </nav>
 
             <div className="nav-actions">
-              {/* Large, clean search control */}
               <button
                 className="btn btn-ghost btn-sm btn-icon header-action-button"
                 onClick={() =>
@@ -525,7 +499,6 @@ export default function Layout({ children, showFooter = true }) {
                 <SearchGlyph size={28} />
               </button>
 
-              {/* Large, clean theme control */}
               <button
                 className="btn btn-ghost btn-sm btn-icon header-action-button"
                 onClick={toggleTheme}
@@ -535,16 +508,15 @@ export default function Layout({ children, showFooter = true }) {
                 <ThemeGlyph size={28} isDark={isDarkTheme} />
               </button>
 
-              {/* Large, clean hamburger control */}
               <button
                 className="hamburger-btn header-action-button"
                 onClick={() =>
-                  setMobileOpen(true)
+                  setMobileOpen((prev) => !prev)
                 }
                 aria-label="Menu"
                 type="button"
               >
-                <HamburgerGlyph size={30} />
+                <HamburgerGlyph size={30} isOpen={mobileOpen} />
               </button>
             </div>
           </div>
@@ -580,16 +552,6 @@ export default function Layout({ children, showFooter = true }) {
               }}
             >
               <div className="mobile-nav-panel-inner">
-
-                {/*
-                 * Mobile navigation uses the same filtered
-                 * navigation as the desktop header.
-                 *
-                 * This prevents old/stale configuration from
-                 * reintroducing curriculum links, About, or
-                 * Classroom into the mobile menu.
-                 */}
-
                 {filteredNavigation.map((link) => (
                   <Link
                     key={link.href}
@@ -945,7 +907,6 @@ export default function Layout({ children, showFooter = true }) {
                   Terms
                 </Link>
 
-                {/* About intentionally remains here only. */}
                 <Link
                   to="/about"
                   className="footer-link"
