@@ -1,32 +1,39 @@
-/* src/styles/resources.css */
+ /* src/styles/resources.css */
 
 .resources-page {
   width: 100%;
 }
 
 .resources-hero {
-  padding-bottom: var(--space-8);
+  padding-bottom: var(--space-6);
 }
 
 .resources-hero h1 {
-  margin-bottom: var(--space-4);
-  line-height: 1.12;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-3xl);
+  line-height: var(--leading-tight);
+  font-weight: var(--weight-bold);
+}
+
+.resources-hero-break {
+  display: inline-block;
+  margin-top: var(--space-1);
 }
 
 .resources-hero .section-subtitle {
   max-width: 760px;
   margin: 0;
-  line-height: 1.6;
+  line-height: var(--leading-relaxed);
 }
 
 .resources-grid-section {
-  padding-top: var(--space-4);
+  padding-top: var(--space-3);
 }
 
 .resources-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--space-6);
+  gap: var(--space-5);
   align-items: stretch;
 }
 
@@ -42,7 +49,7 @@
 
 .resource-card-image {
   width: 100%;
-  height: 190px;
+  height: 150px;
   overflow: hidden;
   background: var(--bg-card-hover);
   display: flex;
@@ -72,15 +79,17 @@
 }
 
 .resource-card-title {
+  margin: 0;
   font-size: var(--text-lg);
-  line-height: 1.3;
-  font-weight: var(--weight-bold);
+  line-height: var(--leading-snug);
+  font-weight: var(--weight-semibold);
   color: var(--text-main);
 }
 
 .resource-card-desc {
+  margin: 0;
   font-size: var(--text-sm);
-  line-height: 1.55;
+  line-height: var(--leading-relaxed);
   color: var(--text-dim);
 }
 
@@ -103,16 +112,19 @@
 
 @media (max-width: 640px) {
   .resources-hero {
-    padding-bottom: var(--space-6);
+    padding-bottom: var(--space-5);
   }
 
   .resources-hero h1 {
     font-size: var(--text-3xl);
   }
 
+  .resources-hero-break {
+    margin-top: var(--space-1);
+  }
+
   .resources-hero .section-subtitle {
     font-size: var(--text-base);
-    line-height: 1.55;
   }
 
   .resources-grid {
@@ -121,14 +133,10 @@
   }
 
   .resource-card-image {
-    height: 170px;
+    height: 140px;
   }
 
   .resource-card-body {
     padding: var(--space-4);
   }
-}
-.resources-hero-break {
-  display: inline-block;
-  margin-top: 8px;
 }
