@@ -1,47 +1,81 @@
-/* src/styles/tutor-apply.css */
+ /* src/styles/tutor-apply.css */
 
-/* Page container */
 .tutor-apply-page .section {
-  padding-top: var(--space-6);
+  padding-block: var(--section-space-y);
 }
 
-/* Intro and status descriptions */
 .tutor-apply-page .page-intro {
+  margin: 0 0 var(--content-gap);
+  color: var(--text-secondary);
+  font-family: var(--font-reading);
   font-size: var(--text-base);
   font-weight: var(--weight-normal);
-  color: var(--text-dim);
   line-height: var(--leading-relaxed);
-  margin-bottom: var(--space-6);
-}
-.tutor-apply-page .status-description {
-  font-size: var(--text-lg);
-  font-weight: var(--weight-normal);
-  color: var(--text-dim);
-  line-height: var(--leading-relaxed);
-  margin-bottom: var(--space-4);
 }
 
-/* Step indicator (already styled inline, but we keep for safety) */
-.tutor-apply-page .step-indicator {
-  display: flex;
-  justify-content: center;
-  gap: var(--space-8);
-  margin-bottom: var(--space-8);
+.tutor-apply-page .status-description {
+  margin: 0 0 var(--text-gap-description);
+  color: var(--text-secondary);
+  font-family: var(--font-reading);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-normal);
+  line-height: var(--leading-relaxed);
 }
-.tutor-apply-page .step-indicator .badge {
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
+
+.tutor-apply-page .step-indicator {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--content-gap);
+  margin-bottom: var(--section-space-y-compact);
 }
+
+.tutor-apply-page .step-indicator .badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-8);
+  height: var(--space-8);
+  padding: 0;
+  border-radius: 50%;
+}
+
 .tutor-apply-page .step-indicator .step-label {
+  font-family: var(--font-primary);
   font-size: var(--text-sm);
+  line-height: var(--leading-normal);
 }
+
 .tutor-apply-page .step-indicator .step-label.active {
   color: var(--text-main);
+  font-weight: var(--weight-medium);
 }
+
 .tutor-apply-page .step-indicator .step-label.inactive {
   color: var(--text-muted);
+  font-weight: var(--weight-normal);
+}
+
+@media (max-width: 768px) {
+  .tutor-apply-page .section {
+    padding-block: var(--section-space-y);
+  }
+
+  .tutor-apply-page .step-indicator {
+    gap: var(--content-gap-compact);
+    margin-bottom: var(--content-gap);
+  }
+}
+
+@media (max-width: 480px) {
+  .tutor-apply-page .status-description {
+    font-size: var(--text-base);
+  }
+
+  .tutor-apply-page .step-indicator {
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: var(--stack-gap-tight) var(--content-gap-compact);
+  }
 }
