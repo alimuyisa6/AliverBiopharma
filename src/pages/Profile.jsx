@@ -1,7 +1,5 @@
- // src/pages/Profile.jsx
-import { useState, useEffect, useMemo, useCallback } from 'react';
+ import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { useLayout } from '../contexts/LayoutContext';
 import {
   updateProfile,
   changePassword,
@@ -58,15 +56,22 @@ const SECTIONS = [
 ];
 
 function Toggle({ active, onClick }) {
-  return <button type="button" className={`toggle-switch${active ? ' active' : ''}`} onClick={onClick} aria-pressed={active} />;
+  return (
+    <button
+      type="button"
+      className={`toggle-switch${active ? ' active' : ''}`}
+      onClick={onClick}
+      aria-pressed={active}
+    />
+  );
 }
 
 export default function Profile() {
   const { user, refresh } = useAuth();
-  const { level } = useLayout();
   const addToast = useToast();
 
   const [activeSection, setActiveSection] = useState('overview');
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const [fullName, setFullName] = useState('');
   const [displayName, setDisplayName] = useState('');
@@ -118,6 +123,7 @@ export default function Profile() {
 
   useEffect(() => {
     setProfileLoading(true);
+
     getProfile()
       .then((data) => {
         setProfileMeta(data);
@@ -127,6 +133,7 @@ export default function Profile() {
       .finally(() => setProfileLoading(false));
 
     setBundleLoading(true);
+
     getSettingsBundle()
       .then(setBundle)
       .catch(() => {})
@@ -134,8 +141,17 @@ export default function Profile() {
   }, [user]);
 
   useEffect(() => {
-    if (!profileMeta || profileMeta.role === 'teacher' || availableLevels.length || availableLevelsLoading) return;
+    if (
+      !profileMeta ||
+      profileMeta.role === 'teacher' ||
+      availableLevels.length ||
+      availableLevelsLoading
+    ) {
+      return;
+    }
+
     setAvailableLevelsLoading(true);
+
     getCurriculumLevels()
       .then((data) => setAvailableLevels(data || []))
       .catch(() => {})
@@ -144,15 +160,58 @@ export default function Profile() {
 
   const loadSection = useCallback((id) => {
     setSectionLoading(true);
+
     const done = () => setSectionLoading(false);
 
-    if (id === 'notifications') return getProfileNotificationPreferences().then(setNotifPrefs).catch(() => {}).finally(done);
-    if (id === 'devices') return getDevices().then(setDevices).catch(() => {}).finally(done);
-    if (id === 'billing') return getBillingSummary().then(setBilling).catch(() => {}).finally(done);
-    if (id === 'referral') return getReferralStats().then(setReferral).catch(() => {}).finally(done);
-    if (id === 'certificates') return getCertificates().then(setCertificates).catch(() => {}).finally(done);
-    if (id === 'api') return getApiKeys().then(setApiKeys).catch(() => {}).finally(done);
-    if (id === 'webhooks') return getWebhooks().then(setWebhooks).catch(() => {}).finally(done);
+    if (id === 'notifications') {
+      return getProfileNotificationPreferences()
+        .then(setNotifPrefs)
+        .catch(() => {})
+        .finally(done);
+    }
+
+    if (id === 'devices') {
+      return getDevices()
+        .then(setDevices)
+        .catch(() => {})
+        .finally(done);
+    }
+
+    if (id === 'billing') {
+      return getBillingSummary()
+        .then(setBilling)
+        .catch(() => {})
+        .finally(done);
+    }
+
+    if (id === 'referral') {
+      return getReferralStats()
+        .then(setReferral)
+        .catch(() => {})
+        .finally(done);
+    }
+
+    if (id === 'certificates') {
+      return getCertificates()
+        .then(setCertificates)
+        .catch(() => {})
+        .finally(done);
+    }
+
+    if (id === 'api') {
+      return getApiKeys()
+        .then(setApiKeys)
+        .catch(() => {})
+        .finally(done);
+    }
+
+    if (id === 'webhooks') {
+      return getWebhooks()
+        .then(setWebhooks)
+        .catch(() => {})
+        .finally(done);
+    }
+
     done();
   }, []);
 
@@ -160,26 +219,62 @@ export default function Profile() {
     loadSection(activeSection);
   }, [activeSection, loadSection]);
 
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === 'Escape') {
+        setSidebarOpen(false);
+      }
+    };
+
+    if (sidebarOpen) {
+      document.addEventListener('keydown', handleEscape);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [sidebarOpen]);
+
+  const selectSection = (id) => {
+    setActiveSection(id);
+    setSidebarOpen(false);
+  };
+
   const levelChangeOptions = useMemo(
-    () => availableLevels.filter((lvl) => lvl.display_name !== profileMeta?.track),
+    () =>
+      availableLevels.filter(
+        (lvl) => lvl.display_name !== profileMeta?.track
+      ),
     [availableLevels, profileMeta]
   );
 
   const passwordStrength = useMemo(() => {
-    if (!newPassword) return { score: 0, label: '', color: '' };
+    if (!newPassword) {
+      return { score: 0, label: '', color: '' };
+    }
+
     let score = 0;
+
     if (newPassword.length >= 10) score++;
     if (newPassword.length >= 14) score++;
     if (/[A-Z]/.test(newPassword) && /[a-z]/.test(newPassword)) score++;
     if (/[0-9]/.test(newPassword)) score++;
     if (/[^A-Za-z0-9]/.test(newPassword)) score++;
-    if (score <= 2) return { score: 1, label: 'Weak', color: 'var(--error)' };
-    if (score <= 3) return { score: 2, label: 'Fair', color: 'var(--warning)' };
+
+    if (score <= 2) {
+      return { score: 1, label: 'Weak', color: 'var(--error)' };
+    }
+
+    if (score <= 3) {
+      return { score: 2, label: 'Fair', color: 'var(--warning)' };
+    }
+
     return { score: 3, label: 'Strong', color: 'var(--success)' };
   }, [newPassword]);
 
   const handleProfileSubmit = async (e) => {
     e.preventDefault();
+
     const trimmed = fullName.trim();
     const trimmedDisplayName = displayName.trim();
 
@@ -189,11 +284,14 @@ export default function Profile() {
     }
 
     setSavingProfile(true);
+
     try {
       await updateProfile(trimmed);
+
       if (trimmedDisplayName && trimmedDisplayName.length >= 2) {
         await updateDisplayName(trimmedDisplayName);
       }
+
       await refresh();
       addToast('Profile updated', 'success');
     } catch (err) {
@@ -206,6 +304,7 @@ export default function Profile() {
   const handleBioSubmit = async (e) => {
     e.preventDefault();
     setSavingBio(true);
+
     try {
       await updateBio(bio.trim());
       addToast('Bio updated', 'success');
@@ -218,14 +317,26 @@ export default function Profile() {
 
   const handlePasswordSubmit = async (e) => {
     e.preventDefault();
-    if (newPassword !== confirmPassword) { addToast('Passwords do not match', 'error'); return; }
-    if (newPassword.length < 10) { addToast('Password must be at least 10 characters', 'error'); return; }
+
+    if (newPassword !== confirmPassword) {
+      addToast('Passwords do not match', 'error');
+      return;
+    }
+
+    if (newPassword.length < 10) {
+      addToast('Password must be at least 10 characters', 'error');
+      return;
+    }
+
     setSavingPassword(true);
+
     try {
       await changePassword(currentPassword, newPassword);
+
       setCurrentPassword('');
       setNewPassword('');
       setConfirmPassword('');
+
       addToast('Password changed', 'success');
     } catch (err) {
       addToast(err.message || 'Failed to change password', 'error');
@@ -236,12 +347,20 @@ export default function Profile() {
 
   const handleLevelChangeRequest = async (e) => {
     e.preventDefault();
-    if (!levelReqTrack || !levelReqReason.trim()) { addToast('Please complete all fields', 'error'); return; }
+
+    if (!levelReqTrack || !levelReqReason.trim()) {
+      addToast('Please complete all fields', 'error');
+      return;
+    }
+
     setLevelReqLoading(true);
+
     try {
       await requestLevelChange(levelReqTrack, null, levelReqReason);
+
       setLevelReqTrack('');
       setLevelReqReason('');
+
       addToast('Level change request submitted', 'success');
     } catch (err) {
       addToast(err.message || 'Failed to submit request', 'error');
@@ -253,17 +372,43 @@ export default function Profile() {
   const handleThemeChange = async (color) => {
     try {
       const updated = await updatePreferences({ theme_color: color });
-      setBundle((prev) => (prev ? { ...prev, profile: { ...prev.profile, ...updated.profile } } : prev));
+
+      setBundle((prev) =>
+        prev
+          ? {
+              ...prev,
+              profile: {
+                ...prev.profile,
+                ...updated.profile
+              }
+            }
+          : prev
+      );
     } catch (err) {
       addToast(err.message || 'Failed to update theme', 'error');
     }
   };
 
   const handleAccessibilityToggle = async (key, currentValue) => {
-    const accessibility = { ...(bundle?.profile?.accessibility || {}), [key]: !currentValue };
+    const accessibility = {
+      ...(bundle?.profile?.accessibility || {}),
+      [key]: !currentValue
+    };
+
     try {
       const updated = await updatePreferences({ accessibility });
-      setBundle((prev) => (prev ? { ...prev, profile: { ...prev.profile, ...updated.profile } } : prev));
+
+      setBundle((prev) =>
+        prev
+          ? {
+              ...prev,
+              profile: {
+                ...prev.profile,
+                ...updated.profile
+              }
+            }
+          : prev
+      );
     } catch (err) {
       addToast(err.message || 'Failed to update accessibility setting', 'error');
     }
@@ -271,12 +416,22 @@ export default function Profile() {
 
   const handleNotifToggle = async (module, field, current) => {
     setNotifPrefs((prev) =>
-      prev.map((p) => (p.module === module ? { ...p, [field]: !current } : p))
+      prev.map((p) =>
+        p.module === module
+          ? { ...p, [field]: !current }
+          : p
+      )
     );
+
     try {
-      await updateProfileNotificationPreference(module, { [field]: !current });
+      await updateProfileNotificationPreference(module, {
+        [field]: !current
+      });
     } catch (err) {
-      addToast(err.message || 'Failed to update notification setting', 'error');
+      addToast(
+        err.message || 'Failed to update notification setting',
+        'error'
+      );
       loadSection('notifications');
     }
   };
@@ -284,7 +439,11 @@ export default function Profile() {
   const handleRevokeDevice = async (sessionId) => {
     try {
       await revokeDevice(sessionId);
-      setDevices((prev) => prev.filter((d) => d.id !== sessionId));
+
+      setDevices((prev) =>
+        prev.filter((d) => d.id !== sessionId)
+      );
+
       addToast('Device signed out', 'success');
     } catch (err) {
       addToast(err.message || 'Failed to revoke device', 'error');
@@ -293,6 +452,7 @@ export default function Profile() {
 
   const handleCreateApiKey = async () => {
     setCreatingKey(true);
+
     try {
       const result = await createApiKey('Default Key');
       setRevealedKey(result.raw_key);
@@ -307,7 +467,14 @@ export default function Profile() {
   const handleRevokeApiKey = async (keyId) => {
     try {
       await revokeApiKey(keyId);
-      setApiKeys((prev) => prev.map((k) => (k.id === keyId ? { ...k, is_active: false } : k)));
+
+      setApiKeys((prev) =>
+        prev.map((k) =>
+          k.id === keyId
+            ? { ...k, is_active: false }
+            : k
+        )
+      );
     } catch (err) {
       addToast(err.message || 'Failed to revoke key', 'error');
     }
@@ -318,11 +485,15 @@ export default function Profile() {
       addToast('Enter a valid https:// URL', 'error');
       return;
     }
+
     setCreatingWebhook(true);
+
     try {
       await createWebhook(newWebhookUrl, ['*']);
+
       setNewWebhookUrl('');
       loadSection('webhooks');
+
       addToast('Webhook created', 'success');
     } catch (err) {
       addToast(err.message || 'Failed to create webhook', 'error');
@@ -334,7 +505,10 @@ export default function Profile() {
   const handleDeleteWebhook = async (id) => {
     try {
       await deleteWebhook(id);
-      setWebhooks((prev) => prev.filter((w) => w.id !== id));
+
+      setWebhooks((prev) =>
+        prev.filter((w) => w.id !== id)
+      );
     } catch (err) {
       addToast(err.message || 'Failed to delete webhook', 'error');
     }
@@ -342,20 +516,27 @@ export default function Profile() {
 
   const handleSaveGuardian = async (e) => {
     e.preventDefault();
+
     if (!guardianName.trim() || !guardianEmail.trim()) {
       addToast('Guardian name and email are required', 'error');
       return;
     }
+
     setSavingGuardian(true);
+
     try {
       await saveParentGuardian({
         guardian_name: guardianName.trim(),
         guardian_email: guardianEmail.trim(),
         guardian_relationship: guardianRelationship
       });
+
       addToast('Guardian information saved', 'success');
     } catch (err) {
-      addToast(err.message || 'Failed to save guardian information', 'error');
+      addToast(
+        err.message || 'Failed to save guardian information',
+        'error'
+      );
     } finally {
       setSavingGuardian(false);
     }
@@ -364,73 +545,194 @@ export default function Profile() {
   const handleDataExport = async () => {
     try {
       const result = await requestDataExport();
-      addToast(result.already_pending ? 'Export already in progress' : 'Export requested — we will email you a link', 'success');
+
+      addToast(
+        result.already_pending
+          ? 'Export already in progress'
+          : 'Export requested — we will email you a link',
+        'success'
+      );
     } catch (err) {
       addToast(err.message || 'Failed to request export', 'error');
     }
   };
 
   const handleAccountDeletion = async () => {
-    if (!window.confirm('This will schedule your account for deletion. Continue?')) return;
+    if (
+      !window.confirm(
+        'This will schedule your account for deletion. Continue?'
+      )
+    ) {
+      return;
+    }
+
     try {
       const result = await requestAccountDeletion();
-      addToast(result.already_pending ? 'Deletion already requested' : 'Account deletion requested', 'success');
+
+      addToast(
+        result.already_pending
+          ? 'Deletion already requested'
+          : 'Account deletion requested',
+        'success'
+      );
     } catch (err) {
-      addToast(err.message || 'Failed to request account deletion', 'error');
+      addToast(
+        err.message || 'Failed to request account deletion',
+        'error'
+      );
     }
   };
 
   if (profileLoading) {
     return (
       <Container>
-        <PageHeader title="Profile & Settings" subtitle="Manage your account, curriculum, preferences, security, and more" />
+        <PageHeader
+          title="Profile & Settings"
+          subtitle="Manage your account, curriculum, preferences, security, and more"
+        />
+
         <div className="profile-loading-skeleton">
-          <Skeleton variant="avatar" width={96} height={96} />
+          <Skeleton
+            variant="avatar"
+            width={96}
+            height={96}
+          />
         </div>
+
         <div className="grid grid-cols-2 profile-skeleton-grid">
-          <Card variant="inset" loading={true} loadingLines={4} />
-          <Card variant="inset" loading={true} loadingLines={4} />
+          <Card
+            variant="inset"
+            loading={true}
+            loadingLines={4}
+          />
+          <Card
+            variant="inset"
+            loading={true}
+            loadingLines={4}
+          />
         </div>
       </Container>
     );
   }
 
-  const initial = (profileMeta?.display_name || profileMeta?.full_name || user?.email || 'S').charAt(0).toUpperCase();
+  const initial = (
+    profileMeta?.display_name ||
+    profileMeta?.full_name ||
+    user?.email ||
+    'S'
+  )
+    .charAt(0)
+    .toUpperCase();
 
   return (
     <Container>
-      <PageHeader title="Profile & Settings" subtitle="Manage your account, curriculum, preferences, security, and more" />
+      <PageHeader
+        title="Profile & Settings"
+        subtitle="Manage your account, curriculum, preferences, security, and more"
+      />
 
-      <div className="profile-layout">
-        <aside className="profile-sidebar">
-          <div className="profile-avatar-lg">{initial}</div>
-          <div className="profile-sidebar-name">{profileMeta?.display_name || profileMeta?.full_name || 'Student'}</div>
-          <div className="profile-sidebar-level">{profileMeta?.track || 'No level set'} · {profileMeta?.class_name || '—'}</div>
+      <div className="profile-toolbar">
+        <div className="profile-toolbar-copy">
+          <span className="profile-toolbar-label">Settings</span>
+          <span className="profile-toolbar-current">
+            {SECTIONS.find((section) => section.id === activeSection)?.label}
+          </span>
+        </div>
 
-          <div className="profile-stats-grid">
-            <div className="profile-stat-tile">
-              <div className="stat-num">{bundle?.active_device_count ?? '—'}</div>
-              <div className="stat-label">Devices</div>
+        <Button
+          type="button"
+          variant="outline"
+          size="sm"
+          className="profile-sidebar-toggle"
+          onClick={() => setSidebarOpen((open) => !open)}
+          aria-expanded={sidebarOpen}
+          aria-controls="profile-sidebar"
+        >
+          {sidebarOpen ? 'Hide Sections' : 'Show Sections'}
+        </Button>
+      </div>
+
+      <div
+        className={`profile-layout${sidebarOpen ? ' sidebar-open' : ''}`}
+      >
+        <button
+          type="button"
+          className="profile-sidebar-backdrop"
+          aria-label="Close profile sections"
+          onClick={() => setSidebarOpen(false)}
+        />
+
+        <aside
+          id="profile-sidebar"
+          className="profile-sidebar"
+          aria-label="Profile settings sections"
+        >
+          <div className="profile-sidebar-inner">
+            <div className="profile-sidebar-profile">
+              <div className="profile-avatar-lg">
+                {initial}
+              </div>
+
+              <div className="profile-sidebar-details">
+                <div className="profile-sidebar-name">
+                  {profileMeta?.display_name ||
+                    profileMeta?.full_name ||
+                    'Student'}
+                </div>
+
+                <div className="profile-sidebar-level">
+                  {profileMeta?.track || 'No level set'}
+                  <span aria-hidden="true"> · </span>
+                  {profileMeta?.class_name || 'No class set'}
+                </div>
+              </div>
             </div>
-            <div className="profile-stat-tile">
-              <div className="stat-num">{bundle?.referral_count ?? '—'}</div>
-              <div className="stat-label">Referrals</div>
+
+            <div className="profile-stats-grid">
+              <div className="profile-stat-tile">
+                <div className="profile-stat-num">
+                  {bundle?.active_device_count ?? '—'}
+                </div>
+                <div className="profile-stat-label">
+                  Devices
+                </div>
+              </div>
+
+              <div className="profile-stat-tile">
+                <div className="profile-stat-num">
+                  {bundle?.referral_count ?? '—'}
+                </div>
+                <div className="profile-stat-label">
+                  Referrals
+                </div>
+              </div>
             </div>
+
+            <nav className="profile-nav" aria-label="Profile sections">
+              <ul className="profile-nav-list">
+                {SECTIONS.map((section) => (
+                  <li key={section.id}>
+                    <button
+                      type="button"
+                      className={
+                        activeSection === section.id
+                          ? 'active'
+                          : ''
+                      }
+                      onClick={() => selectSection(section.id)}
+                      aria-current={
+                        activeSection === section.id
+                          ? 'page'
+                          : undefined
+                      }
+                    >
+                      {section.label}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </nav>
           </div>
-
-          <ul className="profile-nav-list">
-            {SECTIONS.map((s) => (
-              <li key={s.id}>
-                <button
-                  type="button"
-                  className={activeSection === s.id ? 'active' : ''}
-                  onClick={() => setActiveSection(s.id)}
-                >
-                  {s.label}
-                </button>
-              </li>
-            ))}
-          </ul>
         </aside>
 
         <div className="profile-content">
@@ -438,129 +740,398 @@ export default function Profile() {
             <>
               <div className="profile-avatar-wrapper">
                 <ProfilePictureUpload
-                  currentUrl={user?.profile?.profile_picture_url}
+                  currentUrl={
+                    user?.profile?.profile_picture_url
+                  }
                   onUpdate={() => refresh()}
                   size={96}
                 />
               </div>
+
               <form onSubmit={handleProfileSubmit}>
-                <Card variant="inset" className="profile-card-main">
-                  <h3 className="profile-section-title"><Icon name="id-card" className="profile-icon-primary" />Personal Info</h3>
+                <Card
+                  variant="inset"
+                  className="profile-card-main"
+                >
+                  <h3 className="profile-section-title">
+                    <Icon
+                      name="id-card"
+                      className="profile-icon-primary"
+                    />
+                    Personal Info
+                  </h3>
+
                   <p className="profile-section-subtitle">
-                    Update your name and display name. Your display name appears publicly on reviews and comments.
+                    Update your name and display name. Your display
+                    name appears publicly on reviews and comments.
                   </p>
-                  <Input label="Full Name" value={fullName} onChange={(e) => setFullName(e.target.value)} required disabled={savingProfile} />
-                  <Input label="Display Name" value={displayName} onChange={(e) => setDisplayName(e.target.value)} disabled={savingProfile} hint="Shown publicly on reviews and comments" />
-                  <Input label="Email" value={profileMeta?.email || user?.email || ''} disabled />
-                  <Button type="submit" loading={savingProfile} loadingContext="brand" variant="pill" icon="check">Save Changes</Button>
+
+                  <Input
+                    label="Full Name"
+                    value={fullName}
+                    onChange={(e) =>
+                      setFullName(e.target.value)
+                    }
+                    required
+                    disabled={savingProfile}
+                  />
+
+                  <Input
+                    label="Display Name"
+                    value={displayName}
+                    onChange={(e) =>
+                      setDisplayName(e.target.value)
+                    }
+                    disabled={savingProfile}
+                    hint="Shown publicly on reviews and comments"
+                  />
+
+                  <Input
+                    label="Email"
+                    value={
+                      profileMeta?.email ||
+                      user?.email ||
+                      ''
+                    }
+                    disabled
+                  />
+
+                  <Button
+                    type="submit"
+                    loading={savingProfile}
+                    loadingContext="brand"
+                    variant="outline"
+                    icon="check"
+                  >
+                    Save Changes
+                  </Button>
                 </Card>
               </form>
+
               <form onSubmit={handleBioSubmit}>
-                <Card variant="inset" className="profile-p-8">
-                  <h3 className="profile-section-title"><Icon name="pen" className="profile-icon-secondary" />Bio</h3>
+                <Card
+                  variant="inset"
+                  className="profile-card"
+                >
+                  <h3 className="profile-section-title">
+                    <Icon
+                      name="pen"
+                      className="profile-icon-secondary"
+                    />
+                    Bio
+                  </h3>
+
                   <p className="profile-section-subtitle">
-                    Tell others a little about yourself – your interests, goals, or what you're studying.
+                    Tell others a little about yourself — your
+                    interests, goals, or what you're studying.
                   </p>
+
                   <textarea
-                    className="form-textarea font-source-sans"
+                    className="form-textarea profile-reading-field"
                     rows={3}
                     maxLength={500}
                     value={bio}
                     onChange={(e) => setBio(e.target.value)}
                     placeholder="Tell us about yourself..."
                   />
-                  <Button type="submit" loading={savingBio} loadingContext="brand" variant="pill" icon="check" className="profile-mt-4">Save Bio</Button>
+
+                  <Button
+                    type="submit"
+                    loading={savingBio}
+                    loadingContext="brand"
+                    variant="outline"
+                    icon="check"
+                    className="profile-action-spaced"
+                  >
+                    Save Bio
+                  </Button>
                 </Card>
               </form>
             </>
           )}
 
           {activeSection === 'curriculum' && (
-            <Card variant="curved" className="profile-p-8">
-              <h3 className="profile-section-title"><Icon name="route" className="profile-icon-warm" />Learning Curriculum</h3>
-              <p className="font-source-sans" style={{ color: 'var(--text-dim)', fontSize: 'var(--text-sm)', marginBottom: 'var(--space-6)' }}>
-                Your current level is <strong className="font-poppins">{profileMeta?.track || 'Not set'}</strong>, class <strong className="font-poppins">{profileMeta?.class_name || 'Not set'}</strong>. Changing levels requires admin approval.
+            <Card
+              variant="inset"
+              className="profile-card"
+            >
+              <h3 className="profile-section-title">
+                <Icon
+                  name="route"
+                  className="profile-icon-warm"
+                />
+                Learning Curriculum
+              </h3>
+
+              <p className="profile-section-subtitle">
+                Your current level is{' '}
+                <strong>
+                  {profileMeta?.track || 'Not set'}
+                </strong>
+                , class{' '}
+                <strong>
+                  {profileMeta?.class_name || 'Not set'}
+                </strong>
+                . Changing levels requires admin approval.
               </p>
+
               {profileMeta?.role !== 'teacher' && (
                 <form onSubmit={handleLevelChangeRequest}>
                   <div className="form-group">
-                    <label className="form-label font-poppins">New Level</label>
-                    <select className="form-select font-source-sans" value={levelReqTrack} onChange={(e) => setLevelReqTrack(e.target.value)} required disabled={availableLevelsLoading}>
-                      <option value="">Select Level</option>
+                    <label className="form-label">
+                      New Level
+                    </label>
+
+                    <select
+                      className="form-select profile-reading-field"
+                      value={levelReqTrack}
+                      onChange={(e) =>
+                        setLevelReqTrack(e.target.value)
+                      }
+                      required
+                      disabled={availableLevelsLoading}
+                    >
+                      <option value="">
+                        Select Level
+                      </option>
+
                       {levelChangeOptions.map((lvl) => (
-                        <option key={lvl.id || lvl.key || lvl.display_name} value={lvl.display_name}>{lvl.display_name}</option>
+                        <option
+                          key={
+                            lvl.id ||
+                            lvl.key ||
+                            lvl.display_name
+                          }
+                          value={lvl.display_name}
+                        >
+                          {lvl.display_name}
+                        </option>
                       ))}
                     </select>
-                    {availableLevelsLoading && <Spinner context="data" size="sm" />}
+
+                    {availableLevelsLoading && (
+                      <Spinner
+                        context="data"
+                        size="sm"
+                      />
+                    )}
                   </div>
+
                   <div className="form-group">
-                    <label className="form-label font-poppins">Reason</label>
-                    <textarea className="form-textarea font-source-sans" rows={3} value={levelReqReason} onChange={(e) => setLevelReqReason(e.target.value)} required />
+                    <label className="form-label">
+                      Reason
+                    </label>
+
+                    <textarea
+                      className="form-textarea profile-reading-field"
+                      rows={3}
+                      value={levelReqReason}
+                      onChange={(e) =>
+                        setLevelReqReason(e.target.value)
+                      }
+                      required
+                    />
                   </div>
-                  <Button type="submit" loading={levelReqLoading} loadingContext="brand" variant="inset" icon="route">Submit Request</Button>
+
+                  <Button
+                    type="submit"
+                    loading={levelReqLoading}
+                    loadingContext="brand"
+                    variant="outline"
+                    icon="route"
+                  >
+                    Submit Request
+                  </Button>
                 </form>
               )}
             </Card>
           )}
 
           {activeSection === 'notifications' && (
-            <Card variant="inset" className="profile-p-8">
-              <h3 className="profile-section-title"><Icon name="bell" className="profile-icon-primary" />Notifications</h3>
+            <Card variant="inset" className="profile-card">
+              <h3 className="profile-section-title">
+                <Icon
+                  name="bell"
+                  className="profile-icon-primary"
+                />
+                Notifications
+              </h3>
+
               <p className="profile-section-subtitle">
-                Choose how you want to receive updates – in‑app, via email, or push notifications.
+                Choose how you want to receive updates — in-app,
+                via email, or push notifications.
               </p>
+
               {sectionLoading ? (
                 <Spinner context="data" size="sm" />
               ) : (
                 notifPrefs.map((p) => (
-                  <div className="notification-row" key={p.module}>
-                    <div style={{ flex: 1 }}>
-                      <div className="notif-title">{p.module.replace(/_/g, ' ')}</div>
-                      <div className="notif-desc">In-app · Email · Push</div>
+                  <div
+                    className="notification-row"
+                    key={p.module}
+                  >
+                    <div className="profile-row-copy">
+                      <div className="notif-title">
+                        {p.module.replace(/_/g, ' ')}
+                      </div>
+
+                      <div className="notif-desc">
+                        In-app · Email · Push
+                      </div>
                     </div>
+
                     <div className="profile-toggle-group">
-                      <Toggle active={p.in_app} onClick={() => handleNotifToggle(p.module, 'in_app', p.in_app)} />
-                      <Toggle active={p.email} onClick={() => handleNotifToggle(p.module, 'email', p.email)} />
-                      <Toggle active={p.push} onClick={() => handleNotifToggle(p.module, 'push', p.push)} />
+                      <Toggle
+                        active={p.in_app}
+                        onClick={() =>
+                          handleNotifToggle(
+                            p.module,
+                            'in_app',
+                            p.in_app
+                          )
+                        }
+                      />
+
+                      <Toggle
+                        active={p.email}
+                        onClick={() =>
+                          handleNotifToggle(
+                            p.module,
+                            'email',
+                            p.email
+                          )
+                        }
+                      />
+
+                      <Toggle
+                        active={p.push}
+                        onClick={() =>
+                          handleNotifToggle(
+                            p.module,
+                            'push',
+                            p.push
+                          )
+                        }
+                      />
                     </div>
                   </div>
                 ))
               )}
-              {!sectionLoading && notifPrefs.length === 0 && (
-                <p className="font-source-sans" style={{ color: 'var(--text-muted)', fontSize: 'var(--text-sm)' }}>No notification modules configured yet.</p>
-              )}
+
+              {!sectionLoading &&
+                notifPrefs.length === 0 && (
+                  <p className="profile-empty-text">
+                    No notification modules configured yet.
+                  </p>
+                )}
             </Card>
           )}
 
           {activeSection === 'security' && (
             <form onSubmit={handlePasswordSubmit}>
-              <Card variant="inset" className="profile-p-8">
-                <h3 className="profile-section-title"><Icon name="key" className="profile-icon-accent" />Security</h3>
+              <Card variant="inset" className="profile-card">
+                <h3 className="profile-section-title">
+                  <Icon
+                    name="key"
+                    className="profile-icon-accent"
+                  />
+                  Security
+                </h3>
+
                 <p className="profile-section-subtitle">
-                  Change your password regularly to keep your account secure. Use a strong, unique password.
+                  Change your password regularly to keep your account
+                  secure. Use a strong, unique password.
                 </p>
-                <Input label="Current Password" type="password" value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)} required disabled={savingPassword} />
-                <Input label="New Password" type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} hint="Minimum 10 characters" required disabled={savingPassword} />
+
+                <Input
+                  label="Current Password"
+                  type="password"
+                  value={currentPassword}
+                  onChange={(e) =>
+                    setCurrentPassword(e.target.value)
+                  }
+                  required
+                  disabled={savingPassword}
+                />
+
+                <Input
+                  label="New Password"
+                  type="password"
+                  value={newPassword}
+                  onChange={(e) =>
+                    setNewPassword(e.target.value)
+                  }
+                  hint="Minimum 10 characters"
+                  required
+                  disabled={savingPassword}
+                />
+
                 {newPassword && (
                   <div className="profile-pw-strength-wrap">
                     <div className="progress-track profile-pw-strength-track">
-                      <div className="progress-fill" style={{ width: `${(passwordStrength.score / 3) * 100}%`, background: passwordStrength.color }} />
+                      <div
+                        className="progress-fill"
+                        style={{
+                          width: `${
+                            (passwordStrength.score / 3) *
+                            100
+                          }%`,
+                          background:
+                            passwordStrength.color
+                        }}
+                      />
                     </div>
-                    <span className="font-mono profile-pw-strength-label" style={{ color: passwordStrength.color }}>{passwordStrength.label}</span>
+
+                    <span
+                      className="profile-pw-strength-label"
+                      style={{
+                        color: passwordStrength.color
+                      }}
+                    >
+                      {passwordStrength.label}
+                    </span>
                   </div>
                 )}
-                <Input label="Confirm New Password" type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required disabled={savingPassword} />
-                <Button type="submit" loading={savingPassword} loadingContext="conic" variant="3d" icon="lock">Update Password</Button>
+
+                <Input
+                  label="Confirm New Password"
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(e) =>
+                    setConfirmPassword(e.target.value)
+                  }
+                  required
+                  disabled={savingPassword}
+                />
+
+                <Button
+                  type="submit"
+                  loading={savingPassword}
+                  loadingContext="conic"
+                  variant="outline"
+                  icon="lock"
+                >
+                  Update Password
+                </Button>
               </Card>
             </form>
           )}
 
           {activeSection === 'devices' && (
-            <Card variant="inset" className="profile-p-8">
-              <h3 className="profile-section-title"><Icon name="laptop" className="profile-icon-primary" />Connected Devices</h3>
+            <Card variant="inset" className="profile-card">
+              <h3 className="profile-section-title">
+                <Icon
+                  name="laptop"
+                  className="profile-icon-primary"
+                />
+                Connected Devices
+              </h3>
+
               <p className="profile-section-subtitle">
-                View and manage devices that have access to your account. Revoke any device you don't recognise.
+                View and manage devices that have access to your
+                account. Revoke any device you don't recognise.
               </p>
+
               {sectionLoading ? (
                 <Spinner context="data" size="sm" />
               ) : (
@@ -568,63 +1139,154 @@ export default function Profile() {
                   {devices.map((d) => (
                     <li key={d.id}>
                       <Icon name="laptop" />
-                      <div style={{ flex: 1 }}>
-                        <div className="device-name">{d.user_agent || 'Unknown device'}</div>
-                        <div className="device-meta">{d.ip_address || 'Unknown IP'} · Signed in {new Date(d.created_at).toLocaleDateString()}</div>
+
+                      <div className="profile-row-copy">
+                        <div className="device-name">
+                          {d.user_agent || 'Unknown device'}
+                        </div>
+
+                        <div className="device-meta">
+                          {d.ip_address || 'Unknown IP'} · Signed
+                          in{' '}
+                          {new Date(
+                            d.created_at
+                          ).toLocaleDateString()}
+                        </div>
                       </div>
-                      <Button variant="outline" size="sm" onClick={() => handleRevokeDevice(d.id)}>Revoke</Button>
+
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() =>
+                          handleRevokeDevice(d.id)
+                        }
+                      >
+                        Revoke
+                      </Button>
                     </li>
                   ))}
-                  {devices.length === 0 && <p className="font-source-sans" style={{ color: 'var(--text-muted)', fontSize: 'var(--text-sm)' }}>No active sessions found.</p>}
+
+                  {devices.length === 0 && (
+                    <li className="profile-empty-list">
+                      No active sessions found.
+                    </li>
+                  )}
                 </ul>
               )}
             </Card>
           )}
 
           {activeSection === 'preferences' && (
-            <Card variant="inset" className="profile-p-8">
-              <h3 className="profile-section-title"><Icon name="sliders" className="profile-icon-secondary" />Preferences & Theme</h3>
+            <Card variant="inset" className="profile-card">
+              <h3 className="profile-section-title">
+                <Icon
+                  name="sliders"
+                  className="profile-icon-secondary"
+                />
+                Preferences & Theme
+              </h3>
+
               <p className="profile-section-subtitle">
-                Customise your experience by choosing an accent colour and adjusting accessibility settings.
+                Customise your experience by choosing an accent
+                colour and adjusting accessibility settings.
               </p>
 
               <div className="form-group">
-                <label className="form-label font-poppins">Accent Color</label>
+                <label className="form-label">
+                  Accent Color
+                </label>
+
                 <div className="theme-swatch-group">
                   {[
-                    { key: 'blue', color: 'var(--blue-600)' },
-                    { key: 'teal', color: 'var(--teal-600)' },
-                    { key: 'emerald', color: 'var(--emerald-600)' },
-                    { key: 'amber', color: 'var(--amber-600)' },
-                    { key: 'grey', color: 'var(--grey-700)' }
-                  ].map((t) => (
-                    <div
-                      key={t.key}
-                      className={`theme-swatch-option${bundle?.profile?.theme_color === t.key ? ' active' : ''}`}
-                      onClick={() => handleThemeChange(t.key)}
-                      style={{ '--swatch-color': t.color }}
+                    {
+                      key: 'blue',
+                      color: 'var(--blue-600)'
+                    },
+                    {
+                      key: 'teal',
+                      color: 'var(--teal-600)'
+                    },
+                    {
+                      key: 'emerald',
+                      color: 'var(--emerald-600)'
+                    },
+                    {
+                      key: 'amber',
+                      color: 'var(--amber-600)'
+                    },
+                    {
+                      key: 'grey',
+                      color: 'var(--grey-700)'
+                    }
+                  ].map((themeOption) => (
+                    <button
+                      type="button"
+                      key={themeOption.key}
+                      className={`theme-swatch-option${
+                        bundle?.profile?.theme_color ===
+                        themeOption.key
+                          ? ' active'
+                          : ''
+                      }`}
+                      onClick={() =>
+                        handleThemeChange(
+                          themeOption.key
+                        )
+                      }
+                      style={{
+                        '--swatch-color':
+                          themeOption.color
+                      }}
+                      aria-pressed={
+                        bundle?.profile?.theme_color ===
+                        themeOption.key
+                      }
                     >
-                      <div className="theme-swatch" />
-                      {t.key}
-                    </div>
+                      <span className="theme-swatch" />
+                      <span>
+                        {themeOption.key}
+                      </span>
+                    </button>
                   ))}
                 </div>
               </div>
 
               <hr className="divider profile-divider-lg" />
 
-              <h4 className="font-poppins profile-mb-4">Accessibility</h4>
+              <h4 className="profile-subheading">
+                Accessibility
+              </h4>
+
               {[
                 ['large_text', 'Large text mode'],
                 ['high_contrast', 'High contrast mode'],
                 ['reduce_motion', 'Reduce motion'],
-                ['dyslexia_font', 'Dyslexia-friendly font']
+                [
+                  'dyslexia_font',
+                  'Dyslexia-friendly font'
+                ]
               ].map(([key, label]) => {
-                const current = !!bundle?.profile?.accessibility?.[key];
+                const current = !!bundle?.profile
+                  ?.accessibility?.[key];
+
                 return (
-                  <div className="notification-row" key={key}>
-                    <div className="notif-title" style={{ flex: 1 }}>{label}</div>
-                    <Toggle active={current} onClick={() => handleAccessibilityToggle(key, current)} />
+                  <div
+                    className="notification-row"
+                    key={key}
+                  >
+                    <div className="notif-title profile-row-copy">
+                      {label}
+                    </div>
+
+                    <Toggle
+                      active={current}
+                      onClick={() =>
+                        handleAccessibilityToggle(
+                          key,
+                          current
+                        )
+                      }
+                    />
                   </div>
                 );
               })}
@@ -632,77 +1294,185 @@ export default function Profile() {
           )}
 
           {activeSection === 'referral' && (
-            <Card variant="curved" className="profile-p-8">
-              <h3 className="profile-section-title"><Icon name="gift" className="profile-icon-warm" />Referral Program</h3>
+            <Card variant="inset" className="profile-card">
+              <h3 className="profile-section-title">
+                <Icon
+                  name="gift"
+                  className="profile-icon-warm"
+                />
+                Referral Program
+              </h3>
+
               <p className="profile-section-subtitle">
-                Share your referral code with friends and earn XP when they join. Every new member helps grow the community.
+                Share your referral code with friends and earn XP
+                when they join. Every new member helps grow the
+                community.
               </p>
+
               {sectionLoading ? (
                 <Spinner context="data" size="sm" />
               ) : referral ? (
                 <>
-                  <p className="font-source-sans">Your Referral Code: <strong style={{ color: 'var(--primary)' }}>{referral.referral_code}</strong></p>
+                  <p className="profile-reading-text">
+                    Your Referral Code:{' '}
+                    <strong className="profile-accent-text">
+                      {referral.referral_code}
+                    </strong>
+                  </p>
+
                   <Button
-                    variant="pill"
+                    variant="outline"
                     icon="copy"
-                    className="profile-mt-4"
-                    onClick={() => { navigator.clipboard.writeText(referral.referral_code); addToast('Referral code copied', 'success'); }}
+                    className="profile-action-spaced"
+                    onClick={() => {
+                      navigator.clipboard.writeText(
+                        referral.referral_code
+                      );
+                      addToast(
+                        'Referral code copied',
+                        'success'
+                      );
+                    }}
                   >
                     Copy Referral Code
                   </Button>
-                  <p className="font-source-sans text-muted profile-text-muted profile-mt-4">
-                    {referral.referral_count} friends joined · {referral.total_xp_earned} XP earned
+
+                  <p className="profile-text-muted profile-action-description">
+                    {referral.referral_count} friends joined ·{' '}
+                    {referral.total_xp_earned} XP earned
                   </p>
                 </>
               ) : (
-                <p className="font-source-sans text-muted">No referral data yet.</p>
+                <p className="profile-empty-text">
+                  No referral data yet.
+                </p>
               )}
             </Card>
           )}
 
           {activeSection === 'parent' && (
             <form onSubmit={handleSaveGuardian}>
-              <Card variant="inset" className="profile-p-8">
-                <h3 className="profile-section-title"><Icon name="user-group" className="profile-icon-primary" />Parent / Guardian Information</h3>
+              <Card variant="inset" className="profile-card">
+                <h3 className="profile-section-title">
+                  <Icon
+                    name="user-group"
+                    className="profile-icon-primary"
+                  />
+                  Parent / Guardian Information
+                </h3>
+
                 <p className="profile-section-subtitle">
-                  Provide contact details for a parent or guardian. This information is used for emergency contact and consent.
+                  Provide contact details for a parent or guardian.
+                  This information is used for emergency contact
+                  and consent.
                 </p>
-                <Input label="Guardian Name" value={guardianName} onChange={(e) => setGuardianName(e.target.value)} required disabled={savingGuardian} />
-                <Input label="Guardian Email" type="email" value={guardianEmail} onChange={(e) => setGuardianEmail(e.target.value)} required disabled={savingGuardian} />
+
+                <Input
+                  label="Guardian Name"
+                  value={guardianName}
+                  onChange={(e) =>
+                    setGuardianName(e.target.value)
+                  }
+                  required
+                  disabled={savingGuardian}
+                />
+
+                <Input
+                  label="Guardian Email"
+                  type="email"
+                  value={guardianEmail}
+                  onChange={(e) =>
+                    setGuardianEmail(e.target.value)
+                  }
+                  required
+                  disabled={savingGuardian}
+                />
+
                 <div className="form-group">
-                  <label className="form-label font-poppins">Relationship</label>
-                  <select className="form-select font-source-sans" value={guardianRelationship} onChange={(e) => setGuardianRelationship(e.target.value)}>
+                  <label className="form-label">
+                    Relationship
+                  </label>
+
+                  <select
+                    className="form-select profile-reading-field"
+                    value={guardianRelationship}
+                    onChange={(e) =>
+                      setGuardianRelationship(
+                        e.target.value
+                      )
+                    }
+                  >
                     <option>Parent</option>
                     <option>Guardian</option>
                     <option>Other</option>
                   </select>
                 </div>
-                <Button type="submit" loading={savingGuardian} loadingContext="brand" variant="pill" icon="check">Save Guardian Info</Button>
+
+                <Button
+                  type="submit"
+                  loading={savingGuardian}
+                  loadingContext="brand"
+                  variant="outline"
+                  icon="check"
+                >
+                  Save Guardian Info
+                </Button>
               </Card>
             </form>
           )}
 
           {activeSection === 'billing' && (
-            <Card variant="inset" className="profile-p-8">
-              <h3 className="profile-section-title"><Icon name="credit-card" className="profile-icon-success" />Billing & Payments</h3>
+            <Card variant="inset" className="profile-card">
+              <h3 className="profile-section-title">
+                <Icon
+                  name="credit-card"
+                  className="profile-icon-success"
+                />
+                Billing & Payments
+              </h3>
+
               <p className="profile-section-subtitle">
-                View your current subscription plan and available upgrade options.
+                View your current subscription plan and available
+                upgrade options.
               </p>
+
               {sectionLoading ? (
                 <Spinner context="data" size="sm" />
               ) : (
                 <>
-                  <p className="font-source-sans">
-                    <strong>Current Plan:</strong> {billing?.current_plan?.name || 'Free'} {billing?.subscription?.expires_at ? `— expires ${new Date(billing.subscription.expires_at).toLocaleDateString()}` : ''}
+                  <p className="profile-reading-text">
+                    <strong>Current Plan:</strong>{' '}
+                    {billing?.current_plan?.name || 'Free'}{' '}
+                    {billing?.subscription?.expires_at
+                      ? `— expires ${new Date(
+                          billing.subscription.expires_at
+                        ).toLocaleDateString()}`
+                      : ''}
                   </p>
-                  <div className="profile-mt-5">
-                    <h4 className="font-poppins profile-mb-3">Available Plans</h4>
-                    {(billing?.available_plans || []).map((p) => (
-                      <div key={p.id} className="chart-bar-row profile-align-center">
-                        <span className="chart-bar-label" style={{ width: 160 }}>{p.name}</span>
-                        <span className="font-source-sans" style={{ color: 'var(--text-dim)' }}>{p.currency} {p.price_amount} / {p.duration_days} days</span>
-                      </div>
-                    ))}
+
+                  <div className="profile-plan-list">
+                    <h4 className="profile-subheading">
+                      Available Plans
+                    </h4>
+
+                    {(billing?.available_plans || []).map(
+                      (plan) => (
+                        <div
+                          key={plan.id}
+                          className="chart-bar-row profile-align-center"
+                        >
+                          <span className="chart-bar-label">
+                            {plan.name}
+                          </span>
+
+                          <span className="profile-reading-text">
+                            {plan.currency}{' '}
+                            {plan.price_amount} /{' '}
+                            {plan.duration_days} days
+                          </span>
+                        </div>
+                      )
+                    )}
                   </div>
                 </>
               )}
@@ -710,28 +1480,70 @@ export default function Profile() {
           )}
 
           {activeSection === 'certificates' && (
-            <Card variant="inset" className="profile-p-8">
-              <h3 className="profile-section-title"><Icon name="award" className="profile-icon-warm" />Certificates Earned</h3>
+            <Card variant="inset" className="profile-card">
+              <h3 className="profile-section-title">
+                <Icon
+                  name="award"
+                  className="profile-icon-warm"
+                />
+                Certificates Earned
+              </h3>
+
               <p className="profile-section-subtitle">
-                View and verify certificates you've earned for completing courses and assessments.
+                View and verify certificates you've earned for
+                completing courses and assessments.
               </p>
+
               {sectionLoading ? (
                 <Spinner context="data" size="sm" />
               ) : (
                 <div className="table-wrapper">
                   <table className="data-table">
-                    <thead><tr><th>Certificate</th><th>Date Earned</th><th>Score</th><th>Verify</th></tr></thead>
+                    <thead>
+                      <tr>
+                        <th>Certificate</th>
+                        <th>Date Earned</th>
+                        <th>Score</th>
+                        <th>Verify</th>
+                      </tr>
+                    </thead>
+
                     <tbody>
-                      {certificates.map((c) => (
-                        <tr key={c.id}>
-                          <td>{c.title}</td>
-                          <td>{new Date(c.issued_at).toLocaleDateString()}</td>
-                          <td>{c.score != null ? `${c.score}%` : '—'}</td>
-                          <td><code>{c.verification_code}</code></td>
+                      {certificates.map((certificate) => (
+                        <tr key={certificate.id}>
+                          <td>{certificate.title}</td>
+
+                          <td>
+                            {new Date(
+                              certificate.issued_at
+                            ).toLocaleDateString()}
+                          </td>
+
+                          <td>
+                            {certificate.score != null
+                              ? `${certificate.score}%`
+                              : '—'}
+                          </td>
+
+                          <td>
+                            <code>
+                              {
+                                certificate.verification_code
+                              }
+                            </code>
+                          </td>
                         </tr>
                       ))}
+
                       {certificates.length === 0 && (
-                        <tr><td colSpan={4} className="text-muted">No certificates yet.</td></tr>
+                        <tr>
+                          <td
+                            colSpan={4}
+                            className="profile-empty-table"
+                          >
+                            No certificates yet.
+                          </td>
+                        </tr>
                       )}
                     </tbody>
                   </table>
@@ -741,33 +1553,79 @@ export default function Profile() {
           )}
 
           {activeSection === 'api' && (
-            <Card variant="inset" className="profile-p-8">
-              <h3 className="profile-section-title"><Icon name="terminal" className="profile-icon-primary" />API Access</h3>
+            <Card variant="inset" className="profile-card">
+              <h3 className="profile-section-title">
+                <Icon
+                  name="terminal"
+                  className="profile-icon-primary"
+                />
+                API Access
+              </h3>
+
               <p className="profile-section-subtitle">
-                Generate API keys to integrate AliverBiopharm with external tools and applications.
+                Generate API keys to integrate AliverBiopharm with
+                external tools and applications.
               </p>
+
               {revealedKey && (
                 <div className="notification-row profile-notification-highlight">
                   <div>
-                    <div className="notif-title">Copy this key now — it will not be shown again</div>
-                    <code style={{ display: 'block', marginTop: 'var(--space-2)', wordBreak: 'break-all' }}>{revealedKey}</code>
+                    <div className="notif-title">
+                      Copy this key now — it will not be shown again
+                    </div>
+
+                    <code className="profile-api-key">
+                      {revealedKey}
+                    </code>
                   </div>
                 </div>
               )}
-              <Button loading={creatingKey} loadingContext="brand" variant="pill" icon="plus" onClick={handleCreateApiKey} className="profile-mb-5">
+
+              <Button
+                loading={creatingKey}
+                loadingContext="brand"
+                variant="outline"
+                icon="plus"
+                onClick={handleCreateApiKey}
+                className="profile-action-spaced"
+              >
                 Generate New Key
               </Button>
+
               {sectionLoading ? (
                 <Spinner context="data" size="sm" />
               ) : (
-                apiKeys.map((k) => (
-                  <div className="notification-row" key={k.id}>
-                    <div style={{ flex: 1 }}>
-                      <div className="notif-title">{k.name}</div>
-                      <div className="notif-desc"><code>{k.key_prefix}…</code> · {k.is_active ? 'Active' : 'Revoked'}</div>
+                apiKeys.map((key) => (
+                  <div
+                    className="notification-row"
+                    key={key.id}
+                  >
+                    <div className="profile-row-copy">
+                      <div className="notif-title">
+                        {key.name}
+                      </div>
+
+                      <div className="notif-desc">
+                        <code>
+                          {key.key_prefix}…
+                        </code>{' '}
+                        ·{' '}
+                        {key.is_active
+                          ? 'Active'
+                          : 'Revoked'}
+                      </div>
                     </div>
-                    {k.is_active && (
-                      <Button variant="outline" size="sm" onClick={() => handleRevokeApiKey(k.id)}>Revoke</Button>
+
+                    {key.is_active && (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() =>
+                          handleRevokeApiKey(key.id)
+                        }
+                      >
+                        Revoke
+                      </Button>
                     )}
                   </div>
                 ))
@@ -776,30 +1634,71 @@ export default function Profile() {
           )}
 
           {activeSection === 'webhooks' && (
-            <Card variant="inset" className="profile-p-8">
-              <h3 className="profile-section-title"><Icon name="webhook" className="profile-icon-secondary" />Webhooks</h3>
+            <Card variant="inset" className="profile-card">
+              <h3 className="profile-section-title">
+                <Icon
+                  name="webhook"
+                  className="profile-icon-secondary"
+                />
+                Webhooks
+              </h3>
+
               <p className="profile-section-subtitle">
-                Configure webhooks to receive real‑time event notifications from the platform.
+                Configure webhooks to receive real-time event
+                notifications from the platform.
               </p>
+
               <div className="profile-webhook-input-row">
                 <Input
                   value={newWebhookUrl}
-                  onChange={(e) => setNewWebhookUrl(e.target.value)}
+                  onChange={(e) =>
+                    setNewWebhookUrl(e.target.value)
+                  }
                   placeholder="https://example.com/webhook"
                   className="profile-webhook-input"
                 />
-                <Button loading={creatingWebhook} loadingContext="brand" variant="pill" icon="plus" onClick={handleCreateWebhook}>Add Webhook</Button>
+
+                <Button
+                  loading={creatingWebhook}
+                  loadingContext="brand"
+                  variant="outline"
+                  icon="plus"
+                  onClick={handleCreateWebhook}
+                >
+                  Add Webhook
+                </Button>
               </div>
+
               {sectionLoading ? (
                 <Spinner context="data" size="sm" />
               ) : (
-                webhooks.map((w) => (
-                  <div className="notification-row" key={w.id}>
-                    <div style={{ flex: 1 }}>
-                      <div className="notif-title">{w.url}</div>
-                      <div className="notif-desc">{(w.events || []).join(', ')} · {w.is_active ? 'Active' : 'Disabled'}</div>
+                webhooks.map((webhook) => (
+                  <div
+                    className="notification-row"
+                    key={webhook.id}
+                  >
+                    <div className="profile-row-copy">
+                      <div className="notif-title">
+                        {webhook.url}
+                      </div>
+
+                      <div className="notif-desc">
+                        {(webhook.events || []).join(', ')} ·{' '}
+                        {webhook.is_active
+                          ? 'Active'
+                          : 'Disabled'}
+                      </div>
                     </div>
-                    <Button variant="outline" size="sm" onClick={() => handleDeleteWebhook(w.id)}>Delete</Button>
+
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() =>
+                        handleDeleteWebhook(webhook.id)
+                      }
+                    >
+                      Delete
+                    </Button>
                   </div>
                 ))
               )}
@@ -807,22 +1706,64 @@ export default function Profile() {
           )}
 
           {activeSection === 'account' && (
-            <Card variant="inset" className="profile-p-8">
-              <h3 className="profile-section-title"><Icon name="shield" className="profile-icon-error" />Account & Data</h3>
+            <Card variant="inset" className="profile-card">
+              <h3 className="profile-section-title">
+                <Icon
+                  name="shield"
+                  className="profile-icon-error"
+                />
+                Account & Data
+              </h3>
+
               <p className="profile-section-subtitle">
-                Manage your account status, export your data, or request account deletion.
+                Manage your account status, export your data, or
+                request account deletion.
               </p>
-              <div className="profile-flex-center profile-mb-3">
-                <span className={`status-indicator-dot ${profileMeta?.is_active === false ? 'status-inactive' : 'status-active'}`} />
-                <span className="font-source-sans">{profileMeta?.is_active === false ? 'Inactive' : 'Active'} account</span>
+
+              <div className="profile-flex-center profile-status-row">
+                <span
+                  className={`status-indicator-dot ${
+                    profileMeta?.is_active === false
+                      ? 'status-inactive'
+                      : 'status-active'
+                  }`}
+                />
+
+                <span className="profile-reading-text">
+                  {profileMeta?.is_active === false
+                    ? 'Inactive'
+                    : 'Active'}{' '}
+                  account
+                </span>
               </div>
+
               <hr className="divider profile-divider" />
-              <p className="font-source-sans text-muted profile-text-muted profile-mb-4">
-                Account created {profileMeta?.created_at ? new Date(profileMeta.created_at).toLocaleDateString() : '—'}
+
+              <p className="profile-text-muted">
+                Account created{' '}
+                {profileMeta?.created_at
+                  ? new Date(
+                      profileMeta.created_at
+                    ).toLocaleDateString()
+                  : '—'}
               </p>
+
               <div className="profile-flex-wrap">
-                <Button variant="outline" icon="download" onClick={handleDataExport}>Export All Data</Button>
-                <Button variant="danger" icon="trash" onClick={handleAccountDeletion}>Request Account Deletion</Button>
+                <Button
+                  variant="outline"
+                  icon="download"
+                  onClick={handleDataExport}
+                >
+                  Export All Data
+                </Button>
+
+                <Button
+                  variant="danger"
+                  icon="trash"
+                  onClick={handleAccountDeletion}
+                >
+                  Request Account Deletion
+                </Button>
               </div>
             </Card>
           )}
