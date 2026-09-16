@@ -1,4 +1,4 @@
- /* components/FlashcardWelcome.jsx */
+/* components/FlashcardWelcome.jsx */
 import { useEffect, useState } from 'react';
 import Icon from './Icon/Icon';
 
@@ -29,7 +29,7 @@ export default function FlashcardWelcome({ user, level, discipline, cls, onDone 
 
         <div className="fcw-flip-container">
           <div className={`fcw-flip-inner${flipped ? ' is-flipped' : ''}`}>
-            <div className="card card-blue fcw-flip-face">
+            <div className="card card-blue card-surface-solid card-tone-info card-elevation-soft fcw-flip-face">
               <span className="fcw-emoji">👋</span>
               <h3 className="fcd-card-heading">Welcome, {displayName}</h3>
               <p className="quiz-challenge-reward">
@@ -37,7 +37,7 @@ export default function FlashcardWelcome({ user, level, discipline, cls, onDone 
               </p>
             </div>
 
-            <div className="card card-teal fcw-flip-face is-back">
+            <div className="card card-teal card-surface-solid card-tone-primary card-elevation-soft fcw-flip-face is-back">
               <span className="fcw-emoji">😊</span>
               <h3 className="fcd-card-heading">Please have a seat.</h3>
               <p className="quiz-challenge-reward">
