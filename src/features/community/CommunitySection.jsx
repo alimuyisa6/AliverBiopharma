@@ -20,7 +20,7 @@ export function CommunitySection({
             Test your knowledge with this week's question.
           </p>
 
-          <div className="card" style={{ maxWidth: 600, margin: '0 auto', padding: 'var(--space-8)' }}>
+          <div className="card card-surface-solid card-tone-warning card-elevation-soft" style={{ maxWidth: 600, margin: '0 auto', padding: 'var(--space-8)' }}>
             <h3 style={{ marginBottom: 'var(--space-6)' }}>
               <Icon name="trophy" style={{ color: 'var(--warm)', marginRight: 'var(--space-3)' }} />
               {weeklyChallenge.question}
@@ -73,7 +73,7 @@ export function CommunitySection({
             {activity.slice(0, 8).map((item, index) => (
               <div
                 key={index}
-                className="card"
+                className="card card-surface-subtle card-tone-info card-elevation-soft"
                 style={{ padding: 'var(--space-4)', flexDirection: 'row', alignItems: 'center', gap: 'var(--space-4)' }}
               >
                 <Icon
