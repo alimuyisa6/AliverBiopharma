@@ -1,10 +1,18 @@
- /* src/styles/animation.css */
+/* src/styles/animation.css */
 
 :root {
-  --ease-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-smooth: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-bounce: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast: 150ms;
+  --duration-smooth: 250ms;
+  --duration-slow: 400ms;
+  --duration-bounce: 500ms;
+
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --ease-fast: var(--duration-fast) var(--ease-standard);
+  --ease-smooth: var(--duration-smooth) var(--ease-standard);
+  --ease-slow: var(--duration-slow) var(--ease-standard);
+  --ease-bounce: var(--duration-bounce) var(--ease-bounce-function);
 }
 
 @keyframes fadeIn {
@@ -159,7 +167,7 @@
 
 .page-entrance > * {
   opacity: 0;
-  animation: fadeIn 0.4s var(--ease-smooth) forwards;
+  animation: fadeIn 0.4s var(--ease-standard) forwards;
 }
 
 @keyframes modernEntrance {
@@ -191,56 +199,56 @@
 }
 
 .anim-write-in {
-  animation: writeIn 1.2s var(--ease-smooth) both;
+  animation: writeIn 1.2s var(--ease-standard) both;
   will-change: clip-path;
 }
 
 .anim-zoom-pulse {
-  animation: zoomPulse 0.9s var(--ease-bounce) both;
+  animation: zoomPulse 0.9s var(--ease-bounce-function) both;
   will-change: transform, opacity;
 }
 
 .anim-swipe-left {
-  animation: swipeInLeft 0.7s var(--ease-smooth) both;
+  animation: swipeInLeft 0.7s var(--ease-standard) both;
   will-change: transform, opacity;
 }
 
 .anim-swipe-right {
-  animation: swipeInRight 0.7s var(--ease-smooth) both;
+  animation: swipeInRight 0.7s var(--ease-standard) both;
   will-change: transform, opacity;
 }
 
 .anim-modern-entrance {
-  animation: modernEntrance 1.8s var(--ease-bounce) both;
+  animation: modernEntrance 1.8s var(--ease-bounce-function) both;
   will-change: clip-path, transform, opacity;
 }
 
 .anim-fade-in {
-  animation: fadeIn var(--ease-smooth) both;
+  animation: fadeIn var(--duration-smooth) var(--ease-standard) both;
 }
 
 .anim-slide-up {
-  animation: slideUp var(--ease-smooth) both;
+  animation: slideUp var(--duration-smooth) var(--ease-standard) both;
 }
 
 .anim-slide-down {
-  animation: slideDown var(--ease-smooth) both;
+  animation: slideDown var(--duration-smooth) var(--ease-standard) both;
 }
 
 .anim-scale-in {
-  animation: scaleIn var(--ease-bounce) both;
+  animation: scaleIn var(--duration-bounce) var(--ease-bounce-function) both;
 }
 
 .anim-pop {
-  animation: resultPop var(--ease-bounce) both;
+  animation: resultPop var(--duration-bounce) var(--ease-bounce-function) both;
 }
 
 .anim-fast {
-  animation-duration: 150ms;
+  animation-duration: var(--duration-fast);
 }
 
 .anim-slow {
-  animation-duration: 400ms;
+  animation-duration: var(--duration-slow);
 }
 
 .anim-delay-1 {
