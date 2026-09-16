@@ -29,7 +29,7 @@ export default function QuizLearningPath({ level, class_name }) {
 
       <div className="grid grid-cols-3">
         {paths.map((path) => (
-          <div key={path.id} className="stat-card">
+          <div key={path.id} className="stat-card card-surface-solid card-elevation-none card-density-comfortable">
             <Icon
               name={path.icon === 'dna' ? 'microscope' : path.icon || 'book-open'}
               className={`stat-icon ${path.completed ? 'stat-icon-success' : 'stat-icon-muted'}`}
