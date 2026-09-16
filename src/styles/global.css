@@ -20,9 +20,9 @@ body {
   background: var(--bg-page);
   color: var(--text-main);
   font-family: var(--font-primary);
-  font-size: var(--text-base);
+  font-size: var(--text-body);
   font-weight: var(--weight-normal);
-  line-height: var(--leading-normal);
+  line-height: var(--leading-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -126,8 +126,9 @@ li + li {
 }
 
 :focus-visible {
-  outline: var(--space-1) solid var(--primary);
+  outline: 2px solid var(--border-focus);
   outline-offset: var(--space-1);
+  box-shadow: var(--shadow-focus);
 }
 
 ::selection {
