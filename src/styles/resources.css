@@ -13,9 +13,9 @@
   margin: 0 0 var(--text-gap-title);
   color: var(--text-main);
   font-family: var(--font-heading);
-  font-size: var(--text-3xl);
-  font-weight: var(--weight-bold);
-  line-height: var(--leading-tight);
+  font-size: var(--text-page-title);
+  font-weight: var(--weight-page-title);
+  line-height: var(--leading-page-title);
   letter-spacing: var(--tracking-tight);
 }
 
@@ -29,13 +29,13 @@
   margin: 0;
   color: var(--text-secondary);
   font-family: var(--font-reading);
-  font-size: var(--text-base);
-  line-height: var(--leading-relaxed);
+  font-size: var(--text-body);
+  line-height: var(--leading-body-lead);
 }
 
 .resources-grid-section {
   padding-top: var(--space-0);
-  padding-bottom: var(--space-20);
+  padding-bottom: var(--section-space-y-large);
 }
 
 .resources-grid {
@@ -50,9 +50,10 @@
   flex-direction: column;
   min-width: 0;
   overflow: hidden;
-  background: var(--bg-card);
+  background: var(--surface-card);
   border: 1px solid var(--border-default);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-subtle);
 }
 
 .resource-card-image {
@@ -62,7 +63,7 @@
   width: 100%;
   height: 150px;
   overflow: hidden;
-  background: var(--bg-card-hover);
+  background: var(--surface-subtle);
 }
 
 .resource-card-image img {
@@ -90,9 +91,9 @@
   margin: 0;
   color: var(--text-main);
   font-family: var(--font-heading);
-  font-size: var(--text-lg);
-  font-weight: var(--weight-semibold);
-  line-height: var(--leading-tight);
+  font-size: var(--text-card-title);
+  font-weight: var(--weight-card-title);
+  line-height: var(--leading-card-title);
   letter-spacing: var(--tracking-tight);
 }
 
@@ -100,7 +101,7 @@
   margin: 0;
   color: var(--text-secondary);
   font-family: var(--font-reading);
-  font-size: var(--text-sm);
+  font-size: var(--text-body-sm);
   font-weight: var(--weight-normal);
   line-height: var(--leading-relaxed);
 }
@@ -112,7 +113,7 @@
 }
 
 .resource-card-actions .button {
-  min-height: 38px;
+  min-height: var(--space-10);
 }
 
 @media (max-width: 1024px) {
@@ -142,7 +143,7 @@
   }
 
   .resources-hero h1 {
-    font-size: var(--text-3xl);
+    font-size: var(--text-section-title);
   }
 
   .resources-hero-break {
@@ -150,7 +151,7 @@
   }
 
   .resources-hero .section-subtitle {
-    font-size: var(--text-base);
+    font-size: var(--text-body);
   }
 
   .resources-grid {
