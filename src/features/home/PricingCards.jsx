@@ -3,7 +3,7 @@ export function PricingCards({ plans }) {
   if (!plans || !Array.isArray(plans)) return null;
 
   return (
-    <section className="section">
+    <section className="section pricing-section">
       <div className="section-head">
         <div className="section-head-left">
           <span className="eyebrow">Membership</span>
@@ -12,7 +12,7 @@ export function PricingCards({ plans }) {
       </div>
       <div className="pricing-grid">
         {plans.filter(Boolean).map(plan => (
-          <div key={plan.name} className="pricing-card">
+          <div key={plan.name} className="pricing-card card card-surface-solid card-elevation-soft card-density-comfortable">
             <h3>{plan.name}</h3>
             <p>{plan.description}</p>
             <div className="price">{plan.price}<span className="price-period">{plan.period}</span></div>
