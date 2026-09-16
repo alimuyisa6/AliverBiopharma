@@ -6,17 +6,19 @@
   align-items: center;
   justify-content: center;
   min-height: 60vh;
+  padding: var(--page-gutter-y) var(--page-gutter-x);
 }
 
 .pending-approval-card,
 .access-denied-card {
   max-width: 480px;
   width: 100%;
-  padding: var(--space-8);
+  padding: var(--card-padding-y-spacious) var(--card-padding-x-spacious);
   text-align: center;
-  background: var(--bg-card);
+  background: var(--surface-card);
   border: 1px solid var(--border-default);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-subtle);
 }
 
 .pending-approval-icon,
@@ -30,19 +32,18 @@
 }
 
 .access-denied-icon {
-  color: var(--error);
+  color: var(--danger);
 }
 
 .pending-approval-title,
 .access-denied-title {
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--text-gap-title);
 }
 
 .pending-approval-text,
 .access-denied-text {
-  color: var(--text-dim);
-  margin-bottom: var(--space-6);
-  opacity: 0.84;
+  color: var(--text-secondary);
+  margin-bottom: var(--text-gap-action);
 }
 
 .pending-approval-alert {
@@ -57,5 +58,5 @@
   gap: var(--space-2);
   margin-bottom: var(--space-4);
   font-size: var(--text-sm);
-  color: var(--text-dim);
+  color: var(--text-secondary);
 }
