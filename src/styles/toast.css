@@ -15,11 +15,11 @@
   align-items: center;
   gap: var(--space-3);
   padding: var(--space-4) var(--space-6);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-button);
   font-size: var(--text-sm);
   font-weight: var(--weight-medium);
   color: var(--text-inverse);
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-raised);
   cursor: pointer;
   animation: slideUp var(--ease-smooth) forwards;
 }
@@ -29,7 +29,7 @@
 }
 
 .toast-error {
-  background: var(--error);
+  background: var(--danger);
 }
 
 .toast-warning {
