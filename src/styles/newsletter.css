@@ -1,11 +1,13 @@
-/* src/styles/newsletter.css */
+ /* src/styles/newsletter.css */
 
 .newsletter-section {
   width: 100%;
   max-width: var(--max-width);
   margin-inline: auto;
-  padding-block: var(--section-space-y);
-  padding-inline: var(--page-gutter-x);
+  padding-top: var(--section-space-y);
+  padding-right: var(--page-gutter-x);
+  padding-left: var(--page-gutter-x);
+  padding-bottom: var(--space-20);
 }
 
 .newsletter-section .section-head {
@@ -91,8 +93,10 @@
 
 @media (max-width: 768px) {
   .newsletter-section {
-    padding-block: var(--section-space-y);
-    padding-inline: var(--page-gutter-x);
+    padding-top: var(--section-space-y);
+    padding-right: var(--page-gutter-x);
+    padding-left: var(--page-gutter-x);
+    padding-bottom: var(--space-16);
   }
 
   .newsletter-title {
@@ -117,6 +121,10 @@
 }
 
 @media (max-width: 480px) {
+  .newsletter-section {
+    padding-bottom: var(--space-12);
+  }
+
   .newsletter-title {
     font-size: var(--text-xl);
   }
