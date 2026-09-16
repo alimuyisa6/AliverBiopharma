@@ -28,7 +28,9 @@
   align-items: center;
   gap: var(--space-3);
   padding: var(--space-3) var(--space-4);
-  background: var(--bg-card);
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-panel);
 }
 
 .file-upload-icon {
@@ -37,11 +39,12 @@
 }
 
 .file-upload-icon.pdf {
-  color: var(--error);
+  color: var(--danger);
 }
 
 .file-upload-name {
   flex: 1;
+  min-width: 0;
   font-size: var(--text-sm);
   color: var(--text-main);
 }
