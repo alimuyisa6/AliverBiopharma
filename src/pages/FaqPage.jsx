@@ -15,11 +15,8 @@ export default function FaqPage() {
   }, [level]);
 
   return (
-    <div className="section">
-      <span className="sec-label">Support</span>
-      <h1 className="section-title">Frequently Asked Questions</h1>
-      <p className="section-subtitle">Answers to common questions about AliverBiopharm.</p>
-      <FaqAccordion items={sections?.faq?.questions || []} />
+    <div className="section faq-page">
+      <FaqAccordion data={sections?.faq} standalone />
     </div>
   );
 }
