@@ -9,7 +9,7 @@ export function FaqAccordion({ items }) {
   if (!items || !Array.isArray(items)) return null;
 
   return (
-    <section id="faq" className="section reveal">
+    <section id="faq" className="section reveal home-faq-section">
       <div className="section-head">
         <div className="section-head-left">
           <span className="eyebrow">Before you ask</span>
