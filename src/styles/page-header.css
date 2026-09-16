@@ -31,6 +31,7 @@
 }
 
 .page-header-title {
+  font-family: var(--font-heading);
   font-size: var(--text-page-title);
   font-weight: var(--weight-page-title);
   letter-spacing: var(--tracking-tight);
@@ -79,7 +80,7 @@
   }
 
   .page-header-title {
-    font-size: var(--text-2xl);
+    font-size: var(--text-page-title);
   }
 
   .page-header-subtitle {
@@ -94,7 +95,7 @@
   }
 
   .page-header-title {
-    font-size: var(--text-xl);
+    font-size: var(--text-page-title);
   }
 
   .page-header-subtitle {
