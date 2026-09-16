@@ -9,9 +9,10 @@
 
 .quiz-page-title {
   margin: 0 0 var(--text-gap-title);
-  font-size: var(--text-3xl);
-  font-weight: var(--weight-bold);
-  line-height: var(--leading-tight);
+  font-family: var(--font-heading);
+  font-size: var(--text-page-title);
+  font-weight: var(--weight-page-title);
+  line-height: var(--leading-page-title);
   color: var(--text-main);
 }
 
@@ -112,9 +113,10 @@
 .quiz-challenge-title {
   margin: 0 0 var(--text-gap-subtitle);
   color: var(--text-main);
-  font-size: var(--text-lg);
-  font-weight: var(--weight-semibold);
-  line-height: var(--leading-tight);
+  font-family: var(--font-heading);
+  font-size: var(--text-card-title);
+  font-weight: var(--weight-card-title);
+  line-height: var(--leading-card-title);
 }
 
 .quiz-challenge-sublabel {
@@ -165,9 +167,10 @@
 .quiz-section-heading {
   margin: 0;
   color: var(--text-main);
-  font-size: var(--text-xl);
-  font-weight: var(--weight-semibold);
-  line-height: var(--leading-tight);
+  font-family: var(--font-heading);
+  font-size: var(--text-section-title);
+  font-weight: var(--weight-section-title);
+  line-height: var(--leading-section-title);
 }
 
 .quiz-section-heading-sub {
@@ -258,7 +261,6 @@
   color: var(--text-secondary);
   font-size: var(--text-sm);
   font-weight: var(--weight-normal);
-  line-height: var(--leading-normal);
 }
 
 .quiz-hero-loading {
@@ -283,9 +285,10 @@
   max-width: 760px;
   margin: 0 0 var(--text-gap-title);
   color: var(--text-main);
-  font-size: var(--text-4xl);
-  font-weight: var(--weight-bold);
-  line-height: var(--leading-tight);
+  font-family: var(--font-heading);
+  font-size: var(--text-page-title);
+  font-weight: var(--weight-page-title);
+  line-height: var(--leading-page-title);
 }
 
 .quiz-hero-classlabel {
@@ -354,9 +357,10 @@
 .quiz-weakareas-title {
   margin: 0 0 var(--text-gap-subtitle);
   color: var(--text-main);
-  font-size: var(--text-lg);
-  font-weight: var(--weight-semibold);
-  line-height: var(--leading-tight);
+  font-family: var(--font-heading);
+  font-size: var(--text-card-title);
+  font-weight: var(--weight-card-title);
+  line-height: var(--leading-card-title);
 }
 
 .quiz-weakareas-tags {
@@ -459,9 +463,10 @@
 .quiz-question-heading {
   margin: 0 0 var(--text-gap-action);
   color: var(--text-main);
-  font-size: var(--text-lg);
-  font-weight: var(--weight-semibold);
-  line-height: var(--leading-relaxed);
+  font-family: var(--font-heading);
+  font-size: var(--text-card-title);
+  font-weight: var(--weight-card-title);
+  line-height: var(--leading-card-title);
 }
 
 .quiz-cloze-question {
@@ -604,8 +609,10 @@
 .quiz-feedback-title {
   margin: 0 0 var(--text-gap-subtitle);
   color: var(--text-main);
-  font-size: var(--text-md);
-  font-weight: var(--weight-semibold);
+  font-family: var(--font-heading);
+  font-size: var(--text-card-title);
+  font-weight: var(--weight-card-title);
+  line-height: var(--leading-card-title);
 }
 
 .quiz-feedback-text {
@@ -634,8 +641,10 @@
 .quiz-confidence-title {
   margin: 0;
   color: var(--text-main);
-  font-size: var(--text-sm);
+  font-family: var(--font-heading);
+  font-size: var(--text-supporting);
   font-weight: var(--weight-semibold);
+  line-height: var(--leading-supporting);
 }
 
 .quiz-confidence-options {
@@ -678,9 +687,10 @@
 .quiz-review-question {
   margin: 0 0 var(--text-gap-subtitle);
   color: var(--text-main);
-  font-size: var(--text-md);
-  font-weight: var(--weight-semibold);
-  line-height: var(--leading-relaxed);
+  font-family: var(--font-heading);
+  font-size: var(--text-card-title);
+  font-weight: var(--weight-card-title);
+  line-height: var(--leading-card-title);
 }
 
 .quiz-review-answer {
@@ -744,8 +754,10 @@
 .quiz-modal-title {
   margin: 0 0 var(--text-gap-title);
   color: var(--text-main);
-  font-size: var(--text-xl);
-  font-weight: var(--weight-semibold);
+  font-family: var(--font-heading);
+  font-size: var(--text-section-title);
+  font-weight: var(--weight-section-title);
+  line-height: var(--leading-section-title);
 }
 
 .quiz-modal-text {
@@ -769,7 +781,7 @@
   }
 
   .quiz-hero-title {
-    font-size: var(--text-3xl);
+    font-size: var(--text-page-title);
   }
 }
 
@@ -802,7 +814,7 @@
   }
 
   .quiz-page-title {
-    font-size: var(--text-2xl);
+    font-size: var(--text-page-title);
   }
 
   .quiz-hero-card {
@@ -810,7 +822,7 @@
   }
 
   .quiz-hero-title {
-    font-size: var(--text-2xl);
+    font-size: var(--text-page-title);
   }
 
   .quiz-hero-subtitle {
