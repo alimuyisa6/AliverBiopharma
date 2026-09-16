@@ -4,8 +4,8 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: var(--space-16) var(--space-6);
-  gap: var(--space-4);
+  padding: var(--section-space-y-large) var(--page-gutter-x);
+  gap: var(--content-gap-compact);
 }
 
 .empty-state-icon {
@@ -24,15 +24,17 @@
 
 .empty-state-title {
   font-family: var(--font-heading);
-  font-size: var(--text-xl);
-  font-weight: var(--weight-bold);
+  font-size: var(--text-card-title);
+  font-weight: var(--weight-card-title);
+  line-height: var(--leading-card-title);
   color: var(--text-main);
 }
 
 .empty-state-text {
-  font-size: var(--text-base);
-  color: var(--text-dim);
+  font-size: var(--text-body);
+  color: var(--text-secondary);
   max-width: 400px;
+  line-height: var(--leading-body);
 }
 
 .error-state {
@@ -40,8 +42,8 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: var(--space-16) var(--space-6);
-  gap: var(--space-4);
+  padding: var(--section-space-y-large) var(--page-gutter-x);
+  gap: var(--content-gap-compact);
 }
 
 .error-state-icon {
@@ -51,13 +53,15 @@
 
 .error-state-title {
   font-family: var(--font-heading);
-  font-size: var(--text-xl);
-  font-weight: var(--weight-bold);
+  font-size: var(--text-card-title);
+  font-weight: var(--weight-card-title);
+  line-height: var(--leading-card-title);
   color: var(--text-main);
 }
 
 .error-state-text {
-  font-size: var(--text-base);
-  color: var(--text-dim);
+  font-size: var(--text-body);
+  color: var(--text-secondary);
   max-width: 400px;
+  line-height: var(--leading-body);
 }
