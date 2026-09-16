@@ -19,7 +19,7 @@ export default function QuizChallenges({ user, level, class_name }) {
   const classLabel = class_name || '';
 
   return (
-    <div className="card card-amber card-surface-solid card-tone-warning card-elevation-soft card-density-comfortable quiz-challenge-card">
+    <div className="card card-surface-tinted card-tone-warning card-elevation-soft card-density-comfortable quiz-challenge-card">
       <Icon name="rocket" className="quiz-challenge-icon" />
 
       <div className="quiz-challenge-body">
