@@ -5,10 +5,10 @@
   left: 0;
   right: 0;
   z-index: var(--z-modal);
-  background: var(--bg-card);
+  background: var(--surface-card);
   border-bottom: 1px solid var(--border-default);
-  box-shadow: var(--shadow-lg);
-  padding: var(--space-6);
+  box-shadow: var(--shadow-raised);
+  padding: var(--space-6) var(--page-gutter-x);
   animation: slideDown var(--ease-smooth) forwards;
 }
 
@@ -21,17 +21,18 @@
 .search-input {
   width: 100%;
   padding: var(--space-4) var(--space-12);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-input);
   border: 1px solid var(--border-default);
   background: var(--bg-input);
   font-size: var(--text-md);
   color: var(--text-main);
   outline: none;
-  transition: border-color var(--ease-fast);
+  transition: border-color var(--ease-fast), box-shadow var(--ease-fast);
 }
 
 .search-input:focus {
-  border-color: var(--primary);
+  border-color: var(--border-focus);
+  box-shadow: var(--shadow-focus);
 }
 
 .search-input-icon {
@@ -93,7 +94,7 @@
   cursor: pointer;
   transition: background var(--ease-fast);
   border: none;
-  background: var(--bg-card);
+  background: var(--surface-card);
   width: 100%;
   text-align: left;
   font-family: inherit;
