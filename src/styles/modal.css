@@ -8,41 +8,42 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-6);
+  padding: var(--page-gutter-x);
 }
 
 .modal-content {
-  background: var(--bg-card);
+  background: var(--surface-card);
   border: 1px solid var(--border-default);
-  border-radius: var(--radius-sm);
-  padding: var(--space-8);
+  border-radius: var(--radius-card);
+  padding: var(--card-padding-y-spacious) var(--card-padding-x-spacious);
   max-width: 520px;
   width: 100%;
   max-height: 85vh;
   overflow-y: auto;
+  box-shadow: var(--shadow-raised);
 }
 
 .modal-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--content-gap);
 }
 
 .modal-title {
-  font-family: var(--font-primary);
+  font-family: var(--font-heading);
   font-size: var(--text-2xl);
   font-weight: var(--weight-bold);
   color: var(--text-main);
 }
 
 .modal-close {
-  width: 36px;
-  height: 36px;
-  border-radius: var(--radius-sm);
+  width: var(--space-10);
+  height: var(--space-10);
+  border-radius: var(--radius-button);
   border: 1px solid var(--border-default);
-  background: var(--bg-card);
-  color: var(--text-dim);
+  background: var(--surface-card);
+  color: var(--text-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -51,7 +52,7 @@
 }
 
 .modal-close:hover {
-  background: var(--bg-card-hover);
+  background: var(--surface-subtle);
   border-color: var(--border-strong);
 }
 
@@ -61,10 +62,10 @@
 }
 
 .modal-body {
-  margin-bottom: var(--space-6);
-  font-size: var(--text-base);
-  color: var(--text-dim);
-  line-height: var(--leading-relaxed);
+  margin-bottom: var(--content-gap);
+  font-size: var(--text-body);
+  color: var(--text-secondary);
+  line-height: var(--leading-body);
 }
 
 .modal-footer {
@@ -82,7 +83,7 @@
   transform: translateX(-50%);
   z-index: var(--z-toast);
   padding: var(--space-3) var(--space-6);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-button);
   font-size: var(--text-sm);
   font-weight: var(--weight-medium);
   color: var(--text-inverse);
@@ -97,8 +98,8 @@
 }
 
 .toast-error {
-  background: var(--error);
-  border-color: var(--error);
+  background: var(--danger);
+  border-color: var(--danger);
 }
 
 .toast-warning {
@@ -116,11 +117,12 @@
   right: 0;
   top: calc(100% + var(--space-2));
   min-width: 200px;
-  background: var(--bg-card);
+  background: var(--surface-card);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
   z-index: var(--z-dropdown);
   padding: var(--space-2);
+  box-shadow: var(--shadow-card);
 }
 
 .dropdown-item {
@@ -182,23 +184,23 @@
 }
 
 .modal-overlay {
-  animation: fadeIn 0.2s ease forwards;
+  animation: fadeIn var(--duration-fast) var(--ease-standard) forwards;
 }
 
 .modal-content {
-  animation: scaleIn 0.25s ease forwards;
+  animation: scaleIn var(--duration-smooth) var(--ease-standard) forwards;
 }
 
 .toast {
-  animation: slideUp 0.3s ease forwards;
+  animation: slideUp var(--duration-smooth) var(--ease-standard) forwards;
 }
 
 @media (max-width: 640px) {
   .modal-content {
-    padding: var(--space-6);
+    padding: var(--card-padding-y) var(--card-padding-x);
     max-width: 100%;
     margin: var(--space-4);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-card);
   }
 
   .modal-title {
@@ -228,7 +230,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
     padding: var(--space-4);
     max-height: 60vh;
     overflow-y: auto;
