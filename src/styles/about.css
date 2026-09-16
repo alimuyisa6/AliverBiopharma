@@ -21,9 +21,9 @@
 
 .about-hero-title {
   font-family: var(--font-heading);
-  font-size: var(--text-4xl);
-  font-weight: var(--weight-bold);
-  line-height: var(--leading-tight);
+  font-size: var(--text-page-title);
+  font-weight: var(--weight-page-title);
+  line-height: var(--leading-page-title);
   letter-spacing: var(--tracking-tight);
   color: var(--text-inverse);
   margin-bottom: var(--space-3);
@@ -49,8 +49,9 @@
 
 .about-title {
   font-family: var(--font-heading);
-  font-size: var(--text-3xl);
-  font-weight: var(--weight-bold);
+  font-size: var(--text-section-title);
+  font-weight: var(--weight-section-title);
+  line-height: var(--leading-section-title);
   color: var(--text-main);
   text-align: center;
   margin-bottom: var(--space-8);
@@ -66,8 +67,9 @@
 
 .about-block-heading {
   font-family: var(--font-heading);
-  font-size: var(--text-xl);
+  font-size: var(--text-subsection-title);
   font-weight: var(--weight-semibold);
+  line-height: var(--leading-subsection-title);
   color: var(--text-main);
   margin-bottom: var(--space-4);
   padding-bottom: var(--space-2);
@@ -147,8 +149,9 @@
 
 .team-card-body h3 {
   font-family: var(--font-heading);
-  font-size: var(--text-lg);
-  font-weight: var(--weight-semibold);
+  font-size: var(--text-card-title);
+  font-weight: var(--weight-card-title);
+  line-height: var(--leading-card-title);
   color: var(--text-main);
   margin-bottom: var(--space-1);
 }
@@ -251,8 +254,10 @@
 
 .faq-question {
   cursor: pointer;
-  font-weight: var(--weight-semibold);
-  font-size: var(--text-base);
+  font-family: var(--font-heading);
+  font-weight: var(--weight-card-title);
+  font-size: var(--text-card-title);
+  line-height: var(--leading-card-title);
   color: var(--text-main);
   padding: var(--space-3) 0;
   list-style: none;
@@ -269,6 +274,7 @@
   position: absolute;
   right: 0;
   top: var(--space-3);
+  font-family: var(--font-heading);
   font-size: var(--text-lg);
   color: var(--primary);
   transition: transform var(--ease-fast);
@@ -384,15 +390,15 @@ a.about-contact-item:hover {
   }
 
   .about-hero-title {
-    font-size: var(--text-3xl);
+    font-size: var(--text-page-title);
   }
 
   .about-title {
-    font-size: var(--text-2xl);
+    font-size: var(--text-section-title);
   }
 
   .about-block-heading {
-    font-size: var(--text-lg);
+    font-size: var(--text-subsection-title);
   }
 
   .about-contact,
