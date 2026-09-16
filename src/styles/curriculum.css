@@ -1,9 +1,11 @@
  /* src/styles/curriculum.css */
 
 .curriculum-rail {
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: var(--content-gap-compact);
+  padding-inline: var(--page-gutter-x);
 }
 
 .curriculum-card {
@@ -11,6 +13,7 @@
   flex-direction: column;
   gap: var(--stack-gap-tight);
   width: 100%;
+  min-width: 0;
   padding: var(--card-padding-x-compact);
   background: var(--bg-card);
   border: 1px solid var(--border-default);
@@ -96,12 +99,13 @@
 .curriculum-card-body {
   display: flex;
   flex-direction: column;
-  gap: var(--space-1);
+  gap: var(--stack-gap-tight);
+  min-width: 0;
 }
 
 .curriculum-card-title {
   color: var(--text-main);
-  font-family: var(--font-primary);
+  font-family: var(--font-heading);
   font-size: var(--text-sm);
   font-weight: var(--weight-semibold);
   line-height: var(--leading-tight);
@@ -123,12 +127,15 @@
 @media (max-width: 768px) {
   .curriculum-rail {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--content-gap-compact);
   }
 }
 
 @media (max-width: 480px) {
   .curriculum-rail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--stack-gap-tight);
+    padding-inline: var(--space-3);
   }
 
   .curriculum-card {
