@@ -1,11 +1,12 @@
  /* features/home/TestimonialSlider.jsx */
 import Icon from '../../components/Icon/Icon';
+import '../../styles/testimonials.css';
 
 export function TestimonialSlider({ quotes = [] }) {
   if (!quotes.length) return null;
 
   return (
-    <section className="section">
+    <section className="section testimonials-section">
       <div className="section-head">
         <div className="section-head-left">
           <span className="eyebrow">Testimonials</span>
