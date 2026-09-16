@@ -1,6 +1,7 @@
- /* src/styles/colors.css */
+/* src/styles/colors.css */
 
 :root {
+  /* Blue — primary educational/action family */
   --blue-50: #eff6ff;
   --blue-100: #dbeafe;
   --blue-200: #bfdbfe;
@@ -12,6 +13,7 @@
   --blue-800: #1e40af;
   --blue-900: #1e3a8a;
 
+  /* Emerald — positive / biology / growth family */
   --emerald-50: #ecfdf5;
   --emerald-100: #d1fae5;
   --emerald-200: #a7f3d0;
@@ -23,6 +25,7 @@
   --emerald-800: #065f46;
   --emerald-900: #064e3b;
 
+  /* Teal — core brand / supporting family */
   --teal-50: #f0fdfa;
   --teal-100: #ccfbf1;
   --teal-200: #99f6e4;
@@ -34,6 +37,7 @@
   --teal-800: #115e59;
   --teal-900: #134e4a;
 
+  /* Amber — warm emphasis / pharmacy / attention */
   --amber-50: #fffbeb;
   --amber-100: #fef3c7;
   --amber-200: #fde68a;
@@ -45,6 +49,43 @@
   --amber-800: #92400e;
   --amber-900: #78350f;
 
+  /* Yellow — bright educational highlight / status family */
+  --yellow-50: #fefce8;
+  --yellow-100: #fef9c3;
+  --yellow-200: #fef08a;
+  --yellow-300: #fde047;
+  --yellow-400: #facc15;
+  --yellow-500: #eab308;
+  --yellow-600: #ca8a04;
+  --yellow-700: #a16207;
+  --yellow-800: #854d0e;
+  --yellow-900: #713f12;
+
+  /* Violet — restrained secondary accent */
+  --violet-50: #f5f3ff;
+  --violet-100: #ede9fe;
+  --violet-200: #ddd6fe;
+  --violet-300: #c4b5fd;
+  --violet-400: #a78bfa;
+  --violet-500: #8b5cf6;
+  --violet-600: #7c3aed;
+  --violet-700: #6d28d9;
+  --violet-800: #5b21b6;
+  --violet-900: #4c1d95;
+
+  /* Pink — expressive supporting accent; not used as a primary brand color */
+  --pink-50: #fdf2f8;
+  --pink-100: #fce7f3;
+  --pink-200: #fbcfe8;
+  --pink-300: #f9a8d4;
+  --pink-400: #f472b6;
+  --pink-500: #ec4899;
+  --pink-600: #db2777;
+  --pink-700: #be185d;
+  --pink-800: #9d174d;
+  --pink-900: #831843;
+
+  /* Green — success / completion family */
   --green-50: #f0fdf4;
   --green-100: #dcfce7;
   --green-200: #bbf7d0;
@@ -56,6 +97,7 @@
   --green-800: #166534;
   --green-900: #14532d;
 
+  /* Red — destructive / error only */
   --red-50: #fef2f2;
   --red-100: #fee2e2;
   --red-200: #fecaca;
@@ -67,6 +109,7 @@
   --red-800: #991b1b;
   --red-900: #7f1d1d;
 
+  /* Neutral / grey */
   --grey-50: #f9fafb;
   --grey-100: #f3f4f6;
   --grey-200: #e5e7eb;
