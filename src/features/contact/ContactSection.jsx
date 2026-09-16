@@ -17,7 +17,7 @@ export function ContactSection({ contactForm, contactStatus, contactInfo = [], o
 
       <div className="grid grid-cols-2 contact-grid">
         <form onSubmit={onSubmit}>
-          <div className="card card-blue form-card">
+          <div className="card card-blue card-surface-solid card-tone-info card-elevation-soft form-card">
             <Input
               label="Full Name"
               value={contactForm.name}
@@ -57,7 +57,7 @@ export function ContactSection({ contactForm, contactStatus, contactInfo = [], o
           </div>
         </form>
 
-        <div className="card card-teal form-card">
+        <div className="card card-teal card-surface-solid card-tone-primary card-elevation-soft form-card">
           <h3 className="form-card-heading">
             <Icon name="headset" className="icon" />
             Contact Info
