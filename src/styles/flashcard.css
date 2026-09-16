@@ -79,6 +79,11 @@
 
 .fcd-card-heading {
   margin-bottom: var(--space-4);
+  font-family: var(--font-heading);
+  font-size: var(--text-card-title);
+  font-weight: var(--weight-card-title);
+  line-height: var(--leading-card-title);
+  color: var(--text-main);
 }
 
 .fcd-card-image {
@@ -224,6 +229,15 @@
   margin: 0 auto;
 }
 
+.fcp-card h2 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: var(--text-section-title);
+  font-weight: var(--weight-section-title);
+  line-height: var(--leading-section-title);
+  color: var(--text-main);
+}
+
 .fcp-trophy {
   font-size: var(--text-3xl);
   color: var(--warm);
@@ -289,12 +303,20 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
+  font-family: var(--font-heading);
+  font-size: var(--text-page-title);
+  font-weight: var(--weight-page-title);
+  line-height: var(--leading-page-title);
+  color: var(--text-main);
 }
 
 .flashcard-class {
   color: var(--text-dim);
   margin-bottom: var(--space-4);
   opacity: 0.82;
+  font-family: var(--font-reading);
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-body);
 }
 
 .flashcard-decks-grid {
