@@ -1,4 +1,4 @@
- /* features/home/FaqAccordion.jsx */
+/* features/home/FaqAccordion.jsx */
 import { useEffect, useMemo, useState } from 'react';
 
 const ACCENTS = ['grey', 'green', 'blue', 'amber', 'emerald'];
@@ -39,6 +39,15 @@ function normalizeFaqData(data) {
   };
 }
 
+function getIllustration(illustrations, key, fallback) {
+  const illustration = illustrations?.[key] || {};
+  const imageUrl = illustration.image_url || illustration.url || illustration.src || fallback;
+  return {
+    imageUrl,
+    alt: illustration.alt || illustration.image_alt || '',
+  };
+}
+
 export function FaqAccordion({ items, data, standalone = false }) {
   const [activeIndex, setActiveIndex] = useState(null);
   const [activeCategory, setActiveCategory] = useState('all');
@@ -46,6 +55,11 @@ export function FaqAccordion({ items, data, standalone = false }) {
 
   const faq = useMemo(() => normalizeFaqData(data || { questions: items }), [data, items]);
   const categories = faq.categories;
+  const faqHeroIllustration = getIllustration(faq.illustrations, 'hero', '/images/faq-hero.jpg');
+  const faqBrowseIllustration = getIllustration(faq.illustrations, 'browse_topic', '/images/faq-browse-topic.jpg');
+  const faqPopularIllustration = getIllustration(faq.illustrations, 'popular_questions', '/images/faq-popular-questions.jpg');
+  const faqLearningIllustration = getIllustration(faq.illustrations, 'learning', '/images/faq-learning-resources.jpg');
+  const faqSupportIllustration = getIllustration(faq.illustrations, 'support', '/images/faq-support.jpg');
 
   const filteredItems = useMemo(() => {
     const query = search.trim().toLowerCase();
@@ -154,10 +168,8 @@ export function FaqAccordion({ items, data, standalone = false }) {
             )}
           </label>
         </div>
-        <div className="faq-illustration faq-illustration-hero" aria-hidden="true">
-          <div className="faq-illustration-orb faq-illustration-orb-one"></div>
-          <div className="faq-illustration-orb faq-illustration-orb-two"></div>
-          <i className="fa-solid fa-graduation-cap"></i>
+        <div className="faq-illustration faq-illustration-hero">
+          <img src={faqHeroIllustration.imageUrl} alt={faqHeroIllustration.alt || faq.hero.title} />
         </div>
       </section>
 
@@ -190,6 +202,9 @@ export function FaqAccordion({ items, data, standalone = false }) {
             </button>
           ))}
         </div>
+        <div className="faq-illustration faq-illustration-browse-topic">
+          <img src={faqBrowseIllustration.imageUrl} alt={faqBrowseIllustration.alt || 'Student exploring learning topics'} />
+        </div>
       </section>
 
       {featuredItems.length > 0 && !search && activeCategory === 'all' && (
@@ -217,6 +232,9 @@ export function FaqAccordion({ items, data, standalone = false }) {
                 <span>{item.question}</span>
               </button>
             ))}
+          </div>
+          <div className="faq-illustration faq-illustration-popular-questions">
+            <img src={faqPopularIllustration.imageUrl} alt={faqPopularIllustration.alt || 'Thoughtful student reviewing questions'} />
           </div>
         </section>
       )}
@@ -272,8 +290,8 @@ export function FaqAccordion({ items, data, standalone = false }) {
             )}
           </div>
         </div>
-        <div className="faq-illustration faq-illustration-learning" aria-hidden="true">
-          <i className="fa-solid fa-book-open"></i>
+        <div className="faq-illustration faq-illustration-learning">
+          <img src={faqLearningIllustration.imageUrl} alt={faqLearningIllustration.alt || 'Student focused on learning'} />
         </div>
       </section>
 
@@ -304,8 +322,8 @@ export function FaqAccordion({ items, data, standalone = false }) {
           <p>{faq.support.description}</p>
           <a className="faq-support-button" href={faq.support.href || '/contact'}>{faq.support.button || 'Contact Support'} <i className="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
         </div>
-        <div className="faq-illustration faq-illustration-support" aria-hidden="true">
-          <i className="fa-solid fa-headset"></i>
+        <div className="faq-illustration faq-illustration-support">
+          <img src={faqSupportIllustration.imageUrl} alt={faqSupportIllustration.alt || 'Friendly tutor providing learning support'} />
         </div>
       </section>
     </div>
