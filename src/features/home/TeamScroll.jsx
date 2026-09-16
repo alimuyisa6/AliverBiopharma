@@ -60,7 +60,7 @@ export function TeamScroll({ members }) {
   if (!safeMembers.length) return null;
 
   return (
-    <section className="section">
+    <section className="section team-section">
       <div className="section-head">
         <div className="section-head-left">
           <span className="eyebrow">Faculty</span>
@@ -84,7 +84,7 @@ export function TeamScroll({ members }) {
           {loopMembers.map((member, index) => {
             const accent = ACCENTS[index % ACCENTS.length];
             return (
-              <div key={`${member.name}-${index}`} className={`team-card team-card-${accent}`}>
+              <div key={`${member.name}-${index}`} className={`team-card card-surface-solid card-elevation-soft card-density-comfortable team-card-${accent}`}>
                 <div className="team-avatar">
                   {member.avatar_url ? (
                     <img src={member.avatar_url} alt={member.name} />
