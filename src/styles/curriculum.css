@@ -106,9 +106,9 @@
 .curriculum-card-title {
   color: var(--text-main);
   font-family: var(--font-heading);
-  font-size: var(--text-sm);
-  font-weight: var(--weight-semibold);
-  line-height: var(--leading-tight);
+  font-size: var(--text-card-title);
+  font-weight: var(--weight-card-title);
+  line-height: var(--leading-card-title);
 }
 
 .curriculum-card-meta {
