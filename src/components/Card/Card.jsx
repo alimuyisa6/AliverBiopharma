@@ -32,6 +32,8 @@ const Card = forwardRef(function Card(
   if (isClickable) cardClass += ' card-clickable';
   if (className) cardClass += ` ${className}`;
 
+  const hasMedia = !!(image || safeIcon);
+
   return (
     <Wrapper
       ref={ref}
@@ -39,12 +41,14 @@ const Card = forwardRef(function Card(
       onClick={onClick}
       {...props}
     >
-      {image ? (
-        <img src={image} alt={title || ''} className={imageClassName} loading="lazy" />
-      ) : (
-        <div className="card-image-placeholder">
-          {safeIcon && <Icon name={safeIcon} />}
-        </div>
+      {hasMedia && (
+        image ? (
+          <img src={image} alt={title || ''} className={imageClassName} loading="lazy" />
+        ) : (
+          <div className="card-image-placeholder">
+            <Icon name={safeIcon} />
+          </div>
+        )
       )}
 
       <div className="card-body">
