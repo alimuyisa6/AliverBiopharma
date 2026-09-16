@@ -17,9 +17,9 @@
   margin: 0 0 var(--text-gap-description);
   color: var(--text-secondary);
   font-family: var(--font-reading);
-  font-size: var(--text-lg);
+  font-size: var(--text-body-lead);
   font-weight: var(--weight-normal);
-  line-height: var(--leading-relaxed);
+  line-height: var(--leading-body-lead);
 }
 
 .tutor-apply-page .step-indicator {
@@ -38,7 +38,7 @@
   width: var(--space-8);
   height: var(--space-8);
   padding: 0;
-  border-radius: 50%;
+  border-radius: var(--radius-round);
 }
 
 .tutor-apply-page .step-indicator .step-label {
