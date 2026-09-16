@@ -1,6 +1,9 @@
- /* src/styles/spacing.css */
+/* src/styles/spacing.css */
 
 :root {
+  /* --------------------------------------------------------------
+     Spacing scale
+     -------------------------------------------------------------- */
   --space-0: 0;
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -18,17 +21,26 @@
   --space-28: 7rem;
   --space-32: 8rem;
 
+  /* --------------------------------------------------------------
+     Page / section rhythm
+     -------------------------------------------------------------- */
   --page-gutter-x: var(--space-5);
   --page-gutter-y: var(--space-8);
   --section-space-y: var(--space-12);
   --section-space-y-compact: var(--space-8);
+  --section-space-y-large: var(--space-16);
 
   --content-gap: var(--space-6);
   --content-gap-compact: var(--space-4);
+  --content-gap-large: var(--space-8);
+
   --stack-gap: var(--space-4);
   --stack-gap-tight: var(--space-2);
   --stack-gap-loose: var(--space-8);
 
+  /* --------------------------------------------------------------
+     Text rhythm
+     -------------------------------------------------------------- */
   --text-gap-title: var(--space-3);
   --text-gap-subtitle: var(--space-2);
   --text-gap-description: var(--space-4);
@@ -36,22 +48,56 @@
   --text-gap-line: var(--space-2);
   --text-gap-list: var(--space-3);
   --text-gap-action: var(--space-6);
-
   --title-line-gap: var(--space-2);
+
+  /* --------------------------------------------------------------
+     Component density
+     -------------------------------------------------------------- */
+  --density-compact: var(--space-2);
+  --density-comfortable: var(--space-4);
+  --density-spacious: var(--space-6);
 
   --card-padding-x: var(--space-6);
   --card-padding-y: var(--space-6);
   --card-padding-x-compact: var(--space-4);
   --card-padding-y-compact: var(--space-4);
+  --card-padding-x-spacious: var(--space-8);
+  --card-padding-y-spacious: var(--space-8);
 
+  /* --------------------------------------------------------------
+     Radius / shape scale
+     Keep shape independent from surface, tone and elevation.
+     -------------------------------------------------------------- */
+  --radius-none: 0;
   --radius-xs: 0.25rem;
   --radius-sm: 0.375rem;
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
   --radius-xl: 1rem;
   --radius-2xl: 1.25rem;
+  --radius-pill: 9999px;
   --radius-full: 9999px;
+  --radius-round: 50%;
 
+  /* Named component defaults */
+  --radius-panel: var(--radius-none);
+  --radius-card: var(--radius-md);
+  --radius-input: var(--radius-sm);
+  --radius-button: var(--radius-sm);
+  --radius-badge: var(--radius-pill);
+  --radius-avatar: var(--radius-round);
+
+  /* Shape modifiers */
+  --shape-square: var(--radius-none);
+  --shape-sm: var(--radius-sm);
+  --shape-md: var(--radius-md);
+  --shape-lg: var(--radius-lg);
+  --shape-pill: var(--radius-pill);
+  --shape-round: var(--radius-round);
+
+  /* --------------------------------------------------------------
+     Layout / layering
+     -------------------------------------------------------------- */
   --z-dropdown: 50;
   --z-sticky: 100;
   --z-overlay: 150;
@@ -67,7 +113,11 @@
   --max-width: 1200px;
   --header-height: 64px;
 
+  /* --------------------------------------------------------------
+     Line-height scale
+     -------------------------------------------------------------- */
   --leading-tight: 1.2;
+  --leading-snug: 1.35;
   --leading-normal: 1.5;
   --leading-relaxed: 1.65;
   --leading-loose: 1.85;
@@ -81,9 +131,11 @@
     --page-gutter-y: var(--space-6);
     --section-space-y: var(--space-10);
     --section-space-y-compact: var(--space-6);
+    --section-space-y-large: var(--space-12);
 
     --content-gap: var(--space-5);
     --content-gap-compact: var(--space-3);
+    --content-gap-large: var(--space-6);
     --stack-gap-loose: var(--space-6);
 
     --text-gap-description: var(--space-3);
@@ -92,6 +144,8 @@
 
     --card-padding-x: var(--space-5);
     --card-padding-y: var(--space-5);
+    --card-padding-x-spacious: var(--space-6);
+    --card-padding-y-spacious: var(--space-6);
   }
 }
 
@@ -101,8 +155,11 @@
     --page-gutter-y: var(--space-5);
     --section-space-y: var(--space-8);
     --section-space-y-compact: var(--space-5);
+    --section-space-y-large: var(--space-10);
 
     --card-padding-x: var(--space-4);
     --card-padding-y: var(--space-4);
+    --card-padding-x-spacious: var(--space-5);
+    --card-padding-y-spacious: var(--space-5);
   }
 }
