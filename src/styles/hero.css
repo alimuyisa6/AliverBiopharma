@@ -249,3 +249,29 @@
   height: auto;
   display: block;
 }
+
+@media (max-width: 768px) {
+  .hero-gallery-section {
+    padding-block: var(--section-space-y-compact);
+  }
+
+  .hero-gallery-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-2);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-gallery-section {
+    padding-block: var(--space-6);
+  }
+
+  .hero-gallery-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-1);
+  }
+
+  .hero-gallery-item {
+    border-radius: var(--radius-sm);
+  }
+}
