@@ -19,6 +19,7 @@
   justify-content: space-between;
   gap: var(--content-gap);
   margin-bottom: var(--content-gap);
+  padding: var(--space-4) var(--space-5);
 }
 
 .tutor-dashboard-page .alert-success .btn {
