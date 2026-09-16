@@ -21,7 +21,7 @@ export default function QuizWeakAreas({ user, level, class_name }) {
 
   return (
     <section className="section quiz-weakareas-card">
-      <div className="card card-violet card-surface-solid card-tone-violet card-elevation-soft card-density-comfortable quiz-weakareas-inner">
+      <div className="card card-surface-tinted card-tone-violet card-elevation-soft card-density-comfortable quiz-weakareas-inner">
         <Icon name="triangle-exclamation" className="quiz-weakareas-icon" />
 
         <div className="quiz-weakareas-body">
