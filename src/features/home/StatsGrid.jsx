@@ -40,7 +40,7 @@ function AnimatedNumber({ target, label, icon }) {
   const format = (num) => (num >= 1000 ? (num / 1000).toFixed(1).replace(/\.0$/, '') + 'k+' : num);
 
   return (
-    <div className="curriculum-card stats-grid-card" ref={ref}>
+    <div className="curriculum-card card-surface-solid card-elevation-soft card-density-comfortable stats-grid-card" ref={ref}>
       <div className="curriculum-card-top">
         <div className="curriculum-card-badge">
           <Icon name={icon} />
