@@ -66,7 +66,7 @@ export function WhyChooseSection() {
         {REASONS.map((reason) => (
           <article
             key={reason.number}
-            className={`why-choose-card why-choose-card-${reason.color}`}
+            className={`why-choose-card card-surface-solid card-elevation-none card-density-spacious why-choose-card-${reason.color}`}
           >
             <div className="why-choose-card-top">
               <span className="why-choose-number">
