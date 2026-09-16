@@ -19,7 +19,7 @@ export function ChatWidget({ chatOpen, chatMessages = [], chatInput, adminOnline
   return (
     <div className="chat-widget">
       <button
-        className="btn btn-primary btn-icon btn-lg chat-toggle-btn"
+        className="btn btn-primary btn-icon btn-lg btn-round chat-toggle-btn"
         onClick={onToggle}
         aria-label={chatOpen ? 'Close support chat' : 'Open support chat'}
         aria-expanded={chatOpen}
@@ -28,7 +28,7 @@ export function ChatWidget({ chatOpen, chatMessages = [], chatInput, adminOnline
       </button>
 
       {chatOpen && (
-        <div className="chat-panel" role="dialog" aria-label="Support chat">
+        <div className="chat-panel">
           <div className="chat-panel-header">
             <div className="chat-panel-header-info">
               <span className="chat-panel-header-avatar">
@@ -42,7 +42,7 @@ export function ChatWidget({ chatOpen, chatMessages = [], chatInput, adminOnline
                 </div>
               </div>
             </div>
-            <button className="btn btn-ghost btn-sm btn-icon" onClick={onToggle} aria-label="Close chat">
+            <button className="btn btn-ghost btn-sm btn-icon btn-round" onClick={onToggle} aria-label="Close chat">
               <Icon name="xmark" />
             </button>
           </div>
@@ -60,7 +60,7 @@ export function ChatWidget({ chatOpen, chatMessages = [], chatInput, adminOnline
                   <div className="chat-message-content">{msg.content}</div>
                   {msg.sender_type === 'user' && (
                     <button
-                      className="btn btn-ghost btn-sm chat-message-delete"
+                      className="btn btn-ghost btn-sm btn-icon btn-round chat-message-delete"
                       onClick={() => onDeleteMsg(msg.id)}
                       aria-label="Delete message"
                     >
@@ -84,7 +84,7 @@ export function ChatWidget({ chatOpen, chatMessages = [], chatInput, adminOnline
               aria-label="Message"
             />
             <button
-              className="btn btn-primary chat-send-btn"
+              className="btn btn-primary btn-icon chat-send-btn"
               onClick={onSend}
               disabled={!chatInput.trim()}
               aria-label="Send message"
