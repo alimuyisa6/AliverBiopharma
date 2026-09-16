@@ -361,7 +361,7 @@ function DailyRecallCard({
         </div>
       </div>
 
-      <div className="card card-lifted row home-daily-recall-card">
+      <div className="card card-lifted card-surface-solid card-elevation-soft card-density-comfortable row home-daily-recall-card">
         <div className="row-body">
           {score && (
             <div className="home-daily-recall-progress">
