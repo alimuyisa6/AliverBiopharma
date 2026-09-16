@@ -21,7 +21,7 @@
 
 .newsletter-eyebrow {
   margin-bottom: var(--text-gap-subtitle);
-  color: var(--primary);
+  color: var(--secondary);
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   font-weight: var(--weight-medium);
