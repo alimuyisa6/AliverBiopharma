@@ -62,10 +62,10 @@
 
 .chat-panel-title {
   color: var(--text-main);
-  font-family: var(--font-primary);
-  font-size: var(--text-base);
-  font-weight: var(--weight-semibold);
-  line-height: var(--leading-tight);
+  font-family: var(--font-heading);
+  font-size: var(--text-card-title);
+  font-weight: var(--weight-card-title);
+  line-height: var(--leading-card-title);
 }
 
 .chat-panel-status {
