@@ -10,21 +10,21 @@
 }
 
 .breadcrumb-link {
-  color: var(--primary);
+  color: var(--text-link);
   text-decoration: none;
   font-weight: var(--weight-medium);
 }
 
 .breadcrumb-link:hover {
-  color: var(--primary-hover);
+  color: var(--text-link-hover);
 }
 
 .breadcrumb-current {
-  color: var(--text-dim);
+  color: var(--text-secondary);
 }
 
 .breadcrumb-sep {
-  font-size: 0.625rem;
+  font-size: var(--text-xs);
   color: var(--text-muted);
   margin: 0 var(--space-1);
 }
