@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
+ import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import {
   updateProfile,
@@ -39,35 +39,17 @@ import Card from '../components/Card/Card';
 import Icon from '../components/Icon/Icon';
 import { useToast } from '../components/Toast/Toast';
 
-/* ============================================================
-   DIAGNOSTIC BUILD
-   All CSS custom properties replaced with HARDCODED hex values
-   inline on every text-bearing element. No var(--...) used here
-   on purpose — this rules out a broken/undefined/overridden CSS
-   variable as the cause of invisible text.
-
-   If text is VISIBLE in this version  -> confirmed CSS issue
-   (an external stylesheet rule or class is hiding it; inline
-   styles you saw earlier with var(--text-main) etc. were being
-   overridden somewhere with higher specificity or !important).
-
-   If text is STILL INVISIBLE here     -> NOT a CSS issue.
-   Look at: Input/Button/Card/Icon component internals (not
-   converted here, we don't have their source), a browser
-   extension, a screenshot/DRM overlay, or a global JS-driven
-   opacity/visibility toggle applied after mount.
-   ============================================================ */
-
-const DIAG = {
-  textMain: '#111827',      // was var(--text-main)
-  textSecondary: '#4b5563', // was var(--text-secondary)
-  textMuted: '#6b7280',     // was var(--text-muted)
-  textInverse: '#ffffff',   // was var(--text-inverse)
-  accent: '#2563eb',        // was var(--primary)
-  success: '#16a34a',
-  error: '#dc2626',
-  bgCard: '#ffffff',
-  border: '#d1d5db'
+const THEME = {
+  textMain: 'var(--text-main)',
+  textSecondary: 'var(--text-secondary)',
+  textMuted: 'var(--text-muted)',
+  textInverse: 'var(--text-inverse)',
+  accent: 'var(--primary)',
+  success: 'var(--success)',
+  error: 'var(--danger)',
+  bgCard: 'var(--bg-card)',
+  border: 'var(--border-default)',
+  font: 'var(--font-maven)'
 };
 
 const SECTIONS = [
@@ -130,8 +112,8 @@ function ProfileError({ error, title = 'Unable to load this section', onRetry })
         <Icon name="alert-circle" />
       </div>
       <div className="profile-error-body">
-        <h4 style={{ color: DIAG.error, margin: 0 }}>{title}</h4>
-        <p style={{ color: DIAG.textSecondary, margin: '4px 0 12px' }}>{error}</p>
+        <h4 style={{ color: THEME.error, fontFamily: THEME.font, margin: 0 }}>{title}</h4>
+        <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, margin: '4px 0 12px' }}>{error}</p>
         {onRetry && (
           <Button type="button" variant="outline" size="sm" onClick={onRetry}>
             Try Again
@@ -361,9 +343,9 @@ export default function Profile() {
     if (/[A-Z]/.test(newPassword) && /[a-z]/.test(newPassword)) score++;
     if (/[0-9]/.test(newPassword)) score++;
     if (/[^A-Za-z0-9]/.test(newPassword)) score++;
-    if (score <= 2) return { score: 1, label: 'Weak', color: DIAG.error };
-    if (score <= 3) return { score: 2, label: 'Fair', color: '#d97706' };
-    return { score: 3, label: 'Strong', color: DIAG.success };
+    if (score <= 2) return { score: 1, label: 'Weak', color: THEME.error };
+    if (score <= 3) return { score: 2, label: 'Fair', color: 'var(--warning)' };
+    return { score: 3, label: 'Strong', color: THEME.success };
   }, [newPassword]);
 
   const handleProfileSubmit = async (e) => {
@@ -396,9 +378,9 @@ export default function Profile() {
     setSavingBio(true);
     try {
       await updateBio(bio.trim());
-      addToast('Bio updated', 'success');
+      addToast('Biography updated', 'success');
     } catch (err) {
-      const message = getExactErrorMessage(err, 'Failed to update bio');
+      const message = getExactErrorMessage(err, 'Failed to update biography');
       logProfileError('handleBioSubmit failed', err);
       addToast(message, 'error');
     } finally {
@@ -632,11 +614,11 @@ export default function Profile() {
   const initial = (profileMeta?.display_name || profileMeta?.full_name || user?.email || 'S').charAt(0).toUpperCase();
 
   return (
-    <div style={{ background: DIAG.bgCard, minHeight: '100vh' }}>
+    <div style={{ background: THEME.bgCard, minHeight: '100vh', fontFamily: THEME.font }}>
       <Container>
         <PageHeader
           title="Profile & Settings"
-          subtitle="Manage your account, curriculum, preferences, security, and more"
+          subtitle="Manage your account, curriculum, preferences, security, and administrative details"
         />
 
         {profileError && <ProfileError error={profileError} title="Profile data could not be loaded" onRetry={loadProfile} />}
@@ -644,10 +626,10 @@ export default function Profile() {
 
         <div className="profile-toolbar">
           <div className="profile-toolbar-copy">
-            <span style={{ color: DIAG.textMuted, fontFamily: 'monospace', fontSize: 12, textTransform: 'uppercase' }}>
+            <span style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 12, textTransform: 'uppercase' }}>
               Settings
             </span>
-            <span style={{ color: DIAG.textMain, fontSize: 18, fontWeight: 600 }}>
+            <span style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
               {SECTIONS.find((section) => section.id === activeSection)?.label}
             </span>
           </div>
@@ -674,16 +656,16 @@ export default function Profile() {
           />
 
           <aside id="profile-sidebar" className="profile-sidebar" aria-label="Profile settings sections">
-            <div className="profile-sidebar-inner" style={{ background: DIAG.bgCard, border: `1px solid ${DIAG.border}` }}>
+            <div className="profile-sidebar-inner" style={{ background: THEME.bgCard, border: `1px solid ${THEME.border}` }}>
               <div className="profile-sidebar-profile">
-                <div className="profile-avatar-lg" style={{ color: DIAG.accent }}>
+                <div className="profile-avatar-lg" style={{ color: THEME.accent, fontFamily: THEME.font }}>
                   {initial}
                 </div>
                 <div className="profile-sidebar-details">
-                  <div style={{ color: DIAG.textMain, fontSize: 13, fontWeight: 600 }}>
+                  <div style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 13, fontWeight: 600 }}>
                     {profileMeta?.display_name || profileMeta?.full_name || 'Student'}
                   </div>
-                  <div style={{ color: DIAG.textMuted, fontSize: 11 }}>
+                  <div style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 11 }}>
                     {profileMeta?.track || 'No level set'}
                     <span aria-hidden="true"> · </span>
                     {profileMeta?.class_name || 'No class set'}
@@ -692,13 +674,17 @@ export default function Profile() {
               </div>
 
               <div className="profile-stats-grid">
-                <div className="profile-stat-tile" style={{ border: `1px solid ${DIAG.border}` }}>
-                  <div style={{ color: DIAG.textMain, fontSize: 18, fontWeight: 500 }}>{bundle?.active_device_count ?? '—'}</div>
-                  <div style={{ color: DIAG.textMuted, fontSize: 12 }}>Devices</div>
+                <div className="profile-stat-tile" style={{ border: `1px solid ${THEME.border}` }}>
+                  <div style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 500 }}>
+                    {bundle?.active_device_count ?? '—'}
+                  </div>
+                  <div style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 12 }}>Devices</div>
                 </div>
-                <div className="profile-stat-tile" style={{ border: `1px solid ${DIAG.border}` }}>
-                  <div style={{ color: DIAG.textMain, fontSize: 18, fontWeight: 500 }}>{bundle?.referral_count ?? '—'}</div>
-                  <div style={{ color: DIAG.textMuted, fontSize: 12 }}>Referrals</div>
+                <div className="profile-stat-tile" style={{ border: `1px solid ${THEME.border}` }}>
+                  <div style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 500 }}>
+                    {bundle?.referral_count ?? '—'}
+                  </div>
+                  <div style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 12 }}>Referrals</div>
                 </div>
               </div>
 
@@ -712,7 +698,8 @@ export default function Profile() {
                         onClick={() => selectSection(section.id)}
                         aria-current={activeSection === section.id ? 'page' : undefined}
                         style={{
-                          color: activeSection === section.id ? DIAG.accent : DIAG.textSecondary,
+                          color: activeSection === section.id ? THEME.accent : THEME.textSecondary,
+                          fontFamily: THEME.font,
                           fontSize: 14
                         }}
                       >
@@ -741,13 +728,13 @@ export default function Profile() {
                 </div>
 
                 <form onSubmit={handleProfileSubmit}>
-                  <Card variant="inset" className="profile-card-main">
-                    <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: DIAG.textMain, fontSize: 18, fontWeight: 600 }}>
-                      <Icon name="id-card" style={{ color: DIAG.accent }} />
-                      Personal Info
+                  <Card variant="inset" className="profile-card-main card-lifted">
+                    <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
+                      <Icon name="id-card" style={{ color: THEME.accent }} />
+                      Personal Information
                     </h3>
-                    <p style={{ color: DIAG.textSecondary, fontSize: 15, marginBottom: 16 }}>
-                      Update your name and display name. Your display name appears publicly on reviews and comments.
+                    <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
+                      Update your legal and display name. Your display name is shown publicly across reviews and comments.
                     </p>
 
                     <Input label="Full Name" value={fullName} onChange={(e) => setFullName(e.target.value)} required disabled={savingProfile} />
@@ -767,18 +754,18 @@ export default function Profile() {
                 </form>
 
                 <form onSubmit={handleBioSubmit}>
-                  <Card variant="inset" className="profile-card">
-                    <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: DIAG.textMain, fontSize: 18, fontWeight: 600 }}>
-                      <Icon name="pen" style={{ color: '#059669' }} />
-                      Bio
+                  <Card variant="inset" className="profile-card card-lifted">
+                    <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
+                      <Icon name="pen" style={{ color: 'var(--secondary)' }} />
+                      Professional Biography
                     </h3>
-                    <p style={{ color: DIAG.textSecondary, fontSize: 15, marginBottom: 16 }}>
-                      Tell others a little about yourself — your interests, goals, or what you're studying.
+                    <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
+                      Share a brief professional biography outlining your background, interests, and current course of study.
                     </p>
 
                     <textarea
                       className="form-textarea"
-                      style={{ color: DIAG.textMain, background: DIAG.bgCard, border: `1px solid ${DIAG.border}` }}
+                      style={{ color: THEME.textMain, fontFamily: THEME.font, background: THEME.bgCard, border: `1px solid ${THEME.border}` }}
                       rows={3}
                       maxLength={500}
                       value={bio}
@@ -787,7 +774,7 @@ export default function Profile() {
                     />
 
                     <Button type="submit" loading={savingBio} loadingContext="brand" variant="outline" icon="check" style={{ marginTop: 12 }}>
-                      Save Bio
+                      Save Biography
                     </Button>
                   </Card>
                 </form>
@@ -795,15 +782,15 @@ export default function Profile() {
             )}
 
             {activeSection === 'curriculum' && (
-              <Card variant="inset" className="profile-card">
-                <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: DIAG.textMain, fontSize: 18, fontWeight: 600 }}>
-                  <Icon name="route" style={{ color: '#d97706' }} />
+              <Card variant="inset" className="profile-card card-lifted">
+                <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
+                  <Icon name="route" style={{ color: 'var(--accent)' }} />
                   Learning Curriculum
                 </h3>
-                <p style={{ color: DIAG.textSecondary, fontSize: 15, marginBottom: 16 }}>
-                  Your current level is <strong style={{ color: DIAG.textMain }}>{profileMeta?.track || 'Not set'}</strong>, class{' '}
-                  <strong style={{ color: DIAG.textMain }}>{profileMeta?.class_name || 'Not set'}</strong>. Changing levels requires
-                  admin approval.
+                <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
+                  Your current level is <strong style={{ color: THEME.textMain }}>{profileMeta?.track || 'Not set'}</strong>, class{' '}
+                  <strong style={{ color: THEME.textMain }}>{profileMeta?.class_name || 'Not set'}</strong>. Level changes require
+                  administrator approval.
                 </p>
 
                 {curriculumError && (
@@ -813,10 +800,10 @@ export default function Profile() {
                 {profileMeta?.role !== 'teacher' && (
                   <form onSubmit={handleLevelChangeRequest}>
                     <div className="form-group">
-                      <label style={{ color: DIAG.textMain, fontSize: 14 }}>New Level</label>
+                      <label style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14 }}>New Level</label>
                       <select
                         className="form-select"
-                        style={{ color: DIAG.textMain, background: DIAG.bgCard, border: `1px solid ${DIAG.border}` }}
+                        style={{ color: THEME.textMain, fontFamily: THEME.font, background: THEME.bgCard, border: `1px solid ${THEME.border}` }}
                         value={levelReqTrack}
                         onChange={(e) => setLevelReqTrack(e.target.value)}
                         required
@@ -833,10 +820,10 @@ export default function Profile() {
                     </div>
 
                     <div className="form-group">
-                      <label style={{ color: DIAG.textMain, fontSize: 14 }}>Reason</label>
+                      <label style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14 }}>Reason</label>
                       <textarea
                         className="form-textarea"
-                        style={{ color: DIAG.textMain, background: DIAG.bgCard, border: `1px solid ${DIAG.border}` }}
+                        style={{ color: THEME.textMain, fontFamily: THEME.font, background: THEME.bgCard, border: `1px solid ${THEME.border}` }}
                         rows={3}
                         value={levelReqReason}
                         onChange={(e) => setLevelReqReason(e.target.value)}
@@ -853,13 +840,13 @@ export default function Profile() {
             )}
 
             {activeSection === 'notifications' && (
-              <Card variant="inset" className="profile-card">
-                <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: DIAG.textMain, fontSize: 18, fontWeight: 600 }}>
-                  <Icon name="bell" style={{ color: DIAG.accent }} />
+              <Card variant="inset" className="profile-card card-lifted">
+                <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
+                  <Icon name="bell" style={{ color: THEME.accent }} />
                   Notifications
                 </h3>
-                <p style={{ color: DIAG.textSecondary, fontSize: 15, marginBottom: 16 }}>
-                  Choose how you want to receive updates — in-app, via email, or push notifications.
+                <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
+                  Select how you would like to receive updates across in-app, email, and push notification channels.
                 </p>
 
                 {sectionLoading ? (
@@ -868,8 +855,10 @@ export default function Profile() {
                   notifPrefs.map((p) => (
                     <div className="notification-row" key={p.module}>
                       <div className="profile-row-copy">
-                        <div style={{ color: DIAG.textMain, fontSize: 14, fontWeight: 600 }}>{p.module.replace(/_/g, ' ')}</div>
-                        <div style={{ color: DIAG.textMuted, fontSize: 12 }}>In-app · Email · Push</div>
+                        <div style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14, fontWeight: 600 }}>
+                          {p.module.replace(/_/g, ' ')}
+                        </div>
+                        <div style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 12 }}>In-app · Email · Push</div>
                       </div>
                       <div className="profile-toggle-group">
                         <Toggle active={p.in_app} onClick={() => handleNotifToggle(p.module, 'in_app', p.in_app)} />
@@ -881,20 +870,22 @@ export default function Profile() {
                 )}
 
                 {!sectionLoading && notifPrefs.length === 0 && !sectionError && (
-                  <p style={{ color: DIAG.textMuted, fontSize: 14 }}>No notification modules configured yet.</p>
+                  <p style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 14 }}>
+                    No notification modules have been configured yet.
+                  </p>
                 )}
               </Card>
             )}
 
             {activeSection === 'security' && (
               <form onSubmit={handlePasswordSubmit}>
-                <Card variant="inset" className="profile-card">
-                  <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: DIAG.textMain, fontSize: 18, fontWeight: 600 }}>
-                    <Icon name="key" style={{ color: '#f59e0b' }} />
-                    Security
+                <Card variant="inset" className="profile-card card-lifted">
+                  <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
+                    <Icon name="key" style={{ color: 'var(--warning)' }} />
+                    Password & Security
                   </h3>
-                  <p style={{ color: DIAG.textSecondary, fontSize: 15, marginBottom: 16 }}>
-                    Change your password regularly to keep your account secure. Use a strong, unique password.
+                  <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
+                    We recommend updating your password periodically to maintain account security. Please choose a strong, unique password.
                   </p>
 
                   <Input
@@ -923,7 +914,7 @@ export default function Profile() {
                           style={{ width: `${(passwordStrength.score / 3) * 100}%`, background: passwordStrength.color }}
                         />
                       </div>
-                      <span style={{ color: passwordStrength.color, fontSize: 12, fontWeight: 500, minWidth: 56, textAlign: 'right' }}>
+                      <span style={{ color: passwordStrength.color, fontFamily: THEME.font, fontSize: 12, fontWeight: 500, minWidth: 56, textAlign: 'right' }}>
                         {passwordStrength.label}
                       </span>
                     </div>
@@ -946,13 +937,13 @@ export default function Profile() {
             )}
 
             {activeSection === 'devices' && (
-              <Card variant="inset" className="profile-card">
-                <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: DIAG.textMain, fontSize: 18, fontWeight: 600 }}>
-                  <Icon name="laptop" style={{ color: DIAG.accent }} />
+              <Card variant="inset" className="profile-card card-lifted">
+                <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
+                  <Icon name="laptop" style={{ color: THEME.accent }} />
                   Connected Devices
                 </h3>
-                <p style={{ color: DIAG.textSecondary, fontSize: 15, marginBottom: 16 }}>
-                  View and manage devices that have access to your account. Revoke any device you don't recognise.
+                <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
+                  Review and manage devices with access to your account. Revoke access for any device you do not recognize.
                 </p>
 
                 {sectionLoading ? (
@@ -963,8 +954,8 @@ export default function Profile() {
                       <li key={d.id}>
                         <Icon name="laptop" />
                         <div className="profile-row-copy">
-                          <div style={{ color: DIAG.textMain, fontSize: 14 }}>{d.user_agent || 'Unknown device'}</div>
-                          <div style={{ color: DIAG.textMuted, fontSize: 12 }}>
+                          <div style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14 }}>{d.user_agent || 'Unknown device'}</div>
+                          <div style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 12 }}>
                             {d.ip_address || 'Unknown IP'} · Signed in {new Date(d.created_at).toLocaleDateString()}
                           </div>
                         </div>
@@ -974,7 +965,9 @@ export default function Profile() {
                       </li>
                     ))}
                     {devices.length === 0 && !sectionError && (
-                      <li style={{ color: DIAG.textMuted, fontSize: 14, padding: 16 }}>No active sessions found.</li>
+                      <li style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 14, padding: 16 }}>
+                        No active sessions found.
+                      </li>
                     )}
                   </ul>
                 )}
@@ -982,24 +975,24 @@ export default function Profile() {
             )}
 
             {activeSection === 'preferences' && (
-              <Card variant="inset" className="profile-card">
-                <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: DIAG.textMain, fontSize: 18, fontWeight: 600 }}>
-                  <Icon name="sliders" style={{ color: '#059669' }} />
+              <Card variant="inset" className="profile-card card-lifted">
+                <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
+                  <Icon name="sliders" style={{ color: 'var(--secondary)' }} />
                   Preferences & Theme
                 </h3>
-                <p style={{ color: DIAG.textSecondary, fontSize: 15, marginBottom: 16 }}>
-                  Customise your experience by choosing an accent colour and adjusting accessibility settings.
+                <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
+                  Personalize your experience by selecting an accent color and configuring accessibility preferences.
                 </p>
 
                 <div className="form-group">
-                  <label style={{ color: DIAG.textMain, fontSize: 14 }}>Accent Color</label>
+                  <label style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14 }}>Accent Color</label>
                   <div className="theme-swatch-group">
                     {[
-                      { key: 'blue', color: '#2563eb' },
-                      { key: 'teal', color: '#0d9488' },
-                      { key: 'emerald', color: '#059669' },
-                      { key: 'amber', color: '#d97706' },
-                      { key: 'grey', color: '#374151' }
+                      { key: 'blue', color: 'var(--blue-600)' },
+                      { key: 'teal', color: 'var(--teal-600)' },
+                      { key: 'emerald', color: 'var(--emerald-600)' },
+                      { key: 'amber', color: 'var(--amber-600)' },
+                      { key: 'grey', color: 'var(--grey-700)' }
                     ].map((themeOption) => (
                       <button
                         type="button"
@@ -1007,8 +1000,9 @@ export default function Profile() {
                         className={`theme-swatch-option${bundle?.profile?.theme_color === themeOption.key ? ' active' : ''}`}
                         onClick={() => handleThemeChange(themeOption.key)}
                         style={{
-                          color: DIAG.textSecondary,
-                          border: `1px solid ${bundle?.profile?.theme_color === themeOption.key ? themeOption.color : DIAG.border}`
+                          color: THEME.textSecondary,
+                          fontFamily: THEME.font,
+                          border: `1px solid ${bundle?.profile?.theme_color === themeOption.key ? themeOption.color : THEME.border}`
                         }}
                         aria-pressed={bundle?.profile?.theme_color === themeOption.key}
                       >
@@ -1019,9 +1013,9 @@ export default function Profile() {
                   </div>
                 </div>
 
-                <hr className="divider profile-divider-lg" style={{ borderColor: DIAG.border }} />
+                <hr className="divider profile-divider-lg" style={{ borderColor: THEME.border }} />
 
-                <h4 style={{ color: DIAG.textMain, fontSize: 16, fontWeight: 600 }}>Accessibility</h4>
+                <h4 style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 16, fontWeight: 600 }}>Accessibility</h4>
 
                 {[
                   ['large_text', 'Large text mode'],
@@ -1032,7 +1026,7 @@ export default function Profile() {
                   const current = !!bundle?.profile?.accessibility?.[key];
                   return (
                     <div className="notification-row" key={key}>
-                      <div className="profile-row-copy" style={{ color: DIAG.textMain, fontSize: 14, fontWeight: 600 }}>
+                      <div className="profile-row-copy" style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14, fontWeight: 600 }}>
                         {label}
                       </div>
                       <Toggle active={current} onClick={() => handleAccessibilityToggle(key, current)} />
@@ -1043,21 +1037,22 @@ export default function Profile() {
             )}
 
             {activeSection === 'referral' && (
-              <Card variant="inset" className="profile-card">
-                <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: DIAG.textMain, fontSize: 18, fontWeight: 600 }}>
-                  <Icon name="gift" style={{ color: '#d97706' }} />
+              <Card variant="inset" className="profile-card card-lifted">
+                <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
+                  <Icon name="gift" style={{ color: 'var(--accent)' }} />
                   Referral Program
                 </h3>
-                <p style={{ color: DIAG.textSecondary, fontSize: 15, marginBottom: 16 }}>
-                  Share your referral code with friends and earn XP when they join. Every new member helps grow the community.
+                <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
+                  Share your referral code with colleagues and peers to earn experience points when they join. Every new member
+                  contributes to the growth of our community.
                 </p>
 
                 {sectionLoading ? (
                   <Spinner context="data" size="sm" />
                 ) : referral ? (
                   <>
-                    <p style={{ color: DIAG.textSecondary, fontSize: 15 }}>
-                      Your Referral Code: <strong style={{ color: DIAG.accent }}>{referral.referral_code}</strong>
+                    <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15 }}>
+                      Your Referral Code: <strong style={{ color: THEME.accent }}>{referral.referral_code}</strong>
                     </p>
 
                     <Button
@@ -1072,25 +1067,30 @@ export default function Profile() {
                       Copy Referral Code
                     </Button>
 
-                    <p style={{ color: DIAG.textMuted, fontSize: 13, marginTop: 8 }}>
+                    <p style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 13, marginTop: 8 }}>
                       {referral.referral_count} friends joined · {referral.total_xp_earned} XP earned
                     </p>
                   </>
                 ) : (
-                  !sectionError && <p style={{ color: DIAG.textMuted, fontSize: 14 }}>No referral data yet.</p>
+                  !sectionError && (
+                    <p style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 14 }}>
+                      No referral data is currently available.
+                    </p>
+                  )
                 )}
               </Card>
             )}
 
             {activeSection === 'parent' && (
               <form onSubmit={handleSaveGuardian}>
-                <Card variant="inset" className="profile-card">
-                  <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: DIAG.textMain, fontSize: 18, fontWeight: 600 }}>
-                    <Icon name="user-group" style={{ color: DIAG.accent }} />
+                <Card variant="inset" className="profile-card card-lifted">
+                  <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
+                    <Icon name="user-group" style={{ color: THEME.accent }} />
                     Parent / Guardian Information
                   </h3>
-                  <p style={{ color: DIAG.textSecondary, fontSize: 15, marginBottom: 16 }}>
-                    Provide contact details for a parent or guardian. This information is used for emergency contact and consent.
+                  <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
+                    Provide contact information for a parent or guardian. This information is used for emergency contact
+                    purposes and consent verification.
                   </p>
 
                   <Input label="Guardian Name" value={guardianName} onChange={(e) => setGuardianName(e.target.value)} required disabled={savingGuardian} />
@@ -1104,10 +1104,10 @@ export default function Profile() {
                   />
 
                   <div className="form-group">
-                    <label style={{ color: DIAG.textMain, fontSize: 14 }}>Relationship</label>
+                    <label style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14 }}>Relationship</label>
                     <select
                       className="form-select"
-                      style={{ color: DIAG.textMain, background: DIAG.bgCard, border: `1px solid ${DIAG.border}` }}
+                      style={{ color: THEME.textMain, fontFamily: THEME.font, background: THEME.bgCard, border: `1px solid ${THEME.border}` }}
                       value={guardianRelationship}
                       onChange={(e) => setGuardianRelationship(e.target.value)}
                     >
@@ -1125,30 +1125,30 @@ export default function Profile() {
             )}
 
             {activeSection === 'billing' && (
-              <Card variant="inset" className="profile-card">
-                <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: DIAG.textMain, fontSize: 18, fontWeight: 600 }}>
-                  <Icon name="credit-card" style={{ color: DIAG.success }} />
+              <Card variant="inset" className="profile-card card-lifted">
+                <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
+                  <Icon name="credit-card" style={{ color: THEME.success }} />
                   Billing & Payments
                 </h3>
-                <p style={{ color: DIAG.textSecondary, fontSize: 15, marginBottom: 16 }}>
-                  View your current subscription plan and available upgrade options.
+                <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
+                  Review your current subscription plan and explore available upgrade options.
                 </p>
 
                 {sectionLoading ? (
                   <Spinner context="data" size="sm" />
                 ) : (
                   <>
-                    <p style={{ color: DIAG.textSecondary, fontSize: 15 }}>
-                      <strong style={{ color: DIAG.textMain }}>Current Plan:</strong> {billing?.current_plan?.name || 'Free'}{' '}
+                    <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15 }}>
+                      <strong style={{ color: THEME.textMain }}>Current Plan:</strong> {billing?.current_plan?.name || 'Free'}{' '}
                       {billing?.subscription?.expires_at ? `— expires ${new Date(billing.subscription.expires_at).toLocaleDateString()}` : ''}
                     </p>
 
                     <div className="profile-plan-list">
-                      <h4 style={{ color: DIAG.textMain, fontSize: 16, fontWeight: 600 }}>Available Plans</h4>
+                      <h4 style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 16, fontWeight: 600 }}>Available Plans</h4>
                       {(billing?.available_plans || []).map((plan) => (
                         <div key={plan.id} className="chart-bar-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                          <span style={{ color: DIAG.textMain }}>{plan.name}</span>
-                          <span style={{ color: DIAG.textSecondary, fontSize: 15 }}>
+                          <span style={{ color: THEME.textMain, fontFamily: THEME.font }}>{plan.name}</span>
+                          <span style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15 }}>
                             {plan.currency} {plan.price_amount} / {plan.duration_days} days
                           </span>
                         </div>
@@ -1160,22 +1160,22 @@ export default function Profile() {
             )}
 
             {activeSection === 'certificates' && (
-              <Card variant="inset" className="profile-card">
-                <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: DIAG.textMain, fontSize: 18, fontWeight: 600 }}>
-                  <Icon name="award" style={{ color: '#d97706' }} />
+              <Card variant="inset" className="profile-card card-lifted">
+                <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
+                  <Icon name="award" style={{ color: 'var(--accent)' }} />
                   Certificates Earned
                 </h3>
-                <p style={{ color: DIAG.textSecondary, fontSize: 15, marginBottom: 16 }}>
-                  View and verify certificates you've earned for completing courses and assessments.
+                <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
+                  View and verify the certificates you have earned upon completion of courses and assessments.
                 </p>
 
                 {sectionLoading ? (
                   <Spinner context="data" size="sm" />
                 ) : (
                   <div className="table-wrapper">
-                    <table className="data-table" style={{ color: DIAG.textMain }}>
+                    <table className="data-table" style={{ color: THEME.textMain, fontFamily: THEME.font }}>
                       <thead>
-                        <tr style={{ color: DIAG.textMain }}>
+                        <tr style={{ color: THEME.textMain }}>
                           <th>Certificate</th>
                           <th>Date Earned</th>
                           <th>Score</th>
@@ -1184,19 +1184,19 @@ export default function Profile() {
                       </thead>
                       <tbody>
                         {certificates.map((certificate) => (
-                          <tr key={certificate.id} style={{ color: DIAG.textMain }}>
+                          <tr key={certificate.id} style={{ color: THEME.textMain }}>
                             <td>{certificate.title}</td>
                             <td>{new Date(certificate.issued_at).toLocaleDateString()}</td>
                             <td>{certificate.score != null ? `${certificate.score}%` : '—'}</td>
                             <td>
-                              <code style={{ color: DIAG.textMain }}>{certificate.verification_code}</code>
+                              <code style={{ color: THEME.textMain, fontFamily: THEME.font }}>{certificate.verification_code}</code>
                             </td>
                           </tr>
                         ))}
                         {certificates.length === 0 && !sectionError && (
                           <tr>
-                            <td colSpan={4} style={{ color: DIAG.textMuted, textAlign: 'center' }}>
-                              No certificates yet.
+                            <td colSpan={4} style={{ color: THEME.textMuted, textAlign: 'center' }}>
+                              No certificates have been earned yet.
                             </td>
                           </tr>
                         )}
@@ -1208,20 +1208,22 @@ export default function Profile() {
             )}
 
             {activeSection === 'api' && (
-              <Card variant="inset" className="profile-card">
-                <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: DIAG.textMain, fontSize: 18, fontWeight: 600 }}>
-                  <Icon name="terminal" style={{ color: DIAG.accent }} />
+              <Card variant="inset" className="profile-card card-lifted">
+                <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
+                  <Icon name="terminal" style={{ color: THEME.accent }} />
                   API Access
                 </h3>
-                <p style={{ color: DIAG.textSecondary, fontSize: 15, marginBottom: 16 }}>
-                  Generate API keys to integrate AliverBiopharm with external tools and applications.
+                <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
+                  Generate and manage API keys to integrate AliverBiopharm with external tools and applications.
                 </p>
 
                 {revealedKey && (
-                  <div className="notification-row" style={{ border: '1px solid #f59e0b', borderRadius: 8, padding: 16 }}>
+                  <div className="notification-row" style={{ border: '1px solid var(--warning)', borderRadius: 8, padding: 16 }}>
                     <div>
-                      <div style={{ color: DIAG.textMain, fontSize: 14, fontWeight: 600 }}>Copy this key now — it will not be shown again</div>
-                      <code style={{ color: DIAG.textMain, display: 'block', marginTop: 8, fontFamily: 'monospace', fontSize: 12 }}>
+                      <div style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14, fontWeight: 600 }}>
+                        Copy this key now — it will not be shown again
+                      </div>
+                      <code style={{ color: THEME.textMain, fontFamily: THEME.font, display: 'block', marginTop: 8, fontSize: 12 }}>
                         {revealedKey}
                       </code>
                     </div>
@@ -1238,9 +1240,9 @@ export default function Profile() {
                   apiKeys.map((key) => (
                     <div className="notification-row" key={key.id}>
                       <div className="profile-row-copy">
-                        <div style={{ color: DIAG.textMain, fontSize: 14, fontWeight: 600 }}>{key.name}</div>
-                        <div style={{ color: DIAG.textMuted, fontSize: 12 }}>
-                          <code style={{ color: DIAG.textMuted }}>{key.key_prefix}…</code> · {key.is_active ? 'Active' : 'Revoked'}
+                        <div style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14, fontWeight: 600 }}>{key.name}</div>
+                        <div style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 12 }}>
+                          <code style={{ color: THEME.textMuted }}>{key.key_prefix}…</code> · {key.is_active ? 'Active' : 'Revoked'}
                         </div>
                       </div>
                       {key.is_active && (
@@ -1255,13 +1257,13 @@ export default function Profile() {
             )}
 
             {activeSection === 'webhooks' && (
-              <Card variant="inset" className="profile-card">
-                <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: DIAG.textMain, fontSize: 18, fontWeight: 600 }}>
-                  <Icon name="webhook" style={{ color: '#059669' }} />
+              <Card variant="inset" className="profile-card card-lifted">
+                <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
+                  <Icon name="webhook" style={{ color: 'var(--secondary)' }} />
                   Webhooks
                 </h3>
-                <p style={{ color: DIAG.textSecondary, fontSize: 15, marginBottom: 16 }}>
-                  Configure webhooks to receive real-time event notifications from the platform.
+                <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
+                  Configure webhooks to receive real-time event notifications directly from the platform.
                 </p>
 
                 <div className="profile-webhook-input-row">
@@ -1282,8 +1284,8 @@ export default function Profile() {
                   webhooks.map((webhook) => (
                     <div className="notification-row" key={webhook.id}>
                       <div className="profile-row-copy">
-                        <div style={{ color: DIAG.textMain, fontSize: 14, fontWeight: 600 }}>{webhook.url}</div>
-                        <div style={{ color: DIAG.textMuted, fontSize: 12 }}>
+                        <div style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14, fontWeight: 600 }}>{webhook.url}</div>
+                        <div style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 12 }}>
                           {(webhook.events || []).join(', ')} · {webhook.is_active ? 'Active' : 'Disabled'}
                         </div>
                       </div>
@@ -1297,28 +1299,28 @@ export default function Profile() {
             )}
 
             {activeSection === 'account' && (
-              <Card variant="inset" className="profile-card">
-                <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: DIAG.textMain, fontSize: 18, fontWeight: 600 }}>
-                  <Icon name="shield" style={{ color: DIAG.error }} />
+              <Card variant="inset" className="profile-card card-lifted">
+                <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
+                  <Icon name="shield" style={{ color: THEME.error }} />
                   Account & Data
                 </h3>
-                <p style={{ color: DIAG.textSecondary, fontSize: 15, marginBottom: 16 }}>
-                  Manage your account status, export your data, or request account deletion.
+                <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
+                  Manage your account status, export your personal data, or submit a request for account deletion.
                 </p>
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
                   <span
                     className="status-indicator-dot"
-                    style={{ background: profileMeta?.is_active === false ? DIAG.error : DIAG.success }}
+                    style={{ background: profileMeta?.is_active === false ? THEME.error : THEME.success }}
                   />
-                  <span style={{ color: DIAG.textSecondary, fontSize: 15 }}>
+                  <span style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15 }}>
                     {profileMeta?.is_active === false ? 'Inactive' : 'Active'} account
                   </span>
                 </div>
 
-                <hr className="divider profile-divider" style={{ borderColor: DIAG.border }} />
+                <hr className="divider profile-divider" style={{ borderColor: THEME.border }} />
 
-                <p style={{ color: DIAG.textMuted, fontSize: 14 }}>
+                <p style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 14 }}>
                   Account created {profileMeta?.created_at ? new Date(profileMeta.created_at).toLocaleDateString() : '—'}
                 </p>
 
@@ -1333,6 +1335,10 @@ export default function Profile() {
               </Card>
             )}
           </div>
+        </div>
+
+        <div style={{ textAlign: 'right', marginTop: 32, marginBottom: 8, fontFamily: THEME.font, fontStyle: 'italic', color: THEME.textMuted, fontSize: 14 }}>
+          — Ali
         </div>
       </Container>
     </div>
