@@ -255,14 +255,19 @@
   }
 
   .hero-gallery-row {
-    gap: var(--stack-gap-tight);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-2);
   }
 }
 
 @media (max-width: 480px) {
+  .hero-gallery-section {
+    padding-block: var(--space-6);
+  }
+
   .hero-gallery-row {
-    grid-template-columns: 1fr;
-    gap: var(--stack-gap);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-1);
   }
 
   .hero-gallery-item {
