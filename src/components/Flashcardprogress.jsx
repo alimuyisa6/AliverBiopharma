@@ -1,4 +1,4 @@
- /* components/Flashcardprogress.jsx */
+/* components/Flashcardprogress.jsx */
 import Icon from './Icon/Icon';
 import Button from './Button/Button';
 
@@ -21,7 +21,7 @@ export default function FlashcardProgress({ result, onRestart, onHome }) {
   return (
     <div className="flashcard-progress">
       <div className="section fcd-empty">
-        <div className="card card-amber fcp-card">
+        <div className="card card-amber card-surface-solid card-tone-warning card-elevation-raised fcp-card">
           <Icon name="trophy" className="fcp-trophy" />
           <h2>Session Complete</h2>
           <p className="fcp-message">{message()}</p>
