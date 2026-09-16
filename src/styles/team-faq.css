@@ -64,7 +64,10 @@
   border: none;
   cursor: pointer;
   text-align: left;
-  font-family: var(--font-body);
+  font-family: var(--font-heading);
+  font-size: var(--text-card-title);
+  font-weight: var(--weight-card-title);
+  line-height: var(--leading-card-title);
 }
 
 .home-faq-icon {
@@ -75,15 +78,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1rem;
+  font-size: var(--text-md);
   transition: background var(--ease-fast), color var(--ease-fast);
 }
 
 .home-faq-question-text {
   flex: 1;
   font-family: var(--font-heading);
-  font-size: var(--text-base);
-  font-weight: var(--weight-semibold);
+  font-size: var(--text-card-title);
+  font-weight: var(--weight-card-title);
+  line-height: var(--leading-card-title);
   color: var(--text-main);
 }
 
@@ -122,7 +126,7 @@
   color: var(--text-dim);
   font-size: var(--text-sm);
   line-height: var(--leading-relaxed);
-  font-family: var(--font-source-sans);
+  font-family: var(--font-reading);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -138,7 +142,7 @@
     padding-left: var(--space-5);
   }
   .home-faq-question-text {
-    font-size: var(--text-sm);
+    font-size: var(--text-card-title);
   }
 }
 
@@ -217,7 +221,7 @@
   position: absolute;
   top: var(--space-4);
   right: var(--space-5);
-  font-size: 1.5rem;
+  font-size: var(--text-2xl);
   opacity: 0.12;
 }
 
@@ -242,7 +246,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
+  font-size: var(--text-2xl);
   border: 3px solid var(--border-default);
 }
 
@@ -261,8 +265,9 @@
 .team-card h3 {
   position: relative;
   font-family: var(--font-heading);
-  font-size: var(--text-lg);
-  font-weight: var(--weight-bold);
+  font-size: var(--text-card-title);
+  font-weight: var(--weight-card-title);
+  line-height: var(--leading-card-title);
   color: var(--text-main);
   margin-bottom: var(--space-1);
 }
@@ -270,9 +275,9 @@
 .team-title {
   position: relative;
   display: inline-block;
-  font-family: var(--font-maven-pro);
-  font-size: var(--text-xs);
-  font-weight: var(--weight-semibold);
+  font-family: var(--font-heading);
+  font-size: var(--text-label);
+  font-weight: var(--weight-label);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wider);
   margin-bottom: var(--space-3);
@@ -288,7 +293,7 @@
 
 .team-card p {
   position: relative;
-  font-family: var(--font-source-sans);
+  font-family: var(--font-reading);
   font-size: var(--text-sm);
   color: var(--text-dim);
   line-height: var(--leading-relaxed);
