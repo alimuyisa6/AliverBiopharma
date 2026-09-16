@@ -25,10 +25,10 @@
   width: 100%;
   padding: var(--space-5) var(--space-6);
   color: var(--text-main);
-  font-family: var(--font-primary);
-  font-size: var(--text-base);
-  font-weight: var(--weight-semibold);
-  line-height: var(--leading-tight);
+  font-family: var(--font-heading);
+  font-size: var(--text-card-title);
+  font-weight: var(--weight-card-title);
+  line-height: var(--leading-card-title);
   text-align: left;
   background: transparent;
   border: 0;
