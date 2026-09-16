@@ -482,7 +482,7 @@ export default function Quiz() {
           </>
         ) : resultData ? (
           <div className="quiz-result-container">
-            <Card variant="flat" className="quiz-result-card">
+            <Card variant="flat" className="quiz-result-card card-surface-solid card-elevation-soft">
               <Icon
                 name={resultData.passed ? 'trophy' : 'book-open'}
                 className={`quiz-result-icon ${resultData.passed ? 'is-pass' : 'is-fail'}`}
@@ -504,7 +504,7 @@ export default function Quiz() {
               <h3 className="quiz-review-heading">Block {currentBlock + 1} Review for {currentTopic}</h3>
 
               {(resultData.answers || []).map((answer, idx) => (
-                <Card key={idx} variant="flat" className="quiz-review-card">
+                <Card key={idx} variant="flat" className="quiz-review-card card-surface-subtle card-elevation-none">
                   <div className="quiz-review-header">
                     <Icon
                       name={answer.isCorrect ? 'circle-check' : 'circle-xmark'}
@@ -596,7 +596,7 @@ export default function Quiz() {
 
             <Card
               image={quizQuestions[currentIndex].image_url}
-              className="quiz-question-card"
+              className="quiz-question-card card-surface-solid card-elevation-raised"
             >
               <h3 className="quiz-question-heading">{quizQuestions[currentIndex].question_text}</h3>
 
