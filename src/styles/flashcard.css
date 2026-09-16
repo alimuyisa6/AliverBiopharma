@@ -50,7 +50,7 @@
 .fcd-question-card {
   padding: var(--space-8);
   text-align: center;
-  transition: box-shadow var(--ease-fast);
+  transition: box-shadow var(--duration-fast) var(--ease-standard);
 }
 
 .fcd-question-card.is-flip {
@@ -59,7 +59,7 @@
 
 .fcd-question-card.is-flip:hover {
   transform: none;
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-subtle);
 }
 
 .fcd-question-card-static {
@@ -183,7 +183,7 @@
   position: relative;
   width: 100%;
   height: 240px;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--duration-slow) var(--ease-standard);
   transform-style: preserve-3d;
 }
 
@@ -202,7 +202,7 @@
   padding: var(--space-8);
   text-align: center;
   border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-subtle);
 }
 
 .fcw-flip-face.is-back {
@@ -306,7 +306,7 @@
 .flashcard-deck-icon {
   font-size: var(--text-2xl);
   color: var(--primary);
-  transition: transform var(--ease-fast);
+  transition: transform var(--duration-fast) var(--ease-standard);
 }
 
 .flashcard-decks-grid .card-clickable:hover .flashcard-deck-icon {
