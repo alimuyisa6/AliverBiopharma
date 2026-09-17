@@ -1,4 +1,4 @@
- /* src/styles/home-sections.css */
+/* src/styles/home-sections.css */
 
 .home-page { width: 100%; min-width: 0; }
 .home-hero-section,.home-stats-section,.home-student-section,.home-testimonials-section,.home-classroom-section,.home-tutor-section,.home-advertising-section,.home-newsletter-section { width: 100%; }
@@ -20,8 +20,14 @@
 .home-learning-journey-image { width: 100%; max-height: 420px; margin-block-end: var(--content-gap); overflow: hidden; border: 1px solid var(--border-default); border-radius: 0; object-fit: cover; }
 .home-learning-journey-cta { display: inline-flex; width: fit-content; pointer-events: none; }
 
+/* Keep these two learner sections inside a readable page gutter and clearly separated. */
+.home-student-sections-wrap { width: min(100%, 1120px); margin-inline: auto; padding-inline: var(--page-gutter-x); display: flex; flex-direction: column; gap: var(--section-space-y); }
+.home-student-sections-wrap > .home-curriculum-section,
+.home-student-sections-wrap > .home-learning-journey-section { width: 100%; }
+
 .home-curriculum-section { width: 100%; }
 .home-curriculum-description { max-width: 720px; }
+.home-curriculum-heading { margin-block-end: var(--text-gap-description); font-family: "Maven Pro", var(--font-maven), sans-serif !important; font-size: var(--text-section-title); font-weight: var(--weight-section-title); line-height: var(--leading-section-title); letter-spacing: var(--tracking-tight); }
 .home-curriculum-map { width: 100%; border-block: 1px solid var(--border-default); background: var(--bg-card); }
 .home-curriculum-node-list { width: 100%; }
 .home-curriculum-node { border-block-start: 1px solid var(--border-default); }
@@ -93,6 +99,6 @@
 body.dark-mode .team-social a { background: var(--bg-card); } body.dark-mode .testimonial-flat { background: var(--bg-card); border-color: var(--green-800); } body.dark-mode .testimonial-flat cite { color: var(--green-400); }
 
 @media (prefers-reduced-motion: reduce) { .home-faq-item.active .home-faq-plus { transform: none; } }
-@media (max-width: 768px) { .home-stats-section { margin-block-start: calc(-1 * var(--space-10)); } .team-scroll-nav { display: none; } .testimonial-flat { padding: var(--space-6); } .home-curriculum-node-type { display: none; } }
+@media (max-width: 768px) { .home-stats-section { margin-block-start: calc(-1 * var(--space-10)); } .team-scroll-nav { display: none; } .testimonial-flat { padding: var(--space-6); } .home-curriculum-node-type { display: none; } .home-student-sections-wrap { padding-inline: var(--space-4); gap: var(--space-10); } }
 @media (max-width: 640px) { .team-card { width: 220px; } .team-scroll-container { gap: var(--stack-gap); } .testimonial-flat blockquote { font-size: var(--text-lg); } .home-curriculum-depth-1,.home-curriculum-depth-2,.home-curriculum-depth-3,.home-curriculum-depth-4 { margin-inline-start: var(--space-4); } }
 @media (max-width: 480px) { .home-stats-section { margin-block-start: calc(-1 * var(--space-6)); } .home-continue-learning-row { align-items: flex-start; } .home-daily-recall-card { align-items: stretch; } .home-daily-recall-actions { flex-wrap: wrap; } .home-faq-question { padding-inline: var(--space-4); } .home-faq-answer,.home-faq-item.active .home-faq-answer { padding-inline: var(--space-4); } .team-card { width: 210px; padding: var(--card-padding-y-compact) var(--card-padding-x-compact); } .testimonial-flat { padding: var(--space-5); } .home-curriculum-node-line { padding-inline: var(--space-3); } }
