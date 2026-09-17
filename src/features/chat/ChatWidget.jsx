@@ -23,7 +23,7 @@ export function ChatWidget({ chatOpen, chatMessages = [], chatInput, adminOnline
         aria-label={chatOpen ? 'Close support chat' : 'Open support chat'}
         aria-expanded={chatOpen}
       >
-        <Icon name={chatOpen ? 'xmark' : 'message'} />
+        <Icon name={chatOpen ? 'xmark' : 'message'} className="chat-icon" />
       </button>
 
       {chatOpen && (
@@ -31,7 +31,7 @@ export function ChatWidget({ chatOpen, chatMessages = [], chatInput, adminOnline
           <div className="chat-panel-header">
             <div className="chat-panel-header-info">
               <span className="chat-panel-header-avatar">
-                <Icon name="headset" />
+                <Icon name="headset" className="chat-icon" />
               </span>
               <div className="chat-panel-heading">
                 <div className="chat-panel-title">Support</div>
@@ -43,7 +43,7 @@ export function ChatWidget({ chatOpen, chatMessages = [], chatInput, adminOnline
               </div>
             </div>
             <button className="btn btn-ghost btn-sm btn-icon btn-round" onClick={onToggle} aria-label="Close chat">
-              <Icon name="xmark" />
+              <Icon name="xmark" className="chat-icon" />
             </button>
           </div>
 
@@ -53,7 +53,7 @@ export function ChatWidget({ chatOpen, chatMessages = [], chatInput, adminOnline
                 <span className="chat-welcome-bubble chat-welcome-bubble-one" />
                 <span className="chat-welcome-bubble chat-welcome-bubble-two" />
                 <span className="chat-welcome-face">
-                  <Icon name="message" />
+                  <Icon name="message" className="chat-icon" />
                 </span>
               </div>
               <div className="chat-welcome-copy">
@@ -78,7 +78,7 @@ export function ChatWidget({ chatOpen, chatMessages = [], chatInput, adminOnline
                       onClick={() => onDeleteMsg(msg.id)}
                       aria-label="Delete message"
                     >
-                      <Icon name="trash" />
+                      <Icon name="trash" className="chat-icon" />
                     </button>
                   )}
                 </div>
@@ -104,7 +104,7 @@ export function ChatWidget({ chatOpen, chatMessages = [], chatInput, adminOnline
                 disabled={!chatInput.trim()}
                 aria-label="Send message"
               >
-                <Icon name="paper-plane" />
+                <Icon name="paper-plane" className="chat-icon" />
                 <span>Send</span>
               </button>
             </div>
