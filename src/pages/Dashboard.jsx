@@ -1,4 +1,4 @@
- /* pages/Dashboard.jsx */
+/* pages/Dashboard.jsx */
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
@@ -6,13 +6,10 @@ import { useLayout } from '../contexts/LayoutContext';
 import { getUserDashboard } from '../api/cachedClient';
 import { useContentAccess } from '../hooks/useContentAccess';
 import { useSecurityUiLock } from '../hooks/useSecurityUiLock';
-import PageHeader from '../components/PageHeader/PageHeader';
-import StatCard from '../components/StatCard/StatCard';
-import ProgressBar from '../components/ProgressBar/ProgressBar';
-import Skeleton from '../components/Skeleton/Skeleton';
 import EmptyState from '../components/EmptyState/EmptyState';
 import Icon from '../components/Icon/Icon';
 import Container from '../components/Container/Container';
+import ProgressBar from '../components/ProgressBar/ProgressBar';
 
 export default function Dashboard() {
   const { user } = useAuth();
@@ -70,13 +67,18 @@ export default function Dashboard() {
   if (loading) {
     return (
       <Container>
-        <div className="dashboard-skeleton">
-          <Skeleton height={48} width="60%" />
-          <div className="dashboard-skeleton-grid">
-            <Skeleton height={120} />
-            <Skeleton height={120} />
-            <Skeleton height={120} />
-            <Skeleton height={120} />
+        <div className="dashboard-wrapper">
+          <div className="dashboard-skeleton">
+            <div className="dashboard-skeleton-heading">
+              <span className="skeleton dashboard-skeleton-title" />
+              <span className="skeleton dashboard-skeleton-subtitle" />
+            </div>
+            <div className="dashboard-skeleton-grid">
+              <SkeletonBlock />
+              <SkeletonBlock />
+              <SkeletonBlock />
+              <SkeletonBlock />
+            </div>
           </div>
         </div>
       </Container>
@@ -123,144 +125,278 @@ export default function Dashboard() {
 
   return (
     <Container>
-      <PageHeader
-        title={`Welcome back${user?.full_name ? `, ${user.full_name}` : ''}`}
-        subtitle={`${platform.rank_title} · ${level?.display_name || ''}`}
-        badges={[{ label: level?.display_name || 'No Level', variant: levelColor }]}
-      />
+      <div className="dashboard-wrapper">
+        <div className="dashboard-content">
+          <header className="dashboard-header">
+            <div className="header-info">
+              <h1>
+                Welcome back{user?.full_name ? `, ${user.full_name}` : ''}
+              </h1>
+              <p>
+                {platform.rank_title} · {level?.display_name || ''}
+              </p>
+            </div>
 
-      <div className="dashboard-stats-grid">
-        <StatCard icon="rocket" value={platform.total_xp} label="XP" color={levelColor} />
-        <StatCard icon="fire" value={platform.current_streak} label="Day Streak" color="warm" />
-        <StatCard icon="trophy" value={achievements.earned_count} label="Badges" color="accent" />
-        <StatCard icon="chart-line" value={`${quiz.topics_attempted}`} label="Quiz Topics Attempted" color="secondary" />
-      </div>
-
-      <div className="dashboard-xp-section">
-        <ProgressBar value={platform.xp_progress.xpIntoLevel} max={100} variant="gradient" />
-        <p className="dashboard-xp-text">
-          {platform.xp_progress.xpIntoLevel}/100 XP to next level
-        </p>
-      </div>
-
-      <div className="dashboard-section">
-        <h3 className="dashboard-section-title">Your Activity</h3>
-        <div className="dashboard-section-grid">
-          <StatCard icon="book-open" value={recall.total_sessions} label="Recall Sessions" color="primary" />
-          <StatCard icon="graduation-cap" value={quiz.blocks_completed} label="Quiz Blocks Done" color="secondary" />
-          <StatCard icon="fire" value={notes.reading_streak} label="Reading Streak" color="warm" />
-        </div>
-      </div>
-
-      {quiz.recent_pass_rate > 0 && (
-        <Link to="/quiz" className="dashboard-continue-link">
-          <div>
-            <span className="sec-label">Continue Practicing</span>
-            <span className="dashboard-continue-text">
-              Recent quiz pass rate: {quiz.recent_pass_rate}%
+            <span className={`dashboard-level-badge dashboard-level-badge-${levelColor}`}>
+              {level?.display_name || 'No Level'}
             </span>
-          </div>
-          <Icon name="arrow-right" className="dashboard-continue-icon" />
-        </Link>
-      )}
+          </header>
 
-      {notes.continue_reading.length > 0 && (
-        <div className="dashboard-section">
-          <h3 className="dashboard-section-title">
-            <Icon name="book-open" /> Continue Reading
-          </h3>
-          <div className="dashboard-section-grid">
-            {notes.continue_reading.map((item) => (
-              <Link key={item.note_id} to={`/notes/read?id=${item.note_id}`} className="card dashboard-note-card">
-                <div className="card-body">
-                  <h4 className="card-title">{item.title}</h4>
-                  <p className="card-text">{Math.round(item.progress_percentage)}% read</p>
+          <div className="dashboard-grid">
+            <main className="main-column">
+              <section className="dashboard-panel dashboard-overview-panel">
+                <div className="dashboard-panel-body">
+                  <div className="platform-stats-grid" id="top-stats">
+                    <div className="stat-box">
+                      <span className="stat-icon"><Icon name="rocket" /></span>
+                      <span className="stat-value">{platform.total_xp?.toLocaleString?.() ?? platform.total_xp}</span>
+                      <span className="stat-label">Total XP</span>
+                    </div>
+
+                    <div className="stat-box">
+                      <span className="stat-icon"><Icon name="fire" /></span>
+                      <span className="stat-value">{platform.current_streak}</span>
+                      <span className="stat-label">Day Streak</span>
+                    </div>
+
+                    <div className="stat-box">
+                      <span className="stat-icon"><Icon name="trophy" /></span>
+                      <span className="stat-value">{achievements.earned_count}</span>
+                      <span className="stat-label">Badges</span>
+                    </div>
+                  </div>
+
+                  <div className="xp-progress-container">
+                    <div className="xp-labels">
+                      <span>{platform.xp_progress.xpIntoLevel} XP</span>
+                      <span>{platform.xp_progress.nextLevelXp} XP</span>
+                    </div>
+
+                    <ProgressBar
+                      value={platform.xp_progress.xpIntoLevel}
+                      max={platform.xp_progress.nextLevelXp}
+                      variant="gradient"
+                    />
+
+                    <p className="xp-progress-text">
+                      {platform.xp_progress.xpIntoLevel}/{platform.xp_progress.nextLevelXp} XP to next level
+                    </p>
+                  </div>
                 </div>
-              </Link>
-            ))}
+              </section>
+
+              {notes.continue_reading.length > 0 && (
+                <section className="dashboard-panel" id="continue-reading-section">
+                  <div className="dashboard-panel-header">
+                    <h3 className="dashboard-panel-title">
+                      <Icon name="book-open" /> Continue Reading
+                    </h3>
+                  </div>
+
+                  <div className="dashboard-panel-body">
+                    <div className="reading-list" id="continue-reading-list">
+                      {notes.continue_reading.map((item) => {
+                        const progress = Math.round(item.progress_percentage);
+
+                        return (
+                          <Link
+                            key={item.note_id}
+                            to={`/notes/read?id=${item.note_id}`}
+                            className="reading-item"
+                          >
+                            <div className="reading-info">
+                              <h4>{item.title}</h4>
+                              <p>{progress}% completed</p>
+                            </div>
+
+                            <div
+                              className="reading-progress-circle"
+                              style={{ background: `conic-gradient(var(--primary) ${progress}%, var(--border-subtle) 0)` }}
+                              data-progress={`${progress}%`}
+                            />
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </section>
+              )}
+
+              {analytics?.recommendations?.length > 0 && (
+                <section className="dashboard-panel" id="recommendations-section">
+                  <div className="dashboard-panel-header">
+                    <h3 className="dashboard-panel-title">
+                      <Icon name="lightbulb" /> Recommended For You
+                    </h3>
+                  </div>
+
+                  <div className="dashboard-panel-body">
+                    <div className="recommendation-grid" id="recommendations-list">
+                      {analytics.recommendations.slice(0, 4).map((item, index) => {
+                        const link = item.type === 'due_review'
+                          ? '/recall'
+                          : item.type === 'weak_topic'
+                            ? '/quiz'
+                            : '/flashcards';
+
+                        const typeLabel = item.type === 'due_review'
+                          ? 'Due Review'
+                          : item.type === 'weak_topic'
+                            ? 'Weak Topic'
+                            : 'Flashcards';
+
+                        return (
+                          <Link key={index} to={link} className="rec-card">
+                            <span className="rec-type">{typeLabel}</span>
+                            <h4>{item.title}</h4>
+                            <p>{item.reason}</p>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </section>
+              )}
+
+              {quiz.recent_pass_rate > 0 && (
+                <Link to="/quiz" className="dashboard-continue-link" id="continue-practicing">
+                  <div>
+                    <span className="sec-label">Continue Practicing</span>
+                    <span className="dashboard-continue-text">
+                      Recent quiz pass rate: {quiz.recent_pass_rate}%
+                    </span>
+                  </div>
+                  <Icon name="arrow-right" className="dashboard-continue-icon" />
+                </Link>
+              )}
+            </main>
+
+            <aside className="sidebar-column">
+              {recall.best_mastery > 0 && (
+                <section className="dashboard-panel" id="personal-records-section">
+                  <div className="dashboard-panel-header">
+                    <h3 className="dashboard-panel-title">
+                      <Icon name="star" /> Personal Records
+                    </h3>
+                  </div>
+
+                  <div className="dashboard-panel-body">
+                    <div className="sidebar-list" id="personal-records-stats">
+                      <div className="sidebar-item">
+                        <span className="item-text">Best Recall Mastery</span>
+                        <span className="item-meta item-meta-accent">{recall.best_mastery}%</span>
+                      </div>
+
+                      <div className="sidebar-item">
+                        <span className="item-text">Recall Topics</span>
+                        <span className="item-meta">{recall.topics_practiced}</span>
+                      </div>
+
+                      <div className="sidebar-item">
+                        <span className="item-text">Quiz Blocks Done</span>
+                        <span className="item-meta">{quiz.blocks_completed}</span>
+                      </div>
+
+                      <div className="sidebar-item">
+                        <span className="item-text">Reading Streak</span>
+                        <span className="item-meta item-meta-warm">🔥 {notes.reading_streak}</span>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              )}
+
+              {weak_areas?.length > 0 && (
+                <section className="dashboard-panel" id="weak-areas-section">
+                  <div className="dashboard-panel-header">
+                    <h3 className="dashboard-panel-title">
+                      <Icon name="lightbulb" /> Weak Areas
+                    </h3>
+                  </div>
+
+                  <div className="dashboard-panel-body">
+                    <div className="sidebar-list" id="weak-areas-list">
+                      {weak_areas.map((weak, index) => (
+                        <div key={index} className="sidebar-item">
+                          <span className="item-text">{weak.concept}</span>
+                          <span className="item-meta item-meta-danger">
+                            {weak.incorrect_attempts} incorrect
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </section>
+              )}
+
+              {recent_activity?.length > 0 && (
+                <section className="dashboard-panel" id="recent-activity-section">
+                  <div className="dashboard-panel-header">
+                    <h3 className="dashboard-panel-title">
+                      <Icon name="clock" /> Recent Activity
+                    </h3>
+                  </div>
+
+                  <div className="dashboard-panel-body">
+                    <div className="sidebar-list" id="recent-activity-list">
+                      {recent_activity.map((activity, index) => (
+                        <div key={index} className="activity-item">
+                          <div className="activity-icon">
+                            <Icon
+                              name={
+                                activity.type === 'recall'
+                                  ? 'brain'
+                                  : activity.type === 'quiz'
+                                    ? 'graduation-cap'
+                                    : 'book-open'
+                              }
+                            />
+                          </div>
+
+                          <div className="activity-details">
+                            <span className="act-text">{activity.details}</span>
+                            <span className="act-date">
+                              {new Date(activity.date).toLocaleDateString(undefined, {
+                                month: 'short',
+                                day: 'numeric'
+                              })}
+                            </span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </section>
+              )}
+
+              {unit_xp?.length > 0 && (
+                <section className="dashboard-panel" id="unit-xp-section">
+                  <div className="dashboard-panel-header">
+                    <h3 className="dashboard-panel-title">
+                      <Icon name="chart-line" /> Unit XP
+                    </h3>
+                  </div>
+
+                  <div className="dashboard-panel-body">
+                    <div className="unit-xp-grid" id="unit-xp-list">
+                      {unit_xp.map((unit, index) => (
+                        <div key={index} className="unit-xp-item">
+                          <span className="unit-name">{unit.unit_id}</span>
+                          <span className="unit-value">{unit.xp.toLocaleString()} XP</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </section>
+              )}
+            </aside>
           </div>
         </div>
-      )}
-
-      {recall.best_mastery > 0 && (
-        <div className="dashboard-section">
-          <h3 className="dashboard-section-title">
-            <Icon name="star" /> Personal Records
-          </h3>
-          <div className="dashboard-section-grid">
-            <StatCard icon="star" value={`${recall.best_mastery}%`} label="Best Recall Mastery" color="warm" />
-            <StatCard icon="microscope" value={recall.topics_practiced} label="Recall Topics Practiced" color="secondary" />
-            <StatCard icon="medal" value={achievements.earned_count} label="Achievements" color="accent" />
-          </div>
-        </div>
-      )}
-
-      {analytics?.recommendations?.length > 0 && (
-        <div className="dashboard-section">
-          <h3 className="dashboard-section-title">
-            <Icon name="lightbulb" /> Recommended For You
-          </h3>
-          <div className="dashboard-section-grid">
-            {analytics.recommendations.slice(0, 3).map((item, index) => (
-              <Link
-                key={index}
-                to={item.type === 'due_review' ? '/recall' : item.type === 'weak_topic' ? '/quiz' : '/flashcards'}
-                className="card dashboard-recommendation-card"
-              >
-                <div className="card-body">
-                  <h4 className="card-title">{item.title}</h4>
-                  <p className="card-text">{item.reason}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {weak_areas?.length > 0 && (
-        <div className="dashboard-section">
-          <h3 className="dashboard-section-title">
-            <Icon name="lightbulb" /> Weak Areas
-          </h3>
-          <ul className="dashboard-list">
-            {weak_areas.map((weak, index) => (
-              <li key={index} className="dashboard-list-item">
-                <span className="dashboard-list-main">{weak.concept}</span>
-                <span className="dashboard-list-muted">({weak.incorrect_attempts} incorrect)</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {recent_activity?.length > 0 && (
-        <div className="dashboard-section">
-          <h3 className="dashboard-section-title">Recent Activity</h3>
-          <ul className="dashboard-list">
-            {recent_activity.map((activity, index) => (
-              <li key={index} className="dashboard-activity-item">
-                <Icon
-                  name={activity.type === 'recall' ? 'brain' : activity.type === 'quiz' ? 'graduation-cap' : 'book-open'}
-                  className="dashboard-activity-icon"
-                />
-                <span className="dashboard-activity-text">{activity.details}</span>
-                <span className="dashboard-activity-date">{new Date(activity.date).toLocaleDateString()}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {unit_xp?.length > 0 && (
-        <div className="dashboard-section">
-          <h3 className="dashboard-section-title">Unit XP</h3>
-          <div className="dashboard-section-grid">
-            {unit_xp.map((unit, index) => (
-              <StatCard key={index} icon="star" value={unit.xp} label={unit.unit_id} color="accent" />
-            ))}
-          </div>
-        </div>
-      )}
+      </div>
     </Container>
   );
+}
+
+function SkeletonBlock() {
+  return <span className="skeleton dashboard-skeleton-block" />;
 }
