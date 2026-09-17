@@ -1,6 +1,6 @@
  // src/pages/Quiz.jsx
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useRequireOnboarding } from '../hooks/useRequireOnboarding';
 import { useLevelFilter } from '../hooks/useLevelFilter';
@@ -9,6 +9,7 @@ import { useSecurityUiLock } from '../hooks/useSecurityUiLock';
 import { useToast } from '../components/Toast/Toast';
 import {
   listQuizTopics,
+  getQuizTopics,
   getQuizBlock,
   checkDailyRetry,
   checkQuizAnswer,
@@ -44,6 +45,8 @@ function createIdempotencyKey(prefix = 'quiz') {
 export default function Quiz() {
   const { user, profile } = useAuth();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const curriculumUnitId = searchParams.get('unit_id') || null;
   const { isReady } = useRequireOnboarding();
   const access = useContentAccess();
   const { locked, reason } = useSecurityUiLock();
@@ -89,7 +92,7 @@ export default function Quiz() {
     setIntegrityOverlay(null);
     setAnswerSubmitting(false);
     setSessionId(null);
-  }, [activeGroupId]);
+  }, [activeGroupId, curriculumUnitId]);
 
   useEffect(() => {
     if (!isReady || !access.canAccess || access.isPending) return;
@@ -117,11 +120,28 @@ export default function Quiz() {
 
     setTopicsLoading(true);
 
-    listQuizTopics(activeGroupId)
+    const request = curriculumUnitId
+      ? getQuizTopics(curriculumUnitId).then((topic) => ({
+          topics: topic?.unit_id ? [
+            {
+              unit_id: topic.unit_id,
+              topic_name: topic.unit_name,
+              topic_image_url: topic.topic_image_url,
+              question_count: topic.total_questions || 0,
+              total_blocks: topic.total_blocks || 0,
+              completed_blocks: topic.completed_blocks || [],
+              locked_blocks: topic.locked_blocks || [],
+              all_done: topic.all_done || false
+            }
+          ] : []
+        }))
+      : listQuizTopics(activeGroupId);
+
+    request
       .then((res) => setAllTopics(Array.isArray(res?.topics) ? res.topics : []))
-      .catch(() => {})
+      .catch(() => setAllTopics([]))
       .finally(() => setTopicsLoading(false));
-  }, [isReady, access.canAccess, access.isPending, activeGroupId]);
+  }, [isReady, access.canAccess, access.isPending, activeGroupId, curriculumUnitId]);
 
   useEffect(() => {
     if (timeLeft === null || resultData) return;
@@ -275,9 +295,22 @@ export default function Quiz() {
       setResultData(result);
       setSessionId(null);
 
-      const topicsRes = await listQuizTopics(activeGroupId);
+      const topicsRes = curriculumUnitId
+        ? await getQuizTopics(curriculumUnitId)
+        : await listQuizTopics(activeGroupId);
 
-      setAllTopics(Array.isArray(topicsRes?.topics) ? topicsRes.topics : []);
+      setAllTopics(curriculumUnitId
+        ? (topicsRes?.unit_id ? [{
+            unit_id: topicsRes.unit_id,
+            topic_name: topicsRes.unit_name,
+            topic_image_url: topicsRes.topic_image_url,
+            question_count: topicsRes.total_questions || 0,
+            total_blocks: topicsRes.total_blocks || 0,
+            completed_blocks: topicsRes.completed_blocks || [],
+            locked_blocks: topicsRes.locked_blocks || [],
+            all_done: topicsRes.all_done || false
+          }] : [])
+        : (Array.isArray(topicsRes?.topics) ? topicsRes.topics : []));
     } catch {
       addToast('Submission failed', 'error');
     } finally {
@@ -412,10 +445,10 @@ export default function Quiz() {
         <nav className="breadcrumb">
           <Link to="/"><Icon name="home" className="breadcrumb-icon" /> Home</Link>
           <Icon name="chevron-right" className="breadcrumb-sep" />
-          <span>Quizzes</span>
+          <span>{curriculumUnitId ? currentTopic || 'Curriculum Quiz' : 'Quizzes'}</span>
         </nav>
 
-        {!currentTopic && (
+        {!currentTopic && !curriculumUnitId && (
           <>
             <QuizHero level={level} class_name={class_name} />
             {user && <QuizDashboard user={user} level={level} class_name={class_name} groupId={activeGroupId} />}
@@ -429,11 +462,11 @@ export default function Quiz() {
           <>
             <div className="quiz-section-heading quiz-section-heading-spacer">
               <Icon name="layer-group" />
-              <span>Available Topics</span>
+              <span>{curriculumUnitId ? 'Curriculum Topic' : 'Available Topics'}</span>
             </div>
 
             <h2 className="quiz-topic-description">
-              Choose a topic to start a quiz block. Completed blocks are marked with a check.
+              {curriculumUnitId ? 'Choose a quiz block for this curriculum topic.' : 'Choose a topic to start a quiz block. Completed blocks are marked with a check.'}
             </h2>
 
             <div className="grid grid-cols-3">
