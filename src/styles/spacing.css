@@ -34,6 +34,8 @@
   --content-gap-compact: var(--space-4);
   --content-gap-large: var(--space-8);
   --content-max-readable: 48rem;
+  --content-max-wide: 56.25rem;
+  --content-max-card: 15.625rem;
 
   --stack-gap: var(--space-4);
   --stack-gap-tight: var(--space-2);
@@ -135,22 +137,18 @@
 @media (max-width: 768px) {
   :root {
     --header-height: 56px;
-
     --page-gutter-x: var(--space-4);
     --page-gutter-y: var(--space-6);
     --section-space-y: var(--space-10);
     --section-space-y-compact: var(--space-6);
     --section-space-y-large: var(--space-12);
-
     --content-gap: var(--space-5);
     --content-gap-compact: var(--space-3);
     --content-gap-large: var(--space-6);
     --stack-gap-loose: var(--space-6);
-
     --text-gap-description: var(--space-3);
     --text-gap-paragraph: var(--space-3);
     --text-gap-action: var(--space-5);
-
     --card-padding-x: var(--space-5);
     --card-padding-y: var(--space-5);
     --card-padding-x-spacious: var(--space-6);
@@ -165,7 +163,6 @@
     --section-space-y: var(--space-8);
     --section-space-y-compact: var(--space-5);
     --section-space-y-large: var(--space-10);
-
     --card-padding-x: var(--space-4);
     --card-padding-y: var(--space-4);
     --card-padding-x-spacious: var(--space-5);
