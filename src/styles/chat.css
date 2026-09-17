@@ -2,25 +2,43 @@
 
 .chat-widget {
   position: fixed;
-  right: var(--space-6);
-  bottom: var(--space-6);
+  right: var(--page-gutter-x);
+  bottom: var(--page-gutter-x);
   z-index: var(--z-dropdown);
+  max-width: calc(100vw - (var(--page-gutter-x) * 2));
 }
 
 .chat-toggle-btn {
-  width: var(--space-16);
-  height: var(--space-16);
+  width: var(--chat-toggle-size);
+  height: var(--chat-toggle-size);
   padding: 0;
-  color: var(--text-inverse);
+  color: var(--white);
   background: var(--blue-600);
   border: 1px solid var(--blue-600);
   border-radius: var(--shape-round);
-  font-size: var(--text-2xl);
+  font-size: var(--chat-toggle-icon-size);
   box-shadow: var(--shadow-lg);
   transition: transform var(--duration-fast) var(--ease-standard),
     box-shadow var(--duration-fast) var(--ease-standard),
     background var(--duration-fast) var(--ease-standard);
   animation: chat-float 3s ease-in-out infinite;
+}
+
+.chat-toggle-btn svg,
+.chat-toggle-btn .icon {
+  width: var(--chat-toggle-icon-size);
+  height: var(--chat-toggle-icon-size);
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* The message glyph is rendered white inside the blue control. */
+.chat-toggle-btn svg path,
+.chat-toggle-btn svg polyline,
+.chat-toggle-btn svg line,
+.chat-toggle-btn svg circle {
+  stroke: currentColor;
+  fill: currentColor;
 }
 
 .chat-toggle-btn:hover {
@@ -43,26 +61,29 @@
 
 .chat-panel {
   position: absolute;
-  right: 0;
+  left: 50%;
+  right: auto;
   bottom: calc(100% + var(--space-4));
   z-index: var(--z-modal);
   display: flex;
   flex-direction: column;
-  width: min(23rem, calc(100vw - (var(--space-6) * 2)));
-  height: min(34rem, calc(100vh - var(--space-20)));
+  width: min(var(--chat-panel-max-width), calc(100vw - (var(--page-gutter-x) * 2)));
+  height: min(var(--chat-panel-max-height), calc(100vh - var(--space-20)));
   min-height: 22rem;
+  max-width: calc(100vw - (var(--page-gutter-x) * 2));
   overflow: hidden;
   background: var(--bg-card);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-xl);
-  transform-origin: bottom right;
+  transform: translateX(-50%);
+  transform-origin: bottom center;
   animation: chat-panel-in var(--duration-normal) var(--ease-standard) both;
 }
 
 @keyframes chat-panel-in {
-  from { opacity: 0; transform: translateY(var(--space-3)) scale(.97); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  from { opacity: 0; transform: translateX(-50%) translateY(var(--space-3)) scale(.97); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
 }
 
 .chat-panel-header {
@@ -389,7 +410,7 @@
   }
 
   .chat-panel {
-    width: min(22rem, calc(100vw - (var(--page-gutter-x) * 2)));
+    width: min(var(--chat-panel-max-width), calc(100vw - (var(--page-gutter-x) * 2)));
     height: min(32rem, calc(100vh - var(--space-20)));
   }
 }
@@ -401,15 +422,22 @@
   }
 
   .chat-toggle-btn {
-    width: var(--space-14);
-    height: var(--space-14);
-    font-size: var(--text-xl);
+    width: var(--chat-toggle-size);
+    height: var(--chat-toggle-size);
+  }
+
+  .chat-toggle-btn svg,
+  .chat-toggle-btn .icon {
+    width: var(--chat-toggle-icon-size);
+    height: var(--chat-toggle-icon-size);
   }
 
   .chat-panel {
-    right: calc(var(--space-3) * -1);
-    bottom: calc(var(--space-14) + var(--space-4));
-    width: min(21rem, calc(100vw - var(--space-6)));
+    left: 50%;
+    right: auto;
+    bottom: calc(var(--chat-toggle-size) + var(--space-4));
+    width: min(var(--chat-panel-max-width), calc(100vw - (var(--space-3) * 2)));
+    max-width: calc(100vw - (var(--space-3) * 2));
     height: min(31rem, calc(100vh - var(--space-16)));
     min-height: 20rem;
     border-radius: var(--radius-md);
