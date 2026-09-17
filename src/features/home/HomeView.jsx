@@ -107,7 +107,7 @@ function CurriculumSnapshot({ nodes, activeLevelName, activeGroupName, sections 
       <div className="section-head">
         <div className="section-head-left">
           <span className="eyebrow">{activeLevelName}{activeGroupName ? ` · ${activeGroupName}` : ''}</span>
-          <h2 id="home-curriculum-heading">Your curriculum</h2>
+          <h2 id="home-curriculum-heading" className="home-curriculum-heading">Your curriculum</h2>
           <p className="section-description home-curriculum-description">{description}</p>
         </div>
       </div>
@@ -143,8 +143,8 @@ export default function HomeView(props) {
       {user && <section className="home-student-section"><ClassSwitcher className="home-scope-switcher" /><HomeDashboardCard /><ContinueLearningRail items={continueLearning} navigate={navigate} /></section>}
       <WhyChooseSection />
       <HowItWorksSection />
-      {user && <CurriculumSnapshot nodes={curriculumUnits} activeLevelName={activeLevelName} activeGroupName={activeGroupName} sections={sections} />}
-      <LearningJourneySection sections={sections} />
+      {user && <div className="home-student-sections-wrap"><CurriculumSnapshot nodes={curriculumUnits} activeLevelName={activeLevelName} activeGroupName={activeGroupName} sections={sections} /><LearningJourneySection sections={sections} /></div>}
+      {!user && <LearningJourneySection sections={sections} />}
       {user && <DailyRecallCard recall={dailyRecall} onReveal={onRevealRecall} onStart={onStartRecall} />}
       <section className="home-testimonials-section"><TestimonialSlider quotes={sections?.testimonials?.quotes || []} /></section>
       <section className="home-classroom-section"><ClassroomTeaser /></section>
