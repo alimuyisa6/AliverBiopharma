@@ -55,7 +55,7 @@ export default function Dashboard() {
   if (!access.canAccess) {
     return (
       <Container>
-        <div className="dashboard-wrapper">
+        <div className="dashboard-wrapper dashboard-content">
           <EmptyState
             image={getEmptyStateImage('dashboard')}
             title="Access Restricted"
@@ -70,20 +70,17 @@ export default function Dashboard() {
   if (loading) {
     return (
       <Container>
-        <div className="dashboard-wrapper">
+        <div className="dashboard-wrapper dashboard-content">
           <div className="dashboard-loading-skeleton">
-            <div className="skeleton skeleton-heading" />
-            <div className="dashboard-grid">
-              <div className="main-column">
-                <div className="skeleton skeleton-block-lg" />
-                <div className="skeleton skeleton-block-md" />
-                <div className="skeleton skeleton-block-md" />
-              </div>
-              <div className="sidebar-column">
-                <div className="skeleton skeleton-block-sm" />
-                <div className="skeleton skeleton-block-sm" />
-                <div className="skeleton skeleton-block-sm" />
-              </div>
+            <div className="dashboard-skeleton-heading">
+              <div className="skeleton dashboard-skeleton-title" />
+              <div className="skeleton dashboard-skeleton-subtitle" />
+            </div>
+            <div className="dashboard-skeleton-grid">
+              <div className="skeleton dashboard-skeleton-block" />
+              <div className="skeleton dashboard-skeleton-block" />
+              <div className="skeleton dashboard-skeleton-block" />
+              <div className="skeleton dashboard-skeleton-block" />
             </div>
           </div>
         </div>
@@ -95,7 +92,7 @@ export default function Dashboard() {
   if (error || !summary) {
     return (
       <Container>
-        <div className="dashboard-wrapper">
+        <div className="dashboard-wrapper dashboard-content">
           <EmptyState
             image={getEmptyStateImage('error')}
             title="Something went wrong"
@@ -110,7 +107,7 @@ export default function Dashboard() {
   if (locked) {
     return (
       <Container>
-        <div className="dashboard-wrapper">
+        <div className="dashboard-wrapper dashboard-content">
           <EmptyState
             icon="lock"
             title="Action temporarily disabled"
@@ -138,7 +135,7 @@ export default function Dashboard() {
 
   return (
     <Container>
-      <div className="dashboard-wrapper">
+      <div className="dashboard-wrapper dashboard-content">
         
         {/* HEADER */}
         <header className="dashboard-header">
@@ -182,21 +179,21 @@ export default function Dashboard() {
                     <span className="stat-value">{achievements.earned_count}</span>
                     <span className="stat-label">Badges</span>
                   </div>
-                </div>
 
-                <div className="xp-progress-container">
-                  <div className="xp-labels">
-                    <span id="xp-current">{platform.xp_progress.xpIntoLevel} XP</span>
-                    <span id="xp-next">{platform.xp_progress.nextLevelXp} XP</span>
+                  <div className="xp-progress-container">
+                    <div className="xp-labels">
+                      <span id="xp-current">{platform.xp_progress.xpIntoLevel} XP</span>
+                      <span id="xp-next">{platform.xp_progress.nextLevelXp} XP</span>
+                    </div>
+                    <ProgressBar
+                      value={platform.xp_progress.xpIntoLevel}
+                      max={platform.xp_progress.nextLevelXp}
+                      variant="gradient"
+                    />
+                    <p className="xp-progress-text" id="xp-progress-text">
+                      {platform.xp_progress.xpIntoLevel}/{platform.xp_progress.nextLevelXp} XP to next level
+                    </p>
                   </div>
-                  <ProgressBar
-                    value={platform.xp_progress.xpIntoLevel}
-                    max={platform.xp_progress.nextLevelXp}
-                    variant="gradient"
-                  />
-                  <p className="xp-labels" id="xp-progress-text">
-                    {platform.xp_progress.xpIntoLevel}/{platform.xp_progress.nextLevelXp} XP to next level
-                  </p>
                 </div>
               </div>
             </div>
@@ -280,11 +277,11 @@ export default function Dashboard() {
             {/* Continue Practicing CTA */}
             <Link
               to="/quiz"
-              className="panel continue-practicing-panel"
+              className="dashboard-continue-link"
               id="continue-practicing"
               style={{ display: quiz.recent_pass_rate > 0 ? 'block' : 'none' }}
             >
-              <div className="panel-body continue-practicing-body">
+              <div className="panel-body">
                 <div>
                   <span className="sec-label">Continue Practicing</span>
                   <span className="dashboard-continue-text" id="quiz-pass-rate-text">
