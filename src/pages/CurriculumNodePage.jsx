@@ -14,8 +14,18 @@ function slugify(value) {
     .replace(/^-+|-+$/g, '');
 }
 
-function resourcePath(path, resource) {
-  return `${path}/${resource}`;
+function resourcePath(resource, unitId) {
+  const routes = {
+    notes: '/notes',
+    quiz: '/quiz',
+    flashcards: '/flashcards',
+    recall: '/recall',
+    pdfs: '/pdfs',
+    'past-papers': '/past-papers'
+  };
+
+  const route = routes[resource] || '/resources';
+  return `${route}?unit_id=${encodeURIComponent(unitId)}`;
 }
 
 const RESOURCE_LABELS = {
@@ -115,7 +125,6 @@ export default function CurriculumNodePage() {
     );
   }
 
-  const currentPath = `/curriculum/${groupId}/${nodePath}`.replace(/\/$/, '');
   const availableResources = Object.entries(RESOURCE_LABELS).filter(
     ([key]) => Number(counts[key === 'quiz' ? 'quiz_questions' : key === 'flashcards' ? 'flashcard_decks' : key === 'pdfs' ? 'pdf_resources' : key] || 0) > 0
   );
@@ -142,9 +151,16 @@ export default function CurriculumNodePage() {
 
           <div className="curriculum-node-children">
             {children.map((child) => {
-              const childPath = `${currentPath}/${slugify(child.slug || child.name)}`;
+              const parentPath = ancestors
+                .slice(2)
+                .map((item) => slugify(item.slug || item.name))
+                .join('/');
+              const childPath = [parentPath, slugify(child.slug || child.name)]
+                .filter(Boolean)
+                .join('/');
+
               return (
-                <Link key={child.id} to={childPath} className="curriculum-node-child">
+                <Link key={child.id} to={`/curriculum/${groupId}/${childPath}`} className="curriculum-node-child">
                   <span className="curriculum-node-child-icon">
                     {child.icon ? <Icon name={child.icon} /> : <Icon name="book-open" />}
                   </span>
@@ -171,7 +187,7 @@ export default function CurriculumNodePage() {
 
           <div className="curriculum-node-resources">
             {availableResources.map(([key, label]) => (
-              <Link key={key} to={resourcePath(currentPath, key)} className="curriculum-node-resource">
+              <Link key={key} to={resourcePath(key, node.id)} className="curriculum-node-resource">
                 <span>{label}</span>
                 <Icon name="arrow-right" />
               </Link>
