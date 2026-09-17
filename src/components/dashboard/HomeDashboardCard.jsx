@@ -32,13 +32,30 @@ export default function HomeDashboardCard() {
   const { platform, quiz, achievements } = summary;
 
   return (
-    <section className="section home-learning-snapshot-section">
+    <section className="section home-learning-snapshot-section" style={{ marginInline: 'var(--page-gutter-x)' }}>
       <div className="section-head">
         <div className="section-head-left">
           <span className="eyebrow">Your learning</span>
           <h2>Learning snapshot</h2>
         </div>
-        <Link to="/dashboard" className="text-link home-learning-snapshot-dashboard-link">View full dashboard →</Link>
+        <Link
+          to="/dashboard"
+          className="text-link home-learning-snapshot-dashboard-link"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: 'var(--space-2) var(--space-4)',
+            borderRadius: 'var(--radius-sm)',
+            background: 'var(--primary)',
+            color: 'var(--text-inverse)',
+            boxShadow: 'var(--shadow-sm)',
+            textDecoration: 'none',
+            fontWeight: 'var(--weight-semibold)',
+          }}
+        >
+          View full dashboard →
+        </Link>
       </div>
       <div className="dash-strip">
         <div className="dash-cell">
