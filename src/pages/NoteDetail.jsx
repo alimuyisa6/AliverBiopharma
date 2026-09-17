@@ -44,6 +44,44 @@ function normalizeReactions(data) {
   };
 }
 
+function normalizeCurriculumContext(data) {
+  const payload = data?.node?.node ? data.node : data;
+
+  if (!payload?.node) return null;
+
+  return {
+    node: payload.node,
+    ancestors: Array.isArray(payload.ancestors) ? payload.ancestors : [],
+    children: Array.isArray(payload.children) ? payload.children : [],
+    relationships: Array.isArray(payload.relationships) ? payload.relationships : [],
+    resourceCounts: payload.resource_counts || {}
+  };
+}
+
+function buildCurriculumPath(context) {
+  const groupId = context?.node?.group_id;
+  const parts = [
+    ...(context?.ancestors || []).map((item) => item?.slug).filter(Boolean),
+    context?.node?.slug
+  ].filter(Boolean);
+
+  if (!groupId || !parts.length) return null;
+
+  return `/curriculum/${encodeURIComponent(groupId)}/${parts.join('/')}`;
+}
+
+function getNodeTypeLabel(node) {
+  const labels = {
+    unit: 'Unit',
+    topic: 'Topic',
+    subtopic: 'Subtopic',
+    module: 'Module',
+    concept: 'Concept'
+  };
+
+  return labels[node?.node_type] || 'Curriculum';
+}
+
 export default function NoteDetail() {
   const { user } = useAuth();
   const { bootstrap } = useLayout();
@@ -53,6 +91,7 @@ export default function NoteDetail() {
 
   const [note, setNote] = useState(null);
   const [breadcrumb, setBreadcrumb] = useState([]);
+  const [curriculumContext, setCurriculumContext] = useState(null);
   const [reactions, setReactions] = useState({ counts: {}, user: [] });
   const [comments, setComments] = useState([]);
   const [commentInput, setCommentInput] = useState('');
@@ -99,6 +138,7 @@ export default function NoteDetail() {
       setReadProgress(0);
       setToc([]);
       setMetadata({});
+      setCurriculumContext(null);
 
       try {
         const data = await getNoteDetail(noteId);
@@ -107,6 +147,7 @@ export default function NoteDetail() {
 
         setNote(data);
         setBreadcrumb(data.breadcrumb || []);
+        setCurriculumContext(normalizeCurriculumContext(data.curriculum));
         setToc(data.toc || []);
         setMetadata(data.metadata || {});
 
@@ -379,7 +420,11 @@ export default function NoteDetail() {
   }
 
   function handleBack() {
-    navigate(`/notes?highlight=${noteId}`);
+    const unitId = note?.unit_id;
+    navigate(unitId
+      ? `/notes?unit_id=${encodeURIComponent(unitId)}&highlight=${encodeURIComponent(noteId)}`
+      : `/notes?highlight=${encodeURIComponent(noteId)}`
+    );
   }
 
   function handleTocLinkClick(e, anchor) {
@@ -418,6 +463,10 @@ export default function NoteDetail() {
 
   const enhancedContent = enhanceContentWithLinks(note.content, internalLinks.inline_links);
   const finalContent = buildContentWithMetadata(enhancedContent, metadata);
+  const curriculumPath = buildCurriculumPath(curriculumContext);
+  const curriculumBreadcrumb = curriculumContext
+    ? (breadcrumb.length ? breadcrumb : null)
+    : breadcrumb;
 
   return (
     <>
@@ -536,7 +585,7 @@ export default function NoteDetail() {
         </button>
 
         <div className="breadcrumb note-breadcrumb font-mono">
-          {breadcrumb.map((crumb, index) => (
+          {curriculumBreadcrumb.map((crumb, index) => (
             <span key={index}>
               {crumb.href ? (
                 <Link to={crumb.href} className="breadcrumb-link">{crumb.label}</Link>
@@ -544,7 +593,7 @@ export default function NoteDetail() {
                 <span className="breadcrumb-current">{crumb.label}</span>
               )}
 
-              {index < breadcrumb.length - 1 && <span className="breadcrumb-sep">›</span>}
+              {index < curriculumBreadcrumb.length - 1 && <span className="breadcrumb-sep">›</span>}
             </span>
           ))}
 
@@ -552,6 +601,31 @@ export default function NoteDetail() {
             <span className="note-class-badge font-maven-pro">{note.unit_title.group_name}</span>
           )}
         </div>
+
+        {curriculumContext?.node && (
+          <div className="note-curriculum-context">
+            <div className="note-curriculum-context-label font-mono">
+              {getNodeTypeLabel(curriculumContext.node)} · Curriculum
+            </div>
+
+            <div className="note-curriculum-context-path font-source-sans">
+              {[...(curriculumContext.ancestors || []), curriculumContext.node]
+                .filter((item) => item?.name)
+                .map((item, index, items) => (
+                  <span key={item.id || `${item.name}-${index}`}>
+                    {item.name}
+                    {index < items.length - 1 && <span className="breadcrumb-sep">›</span>}
+                  </span>
+                ))}
+            </div>
+
+            {curriculumPath && (
+              <Link to={curriculumPath} className="breadcrumb-link note-curriculum-context-link">
+                Open learning hub <i className="fa-solid fa-arrow-right"></i>
+              </Link>
+            )}
+          </div>
+        )}
 
         <article ref={contentRef} className="note-article">
           <div className="note-hero">
@@ -572,6 +646,12 @@ export default function NoteDetail() {
 
               {note?.unit_title?.unit_name && (
                 <span className="note-tag note-tag-unit font-comfortaa">{note.unit_title.unit_name}</span>
+              )}
+
+              {curriculumContext?.node?.node_type && (
+                <span className="note-tag note-tag-unit font-comfortaa">
+                  {getNodeTypeLabel(curriculumContext.node)}
+                </span>
               )}
             </div>
 
