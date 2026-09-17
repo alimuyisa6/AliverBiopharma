@@ -1,5 +1,4 @@
- /* features/chat/ChatWidget.jsx */
-import { useRef, useEffect } from 'react';
+/* features/chat/ChatWidget.jsx */
 import Icon from '../../components/Icon/Icon';
 
 export function ChatWidget({ chatOpen, chatMessages = [], chatInput, adminOnline, onToggle, onSend, onInputChange, onDeleteMsg, chatBodyRef }) {
@@ -34,8 +33,9 @@ export function ChatWidget({ chatOpen, chatMessages = [], chatInput, adminOnline
               <span className="chat-panel-header-avatar">
                 <Icon name="headset" />
               </span>
-              <div>
+              <div className="chat-panel-heading">
                 <div className="chat-panel-title">Support</div>
+                <div className="chat-panel-description">Questions about your learning experience? We’re here to help.</div>
                 <div className="chat-panel-status">
                   <span className={`status-dot ${adminOnline ? 'status-dot-success' : 'status-dot-error'}`} />
                   {adminOnline ? 'We usually reply within minutes' : 'Currently offline — leave a message'}
@@ -48,6 +48,20 @@ export function ChatWidget({ chatOpen, chatMessages = [], chatInput, adminOnline
           </div>
 
           <div ref={chatBodyRef} className="chat-body">
+            <div className="chat-welcome" aria-hidden="true">
+              <div className="chat-welcome-art">
+                <span className="chat-welcome-bubble chat-welcome-bubble-one" />
+                <span className="chat-welcome-bubble chat-welcome-bubble-two" />
+                <span className="chat-welcome-face">
+                  <Icon name="message" />
+                </span>
+              </div>
+              <div className="chat-welcome-copy">
+                <h3>How can we help?</h3>
+                <p>Send us a message and our support team will get back to you.</p>
+              </div>
+            </div>
+
             {chatMessages.map((msg) => (
               <div
                 key={msg.id}
@@ -73,24 +87,27 @@ export function ChatWidget({ chatOpen, chatMessages = [], chatInput, adminOnline
           </div>
 
           <div className="chat-input-row">
-            <textarea
-              className="form-textarea chat-textarea"
-              placeholder="Type your message..."
-              value={chatInput}
-              onChange={handleInput}
-              onKeyDown={handleKeyPress}
-              rows={1}
-              maxLength={500}
-              aria-label="Message"
-            />
-            <button
-              className="btn btn-primary btn-icon chat-send-btn"
-              onClick={onSend}
-              disabled={!chatInput.trim()}
-              aria-label="Send message"
-            >
-              <Icon name="paper-plane" />
-            </button>
+            <div className="chat-input-group">
+              <textarea
+                className="form-textarea chat-textarea"
+                placeholder="Type your message..."
+                value={chatInput}
+                onChange={handleInput}
+                onKeyDown={handleKeyPress}
+                rows={1}
+                maxLength={500}
+                aria-label="Message"
+              />
+              <button
+                className="btn btn-primary chat-send-btn"
+                onClick={onSend}
+                disabled={!chatInput.trim()}
+                aria-label="Send message"
+              >
+                <Icon name="paper-plane" />
+                <span>Send</span>
+              </button>
+            </div>
           </div>
         </div>
       )}
