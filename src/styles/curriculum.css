@@ -264,6 +264,81 @@
   text-transform: capitalize;
 }
 
+.curriculum-node-learning {
+  padding-top: var(--space-7);
+}
+
+.curriculum-node-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.curriculum-node-block {
+  min-width: 0;
+  padding: var(--space-5) 0;
+  border-top: 2px solid var(--border-default);
+}
+
+.curriculum-node-block:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.curriculum-node-block h3 {
+  margin: 0 0 var(--space-3);
+  color: var(--text-main);
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+}
+
+.curriculum-node-block p {
+  max-width: 780px;
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--text-body);
+  line-height: var(--leading-relaxed);
+  white-space: pre-wrap;
+}
+
+.curriculum-node-block-image {
+  display: block;
+  width: 100%;
+  max-width: 900px;
+  max-height: 560px;
+  object-fit: contain;
+  background: var(--bg-card-tinted);
+  border: 1px solid var(--border-default);
+}
+
+.curriculum-node-block-video video {
+  display: block;
+  width: 100%;
+  max-width: 900px;
+  background: #000;
+}
+
+.curriculum-node-block-interactive,
+.curriculum-node-block-quiz {
+  padding: var(--space-4);
+  border-left: 3px solid var(--primary);
+  background: var(--bg-card-tinted);
+}
+
+.curriculum-node-premium {
+  display: inline-flex;
+  margin-top: var(--space-3);
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--amber-300);
+  color: var(--amber-700);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+}
+
 .curriculum-node-resources {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -330,6 +405,18 @@
   .curriculum-node-children,
   .curriculum-node-resources {
     grid-template-columns: 1fr;
+  }
+
+  .curriculum-node-blocks {
+    gap: var(--space-4);
+  }
+
+  .curriculum-node-block {
+    padding: var(--space-4) 0;
+  }
+
+  .curriculum-node-block-image {
+    max-height: 420px;
   }
 
   .curriculum-node-link {
