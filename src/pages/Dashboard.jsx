@@ -73,17 +73,11 @@ export default function Dashboard() {
               <div className="skeleton dashboard-skeleton-title" />
               <div className="skeleton dashboard-skeleton-subtitle" />
             </div>
-            <div className="dashboard-skeleton-layout">
-              <div className="dashboard-skeleton-column">
-                <div className="skeleton dashboard-skeleton-block dashboard-skeleton-block-stats" />
-                <div className="skeleton dashboard-skeleton-block dashboard-skeleton-block-reading" />
-                <div className="skeleton dashboard-skeleton-block dashboard-skeleton-block-recommendations" />
-              </div>
-              <div className="dashboard-skeleton-column">
-                <div className="skeleton dashboard-skeleton-block dashboard-skeleton-block-records" />
-                <div className="skeleton dashboard-skeleton-block dashboard-skeleton-block-weak" />
-                <div className="skeleton dashboard-skeleton-block dashboard-skeleton-block-activity" />
-              </div>
+            <div className="dashboard-skeleton-grid">
+              <div className="skeleton dashboard-skeleton-block" />
+              <div className="skeleton dashboard-skeleton-block" />
+              <div className="skeleton dashboard-skeleton-block" />
+              <div className="skeleton dashboard-skeleton-block" />
             </div>
           </div>
         </div>
@@ -178,7 +172,6 @@ export default function Dashboard() {
                     <span className="stat-value">{achievements.earned_count}</span>
                     <span className="stat-label">Badges</span>
                   </div>
-
                   <div className="xp-progress-container">
                     <div className="xp-labels">
                       <span id="xp-current">{platform.xp_progress.xpIntoLevel} XP</span>
