@@ -37,6 +37,51 @@ const RESOURCE_LABELS = {
   'past-papers': 'Past Papers'
 };
 
+function renderBlockContent(block) {
+  const content = block?.content || '';
+
+  if (block.content_type === 'image') {
+    return block.media_url ? (
+      <img
+        src={block.media_url}
+        alt={block.title || 'Curriculum learning illustration'}
+        className="curriculum-node-block-image"
+        loading="lazy"
+      />
+    ) : null;
+  }
+
+  if (block.content_type === 'video') {
+    if (!block.media_url) return content ? <p>{content}</p> : null;
+
+    return (
+      <div className="curriculum-node-block-video">
+        <video controls preload="metadata" src={block.media_url}>
+          Your browser does not support video playback.
+        </video>
+      </div>
+    );
+  }
+
+  if (block.content_type === 'interactive') {
+    return (
+      <div className="curriculum-node-block-interactive">
+        {content ? <p>{content}</p> : <p>Interactive learning content will appear here.</p>}
+      </div>
+    );
+  }
+
+  if (block.content_type === 'quiz_ref') {
+    return (
+      <div className="curriculum-node-block-quiz">
+        {content ? <p>{content}</p> : <p>Test your understanding of this topic.</p>}
+      </div>
+    );
+  }
+
+  return content ? <p>{content}</p> : null;
+}
+
 export default function CurriculumNodePage() {
   const { groupId, '*': nodePath = '' } = useParams();
   const [data, setData] = useState(null);
@@ -70,6 +115,7 @@ export default function CurriculumNodePage() {
   const children = data?.children || [];
   const relationships = data?.relationships || [];
   const counts = data?.resource_counts || {};
+  const blocks = data?.blocks || [];
 
   const breadcrumbItems = useMemo(() => {
     const group = ancestors[1];
@@ -138,6 +184,30 @@ export default function CurriculumNodePage() {
         <h1>{node.name}</h1>
         <p>Continue learning through the concepts, resources, and related curriculum connected to this node.</p>
       </header>
+
+      {blocks.length > 0 && (
+        <section className="curriculum-node-section curriculum-node-learning">
+          <div className="curriculum-node-section-heading">
+            <div>
+              <span className="curriculum-node-kicker">Learning content</span>
+              <h2>Study {node.name}</h2>
+            </div>
+          </div>
+
+          <div className="curriculum-node-blocks">
+            {blocks.map((block) => (
+              <article
+                key={block.id}
+                className={`curriculum-node-block curriculum-node-block-${block.content_type || 'text'}`}
+              >
+                {block.title && <h3>{block.title}</h3>}
+                {renderBlockContent(block)}
+                {block.is_premium && <span className="curriculum-node-premium">Premium</span>}
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
 
       {children.length > 0 && (
         <section className="curriculum-node-section">
