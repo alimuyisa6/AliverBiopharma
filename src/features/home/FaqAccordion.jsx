@@ -4,14 +4,14 @@ import { useEffect, useMemo, useState } from 'react';
 const ACCENTS = ['grey', 'green', 'blue', 'amber', 'emerald'];
 
 const FAQ_ILLUSTRATION_STYLE = {
-  width: 'clamp(120px, 18vw, 240px)',
-  height: 'clamp(120px, 18vw, 240px)',
-  aspectRatio: '1 / 1',
   display: 'block',
+  width: '100%',
+  height: '100%',
+  aspectRatio: '1 / 1',
   objectFit: 'cover',
-  borderRadius: '50%',
-  border: '1px solid var(--border-default)',
-  boxShadow: 'var(--shadow-card)',
+  borderRadius: 'inherit',
+  border: 0,
+  boxShadow: 'none',
 };
 
 function slugify(value = '') {
@@ -179,7 +179,7 @@ export function FaqAccordion({ items, data, standalone = false }) {
             )}
           </label>
         </div>
-        <div className="faq-illustration faq-illustration-hero">
+        <div className="faq-illustration faq-illustration-hero" style={{ width: '150px', height: '150px', borderRadius: '50%', background: 'var(--teal-100)', overflow: 'hidden' }}>
           <img style={FAQ_ILLUSTRATION_STYLE} src={faqHeroIllustration.imageUrl} alt={faqHeroIllustration.alt || faq.hero.title} />
         </div>
       </section>
