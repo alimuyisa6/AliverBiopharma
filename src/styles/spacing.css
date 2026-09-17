@@ -65,6 +65,14 @@
   --card-padding-y-spacious: var(--space-8);
 
   /* --------------------------------------------------------------
+     Chat widget sizing
+     -------------------------------------------------------------- */
+  --chat-toggle-size: 4.5rem;
+  --chat-toggle-icon-size: 3rem;
+  --chat-panel-max-width: 23rem;
+  --chat-panel-max-height: 34rem;
+
+  /* --------------------------------------------------------------
      Radius / shape scale
      Keep shape independent from surface, tone and elevation.
      -------------------------------------------------------------- */
