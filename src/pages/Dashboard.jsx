@@ -1,4 +1,4 @@
-/* pages/Dashboard.jsx */
+ /* pages/Dashboard.jsx */
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
@@ -51,34 +51,38 @@ export default function Dashboard() {
     return component?.properties?.image_url || null;
   }
 
+  // --- STATE: ACCESS RESTRICTED ---
   if (!access.canAccess) {
     return (
       <Container>
-        <EmptyState
-          image={getEmptyStateImage('dashboard')}
-          title="Access Restricted"
-          description="Your account does not have access to this area."
-        />
+        <div className="dashboard-wrapper">
+          <EmptyState
+            image={getEmptyStateImage('dashboard')}
+            title="Access Restricted"
+            description="Your account does not have access to this area."
+          />
+        </div>
       </Container>
     );
   }
 
+  // --- STATE: LOADING SKELETON ---
   if (loading) {
     return (
       <Container>
         <div className="dashboard-wrapper">
-          <div id="loading-state">
-            <div className="skeleton dashboard-skeleton-heading" />
+          <div className="dashboard-loading-skeleton">
+            <div className="skeleton skeleton-heading" />
             <div className="dashboard-grid">
-              <div>
-                <div className="skeleton dashboard-skeleton-block" />
-                <div className="skeleton dashboard-skeleton-block" />
-                <div className="skeleton dashboard-skeleton-block" />
+              <div className="main-column">
+                <div className="skeleton skeleton-block-lg" />
+                <div className="skeleton skeleton-block-md" />
+                <div className="skeleton skeleton-block-md" />
               </div>
-              <div>
-                <div className="skeleton dashboard-skeleton-block" />
-                <div className="skeleton dashboard-skeleton-block" />
-                <div className="skeleton dashboard-skeleton-block" />
+              <div className="sidebar-column">
+                <div className="skeleton skeleton-block-sm" />
+                <div className="skeleton skeleton-block-sm" />
+                <div className="skeleton skeleton-block-sm" />
               </div>
             </div>
           </div>
@@ -87,10 +91,11 @@ export default function Dashboard() {
     );
   }
 
+  // --- STATE: ERROR ---
   if (error || !summary) {
     return (
       <Container>
-        <div id="error-state">
+        <div className="dashboard-wrapper">
           <EmptyState
             image={getEmptyStateImage('error')}
             title="Something went wrong"
@@ -101,14 +106,17 @@ export default function Dashboard() {
     );
   }
 
+  // --- STATE: SECURITY LOCK ---
   if (locked) {
     return (
       <Container>
-        <EmptyState
-          icon="lock"
-          title="Action temporarily disabled"
-          description={reason || 'Suspicious activity detected. Please try again later.'}
-        />
+        <div className="dashboard-wrapper">
+          <EmptyState
+            icon="lock"
+            title="Action temporarily disabled"
+            description={reason || 'Suspicious activity detected. Please try again later.'}
+          />
+        </div>
       </Container>
     );
   }
@@ -131,285 +139,290 @@ export default function Dashboard() {
   return (
     <Container>
       <div className="dashboard-wrapper">
+        
+        {/* HEADER */}
+        <header className="dashboard-header">
+          <div className="header-info">
+            <h1 id="welcome-title">
+              Welcome back{userName ? `, ${userName}` : ''}
+            </h1>
+            <p id="welcome-subtitle">
+              {platform.rank_title} · {levelName}
+            </p>
+          </div>
+          <span className="badge" id="level-badge">
+            {levelName}
+          </span>
+        </header>
 
-        <div id="dashboard-content" className="dashboard-content">
-
-          <header className="dashboard-header">
-            <div className="header-info">
-              <h1 id="welcome-title">
-                Welcome back{userName ? `, ${userName}` : ''}
-              </h1>
-              <p id="welcome-subtitle">
-                {platform.rank_title} · {levelName}
-              </p>
-            </div>
-            <span className="badge" id="level-badge">
-              {levelName}
-            </span>
-          </header>
-
-          <div className="dashboard-grid">
-
-            <main className="main-column">
-
-              <div className="panel">
-                <div className="panel-body">
-                  <div className="platform-stats-grid" id="top-stats">
-                    <div className="stat-box">
-                      <span className="stat-icon"><Icon name="rocket" /></span>
-                      <span className="stat-value">
-                        {platform.total_xp?.toLocaleString?.() ?? platform.total_xp}
-                      </span>
-                      <span className="stat-label">Total XP</span>
-                    </div>
-
-                    <div className="stat-box">
-                      <span className="stat-icon"><Icon name="fire" /></span>
-                      <span className="stat-value">{platform.current_streak}</span>
-                      <span className="stat-label">Day Streak</span>
-                    </div>
-
-                    <div className="stat-box">
-                      <span className="stat-icon"><Icon name="trophy" /></span>
-                      <span className="stat-value">{achievements.earned_count}</span>
-                      <span className="stat-label">Badges</span>
-                    </div>
-                  </div>
-
-                  <div className="xp-progress-container">
-                    <div className="xp-labels">
-                      <span id="xp-current">{platform.xp_progress.xpIntoLevel} XP</span>
-                      <span id="xp-next">{platform.xp_progress.nextLevelXp} XP</span>
-                    </div>
-
-                    <ProgressBar
-                      value={platform.xp_progress.xpIntoLevel}
-                      max={platform.xp_progress.nextLevelXp}
-                      variant="gradient"
-                    />
-
-                    <p className="xp-labels" id="xp-progress-text">
-                      {platform.xp_progress.xpIntoLevel}/{platform.xp_progress.nextLevelXp} XP to next level
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                className="panel"
-                id="continue-reading-section"
-                style={{ display: notes.continue_reading?.length ? 'block' : 'none' }}
-              >
-                <div className="panel-header">
-                  <h3 className="panel-title">
-                    <Icon name="book-open" /> Continue Reading
-                  </h3>
-                </div>
-                <div className="panel-body">
-                  <div className="reading-list" id="continue-reading-list">
-                    {notes.continue_reading?.map((item) => {
-                      const progress = Math.round(item.progress_percentage);
-                      return (
-                        <Link
-                          key={item.note_id}
-                          to={`/notes/read?id=${item.note_id}`}
-                          className="reading-item"
-                        >
-                          <div className="reading-info">
-                            <h4>{item.title}</h4>
-                            <p>{progress}% completed</p>
-                          </div>
-                          <div
-                            className="reading-progress-circle"
-                            style={{
-                              background: `conic-gradient(var(--primary) ${progress}%, var(--border-subtle) 0)`
-                            }}
-                            data-progress={`${progress}%`}
-                          />
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-
-              <div
-                className="panel"
-                id="recommendations-section"
-                style={{ display: analytics?.recommendations?.length ? 'block' : 'none' }}
-              >
-                <div className="panel-header">
-                  <h3 className="panel-title">
-                    <Icon name="lightbulb" /> Recommended For You
-                  </h3>
-                </div>
-                <div className="panel-body">
-                  <div className="recommendation-grid" id="recommendations-list">
-                    {analytics?.recommendations?.slice(0, 4).map((item, index) => {
-                      const link = item.type === 'due_review'
-                        ? '/recall'
-                        : item.type === 'weak_topic'
-                          ? '/quiz'
-                          : '/flashcards';
-                      const typeLabel = item.type === 'due_review'
-                        ? 'Due Review'
-                        : item.type === 'weak_topic'
-                          ? 'Weak Topic'
-                          : 'Flashcards';
-
-                      return (
-                        <Link key={index} to={link} className="rec-card">
-                          <span className="rec-type">{typeLabel}</span>
-                          <h4>{item.title}</h4>
-                          <p>{item.reason}</p>
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-
-              <Link
-                to="/quiz"
-                className="panel"
-                id="continue-practicing"
-                style={{ display: quiz.recent_pass_rate > 0 ? 'block' : 'none', textDecoration: 'none' }}
-              >
-                <div className="panel-body">
-                  <div>
-                    <span className="sec-label">Continue Practicing</span>
-                    <span className="dashboard-continue-text" id="quiz-pass-rate-text">
-                      Recent quiz pass rate: {quiz.recent_pass_rate}%
+        {/* MAIN GRID */}
+        <div className="dashboard-grid">
+          
+          {/* LEFT COLUMN: PRIMARY ACTIVITY */}
+          <main className="main-column">
+            
+            {/* Platform Stats & XP */}
+            <div className="panel">
+              <div className="panel-body">
+                <div className="platform-stats-grid" id="top-stats">
+                  <div className="stat-box">
+                    <span className="stat-icon"><Icon name="rocket" /></span>
+                    <span className="stat-value">
+                      {platform.total_xp?.toLocaleString?.() ?? platform.total_xp}
                     </span>
+                    <span className="stat-label">Total XP</span>
                   </div>
-                  <Icon name="arrow-right" className="dashboard-continue-icon" />
+                  <div className="stat-box">
+                    <span className="stat-icon"><Icon name="fire" /></span>
+                    <span className="stat-value">{platform.current_streak}</span>
+                    <span className="stat-label">Day Streak</span>
+                  </div>
+                  <div className="stat-box">
+                    <span className="stat-icon"><Icon name="trophy" /></span>
+                    <span className="stat-value">{achievements.earned_count}</span>
+                    <span className="stat-label">Badges</span>
+                  </div>
                 </div>
-              </Link>
 
-            </main>
-
-            <aside className="sidebar-column">
-
-              <div
-                className="panel"
-                id="personal-records-section"
-                style={{ display: recall?.best_mastery > 0 ? 'block' : 'none' }}
-              >
-                <div className="panel-header">
-                  <h3 className="panel-title">
-                    <Icon name="star" /> Personal Records
-                  </h3>
+                <div className="xp-progress-container">
+                  <div className="xp-labels">
+                    <span id="xp-current">{platform.xp_progress.xpIntoLevel} XP</span>
+                    <span id="xp-next">{platform.xp_progress.nextLevelXp} XP</span>
+                  </div>
+                  <ProgressBar
+                    value={platform.xp_progress.xpIntoLevel}
+                    max={platform.xp_progress.nextLevelXp}
+                    variant="gradient"
+                  />
+                  <p className="xp-labels" id="xp-progress-text">
+                    {platform.xp_progress.xpIntoLevel}/{platform.xp_progress.nextLevelXp} XP to next level
+                  </p>
                 </div>
-                <div className="panel-body">
-                  <div className="sidebar-list" id="personal-records-stats">
-                    <div className="sidebar-item">
-                      <span className="item-text">Best Recall Mastery</span>
-                      <span className="item-meta item-meta-accent">{recall.best_mastery}%</span>
-                    </div>
-                    <div className="sidebar-item">
-                      <span className="item-text">Recall Topics</span>
-                      <span className="item-meta">{recall.topics_practiced}</span>
-                    </div>
-                    <div className="sidebar-item">
-                      <span className="item-text">Quiz Blocks Done</span>
-                      <span className="item-meta">{quiz.blocks_completed}</span>
-                    </div>
-                    <div className="sidebar-item">
-                      <span className="item-text">Reading Streak</span>
-                      <span className="item-meta item-meta-warm">🔥 {notes.reading_streak}</span>
-                    </div>
+              </div>
+            </div>
+
+            {/* Continue Reading */}
+            <div
+              className="panel"
+              id="continue-reading-section"
+              style={{ display: notes.continue_reading?.length ? 'block' : 'none' }}
+            >
+              <div className="panel-header">
+                <h3 className="panel-title">
+                  <Icon name="book-open" /> Continue Reading
+                </h3>
+              </div>
+              <div className="panel-body">
+                <div className="reading-list" id="continue-reading-list">
+                  {notes.continue_reading?.map((item) => {
+                    const progress = Math.round(item.progress_percentage);
+                    return (
+                      <Link
+                        key={item.note_id}
+                        to={`/notes/read?id=${item.note_id}`}
+                        className="reading-item"
+                      >
+                        <div className="reading-info">
+                          <h4>{item.title}</h4>
+                          <p>{progress}% completed</p>
+                        </div>
+                        <div
+                          className="reading-progress-circle"
+                          style={{
+                            background: `conic-gradient(var(--primary) ${progress}%, var(--border-subtle) 0)`
+                          }}
+                          data-progress={`${progress}%`}
+                        />
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            {/* Recommendations */}
+            <div
+              className="panel"
+              id="recommendations-section"
+              style={{ display: analytics?.recommendations?.length ? 'block' : 'none' }}
+            >
+              <div className="panel-header">
+                <h3 className="panel-title">
+                  <Icon name="lightbulb" /> Recommended For You
+                </h3>
+              </div>
+              <div className="panel-body">
+                <div className="recommendation-grid" id="recommendations-list">
+                  {analytics?.recommendations?.slice(0, 4).map((item, index) => {
+                    const link = item.type === 'due_review'
+                      ? '/recall'
+                      : item.type === 'weak_topic'
+                        ? '/quiz'
+                        : '/flashcards';
+                    const typeLabel = item.type === 'due_review'
+                      ? 'Due Review'
+                      : item.type === 'weak_topic'
+                        ? 'Weak Topic'
+                        : 'Flashcards';
+
+                    return (
+                      <Link key={index} to={link} className="rec-card">
+                        <span className="rec-type">{typeLabel}</span>
+                        <h4>{item.title}</h4>
+                        <p>{item.reason}</p>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            {/* Continue Practicing CTA */}
+            <Link
+              to="/quiz"
+              className="panel continue-practicing-panel"
+              id="continue-practicing"
+              style={{ display: quiz.recent_pass_rate > 0 ? 'block' : 'none' }}
+            >
+              <div className="panel-body continue-practicing-body">
+                <div>
+                  <span className="sec-label">Continue Practicing</span>
+                  <span className="dashboard-continue-text" id="quiz-pass-rate-text">
+                    Recent quiz pass rate: {quiz.recent_pass_rate}%
+                  </span>
+                </div>
+                <Icon name="arrow-right" className="dashboard-continue-icon" />
+              </div>
+            </Link>
+
+          </main>
+
+          {/* RIGHT COLUMN: SIDEBAR / SECONDARY INFO */}
+          <aside className="sidebar-column">
+            
+            {/* Personal Records */}
+            <div
+              className="panel"
+              id="personal-records-section"
+              style={{ display: recall?.best_mastery > 0 ? 'block' : 'none' }}
+            >
+              <div className="panel-header">
+                <h3 className="panel-title">
+                  <Icon name="star" /> Personal Records
+                </h3>
+              </div>
+              <div className="panel-body">
+                <div className="sidebar-list" id="personal-records-stats">
+                  <div className="sidebar-item">
+                    <span className="item-text">Best Recall Mastery</span>
+                    <span className="item-meta item-meta-accent">{recall.best_mastery}%</span>
+                  </div>
+                  <div className="sidebar-item">
+                    <span className="item-text">Recall Topics</span>
+                    <span className="item-meta">{recall.topics_practiced}</span>
+                  </div>
+                  <div className="sidebar-item">
+                    <span className="item-text">Quiz Blocks Done</span>
+                    <span className="item-meta">{quiz.blocks_completed}</span>
+                  </div>
+                  <div className="sidebar-item">
+                    <span className="item-text">Reading Streak</span>
+                    <span className="item-meta item-meta-warm">🔥 {notes.reading_streak}</span>
                   </div>
                 </div>
               </div>
+            </div>
 
-              <div
-                className="panel"
-                id="weak-areas-section"
-                style={{ display: weak_areas?.length ? 'block' : 'none' }}
-              >
-                <div className="panel-header">
-                  <h3 className="panel-title">
-                    <Icon name="lightbulb" /> Weak Areas
-                  </h3>
+            {/* Weak Areas */}
+            <div
+              className="panel"
+              id="weak-areas-section"
+              style={{ display: weak_areas?.length ? 'block' : 'none' }}
+            >
+              <div className="panel-header">
+                <h3 className="panel-title">
+                  <Icon name="lightbulb" /> Weak Areas
+                </h3>
+              </div>
+              <div className="panel-body">
+                <div className="sidebar-list" id="weak-areas-list">
+                  {weak_areas?.map((weak, index) => (
+                    <div key={index} className="sidebar-item">
+                      <span className="item-text">{weak.concept}</span>
+                      <span className="item-meta item-meta-danger">
+                        {weak.incorrect_attempts} incorrect
+                      </span>
+                    </div>
+                  ))}
                 </div>
-                <div className="panel-body">
-                  <div className="sidebar-list" id="weak-areas-list">
-                    {weak_areas?.map((weak, index) => (
-                      <div key={index} className="sidebar-item">
-                        <span className="item-text">{weak.concept}</span>
-                        <span className="item-meta item-meta-danger">
-                          {weak.incorrect_attempts} incorrect
+              </div>
+            </div>
+
+            {/* Recent Activity */}
+            <div
+              className="panel"
+              id="recent-activity-section"
+              style={{ display: recent_activity?.length ? 'block' : 'none' }}
+            >
+              <div className="panel-header">
+                <h3 className="panel-title">
+                  <Icon name="clock" /> Recent Activity
+                </h3>
+              </div>
+              <div className="panel-body">
+                <div className="sidebar-list" id="recent-activity-list">
+                  {recent_activity?.map((activity, index) => (
+                    <div key={index} className="activity-item">
+                      <div className="activity-icon">
+                        <Icon
+                          name={
+                            activity.type === 'recall'
+                              ? 'brain'
+                              : activity.type === 'quiz'
+                                ? 'graduation-cap'
+                                : 'book-open'
+                          }
+                        />
+                      </div>
+                      <div className="activity-details">
+                        <span className="act-text">{activity.details}</span>
+                        <span className="act-date">
+                          {new Date(activity.date).toLocaleDateString(undefined, {
+                            month: 'short',
+                            day: 'numeric'
+                          })}
                         </span>
                       </div>
-                    ))}
-                  </div>
+                    </div>
+                  ))}
                 </div>
               </div>
+            </div>
 
-              <div
-                className="panel"
-                id="recent-activity-section"
-                style={{ display: recent_activity?.length ? 'block' : 'none' }}
-              >
-                <div className="panel-header">
-                  <h3 className="panel-title">
-                    <Icon name="clock" /> Recent Activity
-                  </h3>
-                </div>
-                <div className="panel-body">
-                  <div className="sidebar-list" id="recent-activity-list">
-                    {recent_activity?.map((activity, index) => (
-                      <div key={index} className="activity-item">
-                        <div className="activity-icon">
-                          <Icon
-                            name={
-                              activity.type === 'recall'
-                                ? 'brain'
-                                : activity.type === 'quiz'
-                                  ? 'graduation-cap'
-                                  : 'book-open'
-                            }
-                          />
-                        </div>
-                        <div className="activity-details">
-                          <span className="act-text">{activity.details}</span>
-                          <span className="act-date">
-                            {new Date(activity.date).toLocaleDateString(undefined, {
-                              month: 'short',
-                              day: 'numeric'
-                            })}
-                          </span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+            {/* Unit XP */}
+            <div
+              className="panel"
+              id="unit-xp-section"
+              style={{ display: unit_xp?.length ? 'block' : 'none' }}
+            >
+              <div className="panel-header">
+                <h3 className="panel-title">
+                  <Icon name="chart-line" /> Unit XP
+                </h3>
+              </div>
+              <div className="panel-body">
+                <div className="unit-xp-grid" id="unit-xp-list">
+                  {unit_xp?.map((unit, index) => (
+                    <div key={index} className="unit-xp-item">
+                      <span className="unit-name">{unit.unit_id}</span>
+                      <span className="unit-value">{unit.xp.toLocaleString()} XP</span>
+                    </div>
+                  ))}
                 </div>
               </div>
+            </div>
 
-              <div
-                className="panel"
-                id="unit-xp-section"
-                style={{ display: unit_xp?.length ? 'block' : 'none' }}
-              >
-                <div className="panel-header">
-                  <h3 className="panel-title">
-                    <Icon name="chart-line" /> Unit XP
-                  </h3>
-                </div>
-                <div className="panel-body">
-                  <div className="unit-xp-grid" id="unit-xp-list">
-                    {unit_xp?.map((unit, index) => (
-                      <div key={index} className="unit-xp-item">
-                        <span className="unit-name">{unit.unit_id}</span>
-                        <span className="unit-value">{unit.xp.toLocaleString()} XP</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-            </aside>
-          </div>
+          </aside>
         </div>
       </div>
     </Container>
