@@ -56,29 +56,29 @@ function mapCurriculumUnits(rawUnits) {
 function mapCanonicalCurriculumTree(rawTree, progressUnits) {
   if (!Array.isArray(rawTree)) return [];
 
-  const progressById = new Map(
-    (progressUnits || []).map((unit) => [unit.id, unit])
-  );
+  const progressById = new Map((progressUnits || []).map((unit) => [unit.id, unit]));
 
-  return rawTree
-    .filter((node) => Number(node.depth ?? 0) === 0)
-    .map((node) => {
-      const progress = progressById.get(node.id) || {};
-      return {
-        id: node.id,
-        name: node.name,
-        icon: node.icon,
-        topic_image_url: node.topic_image_url,
-        is_premium: !!node.is_premium,
-        is_hard_topic: !!node.is_hard_topic,
-        quiz_question_count: progress.quiz_question_count ?? 0,
-        recall_question_count: progress.recall_question_count ?? 0,
-        pdf_count: progress.pdf_count ?? 0,
-        progress_percent: progress.progress_percent ?? 0,
-        node_type: node.node_type,
-        depth: 0
-      };
-    });
+  return rawTree.map((node) => {
+    const progress = progressById.get(node.id) || {};
+    return {
+      id: node.id,
+      parent_id: node.parent_id || null,
+      group_id: node.group_id,
+      name: node.name,
+      slug: node.slug,
+      node_type: node.node_type,
+      display_order: node.display_order,
+      icon: node.icon,
+      is_premium: !!node.is_premium,
+      is_hard_topic: !!node.is_hard_topic,
+      topic_image_url: node.topic_image_url,
+      depth: Number(node.depth ?? 0),
+      quiz_question_count: progress.quiz_question_count ?? 0,
+      recall_question_count: progress.recall_question_count ?? 0,
+      pdf_count: progress.pdf_count ?? 0,
+      progress_percent: progress.progress_percent ?? 0
+    };
+  });
 }
 
 function mapDailyRecall(raw) {
@@ -126,7 +126,6 @@ export default function Home() {
   const [adminOnline, setAdminOnline] = useState(false);
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterStatus, setNewsletterStatus] = useState(null);
-
   const [continueLearning, setContinueLearning] = useState([]);
   const [curriculumUnits, setCurriculumUnits] = useState([]);
   const [dailyRecall, setDailyRecall] = useState(null);
@@ -142,10 +141,7 @@ export default function Home() {
   }, [activeGroupId, groups]);
 
   useEffect(() => {
-    if (level?.id) {
-      getSections(level.id).then(setSections).catch(() => {});
-    }
-
+    if (level?.id) getSections(level.id).then(setSections).catch(() => {});
     getPublicStats().then(setPublicStats).catch(() => {});
     checkAdminOnline().then((res) => setAdminOnline(res?.online)).catch(() => {});
   }, [user, level]);
@@ -160,7 +156,6 @@ export default function Home() {
     }
 
     let cancelled = false;
-
     Promise.all([
       getRecentViews(3),
       getUnits({ group_id: activeGroupId }),
@@ -169,13 +164,9 @@ export default function Home() {
       getPastPapers({ group_id: activeGroupId })
     ]).then(([recentViews, units, curriculumTree, recall, papers]) => {
       if (cancelled) return;
-
       const mappedUnits = mapCurriculumUnits(units);
-
       setContinueLearning(mapContinueLearning(recentViews));
-      setCurriculumUnits(
-        mapCanonicalCurriculumTree(curriculumTree, mappedUnits)
-      );
+      setCurriculumUnits(mapCanonicalCurriculumTree(curriculumTree, mappedUnits));
       setDailyRecall(mapDailyRecall(recall));
       setPastPapers(mapPastPapers(papers));
     }).catch(() => {
@@ -186,9 +177,7 @@ export default function Home() {
       setPastPapers([]);
     });
 
-    return () => {
-      cancelled = true;
-    };
+    return () => { cancelled = true; };
   }, [user, activeGroupId]);
 
   const handleNewsletterSubmit = useCallback(async (event) => {
@@ -234,17 +223,9 @@ export default function Home() {
     } catch {}
   }, [chatRoomId]);
 
-  const handleSwitchScope = useCallback(() => {
-    navigate('/settings/scope');
-  }, [navigate]);
-
-  const handleRevealRecall = useCallback(() => {
-    navigate('/recall?reveal=1');
-  }, [navigate]);
-
-  const handleStartRecall = useCallback(() => {
-    navigate('/recall');
-  }, [navigate]);
+  const handleSwitchScope = useCallback(() => navigate('/settings/scope'), [navigate]);
+  const handleRevealRecall = useCallback(() => navigate('/recall?reveal=1'), [navigate]);
+  const handleStartRecall = useCallback(() => navigate('/recall'), [navigate]);
 
   return (
     <HomeView
@@ -272,12 +253,11 @@ export default function Home() {
       chatBodyRef={chatBodyRef}
       continueLearning={continueLearning}
       curriculumUnits={curriculumUnits}
-      canAccessPremium={!!user?.profile?.is_premium}
       dailyRecall={dailyRecall}
-      pastPapers={pastPapers}
       onSwitchScope={handleSwitchScope}
       onRevealRecall={handleRevealRecall}
       onStartRecall={handleStartRecall}
+      pastPapers={pastPapers}
     />
   );
 }
