@@ -14,9 +14,9 @@ import {
   getRecentViews,
   getUnits,
   getRecallDashboard,
-  getPastPapers,
-  switchClass
+  getPastPapers
 } from '../api/cachedClient';
+import { getCurriculumTree } from '../api/curriculumNavigation';
 import { getSections } from '../api/sections';
 import HomeView from '../features/home/HomeView';
 
@@ -51,6 +51,34 @@ function mapCurriculumUnits(rawUnits) {
     pdf_count: unit.pdf_count ?? 0,
     progress_percent: unit.progress_percent ?? 0
   }));
+}
+
+function mapCanonicalCurriculumTree(rawTree, progressUnits) {
+  if (!Array.isArray(rawTree)) return [];
+
+  const progressById = new Map(
+    (progressUnits || []).map((unit) => [unit.id, unit])
+  );
+
+  return rawTree
+    .filter((node) => Number(node.depth ?? 0) === 0)
+    .map((node) => {
+      const progress = progressById.get(node.id) || {};
+      return {
+        id: node.id,
+        name: node.name,
+        icon: node.icon,
+        topic_image_url: node.topic_image_url,
+        is_premium: !!node.is_premium,
+        is_hard_topic: !!node.is_hard_topic,
+        quiz_question_count: progress.quiz_question_count ?? 0,
+        recall_question_count: progress.recall_question_count ?? 0,
+        pdf_count: progress.pdf_count ?? 0,
+        progress_percent: progress.progress_percent ?? 0,
+        node_type: node.node_type,
+        depth: 0
+      };
+    });
 }
 
 function mapDailyRecall(raw) {
@@ -105,14 +133,11 @@ export default function Home() {
   const [pastPapers, setPastPapers] = useState([]);
 
   const currentYear = new Date().getFullYear();
-
   const activeGroupId = user?.profile?.active_group_id || null;
 
   const activeGroupName = useMemo(() => {
     if (!activeGroupId || !groups?.length) return null;
-
     const found = groups.find((group) => group.id === activeGroupId);
-
     return found ? found.name : null;
   }, [activeGroupId, groups]);
 
@@ -134,17 +159,41 @@ export default function Home() {
       return;
     }
 
-    getRecentViews(3).then((res) => setContinueLearning(mapContinueLearning(res))).catch(() => {});
-    getUnits({ group_id: activeGroupId }).then((res) => setCurriculumUnits(mapCurriculumUnits(res))).catch(() => {});
-    getRecallDashboard().then((res) => setDailyRecall(mapDailyRecall(res))).catch(() => {});
-    getPastPapers({ group_id: activeGroupId }).then((res) => setPastPapers(mapPastPapers(res))).catch(() => {});
+    let cancelled = false;
+
+    Promise.all([
+      getRecentViews(3),
+      getUnits({ group_id: activeGroupId }),
+      getCurriculumTree(activeGroupId),
+      getRecallDashboard(),
+      getPastPapers({ group_id: activeGroupId })
+    ]).then(([recentViews, units, curriculumTree, recall, papers]) => {
+      if (cancelled) return;
+
+      const mappedUnits = mapCurriculumUnits(units);
+
+      setContinueLearning(mapContinueLearning(recentViews));
+      setCurriculumUnits(
+        mapCanonicalCurriculumTree(curriculumTree, mappedUnits)
+      );
+      setDailyRecall(mapDailyRecall(recall));
+      setPastPapers(mapPastPapers(papers));
+    }).catch(() => {
+      if (cancelled) return;
+      setContinueLearning([]);
+      setCurriculumUnits([]);
+      setDailyRecall(null);
+      setPastPapers([]);
+    });
+
+    return () => {
+      cancelled = true;
+    };
   }, [user, activeGroupId]);
 
   const handleNewsletterSubmit = useCallback(async (event) => {
     event.preventDefault();
-
     if (!newsletterEmail) return;
-
     try {
       await subscribeNewsletter(newsletterEmail);
       setNewsletterStatus({ success: true, message: 'Subscribed!' });
@@ -156,16 +205,12 @@ export default function Home() {
 
   const handleRequestChat = useCallback(async () => {
     if (!user) return;
-
     try {
       const res = await requestChat();
-
       setChatRoomId(res?.room_id);
       setChatOpen(true);
-
       if (res?.room_id) {
         const messages = await getChatMessages(res.room_id);
-
         setChatMessages(Array.isArray(messages) ? messages : []);
       }
     } catch {}
@@ -173,13 +218,10 @@ export default function Home() {
 
   const handleSendChat = useCallback(async () => {
     if (!chatInput.trim() || !chatRoomId) return;
-
     try {
       await sendChatMessage(chatRoomId, chatInput);
       setChatInput('');
-
       const messages = await getChatMessages(chatRoomId);
-
       setChatMessages(Array.isArray(messages) ? messages : []);
     } catch {}
   }, [chatInput, chatRoomId]);
@@ -187,9 +229,7 @@ export default function Home() {
   const handleDeleteChatMsg = useCallback(async (messageId) => {
     try {
       await deleteChatMessage(messageId);
-
       const messages = await getChatMessages(chatRoomId);
-
       setChatMessages(Array.isArray(messages) ? messages : []);
     } catch {}
   }, [chatRoomId]);
