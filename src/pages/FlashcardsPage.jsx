@@ -1,6 +1,6 @@
  /* pages/FlashcardsPage.jsx */
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useRequireOnboarding } from '../hooks/useRequireOnboarding';
 import { useLevelFilter } from '../hooks/useLevelFilter';
@@ -34,6 +34,7 @@ const STAGE = {
 export default function FlashcardsPage() {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { isReady } = useRequireOnboarding();
   const access = useContentAccess();
   const { locked, reason } = useSecurityUiLock();
@@ -48,6 +49,7 @@ export default function FlashcardsPage() {
   const [decks, setDecks] = useState([]);
   const [error, setError] = useState(null);
 
+  const curriculumUnitId = searchParams.get('unit_id') || null;
   const levelName = displayName || level || '';
   const classLabel = class_name || '';
 
@@ -55,7 +57,7 @@ export default function FlashcardsPage() {
     if (!user || !isReady || !access.canAccess) return;
 
     init();
-  }, [user, isReady, access.canAccess, level, class_name]);
+  }, [user, isReady, access.canAccess, level, class_name, curriculumUnitId]);
 
   async function init() {
     setStage(STAGE.LOADING);
@@ -63,7 +65,7 @@ export default function FlashcardsPage() {
     try {
       const [knownData, decksData] = await Promise.all([
         getKnownFlashcards(),
-        getFlashcardDecks({})
+        getFlashcardDecks(curriculumUnitId ? { unit_id: curriculumUnitId } : {})
       ]);
 
       setKnownIds(knownData || []);
