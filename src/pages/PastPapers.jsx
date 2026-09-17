@@ -1,6 +1,6 @@
 /* pages/PastPapers.jsx */
 import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useLevelFilter } from '../hooks/useLevelFilter';
 import {
@@ -34,6 +34,8 @@ const TABS = [
 
 export default function PastPapers() {
   const { user } = useAuth();
+  const [searchParams] = useSearchParams();
+  const curriculumUnitId = searchParams.get('unit_id') || null;
   const { level, class_name, showAll, displayName } = useLevelFilter();
   const { bootstrap } = useLayout();
   const addToast = useToast();
@@ -114,7 +116,7 @@ export default function PastPapers() {
 
   useEffect(() => {
     setPage(1);
-  }, [effectiveLevel, effectiveClass, activeTab, searchQuery]);
+  }, [effectiveLevel, effectiveClass, activeTab, searchQuery, curriculumUnitId]);
 
   useEffect(() => {
     if (!user) {
@@ -140,7 +142,8 @@ export default function PastPapers() {
     filters.subject,
     filters.year,
     filters.exam_board,
-    filters.paper_type
+    filters.paper_type,
+    curriculumUnitId
   ]);
 
   const loadUserInteractions = async () => {
@@ -186,6 +189,10 @@ export default function PastPapers() {
           page,
           limit: 12
         };
+
+        if (curriculumUnitId) {
+          params.unit_id = curriculumUnitId;
+        }
 
         if (effectiveLevel) {
           params.level = effectiveLevel;
@@ -518,7 +525,7 @@ export default function PastPapers() {
                 Home
               </Link>
               <Icon name="chevron-right" className="pp-breadcrumb-sep" />
-              <span>Past Papers</span>
+              <span>{curriculumUnitId ? 'Curriculum Past Papers' : 'Past Papers'}</span>
             </nav>
 
             <div className="pp-meta">
