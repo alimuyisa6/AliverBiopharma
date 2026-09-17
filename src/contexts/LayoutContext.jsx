@@ -200,7 +200,7 @@ export function LayoutProvider({ children }) {
       loading: false,
       bootstrap,
       logo: bootstrap.universal?.logo_url || null,
-      siteName: bootstrap.universal?.site_name || platformConfig?.site_name || 'AliverBiopharm',
+      siteName: 'AliverBiopharm',
       navigation: mergedNavigation,
       footer: bootstrap.footer || { quick_links: [], resource_links: [], community_links: [], social_links: {} },
       groups: bootstrap.groups || [],
