@@ -1,5 +1,5 @@
- import { useState, useEffect, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useRequireOnboarding } from '../hooks/useRequireOnboarding';
 import { useLevelFilter } from '../hooks/useLevelFilter';
@@ -58,6 +58,8 @@ const CONFIDENCE_LEVELS = [
 export default function BioRecall() {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const curriculumUnitId = searchParams.get('unit_id') || null;
   const { isReady } = useRequireOnboarding();
   const access = useContentAccess();
   const { locked, reason } = useSecurityUiLock();
@@ -127,7 +129,7 @@ export default function BioRecall() {
 
     loadUserProgress();
     loadDueQueue();
-  }, [isReady, access.canAccess, access.isPending]);
+  }, [isReady, access.canAccess, access.isPending, curriculumUnitId]);
 
   async function loadUserProgress() {
     setLoading(true);
@@ -174,8 +176,16 @@ export default function BioRecall() {
         Array.isArray(achievements) ? achievements : []
       );
 
+      const availableTopics = Array.isArray(topicsRes?.units)
+        ? topicsRes.units
+        : [];
+
       setTopicList(
-        Array.isArray(topicsRes?.units) ? topicsRes.units : []
+        curriculumUnitId
+          ? availableTopics.filter(
+              (topic) => String(topic.unit_id) === String(curriculumUnitId)
+            )
+          : availableTopics
       );
 
       if (topicsRes?.level) {
