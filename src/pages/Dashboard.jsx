@@ -6,13 +6,10 @@ import { useLayout } from '../contexts/LayoutContext';
 import { getUserDashboard } from '../api/cachedClient';
 import { useContentAccess } from '../hooks/useContentAccess';
 import { useSecurityUiLock } from '../hooks/useSecurityUiLock';
-import PageHeader from '../components/PageHeader/PageHeader';
-import StatCard from '../components/StatCard/StatCard';
-import ProgressBar from '../components/ProgressBar/ProgressBar';
-import Skeleton from '../components/Skeleton/Skeleton';
 import EmptyState from '../components/EmptyState/EmptyState';
 import Icon from '../components/Icon/Icon';
 import Container from '../components/Container/Container';
+import ProgressBar from '../components/ProgressBar/ProgressBar';
 
 export default function Dashboard() {
   const { user } = useAuth();
@@ -51,7 +48,6 @@ export default function Dashboard() {
   function getEmptyStateImage(key) {
     const uiComponents = bootstrap?.ui_components || [];
     const component = uiComponents.find((item) => item.component_key === `empty_state_${key}`);
-
     return component?.properties?.image_url || null;
   }
 
@@ -70,13 +66,21 @@ export default function Dashboard() {
   if (loading) {
     return (
       <Container>
-        <div className="dashboard-skeleton">
-          <Skeleton height={48} width="60%" />
-          <div className="dashboard-skeleton-grid">
-            <Skeleton height={120} />
-            <Skeleton height={120} />
-            <Skeleton height={120} />
-            <Skeleton height={120} />
+        <div className="dashboard-wrapper">
+          <div id="loading-state">
+            <div className="skeleton dashboard-skeleton-heading" />
+            <div className="dashboard-grid">
+              <div>
+                <div className="skeleton dashboard-skeleton-block" />
+                <div className="skeleton dashboard-skeleton-block" />
+                <div className="skeleton dashboard-skeleton-block" />
+              </div>
+              <div>
+                <div className="skeleton dashboard-skeleton-block" />
+                <div className="skeleton dashboard-skeleton-block" />
+                <div className="skeleton dashboard-skeleton-block" />
+              </div>
+            </div>
           </div>
         </div>
       </Container>
@@ -86,11 +90,13 @@ export default function Dashboard() {
   if (error || !summary) {
     return (
       <Container>
-        <EmptyState
-          image={getEmptyStateImage('error')}
-          title="Something went wrong"
-          description={error || 'Dashboard unavailable.'}
-        />
+        <div id="error-state">
+          <EmptyState
+            image={getEmptyStateImage('error')}
+            title="Something went wrong"
+            description={error || 'Dashboard unavailable.'}
+          />
+        </div>
       </Container>
     );
   }
@@ -119,50 +125,81 @@ export default function Dashboard() {
     analytics
   } = summary;
 
-  const levelColor = level?.id === 'Pharmacy' ? 'accent' : level?.id === 'A-Level' ? 'secondary' : 'primary';
+  const levelName = level?.display_name || 'No Level';
+  const userName = user?.full_name || '';
 
   return (
     <Container>
       <div className="dashboard-wrapper">
-        <div className="dashboard-content">
+
+        <div id="dashboard-content" className="dashboard-content">
+
           <header className="dashboard-header">
             <div className="header-info">
-              <h1>{`Welcome back${user?.full_name ? `, ${user.full_name}` : ''}`}</h1>
-              <p>{`${platform.rank_title} · ${level?.display_name || ''}`}</p>
+              <h1 id="welcome-title">
+                Welcome back{userName ? `, ${userName}` : ''}
+              </h1>
+              <p id="welcome-subtitle">
+                {platform.rank_title} · {levelName}
+              </p>
             </div>
-            <span className="badge" data-variant={levelColor}>
-              {level?.display_name || 'No Level'}
+            <span className="badge" id="level-badge">
+              {levelName}
             </span>
           </header>
 
           <div className="dashboard-grid">
+
             <main className="main-column">
-              <section className="panel dashboard-overview-panel">
+
+              <div className="panel">
                 <div className="panel-body">
                   <div className="platform-stats-grid" id="top-stats">
-                    <StatCard icon="rocket" value={platform.total_xp} label="XP" color={levelColor} />
-                    <StatCard icon="fire" value={platform.current_streak} label="Day Streak" color="warm" />
-                    <StatCard icon="trophy" value={achievements.earned_count} label="Badges" color="accent" />
+                    <div className="stat-box">
+                      <span className="stat-icon"><Icon name="rocket" /></span>
+                      <span className="stat-value">
+                        {platform.total_xp?.toLocaleString?.() ?? platform.total_xp}
+                      </span>
+                      <span className="stat-label">Total XP</span>
+                    </div>
+
+                    <div className="stat-box">
+                      <span className="stat-icon"><Icon name="fire" /></span>
+                      <span className="stat-value">{platform.current_streak}</span>
+                      <span className="stat-label">Day Streak</span>
+                    </div>
+
+                    <div className="stat-box">
+                      <span className="stat-icon"><Icon name="trophy" /></span>
+                      <span className="stat-value">{achievements.earned_count}</span>
+                      <span className="stat-label">Badges</span>
+                    </div>
                   </div>
 
                   <div className="xp-progress-container">
                     <div className="xp-labels">
-                      <span>{platform.xp_progress.xpIntoLevel} XP</span>
-                      <span>{platform.xp_progress.nextLevelXp} XP</span>
+                      <span id="xp-current">{platform.xp_progress.xpIntoLevel} XP</span>
+                      <span id="xp-next">{platform.xp_progress.nextLevelXp} XP</span>
                     </div>
+
                     <ProgressBar
                       value={platform.xp_progress.xpIntoLevel}
                       max={platform.xp_progress.nextLevelXp}
                       variant="gradient"
                     />
-                    <p className="xp-progress-text">
+
+                    <p className="xp-labels" id="xp-progress-text">
                       {platform.xp_progress.xpIntoLevel}/{platform.xp_progress.nextLevelXp} XP to next level
                     </p>
                   </div>
                 </div>
-              </section>
+              </div>
 
-              <section className="panel" id="continue-reading-section">
+              <div
+                className="panel"
+                id="continue-reading-section"
+                style={{ display: notes.continue_reading?.length ? 'block' : 'none' }}
+              >
                 <div className="panel-header">
                   <h3 className="panel-title">
                     <Icon name="book-open" /> Continue Reading
@@ -170,30 +207,37 @@ export default function Dashboard() {
                 </div>
                 <div className="panel-body">
                   <div className="reading-list" id="continue-reading-list">
-                    {notes.continue_reading.map((item) => (
-                      <Link
-                        key={item.note_id}
-                        to={`/notes/read?id=${item.note_id}`}
-                        className="reading-item"
-                      >
-                        <div className="reading-info">
-                          <h4>{item.title}</h4>
-                          <p>{Math.round(item.progress_percentage)}% read</p>
-                        </div>
-                        <div
-                          className="reading-progress-circle"
-                          style={{
-                            background: `conic-gradient(var(--primary) ${Math.round(item.progress_percentage)}%, var(--border-subtle) 0)`
-                          }}
-                          data-progress={`${Math.round(item.progress_percentage)}%`}
-                        />
-                      </Link>
-                    ))}
+                    {notes.continue_reading?.map((item) => {
+                      const progress = Math.round(item.progress_percentage);
+                      return (
+                        <Link
+                          key={item.note_id}
+                          to={`/notes/read?id=${item.note_id}`}
+                          className="reading-item"
+                        >
+                          <div className="reading-info">
+                            <h4>{item.title}</h4>
+                            <p>{progress}% completed</p>
+                          </div>
+                          <div
+                            className="reading-progress-circle"
+                            style={{
+                              background: `conic-gradient(var(--primary) ${progress}%, var(--border-subtle) 0)`
+                            }}
+                            data-progress={`${progress}%`}
+                          />
+                        </Link>
+                      );
+                    })}
                   </div>
                 </div>
-              </section>
+              </div>
 
-              <section className="panel" id="recommendations-section">
+              <div
+                className="panel"
+                id="recommendations-section"
+                style={{ display: analytics?.recommendations?.length ? 'block' : 'none' }}
+              >
                 <div className="panel-header">
                   <h3 className="panel-title">
                     <Icon name="lightbulb" /> Recommended For You
@@ -202,8 +246,16 @@ export default function Dashboard() {
                 <div className="panel-body">
                   <div className="recommendation-grid" id="recommendations-list">
                     {analytics?.recommendations?.slice(0, 4).map((item, index) => {
-                      const link = item.type === 'due_review' ? '/recall' : item.type === 'weak_topic' ? '/quiz' : '/flashcards';
-                      const typeLabel = item.type === 'due_review' ? 'Due Review' : item.type === 'weak_topic' ? 'Weak Topic' : 'Flashcards';
+                      const link = item.type === 'due_review'
+                        ? '/recall'
+                        : item.type === 'weak_topic'
+                          ? '/quiz'
+                          : '/flashcards';
+                      const typeLabel = item.type === 'due_review'
+                        ? 'Due Review'
+                        : item.type === 'weak_topic'
+                          ? 'Weak Topic'
+                          : 'Flashcards';
 
                       return (
                         <Link key={index} to={link} className="rec-card">
@@ -215,25 +267,34 @@ export default function Dashboard() {
                     })}
                   </div>
                 </div>
-              </section>
+              </div>
 
-              {quiz.recent_pass_rate > 0 && (
-                <Link to="/quiz" className="panel dashboard-continue-link" id="continue-practicing">
-                  <div className="panel-body">
-                    <div>
-                      <span className="sec-label">Continue Practicing</span>
-                      <span className="dashboard-continue-text">
-                        Recent quiz pass rate: {quiz.recent_pass_rate}%
-                      </span>
-                    </div>
-                    <Icon name="arrow-right" className="dashboard-continue-icon" />
+              <Link
+                to="/quiz"
+                className="panel"
+                id="continue-practicing"
+                style={{ display: quiz.recent_pass_rate > 0 ? 'block' : 'none', textDecoration: 'none' }}
+              >
+                <div className="panel-body">
+                  <div>
+                    <span className="sec-label">Continue Practicing</span>
+                    <span className="dashboard-continue-text" id="quiz-pass-rate-text">
+                      Recent quiz pass rate: {quiz.recent_pass_rate}%
+                    </span>
                   </div>
-                </Link>
-              )}
+                  <Icon name="arrow-right" className="dashboard-continue-icon" />
+                </div>
+              </Link>
+
             </main>
 
             <aside className="sidebar-column">
-              <section className="panel" id="personal-records-section">
+
+              <div
+                className="panel"
+                id="personal-records-section"
+                style={{ display: recall?.best_mastery > 0 ? 'block' : 'none' }}
+              >
                 <div className="panel-header">
                   <h3 className="panel-title">
                     <Icon name="star" /> Personal Records
@@ -259,9 +320,13 @@ export default function Dashboard() {
                     </div>
                   </div>
                 </div>
-              </section>
+              </div>
 
-              <section className="panel" id="weak-areas-section">
+              <div
+                className="panel"
+                id="weak-areas-section"
+                style={{ display: weak_areas?.length ? 'block' : 'none' }}
+              >
                 <div className="panel-header">
                   <h3 className="panel-title">
                     <Icon name="lightbulb" /> Weak Areas
@@ -279,9 +344,13 @@ export default function Dashboard() {
                     ))}
                   </div>
                 </div>
-              </section>
+              </div>
 
-              <section className="panel" id="recent-activity-section">
+              <div
+                className="panel"
+                id="recent-activity-section"
+                style={{ display: recent_activity?.length ? 'block' : 'none' }}
+              >
                 <div className="panel-header">
                   <h3 className="panel-title">
                     <Icon name="clock" /> Recent Activity
@@ -293,22 +362,35 @@ export default function Dashboard() {
                       <div key={index} className="activity-item">
                         <div className="activity-icon">
                           <Icon
-                            name={activity.type === 'recall' ? 'brain' : activity.type === 'quiz' ? 'graduation-cap' : 'book-open'}
+                            name={
+                              activity.type === 'recall'
+                                ? 'brain'
+                                : activity.type === 'quiz'
+                                  ? 'graduation-cap'
+                                  : 'book-open'
+                            }
                           />
                         </div>
                         <div className="activity-details">
                           <span className="act-text">{activity.details}</span>
                           <span className="act-date">
-                            {new Date(activity.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
+                            {new Date(activity.date).toLocaleDateString(undefined, {
+                              month: 'short',
+                              day: 'numeric'
+                            })}
                           </span>
                         </div>
                       </div>
                     ))}
                   </div>
                 </div>
-              </section>
+              </div>
 
-              <section className="panel" id="unit-xp-section">
+              <div
+                className="panel"
+                id="unit-xp-section"
+                style={{ display: unit_xp?.length ? 'block' : 'none' }}
+              >
                 <div className="panel-header">
                   <h3 className="panel-title">
                     <Icon name="chart-line" /> Unit XP
@@ -324,7 +406,8 @@ export default function Dashboard() {
                     ))}
                   </div>
                 </div>
-              </section>
+              </div>
+
             </aside>
           </div>
         </div>
