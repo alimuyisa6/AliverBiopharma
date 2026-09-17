@@ -37,6 +37,7 @@ import Resources from './pages/Resources';
 import Advertise from './pages/Advertise';
 import AdvertiseCreate from './pages/AdvertiseCreate';
 import AdvertisePayment from './pages/AdvertisePayment';
+import CurriculumNodePage from './pages/CurriculumNodePage';
 
 function GlobalLoader() {
   return (
@@ -160,6 +161,7 @@ function AppRoutes() {
             <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
             <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             <Route path="/resources" element={<Resources />} />
+            <Route path="/curriculum/:groupId/*" element={<ProtectedRoute><CurriculumNodePage /></ProtectedRoute>} />
             <Route path="/quiz" element={<ProtectedRoute><FeatureRoute feature="quizzes"><Quiz /></FeatureRoute></ProtectedRoute>} />
             <Route path="/recall" element={<ProtectedRoute><FeatureRoute feature="recall"><Recall /></FeatureRoute></ProtectedRoute>} />
             <Route path="/flashcards" element={<ProtectedRoute><FeatureRoute feature="flashcards"><FlashcardsPage /></FeatureRoute></ProtectedRoute>} />
