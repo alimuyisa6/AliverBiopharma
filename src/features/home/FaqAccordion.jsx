@@ -125,23 +125,12 @@ export function FaqAccordion({ items, data, standalone = false }) {
             const isActive = activeIndex === index;
 
             return (
-              <div
-                key={item.id || `${item.question}-${index}`}
-                className={`home-faq-item home-faq-${accent}${isActive ? ' active' : ''}`}
-              >
-                <button
-                  className="home-faq-question"
-                  onClick={() => toggleQuestion(index)}
-                  aria-expanded={isActive}
-                  aria-controls={`home-faq-answer-${index}`}
-                >
-                  <span className="home-faq-icon">
-                    <i className="fa-solid fa-circle-question"></i>
-                  </span>
+              <div key={item.id || `${item.question}-${index}`} className={`home-faq-item home-faq-${accent}${isActive ? ' active' : ''}`}>
+                <button className="home-faq-question" onClick={() => toggleQuestion(index)} aria-expanded={isActive} aria-controls={`home-faq-answer-${index}`}>
+                  <span className="home-faq-icon"><i className="fa-solid fa-circle-question"></i></span>
                   <span className="home-faq-question-text">{item.question}</span>
                   <span className="home-faq-plus">+</span>
                 </button>
-
                 <div id={`home-faq-answer-${index}`} className="home-faq-answer"><p>{item.answer}</p></div>
               </div>
             );
@@ -162,23 +151,10 @@ export function FaqAccordion({ items, data, standalone = false }) {
           <p className="faq-hero-description">{faq.hero.description}</p>
           <label className="faq-search">
             <i className="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-            <input
-              type="search"
-              value={search}
-              onChange={event => {
-                setSearch(event.target.value);
-                setActiveIndex(null);
-              }}
-              placeholder={faq.hero.search_placeholder}
-              aria-label="Search frequently asked questions"
-            />
-            {search && (
-              <button type="button" className="faq-search-clear" onClick={() => setSearch('')} aria-label="Clear FAQ search">
-                <i className="fa-solid fa-xmark" aria-hidden="true"></i>
-              </button>
-            )}
+            <input type="search" value={search} onChange={event => { setSearch(event.target.value); setActiveIndex(null); }} placeholder={faq.hero.search_placeholder} aria-label="Search frequently asked questions" />
+            {search && <button type="button" className="faq-search-clear" onClick={() => setSearch('')} aria-label="Clear FAQ search"><i className="fa-solid fa-xmark" aria-hidden="true"></i></button>}
           </label>
-          <div className="faq-illustration faq-illustration-browse-topic">
+          <div className="faq-illustration faq-illustration-browse-topic" style={{ position: 'relative', inset: 'auto', width: '150px', height: '150px', marginTop: 'var(--space-5)', borderRadius: '50%', background: 'var(--blue-100)', overflow: 'hidden' }}>
             <img style={FAQ_ILLUSTRATION_STYLE} src={faqBrowseIllustration.imageUrl} alt={faqBrowseIllustration.alt || 'Student exploring learning topics'} />
           </div>
         </div>
@@ -189,28 +165,16 @@ export function FaqAccordion({ items, data, standalone = false }) {
 
       <section className="faq-section faq-category-section">
         <div className="faq-section-heading">
-          <div>
-            <span className="faq-section-eyebrow">Browse by topic</span>
-            <h2>Find the right answer faster</h2>
-          </div>
+          <div><span className="faq-section-eyebrow">Browse by topic</span><h2>Find the right answer faster</h2></div>
           <span className="faq-result-count">{filteredItems.length} {filteredItems.length === 1 ? 'answer' : 'answers'}</span>
         </div>
         <div className="faq-category-grid">
-          <button
-            type="button"
-            className={`faq-category${activeCategory === 'all' ? ' is-active' : ''}`}
-            onClick={() => { setActiveCategory('all'); setActiveIndex(null); }}
-          >
+          <button type="button" className={`faq-category${activeCategory === 'all' ? ' is-active' : ''}`} onClick={() => { setActiveCategory('all'); setActiveIndex(null); }}>
             <span className="faq-category-icon faq-tone-blue"><i className="fa-solid fa-layer-group" aria-hidden="true"></i></span>
             <span><strong>All questions</strong><small>Browse everything</small></span>
           </button>
           {categories.map(category => (
-            <button
-              key={category.id}
-              type="button"
-              className={`faq-category${activeCategory === category.id ? ' is-active' : ''}`}
-              onClick={() => { setActiveCategory(category.id); setActiveIndex(null); }}
-            >
+            <button key={category.id} type="button" className={`faq-category${activeCategory === category.id ? ' is-active' : ''}`} onClick={() => { setActiveCategory(category.id); setActiveIndex(null); }}>
               <span className={`faq-category-icon faq-tone-${category.tone || 'blue'}`}><i className={`fa-solid ${category.icon || 'fa-circle-question'}`} aria-hidden="true"></i></span>
               <span><strong>{category.label}</strong><small>{category.description}</small></span>
             </button>
@@ -220,33 +184,15 @@ export function FaqAccordion({ items, data, standalone = false }) {
 
       {featuredItems.length > 0 && !search && activeCategory === 'all' && (
         <section className="faq-section faq-featured-section">
-          <div className="faq-section-heading">
-            <div>
-              <span className="faq-section-eyebrow">Popular questions</span>
-              <h2>Start with these</h2>
-            </div>
-          </div>
+          <div className="faq-section-heading"><div><span className="faq-section-eyebrow">Popular questions</span><h2>Start with these</h2></div></div>
           <div className="faq-featured-grid">
             {featuredItems.map(item => (
-              <button
-                type="button"
-                key={item.id || item.question}
-                className="faq-featured-item"
-                onClick={() => {
-                  const index = faq.questions.indexOf(item);
-                  setActiveCategory('all');
-                  setActiveIndex(index);
-                  document.getElementById(`faq-question-${item.id || slugify(item.question)}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }}
-              >
-                <span className="faq-featured-mark"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
-                <span>{item.question}</span>
+              <button type="button" key={item.id || item.question} className="faq-featured-item" onClick={() => { const index = faq.questions.indexOf(item); setActiveCategory('all'); setActiveIndex(index); document.getElementById(`faq-question-${item.id || slugify(item.question)}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' }); }}>
+                <span className="faq-featured-mark"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i></span><span>{item.question}</span>
               </button>
             ))}
           </div>
-          <div className="faq-illustration faq-illustration-popular-questions">
-            <img style={FAQ_ILLUSTRATION_STYLE} src={faqPopularIllustration.imageUrl} alt={faqPopularIllustration.alt || 'Thoughtful student reviewing questions'} />
-          </div>
+          <div className="faq-illustration faq-illustration-popular-questions"><img style={FAQ_ILLUSTRATION_STYLE} src={faqPopularIllustration.imageUrl} alt={faqPopularIllustration.alt || 'Thoughtful student reviewing questions'} /></div>
         </section>
       )}
 
@@ -263,79 +209,36 @@ export function FaqAccordion({ items, data, standalone = false }) {
               const isActive = activeIndex === index;
               return (
                 <article id={`faq-question-${id}`} className={`faq-question-item${isActive ? ' is-open' : ''}`} key={id}>
-                  <button
-                    type="button"
-                    className="faq-question-trigger"
-                    onClick={() => toggleQuestion(index)}
-                    aria-expanded={isActive}
-                    aria-controls={`faq-answer-${id}`}
-                  >
-                    <span className="faq-question-number">{String(index + 1).padStart(2, '0')}</span>
-                    <span className="faq-question-text">{item.question}</span>
-                    <span className="faq-question-icon"><i className={`fa-solid ${isActive ? 'fa-minus' : 'fa-plus'}`} aria-hidden="true"></i></span>
+                  <button type="button" className="faq-question-trigger" onClick={() => toggleQuestion(index)} aria-expanded={isActive} aria-controls={`faq-answer-${id}`}>
+                    <span className="faq-question-number">{String(index + 1).padStart(2, '0')}</span><span className="faq-question-text">{item.question}</span><span className="faq-question-icon"><i className={`fa-solid ${isActive ? 'fa-minus' : 'fa-plus'}`} aria-hidden="true"></i></span>
                   </button>
                   <div id={`faq-answer-${id}`} className="faq-question-answer" hidden={!isActive}>
                     <p>{item.answer}</p>
-                    {Array.isArray(item.tags) && item.tags.length > 0 && (
-                      <div className="faq-tags">
-                        {item.tags.slice(0, 4).map(tag => <span key={tag}>{tag}</span>)}
-                      </div>
-                    )}
-                    <button
-                      type="button"
-                      className="faq-share-link"
-                      onClick={() => navigator.clipboard?.writeText(`${window.location.origin}${window.location.pathname}#faq-${id}`)}
-                    >
-                      <i className="fa-solid fa-link" aria-hidden="true"></i> Copy question link
-                    </button>
+                    {Array.isArray(item.tags) && item.tags.length > 0 && <div className="faq-tags">{item.tags.slice(0, 4).map(tag => <span key={tag}>{tag}</span>)}</div>}
+                    <button type="button" className="faq-share-link" onClick={() => navigator.clipboard?.writeText(`${window.location.origin}${window.location.pathname}#faq-${id}`)}><i className="fa-solid fa-link" aria-hidden="true"></i> Copy question link</button>
                   </div>
                 </article>
               );
             }) : (
-              <div className="faq-no-results">
-                <i className="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-                <h3>No matching questions</h3>
-                <p>Try a broader search term or browse another topic.</p>
-                <button type="button" className="faq-reset" onClick={() => { setSearch(''); setActiveCategory('all'); }}>Clear filters</button>
-              </div>
+              <div className="faq-no-results"><i className="fa-solid fa-magnifying-glass" aria-hidden="true"></i><h3>No matching questions</h3><p>Try a broader search term or browse another topic.</p><button type="button" className="faq-reset" onClick={() => { setSearch(''); setActiveCategory('all'); }}>Clear filters</button></div>
             )}
           </div>
         </div>
-        <div className="faq-illustration faq-illustration-learning">
-          <img style={FAQ_ILLUSTRATION_STYLE} src={faqLearningIllustration.imageUrl} alt={faqLearningIllustration.alt || 'Student focused on learning'} />
-        </div>
+        <div className="faq-illustration faq-illustration-learning"><img style={FAQ_ILLUSTRATION_STYLE} src={faqLearningIllustration.imageUrl} alt={faqLearningIllustration.alt || 'Student focused on learning'} /></div>
       </section>
 
       {faq.resources.length > 0 && (
         <section className="faq-section faq-resources-section">
-          <div className="faq-section-heading">
-            <div>
-              <span className="faq-section-eyebrow">Keep learning</span>
-              <h2>Go straight to the right resource</h2>
-            </div>
-          </div>
+          <div className="faq-section-heading"><div><span className="faq-section-eyebrow">Keep learning</span><h2>Go straight to the right resource</h2></div></div>
           <div className="faq-resource-grid">
-            {faq.resources.map(resource => (
-              <a className="faq-resource" href={resource.href || '#'} key={`${resource.title}-${resource.href}`}>
-                <span className="faq-resource-icon"><i className={`fa-solid ${resource.icon || 'fa-arrow-right'}`} aria-hidden="true"></i></span>
-                <span><strong>{resource.title}</strong><small>{resource.description}</small></span>
-                <i className="fa-solid fa-arrow-up-right-from-square faq-resource-arrow" aria-hidden="true"></i>
-              </a>
-            ))}
+            {faq.resources.map(resource => <a className="faq-resource" href={resource.href || '#'} key={`${resource.title}-${resource.href}`}><span className="faq-resource-icon"><i className={`fa-solid ${resource.icon || 'fa-arrow-right'}`} aria-hidden="true"></i></span><span><strong>{resource.title}</strong><small>{resource.description}</small></span><i className="fa-solid fa-arrow-up-right-from-square faq-resource-arrow" aria-hidden="true"></i></a>)}
           </div>
         </section>
       )}
 
       <section className="faq-support-section">
-        <div className="faq-support-content">
-          <span className="faq-section-eyebrow">Need a person?</span>
-          <h2>{faq.support.title}</h2>
-          <p>{faq.support.description}</p>
-          <a className="faq-support-button" href={faq.support.href || '/contact'}>{faq.support.button || 'Contact Support'} <i className="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
-        </div>
-        <div className="faq-illustration faq-illustration-support">
-          <img style={FAQ_ILLUSTRATION_STYLE} src={faqSupportIllustration.imageUrl} alt={faqSupportIllustration.alt || 'Friendly tutor providing learning support'} />
-        </div>
+        <div className="faq-support-content"><span className="faq-section-eyebrow">Need a person?</span><h2>{faq.support.title}</h2><p>{faq.support.description}</p><a className="faq-support-button" href={faq.support.href || '/contact'}>{faq.support.button || 'Contact Support'} <i className="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div>
+        <div className="faq-illustration faq-illustration-support"><img style={FAQ_ILLUSTRATION_STYLE} src={faqSupportIllustration.imageUrl} alt={faqSupportIllustration.alt || 'Friendly tutor providing learning support'} /></div>
       </section>
     </div>
   );
