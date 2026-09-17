@@ -43,8 +43,8 @@ export default function NetworkStatus() {
     slow: {
       icon: 'triangle-exclamation',
       text: firstName
-        ? `${firstName}, your connection looks slow. Some content may take longer to load.`
-        : 'Slow connection detected. Some content may take longer to load.',
+        ? `${firstName}, your connection is slower than usual. Some content may take longer to load.`
+        : 'Your connection is slower than usual. Some content may take longer to load.',
       tone: 'slow'
     },
     good: {
