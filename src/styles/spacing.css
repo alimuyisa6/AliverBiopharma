@@ -33,6 +33,7 @@
   --content-gap: var(--space-6);
   --content-gap-compact: var(--space-4);
   --content-gap-large: var(--space-8);
+  --content-max-readable: 48rem;
 
   --stack-gap: var(--space-4);
   --stack-gap-tight: var(--space-2);
