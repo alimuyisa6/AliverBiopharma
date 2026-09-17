@@ -440,13 +440,6 @@ const isDarkTheme = theme === 'dark';
 
 return (
 <div className="app-layout">
-<a
-href="#main-content"
-className="skip-link"
->
-Skip to content
-</a>
-
   <NetworkStatus />
 
   {!hideHeader && (
