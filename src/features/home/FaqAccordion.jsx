@@ -178,6 +178,9 @@ export function FaqAccordion({ items, data, standalone = false }) {
               </button>
             )}
           </label>
+          <div className="faq-illustration faq-illustration-browse-topic">
+            <img style={FAQ_ILLUSTRATION_STYLE} src={faqBrowseIllustration.imageUrl} alt={faqBrowseIllustration.alt || 'Student exploring learning topics'} />
+          </div>
         </div>
         <div className="faq-illustration faq-illustration-hero" style={{ width: '150px', height: '150px', borderRadius: '50%', background: 'var(--teal-100)', overflow: 'hidden' }}>
           <img style={FAQ_ILLUSTRATION_STYLE} src={faqHeroIllustration.imageUrl} alt={faqHeroIllustration.alt || faq.hero.title} />
@@ -212,9 +215,6 @@ export function FaqAccordion({ items, data, standalone = false }) {
               <span><strong>{category.label}</strong><small>{category.description}</small></span>
             </button>
           ))}
-        </div>
-        <div className="faq-illustration faq-illustration-browse-topic">
-          <img style={FAQ_ILLUSTRATION_STYLE} src={faqBrowseIllustration.imageUrl} alt={faqBrowseIllustration.alt || 'Student exploring learning topics'} />
         </div>
       </section>
 
