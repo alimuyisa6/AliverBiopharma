@@ -1,4 +1,4 @@
- import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Icon from '../Icon/Icon';
 import { useAuth } from '../../contexts/AuthContext';
@@ -95,10 +95,20 @@ export default function NetworkStatus() {
             transition={{ duration: 0.25 }}
             role="status"
             aria-live="polite"
-            onClick={() => setVisible(false)}
           >
-            <Icon name={message.icon} />
-            <span>{message.text}</span>
+            <div className="network-status-icon" aria-hidden="true">
+              <Icon name={message.icon} />
+            </div>
+            <span className="network-status-message">{message.text}</span>
+            <button
+              type="button"
+              className="network-status-close"
+              onClick={() => setVisible(false)}
+              aria-label="Close network status"
+              title="Close"
+            >
+              <Icon name="xmark" />
+            </button>
           </motion.div>
         )}
       </AnimatePresence>
