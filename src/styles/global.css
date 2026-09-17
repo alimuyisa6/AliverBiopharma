@@ -136,6 +136,110 @@ li + li {
   color: var(--text-inverse);
 }
 
+.network-status-banner {
+  position: fixed;
+  top: calc(var(--header-height) + var(--space-3));
+  right: var(--page-gutter-x);
+  z-index: calc(var(--z-sticky) + 1);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: min(380px, calc(100vw - (var(--page-gutter-x) * 2)));
+  min-height: 54px;
+  padding: var(--space-3) var(--space-3) var(--space-3) var(--space-4);
+  border: 1px solid var(--border-default);
+  border-left: 3px solid var(--warning);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  color: var(--text-main);
+  box-shadow: var(--shadow-md);
+}
+
+.network-status-offline {
+  border-left-color: var(--error);
+}
+
+.network-status-good {
+  border-left-color: var(--success);
+}
+
+.network-status-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  color: var(--warning);
+  font-size: var(--text-sm);
+}
+
+.network-status-offline .network-status-icon {
+  color: var(--error);
+}
+
+.network-status-good .network-status-icon {
+  color: var(--success);
+}
+
+.network-status-message {
+  min-width: 0;
+  flex: 1;
+  color: var(--text-secondary);
+  font-family: var(--font-primary);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-normal);
+}
+
+.network-status-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-xs);
+  background: var(--error);
+  color: var(--text-inverse);
+  font-size: var(--text-xs);
+  line-height: 1;
+}
+
+.network-status-close:hover {
+  background: var(--error-hover, var(--error));
+}
+
+.network-status-close:focus-visible {
+  outline: 2px solid var(--error);
+  outline-offset: 2px;
+}
+
+.network-status-debug {
+  position: fixed;
+  right: var(--space-3);
+  bottom: var(--space-3);
+  z-index: var(--z-modal);
+  max-width: calc(100vw - var(--space-6));
+  padding: var(--space-2) var(--space-3);
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+}
+
+@media (max-width: 640px) {
+  .network-status-banner {
+    top: calc(var(--header-height) + var(--space-2));
+    right: var(--space-3);
+    left: var(--space-3);
+    width: auto;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
