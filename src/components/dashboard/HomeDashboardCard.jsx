@@ -32,13 +32,13 @@ export default function HomeDashboardCard() {
   const { platform, quiz, achievements } = summary;
 
   return (
-    <section className="section">
+    <section className="section home-learning-snapshot-section">
       <div className="section-head">
         <div className="section-head-left">
           <span className="eyebrow">Your learning</span>
           <h2>Learning snapshot</h2>
         </div>
-        <Link to="/dashboard" className="text-link">View full dashboard →</Link>
+        <Link to="/dashboard" className="text-link home-learning-snapshot-dashboard-link">View full dashboard →</Link>
       </div>
       <div className="dash-strip">
         <div className="dash-cell">
