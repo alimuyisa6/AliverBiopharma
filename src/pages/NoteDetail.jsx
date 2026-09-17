@@ -44,44 +44,6 @@ function normalizeReactions(data) {
   };
 }
 
-function normalizeCurriculumContext(data) {
-  const payload = data?.node?.node ? data.node : data;
-
-  if (!payload?.node) return null;
-
-  return {
-    node: payload.node,
-    ancestors: Array.isArray(payload.ancestors) ? payload.ancestors : [],
-    children: Array.isArray(payload.children) ? payload.children : [],
-    relationships: Array.isArray(payload.relationships) ? payload.relationships : [],
-    resourceCounts: payload.resource_counts || {}
-  };
-}
-
-function buildCurriculumPath(context) {
-  const groupId = context?.node?.group_id;
-  const parts = [
-    ...(context?.ancestors || []).map((item) => item?.slug).filter(Boolean),
-    context?.node?.slug
-  ].filter(Boolean);
-
-  if (!groupId || !parts.length) return null;
-
-  return `/curriculum/${encodeURIComponent(groupId)}/${parts.join('/')}`;
-}
-
-function getNodeTypeLabel(node) {
-  const labels = {
-    unit: 'Unit',
-    topic: 'Topic',
-    subtopic: 'Subtopic',
-    module: 'Module',
-    concept: 'Concept'
-  };
-
-  return labels[node?.node_type] || 'Curriculum';
-}
-
 export default function NoteDetail() {
   const { user } = useAuth();
   const { bootstrap } = useLayout();
@@ -91,7 +53,6 @@ export default function NoteDetail() {
 
   const [note, setNote] = useState(null);
   const [breadcrumb, setBreadcrumb] = useState([]);
-  const [curriculumContext, setCurriculumContext] = useState(null);
   const [reactions, setReactions] = useState({ counts: {}, user: [] });
   const [comments, setComments] = useState([]);
   const [commentInput, setCommentInput] = useState('');
@@ -138,16 +99,13 @@ export default function NoteDetail() {
       setReadProgress(0);
       setToc([]);
       setMetadata({});
-      setCurriculumContext(null);
 
       try {
         const data = await getNoteDetail(noteId);
-
         if (!mounted) return;
 
         setNote(data);
         setBreadcrumb(data.breadcrumb || []);
-        setCurriculumContext(normalizeCurriculumContext(data.curriculum));
         setToc(data.toc || []);
         setMetadata(data.metadata || {});
 
@@ -265,7 +223,6 @@ export default function NoteDetail() {
 
   const buildContentWithMetadata = useCallback((enhancedHtml, metadata) => {
     let html = enhancedHtml || '';
-
     const images = metadata.images || [];
     const diagrams = metadata.diagrams || [];
 
@@ -328,19 +285,12 @@ export default function NoteDetail() {
     }
 
     const rect = link.getBoundingClientRect();
-    const targetTitle = link.dataset.noteTitle;
-    const targetPreview = link.dataset.notePreview;
-    const targetReadTime = link.dataset.noteReadTime;
-
     setLinkPreview({
-      title: targetTitle,
-      preview: targetPreview,
-      read_time: targetReadTime
+      title: link.dataset.noteTitle,
+      preview: link.dataset.notePreview,
+      read_time: link.dataset.noteReadTime
     });
-    setLinkPreviewPosition({
-      x: rect.left,
-      y: rect.bottom + 8
-    });
+    setLinkPreviewPosition({ x: rect.left, y: rect.bottom + 8 });
   }, []);
 
   const hideLinkPreview = useCallback(() => {
@@ -437,11 +387,7 @@ export default function NoteDetail() {
   }
 
   if (loading) {
-    return (
-      <div className="fcd-loading-wrap">
-        <Spinner size="lg" />
-      </div>
-    );
+    return <div className="fcd-loading-wrap"><Spinner size="lg" /></div>;
   }
 
   if (fetchError || !note) {
@@ -451,11 +397,7 @@ export default function NoteDetail() {
           image={getEmptyStateImage('notes')}
           title="Note Unavailable"
           description={fetchError || 'The requested note could not be found.'}
-          action={
-            <Button onClick={() => navigate('/notes')}>
-              Browse Notes
-            </Button>
-          }
+          action={<Button onClick={() => navigate('/notes')}>Browse Notes</Button>}
         />
       </div>
     );
@@ -463,10 +405,6 @@ export default function NoteDetail() {
 
   const enhancedContent = enhanceContentWithLinks(note.content, internalLinks.inline_links);
   const finalContent = buildContentWithMetadata(enhancedContent, metadata);
-  const curriculumPath = buildCurriculumPath(curriculumContext);
-  const curriculumBreadcrumb = curriculumContext
-    ? (breadcrumb.length ? breadcrumb : null)
-    : breadcrumb;
 
   return (
     <>
@@ -494,10 +432,7 @@ export default function NoteDetail() {
       {linkPreview && (
         <div
           className="note-link-preview"
-          style={{
-            left: `${linkPreviewPosition.x}px`,
-            top: `${linkPreviewPosition.y}px`
-          }}
+          style={{ left: `${linkPreviewPosition.x}px`, top: `${linkPreviewPosition.y}px` }}
           onMouseEnter={() => {
             if (previewTimer.current) clearTimeout(previewTimer.current);
           }}
@@ -514,10 +449,7 @@ export default function NoteDetail() {
       )}
 
       {lightboxImage && createPortal(
-        <div
-          className="note-lightbox-overlay"
-          onClick={() => setLightboxImage(null)}
-        >
+        <div className="note-lightbox-overlay" onClick={() => setLightboxImage(null)}>
           <img src={lightboxImage} className="note-lightbox-image" alt="Lightbox" />
         </div>,
         document.body
@@ -526,9 +458,7 @@ export default function NoteDetail() {
       {toc.length > 0 && (
         <>
           <aside className="note-toc-sidebar">
-            <h4 className="note-toc-title font-poppins">
-              <i className="fa-solid fa-list"></i> Contents
-            </h4>
+            <h4 className="note-toc-title font-poppins"><i className="fa-solid fa-list"></i> Contents</h4>
             <ul className="note-toc-list">
               {toc.map((item, index) => (
                 <li key={index} className="note-toc-item" style={{ paddingLeft: `${(item.level - 2) * 12}px` }}>
@@ -576,56 +506,22 @@ export default function NoteDetail() {
       )}
 
       <div className="note-detail-container">
-        <button
-          className="note-search-btn"
-          onClick={() => setSearchOpen(true)}
-          aria-label="Search notes"
-        >
+        <button className="note-search-btn" onClick={() => setSearchOpen(true)} aria-label="Search notes">
           <i className="fa-solid fa-magnifying-glass"></i> Search
         </button>
 
         <div className="breadcrumb note-breadcrumb font-mono">
-          {curriculumBreadcrumb.map((crumb, index) => (
+          {breadcrumb.map((crumb, index) => (
             <span key={index}>
               {crumb.href ? (
                 <Link to={crumb.href} className="breadcrumb-link">{crumb.label}</Link>
               ) : (
                 <span className="breadcrumb-current">{crumb.label}</span>
               )}
-
-              {index < curriculumBreadcrumb.length - 1 && <span className="breadcrumb-sep">›</span>}
+              {index < breadcrumb.length - 1 && <span className="breadcrumb-sep">›</span>}
             </span>
           ))}
-
-          {note?.unit_title?.group_name && (
-            <span className="note-class-badge font-maven-pro">{note.unit_title.group_name}</span>
-          )}
         </div>
-
-        {curriculumContext?.node && (
-          <div className="note-curriculum-context">
-            <div className="note-curriculum-context-label font-mono">
-              {getNodeTypeLabel(curriculumContext.node)} · Curriculum
-            </div>
-
-            <div className="note-curriculum-context-path font-source-sans">
-              {[...(curriculumContext.ancestors || []), curriculumContext.node]
-                .filter((item) => item?.name)
-                .map((item, index, items) => (
-                  <span key={item.id || `${item.name}-${index}`}>
-                    {item.name}
-                    {index < items.length - 1 && <span className="breadcrumb-sep">›</span>}
-                  </span>
-                ))}
-            </div>
-
-            {curriculumPath && (
-              <Link to={curriculumPath} className="breadcrumb-link note-curriculum-context-link">
-                Open learning hub <i className="fa-solid fa-arrow-right"></i>
-              </Link>
-            )}
-          </div>
-        )}
 
         <article ref={contentRef} className="note-article">
           <div className="note-hero">
@@ -639,22 +535,6 @@ export default function NoteDetail() {
               aria-valuemax="100"
             />
 
-            <div className="note-meta-tags">
-              {note?.unit_title?.group_name && (
-                <span className="note-tag note-tag-group font-comfortaa">{note.unit_title.group_name}</span>
-              )}
-
-              {note?.unit_title?.unit_name && (
-                <span className="note-tag note-tag-unit font-comfortaa">{note.unit_title.unit_name}</span>
-              )}
-
-              {curriculumContext?.node?.node_type && (
-                <span className="note-tag note-tag-unit font-comfortaa">
-                  {getNodeTypeLabel(curriculumContext.node)}
-                </span>
-              )}
-            </div>
-
             <h1 className="note-title font-fraunces">{note.title}</h1>
           </div>
 
@@ -666,9 +546,7 @@ export default function NoteDetail() {
 
         {internalLinks.related_links.length > 0 && (
           <div className="note-related-section">
-            <h3 className="note-related-title font-poppins">
-              <i className="fa-solid fa-link"></i> Related Notes
-            </h3>
+            <h3 className="note-related-title font-poppins"><i className="fa-solid fa-link"></i> Related Notes</h3>
             <div className="note-related-grid">
               {internalLinks.related_links.map((link) => (
                 <Card
@@ -677,9 +555,7 @@ export default function NoteDetail() {
                   className="card-mixed"
                   title={link.target_title}
                   description={link.target_content_preview}
-                  footer={
-                    <span className="note-related-link-readtime font-mono">{link.target_read_time}</span>
-                  }
+                  footer={<span className="note-related-link-readtime font-mono">{link.target_read_time}</span>}
                   onClick={() => navigate(`/notes/read?id=${link.target_note_id}`)}
                 />
               ))}
@@ -689,7 +565,6 @@ export default function NoteDetail() {
 
         <div className="note-reactions-section">
           <p className="note-reactions-label font-source-sans">Was this helpful?</p>
-
           <div className="note-reactions-buttons">
             {[
               { type: 'like', icon: 'fa-thumbs-up', label: 'Helpful' },
@@ -724,9 +599,7 @@ export default function NoteDetail() {
                 onChange={(event) => setCommentInput(event.target.value)}
                 onKeyDown={(event) => event.key === 'Enter' && handleComment()}
               />
-              <button className="note-comment-submit font-outfit" onClick={handleComment}>
-                Post
-              </button>
+              <button className="note-comment-submit font-outfit" onClick={handleComment}>Post</button>
             </div>
           ) : (
             <div className="note-comment-signin font-source-sans">
@@ -743,9 +616,7 @@ export default function NoteDetail() {
                 <div key={comment.id || comment.created_at} className="note-comment-item">
                   <div className="note-comment-header">
                     <strong className="note-comment-author font-poppins">{comment.user_name}</strong>
-                    <span className="note-comment-date font-mono">
-                      {new Date(comment.created_at).toLocaleDateString()}
-                    </span>
+                    <span className="note-comment-date font-mono">{new Date(comment.created_at).toLocaleDateString()}</span>
                   </div>
                   <p className="note-comment-text font-source-sans">{comment.body || comment.comment}</p>
                 </div>
