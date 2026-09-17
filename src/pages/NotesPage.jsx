@@ -1,5 +1,5 @@
- import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useContentAccess } from '../hooks/useContentAccess';
 import { useLevelFilter } from '../hooks/useLevelFilter';
 import { useLayout } from '../contexts/LayoutContext';
@@ -13,9 +13,11 @@ import Container from '../components/Container/Container';
 
 export default function NotesPage() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const access = useContentAccess();
   const { level, class_name, displayName } = useLevelFilter();
   const { bootstrap } = useLayout();
+  const unitId = searchParams.get('unit_id');
 
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -34,13 +36,14 @@ export default function NotesPage() {
     return () => {
       mounted = false;
     };
-  }, [access.canAccess, level, class_name]);
+  }, [access.canAccess, level, class_name, unitId]);
 
   async function loadContent(mounted = true) {
     setLoading(true);
+    setError(null);
 
     try {
-      const data = await getNotesList();
+      const data = await getNotesList(unitId || null);
 
       if (mounted) setNotes(Array.isArray(data) ? data : []);
     } catch {
@@ -85,7 +88,15 @@ export default function NotesPage() {
         <nav className="breadcrumb font-mono">
           <Link to="/"><Icon name="home" className="breadcrumb-icon" /> Home</Link>
           <Icon name="chevron-right" className="breadcrumb-sep" />
-          <span className="font-maven-pro">Notes</span>
+          {unitId ? (
+            <>
+              <Link to="/notes">Notes</Link>
+              <Icon name="chevron-right" className="breadcrumb-sep" />
+              <span className="font-maven-pro">Selected curriculum</span>
+            </>
+          ) : (
+            <span className="font-maven-pro">Notes</span>
+          )}
         </nav>
 
         {loading ? (
@@ -105,7 +116,7 @@ export default function NotesPage() {
           <EmptyState
             image={getEmptyStateImage('notes')}
             title="No Notes Available"
-            description={`No study notes found for ${classLabel || levelName || 'your level'}.`}
+            description={`No study notes found for ${classLabel || levelName || 'this curriculum node'}.`}
           />
         ) : (
           <div className="notes-grid">
