@@ -1,6 +1,6 @@
- /* pages/PdfLibraryPage.jsx */
+/* pages/PdfLibraryPage.jsx */
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useContentAccess } from '../hooks/useContentAccess';
 import { useLevelFilter } from '../hooks/useLevelFilter';
 import { useLayout } from '../contexts/LayoutContext';
@@ -15,6 +15,8 @@ export default function PdfLibraryPage() {
   const access = useContentAccess();
   const { level, class_name, displayName } = useLevelFilter();
   const { bootstrap } = useLayout();
+  const [searchParams] = useSearchParams();
+  const curriculumUnitId = searchParams.get('unit_id') || null;
 
   const [pdfs, setPdfs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -33,13 +35,14 @@ export default function PdfLibraryPage() {
     return () => {
       mounted = false;
     };
-  }, [access.canAccess, level, class_name]);
+  }, [access.canAccess, level, class_name, curriculumUnitId]);
 
   async function loadPdfs(mounted = true) {
     setLoading(true);
+    setError(null);
 
     try {
-      const data = await getPdfsByLevel();
+      const data = await getPdfsByLevel(curriculumUnitId);
 
       if (mounted) setPdfs(Array.isArray(data) ? data : []);
     } catch {
@@ -86,6 +89,8 @@ export default function PdfLibraryPage() {
           <Icon name="chevron-right" className="breadcrumb-sep" />
           <span>PDF Library</span>
         </nav>
+
+        {curriculumUnitId && <p className="pdf-library-class">Showing resources for this curriculum node.</p>}
 
         {loading ? (
           <div className="pdf-skeleton-grid">
