@@ -19,23 +19,23 @@ const NO_FOOTER_PATHS = ['/advertise', '/advertise/create', '/advertise/payment'
 function loadScrollMap() { try { return new Map(JSON.parse(sessionStorage.getItem(SCROLL_STORAGE_KEY) || '[]')); } catch { return new Map(); } }
 function persistScrollMap(map) { try { sessionStorage.setItem(SCROLL_STORAGE_KEY, JSON.stringify([...map.entries()])); } catch {} }
 
-const HEADER_ICON_COLOR = '#2563eb';
+const GREY = 'var(--text-secondary)';
 
 function HamburgerGlyph({ size = 30, isOpen }) {
   const thickness = Math.round(size * 0.13), fullWidth = size, halfWidth = Math.round(size * 0.5), centerY = Math.round((size - thickness) / 2);
-  const barBase = { position: 'absolute', left: 0, height: thickness + 'px', background: HEADER_ICON_COLOR, borderRadius: thickness + 'px', transition: 'transform 0.25s ease, opacity 0.2s ease' };
+  const barBase = { position: 'absolute', left: 0, height: thickness + 'px', background: GREY, borderRadius: thickness + 'px', transition: 'transform 0.25s ease, opacity 0.2s ease' };
   return <span style={{ position: 'relative', display: 'inline-block', width: size + 'px', height: size + 'px' }}><span style={{ ...barBase, top: 0, width: fullWidth + 'px', transform: isOpen ? `translateY(${centerY}px) rotate(45deg)` : 'translateY(0) rotate(0deg)' }} /><span style={{ ...barBase, top: centerY + 'px', width: halfWidth + 'px', opacity: isOpen ? 0 : 1 }} /><span style={{ ...barBase, bottom: 0, width: fullWidth + 'px', transform: isOpen ? `translateY(-${centerY}px) rotate(-45deg)` : 'translateY(0) rotate(0deg)' }} /></span>;
 }
 
 function SearchGlyph({ size = 28 }) {
   const ringSize = Math.round(size * 0.57), ringThickness = Math.round(size * 0.11), handleLength = Math.round(size * 0.36), handleThickness = ringThickness, handleOffset = Math.round(ringSize * 0.78);
-  return <span style={{ position: 'relative', display: 'inline-block', width: size + 'px', height: size + 'px' }}><span style={{ position: 'absolute', top: 0, left: 0, width: ringSize + 'px', height: ringSize + 'px', border: `${ringThickness}px solid ${HEADER_ICON_COLOR}`, borderRadius: '50%', boxSizing: 'border-box' }} /><span style={{ position: 'absolute', top: handleOffset + 'px', left: handleOffset + 'px', width: handleThickness + 'px', height: handleLength + 'px', background: HEADER_ICON_COLOR, borderRadius: handleThickness + 'px', transform: 'rotate(45deg)', transformOrigin: 'top left' }} /></span>;
+  return <span style={{ position: 'relative', display: 'inline-block', width: size + 'px', height: size + 'px' }}><span style={{ position: 'absolute', top: 0, left: 0, width: ringSize + 'px', height: ringSize + 'px', border: `${ringThickness}px solid ${GREY}`, borderRadius: '50%', boxSizing: 'border-box' }} /><span style={{ position: 'absolute', top: handleOffset + 'px', left: handleOffset + 'px', width: handleThickness + 'px', height: handleLength + 'px', background: GREY, borderRadius: handleThickness + 'px', transform: 'rotate(45deg)', transformOrigin: 'top left' }} /></span>;
 }
 
 function ThemeGlyph({ size = 28, isDark }) {
   const coreSize = Math.round(size * 0.5), rayThickness = Math.round(size * 0.14), rayLength = size, offset = Math.round((size - coreSize) / 2), rayOffset = Math.round((size - rayThickness) / 2);
-  if (isDark) return <span style={{ display: 'inline-block', width: size + 'px', height: size + 'px', borderRadius: '50%', background: HEADER_ICON_COLOR }} />;
-  return <span style={{ position: 'relative', display: 'inline-block', width: size + 'px', height: size + 'px' }}>{[0, 45, 90, 135].map((rotation) => <span key={rotation} style={{ position: 'absolute', top: rayOffset + 'px', left: 0, width: rayLength + 'px', height: rayThickness + 'px', background: HEADER_ICON_COLOR, borderRadius: rayThickness + 'px', transform: `rotate(${rotation}deg)` }} />)}<span style={{ position: 'absolute', top: offset + 'px', left: offset + 'px', width: coreSize + 'px', height: coreSize + 'px', borderRadius: '50%', background: HEADER_ICON_COLOR }} /></span>;
+  if (isDark) return <span style={{ display: 'inline-block', width: size + 'px', height: size + 'px', borderRadius: '50%', background: GREY }} />;
+  return <span style={{ position: 'relative', display: 'inline-block', width: size + 'px', height: size + 'px' }}>{[0, 45, 90, 135].map((rotation) => <span key={rotation} style={{ position: 'absolute', top: rayOffset + 'px', left: 0, width: rayLength + 'px', height: rayThickness + 'px', background: GREY, borderRadius: rayThickness + 'px', transform: `rotate(${rotation}deg)` }} />)}<span style={{ position: 'absolute', top: offset + 'px', left: offset + 'px', width: coreSize + 'px', height: coreSize + 'px', borderRadius: '50%', background: GREY }} /></span>;
 }
 
 export default function Layout({ children, showFooter = true }) {
