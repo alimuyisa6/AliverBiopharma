@@ -152,7 +152,12 @@ export default function Dashboard() {
 
         <div className="dashboard-grid">
           <main className="main-column">
-            <div className="panel">
+            <div className="panel" id="platform-stats-section">
+              <div className="panel-header">
+                <h3 className="panel-title">
+                  <Icon name="chart-line" /> Platform Stats
+                </h3>
+              </div>
               <div className="panel-body">
                 <div className="platform-stats-grid" id="top-stats">
                   <div className="stat-box">
@@ -393,7 +398,7 @@ export default function Dashboard() {
                   <div className="unit-xp-grid" id="unit-xp-list">
                     {unitXp.map((unit, index) => (
                       <div key={index} className="unit-xp-item">
-                        <span className="unit-name">{unit.unit_id}</span>
+                        <span className="unit-name">{unit.unit_name || unit.unit_id}</span>
                         <span className="unit-value">{unit.xp.toLocaleString()} XP</span>
                       </div>
                     ))}
