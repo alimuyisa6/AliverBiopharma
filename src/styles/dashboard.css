@@ -419,8 +419,8 @@
 /* Recent activity */
 .dashboard-content .activity-item {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: start;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
   gap: var(--space-3);
   padding: var(--space-3) 0;
   border-bottom: 1px solid var(--border-subtle);
@@ -447,14 +447,14 @@
 .dashboard-content .activity-icon-quiz { color: var(--accent); }
 .dashboard-content .activity-icon-recall { color: var(--success); }
 
-.dashboard-content .activity-details { min-width: 0; }
+.dashboard-content .activity-details {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
 
 .dashboard-content .activity-content-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
-  gap: var(--space-4);
-  min-width: 0;
+  display: contents;
 }
 
 .dashboard-content .activity-copy {
