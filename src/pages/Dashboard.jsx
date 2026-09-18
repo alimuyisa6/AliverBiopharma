@@ -342,30 +342,41 @@ export default function Dashboard() {
                 </div>
                 <div className="panel-body">
                   <div className="sidebar-list" id="recent-activity-list">
-                    {recentActivity.map((activity, index) => (
-                      <div key={index} className="activity-item">
-                        <div className="activity-icon">
-                          <Icon
-                            name={
-                              activity.type === 'recall'
-                                ? 'brain'
-                                : activity.type === 'quiz'
-                                  ? 'graduation-cap'
-                                  : 'book-open'
-                            }
-                          />
+                    {recentActivity.map((activity, index) => {
+                      const progress = Math.max(0, Math.min(100, Math.round(Number(activity.progress_percentage) || 0)));
+                      const contentLabel = activity.type === 'recall' ? 'Recall' : activity.type === 'quiz' ? 'Quiz' : 'Reading';
+                      const iconName = activity.type === 'recall' ? 'brain' : activity.type === 'quiz' ? 'graduation-cap' : 'book-open';
+
+                      return (
+                        <div key={index} className="activity-item">
+                          <div className={`activity-icon activity-icon-${activity.type}`}>
+                            <Icon name={iconName} />
+                          </div>
+                          <div className="activity-details">
+                            <div className="activity-content-row">
+                              <div className="activity-copy">
+                                <span className="activity-type">{contentLabel}</span>
+                                <span className="act-text">{activity.details}</span>
+                                <span className="act-date">
+                                  {new Date(activity.date).toLocaleDateString(undefined, {
+                                    month: 'short',
+                                    day: 'numeric'
+                                  })}
+                                </span>
+                              </div>
+                              <div
+                                className="activity-progress-circle"
+                                style={{
+                                  background: `conic-gradient(var(--primary) ${progress}%, var(--border-subtle) 0)`
+                                }}
+                                data-progress={`${progress}%`}
+                                aria-label={`${contentLabel} progress: ${progress}%`}
+                              />
+                            </div>
+                          </div>
                         </div>
-                        <div className="activity-details">
-                          <span className="act-text">{activity.details}</span>
-                          <span className="act-date">
-                            {new Date(activity.date).toLocaleDateString(undefined, {
-                              month: 'short',
-                              day: 'numeric'
-                            })}
-                          </span>
-                        </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
               </div>
