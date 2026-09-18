@@ -62,7 +62,7 @@
 .hero-image-placeholder {
   width: 100%;
   height: 100%;
-  background: var(--primary-light);
+  background: var(--hero-bg);
 }
 
 .hero-scrim {
