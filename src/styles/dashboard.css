@@ -13,6 +13,7 @@
 
 .dashboard-content {
   width: 100%;
+  padding-bottom: var(--section-space-y);
 }
 
 /* Header */
@@ -524,18 +525,25 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-3);
+  min-width: 0;
   font-size: var(--text-sm);
 }
 
 .dashboard-content .unit-xp-item .unit-name {
+  min-width: 0;
   color: var(--text-main);
   font-weight: var(--weight-medium);
 }
 
 .dashboard-content .unit-xp-item .unit-value {
+  flex: 0 0 auto;
   color: var(--primary);
   font-weight: var(--weight-bold);
 }
+
+/* Keep the Unit XP panel visually consistent with the reference list: simple rows, no extra card treatment. */
+
+
 
 /* Loading */
 .dashboard-content .dashboard-loading-skeleton,
