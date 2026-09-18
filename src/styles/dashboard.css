@@ -13,7 +13,8 @@
 
 .dashboard-content {
   width: 100%;
-  padding-bottom: var(--section-space-y);
+  padding-inline: var(--page-gutter-x);
+  padding-bottom: var(--section-space-y-large);
 }
 
 /* Header */
