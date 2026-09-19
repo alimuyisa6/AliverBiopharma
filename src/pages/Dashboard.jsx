@@ -18,7 +18,7 @@ export default function Dashboard() {
 
   const [summary, setSummary] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(null);\n  const [activityRange, setActivityRange] = useState('week');
 
   useEffect(() => {
     if (!access.canAccess) {
@@ -178,7 +178,7 @@ export default function Dashboard() {
       : null
   ].filter(Boolean);
 
-  const heatmapValues = heatmap.slice(0, 42);
+  const activityDays = activityRange === 'day' ? 1 : activityRange === 'month' ? 30 : 7;\n  const heatmapValues = heatmap.slice(0, Math.min(activityDays, 42));
   const maxHeatmapCount = Math.max(1, ...heatmapValues.map((item) => Number(item.count) || 0));
   const formatHeatmapDate = (value) => {
     if (!value) return '';
@@ -276,7 +276,7 @@ export default function Dashboard() {
                   <h3 className="panel-title">
                     <Icon name="clock" /> Learning Activity
                   </h3>
-                  <span className="panel-meta">Last {heatmapValues.length} days</span>
+                  <div className="segmented" role="group" aria-label="Learning activity period">\n                    {['day', 'week', 'month'].map((range) => (\n                      <button\n                        key={range}\n                        type="button"\n                        className={`seg ${activityRange === range ? 'active' : ''}`}\n                        aria-pressed={activityRange === range}\n                        onClick={() => setActivityRange(range)}\n                      >\n                        {range[0].toUpperCase() + range.slice(1)}\n                      </button>\n                    ))}\n                  </div>
                 </div>
                 <div className="panel-body">
                   <div className="sidebar-list">
