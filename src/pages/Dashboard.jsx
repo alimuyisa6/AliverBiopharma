@@ -134,7 +134,12 @@ export default function Dashboard() {
   const unitXp = unit_xp || [];
   const planner = analytics?.planner || {};
   const heatmap = analytics?.heatmap || [];
-  const personalRecords = analytics?.personal_records || {};\n  const masteryMap = analytics?.mastery_map || [];\n  const assessedMastery = masteryMap.filter((item) => item.assessed);\n  const overallMastery = assessedMastery.length\n    ? Math.round(assessedMastery.reduce((sum, item) => sum + item.mastery, 0) / assessedMastery.length)\n    : 0;
+  const personalRecords = analytics?.personal_records || {};
+  const masteryMap = analytics?.mastery_map || [];
+  const assessedMastery = masteryMap.filter((item) => item.assessed);
+  const overallMastery = assessedMastery.length
+    ? Math.round(assessedMastery.reduce((sum, item) => sum + item.mastery, 0) / assessedMastery.length)
+    : 0;
 
   function unitPath(item, fallback = '/resources') {
     if (item?.group_id && item?.slug) {
