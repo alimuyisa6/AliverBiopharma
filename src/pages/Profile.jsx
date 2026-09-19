@@ -163,6 +163,12 @@ export default function Profile() {
   const [apiKeys, setApiKeys] = useState([]);
   const [webhooks, setWebhooks] = useState([]);
   const [sectionLoading, setSectionLoading] = useState(false);
+  const [revokingDeviceId, setRevokingDeviceId] = useState(null);
+  const [revokingKeyId, setRevokingKeyId] = useState(null);
+  const [deletingWebhookId, setDeletingWebhookId] = useState(null);
+  const [exportLoading, setExportLoading] = useState(false);
+  const [deletionLoading, setDeletionLoading] = useState(false);
+
 
   const [guardianName, setGuardianName] = useState('');
   const [guardianEmail, setGuardianEmail] = useState('');
@@ -471,6 +477,7 @@ export default function Profile() {
   };
 
   const handleRevokeDevice = async (sessionId) => {
+    setRevokingDeviceId(sessionId);
     try {
       await revokeDevice(sessionId);
       setDevices((prev) => prev.filter((d) => d.id !== sessionId));
@@ -479,6 +486,8 @@ export default function Profile() {
       const message = getExactErrorMessage(err, 'Failed to revoke device');
       logProfileError('handleRevokeDevice failed', err);
       addToast(message, 'error');
+    } finally {
+      setRevokingDeviceId(null);
     }
   };
 
@@ -501,6 +510,7 @@ export default function Profile() {
   };
 
   const handleRevokeApiKey = async (keyId) => {
+    setRevokingKeyId(keyId);
     try {
       await revokeApiKey(keyId);
       setApiKeys((prev) => prev.map((k) => (k.id === keyId ? { ...k, is_active: false } : k)));
@@ -508,6 +518,11 @@ export default function Profile() {
       const message = getExactErrorMessage(err, 'Failed to revoke key');
       logProfileError('handleRevokeApiKey failed', err);
       addToast(message, 'error');
+    }
+  };
+
+    } finally {
+      setRevokingKeyId(null);
     }
   };
 
@@ -532,6 +547,7 @@ export default function Profile() {
   };
 
   const handleDeleteWebhook = async (id) => {
+    setDeletingWebhookId(id);
     try {
       await deleteWebhook(id);
       setWebhooks((prev) => prev.filter((w) => w.id !== id));
@@ -539,6 +555,11 @@ export default function Profile() {
       const message = getExactErrorMessage(err, 'Failed to delete webhook');
       logProfileError('handleDeleteWebhook failed', err);
       addToast(message, 'error');
+    }
+  };
+
+    } finally {
+      setDeletingWebhookId(null);
     }
   };
 
@@ -566,6 +587,7 @@ export default function Profile() {
   };
 
   const handleDataExport = async () => {
+    setExportLoading(true);
     try {
       const result = await requestDataExport();
       addToast(
@@ -579,8 +601,14 @@ export default function Profile() {
     }
   };
 
+    } finally {
+      setExportLoading(false);
+    }
+  };
+
   const handleAccountDeletion = async () => {
     if (!window.confirm('This will schedule your account for deletion. Continue?')) return;
+    setDeletionLoading(true);
     try {
       const result = await requestAccountDeletion();
       addToast(result.already_pending ? 'Deletion already requested' : 'Account deletion requested', 'success');
@@ -959,7 +987,7 @@ export default function Profile() {
                             {d.ip_address || 'Unknown IP'} · Signed in {new Date(d.created_at).toLocaleDateString()}
                           </div>
                         </div>
-                        <Button variant="outline" size="sm" onClick={() => handleRevokeDevice(d.id)}>
+                        <Button variant="outline" size="sm" loading={revokingDeviceId === d.id} onClick={() => handleRevokeDevice(d.id)}>
                           Revoke
                         </Button>
                       </li>
@@ -1246,7 +1274,7 @@ export default function Profile() {
                         </div>
                       </div>
                       {key.is_active && (
-                        <Button variant="outline" size="sm" onClick={() => handleRevokeApiKey(key.id)}>
+                        <Button variant="outline" size="sm" loading={revokingKeyId === key.id} onClick={() => handleRevokeApiKey(key.id)}>
                           Revoke
                         </Button>
                       )}
@@ -1289,7 +1317,7 @@ export default function Profile() {
                           {(webhook.events || []).join(', ')} · {webhook.is_active ? 'Active' : 'Disabled'}
                         </div>
                       </div>
-                      <Button variant="outline" size="sm" onClick={() => handleDeleteWebhook(webhook.id)}>
+                      <Button variant="outline" size="sm" loading={deletingWebhookId === webhook.id} onClick={() => handleDeleteWebhook(webhook.id)}>
                         Delete
                       </Button>
                     </div>
@@ -1325,10 +1353,10 @@ export default function Profile() {
                 </p>
 
                 <div className="profile-flex-wrap">
-                  <Button variant="outline" icon="download" onClick={handleDataExport}>
+                  <Button variant="outline" icon="download" loading={exportLoading} loadingContext="brand" loadingLabel="Preparing…" onClick={handleDataExport}>
                     Export All Data
                   </Button>
-                  <Button variant="danger" icon="trash" onClick={handleAccountDeletion}>
+                  <Button variant="danger" icon="trash" loading={deletionLoading} loadingContext="default" loadingLabel="Requesting…" onClick={handleAccountDeletion}>
                     Request Account Deletion
                   </Button>
                 </div>
