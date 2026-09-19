@@ -6,10 +6,10 @@ export default function Spinner({
 }) {
   const loaderMap = {
     default: `spinner spinner-${variant}`,
-    brand: 'spinner-brand',
-    conic: 'spinner-conic',
-    media: 'spinner-equalizer',
-    data: 'spinner-chart',
+    brand: 'spinner spinner-brand',
+    conic: 'spinner spinner-conic',
+    media: 'spinner spinner-equalizer',
+    data: 'spinner spinner-chart',
   };
 
   const sizeClass = size === 'sm' ? 'spinner-sm' : size === 'lg' ? 'spinner-lg' : '';
