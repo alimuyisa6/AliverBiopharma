@@ -10,6 +10,7 @@ import { signout } from '../../api/client';
 import SearchOverlay from '../SearchOverlay/SearchOverlay';
 import AdminLauncher from '../AdminLauncher';
 import NetworkStatus from '../NetworkStatus/NetworkStatus';
+import NotificationCenter from '../NotificationCenter/NotificationCenter';
 
 const EXCLUDED_PATHS = ['/login', '/register'];
 const SCROLL_STORAGE_KEY = 'scroll-positions';
@@ -61,6 +62,7 @@ export default function Layout({ children, showFooter = true }) {
       <nav className="main-nav">{filteredNavigation.map((link) => <Link key={link.href} to={link.href} className={`main-nav-link${location.pathname === link.href ? ' active' : ''}`}>{link.icon && <Icon name={link.icon} />}{link.label}</Link>)}</nav>
       <div className="nav-actions">
         <button className="btn btn-ghost btn-sm btn-icon header-action-button" onClick={() => setSearchOpen(true)} aria-label="Search" type="button"><SearchGlyph size={28} /></button>
+        <NotificationCenter />
         <button className="btn btn-ghost btn-sm btn-icon header-action-button" onClick={toggleTheme} aria-label="Toggle theme" type="button"><ThemeGlyph size={28} isDark={isDarkTheme} /></button>
         <button className="hamburger-btn header-action-button" onClick={() => setMobileOpen((prev) => !prev)} aria-label="Menu" type="button"><HamburgerGlyph size={30} isOpen={mobileOpen} /></button>
       </div>
