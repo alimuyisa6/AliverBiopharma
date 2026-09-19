@@ -20,23 +20,36 @@ const NO_FOOTER_PATHS = ['/advertise', '/advertise/create', '/advertise/payment'
 function loadScrollMap() { try { return new Map(JSON.parse(sessionStorage.getItem(SCROLL_STORAGE_KEY) || '[]')); } catch { return new Map(); } }
 function persistScrollMap(map) { try { sessionStorage.setItem(SCROLL_STORAGE_KEY, JSON.stringify([...map.entries()])); } catch {} }
 
-const GREY = 'var(--text-secondary)';
-
-function HamburgerGlyph({ size = 30, isOpen }) {
-  const thickness = Math.round(size * 0.13), fullWidth = size, halfWidth = Math.round(size * 0.5), centerY = Math.round((size - thickness) / 2);
-  const barBase = { position: 'absolute', left: 0, height: thickness + 'px', background: GREY, borderRadius: thickness + 'px', transition: 'transform 0.25s ease, opacity 0.2s ease' };
-  return <span style={{ position: 'relative', display: 'inline-block', width: size + 'px', height: size + 'px' }}><span style={{ ...barBase, top: 0, width: fullWidth + 'px', transform: isOpen ? `translateY(${centerY}px) rotate(45deg)` : 'translateY(0) rotate(0deg)' }} /><span style={{ ...barBase, top: centerY + 'px', width: halfWidth + 'px', opacity: isOpen ? 0 : 1 }} /><span style={{ ...barBase, bottom: 0, width: fullWidth + 'px', transform: isOpen ? `translateY(-${centerY}px) rotate(-45deg)` : 'translateY(0) rotate(0deg)' }} /></span>;
+function MenuGlyph({ isOpen }) {
+  return (
+    <svg className="header-glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path className="menu-line menu-line-top" d="M4 7h16" />
+      <path className="menu-line menu-line-middle" d="M4 12h10" />
+      <path className="menu-line menu-line-bottom" d="M4 17h16" />
+    </svg>
+  );
 }
 
-function SearchGlyph({ size = 28 }) {
-  const ringSize = Math.round(size * 0.57), ringThickness = Math.round(size * 0.11), handleLength = Math.round(size * 0.36), handleThickness = ringThickness, handleOffset = Math.round(ringSize * 0.78);
-  return <span style={{ position: 'relative', display: 'inline-block', width: size + 'px', height: size + 'px' }}><span style={{ position: 'absolute', top: 0, left: 0, width: ringSize + 'px', height: ringSize + 'px', border: `${ringThickness}px solid ${GREY}`, borderRadius: '50%', boxSizing: 'border-box' }} /><span style={{ position: 'absolute', top: handleOffset + 'px', left: handleOffset + 'px', width: handleThickness + 'px', height: handleLength + 'px', background: GREY, borderRadius: handleThickness + 'px', transform: 'rotate(45deg)', transformOrigin: 'top left' }} /></span>;
+function SearchGlyph() {
+  return (
+    <svg className="header-glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <circle cx="10.8" cy="10.8" r="5.8" />
+      <path d="m15.2 15.2 4.4 4.4" />
+    </svg>
+  );
 }
 
-function ThemeGlyph({ size = 28, isDark }) {
-  const coreSize = Math.round(size * 0.5), rayThickness = Math.round(size * 0.14), rayLength = size, offset = Math.round((size - coreSize) / 2), rayOffset = Math.round((size - rayThickness) / 2);
-  if (isDark) return <span style={{ display: 'inline-block', width: size + 'px', height: size + 'px', borderRadius: '50%', background: GREY }} />;
-  return <span style={{ position: 'relative', display: 'inline-block', width: size + 'px', height: size + 'px' }}>{[0, 45, 90, 135].map((rotation) => <span key={rotation} style={{ position: 'absolute', top: rayOffset + 'px', left: 0, width: rayLength + 'px', height: rayThickness + 'px', background: GREY, borderRadius: rayThickness + 'px', transform: `rotate(${rotation}deg)` }} />)}<span style={{ position: 'absolute', top: offset + 'px', left: offset + 'px', width: coreSize + 'px', height: coreSize + 'px', borderRadius: '50%', background: GREY }} /></span>;
+function ThemeGlyph({ isDark }) {
+  return isDark ? (
+    <svg className="header-glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M20 15.4A8.2 8.2 0 0 1 8.6 4a8.2 8.2 0 1 0 11.4 11.4Z" />
+    </svg>
+  ) : (
+    <svg className="header-glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <circle cx="12" cy="12" r="3.5" />
+      <path d="M12 2.5v2M12 19.5v2M21.5 12h-2M4.5 12h-2M18.72 5.28l-1.42 1.42M6.7 17.3l-1.42 1.42M18.72 18.72l-1.42-1.42M6.7 6.7 5.28 5.28" />
+    </svg>
+  );
 }
 
 export default function Layout({ children, showFooter = true }) {
@@ -61,10 +74,10 @@ export default function Layout({ children, showFooter = true }) {
       <Link to="/" className="header-logo">{logo ? <img src={logo} alt={siteName} /> : siteName}</Link>
       <nav className="main-nav">{filteredNavigation.map((link) => <Link key={link.href} to={link.href} className={`main-nav-link${location.pathname === link.href ? ' active' : ''}`}>{link.icon && <Icon name={link.icon} />}{link.label}</Link>)}</nav>
       <div className="nav-actions">
-        <button className="btn btn-ghost btn-sm btn-icon header-action-button" onClick={() => setSearchOpen(true)} aria-label="Search" type="button"><SearchGlyph size={28} /></button>
+        <button className="btn btn-ghost btn-sm btn-icon header-action-button" onClick={() => setSearchOpen(true)} aria-label="Search" type="button"><SearchGlyph /></button>
         <NotificationCenter />
-        <button className="btn btn-ghost btn-sm btn-icon header-action-button" onClick={toggleTheme} aria-label="Toggle theme" type="button"><ThemeGlyph size={28} isDark={isDarkTheme} /></button>
-        <button className="hamburger-btn header-action-button" onClick={() => setMobileOpen((prev) => !prev)} aria-label="Menu" type="button"><HamburgerGlyph size={30} isOpen={mobileOpen} /></button>
+        <button className="btn btn-ghost btn-sm btn-icon header-action-button" onClick={toggleTheme} aria-label="Toggle theme" type="button"><ThemeGlyph isDark={isDarkTheme} /></button>
+        <button className="hamburger-btn header-action-button" onClick={() => setMobileOpen((prev) => !prev)} aria-label="Menu" type="button"><MenuGlyph isOpen={mobileOpen} /></button>
       </div>
     </div></header>}
     <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} /><AdminLauncher />
