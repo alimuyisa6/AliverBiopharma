@@ -580,7 +580,7 @@ export default function Dashboard() {
                         to={unitPath(unit, unit.unit_id ? `/quiz?unit_id=${encodeURIComponent(unit.unit_id)}` : '/quiz')}
                         className="unit-xp-item unit-xp-item-link"
                       >
-                        <span className="unit-name">{unit.unit_name || unit.unit_id}</span>
+                        <span className="unit-name">{unit.unit_name || 'Unit'}</span>
                         <span className="unit-value">{unit.xp.toLocaleString()} XP</span>
                       </Link>
                     ))}
