@@ -307,45 +307,8 @@
 }
 
 .btn-loading {
-  position: relative;
-  color: transparent !important;
   pointer-events: none;
-}
-
-.btn-loading::after {
-  content: "";
-  position: absolute;
-  width: var(--space-4);
-  height: var(--space-4);
-  border: 2px solid currentColor;
-  border-top-color: transparent;
-  border-radius: var(--radius-full);
-  animation: btn-spin 0.8s linear infinite;
-}
-
-.btn-primary.btn-loading::after,
-.btn-warm.btn-loading::after,
-.btn-success.btn-loading::after,
-.btn-danger.btn-loading::after,
-.btn-info.btn-loading::after,
-.btn-violet.btn-loading::after,
-.btn-pink.btn-loading::after,
-.btn-yellow.btn-loading::after {
-  color: var(--text-inverse);
-}
-
-.btn-secondary.btn-loading::after,
-.btn-ghost.btn-loading::after,
-.btn-card.btn-loading::after,
-.btn-card-primary.btn-loading::after,
-.btn-soft.btn-loading::after {
-  color: var(--text-main);
-}
-
-@keyframes btn-spin {
-  to {
-    transform: rotate(360deg);
-  }
+  cursor: progress;
 }
 
 @media (max-width: 480px) {
