@@ -74,8 +74,8 @@
 
 .chat-panel {
   position: absolute;
-  left: 50%;
-  right: auto;
+  right: 0;
+  left: auto;
   bottom: calc(100% + var(--space-4));
   z-index: var(--z-modal);
   display: flex;
@@ -89,14 +89,13 @@
   border: 1px solid var(--border-default);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-xl);
-  transform: translateX(-50%);
-  transform-origin: bottom center;
+  transform-origin: bottom right;
   animation: chat-panel-in var(--duration-normal) var(--ease-standard) both;
 }
 
 @keyframes chat-panel-in {
-  from { opacity: 0; transform: translateX(-50%) translateY(var(--space-3)) scale(.97); }
-  to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+  from { opacity: 0; transform: translateY(var(--space-3)) scale(.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 @keyframes chat-float {
@@ -162,12 +161,12 @@
 
 @media (max-width: 768px) {
   .chat-widget { right: var(--page-gutter-x); bottom: var(--space-5); }
-  .chat-panel { left: 50%; right: auto; width: min(var(--chat-panel-max-width), calc(100vw - (var(--page-gutter-x) * 2))); max-width: calc(100vw - (var(--page-gutter-x) * 2)); }
+  .chat-panel { right: 0; left: auto; width: min(var(--chat-panel-max-width), calc(100vw - (var(--page-gutter-x) * 2))); max-width: calc(100vw - (var(--page-gutter-x) * 2)); }
 }
 
 @media (max-width: 480px) {
   .chat-widget { right: var(--space-3); bottom: var(--space-5); }
-  .chat-panel { left: 50%; right: auto; bottom: calc(var(--chat-toggle-size) + var(--space-4)); width: calc(100vw - (var(--space-3) * 2)); max-width: calc(100vw - (var(--space-3) * 2)); height: min(31rem, calc(100vh - var(--space-16))); min-height: 20rem; border-radius: var(--radius-md); }
+  .chat-panel { right: 0; left: auto; bottom: calc(var(--space-12) + var(--space-4)); width: calc(100vw - (var(--space-3) * 2)); max-width: calc(100vw - (var(--space-3) * 2)); height: min(31rem, calc(100vh - var(--space-16))); min-height: 20rem; border-radius: var(--radius-md); }
   .chat-panel-header { padding: var(--space-3) var(--space-4); }
   .chat-panel-description { max-width: 24ch; }
   .chat-body { padding: var(--space-3); }
