@@ -1,7 +1,8 @@
 /* features/chat/ChatWidget.jsx */
 import Icon from '../../components/Icon/Icon';
+import Button from '../../components/Button/Button';
 
-export function ChatWidget({ chatOpen, chatMessages = [], chatInput, adminOnline, onToggle, onSend, onInputChange, onDeleteMsg, chatBodyRef }) {
+export function ChatWidget({ chatOpen, chatMessages = [], chatInput, adminOnline, onToggle, onSend, onInputChange, onDeleteMsg, chatBodyRef, sending = false, deletingId = null, requestLoading = false }) {
   const handleKeyPress = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -73,13 +74,16 @@ export function ChatWidget({ chatOpen, chatMessages = [], chatInput, adminOnline
                   </div>
                   <div className="chat-message-content">{msg.content}</div>
                   {msg.sender_type === 'user' && (
-                    <button
-                      className="btn btn-ghost btn-sm btn-icon btn-round chat-message-delete"
+                    <Button
+                      className="chat-message-delete"
+                      variant="ghost"
+                      size="sm"
                       onClick={() => onDeleteMsg(msg.id)}
                       aria-label="Delete message"
-                    >
-                      <Icon name="trash" className="chat-icon" />
-                    </button>
+                      loading={deletingId === msg.id}
+                      loadingContext="default"
+                      icon="trash"
+                    />
                   )}
                 </div>
               </div>
@@ -98,15 +102,18 @@ export function ChatWidget({ chatOpen, chatMessages = [], chatInput, adminOnline
                 maxLength={500}
                 aria-label="Message"
               />
-              <button
-                className="btn btn-primary chat-send-btn"
+              <Button
+                className="chat-send-btn"
+                variant="primary"
                 onClick={onSend}
                 disabled={!chatInput.trim()}
-                aria-label="Send message"
+                loading={sending}
+                loadingContext="brand"
+                loadingLabel="Sending…"
+                icon="paper-plane"
               >
-                <Icon name="paper-plane" className="chat-icon" />
-                <span>Send</span>
-              </button>
+                Send
+              </Button>
             </div>
           </div>
         </div>
