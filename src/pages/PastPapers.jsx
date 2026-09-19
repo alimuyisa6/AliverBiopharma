@@ -59,6 +59,10 @@ export default function PastPapers() {
   const [total, setTotal] = useState(0);
   const [papersLoading, setPapersLoading] = useState(true);
   const [downloadingId, setDownloadingId] = useState(null);
+  const [bookmarkingId, setBookmarkingId] = useState(null);
+  const [deletingReview, setDeletingReview] = useState(false);
+  const [savingPreset, setSavingPreset] = useState(false);
+  const [deletingPresetId, setDeletingPresetId] = useState(null);
   const [showFilters, setShowFilters] = useState(false);
   const [activeTab, setActiveTab] = useState('all');
   const [bookmarkedIds, setBookmarkedIds] = useState(new Set());
@@ -322,6 +326,7 @@ export default function PastPapers() {
       return;
     }
 
+    setBookmarkingId(paperId);
     try {
       const result = await togglePaperBookmark(paperId);
 
@@ -342,6 +347,8 @@ export default function PastPapers() {
       }
     } catch {
       addToast('Failed to update bookmark', 'error');
+    } finally {
+      setBookmarkingId(null);
     }
   };
 
@@ -409,6 +416,7 @@ export default function PastPapers() {
       return;
     }
 
+    setDeletingReview(true);
     try {
       await deletePaperReview(selectedPaper.id);
 
@@ -416,6 +424,8 @@ export default function PastPapers() {
       loadReviews(selectedPaper.id);
     } catch {
       addToast('Failed to delete review', 'error');
+    } finally {
+      setDeletingReview(false);
     }
   };
 
@@ -429,6 +439,7 @@ export default function PastPapers() {
       return;
     }
 
+    setSavingPreset(true);
     try {
       const preset = await savePaperFilterPreset(
         presetName.trim(),
@@ -445,6 +456,8 @@ export default function PastPapers() {
       addToast('Filter preset saved', 'success');
     } catch {
       addToast('Failed to save preset', 'error');
+    } finally {
+      setSavingPreset(false);
     }
   };
 
@@ -461,6 +474,7 @@ export default function PastPapers() {
   };
 
   const handleDeletePreset = async (presetId) => {
+    setDeletingPresetId(presetId);
     try {
       await deletePaperFilterPreset(presetId);
 
@@ -469,6 +483,8 @@ export default function PastPapers() {
       );
     } catch {
       addToast('Failed to delete preset', 'error');
+    } finally {
+      setDeletingPresetId(null);
     }
   };
 
@@ -649,6 +665,7 @@ export default function PastPapers() {
                   <button
                     className="pp-preset-delete"
                     onClick={() => handleDeletePreset(preset.id)}
+                    disabled={deletingPresetId === preset.id}
                     aria-label={`Delete ${preset.name}`}
                   >
                     <Icon name="trash" />
@@ -669,6 +686,8 @@ export default function PastPapers() {
                 size="sm"
                 variant="secondary"
                 onClick={handleSavePreset}
+                loading={savingPreset}
+                loadingLabel="Saving…"
                 disabled={!presetName.trim()}
               >
                 Save
@@ -810,6 +829,7 @@ export default function PastPapers() {
                         handleBookmark(paper.id);
                       }}
                       aria-label={bookmarkedIds.has(paper.id) ? 'Remove bookmark' : 'Bookmark paper'}
+                      disabled={bookmarkingId === paper.id}
                     >
                       <Icon name={bookmarkedIds.has(paper.id) ? 'bookmark-solid' : 'bookmark'} />
                     </button>
@@ -1022,7 +1042,7 @@ export default function PastPapers() {
                             {new Date(review.created_at).toLocaleDateString()}
                           </span>
                           {review.user_id === user?.id && (
-                            <button className="pp-review-delete" onClick={handleDeleteReview}>
+                            <button className="pp-review-delete" onClick={handleDeleteReview} loading={deletingReview}>
                               <Icon name="trash" /> Delete
                             </button>
                           )}
