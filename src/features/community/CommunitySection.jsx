@@ -33,6 +33,7 @@ export function CommunitySection({
                     key={index}
                     variant="secondary"
                     onClick={() => onWeeklySubmit(index, weeklyChallenge.correct, weeklyChallenge.explanation)}
+                    loading={challengeSubmitting === index}
                   >
                     {String.fromCharCode(65 + index)}) {option}
                   </Button>
