@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Icon from '../Icon/Icon';
 import { useNotifications } from '../../contexts/NotificationContext';
 
 function formatNotificationTime(value) {
@@ -42,7 +41,30 @@ export default function NotificationCenter() {
   } = useNotifications();
 
   const [open, setOpen] = useState(false);
+  const [hasNewNotification, setHasNewNotification] = useState(false);
   const rootRef = useRef(null);
+  const latestNotificationRef = useRef(null);
+
+  useEffect(() => {
+    const latest = notifications[0];
+    if (!latest) return;
+
+    const signature = `${latest.id}:${latest.created_at || ''}`;
+
+    if (latestNotificationRef.current === null) {
+      latestNotificationRef.current = signature;
+      return;
+    }
+
+    if (signature !== latestNotificationRef.current && !latest.is_read) {
+      setHasNewNotification(true);
+      const timeout = setTimeout(() => setHasNewNotification(false), 2400);
+      latestNotificationRef.current = signature;
+      return () => clearTimeout(timeout);
+    }
+
+    latestNotificationRef.current = signature;
+  }, [notifications]);
 
   useEffect(() => {
     if (!open) return undefined;
@@ -72,13 +94,18 @@ export default function NotificationCenter() {
     <div className="notification-center" ref={rootRef}>
       <button
         type="button"
-        className="btn btn-ghost btn-sm btn-icon header-action-button notification-bell"
+        className={`btn btn-ghost btn-sm btn-icon header-action-button notification-bell${unreadCount > 0 ? ' notification-bell--unread' : ''}${hasNewNotification ? ' notification-bell--new' : ''}`}
         onClick={() => setOpen((current) => !current)}
         aria-label={unreadCount ? `Notifications, ${unreadCount} unread` : 'Notifications'}
         aria-expanded={open}
         aria-haspopup="true"
       >
-        <Icon name="bell" plain />
+        <span className="notification-bell-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M10 21h4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          </svg>
+        </span>
         {unreadCount > 0 && (
           <span className="notification-badge">
             {unreadCount > 99 ? '99+' : unreadCount}
@@ -105,7 +132,12 @@ export default function NotificationCenter() {
           <div className="notification-list">
             {notifications.length === 0 ? (
               <div className="notification-empty">
-                <Icon name="bell" plain className="notification-empty-icon" />
+                <span className="notification-empty-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M10 21h4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          </svg>
+        </span>
                 <span>{loading ? 'Loading notifications...' : 'You are all caught up.'}</span>
               </div>
             ) : (
@@ -125,7 +157,7 @@ export default function NotificationCenter() {
                 >
                   <div className="notification-item-row">
                     <span className="notification-item-icon" style={{ color: notification.color || 'var(--info)' }}>
-                      <Icon name="bell" plain />
+                      <span className="notification-list-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /><path d="M10 21h4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" /></svg></span>
                     </span>
                     <div className="notification-item-content">
                       <div className="notification-item-title">{notification.title}</div>
