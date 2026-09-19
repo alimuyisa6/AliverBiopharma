@@ -133,6 +133,13 @@ export default function Dashboard() {
   const recentActivity = recent_activity || [];
   const unitXp = unit_xp || [];
 
+  function unitPath(item, fallback = '/resources') {
+    if (item?.group_id && item?.slug) {
+      return `/curriculum/${encodeURIComponent(item.group_id)}/${encodeURIComponent(item.slug)}`;
+    }
+    return fallback;
+  }
+
   return (
     <Container>
       <div className="dashboard-wrapper dashboard-content">
@@ -241,10 +248,10 @@ export default function Dashboard() {
                   <div className="recommendation-grid" id="recommendations-list">
                     {recommendations.slice(0, 4).map((item, index) => {
                       const link = item.type === 'due_review'
-                        ? '/recall'
+                        ? (item.unit_id ? `/recall?unit_id=${encodeURIComponent(item.unit_id)}` : '/recall')
                         : item.type === 'weak_topic'
-                          ? '/quiz'
-                          : '/flashcards';
+                          ? (item.unit_id ? `/quiz?unit_id=${encodeURIComponent(item.unit_id)}` : '/quiz')
+                          : (item.unit_id ? `/quiz?unit_id=${encodeURIComponent(item.unit_id)}` : '/flashcards');
                       const typeLabel = item.type === 'due_review'
                         ? 'Due Review'
                         : item.type === 'weak_topic'
@@ -324,12 +331,16 @@ export default function Dashboard() {
                 <div className="panel-body">
                   <div className="sidebar-list" id="weak-areas-list">
                     {weakAreas.map((weak, index) => (
-                      <div key={index} className="sidebar-item">
+                      <Link
+                        key={index}
+                        to={weak.unit_id ? `/quiz?unit_id=${encodeURIComponent(weak.unit_id)}` : '/quiz'}
+                        className="sidebar-item sidebar-item-link"
+                      >
                         <span className="item-text">{weak.concept}</span>
                         <span className="item-meta item-meta-danger">
                           {weak.incorrect_attempts} incorrect
                         </span>
-                      </div>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -350,8 +361,16 @@ export default function Dashboard() {
                       const contentLabel = activity.type === 'recall' ? 'Recall' : activity.type === 'quiz' ? 'Quiz' : 'Reading';
                       const iconName = activity.type === 'recall' ? 'brain' : activity.type === 'quiz' ? 'graduation-cap' : 'book-open';
 
-                      return (
-                        <div key={index} className="activity-item">
+                      const activityLink = activity.type === 'reading' && activity.note_id
+                        ? `/notes/read?id=${encodeURIComponent(activity.note_id)}`
+                        : activity.type === 'quiz' && activity.unit_id
+                          ? `/quiz?unit_id=${encodeURIComponent(activity.unit_id)}`
+                          : activity.type === 'recall' && activity.unit_id
+                            ? `/recall?unit_id=${encodeURIComponent(activity.unit_id)}`
+                            : null;
+
+                      const activityContent = (
+                        <>
                           <div className={`activity-icon activity-icon-${activity.type}`}>
                             <Icon name={iconName} />
                           </div>
@@ -376,6 +395,16 @@ export default function Dashboard() {
                               />
                             </div>
                           </div>
+                        </>
+                      );
+
+                      return activityLink ? (
+                        <Link key={index} to={activityLink} className="activity-item activity-item-link">
+                          {activityContent}
+                        </Link>
+                      ) : (
+                        <div key={index} className="activity-item">
+                          {activityContent}
                         </div>
                       );
                     })}
@@ -394,10 +423,14 @@ export default function Dashboard() {
                 <div className="panel-body">
                   <div className="unit-xp-grid" id="unit-xp-list">
                     {unitXp.map((unit, index) => (
-                      <div key={index} className="unit-xp-item">
+                      <Link
+                        key={index}
+                        to={unitPath(unit, unit.unit_id ? `/quiz?unit_id=${encodeURIComponent(unit.unit_id)}` : '/quiz')}
+                        className="unit-xp-item unit-xp-item-link"
+                      >
                         <span className="unit-name">{unit.unit_name || unit.unit_id}</span>
                         <span className="unit-value">{unit.xp.toLocaleString()} XP</span>
-                      </div>
+                      </Link>
                     ))}
                   </div>
                 </div>
