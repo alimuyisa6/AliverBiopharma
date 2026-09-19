@@ -8,7 +8,7 @@ import { useSecurityUiLock } from '../hooks/useSecurityUiLock';
 import EmptyState from '../components/EmptyState/EmptyState';
 import Icon from '../components/Icon/Icon';
 import Container from '../components/Container/Container';
-import ProgressBar from '../components/ProgressBar/ProgressBar';
+import ProgressBar, { ProgressRing } from '../components/ProgressBar/ProgressBar';
 
 export default function Dashboard() {
   const { user } = useAuth();
@@ -216,13 +216,11 @@ export default function Dashboard() {
                             <h4>{item.title}</h4>
                             <p>{progress}% completed</p>
                           </div>
-                          <div
-                            className="reading-progress-circle"
-                            style={{
-                              background: `conic-gradient(var(--primary) ${progress}%, var(--border-subtle) 0)`
-                            }}
-                            data-progress={`${progress}%`}
-                            aria-label={`${progress}% completed`}
+                          <ProgressRing
+                            value={progress}
+                            tone={item.topic_id || item.unit_id || item.note_id}
+                            variant="segmented"
+                            ariaLabel={`${progress}% completed`}
                           />
                         </Link>
                       );
@@ -369,13 +367,12 @@ export default function Dashboard() {
                                   })}
                                 </span>
                               </div>
-                              <div
-                                className="activity-progress-circle"
-                                style={{
-                                  background: `conic-gradient(var(--primary) ${progress}%, var(--border-subtle) 0)`
-                                }}
-                                data-progress={`${progress}%`}
-                                aria-label={`${contentLabel} progress: ${progress}%`}
+                              <ProgressRing
+                                value={progress}
+                                size="sm"
+                                variant="chunky"
+                                tone={activity.topic_id || activity.unit_id || activity.details}
+                                ariaLabel={`${contentLabel} progress: ${progress}%`}
                               />
                             </div>
                           </div>
