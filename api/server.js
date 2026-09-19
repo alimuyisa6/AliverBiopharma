@@ -79,9 +79,9 @@ export default async function handler(req, res) {
   try {
     if (mod.setContext) await mod.setContext(ctx);
 
-    await mod.handler(req, res, path, ctx);
+    const handlerResult = await mod.handler(req, res, path, ctx);
 
-    if (!res.writableEnded) {
+    if (!res.writableEnded && handlerResult !== true) {
       res.status(405).json({ error: getVagueErrorMessage() });
     }
   } catch (err) {
