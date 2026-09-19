@@ -1,5 +1,6 @@
  import { forwardRef } from 'react';
 import Icon from '../Icon/Icon';
+import Skeleton from '../Skeleton/Skeleton';
 
 const Card = forwardRef(function Card(
   {
@@ -13,12 +14,14 @@ const Card = forwardRef(function Card(
     variant = '',
     imageVariant = null,
     children,
+    loading = false,
+    loadingLines = 3,
     onClick,
     ...props
   },
   ref
 ) {
-  const isClickable = !!onClick;
+  const isClickable = !!onClick && !loading;
   const Wrapper = isClickable ? 'button' : 'div';
 
   const safeIcon = icon === 'dna' ? 'microscope' : icon;
@@ -33,6 +36,21 @@ const Card = forwardRef(function Card(
   if (className) cardClass += ` ${className}`;
 
   const hasMedia = !!(image || safeIcon);
+
+  if (loading) {
+    return (
+      <div
+        ref={ref}
+        className={cardClass + ' card-loading'}
+        aria-busy="true"
+        aria-label="Loading"
+      >
+        <div className="card-body">
+          <Skeleton variant="text" lines={loadingLines} />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <Wrapper
