@@ -3,6 +3,15 @@ import { useState } from 'react';
 import { useLayout } from '../../contexts/LayoutContext';
 import Icon from '../Icon/Icon';
 
+function SwitchGlyph() {
+  return (
+    <svg className="class-switcher-glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M7 7h10l-2.5-2.5M17 17H7l2.5 2.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M17 7v3M7 17v-3" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 export default function ClassSwitcher({ className = '' }) {
   const { switchGroups, level, switchClass, switching, activeGroupId } = useLayout();
   const [open, setOpen] = useState(false);
@@ -22,8 +31,11 @@ export default function ClassSwitcher({ className = '' }) {
     setOpen(false);
   };
 
+  const isHomeSwitcher = className.split(/\s+/).includes('home-scope-switcher');
+
   return (
     <div className={`class-switcher ${className}`.trim()}>
+      {isHomeSwitcher && <span className="class-switcher-label">{label}</span>}
       <button
         type="button"
         className="btn btn-card class-switcher-trigger"
@@ -32,7 +44,7 @@ export default function ClassSwitcher({ className = '' }) {
         aria-haspopup="menu"
         aria-expanded={open}
       >
-        <Icon name="graduation-cap" />
+        <SwitchGlyph />
         <span>{switching ? 'Switching...' : current?.name || 'Select'}</span>
         <Icon name="chevron-down" />
       </button>
