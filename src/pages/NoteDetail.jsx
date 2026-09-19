@@ -69,6 +69,8 @@ export default function NoteDetail() {
   const [tocOpen, setTocOpen] = useState(false);
   const [lightboxImage, setLightboxImage] = useState(null);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [reactionLoading, setReactionLoading] = useState(null);
+  const [commentSubmitting, setCommentSubmitting] = useState(false);
 
   const contentRef = useRef(null);
   const progressTimer = useRef(null);
@@ -599,7 +601,7 @@ export default function NoteDetail() {
                 onChange={(event) => setCommentInput(event.target.value)}
                 onKeyDown={(event) => event.key === 'Enter' && handleComment()}
               />
-              <button className="note-comment-submit font-outfit" onClick={handleComment}>Post</button>
+              <Button className="note-comment-submit font-outfit" variant="primary" onClick={handleComment} disabled={!commentInput.trim() || commentSubmitting} loading={commentSubmitting} loadingLabel="Posting…">Post</Button>
             </div>
           ) : (
             <div className="note-comment-signin font-source-sans">
