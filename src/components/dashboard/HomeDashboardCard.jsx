@@ -66,6 +66,7 @@ export default function HomeDashboardCard() {
           <div className="dc-value">{quiz.blocks_completed}</div>
           <div className="dc-sub">{quiz.recent_pass_rate}% pass rate</div>
         </div>
+        </div>
       </div>
     </section>
   );
