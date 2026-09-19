@@ -699,3 +699,38 @@
     font-size: var(--text-xl);
   }
 }
+
+/* --------------------------------------------------------------
+   Maven Pro showcase variants
+   -------------------------------------------------------------- */
+.card-stack {
+  position: relative;
+  isolation: isolate;
+}
+
+.card-stack-back {
+  position: absolute;
+  inset: var(--space-2) var(--space-3) calc(var(--space-2) * -1);
+  z-index: -1;
+  background: var(--surface-muted);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-card);
+  transform: rotate(-1.5deg);
+}
+
+.card-stack-front {
+  position: relative;
+  z-index: 1;
+}
+
+.card-glass {
+  background: color-mix(in srgb, var(--bg-card) 72%, transparent);
+  border-color: color-mix(in srgb, var(--border-default) 72%, transparent);
+  box-shadow: var(--shadow-raised);
+  -webkit-backdrop-filter: blur(var(--space-4));
+  backdrop-filter: blur(var(--space-4));
+}
+
+.card-glass:hover {
+  border-color: var(--border-strong);
+}
