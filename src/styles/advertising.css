@@ -72,7 +72,6 @@
 
 .ads-home-image-frame {
   overflow: hidden;
-  border: 1px solid var(--border-default);
   background: var(--bg-muted);
 }
 
@@ -186,7 +185,6 @@
   display: block;
   width: 100%;
   min-height: 24rem;
-  border: 1px solid var(--border-default);
   border-radius: var(--radius-md);
   object-fit: cover;
   background: var(--bg-muted);
