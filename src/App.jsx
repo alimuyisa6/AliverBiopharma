@@ -198,6 +198,7 @@ export default function App() {
       <LayoutProvider>
         <ToastProvider>
           <NotificationProvider>
+            <AIAssistant />
             <ChartRegistry />
             <AppRoutes />
           </NotificationProvider>
