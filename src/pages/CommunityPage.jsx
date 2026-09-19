@@ -25,9 +25,13 @@ export default function CommunityPage() {
     getCommunityActivity().then(setCommunityActivity).catch(() => {});
   }, [level]);
 
+  const [moodSubmitting, setMoodSubmitting] = useState(false);
+  const [challengeSubmitting, setChallengeSubmitting] = useState(null);
+
   const handleMoodSubmit = useCallback(async () => {
     if (!moodSelected) return;
 
+    setMoodSubmitting(true);
     try {
       await submitMood(moodSelected, moodMessage);
       setMoodSubmitted(true);
@@ -35,6 +39,7 @@ export default function CommunityPage() {
   }, [moodSelected, moodMessage]);
 
   const handleWeeklyChallengeSubmit = useCallback(async (index, correct, explanation) => {
+    setChallengeSubmitting(index);
     if (!user) return;
 
     setWeeklyChallengeAnswer({ correct: index === correct, explanation });
@@ -52,14 +57,14 @@ export default function CommunityPage() {
         moodSubmitted={moodSubmitted}
         onMoodSelect={setMoodSelected}
         onMessageChange={setMoodMessage}
-        onSubmit={handleMoodSubmit}
+        onSubmit={handleMoodSubmit} submitting={moodSubmitting}
       />
 
       <CommunitySection
         activity={communityActivity}
         weeklyChallenge={sections?.weekly_challenge}
         weeklyChallengeAnswer={weeklyChallengeAnswer}
-        onWeeklySubmit={handleWeeklyChallengeSubmit}
+        onWeeklySubmit={handleWeeklyChallengeSubmit} challengeSubmitting={challengeSubmitting}
       />
     </div>
   );
