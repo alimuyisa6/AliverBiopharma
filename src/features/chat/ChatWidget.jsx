@@ -18,15 +18,6 @@ export function ChatWidget({ chatOpen, chatMessages = [], chatInput, adminOnline
 
   return (
     <div className="chat-widget">
-      <button
-        className="btn btn-primary btn-icon btn-lg btn-round chat-toggle-btn"
-        onClick={onToggle}
-        aria-label={chatOpen ? 'Close support chat' : 'Open support chat'}
-        aria-expanded={chatOpen}
-      >
-        <Icon name={chatOpen ? 'xmark' : 'message'} className="chat-icon" />
-      </button>
-
       {chatOpen && (
         <div className="chat-panel">
           <div className="chat-panel-header">
