@@ -77,7 +77,7 @@ export default function Layout({ children, showFooter = true }) {
         <button className="btn btn-ghost btn-sm btn-icon header-action-button" onClick={() => setSearchOpen(true)} aria-label="Search" type="button"><SearchGlyph /></button>
         <NotificationCenter />
         <button className="btn btn-ghost btn-sm btn-icon header-action-button" onClick={toggleTheme} aria-label="Toggle theme" type="button"><ThemeGlyph isDark={isDarkTheme} /></button>
-        <button className="hamburger-btn header-action-button" onClick={() => setMobileOpen((prev) => !prev)} aria-label="Menu" type="button"><MenuGlyph isOpen={mobileOpen} /></button>
+        <button className="hamburger-btn header-action-button" onClick={() => setMobileOpen((prev) => !prev)} aria-label={mobileOpen ? "Close menu" : "Menu"} aria-expanded={mobileOpen} type="button"><MenuGlyph isOpen={mobileOpen} /></button>
       </div>
     </div></header>}
     <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} /><AdminLauncher />
