@@ -3,8 +3,6 @@ import { useState } from 'react';
 import { useLayout } from '../../contexts/LayoutContext';
 import Icon from '../Icon/Icon';
 
-const COLORS = ['primary', 'secondary', 'accent'];
-
 export default function ClassSwitcher({ className = '' }) {
   const { groups, level, switchClass, switching, activeGroupId } = useLayout();
   const [open, setOpen] = useState(false);
@@ -20,14 +18,15 @@ export default function ClassSwitcher({ className = '' }) {
       return;
     }
 
-    setOpen(false);
     await switchClass(groupId);
+    setOpen(false);
   };
 
   return (
     <div className={`class-switcher ${className}`.trim()}>
       <button
-        className="btn btn-ghost btn-sm"
+        type="button"
+        className="btn btn-card class-switcher-trigger"
         onClick={() => setOpen((value) => !value)}
         disabled={switching}
       >
@@ -40,17 +39,16 @@ export default function ClassSwitcher({ className = '' }) {
         <>
           <div className="dropdown-backdrop" onClick={() => setOpen(false)} />
           <div className="dropdown-menu">
-            <div className="dropdown-item" style={{ fontWeight: 600, pointerEvents: 'none' }}>
+            <div className="dropdown-item dropdown-heading" aria-hidden="true">
               Switch {label}
             </div>
             <div className="dropdown-divider" />
 
-            {groups.map((group, index) => (
+            {groups.map((group) => (
               <button
                 key={group.id}
-                className="dropdown-item"
+                className={`dropdown-item${group.id === activeGroupId ? ' is-active' : ''}`}
                 onClick={() => handleSelect(group.id)}
-                style={{ color: group.id === activeGroupId ? `var(--${COLORS[index % COLORS.length]})` : undefined }}
               >
                 <span>{group.name}</span>
                 {group.id === activeGroupId && <Icon name="check" />}
