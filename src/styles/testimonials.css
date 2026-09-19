@@ -71,8 +71,9 @@
   margin: 0;
   color: var(--text-main);
   font-family: var(--font-reading);
-  font-size: var(--text-body-lead);
+  font-size: var(--text-body);
   font-weight: var(--weight-normal);
+  font-style: italic;
   line-height: var(--leading-relaxed);
 }
 
