@@ -76,10 +76,6 @@ export default function AdsHomeSection() {
     >
       <div className="ads-home-panel">
         <div className="ads-home-copy">
-          <span className="ads-home-eyebrow">
-            Advertising on AliverBiopharm
-          </span>
-
           <h2 id="ads-home-title" className="ads-home-title">
             Advertising that reaches
             <br />
@@ -99,23 +95,6 @@ export default function AdsHomeSection() {
               audience that's already engaged in learning.
             </p>
           </div>
-
-          <div className="ads-home-actions">
-            <Link
-              to="/advertise"
-              className="btn btn-primary ads-home-cta"
-            >
-              <span>Place Your Ad</span>
-              <Icon name="arrow-right" />
-            </Link>
-
-            <Link
-              to="/advertise"
-              className="ads-home-secondary-link"
-            >
-              Learn how advertising works
-            </Link>
-          </div>
         </div>
 
         <div className="ads-home-visual">
@@ -128,89 +107,13 @@ export default function AdsHomeSection() {
             />
           </div>
 
-          <div className="ads-home-audience-note">
-            <span className="ads-home-audience-label">
-              Audience
-            </span>
-
-            <div className="ads-home-audience-list">
-              <span>Biology O-Level</span>
-              <span>Biology A-Level</span>
-              <span>Pharmacy</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="ads-home-steps">
-        <div className="ads-home-section-heading">
-          <span className="eyebrow">How it works</span>
-
-          <h2>
-            Six steps from
-            <br />
-            concept to launch.
-          </h2>
-
-          <p>
-            Set up your campaign, define your audience, and we'll handle the
-            review.
-          </p>
-        </div>
-
-        <div className="ads-home-step-grid">
-          {STEPS.map((step) => (
-            <article
-              className="ads-home-step"
-              key={step.number}
-            >
-              <div className="ads-home-step-top">
-                <span className="ads-home-step-number">
-                  {step.number}
-                </span>
-
-                <div className="ads-home-step-icon">
-                  <AdStepIcon name={step.icon} />
-                </div>
-              </div>
-
-              <h3>{step.title}</h3>
-
-              <p>{step.description}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-
-      <div className="ads-home-rules">
-        <div className="ads-home-rules-heading">
-          <span className="eyebrow">Advertising standards</span>
-
-          <h2>
-            Advertising that respects
-            <br />
-            the classroom.
-          </h2>
-
-          <p>
-            AliverBiopharm is a learning platform first. These standards keep
-            it that way.
-          </p>
-        </div>
-
-        <div className="ads-home-rules-list">
-          {RULES.map((rule, index) => (
-            <div
-              className="ads-home-rule"
-              key={rule}
-            >
-              <span className="ads-home-rule-number">
-                {String(index + 1).padStart(2, '0')}
-              </span>
-
-              <p>{rule}</p>
-            </div>
-          ))}
+          <Link
+            to="/advertise"
+            className="btn btn-primary ads-home-cta"
+          >
+            <span>Place Your Ad</span>
+            <Icon name="arrow-right" />
+          </Link>
         </div>
       </div>
     </section>
