@@ -123,7 +123,7 @@ function DailyRecallCard({ recall, onReveal, onStart }) {
   const { question_text, meta, score } = recall;
   const progress = score?.total ? (score.completed / score.total) * 100 : 0;
   return (
-    <section className="section section-emerald home-daily-recall-section">
+    <section className="section section-emerald home-daily-recall-section card-glass">
       <div className="section-head"><div className="section-head-left"><span className="eyebrow">Daily active recall</span><h2>{question_text}</h2><p className="section-description home-daily-recall-description">{meta}</p></div></div>
       <div className="card card-lifted card-surface-solid card-elevation-soft card-density-comfortable row home-daily-recall-card">
         <div className="row-body">{score && <div className="home-daily-recall-progress"><div className="home-daily-recall-score"><span>Today's recall</span><strong>{score.completed} / {score.total}</strong><span>· +{score.xp_earned} XP</span></div><div className="progress-track" aria-label={`${Math.round(progress)}% complete`}><span className="progress-fill emerald" style={{ width: `${progress}%` }} /></div></div>}</div>
