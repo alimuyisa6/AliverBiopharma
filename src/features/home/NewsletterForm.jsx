@@ -3,7 +3,7 @@
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
 
-export function NewsletterForm({ email, status, onChange, onSubmit }) {
+export function NewsletterForm({ email, status, loading = false, onChange, onSubmit }) {
   return (
     <section className="section newsletter-section">
       <div className="section-head">
@@ -39,6 +39,9 @@ export function NewsletterForm({ email, status, onChange, onSubmit }) {
         <Button
           type="submit"
           icon="paper-plane"
+          loading={loading}
+          loadingContext="brand"
+          loadingLabel="Subscribing…"
         >
           Subscribe
         </Button>
