@@ -4,7 +4,7 @@ import Input from '../../components/Input/Input';
 import Textarea from '../../components/Textarea/Textarea';
 import Button from '../../components/Button/Button';
 
-export function ContactSection({ contactForm, contactStatus, contactInfo = [], onChange, onSubmit }) {
+export function ContactSection({ contactForm, contactStatus, contactInfo = [], onChange, onSubmit, submitting = false }) {
   return (
     <section className="section reveal">
       <span className="sec-label">Support</span>
@@ -47,7 +47,7 @@ export function ContactSection({ contactForm, contactStatus, contactInfo = [], o
               required
             />
 
-            <Button type="submit" icon="paper-plane">Send Message</Button>
+            <Button type="submit" icon="paper-plane" loading={submitting} loadingLabel="Sending…">Send Message</Button>
 
             {contactStatus && (
               <p className={`form-status ${contactStatus.success ? 'success' : 'error'}`}>
