@@ -1,56 +1,7 @@
 /* src/components/Advertising/AdsHomeSection.jsx */
 import { Link } from 'react-router-dom';
 import Icon from '../Icon/Icon';
-import AdStepIcon from './AdStepIcon';
 import { useLayout } from '../../contexts/LayoutContext';
-
-const STEPS = [
-  {
-    number: '01',
-    icon: 'organisation',
-    title: 'Tell us about your organisation',
-    description: 'Share who you are and what you’re offering learners.',
-  },
-  {
-    number: '02',
-    icon: 'campaign',
-    title: 'Build your campaign',
-    description: 'Add your message, image and destination link.',
-  },
-  {
-    number: '03',
-    icon: 'audience',
-    title: 'Choose your audience',
-    description: 'Target by learning level, class or programme.',
-  },
-  {
-    number: '04',
-    icon: 'placement',
-    title: 'Choose your placement',
-    description: 'Pick an available position and campaign duration.',
-  },
-  {
-    number: '05',
-    icon: 'review',
-    title: 'Submit for review',
-    description: 'Every campaign is checked for relevance and accuracy.',
-  },
-  {
-    number: '06',
-    icon: 'reach',
-    title: 'Reach relevant learners',
-    description: 'Once approved, your campaign goes live to the right audience.',
-  },
-];
-
-const RULES = [
-  'Content must relate to education, science, pharmacy or career opportunities.',
-  'Campaigns can target Biology O-Level, Biology A-Level or Pharmacy programmes.',
-  'Scholarships, academic events, training and other legitimate learner opportunities are welcome.',
-  'Misleading, fraudulent, unsafe or unrelated advertising is not accepted.',
-  'Health and pharmaceutical content must be accurate and appropriate for students.',
-  'AliverBiopharm may decline or remove campaigns that don’t serve our learners.',
-];
 
 export default function AdsHomeSection() {
   const { bootstrap } = useLayout();
