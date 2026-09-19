@@ -459,13 +459,16 @@ export default function Dashboard() {
                 </div>
                 <div className="panel-body">
                   <div className="sidebar-list">
-                    {Object.entries(personalRecords)
-                      .filter(([, value]) => value !== null && value !== undefined && value !== 0)
-                      .slice(0, 4)
-                      .map(([key, value]) => (
+                    {[
+                      ['highest_score', 'Highest Score'],
+                      ['fastest_completion', 'Fastest Completion'],
+                      ['perfect_blocks', 'Perfect Blocks']
+                    ]
+                      .filter(([key]) => personalRecords[key] !== null && personalRecords[key] !== undefined && personalRecords[key] !== 0)
+                      .map(([key, label]) => (
                         <div className="sidebar-item" key={key}>
-                          <span className="item-text">{key.replaceAll('_', ' ')}</span>
-                          <span className="item-meta">{value}</span>
+                          <span className="item-text">{label}</span>
+                          <span className="item-meta">{personalRecords[key]}</span>
                         </div>
                       ))}
                   </div>
