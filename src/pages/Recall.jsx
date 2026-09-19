@@ -102,6 +102,7 @@ export default function BioRecall() {
   const [reviewMode, setReviewMode] = useState(false);
   const [reviewQuestion, setReviewQuestion] = useState(null);
   const [submittingConfidence, setSubmittingConfidence] = useState(false);
+  const [startingSession, setStartingSession] = useState(false);
   const [clozeAnswer, setClozeAnswer] = useState('');
   const [soundEnabled, setSoundEnabled] = useState(() => {
     try {
@@ -281,6 +282,7 @@ export default function BioRecall() {
       );
     } finally {
       setLoading(false);
+      setStartingSession(false);
     }
   }
 
