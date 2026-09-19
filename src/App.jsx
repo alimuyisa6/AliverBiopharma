@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { AuthProvider, ProtectedRoute } from './contexts/AuthContext';
 import { LayoutProvider, useLayout } from './contexts/LayoutContext';
 import { ToastProvider } from './components/Toast/Toast';
+import { NotificationProvider } from './contexts/NotificationContext';
 import Layout from './components/Layout/Layout';
 import ScrollMemory from './components/ScrollMemory';
 import PageTransition from './components/PageTransition';
@@ -196,8 +197,10 @@ export default function App() {
     <AuthProvider>
       <LayoutProvider>
         <ToastProvider>
-          <ChartRegistry />
-          <AppRoutes />
+          <NotificationProvider>
+            <ChartRegistry />
+            <AppRoutes />
+          </NotificationProvider>
         </ToastProvider>
       </LayoutProvider>
     </AuthProvider>
