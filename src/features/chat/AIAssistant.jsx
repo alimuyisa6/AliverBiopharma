@@ -207,6 +207,18 @@ export default function AIAssistant() {
           </div>
 
           <div ref={bodyRef} className="ai-assistant-body">
+            <button
+              type="button"
+              className="ai-assistant-live-chat"
+              onClick={handleOpenLiveChat}
+            >
+              <Icon name="message" />
+              <span>
+                <strong>Live Chat</strong>
+                <small>Talk to our support team</small>
+              </span>
+              <Icon name="arrow-right" />
+            </button>
             {messages.length === 0 ? (
               <div className="ai-assistant-welcome">
                 <span className="ai-assistant-welcome-icon" aria-hidden="true">
