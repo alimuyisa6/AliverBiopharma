@@ -284,3 +284,83 @@ body.dark-mode .testimonial-flat cite { color: var(--success-hover); }
   .testimonial-flat { padding: var(--card-padding-y) var(--card-padding-x); }
   .home-curriculum-node-line { padding-inline: var(--card-padding-x-compact); }
 }
+
+
+/* Home teaser sections: consistent viewport breathing room and a deliberate
+   title → description → image → action reading order. */
+.home-classroom-section > .section-teaser,
+.home-tutor-section > .section-teaser {
+  width: min(calc(100% - (var(--page-gutter-x) * 2)), var(--max-width));
+  margin-inline: auto;
+  padding-block: var(--section-space-y);
+}
+
+.home-classroom-section .section-teaser-inner,
+.home-tutor-section .section-teaser-inner {
+  width: 100%;
+  margin-inline: auto;
+}
+
+.home-classroom-section .section-teaser-content,
+.home-tutor-section .section-teaser-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: var(--content-max-readable);
+  margin-inline: auto;
+}
+
+.home-classroom-section .section-teaser-title,
+.home-tutor-section .section-teaser-title {
+  margin-block-end: var(--text-gap-description);
+  color: var(--text-main);
+  font-family: var(--font-maven);
+  font-size: var(--text-section-title);
+  font-weight: var(--weight-section-title);
+  line-height: var(--leading-section-title);
+  letter-spacing: var(--tracking-tight);
+}
+
+.home-classroom-section .section-teaser-content > .section-subtitle,
+.home-tutor-section .section-teaser-content > .section-subtitle {
+  max-width: var(--content-max-readable);
+  margin-block-end: var(--content-gap);
+}
+
+.home-classroom-section .section-teaser-image-wrap,
+.home-tutor-section .section-teaser-image-wrap {
+  width: 100%;
+  margin-block-end: var(--content-gap);
+  overflow: hidden;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-none);
+  background: var(--surface-card);
+}
+
+.home-classroom-section .section-teaser-image,
+.home-tutor-section .section-teaser-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.home-classroom-section .section-teaser-content > .btn,
+.home-tutor-section .section-teaser-content > .btn {
+  width: fit-content;
+}
+
+@media (max-width: 768px) {
+  .home-classroom-section > .section-teaser,
+  .home-tutor-section > .section-teaser {
+    padding-block: var(--section-space-y);
+  }
+}
+
+@media (max-width: 480px) {
+  .home-classroom-section .section-teaser-title,
+  .home-tutor-section .section-teaser-title {
+    font-size: var(--text-xl);
+  }
+}
