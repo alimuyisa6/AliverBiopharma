@@ -1,4 +1,5 @@
  import { useContext, useState } from 'react';
+import Button from './Button/Button';
 import { AuthContext } from '../contexts/AuthContext';
 import { requestHandoff } from '../api/client';
 import Icon from './Icon/Icon';
@@ -20,7 +21,7 @@ export default function AdminLauncher() {
   }
 
   return (
-    <button
+    <Button
       onClick={openAdminDashboard}
       disabled={loading}
       className="btn btn-primary btn-sm"
@@ -28,6 +29,6 @@ export default function AdminLauncher() {
     >
       <Icon name="shield-halved" />
       {loading ? 'Opening…' : 'Admin'}
-    </button>
+    </Button>
   );
 }
