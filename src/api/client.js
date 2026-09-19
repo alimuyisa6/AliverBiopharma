@@ -3273,3 +3273,78 @@ export async function reviewAdPlacement(
   );
 }
 
+export async function streamAIAssistant(
+  messages,
+  {
+    level = '',
+    mode = 'learn',
+    pageContext = '',
+    signal,
+    onChunk,
+  } = {}
+) {
+  const url = `${API_BASE}?module=ai-assistant&path=chat`;
+
+  const headers = {
+    'Content-Type': 'application/json',
+  };
+
+  if (csrfToken) {
+    headers['X-CSRF-Token'] = csrfToken;
+  }
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers,
+    credentials: 'include',
+    signal,
+    body: JSON.stringify({
+      messages,
+      level,
+      mode,
+      page_context: pageContext,
+    }),
+  });
+
+  if (!response.ok) {
+    const text = await response.text();
+    let data = {};
+    try {
+      data = text ? JSON.parse(text) : {};
+    } catch {}
+
+    const error = new Error(getErrorMessage(data, response.status));
+    error.status = response.status;
+    error.data = data;
+    throw error;
+  }
+
+  if (!response.body) {
+    throw new Error('The AI assistant returned no response stream.');
+  }
+
+  const reader = response.body.getReader();
+  const decoder = new TextDecoder();
+  let fullText = '';
+
+  while (true) {
+    const { done, value } = await reader.read();
+
+    if (done) break;
+
+    const chunk = decoder.decode(value, { stream: true });
+
+    if (chunk) {
+      fullText += chunk;
+      onChunk?.(chunk, fullText);
+    }
+  }
+
+  const tail = decoder.decode();
+  if (tail) {
+    fullText += tail;
+    onChunk?.(tail, fullText);
+  }
+
+  return fullText;
+}
