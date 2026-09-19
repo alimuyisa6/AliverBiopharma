@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { AuthProvider, ProtectedRoute } from './contexts/AuthContext';
 import { LayoutProvider, useLayout } from './contexts/LayoutContext';
+import { ChatProvider } from './contexts/ChatContext';
 import { ToastProvider } from './components/Toast/Toast';
 import { NotificationProvider } from './contexts/NotificationContext';
 import Layout from './components/Layout/Layout';
@@ -197,13 +198,15 @@ export default function App() {
   return (
     <AuthProvider>
       <LayoutProvider>
-        <ToastProvider>
+        <ChatProvider>
+          <ToastProvider>
           <NotificationProvider>
             <AIAssistant />
             <ChartRegistry />
             <AppRoutes />
           </NotificationProvider>
-        </ToastProvider>
+          </ToastProvider>
+        </ChatProvider>
       </LayoutProvider>
     </AuthProvider>
   );
