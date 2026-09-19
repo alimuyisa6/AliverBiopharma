@@ -7,6 +7,7 @@ const MODULE_MAP = {
   admin: () => import('../lib/admin.js'),
   security: () => import('../lib/security-center.js'),
   chat: () => import('../lib/chat.js'),
+  'ai-assistant': () => import('../lib/ai-assistant.js'),
   classroom: () => import('../lib/classroom.js'),
   community: () => import('../lib/community.js'),
   contact: () => import('../lib/contact.js'),
