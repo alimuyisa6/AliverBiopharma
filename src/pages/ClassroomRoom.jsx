@@ -37,6 +37,9 @@ export default function ClassroomRoom() {
   const [isScreenSharing, setIsScreenSharing] = useState(false);
   const [isWhiteboardVisible, setIsWhiteboardVisible] = useState(true);
   const [loading, setLoading] = useState(true);
+  const [sending, setSending] = useState(false);
+  const [raisingHand, setRaisingHand] = useState(false);
+  const [leaving, setLeaving] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -99,6 +102,7 @@ export default function ClassroomRoom() {
   }
 
   async function handleSendMessage() {
+    setSending(true);
     if (!chatInput.trim()) return;
     const text = chatInput.trim();
     setChatInput('');
@@ -109,6 +113,7 @@ export default function ClassroomRoom() {
   }
 
   async function handleRaiseHand() {
+    setRaisingHand(true);
     try {
       await raiseHand(roomId, !handRaised);
       setHandRaised((value) => !value);
@@ -116,6 +121,7 @@ export default function ClassroomRoom() {
   }
 
   async function handleLeaveRoom() {
+    setLeaving(true);
     try {
       await leaveClassroom(roomId);
     } catch {
@@ -192,7 +198,7 @@ export default function ClassroomRoom() {
   return (
     <div className="classroom-room-page">
       <div className="classroom-room-header">
-        <Button variant="ghost" size="sm" icon onClick={handleLeaveRoom}>
+        <Button variant="ghost" size="sm" icon onClick={handleLeaveRoom} loading={leaving}>
           <Icon name="arrow-left" />
         </Button>
 
@@ -248,7 +254,7 @@ export default function ClassroomRoom() {
               <Icon name="desktop" />
               {isScreenSharing ? 'Stop Share' : 'Share'}
             </Button>
-            <Button variant={handRaised ? 'warm' : 'secondary'} size="sm" onClick={handleRaiseHand}>
+            <Button variant={handRaised ? 'warm' : 'secondary'} size="sm" onClick={handleRaiseHand} loading={raisingHand}>
               <Icon name="hand" />
               {handRaised ? 'Hand Raised' : 'Raise Hand'}
             </Button>
@@ -342,7 +348,7 @@ export default function ClassroomRoom() {
                 rows={1}
                 maxLength={1000}
               />
-              <Button onClick={handleSendMessage} disabled={!chatInput.trim()} icon>
+              <Button onClick={handleSendMessage} disabled={!chatInput.trim()} loading={sending} loadingLabel="Sending…" icon>
                 <Icon name="paper-plane" />
               </Button>
             </div>
