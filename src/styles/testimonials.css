@@ -1,5 +1,6 @@
 .testimonials-section {
   padding-block: var(--section-space-y);
+  padding-inline: var(--page-gutter-x);
 }
 
 .testimonials-section .section-head {
@@ -48,7 +49,7 @@
   position: absolute;
   inset: 0 auto 0 0;
   width: var(--space-1);
-  background: var(--primary);
+  background: var(--primary-light);
 }
 
 .testimonial-quote-mark {
