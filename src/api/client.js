@@ -1375,20 +1375,22 @@ session_id
 }
 
 export async function getNotificationSettings() {
-return getRequest(
-'profile',
-'notifications'
-);
+return getNotificationPreferences();
 }
 
-export async function saveNotificationSettings(preferences) {
-return apiCall(
-'profile',
-'save_notifications',
-{
-preferences
-}
+export async function saveNotificationSettings(preferences = {}) {
+const entries = Object.entries(preferences);
+
+const results = await Promise.all(
+entries.map(([module, settings]) =>
+updateNotificationPreference(module, settings || {})
+)
 );
+
+return {
+success: true,
+preferences: results
+};
 }
 
 export async function getSettingsBundle() {
