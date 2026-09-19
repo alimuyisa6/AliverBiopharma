@@ -66,7 +66,7 @@
   margin: 0;
   color: var(--text-main);
   font-family: var(--font-maven);
-  font-size: clamp(var(--text-4xl), 5vw, var(--text-5xl));
+  font-size: var(--type-page-title-size);
   font-weight: var(--weight-bold);
   line-height: 1;
   letter-spacing: var(--tracking-tight);
@@ -202,7 +202,7 @@
   margin: 0;
   color: var(--text-main);
   font-family: var(--font-primary);
-  font-size: clamp(var(--text-2xl), 3.5vw, var(--text-4xl));
+  font-size: var(--type-section-title-size);
   font-weight: var(--weight-bold);
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
@@ -277,7 +277,7 @@
   margin: 0;
   color: var(--text-main);
   font-family: var(--font-primary);
-  font-size: var(--text-lg);
+  font-size: var(--type-card-title-size);
   font-weight: var(--weight-semibold);
   line-height: var(--leading-tight);
 }
@@ -312,7 +312,7 @@
   margin: 0;
   color: var(--text-main);
   font-family: var(--font-primary);
-  font-size: clamp(var(--text-2xl), 3.5vw, var(--text-4xl));
+  font-size: var(--type-section-title-size);
   font-weight: var(--weight-bold);
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
@@ -406,7 +406,7 @@
   margin: 0;
   color: var(--text-main);
   font-family: var(--font-maven);
-  font-size: clamp(var(--text-4xl), 5vw, var(--text-5xl));
+  font-size: var(--type-page-title-size);
   font-weight: var(--weight-bold);
   line-height: 1;
   letter-spacing: var(--tracking-tight);
@@ -489,7 +489,7 @@
   margin: 0;
   color: var(--text-main);
   font-family: var(--font-primary);
-  font-size: clamp(var(--text-2xl), 3.5vw, var(--text-4xl));
+  font-size: var(--type-section-title-size);
   font-weight: var(--weight-bold);
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
@@ -540,7 +540,7 @@
   margin: 0;
   color: var(--text-main);
   font-family: var(--font-primary);
-  font-size: var(--text-lg);
+  font-size: var(--type-card-title-size);
   font-weight: var(--weight-semibold);
   line-height: var(--leading-tight);
 }
@@ -592,7 +592,7 @@
   margin: 0;
   color: var(--text-main);
   font-family: var(--font-primary);
-  font-size: var(--text-lg);
+  font-size: var(--type-card-title-size);
   font-weight: var(--weight-semibold);
   line-height: var(--leading-tight);
 }
@@ -619,7 +619,7 @@
   margin: 0;
   color: var(--text-main);
   font-family: var(--font-primary);
-  font-size: clamp(var(--text-2xl), 3.5vw, var(--text-4xl));
+  font-size: var(--type-section-title-size);
   font-weight: var(--weight-bold);
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
@@ -670,7 +670,7 @@
   margin: 0;
   color: var(--text-main);
   font-family: var(--font-primary);
-  font-size: var(--text-base);
+  font-size: var(--type-card-title-size);
   font-weight: var(--weight-semibold);
   line-height: var(--leading-tight);
 }
@@ -722,7 +722,7 @@
   margin: 0;
   color: var(--text-main);
   font-family: var(--font-maven);
-  font-size: clamp(var(--text-3xl), 4.5vw, var(--text-5xl));
+  font-size: var(--type-page-title-size);
   font-weight: var(--weight-bold);
   line-height: 1;
   letter-spacing: var(--tracking-tight);
@@ -831,7 +831,7 @@
   margin: 0;
   color: var(--text-main);
   font-family: var(--font-primary);
-  font-size: clamp(var(--text-xl), 3vw, var(--text-3xl));
+  font-size: var(--type-section-title-size);
   font-weight: var(--weight-bold);
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
@@ -992,7 +992,7 @@
 .advertise-create-choice-section h3 {
   margin: 0 0 var(--space-3);
   color: var(--text-main);
-  font-size: var(--text-sm);
+  font-size: var(--type-card-title-size);
   font-weight: var(--weight-semibold);
 }
 
@@ -1133,7 +1133,7 @@
   margin: 0;
   color: var(--text-main);
   font-family: var(--font-primary);
-  font-size: var(--text-xl);
+  font-size: var(--type-section-title-size);
   font-weight: var(--weight-bold);
   line-height: var(--leading-tight);
 }
@@ -1164,7 +1164,7 @@
   margin: 0;
   color: var(--text-main);
   font-family: var(--font-maven);
-  font-size: clamp(var(--text-3xl), 4.5vw, var(--text-5xl));
+  font-size: var(--type-page-title-size);
   font-weight: var(--weight-bold);
   line-height: 1;
   letter-spacing: var(--tracking-tight);
@@ -1388,7 +1388,7 @@
 .advertise-payment-empty h2 {
   margin: 0;
   color: var(--text-main);
-  font-size: var(--text-2xl);
+  font-size: var(--type-section-title-size);
   font-weight: var(--weight-bold);
   line-height: var(--leading-tight);
 }
@@ -1426,7 +1426,7 @@
 .advertise-payment-status h2 {
   margin: 0;
   color: var(--text-main);
-  font-size: var(--text-2xl);
+  font-size: var(--type-section-title-size);
   font-weight: var(--weight-bold);
   line-height: var(--leading-tight);
 }
@@ -1494,7 +1494,7 @@
 .advertise-payment-form-heading h2 {
   margin: 0;
   color: var(--text-main);
-  font-size: clamp(var(--text-xl), 3vw, var(--text-3xl));
+  font-size: var(--type-section-title-size);
   font-weight: var(--weight-bold);
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
@@ -1533,7 +1533,7 @@
 .advertise-payment-next h2 {
   margin: 0;
   color: var(--text-main);
-  font-size: var(--text-2xl);
+  font-size: var(--type-section-title-size);
   font-weight: var(--weight-bold);
   line-height: var(--leading-tight);
 }
@@ -1572,7 +1572,7 @@
 .advertise-payment-aside h2 {
   margin: 0;
   color: var(--text-main);
-  font-size: var(--text-2xl);
+  font-size: var(--type-section-title-size);
   font-weight: var(--weight-bold);
   line-height: var(--leading-tight);
 }
@@ -1688,13 +1688,7 @@
   .advertise-hero {
     padding: var(--space-12) var(--space-4);
   }
-
-  .ads-home-title,
-  .advertise-hero-copy h1 {
-    font-size: clamp(var(--text-3xl), 11vw, var(--text-4xl));
-  }
-
-  .ads-home-description,
+.ads-home-description,
   .advertise-hero-copy p {
     font-size: var(--text-base);
   }
