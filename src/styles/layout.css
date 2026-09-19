@@ -106,6 +106,7 @@ body.dark-mode .site-header, body.dark-mode .site-header.scrolled { background: 
   display: inline-flex;
   width: fit-content;
   max-width: 100%;
+  margin-top: var(--section-space-y);
   margin-bottom: var(--content-gap-compact);
 }
 .home-scope-switcher > .btn {
