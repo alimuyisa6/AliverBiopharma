@@ -369,7 +369,7 @@ export default function Dashboard() {
                               </div>
                               <ProgressRing
                                 value={progress}
-                                size="sm"
+                                size="md"
                                 variant="chunky"
                                 tone={activity.topic_id || activity.unit_id || activity.details}
                                 ariaLabel={`${contentLabel} progress: ${progress}%`}
