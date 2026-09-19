@@ -15,6 +15,7 @@ export default function TutorMarketplaceSection() {
   const addToast = useToast();
   const [tutors, setTutors] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [contactingId, setContactingId] = useState(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -94,6 +95,7 @@ export default function TutorMarketplaceSection() {
                   link={`/tutor/${tutor.id}`}
                   buttonText="View"
                   onButtonClick={() => handleContact(tutor)}
+                    contactLoading={contactingId === tutor.user_id}
                 />
               ))}
             </div>
