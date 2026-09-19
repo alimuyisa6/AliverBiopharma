@@ -710,12 +710,13 @@
 
 .card-stack-back {
   position: absolute;
-  inset: var(--space-2) var(--space-3) calc(var(--space-2) * -1);
-  z-index: -1;
+  inset: calc(var(--space-3) * -1) var(--space-4) calc(var(--space-3) * -1) var(--space-2);
+  z-index: 0;
   background: var(--surface-muted);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-card);
   transform: rotate(-1.5deg);
+  pointer-events: none;
 }
 
 .card-stack-front {
