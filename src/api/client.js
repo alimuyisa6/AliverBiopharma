@@ -309,7 +309,15 @@ turnstile_token,
 }
 
 export async function getUser() {
-return getRequest('auth', 'get_user');
+const url = `${API_BASE}?module=auth&path=get_user`;
+
+return dedupeAndQueue('GET:auth:get_user:fresh', async () =>
+  executeRequest(url, {
+    method: 'GET',
+    credentials: 'include',
+    cache: 'no-store'
+  })
+);
 }
 
 export async function updateProfile(full_name) {
