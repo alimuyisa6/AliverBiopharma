@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Icon from '../../components/Icon/Icon';
 import { streamAIAssistant } from '../../api/client';
 import { useAuth } from '../../contexts/AuthContext';
 import { useLayout } from '../../contexts/LayoutContext';
+import { useChat } from '../../contexts/ChatContext';
 
 const MODES = [
   { key: 'learn', label: 'Learn', icon: 'book-open' },
@@ -47,6 +48,8 @@ export default function AIAssistant() {
   const { isAuthenticated } = useAuth();
   const { level } = useLayout();
   const location = useLocation();
+  const navigate = useNavigate();
+  const { openLiveChat } = useChat();
 
   const [open, setOpen] = useState(false);
   const [mode, setMode] = useState('learn');
@@ -153,6 +156,12 @@ export default function AIAssistant() {
   const closeAssistant = () => {
     abortRef.current?.abort();
     setOpen(false);
+  };
+
+  const handleOpenLiveChat = () => {
+    setOpen(false);
+    const opened = openLiveChat();
+    if (!opened) navigate('/');
   };
 
   return (
