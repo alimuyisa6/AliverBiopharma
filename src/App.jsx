@@ -10,6 +10,7 @@ import ScrollMemory from './components/ScrollMemory';
 import PageTransition from './components/PageTransition';
 import Spinner from './components/Spinner/Spinner';
 import ChartRegistry from './components/charts/ChartRegistry';
+import AIAssistant from './features/chat/AIAssistant';
 import Seo from './components/Seo/Seo';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
