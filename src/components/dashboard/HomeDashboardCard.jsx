@@ -45,7 +45,7 @@ export default function HomeDashboardCard() {
           View full dashboard →
         </Link>
       </div>
-      <div className="home-snapshot-stack card-stack">\n        <div className="card-stack-back" aria-hidden="true" />\n        <div className="dash-strip card-stack-front">
+      <div className="home-snapshot-stack card-stack">        <div className="card-stack-back" aria-hidden="true" />        <div className="dash-strip card-stack-front">
         <div className="dash-cell">
           <div className="dc-label">Total XP</div>
           <div className="dc-value green">{platform.total_xp.toLocaleString()}</div>
