@@ -518,9 +518,6 @@ export default function Profile() {
       const message = getExactErrorMessage(err, 'Failed to revoke key');
       logProfileError('handleRevokeApiKey failed', err);
       addToast(message, 'error');
-    }
-  };
-
     } finally {
       setRevokingKeyId(null);
     }
@@ -555,9 +552,6 @@ export default function Profile() {
       const message = getExactErrorMessage(err, 'Failed to delete webhook');
       logProfileError('handleDeleteWebhook failed', err);
       addToast(message, 'error');
-    }
-  };
-
     } finally {
       setDeletingWebhookId(null);
     }
@@ -598,9 +592,6 @@ export default function Profile() {
       const message = getExactErrorMessage(err, 'Failed to request export');
       logProfileError('handleDataExport failed', err);
       addToast(message, 'error');
-    }
-  };
-
     } finally {
       setExportLoading(false);
     }
@@ -616,6 +607,8 @@ export default function Profile() {
       const message = getExactErrorMessage(err, 'Failed to request account deletion');
       logProfileError('handleAccountDeletion failed', err);
       addToast(message, 'error');
+    } finally {
+      setDeletionLoading(false);
     }
   };
 
