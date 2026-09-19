@@ -4,13 +4,13 @@ import { useLayout } from '../../contexts/LayoutContext';
 import Icon from '../Icon/Icon';
 
 export default function ClassSwitcher({ className = '' }) {
-  const { groups, level, switchClass, switching, activeGroupId } = useLayout();
+  const { switchGroups, level, switchClass, switching, activeGroupId } = useLayout();
   const [open, setOpen] = useState(false);
 
-  if (!groups?.length) return null;
+  if (!switchGroups?.length) return null;
 
-  const current = groups.find((group) => group.id === activeGroupId) || groups[0];
-  const label = level?.group_label || 'Class';
+  const current = switchGroups.find((group) => group.id === activeGroupId) || switchGroups[0];
+  const label = level?.group_label || 'Class / Program';
 
   const handleSelect = async (groupId) => {
     if (groupId === activeGroupId) {
@@ -46,7 +46,7 @@ export default function ClassSwitcher({ className = '' }) {
             </div>
             <div className="dropdown-divider" />
 
-            {groups.map((group) => (
+            {switchGroups.map((group) => (
               <button
                 key={group.id}
                 type="button"
