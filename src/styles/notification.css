@@ -15,9 +15,12 @@
 }
 
 .notification-bell:hover,
-.notification-bell:focus-visible,
+.notification-bell:focus-visible {
+  color: var(--text-inverse);
+}
+
 .notification-bell--unread {
-  color: var(--primary);
+  color: var(--accent);
 }
 
 .notification-bell--new {
