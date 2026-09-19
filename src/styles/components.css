@@ -42,3 +42,121 @@
 @import './file-upload.css';
 @import './access-state.css';
 @import './newsletter.css';
+
+
+/* Loading primitives ---------------------------------------------------- */
+.spinner {
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: var(--space-5);
+  height: var(--space-5);
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  animation: spin var(--duration-slow) linear infinite;
+}
+
+.spinner-sm {
+  width: var(--space-4);
+  height: var(--space-4);
+}
+
+.spinner-lg {
+  width: var(--space-8);
+  height: var(--space-8);
+}
+
+.spinner-primary { color: var(--primary); }
+.spinner-secondary { color: var(--secondary); }
+.spinner-success { color: var(--success); }
+.spinner-danger { color: var(--danger); }
+.spinner-brand { color: var(--primary); }
+
+.spinner:not(.spinner-conic):not(.spinner-equalizer):not(.spinner-chart) {
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: var(--radius-full);
+}
+
+.spinner-conic {
+  border-radius: var(--radius-full);
+  background: conic-gradient(from 0deg, currentColor 0 25%, transparent 25% 100%);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 0);
+  mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 0);
+}
+
+.spinner-equalizer,
+.spinner-chart {
+  gap: var(--space-1);
+  align-items: end;
+}
+
+.spinner-equalizer span,
+.spinner-chart span {
+  display: block;
+  width: var(--space-1);
+  min-height: var(--space-2);
+  border-radius: var(--radius-xs);
+  background: currentColor;
+  animation: pulse var(--duration-smooth) ease-in-out infinite alternate;
+}
+
+.spinner-equalizer span:nth-child(2),
+.spinner-chart span:nth-child(2) { animation-delay: -100ms; }
+.spinner-equalizer span:nth-child(3),
+.spinner-chart span:nth-child(3) { animation-delay: -200ms; }
+.spinner-equalizer span:nth-child(4),
+.spinner-chart span:nth-child(4) { animation-delay: -300ms; }
+.spinner-equalizer span:nth-child(5),
+.spinner-chart span:nth-child(5) { animation-delay: -400ms; }
+.spinner-chart span:nth-child(6) { animation-delay: -500ms; }
+.spinner-chart span:nth-child(7) { animation-delay: -600ms; }
+
+.skeleton {
+  display: block;
+  min-height: var(--space-4);
+  border-radius: var(--radius-sm);
+  background: linear-gradient(
+    90deg,
+    var(--surface-subtle) 25%,
+    var(--bg-card-hover) 50%,
+    var(--surface-subtle) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer var(--duration-slow) linear infinite;
+}
+
+.skeleton-card,
+.skeleton-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--stack-gap-tight);
+  width: 100%;
+}
+
+.skeleton-line {
+  width: 100%;
+  min-height: var(--space-4);
+}
+
+.skeleton-avatar {
+  width: var(--space-14);
+  height: var(--space-14);
+  flex: 0 0 auto;
+  border-radius: var(--radius-avatar);
+}
+
+.card-loading .card-body {
+  width: 100%;
+}
+
+.card-loading .skeleton-text > .skeleton-line:last-child {
+  width: 60%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner,
+  .skeleton {
+    animation: none;
+  }
+}
