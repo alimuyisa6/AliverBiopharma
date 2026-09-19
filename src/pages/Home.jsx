@@ -19,6 +19,7 @@ import {
 import { getCurriculumTree } from '../api/curriculumNavigation';
 import { getSections } from '../api/sections';
 import HomeView from '../features/home/HomeView';
+import { useChat } from '../contexts/ChatContext';
 
 function mapContinueLearning(rawList) {
   if (!Array.isArray(rawList)) return [];
@@ -115,6 +116,7 @@ export default function Home() {
   const { user } = useAuth();
   const { level, groups } = useLayout();
   const navigate = useNavigate();
+  const { registerChatOpener } = useChat();
   const chatBodyRef = useRef(null);
 
   const [sections, setSections] = useState({});
@@ -214,6 +216,8 @@ export default function Home() {
       setChatRequestLoading(false);
     }
   }, [user]);
+
+  useEffect(() => registerChatOpener(handleRequestChat), [registerChatOpener, handleRequestChat]);
 
   const handleSendChat = useCallback(async () => {
     if (!chatInput.trim() || !chatRoomId) return;
