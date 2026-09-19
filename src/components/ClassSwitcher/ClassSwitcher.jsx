@@ -29,6 +29,8 @@ export default function ClassSwitcher({ className = '' }) {
         className="btn btn-card class-switcher-trigger"
         onClick={() => setOpen((value) => !value)}
         disabled={switching}
+        aria-haspopup="menu"
+        aria-expanded={open}
       >
         <Icon name="graduation-cap" />
         <span>{switching ? 'Switching...' : current?.name || 'Select'}</span>
@@ -47,6 +49,7 @@ export default function ClassSwitcher({ className = '' }) {
             {groups.map((group) => (
               <button
                 key={group.id}
+                type="button"
                 className={`dropdown-item${group.id === activeGroupId ? ' is-active' : ''}`}
                 onClick={() => handleSelect(group.id)}
               >
