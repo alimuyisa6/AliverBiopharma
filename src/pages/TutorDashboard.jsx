@@ -35,6 +35,7 @@ export default function TutorDashboard() {
   const [error, setError] = useState(null);
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [endingRoomId, setEndingRoomId] = useState(null);
   const [createError, setCreateError] = useState(null);
   const [form, setForm] = useState({
     title: '',
@@ -144,6 +145,7 @@ export default function TutorDashboard() {
   }
 
   async function handleEndRoom(roomId) {
+    setEndingRoomId(roomId);
     try {
       await endClassroom(roomId);
       addToast('Room ended.', 'success');
@@ -151,7 +153,8 @@ export default function TutorDashboard() {
     } catch (err) {
       addToast(err.message || 'Failed to end room.', 'error');
     }
-  }
+  }    setEndingRoomId(null);
+
 
   function getEmptyStateImage(key) {
     const uiComponents = bootstrap?.ui_components || [];
@@ -377,7 +380,7 @@ export default function TutorDashboard() {
 
                     <div className="card-footer" style={{ display: 'flex', gap: 'var(--space-2)' }}>
                       <Button size="sm" onClick={() => navigate(`/classroom/${room.id}`)} icon="door-open">Enter</Button>
-                      <Button size="sm" variant="danger" onClick={() => handleEndRoom(room.id)} icon="stop">End</Button>
+                      <Button size="sm" variant="danger" onClick={() => handleEndRoom(room.id)} loading={endingRoomId === room.id} loadingLabel="Ending…" icon="stop">End</Button>
                     </div>
                   </Card>
                 ))}
