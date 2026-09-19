@@ -1,6 +1,7 @@
  /* components/ClassSwitcher/ClassSwitcher.jsx */
 import { useState } from 'react';
 import { useLayout } from '../../contexts/LayoutContext';
+import { useToast } from '../Toast/Toast';
 import Icon from '../Icon/Icon';
 
 function SwitchGlyph() {
@@ -15,11 +16,13 @@ function SwitchGlyph() {
 export default function ClassSwitcher({ className = '' }) {
   const { switchGroups, level, switchClass, switching, activeGroupId } = useLayout();
   const [open, setOpen] = useState(false);
+  const toast = useToast();
 
   if (!switchGroups?.length) return null;
 
   const current = switchGroups.find((group) => group.id === activeGroupId) || switchGroups[0];
-  const label = level?.group_label || 'Class / Program';
+  const isPharmacy = /pharmacy/i.test(`${level?.display_name || ''} ${level?.name || ''}`);
+  const label = isPharmacy ? 'Switch Program' : 'Switch Class';
 
   const handleSelect = async (groupId) => {
     if (groupId === activeGroupId) {
@@ -27,8 +30,14 @@ export default function ClassSwitcher({ className = '' }) {
       return;
     }
 
-    await switchClass(groupId);
-    setOpen(false);
+    try {
+      await switchClass(groupId);
+      setOpen(false);
+      toast('Switched successfully', 'success');
+    } catch (error) {
+      console.error('[CLASS_SWITCHER]', error?.message || error);
+      toast('Failed to switch', 'error');
+    }
   };
 
   const isHomeSwitcher = className.split(/\s+/).includes('home-scope-switcher');
@@ -45,7 +54,7 @@ export default function ClassSwitcher({ className = '' }) {
         aria-expanded={open}
       >
         <SwitchGlyph />
-        <span>{switching ? 'Switching...' : current?.name || 'Select'}</span>
+        <span>{switching ? <>Switching<span className="switching-dots" aria-hidden="true"><i>.</i><i>.</i><i>.</i></span></> : current?.name || 'Select'}</span>
         <Icon name="chevron-down" />
       </button>
 
@@ -54,7 +63,7 @@ export default function ClassSwitcher({ className = '' }) {
           <div className="dropdown-backdrop" onClick={() => setOpen(false)} />
           <div className="dropdown-menu">
             <div className="dropdown-item dropdown-heading" aria-hidden="true">
-              Switch {label}
+              {label}
             </div>
             <div className="dropdown-divider" />
 
