@@ -134,7 +134,7 @@ export default function Dashboard() {
   const unitXp = unit_xp || [];
   const planner = analytics?.planner || {};
   const heatmap = analytics?.heatmap || [];
-  const personalRecords = analytics?.personal_records || {};
+  const personalRecords = analytics?.personal_records || {};\n  const masteryMap = analytics?.mastery_map || [];\n  const assessedMastery = masteryMap.filter((item) => item.assessed);\n  const overallMastery = assessedMastery.length\n    ? Math.round(assessedMastery.reduce((sum, item) => sum + item.mastery, 0) / assessedMastery.length)\n    : 0;
 
   function unitPath(item, fallback = '/resources') {
     if (item?.group_id && item?.slug) {
@@ -286,6 +286,41 @@ export default function Dashboard() {
                         </div>
                       );
                     })}
+                  </div>
+                </div>
+              </section>
+            )}
+
+            {masteryMap.length > 0 && (
+              <section className="panel" id="mastery-map-section">
+                <div className="panel-header">
+                  <h3 className="panel-title">
+                    <Icon name="target" /> Your Mastery
+                  </h3>
+                  <span className="panel-meta">{overallMastery}% assessed mastery</span>
+                </div>
+                <div className="panel-body">
+                  <div className="mastery-summary">
+                    <ProgressRing value={overallMastery} size="lg" tone="mastery" ariaLabel={`${overallMastery}% assessed mastery`} />
+                    <div>
+                      <strong>{overallMastery}% Overall Mastery</strong>
+                      <p>Based on your assessed curriculum units.</p>
+                    </div>
+                  </div>
+                  <div className="mastery-list">
+                    {masteryMap.slice(0, 8).map((unit) => (
+                      <Link
+                        key={unit.unit_id}
+                        to={unit.group_id && unit.slug ? `/curriculum/${encodeURIComponent(unit.group_id)}/${encodeURIComponent(unit.slug)}` : `/quiz?unit_id=${encodeURIComponent(unit.unit_id)}`}
+                        className="mastery-item"
+                      >
+                        <span className="mastery-item-copy">
+                          <strong>{unit.unit_name}</strong>
+                          <small>{unit.assessed ? unit.status : 'Not assessed'}</small>
+                        </span>
+                        <span className="mastery-item-value">{unit.assessed ? `${unit.mastery}%` : '—'}</span>
+                      </Link>
+                    ))}
                   </div>
                 </div>
               </section>
