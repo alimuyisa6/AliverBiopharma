@@ -159,7 +159,7 @@ export default function Dashboard() {
           label: `Practice ${weakAreas[0].concept}`,
           detail: 'Target your current learning gap',
           to: weakAreas[0].unit_id ? `/quiz?unit_id=${encodeURIComponent(weakAreas[0].unit_id)}` : '/quiz',
-          icon: 'target'
+          icon: 'lightbulb'
         }
       : null,
     continueReading[0]
@@ -198,24 +198,24 @@ export default function Dashboard() {
         </header>
 
         {todayTasks.length > 0 && (
-          <section className="dashboard-focus panel" id="today-plan-section" aria-labelledby="today-plan-title">
-            <div className="dashboard-focus-copy">
-              <span className="dashboard-section-eyebrow">Your next steps</span>
-              <h2 id="today-plan-title">Today's Learning Plan</h2>
-              <p>Three focused actions based on your recent learning activity.</p>
+          <section className="panel" id="today-plan-section" aria-labelledby="today-plan-title">
+            <div className="panel-header">
+              <h3 className="panel-title">
+                <Icon name="lightbulb" /> Today's Learning Plan
+              </h3>
             </div>
-            <div className="dashboard-plan-list">
-              {todayTasks.map((task, index) => (
-                <Link key={task.key} to={task.to} className="dashboard-plan-item">
-                  <span className="dashboard-plan-number">{index + 1}</span>
-                  <span className="dashboard-plan-icon"><Icon name={task.icon} /></span>
-                  <span className="dashboard-plan-copy">
-                    <strong>{task.label}</strong>
-                    <small>{task.detail}</small>
-                  </span>
-                  <Icon name="arrow-right" className="dashboard-plan-arrow" />
-                </Link>
-              ))}
+            <div className="panel-body">
+              <div className="sidebar-list">
+                {todayTasks.map((task, index) => (
+                  <Link key={task.key} to={task.to} className="sidebar-item sidebar-item-link">
+                    <span className="item-text">
+                      <strong>{index + 1}. {task.label}</strong>
+                      <small>{task.detail}</small>
+                    </span>
+                    <Icon name="arrow-right" />
+                  </Link>
+                ))}
+              </div>
             </div>
           </section>
         )}
@@ -269,35 +269,23 @@ export default function Dashboard() {
               <section className="panel" id="learning-activity-section">
                 <div className="panel-header">
                   <h3 className="panel-title">
-                    <Icon name="calendar" /> Learning Activity
+                    <Icon name="clock" /> Learning Activity
                   </h3>
                   <span className="panel-meta">Last {heatmapValues.length} days</span>
                 </div>
                 <div className="panel-body">
-                  <div className="learning-heatmap" aria-label="Recent learning activity">
-                    {heatmapValues.map((item) => {
+                  <div className="sidebar-list">
+                    {heatmapValues.slice(0, 7).map((item) => {
                       const count = Number(item.count) || 0;
-                      const intensity = count === 0 ? 0 : Math.max(1, Math.ceil((count / maxHeatmapCount) * 4));
                       return (
-                        <span
-                          key={item.activity_date}
-                          className={`heatmap-cell heatmap-cell-${intensity}`}
-                          title={`${formatHeatmapDate(item.activity_date)} · ${count} learning activit${count === 1 ? 'y' : 'ies'}`}
-                          aria-label={`${formatHeatmapDate(item.activity_date)}: ${count} learning activit${count === 1 ? 'y' : 'ies'}`}
-                        />
+                        <div className="sidebar-item" key={item.activity_date}>
+                          <span className="item-text">{formatHeatmapDate(item.activity_date)}</span>
+                          <span className="item-meta">
+                            {count} {count === 1 ? 'activity' : 'activities'}
+                          </span>
+                        </div>
                       );
                     })}
-                  </div>
-                  <div className="heatmap-footer">
-                    <span>Less</span>
-                    <span className="heatmap-scale" aria-hidden="true">
-                      <i className="heatmap-cell heatmap-cell-0" />
-                      <i className="heatmap-cell heatmap-cell-1" />
-                      <i className="heatmap-cell heatmap-cell-2" />
-                      <i className="heatmap-cell heatmap-cell-3" />
-                      <i className="heatmap-cell heatmap-cell-4" />
-                    </span>
-                    <span>More</span>
                   </div>
                 </div>
               </section>
