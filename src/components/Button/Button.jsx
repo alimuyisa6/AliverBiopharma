@@ -13,6 +13,7 @@ const Button = forwardRef(function Button(
     iconRight,
     loading = false,
     loadingContext = 'default',
+    loadingLabel,
     radius,
     flat = false,
     className = '',
@@ -57,26 +58,21 @@ const Button = forwardRef(function Button(
       aria-busy={loading || undefined}
       {...props}
     >
-      {loading ? (
+      {loading && (
         <Spinner
           size="sm"
           context={loadingContext}
+          variant={variant}
         />
-      ) : (
-        <>
-          {safeIcon && (
-            <Icon name={safeIcon} />
-          )}
-
-          {children && (
-            <span>{children}</span>
-          )}
-
-          {safeIconRight && (
-            <Icon name={safeIconRight} />
-          )}
-        </>
       )}
+
+      {safeIcon && !loading && <Icon name={safeIcon} />}
+
+      {children && (
+        <span>{loading && loadingLabel ? loadingLabel : children}</span>
+      )}
+
+      {safeIconRight && !loading && <Icon name={safeIconRight} />}
     </button>
   );
 });
