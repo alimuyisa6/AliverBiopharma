@@ -132,6 +132,9 @@ export default function Dashboard() {
   const weakAreas = weak_areas || [];
   const recentActivity = recent_activity || [];
   const unitXp = unit_xp || [];
+  const planner = analytics?.planner || {};
+  const heatmap = analytics?.heatmap || [];
+  const personalRecords = analytics?.personal_records || {};
 
   function unitPath(item, fallback = '/resources') {
     if (item?.group_id && item?.slug) {
@@ -139,6 +142,43 @@ export default function Dashboard() {
     }
     return fallback;
   }
+
+  const todayTasks = [
+    planner.due_reviews > 0
+      ? {
+          key: 'review',
+          label: 'Review due Recall',
+          detail: `${planner.due_reviews} review${planner.due_reviews === 1 ? '' : 's'} ready`,
+          to: '/recall',
+          icon: 'brain'
+        }
+      : null,
+    weakAreas[0]
+      ? {
+          key: 'weak',
+          label: `Practice ${weakAreas[0].concept}`,
+          detail: 'Target your current learning gap',
+          to: weakAreas[0].unit_id ? `/quiz?unit_id=${encodeURIComponent(weakAreas[0].unit_id)}` : '/quiz',
+          icon: 'target'
+        }
+      : null,
+    continueReading[0]
+      ? {
+          key: 'reading',
+          label: `Continue ${continueReading[0].title}`,
+          detail: `${Math.round(continueReading[0].progress_percentage)}% completed`,
+          to: `/notes/read?id=${encodeURIComponent(continueReading[0].note_id)}`,
+          icon: 'book-open'
+        }
+      : null
+  ].filter(Boolean);
+
+  const heatmapValues = heatmap.slice(0, 42);
+  const maxHeatmapCount = Math.max(1, ...heatmapValues.map((item) => Number(item.count) || 0));
+  const formatHeatmapDate = (value) => {
+    if (!value) return '';
+    return new Date(value).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+  };
 
   return (
     <Container>
@@ -156,6 +196,29 @@ export default function Dashboard() {
             {levelName}
           </span>
         </header>
+
+        {todayTasks.length > 0 && (
+          <section className="dashboard-focus panel" id="today-plan-section" aria-labelledby="today-plan-title">
+            <div className="dashboard-focus-copy">
+              <span className="dashboard-section-eyebrow">Your next steps</span>
+              <h2 id="today-plan-title">Today's Learning Plan</h2>
+              <p>Three focused actions based on your recent learning activity.</p>
+            </div>
+            <div className="dashboard-plan-list">
+              {todayTasks.map((task, index) => (
+                <Link key={task.key} to={task.to} className="dashboard-plan-item">
+                  <span className="dashboard-plan-number">{index + 1}</span>
+                  <span className="dashboard-plan-icon"><Icon name={task.icon} /></span>
+                  <span className="dashboard-plan-copy">
+                    <strong>{task.label}</strong>
+                    <small>{task.detail}</small>
+                  </span>
+                  <Icon name="arrow-right" className="dashboard-plan-arrow" />
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
 
         <div className="dashboard-grid">
           <main className="main-column">
@@ -201,6 +264,44 @@ export default function Dashboard() {
                 </div>
               </div>
             </div>
+
+            {heatmapValues.length > 0 && (
+              <section className="panel" id="learning-activity-section">
+                <div className="panel-header">
+                  <h3 className="panel-title">
+                    <Icon name="calendar" /> Learning Activity
+                  </h3>
+                  <span className="panel-meta">Last {heatmapValues.length} days</span>
+                </div>
+                <div className="panel-body">
+                  <div className="learning-heatmap" aria-label="Recent learning activity">
+                    {heatmapValues.map((item) => {
+                      const count = Number(item.count) || 0;
+                      const intensity = count === 0 ? 0 : Math.max(1, Math.ceil((count / maxHeatmapCount) * 4));
+                      return (
+                        <span
+                          key={item.activity_date}
+                          className={`heatmap-cell heatmap-cell-${intensity}`}
+                          title={`${formatHeatmapDate(item.activity_date)} · ${count} learning activit${count === 1 ? 'y' : 'ies'}`}
+                          aria-label={`${formatHeatmapDate(item.activity_date)}: ${count} learning activit${count === 1 ? 'y' : 'ies'}`}
+                        />
+                      );
+                    })}
+                  </div>
+                  <div className="heatmap-footer">
+                    <span>Less</span>
+                    <span className="heatmap-scale" aria-hidden="true">
+                      <i className="heatmap-cell heatmap-cell-0" />
+                      <i className="heatmap-cell heatmap-cell-1" />
+                      <i className="heatmap-cell heatmap-cell-2" />
+                      <i className="heatmap-cell heatmap-cell-3" />
+                      <i className="heatmap-cell heatmap-cell-4" />
+                    </span>
+                    <span>More</span>
+                  </div>
+                </div>
+              </section>
+            )}
 
             {continueReading.length > 0 && (
               <div className="panel" id="continue-reading-section">
@@ -316,6 +417,29 @@ export default function Dashboard() {
                       <span className="item-text">Reading Streak</span>
                       <span className="item-meta item-meta-warm">🔥 {notes.reading_streak}</span>
                     </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {Object.keys(personalRecords).length > 0 && (
+              <div className="panel" id="learning-records-section">
+                <div className="panel-header">
+                  <h3 className="panel-title">
+                    <Icon name="trophy" /> Learning Records
+                  </h3>
+                </div>
+                <div className="panel-body">
+                  <div className="sidebar-list">
+                    {Object.entries(personalRecords)
+                      .filter(([, value]) => value !== null && value !== undefined && value !== 0)
+                      .slice(0, 4)
+                      .map(([key, value]) => (
+                        <div className="sidebar-item" key={key}>
+                          <span className="item-text">{key.replaceAll('_', ' ')}</span>
+                          <span className="item-meta">{value}</span>
+                        </div>
+                      ))}
                   </div>
                 </div>
               </div>
