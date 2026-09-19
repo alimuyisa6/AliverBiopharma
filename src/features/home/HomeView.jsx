@@ -134,7 +134,7 @@ function DailyRecallCard({ recall, onReveal, onStart }) {
 }
 
 export default function HomeView(props) {
-  const { sections, user, navigate, activeLevelName, activeGroupName, publicStats, chatOpen, chatMessages, chatInput, adminOnline, newsletterEmail, newsletterStatus, handleNewsletterSubmit, sendChat, deleteChatMsg, setChatOpen, setChatInput, setNewsletterEmail, chatBodyRef, continueLearning, curriculumUnits, dailyRecall, onRevealRecall, onStartRecall } = props;
+  const { sections, user, navigate, activeLevelName, activeGroupName, publicStats, chatOpen, chatMessages, chatInput, adminOnline, newsletterEmail, newsletterStatus, newsletterLoading, chatRequestLoading, chatSending, chatDeletingId, handleNewsletterSubmit, sendChat, deleteChatMsg, setChatOpen, setChatInput, setNewsletterEmail, chatBodyRef, continueLearning, curriculumUnits, dailyRecall, onRevealRecall, onStartRecall } = props;
 
   return (
     <div className="home-page">
@@ -150,8 +150,8 @@ export default function HomeView(props) {
       <section className="home-classroom-section"><ClassroomTeaser /></section>
       <section className="home-tutor-section"><TutorMarketplaceTeaser /></section>
       <section className="home-advertising-section"><AdsHomeSection /></section>
-      <section className="home-newsletter-section"><NewsletterForm email={newsletterEmail} status={newsletterStatus} onChange={(event) => setNewsletterEmail(event.target.value)} onSubmit={handleNewsletterSubmit} /></section>
-      <ChatWidget chatOpen={chatOpen} chatMessages={chatMessages} chatInput={chatInput} adminOnline={adminOnline} onToggle={() => setChatOpen(!chatOpen)} onSend={sendChat} onInputChange={setChatInput} onDeleteMsg={deleteChatMsg} chatBodyRef={chatBodyRef} />
+      <section className="home-newsletter-section"><NewsletterForm email={newsletterEmail} status={newsletterStatus} loading={newsletterLoading} onChange={(event) => setNewsletterEmail(event.target.value)} onSubmit={handleNewsletterSubmit} /></section>
+      <ChatWidget chatOpen={chatOpen} chatMessages={chatMessages} chatInput={chatInput} adminOnline={adminOnline} onToggle={() => setChatOpen(!chatOpen)} onSend={sendChat} onInputChange={setChatInput} onDeleteMsg={deleteChatMsg} sending={chatSending} deletingId={chatDeletingId} requestLoading={chatRequestLoading} chatBodyRef={chatBodyRef} />
     </div>
   );
 }
