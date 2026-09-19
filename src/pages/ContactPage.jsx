@@ -22,6 +22,7 @@ export default function ContactPage() {
 
     if (!contactForm.name || !contactForm.email || !contactForm.message) return;
 
+    setSubmitting(true);
     try {
       await submitContact(contactForm);
       setContactStatus({ success: true, message: 'Message sent!' });
@@ -41,7 +42,7 @@ export default function ContactPage() {
         contactStatus={contactStatus}
         contactInfo={sections?.contact?.info || []}
         onChange={setContactForm}
-        onSubmit={handleContactSubmit}
+        onSubmit={handleContactSubmit} submitting={submitting}
       />
     </div>
   );
