@@ -130,6 +130,10 @@ export default function Home() {
   const [curriculumUnits, setCurriculumUnits] = useState([]);
   const [dailyRecall, setDailyRecall] = useState(null);
   const [pastPapers, setPastPapers] = useState([]);
+  const [newsletterLoading, setNewsletterLoading] = useState(false);
+  const [chatRequestLoading, setChatRequestLoading] = useState(false);
+  const [chatSending, setChatSending] = useState(false);
+  const [chatDeletingId, setChatDeletingId] = useState(null);
 
   const currentYear = new Date().getFullYear();
   const activeGroupId = user?.profile?.active_group_id || null;
@@ -183,17 +187,21 @@ export default function Home() {
   const handleNewsletterSubmit = useCallback(async (event) => {
     event.preventDefault();
     if (!newsletterEmail) return;
+    setNewsletterLoading(true);
     try {
       await subscribeNewsletter(newsletterEmail);
       setNewsletterStatus({ success: true, message: 'Subscribed!' });
       setNewsletterEmail('');
     } catch (error) {
       setNewsletterStatus({ success: false, message: error.message });
+    } finally {
+      setNewsletterLoading(false);
     }
   }, [newsletterEmail]);
 
   const handleRequestChat = useCallback(async () => {
     if (!user) return;
+    setChatRequestLoading(true);
     try {
       const res = await requestChat();
       setChatRoomId(res?.room_id);
@@ -202,25 +210,33 @@ export default function Home() {
         const messages = await getChatMessages(res.room_id);
         setChatMessages(Array.isArray(messages) ? messages : []);
       }
-    } catch {}
+    } catch {} finally {
+      setChatRequestLoading(false);
+    }
   }, [user]);
 
   const handleSendChat = useCallback(async () => {
     if (!chatInput.trim() || !chatRoomId) return;
+    setChatSending(true);
     try {
       await sendChatMessage(chatRoomId, chatInput);
       setChatInput('');
       const messages = await getChatMessages(chatRoomId);
       setChatMessages(Array.isArray(messages) ? messages : []);
-    } catch {}
+    } catch {} finally {
+      setChatSending(false);
+    }
   }, [chatInput, chatRoomId]);
 
   const handleDeleteChatMsg = useCallback(async (messageId) => {
+    setChatDeletingId(messageId);
     try {
       await deleteChatMessage(messageId);
       const messages = await getChatMessages(chatRoomId);
       setChatMessages(Array.isArray(messages) ? messages : []);
-    } catch {}
+    } catch {} finally {
+      setChatDeletingId(null);
+    }
   }, [chatRoomId]);
 
   const handleSwitchScope = useCallback(() => navigate('/settings/scope'), [navigate]);
@@ -242,6 +258,10 @@ export default function Home() {
       adminOnline={adminOnline}
       newsletterEmail={newsletterEmail}
       newsletterStatus={newsletterStatus}
+      newsletterLoading={newsletterLoading}
+      chatRequestLoading={chatRequestLoading}
+      chatSending={chatSending}
+      chatDeletingId={chatDeletingId}
       currentYear={currentYear}
       handleNewsletterSubmit={handleNewsletterSubmit}
       requestChatRoom={handleRequestChat}
