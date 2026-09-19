@@ -71,6 +71,7 @@ export default function Quiz() {
   const [streak, setStreak] = useState(0);
   const [timeLeft, setTimeLeft] = useState(null);
   const [answerSubmitting, setAnswerSubmitting] = useState(false);
+  const [startingBlock, setStartingBlock] = useState(false);
   const [tabSwitchCount, setTabSwitchCount] = useState(0);
   const [maxTabSwitches, setMaxTabSwitches] = useState(3);
   const [integrityOverlay, setIntegrityOverlay] = useState(null);
@@ -315,6 +316,7 @@ export default function Quiz() {
       addToast('Submission failed', 'error');
     } finally {
       setLoading(false);
+      setStartingBlock(false);
     }
   };
 
@@ -350,6 +352,7 @@ export default function Quiz() {
 
   const confirmStartBlock = async () => {
     setShowRulesModal(false);
+    setStartingBlock(true);
 
     const blockNum = pendingBlock;
 
@@ -650,7 +653,7 @@ export default function Quiz() {
                     <button
                       key={option}
                       className={`${cls} quiz-option-btn`}
-                      onClick={() => selectAnswer(option)}
+                      onClick={() => selectAnswer(option)} disabled={answerSubmitting}
                       disabled={answered || answerSubmitting || locked}
                     >
                       <span className="quiz-option-letter">{option}.</span>
@@ -751,7 +754,7 @@ export default function Quiz() {
             <li><Icon name="exclamation-triangle" className="quiz-rules-icon is-error" /> <span>3 tab switches auto-submits</span></li>
           </ul>
           <div className="quiz-rules-submit">
-            <Button variant="primary" onClick={confirmStartBlock} className="quiz-rules-submit-btn">Start</Button>
+            <Button variant="primary" onClick={confirmStartBlock} loading={startingBlock} loadingContext="brand" loadingLabel="Starting…" className="quiz-rules-submit-btn">Start</Button>
           </div>
         </Modal>
       </div>
