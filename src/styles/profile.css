@@ -26,7 +26,7 @@
 .profile-nav-list button.active { background: var(--primary-light); border-color: var(--primary-border); color: var(--primary); }
 .profile-sidebar-backdrop { display: none; }
 .profile-content { min-width: 0; }
-.profile-avatar-wrapper { display: flex; justify-content: flex-start; margin-bottom: var(--content-gap); }
+.profile-avatar-wrapper { display: flex; align-items: center; justify-content: center; width: 100%; margin-bottom: var(--content-gap); }
 .profile-card { margin-bottom: var(--content-gap); }
 .profile-card-main { margin-bottom: var(--content-gap); }
 .profile-section-title { display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--text-gap-title); color: var(--text-main); font-family: var(--font-heading); font-size: var(--text-section-title); font-weight: var(--weight-section-title); line-height: var(--leading-section-title); }
