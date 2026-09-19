@@ -3,7 +3,6 @@ import { useState, useRef } from 'react';
 import { uploadFile, deleteUserFile } from '../../api/client';
 import Icon from '../Icon/Icon';
 import Button from '../Button/Button';
-import Spinner from '../Spinner/Spinner';
 
 export default function FileUpload({ category, onUploadComplete }) {
   const [uploading, setUploading] = useState(false);
@@ -67,7 +66,8 @@ export default function FileUpload({ category, onUploadComplete }) {
           variant="secondary"
           size="sm"
           onClick={() => fileInputRef.current?.click()}
-          disabled={uploading}
+          loading={uploading}
+          loadingLabel="Uploading…"
           icon="upload"
         >
           Upload File
@@ -82,7 +82,6 @@ export default function FileUpload({ category, onUploadComplete }) {
           className="file-upload-input"
         />
 
-        {uploading && <Spinner size="sm" />}
         {error && <span className="form-error">{error}</span>}
       </div>
 
