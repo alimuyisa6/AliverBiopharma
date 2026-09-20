@@ -245,7 +245,7 @@
 .team-social a:hover { border-color: var(--primary); color: var(--primary); }
 
 .stats-grid-section .section-head { margin-block-end: var(--content-gap); }
-.stats-grid-section .section-head-left { gap: var(--stack-gap-tight); }
+.stats-grid-section .section-head-left { gap: var(--stack-gap-tight); padding-inline-start: var(--space-6); }
 
 .stats-grid-card { background: var(--surface-card); text-align: center; }
 .stats-grid-card .curriculum-card-top { justify-content: center; }
