@@ -351,6 +351,8 @@ body.dark-mode .testimonial-flat cite { color: var(--success-hover); }
 
 .home-classroom-section .section-teaser-content > .btn,
 .home-tutor-section .section-teaser-content > .btn {
+  margin-block-start: var(--content-gap-compact);
+  flex: 0 0 auto;
   width: fit-content;
 }
 
