@@ -58,7 +58,7 @@ export default function Layout({ children, showFooter = true }) {
   const location = useLocation(), navigate = useNavigate(), navigationType = useNavigationType();
   const { logo, siteName, navigation, footer, theme, toggleTheme, isAuthenticated, refreshUser, features, uiMap } = useLayout();
   const { user } = useAuth();
-  const isAuthPage = EXCLUDED_PATHS.includes(location.pathname), isNoteDetailPage = location.pathname.startsWith('/notes/read'), isRoomPage = location.pathname.startsWith('/classroom/'), isNoChromePage = NO_CHROME_PATHS.some((path) => location.pathname.startsWith(path)), isNoFooterPage = NO_FOOTER_PATHS.includes(location.pathname);
+  const isAuthPage = EXCLUDED_PATHS.includes(location.pathname), isNoteDetailPage = location.pathname.startsWith('/notes/read'), isRoomPage = location.pathname.startsWith('/classroom/'), isNoChromePage = NO_CHROME_PATHS.some((path) => location.pathname.startsWith(path)), isNoFooterPage = NO_FOOTER_PATHS.some((path) => location.pathname === path || location.pathname.startsWith(`${path}/`));
   const hideHeader = isAuthPage || isNoteDetailPage || isNoChromePage, hideFooter = isAuthPage || isRoomPage || isNoteDetailPage || isNoChromePage || isNoFooterPage;
   const scrollPositions = useRef(loadScrollMap()), persistTimeout = useRef(null), routeKey = location.key || 'default';
   useEffect(() => { if ('scrollRestoration' in window.history) window.history.scrollRestoration = 'manual'; }, []);
