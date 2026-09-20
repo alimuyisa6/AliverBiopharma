@@ -39,7 +39,7 @@
 }
 
 .about-section {
-  padding-top: var(--space-12);
+  padding-block: var(--space-12);
 }
 
 .about-content-wrap {
