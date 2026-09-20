@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useLayout } from '../contexts/LayoutContext';
-import { listTutorsCached } from '../api/cachedClient';
+import { getUnits, listTutorsCached } from '../api/cachedClient';
 import { sendContactRequest } from '../api/client';
 import TutorCard from '../features/tutor-marketplace/TutorCard';
 import Spinner from '../components/Spinner/Spinner';
@@ -26,16 +26,22 @@ export default function TutorMarketplace() {
   const [levelFilter, setLevelFilter] = useState('');
   const [formatFilter, setFormatFilter] = useState('');
   const [allTutors, setAllTutors] = useState([]);
+  const [curriculumUnits, setCurriculumUnits] = useState([]);
 
   useEffect(() => {
     let cancelled = false;
 
-    listTutorsCached({ limit: 50 })
-      .then((data) => {
-        if (!cancelled) {
-          setAllTutors(data || []);
-          setTutors(data || []);
-        }
+    const groupId = bootstrap?.active_group_id || bootstrap?.group?.id || null;
+
+    Promise.all([
+      listTutorsCached({ limit: 50 }),
+      groupId ? getUnits({ group_id: groupId }) : Promise.resolve([])
+    ])
+      .then(([tutorData, unitData]) => {
+        if (cancelled) return;
+        setAllTutors(tutorData || []);
+        setTutors(tutorData || []);
+        setCurriculumUnits(unitData || []);
       })
       .catch(() => {})
       .finally(() => {
@@ -45,7 +51,7 @@ export default function TutorMarketplace() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [bootstrap?.active_group_id, bootstrap?.group?.id]);
 
   useEffect(() => {
     let filtered = allTutors;
@@ -61,21 +67,22 @@ export default function TutorMarketplace() {
     }
 
     if (subjectFilter) {
-      filtered = filtered.filter(
-        (tutor) => tutor.subjects && tutor.subjects.includes(subjectFilter)
+      filtered = filtered.filter((tutor) =>
+        tutor.curriculum?.units?.some((unit) => unit.id === subjectFilter)
       );
     }
 
     if (levelFilter) {
-      filtered = filtered.filter(
-        (tutor) => tutor.levels && tutor.levels.includes(levelFilter)
+      filtered = filtered.filter((tutor) =>
+        tutor.curriculum?.levels?.some((level) => level.id === levelFilter)
       );
     }
 
     if (formatFilter) {
-      filtered = filtered.filter(
-        (tutor) => tutor.teaching_format === formatFilter
-      );
+      filtered = filtered.filter((tutor) => {
+        const mode = tutor.teaching_mode;
+        return mode === formatFilter || mode === 'both';
+      });
     }
 
     setTutors(filtered);
@@ -166,10 +173,11 @@ export default function TutorMarketplace() {
             onChange={(e) => setSubjectFilter(e.target.value)}
           >
             <option value="">All Subjects</option>
-            <option value="Biology">Biology</option>
-            <option value="Chemistry">Chemistry</option>
-            <option value="Pharmacology">Pharmacology</option>
-            <option value="Pharmaceutics">Pharmaceutics</option>
+            {curriculumUnits.map((unit) => (
+              <option key={unit.id} value={unit.id}>
+                {unit.name}
+              </option>
+            ))}
           </select>
 
           <select
@@ -178,9 +186,15 @@ export default function TutorMarketplace() {
             onChange={(e) => setLevelFilter(e.target.value)}
           >
             <option value="">All Levels</option>
-            <option value="O-Level">O-Level</option>
-            <option value="A-Level">A-Level</option>
-            <option value="Pharmacy">Pharmacy</option>
+            {[...new Map(
+              allTutors
+                .flatMap((tutor) => tutor.curriculum?.levels || [])
+                .map((level) => [level.id, level])
+            ).values()].map((level) => (
+              <option key={level.id} value={level.id}>
+                {level.name}
+              </option>
+            ))}
           </select>
 
           <select
@@ -191,7 +205,6 @@ export default function TutorMarketplace() {
             <option value="">All Formats</option>
             <option value="online">Online</option>
             <option value="in-person">In-person</option>
-            <option value="both">Both</option>
           </select>
         </div>
 
