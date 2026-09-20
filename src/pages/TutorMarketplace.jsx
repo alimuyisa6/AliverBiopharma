@@ -138,15 +138,6 @@ export default function TutorMarketplace() {
               </div>
             )}
 
-            <div className="tutor-marketplace-intro-action">
-              <Button
-                variant="primary"
-                className="tutor-marketplace-find-tutor-btn"
-                onClick={() => document.querySelector('.tutor-search-input')?.focus()}
-              >
-                Find a Tutor
-              </Button>
-            </div>
           </div>
         </div>
 
