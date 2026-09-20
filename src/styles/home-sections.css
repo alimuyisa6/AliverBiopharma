@@ -34,7 +34,7 @@
 .home-newsletter-section { width: 100%; }
 
 .home-hero-section { position: relative; }
-.home-stats-section { position: relative; z-index: 3; margin-block-start: calc(-1 * var(--space-24)); }
+ .home-stats-section { position: relative; z-index: 3; margin-block-start: calc(-1 * var(--space-16)); }
 .home-scope-switcher { width: 100%; }
 .home-continue-learning-section,
 .home-continue-learning-list,
@@ -244,17 +244,6 @@
 .team-social a { width: var(--space-8); height: var(--space-8); display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--border-default); border-radius: var(--radius-full); background: var(--surface-card); color: var(--text-secondary); }
 .team-social a:hover { border-color: var(--primary); color: var(--primary); }
 
-.stats-grid-panel {
-  width: min(calc(100% - (var(--page-gutter-x) * 2)), var(--max-width));
-  margin-inline: auto;
-  padding: var(--card-padding-y) var(--card-padding-x);
-  border: 1px solid var(--border-subtle);
-  border-inline-start: var(--border-width-thick) solid var(--blue-300);
-  border-radius: var(--radius-card);
-  background: var(--surface-card);
-  box-shadow: var(--shadow-raised);
-}
-
 .stats-grid-card { background: var(--surface-card); text-align: center; }
 .stats-grid-card .curriculum-card-top { justify-content: center; }
 .stats-grid-card .curriculum-card-body { align-items: center; text-align: center; }
@@ -269,7 +258,7 @@ body.dark-mode .testimonial-flat cite { color: var(--success-hover); }
 
 @media (prefers-reduced-motion: reduce) { .home-faq-item.active .home-faq-plus { transform: none; } }
 @media (max-width: 768px) {
-  .home-stats-section { margin-block-start: calc(-1 * var(--space-12)); }
+   .home-stats-section { margin-block-start: calc(-1 * var(--space-10)); }
   .team-scroll-nav { display: none; }
   .testimonial-flat { padding: var(--card-padding-y) var(--card-padding-x); }
   .home-curriculum-node-type { display: none; }
@@ -284,7 +273,7 @@ body.dark-mode .testimonial-flat cite { color: var(--success-hover); }
   .home-curriculum-depth-4 { margin-inline-start: var(--space-4); }
 }
 @media (max-width: 480px) {
-  .home-stats-section { margin-block-start: calc(-1 * var(--space-8)); }
+   .home-stats-section { margin-block-start: calc(-1 * var(--space-6)); }
   .home-continue-learning-row { align-items: flex-start; }
   .home-daily-recall-card { align-items: stretch; }
   .home-daily-recall-actions { flex-wrap: wrap; }
