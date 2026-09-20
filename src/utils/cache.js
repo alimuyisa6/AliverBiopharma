@@ -7,7 +7,12 @@
   default: 30 * 60 * 1000,
 };
 
-const PERSIST_PREFIXES = ['bootstrap_', 'site_sections', 'section_headings'];
+const PERSIST_PREFIXES = [
+  'bootstrap_',
+  'site_sections',
+  'section_headings',
+  'platform_sections_',
+];
 const STORAGE_PREFIX = 'acache:v1:';
 const STORAGE_INDEX_KEY = 'acache:v1:__index';
 const MAX_STORAGE_ENTRIES = 30;
