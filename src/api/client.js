@@ -395,10 +395,20 @@ level_id: levelId
 }
 
 export async function getAllSiteSections() {
-return getRequest(
-'site-sections',
-'get_all_site_sections'
-);
+  const { getCached, setCache } = await import('../utils/cache');
+  const cacheKey = 'site_sections';
+  const cached = getCached(cacheKey);
+
+  if (cached) {
+    getRequest('site-sections', 'get_all_site_sections')
+      .then((data) => setCache(cacheKey, data))
+      .catch(() => {});
+    return cached;
+  }
+
+  const data = await getRequest('site-sections', 'get_all_site_sections');
+  setCache(cacheKey, data);
+  return data;
 }
 
 export async function getSectionHeadings() {
