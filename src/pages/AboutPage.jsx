@@ -1,6 +1,6 @@
  import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getAllSiteSections } from '../api/client';
+import { getInfoSection } from '../api/client';
 import { FaEnvelope, FaLocationDot, FaLinkedinIn, FaXTwitter, FaInstagram, FaGlobe } from 'react-icons/fa6';
 
 function RichText({ text }) {
@@ -83,15 +83,24 @@ function ContributorCard({ contributor }) {
 }
 
 export default function AboutPage() {
-  const [sections, setSections] = useState(null);
+  const [page, setPage] = useState(null);
 
   useEffect(() => {
-    getAllSiteSections().then(setSections);
+    let active = true;
+    getInfoSection('about')
+      .then((data) => {
+        if (active) setPage(data?.about || data);
+      })
+      .catch(() => {
+        if (active) setPage({});
+      });
+
+    return () => {
+      active = false;
+    };
   }, []);
 
-  if (!sections) return null;
-
-  const page = sections.about;
+  if (!page) return null;
 
   return (
     <>
