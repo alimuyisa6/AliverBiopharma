@@ -4,6 +4,7 @@
   width: min(100%, var(--max-width));
   margin-inline: auto;
   padding-inline: var(--page-gutter-x);
+  padding-block-end: var(--space-16);
 }
 
 .tutor-marketplace-page .section-head {
