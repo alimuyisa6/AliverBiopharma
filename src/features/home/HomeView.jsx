@@ -139,9 +139,9 @@ export default function HomeView(props) {
   return (
     <div className="home-page">
       <section className="home-hero-section"><div className="hero-block"><Hero /></div></section>
-      <WhyChooseSection />
       <section className="home-stats-section"><StatsGrid stats={{ resources_count: publicStats?.resources_count || 0, users_count: publicStats?.users_count || 0, downloads_count: publicStats?.downloads_count || 0, quiz_attempts: publicStats?.quiz_attempts || 0 }} /></section>
       {user && <section className="home-student-section"><ClassSwitcher className="home-scope-switcher" /><HomeDashboardCard /><ContinueLearningRail items={continueLearning} navigate={navigate} /></section>}
+      <WhyChooseSection />
       <HowItWorksSection />
       {user && <div className="home-student-sections-wrap"><CurriculumSnapshot nodes={curriculumUnits} activeLevelName={activeLevelName} activeGroupName={activeGroupName} sections={sections} /><LearningJourneySection sections={sections} /></div>}
       {!user && <LearningJourneySection sections={sections} />}
