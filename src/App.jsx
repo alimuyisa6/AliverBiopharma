@@ -100,10 +100,6 @@ function AppRoutes() {
     return () => clearTimeout(timer);
   }, []);
 
-  if (appLoading) {
-    return <GlobalLoader />;
-  }
-
   const publicPaths = [
     '/login',
     '/register',
@@ -117,6 +113,12 @@ function AppRoutes() {
     '/advertise',
     '/',
   ];
+
+  const isPublicPath = publicPaths.some((path) => location.pathname === path || (path !== '/' && location.pathname.startsWith(path + '/')));
+
+  if (appLoading && !isPublicPath) {
+    return <GlobalLoader />;
+  }
 
   const needsSetup =
     !layoutLoading &&
