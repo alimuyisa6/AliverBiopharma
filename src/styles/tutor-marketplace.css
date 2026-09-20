@@ -74,3 +74,14 @@
     font-size: var(--text-sm);
   }
 }
+
+.tutor-marketplace-intro-action {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: var(--content-gap);
+  margin-bottom: var(--content-gap);
+}
+
+.tutor-marketplace-find-tutor-btn {
+  flex: 0 0 auto;
+}
