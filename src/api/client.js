@@ -430,13 +430,21 @@ headings
 }
 
 export async function getInfoSection(section) {
-return getRequest(
-'site-sections',
-'get_info_section',
-{
-section
-}
-);
+  const { getCached, setCache } = await import('../utils/cache');
+  const cacheKey = section === 'about' ? 'about_page' : `legal_${section}`;
+  const cached = getCached(cacheKey);
+
+  if (cached) {
+    // Cache-first: public informational pages render immediately. Refresh in the background.
+    getRequest('site-sections', 'get_info_section', { section })
+      .then((data) => setCache(cacheKey, data))
+      .catch(() => {});
+    return cached;
+  }
+
+  const data = await getRequest('site-sections', 'get_info_section', { section });
+  setCache(cacheKey, data);
+  return data;
 }
 
 export async function getInfoSectionsList() {
