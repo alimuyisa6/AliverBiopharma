@@ -16,7 +16,7 @@ import ClassSwitcher from '../ClassSwitcher/ClassSwitcher';
 const EXCLUDED_PATHS = ['/login', '/register'];
 const SCROLL_STORAGE_KEY = 'scroll-positions';
 const NO_CHROME_PATHS = ['/recall', '/quiz', '/profile', '/notes', '/past-papers'];
-const NO_FOOTER_PATHS = ['/advertise', '/advertise/create', '/advertise/payment'];
+const NO_FOOTER_PATHS = ['/advertise', '/advertise/create', '/advertise/payment', '/tutors'];
 
 function loadScrollMap() { try { return new Map(JSON.parse(sessionStorage.getItem(SCROLL_STORAGE_KEY) || '[]')); } catch { return new Map(); } }
 function persistScrollMap(map) { try { sessionStorage.setItem(SCROLL_STORAGE_KEY, JSON.stringify([...map.entries()])); } catch {} }
