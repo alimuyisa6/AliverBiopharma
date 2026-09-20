@@ -97,3 +97,6 @@
 .tutor-profile-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(var(--content-max-card), 1fr)); gap: var(--content-gap); margin-block-start: var(--section-space-y-compact); }
 .tutor-profile-details div { display: flex; flex-direction: column; gap: var(--stack-gap-tight); padding: var(--card-padding-y-compact) var(--card-padding-x-compact); border: 1px solid var(--border-default); background: var(--surface-subtle); }
 .tutor-profile-details span { color: var(--text-secondary); font-size: var(--text-sm); }
+
+
+.tutor-actions-spaced { display: flex; flex-wrap: wrap; align-items: center; gap: var(--stack-gap); }
