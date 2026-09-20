@@ -181,6 +181,7 @@ function AppRoutes() {
             <Route path="/privacy" element={<LegalPage type="privacy" />} />
             <Route path="/faq" element={<FaqPage />} />
             <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/:slug" element={<BlogPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/community" element={<ProtectedRoute><CommunityPage /></ProtectedRoute>} />
             <Route path="/tutor/apply" element={<ProtectedRoute><TutorApply /></ProtectedRoute>} />
