@@ -5,8 +5,8 @@
   z-index: 3;
   width: min(78%, var(--max-width));
   margin-inline: auto;
-  margin-top: calc(-1 * var(--space-12));
-  padding-block: var(--space-6);
+  margin-top: calc(-1 * var(--space-20));
+  padding-block: var(--space-6);\n  margin-bottom: var(--space-16);
   padding-inline: var(--space-6);
   border-left: var(--border-width-thick) solid var(--primary);
   border-radius: var(--radius-card);
@@ -51,7 +51,7 @@
 @media (max-width: 768px) {
   .hero-gallery-section {
     width: calc(100% - (var(--page-gutter-x) * 2));
-    margin-top: calc(-1 * var(--space-8));
+    margin-top: calc(-1 * var(--space-12));
     padding-block: var(--space-5);
     padding-inline: var(--space-5);
   }
@@ -65,7 +65,7 @@
 @media (max-width: 480px) {
   .hero-gallery-section {
     width: calc(100% - (var(--page-gutter-x) * 2));
-    margin-top: calc(-1 * var(--space-6));
+    margin-top: calc(-1 * var(--space-8));
     padding-block: var(--space-4);
     padding-inline: var(--space-4);
     border-left-width: var(--border-width-thick);
