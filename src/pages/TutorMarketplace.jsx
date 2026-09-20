@@ -1,6 +1,6 @@
  /* src/pages/TutorMarketplace.jsx */
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useLayout } from '../contexts/LayoutContext';
 import { listTutorsCached } from '../api/cachedClient';
@@ -17,6 +17,7 @@ export default function TutorMarketplace() {
   const { user } = useAuth();
   const { bootstrap, level, class_name } = useLayout();
   const addToast = useToast();
+  const navigate = useNavigate();
 
   const [tutors, setTutors] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -136,7 +137,11 @@ export default function TutorMarketplace() {
             )}
 
             <div className="tutor-marketplace-intro-action">
-              <Button>
+              <Button
+                variant="primary"
+                className="tutor-marketplace-find-tutor-btn"
+                onClick={() => document.querySelector('.tutor-search-input')?.focus()}
+              >
                 Find a Tutor
               </Button>
             </div>
