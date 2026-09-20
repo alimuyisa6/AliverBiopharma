@@ -1,6 +1,5 @@
- import { useEffect, useState } from 'react';
+ import { useLayout } from '../contexts/LayoutContext';
 import { Link } from 'react-router-dom';
-import { getInfoSection } from '../api/client';
 import { FaEnvelope, FaLocationDot, FaLinkedinIn, FaXTwitter, FaInstagram, FaGlobe } from 'react-icons/fa6';
 
 function RichText({ text }) {
@@ -83,24 +82,20 @@ function ContributorCard({ contributor }) {
 }
 
 export default function AboutPage() {
-  const [page, setPage] = useState(null);
+  const { sections, loading } = useLayout();
+  const page = sections?.about;
 
-  useEffect(() => {
-    let active = true;
-    getInfoSection('about')
-      .then((data) => {
-        if (active) setPage(data?.about || data);
-      })
-      .catch(() => {
-        if (active) setPage({});
-      });
-
-    return () => {
-      active = false;
-    };
-  }, []);
-
-  if (!page) return null;
+  if (loading || !page) {
+    return (
+      <section className="about-section about-page-loading" aria-busy="true">
+        <div className="about-content-wrap">
+          <div className="about-loading-block" />
+          <div className="about-loading-line" />
+          <div className="about-loading-line about-loading-line-short" />
+        </div>
+      </section>
+    );
+  }
 
   return (
     <>
