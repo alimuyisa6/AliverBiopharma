@@ -43,8 +43,8 @@
 }
 
 .about-content-wrap {
-  max-width: 860px;
-  margin: 0 auto;
+  width: min(calc(100% - (var(--page-gutter-x) * 2)), 860px);
+  margin-inline: auto;
 }
 
 .about-title {
