@@ -3,46 +3,70 @@ import { useEffect, useState } from 'react';
 import { useLayout } from '../contexts/LayoutContext';
 import { getSections } from '../api/sections';
 
-const fallbackPosts = [
-  {
-    title: 'Building the Skills for a Career in Modern Biopharmaceutical Science',
-    date: 'Jun 10, 2026',
-    author: 'AliverBiopharm Editorial Team',
-    excerpt: 'Explore the scientific, technical, and professional capabilities that can help learners prepare for opportunities across the biopharmaceutical sector.',
-    image_url: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=900&q=80',
-    category: 'Career Development',
-  },
-  {
-    title: 'Understanding the Role of Clinical Research in Modern Medicine',
-    date: 'Jun 15, 2026',
-    author: 'AliverBiopharm Editorial Team',
-    excerpt: 'Learn how clinical research contributes to the evaluation of medicines, therapies, and healthcare interventions before wider patient use.',
-    image_url: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=900&q=80',
-    category: 'Clinical Research',
-  },
-  {
-    title: 'Emerging Directions in mRNA Therapeutics and Precision Medicine',
-    date: 'Jun 20, 2026',
-    author: 'AliverBiopharm Editorial Team',
-    excerpt: 'Examine how mRNA technology and precision medicine are contributing to new approaches in therapeutic development and patient care.',
-    image_url: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=900&q=80',
-    category: 'Pharmaceutical Science',
-  },
-];
-
 export default function BlogPage() {
   const { level } = useLayout();
-  const [sections, setSections] = useState({});
+  const [sections, setSections] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (level?.id) {
-      getSections(level.id).then(setSections).catch(() => {});
-    }
-  }, [level]);
+    let cancelled = false;
 
-  const posts = Array.isArray(sections?.blog?.posts) && sections.blog.posts.length
-    ? sections.blog.posts.filter(Boolean)
-    : fallbackPosts;
+    if (!level?.id) {
+      setSections(null);
+      setLoading(false);
+      setError(null);
+      return undefined;
+    }
+
+    setLoading(true);
+    setError(null);
+
+    getSections(level.id)
+      .then((data) => {
+        if (cancelled) return;
+        setSections(data || {});
+      })
+      .catch((err) => {
+        if (cancelled) return;
+        setSections(null);
+        setError(err?.message || 'Unable to load blog content.');
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [level?.id]);
+
+  const blog = sections?.blog;
+  const posts = Array.isArray(blog?.posts) ? blog.posts.filter(Boolean) : [];
+  const featured = blog?.featured || posts[0] || null;
+  const topics = Array.isArray(blog?.topics)
+    ? blog.topics.filter(Boolean)
+    : [...new Set(posts.map((post) => post.category).filter(Boolean))];
+  const bodyParagraphs = Array.isArray(featured?.content)
+    ? featured.content.filter(Boolean)
+    : typeof featured?.content === 'string' && featured.content.trim()
+      ? [featured.content]
+      : [];
+  const bodySections = Array.isArray(featured?.sections)
+    ? featured.sections.filter(Boolean)
+    : [];
+
+  const formatDate = (value) => {
+    if (!value) return '';
+    const date = new Date(value);
+    return Number.isNaN(date.getTime())
+      ? String(value)
+      : new Intl.DateTimeFormat(undefined, {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+        }).format(date);
+  };
 
   return (
     <>
@@ -424,142 +448,112 @@ export default function BlogPage() {
       `}</style>
 
       <div className="blog-page">
-        <section className="blog-topic-area" aria-label="Blog topics">
-          <div className="blog-topic-buttons">
-            <button type="button" className="blog-topic-button">🧬 Research &amp; Development</button>
-            <button type="button" className="blog-topic-button">🔬 Clinical Research</button>
-            <button type="button" className="blog-topic-button">💊 Pharmaceutical Science</button>
-          </div>
-          <button type="button" className="blog-explore-button">
-            Explore Biopharmaceutical Insights
-          </button>
-        </section>
-
-        <article>
-          <header className="blog-article-header">
-            <h1>Biopharmaceutical Research: Key Developments and Industry Outlook for 2026</h1>
-            <div className="blog-article-meta">
-              <strong>ALIVER IN ACTION</strong> · by AliverBiopharm Editorial Team · Jun 3, 2026
-            </div>
-
-            <div className="blog-share" aria-label="Share article">
-              <a href="#" className="blog-share-link" aria-label="Share on Facebook">f</a>
-              <a href="#" className="blog-share-link" aria-label="Share on X">X</a>
-              <a href="#" className="blog-share-link" aria-label="Share on LinkedIn">in</a>
-              <a href="#" className="blog-share-link" aria-label="Share on WhatsApp">W</a>
-            </div>
-          </header>
-
-          <img
-            src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=1200&q=80"
-            alt="Biopharmaceutical laboratory research"
-            className="blog-featured-image"
-          />
-
-          <div className="blog-article-body">
-            <p>
-              Biopharmaceutical research remains one of the most dynamic areas of modern life science.
-              In 2026, advances in drug development, personalized medicine, biotechnology, and artificial
-              intelligence continue to influence how new therapies are researched, developed, evaluated,
-              and delivered to patients.
-            </p>
-
-            <p>
-              As the industry becomes increasingly data driven, professionals across research, clinical
-              development, pharmaceutical science, quality assurance, and regulatory affairs require a
-              combination of scientific knowledge, digital competence, and strong documentation practices.
-            </p>
-
-            <h2>Building Core Skills for Biopharmaceutical Careers</h2>
-
-            <p>
-              Professionals entering biopharmaceutical research benefit from developing a strong
-              foundation in scientific principles together with practical workplace skills. These
-              capabilities support accurate laboratory work, reliable data handling, effective
-              communication, and compliance with established quality standards.
-            </p>
-
-            <p>Important professional capabilities include:</p>
-
-            <ul>
-              <li>Scientific data analysis and interpretation</li>
-              <li>Accurate laboratory documentation and record keeping</li>
-              <li>Foundational molecular biology and pharmaceutical science</li>
-              <li>Clinical research and data management principles</li>
-              <li>Scientific writing and professional communication</li>
-              <li>Good Laboratory Practice and Good Manufacturing Practice</li>
-              <li>Regulatory science and pharmaceutical compliance</li>
-            </ul>
-
-            <h2>Technology Shaping Modern Biopharmaceutical Practice</h2>
-
-            <p>
-              Digital systems now support many stages of pharmaceutical and clinical research.
-              Laboratory Information Management Systems, electronic data capture platforms, statistical
-              software, and artificial intelligence tools are increasingly integrated into scientific
-              workflows.
-            </p>
-
-            <p>
-              Developing familiarity with these technologies can help learners understand how scientific
-              information moves from experimental work and clinical research into structured datasets,
-              analysis, documentation, and regulatory decision making.
-            </p>
-
-            <p>
-              AliverBiopharm's educational resources are designed to introduce learners to important
-              concepts in biology, pharmacy, biopharmaceutical science, clinical research, and related
-              professional fields.
-            </p>
-
-            <p>
-              Our goal is to make high quality scientific education accessible to students, career
-              starters, and professionals who want to strengthen their understanding of modern biology
-              and pharmacy.
-            </p>
-          </div>
-        </article>
-
-        <section className="blog-latest" aria-labelledby="latest-blog-heading">
-          <h2 id="latest-blog-heading">Latest Biopharmaceutical Insights</h2>
-
-          <div className="blog-posts-grid">
-            {posts.slice(0, 3).map((post, index) => (
-              <article className="blog-post-card" key={post.title || index}>
-                {post.image_url && (
-                  <img
-                    src={post.image_url}
-                    alt={post.title || 'AliverBiopharm article'}
-                    className="blog-post-image"
-                    loading="lazy"
-                  />
-                )}
-
-                <div className="blog-post-content">
-                  <span className="blog-post-category">
-                    {post.category || 'Biopharmaceutical Science'}
-                  </span>
-
-                  <h3 className="blog-post-title">
-                    {post.title}
-                  </h3>
-
-                  <div className="blog-post-date">
-                    {post.date || 'AliverBiopharm Editorial'}
-                  </div>
-
-                  <p className="blog-post-excerpt">
-                    {post.excerpt || 'Explore biology, pharmacy, clinical research, and biopharmaceutical science through AliverBiopharm.'}
-                  </p>
-
-                  <a href="#" className="blog-read-more">
-                    Read More
-                  </a>
+        {loading ? (
+          <section className="blog-article-body" aria-busy="true" aria-live="polite">
+            <p>Loading blog content…</p>
+          </section>
+        ) : error ? (
+          <section className="blog-article-body" role="alert">
+            <p>{error}</p>
+          </section>
+        ) : !featured && posts.length === 0 ? (
+          <section className="blog-article-body">
+            <p>No blog content is currently available.</p>
+          </section>
+        ) : (
+          <>
+            {topics.length > 0 && (
+              <section className="blog-topic-area" aria-label="Blog topics">
+                <div className="blog-topic-buttons">
+                  {topics.map((topic) => {
+                    const label = typeof topic === 'string'
+                      ? topic
+                      : topic?.label || topic?.name || '';
+                    if (!label) return null;
+                    return (
+                      <button type="button" className="blog-topic-button" key={label}>
+                        {label}
+                      </button>
+                    );
+                  })}
                 </div>
+                {blog?.explore_label && (
+                  <button type="button" className="blog-explore-button">
+                    {blog.explore_label}
+                  </button>
+                )}
+              </section>
+            )}
+
+            {featured && (
+              <article>
+                <header className="blog-article-header">
+                  <h1>{featured.title}</h1>
+                  <div className="blog-article-meta">
+                    {featured.category && <strong>{featured.category}</strong>}
+                    {featured.author && <> · by {featured.author}</>}
+                    {featured.published_at && <> · {formatDate(featured.published_at)}</>}
+                  </div>
+                  {(featured.share?.facebook || featured.share?.x || featured.share?.linkedin || featured.share?.whatsapp) && (
+                    <div className="blog-share" aria-label="Share article">
+                      {featured.share.facebook && <a href={featured.share.facebook} className="blog-share-link" aria-label="Share on Facebook">f</a>}
+                      {featured.share.x && <a href={featured.share.x} className="blog-share-link" aria-label="Share on X">X</a>}
+                      {featured.share.linkedin && <a href={featured.share.linkedin} className="blog-share-link" aria-label="Share on LinkedIn">in</a>}
+                      {featured.share.whatsapp && <a href={featured.share.whatsapp} className="blog-share-link" aria-label="Share on WhatsApp">W</a>}
+                    </div>
+                  )}
+                </header>
+                {featured.image_url && (
+                  <img src={featured.image_url} alt={featured.image_alt || featured.title} className="blog-featured-image" />
+                )}
+                {(bodyParagraphs.length > 0 || bodySections.length > 0) && (
+                  <div className="blog-article-body">
+                    {bodyParagraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+                    {bodySections.map((section, index) => (
+                      <section key={section.id || index}>
+                        {section.heading && <h2>{section.heading}</h2>}
+                        {Array.isArray(section.paragraphs)
+                          ? section.paragraphs.filter(Boolean).map((paragraph, paragraphIndex) => (
+                              <p key={paragraphIndex}>{paragraph}</p>
+                            ))
+                          : section.content && <p>{section.content}</p>}
+                        {Array.isArray(section.items) && section.items.length > 0 && (
+                          <ul>{section.items.filter(Boolean).map((item, itemIndex) => <li key={itemIndex}>{item}</li>)}</ul>
+                        )}
+                      </section>
+                    ))}
+                  </div>
+                )}
               </article>
-            ))}
-          </div>
-        </section>
+            )}
+
+            {posts.length > 0 && (
+              <section className="blog-latest" aria-labelledby="latest-blog-heading">
+                {blog?.latest_heading && <h2 id="latest-blog-heading">{blog.latest_heading}</h2>}
+                <div className="blog-posts-grid">
+                  {posts.slice(0, 3).map((post) => (
+                    <article className="blog-post-card" key={post.id || post.slug || post.title}>
+                      {post.image_url && (
+                        <img src={post.image_url} alt={post.image_alt || post.title} className="blog-post-image" loading="lazy" />
+                      )}
+                      <div className="blog-post-content">
+                        {post.category && <span className="blog-post-category">{post.category}</span>}
+                        <h3 className="blog-post-title">{post.title}</h3>
+                        {post.published_at && <div className="blog-post-date">{formatDate(post.published_at)}</div>}
+                        {post.excerpt && <p className="blog-post-excerpt">{post.excerpt}</p>}
+                        {post.slug && post.read_more_label && (
+                          <a href={`/articles/${post.slug}`} className="blog-read-more">
+                            {post.read_more_label}
+                          </a>
+                        )}
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            )}
+          </>
+        )}
       </div>
     </>
   );
