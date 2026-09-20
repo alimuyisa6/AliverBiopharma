@@ -32,6 +32,7 @@ import Auth from './pages/Auth';
 import TutorApply from './pages/TutorApply';
 import TutorDashboard from './pages/TutorDashboard';
 import TutorMarketplace from './pages/TutorMarketplace';
+import TutorProfile from './pages/TutorProfile';
 import FaqPage from './pages/FaqPage';
 import BlogPage from './pages/BlogPage';
 import ContactPage from './pages/ContactPage';
@@ -189,6 +190,7 @@ function AppRoutes() {
             <Route path="/tutor/apply" element={<ProtectedRoute><TutorApply /></ProtectedRoute>} />
             <Route path="/tutor/dashboard" element={<ProtectedRoute><TutorDashboard /></ProtectedRoute>} />
             <Route path="/tutors" element={<TutorMarketplace />} />
+            <Route path="/tutor/:profileId" element={<TutorProfile />} />
             <Route path="*" element={<div className="section"><h1>404</h1><p>Page not found</p></div>} />
           </Routes>
         </Layout>
