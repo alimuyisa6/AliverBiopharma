@@ -1,4 +1,6 @@
- import { useLayout } from '../contexts/LayoutContext';
+ import { useEffect, useState } from 'react';
+import { getInfoSection } from '../api/client';
+import { getCachedStale } from '../utils/cache';
 import { Link } from 'react-router-dom';
 import { FaEnvelope, FaLocationDot, FaLinkedinIn, FaXTwitter, FaInstagram, FaGlobe } from 'react-icons/fa6';
 
@@ -82,10 +84,19 @@ function ContributorCard({ contributor }) {
 }
 
 export default function AboutPage() {
-  const { sections, loading } = useLayout();
-  const page = sections?.about;
+  const [page, setPage] = useState(() => getCachedStale('site_sections')?.about || null);
 
-  if (loading || !page) {
+  useEffect(() => {
+    let active = true;
+    getInfoSection('about')
+      .then((data) => {
+        if (active) setPage(data?.about || data);
+      })
+      .catch(() => {});
+    return () => { active = false; };
+  }, []);
+
+  if (!page) {
     return (
       <section className="about-section about-page-loading" aria-busy="true">
         <div className="about-content-wrap">
