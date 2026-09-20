@@ -19,7 +19,7 @@ export default function TutorCard({ tutor, onContact, user }) {
         <div className="tutor-actions">
           <Link to={`/tutor/${tutor.id}`} className="btn btn-secondary btn-sm">View Profile</Link>
           {user && onContact && (
-            <Button size="sm" onClick={() => onContact(tutor)}>Contact</Button>
+            <Button size="sm" onClick={() => onContact(tutor.user_id)}>Contact</Button>
           )}
         </div>
       </div>
