@@ -1,14 +1,20 @@
 /* src/styles/hero-gallery.css */
 
 .hero-gallery-section {
-  width: min(100%, var(--max-width));
+  position: relative;
+  z-index: 3;
+  width: min(78%, var(--max-width));
   margin-inline: auto;
-  padding-block: var(--section-space-y-compact);
-  padding-inline: var(--page-gutter-x);
+  margin-top: calc(-1 * var(--space-12));
+  padding-block: var(--space-6);
+  padding-inline: var(--space-6);
+  border-left: var(--border-width-thick) solid var(--primary);
+  border-radius: var(--radius-card);
+  background: var(--surface-card);
 }
 
 .hero-gallery-title {
-  margin-bottom: var(--text-gap-action);
+  margin: 0 0 var(--text-gap-action);
   text-align: center;
   color: var(--text-main);
   font-family: var(--font-heading);
@@ -21,14 +27,18 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: start;
-  gap: var(--content-gap-compact);
-  margin-bottom: var(--content-gap-compact);
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.hero-gallery-row:last-child {
+  margin-bottom: 0;
 }
 
 .hero-gallery-item {
   overflow: hidden;
   border: 1px solid var(--border-default);
-  border-radius: var(--radius-card);
+  border-radius: var(--radius-sm);
   background: var(--surface-card);
 }
 
@@ -40,26 +50,35 @@
 
 @media (max-width: 768px) {
   .hero-gallery-section {
-    padding-block: var(--section-space-y-compact);
+    width: calc(100% - (var(--page-gutter-x) * 2));
+    margin-top: calc(-1 * var(--space-8));
+    padding-block: var(--space-5);
+    padding-inline: var(--space-5);
   }
 
   .hero-gallery-row {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: var(--space-2);
+    margin-bottom: var(--space-2);
   }
 }
 
 @media (max-width: 480px) {
   .hero-gallery-section {
-    padding-block: var(--space-6);
+    width: calc(100% - (var(--page-gutter-x) * 2));
+    margin-top: calc(-1 * var(--space-6));
+    padding-block: var(--space-4);
+    padding-inline: var(--space-4);
+    border-left-width: var(--border-width-thick);
+    border-radius: var(--radius-sm);
+  }
+
+  .hero-gallery-title {
+    margin-bottom: var(--text-gap-action);
+    font-size: var(--text-base);
   }
 
   .hero-gallery-row {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: var(--space-1);
-  }
-
-  .hero-gallery-item {
-    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-1);
   }
 }
