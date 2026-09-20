@@ -1209,6 +1209,18 @@ id
 ) =>
 api.trackPastPaperDownload(id);
 
+export const listArticles = (params = {}) =>
+withArgsCache(
+(f) => `articles_list_${stableSerialize(f)}`,
+api.listArticles
+)(params);
+
+export const getArticleBySlug = (slug) =>
+withCache(
+`article_detail_${slug}`,
+() => api.getArticleBySlug(slug)
+)();
+
 export const getContentDetail = (
 type,
 id
