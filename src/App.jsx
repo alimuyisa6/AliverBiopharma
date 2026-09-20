@@ -90,16 +90,7 @@ function FeatureRoute({ feature, children }) {
 
 function AppRoutes() {
   const location = useLocation();
-  const [appLoading, setAppLoading] = useState(true);
   const { level, loading: layoutLoading } = useLayout();
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setAppLoading(false);
-    }, 1500);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   const publicPaths = [
     '/login',
@@ -116,10 +107,6 @@ function AppRoutes() {
   ];
 
   const isPublicPath = publicPaths.some((path) => location.pathname === path || (path !== '/' && location.pathname.startsWith(path + '/')));
-
-  if (appLoading && !isPublicPath) {
-    return <GlobalLoader />;
-  }
 
   const needsSetup =
     !layoutLoading &&
