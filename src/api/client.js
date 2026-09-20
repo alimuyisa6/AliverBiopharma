@@ -555,6 +555,14 @@ note_id: noteId
 );
 }
 
+export async function listArticles(params = {}) {
+return getRequest('articles', 'list', params);
+}
+
+export async function getArticleBySlug(slug) {
+return getRequest('articles', 'detail', { slug });
+}
+
 export async function getContentDetail(type, id) {
 return getRequest('content', 'detail', {
 type,
