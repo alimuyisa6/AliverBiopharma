@@ -3,13 +3,14 @@ import { useEffect, useState } from 'react';
 import { useLayout } from '../contexts/LayoutContext';
 import { useParams } from 'react-router-dom';
 import { getSections } from '../api/sections';
-import { getArticleBySlug } from '../api/cachedClient';
+import { getArticleBySlug, listArticles } from '../api/cachedClient';
 
 export default function BlogPage() {
   const { level } = useLayout();
   const { slug } = useParams();
   const [sections, setSections] = useState(null);
   const [article, setArticle] = useState(null);
+  const [databasePosts, setDatabasePosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -24,14 +25,21 @@ export default function BlogPage() {
           if (cancelled) return;
           setArticle(data || null);
           setSections(null);
+          setDatabasePosts([]);
         })
-      : level?.id
-        ? getSections(level.id).then((data) => {
-            if (cancelled) return;
-            setSections(data || {});
-            setArticle(null);
-          })
-        : Promise.resolve();
+      : Promise.all([
+          level?.id ? getSections(level.id) : Promise.resolve({}),
+          listArticles({ page: 1, limit: 12 }),
+        ]).then(([sectionData, articleData]) => {
+          if (cancelled) return;
+          setSections(sectionData || {});
+          setArticle(null);
+          setDatabasePosts(
+            Array.isArray(articleData?.articles)
+              ? articleData.articles
+              : []
+          );
+        });
 
     request
       .catch((err) => {
@@ -50,7 +58,11 @@ export default function BlogPage() {
   }, [level?.id, slug]);
 
   const blog = sections?.blog;
-  const posts = Array.isArray(blog?.posts) ? blog.posts.filter(Boolean) : [];
+  const posts = databasePosts.length > 0
+    ? databasePosts
+    : Array.isArray(blog?.posts)
+      ? blog.posts.filter(Boolean)
+      : [];
   const featured = article || blog?.featured || posts[0] || null;
   const topics = Array.isArray(blog?.topics)
     ? blog.topics.filter(Boolean)
@@ -549,6 +561,11 @@ export default function BlogPage() {
                         <h3 className="blog-post-title">{post.title}</h3>
                         {post.published_at && <div className="blog-post-date">{formatDate(post.published_at)}</div>}
                         {post.excerpt && <p className="blog-post-excerpt">{post.excerpt}</p>}
+                        {post.slug && (
+                          <a href={`/blog/${post.slug}`} className="blog-read-more">
+                            {post.read_more_label || 'Read More'}
+                          </a>
+                        )}
                         {post.slug && (
                           <a href={`/blog/${post.slug}`} className="blog-read-more">
                             {post.read_more_label || 'Read More'}
