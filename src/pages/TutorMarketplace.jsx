@@ -15,7 +15,7 @@ import Button from '../components/Button/Button';
 
 export default function TutorMarketplace() {
   const { user } = useAuth();
-  const { bootstrap, activeGroupId } = useLayout();
+  const { bootstrap, activeGroupId, level } = useLayout();
   const addToast = useToast();
   const navigate = useNavigate();
 
@@ -23,7 +23,6 @@ export default function TutorMarketplace() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [subjectFilter, setSubjectFilter] = useState('');
-  const [levelFilter, setLevelFilter] = useState('');
   const [formatFilter, setFormatFilter] = useState('');
   const [allTutors, setAllTutors] = useState([]);
   const [curriculumUnits, setCurriculumUnits] = useState([]);
@@ -72,12 +71,6 @@ export default function TutorMarketplace() {
       );
     }
 
-    if (levelFilter) {
-      filtered = filtered.filter((tutor) =>
-        tutor.curriculum?.levels?.some((level) => level.id === levelFilter)
-      );
-    }
-
     if (formatFilter) {
       filtered = filtered.filter((tutor) => {
         const mode = tutor.teaching_mode;
@@ -86,7 +79,7 @@ export default function TutorMarketplace() {
     }
 
     setTutors(filtered);
-  }, [search, subjectFilter, levelFilter, formatFilter, allTutors]);
+  }, [search, subjectFilter, formatFilter, allTutors]);
 
   async function handleContact(tutor) {
     if (!user) {
@@ -160,7 +153,7 @@ export default function TutorMarketplace() {
         <div className="tutor-search">
           <Input
             type="text"
-            placeholder="Search by name, specialty, or subject"
+            placeholder={level === 'Pharmacy' ? 'Search by name, specialty, or course unit' : 'Search by name, specialty, or subject'}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             icon="magnifying-glass"
@@ -172,7 +165,7 @@ export default function TutorMarketplace() {
             value={subjectFilter}
             onChange={(e) => setSubjectFilter(e.target.value)}
           >
-            <option value="">All Subjects</option>
+            <option value="">{level === 'Pharmacy' ? 'All Course Units' : 'All Subjects'}</option>
             {curriculumUnits.map((unit) => (
               <option key={unit.id} value={unit.id}>
                 {unit.name}
@@ -180,22 +173,6 @@ export default function TutorMarketplace() {
             ))}
           </select>
 
-          <select
-            className="filter-select"
-            value={levelFilter}
-            onChange={(e) => setLevelFilter(e.target.value)}
-          >
-            <option value="">All Levels</option>
-            {[...new Map(
-              allTutors
-                .flatMap((tutor) => tutor.curriculum?.levels || [])
-                .map((level) => [level.id, level])
-            ).values()].map((level) => (
-              <option key={level.id} value={level.id}>
-                {level.name}
-              </option>
-            ))}
-          </select>
 
           <select
             className="filter-select"
@@ -218,8 +195,7 @@ export default function TutorMarketplace() {
                 onClick={() => {
                   setSearch('');
                   setSubjectFilter('');
-                  setLevelFilter('');
-                  setFormatFilter('');
+                          setFormatFilter('');
                 }}
               >
                 Clear Filters
