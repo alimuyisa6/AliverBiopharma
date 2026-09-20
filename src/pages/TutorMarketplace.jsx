@@ -88,10 +88,12 @@ export default function TutorMarketplace() {
     }
 
     try {
-      await sendContactRequest(tutor.user_id, '');
+      const tutorUserId = typeof tutor === 'string' ? tutor : tutor?.user_id;
+      if (!tutorUserId) throw new Error('Tutor account could not be identified. Please refresh and try again.');
+      await sendContactRequest(tutorUserId, '');
       addToast('Request sent!', 'success');
-    } catch {
-      addToast('Could not send request', 'error');
+    } catch (error) {
+      addToast(error?.message || 'Could not send request', 'error');
     }
   }
 
