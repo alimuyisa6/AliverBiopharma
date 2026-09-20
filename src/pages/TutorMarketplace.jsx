@@ -15,7 +15,7 @@ import Button from '../components/Button/Button';
 
 export default function TutorMarketplace() {
   const { user } = useAuth();
-  const { bootstrap, level, class_name } = useLayout();
+  const { bootstrap, activeGroupId } = useLayout();
   const addToast = useToast();
   const navigate = useNavigate();
 
@@ -31,7 +31,7 @@ export default function TutorMarketplace() {
   useEffect(() => {
     let cancelled = false;
 
-    const groupId = bootstrap?.active_group_id || bootstrap?.group?.id || null;
+    const groupId = activeGroupId || null;
 
     Promise.all([
       listTutorsCached({ limit: 50 }),
@@ -51,7 +51,7 @@ export default function TutorMarketplace() {
     return () => {
       cancelled = true;
     };
-  }, [bootstrap?.active_group_id, bootstrap?.group?.id]);
+  }, [activeGroupId]);
 
   useEffect(() => {
     let filtered = allTutors;
