@@ -1,34 +1,42 @@
 /* pages/BlogPage.jsx */
 import { useEffect, useState } from 'react';
 import { useLayout } from '../contexts/LayoutContext';
+import { useParams } from 'react-router-dom';
 import { getSections } from '../api/sections';
+import { getArticleBySlug } from '../api/cachedClient';
 
 export default function BlogPage() {
   const { level } = useLayout();
+  const { slug } = useParams();
   const [sections, setSections] = useState(null);
+  const [article, setArticle] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     let cancelled = false;
 
-    if (!level?.id) {
-      setSections(null);
-      setLoading(false);
-      setError(null);
-      return undefined;
-    }
-
     setLoading(true);
     setError(null);
 
-    getSections(level.id)
-      .then((data) => {
-        if (cancelled) return;
-        setSections(data || {});
-      })
+    const request = slug
+      ? getArticleBySlug(slug).then((data) => {
+          if (cancelled) return;
+          setArticle(data || null);
+          setSections(null);
+        })
+      : level?.id
+        ? getSections(level.id).then((data) => {
+            if (cancelled) return;
+            setSections(data || {});
+            setArticle(null);
+          })
+        : Promise.resolve();
+
+    request
       .catch((err) => {
         if (cancelled) return;
+        setArticle(null);
         setSections(null);
         setError(err?.message || 'Unable to load blog content.');
       })
@@ -39,11 +47,11 @@ export default function BlogPage() {
     return () => {
       cancelled = true;
     };
-  }, [level?.id]);
+  }, [level?.id, slug]);
 
   const blog = sections?.blog;
   const posts = Array.isArray(blog?.posts) ? blog.posts.filter(Boolean) : [];
-  const featured = blog?.featured || posts[0] || null;
+  const featured = article || blog?.featured || posts[0] || null;
   const topics = Array.isArray(blog?.topics)
     ? blog.topics.filter(Boolean)
     : [...new Set(posts.map((post) => post.category).filter(Boolean))];
@@ -541,9 +549,9 @@ export default function BlogPage() {
                         <h3 className="blog-post-title">{post.title}</h3>
                         {post.published_at && <div className="blog-post-date">{formatDate(post.published_at)}</div>}
                         {post.excerpt && <p className="blog-post-excerpt">{post.excerpt}</p>}
-                        {post.slug && post.read_more_label && (
-                          <a href={`/articles/${post.slug}`} className="blog-read-more">
-                            {post.read_more_label}
+                        {post.slug && (
+                          <a href={`/blog/${post.slug}`} className="blog-read-more">
+                            {post.read_more_label || 'Read More'}
                           </a>
                         )}
                       </div>
