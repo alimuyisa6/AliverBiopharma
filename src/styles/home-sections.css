@@ -244,6 +244,9 @@
 .team-social a { width: var(--space-8); height: var(--space-8); display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--border-default); border-radius: var(--radius-full); background: var(--surface-card); color: var(--text-secondary); }
 .team-social a:hover { border-color: var(--primary); color: var(--primary); }
 
+.stats-grid-section .section-head { margin-block-end: var(--content-gap); }
+.stats-grid-section .section-head-left { gap: var(--stack-gap-tight); }
+
 .stats-grid-card { background: var(--surface-card); text-align: center; }
 .stats-grid-card .curriculum-card-top { justify-content: center; }
 .stats-grid-card .curriculum-card-body { align-items: center; text-align: center; }
