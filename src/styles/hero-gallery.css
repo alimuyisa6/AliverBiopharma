@@ -6,7 +6,8 @@
   width: min(78%, var(--max-width));
   margin-inline: auto;
   margin-top: calc(-1 * var(--space-20));
-  padding-block: var(--space-6);\n  margin-bottom: var(--space-16);
+  padding-block: var(--space-6);
+  margin-bottom: var(--space-16);
   padding-inline: var(--space-6);
   border-left: var(--border-width-thick) solid var(--primary);
   border-radius: var(--radius-card);
