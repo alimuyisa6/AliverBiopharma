@@ -1,5 +1,6 @@
  const CACHE_CONFIG = {
-  sections: 60 * 60 * 1000,
+  // Public informational content is effectively long-lived; it is explicitly invalidated when edited.
+  sections: 30 * 24 * 60 * 60 * 1000,
   flashcards: 30 * 60 * 1000,
   notes: 15 * 60 * 1000,
   stats: 5 * 60 * 1000,
@@ -8,6 +9,8 @@
 };
 
 const PERSIST_PREFIXES = [
+  'legal_',
+  'about_',
   'bootstrap_',
   'site_sections',
   'section_headings',
