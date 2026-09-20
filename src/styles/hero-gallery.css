@@ -9,7 +9,7 @@
   padding-block: var(--space-6);
   margin-bottom: var(--space-16);
   padding-inline: var(--space-6);
-  border-left: var(--border-width-thick) solid var(--primary);
+  border-left: var(--border-width-thick) solid var(--blue-600);
   border-radius: var(--radius-card);
   background: var(--surface-card);
 }
