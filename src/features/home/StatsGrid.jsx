@@ -56,7 +56,7 @@ function AnimatedNumber({ target, label, icon }) {
 
 export function StatsGrid({ stats = {} }) {
   return (
-    <section className="section stats-grid-section stats-grid-panel">
+    <section className="section stats-grid-section">
       <div className="section-head">
         <div className="section-head-left">
           <span className="eyebrow">Our Impact</span>
