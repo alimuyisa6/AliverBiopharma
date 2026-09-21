@@ -10,7 +10,6 @@ import {
   getChatMessages,
   sendChatMessage,
   deleteChatMessage,
-  checkAdminOnline,
   getRecentViews,
   getUnits,
   getRecallDashboard,
@@ -149,7 +148,6 @@ export default function Home() {
   useEffect(() => {
     if (level?.id) getSections(level.id).then(setSections).catch(() => {});
     getPublicStats().then(setPublicStats).catch(() => {});
-    checkAdminOnline().then((res) => setAdminOnline(res?.online)).catch(() => {});
   }, [user, level]);
 
   useEffect(() => {
@@ -205,7 +203,11 @@ export default function Home() {
     if (!user) return;
     setChatRequestLoading(true);
     try {
-      const res = await requestChat();
+      const [res, online] = await Promise.all([
+        requestChat(),
+        checkAdminOnline()
+      ]);
+      setAdminOnline(!!online?.online);
       setChatRoomId(res?.room_id);
       setChatOpen(true);
       if (res?.room_id) {
