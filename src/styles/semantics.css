@@ -512,8 +512,19 @@ body.accessibility-large-text :is(p, li, label, input, select, textarea, button,
   font-size: max(1rem, var(--text-body)) !important;
 }
 
-body.accessibility-large-text :is(h1, h2, h3, h4, h5, h6) {
-  font-size: max(1.25rem, var(--text-card-title)) !important;
+body.accessibility-large-text h1 {
+  font-size: calc(var(--type-page-title-size) * 1.125) !important;
+}
+
+body.accessibility-large-text h2 {
+  font-size: calc(var(--type-section-title-size) * 1.125) !important;
+}
+
+body.accessibility-large-text h3,
+body.accessibility-large-text h4,
+body.accessibility-large-text h5,
+body.accessibility-large-text h6 {
+  font-size: calc(var(--type-card-title-size) * 1.125) !important;
 }
 
 body.accessibility-high-contrast {
@@ -558,18 +569,3 @@ body.accessibility-reduce-motion,
 body.accessibility-reduce-motion * {
   animation: none !important;
   transition: none !important;
-  scroll-behavior: auto !important;
-}
-
-body.accessibility-reduce-motion {
-  scroll-behavior: auto !important;
-}
-
-body.accessibility-dyslexia-font,
-body.accessibility-dyslexia-font * {
-  --font-primary: Verdana, Arial, sans-serif;
-  --font-heading: Verdana, Arial, sans-serif;
-  --font-maven: Verdana, Arial, sans-serif;
-  --font-reading: Verdana, Arial, sans-serif;
-  font-family: Verdana, Arial, sans-serif !important;
-}
