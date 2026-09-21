@@ -166,25 +166,48 @@ export default function Home() {
     Promise.all([
       getRecentViews(3),
       getUnits({ group_id: activeGroupId }),
-      getCurriculumTree(activeGroupId),
-      getRecallDashboard(),
-      getPastPapers({ group_id: activeGroupId })
-    ]).then(([recentViews, units, curriculumTree, recall, papers]) => {
+      getCurriculumTree(activeGroupId)
+    ]).then(([recentViews, units, curriculumTree]) => {
       if (cancelled) return;
       const mappedUnits = mapCurriculumUnits(units);
       setContinueLearning(mapContinueLearning(recentViews));
       setCurriculumUnits(mapCanonicalCurriculumTree(curriculumTree, mappedUnits));
-      setDailyRecall(mapDailyRecall(recall));
-      setPastPapers(mapPastPapers(papers));
     }).catch(() => {
       if (cancelled) return;
       setContinueLearning([]);
       setCurriculumUnits([]);
-      setDailyRecall(null);
-      setPastPapers([]);
     });
 
-    return () => { cancelled = true; };
+    const loadSecondaryHomeData = () => {
+      Promise.all([
+        getRecallDashboard(),
+        getPastPapers({ group_id: activeGroupId })
+      ]).then(([recall, papers]) => {
+        if (cancelled) return;
+        setDailyRecall(mapDailyRecall(recall));
+        setPastPapers(mapPastPapers(papers));
+      }).catch(() => {
+        if (cancelled) return;
+        setDailyRecall(null);
+        setPastPapers([]);
+      });
+    };
+
+    let idleId;
+    let timeoutId;
+    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+      idleId = window.requestIdleCallback(loadSecondaryHomeData, { timeout: 2000 });
+    } else {
+      timeoutId = setTimeout(loadSecondaryHomeData, 0);
+    }
+
+    return () => {
+      cancelled = true;
+      if (idleId !== undefined && typeof window !== 'undefined' && 'cancelIdleCallback' in window) {
+        window.cancelIdleCallback(idleId);
+      }
+      clearTimeout(timeoutId);
+    };
   }, [user, activeGroupId]);
 
   const handleNewsletterSubmit = useCallback(async (event) => {
