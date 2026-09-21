@@ -374,3 +374,160 @@ body.dark-mode {
 .section-tint {
   background: var(--section-tint);
 }
+
+/* --------------------------------------------------------------
+   User-selected appearance themes
+   -------------------------------------------------------------- */
+
+html[data-theme-color="blue"] {
+  --primary: var(--blue-600);
+  --primary-hover: var(--blue-700);
+  --primary-light: var(--blue-50);
+  --primary-border: var(--blue-200);
+  --primary-ring: rgba(37, 99, 235, 0.2);
+  --text-link: var(--blue-600);
+  --text-link-hover: var(--blue-700);
+  --border-focus: var(--primary);
+}
+
+html[data-theme-color="teal"] {
+  --primary: var(--teal-600);
+  --primary-hover: var(--teal-700);
+  --primary-light: var(--teal-50);
+  --primary-border: var(--teal-200);
+  --primary-ring: rgba(13, 148, 136, 0.2);
+  --text-link: var(--teal-600);
+  --text-link-hover: var(--teal-700);
+  --border-focus: var(--primary);
+}
+
+html[data-theme-color="emerald"] {
+  --primary: var(--emerald-600);
+  --primary-hover: var(--emerald-700);
+  --primary-light: var(--emerald-50);
+  --primary-border: var(--emerald-200);
+  --primary-ring: rgba(5, 150, 105, 0.2);
+  --text-link: var(--emerald-600);
+  --text-link-hover: var(--emerald-700);
+  --border-focus: var(--primary);
+}
+
+html[data-theme-color="amber"] {
+  --primary: var(--amber-600);
+  --primary-hover: var(--amber-700);
+  --primary-light: var(--amber-50);
+  --primary-border: var(--amber-200);
+  --primary-ring: rgba(217, 119, 6, 0.2);
+  --text-link: var(--amber-600);
+  --text-link-hover: var(--amber-700);
+  --border-focus: var(--primary);
+}
+
+html[data-theme-color="grey"] {
+  --primary: var(--grey-700);
+  --primary-hover: var(--grey-800);
+  --primary-light: var(--grey-100);
+  --primary-border: var(--grey-300);
+  --primary-ring: rgba(55, 65, 81, 0.2);
+  --text-link: var(--grey-700);
+  --text-link-hover: var(--grey-800);
+  --border-focus: var(--primary);
+}
+
+html[data-theme-color="blue"] body.dark-mode {
+  --primary: var(--blue-400);
+  --primary-hover: var(--blue-300);
+  --primary-light: var(--blue-900);
+  --primary-border: var(--blue-800);
+  --primary-ring: rgba(96, 165, 250, 0.25);
+  --text-link: var(--blue-400);
+  --text-link-hover: var(--blue-300);
+}
+
+html[data-theme-color="teal"] body.dark-mode {
+  --primary: var(--teal-400);
+  --primary-hover: var(--teal-300);
+  --primary-light: var(--teal-900);
+  --primary-border: var(--teal-800);
+  --primary-ring: rgba(45, 212, 191, 0.25);
+  --text-link: var(--teal-400);
+  --text-link-hover: var(--teal-300);
+}
+
+html[data-theme-color="emerald"] body.dark-mode {
+  --primary: var(--emerald-400);
+  --primary-hover: var(--emerald-300);
+  --primary-light: var(--emerald-900);
+  --primary-border: var(--emerald-800);
+  --primary-ring: rgba(52, 211, 153, 0.25);
+  --text-link: var(--emerald-400);
+  --text-link-hover: var(--emerald-300);
+}
+
+html[data-theme-color="amber"] body.dark-mode {
+  --primary: var(--amber-400);
+  --primary-hover: var(--amber-300);
+  --primary-light: var(--amber-900);
+  --primary-border: var(--amber-800);
+  --primary-ring: rgba(251, 191, 36, 0.25);
+  --text-link: var(--amber-400);
+  --text-link-hover: var(--amber-300);
+}
+
+html[data-theme-color="grey"] body.dark-mode {
+  --primary: var(--grey-300);
+  --primary-hover: var(--grey-200);
+  --primary-light: var(--grey-800);
+  --primary-border: var(--grey-700);
+  --primary-ring: rgba(209, 213, 219, 0.25);
+  --text-link: var(--grey-300);
+  --text-link-hover: var(--grey-200);
+}
+
+/* User accessibility preferences */
+body.accessibility-large-text {
+  --text-body: 1.0625rem;
+}
+
+body.accessibility-large-text p,
+body.accessibility-large-text li,
+body.accessibility-large-text label,
+body.accessibility-large-text input,
+body.accessibility-large-text select,
+body.accessibility-large-text textarea,
+body.accessibility-large-text button {
+  font-size: 1.0625rem;
+}
+
+body.accessibility-high-contrast {
+  --text-main: var(--grey-950);
+  --text-secondary: var(--grey-800);
+  --text-muted: var(--grey-700);
+  --border-default: var(--grey-700);
+  --border-strong: var(--grey-900);
+}
+
+body.dark-mode.accessibility-high-contrast {
+  --text-main: var(--white);
+  --text-secondary: var(--grey-100);
+  --text-muted: var(--grey-200);
+  --border-default: var(--grey-300);
+  --border-strong: var(--white);
+}
+
+body.accessibility-reduce-motion *,
+body.accessibility-reduce-motion *::before,
+body.accessibility-reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+body.accessibility-dyslexia-font {
+  --font-primary: Verdana, Arial, sans-serif;
+  --font-heading: Verdana, Arial, sans-serif;
+  --font-maven: Verdana, Arial, sans-serif;
+  --font-reading: Verdana, Arial, sans-serif;
+}
+
