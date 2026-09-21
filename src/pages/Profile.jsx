@@ -1,5 +1,6 @@
  import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import { useLayout } from '../contexts/LayoutContext';
 import {
   updateProfile,
   changePassword,
@@ -126,6 +127,7 @@ function ProfileError({ error, title = 'Unable to load this section', onRetry })
 
 export default function Profile() {
   const { user, refresh } = useAuth();
+  const { theme, toggleTheme } = useLayout();
   const addToast = useToast();
 
   const [activeSection, setActiveSection] = useState('overview');
@@ -445,6 +447,7 @@ export default function Profile() {
     try {
       const updated = await updatePreferences({ theme_color: color });
       setBundle((prev) => (prev ? { ...prev, profile: { ...prev.profile, ...updated.profile } } : prev));
+      await refresh();
     } catch (err) {
       const message = getExactErrorMessage(err, 'Failed to update theme');
       logProfileError('handleThemeChange failed', err);
@@ -457,6 +460,7 @@ export default function Profile() {
     try {
       const updated = await updatePreferences({ accessibility });
       setBundle((prev) => (prev ? { ...prev, profile: { ...prev.profile, ...updated.profile } } : prev));
+      await refresh();
     } catch (err) {
       const message = getExactErrorMessage(err, 'Failed to update accessibility setting');
       logProfileError('handleAccessibilityToggle failed', err);
@@ -1004,6 +1008,28 @@ export default function Profile() {
                 <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
                   Personalize your experience by selecting an accent color and configuring accessibility preferences.
                 </p>
+
+                <div className="form-group">
+                  <label style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14 }}>Appearance</label>
+                  <div className="theme-swatch-group">
+                    {[
+                      { key: 'light', label: 'Light' },
+                      { key: 'dark', label: 'Dark' }
+                    ].map((themeOption) => (
+                      <button
+                        type="button"
+                        key={themeOption.key}
+                        className={`theme-swatch-option${theme === themeOption.key ? ' active' : ''}`}
+                        onClick={() => {
+                          if (theme !== themeOption.key) toggleTheme();
+                        }}
+                        aria-pressed={theme === themeOption.key}
+                      >
+                        <span>{themeOption.label}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
 
                 <div className="form-group">
                   <label style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14 }}>Accent Color</label>
