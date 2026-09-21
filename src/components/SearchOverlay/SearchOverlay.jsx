@@ -1,4 +1,4 @@
- import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Icon from '../Icon/Icon';
@@ -20,16 +20,24 @@ export default function SearchOverlay({ open, onClose }) {
   const [loading, setLoading] = useState(false);
   const inputRef = useRef(null);
   const debounceRef = useRef(null);
+  const focusTimeoutRef = useRef(null);
   const navigate = useNavigate();
   const { level, activeGroupId } = useLayout();
 
   useEffect(() => {
+    clearTimeout(focusTimeoutRef.current);
+
     if (open) {
-      setTimeout(() => inputRef.current?.focus(), 150);
+      focusTimeoutRef.current = setTimeout(() => inputRef.current?.focus(), 150);
     } else {
+      clearTimeout(debounceRef.current);
+      debounceRef.current = null;
       setQuery('');
       setResults(null);
+      setLoading(false);
     }
+
+    return () => clearTimeout(focusTimeoutRef.current);
   }, [open]);
 
   useEffect(() => {
@@ -41,6 +49,13 @@ export default function SearchOverlay({ open, onClose }) {
 
     return () => document.removeEventListener('keydown', handler);
   }, [open, onClose]);
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(debounceRef.current);
+      clearTimeout(focusTimeoutRef.current);
+    };
+  }, []);
 
   const runSearch = useCallback((value) => {
     clearTimeout(debounceRef.current);
