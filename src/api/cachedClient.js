@@ -2039,6 +2039,9 @@ full_name
 ) =>
 api.updateProfile(full_name);
 
+export const updatePreferences = (updates) =>
+api.updatePreferences(updates);
+
 export const updateSectionHeadings = (
 headings
 ) =>
