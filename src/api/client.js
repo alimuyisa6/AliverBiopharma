@@ -1432,11 +1432,10 @@ return getProfileNotificationPreferences();
 
 export async function saveNotificationSettings(preferences = {}) {
 const entries = Object.entries(preferences);
-const entries = Object.entries(preferences);
 
 const results = await Promise.all(
 entries.map(([module, settings]) =>
-updateNotificationPreference(module, settings || {})
+updateProfileNotificationPreference(module, settings || {})
 )
 );
 
@@ -1698,22 +1697,3 @@ questions
 return apiCall(
 'quiz',
 'add_quiz_questions_batch',
-{
-unit_id: unitId,
-questions
-}
-);
-}
-
-export async function getPastPapers(
-filters = {}
-) {
-return getRequest(
-'past-papers',
-'get_papers',
-filters
-);
-}
-
-export async function getPastPaper(id) {
-return getRequest(
