@@ -569,6 +569,7 @@ body.accessibility-reduce-motion,
 body.accessibility-reduce-motion * {
   animation: none !important;
   transition: none !important;
+}
 
 body.accessibility-reduce-motion {
   scroll-behavior: auto !important;
