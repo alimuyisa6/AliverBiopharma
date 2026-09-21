@@ -1,8 +1,7 @@
  /* contexts/LayoutContext.jsx */
 import { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
 import { useAuth } from './AuthContext';
-import { bootstrapPlatform, switchClass } from '../api/cachedClient';
-import { getAllSiteSections } from '../api/client';
+import { bootstrapPlatform, getAllSiteSections, switchClass } from '../api/cachedClient';
 import { getCachedStale } from '../utils/cache';
 
 export const LayoutContext = createContext(null);
