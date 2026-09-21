@@ -83,10 +83,34 @@ export default function useNetworkStatus() {
 
   useEffect(() => {
     const connection = getConnection();
+    let idleId;
+    let timeoutId;
+    let interval = null;
 
     const handleOffline = () => setState((prev) => ({ ...prev, status: 'offline' }));
     const handleOnline = () => checkReal();
     const handleConnectionChange = () => checkReal();
+
+    const startMonitoring = () => {
+      if (interval !== null || document.visibilityState !== 'visible') return;
+
+      checkReal();
+      interval = setInterval(checkReal, PING_INTERVAL);
+    };
+
+    const stopMonitoring = () => {
+      if (interval === null) return;
+      clearInterval(interval);
+      interval = null;
+    };
+
+    const handleVisibility = () => {
+      if (document.visibilityState === 'visible') {
+        startMonitoring();
+      } else {
+        stopMonitoring();
+      }
+    };
 
     window.addEventListener('online', handleOnline);
     window.addEventListener('offline', handleOffline);
@@ -95,10 +119,24 @@ export default function useNetworkStatus() {
       connection.addEventListener('change', handleConnectionChange);
     }
 
-    checkReal();
-    const interval = setInterval(checkReal, PING_INTERVAL);
+    if (document.visibilityState === 'visible') {
+      const loadInitialStatus = () => startMonitoring();
+
+      if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+        idleId = window.requestIdleCallback(loadInitialStatus, { timeout: 1500 });
+      } else {
+        timeoutId = setTimeout(loadInitialStatus, 0);
+      }
+    }
+
+    document.addEventListener('visibilitychange', handleVisibility);
 
     return () => {
+      if (idleId !== undefined && typeof window !== 'undefined' && 'cancelIdleCallback' in window) {
+        window.cancelIdleCallback(idleId);
+      }
+      clearTimeout(timeoutId);
+      stopMonitoring();
       window.removeEventListener('online', handleOnline);
       window.removeEventListener('offline', handleOffline);
 
@@ -106,7 +144,7 @@ export default function useNetworkStatus() {
         connection.removeEventListener('change', handleConnectionChange);
       }
 
-      clearInterval(interval);
+      document.removeEventListener('visibilitychange', handleVisibility);
     };
   }, [checkReal]);
 
