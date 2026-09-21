@@ -59,23 +59,24 @@ export function LayoutProvider({ children }) {
 
     if (cachedSections) setSections(cachedSections);
 
-    Promise.allSettled([
-      bootstrapPlatform(effectiveLevel),
-      getAllSiteSections()
-    ])
-      .then(([bootstrapResult, sectionsResult]) => {
+    bootstrapPlatform(effectiveLevel)
+      .then((result) => {
         if (cancelled) return;
-
-        if (bootstrapResult.status === 'fulfilled') {
-          setBootstrap(bootstrapResult.value);
-        }
-
-        if (sectionsResult.status === 'fulfilled') {
-          setSections(sectionsResult.value || {});
-        }
+        setBootstrap(result);
+        setLoading(false);
       })
-      .finally(() => {
-        if (!cancelled) setLoading(false);
+      .catch(() => {
+        if (cancelled) return;
+        setLoading(false);
+      });
+
+    getAllSiteSections()
+      .then((result) => {
+        if (cancelled) return;
+        setSections(result || {});
+      })
+      .catch(() => {
+        // Site sections are supplemental; keep cached/empty sections on failure.
       });
 
     return () => {
