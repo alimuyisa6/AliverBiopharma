@@ -66,12 +66,31 @@ export function NotificationProvider({ children }) {
       timeoutId = setTimeout(loadInitialNotifications, 0);
     }
 
-    const interval = setInterval(refreshNotifications, POLL_INTERVAL);
+    let pollInterval = null;
+
+    const startPolling = () => {
+      if (pollInterval !== null) return;
+      pollInterval = setInterval(refreshNotifications, POLL_INTERVAL);
+    };
+
+    const stopPolling = () => {
+      if (pollInterval === null) return;
+      clearInterval(pollInterval);
+      pollInterval = null;
+    };
+
     const handleVisibility = () => {
       if (document.visibilityState === 'visible') {
         refreshNotifications();
+        startPolling();
+      } else {
+        stopPolling();
       }
     };
+
+    if (document.visibilityState === 'visible') {
+      startPolling();
+    }
 
     document.addEventListener('visibilitychange', handleVisibility);
 
@@ -80,7 +99,7 @@ export function NotificationProvider({ children }) {
         window.cancelIdleCallback(idleId);
       }
       clearTimeout(timeoutId);
-      clearInterval(interval);
+      stopPolling();
       document.removeEventListener('visibilitychange', handleVisibility);
     };
   }, [isAuthenticated, refreshNotifications]);
