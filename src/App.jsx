@@ -10,8 +10,6 @@ import Layout from './components/Layout/Layout';
 import ScrollMemory from './components/ScrollMemory';
 import PageTransition from './components/PageTransition';
 import Spinner from './components/Spinner/Spinner';
-import ChartRegistry from './components/charts/ChartRegistry';
-import AIAssistant from './features/chat/AIAssistant';
 import Seo from './components/Seo/Seo';
 import Home from './pages/Home';
 const Dashboard = lazy(() => import('./pages/Dashboard'));
@@ -195,8 +193,6 @@ export default function App() {
         <ChatProvider>
           <ToastProvider>
           <NotificationProvider>
-            <AIAssistant />
-            <ChartRegistry />
             <AppRoutes />
           </NotificationProvider>
           </ToastProvider>
