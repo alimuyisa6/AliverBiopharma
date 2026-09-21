@@ -455,6 +455,19 @@ export default function Profile() {
     }
   };
 
+  const handlePreferenceChange = async (field, value) => {
+    try {
+      const updated = await updatePreferences({ [field]: value });
+      setBundle((prev) => (prev ? { ...prev, profile: { ...prev.profile, ...updated.profile } } : prev));
+      await refresh();
+      addToast(field === 'language' ? 'Language preference updated' : 'Timezone preference updated', 'success');
+    } catch (err) {
+      const message = getExactErrorMessage(err, 'Failed to update preference');
+      logProfileError('handlePreferenceChange failed', err);
+      addToast(message, 'error');
+    }
+  };
+
   const handleAccessibilityToggle = async (key, currentValue) => {
     const accessibility = { ...(bundle?.profile?.accessibility || {}), [key]: !currentValue };
     try {
@@ -1029,6 +1042,44 @@ export default function Profile() {
                       </button>
                     ))}
                   </div>
+                </div>
+
+                <div className="form-group">
+                  <label style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14 }}>Language</label>
+                  <select
+                    className="form-select"
+                    style={{ color: THEME.textMain, fontFamily: THEME.font, background: THEME.bgCard, border: `1px solid ${THEME.border}` }}
+                    value={bundle?.profile?.language || user?.profile?.language || 'en'}
+                    onChange={(e) => handlePreferenceChange('language', e.target.value)}
+                    aria-label="Language preference"
+                  >
+                    <option value="en">English</option>
+                  </select>
+                </div>
+
+                <div className="form-group">
+                  <label style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14 }}>Timezone</label>
+                  <select
+                    className="form-select"
+                    style={{ color: THEME.textMain, fontFamily: THEME.font, background: THEME.bgCard, border: `1px solid ${THEME.border}` }}
+                    value={bundle?.profile?.timezone || user?.profile?.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'}
+                    onChange={(e) => handlePreferenceChange('timezone', e.target.value)}
+                    aria-label="Timezone preference"
+                  >
+                    {[
+                      ['Africa/Kampala', 'East Africa Time (Kampala)'],
+                      ['Africa/Nairobi', 'East Africa Time (Nairobi)'],
+                      ['Africa/Dar_es_Salaam', 'East Africa Time (Dar es Salaam)'],
+                      ['UTC', 'UTC'],
+                      ['Europe/London', 'United Kingdom'],
+                      ['America/New_York', 'Eastern Time (US)'],
+                      ['America/Chicago', 'Central Time (US)'],
+                      ['America/Denver', 'Mountain Time (US)'],
+                      ['America/Los_Angeles', 'Pacific Time (US)']
+                    ].map(([value, label]) => (
+                      <option key={value} value={value}>{label}</option>
+                    ))}
+                  </select>
                 </div>
 
                 <div className="form-group">
