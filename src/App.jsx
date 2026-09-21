@@ -7,7 +7,6 @@ import { ChatProvider } from './contexts/ChatContext';
 import { ToastProvider } from './components/Toast/Toast';
 import { NotificationProvider } from './contexts/NotificationContext';
 import Layout from './components/Layout/Layout';
-import PageTransition from './components/PageTransition';
 import Spinner from './components/Spinner/Spinner';
 import Seo from './components/Seo/Seo';
 import Home from './pages/Home';
@@ -117,10 +116,9 @@ function AppRoutes() {
   return (
     <>
       <Seo />
-      <PageTransition key={location.pathname}>
-        <Layout>
-          <Suspense fallback={<GlobalLoader />}>
-            <Routes location={location}>
+      <Layout>
+        <Suspense fallback={<GlobalLoader />}>
+          <Routes location={location}>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Auth />} />
             <Route path="/register" element={<Auth />} />
@@ -176,10 +174,9 @@ function AppRoutes() {
             <Route path="/tutors" element={<TutorMarketplace />} />
             <Route path="/tutor/:profileId" element={<TutorProfile />} />
             <Route path="*" element={<div className="section"><h1>404</h1><p>Page not found</p></div>} />
-            </Routes>
-          </Suspense>
-        </Layout>
-      </PageTransition>
+          </Routes>
+        </Suspense>
+      </Layout>
     </>
   );
 }
