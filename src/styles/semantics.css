@@ -569,3 +569,16 @@ body.accessibility-reduce-motion,
 body.accessibility-reduce-motion * {
   animation: none !important;
   transition: none !important;
+
+body.accessibility-reduce-motion {
+  scroll-behavior: auto !important;
+}
+
+body.accessibility-dyslexia-font,
+body.accessibility-dyslexia-font * {
+  --font-primary: Verdana, Arial, sans-serif;
+  --font-heading: Verdana, Arial, sans-serif;
+  --font-maven: Verdana, Arial, sans-serif;
+  --font-reading: Verdana, Arial, sans-serif;
+  font-family: Verdana, Arial, sans-serif !important;
+}
