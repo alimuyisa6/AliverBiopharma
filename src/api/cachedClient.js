@@ -25,10 +25,10 @@ const cached = getCached(key);
 if (hasCachedValue(cached)) {  
     return cached;  
   }  
+}
 
-  if (inFlight.has(key)) {  
-    return inFlight.get(key);  
-  }  
+if (inFlight.has(key)) {
+  return inFlight.get(key);
 }  
 
 const promise = Promise.resolve()  
@@ -48,9 +48,7 @@ const promise = Promise.resolve()
     inFlight.delete(key);  
   });  
 
-if (cacheEnabled) {  
-  inFlight.set(key, promise);  
-}  
+inFlight.set(key, promise);  
 
 return promise;
 
@@ -89,10 +87,10 @@ if (cacheEnabled) {
   if (hasCachedValue(cached)) {  
     return cached;  
   }  
+}
 
-  if (inFlight.has(key)) {  
-    return inFlight.get(key);  
-  }  
+if (inFlight.has(key)) {
+  return inFlight.get(key);
 }  
 
 const promise = Promise.resolve()  
