@@ -47,7 +47,9 @@ export function NotificationProvider({ children }) {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      refreshNotifications();
+      setNotifications([]);
+      setUnreadCount(0);
+      setLoading(false);
       return undefined;
     }
 
