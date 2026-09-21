@@ -24,6 +24,29 @@ function showFatalError(title, message, stack) {
   `;
 }
 
+function recoverFromStaleChunk(event) {
+  try {
+    const key = 'aliverbiopharma:chunk-reload';
+    if (sessionStorage.getItem(key) === '1') {
+      console.error('Dynamic module failed after cache recovery attempt:', event?.payload);
+      return;
+    }
+
+    sessionStorage.setItem(key, '1');
+
+    const url = new URL(window.location.href);
+    url.searchParams.set('__chunk_reload', Date.now().toString());
+    window.location.replace(url.toString());
+  } catch (error) {
+    console.error('Unable to recover from stale dynamic module:', error);
+  }
+}
+
+window.addEventListener('vite:preloadError', function (event) {
+  event.preventDefault();
+  recoverFromStaleChunk(event);
+});
+
 function isCrossOriginScriptError(message, source, error) {
   if (message !== 'Script error.') return false;
   if (error && error.stack) return false;
