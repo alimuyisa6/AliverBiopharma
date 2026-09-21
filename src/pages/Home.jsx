@@ -14,7 +14,8 @@ import {
   getUnits,
   getRecallDashboard,
   getPastPapers,
-  getCurriculumTree
+  getCurriculumTree,
+  checkAdminOnline
 } from '../api/cachedClient';
 import { getSections } from '../api/sections';
 import HomeView from '../features/home/HomeView';
