@@ -46,9 +46,23 @@ export function NotificationProvider({ children }) {
   }, [isAuthenticated]);
 
   useEffect(() => {
-    refreshNotifications();
+    if (!isAuthenticated) {
+      refreshNotifications();
+      return undefined;
+    }
 
-    if (!isAuthenticated) return undefined;
+    let idleId;
+    let timeoutId;
+
+    const loadInitialNotifications = () => {
+      refreshNotifications();
+    };
+
+    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+      idleId = window.requestIdleCallback(loadInitialNotifications, { timeout: 2000 });
+    } else {
+      timeoutId = setTimeout(loadInitialNotifications, 0);
+    }
 
     const interval = setInterval(refreshNotifications, POLL_INTERVAL);
     const handleVisibility = () => {
@@ -60,6 +74,10 @@ export function NotificationProvider({ children }) {
     document.addEventListener('visibilitychange', handleVisibility);
 
     return () => {
+      if (idleId !== undefined && typeof window !== 'undefined' && 'cancelIdleCallback' in window) {
+        window.cancelIdleCallback(idleId);
+      }
+      clearTimeout(timeoutId);
       clearInterval(interval);
       document.removeEventListener('visibilitychange', handleVisibility);
     };
