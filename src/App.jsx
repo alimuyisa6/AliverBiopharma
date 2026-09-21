@@ -1,6 +1,6 @@
  /* src/App.jsx */
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { AuthProvider, ProtectedRoute } from './contexts/AuthContext';
 import { LayoutProvider, useLayout } from './contexts/LayoutContext';
 import { ChatProvider } from './contexts/ChatContext';
@@ -14,34 +14,34 @@ import ChartRegistry from './components/charts/ChartRegistry';
 import AIAssistant from './features/chat/AIAssistant';
 import Seo from './components/Seo/Seo';
 import Home from './pages/Home';
-import Dashboard from './pages/Dashboard';
-import Profile from './pages/Profile';
-import Quiz from './pages/Quiz';
-import FlashcardsPage from './pages/FlashcardsPage';
-import Classroom from './pages/Classroom';
-import ClassroomRoom from './pages/ClassroomRoom';
-import PastPapers from './pages/PastPapers';
-import NoteDetail from './pages/NoteDetail';
-import NotesPage from './pages/NotesPage';
-import PdfLibraryPage from './pages/PdfLibraryPage';
-import Glossary from './pages/Glossary';
-import Recall from './pages/Recall';
+const Dashboard = lazy(() => import('./pages/Dashboard'));
+const Profile = lazy(() => import('./pages/Profile'));
+const Quiz = lazy(() => import('./pages/Quiz'));
+const FlashcardsPage = lazy(() => import('./pages/FlashcardsPage'));
+const Classroom = lazy(() => import('./pages/Classroom'));
+const ClassroomRoom = lazy(() => import('./pages/ClassroomRoom'));
+const PastPapers = lazy(() => import('./pages/PastPapers'));
+const NoteDetail = lazy(() => import('./pages/NoteDetail'));
+const NotesPage = lazy(() => import('./pages/NotesPage'));
+const PdfLibraryPage = lazy(() => import('./pages/PdfLibraryPage'));
+const Glossary = lazy(() => import('./pages/Glossary'));
+const Recall = lazy(() => import('./pages/Recall'));
 import AboutPage from './pages/AboutPage';
 import LegalPage from './pages/LegalPage';
 import Auth from './pages/Auth';
-import TutorApply from './pages/TutorApply';
-import TutorDashboard from './pages/TutorDashboard';
-import TutorMarketplace from './pages/TutorMarketplace';
-import TutorProfile from './pages/TutorProfile';
+const TutorApply = lazy(() => import('./pages/TutorApply'));
+const TutorDashboard = lazy(() => import('./pages/TutorDashboard'));
+const TutorMarketplace = lazy(() => import('./pages/TutorMarketplace'));
+const TutorProfile = lazy(() => import('./pages/TutorProfile'));
 import FaqPage from './pages/FaqPage';
 import BlogPage from './pages/BlogPage';
 import ContactPage from './pages/ContactPage';
-import CommunityPage from './pages/CommunityPage';
+const CommunityPage = lazy(() => import('./pages/CommunityPage'));
 import Resources from './pages/Resources';
 import Advertise from './pages/Advertise';
-import AdvertiseCreate from './pages/AdvertiseCreate';
-import AdvertisePayment from './pages/AdvertisePayment';
-import CurriculumNodePage from './pages/CurriculumNodePage';
+const AdvertiseCreate = lazy(() => import('./pages/AdvertiseCreate'));
+const AdvertisePayment = lazy(() => import('./pages/AdvertisePayment'));
+const CurriculumNodePage = lazy(() => import('./pages/CurriculumNodePage'));
 
 function GlobalLoader() {
   return (
@@ -123,7 +123,8 @@ function AppRoutes() {
       <ScrollMemory />
       <PageTransition key={location.pathname}>
         <Layout>
-          <Routes location={location}>
+          <Suspense fallback={<GlobalLoader />}>
+            <Routes location={location}>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Auth />} />
             <Route path="/register" element={<Auth />} />
@@ -179,7 +180,8 @@ function AppRoutes() {
             <Route path="/tutors" element={<TutorMarketplace />} />
             <Route path="/tutor/:profileId" element={<TutorProfile />} />
             <Route path="*" element={<div className="section"><h1>404</h1><p>Page not found</p></div>} />
-          </Routes>
+            </Routes>
+          </Suspense>
         </Layout>
       </PageTransition>
     </>
