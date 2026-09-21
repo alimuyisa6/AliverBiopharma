@@ -1,7 +1,7 @@
  /* contexts/LayoutContext.jsx */
 import { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
 import { useAuth } from './AuthContext';
-import { bootstrapPlatform, getAllSiteSections, switchClass } from '../api/cachedClient';
+import { bootstrapPlatform, getAllSiteSections, switchClass, updatePreferences } from '../api/cachedClient';
 import { getCachedStale } from '../utils/cache';
 
 export const LayoutContext = createContext(null);
@@ -24,19 +24,29 @@ export function LayoutProvider({ children }) {
 
   const [switching, setSwitching] = useState(false);
   const [theme, setTheme] = useState('light');
+  const themeColor = user?.profile?.theme_color || 'blue';
+  const accessibility = user?.profile?.accessibility || {};
   const [sections, setSections] = useState(() => getCachedStale('site_sections') || {});
 
   useEffect(() => {
-    if (document.documentElement) {
-      const storedTheme = document.documentElement.getAttribute('data-theme') || 'light';
-      setTheme(storedTheme);
+    if (!user?.profile?.preferences?.theme_mode) return;
+
+    const savedTheme = user.profile.preferences.theme_mode;
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+      setTheme(savedTheme);
     }
-  }, []);
+  }, [user?.profile?.preferences?.theme_mode]);
 
   useEffect(() => {
     document.body.classList.toggle('dark-mode', theme === 'dark');
     document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
+    document.documentElement.setAttribute('data-theme-color', themeColor);
+
+    document.body.classList.toggle('accessibility-large-text', !!accessibility.large_text);
+    document.body.classList.toggle('accessibility-high-contrast', !!accessibility.high_contrast);
+    document.body.classList.toggle('accessibility-reduce-motion', !!accessibility.reduce_motion);
+    document.body.classList.toggle('accessibility-dyslexia-font', !!accessibility.dyslexia_font);
+  }, [theme, themeColor, accessibility]);
 
   useEffect(() => {
     if (!effectiveLevel) {
@@ -88,9 +98,21 @@ export function LayoutProvider({ children }) {
     setTheme((current) => {
       const next = current === 'light' ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', next);
+
+      if (user) {
+        updatePreferences({
+          preferences: {
+            ...(user.profile?.preferences || {}),
+            theme_mode: next
+          }
+        }).catch((error) => {
+          console.error('[THEME_PREFERENCE_ERROR]', error?.message || 'Failed to save theme preference');
+        });
+      }
+
       return next;
     });
-  }, []);
+  }, [user]);
 
   const handleSwitchClass = useCallback(async (groupId) => {
     setSwitching(true);
