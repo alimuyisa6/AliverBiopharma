@@ -110,9 +110,7 @@ const promise = Promise.resolve()
     inFlight.delete(key);  
   });  
 
-if (cacheEnabled) {  
-  inFlight.set(key, promise);  
-}  
+inFlight.set(key, promise);  
 
 return promise;
 
