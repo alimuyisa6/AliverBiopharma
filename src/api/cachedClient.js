@@ -596,6 +596,12 @@ withArgsCache(
 api.getUnits
 )(filters);
 
+export const getCurriculumTree = (groupId) =>
+withCache(
+`curriculum_tree_${groupId || 'all'}`,
+() => api.getCurriculumTree(groupId)
+)();
+
 export const switchClass = async (
 groupId
 ) => {
