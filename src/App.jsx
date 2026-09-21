@@ -7,7 +7,6 @@ import { ChatProvider } from './contexts/ChatContext';
 import { ToastProvider } from './components/Toast/Toast';
 import { NotificationProvider } from './contexts/NotificationContext';
 import Layout from './components/Layout/Layout';
-import ScrollMemory from './components/ScrollMemory';
 import PageTransition from './components/PageTransition';
 import Spinner from './components/Spinner/Spinner';
 import Seo from './components/Seo/Seo';
@@ -118,7 +117,6 @@ function AppRoutes() {
   return (
     <>
       <Seo />
-      <ScrollMemory />
       <PageTransition key={location.pathname}>
         <Layout>
           <Suspense fallback={<GlobalLoader />}>
