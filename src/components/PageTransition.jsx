@@ -1,5 +1,5 @@
 /* src/components/PageTransition.jsx */
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 function PageTransition({ children }) {
@@ -7,6 +7,7 @@ function PageTransition({ children }) {
   const [displayLocation, setDisplayLocation] = useState(location);
   const [transitionStage, setTransitionStage] = useState('pageIn');
   const [isBack, setIsBack] = useState(false);
+  const transitionTimeoutRef = useRef(null);
 
   useEffect(() => {
     if (location.pathname !== displayLocation.pathname) {
@@ -15,12 +16,20 @@ function PageTransition({ children }) {
       setIsBack(navigationType === 'back_forward');
       
       setTransitionStage('pageOut');
-      setTimeout(() => {
+      clearTimeout(transitionTimeoutRef.current);
+      transitionTimeoutRef.current = setTimeout(() => {
         setDisplayLocation(location);
         setTransitionStage('pageIn');
+        transitionTimeoutRef.current = null;
       }, 300); // Half of transition duration
     }
+
+    return () => {
+      clearTimeout(transitionTimeoutRef.current);
+    };
   }, [location, displayLocation]);
+
+  useEffect(() => () => clearTimeout(transitionTimeoutRef.current), []);
 
   return (
     <div
