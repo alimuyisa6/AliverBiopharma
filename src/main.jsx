@@ -116,9 +116,16 @@ function initRevealObserver() {
     // Initial observation after a short delay (so React has rendered)
     setTimeout(observeElements, 100);
 
-    // Re‑observe on DOM changes
+    // Re-observe DOM changes at most once per animation frame.
+    // React can produce several mutations during one render; batching
+    // prevents repeated full-document queries from competing with rendering.
+    let observeFrame = null;
     const mutationObserver = new MutationObserver(() => {
-      observeElements();
+      if (observeFrame !== null) return;
+      observeFrame = requestAnimationFrame(() => {
+        observeFrame = null;
+        observeElements();
+      });
     });
     mutationObserver.observe(document.body, { childList: true, subtree: true });
 
@@ -132,6 +139,10 @@ function initRevealObserver() {
     return () => {
       observer.disconnect();
       mutationObserver.disconnect();
+      if (observeFrame !== null) {
+        cancelAnimationFrame(observeFrame);
+        observeFrame = null;
+      }
     };
   } catch (e) {
     console.warn('Reveal observer init failed', e);
