@@ -1825,7 +1825,11 @@ profileId
 api.getTutorDetail(profileId);
 
 export const getUser = () =>
-api.getUser();
+withCache(
+'user_current',
+api.getUser,
+false
+)();
 
 export const getUserActivityTrace = () =>
 api.getUserActivityTrace();
