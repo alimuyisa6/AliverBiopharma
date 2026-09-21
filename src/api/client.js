@@ -967,14 +967,6 @@ module,
 });
 }
 
-export async function getProfileNotificationPreferences() {
-  return getNotificationPreferences();
-}
-
-export async function updateProfileNotificationPreference(module, fields) {
-  return updateNotificationPreference(module, fields);
-}
-
 export async function getClassroomLevels() {
 return getRequest(
 'classroom',
