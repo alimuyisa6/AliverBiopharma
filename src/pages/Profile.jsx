@@ -69,13 +69,15 @@ const SECTIONS = [
   { id: 'account', label: 'Account & Data' }
 ];
 
-function Toggle({ active, onClick }) {
+function Toggle({ active, onClick, label }) {
   return (
     <button
       type="button"
       className={`toggle-switch${active ? ' active' : ''}`}
       onClick={onClick}
-      aria-pressed={active}
+      role="switch"
+      aria-checked={active}
+      aria-label={label}
     />
   );
 }
@@ -1127,7 +1129,7 @@ export default function Profile() {
                       <div className="profile-row-copy" style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14, fontWeight: 600 }}>
                         {label}
                       </div>
-                      <Toggle active={current} onClick={() => handleAccessibilityToggle(key, current)} />
+                      <Toggle active={current} label={label} onClick={() => handleAccessibilityToggle(key, current)} />
                     </div>
                   );
                 })}
