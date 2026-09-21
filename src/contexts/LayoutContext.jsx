@@ -224,7 +224,6 @@ export function LayoutProvider({ children }) {
     };
   }, [
     bootstrap,
-    loading,
     authLoading,
     user,
     theme,
