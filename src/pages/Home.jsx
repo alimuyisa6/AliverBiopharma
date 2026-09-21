@@ -146,9 +146,12 @@ export default function Home() {
   }, [activeGroupId, groups]);
 
   useEffect(() => {
-    if (level?.id) getSections(level.id).then(setSections).catch(() => {});
     getPublicStats().then(setPublicStats).catch(() => {});
-  }, [user, level]);
+  }, []);
+
+  useEffect(() => {
+    if (level?.id) getSections(level.id).then(setSections).catch(() => {});
+  }, [level?.id]);
 
   useEffect(() => {
     if (!user || !activeGroupId) {
