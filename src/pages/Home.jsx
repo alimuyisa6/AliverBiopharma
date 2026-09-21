@@ -13,9 +13,9 @@ import {
   getRecentViews,
   getUnits,
   getRecallDashboard,
-  getPastPapers
+  getPastPapers,
+  getCurriculumTree
 } from '../api/cachedClient';
-import { getCurriculumTree } from '../api/curriculumNavigation';
 import { getSections } from '../api/sections';
 import HomeView from '../features/home/HomeView';
 import { useChat } from '../contexts/ChatContext';
