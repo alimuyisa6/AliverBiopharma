@@ -89,17 +89,12 @@ export function AuthProvider({ children }) {
     if (!user) {
       clearInterval(refreshRef.current);
       clearTimeout(inactivityRef.current);
+      clearTimeout(activityThrottleRef.current);
+      refreshRef.current = null;
+      inactivityRef.current = null;
+      activityThrottleRef.current = null;
       return;
     }
-
-    refreshRef.current = setInterval(() => {
-      if (
-        Date.now() - lastActivityRef.current <
-        INACTIVITY_TIMEOUT
-      ) {
-        checkAuth();
-      }
-    }, REFRESH_INTERVAL);
 
     const resetTimer = () => {
       lastActivityRef.current = Date.now();
@@ -116,6 +111,36 @@ export function AuthProvider({ children }) {
          */
         navigate('/', { replace: true });
       }, INACTIVITY_TIMEOUT);
+    };
+
+    const startRefresh = () => {
+      if (refreshRef.current !== null || document.visibilityState !== 'visible') {
+        return;
+      }
+
+      refreshRef.current = setInterval(() => {
+        if (
+          Date.now() - lastActivityRef.current <
+          INACTIVITY_TIMEOUT
+        ) {
+          checkAuth();
+        }
+      }, REFRESH_INTERVAL);
+    };
+
+    const stopRefresh = () => {
+      if (refreshRef.current === null) return;
+      clearInterval(refreshRef.current);
+      refreshRef.current = null;
+    };
+
+    const handleVisibility = () => {
+      if (document.visibilityState === 'visible') {
+        checkAuth();
+        startRefresh();
+      } else {
+        stopRefresh();
+      }
     };
 
     /*
@@ -149,10 +174,17 @@ export function AuthProvider({ children }) {
 
     resetTimer();
 
+    if (document.visibilityState === 'visible') {
+      startRefresh();
+    }
+
+    document.addEventListener('visibilitychange', handleVisibility);
+
     return () => {
-      clearInterval(refreshRef.current);
+      stopRefresh();
       clearTimeout(inactivityRef.current);
       clearTimeout(activityThrottleRef.current);
+      inactivityRef.current = null;
       activityThrottleRef.current = null;
 
       activityEvents.forEach((event) => {
@@ -161,9 +193,10 @@ export function AuthProvider({ children }) {
           handleActivity
         );
       });
+
+      document.removeEventListener('visibilitychange', handleVisibility);
     };
   }, [user, checkAuth, navigate]);
-
   /*
    * Sign in.
    *
