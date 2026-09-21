@@ -43,6 +43,7 @@ export function AuthProvider({ children }) {
 
   const refreshRef = useRef(null);
   const inactivityRef = useRef(null);
+  const activityThrottleRef = useRef(null);
   const lastActivityRef = useRef(Date.now());
 
   const navigate = useNavigate();
@@ -117,6 +118,20 @@ export function AuthProvider({ children }) {
       }, INACTIVITY_TIMEOUT);
     };
 
+    /*
+     * Mouse movement can fire dozens of times per second.
+     * Throttle activity bookkeeping so it cannot repeatedly
+     * clear/recreate the inactivity timer during pointer movement.
+     */
+    const handleActivity = () => {
+      if (activityThrottleRef.current) return;
+
+      activityThrottleRef.current = setTimeout(() => {
+        activityThrottleRef.current = null;
+        resetTimer();
+      }, 1000);
+    };
+
     const activityEvents = [
       'mousedown',
       'keydown',
@@ -127,7 +142,7 @@ export function AuthProvider({ children }) {
     activityEvents.forEach((event) => {
       window.addEventListener(
         event,
-        resetTimer,
+        handleActivity,
         { passive: true }
       );
     });
@@ -137,11 +152,13 @@ export function AuthProvider({ children }) {
     return () => {
       clearInterval(refreshRef.current);
       clearTimeout(inactivityRef.current);
+      clearTimeout(activityThrottleRef.current);
+      activityThrottleRef.current = null;
 
       activityEvents.forEach((event) => {
         window.removeEventListener(
           event,
-          resetTimer
+          handleActivity
         );
       });
     };
