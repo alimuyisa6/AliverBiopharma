@@ -63,6 +63,10 @@ export default async function handler(req, res) {
     return res.status(404).json({ error: getVagueErrorMessage() });
   }
 
+  const ctx = await passGate(req, res, moduleName, path);
+
+  if (!ctx) return;
+
   let mod;
 
   try {
@@ -71,10 +75,6 @@ export default async function handler(req, res) {
     console.error(`[IMPORT ERROR] ${moduleName}`, importErr.message);
     return res.status(500).json({ error: getVagueErrorMessage() });
   }
-
-  const ctx = await passGate(req, res, moduleName, path);
-
-  if (!ctx) return;
 
   try {
     if (mod.setContext) await mod.setContext(ctx);
