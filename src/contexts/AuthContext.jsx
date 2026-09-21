@@ -15,10 +15,11 @@ import {
 } from 'react-router-dom';
 
 import {
-  getUser,
   signin,
   signout
 } from '../api/client';
+
+import { getUser } from '../api/cachedClient';
 
 import Spinner from '../components/Spinner/Spinner';
 
