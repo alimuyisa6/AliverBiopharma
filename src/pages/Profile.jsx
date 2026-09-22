@@ -128,7 +128,7 @@ function ProfileError({ error, title = 'Unable to load this section', onRetry })
 }
 
 export default function Profile() {
-  const { user, refresh } = useAuth();
+  const { user, refresh, logout } = useAuth();
   const { theme, toggleTheme } = useLayout();
   const addToast = useToast();
 
@@ -603,12 +603,23 @@ export default function Profile() {
     setExportLoading(true);
     try {
       const result = await requestDataExport();
-      addToast(
-        result.already_pending ? 'Export already in progress' : 'Export requested — we will email you a link',
-        'success'
-      );
+      const downloadUrl = result?.request?.download_url;
+
+      if (downloadUrl) {
+        const link = document.createElement('a');
+        link.href = downloadUrl;
+        link.download = 'aliverbiopharma-data.json';
+        link.target = '_blank';
+        link.rel = 'noopener';
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        addToast('Your data export is ready and downloading now', 'success');
+      } else {
+        addToast('Your data export could not be prepared', 'error');
+      }
     } catch (err) {
-      const message = getExactErrorMessage(err, 'Failed to request export');
+      const message = getExactErrorMessage(err, 'Failed to export your data');
       logProfileError('handleDataExport failed', err);
       addToast(message, 'error');
     } finally {
@@ -617,16 +628,21 @@ export default function Profile() {
   };
 
   const handleAccountDeletion = async () => {
-    if (!window.confirm('This will schedule your account for deletion. Continue?')) return;
+    if (!window.confirm('This permanently deletes your account and associated personal data. Continue?')) return;
     setDeletionLoading(true);
     try {
       const result = await requestAccountDeletion();
-      addToast(result.already_pending ? 'Deletion already requested' : 'Account deletion requested', 'success');
+
+      if (result?.deleted) {
+        addToast('Your account and associated personal data have been deleted', 'success');
+        await logout();
+      } else {
+        throw new Error('Account deletion was not completed');
+      }
     } catch (err) {
-      const message = getExactErrorMessage(err, 'Failed to request account deletion');
+      const message = getExactErrorMessage(err, 'Failed to delete your account');
       logProfileError('handleAccountDeletion failed', err);
       addToast(message, 'error');
-    } finally {
       setDeletionLoading(false);
     }
   };
