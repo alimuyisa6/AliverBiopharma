@@ -1539,3 +1539,37 @@
     text-align: left;
   }
 }
+
+
+/* Central UI preference integration for advertising pages. */
+.advertise-page,
+.advertise-create-page,
+.advertise-payment-page { font-family: var(--font-primary); }
+.advertise-hero,
+.advertise-programmes,
+.advertise-benefits,
+.advertise-process { padding-inline: var(--ui-page-gutter-x, var(--page-gutter-x)); }
+.advertise-hero { max-width: var(--ui-content-max-width, var(--max-width)); gap: var(--ui-content-gap, var(--content-gap)); padding-block: var(--ui-section-space-y, var(--section-space-y)); }
+.advertise-programmes,
+.advertise-benefits,
+.advertise-process { padding-block: var(--ui-section-space-y, var(--section-space-y)); }
+.advertise-programme-list,
+.advertise-benefit-list { gap: var(--ui-content-gap, var(--content-gap)); max-width: var(--ui-content-max-width, var(--max-width)); }
+.advertise-programme,
+.advertise-benefit,
+.advertise-process-note { padding: var(--ui-card-padding-y, var(--card-padding-y)) var(--ui-card-padding-x, var(--card-padding-x)); }
+.advertise-process-heading { max-width: var(--ui-content-max-width, var(--max-width)); }
+.advertise-create-page,
+.advertise-payment-page { padding-inline: var(--ui-page-gutter-x, var(--page-gutter-x)); }
+.advertise-create-layout,
+.advertise-create-header,
+.advertise-payment-header,
+.advertise-create-progress { max-width: var(--ui-content-max-width, 56rem); }
+.advertise-create-layout { gap: var(--ui-content-gap, var(--content-gap)); }
+@media (max-width: 768px) {
+  .advertise-hero { gap: var(--ui-content-gap-compact, var(--content-gap-compact)); }
+}
+html[data-ui-surface="flat"] .advertise-programme,
+html[data-ui-surface="flat"] .advertise-benefit,
+html[data-ui-surface="flat"] .advertise-process-note,
+html[data-ui-surface="flat"] .advertise-create-form { box-shadow: var(--shadow-none); background: transparent; }
