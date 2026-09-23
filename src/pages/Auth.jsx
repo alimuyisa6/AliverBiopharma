@@ -61,8 +61,10 @@ export default function Auth() {
   const [mfaStep, setMfaStep] = useState(false);
   const [mfaCode, setMfaCode] = useState('');
   const [mfaError, setMfaError] = useState('');
+  const [passkeyMfaToken, setPasskeyMfaToken] = useState('');
+  const [passkeySubmitting, setPasskeySubmitting] = useState(false);
 
-  const { login, refresh } = useAuth();
+  const { login, loginWithPasskey, refresh } = useAuth();
   const widgetIdRef = useRef(null);
   const widgetReadyRef = useRef(false);
   const [captchaSlot, setCaptchaSlot] = useState(null);
@@ -217,6 +219,35 @@ export default function Auth() {
     }
   }
 
+  async function handlePasskeyLogin() {
+    setError('');
+
+    if (typeof window === 'undefined' || !window.isSecureContext || !window.PublicKeyCredential) {
+      setError('This browser does not currently support secure passkey sign-in.');
+      return;
+    }
+
+    setPasskeySubmitting(true);
+
+    try {
+      const result = await loginWithPasskey();
+
+      if (result?.mfa_required) {
+        setPasskeyMfaToken(result.passkey_access_token || '');
+        setMfaStep(true);
+        setMfaCode('');
+        setMfaError('');
+        return;
+      }
+
+      navigate(redirectTo, { replace: true });
+    } catch (err) {
+      setError(err.message || 'Passkey sign-in failed.');
+    } finally {
+      setPasskeySubmitting(false);
+    }
+  }
+
   async function handleMfaSubmit(event) {
     event.preventDefault();
     setMfaError('');
@@ -226,33 +257,40 @@ export default function Auth() {
       return;
     }
 
-    const token = getTurnstileToken();
+    if (!passkeyMfaToken) {
+      const token = getTurnstileToken();
 
-    if (!token) {
-      setMfaError('Please complete the verification again');
-      return;
+      if (!token) {
+        setMfaError('Please complete the verification again');
+        return;
+      }
     }
 
     setSubmitting(true);
 
     try {
-      const result = await login(
-        email,
-        password,
-        token,
-        mfaCode.trim()
-      );
+      const result = passkeyMfaToken
+        ? await loginWithPasskey(
+            passkeyMfaToken,
+            mfaCode.trim()
+          )
+        : await login(
+            email,
+            password,
+            getTurnstileToken(),
+            mfaCode.trim()
+          );
 
       if (result?.mfa_required) {
         setMfaError('Incorrect code. Please try again.');
-        resetTurnstile();
+        if (!passkeyMfaToken) resetTurnstile();
         return;
       }
 
       navigate(redirectTo, { replace: true });
     } catch (err) {
       setMfaError(err.message || 'Verification failed.');
-      resetTurnstile();
+      if (!passkeyMfaToken) resetTurnstile();
     } finally {
       setSubmitting(false);
     }
@@ -403,7 +441,9 @@ export default function Auth() {
               </h2>
 
               <p className="auth-subheading font-source-sans">
-                Enter the 6-digit code from your authenticator app
+                {passkeyMfaToken
+                  ? 'Confirm your passkey sign-in with your authenticator code'
+                  : 'Enter the 6-digit code from your authenticator app'}
               </p>
 
               {mfaError && (
@@ -433,10 +473,12 @@ export default function Auth() {
                   disabled={submitting}
                 />
 
-                <div
-                  ref={setCaptchaSlot}
-                  className="auth-captcha"
-                />
+                {!passkeyMfaToken && (
+                  <div
+                    ref={setCaptchaSlot}
+                    className="auth-captcha"
+                  />
+                )}
 
                 <Button
                   type="submit"
@@ -699,6 +741,20 @@ export default function Auth() {
                   )}
                 </Button>
               </form>
+
+              {mode === 'login' && (
+                <Button
+                  type="button"
+                  variant="outline"
+                  icon="fingerprint"
+                  loading={passkeySubmitting}
+                  loadingContext="brand"
+                  onClick={handlePasskeyLogin}
+                  className="auth-submit"
+                >
+                  Sign in with a Passkey
+                </Button>
+              )}
 
               <div className="auth-switch">
                 {mode === 'login' ? (

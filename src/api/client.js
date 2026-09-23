@@ -287,7 +287,20 @@ return apiCall('auth', 'signin', {
 email,
 password,
 turnstile_token,
-mfa_code
+mfa_code,
+device
+});
+}
+
+export async function getPasskeyConfig() {
+return getRequest('auth', 'passkey_config');
+}
+
+export async function signinWithPasskey(access_token, mfa_code = null, device = null) {
+return apiCall('auth', 'passkey_signin', {
+access_token,
+mfa_code,
+device
 });
 }
 
@@ -3205,6 +3218,26 @@ return getRequest(
 limit
 }
 );
+}
+
+export async function getCurriculumTree(groupId = null) {
+  return getRequest('curriculum', 'tree', groupId ? { group_id: groupId } : {});
+}
+
+export async function updateNotificationPreferences(preferences) {
+  return apiCall('notifications', 'update_preferences', { preferences }, 'POST');
+}
+
+export async function getPasskeys() {
+  return getRequest('auth', 'passkey_list');
+}
+
+export async function deletePasskey(passkey_id) {
+  return apiCall('auth', 'passkey_delete', { passkey_id }, 'POST');
+}
+
+export async function renamePasskey(passkey_id, friendly_name) {
+  return apiCall('auth', 'passkey_rename', { passkey_id, friendly_name }, 'POST');
 }
 
 export async function getAdConfig() {
