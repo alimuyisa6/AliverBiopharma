@@ -475,7 +475,6 @@ export default function Profile() {
       setPasswordCaptchaToken('');
       setNewPassword('');
       setConfirmPassword('');
-      setPasswordCaptchaToken('');
       addToast('Password changed', 'success');
     } catch (err) {
       setPasswordCaptchaToken('');
