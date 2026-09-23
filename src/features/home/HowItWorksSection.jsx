@@ -48,7 +48,8 @@ export function HowItWorksSection() {
             (item) => item.component_key === step.componentKey
           );
 
-          const imageUrl = component?.properties?.image_url;
+          const imageUrl = component?.properties?.image_url || component?.image_url || null;
+          const altText = component?.properties?.alt_text || step.title;
 
           return (
             <article key={step.number} className="how-step">
@@ -61,7 +62,7 @@ export function HowItWorksSection() {
                   <div className="how-step-icon">
                     <img
                       src={imageUrl}
-                      alt=""
+                      alt={altText}
                       className="how-step-icon-image"
                     />
                   </div>
