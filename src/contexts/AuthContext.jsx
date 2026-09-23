@@ -23,6 +23,50 @@ import { getUser } from '../api/cachedClient';
 
 import Spinner from '../components/Spinner/Spinner';
 
+function getClientDeviceMetadata() {
+  if (typeof window === 'undefined') return null;
+
+  let deviceId = null;
+  try {
+    deviceId = localStorage.getItem('aliver_device_id');
+    if (!deviceId && crypto?.randomUUID) {
+      deviceId = crypto.randomUUID();
+      localStorage.setItem('aliver_device_id', deviceId);
+    }
+  } catch {}
+
+  const uaData = navigator.userAgentData;
+  const base = {
+    deviceId,
+    model: null,
+    platform: uaData?.platform || null,
+    platformVersion: null,
+    browser: null,
+    browserVersion: null
+  };
+
+  if (!uaData?.getHighEntropyValues) return base;
+
+  return uaData.getHighEntropyValues([
+    'model',
+    'platform',
+    'platformVersion',
+    'fullVersionList'
+  ]).then((high) => {
+    const chromium = Array.isArray(high.fullVersionList)
+      ? high.fullVersionList.find((item) => !/Chromium|Not.?A.?Brand/i.test(item.brand))
+      : null;
+    return {
+      ...base,
+      model: high.model || null,
+      platform: high.platform || base.platform,
+      platformVersion: high.platformVersion || null,
+      browser: chromium?.brand || null,
+      browserVersion: chromium?.version || null
+    };
+  }).catch(() => base);
+}
+
 export const AuthContext = createContext(null);
 
 const REFRESH_INTERVAL = 12 * 60 * 1000;
@@ -214,11 +258,13 @@ export function AuthProvider({ children }) {
       turnstileToken,
       mfaCode
     ) => {
+      const device = await getClientDeviceMetadata();
       const result = await signin(
         email,
         password,
         turnstileToken,
-        mfaCode
+        mfaCode,
+        device
       );
 
       /*
