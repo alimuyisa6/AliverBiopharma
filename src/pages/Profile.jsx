@@ -189,6 +189,7 @@ export default function Profile() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [savingPassword, setSavingPassword] = useState(false);
   const [passkeys, setPasskeys] = useState([]);
+  const [passkeyPassword, setPasskeyPassword] = useState('');
   const [registeringPasskey, setRegisteringPasskey] = useState(false);
   const [deletingPasskeyId, setDeletingPasskeyId] = useState(null);
 
@@ -482,8 +483,8 @@ export default function Profile() {
       return;
     }
 
-    if (!currentPassword) {
-      addToast('Enter your current password first so we can securely enroll this passkey.', 'error');
+    if (!passkeyPassword) {
+      addToast('Enter your current password to authorize adding this passkey.', 'error');
       return;
     }
 
@@ -495,12 +496,11 @@ export default function Profile() {
     setRegisteringPasskey(true);
 
     try {
-      await signInForPasskeyEnrollment(user.email, currentPassword);
+      await signInForPasskeyEnrollment(user.email, passkeyPassword);
       const { data, error } = await registerPasskey();
-
       if (error) throw error;
 
-      setCurrentPassword('');
+      setPasskeyPassword('');
       await loadSection('security');
       addToast(
         data?.friendly_name
@@ -997,8 +997,7 @@ export default function Profile() {
                         style={{ color: THEME.textMain, fontFamily: THEME.font, background: THEME.bgCard, border: `1px solid ${THEME.border}` }}
                         rows={3}
                         value={levelReqReason}
-                        onChange={(e) => setLevelReqReason(e.target.value)}
-                        required
+                        onChange={(e) => setLevelReqReason(e.target.value)}                        required
                       />
                     </div>
 
@@ -1117,16 +1116,34 @@ export default function Profile() {
                   Your passkey is handled by your authenticator; AliverBiopharm never receives the private key.
                 </p>
 
-                <Button
-                  type="button"
-                  variant="outline"
-                  icon="fingerprint"
-                  loading={registeringPasskey}
-                  loadingContext="brand"
-                  onClick={handleRegisterPasskey}
-                >
-                  Add a Passkey
-                </Button>
+                <div className="profile-passkey-verification" style={{ marginTop: 16, padding: 16, border: `1px solid ${THEME.border}`, borderRadius: 10, background: 'var(--bg-subtle, transparent)' }}>
+                  <div style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14, fontWeight: 600, marginBottom: 6 }}>
+                    Verify your identity
+                  </div>
+                  <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 13, margin: '0 0 12px' }}>
+                    Enter your current password to authorize adding a new passkey to this account. Your password is used only for this verification step.
+                  </p>
+                  <Input
+                    label="Current Password"
+                    type="password"
+                    value={passkeyPassword}
+                    onChange={(e) => setPasskeyPassword(e.target.value)}
+                    autoComplete="current-password"
+                    disabled={registeringPasskey}
+                    hint="After verification, your device will ask you to approve the passkey with your screen lock, PIN, fingerprint, or face."
+                  />
+                  <Button
+                    type="button"
+                    variant="outline"
+                    icon="fingerprint"
+                    loading={registeringPasskey}
+                    loadingContext="brand"
+                    onClick={handleRegisterPasskey}
+                    disabled={!passkeyPassword || registeringPasskey}
+                  >
+                    Verify & Add Passkey
+                  </Button>
+                </div>
 
                 <div style={{ marginTop: 18 }}>
                   {sectionLoading ? (
@@ -1497,8 +1514,7 @@ export default function Profile() {
                           </tr>
                         )}
                       </tbody>
-                    </table>
-                  </div>
+                    </table>                  </div>
                 )}
               </Card>
             )}
