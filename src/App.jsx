@@ -84,6 +84,23 @@ function FeatureRoute({ feature, children }) {
   return children;
 }
 
+function NotFoundPage() {
+  return (
+    <div className="section not-found-section">
+      <div className="card not-found-card">
+        <img
+          src="https://raw.githubusercontent.com/alimuyisa6/AliverBiopharma/main/public/images/illustrations/404.png"
+          alt="Page not found"
+          className="not-found-illustration"
+        />
+        <h1>404</h1>
+        <p>Page not found</p>
+        <a href="/" className="btn btn-primary">Return home</a>
+      </div>
+    </div>
+  );
+}
+
 function AppRoutes() {
   const location = useLocation();
   const { level, loading: layoutLoading } = useLayout();
@@ -173,7 +190,7 @@ function AppRoutes() {
             <Route path="/tutor/dashboard" element={<ProtectedRoute><TutorDashboard /></ProtectedRoute>} />
             <Route path="/tutors" element={<TutorMarketplace />} />
             <Route path="/tutor/:profileId" element={<TutorProfile />} />
-            <Route path="*" element={<div className="section"><h1>404</h1><p>Page not found</p></div>} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
       </Layout>
