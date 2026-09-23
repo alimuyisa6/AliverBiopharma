@@ -1391,6 +1391,10 @@ return getRequest(
 );
 }
 
+export async function updateDeviceMetadata(device) {
+return apiCall('profile', 'update_device_metadata', device || {});
+}
+
 export async function revokeDevice(session_id) {
 return apiCall(
 'profile',
