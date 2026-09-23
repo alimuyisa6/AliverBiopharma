@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  min-height: 40px;
+  min-height: calc(40px * var(--ui-button-scale, 1));
   width: fit-content;
   max-width: 100%;
   padding: var(--space-2) var(--space-5);
@@ -379,3 +379,7 @@
     flex: 1;
   }
 }
+
+
+html[data-ui-button-width="full"] .btn:not(.btn-icon) { width: 100%; }
+html[data-ui-button-width="auto"] .btn:not(.btn-icon) { width: fit-content; }
