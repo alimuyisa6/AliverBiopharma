@@ -1,6 +1,8 @@
  import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useLayout } from '../contexts/LayoutContext';
+import { useI18n } from '../contexts/I18nContext';
+import { SUPPORTED_LOCALES } from '../i18n/locales';
 import {
   updateProfile,
   changePassword,
@@ -174,6 +176,7 @@ function ProfileError({ error, title = 'Unable to load this section', onRetry })
 export default function Profile() {
   const { user, refresh, logout } = useAuth();
   const { theme, toggleTheme, uiPreferences } = useLayout();
+  const { locale, setLocale, t } = useI18n();
   const addToast = useToast();
 
   const [activeSection, setActiveSection] = useState('overview');
@@ -1311,15 +1314,21 @@ export default function Profile() {
                 </div>
 
                 <div className="form-group">
-                  <label>Language</label>
+                  <label>{t('profile.language')}</label>
                   <select
                     className="form-select"
-                    value={bundle?.profile?.language || user?.profile?.language || 'en'}
-                    onChange={(e) => handlePreferenceChange('language', e.target.value)}
-                    aria-label="Language preference"
+                    value={locale}
+                    onChange={(e) => setLocale(e.target.value).catch((error) => {
+                      logProfileError('setLocale failed', error);
+                      addToast('Language could not be saved. Please try again.', 'error');
+                    })}
+                    aria-label={t('profile.language')}
                   >
-                    <option value="en">English</option>
+                    {SUPPORTED_LOCALES.map((option) => (
+                      <option key={option.code} value={option.code}>{option.nativeLabel}</option>
+                    ))}
                   </select>
+                  <p className="profile-text-muted">{t('profile.languageDescription')}</p>
                 </div>
 
                 <div className="form-group">
