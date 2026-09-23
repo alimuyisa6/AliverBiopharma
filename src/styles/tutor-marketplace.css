@@ -100,3 +100,17 @@
 
 
 .tutor-actions-spaced { display: flex; flex-wrap: wrap; align-items: center; gap: var(--stack-gap); }
+
+
+/* Central UI preference integration for tutor marketplace pages. */
+.tutor-marketplace-page { width: min(100%, var(--ui-content-max-width, var(--max-width))); padding-inline: var(--ui-page-gutter-x, var(--page-gutter-x)); }
+.tutor-marketplace-page .section-head { margin-bottom: var(--ui-content-gap, var(--content-gap)); }
+.tutor-marketplace-page .tutor-search { gap: var(--ui-content-gap-compact, var(--content-gap-compact)); margin-bottom: var(--ui-content-gap, var(--content-gap)); }
+.tutor-marketplace-page .filter-select { min-height: calc(var(--space-10) * var(--ui-button-scale, 1)); padding-inline: var(--ui-card-padding-x-compact, var(--card-padding-x-compact)); }
+.tutor-marketplace-page .tutor-grid-flat,
+.tutor-marketplace-page .tutor-grid,
+.tutor-marketplace-page .classroom-level-grid { gap: var(--ui-content-gap, var(--content-gap)); }
+.tutor-marketplace-page .tutor-card { padding: var(--ui-card-padding-y, var(--card-padding-y)) var(--ui-card-padding-x, var(--card-padding-x)); }
+.tutor-marketplace-page .tutor-actions-spaced { gap: var(--ui-content-gap-compact, var(--content-gap-compact)); }
+.tutor-marketplace-page .tutor-marketplace-intro-action { margin-block: var(--ui-content-gap, var(--content-gap)); }
+html[data-ui-surface="flat"] .tutor-marketplace-page .tutor-card { box-shadow: var(--shadow-none); background: transparent; }
