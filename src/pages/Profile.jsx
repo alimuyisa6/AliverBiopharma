@@ -27,7 +27,9 @@ import {
   updatePreferences,
   saveParentGuardian,
   requestDataExport,
-  requestAccountDeletion
+  requestAccountDeletion,
+  getPasskeys,
+  deletePasskey
 } from '../api/client';
 
 import PageHeader from '../components/PageHeader/PageHeader';
@@ -40,6 +42,7 @@ import Skeleton from '../components/Skeleton/Skeleton';
 import Card from '../components/Card/Card';
 import Icon from '../components/Icon/Icon';
 import { useToast } from '../components/Toast/Toast';
+import { registerPasskey, signInForPasskeyEnrollment } from '../lib/passkeyClient';
 
 const THEME = {
   textMain: 'var(--text-main)',
@@ -185,6 +188,9 @@ export default function Profile() {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [savingPassword, setSavingPassword] = useState(false);
+  const [passkeys, setPasskeys] = useState([]);
+  const [registeringPasskey, setRegisteringPasskey] = useState(false);
+  const [deletingPasskeyId, setDeletingPasskeyId] = useState(null);
 
   const [levelReqTrack, setLevelReqTrack] = useState('');
   const [levelReqReason, setLevelReqReason] = useState('');
@@ -320,7 +326,11 @@ export default function Profile() {
       setSectionError('');
       try {
         let data;
-        if (id === 'notifications') {
+        if (id === 'security') {
+          data = await getPasskeys();
+          if (!Array.isArray(data)) throw new Error(`Passkeys request returned invalid data: ${JSON.stringify(data)}`);
+          setPasskeys(data);
+        } else if (id === 'notifications') {
           data = await getProfileNotificationPreferences();
           if (!Array.isArray(data)) throw new Error(`Notifications request returned invalid data: ${JSON.stringify(data)}`);
           setNotifPrefs(data);
@@ -463,6 +473,69 @@ export default function Profile() {
       addToast(message, 'error');
     } finally {
       setSavingPassword(false);
+    }
+  };
+
+  const handleRegisterPasskey = async () => {
+    if (!user?.email) {
+      addToast('Your account email is unavailable. Please refresh and try again.', 'error');
+      return;
+    }
+
+    if (!currentPassword) {
+      addToast('Enter your current password first so we can securely enroll this passkey.', 'error');
+      return;
+    }
+
+    if (typeof window === 'undefined' || !window.isSecureContext || !window.PublicKeyCredential) {
+      addToast('This browser does not currently support secure passkey registration.', 'error');
+      return;
+    }
+
+    setRegisteringPasskey(true);
+
+    try {
+      await signInForPasskeyEnrollment(user.email, currentPassword);
+      const { data, error } = await registerPasskey();
+
+      if (error) throw error;
+
+      setCurrentPassword('');
+      await loadSection('security');
+      addToast(
+        data?.friendly_name
+          ? `Passkey added: ${data.friendly_name}`
+          : 'Passkey added successfully',
+        'success'
+      );
+    } catch (err) {
+      const message = getExactErrorMessage(err, 'Passkey registration failed.');
+      logProfileError('handleRegisterPasskey failed', err);
+      addToast(message, 'error');
+    } finally {
+      setRegisteringPasskey(false);
+    }
+  };
+
+  const handleDeletePasskey = async (passkeyId) => {
+    if (!passkeyId) return;
+
+    if (!window.confirm('Remove this passkey from your account? You will no longer be able to use it to sign in.')) {
+      return;
+    }
+
+    setDeletingPasskeyId(passkeyId);
+
+    try {
+      await deletePasskey(passkeyId);
+      setPasskeys((prev) => prev.filter((passkey) => passkey.id !== passkeyId));
+      addToast('Passkey removed', 'success');
+    } catch (err) {
+      const message = getExactErrorMessage(err, 'Failed to remove passkey.');
+      logProfileError('handleDeletePasskey failed', err);
+      addToast(message, 'error');
+    } finally {
+      setDeletingPasskeyId(null);
     }
   };
 
@@ -1032,6 +1105,64 @@ export default function Profile() {
                   </Button>
                 </Card>
               </form>
+
+              <Card variant="inset" className="profile-card card-lifted">
+                <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
+                  <Icon name="fingerprint" style={{ color: THEME.accent }} />
+                  Passkeys
+                </h3>
+                <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
+                  Sign in securely with a passkey stored on your phone, computer, password manager, or security key.
+                  Your passkey is handled by your authenticator; AliverBiopharm never receives the private key.
+                </p>
+
+                <Button
+                  type="button"
+                  variant="outline"
+                  icon="fingerprint"
+                  loading={registeringPasskey}
+                  loadingContext="brand"
+                  onClick={handleRegisterPasskey}
+                >
+                  Add a Passkey
+                </Button>
+
+                <div style={{ marginTop: 18 }}>
+                  {sectionLoading ? (
+                    <Spinner context="data" size="sm" />
+                  ) : passkeys.length > 0 ? (
+                    passkeys.map((passkey) => (
+                      <div className="notification-row" key={passkey.id}>
+                        <div className="profile-row-copy">
+                          <div style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14, fontWeight: 600 }}>
+                            {passkey.friendly_name || 'Passkey'}
+                          </div>
+                          <div style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 12 }}>
+                            Added {passkey.created_at ? new Date(passkey.created_at).toLocaleDateString() : '—'}
+                            {passkey.last_used_at
+                              ? ` · Last used ${new Date(passkey.last_used_at).toLocaleDateString()}`
+                              : ''}
+                          </div>
+                        </div>
+
+                        <Button
+                          type="button"
+                          variant="outline"
+                          size="sm"
+                          loading={deletingPasskeyId === passkey.id}
+                          onClick={() => handleDeletePasskey(passkey.id)}
+                        >
+                          Remove
+                        </Button>
+                      </div>
+                    ))
+                  ) : (
+                    <p style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 14, marginTop: 12 }}>
+                      No passkeys are registered yet.
+                    </p>
+                  )}
+                </div>
+              </Card>
             )}
 
             {activeSection === 'devices' && (
