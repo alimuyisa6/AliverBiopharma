@@ -280,7 +280,8 @@ export async function signin(
 email,
 password,
 turnstile_token,
-mfa_code
+mfa_code,
+device = null
 ) {
 return apiCall('auth', 'signin', {
 email,
