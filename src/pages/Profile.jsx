@@ -858,7 +858,7 @@ export default function Profile() {
             aria-expanded={sidebarOpen}
             aria-controls="profile-sidebar"
           >
-            {sidebarOpen ? 'Hide Sections' : 'Show Sections'}
+            {sidebarOpen ? 'Close Sections' : 'Profile Sections'}
           </Button>
         </div>
 

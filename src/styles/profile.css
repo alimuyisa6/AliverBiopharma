@@ -190,3 +190,33 @@
 @media (max-width: 640px) {
   .profile-preference-grid { grid-template-columns: 1fr; }
 }
+
+/* Mobile profile section switcher — follows the central surface architecture. */
+@media (max-width: 768px) {
+  .profile-sidebar-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--btn-height-sm, var(--space-9));
+    padding: var(--space-2) var(--space-3);
+    background: var(--bg-card);
+    border: var(--border-width-thin) solid var(--border-default);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    color: var(--text-main);
+  }
+  .profile-sidebar-toggle:hover {
+    background: var(--bg-muted);
+    border-color: var(--border-strong);
+    color: var(--text-main);
+  }
+  .profile-sidebar-toggle:focus-visible {
+    outline: 2px solid var(--border-focus);
+    outline-offset: var(--space-1);
+    box-shadow: var(--shadow-focus);
+  }
+  html[data-ui-surface="flat"] .profile-sidebar-toggle {
+    background: var(--bg-card);
+    box-shadow: var(--shadow-none);
+  }
+}
