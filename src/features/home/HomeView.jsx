@@ -17,7 +17,7 @@ import { useLayout } from '../../contexts/LayoutContext';
 
 const CONTINUE_ICON = { note: 'book-open', video: 'play', quiz: 'clipboard-check' };
 
-function LearningJourneySection({ sections }) {
+function LearningJourneySection({ sections, navigate }) {
   const { bootstrap } = useLayout();
   const uiComponents = bootstrap?.ui_components || [];
   const component = uiComponents.find((item) => item.component_key === 'learning_journey_section');
@@ -27,7 +27,7 @@ function LearningJourneySection({ sections }) {
     'Notes, flashcards, quizzes, past papers and recall — everything you need, all in one place.';
 
   return (
-    <Link to="/resources" className="section home-learning-journey-section home-learning-journey-link">
+    <section className="section home-learning-journey-section">
       <div className="home-learning-journey-content">
         <span className="eyebrow">Get started</span>
         <h2 className="home-learning-journey-title">Start learning with the resources you need</h2>
@@ -36,9 +36,9 @@ function LearningJourneySection({ sections }) {
           {primaryImage && <img src={primaryImage} alt="Learning journey" className="home-learning-journey-image" loading="lazy" />}
           {secondaryImage && <img src={secondaryImage} alt="" className="home-learning-journey-image-secondary" loading="lazy" />}
         </div>
-        <span className="btn btn-primary home-learning-journey-cta">Browse resources →</span>
+        <button type="button" className="btn btn-primary home-learning-journey-cta" onClick={() => navigate('/resources')}>Browse resources →</button>
       </div>
-    </Link>
+    </section>
   );
 }
 
@@ -147,8 +147,8 @@ export default function HomeView(props) {
       {user && <section className="home-student-section"><ClassSwitcher className="home-scope-switcher" /><HomeDashboardCard /><ContinueLearningRail items={continueLearning} navigate={navigate} /></section>}
       <WhyChooseSection />
       <HowItWorksSection />
-      {user && <div className="home-student-sections-wrap"><CurriculumSnapshot nodes={curriculumUnits} activeLevelName={activeLevelName} activeGroupName={activeGroupName} sections={sections} /><LearningJourneySection sections={sections} /></div>}
-      {!user && <LearningJourneySection sections={sections} />}
+      {user && <div className="home-student-sections-wrap"><CurriculumSnapshot nodes={curriculumUnits} activeLevelName={activeLevelName} activeGroupName={activeGroupName} sections={sections} /><LearningJourneySection sections={sections} navigate={navigate} /></div>}
+      {!user && <LearningJourneySection sections={sections} navigate={navigate} />}
       {user && <DailyRecallCard recall={dailyRecall} onReveal={onRevealRecall} onStart={onStartRecall} />}
       <section className="home-testimonials-section"><TestimonialSlider quotes={sections?.testimonials?.quotes || []} /></section>
       <section className="home-classroom-section"><ClassroomTeaser /></section>
