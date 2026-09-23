@@ -52,12 +52,13 @@ export async function signInWithPasskey() {
   return client.auth.signInWithPasskey();
 }
 
-export async function signInForPasskeyEnrollment(email, password) {
+export async function signInForPasskeyEnrollment(email, password, captchaToken) {
   const client = await getClient();
 
   const { data, error } = await client.auth.signInWithPassword({
     email,
-    password
+    password,
+    options: { captchaToken }
   });
 
   if (error) throw error;

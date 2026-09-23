@@ -38,6 +38,7 @@ import Input from '../components/Input/Input';
 import Button from '../components/Button/Button';
 import ProfilePictureUpload from '../components/ProfilePictureUpload/ProfilePictureUpload';
 import Spinner from '../components/Spinner/Spinner';
+import TurnstileWidget from '../components/TurnstileWidget';
 import Skeleton from '../components/Skeleton/Skeleton';
 import Card from '../components/Card/Card';
 import Icon from '../components/Icon/Icon';
@@ -185,11 +186,13 @@ export default function Profile() {
   const [savingBio, setSavingBio] = useState(false);
 
   const [currentPassword, setCurrentPassword] = useState('');
+  const [passwordCaptchaToken, setPasswordCaptchaToken] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [savingPassword, setSavingPassword] = useState(false);
   const [passkeys, setPasskeys] = useState([]);
   const [passkeyPassword, setPasskeyPassword] = useState('');
+  const [passkeyCaptchaToken, setPasskeyCaptchaToken] = useState('');
   const [registeringPasskey, setRegisteringPasskey] = useState(false);
   const [deletingPasskeyId, setDeletingPasskeyId] = useState(null);
 
@@ -461,14 +464,20 @@ export default function Profile() {
       addToast('Password must be at least 10 characters', 'error');
       return;
     }
+    if (!passwordCaptchaToken) {
+      addToast('Please complete the security verification before changing your password.', 'error');
+      return;
+    }
     setSavingPassword(true);
     try {
-      await changePassword(currentPassword, newPassword);
+      await changePassword(currentPassword, newPassword, passwordCaptchaToken);
       setCurrentPassword('');
+      setPasswordCaptchaToken('');
       setNewPassword('');
       setConfirmPassword('');
       addToast('Password changed', 'success');
     } catch (err) {
+      setPasswordCaptchaToken('');
       const message = getExactErrorMessage(err, 'Failed to change password');
       logProfileError('handlePasswordSubmit failed', err);
       addToast(message, 'error');
@@ -493,14 +502,20 @@ export default function Profile() {
       return;
     }
 
+    if (!passkeyCaptchaToken) {
+      addToast('Please complete the security verification before adding a passkey.', 'error');
+      return;
+    }
+
     setRegisteringPasskey(true);
 
     try {
-      await signInForPasskeyEnrollment(user.email, passkeyPassword);
+      await signInForPasskeyEnrollment(user.email, passkeyPassword, passkeyCaptchaToken);
       const { data, error } = await registerPasskey();
       if (error) throw error;
 
       setPasskeyPassword('');
+      setPasskeyCaptchaToken('');
       await loadSection('security');
       addToast(
         data?.friendly_name
@@ -1100,6 +1115,11 @@ export default function Profile() {
                     disabled={savingPassword}
                   />
 
+                  <TurnstileWidget
+                    onTokenChange={setPasswordCaptchaToken}
+                    disabled={savingPassword}
+                  />
+
                   <Button type="submit" loading={savingPassword} loadingContext="conic" variant="outline" icon="lock">
                     Update Password
                   </Button>
@@ -1143,6 +1163,10 @@ export default function Profile() {
                   >
                     Verify & Add Passkey
                   </Button>
+                  <TurnstileWidget
+                    onTokenChange={setPasskeyCaptchaToken}
+                    disabled={registeringPasskey}
+                  />
                 </div>
 
                 <div style={{ marginTop: 18 }}>
