@@ -47,9 +47,11 @@ export async function registerPasskey() {
   return client.auth.registerPasskey();
 }
 
-export async function signInWithPasskey() {
+export async function signInWithPasskey(captchaToken) {
   const client = await getClient();
-  return client.auth.signInWithPasskey();
+  return client.auth.signInWithPasskey({
+    options: { captchaToken }
+  });
 }
 
 export async function signInForPasskeyEnrollment(email, password, captchaToken) {
