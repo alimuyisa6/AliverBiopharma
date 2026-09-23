@@ -16,6 +16,7 @@ import {
 
 import {
   signin,
+  signinWithPasskey,
   signout
 } from '../api/client';
 
@@ -295,6 +296,51 @@ export function AuthProvider({ children }) {
   );
 
   /*
+   * Sign in with a real WebAuthn passkey. The browser first receives
+   * a short-lived Supabase access token from the passkey ceremony.
+   * The server then verifies that token and creates the same
+   * AliverBiopharm session used by password login.
+   */
+  const loginWithPasskey = useCallback(
+    async (existingAccessToken = null, mfaCode = null) => {
+      let accessToken = existingAccessToken;
+
+      if (!accessToken) {
+        const { signInWithPasskey: runPasskey } = await import('../lib/passkeyClient');
+        const { data, error } = await runPasskey();
+
+        if (error) throw error;
+
+        accessToken = data?.session?.access_token;
+
+        if (!accessToken) {
+          throw new Error('Passkey authentication did not return a valid session.');
+        }
+      }
+
+      const device = await getClientDeviceMetadata();
+      const result = await signinWithPasskey(
+        accessToken,
+        mfaCode,
+        device
+      );
+
+      if (result?.mfa_required) {
+        return {
+          ...result,
+          passkey_access_token: accessToken
+        };
+      }
+
+      await checkAuth();
+      navigate('/', { replace: true });
+
+      return result;
+    },
+    [checkAuth, navigate]
+  );
+
+  /*
    * Sign out and return to the public Home page.
    */
   const logout = useCallback(async () => {
@@ -325,6 +371,7 @@ export function AuthProvider({ children }) {
         loading,
         isAuthenticated: !!user,
         login,
+        loginWithPasskey,
         logout,
         refresh
       }}
