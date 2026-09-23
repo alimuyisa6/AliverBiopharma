@@ -132,7 +132,20 @@
   --leading-normal: 1.5;
   --leading-relaxed: 1.65;
   --leading-loose: 1.85;
+
+  /* User-controlled UI rhythm. Values are applied through LayoutContext. */
+  --ui-density-scale: 1;
+  --ui-section-scale: 1;
+  --ui-content-max-width: 64rem;
 }
+
+html[data-ui-density="compact"] { --content-gap: calc(var(--space-6) * var(--ui-density-scale)); }
+html[data-ui-density="spacious"] { --content-gap: calc(var(--space-6) * var(--ui-density-scale)); }
+
+.section,
+.page-section { margin-block: calc(var(--section-space-y) * var(--ui-section-scale)); }
+
+.content-width-controlled { width: min(100%, var(--ui-content-max-width)); }
 
 @media (max-width: 768px) {
   :root {
