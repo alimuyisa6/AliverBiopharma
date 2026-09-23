@@ -186,6 +186,7 @@ export default function Profile() {
   const [savingBio, setSavingBio] = useState(false);
 
   const [currentPassword, setCurrentPassword] = useState('');
+  const [passwordCaptchaToken, setPasswordCaptchaToken] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [savingPassword, setSavingPassword] = useState(false);
@@ -463,14 +464,21 @@ export default function Profile() {
       addToast('Password must be at least 10 characters', 'error');
       return;
     }
+    if (!passwordCaptchaToken) {
+      addToast('Please complete the security verification before changing your password.', 'error');
+      return;
+    }
     setSavingPassword(true);
     try {
-      await changePassword(currentPassword, newPassword);
+      await changePassword(currentPassword, newPassword, passwordCaptchaToken);
       setCurrentPassword('');
+      setPasswordCaptchaToken('');
       setNewPassword('');
       setConfirmPassword('');
+      setPasswordCaptchaToken('');
       addToast('Password changed', 'success');
     } catch (err) {
+      setPasswordCaptchaToken('');
       const message = getExactErrorMessage(err, 'Failed to change password');
       logProfileError('handlePasswordSubmit failed', err);
       addToast(message, 'error');
@@ -495,14 +503,14 @@ export default function Profile() {
       return;
     }
 
-    setRegisteringPasskey(true);
-
-    try {
-      if (!passkeyCaptchaToken) {
+    if (!passkeyCaptchaToken) {
       addToast('Please complete the security verification before adding a passkey.', 'error');
       return;
     }
 
+    setRegisteringPasskey(true);
+
+    try {
       await signInForPasskeyEnrollment(user.email, passkeyPassword, passkeyCaptchaToken);
       const { data, error } = await registerPasskey();
       if (error) throw error;
@@ -1105,6 +1113,11 @@ export default function Profile() {
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     required
+                    disabled={savingPassword}
+                  />
+
+                  <TurnstileWidget
+                    onTokenChange={setPasswordCaptchaToken}
                     disabled={savingPassword}
                   />
 
