@@ -98,6 +98,7 @@ export default function ResourcesView({ navigate, user, sections }) {
               <article
                 key={type.key}
                 className={`resource-card resource-card-${type.color}`}
+                aria-label={type.label}
               >
                 <div className="resource-card-image">
                   {imageUrl ? (
