@@ -26,7 +26,91 @@ export function LayoutProvider({ children }) {
   const [theme, setTheme] = useState('light');
   const themeColor = user?.profile?.theme_color || 'blue';
   const accessibility = user?.profile?.accessibility || {};
+  const uiPreferences = normalizeUIPreferences(user?.profile?.preferences?.ui || {});
   const [sections, setSections] = useState(() => getCachedStale('site_sections') || {});
+
+const UI_PREFERENCE_DEFAULTS = {
+  font_family: 'maven',
+  font_size: '100',
+  density: 'comfortable',
+  surface_style: 'card',
+  button_size: 'medium',
+  button_width: 'auto',
+  content_width: 'wide',
+  section_spacing: 'comfortable'
+};
+
+const UI_PREFERENCE_MAPS = {
+  font_family: {
+    maven: "'Maven Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif",
+    system: "-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif",
+    serif: "Georgia, 'Times New Roman', serif",
+    mono: "'DM Mono', ui-monospace, SFMono-Regular, Menlo, monospace"
+  },
+  font_size: {
+    '90': '0.9',
+    '100': '1',
+    '110': '1.1',
+    '120': '1.2'
+  },
+  density: {
+    compact: '0.85',
+    comfortable: '1',
+    spacious: '1.2'
+  },
+  button_size: {
+    small: '0.9',
+    medium: '1',
+    large: '1.12'
+  },
+  content_width: {
+    readable: '48rem',
+    wide: '64rem',
+    full: '80rem'
+  },
+  section_spacing: {
+    compact: '0.8',
+    comfortable: '1',
+    spacious: '1.25'
+  }
+};
+
+function normalizeUIPreferences(value) {
+  const input = value && typeof value === 'object' && !Array.isArray(value) ? value : {};
+  return Object.fromEntries(
+    Object.entries(UI_PREFERENCE_DEFAULTS).map(([key, fallback]) => [
+      key,
+      Object.prototype.hasOwnProperty.call(input, key) &&
+      Object.prototype.hasOwnProperty.call(
+        UI_PREFERENCE_MAPS[key] || { [fallback]: true },
+        String(input[key])
+      )
+        ? String(input[key])
+        : fallback
+    ])
+  );
+}
+
+function applyUIPreferences(preferences) {
+  const root = document.documentElement;
+  const next = normalizeUIPreferences(preferences);
+
+  root.style.setProperty('--ui-font-family', UI_PREFERENCE_MAPS.font_family[next.font_family]);
+  root.style.setProperty('--ui-font-scale', UI_PREFERENCE_MAPS.font_size[next.font_size]);
+  root.style.setProperty('--ui-density-scale', UI_PREFERENCE_MAPS.density[next.density]);
+  root.style.setProperty('--ui-button-scale', UI_PREFERENCE_MAPS.button_size[next.button_size]);
+  root.style.setProperty('--ui-content-max-width', UI_PREFERENCE_MAPS.content_width[next.content_width]);
+  root.style.setProperty('--ui-section-scale', UI_PREFERENCE_MAPS.section_spacing[next.section_spacing]);
+  root.setAttribute('data-ui-surface', next.surface_style);
+  root.setAttribute('data-ui-density', next.density);
+  root.setAttribute('data-ui-button-size', next.button_size);
+  root.setAttribute('data-ui-button-width', next.button_width);
+  root.setAttribute('data-ui-content-width', next.content_width);
+  root.setAttribute('data-ui-section-spacing', next.section_spacing);
+  return next;
+}
+
+
 
   useEffect(() => {
     if (!user?.profile?.preferences?.theme_mode) return;
@@ -36,6 +120,10 @@ export function LayoutProvider({ children }) {
       setTheme(savedTheme);
     }
   }, [user?.profile?.preferences?.theme_mode]);
+
+  useEffect(() => {
+    applyUIPreferences(uiPreferences);
+  }, [uiPreferences]);
 
   useEffect(() => {
     document.body.classList.toggle('dark-mode', theme === 'dark');
@@ -215,6 +303,7 @@ export function LayoutProvider({ children }) {
         sections,
         features: safeFeatures,
         uiMap: {},
+        uiPreferences,
         platform: null
       };
     }
@@ -242,6 +331,7 @@ export function LayoutProvider({ children }) {
       sections,
       features: safeFeatures,
       uiMap,
+      uiPreferences,
       platform: platformConfig
     };
   }, [
@@ -254,7 +344,8 @@ export function LayoutProvider({ children }) {
     handleSwitchClass,
     switching,
     activeGroupId,
-    sections
+    sections,
+    uiPreferences
   ]);
 
   return (
