@@ -58,6 +58,10 @@ const UI_PREFERENCE_MAPS = {
     comfortable: '1',
     spacious: '1.2'
   },
+  surface_style: {
+    card: 'card',
+    flat: 'flat'
+  },
   button_size: {
     small: '0.9',
     medium: '1',
