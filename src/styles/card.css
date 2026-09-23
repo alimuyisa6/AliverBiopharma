@@ -735,3 +735,19 @@
 .card-glass:hover {
   border-color: var(--border-strong);
 }
+
+
+/* Global user surface preference. Explicit card variants retain their local intent. */
+html[data-ui-surface="flat"] .card:not([class*="card-tone"]):not(.card-feature) {
+  box-shadow: var(--shadow-none);
+  background: transparent;
+  border-color: var(--border-light);
+}
+
+html[data-ui-density="compact"] .card:not(.card-density-spacious) {
+  padding: var(--card-padding-y-compact) var(--card-padding-x-compact);
+}
+
+html[data-ui-density="spacious"] .card:not(.card-density-compact) {
+  padding: var(--card-padding-y-spacious) var(--card-padding-x-spacious);
+}
