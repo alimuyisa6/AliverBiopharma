@@ -173,7 +173,7 @@ function ProfileError({ error, title = 'Unable to load this section', onRetry })
 
 export default function Profile() {
   const { user, refresh, logout } = useAuth();
-  const { theme, toggleTheme } = useLayout();
+  const { theme, toggleTheme, uiPreferences } = useLayout();
   const addToast = useToast();
 
   const [activeSection, setActiveSection] = useState('overview');
@@ -222,6 +222,7 @@ export default function Profile() {
   const [deletingWebhookId, setDeletingWebhookId] = useState(null);
   const [exportLoading, setExportLoading] = useState(false);
   const [deletionLoading, setDeletionLoading] = useState(false);
+  const [savingUIPreference, setSavingUIPreference] = useState(null);
 
 
   const [guardianName, setGuardianName] = useState('');
@@ -585,6 +586,34 @@ export default function Profile() {
       logProfileError('handleThemeChange failed', err);
       addToast(message, 'error');
     }
+  };
+
+  const handleUIPreferenceChange = async (key, value) => {
+    const previous = uiPreferences?.[key];
+    const nextUI = { ...(bundle?.profile?.preferences?.ui || uiPreferences || {}), [key]: value };
+
+    setSavingUIPreference(key);
+    try {
+      const updated = await updatePreferences({
+        preferences: { ui: nextUI }
+      });
+
+      setBundle((prev) => (
+        prev
+          ? { ...prev, profile: { ...prev.profile, ...updated.profile } }
+          : prev
+      ));
+      await refresh();
+      addToast('Display preference updated', 'success');
+    } catch (err) {
+      const message = getExactErrorMessage(err, 'Failed to update display preference');
+      logProfileError('handleUIPreferenceChange failed', err);
+      addToast(message, 'error');
+    } finally {
+      setSavingUIPreference(null);
+    }
+
+    return previous;
   };
 
   const handlePreferenceChange = async (field, value) => {
@@ -1253,41 +1282,38 @@ export default function Profile() {
 
             {activeSection === 'preferences' && (
               <Card variant="inset" className="profile-card card-lifted">
-                <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
+                <h3 className="profile-preferences-title">
                   <Icon name="sliders" style={{ color: 'var(--secondary)' }} />
                   Preferences & Theme
                 </h3>
-                <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
-                  Personalize your experience by selecting an accent color and configuring accessibility preferences.
+                <p className="profile-preferences-description">
+                  Personalize appearance, reading comfort, layout density, and controls. Changes are saved to your account and applied immediately.
                 </p>
 
                 <div className="form-group">
-                  <label style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14 }}>Appearance</label>
+                  <label>Appearance</label>
                   <div className="theme-swatch-group">
                     {[
                       { key: 'light', label: 'Light' },
                       { key: 'dark', label: 'Dark' }
-                    ].map((themeOption) => (
+                    ].map((option) => (
                       <button
                         type="button"
-                        key={themeOption.key}
-                        className={`theme-swatch-option${theme === themeOption.key ? ' active' : ''}`}
-                        onClick={() => {
-                          if (theme !== themeOption.key) toggleTheme();
-                        }}
-                        aria-pressed={theme === themeOption.key}
+                        key={option.key}
+                        className={`theme-swatch-option${theme === option.key ? ' active' : ''}`}
+                        onClick={() => { if (theme !== option.key) toggleTheme(); }}
+                        aria-pressed={theme === option.key}
                       >
-                        <span>{themeOption.label}</span>
+                        <span>{option.label}</span>
                       </button>
                     ))}
                   </div>
                 </div>
 
                 <div className="form-group">
-                  <label style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14 }}>Language</label>
+                  <label>Language</label>
                   <select
                     className="form-select"
-                    style={{ color: THEME.textMain, fontFamily: THEME.font, background: THEME.bgCard, border: `1px solid ${THEME.border}` }}
                     value={bundle?.profile?.language || user?.profile?.language || 'en'}
                     onChange={(e) => handlePreferenceChange('language', e.target.value)}
                     aria-label="Language preference"
@@ -1297,10 +1323,9 @@ export default function Profile() {
                 </div>
 
                 <div className="form-group">
-                  <label style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14 }}>Timezone</label>
+                  <label>Timezone</label>
                   <select
                     className="form-select"
-                    style={{ color: THEME.textMain, fontFamily: THEME.font, background: THEME.bgCard, border: `1px solid ${THEME.border}` }}
                     value={bundle?.profile?.timezone || user?.profile?.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'}
                     onChange={(e) => handlePreferenceChange('timezone', e.target.value)}
                     aria-label="Timezone preference"
@@ -1315,45 +1340,149 @@ export default function Profile() {
                       ['America/Chicago', 'Central Time (US)'],
                       ['America/Denver', 'Mountain Time (US)'],
                       ['America/Los_Angeles', 'Pacific Time (US)']
-                    ].map(([value, label]) => (
-                      <option key={value} value={value}>{label}</option>
-                    ))}
+                    ].map(([value, label]) => <option key={value} value={value}>{label}</option>)}
                   </select>
                 </div>
 
-                <div className="form-group">
-                  <label style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14 }}>Accent Color</label>
-                  <div className="theme-swatch-group">
-                    {[
-                      { key: 'blue', color: 'var(--blue-600)' },
-                      { key: 'teal', color: 'var(--teal-600)' },
-                      { key: 'emerald', color: 'var(--emerald-600)' },
-                      { key: 'amber', color: 'var(--amber-600)' },
-                      { key: 'grey', color: 'var(--grey-700)' }
-                    ].map((themeOption) => (
-                      <button
-                        type="button"
-                        key={themeOption.key}
-                        className={`theme-swatch-option${bundle?.profile?.theme_color === themeOption.key ? ' active' : ''}`}
-                        onClick={() => handleThemeChange(themeOption.key)}
-                        style={{
-                          color: THEME.textSecondary,
-                          fontFamily: THEME.font,
-                          border: `1px solid ${bundle?.profile?.theme_color === themeOption.key ? themeOption.color : THEME.border}`
-                        }}
-                        aria-pressed={bundle?.profile?.theme_color === themeOption.key}
-                      >
-                        <span className="theme-swatch" style={{ background: themeOption.color }} />
-                        <span>{themeOption.key}</span>
-                      </button>
-                    ))}
-                  </div>
+                <hr className="divider profile-divider-lg" />
+
+                <h4 className="profile-preferences-subtitle">Display & Reading</h4>
+                <div className="profile-preference-grid">
+                  <label className="profile-preference-control">
+                    <span>Font family</span>
+                    <select
+                      value={uiPreferences.font_family}
+                      disabled={savingUIPreference === 'font_family'}
+                      onChange={(e) => handleUIPreferenceChange('font_family', e.target.value)}
+                    >
+                      <option value="maven">Maven Pro</option>
+                      <option value="system">System Sans</option>
+                      <option value="serif">Serif</option>
+                      <option value="mono">Monospace</option>
+                    </select>
+                  </label>
+
+                  <label className="profile-preference-control">
+                    <span>Text size</span>
+                    <select
+                      value={uiPreferences.font_size}
+                      disabled={savingUIPreference === 'font_size'}
+                      onChange={(e) => handleUIPreferenceChange('font_size', e.target.value)}
+                    >
+                      <option value="90">Smaller</option>
+                      <option value="100">Default</option>
+                      <option value="110">Large</option>
+                      <option value="120">Extra large</option>
+                    </select>
+                  </label>
+
+                  <label className="profile-preference-control">
+                    <span>Content width</span>
+                    <select
+                      value={uiPreferences.content_width}
+                      disabled={savingUIPreference === 'content_width'}
+                      onChange={(e) => handleUIPreferenceChange('content_width', e.target.value)}
+                    >
+                      <option value="readable">Readable</option>
+                      <option value="wide">Wide</option>
+                      <option value="full">Full</option>
+                    </select>
+                  </label>
+
+                  <label className="profile-preference-control">
+                    <span>Section spacing</span>
+                    <select
+                      value={uiPreferences.section_spacing}
+                      disabled={savingUIPreference === 'section_spacing'}
+                      onChange={(e) => handleUIPreferenceChange('section_spacing', e.target.value)}
+                    >
+                      <option value="compact">Compact</option>
+                      <option value="comfortable">Comfortable</option>
+                      <option value="spacious">Spacious</option>
+                    </select>
+                  </label>
+                </div>
+
+                <h4 className="profile-preferences-subtitle">Layout & Controls</h4>
+                <div className="profile-preference-grid">
+                  <label className="profile-preference-control">
+                    <span>Content density</span>
+                    <select
+                      value={uiPreferences.density}
+                      disabled={savingUIPreference === 'density'}
+                      onChange={(e) => handleUIPreferenceChange('density', e.target.value)}
+                    >
+                      <option value="compact">Compact</option>
+                      <option value="comfortable">Comfortable</option>
+                      <option value="spacious">Spacious</option>
+                    </select>
+                  </label>
+
+                  <label className="profile-preference-control">
+                    <span>Cards & surfaces</span>
+                    <select
+                      value={uiPreferences.surface_style}
+                      disabled={savingUIPreference === 'surface_style'}
+                      onChange={(e) => handleUIPreferenceChange('surface_style', e.target.value)}
+                    >
+                      <option value="card">Card surfaces</option>
+                      <option value="flat">Flat surfaces</option>
+                    </select>
+                  </label>
+
+                  <label className="profile-preference-control">
+                    <span>Button size</span>
+                    <select
+                      value={uiPreferences.button_size}
+                      disabled={savingUIPreference === 'button_size'}
+                      onChange={(e) => handleUIPreferenceChange('button_size', e.target.value)}
+                    >
+                      <option value="small">Small</option>
+                      <option value="medium">Default</option>
+                      <option value="large">Large</option>
+                    </select>
+                  </label>
+
+                  <label className="profile-preference-control">
+                    <span>Button width</span>
+                    <select
+                      value={uiPreferences.button_width}
+                      disabled={savingUIPreference === 'button_width'}
+                      onChange={(e) => handleUIPreferenceChange('button_width', e.target.value)}
+                    >
+                      <option value="auto">Fit text</option>
+                      <option value="full">Full width</option>
+                    </select>
+                  </label>
                 </div>
 
                 <hr className="divider profile-divider-lg" style={{ borderColor: THEME.border }} />
 
-                <h4 style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 16, fontWeight: 600 }}>Accessibility</h4>
+                <h4 className="profile-preferences-subtitle">Accent Color</h4>
+                <div className="theme-swatch-group">
+                  {[
+                    { key: 'blue', color: 'var(--blue-600)' },
+                    { key: 'teal', color: 'var(--teal-600)' },
+                    { key: 'emerald', color: 'var(--emerald-600)' },
+                    { key: 'amber', color: 'var(--amber-600)' },
+                    { key: 'grey', color: 'var(--grey-700)' }
+                  ].map((option) => (
+                    <button
+                      type="button"
+                      key={option.key}
+                      className={`theme-swatch-option${bundle?.profile?.theme_color === option.key ? ' active' : ''}`}
+                      onClick={() => handleThemeChange(option.key)}
+                      aria-pressed={bundle?.profile?.theme_color === option.key}
+                    >
+                      <span className="theme-swatch" style={{ background: option.color }} />
+                      <span>{option.key}</span>
+                    </button>
+                  ))}
+                </div>
 
+                <hr className="divider profile-divider-lg" />
+
+                <h4 className="profile-preferences-subtitle">Accessibility</h4>
                 {[
                   ['large_text', 'Large text mode'],
                   ['high_contrast', 'High contrast mode'],
@@ -1363,9 +1492,7 @@ export default function Profile() {
                   const current = !!bundle?.profile?.accessibility?.[key];
                   return (
                     <div className="notification-row" key={key}>
-                      <div className="profile-row-copy" style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14, fontWeight: 600 }}>
-                        {label}
-                      </div>
+                      <div className="profile-row-copy">{label}</div>
                       <Toggle active={current} label={label} onClick={() => handleAccessibilityToggle(key, current)} />
                     </div>
                   );
