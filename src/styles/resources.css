@@ -33,6 +33,27 @@
   line-height: var(--leading-body-lead);
 }
 
+.resources-hero-illustration {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: var(--content-gap);
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.resources-hero-illustration img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+}
+
 .resources-grid-section {
   padding-top: var(--space-0);
   padding-bottom: var(--section-space-y-large);
