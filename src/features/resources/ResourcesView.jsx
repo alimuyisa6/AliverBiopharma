@@ -64,8 +64,11 @@ export default function ResourcesView({ navigate, user, sections }) {
       (item) => item.component_key === `content_type_${key}`
     );
 
-    return component?.properties?.image_url || null;
+    return component?.properties?.image_url || component?.image_url || null;
   }
+
+  const hubComponent = uiComponents.find((item) => item.component_key === 'resources_hub_section');
+  const hubImage = hubComponent?.properties?.image_url || hubComponent?.image_url || null;
 
   return (
     <div className="resources-page">
@@ -83,6 +86,7 @@ export default function ResourcesView({ navigate, user, sections }) {
           {sections?.section_headings?.content_types_subtitle ||
             'Notes, flashcards, quizzes, past papers and recall — everything you need, all in one place.'}
         </p>
+        {hubImage && <div className="resources-hero-illustration"><img src={hubImage} alt="AliverBiopharm resources hub" loading="lazy" /></div>}
       </section>
 
       <section className="section resources-grid-section">
