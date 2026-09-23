@@ -100,7 +100,7 @@
   width: 100%;
   margin-block-end: var(--content-gap);
   overflow: hidden;
-  border: 1px solid var(--border-default);
+  border: 0;
   border-radius: var(--radius-none);
   object-fit: cover;
 }
