@@ -1008,11 +1008,16 @@ export default function Profile() {
                   <ul className="device-list">
                     {devices.map((d) => (
                       <li key={d.id}>
-                        <Icon name="laptop" />
+                        <Icon name={/Android/i.test(d.device_platform || d.user_agent || '') ? 'smartphone' : 'laptop'} />
                         <div className="profile-row-copy">
-                          <div style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14 }}>{d.user_agent || 'Unknown device'}</div>
-                          <div style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 12 }}>
-                            {d.ip_address || 'Unknown IP'} · Signed in {new Date(d.created_at).toLocaleDateString()}
+                          <div style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14, fontWeight: 600 }}>
+                            {d.device_model || (d.device_platform ? `${d.device_platform} device` : 'Unknown device')}
+                          </div>
+                          <div style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 12, marginTop: 3 }}>
+                            {d.device_platform || 'Unknown platform'}{d.device_os_version ? ` ${d.device_os_version}` : ''}{d.device_browser ? ` · ${d.device_browser}${d.device_browser_version ? ` ${d.device_browser_version}` : ''}` : ''}
+                          </div>
+                          <div style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 11, marginTop: 3, overflowWrap: 'anywhere' }}>
+                            Device ID: {d.device_id || `Session ${d.id}`} · {d.ip_address || 'Unknown IP'} · Signed in {new Date(d.created_at).toLocaleDateString()}
                           </div>
                         </div>
                         <Button variant="outline" size="sm" loading={revokingDeviceId === d.id} onClick={() => handleRevokeDevice(d.id)}>
