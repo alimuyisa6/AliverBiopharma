@@ -12,6 +12,7 @@ import {
   getProfileNotificationPreferences,
   updateProfileNotificationPreference,
   getDevices,
+  updateDeviceMetadata,
   revokeDevice,
   getBillingSummary,
   getReferralStats,
@@ -52,6 +53,45 @@ const THEME = {
   border: 'var(--border-default)',
   font: 'var(--font-maven)'
 };
+
+function collectBrowserDeviceMetadata() {
+  if (typeof window === 'undefined') return null;
+  const uaData = navigator.userAgentData;
+  let deviceId = null;
+  try {
+    deviceId = localStorage.getItem('aliver_device_id');
+  } catch {}
+
+  const fallback = {
+    deviceId,
+    model: null,
+    platform: uaData?.platform || null,
+    platformVersion: null,
+    browser: null,
+    browserVersion: null
+  };
+
+  if (!uaData?.getHighEntropyValues) return Promise.resolve(fallback);
+
+  return uaData.getHighEntropyValues([
+    'model',
+    'platform',
+    'platformVersion',
+    'fullVersionList'
+  ]).then((high) => {
+    const browser = Array.isArray(high.fullVersionList)
+      ? high.fullVersionList.find((item) => !/Chromium|Not.?A.?Brand/i.test(item.brand))
+      : null;
+    return {
+      ...fallback,
+      model: high.model || null,
+      platform: high.platform || fallback.platform,
+      platformVersion: high.platformVersion || null,
+      browser: browser?.brand || null,
+      browserVersion: browser?.version || null
+    };
+  }).catch(() => fallback);
+}
 
 const SECTIONS = [
   { id: 'overview', label: 'Profile Overview' },
@@ -285,6 +325,8 @@ export default function Profile() {
           if (!Array.isArray(data)) throw new Error(`Notifications request returned invalid data: ${JSON.stringify(data)}`);
           setNotifPrefs(data);
         } else if (id === 'devices') {
+          const device = await collectBrowserDeviceMetadata();
+          if (device) await updateDeviceMetadata(device);
           data = await getDevices();
           if (!Array.isArray(data)) throw new Error(`Devices request returned invalid data: ${JSON.stringify(data)}`);
           setDevices(data);
