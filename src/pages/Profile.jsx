@@ -1049,6 +1049,7 @@ export default function Profile() {
             )}
 
             {activeSection === 'security' && (
+              <>
               <form onSubmit={handlePasswordSubmit}>
                 <Card variant="inset" className="profile-card card-lifted">
                   <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
@@ -1163,6 +1164,7 @@ export default function Profile() {
                   )}
                 </div>
               </Card>
+              </>
             )}
 
             {activeSection === 'devices' && (
