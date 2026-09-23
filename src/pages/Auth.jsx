@@ -227,10 +227,17 @@ export default function Auth() {
       return;
     }
 
+    const captchaToken = getTurnstileToken();
+
+    if (!captchaToken) {
+      setError('Please complete the verification before signing in with a passkey.');
+      return;
+    }
+
     setPasskeySubmitting(true);
 
     try {
-      const result = await loginWithPasskey();
+      const result = await loginWithPasskey(null, null, captchaToken);
 
       if (result?.mfa_required) {
         setPasskeyMfaToken(result.passkey_access_token || '');
@@ -243,6 +250,7 @@ export default function Auth() {
       navigate(redirectTo, { replace: true });
     } catch (err) {
       setError(err.message || 'Passkey sign-in failed.');
+      resetTurnstile();
     } finally {
       setPasskeySubmitting(false);
     }
