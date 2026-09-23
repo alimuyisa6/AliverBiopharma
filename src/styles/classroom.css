@@ -1,0 +1,25 @@
+/* Central UI preference integration for classroom and live-room layouts. */
+.classroom-page {
+  width: min(100%, var(--ui-content-max-width, var(--max-width)));
+  margin-inline: auto;
+  padding-inline: var(--ui-page-gutter-x, var(--page-gutter-x));
+}
+.classroom-list-section { padding-block: var(--ui-section-space-y, var(--section-space-y)); }
+.classroom-page .grid { gap: var(--ui-content-gap, var(--content-gap)); }
+.classroom-page .classroom-room-card { padding: var(--ui-card-padding-y, var(--card-padding-y)) var(--ui-card-padding-x, var(--card-padding-x)); }
+.classroom-page .classroom-list-table-wrap { margin-block-start: var(--ui-content-gap, var(--content-gap)); }
+.classroom-room-page {
+  width: 100%;
+  padding-inline: var(--ui-page-gutter-x, var(--page-gutter-x));
+  padding-block: var(--ui-section-space-y-compact, var(--section-space-y-compact));
+}
+.classroom-room-page .classroom-room-layout { gap: var(--ui-content-gap, var(--content-gap)); }
+.classroom-room-page .classroom-video-grid { gap: var(--ui-content-gap-compact, var(--content-gap-compact)); }
+.classroom-room-page .classroom-video-controls,
+.classroom-room-page .classroom-chat-input-row,
+.classroom-room-page .classroom-room-footer { gap: var(--ui-content-gap-compact, var(--content-gap-compact)); }
+.classroom-room-page .classroom-participants-panel,
+.classroom-room-page .classroom-room-info-panel { padding: var(--ui-card-padding-y, var(--card-padding-y)) var(--ui-card-padding-x, var(--card-padding-x)); }
+html[data-ui-surface="flat"] .classroom-page .classroom-room-card,
+html[data-ui-surface="flat"] .classroom-room-page .classroom-participants-panel,
+html[data-ui-surface="flat"] .classroom-room-page .classroom-room-info-panel { box-shadow: var(--shadow-none); }

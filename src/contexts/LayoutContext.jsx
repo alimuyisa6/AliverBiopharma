@@ -82,6 +82,17 @@ function applyUIPreferences(preferences) {
   root.style.setProperty('--ui-button-scale', UI_PREFERENCE_MAPS.button_size[next.button_size]);
   root.style.setProperty('--ui-content-max-width', UI_PREFERENCE_MAPS.content_width[next.content_width]);
   root.style.setProperty('--ui-section-scale', UI_PREFERENCE_MAPS.section_spacing[next.section_spacing]);
+  root.style.setProperty('--ui-page-gutter-x', `calc(var(--page-gutter-x) * ${UI_PREFERENCE_MAPS.density[next.density]})`);
+  root.style.setProperty('--ui-content-gap', `calc(var(--content-gap) * ${UI_PREFERENCE_MAPS.density[next.density]})`);
+  root.style.setProperty('--ui-content-gap-compact', `calc(var(--content-gap-compact) * ${UI_PREFERENCE_MAPS.density[next.density]})`);
+  root.style.setProperty('--ui-section-space-y', `calc(var(--section-space-y) * ${UI_PREFERENCE_MAPS.section_spacing[next.section_spacing]})`);
+  root.style.setProperty('--ui-section-space-y-compact', `calc(var(--section-space-y-compact) * ${UI_PREFERENCE_MAPS.section_spacing[next.section_spacing]})`);
+  root.style.setProperty('--ui-card-padding-x', `calc(var(--card-padding-x) * ${UI_PREFERENCE_MAPS.density[next.density]})`);
+  root.style.setProperty('--ui-card-padding-y', `calc(var(--card-padding-y) * ${UI_PREFERENCE_MAPS.density[next.density]})`);
+  root.style.setProperty('--ui-card-padding-x-compact', `calc(var(--card-padding-x-compact) * ${UI_PREFERENCE_MAPS.density[next.density]})`);
+  root.style.setProperty('--ui-card-padding-y-compact', `calc(var(--card-padding-y-compact) * ${UI_PREFERENCE_MAPS.density[next.density]})`);
+  root.style.setProperty('--ui-card-padding-x-spacious', `calc(var(--card-padding-x-spacious) * ${UI_PREFERENCE_MAPS.density[next.density]})`);
+  root.style.setProperty('--ui-card-padding-y-spacious', `calc(var(--card-padding-y-spacious) * ${UI_PREFERENCE_MAPS.density[next.density]})`);
   root.setAttribute('data-ui-surface', next.surface_style);
   root.setAttribute('data-ui-density', next.density);
   root.setAttribute('data-ui-button-size', next.button_size);
