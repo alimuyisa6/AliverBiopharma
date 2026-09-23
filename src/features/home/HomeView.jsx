@@ -21,7 +21,8 @@ function LearningJourneySection({ sections }) {
   const { bootstrap } = useLayout();
   const uiComponents = bootstrap?.ui_components || [];
   const component = uiComponents.find((item) => item.component_key === 'learning_journey_section');
-  const primaryImage = component?.properties?.image_url || '/images/students-learning-happy.jpg';
+  const primaryImage = component?.properties?.image_url || component?.image_url || null;
+  const secondaryImage = component?.properties?.secondary_image_url || null;
   const subtitle = sections?.section_headings?.content_types_subtitle ||
     'Notes, flashcards, quizzes, past papers and recall — everything you need, all in one place.';
 
@@ -31,7 +32,10 @@ function LearningJourneySection({ sections }) {
         <span className="eyebrow">Get started</span>
         <h2 className="home-learning-journey-title">Start learning with the resources you need</h2>
         <p className="section-description home-learning-journey-description">{subtitle}</p>
-        <img src={primaryImage} alt="Happy students learning together" className="home-learning-journey-image" loading="lazy" />
+        <div className="home-learning-journey-images">
+          {primaryImage && <img src={primaryImage} alt="Learning journey" className="home-learning-journey-image" loading="lazy" />}
+          {secondaryImage && <img src={secondaryImage} alt="" className="home-learning-journey-image-secondary" loading="lazy" />}
+        </div>
         <span className="btn btn-primary home-learning-journey-cta">Browse resources →</span>
       </div>
     </Link>
