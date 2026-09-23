@@ -287,7 +287,20 @@ return apiCall('auth', 'signin', {
 email,
 password,
 turnstile_token,
-mfa_code
+mfa_code,
+device
+});
+}
+
+export async function getPasskeyConfig() {
+return getRequest('auth', 'passkey_config');
+}
+
+export async function signinWithPasskey(access_token, mfa_code = null, device = null) {
+return apiCall('auth', 'passkey_signin', {
+access_token,
+mfa_code,
+device
 });
 }
 
