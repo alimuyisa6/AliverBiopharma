@@ -38,6 +38,7 @@ import Input from '../components/Input/Input';
 import Button from '../components/Button/Button';
 import ProfilePictureUpload from '../components/ProfilePictureUpload/ProfilePictureUpload';
 import Spinner from '../components/Spinner/Spinner';
+import TurnstileWidget from '../components/TurnstileWidget';
 import Skeleton from '../components/Skeleton/Skeleton';
 import Card from '../components/Card/Card';
 import Icon from '../components/Icon/Icon';
@@ -190,6 +191,7 @@ export default function Profile() {
   const [savingPassword, setSavingPassword] = useState(false);
   const [passkeys, setPasskeys] = useState([]);
   const [passkeyPassword, setPasskeyPassword] = useState('');
+  const [passkeyCaptchaToken, setPasskeyCaptchaToken] = useState('');
   const [registeringPasskey, setRegisteringPasskey] = useState(false);
   const [deletingPasskeyId, setDeletingPasskeyId] = useState(null);
 
@@ -496,11 +498,17 @@ export default function Profile() {
     setRegisteringPasskey(true);
 
     try {
-      await signInForPasskeyEnrollment(user.email, passkeyPassword);
+      if (!passkeyCaptchaToken) {
+      addToast('Please complete the security verification before adding a passkey.', 'error');
+      return;
+    }
+
+      await signInForPasskeyEnrollment(user.email, passkeyPassword, passkeyCaptchaToken);
       const { data, error } = await registerPasskey();
       if (error) throw error;
 
       setPasskeyPassword('');
+      setPasskeyCaptchaToken('');
       await loadSection('security');
       addToast(
         data?.friendly_name
@@ -1143,6 +1151,10 @@ export default function Profile() {
                   >
                     Verify & Add Passkey
                   </Button>
+                  <TurnstileWidget
+                    onTokenChange={setPasskeyCaptchaToken}
+                    disabled={registeringPasskey}
+                  />
                 </div>
 
                 <div style={{ marginTop: 18 }}>
