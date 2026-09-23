@@ -1,3 +1,5 @@
+import { useLayout } from '../../contexts/LayoutContext';
+
  /* features/home/WhyChooseSection.jsx */
 
 const REASONS = [
