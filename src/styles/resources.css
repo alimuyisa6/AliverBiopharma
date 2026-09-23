@@ -74,6 +74,7 @@
 
 .resource-card {
   display: flex;
+  pointer-events: none;
   flex-direction: column;
   min-width: 0;
   overflow: hidden;
@@ -135,12 +136,17 @@
 
 .resource-card-actions {
   display: flex;
+  pointer-events: none;
   align-items: center;
   padding: 0 var(--card-padding-x-compact) var(--card-padding-y-compact);
 }
 
-.resource-card-actions .button {
+.resource-card-actions .btn {
   min-height: var(--space-10);
+  width: fit-content;
+  max-width: 100%;
+  flex: 0 0 auto;
+  pointer-events: auto;
 }
 
 @media (max-width: 1024px) {
