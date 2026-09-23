@@ -6,29 +6,6 @@ import { getCachedStale } from '../utils/cache';
 
 export const LayoutContext = createContext(null);
 
-export function LayoutProvider({ children }) {
-  const { user, loading: authLoading, refresh } = useAuth();
-
-  const effectiveLevel = user?.profile?.active_level_id || user?.profile?.track || null;
-  const activeGroupId = user?.profile?.active_group_id || null;
-
-  const [bootstrap, setBootstrap] = useState(() => {
-    if (!effectiveLevel) return null;
-    return getCachedStale(`bootstrap_${effectiveLevel}`);
-  });
-
-  const [loading, setLoading] = useState(() => {
-    if (!effectiveLevel) return false;
-    return !getCachedStale(`bootstrap_${effectiveLevel}`);
-  });
-
-  const [switching, setSwitching] = useState(false);
-  const [theme, setTheme] = useState('light');
-  const themeColor = user?.profile?.theme_color || 'blue';
-  const accessibility = user?.profile?.accessibility || {};
-  const uiPreferences = normalizeUIPreferences(user?.profile?.preferences?.ui || {});
-  const [sections, setSections] = useState(() => getCachedStale('site_sections') || {});
-
 const UI_PREFERENCE_DEFAULTS = {
   font_family: 'maven',
   font_size: '100',
@@ -114,6 +91,29 @@ function applyUIPreferences(preferences) {
   return next;
 }
 
+
+export function LayoutProvider({ children }) {
+  const { user, loading: authLoading, refresh } = useAuth();
+
+  const effectiveLevel = user?.profile?.active_level_id || user?.profile?.track || null;
+  const activeGroupId = user?.profile?.active_group_id || null;
+
+  const [bootstrap, setBootstrap] = useState(() => {
+    if (!effectiveLevel) return null;
+    return getCachedStale(`bootstrap_${effectiveLevel}`);
+  });
+
+  const [loading, setLoading] = useState(() => {
+    if (!effectiveLevel) return false;
+    return !getCachedStale(`bootstrap_${effectiveLevel}`);
+  });
+
+  const [switching, setSwitching] = useState(false);
+  const [theme, setTheme] = useState('light');
+  const themeColor = user?.profile?.theme_color || 'blue';
+  const accessibility = user?.profile?.accessibility || {};
+  const uiPreferences = normalizeUIPreferences(user?.profile?.preferences?.ui || {});
+  const [sections, setSections] = useState(() => getCachedStale('site_sections') || {});
 
 
   useEffect(() => {
