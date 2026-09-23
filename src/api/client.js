@@ -3220,6 +3220,26 @@ limit
 );
 }
 
+export async function getCurriculumTree(groupId = null) {
+  return getRequest('curriculum', 'tree', groupId ? { group_id: groupId } : {});
+}
+
+export async function updateNotificationPreferences(preferences) {
+  return apiCall('notifications', 'update_preferences', { preferences }, 'POST');
+}
+
+export async function getPasskeys() {
+  return getRequest('auth', 'passkey_list');
+}
+
+export async function deletePasskey(passkey_id) {
+  return apiCall('auth', 'passkey_delete', { passkey_id }, 'POST');
+}
+
+export async function renamePasskey(passkey_id, friendly_name) {
+  return apiCall('auth', 'passkey_rename', { passkey_id, friendly_name }, 'POST');
+}
+
 export async function getAdConfig() {
   return getRequest('ads', 'config');
 }
