@@ -302,12 +302,12 @@ export function AuthProvider({ children }) {
    * AliverBiopharm session used by password login.
    */
   const loginWithPasskey = useCallback(
-    async (existingAccessToken = null, mfaCode = null) => {
+    async (existingAccessToken = null, mfaCode = null, captchaToken = null) => {
       let accessToken = existingAccessToken;
 
       if (!accessToken) {
         const { signInWithPasskey: runPasskey } = await import('../lib/passkeyClient');
-        const { data, error } = await runPasskey();
+        const { data, error } = await runPasskey(captchaToken);
 
         if (error) throw error;
 
