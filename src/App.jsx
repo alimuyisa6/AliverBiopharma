@@ -1,7 +1,7 @@
  /* src/App.jsx */
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useState, useEffect, lazy, Suspense } from 'react';
-import { AuthProvider, ProtectedRoute } from './contexts/AuthContext';
+import { ProtectedRoute } from './contexts/AuthContext';
 import { LayoutProvider, useLayout } from './contexts/LayoutContext';
 import { ChatProvider } from './contexts/ChatContext';
 import { ToastProvider } from './components/Toast/Toast';
@@ -200,8 +200,7 @@ function AppRoutes() {
 
 export default function App() {
   return (
-    <AuthProvider>
-      <LayoutProvider>
+    <LayoutProvider>
         <ChatProvider>
           <ToastProvider>
           <NotificationProvider>
@@ -210,6 +209,5 @@ export default function App() {
           </ToastProvider>
         </ChatProvider>
       </LayoutProvider>
-    </AuthProvider>
   );
 }
