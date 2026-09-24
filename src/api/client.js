@@ -2370,7 +2370,7 @@ true
 }
 
 export async function deleteProfilePicture() {
-return apiCall(
+return deleteRequest(
 'profile-picture',
 'picture',
 {}
