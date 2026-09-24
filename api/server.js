@@ -63,6 +63,19 @@ export default async function handler(req, res) {
     return res.status(404).json({ error: getVagueErrorMessage() });
   }
 
+  if (moduleName === 'public-api') {
+    let mod;
+    try {
+      mod = await importFn();
+      const handlerResult = await mod.handler(req, res, path);
+      if (!res.writableEnded && handlerResult !== true) res.status(405).json({ error: 'Method not allowed' });
+    } catch (err) {
+      console.error('[PUBLIC API ERROR]', err);
+      if (!res.writableEnded) res.status(err?.statusCode || 500).json({ error: err?.message || 'Request failed' });
+    }
+    return;
+  }
+
   const ctx = await passGate(req, res, moduleName, path);
 
   if (!ctx) return;
