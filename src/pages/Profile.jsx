@@ -810,7 +810,7 @@ export default function Profile() {
   const handleTestWebhook = async (id) => {
     setTestingWebhookId(id);
     try {
-      const result = await apiCall('profile', 'test_webhook', { webhook_id: id });
+      const result = await testWebhook(id);
       if (!result?.success) throw new Error('Webhook test was not completed');
       addToast('Test webhook sent', 'success');
       loadSection('webhooks');
