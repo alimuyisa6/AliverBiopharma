@@ -1292,6 +1292,33 @@ return getRequest(
 );
 }
 
+export async function uploadProfilePicture(formData) {
+return apiCall(
+'profile-picture',
+'upload',
+formData,
+'POST',
+true
+);
+}
+
+export async function deleteProfilePicture() {
+return apiCall(
+'profile-picture',
+'picture',
+{},
+'DELETE'
+);
+}
+
+export async function getProfilePicture(userId = null) {
+return getRequest(
+'profile-picture',
+'picture',
+userId ? { user_id: userId } : {}
+);
+}
+
 export async function saveOnboarding(payload) {
 return apiCall(
 'profile',
