@@ -164,7 +164,11 @@ export const TRANSLATIONS = {
       copyReferralCode: "Copy Referral Code",
       parentGuardianInformation: "Parent / Guardian Information",
       guardianName: "Guardian Name",
-      saveGuardianInfo: "Save Guardian Info",}
+      saveGuardianInfo: "Save Guardian Info",
+      preferencesDescription: "Personalize appearance, reading comfort, layout density, and controls. Changes are saved to your account and applied immediately.",
+      smaller: "Smaller",
+      extraLarge: "Extra large",
+      sectionSpacing: "Section spacing",}
   },
   sw: {
     common: {
@@ -317,7 +321,11 @@ export const TRANSLATIONS = {
       copyReferralCode: "Nakili Msimbo wa Rufaa",
       parentGuardianInformation: "Taarifa za Mzazi / Mlezi",
       guardianName: "Jina la Mlezi",
-      saveGuardianInfo: "Hifadhi Taarifa za Mlezi",}
+      saveGuardianInfo: "Hifadhi Taarifa za Mlezi",
+      preferencesDescription: "Binafsisha mwonekano, usomaji, msongamano wa maudhui na vidhibiti. Mabadiliko huhifadhiwa kwenye akaunti yako na kutumika mara moja.",
+      smaller: "Ndogo zaidi",
+      extraLarge: "Kubwa zaidi",
+      sectionSpacing: "Nafasi kati ya sehemu",}
   }
 };
 
