@@ -164,6 +164,8 @@ export default function NotesPage() {
 
         {classLabel && !contextTitle && <p className="notes-page-class font-maven-pro">{classLabel}</p>}
 
+        <AdSlot placement="notes" pageContext="notes" />
+
         <nav className="breadcrumb font-mono" aria-label="Breadcrumb">
           <Link to="/"><Icon name="home" className="breadcrumb-icon" /> Home</Link>
           <Icon name="chevron-right" className="breadcrumb-sep" />
