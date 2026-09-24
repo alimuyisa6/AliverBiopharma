@@ -258,6 +258,7 @@ export default function Profile() {
   const [exportLoading, setExportLoading] = useState(false);
   const [deletionLoading, setDeletionLoading] = useState(false);
   const [savingUIPreference, setSavingUIPreference] = useState(null);
+  const [saveStatus, setSaveStatus] = useState({});
 
 
   const [guardianName, setGuardianName] = useState('');
@@ -450,6 +451,11 @@ export default function Profile() {
     return { score: 3, label: 'Strong', color: THEME.success };
   }, [newPassword]);
 
+  const setSaveResult = (key, status) => {
+    setSaveStatus((prev) => ({ ...prev, [key]: status }));
+    window.setTimeout(() => setSaveStatus((prev) => ({ ...prev, [key]: null })), 1800);
+  };
+
   const handleProfileSubmit = async (e) => {
     e.preventDefault();
     const trimmed = fullName.trim();
@@ -458,6 +464,7 @@ export default function Profile() {
       addToast('Name must be between 2 and 100 characters', 'error');
       return;
     }
+    setSaveResult('profile', null);
     setSavingProfile(true);
     try {
       await updateProfile(trimmed);
@@ -465,10 +472,12 @@ export default function Profile() {
         await updateDisplayName(trimmedDisplayName);
       }
       await refresh();
+      setSaveResult('profile', 'success');
       addToast('Profile updated', 'success');
     } catch (err) {
       const message = getExactErrorMessage(err, 'Failed to update profile');
       logProfileError('handleProfileSubmit failed', err);
+      setSaveResult('profile', 'error');
       addToast(message, 'error');
     } finally {
       setSavingProfile(false);
@@ -997,7 +1006,7 @@ export default function Profile() {
                     />
                     <Input label={t('profile.email')} value={profileMeta?.email || user?.email || ''} disabled />
 
-                    <Button type="submit" loading={savingProfile} loadingContext="brand" variant="outline" icon="check">
+                    <Button type="submit" loading={savingProfile} status={saveStatus.profile} loadingContext="brand" variant="outline" icon="check">
                       Save Changes
                     </Button>
                   </Card>
