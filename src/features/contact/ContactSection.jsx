@@ -7,14 +7,6 @@ import Button from '../../components/Button/Button';
 export function ContactSection({ contactForm, contactStatus, contactInfo = [], onChange, onSubmit, submitting = false }) {
   return (
     <section className="section reveal">
-      <span className="sec-label">Support</span>
-      <h2 className="section-title">
-        We're Here<br />to Help
-      </h2>
-      <p className="section-subtitle">
-        Got a question? Our team will get back to you within 24 hours.
-      </p>
-
       <div className="grid grid-cols-2 contact-grid">
         <form onSubmit={onSubmit}>
           <div className="card card-blue card-surface-solid card-tone-info card-elevation-soft form-card">
@@ -59,8 +51,8 @@ export function ContactSection({ contactForm, contactStatus, contactInfo = [], o
 
         <div className="card card-teal card-surface-solid card-tone-primary card-elevation-soft form-card">
           <h3 className="form-card-heading">
-            <Icon name="headset" className="icon" />
-            Contact Info
+            <Icon name="headset" className="icon" aria-hidden="true" />
+            Contact
           </h3>
 
           {contactInfo.map((info) => (
