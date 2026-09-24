@@ -9,6 +9,7 @@ import { I18nProvider } from './contexts/I18nContext';
 import './styles/semantics.css';
 import './styles/typography.css';
 import './styles/spacing.css';
+import './styles/animation.css';
 import './styles/global.css';
 import './styles/layout.css';
 import './styles/components.css';
