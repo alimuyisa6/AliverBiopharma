@@ -10,6 +10,7 @@ export default function ContactPage() {
   const [sections, setSections] = useState({});
   const [contactForm, setContactForm] = useState({ name: '', email: '', subject: '', message: '' });
   const [contactStatus, setContactStatus] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     if (level?.id) {
