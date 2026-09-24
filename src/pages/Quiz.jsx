@@ -756,7 +756,7 @@ export default function Quiz() {
             <li><Icon name="exclamation-triangle" className="quiz-rules-icon is-error" /> <span>{t('common.tabAutoSubmit')}</span></li>
           </ul>
           <div className="quiz-rules-submit">
-            <Button variant="primary" onClick={confirmStartBlock} loading={startingBlock} loadingContext="brand" loadingLabel={t('common.start')} className="quiz-rules-submit-btn">{t('common.start')}<Button>
+            <Button variant="primary" onClick={confirmStartBlock} loading={startingBlock} loadingContext="brand" loadingLabel={t('common.start')} className="quiz-rules-submit-btn">{t('common.start')}</Button>
           </div>
         </Modal>
       </div>
