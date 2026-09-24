@@ -36,7 +36,7 @@ export default function ContactPage() {
   return (
     <div className="section contact-page">
       <h1 className="section-title">Get in Touch</h1>
-      <p className="section-subtitle">Questions, feedback, or partnership inquiries — we'd love to hear from you.</p>
+      <p className="section-subtitle">Have a question, some feedback, or an idea for working together? We would love to hear from you.</p>
       <ContactSection
         contactForm={contactForm}
         contactStatus={contactStatus}
