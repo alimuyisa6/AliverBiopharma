@@ -132,19 +132,19 @@ function collectBrowserDeviceMetadata() {
 }
 
 const SECTIONS = [
-  { id: 'overview', label: 'Profile Overview' },
-  { id: 'curriculum', label: 'Learning Curriculum' },
-  { id: 'notifications', label: 'Notifications' },
-  { id: 'security', label: 'Security & Login' },
-  { id: 'devices', label: 'Connected Devices' },
-  { id: 'preferences', label: 'Preferences & Theme' },
-  { id: 'referral', label: 'Referral Program' },
-  { id: 'parent', label: 'Parent / Guardian' },
-  { id: 'billing', label: 'Billing & Payments' },
-  { id: 'certificates', label: 'Certificates' },
-  { id: 'api', label: 'API Access' },
-  { id: 'webhooks', label: 'Webhooks' },
-  { id: 'account', label: 'Account & Data' }
+  { id: 'overview', key: 'profileOverview' },
+  { id: 'curriculum', key: 'learningCurriculum' },
+  { id: 'notifications', key: 'notifications' },
+  { id: 'security', key: 'securityLogin' },
+  { id: 'devices', key: 'connectedDevices' },
+  { id: 'preferences', key: 'preferencesTheme' },
+  { id: 'referral', key: 'referralProgram' },
+  { id: 'parent', key: 'parentGuardian' },
+  { id: 'billing', key: 'billingPayments' },
+  { id: 'certificates', key: 'certificates' },
+  { id: 'api', key: 'apiAccess' },
+  { id: 'webhooks', key: 'webhooks' },
+  { id: 'account', key: 'accountData' }
 ];
 
 function Toggle({ active, onClick, label }) {
@@ -845,8 +845,8 @@ export default function Profile() {
     return (
       <Container>
         <PageHeader
-          title="Profile & Settings"
-          subtitle="Manage your account, curriculum, preferences, security, and more"
+          title={t('profile.title')}
+          subtitle={t('profile.subtitle')}
         />
         <div className="profile-loading-skeleton">
           <Skeleton variant="avatar" width={96} height={96} />
@@ -855,8 +855,8 @@ export default function Profile() {
           <Card variant="inset" loading={true} loadingLines={4} />
           <Card variant="inset" loading={true} loadingLines={4} />
         </div>
-        {profileError && <ProfileError error={profileError} title="Profile could not be loaded" onRetry={loadProfile} />}
-        {bundleError && <ProfileError error={bundleError} title="Settings could not be loaded" onRetry={loadBundle} />}
+        {profileError && <ProfileError error={profileError} title={t('profile.profileLoadError')} onRetry={loadProfile} />}
+        {bundleError && <ProfileError error={bundleError} title={t('profile.settingsLoadError')} onRetry={loadBundle} />}
       </Container>
     );
   }
@@ -867,20 +867,20 @@ export default function Profile() {
     <div style={{ background: THEME.bgCard, minHeight: '100vh', fontFamily: THEME.font }}>
       <Container>
         <PageHeader
-          title="Profile & Settings"
-          subtitle="Manage your account, curriculum, preferences, security, and administrative details"
+          title={t('profile.title')}
+          subtitle={t('profile.subtitle')}
         />
 
-        {profileError && <ProfileError error={profileError} title="Profile data could not be loaded" onRetry={loadProfile} />}
-        {bundleError && <ProfileError error={bundleError} title="Settings data could not be loaded" onRetry={loadBundle} />}
+        {profileError && <ProfileError error={profileError} title={t('profile.profileDataLoadError')} onRetry={loadProfile} />}
+        {bundleError && <ProfileError error={bundleError} title={t('profile.settingsDataLoadError')} onRetry={loadBundle} />}
 
         <div className="profile-toolbar">
           <div className="profile-toolbar-copy">
             <span style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 12, textTransform: 'uppercase' }}>
-              Settings
+              {t('profile.settings')}
             </span>
             <span style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
-              {SECTIONS.find((section) => section.id === activeSection)?.label}
+              {t(`profile.${SECTIONS.find((section) => section.id === activeSection)?.key || 'profileOverview'}`)}
             </span>
           </div>
 
@@ -893,7 +893,7 @@ export default function Profile() {
             aria-expanded={sidebarOpen}
             aria-controls="profile-sidebar"
           >
-            {sidebarOpen ? 'Close Sections' : 'Profile Sections'}
+            {sidebarOpen ? t('profile.closeSections') : t('profile.profileSections')}
           </Button>
         </div>
 
@@ -901,11 +901,11 @@ export default function Profile() {
           <button
             type="button"
             className="profile-sidebar-backdrop"
-            aria-label="Close profile sections"
+            aria-label={t('profile.closeSections')}
             onClick={() => setSidebarOpen(false)}
           />
 
-          <aside id="profile-sidebar" className="profile-sidebar" aria-label="Profile settings sections">
+          <aside id="profile-sidebar" className="profile-sidebar" aria-label={t('profile.profileSections')}>
             <div className="profile-sidebar-inner" style={{ background: THEME.bgCard, border: `1px solid ${THEME.border}` }}>
               <div className="profile-sidebar-profile">
                 <div className="profile-avatar-lg" style={{ color: THEME.accent, fontFamily: THEME.font }}>
