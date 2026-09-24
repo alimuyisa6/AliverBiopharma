@@ -159,6 +159,8 @@ export default function FlashcardsPage() {
 
           {classLabel && <p className="flashcard-class">{classLabel}</p>}
 
+          <AdSlot placement="flashcards" pageContext="flashcards" />
+
           <p className="section-subtitle flashcard-subtitle">
             Select a deck to start studying.
           </p>
