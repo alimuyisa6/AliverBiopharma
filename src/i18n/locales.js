@@ -45,7 +45,7 @@ export const TRANSLATIONS = {
       reviewedCampaign: 'Every campaign is reviewed before it goes live.',
       advertiseEyebrow: 'Advertise with AliverBiopharm',
       advertiseHeading: 'Put your message in front of students who are paying attention.',
-      advertiseDescription: 'Promote your organisation, programme or service to learners studying Biology and Pharmacy, at the moment they\\'re most open to new opportunities.'
+      advertiseDescription: "Promote your organisation, programme or service to learners studying Biology and Pharmacy, at the moment they're most open to new opportunities."
     },
     auth: {
       loginTitle: 'Welcome back', registerTitle: 'Create your account',
