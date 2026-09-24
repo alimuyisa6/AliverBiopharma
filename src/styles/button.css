@@ -383,3 +383,7 @@
 
 html[data-ui-button-width="full"] .btn:not(.btn-icon) { width: 100%; }
 html[data-ui-button-width="auto"] .btn:not(.btn-icon) { width: fit-content; }
+
+
+.btn-status-success { color: var(--success); border-color: var(--success); }
+.btn-status-error { color: var(--danger); border-color: var(--danger); }
