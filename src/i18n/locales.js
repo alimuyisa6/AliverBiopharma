@@ -53,6 +53,14 @@ export const TRANSLATIONS = {
       fullName: 'Full name', forgotPassword: 'Forgot your password?',
       noAccount: "Don't have an account?", haveAccount: 'Already have an account?',
       passwordRequirements: 'Password must be at least 10 characters and meet the required complexity rules.',
+      accountCreated: 'Account Created', welcomeRedirecting: 'Welcome to AliverBiopharm. Redirecting...', twoFactor: 'Two-Factor Verification',
+      confirmPasskeyMfa: 'Confirm your passkey sign-in with your authenticator code', enterMfaCode: 'Enter the 6-digit code from your authenticator app',
+      verifyAndSignIn: 'Verify and Sign In', completeProfile: 'Complete Your Profile', personaliseLearning: 'Help us personalise your learning experience',
+      iAmA: 'I am a...', student: 'Student', teacher: 'Teacher', selectLevel: 'Select your level',
+      createAccount: 'Create Account', accessAccount: 'Access your account securely', joinLearners: 'Join thousands of learners worldwide',
+      fullNameLabel: 'Full Name', enterFullName: 'Enter your full name', emailAddress: 'Email Address', enterEmail: 'Enter your email',
+      createPassword: 'Create a password', enterPassword: 'Enter your password', confirmPasswordInput: 'Confirm your password',
+      passwordHint: 'Minimum 10 characters, with at least 3 of: uppercase, lowercase, number, symbol',
       signingIn: 'Signing in...', creatingAccount: 'Creating account...'
     },
     dashboard: {
@@ -109,6 +117,14 @@ export const TRANSLATIONS = {
       fullName: 'Jina kamili', forgotPassword: 'Umesahau nenosiri?',
       noAccount: 'Huna akaunti?', haveAccount: 'Tayari una akaunti?',
       passwordRequirements: 'Nenosiri lazima liwe na angalau herufi 10 na likidhi masharti ya usalama.',
+      accountCreated: 'Akaunti Imefunguliwa', welcomeRedirecting: 'Karibu AliverBiopharm. Inaelekeza...', twoFactor: 'Uthibitishaji wa Hatua Mbili',
+      confirmPasskeyMfa: 'Thibitisha kuingia kwa passkey kwa msimbo wa uthibitishaji', enterMfaCode: 'Weka msimbo wa tarakimu 6 kutoka kwenye programu yako ya uthibitishaji',
+      verifyAndSignIn: 'Thibitisha na Ingia', completeProfile: 'Kamilisha Wasifu Wako', personaliseLearning: 'Tusaidie kubinafsisha uzoefu wako wa kujifunza',
+      iAmA: 'Mimi ni...', student: 'Mwanafunzi', teacher: 'Mwalimu', selectLevel: 'Chagua ngazi yako',
+      createAccount: 'Fungua Akaunti', accessAccount: 'Fikia akaunti yako kwa usalama', joinLearners: 'Jiunge na maelfu ya wanafunzi duniani',
+      fullNameLabel: 'Jina Kamili', enterFullName: 'Weka jina lako kamili', emailAddress: 'Anwani ya Barua Pepe', enterEmail: 'Weka barua pepe yako',
+      createPassword: 'Unda nenosiri', enterPassword: 'Weka nenosiri lako', confirmPasswordInput: 'Thibitisha nenosiri lako',
+      passwordHint: 'Angalau herufi 10, zikiwa na angalau 3 kati ya: herufi kubwa, ndogo, namba, alama',
       signingIn: 'Inaingia...', creatingAccount: 'Inaunda akaunti...'
     },
     dashboard: {
