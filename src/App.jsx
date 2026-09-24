@@ -89,12 +89,10 @@ function NotFoundPage() {
     <div className="section not-found-section">
       <div className="card not-found-card">
         <img
-          src="https://raw.githubusercontent.com/alimuyisa6/AliverBiopharma/main/public/images/illustrations/404.png"
+          src="/images/illustrations/404.png"
           alt="Page not found"
           className="not-found-illustration"
         />
-        <h1>404</h1>
-        <p>Page not found</p>
         <a href="/" className="btn btn-primary">Return home</a>
       </div>
     </div>
