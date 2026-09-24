@@ -49,20 +49,7 @@ export function ContactSection({ contactForm, contactStatus, contactInfo = [], o
           </div>
         </form>
 
-        <div className="card card-teal card-surface-solid card-tone-primary card-elevation-soft form-card">
-          <h3 className="form-card-heading">
-            <Icon name="headset" className="icon" aria-hidden="true" />
-            Contact
-          </h3>
-
-          {contactInfo.map((info) => (
-            <div key={info.label} className="contact-info-row">
-              <span className="contact-info-icon">
-                <Icon name={info.icon === 'dna' ? 'microscope' : info.icon || 'circle-info'} />
-              </span>
-              <div>
-                <div className="contact-info-label">{info.label}</div>
-                <a href={info.href} className="contact-info-value">{info.value}</a>
+value}</a>
               </div>
             </div>
           ))}
