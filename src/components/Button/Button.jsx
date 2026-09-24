@@ -14,6 +14,7 @@ const Button = forwardRef(function Button(
     loading = false,
     loadingContext = 'default',
     loadingLabel,
+    status = null,
     radius,
     flat = false,
     className = '',
@@ -38,6 +39,8 @@ const Button = forwardRef(function Button(
     flat && 'btn-flat',
 
     loading && 'btn-loading',
+    status === 'success' && 'btn-status-success',
+    status === 'error' && 'btn-status-error',
 
     !children && icon && 'btn-icon',
 
@@ -66,7 +69,9 @@ const Button = forwardRef(function Button(
         />
       )}
 
-      {safeIcon && !loading && <Icon name={safeIcon} />}
+      {status === 'success' && <Icon name="circle-check" />}
+      {status === 'error' && <Icon name="circle-xmark" />}
+      {safeIcon && !loading && !status && <Icon name={safeIcon} />}
 
       {children && (
         <span>{loading && loadingLabel ? loadingLabel : children}</span>
