@@ -9,9 +9,11 @@ import EmptyState from '../components/EmptyState/EmptyState';
 import Icon from '../components/Icon/Icon';
 import Container from '../components/Container/Container';
 import ProgressBar, { ProgressRing } from '../components/ProgressBar/ProgressBar';
+import { useI18n } from '../contexts/I18nContext';
 
 export default function Dashboard() {
   const { user } = useAuth();
+  const { t } = useI18n();
   const { level, bootstrap } = useLayout();
   const access = useContentAccess();
   const { locked, reason } = useSecurityUiLock();
@@ -242,17 +244,17 @@ export default function Dashboard() {
                     <span className="stat-value">
                       {platform.total_xp?.toLocaleString?.() ?? platform.total_xp}
                     </span>
-                    <span className="stat-label">Total XP</span>
+                    <span className="stat-label">{t('common.totalXp')}</span>
                   </div>
                   <div className="stat-box">
                     <span className="stat-icon"><Icon name="fire" /></span>
                     <span className="stat-value">{platform.current_streak}</span>
-                    <span className="stat-label">Day Streak</span>
+                    <span className="stat-label">{t('common.dayStreak')}</span>
                   </div>
                   <div className="stat-box">
                     <span className="stat-icon"><Icon name="trophy" /></span>
                     <span className="stat-value">{achievements.earned_count}</span>
-                    <span className="stat-label">Badges</span>
+                    <span className="stat-label">{t('common.badges')}</span>
                   </div>
                   <div className="xp-progress-container">
                     <div className="xp-labels">
@@ -422,7 +424,7 @@ export default function Dashboard() {
               >
                 <div className="panel-body">
                   <div>
-                    <span className="sec-label">Continue Practicing</span>
+                    <span className="sec-label">{t('common.continuePracticing')}</span>
                     <span className="dashboard-continue-text" id="quiz-pass-rate-text">
                       Recent quiz pass rate: {quiz.recent_pass_rate}%
                     </span>
@@ -444,19 +446,19 @@ export default function Dashboard() {
                 <div className="panel-body">
                   <div className="sidebar-list" id="personal-records-stats">
                     <div className="sidebar-item">
-                      <span className="item-text">Best Recall Mastery</span>
+                      <span className="item-text">{t('common.bestRecallMastery')}</span>
                       <span className="item-meta item-meta-accent">{recall.best_mastery}%</span>
                     </div>
                     <div className="sidebar-item">
-                      <span className="item-text">Recall Topics</span>
+                      <span className="item-text">{t('common.recallTopics')}</span>
                       <span className="item-meta">{recall.topics_practiced}</span>
                     </div>
                     <div className="sidebar-item">
-                      <span className="item-text">Quiz Blocks Done</span>
+                      <span className="item-text">{t('common.quizBlocksDone')}</span>
                       <span className="item-meta">{quiz.blocks_completed}</span>
                     </div>
                     <div className="sidebar-item">
-                      <span className="item-text">Reading Streak</span>
+                      <span className="item-text">{t('common.readingStreak')}</span>
                       <span className="item-meta item-meta-warm">🔥 {notes.reading_streak}</span>
                     </div>
                   </div>

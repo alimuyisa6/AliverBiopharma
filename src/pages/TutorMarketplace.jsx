@@ -12,12 +12,14 @@ import { useToast } from '../components/Toast/Toast';
 import Icon from '../components/Icon/Icon';
 import Input from '../components/Input/Input';
 import Button from '../components/Button/Button';
+import { useI18n } from '../contexts/I18nContext';
 
 export default function TutorMarketplace() {
   const { user } = useAuth();
   const { bootstrap, activeGroupId, level } = useLayout();
   const addToast = useToast();
   const navigate = useNavigate();
+  const { t } = useI18n();
 
   const [tutors, setTutors] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -120,7 +122,7 @@ export default function TutorMarketplace() {
       <div className="section">
         <div className="tutor-marketplace-intro">
           <div className="tutor-marketplace-intro-content">
-            <span className="eyebrow">Tutor Marketplace</span>
+            <span className="eyebrow">{t('common.tutorMarketplace')}</span>
 
             <h2>Find a qualified tutor</h2>
 

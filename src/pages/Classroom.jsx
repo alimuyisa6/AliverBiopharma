@@ -6,6 +6,7 @@ import { useRequireOnboarding } from '../hooks/useRequireOnboarding';
 import { useLevelFilter } from '../hooks/useLevelFilter';
 import { useContentAccess } from '../hooks/useContentAccess';
 import { useLayout } from '../contexts/LayoutContext';
+import { useI18n } from '../contexts/I18nContext';
 import { PendingApprovalScreen } from '../components/access/PendingApprovalScreen';
 import { AccessDenied } from '../components/access/AccessDenied';
 import { listClassrooms, getUnits } from '../api/client';
@@ -37,6 +38,7 @@ export default function Classroom() {
   const access = useContentAccess();
   const { level, class_name, showAll, displayName } = useLevelFilter();
   const { groups, bootstrap } = useLayout();
+  const { t } = useI18n();
 
   const [rooms, setRooms] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -96,7 +98,7 @@ export default function Classroom() {
   return (
     <div className="classroom-page">
       <div className="section classroom-list-section">
-        <span className="sec-label">Live Learning</span>
+        <span className="sec-label">{t('common.liveLearning')}</span>
         <h1 className="section-title classroom-page-title">
           Classrooms<br />{levelName ? `– ${levelName}` : ''}
         </h1>
@@ -112,7 +114,7 @@ export default function Classroom() {
 
         {showAll && (
           <div className="classroom-teacher-badge-wrap">
-            <span className="badge badge-primary">All Levels (Teacher Access)</span>
+            <span className="badge badge-primary">{t('common.allLevelsTeacher')}</span>
           </div>
         )}
 
