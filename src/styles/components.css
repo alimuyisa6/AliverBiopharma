@@ -45,6 +45,23 @@
 @import './newsletter.css';
 
 
+/* Global route/application loader: always centered in the viewport. */
+.global-loader {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+}
+
+.global-loader .spinner {
+  flex: 0 0 auto;
+}
+
 /* Loading primitives ---------------------------------------------------- */
 .spinner {
   display: inline-flex;
