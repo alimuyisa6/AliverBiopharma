@@ -81,9 +81,23 @@ function collectBrowserDeviceMetadata() {
     deviceId = null;
   }
 
+  const uaString = navigator.userAgent || '';
+
+  // Android Chrome may expose the exact model through User-Agent Client Hints.
+  // When the legacy UA also contains a manufacturer token, preserve it so the
+  // profile can show a useful device name such as "TECNO KJ5" rather than only
+  // the raw model code.
+  const manufacturerMatch = uaString.match(
+    /(?:Linux;\\s*Android[^;]*;\\s*)([A-Za-z][A-Za-z0-9._-]*)\\s+([A-Za-z0-9._-]+)/i
+  );
+  const legacyDeviceName = manufacturerMatch
+    ? `${manufacturerMatch[1]} ${manufacturerMatch[2]}`
+    : null;
+
   const fallback = {
     deviceId,
-    model: null,
+    model: legacyDeviceName,
+
     platform: uaData?.platform || null,
     platformVersion: null,
     browser: null,
