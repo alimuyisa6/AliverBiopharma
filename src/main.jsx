@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
+import { I18nProvider } from './contexts/I18nContext';
  import './styles/colors.css';
 import './styles/semantics.css';
 import './styles/typography.css';
@@ -192,7 +193,9 @@ try {
     <React.StrictMode>
       <ErrorBoundary>
         <BrowserRouter>
-          <App />
+          <I18nProvider>
+            <App />
+          </I18nProvider>
         </BrowserRouter>
       </ErrorBoundary>
     </React.StrictMode>
