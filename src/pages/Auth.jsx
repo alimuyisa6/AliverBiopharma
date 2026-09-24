@@ -263,7 +263,7 @@ export default function Auth() {
     setMfaError('');
 
     if (!/^\d{6}$/.test(mfaCode.trim())) {
-      setMfaError({t('auth.enterMfaCode')});
+      setMfaError('Please enter the 6-digit code from your authenticator app');
       return;
     }
 
