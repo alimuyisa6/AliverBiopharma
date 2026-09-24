@@ -35,7 +35,6 @@ export default function ContactPage() {
 
   return (
     <div className="section">
-      <span className="sec-label">Contact</span>
       <h1 className="section-title">Get in Touch</h1>
       <p className="section-subtitle">Questions, feedback, or partnership inquiries — we'd love to hear from you.</p>
       <ContactSection
