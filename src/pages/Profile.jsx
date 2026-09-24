@@ -486,13 +486,16 @@ export default function Profile() {
 
   const handleBioSubmit = async (e) => {
     e.preventDefault();
+    setSaveResult('bio', null);
     setSavingBio(true);
     try {
       await updateBio(bio.trim());
+      setSaveResult('bio', 'success');
       addToast('Biography updated', 'success');
     } catch (err) {
       const message = getExactErrorMessage(err, 'Failed to update biography');
       logProfileError('handleBioSubmit failed', err);
+      setSaveResult('bio', 'error');
       addToast(message, 'error');
     } finally {
       setSavingBio(false);
@@ -501,6 +504,7 @@ export default function Profile() {
 
   const handlePasswordSubmit = async (e) => {
     e.preventDefault();
+    setSaveResult('password', null);
     if (newPassword !== confirmPassword) {
       addToast('Passwords do not match', 'error');
       return;
@@ -520,11 +524,13 @@ export default function Profile() {
       setPasswordCaptchaToken('');
       setNewPassword('');
       setConfirmPassword('');
+      setSaveResult('password', 'success');
       addToast('Password changed', 'success');
     } catch (err) {
       setPasswordCaptchaToken('');
       const message = getExactErrorMessage(err, 'Failed to change password');
       logProfileError('handlePasswordSubmit failed', err);
+      setSaveResult('password', 'error');
       addToast(message, 'error');
     } finally {
       setSavingPassword(false);
@@ -601,6 +607,7 @@ export default function Profile() {
 
   const handleLevelChangeRequest = async (e) => {
     e.preventDefault();
+    setSaveResult('level', null);
     if (!levelReqTrack || !levelReqReason.trim()) {
       addToast('Please complete all fields', 'error');
       return;
@@ -610,10 +617,12 @@ export default function Profile() {
       await requestLevelChange(levelReqTrack, null, levelReqReason);
       setLevelReqTrack('');
       setLevelReqReason('');
+      setSaveResult('level', 'success');
       addToast('Level change request submitted', 'success');
     } catch (err) {
       const message = getExactErrorMessage(err, 'Failed to submit request');
       logProfileError('handleLevelChangeRequest failed', err);
+      setSaveResult('level', 'error');
       addToast(message, 'error');
     } finally {
       setLevelReqLoading(false);
@@ -781,6 +790,7 @@ export default function Profile() {
 
   const handleSaveGuardian = async (e) => {
     e.preventDefault();
+    setSaveResult('guardian', null);
     if (!guardianName.trim() || !guardianEmail.trim()) {
       addToast('Guardian name and email are required', 'error');
       return;
@@ -792,10 +802,12 @@ export default function Profile() {
         guardian_email: guardianEmail.trim(),
         guardian_relationship: guardianRelationship
       });
+      setSaveResult('guardian', 'success');
       addToast('Guardian information saved', 'success');
     } catch (err) {
       const message = getExactErrorMessage(err, 'Failed to save guardian information');
       logProfileError('handleSaveGuardian failed', err);
+      setSaveResult('guardian', 'error');
       addToast(message, 'error');
     } finally {
       setSavingGuardian(false);
@@ -1032,7 +1044,7 @@ export default function Profile() {
                       placeholder={t('profile.bioPlaceholder')}
                     />
 
-                    <Button type="submit" loading={savingBio} loadingContext="brand" variant="outline" icon="check" style={{ marginTop: 12 }}>
+                    <Button type="submit" loading={savingBio} status={saveStatus.bio} loadingContext="brand" variant="outline" icon="check" style={{ marginTop: 12 }}>
                       Save Biography
                     </Button>
                   </Card>
@@ -1089,7 +1101,7 @@ export default function Profile() {
                       />
                     </div>
 
-                    <Button type="submit" loading={levelReqLoading} loadingContext="brand" variant="outline" icon="route">
+                    <Button type="submit" loading={levelReqLoading} status={saveStatus.level} loadingContext="brand" variant="outline" icon="route">
                       Submit Request
                     </Button>
                   </form>
@@ -1193,7 +1205,7 @@ export default function Profile() {
                     disabled={savingPassword}
                   />
 
-                  <Button type="submit" loading={savingPassword} loadingContext="conic" variant="outline" icon="lock">
+                  <Button type="submit" loading={savingPassword} status={saveStatus.password} loadingContext="conic" variant="outline" icon="lock">
                     Update Password
                   </Button>
                 </Card>
@@ -1631,7 +1643,7 @@ export default function Profile() {
                     </select>
                   </div>
 
-                  <Button type="submit" loading={savingGuardian} loadingContext="brand" variant="outline" icon="check">
+                  <Button type="submit" loading={savingGuardian} status={saveStatus.guardian} loadingContext="brand" variant="outline" icon="check">
                     {t('profile.saveGuardianInfo')}
                   </Button>
                 </Card>
