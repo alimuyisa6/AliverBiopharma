@@ -966,7 +966,7 @@ export default function Profile() {
             {sectionError && (
               <ProfileError
                 error={sectionError}
-                title={`Unable to load ${SECTIONS.find((section) => section.id === activeSection)?.label || 'this section'}`}
+                title={t('profile.sectionLoadError')}
                 onRetry={() => loadSection(activeSection)}
               />
             )}
@@ -989,13 +989,13 @@ export default function Profile() {
 
                     <Input label="Full Name" value={fullName} onChange={(e) => setFullName(e.target.value)} required disabled={savingProfile} />
                     <Input
-                      label="Display Name"
+                      label={t('profile.displayName')}
                       value={displayName}
                       onChange={(e) => setDisplayName(e.target.value)}
                       disabled={savingProfile}
-                      hint="Shown publicly on reviews and comments"
+                      hint={t('profile.displayNameHint')}
                     />
-                    <Input label="Email" value={profileMeta?.email || user?.email || ''} disabled />
+                    <Input label={t('profile.email')} value={profileMeta?.email || user?.email || ''} disabled />
 
                     <Button type="submit" loading={savingProfile} loadingContext="brand" variant="outline" icon="check">
                       Save Changes
@@ -1020,7 +1020,7 @@ export default function Profile() {
                       maxLength={500}
                       value={bio}
                       onChange={(e) => setBio(e.target.value)}
-                      placeholder="Tell us about yourself..."
+                      placeholder={t('profile.bioPlaceholder')}
                     />
 
                     <Button type="submit" loading={savingBio} loadingContext="brand" variant="outline" icon="check" style={{ marginTop: 12 }}>
@@ -1059,7 +1059,7 @@ export default function Profile() {
                         required
                         disabled={availableLevelsLoading}
                       >
-                        <option value="">Select Level</option>
+                        <option value="">{t('profile.selectLevel')}</option>
                         {levelChangeOptions.map((lvl) => (
                           <option key={lvl.id || lvl.key || lvl.display_name} value={lvl.display_name}>
                             {lvl.display_name}
@@ -1139,7 +1139,7 @@ export default function Profile() {
                   </p>
 
                   <Input
-                    label="Current Password"
+                    label={t('profile.currentPassword')}
                     type="password"
                     value={currentPassword}
                     onChange={(e) => setCurrentPassword(e.target.value)}
@@ -1147,11 +1147,11 @@ export default function Profile() {
                     disabled={savingPassword}
                   />
                   <Input
-                    label="New Password"
+                    label={t('profile.newPassword')}
                     type="password"
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
-                    hint="Minimum 10 characters"
+                    hint={t('profile.passwordMin')}
                     required
                     disabled={savingPassword}
                   />
@@ -1171,7 +1171,7 @@ export default function Profile() {
                   )}
 
                   <Input
-                    label="Confirm New Password"
+                    label={t('profile.confirmPassword')}
                     type="password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
@@ -1208,7 +1208,7 @@ export default function Profile() {
                     Enter your current password to authorize adding a new passkey to this account. Your password is used only for this verification step.
                   </p>
                   <Input
-                    label="Current Password"
+                    label={t('profile.currentPassword')}
                     type="password"
                     value={passkeyPassword}
                     onChange={(e) => setPasskeyPassword(e.target.value)}
@@ -1241,7 +1241,7 @@ export default function Profile() {
                       <div className="notification-row" key={passkey.id}>
                         <div className="profile-row-copy">
                           <div style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14, fontWeight: 600 }}>
-                            {passkey.friendly_name || 'Passkey'}
+                            {passkey.friendly_name || t('profile.passkey')}
                           </div>
                           <div style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 12 }}>
                             Added {passkey.created_at ? new Date(passkey.created_at).toLocaleDateString() : '—'}
@@ -1291,10 +1291,10 @@ export default function Profile() {
                         <Icon name={/Android/i.test(d.device_platform || d.user_agent || '') ? 'smartphone' : 'laptop'} />
                         <div className="profile-row-copy">
                           <div style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14, fontWeight: 600 }}>
-                            {d.device_model || (d.device_platform ? `${d.device_platform} device` : 'Unknown device')}
+                            {d.device_model || (d.device_platform ? `${d.device_platform} ${t('profile.device')}` : t('profile.unknownDevice'))}
                           </div>
                           <div style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 12, marginTop: 3 }}>
-                            {d.device_platform || 'Unknown platform'}{d.device_os_version ? ` ${d.device_os_version}` : ''}{d.device_browser ? ` · ${d.device_browser}${d.device_browser_version ? ` ${d.device_browser_version}` : ''}` : ''}
+                            {d.device_platform || t('profile.unknownPlatform')}{d.device_os_version ? ` ${d.device_os_version}` : ''}{d.device_browser ? ` · ${d.device_browser}${d.device_browser_version ? ` ${d.device_browser_version}` : ''}` : ''}
                           </div>
                           <div style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 11, marginTop: 3, overflowWrap: 'anywhere' }}>
                             Device ID: {d.device_id || `Session ${d.id}`} · {d.ip_address || 'Unknown IP'} · Signed in {new Date(d.created_at).toLocaleDateString()}
@@ -1329,8 +1329,8 @@ export default function Profile() {
                   <label>Appearance</label>
                   <div className="theme-swatch-group">
                     {[
-                      { key: 'light', label: 'Light' },
-                      { key: 'dark', label: 'Dark' }
+                      { key: 'light', label: t('profile.light') },
+                      { key: 'dark', label: t('profile.dark') }
                     ].map((option) => (
                       <button
                         type="button"
@@ -1369,7 +1369,7 @@ export default function Profile() {
                     className="form-select"
                     value={bundle?.profile?.timezone || user?.profile?.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'}
                     onChange={(e) => handlePreferenceChange('timezone', e.target.value)}
-                    aria-label="Timezone preference"
+                    aria-label={t('profile.timezonePreference')}
                   >
                     {[
                       ['Africa/Kampala', 'East Africa Time (Kampala)'],
@@ -1424,9 +1424,9 @@ export default function Profile() {
                       disabled={savingUIPreference === 'content_width'}
                       onChange={(e) => handleUIPreferenceChange('content_width', e.target.value)}
                     >
-                      <option value="readable">Readable</option>
-                      <option value="wide">Wide</option>
-                      <option value="full">Full</option>
+                      <option value="readable">{t('profile.readable')}</option>
+                      <option value="wide">{t('profile.wide')}</option>
+                      <option value="full">{t('profile.full')}</option>
                     </select>
                   </label>
 
@@ -1437,9 +1437,9 @@ export default function Profile() {
                       disabled={savingUIPreference === 'section_spacing'}
                       onChange={(e) => handleUIPreferenceChange('section_spacing', e.target.value)}
                     >
-                      <option value="compact">Compact</option>
-                      <option value="comfortable">Comfortable</option>
-                      <option value="spacious">Spacious</option>
+                      <option value="compact">{t('profile.compact')}</option>
+                      <option value="comfortable">{t('profile.comfortable')}</option>
+                      <option value="spacious">{t('profile.spacious')}</option>
                     </select>
                   </label>
                 </div>
@@ -1453,9 +1453,9 @@ export default function Profile() {
                       disabled={savingUIPreference === 'density'}
                       onChange={(e) => handleUIPreferenceChange('density', e.target.value)}
                     >
-                      <option value="compact">Compact</option>
-                      <option value="comfortable">Comfortable</option>
-                      <option value="spacious">Spacious</option>
+                      <option value="compact">{t('profile.compact')}</option>
+                      <option value="comfortable">{t('profile.comfortable')}</option>
+                      <option value="spacious">{t('profile.spacious')}</option>
                     </select>
                   </label>
 
@@ -1466,8 +1466,8 @@ export default function Profile() {
                       disabled={savingUIPreference === 'surface_style'}
                       onChange={(e) => handleUIPreferenceChange('surface_style', e.target.value)}
                     >
-                      <option value="card">Card surfaces</option>
-                      <option value="flat">Flat surfaces</option>
+                      <option value="card">{t('profile.cardSurfaces')}</option>
+                      <option value="flat">{t('profile.flatSurfaces')}</option>
                     </select>
                   </label>
 
@@ -1478,9 +1478,9 @@ export default function Profile() {
                       disabled={savingUIPreference === 'button_size'}
                       onChange={(e) => handleUIPreferenceChange('button_size', e.target.value)}
                     >
-                      <option value="small">Small</option>
-                      <option value="medium">Default</option>
-                      <option value="large">Large</option>
+                      <option value="small">{t('profile.small')}</option>
+                      <option value="medium">{t('profile.default')}</option>
+                      <option value="large">{t('profile.large')}</option>
                     </select>
                   </label>
 
@@ -1491,8 +1491,8 @@ export default function Profile() {
                       disabled={savingUIPreference === 'button_width'}
                       onChange={(e) => handleUIPreferenceChange('button_width', e.target.value)}
                     >
-                      <option value="auto">Fit text</option>
-                      <option value="full">Full width</option>
+                      <option value="auto">{t('profile.fitText')}</option>
+                      <option value="full">{t('profile.fullWidth')}</option>
                     </select>
                   </label>
                 </div>
@@ -1525,10 +1525,10 @@ export default function Profile() {
 
                 <h4 className="profile-preferences-subtitle">Accessibility</h4>
                 {[
-                  ['large_text', 'Large text mode'],
-                  ['high_contrast', 'High contrast mode'],
-                  ['reduce_motion', 'Reduce motion'],
-                  ['dyslexia_font', 'Dyslexia-friendly font']
+                  ['large_text', t('profile.largeTextMode')],
+                  ['high_contrast', t('profile.highContrastMode')],
+                  ['reduce_motion', t('profile.reduceMotion')],
+                  ['dyslexia_font', t('profile.dyslexiaFont')]
                 ].map(([key, label]) => {
                   const current = !!bundle?.profile?.accessibility?.[key];
                   return (
@@ -1566,7 +1566,7 @@ export default function Profile() {
                       style={{ marginTop: 12 }}
                       onClick={() => {
                         navigator.clipboard.writeText(referral.referral_code);
-                        addToast('Referral code copied', 'success');
+                        addToast(t('profile.referralCopied'), 'success');
                       }}
                     >
                       Copy Referral Code
@@ -1600,7 +1600,7 @@ export default function Profile() {
 
                   <Input label="Guardian Name" value={guardianName} onChange={(e) => setGuardianName(e.target.value)} required disabled={savingGuardian} />
                   <Input
-                    label="Guardian Email"
+                    label={t('profile.guardianEmail')}
                     type="email"
                     value={guardianEmail}
                     onChange={(e) => setGuardianEmail(e.target.value)}
