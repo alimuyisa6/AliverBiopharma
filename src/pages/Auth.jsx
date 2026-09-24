@@ -8,6 +8,7 @@ import Input from '../components/Input/Input';
 import Button from '../components/Button/Button';
 import Icon from '../components/Icon/Icon';
 import Spinner from '../components/Spinner/Spinner';
+import { useI18n } from '../contexts/I18nContext';
 
 const TURNSTILE_SITE_KEY = '0x4AAAAAADknPpI_XcH1KfPe';
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -65,6 +66,7 @@ export default function Auth() {
   const [passkeySubmitting, setPasskeySubmitting] = useState(false);
 
   const { login, loginWithPasskey, refresh } = useAuth();
+  const { t } = useI18n();
   const widgetIdRef = useRef(null);
   const widgetReadyRef = useRef(false);
   const [captchaSlot, setCaptchaSlot] = useState(null);
@@ -261,7 +263,7 @@ export default function Auth() {
     setMfaError('');
 
     if (!/^\d{6}$/.test(mfaCode.trim())) {
-      setMfaError('Enter the 6-digit code from your authenticator app');
+      setMfaError('{t('auth.enterMfaCode')}');
       return;
     }
 
@@ -433,11 +435,11 @@ export default function Auth() {
               />
 
               <h2 className="auth-state-title font-fraunces">
-                Account Created
+                {t('auth.accountCreated')}
               </h2>
 
               <p className="auth-state-text font-source-sans">
-                Welcome to AliverBiopharm. Redirecting...
+                {t('auth.welcomeRedirecting')}
               </p>
 
               <Spinner context="brand" />
@@ -445,13 +447,13 @@ export default function Auth() {
           ) : mfaStep ? (
             <div className="auth-form-block">
               <h2 className="auth-heading font-fraunces">
-                Two-Factor Verification
+                {t('auth.twoFactor')}
               </h2>
 
               <p className="auth-subheading font-source-sans">
                 {passkeyMfaToken
-                  ? 'Confirm your passkey sign-in with your authenticator code'
-                  : 'Enter the 6-digit code from your authenticator app'}
+                  ? '{t('auth.confirmPasskeyMfa')}'
+                  : '{t('auth.enterMfaCode')}'}
               </p>
 
               {mfaError && (
@@ -494,18 +496,18 @@ export default function Auth() {
                   loadingContext="brand"
                   className="auth-submit"
                 >
-                  Verify and Sign In
+                  {t('auth.verifyAndSignIn')}
                 </Button>
               </form>
             </div>
           ) : onboardingStep > 0 ? (
             <div className="auth-form-block">
               <h2 className="auth-heading font-fraunces">
-                Complete Your Profile
+                {t('auth.completeProfile')}
               </h2>
 
               <p className="auth-subheading font-source-sans">
-                Help us personalise your learning experience
+                {t('auth.personaliseLearning')}
               </p>
 
               <div className="progress-track auth-progress">
@@ -527,7 +529,7 @@ export default function Auth() {
               {onboardingStep === 1 && (
                 <div className="auth-onboarding-step">
                   <h3 className="auth-step-title font-poppins">
-                    I am a...
+                    {t('auth.iAmA')}
                   </h3>
 
                   <div className="auth-options">
@@ -543,7 +545,7 @@ export default function Auth() {
                       }}
                     >
                       <Icon name="user-graduate" />
-                      Student
+                      {t('auth.student')}
                     </Button>
 
                     <Button
@@ -558,7 +560,7 @@ export default function Auth() {
                       }}
                     >
                       <Icon name="user-pen" />
-                      Teacher
+                      {t('auth.teacher')}
                     </Button>
                   </div>
                 </div>
@@ -567,7 +569,7 @@ export default function Auth() {
               {onboardingStep === 2 && (
                 <div className="auth-onboarding-step">
                   <h3 className="auth-step-title font-poppins">
-                    Select your level
+                    {t('auth.selectLevel')}
                   </h3>
 
                   {levelsLoading && (
@@ -636,14 +638,14 @@ export default function Auth() {
             <div className="auth-form-block">
               <h2 className="auth-heading font-fraunces">
                 {mode === 'login'
-                  ? 'Sign In'
-                  : 'Create Account'}
+                  ? '{t('common.signIn')}'
+                  : '{t('auth.createAccount')}'}
               </h2>
 
               <p className="auth-subheading font-source-sans">
                 {mode === 'login'
-                  ? 'Access your account securely'
-                  : 'Join thousands of learners worldwide'}
+                  ? '{t('auth.accessAccount')}'
+                  : '{t('auth.joinLearners')}'}
               </p>
 
               {error && (
@@ -664,8 +666,8 @@ export default function Auth() {
               >
                 {mode === 'register' && (
                   <Input
-                    label="Full Name"
-                    placeholder="Enter your full name"
+                    label={t('auth.fullNameLabel')}
+                    placeholder={t('auth.enterFullName')}
                     value={fullName}
                     onChange={(event) =>
                       setFullName(event.target.value)
@@ -677,9 +679,9 @@ export default function Auth() {
                 )}
 
                 <Input
-                  label="Email Address"
+                  label={t('auth.emailAddress')}
                   type="email"
-                  placeholder="Enter your email"
+                  placeholder={t('auth.enterEmail')}
                   value={email}
                   onChange={(event) =>
                     setEmail(event.target.value)
@@ -705,16 +707,16 @@ export default function Auth() {
                   disabled={submitting}
                   hint={
                     mode === 'register'
-                      ? 'Minimum 10 characters, with at least 3 of: uppercase, lowercase, number, symbol'
+                      ? t('auth.passwordHint')
                       : undefined
                   }
                 />
 
                 {mode === 'register' && (
                   <Input
-                    label="Confirm Password"
+                    label={t('auth.confirmPasswordInput')}
                     type="password"
-                    placeholder="Confirm your password"
+                    placeholder={t('auth.confirmPasswordInput')}
                     value={confirm}
                     onChange={(event) =>
                       setConfirm(event.target.value)
@@ -739,12 +741,12 @@ export default function Auth() {
                   {mode === 'login' ? (
                     <>
                       <Icon name="right-to-bracket" />
-                      Sign In
+                      {t('common.signIn')}
                     </>
                   ) : (
                     <>
                       <Icon name="user-plus" />
-                      Create Account
+                      {t('auth.createAccount')}
                     </>
                   )}
                 </Button>
@@ -779,7 +781,7 @@ export default function Auth() {
                     size="sm"
                     onClick={() => switchMode('login')}
                   >
-                    Sign In
+                    {t('common.signIn')}
                   </Button>
                 )}
               </div>
