@@ -452,8 +452,8 @@ export default function Auth() {
 
               <p className="auth-subheading font-source-sans">
                 {passkeyMfaToken
-                  ? {t('auth.confirmPasskeyMfa')}
-                  : {t('auth.enterMfaCode')}}
+                  ? t('auth.confirmPasskeyMfa')}
+                  : t('auth.enterMfaCode')}}
               </p>
 
               {mfaError && (
@@ -638,14 +638,14 @@ export default function Auth() {
             <div className="auth-form-block">
               <h2 className="auth-heading font-fraunces">
                 {mode === 'login'
-                  ? {t('common.signIn')}
-                  : {t('auth.createAccount')}}
+                  ? t('common.signIn')}
+                  : t('auth.createAccount')}}
               </h2>
 
               <p className="auth-subheading font-source-sans">
                 {mode === 'login'
-                  ? {t('auth.accessAccount')}
-                  : {t('auth.joinLearners')}}
+                  ? t('auth.accessAccount')}
+                  : t('auth.joinLearners')}}
               </p>
 
               {error && (
