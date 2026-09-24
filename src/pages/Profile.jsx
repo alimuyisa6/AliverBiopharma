@@ -291,6 +291,17 @@ export default function Profile() {
       }
       setProfileMeta(data);
       setBio(data?.bio || '');
+
+      // Keep the editable fields aligned with the authoritative profile response.
+      // This prevents an unchanged form from being treated as a new save.
+      const loadedFullName = String(
+        data?.full_name ?? data?.name ?? user?.full_name ?? ''
+      );
+      const loadedDisplayName = String(
+        data?.display_name ?? data?.profile?.display_name ?? user?.profile?.display_name ?? ''
+      );
+      setFullName(loadedFullName);
+      setDisplayName(loadedDisplayName);
       console.info('[PROFILE] Profile loaded successfully', data);
     } catch (error) {
       const message = getExactErrorMessage(error, 'Failed to load your profile.');
@@ -464,8 +475,12 @@ export default function Profile() {
       addToast('Name must be between 2 and 100 characters', 'error');
       return;
     }
-    const currentName = String(profileMeta?.name || '').trim();
-    const currentDisplayName = String(profileMeta?.display_name || '').trim();
+    const currentName = String(
+      user?.full_name ?? profileMeta?.full_name ?? profileMeta?.name ?? ''
+    ).trim();
+    const currentDisplayName = String(
+      user?.profile?.display_name ?? profileMeta?.display_name ?? profileMeta?.profile?.display_name ?? ''
+    ).trim();
     if (trimmed === currentName && trimmedDisplayName === currentDisplayName) {
       setSaveResult('profile', null);
       addToast('No changes to save', 'error');
