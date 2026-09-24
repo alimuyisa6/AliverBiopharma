@@ -33,6 +33,7 @@ import ProgressBar from '../components/ProgressBar/ProgressBar';
 import Button from '../components/Button/Button';
 import Card from '../components/Card/Card';
 import Modal from '../components/Modal/Modal';
+import { useI18n } from '../contexts/I18nContext';
 
 function createIdempotencyKey(prefix = 'quiz') {
   try {
@@ -52,6 +53,7 @@ export default function Quiz() {
   const { locked, reason } = useSecurityUiLock();
   const { level, class_name, displayName } = useLevelFilter();
   const addToast = useToast();
+  const { t } = useI18n();
 
   const activeGroupId = profile?.active_group_id;
 
@@ -426,16 +428,16 @@ export default function Quiz() {
   return (
     <div className="quiz-page">
       <div className="section quiz-page-section">
-        <span className="eyebrow">Assessments</span>
+        <span className="eyebrow">{t('common.assessments')}</span>
         <h1 className="section-title quiz-page-title">
-          Knowledge Quizzes<br />{displayName ? `for ${displayName}` : ''}
+          {t('common.knowledgeQuizzes')}<br />{displayName ? `${t('common.forLearner')} ${displayName}` : ''}
         </h1>
 
         <h2 className="quiz-intro-description">
-          Test your understanding with subject‑specific quizzes. Each block contains 10 questions, so answer them all and aim for 70% to pass. Review your answers and track your progress as you go.
+          {t('common.quizIntro')}
         </h2>
 
-        {class_name && <p className="quiz-group-label">Current group: {class_name}</p>}
+        {class_name && <p className="quiz-group-label">{t('common.currentGroup')}: {class_name}</p>}
 
         {user && streak > 0 && (
           <div className="quiz-streak-row">
@@ -448,7 +450,7 @@ export default function Quiz() {
         <nav className="breadcrumb">
           <Link to="/"><Icon name="home" className="breadcrumb-icon" /> Home</Link>
           <Icon name="chevron-right" className="breadcrumb-sep" />
-          <span>{curriculumUnitId ? currentTopic || 'Curriculum Quiz' : 'Quizzes'}</span>
+          <span>{curriculumUnitId ? currentTopic || t('common.curriculumQuiz') : t('common.quizzes')}</span>
         </nav>
 
         {!currentTopic && !curriculumUnitId && (
@@ -465,11 +467,11 @@ export default function Quiz() {
           <>
             <div className="quiz-section-heading quiz-section-heading-spacer">
               <Icon name="layer-group" />
-              <span>{curriculumUnitId ? 'Curriculum Topic' : 'Available Topics'}</span>
+              <span>{curriculumUnitId ? t('common.curriculumTopic') : t('common.availableTopics')}</span>
             </div>
 
             <h2 className="quiz-topic-description">
-              {curriculumUnitId ? 'Choose a quiz block for this curriculum topic.' : 'Choose a topic to start a quiz block. Completed blocks are marked with a check.'}
+              {curriculumUnitId ? t('common.chooseQuizBlock') : t('common.chooseTopic')}
             </h2>
 
             <div className="grid grid-cols-3">
@@ -480,7 +482,7 @@ export default function Quiz() {
               ) : allTopics.length === 0 ? (
                 <div className="quiz-empty-topics">
                   <Icon name="layer-group" className="quiz-empty-topics-icon" />
-                  <p>No topics available at the moment.</p>
+                  <p>{t('common.noTopics')}</p>
                 </div>
               ) : (
                 allTopics.map((topic) => {
@@ -523,7 +525,7 @@ export default function Quiz() {
                 name={resultData.passed ? 'trophy' : 'book-open'}
                 className={`quiz-result-icon ${resultData.passed ? 'is-pass' : 'is-fail'}`}
               />
-              <h2>{resultData.passed ? `Congratulations, ${user?.full_name || 'Learner'}!` : 'Block Complete'}</h2>
+              <h2>{resultData.passed ? `${t('common.congratulations')}, ${user?.full_name || 'Learner'}!` : t('common.blockComplete')}</h2>
               <div className={`quiz-result-score ${resultData.passed ? 'is-pass' : 'is-fail'}`}>
                 {resultData.percentage}%
               </div>
@@ -609,7 +611,7 @@ export default function Quiz() {
             {timeLeft !== null && (
               <div className="quiz-timer-row">
                 <div className="quiz-timer-header">
-                  <span className="quiz-timer-label">Time remaining</span>
+                  <span className="quiz-timer-label">{t('common.timeRemaining')}</span>
                   <span className={`quiz-timer-value ${timerClass}`}>
                     {Math.floor(timeLeft / 60)}:{String(timeLeft % 60).padStart(2, '0')}
                   </span>
@@ -626,7 +628,7 @@ export default function Quiz() {
             {answerSubmitting && (
               <div className="quiz-answering-indicator">
                 <Spinner context="conic" size="sm" />
-                <span className="quiz-spinner-label">Checking</span>
+                <span className="quiz-spinner-label">{t('common.checking')}</span>
               </div>
             )}
 
@@ -689,7 +691,7 @@ export default function Quiz() {
                   loading={loading}
                   loadingContext="brand"
                 >
-                  Submit Block <Icon name="check" />
+                  {t('common.submitBlock')} <Icon name="check" />
                 </Button>
               ) : (
                 <Button
@@ -711,10 +713,10 @@ export default function Quiz() {
         ) : (
           <div className="quiz-blocks-page">
             <h2 className="quiz-blocks-heading">{currentTopic}</h2>
-            <p className="quiz-blocks-sub">{class_name ? `${class_name}: ` : ''}Select a block to start</p>
+            <p className="quiz-blocks-sub">{class_name ? `${class_name}: ` : ''}{t('common.selectBlock')}</p>
 
             {totalBlocks === 0 ? (
-              <p className="quiz-blocks-empty">No blocks available.</p>
+              <p className="quiz-blocks-empty">{t('common.noBlocks')}</p>
             ) : (
               <div className="quiz-blocks-grid">
                 {Array.from({ length: totalBlocks }).map((_, index) => {
@@ -743,18 +745,18 @@ export default function Quiz() {
           </div>
         )}
 
-        <Modal open={showRulesModal} onClose={() => setShowRulesModal(false)} title="Quiz Rules">
+        <Modal open={showRulesModal} onClose={() => setShowRulesModal(false)} title={t('common.quizRules')}>
           <ul className="quiz-rules-list">
-            <li><Icon name="circle-check" className="quiz-rules-icon is-success" /> <span>10 questions per block</span></li>
-            <li><Icon name="circle-check" className="quiz-rules-icon is-success" /> <span>70% to pass</span></li>
-            <li><Icon name="circle-check" className="quiz-rules-icon is-success" /> <span>Immediate feedback</span></li>
-            <li><Icon name="circle-check" className="quiz-rules-icon is-success" /> <span>Full explanations on review</span></li>
-            <li><Icon name="circle-check" className="quiz-rules-icon is-success" /> <span>10-minute time limit</span></li>
-            <li><Icon name="exclamation-triangle" className="quiz-rules-icon is-warning" /> <span>Tab switches are recorded</span></li>
-            <li><Icon name="exclamation-triangle" className="quiz-rules-icon is-error" /> <span>3 tab switches auto-submits</span></li>
+            <li><Icon name="circle-check" className="quiz-rules-icon is-success" /> <span>{t('common.questionsPerBlock')}</span></li>
+            <li><Icon name="circle-check" className="quiz-rules-icon is-success" /> <span>{t('common.passMark')}</span></li>
+            <li><Icon name="circle-check" className="quiz-rules-icon is-success" /> <span>{t('common.immediateFeedback')}</span></li>
+            <li><Icon name="circle-check" className="quiz-rules-icon is-success" /> <span>{t('common.fullExplanations')}</span></li>
+            <li><Icon name="circle-check" className="quiz-rules-icon is-success" /> <span>{t('common.timeLimit')}</span></li>
+            <li><Icon name="exclamation-triangle" className="quiz-rules-icon is-warning" /> <span>{t('common.tabRecorded')}</span></li>
+            <li><Icon name="exclamation-triangle" className="quiz-rules-icon is-error" /> <span>{t('common.tabAutoSubmit')}</span></li>
           </ul>
           <div className="quiz-rules-submit">
-            <Button variant="primary" onClick={confirmStartBlock} loading={startingBlock} loadingContext="brand" loadingLabel="Starting…" className="quiz-rules-submit-btn">Start</Button>
+            <Button variant="primary" onClick={confirmStartBlock} loading={startingBlock} loadingContext="brand" loadingLabel={t('common.start')} className="quiz-rules-submit-btn">{t('common.start')}</Button>
           </div>
         </Modal>
       </div>
