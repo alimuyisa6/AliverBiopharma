@@ -6,9 +6,9 @@ import Button from '../../components/Button/Button';
 
 export function ContactSection({ contactForm, contactStatus, contactInfo = [], onChange, onSubmit, submitting = false }) {
   return (
-    <section className="section reveal">
-      <div className="grid grid-cols-2 contact-grid">
-        <form onSubmit={onSubmit}>
+    <section className="contact-section reveal">
+      <div className="contact-form-wrap">
+        <form className="contact-form" onSubmit={onSubmit}>
           <div className="card card-blue card-surface-solid card-tone-info card-elevation-soft form-card">
             <Input
               label="Full Name"
