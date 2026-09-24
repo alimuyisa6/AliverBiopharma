@@ -464,6 +464,13 @@ export default function Profile() {
       addToast('Name must be between 2 and 100 characters', 'error');
       return;
     }
+    const currentName = String(profileMeta?.name || '').trim();
+    const currentDisplayName = String(profileMeta?.display_name || '').trim();
+    if (trimmed === currentName && trimmedDisplayName === currentDisplayName) {
+      setSaveResult('profile', null);
+      addToast('No changes to save', 'error');
+      return;
+    }
     setSaveResult('profile', null);
     setSavingProfile(true);
     try {
@@ -486,6 +493,11 @@ export default function Profile() {
 
   const handleBioSubmit = async (e) => {
     e.preventDefault();
+    if (bio.trim() === String(profileMeta?.bio || '').trim()) {
+      setSaveResult('bio', null);
+      addToast('No changes to save', 'error');
+      return;
+    }
     setSaveResult('bio', null);
     setSavingBio(true);
     try {
