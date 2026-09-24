@@ -1542,6 +1542,12 @@ webhook_id
 });
 }
 
+export async function testWebhook(webhook_id) {
+return apiCall('profile', 'test_webhook', {
+webhook_id
+});
+}
+
 export async function saveParentGuardian(payload) {
 return apiCall('profile', 'save_parent_guardian', payload);
 }
