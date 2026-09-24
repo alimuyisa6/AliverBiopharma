@@ -52,12 +52,15 @@ export default function ProfilePictureUpload({ currentUrl, onUpdate, size = 80 }
     setUploading(true);
 
     try {
-      await deleteProfilePicture();
+      const result = await deleteProfilePicture();
+      if (result?.success === false) {
+        throw new Error(result?.error || 'Failed to delete');
+      }
 
       setImageUrl(null);
       if (onUpdate) onUpdate(null);
-    } catch {
-      setError('Failed to delete');
+    } catch (err) {
+      setError(err?.message || 'Failed to delete');
     } finally {
       setUploading(false);
     }
