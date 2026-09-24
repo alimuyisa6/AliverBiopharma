@@ -184,7 +184,7 @@ function logProfileError(context, error) {
   console.error(`[PROFILE] ${context}`, error);
 }
 
-function ProfileError({ error, title = 'Unable to load this section', onRetry }) {
+function ProfileError({ error, title = 'Unable to load this section', onRetry, t }) {
   if (!error) return null;
 
   return (
@@ -855,8 +855,8 @@ export default function Profile() {
           <Card variant="inset" loading={true} loadingLines={4} />
           <Card variant="inset" loading={true} loadingLines={4} />
         </div>
-        {profileError && <ProfileError error={profileError} title={t('profile.profileLoadError')} onRetry={loadProfile} />}
-        {bundleError && <ProfileError error={bundleError} title={t('profile.settingsLoadError')} onRetry={loadBundle} />}
+        {profileError && <ProfileError error={profileError} title={t('profile.profileLoadError')} onRetry={loadProfile} t={t} />}
+        {bundleError && <ProfileError error={bundleError} title={t('profile.settingsLoadError')} onRetry={loadBundle} t={t} />}
       </Container>
     );
   }
@@ -928,17 +928,17 @@ export default function Profile() {
                   <div style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 500 }}>
                     {bundle?.active_device_count ?? '—'}
                   </div>
-                  <div style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 12 }}>Devices</div>
+                  <div style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 12 }}>{t('profile.devices')}</div>
                 </div>
                 <div className="profile-stat-tile" style={{ border: `1px solid ${THEME.border}` }}>
                   <div style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 500 }}>
                     {bundle?.referral_count ?? '—'}
                   </div>
-                  <div style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 12 }}>Referrals</div>
+                  <div style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 12 }}>{t('profile.referrals')}</div>
                 </div>
               </div>
 
-              <nav className="profile-nav" aria-label="Profile sections">
+              <nav className="profile-nav" aria-label={t('profile.profileSections')}>
                 <ul className="profile-nav-list">
                   {SECTIONS.map((section) => (
                     <li key={section.id}>
@@ -967,7 +967,7 @@ export default function Profile() {
               <ProfileError
                 error={sectionError}
                 title={t('profile.sectionLoadError')}
-                onRetry={() => loadSection(activeSection)}
+                onRetry={() => loadSection(activeSection)} t={t}
               />
             )}
 
@@ -1319,14 +1319,14 @@ export default function Profile() {
               <Card variant="inset" className="profile-card card-lifted">
                 <h3 className="profile-preferences-title">
                   <Icon name="sliders" style={{ color: 'var(--secondary)' }} />
-                  Preferences & Theme
+                  {t('profile.preferencesTheme')}
                 </h3>
                 <p className="profile-preferences-description">
-                  Personalize appearance, reading comfort, layout density, and controls. Changes are saved to your account and applied immediately.
+                  {t('profile.preferencesDescription')}
                 </p>
 
                 <div className="form-group">
-                  <label>Appearance</label>
+                  <label>{t('profile.appearance')}</label>
                   <div className="theme-swatch-group">
                     {[
                       { key: 'light', label: t('profile.light') },
@@ -1410,10 +1410,10 @@ export default function Profile() {
                       disabled={savingUIPreference === 'font_size'}
                       onChange={(e) => handleUIPreferenceChange('font_size', e.target.value)}
                     >
-                      <option value="90">Smaller</option>
+                      <option value="90">{t('profile.smaller')}</option>
                       <option value="100">Default</option>
                       <option value="110">Large</option>
-                      <option value="120">Extra large</option>
+                      <option value="120">{t('profile.extraLarge')}</option>
                     </select>
                   </label>
 
@@ -1431,7 +1431,7 @@ export default function Profile() {
                   </label>
 
                   <label className="profile-preference-control">
-                    <span>Section spacing</span>
+                    <span>{t('profile.sectionSpacing')}</span>
                     <select
                       value={uiPreferences.section_spacing}
                       disabled={savingUIPreference === 'section_spacing'}
