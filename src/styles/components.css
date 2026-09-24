@@ -63,8 +63,8 @@
 }
 
 .spinner-lg {
-  width: var(--space-8);
-  height: var(--space-8);
+  width: 3.5rem;
+  height: 3.5rem;
 }
 
 .spinner-primary { color: var(--primary); }
@@ -74,7 +74,7 @@
 .spinner-brand { color: var(--primary); }
 
 .spinner:not(.spinner-conic):not(.spinner-equalizer):not(.spinner-chart) {
-  border: var(--border-width-thick) solid currentColor;
+  border: 5px solid currentColor;
   border-top-color: transparent;
   border-radius: var(--radius-full);
 }
