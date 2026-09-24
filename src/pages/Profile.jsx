@@ -272,9 +272,10 @@ export default function Profile() {
   const [creatingWebhook, setCreatingWebhook] = useState(false);
   const [creatingKey, setCreatingKey] = useState(false);
   const [revealedKey, setRevealedKey] = useState(null);
-  const [webhookEvents, setWebhookEvents] = useState(['quiz.completed']);
+  const [webhookEvents, setWebhookEvents] = useState(['quiz.completed', 'webhook.test']);
   const [webhookSecret, setWebhookSecret] = useState(null);
   const [testingWebhookId, setTestingWebhookId] = useState(null);
+  const [updatingWebhookId, setUpdatingWebhookId] = useState(null);
 
   const [profileError, setProfileError] = useState('');
   const [bundleError, setBundleError] = useState('');
@@ -819,6 +820,20 @@ export default function Profile() {
       addToast(getExactErrorMessage(err, 'Failed to test webhook'), 'error');
     } finally {
       setTestingWebhookId(null);
+    }
+  };
+
+  const handleToggleWebhook = async (webhook) => {
+    setUpdatingWebhookId(webhook.id);
+    try {
+      const result = await updateWebhook(webhook.id, { is_active: !webhook.is_active });
+      if (!result?.webhook) throw new Error('Webhook status was not updated');
+      setWebhooks((prev) => prev.map((item) => item.id === webhook.id ? { ...item, ...result.webhook } : item));
+      addToast(result.webhook.is_active ? 'Webhook enabled' : 'Webhook disabled', 'success');
+    } catch (err) {
+      addToast(getExactErrorMessage(err, 'Failed to update webhook'), 'error');
+    } finally {
+      setUpdatingWebhookId(null);
     }
   };
 
@@ -1881,9 +1896,14 @@ export default function Profile() {
                         </div>
                       </div>
                       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-                        <Button variant="outline" size="sm" loading={testingWebhookId === webhook.id} onClick={() => handleTestWebhook(webhook.id)}>
-                          Test
+                        <Button variant="outline" size="sm" loading={updatingWebhookId === webhook.id} onClick={() => handleToggleWebhook(webhook)}>
+                          {webhook.is_active ? 'Disable' : 'Enable'}
                         </Button>
+                        {webhook.is_active && (
+                          <Button variant="outline" size="sm" loading={testingWebhookId === webhook.id} onClick={() => handleTestWebhook(webhook.id)}>
+                            Test
+                          </Button>
+                        )}
                         <Button variant="outline" size="sm" loading={deletingWebhookId === webhook.id} onClick={() => handleDeleteWebhook(webhook.id)}>
                           {t('profile.delete')}
                         </Button>
