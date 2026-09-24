@@ -197,7 +197,7 @@ function ProfileError({ error, title = 'Unable to load this section', onRetry })
         <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, margin: '4px 0 12px' }}>{error}</p>
         {onRetry && (
           <Button type="button" variant="outline" size="sm" onClick={onRetry}>
-            Try Again
+            {t('common.retry')}
           </Button>
         )}
       </div>
@@ -1649,7 +1649,7 @@ export default function Profile() {
                     </p>
 
                     <div className="profile-plan-list">
-                      <h4 style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 16, fontWeight: 600 }}>Available Plans</h4>
+                      <h4 style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 16, fontWeight: 600 }}>{t('profile.availablePlans')}</h4>
                       {(billing?.available_plans || []).map((plan) => (
                         <div key={plan.id} className="chart-bar-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                           <span style={{ color: THEME.textMain, fontFamily: THEME.font }}>{plan.name}</span>
@@ -1668,10 +1668,10 @@ export default function Profile() {
               <Card variant="inset" className="profile-card card-lifted">
                 <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
                   <Icon name="award" style={{ color: 'var(--accent)' }} />
-                  Certificates Earned
+                  {t('profile.certificatesEarned')}
                 </h3>
                 <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
-                  View and verify the certificates you have earned upon completion of courses and assessments.
+                  {t('profile.certificatesDescription')}
                 </p>
 
                 {sectionLoading ? (
@@ -1681,10 +1681,10 @@ export default function Profile() {
                     <table className="data-table" style={{ color: THEME.textMain, fontFamily: THEME.font }}>
                       <thead>
                         <tr style={{ color: THEME.textMain }}>
-                          <th>Certificate</th>
-                          <th>Date Earned</th>
-                          <th>Score</th>
-                          <th>Verify</th>
+                          <th>{t('profile.certificate')}</th>
+                          <th>{t('profile.dateEarned')}</th>
+                          <th>{t('profile.score')}</th>
+                          <th>{t('profile.verify')}</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -1701,7 +1701,7 @@ export default function Profile() {
                         {certificates.length === 0 && !sectionError && (
                           <tr>
                             <td colSpan={4} style={{ color: THEME.textMuted, textAlign: 'center' }}>
-                              No certificates have been earned yet.
+                              {t('profile.noCertificates')}
                             </td>
                           </tr>
                         )}
@@ -1715,17 +1715,17 @@ export default function Profile() {
               <Card variant="inset" className="profile-card card-lifted">
                 <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
                   <Icon name="terminal" style={{ color: THEME.accent }} />
-                  API Access
+                  {t('profile.apiAccess')}
                 </h3>
                 <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
-                  Generate and manage API keys to integrate AliverBiopharm with external tools and applications.
+                  {t('profile.apiDescription')}
                 </p>
 
                 {revealedKey && (
                   <div className="notification-row" style={{ border: '1px solid var(--warning)', borderRadius: 8, padding: 16 }}>
                     <div>
                       <div style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14, fontWeight: 600 }}>
-                        Copy this key now — it will not be shown again
+                        {t('profile.copyKeyWarning')}
                       </div>
                       <code style={{ color: THEME.textMain, fontFamily: THEME.font, display: 'block', marginTop: 8, fontSize: 12 }}>
                         {revealedKey}
@@ -1735,7 +1735,7 @@ export default function Profile() {
                 )}
 
                 <Button loading={creatingKey} loadingContext="brand" variant="outline" icon="plus" onClick={handleCreateApiKey} style={{ marginTop: 12 }}>
-                  Generate New Key
+                  {t('profile.generateNewKey')}
                 </Button>
 
                 {sectionLoading ? (
@@ -1746,7 +1746,7 @@ export default function Profile() {
                       <div className="profile-row-copy">
                         <div style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14, fontWeight: 600 }}>{key.name}</div>
                         <div style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 12 }}>
-                          <code style={{ color: THEME.textMuted }}>{key.key_prefix}…</code> · {key.is_active ? 'Active' : 'Revoked'}
+                          <code style={{ color: THEME.textMuted }}>{key.key_prefix}…</code> · {key.is_active ? t('profile.active') : t('profile.revoked')}
                         </div>
                       </div>
                       {key.is_active && (
@@ -1764,10 +1764,10 @@ export default function Profile() {
               <Card variant="inset" className="profile-card card-lifted">
                 <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
                   <Icon name="webhook" style={{ color: 'var(--secondary)' }} />
-                  Webhooks
+                  {t('profile.webhooks')}
                 </h3>
                 <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
-                  Configure webhooks to receive real-time event notifications directly from the platform.
+                  {t('profile.webhooksDescription')}
                 </p>
 
                 <div className="profile-webhook-input-row">
@@ -1778,7 +1778,7 @@ export default function Profile() {
                     className="profile-webhook-input"
                   />
                   <Button loading={creatingWebhook} loadingContext="brand" variant="outline" icon="plus" onClick={handleCreateWebhook}>
-                    Add Webhook
+                    {t('profile.addWebhook')}
                   </Button>
                 </div>
 
@@ -1790,11 +1790,11 @@ export default function Profile() {
                       <div className="profile-row-copy">
                         <div style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14, fontWeight: 600 }}>{webhook.url}</div>
                         <div style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 12 }}>
-                          {(webhook.events || []).join(', ')} · {webhook.is_active ? 'Active' : 'Disabled'}
+                          {(webhook.events || []).join(', ')} · {webhook.is_active ? t('profile.active') : t('profile.disabled')}
                         </div>
                       </div>
                       <Button variant="outline" size="sm" loading={deletingWebhookId === webhook.id} onClick={() => handleDeleteWebhook(webhook.id)}>
-                        Delete
+                        {t('profile.delete')}
                       </Button>
                     </div>
                   ))
@@ -1806,10 +1806,10 @@ export default function Profile() {
               <Card variant="inset" className="profile-card card-lifted">
                 <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
                   <Icon name="shield" style={{ color: THEME.error }} />
-                  Account & Data
+                  {t('profile.accountData')}
                 </h3>
                 <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
-                  Manage your account status, export your personal data, or submit a request for account deletion.
+                  {t('profile.accountDescription')}
                 </p>
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
@@ -1818,22 +1818,22 @@ export default function Profile() {
                     style={{ background: profileMeta?.is_active === false ? THEME.error : THEME.success }}
                   />
                   <span style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15 }}>
-                    {profileMeta?.is_active === false ? 'Inactive' : 'Active'} account
+                    {profileMeta?.is_active === false ? t('profile.inactive') : t('profile.active')} account
                   </span>
                 </div>
 
                 <hr className="divider profile-divider" style={{ borderColor: THEME.border }} />
 
                 <p style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 14 }}>
-                  Account created {profileMeta?.created_at ? new Date(profileMeta.created_at).toLocaleDateString() : '—'}
+                  {t('profile.accountCreated', { date: profileMeta?.created_at ? new Date(profileMeta.created_at).toLocaleDateString() : '—' })}
                 </p>
 
                 <div className="profile-flex-wrap">
-                  <Button variant="outline" icon="download" loading={exportLoading} loadingContext="brand" loadingLabel="Preparing…" onClick={handleDataExport}>
-                    Export All Data
+                  <Button variant="outline" icon="download" loading={exportLoading} loadingContext="brand" loadingLabel={t('profile.preparing')} onClick={handleDataExport}>
+                    {t('profile.exportAllData')}
                   </Button>
-                  <Button variant="danger" icon="trash" loading={deletionLoading} loadingContext="default" loadingLabel="Requesting…" onClick={handleAccountDeletion}>
-                    Request Account Deletion
+                  <Button variant="danger" icon="trash" loading={deletionLoading} loadingContext="default" loadingLabel={t('profile.requesting')} onClick={handleAccountDeletion}>
+                    {t('profile.requestAccountDeletion')}
                   </Button>
                 </div>
               </Card>
