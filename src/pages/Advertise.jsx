@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Icon from '../components/Icon/Icon';
 import AdStepIcon from '../components/Advertising/AdStepIcon';
 import { useLayout } from '../contexts/LayoutContext';
+import { useI18n } from '../contexts/I18nContext';
 
 const BENEFITS = [
   {
@@ -39,6 +40,7 @@ const PROGRAMMES = [
 
 export default function Advertise() {
   const { bootstrap } = useLayout();
+  const { t } = useI18n();
 
   const uiComponents = bootstrap?.ui_components || [];
 
