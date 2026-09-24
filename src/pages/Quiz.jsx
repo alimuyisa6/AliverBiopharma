@@ -447,6 +447,8 @@ export default function Quiz() {
           </div>
         )}
 
+        <AdSlot placement="quiz" pageContext="quiz" />
+
         <nav className="breadcrumb">
           <Link to="/"><Icon name="home" className="breadcrumb-icon" /> Home</Link>
           <Icon name="chevron-right" className="breadcrumb-sep" />
