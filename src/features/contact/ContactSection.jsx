@@ -1,10 +1,15 @@
 /* features/contact/ContactSection.jsx */
-import Icon from '../../components/Icon/Icon';
 import Input from '../../components/Input/Input';
 import Textarea from '../../components/Textarea/Textarea';
 import Button from '../../components/Button/Button';
 
-export function ContactSection({ contactForm, contactStatus, contactInfo = [], onChange, onSubmit, submitting = false }) {
+export function ContactSection({
+  contactForm,
+  contactStatus,
+  onChange,
+  onSubmit,
+  submitting = false
+}) {
   return (
     <section className="contact-section reveal">
       <div className="contact-form-wrap">
@@ -17,6 +22,7 @@ export function ContactSection({ contactForm, contactStatus, contactInfo = [], o
               required
               icon="user"
             />
+
             <Input
               label="Email Address"
               type="email"
@@ -25,12 +31,14 @@ export function ContactSection({ contactForm, contactStatus, contactInfo = [], o
               required
               icon="envelope"
             />
+
             <Input
               label="Subject"
               value={contactForm.subject}
               onChange={(event) => onChange({ ...contactForm, subject: event.target.value })}
               required
             />
+
             <Textarea
               label="Message"
               value={contactForm.message}
@@ -39,7 +47,14 @@ export function ContactSection({ contactForm, contactStatus, contactInfo = [], o
               required
             />
 
-            <Button type="submit" icon="paper-plane" loading={submitting} loadingLabel="Sending…">Send Message</Button>
+            <Button
+              type="submit"
+              icon="paper-plane"
+              loading={submitting}
+              loadingLabel="Sending…"
+            >
+              Send Message
+            </Button>
 
             {contactStatus && (
               <p className={`form-status ${contactStatus.success ? 'success' : 'error'}`}>
@@ -48,13 +63,7 @@ export function ContactSection({ contactForm, contactStatus, contactInfo = [], o
             )}
           </div>
         </form>
-
-value}</a>
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );
-} 
+}
