@@ -1387,10 +1387,10 @@ export default function Profile() {
 
                 <hr className="divider profile-divider-lg" />
 
-                <h4 className="profile-preferences-subtitle">Display & Reading</h4>
+                <h4 className="profile-preferences-subtitle">{t('profile.displayReading')}</h4>
                 <div className="profile-preference-grid">
                   <label className="profile-preference-control">
-                    <span>Font family</span>
+                    <span>{t('profile.fontFamily')}</span>
                     <select
                       value={uiPreferences.font_family}
                       disabled={savingUIPreference === 'font_family'}
@@ -1404,7 +1404,7 @@ export default function Profile() {
                   </label>
 
                   <label className="profile-preference-control">
-                    <span>Text size</span>
+                    <span>{t('profile.textSize')}</span>
                     <select
                       value={uiPreferences.font_size}
                       disabled={savingUIPreference === 'font_size'}
@@ -1418,7 +1418,7 @@ export default function Profile() {
                   </label>
 
                   <label className="profile-preference-control">
-                    <span>Content width</span>
+                    <span>{t('profile.contentWidth')}</span>
                     <select
                       value={uiPreferences.content_width}
                       disabled={savingUIPreference === 'content_width'}
@@ -1444,10 +1444,10 @@ export default function Profile() {
                   </label>
                 </div>
 
-                <h4 className="profile-preferences-subtitle">Layout & Controls</h4>
+                <h4 className="profile-preferences-subtitle">{t('profile.layoutControls')}</h4>
                 <div className="profile-preference-grid">
                   <label className="profile-preference-control">
-                    <span>Content density</span>
+                    <span>{t('profile.contentDensity')}</span>
                     <select
                       value={uiPreferences.density}
                       disabled={savingUIPreference === 'density'}
@@ -1460,7 +1460,7 @@ export default function Profile() {
                   </label>
 
                   <label className="profile-preference-control">
-                    <span>Cards & surfaces</span>
+                    <span>{t('profile.cardsSurfaces')}</span>
                     <select
                       value={uiPreferences.surface_style}
                       disabled={savingUIPreference === 'surface_style'}
@@ -1472,7 +1472,7 @@ export default function Profile() {
                   </label>
 
                   <label className="profile-preference-control">
-                    <span>Button size</span>
+                    <span>{t('profile.buttonSize')}</span>
                     <select
                       value={uiPreferences.button_size}
                       disabled={savingUIPreference === 'button_size'}
@@ -1485,7 +1485,7 @@ export default function Profile() {
                   </label>
 
                   <label className="profile-preference-control">
-                    <span>Button width</span>
+                    <span>{t('profile.buttonWidth')}</span>
                     <select
                       value={uiPreferences.button_width}
                       disabled={savingUIPreference === 'button_width'}
@@ -1499,7 +1499,7 @@ export default function Profile() {
 
                 <hr className="divider profile-divider-lg" style={{ borderColor: THEME.border }} />
 
-                <h4 className="profile-preferences-subtitle">Accent Color</h4>
+                <h4 className="profile-preferences-subtitle">{t('profile.accentColor')}</h4>
                 <div className="theme-swatch-group">
                   {[
                     { key: 'blue', color: 'var(--blue-600)' },
@@ -1523,7 +1523,7 @@ export default function Profile() {
 
                 <hr className="divider profile-divider-lg" />
 
-                <h4 className="profile-preferences-subtitle">Accessibility</h4>
+                <h4 className="profile-preferences-subtitle">{t('profile.accessibility')}</h4>
                 {[
                   ['large_text', t('profile.largeTextMode')],
                   ['high_contrast', t('profile.highContrastMode')],
@@ -1545,7 +1545,7 @@ export default function Profile() {
               <Card variant="inset" className="profile-card card-lifted">
                 <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
                   <Icon name="gift" style={{ color: 'var(--accent)' }} />
-                  Referral Program
+                  {t('profile.referralProgram')}
                 </h3>
                 <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
                   Share your referral code with colleagues and peers to earn experience points when they join. Every new member
@@ -1591,14 +1591,14 @@ export default function Profile() {
                 <Card variant="inset" className="profile-card card-lifted">
                   <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
                     <Icon name="user-group" style={{ color: THEME.accent }} />
-                    Parent / Guardian Information
+                    {t('profile.parentGuardianInformation')}
                   </h3>
                   <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
                     Provide contact information for a parent or guardian. This information is used for emergency contact
                     purposes and consent verification.
                   </p>
 
-                  <Input label="Guardian Name" value={guardianName} onChange={(e) => setGuardianName(e.target.value)} required disabled={savingGuardian} />
+                  <Input label={t('profile.guardianName')} value={guardianName} onChange={(e) => setGuardianName(e.target.value)} required disabled={savingGuardian} />
                   <Input
                     label={t('profile.guardianEmail')}
                     type="email"
@@ -1609,21 +1609,21 @@ export default function Profile() {
                   />
 
                   <div className="form-group">
-                    <label style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14 }}>Relationship</label>
+                    <label style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14 }}>{t('profile.relationship')}</label>
                     <select
                       className="form-select"
                       style={{ color: THEME.textMain, fontFamily: THEME.font, background: THEME.bgCard, border: `1px solid ${THEME.border}` }}
                       value={guardianRelationship}
                       onChange={(e) => setGuardianRelationship(e.target.value)}
                     >
-                      <option>Parent</option>
-                      <option>Guardian</option>
-                      <option>Other</option>
+                      <option value="Parent">{t('profile.parent')}</option>
+                      <option value="Guardian">{t('profile.guardian')}</option>
+                      <option value="Other">{t('profile.other')}</option>
                     </select>
                   </div>
 
                   <Button type="submit" loading={savingGuardian} loadingContext="brand" variant="outline" icon="check">
-                    Save Guardian Info
+                    {t('profile.saveGuardianInfo')}
                   </Button>
                 </Card>
               </form>
@@ -1633,7 +1633,7 @@ export default function Profile() {
               <Card variant="inset" className="profile-card card-lifted">
                 <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
                   <Icon name="credit-card" style={{ color: THEME.success }} />
-                  Billing & Payments
+                  {t('profile.billingPayments')}
                 </h3>
                 <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
                   Review your current subscription plan and explore available upgrade options.
@@ -1644,7 +1644,7 @@ export default function Profile() {
                 ) : (
                   <>
                     <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15 }}>
-                      <strong style={{ color: THEME.textMain }}>Current Plan:</strong> {billing?.current_plan?.name || 'Free'}{' '}
+                      <strong style={{ color: THEME.textMain }}>{t('profile.currentPlan')}:</strong> {billing?.current_plan?.name || 'Free'}{' '}
                       {billing?.subscription?.expires_at ? `— expires ${new Date(billing.subscription.expires_at).toLocaleDateString()}` : ''}
                     </p>
 
@@ -1818,7 +1818,7 @@ export default function Profile() {
                     style={{ background: profileMeta?.is_active === false ? THEME.error : THEME.success }}
                   />
                   <span style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15 }}>
-                    {profileMeta?.is_active === false ? t('profile.inactive') : t('profile.active')} account
+                    {profileMeta?.is_active === false ? t('profile.inactiveAccount') : t('profile.activeAccount')}
                   </span>
                 </div>
 
