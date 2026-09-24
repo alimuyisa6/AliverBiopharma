@@ -11,6 +11,7 @@ import { NewsletterForm } from './NewsletterForm';
 import ClassroomTeaser from '../classroom/ClassroomTeaser';
 import TutorMarketplaceTeaser from '../tutor-marketplace/TutorMarketplaceTeaser';
 import AdsHomeSection from '../../components/Advertising/AdsHomeSection';
+import AdSlot from '../../components/Advertising/AdSlot';
 import Hero from '../../components/Hero/Hero';
 import HomeDashboardCard from '../../components/dashboard/HomeDashboardCard';
 import { useLayout } from '../../contexts/LayoutContext';
@@ -153,7 +154,8 @@ export default function HomeView(props) {
       <section className="home-testimonials-section"><TestimonialSlider quotes={sections?.testimonials?.quotes || []} /></section>
       <section className="home-classroom-section"><ClassroomTeaser /></section>
       <section className="home-tutor-section"><TutorMarketplaceTeaser /></section>
-      <section className="home-advertising-section"><AdsHomeSection /></section>
+      <section className="home-advertising-section"><AdsHomeSection />
+      <AdSlot placement="homepage" pageContext="home" /></section>
       <section className="home-newsletter-section"><NewsletterForm email={newsletterEmail} status={newsletterStatus} loading={newsletterLoading} onChange={(event) => setNewsletterEmail(event.target.value)} onSubmit={handleNewsletterSubmit} /></section>
       <ChatWidget chatOpen={chatOpen} chatMessages={chatMessages} chatInput={chatInput} adminOnline={adminOnline} onToggle={() => setChatOpen(!chatOpen)} onSend={sendChat} onInputChange={setChatInput} onDeleteMsg={deleteChatMsg} sending={chatSending} deletingId={chatDeletingId} requestLoading={chatRequestLoading} chatBodyRef={chatBodyRef} />
     </div>
