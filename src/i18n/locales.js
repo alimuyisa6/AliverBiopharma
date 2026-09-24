@@ -70,6 +70,15 @@ export const TRANSLATIONS = {
       unableToLoad: 'Unable to load your dashboard right now. Please try again later.'
     },
     profile: {
+      title: 'Profile & Settings',
+      subtitle: 'Manage your account, curriculum, preferences, security, and administrative details',
+      settings: 'Settings',
+      profileSections: 'Profile Sections',
+      closeSections: 'Close Sections',
+      profileLoadError: 'Profile could not be loaded',
+      settingsLoadError: 'Settings could not be loaded',
+      profileDataLoadError: 'Profile data could not be loaded',
+      settingsDataLoadError: 'Settings data could not be loaded',
       language: 'Language', languageDescription: 'Choose the language used throughout AliverBiopharm.',
       profileOverview: 'Profile Overview', learningCurriculum: 'Learning Curriculum',
       notifications: 'Notifications', securityLogin: 'Security & Login',
@@ -136,6 +145,15 @@ export const TRANSLATIONS = {
       unableToLoad: 'Dashibodi yako haiwezi kupakiwa kwa sasa. Tafadhali jaribu tena baadaye.'
     },
     profile: {
+      title: 'Wasifu na Mipangilio',
+      subtitle: 'Dhibiti akaunti yako, mtaala, mapendeleo, usalama na mipangilio ya kiutawala',
+      settings: 'Mipangilio',
+      profileSections: 'Sehemu za Wasifu',
+      closeSections: 'Funga Sehemu',
+      profileLoadError: 'Wasifu haukuweza kupakiwa',
+      settingsLoadError: 'Mipangilio haikuweza kupakiwa',
+      profileDataLoadError: 'Taarifa za wasifu hazikuweza kupakiwa',
+      settingsDataLoadError: 'Taarifa za mipangilio hazikuweza kupakiwa',
       language: 'Lugha', languageDescription: 'Chagua lugha itakayotumika katika AliverBiopharm.',
       profileOverview: 'Muhtasari wa Wasifu', learningCurriculum: 'Mtaala wa Kujifunza',
       notifications: 'Arifa', securityLogin: 'Usalama na Kuingia',
