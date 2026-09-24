@@ -62,11 +62,24 @@ const THEME = {
 
 function collectBrowserDeviceMetadata() {
   if (typeof window === 'undefined') return null;
+
   const uaData = navigator.userAgentData;
   let deviceId = null;
+
   try {
     deviceId = localStorage.getItem('aliver_device_id');
-  } catch {}
+
+    if (!deviceId) {
+      const randomId =
+        globalThis.crypto?.randomUUID?.() ||
+        `web-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 12)}`;
+
+      deviceId = `ALV-${randomId}`;
+      localStorage.setItem('aliver_device_id', deviceId);
+    }
+  } catch {
+    deviceId = null;
+  }
 
   const fallback = {
     deviceId,
@@ -77,7 +90,9 @@ function collectBrowserDeviceMetadata() {
     browserVersion: null
   };
 
-  if (!uaData?.getHighEntropyValues) return Promise.resolve(fallback);
+  if (!uaData?.getHighEntropyValues) {
+    return Promise.resolve(fallback);
+  }
 
   return uaData.getHighEntropyValues([
     'model',
@@ -86,8 +101,11 @@ function collectBrowserDeviceMetadata() {
     'fullVersionList'
   ]).then((high) => {
     const browser = Array.isArray(high.fullVersionList)
-      ? high.fullVersionList.find((item) => !/Chromium|Not.?A.?Brand/i.test(item.brand))
+      ? high.fullVersionList.find(
+          (item) => !/Chromium|Not.?A.?Brand/i.test(item.brand)
+        ) || high.fullVersionList[0]
       : null;
+
     return {
       ...fallback,
       model: high.model || null,
