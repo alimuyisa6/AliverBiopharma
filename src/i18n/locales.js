@@ -20,7 +20,24 @@ export const TRANSLATIONS = {
       quickLinks: 'Quick Links', resources: 'Resources', community: 'Community',
       privacy: 'Privacy', terms: 'Terms', about: 'About',
       footerTagline: 'Advancing biology and pharmacy education for every learner.',
-      allRightsReserved: 'All rights reserved.'
+      allRightsReserved: 'All rights reserved.',
+      signIn: 'Sign In', signUp: 'Sign Up',
+      loading: 'Loading...', retry: 'Try again', save: 'Save', cancel: 'Cancel',
+      continue: 'Continue', back: 'Back', close: 'Close', error: 'Error',
+      accessRestricted: 'Access Restricted', featureUnavailable: 'Feature Unavailable',
+      pageNotFound: 'Page not found', returnHome: 'Return home'
+    },
+    auth: {
+      loginTitle: 'Welcome back', registerTitle: 'Create your account',
+      email: 'Email address', password: 'Password', confirmPassword: 'Confirm password',
+      fullName: 'Full name', forgotPassword: 'Forgot your password?',
+      noAccount: "Don't have an account?", haveAccount: 'Already have an account?',
+      passwordRequirements: 'Password must be at least 10 characters and meet the required complexity rules.',
+      signingIn: 'Signing in...', creatingAccount: 'Creating account...'
+    },
+    dashboard: {
+      accessRestrictedDescription: 'Your account does not have access to this area.',
+      unableToLoad: 'Unable to load your dashboard right now. Please try again later.'
     },
     profile: {
       language: 'Language', languageDescription: 'Choose the language used throughout AliverBiopharm.',
@@ -40,7 +57,23 @@ export const TRANSLATIONS = {
       quickLinks: 'Viungo vya Haraka', resources: 'Rasilimali', community: 'Jumuiya',
       privacy: 'Faragha', terms: 'Masharti', about: 'Kuhusu',
       footerTagline: 'Kuendeleza elimu ya biolojia na famasia kwa kila mwanafunzi.',
-      allRightsReserved: 'Haki zote zimehifadhiwa.'
+      allRightsReserved: 'Haki zote zimehifadhiwa.',
+      signIn: 'Ingia', signUp: 'Jisajili', loading: 'Inapakia...', retry: 'Jaribu tena',
+      save: 'Hifadhi', cancel: 'Ghairi', continue: 'Endelea', back: 'Rudi', close: 'Funga', error: 'Hitilafu',
+      accessRestricted: 'Ufikiaji umezuiwa', featureUnavailable: 'Kipengele hakipatikani',
+      pageNotFound: 'Ukurasa haujapatikana', returnHome: 'Rudi nyumbani'
+    },
+    auth: {
+      loginTitle: 'Karibu tena', registerTitle: 'Fungua akaunti yako',
+      email: 'Anwani ya barua pepe', password: 'Nenosiri', confirmPassword: 'Thibitisha nenosiri',
+      fullName: 'Jina kamili', forgotPassword: 'Umesahau nenosiri?',
+      noAccount: 'Huna akaunti?', haveAccount: 'Tayari una akaunti?',
+      passwordRequirements: 'Nenosiri lazima liwe na angalau herufi 10 na likidhi masharti ya usalama.',
+      signingIn: 'Inaingia...', creatingAccount: 'Inaunda akaunti...'
+    },
+    dashboard: {
+      accessRestrictedDescription: 'Akaunti yako haina ruhusa ya kufikia eneo hili.',
+      unableToLoad: 'Dashibodi yako haiwezi kupakiwa kwa sasa. Tafadhali jaribu tena baadaye.'
     },
     profile: {
       language: 'Lugha', languageDescription: 'Chagua lugha itakayotumika katika AliverBiopharm.',
