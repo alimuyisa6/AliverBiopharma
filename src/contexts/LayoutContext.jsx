@@ -296,7 +296,7 @@ export function LayoutProvider({ children }) {
 
     if (!bootstrap) {
       return {
-        loading: false,
+        loading,
         bootstrap: null,
         logo: null,
         siteName: 'AliverBiopharm',
