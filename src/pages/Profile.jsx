@@ -4,6 +4,7 @@ import { useLayout } from '../contexts/LayoutContext';
 import { useI18n } from '../contexts/I18nContext';
 import { SUPPORTED_LOCALES } from '../i18n/locales';
 import {
+  apiCall,
   updateProfile,
   changePassword,
   requestLevelChange,
@@ -270,6 +271,9 @@ export default function Profile() {
   const [creatingWebhook, setCreatingWebhook] = useState(false);
   const [creatingKey, setCreatingKey] = useState(false);
   const [revealedKey, setRevealedKey] = useState(null);
+  const [webhookEvents, setWebhookEvents] = useState(['quiz.completed']);
+  const [webhookSecret, setWebhookSecret] = useState(null);
+  const [testingWebhookId, setTestingWebhookId] = useState(null);
 
   const [profileError, setProfileError] = useState('');
   const [bundleError, setBundleError] = useState('');
@@ -788,7 +792,9 @@ export default function Profile() {
     }
     setCreatingWebhook(true);
     try {
-      await createWebhook(newWebhookUrl, ['*']);
+      const result = await createWebhook(newWebhookUrl, webhookEvents);
+      if (!result?.webhook) throw new Error('Webhook was not created.');
+      if (result.secret) setWebhookSecret(result.secret);
       setNewWebhookUrl('');
       loadSection('webhooks');
       addToast('Webhook created', 'success');
@@ -798,6 +804,20 @@ export default function Profile() {
       addToast(message, 'error');
     } finally {
       setCreatingWebhook(false);
+    }
+  };
+
+  const handleTestWebhook = async (id) => {
+    setTestingWebhookId(id);
+    try {
+      const result = await apiCall('profile', 'test_webhook', { webhook_id: id });
+      if (!result?.success) throw new Error('Webhook test was not completed');
+      addToast('Test webhook sent', 'success');
+      loadSection('webhooks');
+    } catch (err) {
+      addToast(getExactErrorMessage(err, 'Failed to test webhook'), 'error');
+    } finally {
+      setTestingWebhookId(null);
     }
   };
 
@@ -1829,6 +1849,24 @@ export default function Profile() {
                     {t('profile.addWebhook')}
                   </Button>
                 </div>
+                <div style={{ marginTop: 12, display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+                  {['quiz.completed', 'api_key.created', 'api_key.revoked', 'webhook.test'].map((event) => (
+                    <label key={event} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: THEME.textSecondary, fontSize: 12 }}>
+                      <input
+                        type="checkbox"
+                        checked={webhookEvents.includes(event)}
+                        onChange={(e) => setWebhookEvents((prev) => e.target.checked ? [...new Set([...prev, event])] : prev.filter((item) => item !== event))}
+                      />
+                      {event}
+                    </label>
+                  ))}
+                </div>
+                {webhookSecret && (
+                  <div className="notification-row" style={{ marginTop: 12, border: '1px solid var(--warning)', padding: 12 }}>
+                    <strong style={{ color: THEME.textMain }}>Save this webhook signing secret now.</strong>
+                    <code style={{ display: 'block', marginTop: 6, wordBreak: 'break-all' }}>{webhookSecret}</code>
+                  </div>
+                )}
 
                 {sectionLoading ? (
                   <Spinner context="data" size="sm" />
@@ -1841,9 +1879,14 @@ export default function Profile() {
                           {(webhook.events || []).join(', ')} · {webhook.is_active ? t('profile.active') : t('profile.disabled')}
                         </div>
                       </div>
-                      <Button variant="outline" size="sm" loading={deletingWebhookId === webhook.id} onClick={() => handleDeleteWebhook(webhook.id)}>
-                        {t('profile.delete')}
-                      </Button>
+                      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                        <Button variant="outline" size="sm" loading={testingWebhookId === webhook.id} onClick={() => handleTestWebhook(webhook.id)}>
+                          Test
+                        </Button>
+                        <Button variant="outline" size="sm" loading={deletingWebhookId === webhook.id} onClick={() => handleDeleteWebhook(webhook.id)}>
+                          {t('profile.delete')}
+                        </Button>
+                      </div>
                     </div>
                   ))
                 )}
