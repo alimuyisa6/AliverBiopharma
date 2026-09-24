@@ -156,8 +156,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  /* Loading indicators remain animated so active work is visible. */
   .spinner,
   .skeleton {
-    animation: none;
+    animation-duration: revert !important;
+    animation-iteration-count: infinite !important;
   }
 }
