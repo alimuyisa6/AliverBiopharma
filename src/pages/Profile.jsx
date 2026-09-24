@@ -953,7 +953,7 @@ export default function Profile() {
                           fontSize: 14
                         }}
                       >
-                        {section.label}
+                        {t(`profile.${section.key}`)}
                       </button>
                     </li>
                   ))}
