@@ -4,7 +4,6 @@ import { useLayout } from '../contexts/LayoutContext';
 import { useI18n } from '../contexts/I18nContext';
 import { SUPPORTED_LOCALES } from '../i18n/locales';
 import {
-  apiCall,
   updateProfile,
   changePassword,
   requestLevelChange,
@@ -26,6 +25,8 @@ import {
   getWebhooks,
   createWebhook,
   deleteWebhook,
+  updateWebhook,
+  testWebhook,
   updateBio,
   updatePreferences,
   saveParentGuardian,
