@@ -2065,6 +2065,14 @@ unitId
 return Array.isArray(data) ? data : (Array.isArray(data?.pdfs) ? data.pdfs : []);
 }
 
+export async function getPdfDownloadUrl(pdfId) {
+return getRequest('pdf-resources', 'download_url', { id: pdfId });
+}
+
+export async function downloadPdf(pdfId) {
+return getRequest('pdf-resources', 'download', { id: pdfId });
+}
+
 export async function trackPdfPreview(pdfId) {
 return apiCall(
 'pdf-resources',
