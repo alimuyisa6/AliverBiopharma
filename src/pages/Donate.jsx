@@ -168,7 +168,7 @@ export default function Donate() {
             role="tab"
             aria-selected={tab === 'momo'}
           >
-            <Icon name="mobile-screen" />
+            <Icon name="credit-card" />
             Mobile Money
           </button>
         </div>
@@ -214,7 +214,7 @@ export default function Donate() {
         {tab === 'momo' && (
           <section className="donate-card" aria-labelledby="momo-title">
             <div className="donate-card-heading">
-              <Icon name="mobile-screen" />
+              <Icon name="credit-card" />
               <h2 id="momo-title">Mobile Money</h2>
             </div>
 
