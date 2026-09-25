@@ -27,12 +27,41 @@
   overflow: hidden;
   padding: var(--auth-brand-padding-y) var(--auth-brand-padding-x);
   color: var(--white);
-  background: linear-gradient(
-    160deg,
-    var(--auth-brand) 0%,
-    #3b82f6 42%,
-    #1d4ed8 100%
-  );
+  background:
+    radial-gradient(
+      ellipse 430px 235px at -4% 8%,
+      rgba(255, 255, 255, 0.52) 0%,
+      rgba(255, 255, 255, 0.34) 28%,
+      rgba(255, 255, 255, 0.12) 55%,
+      transparent 76%
+    ),
+    radial-gradient(
+      ellipse 360px 205px at 101% 18%,
+      rgba(255, 255, 255, 0.44) 0%,
+      rgba(255, 255, 255, 0.27) 30%,
+      rgba(255, 255, 255, 0.08) 57%,
+      transparent 78%
+    ),
+    radial-gradient(
+      ellipse 520px 250px at 14% 103%,
+      rgba(255, 255, 255, 0.43) 0%,
+      rgba(255, 255, 255, 0.25) 31%,
+      rgba(255, 255, 255, 0.08) 58%,
+      transparent 79%
+    ),
+    radial-gradient(
+      ellipse 420px 220px at 103% 92%,
+      rgba(255, 255, 255, 0.38) 0%,
+      rgba(255, 255, 255, 0.22) 30%,
+      rgba(255, 255, 255, 0.07) 58%,
+      transparent 80%
+    ),
+    radial-gradient(
+      ellipse 300px 170px at 50% 48%,
+      rgba(255, 255, 255, 0.10) 0%,
+      transparent 72%
+    ),
+    linear-gradient(160deg, var(--auth-brand) 0%, #3b82f6 42%, #1d4ed8 100%);
 }
 
 .auth-brand-panel::before,
@@ -44,27 +73,23 @@
 }
 
 .auth-brand-panel::before {
-  width: 340px;
-  height: 340px;
-  top: -110px;
-  right: -110px;
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.10) 0%,
-    transparent 70%
-  );
+  width: 260px;
+  height: 170px;
+  top: -72px;
+  right: 18%;
+  background: rgba(255, 255, 255, 0.12);
+  filter: blur(34px);
+  transform: rotate(-8deg);
 }
 
 .auth-brand-panel::after {
-  width: 240px;
-  height: 240px;
-  bottom: -90px;
-  left: -70px;
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.30) 0%,
-    transparent 70%
-  );
+  width: 300px;
+  height: 155px;
+  bottom: -58px;
+  left: 18%;
+  background: rgba(255, 255, 255, 0.13);
+  filter: blur(36px);
+  transform: rotate(7deg);
 }
 
 .auth-brand-panel > * {
