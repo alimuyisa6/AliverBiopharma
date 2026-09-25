@@ -199,6 +199,37 @@
   --level-pharmacy-light: var(--teal-50);
 
   --section-tint: var(--grey-50);
+
+  /* Authentication surface tokens */
+  --auth-bg: #f6f8fc;
+  --auth-surface: #ffffff;
+  --auth-surface-alt: #f9fafc;
+  --auth-border: #e6eaf1;
+  --auth-border-strong: #cdd5e2;
+  --auth-text: #0f172a;
+  --auth-text-muted: #5a6579;
+  --auth-text-faint: #8a94a6;
+  --auth-brand: #4f46e5;
+  --auth-brand-hover: #4338ca;
+  --auth-brand-soft: #eef2ff;
+  --auth-brand-ring: rgba(79, 70, 229, 0.18);
+  --auth-accent: #ec4899;
+  --auth-accent-soft: #fce7f3;
+  --auth-danger: #dc2626;
+  --auth-danger-soft: #fef2f2;
+  --auth-success: #16a34a;
+  --auth-success-soft: #f0fdf4;
+  --auth-warning: #ea580c;
+  --auth-warning-soft: #fff7ed;
+  --auth-shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --auth-shadow-sm: 0 2px 6px rgba(15, 23, 42, 0.06);
+  --auth-shadow: 0 8px 20px -6px rgba(15, 23, 42, 0.10), 0 2px 6px rgba(15, 23, 42, 0.05);
+  --auth-shadow-lg: 0 30px 60px -20px rgba(15, 23, 42, 0.20);
+  --auth-radius-xs: 6px;
+  --auth-radius-sm: 10px;
+  --auth-radius: 14px;
+  --auth-radius-lg: 20px;
+  --auth-radius-xl: 28px;
 }
 
 body.dark-mode {
