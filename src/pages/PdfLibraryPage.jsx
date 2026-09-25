@@ -118,7 +118,6 @@ export default function PdfLibraryPage() {
 
         <div className="pdf-library-heading">
           <h1 className="section-title pdf-library-title">PDF Library</h1>
-
           {(levelName || classLabel) && (
             <p className="pdf-library-class">
               {levelName}
