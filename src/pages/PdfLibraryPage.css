@@ -1,7 +1,8 @@
 /* src/pages/PdfLibraryPage.css */
 
 .pdf-library-page {
-  width: 100%;
+  width: min(1240px, calc(100% - 2 * var(--space-6)));
+  margin-inline: auto;
   padding-block: var(--space-10) var(--space-16);
 }
 
@@ -157,6 +158,7 @@
 
 @media (max-width: 768px) {
   .pdf-library-page {
+    width: min(100% - 2 * var(--space-4), 1240px);
     padding-block: var(--space-8) var(--space-12);
   }
 
