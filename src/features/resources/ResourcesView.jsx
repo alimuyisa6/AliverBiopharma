@@ -1,62 +1,88 @@
- // src/features/resources/ResourcesView.jsx
+// src/features/resources/ResourcesView.jsx
 
+import { useMemo, useState } from 'react';
 import Icon from '../../components/Icon/Icon';
 import Button from '../../components/Button/Button';
 import { useLayout } from '../../contexts/LayoutContext';
+import '../../styles/resources.css';
 
 const CONTENT_TYPES = [
   {
     key: 'notes',
     label: 'Notes',
-    description: 'Structured topic notes with diagrams and summaries',
+    description: 'Structured Biology and Pharmacy notes with clear explanations, diagrams, and summaries.',
     icon: 'book-open',
     route: '/notes',
-    color: 'blue'
+    color: 'blue',
+    category: 'study'
   },
   {
     key: 'flashcards',
     label: 'Flashcards',
-    description: 'Active recall with flip, typed, and MCQ modes',
+    description: 'Active recall with focused cards designed to strengthen memory and understanding.',
     icon: 'layer-group',
     route: '/flashcards',
-    color: 'teal'
+    color: 'teal',
+    category: 'study'
   },
   {
     key: 'pdfs',
     label: 'PDF Library',
-    description: 'Downloadable guides and reference sheets',
+    description: 'Downloadable guides, reference sheets, and carefully organised study documents.',
     icon: 'file-pdf',
     route: '/pdfs',
-    color: 'grey'
+    color: 'grey',
+    category: 'reference'
   },
   {
     key: 'quizzes',
     label: 'Quizzes',
-    description: 'Block-by-block testing across every unit',
+    description: 'Structured assessments across Biology and Pharmacy topics to test what you know.',
     icon: 'clipboard-check',
     route: '/quiz',
-    color: 'amber'
+    color: 'amber',
+    category: 'assessment'
   },
   {
     key: 'past_papers',
     label: 'Past Papers',
-    description: 'Real exam papers by year and board',
+    description: 'Exam papers organised for focused practice, revision, and exam preparation.',
     icon: 'file-lines',
     route: '/past-papers',
-    color: 'emerald'
+    color: 'emerald',
+    category: 'assessment'
   },
   {
     key: 'recall',
     label: 'Recall',
-    description: 'Spaced repetition for lasting memory',
+    description: 'Spaced repetition that brings important topics back at the right time for review.',
     icon: 'brain',
     route: '/recall',
-    color: 'blue'
+    color: 'violet',
+    category: 'practice'
   }
 ];
 
+const FILTERS = [
+  { key: 'all', label: 'All' },
+  { key: 'study', label: 'Study' },
+  { key: 'practice', label: 'Practice' },
+  { key: 'assessment', label: 'Assessment' },
+  { key: 'reference', label: 'Reference' }
+];
+
+const CATEGORY_LABELS = {
+  study: 'Study',
+  practice: 'Practice',
+  assessment: 'Assessment',
+  reference: 'Reference'
+};
+
 export default function ResourcesView({ navigate, user, sections }) {
-  const { bootstrap } = useLayout();
+  const { level, bootstrap } = useLayout();
+  const [filter, setFilter] = useState('all');
+  const [query, setQuery] = useState('');
+
   const uiComponents = bootstrap?.ui_components || [];
 
   function getImage(key) {
@@ -67,77 +93,191 @@ export default function ResourcesView({ navigate, user, sections }) {
     return component?.properties?.image_url || component?.image_url || null;
   }
 
-  const hubComponent = uiComponents.find((item) => item.component_key === 'resources_hub_section');
-  const hubImage = hubComponent?.properties?.image_url || hubComponent?.image_url || null;
+  const hubComponent = uiComponents.find(
+    (item) => item.component_key === 'resources_hub_section'
+  );
+  const hubImage =
+    hubComponent?.properties?.image_url || hubComponent?.image_url || null;
+
+  const filteredTypes = useMemo(() => {
+    const normalizedQuery = query.trim().toLowerCase();
+
+    return CONTENT_TYPES.filter((type) => {
+      const matchesFilter = filter === 'all' || type.category === filter;
+      const matchesQuery =
+        !normalizedQuery ||
+        type.label.toLowerCase().includes(normalizedQuery) ||
+        type.description.toLowerCase().includes(normalizedQuery);
+
+      return matchesFilter && matchesQuery;
+    });
+  }, [filter, query]);
+
+  const levelName =
+    level?.display_name || level?.name || level?.title || 'Your level';
+
+  const subtitle =
+    sections?.section_headings?.content_types_subtitle ||
+    'Notes, flashcards, quizzes, past papers and recall — everything you need to study Biology and Pharmacy with purpose.';
+
+  function handleBrowse(type) {
+    navigate(user ? type.route : '/login');
+  }
 
   return (
     <div className="resources-page">
-      <section className="section resources-hero">
-        <span className="eyebrow">Resources</span>
+      <section className="resources-hero">
+        <div className="resources-hero-inner">
+          <div className="resources-hero-eyebrow">
+            <Icon name="book-open" />
+            <span>Resources · {levelName}</span>
+          </div>
 
-        <h1>
-          Choose The Best Of You and <br />
-          <span className="resources-hero-break">
-            Start Learning.
-          </span>
-        </h1>
+          <h1>Your curated learning library</h1>
 
-        <p className="section-subtitle">
-          {sections?.section_headings?.content_types_subtitle ||
-            'Notes, flashcards, quizzes, past papers and recall — everything you need, all in one place.'}
-        </p>
-        {hubImage && <div className="resources-hero-illustration"><img src={hubImage} alt="AliverBiopharm resources hub" loading="lazy" /></div>}
-      </section>
+          <p>
+            {subtitle}
+          </p>
 
-      <section className="section resources-grid-section">
-        <div className="resources-grid">
-          {CONTENT_TYPES.map((type) => {
-            const imageUrl = getImage(type.key);
+          <div className="resources-hero-stats" aria-label="Resource summary">
+            <div className="resources-stat">
+              <span className="resources-stat-value">{CONTENT_TYPES.length}</span>
+              <span className="resources-stat-label">Learning tools</span>
+            </div>
+            <div className="resources-stat">
+              <span className="resources-stat-value">{filteredTypes.length}</span>
+              <span className="resources-stat-label">Showing now</span>
+            </div>
+            <div className="resources-stat">
+              <span className="resources-stat-value">{levelName}</span>
+              <span className="resources-stat-label">Current level</span>
+            </div>
+          </div>
 
-            return (
-              <article
-                key={type.key}
-                className={`resource-card resource-card-${type.color}`}
-                aria-label={type.label}
-              >
-                <div className="resource-card-image">
-                  {imageUrl ? (
-                    <img
-                      src={imageUrl}
-                      alt={type.label}
-                      loading="lazy"
-                    />
-                  ) : (
-                    <Icon name={type.icon} />
-                  )}
-                </div>
-
-                <div className="resource-card-body">
-                  <h2 className="resource-card-title">
-                    {type.label}
-                  </h2>
-
-                  <p className="resource-card-desc">
-                    {type.description}
-                  </p>
-                </div>
-
-                <div className="resource-card-actions">
-                  <Button
-                    size="sm"
-                    variant="secondary"
-                    onClick={() =>
-                      navigate(user ? type.route : '/login')
-                    }
-                  >
-                    Browse
-                  </Button>
-                </div>
-              </article>
-            );
-          })}
+          {hubImage && (
+            <div className="resources-hero-illustration">
+              <img
+                src={hubImage}
+                alt="AliverBiopharm resources"
+                loading="lazy"
+              />
+            </div>
+          )}
         </div>
       </section>
+
+      <main className="resources-main">
+        <div className="resources-toolbar">
+          <label className="resources-search">
+            <Icon name="search" />
+            <span className="sr-only">Search resources</span>
+            <input
+              type="search"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Search resources…"
+              aria-label="Search resources"
+            />
+          </label>
+
+          <div className="resources-filter-chips" role="group" aria-label="Filter resources">
+            {FILTERS.map((item) => (
+              <button
+                key={item.key}
+                type="button"
+                className={`resources-chip${filter === item.key ? ' active' : ''}`}
+                onClick={() => setFilter(item.key)}
+                aria-pressed={filter === item.key}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="resources-section-head">
+          <div>
+            <span className="resources-section-kicker">Learning library</span>
+            <h2 className="resources-section-title">
+              Explore your resources
+              <span className="resources-section-count">{filteredTypes.length}</span>
+            </h2>
+          </div>
+          <span className="resources-section-context">
+            {levelName}
+          </span>
+        </div>
+
+        {filteredTypes.length > 0 ? (
+          <div className="resources-grid">
+            {filteredTypes.map((type) => {
+              const imageUrl = getImage(type.key);
+
+              return (
+                <article
+                  key={type.key}
+                  className={`resource-card resource-card-${type.color}`}
+                >
+                  <div className="resource-card-top">
+                    <div className="resource-card-icon" aria-hidden="true">
+                      {imageUrl ? (
+                        <img src={imageUrl} alt="" loading="lazy" />
+                      ) : (
+                        <Icon name={type.icon} />
+                      )}
+                    </div>
+                    <span className="resource-card-badge">
+                      {CATEGORY_LABELS[type.category]}
+                    </span>
+                  </div>
+
+                  <div className="resource-card-body">
+                    <h3 className="resource-card-title">{type.label}</h3>
+                    <p className="resource-card-desc">{type.description}</p>
+                  </div>
+
+                  <div className="resource-card-footer">
+                    <span className="resource-card-meta">
+                      <Icon name="arrow-right" />
+                      Open resource
+                    </span>
+
+                    <Button
+                      size="sm"
+                      variant="secondary"
+                      onClick={() => handleBrowse(type)}
+                      aria-label={`Browse ${type.label}`}
+                    >
+                      Browse
+                    </Button>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        ) : (
+          <div className="resources-empty-state">
+            <div className="resources-empty-icon" aria-hidden="true">
+              <Icon name="search" />
+            </div>
+            <h3>No resources found</h3>
+            <p>
+              Try another search term or choose a different resource category.
+            </p>
+            <Button
+              variant="secondary"
+              size="sm"
+              onClick={() => {
+                setQuery('');
+                setFilter('all');
+              }}
+            >
+              <Icon name="refresh" />
+              Reset filters
+            </Button>
+          </div>
+        )}
+      </main>
     </div>
   );
 }
