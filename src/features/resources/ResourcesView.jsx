@@ -126,60 +126,8 @@ export default function ResourcesView({ navigate, user, sections }) {
 
   return (
     <div className="resources-page">
-      <section className="resources-hero">
-        <div className="resources-hero-inner">
-          <div className="resources-hero-eyebrow">
-            <Icon name="book-open" />
-            <span>Resources · {levelName}</span>
-          </div>
-
-          <h1>Your curated learning library</h1>
-
-          <p>
-            {subtitle}
-          </p>
-
-          <div className="resources-hero-stats" aria-label="Resource summary">
-            <div className="resources-stat">
-              <span className="resources-stat-value">{CONTENT_TYPES.length}</span>
-              <span className="resources-stat-label">Learning tools</span>
-            </div>
-            <div className="resources-stat">
-              <span className="resources-stat-value">{filteredTypes.length}</span>
-              <span className="resources-stat-label">Showing now</span>
-            </div>
-            <div className="resources-stat">
-              <span className="resources-stat-value">{levelName}</span>
-              <span className="resources-stat-label">Current level</span>
-            </div>
-          </div>
-
-          {hubImage && (
-            <div className="resources-hero-illustration">
-              <img
-                src={hubImage}
-                alt="AliverBiopharm resources"
-                loading="lazy"
-              />
-            </div>
-          )}
-        </div>
-      </section>
-
       <main className="resources-main">
         <div className="resources-toolbar">
-          <label className="resources-search">
-            <Icon name="search" />
-            <span className="sr-only">Search resources</span>
-            <input
-              type="search"
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              placeholder="Search resources…"
-              aria-label="Search resources"
-            />
-          </label>
-
           <div className="resources-filter-chips" role="group" aria-label="Filter resources">
             {FILTERS.map((item) => (
               <button
@@ -193,6 +141,29 @@ export default function ResourcesView({ navigate, user, sections }) {
               </button>
             ))}
           </div>
+
+          <label className="resources-search">
+            <Icon name="search" />
+            <span className="sr-only">Search resources</span>
+            <input
+              type="search"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Search resources…"
+              aria-label="Search resources"
+            />
+          </label>
+        </div>
+
+        <div className="resources-intro">
+          <div>
+            <span className="resources-section-kicker">Resources · {levelName}</span>
+            <h1>Your learning library</h1>
+            <p>{subtitle}</p>
+          </div>
+          <span className="resources-section-context">
+            {filteredTypes.length} of {CONTENT_TYPES.length}
+          </span>
         </div>
 
         <div className="resources-section-head">
@@ -203,9 +174,6 @@ export default function ResourcesView({ navigate, user, sections }) {
               <span className="resources-section-count">{filteredTypes.length}</span>
             </h2>
           </div>
-          <span className="resources-section-context">
-            {levelName}
-          </span>
         </div>
 
         {filteredTypes.length > 0 ? (
