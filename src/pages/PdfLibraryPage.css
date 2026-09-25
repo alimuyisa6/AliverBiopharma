@@ -1,7 +1,15 @@
 /* src/pages/PdfLibraryPage.css */
 
+.section.pdf-library-section {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding-inline: clamp(var(--space-4), 3vw, var(--space-10));
+}
+
 .pdf-library-page {
-  width: min(1240px, calc(100% - 2 * var(--space-6)));
+  width: 100%;
+  max-width: 1240px;
   margin-inline: auto;
   padding-block: var(--space-10) var(--space-16);
 }
@@ -157,8 +165,12 @@
 }
 
 @media (max-width: 768px) {
+  .section.pdf-library-section {
+    padding-inline: var(--space-4);
+  }
+
   .pdf-library-page {
-    width: min(100% - 2 * var(--space-4), 1240px);
+    max-width: none;
     padding-block: var(--space-8) var(--space-12);
   }
 
