@@ -189,7 +189,7 @@ export default function PdfLibraryPage() {
                     <Icon name="download" /> Download
                   </a>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         )}
