@@ -53,6 +53,18 @@
   --text-gap-action: var(--space-6);
   --title-line-gap: var(--space-2);
 
+  /* Authentication layout rhythm */
+  --auth-shell-max-width: 1060px;
+  --auth-shell-min-height: 660px;
+  --auth-panel-padding-x: 3rem;
+  --auth-panel-padding-y: 3rem;
+  --auth-brand-padding-x: 2.75rem;
+  --auth-brand-padding-y: 3rem;
+  --auth-field-gap: 1.05rem;
+  --auth-control-padding-y: 0.8rem;
+  --auth-control-padding-x: 0.95rem;
+  --auth-form-max-width: 460px;
+
   /* --------------------------------------------------------------
      Component density
      -------------------------------------------------------------- */
