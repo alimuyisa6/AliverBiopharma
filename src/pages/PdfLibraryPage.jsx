@@ -168,7 +168,7 @@ export default function PdfLibraryPage() {
         ) : (
           <div className="pdf-grid">
             {sortedPdfs.map((pdf) => (
-              <div key={pdf.id} className="card pdf-card">
+              <article key={pdf.id} className="pdf-card">
                 <div className="card-image-placeholder pdf-card-image">
                   <Icon name="file-pdf" className="pdf-card-icon" />
                 </div>
