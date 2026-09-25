@@ -173,18 +173,18 @@ export default function PdfLibraryPage() {
                   <Icon name="file-pdf" className="pdf-card-icon" />
                 </div>
 
-                <div className="card-body">
-                  <h3 className="card-title">{pdf.title}</h3>
-                  {pdf.author && <p className="card-text">{pdf.author}</p>}
-                  {pdf.file_size && <span className="chip">{pdf.file_size}</span>}
+                <div className="pdf-card-body">
+                  <h3 className="pdf-card-title">{pdf.title}</h3>
+                  {pdf.author && <p className="pdf-card-author">{pdf.author}</p>}
+                  {pdf.file_size && <span className="pdf-card-size">{pdf.file_size}</span>}
                 </div>
 
-                <div className="card-footer">
+                <div className="pdf-card-footer">
                   <a
                     href={pdf.file_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn btn-primary btn-sm"
+                    className="btn btn-primary btn-sm pdf-download"
                   >
                     <Icon name="download" /> Download
                   </a>
