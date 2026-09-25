@@ -1,6 +1,6 @@
 /* pages/PdfLibraryPage.jsx */
 import { useState, useEffect } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { useContentAccess } from '../hooks/useContentAccess';
 import { useLevelFilter } from '../hooks/useLevelFilter';
 import { useLayout } from '../contexts/LayoutContext';
@@ -21,6 +21,7 @@ export default function PdfLibraryPage() {
   const [pdfs, setPdfs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [sortBy, setSortBy] = useState('title');
 
   useEffect(() => {
     if (!access.canAccess) {
@@ -54,9 +55,25 @@ export default function PdfLibraryPage() {
 
   function getEmptyStateImage(key) {
     const uiComponents = bootstrap?.ui_components || [];
-    const component = uiComponents.find((item) => item.component_key === `empty_state_${key}`);
+    const component = uiComponents.find(
+      (item) => item.component_key === `empty_state_${key}`
+    );
 
     return component?.properties?.image_url || null;
+  }
+
+  function sortPdfs(items) {
+    return [...items].sort((a, b) => {
+      if (sortBy === 'author') {
+        return String(a.author || '').localeCompare(String(b.author || ''));
+      }
+
+      if (sortBy === 'size') {
+        return String(a.file_size || '').localeCompare(String(b.file_size || ''));
+      }
+
+      return String(a.title || '').localeCompare(String(b.title || ''));
+    });
   }
 
   if (!access.canAccess) {
@@ -73,24 +90,49 @@ export default function PdfLibraryPage() {
 
   const levelName = displayName || level || '';
   const classLabel = class_name || '';
+  const sortedPdfs = sortPdfs(pdfs);
 
   return (
     <Container>
       <div className="pdf-library-page">
-        <span className="sec-label">PDF Library</span>
-        <h1 className="section-title pdf-library-title">
-          PDF Resources<br />{levelName ? `– ${levelName}` : ''}
-        </h1>
+        <div className="toolbar">
+          <span className="result-count">
+            <strong>{pdfs.length}</strong>{' '}
+            {pdfs.length === 1 ? 'document' : 'documents'}
+          </span>
 
-        {classLabel && <p className="pdf-library-class">{classLabel}</p>}
+          <div className="toolbar-spacer" />
 
-        <nav className="breadcrumb">
-          <Link to="/"><Icon name="home" className="breadcrumb-icon" /> Home</Link>
-          <Icon name="chevron-right" className="breadcrumb-sep" />
-          <span>PDF Library</span>
-        </nav>
+          <select
+            className="sort-select"
+            id="sortSelect"
+            value={sortBy}
+            onChange={(event) => setSortBy(event.target.value)}
+            aria-label="Sort documents"
+          >
+            <option value="title">Title</option>
+            <option value="author">Author</option>
+            <option value="size">Size</option>
+          </select>
+        </div>
 
-        {curriculumUnitId && <p className="pdf-library-class">Showing resources for this curriculum node.</p>}
+        <div className="pdf-library-heading">
+          <h1 className="section-title pdf-library-title">PDF Library</h1>
+
+          {(levelName || classLabel) && (
+            <p className="pdf-library-class">
+              {levelName}
+              {levelName && classLabel ? ' · ' : ''}
+              {classLabel}
+            </p>
+          )}
+        </div>
+
+        {curriculumUnitId && (
+          <p className="pdf-library-class">
+            Showing resources for this curriculum node.
+          </p>
+        )}
 
         {loading ? (
           <div className="pdf-skeleton-grid">
@@ -109,11 +151,10 @@ export default function PdfLibraryPage() {
           <EmptyState
             image={getEmptyStateImage('pdfs')}
             title="No PDFs Available"
-            description={`No PDF resources found for ${classLabel || levelName || 'your level'}.`}
           />
         ) : (
           <div className="pdf-grid">
-            {pdfs.map((pdf) => (
+            {sortedPdfs.map((pdf) => (
               <div key={pdf.id} className="card pdf-card">
                 <div className="card-image-placeholder pdf-card-image">
                   <Icon name="file-pdf" className="pdf-card-icon" />
@@ -126,7 +167,12 @@ export default function PdfLibraryPage() {
                 </div>
 
                 <div className="card-footer">
-                  <a href={pdf.file_url} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-sm">
+                  <a
+                    href={pdf.file_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-primary btn-sm"
+                  >
                     <Icon name="download" /> Download
                   </a>
                 </div>
