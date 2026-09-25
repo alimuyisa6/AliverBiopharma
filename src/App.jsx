@@ -38,6 +38,7 @@ import Advertise from './pages/Advertise';
 import AdvertiseCreate from './pages/AdvertiseCreate';
 import AdvertisePayment from './pages/AdvertisePayment';
 import CurriculumNodePage from './pages/CurriculumNodePage';
+import Donate from './pages/Donate';
 
 function GlobalLoader() {
   return (
@@ -112,6 +113,7 @@ function AppRoutes() {
     '/faq',
     '/blog',
     '/contact',
+    '/donate',
     '/community',
     '/advertise',
     '/',
@@ -183,6 +185,7 @@ function AppRoutes() {
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/:slug" element={<BlogPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/donate" element={<Donate />} />
             <Route path="/community" element={<ProtectedRoute><CommunityPage /></ProtectedRoute>} />
             <Route path="/tutor/apply" element={<ProtectedRoute><TutorApply /></ProtectedRoute>} />
             <Route path="/tutor/dashboard" element={<ProtectedRoute><TutorDashboard /></ProtectedRoute>} />
