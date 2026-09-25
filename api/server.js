@@ -42,7 +42,8 @@ const MODULE_MAP = {
   subscriptions: () => import('../lib/subscriptions.js'),
   ads: () => import('../lib/ads.js'),
   donations: () => import('../lib/donations.js'),
-  authorization: () => import('../lib/authorization.js')
+  authorization: () => import('../lib/authorization.js'),
+  'dynamic-actions': () => import('../lib/dynamic-actions.js')
 };
 
 export default async function handler(req, res) {
@@ -59,9 +60,7 @@ export default async function handler(req, res) {
 
   if (!importFn) {
     const ctx = await passGate(req, res, moduleName, path);
-
     if (!ctx) return;
-
     return res.status(404).json({ error: getVagueErrorMessage() });
   }
 
@@ -79,11 +78,9 @@ export default async function handler(req, res) {
   }
 
   const ctx = await passGate(req, res, moduleName, path);
-
   if (!ctx) return;
 
   let mod;
-
   try {
     mod = await importFn();
   } catch (importErr) {
@@ -93,9 +90,7 @@ export default async function handler(req, res) {
 
   try {
     if (mod.setContext) await mod.setContext(ctx);
-
     const handlerResult = await mod.handler(req, res, path, ctx);
-
     if (!res.writableEnded && handlerResult !== true) {
       res.status(405).json({ error: getVagueErrorMessage() });
     }
