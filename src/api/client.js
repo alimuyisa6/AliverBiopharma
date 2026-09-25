@@ -3436,3 +3436,15 @@ export async function streamAIAssistant(
 
   return fullText;
 }
+
+export async function getDonateConfig() {
+  return getRequest('donations', 'config');
+}
+
+export async function getDonors() {
+  return getRequest('donations', 'donors');
+}
+
+export async function submitMomoDonation(data) {
+  return apiCall('donations', 'submit_momo', data, 'POST');
+}
