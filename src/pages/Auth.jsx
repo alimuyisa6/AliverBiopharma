@@ -64,6 +64,7 @@ export default function Auth() {
   const [mfaError, setMfaError] = useState('');
   const [passkeyMfaToken, setPasskeyMfaToken] = useState('');
   const [passkeySubmitting, setPasskeySubmitting] = useState(false);
+  const [termsAccepted, setTermsAccepted] = useState(false);
 
   const { login, loginWithPasskey, refresh } = useAuth();
   const { t } = useI18n();
@@ -334,6 +335,11 @@ export default function Auth() {
       return;
     }
 
+    if (!termsAccepted) {
+      setError('Please accept the Terms of Service and Privacy Policy.');
+      return;
+    }
+
     setOnboardingStep(1);
   }
 
@@ -402,66 +408,94 @@ export default function Auth() {
 
   return (
     <div className="auth-page">
-      <div className="auth-form-panel">
+      <aside className="auth-brand-panel">
+        <div className="auth-brand-top">
+          <div className="auth-brand-logo" aria-label="AliverBiopharm">
+            <span className="auth-brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </span>
+            <span>AliverBiopharm</span>
+          </div>
+        </div>
+
+        <div className="auth-brand-copy">
+          <h1>Learn with clarity. Grow with confidence.</h1>
+          <p>
+            A focused learning platform for Biology and Pharmacy students,
+            built to make studying, recall, and assessment feel connected.
+          </p>
+
+          <ul className="auth-feature-list">
+            <li>
+              <Icon name="circle-check" />
+              Structured Biology and Pharmacy learning
+            </li>
+            <li>
+              <Icon name="circle-check" />
+              Notes, recall, flashcards, and assessments
+            </li>
+            <li>
+              <Icon name="circle-check" />
+              Learning progress that stays connected
+            </li>
+          </ul>
+        </div>
+
+        <div className="auth-brand-footer">
+          Advancing biology and pharmacy education
+        </div>
+      </aside>
+
+      <main className="auth-form-panel">
         <div className="auth-form-container">
           {pendingConfirmation ? (
             <div className="auth-state">
-              <Icon
-                name="envelope-circle-check"
-                className="auth-state-icon"
-              />
-
-              <h2 className="auth-state-title font-fraunces">
+              <div className="auth-state-icon-wrap">
+                <Icon name="envelope-circle-check" className="auth-state-icon" />
+              </div>
+              <h2 className="auth-state-title">
                 Check Your Inbox
               </h2>
-
-              <p className="auth-state-text font-source-sans">
+              <p className="auth-state-text">
                 {confirmationMessage}
               </p>
-
-              <Button
-                variant="ghost"
-                onClick={() => switchMode('login')}
-              >
+              <Button variant="ghost" onClick={() => switchMode('login')}>
                 <Icon name="arrow-left" />
                 Back to sign in
               </Button>
             </div>
           ) : success ? (
             <div className="auth-state">
-              <Icon
-                name="circle-check"
-                className="auth-state-icon auth-state-icon-success"
-              />
-
-              <h2 className="auth-state-title font-fraunces">
+              <div className="auth-state-icon-wrap auth-state-icon-wrap-success">
+                <Icon name="circle-check" className="auth-state-icon" />
+              </div>
+              <h2 className="auth-state-title">
                 {t('auth.accountCreated')}
               </h2>
-
-              <p className="auth-state-text font-source-sans">
+              <p className="auth-state-text">
                 {t('auth.welcomeRedirecting')}
               </p>
-
               <Spinner context="brand" />
             </div>
           ) : mfaStep ? (
             <div className="auth-form-block">
-              <h2 className="auth-heading font-fraunces">
-                {t('auth.twoFactor')}
-              </h2>
-
-              <p className="auth-subheading font-source-sans">
-                {passkeyMfaToken
-                  ? t('auth.confirmPasskeyMfa')
-                  : t('auth.enterMfaCode')}
-              </p>
+              <div className="auth-form-head">
+                <h2 className="auth-heading">
+                  {t('auth.twoFactor')}
+                </h2>
+                <p className="auth-subheading">
+                  {passkeyMfaToken
+                    ? t('auth.confirmPasskeyMfa')
+                    : t('auth.enterMfaCode')}
+                </p>
+              </div>
 
               {mfaError && (
-                <div className="alert alert-error">
+                <div className="auth-alert auth-alert-error">
                   <Icon name="exclamation-triangle" />
-                  <span className="font-open-sans">
-                    {mfaError}
-                  </span>
+                  <span>{mfaError}</span>
                 </div>
               )}
 
@@ -475,19 +509,15 @@ export default function Auth() {
                   value={mfaCode}
                   onChange={(event) =>
                     setMfaCode(
-                      event.target.value
-                        .replace(/\D/g, '')
-                        .slice(0, 6)
+                      event.target.value.replace(/\D/g, '').slice(0, 6)
                     )
                   }
                   disabled={submitting}
+                  className="auth-field auth-mfa-field"
                 />
 
                 {!passkeyMfaToken && (
-                  <div
-                    ref={setCaptchaSlot}
-                    className="auth-captcha"
-                  />
+                  <div ref={setCaptchaSlot} className="auth-captcha" />
                 )}
 
                 <Button
@@ -495,50 +525,64 @@ export default function Auth() {
                   loading={submitting}
                   loadingContext="brand"
                   className="auth-submit"
+                  variant="primary"
                 >
                   {t('auth.verifyAndSignIn')}
                 </Button>
               </form>
+
+              <div className="auth-switch">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    setMfaStep(false);
+                    setMfaCode('');
+                    setMfaError('');
+                    setPasskeyMfaToken('');
+                  }}
+                >
+                  <Icon name="arrow-left" />
+                  Back to sign in
+                </Button>
+              </div>
             </div>
           ) : onboardingStep > 0 ? (
             <div className="auth-form-block">
-              <h2 className="auth-heading font-fraunces">
-                {t('auth.completeProfile')}
-              </h2>
+              <div className="auth-form-head">
+                <h2 className="auth-heading">
+                  {t('auth.completeProfile')}
+                </h2>
+                <p className="auth-subheading">
+                  {t('auth.personaliseLearning')}
+                </p>
+              </div>
 
-              <p className="auth-subheading font-source-sans">
-                {t('auth.personaliseLearning')}
-              </p>
-
-              <div className="progress-track auth-progress">
-                <div
-                  className="progress-fill progress-gradient"
-                  style={{ width: `${progressPct()}%` }}
-                />
+              <div className="auth-progress">
+                <div className="auth-progress-track">
+                  <div
+                    className="auth-progress-fill"
+                    style={{ width: `${progressPct()}%` }}
+                  />
+                </div>
               </div>
 
               {error && (
-                <div className="alert alert-error">
+                <div className="auth-alert auth-alert-error">
                   <Icon name="exclamation-triangle" />
-                  <span className="font-open-sans">
-                    {error}
-                  </span>
+                  <span>{error}</span>
                 </div>
               )}
 
               {onboardingStep === 1 && (
                 <div className="auth-onboarding-step">
-                  <h3 className="auth-step-title font-poppins">
+                  <h3 className="auth-step-title">
                     {t('auth.iAmA')}
                   </h3>
 
                   <div className="auth-options">
                     <Button
-                      variant={
-                        role === 'student'
-                          ? 'primary'
-                          : 'secondary'
-                      }
+                      variant={role === 'student' ? 'primary' : 'secondary'}
                       onClick={() => {
                         setRole('student');
                         setOnboardingStep(2);
@@ -549,11 +593,7 @@ export default function Auth() {
                     </Button>
 
                     <Button
-                      variant={
-                        role === 'teacher'
-                          ? 'primary'
-                          : 'secondary'
-                      }
+                      variant={role === 'teacher' ? 'primary' : 'secondary'}
                       onClick={() => {
                         setRole('teacher');
                         setOnboardingStep(2);
@@ -568,51 +608,35 @@ export default function Auth() {
 
               {onboardingStep === 2 && (
                 <div className="auth-onboarding-step">
-                  <h3 className="auth-step-title font-poppins">
+                  <h3 className="auth-step-title">
                     {t('auth.selectLevel')}
                   </h3>
 
                   {levelsLoading && (
-                    <Spinner
-                      context="data"
-                      size="sm"
-                    />
+                    <div className="auth-levels-loading">
+                      <Spinner context="data" size="sm" />
+                    </div>
                   )}
 
                   {levelsError && (
-                    <p className="form-error font-open-sans">
-                      {levelsError}
-                    </p>
+                    <p className="auth-form-error">{levelsError}</p>
                   )}
 
                   {!levelsLoading && !levelsError && (
                     <div className="auth-options">
                       {levels.map((lvl) => {
                         const value = lvl.display_name;
-                        const rowKey =
-                          lvl.key ||
-                          lvl.id ||
-                          value;
+                        const rowKey = lvl.key || lvl.id || value;
 
                         return (
                           <Button
                             key={rowKey}
-                            variant={
-                              track === value
-                                ? 'primary'
-                                : 'secondary'
-                            }
+                            variant={track === value ? 'primary' : 'secondary'}
                             onClick={() => {
                               setTrack(value);
-                              handleOnboardingFinish(
-                                role,
-                                value
-                              );
+                              handleOnboardingFinish(role, value);
                             }}
-                            loading={
-                              submitting &&
-                              track === value
-                            }
+                            loading={submitting && track === value}
                             loadingContext="conic"
                             disabled={submitting}
                           >
@@ -620,11 +644,9 @@ export default function Auth() {
                               name={
                                 lvl.icon === 'dna'
                                   ? 'microscope'
-                                  : lvl.icon ||
-                                    'graduation-cap'
+                                  : lvl.icon || 'graduation-cap'
                               }
                             />
-
                             {lvl.display_name}
                           </Button>
                         );
@@ -636,45 +658,40 @@ export default function Auth() {
             </div>
           ) : (
             <div className="auth-form-block">
-              <h2 className="auth-heading font-fraunces">
-                {mode === 'login'
-                  ? t('common.signIn')
-                  : t('auth.createAccount')}
-              </h2>
-
-              <p className="auth-subheading font-source-sans">
-                {mode === 'login'
-                  ? t('auth.accessAccount')
-                  : t('auth.joinLearners')}
-              </p>
+              <div className="auth-form-head">
+                <h2 className="auth-heading">
+                  {mode === 'login'
+                    ? t('auth.loginTitle')
+                    : t('auth.registerTitle')}
+                </h2>
+                <p className="auth-subheading">
+                  {mode === 'login'
+                    ? t('auth.accessAccount')
+                    : t('auth.joinLearners')}
+                </p>
+              </div>
 
               {error && (
-                <div className="alert alert-error">
+                <div className="auth-alert auth-alert-error">
                   <Icon name="exclamation-triangle" />
-                  <span className="font-open-sans">
-                    {error}
-                  </span>
+                  <span>{error}</span>
                 </div>
               )}
 
               <form
-                onSubmit={
-                  mode === 'login'
-                    ? handleLogin
-                    : handleRegister
-                }
+                className="auth-form"
+                onSubmit={mode === 'login' ? handleLogin : handleRegister}
               >
                 {mode === 'register' && (
                   <Input
                     label={t('auth.fullNameLabel')}
                     placeholder={t('auth.enterFullName')}
                     value={fullName}
-                    onChange={(event) =>
-                      setFullName(event.target.value)
-                    }
+                    onChange={(event) => setFullName(event.target.value)}
                     required
                     disabled={submitting}
                     icon="user"
+                    className="auth-field"
                   />
                 )}
 
@@ -683,34 +700,60 @@ export default function Auth() {
                   type="email"
                   placeholder={t('auth.enterEmail')}
                   value={email}
-                  onChange={(event) =>
-                    setEmail(event.target.value)
-                  }
+                  onChange={(event) => setEmail(event.target.value)}
                   required
                   disabled={submitting}
                   icon="envelope"
+                  className="auth-field"
                 />
 
-                <Input
-                  label={t('auth.password')}
-                  type="password"
-                  placeholder={
-                    mode === 'register'
-                      ? 'Create a password'
-                      : 'Enter your password'
-                  }
-                  value={password}
-                  onChange={(event) =>
-                    setPassword(event.target.value)
-                  }
-                  required
-                  disabled={submitting}
-                  hint={
-                    mode === 'register'
-                      ? t('auth.passwordHint')
-                      : undefined
-                  }
-                />
+                <div className="auth-password-field">
+                  <Input
+                    label={t('auth.password')}
+                    type="password"
+                    placeholder={
+                      mode === 'register'
+                        ? t('auth.createPassword')
+                        : t('auth.enterPassword')
+                    }
+                    value={password}
+                    onChange={(event) => setPassword(event.target.value)}
+                    required
+                    disabled={submitting}
+                    icon="lock"
+                    hint={
+                      mode === 'register'
+                        ? t('auth.passwordHint')
+                        : undefined
+                    }
+                    className="auth-field"
+                  />
+
+                  {mode === 'register' && password.length > 0 && (
+                    <div className="auth-password-strength">
+                      <div className="auth-strength-bars">
+                        {[1, 2, 3, 4].map((level) => {
+                          const active =
+                            password.length >= 10
+                              ? [
+                                  password.length >= 10,
+                                  /[A-Z]/.test(password) && /[a-z]/.test(password),
+                                  /[0-9]/.test(password),
+                                  /[^A-Za-z0-9]/.test(password) && password.length >= 12
+                                ].filter(Boolean).length >= level
+                              : false;
+
+                          return (
+                            <span
+                              key={level}
+                              className={active ? 'active' : ''}
+                            />
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+                </div>
 
                 {mode === 'register' && (
                   <Input
@@ -718,18 +761,30 @@ export default function Auth() {
                     type="password"
                     placeholder={t('auth.confirmPasswordInput')}
                     value={confirm}
-                    onChange={(event) =>
-                      setConfirm(event.target.value)
-                    }
+                    onChange={(event) => setConfirm(event.target.value)}
                     required
                     disabled={submitting}
+                    icon="lock"
+                    className="auth-field"
                   />
                 )}
 
-                <div
-                  ref={setCaptchaSlot}
-                  className="auth-captcha"
-                />
+                <div ref={setCaptchaSlot} className="auth-captcha" />
+
+                {mode === 'register' && (
+                  <label className="auth-check-row">
+                    <input
+                      type="checkbox"
+                      checked={termsAccepted}
+                      onChange={(event) => setTermsAccepted(event.target.checked)}
+                      disabled={submitting}
+                    />
+                    <span>
+                      I agree to the <a href="/terms">Terms of Service</a> and{' '}
+                      <a href="/privacy">Privacy Policy</a>.
+                    </span>
+                  </label>
+                )}
 
                 <Button
                   type="submit"
@@ -755,40 +810,35 @@ export default function Auth() {
               {mode === 'login' && (
                 <Button
                   type="button"
-                  variant="outline"
-                  icon="fingerprint"
+                  variant="secondary"
                   loading={passkeySubmitting}
                   loadingContext="brand"
                   onClick={handlePasskeyLogin}
-                  className="auth-submit"
+                  className="auth-submit auth-passkey"
                 >
+                  <Icon name="fingerprint" />
                   Sign in with a Passkey
                 </Button>
               )}
 
               <div className="auth-switch">
-                {mode === 'login' ? (
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => switchMode('register')}
-                  >
-                    Sign Up
-                  </Button>
-                ) : (
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => switchMode('login')}
-                  >
-                    {t('common.signIn')}
-                  </Button>
-                )}
+                <span>
+                  {mode === 'login'
+                    ? t('auth.noAccount')
+                    : t('auth.haveAccount')}
+                </span>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => switchMode(mode === 'login' ? 'register' : 'login')}
+                >
+                  {mode === 'login' ? 'Sign Up' : t('common.signIn')}
+                </Button>
               </div>
             </div>
           )}
         </div>
-      </div>
+      </main>
     </div>
   );
 }
