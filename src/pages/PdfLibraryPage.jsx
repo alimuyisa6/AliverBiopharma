@@ -181,12 +181,15 @@ export default function PdfLibraryPage() {
 
                 <div className="pdf-card-footer">
                   <a
-                    href={pdf.file_url}
+                    href={pdf.is_premium
+                      ? `/api/server?module=pdf-resources&path=download&id=${encodeURIComponent(pdf.id)}`
+                      : pdf.file_url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-primary btn-sm pdf-download"
+                    aria-label={pdf.is_premium ? `Download premium PDF: ${pdf.title}` : `Download PDF: ${pdf.title}`}
                   >
-                    <Icon name="download" /> Download
+                    <Icon name="download" /> {pdf.is_premium ? 'Download Premium' : 'Download'}
                   </a>
                 </div>
               </article>
