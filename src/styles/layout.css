@@ -220,11 +220,11 @@ body.dark-mode .site-header, body.dark-mode .site-header.scrolled { background: 
 .header-action-button:focus, .header-action-button:active { border: 0 !important; box-shadow: none !important; }
 .header-action-button:focus-visible { border: 0 !important; outline: 2px solid var(--primary-ring); outline-offset: var(--space-1); }
 .header-glyph { display: block; width: var(--space-7); height: var(--space-7); flex-shrink: 0; fill: none !important; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
-.hamburger-btn { display: none; align-items: center; justify-content: center; flex-shrink: 0; width: var(--space-12); height: var(--space-12); padding: 0; border: 0 !important; border-radius: var(--radius-none); background: transparent !important; color: var(--text-main); box-shadow: none; cursor: pointer; }
-.hamburger-btn:hover { border: 0 !important; background: var(--grey-200) !important; color: var(--primary); box-shadow: none; }
-.hamburger-btn:focus, .hamburger-btn:active { border: 0 !important; box-shadow: none; }
+.hamburger-btn { display: none; align-items: center; justify-content: center; flex-shrink: 0; width: var(--space-12); height: var(--space-12); min-width: var(--space-12); padding: 0 !important; border: 0 !important; border-radius: var(--radius-none) !important; background: transparent !important; color: var(--text-main); box-shadow: none !important; cursor: pointer; }
+.hamburger-btn:hover { border: 0 !important; background: var(--grey-200) !important; color: var(--primary); box-shadow: none !important; }
+.hamburger-btn:focus, .hamburger-btn:active { border: 0 !important; box-shadow: none !important; }
 .hamburger-btn:focus-visible { border: 0 !important; outline: 2px solid var(--primary-ring); outline-offset: var(--space-1); }
-.hamburger-btn .header-glyph { width: var(--space-7); height: var(--space-7); }
+.hamburger-btn .header-glyph { display: block; width: var(--space-7); height: var(--space-7); flex-shrink: 0; fill: none !important; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; color: inherit; }
 .menu-line { transform-origin: center; transition: transform var(--duration-fast) var(--ease-standard), opacity var(--duration-fast) var(--ease-standard); }
 .hamburger-btn[aria-expanded="true"] .menu-line-top { transform: translateY(var(--space-1)) rotate(45deg); }
 .hamburger-btn[aria-expanded="true"] .menu-line-middle { opacity: 0; }
