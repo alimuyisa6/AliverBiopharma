@@ -40,7 +40,8 @@ const MODULE_MAP = {
   articles: () => import('../lib/articles.js'),
   'pdf-resources': () => import('../lib/pdf-resources.js'),
   subscriptions: () => import('../lib/subscriptions.js'),
-ads: () => import('../lib/ads.js')
+  ads: () => import('../lib/ads.js'),
+  donations: () => import('../lib/donations.js')
 };
 
 export default async function handler(req, res) {
