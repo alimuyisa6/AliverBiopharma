@@ -209,12 +209,12 @@
   --auth-text: #0f172a;
   --auth-text-muted: #5a6579;
   --auth-text-faint: #8a94a6;
-  --auth-brand: #4f46e5;
-  --auth-brand-hover: #4338ca;
-  --auth-brand-soft: #eef2ff;
-  --auth-brand-ring: rgba(79, 70, 229, 0.18);
-  --auth-accent: #ec4899;
-  --auth-accent-soft: #fce7f3;
+  --auth-brand: #2563eb;
+  --auth-brand-hover: #1d4ed8;
+  --auth-brand-soft: #eff6ff;
+  --auth-brand-ring: rgba(37, 99, 235, 0.18);
+  --auth-accent: #60a5fa;
+  --auth-accent-soft: #dbeafe;
   --auth-danger: #dc2626;
   --auth-danger-soft: #fef2f2;
   --auth-success: #16a34a;
