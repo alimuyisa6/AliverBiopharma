@@ -78,7 +78,7 @@ export default function PdfLibraryPage() {
 
   if (access.loading) {
     return (
-      <Container>
+      <Container className="pdf-library-section">
         <div className="pdf-library-page">
           <div className="pdf-skeleton-grid">
             <Skeleton height={160} />
@@ -92,7 +92,7 @@ export default function PdfLibraryPage() {
 
   if (!access.canAccess) {
     return (
-      <Container>
+      <Container className="pdf-library-section">
         <EmptyState
           image={getEmptyStateImage('pdfs')}
           title="Access Restricted"
@@ -107,7 +107,7 @@ export default function PdfLibraryPage() {
   const sortedPdfs = sortPdfs(pdfs);
 
   return (
-    <Container>
+    <Container className="pdf-library-section">
       <div className="pdf-library-page">
         <div className="toolbar">
           <span className="result-count">
