@@ -24,9 +24,8 @@ export default function PdfLibraryPage() {
   const [sortBy, setSortBy] = useState('title');
 
   useEffect(() => {
-    if (!access.canAccess) {
-      setLoading(false);
-      return;
+    if (access.loading || !access.canAccess) {
+      return undefined;
     }
 
     let mounted = true;
@@ -36,7 +35,7 @@ export default function PdfLibraryPage() {
     return () => {
       mounted = false;
     };
-  }, [access.canAccess, level, class_name, curriculumUnitId]);
+  }, [access.loading, access.canAccess, level, class_name, curriculumUnitId]);
 
   async function loadPdfs(mounted = true) {
     setLoading(true);
@@ -74,6 +73,20 @@ export default function PdfLibraryPage() {
 
       return String(a.title || '').localeCompare(String(b.title || ''));
     });
+  }
+
+  if (access.loading) {
+    return (
+      <Container>
+        <div className="pdf-library-page">
+          <div className="pdf-skeleton-grid">
+            <Skeleton height={160} />
+            <Skeleton height={160} />
+            <Skeleton height={160} />
+          </div>
+        </div>
+      </Container>
+    );
   }
 
   if (!access.canAccess) {
