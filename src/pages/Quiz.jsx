@@ -657,7 +657,7 @@ export default function Quiz() {
                     <button
                       key={option}
                       className={`${cls} quiz-option-btn`}
-                      onClick={() => selectAnswer(option)} disabled={answerSubmitting}
+                      onClick={() => selectAnswer(option)}
                       disabled={answered || answerSubmitting || locked}
                     >
                       <span className="quiz-option-letter">{option}.</span>
