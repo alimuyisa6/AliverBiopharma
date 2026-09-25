@@ -10,6 +10,7 @@ import Skeleton from '../components/Skeleton/Skeleton';
 import EmptyState from '../components/EmptyState/EmptyState';
 import Button from '../components/Button/Button';
 import Container from '../components/Container/Container';
+import './PdfLibraryPage.css';
 
 export default function PdfLibraryPage() {
   const access = useContentAccess();
