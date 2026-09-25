@@ -30,8 +30,8 @@
   background: linear-gradient(
     160deg,
     var(--auth-brand) 0%,
-    var(--auth-brand-hover) 42%,
-    #312e81 100%
+    #3b82f6 42%,
+    #1d4ed8 100%
   );
 }
 
@@ -62,7 +62,7 @@
   left: -70px;
   background: radial-gradient(
     circle,
-    rgba(236, 72, 153, 0.22) 0%,
+    rgba(255, 255, 255, 0.30) 0%,
     transparent 70%
   );
 }
@@ -151,7 +151,7 @@
   width: 18px;
   height: 18px;
   flex: 0 0 18px;
-  color: #a5b4fc;
+  color: rgba(255, 255, 255, 0.88);
 }
 
 .auth-brand-footer {
