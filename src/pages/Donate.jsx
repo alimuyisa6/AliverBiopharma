@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Icon from '../components/Icon/Icon';
 import { getDonateConfig, getDonors, submitMomoDonation } from '../api/client';
-import './donate.css';
+import '../styles/donate.css';
 
 const DEFAULT_GOAL = 500000;
 
