@@ -2055,13 +2055,14 @@ level
 }
 
 export async function getPdfsByLevel(unitId) {
-return getRequest(
+const data = await getRequest(
 'pdf-resources',
 'list',
 unitId
 ? { unit_id: unitId }
 : {}
 );
+return Array.isArray(data) ? data : (Array.isArray(data?.pdfs) ? data.pdfs : []);
 }
 
 export async function trackPdfPreview(pdfId) {
