@@ -9,6 +9,7 @@ import Icon from '../components/Icon/Icon';
 import Skeleton from '../components/Skeleton/Skeleton';
 import EmptyState from '../components/EmptyState/EmptyState';
 import Button from '../components/Button/Button';
+import DynamicActions from '../components/DynamicActions';
 import Container from '../components/Container/Container';
 import './PdfLibraryPage.css';
 
@@ -180,17 +181,12 @@ export default function PdfLibraryPage() {
                 </div>
 
                 <div className="pdf-card-footer">
-                  <a
-                    href={pdf.is_premium
-                      ? `/api/server?module=pdf-resources&path=download&id=${encodeURIComponent(pdf.id)}`
-                      : pdf.file_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-primary btn-sm pdf-download"
-                    aria-label={pdf.is_premium ? `Download premium PDF: ${pdf.title}` : `Download PDF: ${pdf.title}`}
-                  >
-                    <Icon name="download" /> {pdf.is_premium ? 'Download Premium' : 'Download'}
-                  </a>
+                  <DynamicActions
+                    pageId="pdf-library"
+                    contentType="pdf"
+                    contentId={pdf.id}
+                    className="pdf-download-actions"
+                  />
                 </div>
               </article>
             ))}
