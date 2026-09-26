@@ -43,7 +43,8 @@ const MODULE_MAP = {
   ads: () => import('../lib/ads.js'),
   donations: () => import('../lib/donations.js'),
   authorization: () => import('../lib/authorization.js'),
-  'dynamic-actions': () => import('../lib/dynamic-actions.js')
+  'dynamic-actions': () => import('../lib/dynamic-actions.js'),
+  'dynamic-actions-admin': () => import('../lib/dynamic-actions-admin.js')
 };
 
 export default async function handler(req, res) {
