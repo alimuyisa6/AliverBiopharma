@@ -43,7 +43,7 @@ export default function DynamicActions({ pageId, contentType = null, contentId =
       {available.map((action) => {
         const label = action.label || action.action_key;
         const variant = action.variant || 'primary';
-        const configuredDestination = action.destination.trim();
+        const configuredDestination = typeof action.destination === 'string' ? action.destination.trim() : '';
         const destinationTemplate = action.config?.destination_template;
         const destination = typeof destinationTemplate === 'string' && destinationTemplate.trim()
           ? destinationTemplate
