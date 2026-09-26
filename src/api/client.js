@@ -3459,6 +3459,14 @@ export async function submitMomoDonation(data) {
 }
 
 
-export async function getDynamicActions(pageId = null) {
-  return getRequest('dynamic-actions', 'list', pageId ? { page_id: pageId } : {});
+export async function getDynamicActions(pageId = null, context = {}) {
+  return getRequest(
+    'dynamic-actions',
+    'list',
+    {
+      ...(pageId ? { page_id: pageId } : {}),
+      ...(context?.content_type ? { content_type: context.content_type } : {}),
+      ...(context?.content_id ? { content_id: context.content_id } : {}),
+    }
+  );
 }
