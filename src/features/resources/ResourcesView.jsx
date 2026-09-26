@@ -5,6 +5,7 @@ import Icon from '../../components/Icon/Icon';
 import Button from '../../components/Button/Button';
 import { useLayout } from '../../contexts/LayoutContext';
 import '../../styles/resources.css';
+import DynamicActions from '../../components/DynamicActions';
 
 const CONTENT_TYPES = [
   {
@@ -127,6 +128,7 @@ export default function ResourcesView({ navigate, user, sections }) {
   return (
     <div className="resources-page">
       <main className="resources-main">
+        <DynamicActions pageId="resources" className="resources-dynamic-actions" />
         <div className="resources-toolbar">
           <div className="resources-filter-chips" role="group" aria-label="Filter resources">
             {FILTERS.map((item) => (
