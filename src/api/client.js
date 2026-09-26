@@ -3457,3 +3457,8 @@ export async function getDonors() {
 export async function submitMomoDonation(data) {
   return apiCall('donations', 'submit_momo', data, 'POST');
 }
+
+
+export async function getDynamicActions(pageId = null) {
+  return getRequest('dynamic-actions', 'list', pageId ? { page_id: pageId } : {});
+}
