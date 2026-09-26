@@ -1,4 +1,5 @@
  // src/pages/Quiz.jsx
+import AdSlot from '../components/Advertising/AdSlot';
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
