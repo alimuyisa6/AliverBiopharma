@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Icon from './Icon/Icon';
 import { getDynamicActions } from '../api/client';
 
 export default function DynamicActions({ pageId, className = '' }) {
@@ -8,36 +7,61 @@ export default function DynamicActions({ pageId, className = '' }) {
 
   useEffect(() => {
     let cancelled = false;
-    getDynamicActions(pageId)
-      .then((data) => {
-        if (!cancelled) setActions(Array.isArray(data?.actions) ? data.actions : []);
-      })
-      .catch(() => {
+
+    async function load() {
+      try {
+        const data = await getDynamicActions(pageId);
+        if (!cancelled) {
+          setActions(Array.isArray(data?.actions) ? data.actions : []);
+        }
+      } catch {
         if (!cancelled) setActions([]);
-      });
-    return () => { cancelled = true; };
+      }
+    }
+
+    load();
+    return () => {
+      cancelled = true;
+    };
   }, [pageId]);
 
-  const available = actions.filter((action) => action.visible && action.enabled && action.destination);
+  const available = actions.filter(
+    (action) =>
+      action.visible === true &&
+      action.enabled === true &&
+      typeof action.destination === 'string' &&
+      action.destination.trim()
+  );
+
   if (!available.length) return null;
 
   return (
     <div className={className} aria-label="Available actions">
       {available.map((action) => {
-        const content = (
-          <>
-            {action.icon && <Icon name={action.icon} />}
-            <span>{action.label}</span>
-          </>
-        );
+        const label = action.label || action.action_key;
+        const variant = action.variant || 'primary';
+        const destination = action.destination.trim();
 
-        return action.destination.startsWith('/') ? (
-          <Link key={action.id} to={action.destination} className={`btn btn-${action.variant || 'primary'}`}>
-            {content}
-          </Link>
-        ) : (
-          <a key={action.id} href={action.destination} className={`btn btn-${action.variant || 'primary'}`}>
-            {content}
+        if (destination.startsWith('/')) {
+          return (
+            <Link
+              key={action.id}
+              to={destination}
+              className={`btn btn-${variant}`}
+            >
+              {label}
+            </Link>
+          );
+        }
+
+        return (
+          <a
+            key={action.id}
+            href={destination}
+            className={`btn btn-${variant}`}
+            rel="noopener noreferrer"
+          >
+            {label}
           </a>
         );
       })}
