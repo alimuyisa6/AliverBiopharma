@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getDynamicActions } from '../api/client';
 
-export default function DynamicActions({ pageId, className = '' }) {
+export default function DynamicActions({ pageId, contentType = null, contentId = null, className = '' }) {
   const [actions, setActions] = useState([]);
 
   useEffect(() => {
@@ -10,7 +10,7 @@ export default function DynamicActions({ pageId, className = '' }) {
 
     async function load() {
       try {
-        const data = await getDynamicActions(pageId);
+        const data = await getDynamicActions(pageId, { content_type: contentType, content_id: contentId });
         if (!cancelled) {
           setActions(Array.isArray(data?.actions) ? data.actions : []);
         }
@@ -23,7 +23,7 @@ export default function DynamicActions({ pageId, className = '' }) {
     return () => {
       cancelled = true;
     };
-  }, [pageId]);
+  }, [pageId, contentType, contentId]);
 
   const available = actions.filter(
     (action) =>
@@ -40,7 +40,13 @@ export default function DynamicActions({ pageId, className = '' }) {
       {available.map((action) => {
         const label = action.label || action.action_key;
         const variant = action.variant || 'primary';
-        const destination = action.destination.trim();
+        const configuredDestination = action.destination.trim();
+        const destinationTemplate = action.config?.destination_template;
+        const destination = typeof destinationTemplate === 'string' && destinationTemplate.trim()
+          ? destinationTemplate
+              .replace(/\{content_id\}/g, encodeURIComponent(String(contentId || action.content_id || '')))
+              .replace(/\{content_type\}/g, encodeURIComponent(String(contentType || action.content_type || '')))
+          : configuredDestination;
 
         if (destination.startsWith('/')) {
           return (
