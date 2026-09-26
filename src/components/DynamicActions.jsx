@@ -29,8 +29,11 @@ export default function DynamicActions({ pageId, contentType = null, contentId =
     (action) =>
       action.visible === true &&
       action.enabled === true &&
-      typeof action.destination === 'string' &&
-      action.destination.trim()
+      (
+        (typeof action.destination === 'string' && action.destination.trim()) ||
+        (typeof action.config?.destination_template === 'string' &&
+          action.config.destination_template.trim())
+      )
   );
 
   if (!available.length) return null;
