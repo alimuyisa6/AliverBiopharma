@@ -14,6 +14,7 @@ import AdsHomeSection from '../../components/Advertising/AdsHomeSection';
 import AdSlot from '../../components/Advertising/AdSlot';
 import Hero from '../../components/Hero/Hero';
 import HomeDashboardCard from '../../components/dashboard/HomeDashboardCard';
+import DynamicActions from '../../components/DynamicActions';
 import { useLayout } from '../../contexts/LayoutContext';
 
 const CONTINUE_ICON = { note: 'book-open', video: 'play', quiz: 'clipboard-check' };
@@ -144,6 +145,7 @@ export default function HomeView(props) {
   return (
     <div className="home-page">
       <section className="home-hero-section"><div className="hero-block"><Hero /></div></section>
+      <DynamicActions pageId="home" className="home-dynamic-actions" />
       <section className="home-stats-section"><StatsGrid stats={{ resources_count: publicStats?.resources_count || 0, users_count: publicStats?.users_count || 0, downloads_count: publicStats?.downloads_count || 0, quiz_attempts: publicStats?.quiz_attempts || 0 }} /></section>
       {user && <section className="home-student-section"><ClassSwitcher className="home-scope-switcher" /><HomeDashboardCard /><ContinueLearningRail items={continueLearning} navigate={navigate} /></section>}
       <WhyChooseSection />
