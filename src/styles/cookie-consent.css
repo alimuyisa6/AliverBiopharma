@@ -33,3 +33,11 @@
   .cookie-consent-logo { max-height:42px; }
   .cookie-consent-actions > * { flex:1 1 100%; }
 }
+
+.cookie-consent { transform: translateY(110%); opacity: 0; transition: transform 520ms cubic-bezier(.22,1,.36,1), opacity 360ms ease; }
+.cookie-consent.cookie-consent-visible { transform: translateY(0); opacity: 1; }
+.cookie-consent-card { position: relative; }
+.cookie-consent-close { position: absolute; top: var(--space-2); right: var(--space-2); width: 2rem; height: 2rem; display: grid; place-items: center; border: 0; border-radius: var(--radius-full); background: transparent; color: var(--text-muted); font-size: 1.5rem; line-height: 1; cursor: pointer; }
+.cookie-consent-close:hover { background: var(--surface-subtle); color: var(--text-main); }
+.cookie-consent-close:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .cookie-consent { transition: opacity 160ms ease; transform: none; } .cookie-consent:not(.cookie-consent-visible) { opacity: 0; } }
