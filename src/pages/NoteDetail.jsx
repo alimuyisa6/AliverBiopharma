@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { useNavigate, useSearchParams, Link } from 'react-router-dom';
+import DOMPurify from 'dompurify';
 import { useAuth } from '../contexts/AuthContext';
 import { useLayout } from '../contexts/LayoutContext';
 import {
@@ -406,7 +407,10 @@ export default function NoteDetail() {
   }
 
   const enhancedContent = enhanceContentWithLinks(note.content, internalLinks.inline_links);
-  const finalContent = buildContentWithMetadata(enhancedContent, metadata);
+  const builtContent = buildContentWithMetadata(enhancedContent, metadata);
+  const finalContent = DOMPurify.sanitize(builtContent || '<p>Content not available.</p>', {
+    USE_PROFILES: { html: true }
+  });
 
   return (
     <>
