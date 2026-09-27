@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { getRequest, apiCall } from '../../api/client';
 import { useLayout } from '../../contexts/LayoutContext';
+import { useAuth } from '../../contexts/AuthContext';
 
 export default function CookieConsent() {
   const { logo, siteName } = useLayout();
+  const { user, loading: authLoading } = useAuth();
   const [status, setStatus] = useState(null);
   const [saving, setSaving] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
@@ -21,7 +23,7 @@ export default function CookieConsent() {
       })
       .catch(() => setStatus({ show_notice: false }));
     return () => { active = false; };
-  }, []);
+  }, [user?.id, authLoading]);
 
   const close = () => setVisible(false);
 
