@@ -25,8 +25,36 @@
 .cookie-consent-content h2 { margin:0 0 var(--space-2); font-size:1.1rem; color:var(--text-main); }
 .cookie-consent-content p { margin:0; color:var(--text-muted); line-height:1.6; }
 .cookie-consent-actions { display:flex; flex-wrap:wrap; gap:var(--space-2); margin-top:var(--space-4); }
-.cookie-consent-options { display:flex; flex-wrap:wrap; gap:var(--space-3); margin-top:var(--space-3); }
-.cookie-consent-options label { display:flex; gap:var(--space-2); align-items:center; color:var(--text-main); }
+.cookie-consent-options {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+.cookie-consent-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-3);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-main);
+}
+.cookie-consent-option > div {
+  display: grid;
+  gap: 2px;
+}
+.cookie-consent-option span {
+  color: var(--text-muted);
+  font-size: .9rem;
+  line-height: 1.45;
+}
+.cookie-consent-option input {
+  flex: 0 0 auto;
+}
+.cookie-consent-option-essential {
+  opacity: .82;
+}
 @media (max-width:700px) {
   .cookie-consent { padding:var(--space-3); }
   .cookie-consent-card { flex-direction:column; gap:var(--space-3); padding:var(--space-4); }
