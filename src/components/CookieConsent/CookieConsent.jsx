@@ -8,6 +8,7 @@ export default function CookieConsent() {
   const [saving, setSaving] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [choices, setChoices] = useState({ preferences: false, analytics: false, marketing: false });
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     let active = true;
@@ -15,11 +16,14 @@ export default function CookieConsent() {
       .then((data) => {
         if (!active) return;
         setStatus(data);
+        if (data?.show_notice) requestAnimationFrame(() => setVisible(true));
         if (data?.consent) setChoices(data.consent);
       })
       .catch(() => setStatus({ show_notice: false }));
     return () => { active = false; };
   }, []);
+
+  const close = () => setVisible(false);
 
   const save = async (next) => {
     if (saving) return;
@@ -27,7 +31,8 @@ export default function CookieConsent() {
     try {
       const data = await apiCall('cookie-consent', 'consent', next, 'POST');
       if (data?.saved) {
-        setStatus((prev) => ({ ...(prev || {}), show_notice: false, consent: data.consent }));
+        setVisible(false);
+        setTimeout(() => setStatus((prev) => ({ ...(prev || {}), show_notice: false, consent: data.consent })), 420);
       }
     } catch {
       // Keep the notice visible when persistence fails.
@@ -39,8 +44,9 @@ export default function CookieConsent() {
   if (!status?.show_notice) return null;
 
   return (
-    <div className="cookie-consent" role="dialog" aria-modal="false" aria-labelledby="cookie-consent-title">
+    <div className={`cookie-consent${visible ? ' cookie-consent-visible' : ''}`} role="dialog" aria-modal="false" aria-labelledby="cookie-consent-title">
       <div className="cookie-consent-card">
+        <button type="button" className="cookie-consent-close" aria-label="Close cookie notice" onClick={close} disabled={saving}>×</button>
         <div className="cookie-consent-brand">
           {logo ? <img src={logo} alt={siteName} className="cookie-consent-logo" /> : <span className="cookie-consent-wordmark">{siteName}</span>}
         </div>
