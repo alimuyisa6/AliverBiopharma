@@ -40,7 +40,7 @@ import AdvertisePayment from './pages/AdvertisePayment';
 import CurriculumNodePage from './pages/CurriculumNodePage';
 import Donate from './pages/Donate';
 import CookieConsent from './components/CookieConsent/CookieConsent';
-import MaintenanceGate from './components/Maintenance/MaintenanceGate';
+import MaintenanceGate, { MaintenanceBoundary } from './components/Maintenance/MaintenanceGate';
 import './styles/cookie-consent.css';
 import './styles/maintenance.css';
 
@@ -86,7 +86,7 @@ function FeatureRoute({ feature, children }) {
     );
   }
 
-  return children;
+  return <MaintenanceBoundary boundaryKey={feature}>{children}</MaintenanceBoundary>;
 }
 
 function NotFoundPage() {
