@@ -154,7 +154,12 @@ return json?.data !== undefined ? json.data : json;
 }
 
 async function executeRequest(url, options) {
-const res = await fetch(url, options);
+const nextOptions = { ...(options || {}) };
+nextOptions.headers = { ...(options?.headers || {}) };
+if (typeof window !== 'undefined') {
+  nextOptions.headers['X-App-Route'] = window.location.pathname || '/';
+}
+const res = await fetch(url, nextOptions);
 const json = await parseResponse(res);
 
 if (json?.csrf_token) {
@@ -3384,6 +3389,7 @@ export async function streamAIAssistant(
 
   const headers = {
     'Content-Type': 'application/json',
+    'X-App-Route': typeof window !== 'undefined' ? (window.location.pathname || '/') : '/',
   };
 
   if (csrfToken) {
@@ -3469,4 +3475,12 @@ export async function getDynamicActions(pageId = null, context = {}) {
       ...(context?.content_id ? { content_id: context.content_id } : {}),
     }
   );
+}
+
+
+export async function getMaintenanceStatus(route = null, boundaryKey = null) {
+  return getRequest('maintenance', 'status', {
+    route: route || (typeof window !== 'undefined' ? window.location.pathname : '/'),
+    boundary_key: boundaryKey || undefined,
+  });
 }
