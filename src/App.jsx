@@ -40,6 +40,7 @@ import AdvertisePayment from './pages/AdvertisePayment';
 import CurriculumNodePage from './pages/CurriculumNodePage';
 import Donate from './pages/Donate';
 import CookieConsent from './components/CookieConsent/CookieConsent';
+import './styles/cookie-consent.css';
 
 function GlobalLoader() {
   return (
