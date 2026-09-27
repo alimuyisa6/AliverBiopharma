@@ -195,6 +195,7 @@ function AppRoutes() {
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
+        <CookieConsent />
       </Layout>
     </>
   );
