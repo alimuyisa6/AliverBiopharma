@@ -40,7 +40,9 @@ import AdvertisePayment from './pages/AdvertisePayment';
 import CurriculumNodePage from './pages/CurriculumNodePage';
 import Donate from './pages/Donate';
 import CookieConsent from './components/CookieConsent/CookieConsent';
+import MaintenanceGate from './components/Maintenance/MaintenanceGate';
 import './styles/cookie-consent.css';
+import './styles/maintenance.css';
 
 function GlobalLoader() {
   return (
@@ -197,6 +199,7 @@ function AppRoutes() {
           </Routes>
         </Suspense>
         <CookieConsent />
+        <MaintenanceGate />
       </Layout>
     </>
   );
