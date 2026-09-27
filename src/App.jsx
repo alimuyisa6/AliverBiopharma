@@ -39,6 +39,7 @@ import AdvertiseCreate from './pages/AdvertiseCreate';
 import AdvertisePayment from './pages/AdvertisePayment';
 import CurriculumNodePage from './pages/CurriculumNodePage';
 import Donate from './pages/Donate';
+import CookieConsent from './components/CookieConsent/CookieConsent';
 
 function GlobalLoader() {
   return (
