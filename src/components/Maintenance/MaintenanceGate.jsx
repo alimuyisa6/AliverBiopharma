@@ -15,6 +15,15 @@ function formatCountdown(ms) {
   return `${seconds}s`;
 }
 
+function hasUnsavedInput() {
+  const fields = Array.from(document.querySelectorAll('input, textarea, select'));
+  return fields.some((field) => {
+    if (field.disabled || field.type === 'hidden' || field.type === 'submit' || field.type === 'button') return false;
+    if (field.type === 'checkbox' || field.type === 'radio') return field.checked !== field.defaultChecked;
+    return field.value !== field.defaultValue;
+  });
+}
+
 function MaintenanceMessage({ data, boundary = false }) {
   const [now, setNow] = useState(Date.now());
 
@@ -34,11 +43,13 @@ function MaintenanceMessage({ data, boundary = false }) {
   const message = data.message || 'We are carrying out scheduled maintenance. Please check back shortly.';
 
   if (data.upcoming) {
+    const unsaved = hasUnsavedInput();
     return (
       <div className="maintenance-alert" role="status" aria-live="polite">
         <strong>{title}</strong>
         <span>{message}</span>
         {countdown && <span className="maintenance-countdown">Starts in {countdown}</span>}
+        {unsaved && <strong className="maintenance-unsaved-warning">Please save or submit your current work before maintenance begins.</strong>}
         {data.starts_at && <time dateTime={data.starts_at}>Starts {new Date(data.starts_at).toLocaleString()}</time>}
       </div>
     );
