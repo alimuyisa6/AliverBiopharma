@@ -1,16 +1,44 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { getMaintenanceStatus } from '../../api/client';
 
+function formatCountdown(ms) {
+  if (ms <= 0) return 'Starting now';
+  const total = Math.ceil(ms / 1000);
+  const days = Math.floor(total / 86400);
+  const hours = Math.floor((total % 86400) / 3600);
+  const minutes = Math.floor((total % 3600) / 60);
+  const seconds = total % 60;
+
+  if (days > 0) return `${days}d ${hours}h ${minutes}m`;
+  if (hours > 0) return `${hours}h ${minutes}m ${seconds}s`;
+  if (minutes > 0) return `${minutes}m ${seconds}s`;
+  return `${seconds}s`;
+}
+
 function MaintenanceMessage({ data, boundary = false }) {
+  const [now, setNow] = useState(Date.now());
+
+  useEffect(() => {
+    if (!data?.starts_at) return undefined;
+    const timer = window.setInterval(() => setNow(Date.now()), 1000);
+    return () => window.clearInterval(timer);
+  }, [data?.starts_at]);
+
+  const countdown = useMemo(() => {
+    if (!data?.starts_at) return null;
+    return formatCountdown(new Date(data.starts_at).getTime() - now);
+  }, [data?.starts_at, now]);
+
   if (!data) return null;
   const title = data.title || 'AliverBiopharm is under maintenance';
   const message = data.message || 'We are carrying out scheduled maintenance. Please check back shortly.';
 
   if (data.upcoming) {
     return (
-      <div className="maintenance-alert" role="status">
+      <div className="maintenance-alert" role="status" aria-live="polite">
         <strong>{title}</strong>
         <span>{message}</span>
+        {countdown && <span className="maintenance-countdown">Starts in {countdown}</span>}
         {data.starts_at && <time dateTime={data.starts_at}>Starts {new Date(data.starts_at).toLocaleString()}</time>}
       </div>
     );
@@ -43,7 +71,7 @@ export default function MaintenanceGate() {
 
   useEffect(() => {
     load();
-    const timer = window.setInterval(load, 60000);
+    const timer = window.setInterval(load, 30000);
     return () => window.clearInterval(timer);
   }, [load]);
 
@@ -69,7 +97,7 @@ export function MaintenanceBoundary({ boundaryKey, children }) {
     };
 
     load();
-    const timer = window.setInterval(load, 60000);
+    const timer = window.setInterval(load, 30000);
     return () => {
       active = false;
       window.clearInterval(timer);
