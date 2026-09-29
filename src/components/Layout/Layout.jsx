@@ -87,7 +87,7 @@ export default function Layout({ children, showFooter = true }) {
     {!hideHeader && <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />}<AdminLauncher />
     {!hideHeader && <aside className={`mobile-sidebar${mobileOpen ? ' expanded' : ''}`} aria-label={t('common.menu')}>
       <div className="mobile-sidebar-header">
-        <div className="mobile-sidebar-title"><Icon name="bars" /><span>Menu</span></div>
+        <div className="mobile-sidebar-title"><span>Menu</span></div>
         <button className="mobile-sidebar-toggle" onClick={() => setMobileOpen((prev) => !prev)} aria-label={mobileOpen ? t('common.closeMenu') : t('common.menu')} aria-expanded={mobileOpen} type="button"><MenuGlyph isOpen={mobileOpen} /></button>
       </div>
       <nav className="mobile-sidebar-nav">
