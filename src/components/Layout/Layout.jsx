@@ -72,7 +72,7 @@ export default function Layout({ children, showFooter = true }) {
   const filteredNavigation = navigation.filter((link) => { if (blockedHeaderPaths.includes(link.href)) return false; if (link.href === '/quiz' && features.quizzes === false) return false; if (link.href === '/flashcards' && features.flashcards === false) return false; if (link.href === '/past-papers' && features.past_papers === false) return false; if (link.href === '/recall' && features.recall === false) return false; if (link.href === '/classroom' && features.classrooms === false) return false; return true; });
   const loginButton = uiMap.login_button || { label: 'Sign In', variant: 'outline', color: 'primary', icon: 'right-to-bracket' }, signupButton = uiMap.signup_button || { label: 'Sign Up', variant: 'solid', color: 'primary', icon: 'user-plus' }, isDarkTheme = theme === 'dark';
   const menuLinks = [...filteredNavigation];
-  const addMenuLink = (href, label, icon) => { if (!menuLinks.some((link) => link.href === href)) menuLinks.push({ href, label, icon }); };
+  const addMenuLink = (href, label, icon) => { const existing = menuLinks.find((link) => link.href === href); if (existing) { if (!existing.icon && icon) existing.icon = icon; return; } menuLinks.push({ href, label, icon }); };
   addMenuLink('/', t('common.home'), 'house');
   if (isAuthenticated) { addMenuLink('/dashboard', t('common.dashboard'), 'gauge-high'); addMenuLink('/profile', t('common.profile'), 'gear'); } else { addMenuLink('/login', loginButton.label, loginButton.icon); addMenuLink('/register', signupButton.label, signupButton.icon); }
   return <div className="app-layout">
