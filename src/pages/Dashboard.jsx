@@ -442,6 +442,7 @@ export default function Dashboard() {
                   <span className="panel-meta">{overallMastery}% assessed mastery</span>
                 </div>
                 <div className="panel-body">
+                  <p className="mastery-chart-explainer">Each bar shows how well you have performed in that curriculum unit. Longer bars mean higher mastery.</p>
                   {assessedMastery.length > 0 && <MasteryChart data={assessedMastery} />}
                   <div className="mastery-summary">
                     <ProgressRing value={overallMastery} size="lg" tone="mastery" ariaLabel={`${overallMastery}% assessed mastery`} />
