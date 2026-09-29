@@ -1,6 +1,7 @@
  /* api/server.js */
 import { passGate, gatemanErrorResponse } from '../lib/gateman.js';
 import { getVagueErrorMessage } from '../lib/threat-shield.js';
+import { startRequestTelemetry } from '../lib/observability.js';
 
 const MODULE_MAP = {
   auth: () => import('../lib/auth.js'),
@@ -52,6 +53,7 @@ const MODULE_MAP = {
 export default async function handler(req, res) {
   const moduleName = req.query?.module;
   const path = req.query?.path;
+  const telemetry = startRequestTelemetry(req, res, { module: moduleName, path });
 
   if (moduleName === 'ping') {
     res.setHeader('Cache-Control', 'no-store');
