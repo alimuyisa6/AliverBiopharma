@@ -49,7 +49,6 @@ function LearningActivityChart({ data }) {
         data={{
           labels: rows.map((item) =>
             new Date(item.activity_date).toLocaleDateString(undefined, {
-              weekday: 'short',
               month: 'short',
               day: 'numeric'
             })
@@ -82,7 +81,14 @@ function LearningActivityChart({ data }) {
           scales: {
             x: {
               grid: { display: false },
-              ticks: { color: colors.text, maxRotation: 0, autoSkip: false, maxTicksLimit: 7 }
+              ticks: {
+                color: colors.text,
+                maxRotation: 0,
+                minRotation: 0,
+                autoSkip: true,
+                autoSkipPadding: 10,
+                maxTicksLimit: 6
+              }
             },
             y: {
               beginAtZero: true,
