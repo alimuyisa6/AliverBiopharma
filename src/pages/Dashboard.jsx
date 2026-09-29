@@ -86,8 +86,10 @@ function LearningActivityChart({ data }) {
                 maxRotation: 0,
                 minRotation: 0,
                 autoSkip: true,
-                autoSkipPadding: 10,
-                maxTicksLimit: 6
+                autoSkipPadding: 16,
+                maxTicksLimit: 5,
+                padding: 4,
+                font: { size: 11 }
               }
             },
             y: {
