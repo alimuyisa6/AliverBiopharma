@@ -231,7 +231,6 @@ body.dark-mode .site-header, body.dark-mode .site-header.scrolled { background: 
 .mobile-sidebar-header { display: flex; align-items: center; justify-content: center; height: var(--space-16); padding: var(--space-2); border-bottom: 1px solid var(--border-light); }
 .mobile-sidebar.expanded .mobile-sidebar-header { justify-content: space-between; padding-inline: var(--space-3); }
 .mobile-sidebar-title { display: flex; align-items: center; justify-content: center; min-width: 0; color: var(--text-main); font-family: var(--font-heading); font-size: var(--text-sm); font-weight: var(--weight-semibold); white-space: nowrap; overflow: hidden; }
-.mobile-sidebar-title > svg { flex: 0 0 auto; width: var(--space-5); height: var(--space-5); margin-right: var(--stack-gap-tight); }
 .mobile-sidebar-title > span { opacity: 0; width: 0; transition: opacity 0.18s ease, width 0.2s ease; }
 .mobile-sidebar.expanded .mobile-sidebar-title { justify-content: flex-start; }
 .mobile-sidebar.expanded .mobile-sidebar-title > span { opacity: 1; width: auto; }
