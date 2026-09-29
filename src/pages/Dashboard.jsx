@@ -328,7 +328,15 @@ export default function Dashboard() {
   ].filter(Boolean);
 
   const activityDays = activityRange === 'day' ? 1 : activityRange === 'month' ? 30 : 7;
-  const heatmapValues = heatmap.slice(0, Math.min(activityDays, 42));
+  const todayKey = new Date().toISOString().slice(0, 10);
+  const activityMap = new Map((heatmap || []).map((item) => [item.activity_date, item]));
+  const heatmapValues = Array.from({ length: activityDays }, (_, index) => {
+    const date = new Date();
+    date.setHours(0, 0, 0, 0);
+    date.setDate(date.getDate() - (activityDays - 1 - index));
+    const key = date.toISOString().slice(0, 10);
+    return activityMap.get(key) || { activity_date: key, count: 0 };
+  });
 
   return (
     <Container>
