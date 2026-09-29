@@ -702,3 +702,54 @@
   font-size: var(--text-sm);
   font-weight: var(--weight-bold);
 }
+
+.dashboard-content .dashboard-card-primary {
+  background: var(--surface-card);
+  border-color: var(--border-default);
+  box-shadow: var(--shadow-md);
+}
+
+.dashboard-content .dashboard-card-primary .panel-header {
+  background: var(--surface-muted);
+}
+
+.dashboard-content .dashboard-card-secondary {
+  background: var(--surface-subtle);
+  border-color: var(--border-subtle);
+  box-shadow: var(--shadow-sm);
+}
+
+.dashboard-content .dashboard-card-secondary .panel-header {
+  background: transparent;
+  border-bottom-color: var(--border-subtle);
+}
+
+.dashboard-content .dashboard-card-secondary .panel-body {
+  padding-top: var(--space-5);
+  padding-bottom: var(--space-5);
+}
+
+.dashboard-content .dashboard-chart {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  margin-bottom: var(--space-6);
+}
+
+.dashboard-content .dashboard-chart-mastery {
+  height: 300px;
+}
+
+.dashboard-content .dashboard-chart canvas {
+  max-width: 100%;
+}
+
+@media (max-width: 600px) {
+  .dashboard-content .dashboard-chart {
+    height: 220px;
+  }
+
+  .dashboard-content .dashboard-chart-mastery {
+    height: 280px;
+  }
+}
