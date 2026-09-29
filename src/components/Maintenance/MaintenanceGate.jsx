@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { getMaintenanceStatus } from '../../api/client';
 
 function formatCountdown(ms) {
@@ -69,23 +70,35 @@ function MaintenanceMessage({ data, boundary = false }) {
 }
 
 export default function MaintenanceGate() {
+  const location = useLocation();
   const [state, setState] = useState(null);
 
   const load = useCallback(async () => {
+    if (location.pathname === '/login') {
+      setState(null);
+      return;
+    }
+
     try {
       const data = await getMaintenanceStatus(window.location.pathname);
       setState(data || null);
     } catch {
       // Maintenance status must never prevent the site from loading if the control service is unavailable.
     }
-  }, []);
+  }, [location.pathname]);
 
   useEffect(() => {
+    if (location.pathname === '/login') {
+      setState(null);
+      return undefined;
+    }
+
     load();
     const timer = window.setInterval(load, 30000);
     return () => window.clearInterval(timer);
-  }, [load]);
+  }, [load, location.pathname]);
 
+  if (location.pathname === '/login') return null;
   if (!state) return null;
   if (state.active) return <MaintenanceMessage data={state} />;
   if (state.upcoming) return <MaintenanceMessage data={state} />;
