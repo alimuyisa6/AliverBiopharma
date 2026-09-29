@@ -71,6 +71,10 @@ export default function Layout({ children, showFooter = true }) {
   const blockedHeaderPaths = ['/about', '/classroom', '/blog', '/contact', '/notes', '/quiz', '/flashcards', '/past-papers', '/recall', '/pdfs', '/glossary'];
   const filteredNavigation = navigation.filter((link) => { if (blockedHeaderPaths.includes(link.href)) return false; if (link.href === '/quiz' && features.quizzes === false) return false; if (link.href === '/flashcards' && features.flashcards === false) return false; if (link.href === '/past-papers' && features.past_papers === false) return false; if (link.href === '/recall' && features.recall === false) return false; if (link.href === '/classroom' && features.classrooms === false) return false; return true; });
   const loginButton = uiMap.login_button || { label: 'Sign In', variant: 'outline', color: 'primary', icon: 'right-to-bracket' }, signupButton = uiMap.signup_button || { label: 'Sign Up', variant: 'solid', color: 'primary', icon: 'user-plus' }, isDarkTheme = theme === 'dark';
+  const menuLinks = [...filteredNavigation];
+  const addMenuLink = (href, label, icon) => { if (!menuLinks.some((link) => link.href === href)) menuLinks.push({ href, label, icon }); };
+  addMenuLink('/', t('common.home'), 'house');
+  if (isAuthenticated) { addMenuLink('/dashboard', t('common.dashboard'), 'gauge-high'); addMenuLink('/profile', t('common.profile'), 'gear'); } else { addMenuLink('/login', loginButton.label, loginButton.icon); addMenuLink('/register', signupButton.label, signupButton.icon); }
   return <div className="app-layout">
     <NetworkStatus />
     {!hideHeader && <header className={`site-header${scrolled ? ' scrolled' : ''}`}><div className="header-container">
@@ -85,13 +89,15 @@ export default function Layout({ children, showFooter = true }) {
       </div>
     </div></header>}
     {!hideHeader && <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />}<AdminLauncher />
-    {!hideHeader && <aside className={`mobile-sidebar${mobileOpen ? ' expanded' : ''}`} aria-label={t('common.menu')}>
-      <nav className="mobile-sidebar-nav">
-        {filteredNavigation.map((link) => <Link key={link.href} to={link.href} className={`mobile-sidebar-link${location.pathname === link.href ? ' active' : ''}`} onClick={() => setMobileOpen(false)} aria-label={link.label} data-tooltip={link.label}>{link.icon && <Icon name={link.icon} />}<span>{link.label}</span></Link>)}
-        <div className="dropdown-divider" />
-        {isAuthenticated ? <><Link to="/" className="mobile-sidebar-link" onClick={() => setMobileOpen(false)} aria-label={t('common.home')} data-tooltip={t('common.home')}><Icon name="house" /><span>{t('common.home')}</span></Link><Link to="/dashboard" className="mobile-sidebar-link" onClick={() => setMobileOpen(false)} aria-label={t('common.dashboard')} data-tooltip={t('common.dashboard')}><Icon name="gauge-high" /><span>{t('common.dashboard')}</span></Link><Link to="/profile" className="mobile-sidebar-link" onClick={() => setMobileOpen(false)} aria-label={t('common.profile')} data-tooltip={t('common.profile')}><Icon name="gear" /><span>{t('common.profile')}</span></Link><button className="mobile-sidebar-link" onClick={handleSignout} disabled={signingOut} type="button" aria-label={signingOut ? t('common.signingOut') : t('common.signOut')} data-tooltip={t('common.signOut')}><Icon name="right-from-bracket" /><span>{signingOut ? t('common.signingOut') : t('common.signOut')}</span></button></> : <><Link to="/" className="mobile-sidebar-link" onClick={() => setMobileOpen(false)} aria-label="Home" data-tooltip="Home"><Icon name="house" /><span>Home</span></Link><Link to="/login" className="mobile-sidebar-link" onClick={() => setMobileOpen(false)} aria-label={loginButton.label} data-tooltip={loginButton.label}>{loginButton.icon && <Icon name={loginButton.icon} />}<span>{loginButton.label}</span></Link><Link to="/register" className="mobile-sidebar-link" onClick={() => setMobileOpen(false)} aria-label={signupButton.label} data-tooltip={signupButton.label}>{signupButton.icon && <Icon name={signupButton.icon} />}<span>{signupButton.label}</span></Link></>}
-      </nav>
-    </aside>}
+    {!hideHeader && <>
+      <button className={`mobile-menu-backdrop${mobileOpen ? ' open' : ''}`} onClick={() => setMobileOpen(false)} aria-label={t('common.closeMenu')} tabIndex={mobileOpen ? 0 : -1} type="button" />
+      <div className={`mobile-menu-panel${mobileOpen ? ' open' : ''}`} aria-hidden={!mobileOpen}>
+        <nav className="mobile-menu-nav" aria-label={t('common.menu')}>
+          {menuLinks.map((link) => <Link key={link.href} to={link.href} className={`mobile-menu-link${location.pathname === link.href ? ' active' : ''}`} onClick={() => setMobileOpen(false)} tabIndex={mobileOpen ? 0 : -1}>{link.icon && <Icon name={link.icon} />}<span>{link.label}</span></Link>)}
+          {isAuthenticated && <button className="mobile-menu-link mobile-menu-signout" onClick={handleSignout} disabled={signingOut} type="button" tabIndex={mobileOpen ? 0 : -1}><Icon name="right-from-bracket" /><span>{signingOut ? t('common.signingOut') : t('common.signOut')}</span></button>}
+        </nav>
+      </div>
+    </>}
     <motion.main id="main-content" className="main-content" key={routeKey} initial={navigationType === 'POP' ? false : { opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>{children}</motion.main>
     {!hideFooter && showFooter && <footer className="footer"><div className="footer-wave" aria-hidden="true"><svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,64 C240,120 480,0 720,32 C960,64 1200,112 1440,48 L1440,120 L0,120 Z" className="footer-wave-path" /></svg></div><div className="footer-inner">
       <div className="footer-brand"><Link to="/" className="header-logo">{logo ? <img src={logo} alt={siteName} className="footer-logo" /> : siteName}</Link><p className="footer-tagline">{t('common.footerTagline')}</p>{footer.social_links && Object.keys(footer.social_links).length > 0 && <div className="footer-social">{Object.entries(footer.social_links).map(([platform, url]) => <a key={platform} href={url} target="_blank" rel="noopener noreferrer" className="footer-social-link" data-platform={platform} aria-label={platform}><Icon name={platform} /></a>)}</div>}</div>
