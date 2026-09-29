@@ -92,9 +92,11 @@ export default function Layout({ children, showFooter = true }) {
     {!hideHeader && <>
       <button className={`mobile-menu-backdrop${mobileOpen ? ' open' : ''}`} onClick={() => setMobileOpen(false)} aria-label={t('common.closeMenu')} tabIndex={mobileOpen ? 0 : -1} type="button" />
       <div className={`mobile-menu-panel${mobileOpen ? ' open' : ''}`} aria-hidden={!mobileOpen}>
+        <div className="mobile-menu-heading"><Icon name="bars" /><span>{t('common.menu')}</span></div>
+        <div className="mobile-menu-divider" aria-hidden="true" />
         <nav className="mobile-menu-nav" aria-label={t('common.menu')}>
-          {menuLinks.map((link) => <Link key={link.href} to={link.href} className={`mobile-menu-link${location.pathname === link.href ? ' active' : ''}`} onClick={() => setMobileOpen(false)} tabIndex={mobileOpen ? 0 : -1}>{link.icon && <Icon name={link.icon} />}<span>{link.label}</span></Link>)}
-          {isAuthenticated && <button className="mobile-menu-link mobile-menu-signout" onClick={handleSignout} disabled={signingOut} type="button" tabIndex={mobileOpen ? 0 : -1}><Icon name="right-from-bracket" /><span>{signingOut ? t('common.signingOut') : t('common.signOut')}</span></button>}
+          {menuLinks.map((link) => <Link key={link.href} to={link.href} className={`mobile-menu-link${location.pathname === link.href ? ' active' : ''}`} onClick={() => setMobileOpen(false)} tabIndex={mobileOpen ? 0 : -1}><span className="mobile-menu-icon">{link.icon && <Icon name={link.icon} />}</span><span className="mobile-menu-label">{link.label}</span></Link>)}
+          {isAuthenticated && <button className="mobile-menu-link mobile-menu-signout" onClick={handleSignout} disabled={signingOut} type="button" tabIndex={mobileOpen ? 0 : -1}><span className="mobile-menu-icon"><Icon name="right-from-bracket" /></span><span className="mobile-menu-label">{signingOut ? t('common.signingOut') : t('common.signOut')}</span></button>}
         </nav>
       </div>
     </>}
