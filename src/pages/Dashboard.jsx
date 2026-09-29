@@ -39,14 +39,23 @@ function getChartColors() {
 
 function LearningActivityChart({ data }) {
   const colors = getChartColors();
-  const rows = [...data].filter((item) => item?.activity_date).sort((a, b) => new Date(a.activity_date) - new Date(b.activity_date));
+  const rows = [...data]
+    .filter((item) => item?.activity_date)
+    .sort((a, b) => new Date(a.activity_date) - new Date(b.activity_date));
+
   return (
     <div className="dashboard-chart" aria-label="Learning activity over time">
       <Line
         data={{
-          labels: rows.map((item) => new Date(item.activity_date).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' })),
+          labels: rows.map((item) =>
+            new Date(item.activity_date).toLocaleDateString(undefined, {
+              weekday: 'short',
+              month: 'short',
+              day: 'numeric'
+            })
+          ),
           datasets: [{
-            label: 'Learning activities',
+            label: 'Activities completed',
             data: rows.map((item) => Math.max(0, Number(item.count) || 0)),
             borderColor: colors.primary,
             backgroundColor: colors.primary,
@@ -61,14 +70,25 @@ function LearningActivityChart({ data }) {
           responsive: true,
           maintainAspectRatio: false,
           animation: false,
-          interaction: { mode: 'nearest', intersect: false },
           plugins: {
             legend: { display: true, position: 'top', align: 'end' },
-            tooltip: { displayColors: false, callbacks: { label: (context) => context.parsed.y + ' learning activities' } }
+            tooltip: {
+              displayColors: false,
+              callbacks: {
+                label: (context) => `${context.parsed.y} activities completed`
+              }
+            }
           },
           scales: {
-            x: { grid: { display: false }, ticks: { color: colors.text, maxRotation: 0, autoSkip: false, maxTicksLimit: 7 } },
-            y: { beginAtZero: true, grid: { color: colors.grid }, ticks: { color: colors.text, precision: 0, stepSize: 1 } }
+            x: {
+              grid: { display: false },
+              ticks: { color: colors.text, maxRotation: 0, autoSkip: false, maxTicksLimit: 7 }
+            },
+            y: {
+              beginAtZero: true,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, precision: 0, stepSize: 1 }
+            }
           }
         }}
       />
@@ -79,13 +99,14 @@ function LearningActivityChart({ data }) {
 function MasteryChart({ data }) {
   const colors = getChartColors();
   const chartRows = data.filter((item) => item.assessed).slice(0, 8);
+
   return (
-    <div className="dashboard-chart dashboard-chart-mastery" aria-label="Mastery by subject unit">
+    <div className="dashboard-chart dashboard-chart-mastery" aria-label="Mastery by curriculum unit">
       <Bar
         data={{
           labels: chartRows.map((item) => item.unit_name),
           datasets: [{
-            label: 'Mastery percentage',
+            label: 'Your mastery',
             data: chartRows.map((item) => Number(item.mastery) || 0),
             backgroundColor: colors.secondary,
             borderRadius: 5,
@@ -99,11 +120,27 @@ function MasteryChart({ data }) {
           animation: false,
           plugins: {
             legend: { display: true, position: 'top', align: 'end' },
-            tooltip: { displayColors: false, callbacks: { label: (context) => context.parsed.x + '% mastery' } }
+            tooltip: {
+              displayColors: false,
+              callbacks: {
+                label: (context) => `${context.parsed.x}% mastery`
+              }
+            }
           },
           scales: {
-            x: { beginAtZero: true, max: 100, grid: { color: colors.grid }, ticks: { color: colors.text, callback: (value) => value + '%' } },
-            y: { grid: { display: false }, ticks: { color: colors.text, autoSkip: false } }
+            x: {
+              beginAtZero: true,
+              max: 100,
+              grid: { color: colors.grid },
+              ticks: {
+                color: colors.text,
+                callback: (value) => `${value}%`
+              }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { color: colors.text, autoSkip: false }
+            }
           }
         }}
       />
