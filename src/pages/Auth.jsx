@@ -623,7 +623,9 @@ export default function Auth() {
                   )}
 
                   {!levelsLoading && !levelsError && (
-                    <div className="auth-options">
+                    <>
+                      <div ref={setCaptchaSlot} className="auth-captcha" />
+                      <div className="auth-options">
                       {levels.map((lvl) => {
                         const value = lvl.display_name;
                         const rowKey = lvl.key || lvl.id || value;
@@ -651,7 +653,8 @@ export default function Auth() {
                           </Button>
                         );
                       })}
-                    </div>
+                      </div>
+                    </>
                   )}
                 </div>
               )}
@@ -769,7 +772,9 @@ export default function Auth() {
                   />
                 )}
 
-                <div ref={setCaptchaSlot} className="auth-captcha" />
+                {onboardingStep === 0 && (
+                  <div ref={setCaptchaSlot} className="auth-captcha" />
+                )}
 
                 {mode === 'register' && (
                   <label className="auth-check-row">
