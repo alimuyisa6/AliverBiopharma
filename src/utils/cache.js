@@ -40,7 +40,7 @@ function getTypeFromKey(key) {
   if (key.includes('section')) return 'sections';
   if (key.includes('flashcard')) return 'flashcards';
   if (key.includes('note')) return 'notes';
-  if (key.includes('stats') || key.includes('activity')) return 'stats';
+  if (key.includes('stats') || key.includes('activity') || key.includes('dashboard')) return 'stats';
   return 'default';
 }
 
