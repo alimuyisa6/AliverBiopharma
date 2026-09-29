@@ -86,10 +86,6 @@ export default function Layout({ children, showFooter = true }) {
     </div></header>}
     {!hideHeader && <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />}<AdminLauncher />
     {!hideHeader && <aside className={`mobile-sidebar${mobileOpen ? ' expanded' : ''}`} aria-label={t('common.menu')}>
-      <div className="mobile-sidebar-header">
-        <div className="mobile-sidebar-title"><span>Menu</span></div>
-        <button className="mobile-sidebar-toggle" onClick={() => setMobileOpen((prev) => !prev)} aria-label={mobileOpen ? t('common.closeMenu') : t('common.menu')} aria-expanded={mobileOpen} type="button"><MenuGlyph isOpen={mobileOpen} /></button>
-      </div>
       <nav className="mobile-sidebar-nav">
         {filteredNavigation.map((link) => <Link key={link.href} to={link.href} className={`mobile-sidebar-link${location.pathname === link.href ? ' active' : ''}`} onClick={() => setMobileOpen(false)} aria-label={link.label} data-tooltip={link.label}>{link.icon && <Icon name={link.icon} />}<span>{link.label}</span></Link>)}
         <div className="dropdown-divider" />
