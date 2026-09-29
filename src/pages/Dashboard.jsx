@@ -1,4 +1,15 @@
 import { useState, useEffect } from 'react';
+import { Bar, Line } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
+  Tooltip,
+  Legend
+} from 'chart.js';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useLayout } from '../contexts/LayoutContext';
@@ -10,6 +21,113 @@ import Icon from '../components/Icon/Icon';
 import Container from '../components/Container/Container';
 import ProgressBar, { ProgressRing } from '../components/ProgressBar/ProgressBar';
 import { useI18n } from '../contexts/I18nContext';
+
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Tooltip, Legend);
+
+function getChartColors() {
+  if (typeof document === 'undefined') {
+    return { primary: '#2563eb', secondary: '#0f766e', grid: '#dbe3ea', text: '#64748b' };
+  }
+  const styles = getComputedStyle(document.documentElement);
+  return {
+    primary: styles.getPropertyValue('--primary').trim() || '#2563eb',
+    secondary: styles.getPropertyValue('--secondary').trim() || '#0f766e',
+    grid: styles.getPropertyValue('--border-subtle').trim() || '#dbe3ea',
+    text: styles.getPropertyValue('--text-muted').trim() || '#64748b'
+  };
+}
+
+function LearningActivityChart({ data }) {
+  const colors = getChartColors();
+  const ordered = [...data].reverse();
+  return (
+    <div className="dashboard-chart" aria-label="Learning activity chart">
+      <Line
+        data={{
+          labels: ordered.map((item) => new Date(item.activity_date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })),
+          datasets: [{
+            label: 'Activities',
+            data: ordered.map((item) => Number(item.count) || 0),
+            borderColor: colors.primary,
+            backgroundColor: colors.primary,
+            borderWidth: 2,
+            pointRadius: 3,
+            pointHoverRadius: 5,
+            tension: 0.25,
+            fill: false
+          }]
+        }}
+        options={{
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: { display: false },
+            tooltip: { displayColors: false }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: colors.text, maxRotation: 0, autoSkip: true, maxTicksLimit: 8 }
+            },
+            y: {
+              beginAtZero: true,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, precision: 0 }
+            }
+          }
+        }}
+      />
+    </div>
+  );
+}
+
+function MasteryChart({ data }) {
+  const colors = getChartColors();
+  const chartRows = data.filter((item) => item.assessed).slice(0, 8);
+  return (
+    <div className="dashboard-chart dashboard-chart-mastery" aria-label="Curriculum mastery chart">
+      <Bar
+        data={{
+          labels: chartRows.map((item) => item.unit_name),
+          datasets: [{
+            label: 'Mastery',
+            data: chartRows.map((item) => Number(item.mastery) || 0),
+            backgroundColor: colors.secondary,
+            borderRadius: 4,
+            barThickness: 18
+          }]
+        }}
+        options={{
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (context) => `${context.parsed.x}% mastery`
+              }
+            }
+          },
+          scales: {
+            x: {
+              beginAtZero: true,
+              max: 100,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, callback: (value) => `${value}%` }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { color: colors.text, autoSkip: false }
+            }
+          }
+        }}
+      />
+    </div>
+  );
+}
+
 
 export default function Dashboard() {
   const { user } = useAuth();
@@ -183,11 +301,6 @@ export default function Dashboard() {
 
   const activityDays = activityRange === 'day' ? 1 : activityRange === 'month' ? 30 : 7;
   const heatmapValues = heatmap.slice(0, Math.min(activityDays, 42));
-  const maxHeatmapCount = Math.max(1, ...heatmapValues.map((item) => Number(item.count) || 0));
-  const formatHeatmapDate = (value) => {
-    if (!value) return '';
-    return new Date(value).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
-  };
 
   return (
     <Container>
@@ -207,7 +320,7 @@ export default function Dashboard() {
         </header>
 
         {todayTasks.length > 0 && (
-          <section className="panel" id="today-plan-section" aria-labelledby="today-plan-title">
+          <section className="panel dashboard-card dashboard-card-primary" id="today-plan-section" aria-labelledby="today-plan-title">
             <div className="panel-header">
               <h3 className="panel-title">
                 <Icon name="lightbulb" /> Today's Learning Plan
@@ -231,7 +344,7 @@ export default function Dashboard() {
 
         <div className="dashboard-grid">
           <main className="main-column">
-            <div className="panel" id="platform-stats-section">
+            <div className="panel dashboard-card dashboard-card-primary" id="platform-stats-section">
               <div className="panel-header">
                 <h3 className="panel-title">
                   <Icon name="chart-line" /> Platform Stats
@@ -275,7 +388,7 @@ export default function Dashboard() {
             </div>
 
             {heatmapValues.length > 0 && (
-              <section className="panel" id="learning-activity-section">
+              <section className="panel dashboard-card dashboard-card-primary" id="learning-activity-section">
                 <div className="panel-header">
                   <h3 className="panel-title">
                     <Icon name="clock" /> Learning Activity
@@ -295,25 +408,13 @@ export default function Dashboard() {
                   </div>
                 </div>
                 <div className="panel-body">
-                  <div className="sidebar-list">
-                    {heatmapValues.map((item) => {
-                      const count = Number(item.count) || 0;
-                      return (
-                        <div className="sidebar-item" key={item.activity_date}>
-                          <span className="item-text">{formatHeatmapDate(item.activity_date)}</span>
-                          <span className="item-meta">
-                            {count} {count === 1 ? 'activity' : 'activities'}
-                          </span>
-                        </div>
-                      );
-                    })}
-                  </div>
+                  <LearningActivityChart data={heatmapValues} />
                 </div>
               </section>
             )}
 
             {masteryMap.length > 0 && (
-              <section className="panel" id="mastery-map-section">
+              <section className="panel dashboard-card dashboard-card-primary" id="mastery-map-section">
                 <div className="panel-header">
                   <h3 className="panel-title">
                     <Icon name="target" /> Your Mastery
@@ -321,6 +422,7 @@ export default function Dashboard() {
                   <span className="panel-meta">{overallMastery}% assessed mastery</span>
                 </div>
                 <div className="panel-body">
+                  {assessedMastery.length > 0 && <MasteryChart data={assessedMastery} />}
                   <div className="mastery-summary">
                     <ProgressRing value={overallMastery} size="lg" tone="mastery" ariaLabel={`${overallMastery}% assessed mastery`} />
                     <div>
@@ -348,7 +450,7 @@ export default function Dashboard() {
             )}
 
             {continueReading.length > 0 && (
-              <div className="panel" id="continue-reading-section">
+              <div className="panel dashboard-card dashboard-card-primary" id="continue-reading-section">
                 <div className="panel-header">
                   <h3 className="panel-title">
                     <Icon name="book-open" /> Continue Reading
@@ -383,7 +485,7 @@ export default function Dashboard() {
             )}
 
             {recommendations.length > 0 && (
-              <div className="panel" id="recommendations-section">
+              <div className="panel dashboard-card dashboard-card-primary" id="recommendations-section">
                 <div className="panel-header">
                   <h3 className="panel-title">
                     <Icon name="lightbulb" /> Recommended For You
@@ -419,7 +521,7 @@ export default function Dashboard() {
             {quiz.recent_pass_rate > 0 && (
               <Link
                 to="/quiz"
-                className="dashboard-continue-link"
+                className="dashboard-continue-link dashboard-card dashboard-card-primary"
                 id="continue-practicing"
               >
                 <div className="panel-body">
@@ -437,7 +539,7 @@ export default function Dashboard() {
 
           <aside className="sidebar-column">
             {recall?.best_mastery > 0 && (
-              <div className="panel" id="personal-records-section">
+              <div className="panel dashboard-card dashboard-card-secondary" id="personal-records-section">
                 <div className="panel-header">
                   <h3 className="panel-title">
                     <Icon name="star" /> Personal Records
@@ -467,7 +569,7 @@ export default function Dashboard() {
             )}
 
             {Object.keys(personalRecords).length > 0 && (
-              <div className="panel" id="learning-records-section">
+              <div className="panel dashboard-card dashboard-card-secondary" id="learning-records-section">
                 <div className="panel-header">
                   <h3 className="panel-title">
                     <Icon name="trophy" /> Learning Records
@@ -493,7 +595,7 @@ export default function Dashboard() {
             )}
 
             {weakAreas.length > 0 && (
-              <div className="panel" id="weak-areas-section">
+              <div className="panel dashboard-card dashboard-card-secondary" id="weak-areas-section">
                 <div className="panel-header">
                   <h3 className="panel-title">
                     <Icon name="lightbulb" /> Weak Areas
@@ -519,7 +621,7 @@ export default function Dashboard() {
             )}
 
             {recentActivity.length > 0 && (
-              <div className="panel" id="recent-activity-section">
+              <div className="panel dashboard-card dashboard-card-secondary" id="recent-activity-section">
                 <div className="panel-header">
                   <h3 className="panel-title">
                     <Icon name="clock" /> Recent Activity
@@ -585,7 +687,7 @@ export default function Dashboard() {
             )}
 
             {unitXp.length > 0 && (
-              <div className="panel" id="unit-xp-section">
+              <div className="panel dashboard-card dashboard-card-secondary" id="unit-xp-section">
                 <div className="panel-header">
                   <h3 className="panel-title">
                     <Icon name="chart-line" /> Unit XP
