@@ -851,8 +851,7 @@ noteId
 export const getMyBookmarks = () =>
 api.getMyBookmarks();
 
-export const getUserDashboard = () =>
-api.getUserDashboard();
+export const getUserDashboard = withCache('dashboard_stats', api.getUserDashboard, true);
 
 export const getDailyChallenge = () =>
 api.getDailyChallenge();
