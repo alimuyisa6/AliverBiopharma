@@ -155,7 +155,7 @@ export default function FlashcardsPage() {
         <div className="section flashcard-subject-section">
           <span className="sec-label">Study Tools</span>
           <h1 className="section-title flashcard-title">
-            Flashcards<br />{levelName ? `– ${levelName}` : ''}
+            {levelName || 'Flashcards'}
           </h1>
 
           {classLabel && <p className="flashcard-class">{classLabel}</p>}
@@ -163,14 +163,14 @@ export default function FlashcardsPage() {
           <AdSlot placement="flashcards" pageContext="flashcards" />
 
           <p className="section-subtitle flashcard-subtitle">
-            Select a deck to start studying.
+            Study cards for {levelName || 'your programme'}.
           </p>
 
           {decks.length === 0 ? (
             <EmptyState
               image={getEmptyStateImage('flashcards')}
-              title="No Decks Available"
-              description={`No flashcard decks found for ${classLabel || levelName || 'your level'}.`}
+              title="Build Your Recall"
+              description={`Flashcard decks for ${classLabel || levelName || 'this programme'} will appear here when they are ready.`}
             />
           ) : (
             <div className="flashcard-decks-grid">
