@@ -270,16 +270,27 @@ body.dark-mode .site-header, body.dark-mode .site-header.scrolled { background: 
 .footer-links { display: flex; flex-direction: column; gap: var(--stack-gap-tight); }
 .footer-link { width: fit-content; color: var(--text-inverse); font-family: var(--font-primary); font-size: var(--text-sm); line-height: var(--leading-normal); text-decoration: none; }
 .footer-link:hover { color: var(--primary); }
-.footer-social { display: flex; gap: var(--stack-gap-tight); margin-top: var(--stack-gap); }
-.footer-social-link { display: inline-flex; align-items: center; justify-content: center; width: var(--space-11); height: var(--space-11); border: 1px solid var(--footer-border); border-radius: var(--shape-square); background: var(--text-inverse); color: var(--footer-bg); }
-.footer-social-link svg, .footer-social-link i { width: var(--space-5); height: var(--space-5); font-size: var(--space-5); }
-.footer-social-link:hover { border-color: var(--primary); background: var(--primary); color: var(--text-inverse); }
+.footer-social { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--stack-gap); }
+.footer-social-link { display: inline-flex; align-items: center; justify-content: center; width: var(--space-14); height: var(--space-14); flex: 0 0 var(--space-14); border: 0; border-radius: var(--radius-sm); background: #333333; color: #ffffff; box-shadow: var(--shadow-sm); }
+.footer-social-link svg, .footer-social-link i { width: var(--space-7); height: var(--space-7); font-size: var(--space-7); color: #ffffff; }
+.footer-social-link:hover { color: #ffffff; transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.footer-social-link[data-platform="facebook"] { background: #1877f2; }
+.footer-social-link[data-platform="instagram"] { background: #e4405f; }
+.footer-social-link[data-platform="youtube"] { background: #ff0000; }
+.footer-social-link[data-platform="x"], .footer-social-link[data-platform="twitter"] { background: #000000; }
+.footer-social-link[data-platform="whatsapp"] { background: #25d366; }
+.footer-social-link[data-platform="telegram"] { background: #229ed9; }
+.footer-social-link[data-platform="tiktok"] { background: #000000; }
+.footer-social-link[data-platform="linkedin"] { background: #0a66c2; }
+.footer-social-link[data-platform="github"] { background: #24292f; }
+
+.footer-bottom-link { color: #ffffff; }
 .footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: var(--content-gap-compact); margin-top: var(--content-gap); padding-top: var(--content-gap-compact); border-top: 1px solid var(--footer-border); }
 .footer-copyright { margin: 0; color: var(--text-inverse); font-family: var(--font-primary); font-size: var(--text-xs); line-height: var(--leading-normal); }
 .footer-bottom-links { display: flex; align-items: center; gap: var(--content-gap-compact); }
 .footer-bottom-nav { display: flex; align-items: center; gap: var(--content-gap-compact); }
-.footer-bottom-link { color: var(--grey-600); font-family: var(--font-primary); font-size: var(--text-xs); line-height: var(--leading-normal); text-decoration: none; }
-.footer-bottom-link:hover { color: var(--primary); }
+.footer-bottom-link { color: #ffffff; font-family: var(--font-primary); font-size: var(--text-xs); line-height: var(--leading-normal); text-decoration: none; }
+.footer-bottom-link:hover { color: #ffffff; opacity: 0.78; }
 @media (max-width: 1024px) { .main-nav { gap: var(--stack-gap); } .header-container { gap: var(--content-gap-compact); } .footer-inner { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 768px) { .main-nav { display: none; } .hamburger-btn { display: inline-flex; } .header-container { width: min(calc(100% - (var(--page-gutter-x) * 2)), var(--max-width)); } .footer-inner { grid-template-columns: 1fr; } .footer-bottom { align-items: flex-start; flex-direction: column; } .footer-bottom-nav { gap: var(--content-gap-compact); } }
 @media (max-width: 480px) { .mobile-menu-panel { width: calc(100vw - (var(--page-gutter-x) * 2)); max-height: 82vh; } .mobile-menu-nav { max-height: 82vh; } .footer-social { gap: var(--stack-gap-tight); } }
