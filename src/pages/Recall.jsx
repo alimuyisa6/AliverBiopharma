@@ -871,10 +871,9 @@ export default function BioRecall() {
                 {totalQuestions}
 
                 {selectedTopic?.topic_name && (
-                  <>
-                    {' '}
-                    – {selectedTopic.topic_name}
-                  </>
+                  <span className="recall-topic-name">
+                    {selectedTopic.topic_name}
+                  </span>
                 )}
               </p>
 
