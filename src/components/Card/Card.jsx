@@ -69,11 +69,14 @@ const Card = forwardRef(function Card(
         )
       )}
 
-      <div className="card-body">
-        {title && <h3 className="card-title">{title}</h3>}
-        {description && <p className="card-text">{description}</p>}
-        {children}
-      </div>
+      {(title || description) && (
+        <div className="card-body">
+          {title && <h3 className="card-title">{title}</h3>}
+          {description && <p className="card-text">{description}</p>}
+        </div>
+      )}
+
+      {children}
 
       {footer && <div className="card-footer">{footer}</div>}
     </Wrapper>
