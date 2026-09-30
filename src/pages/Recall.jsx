@@ -1303,8 +1303,7 @@ export default function BioRecall() {
           <div className="recall-topic-modal-list">
             {topicList.length === 0 && (
               <p className="recall-topic-modal-empty font-open-sans">
-                No {unitLabel.toLowerCase()}s
-                available for your level.
+                Explore your {unitLabel.toLowerCase()}s here when they are ready for study.
               </p>
             )}
 
