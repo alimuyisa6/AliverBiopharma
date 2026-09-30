@@ -208,6 +208,30 @@
   box-shadow: var(--shadow-sm);
 }
 
+.card-image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 140px;
+  margin: 0 0 var(--stack-gap-tight);
+  overflow: hidden;
+  background: var(--surface-subtle);
+  border-radius: var(--radius-sm);
+}
+
+.card-image-placeholder svg {
+  width: var(--space-12);
+  height: var(--space-12);
+  flex: 0 0 var(--space-12);
+}
+
+@media (max-width: 480px) {
+  .card-image-placeholder {
+    height: 120px;
+  }
+}
+
 .card-body {
   padding: 0;
 }
