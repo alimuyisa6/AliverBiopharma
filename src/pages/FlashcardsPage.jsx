@@ -175,29 +175,25 @@ export default function FlashcardsPage() {
           ) : (
             <div className="flashcard-decks-grid">
               {decks.map((deck) => (
-                <Card key={deck.id}>
-                  <div className="card-image-placeholder">
-                    <Icon name="layer-group" className="flashcard-deck-icon" />
-                  </div>
-
-                  <div className="card-body">
-                    <h3 className="card-title">{deck.title}</h3>
-                    <p className="card-text">{deck.description || 'No description'}</p>
-
-                    {deck.card_types && (
-                      <div className="flashcard-type-row">
-                        {deck.card_types.map((type) => (
-                          <span key={type} className="chip">{type.replace('_', ' ')}</span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="card-footer">
+                <Card
+                  key={deck.id}
+                  icon="layer-group"
+                  title={deck.title}
+                  description={deck.description || 'No description'}
+                  className="flashcard-deck-card"
+                  footer={
                     <Button size="sm" icon="play" onClick={() => handleDeckSelect(deck)} disabled={locked}>
                       Start
                     </Button>
-                  </div>
+                  }
+                >
+                  {deck.card_types && (
+                    <div className="flashcard-type-row">
+                      {deck.card_types.map((type) => (
+                        <span key={type} className="chip">{type.replace('_', ' ')}</span>
+                      ))}
+                    </div>
+                  )}
                 </Card>
               ))}
             </div>
