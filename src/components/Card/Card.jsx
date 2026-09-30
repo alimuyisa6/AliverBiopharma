@@ -1,5 +1,4 @@
  import { forwardRef } from 'react';
-import Icon from '../Icon/Icon';
 import Skeleton from '../Skeleton/Skeleton';
 
 const Card = forwardRef(function Card(
@@ -24,8 +23,6 @@ const Card = forwardRef(function Card(
   const isClickable = !!onClick && !loading;
   const Wrapper = isClickable ? 'button' : 'div';
 
-  const safeIcon = icon === 'dna' ? 'microscope' : icon;
-
   let imageClassName = 'card-image';
   if (scoop) imageClassName += ` card-image-scoop-${scoop}`;
   if (imageVariant === 'original') imageClassName += ' card-image-original';
@@ -35,7 +32,7 @@ const Card = forwardRef(function Card(
   if (isClickable) cardClass += ' card-clickable';
   if (className) cardClass += ` ${className}`;
 
-  const hasMedia = !!(image || safeIcon);
+  const hasMedia = !!image;
 
   if (loading) {
     return (
@@ -60,13 +57,7 @@ const Card = forwardRef(function Card(
       {...props}
     >
       {hasMedia && (
-        image ? (
-          <img src={image} alt={title || ''} className={imageClassName} loading="lazy" />
-        ) : (
-          <div className="card-image-placeholder">
-            <Icon name={safeIcon} />
-          </div>
-        )
+        <img src={image} alt={title || ''} className={imageClassName} loading="lazy" />
       )}
 
       {(title || description) && (
