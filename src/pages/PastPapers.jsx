@@ -520,13 +520,7 @@ export default function PastPapers() {
             </span>
 
             <h1 className="pp-title">
-              Past Papers
-              {levelName && (
-                <span className="pp-title-dim">
-                  {' '}
-                  · {levelName}
-                </span>
-              )}
+              {levelName || 'Past Papers'}
             </h1>
 
             {classLabel && (
@@ -781,19 +775,17 @@ export default function PastPapers() {
             image={getEmptyStateImage('past_papers')}
             title={
               activeTab === 'bookmarked'
-                ? 'No Bookmarked Papers'
+                ? 'Your Saved Papers'
                 : activeTab === 'downloaded'
-                ? 'No Downloads Yet'
-                : 'No Papers Found'
+                ? 'Your Downloads'
+                : 'Your Paper Library'
             }
             description={
               activeTab === 'bookmarked'
-                ? 'Bookmark papers to find them here later.'
+                ? 'Papers you save will appear here for quick access.'
                 : activeTab === 'downloaded'
-                ? 'Papers you download will appear here.'
-                : `No past papers match your filters for ${
-                    classLabel || levelName || 'your level'
-                  }.`
+                ? 'Papers you download will stay here for easy access.'
+                : `Browse past papers for ${classLabel || levelName || 'your programme'} using the filters above.`
             }
             action={
               activeTab === 'all' && (
