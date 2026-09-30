@@ -195,3 +195,79 @@
     margin-top: var(--space-4);
   }
 }
+
+
+
+.flashcards-page,
+.notes-page,
+.quiz-page,
+.recall-page,
+.pp-page {
+  width: min(1280px, calc(100% - clamp(32px, 6vw, 80px)));
+  margin-inline: auto;
+  min-width: 0;
+}
+
+.flashcards-page,
+.notes-page,
+.quiz-page,
+.recall-page {
+  padding-inline: 0;
+}
+
+.flashcard-title,
+.notes-page-title,
+.quiz-page-title,
+.recall-page-title,
+.pp-title {
+  overflow-wrap: anywhere;
+}
+
+.flashcard-decks-grid,
+.notes-grid,
+.quiz-topics-grid,
+.recall-cards-grid {
+  min-width: 0;
+}
+
+.flashcard-decks-grid > *,
+.notes-grid > *,
+.quiz-topics-grid > *,
+.recall-cards-grid > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.pp-page {
+  overflow: hidden;
+}
+
+.pp-hero,
+.pp-main {
+  min-width: 0;
+}
+
+.pp-grid,
+.pp-skeleton-grid {
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .flashcards-page,
+  .notes-page,
+  .quiz-page,
+  .recall-page,
+  .pp-page {
+    width: calc(100% - 32px);
+  }
+}
+
+@media (max-width: 360px) {
+  .flashcards-page,
+  .notes-page,
+  .quiz-page,
+  .recall-page,
+  .pp-page {
+    width: calc(100% - 24px);
+  }
+}
