@@ -160,7 +160,7 @@ export default function NotesPage() {
         <span className="sec-label font-mono">Study Notes</span>
         <h1 className="section-title notes-page-title font-fraunces">
           {contextTitle || 'Notes'}
-          {!contextTitle && <>{levelName ? <><br />– {levelName}</> : ''}</>}
+          {!contextTitle && !levelName && 'Study Notes'}
         </h1>
 
         {classLabel && !contextTitle && <p className="notes-page-class font-maven-pro">{classLabel}</p>}
@@ -251,7 +251,7 @@ export default function NotesPage() {
 
         <div className="notes-toolbar" role="search">
           <div className="notes-toolbar-label">
-            <span className="sec-label font-mono">Available notes</span>
+            <span className="sec-label font-mono">Your notes</span>
             {!loading && <span className="notes-result-count font-mono">{filteredNotes.length} shown</span>}
           </div>
           <label className="notes-search">
@@ -287,8 +287,8 @@ export default function NotesPage() {
         ) : notes.length === 0 ? (
           <EmptyState
             image={getEmptyStateImage('notes')}
-            title="No Notes Available"
-            description={`No study notes found for ${contextTitle || classLabel || levelName || 'this curriculum node'}.`}
+            title="Your Notes Will Appear Here"
+            description={`Study notes for ${contextTitle || classLabel || levelName || 'this curriculum'} will appear here as content is added.`}
           />
         ) : filteredNotes.length === 0 ? (
           <EmptyState
