@@ -32,7 +32,6 @@ import Icon from '../components/Icon/Icon';
 import Spinner from '../components/Spinner/Spinner';
 import ProgressBar from '../components/ProgressBar/ProgressBar';
 import Button from '../components/Button/Button';
-import BiopharmToggle from '../components/BiopharmToggle/BiopharmToggle';
 import Card from '../components/Card/Card';
 import Modal from '../components/Modal/Modal';
 import { useI18n } from '../contexts/I18nContext';
@@ -751,16 +750,6 @@ export default function Quiz() {
             </Button>
           </div>
         )}
-
-        <div className="quiz-mode-control">
-          <BiopharmToggle
-            checked={quizModeIsExam}
-            onChange={(checked) => setQuizMode(checked ? 'exam' : 'study')}
-            leftLabel="Study Mode"
-            rightLabel="Exam Mode"
-            ariaLabel="Choose quiz mode"
-          />
-        </div>
 
         <Modal open={showRulesModal} onClose={() => setShowRulesModal(false)} title={t('common.quizRules')}>
           <ul className="quiz-rules-list">
