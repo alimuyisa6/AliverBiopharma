@@ -164,7 +164,7 @@ export default function NotesPage() {
           </h1>
 
           <nav className="breadcrumb font-mono" aria-label="Breadcrumb">
-            <Link to="/"><Icon name="home" className="breadcrumb-icon" /> Home</Link>
+            <Link to="/">Home</Link>
             <Icon name="chevron-right" className="breadcrumb-sep" />
             <Link to="/notes">Notes</Link>
 
