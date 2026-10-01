@@ -156,7 +156,7 @@ export default function NotesPage() {
   }
 
   return (
-    <Container>
+    <Container className="notes-page-shell">
       <div className="notes-page">
         <h1 className="section-title notes-page-title font-fraunces">
           {contextTitle || 'Study Notes'}
@@ -299,7 +299,11 @@ export default function NotesPage() {
             action={<Button onClick={() => loadContent()}>Try Again</Button>}
           />
         ) : notes.length === 0 ? (
-          <div className="notes-empty-space" aria-hidden="true" />
+          <EmptyState
+            image={getEmptyStateImage('notes')}
+            title="No Notes Available"
+            description={`Study notes for ${contextTitle || classLabel || levelName || 'this curriculum'} will appear here as content is added.`}
+          />
         ) : filteredNotes.length === 0 ? (
           <EmptyState
             image={getEmptyStateImage('notes')}
