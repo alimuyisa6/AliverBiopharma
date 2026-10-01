@@ -19,33 +19,23 @@ export default function PdfLibraryPage() {
   const { bootstrap } = useLayout();
   const [searchParams] = useSearchParams();
   const curriculumUnitId = searchParams.get('unit_id') || null;
-
   const [pdfs, setPdfs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [sortBy, setSortBy] = useState('title');
 
   useEffect(() => {
-    if (access.loading || !access.canAccess) {
-      return undefined;
-    }
-
+    if (access.loading || !access.canAccess) return undefined;
     let mounted = true;
-
     loadPdfs(mounted);
-
-    return () => {
-      mounted = false;
-    };
+    return () => { mounted = false; };
   }, [access.loading, access.canAccess, level, class_name, curriculumUnitId]);
 
   async function loadPdfs(mounted = true) {
     setLoading(true);
     setError(null);
-
     try {
       const data = await getPdfsByLevel(curriculumUnitId);
-
       if (mounted) setPdfs(Array.isArray(data) ? data : []);
     } catch {
       if (mounted) setError('Failed to load PDF resources.');
@@ -56,23 +46,14 @@ export default function PdfLibraryPage() {
 
   function getEmptyStateImage(key) {
     const uiComponents = bootstrap?.ui_components || [];
-    const component = uiComponents.find(
-      (item) => item.component_key === `empty_state_${key}`
-    );
-
+    const component = uiComponents.find((item) => item.component_key === `empty_state_${key}`);
     return component?.properties?.image_url || null;
   }
 
   function sortPdfs(items) {
     return [...items].sort((a, b) => {
-      if (sortBy === 'author') {
-        return String(a.author || '').localeCompare(String(b.author || ''));
-      }
-
-      if (sortBy === 'size') {
-        return String(a.file_size || '').localeCompare(String(b.file_size || ''));
-      }
-
+      if (sortBy === 'author') return String(a.author || '').localeCompare(String(b.author || ''));
+      if (sortBy === 'size') return String(a.file_size || '').localeCompare(String(b.file_size || ''));
       return String(a.title || '').localeCompare(String(b.title || ''));
     });
   }
@@ -94,11 +75,7 @@ export default function PdfLibraryPage() {
   if (!access.canAccess) {
     return (
       <Container className="pdf-library-section">
-        <EmptyState
-          image={getEmptyStateImage('pdfs')}
-          title="Access Restricted"
-          description="Your account does not have access to the PDF library."
-        />
+        <EmptyState image={getEmptyStateImage('pdfs')} title="Access Restricted" description="Your account does not have access to the PDF library." />
       </Container>
     );
   }
@@ -111,20 +88,9 @@ export default function PdfLibraryPage() {
     <Container className="pdf-library-section">
       <div className="pdf-library-page">
         <div className="toolbar">
-          <span className="result-count">
-            <strong>{pdfs.length}</strong>{' '}
-            {pdfs.length === 1 ? 'document' : 'documents'}
-          </span>
-
+          <span className="result-count"><strong>{pdfs.length}</strong>{' '}{pdfs.length === 1 ? 'document' : 'documents'}</span>
           <div className="toolbar-spacer" />
-
-          <select
-            className="sort-select"
-            id="sortSelect"
-            value={sortBy}
-            onChange={(event) => setSortBy(event.target.value)}
-            aria-label="Sort documents"
-          >
+          <select className="sort-select" id="sortSelect" value={sortBy} onChange={(event) => setSortBy(event.target.value)} aria-label="Sort documents">
             <option value="title">Title</option>
             <option value="author">Author</option>
             <option value="size">Size</option>
@@ -135,18 +101,12 @@ export default function PdfLibraryPage() {
           <h1 className="section-title pdf-library-title">PDF Library</h1>
           {(levelName || classLabel) && (
             <p className="pdf-library-class">
-              {levelName}
-              {levelName && classLabel ? ' · ' : ''}
-              {classLabel}
+              {levelName}{levelName && classLabel ? ' · ' : ''}{classLabel}
             </p>
           )}
         </div>
 
-        {curriculumUnitId && (
-          <p className="pdf-library-class">
-            Showing resources for this curriculum node.
-          </p>
-        )}
+        {curriculumUnitId && <p className="pdf-library-class">Showing resources for this curriculum node.</p>}
 
         {loading ? (
           <div className="pdf-skeleton-grid">
@@ -155,38 +115,21 @@ export default function PdfLibraryPage() {
             <Skeleton height={160} />
           </div>
         ) : error ? (
-          <EmptyState
-            image={getEmptyStateImage('error')}
-            title="Error"
-            description={error}
-            action={<Button onClick={() => loadPdfs()}>Try Again</Button>}
-          />
+          <EmptyState image={getEmptyStateImage('error')} title="Error" description={error} action={<Button onClick={() => loadPdfs()}>Try Again</Button>} />
         ) : pdfs.length === 0 ? (
-          <EmptyState
-            image={getEmptyStateImage('pdfs')}
-            title="No PDFs Available"
-          />
+          <EmptyState image={getEmptyStateImage('pdfs')} title="No PDFs Available" />
         ) : (
           <div className="pdf-grid">
             {sortedPdfs.map((pdf) => (
               <article key={pdf.id} className="pdf-card">
-                <div className="card-image-placeholder pdf-card-image">
-                  <Icon name="file-pdf" className="pdf-card-icon" />
-                </div>
-
                 <div className="pdf-card-body">
+                  <div className="pdf-card-type"><Icon name="file-pdf" className="pdf-card-icon" /></div>
                   <h3 className="pdf-card-title">{pdf.title}</h3>
                   {pdf.author && <p className="pdf-card-author">{pdf.author}</p>}
                   {pdf.file_size && <span className="pdf-card-size">{pdf.file_size}</span>}
                 </div>
-
                 <div className="pdf-card-footer">
-                  <DynamicActions
-                    pageId="pdf-library"
-                    contentType="pdf"
-                    contentId={pdf.id}
-                    className="pdf-download-actions"
-                  />
+                  <DynamicActions pageId="pdf-library" contentType="pdf" contentId={pdf.id} className="pdf-download-actions" />
                 </div>
               </article>
             ))}
