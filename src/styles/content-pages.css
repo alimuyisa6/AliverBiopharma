@@ -45,6 +45,11 @@
   overflow-wrap: anywhere;
 }
 
+.notes-page-title {
+  margin-inline: auto;
+  text-align: center;
+}
+
 .flashcard-title {
   gap: 0;
 }
