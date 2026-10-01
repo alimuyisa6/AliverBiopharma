@@ -63,11 +63,13 @@
   top: var(--switcher-control-padding);
   bottom: var(--switcher-control-padding);
   left: var(--switcher-control-padding);
+  width: calc((100% - ((var(--content-switcher-count) - 1) * var(--switcher-option-gap)) - (var(--switcher-control-padding) * 2)) / var(--content-switcher-count));
   border: 1px solid var(--switcher-slider-border);
   border-radius: var(--switcher-option-radius);
   background: var(--switcher-slider-bg);
   box-shadow: var(--switcher-slider-shadow);
-  transition: transform var(--switcher-transition), width var(--switcher-transition);
+  transform: translateX(calc(var(--content-switcher-index) * (100% + var(--switcher-option-gap))));
+  transition: transform var(--switcher-transition);
   pointer-events: none;
 }
 
