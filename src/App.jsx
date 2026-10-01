@@ -1,13 +1,12 @@
  /* src/App.jsx */
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect } from 'react';
 import { ProtectedRoute } from './contexts/AuthContext';
 import { LayoutProvider, useLayout } from './contexts/LayoutContext';
 import { ChatProvider } from './contexts/ChatContext';
 import { ToastProvider } from './components/Toast/Toast';
 import { NotificationProvider } from './contexts/NotificationContext';
 import Layout from './components/Layout/Layout';
-import Spinner from './components/Spinner/Spinner';
 import Seo from './components/Seo/Seo';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
@@ -43,14 +42,6 @@ import CookieConsent from './components/CookieConsent/CookieConsent';
 import MaintenanceGate, { MaintenanceBoundary } from './components/Maintenance/MaintenanceGate';
 import './styles/cookie-consent.css';
 import './styles/maintenance.css';
-
-function GlobalLoader() {
-  return (
-    <div className="global-loader">
-      <Spinner context="brand" size="lg" />
-    </div>
-  );
-}
 
 function SetupRequired() {
   return (
@@ -138,8 +129,7 @@ function AppRoutes() {
     <>
       <Seo />
       <Layout>
-        <Suspense fallback={<GlobalLoader />}>
-          <Routes location={location}>
+        <Routes location={location}>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Auth />} />
             <Route path="/register" element={<Auth />} />
@@ -196,8 +186,7 @@ function AppRoutes() {
             <Route path="/tutors" element={<TutorMarketplace />} />
             <Route path="/tutor/:profileId" element={<TutorProfile />} />
             <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </Suspense>
+        </Routes>
         <CookieConsent />
         <MaintenanceGate />
       </Layout>
