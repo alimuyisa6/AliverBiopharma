@@ -12,7 +12,6 @@ import Skeleton from '../components/Skeleton/Skeleton';
 import EmptyState from '../components/EmptyState/EmptyState';
 import Button from '../components/Button/Button';
 import Container from '../components/Container/Container';
-import ContentSwitcher from '../components/ContentSwitcher/ContentSwitcher';
 
 function normalizeCurriculumResponse(data) {
   const payload = data?.node?.node ? data.node : data;
