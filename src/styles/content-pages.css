@@ -360,9 +360,9 @@
 }
 
 .notes-card-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: stretch;
   gap: var(--space-2);
   min-width: 0;
 }
@@ -378,9 +378,9 @@
 }
 
 .notes-card .btn {
-  flex: 0 0 auto;
+  width: 100%;
   min-height: 30px;
-  padding: 0 var(--space-2);
+  padding: 0 var(--space-3);
   font-size: 0.68rem;
 }
 
@@ -448,6 +448,7 @@
   }
 
   .notes-card .btn {
+    width: 100%;
     min-height: 26px;
     padding-inline: var(--space-2);
     font-size: 0.6rem;
