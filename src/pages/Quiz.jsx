@@ -503,7 +503,7 @@ export default function Quiz() {
                         title={topic.topic_name}
                         description={`${topic.question_count} questions • ${topic.total_blocks} blocks`}
                         footer={
-                          <Button variant="primary" size="sm" onClick={() => openTopicBlocks(topic)} disabled={locked}>
+                          <Button variant="3d" size="sm" onClick={() => openTopicBlocks(topic)} disabled={locked}>
                             Start
                           </Button>
                         }
@@ -568,7 +568,7 @@ export default function Quiz() {
 
             <div className="quiz-result-actions">
               {currentBlock + 1 < totalBlocks && (
-                <Button variant="primary" onClick={() => startBlock(currentBlock + 1)} disabled={locked}>
+                <Button variant="3d" onClick={() => startBlock(currentBlock + 1)} disabled={locked}>
                   Next Block <Icon name="arrow-right" />
                 </Button>
               )}
