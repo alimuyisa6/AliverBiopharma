@@ -182,7 +182,7 @@ export default function FlashcardsPage() {
                   description={deck.description || 'No description'}
                   className="flashcard-deck-card"
                   footer={
-                    <Button size="sm" icon="play" onClick={() => handleDeckSelect(deck)} disabled={locked}>
+                    <Button variant="3d" size="sm" icon="play" onClick={() => handleDeckSelect(deck)} disabled={locked}>
                       Start
                     </Button>
                   }
