@@ -3,23 +3,26 @@
 .quiz-page,
 .recall-page,
 .pp-page {
-  width: min(100%, var(--max-width));
+  width: min(1280px, calc(100% - clamp(32px, 6vw, 80px)));
   margin-inline: auto;
+  min-width: 0;
 }
 
 .flashcards-page,
 .notes-page,
 .quiz-page,
 .recall-page {
-  padding: var(--section-space-y) var(--page-gutter-x) var(--section-space-y);
+  padding-top: var(--section-space-y);
+  padding-bottom: var(--section-space-y);
 }
 
 .flashcard-subject-section,
 .notes-page,
 .quiz-page-section,
 .recall-page-section {
-  width: min(100%, 1180px);
+  width: 100%;
   margin-inline: auto;
+  min-width: 0;
 }
 
 .flashcard-subject-section,
@@ -32,11 +35,13 @@
 .flashcard-title,
 .notes-page-title,
 .quiz-page-title,
-.recall-page-title {
+.recall-page-title,
+.pp-title {
   max-width: 900px;
   margin: 0;
   color: var(--text-main);
   letter-spacing: var(--tracking-tight);
+  overflow-wrap: anywhere;
 }
 
 .flashcard-title {
@@ -63,6 +68,7 @@
 .quiz-topics-grid,
 .recall-cards-grid {
   align-items: stretch;
+  min-width: 0;
 }
 
 .flashcard-decks-grid > *,
@@ -70,6 +76,7 @@
 .quiz-topics-grid > *,
 .recall-cards-grid > * {
   min-width: 0;
+  max-width: 100%;
 }
 
 .notes-toolbar,
@@ -111,11 +118,13 @@
   border-radius: var(--radius-md);
   background: var(--bg-card);
   box-shadow: var(--shadow-sm);
+  overflow: hidden;
 }
 
 .pp-hero,
 .pp-main {
   width: 100%;
+  min-width: 0;
 }
 
 .pp-hero-inner,
@@ -131,20 +140,13 @@
   padding: var(--space-7) var(--page-gutter-x) var(--section-space-y);
 }
 
-.pp-title {
-  margin: 0;
-  color: var(--text-main);
-}
-
-.pp-subtitle {
-  margin: var(--space-2) 0 0;
-}
-
-.pp-tabs,
 .pp-toolbar,
 .pp-presets,
-.pp-filters {
+.pp-filters,
+.pp-grid,
+.pp-skeleton-grid {
   width: 100%;
+  min-width: 0;
 }
 
 .pp-toolbar,
@@ -153,12 +155,15 @@
   background: var(--surface-subtle);
 }
 
-.pp-grid,
-.pp-skeleton-grid {
-  width: 100%;
-}
-
 @media (max-width: 768px) {
+  .flashcards-page,
+  .notes-page,
+  .quiz-page,
+  .recall-page,
+  .pp-page {
+    width: calc(100% - 32px);
+  }
+
   .flashcards-page,
   .notes-page,
   .quiz-page,
@@ -186,6 +191,14 @@
   .flashcards-page,
   .notes-page,
   .quiz-page,
+  .recall-page,
+  .pp-page {
+    width: calc(100% - 24px);
+  }
+
+  .flashcards-page,
+  .notes-page,
+  .quiz-page,
   .recall-page {
     padding-top: var(--space-6);
     padding-bottom: var(--space-8);
@@ -193,81 +206,5 @@
 
   .pp-page {
     margin-top: var(--space-4);
-  }
-}
-
-
-
-.flashcards-page,
-.notes-page,
-.quiz-page,
-.recall-page,
-.pp-page {
-  width: min(1280px, calc(100% - clamp(32px, 6vw, 80px)));
-  margin-inline: auto;
-  min-width: 0;
-}
-
-.flashcards-page,
-.notes-page,
-.quiz-page,
-.recall-page {
-  padding-inline: 0;
-}
-
-.flashcard-title,
-.notes-page-title,
-.quiz-page-title,
-.recall-page-title,
-.pp-title {
-  overflow-wrap: anywhere;
-}
-
-.flashcard-decks-grid,
-.notes-grid,
-.quiz-topics-grid,
-.recall-cards-grid {
-  min-width: 0;
-}
-
-.flashcard-decks-grid > *,
-.notes-grid > *,
-.quiz-topics-grid > *,
-.recall-cards-grid > * {
-  min-width: 0;
-  max-width: 100%;
-}
-
-.pp-page {
-  overflow: hidden;
-}
-
-.pp-hero,
-.pp-main {
-  min-width: 0;
-}
-
-.pp-grid,
-.pp-skeleton-grid {
-  min-width: 0;
-}
-
-@media (max-width: 768px) {
-  .flashcards-page,
-  .notes-page,
-  .quiz-page,
-  .recall-page,
-  .pp-page {
-    width: calc(100% - 32px);
-  }
-}
-
-@media (max-width: 360px) {
-  .flashcards-page,
-  .notes-page,
-  .quiz-page,
-  .recall-page,
-  .pp-page {
-    width: calc(100% - 24px);
   }
 }
