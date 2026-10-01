@@ -387,3 +387,102 @@ html[data-ui-button-width="auto"] .btn:not(.btn-icon) { width: fit-content; }
 
 .btn-status-success { color: var(--success); border-color: var(--success); }
 .btn-status-error { color: var(--danger); border-color: var(--danger); }
+
+.btn-3d {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 4em;
+  min-height: 4em;
+  padding: 0 var(--space-2);
+  border: 0;
+  border-radius: var(--u3d-radius);
+  background: transparent;
+  color: var(--u3d-text);
+  font: inherit;
+  cursor: pointer;
+  isolation: isolate;
+}
+
+.btn-3d__top {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 4em;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--u3d-radius);
+  background-image: linear-gradient(145deg, var(--u3d-top-start), var(--u3d-top-end));
+  color: var(--u3d-text);
+  text-shadow: 0 -1px rgb(0 0 0 / 25%);
+  transition: transform var(--u3d-transition), border-radius var(--u3d-transition), background var(--u3d-transition);
+}
+
+.btn-3d__bottom {
+  position: absolute;
+  z-index: 1;
+  right: var(--u3d-depth);
+  bottom: var(--u3d-depth);
+  left: var(--u3d-depth);
+  height: calc(100% - 10px);
+  padding-top: 6px;
+  border-radius: var(--u3d-radius);
+  background-image: linear-gradient(145deg, var(--u3d-bottom-start), var(--u3d-bottom-end));
+  box-shadow: 0 2px 3px 0 var(--u3d-shadow);
+  transition: border-radius 0.2s, padding-top 0.2s;
+}
+
+.btn-3d__base {
+  position: absolute;
+  z-index: 0;
+  top: var(--u3d-depth);
+  left: 0;
+  width: 100%;
+  height: calc(100% - var(--u3d-depth));
+  border-radius: var(--u3d-radius);
+  background-color: var(--u3d-base);
+  box-shadow: 0 1px 1px 0 var(--u3d-highlight), inset 0 2px 2px rgb(0 0 0 / 25%);
+  transition: border-radius 0.2s, padding-top 0.2s;
+}
+
+.btn-3d:active:not(:disabled) .btn-3d__top {
+  border-radius: var(--u3d-active-radius);
+  transform: translateY(2px);
+  background-image: linear-gradient(145deg, var(--u3d-top-end), var(--u3d-top-start));
+}
+
+.btn-3d:active:not(:disabled) .btn-3d__bottom,
+.btn-3d:active:not(:disabled) .btn-3d__base {
+  border-radius: var(--u3d-active-radius);
+}
+
+.btn-3d:active:not(:disabled) .btn-3d__bottom {
+  padding-top: 0;
+}
+
+.btn-3d:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: var(--space-2);
+  box-shadow: none;
+}
+
+.btn-3d:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-3d svg,
+.btn-3d i {
+  width: var(--space-4);
+  height: var(--space-4);
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .btn-3d {
+    max-width: 100%;
+  }
+}
