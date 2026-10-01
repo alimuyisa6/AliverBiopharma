@@ -12,6 +12,7 @@ import Skeleton from '../components/Skeleton/Skeleton';
 import EmptyState from '../components/EmptyState/EmptyState';
 import Button from '../components/Button/Button';
 import Container from '../components/Container/Container';
+import ContentSwitcher from '../components/ContentSwitcher/ContentSwitcher';
 
 function normalizeCurriculumResponse(data) {
   const payload = data?.node?.node ? data.node : data;
@@ -248,6 +249,21 @@ export default function NotesPage() {
             </div>
           </section>
         )}
+
+        <ContentSwitcher
+          title="Study collection"
+          options={[
+            { value: 'notes', label: 'Notes', icon: <Icon name="book-open" /> },
+            { value: 'curriculum', label: 'Curriculum', icon: <Icon name="sitemap" /> },
+            { value: 'resources', label: 'Resources', icon: <Icon name="folder-open" /> }
+          ]}
+          defaultValue="notes"
+          className="notes-content-switcher"
+          onChange={(value) => {
+            if (value === 'curriculum' && contextPath) navigate(contextPath);
+            if (value === 'resources') navigate('/resources');
+          }}
+        />
 
         <div className="notes-toolbar" role="search">
           <div className="notes-toolbar-label">
