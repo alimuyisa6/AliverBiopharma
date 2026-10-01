@@ -26,6 +26,7 @@ import Spinner from '../components/Spinner/Spinner';
 import Skeleton from '../components/Skeleton/Skeleton';
 import ProgressBar from '../components/ProgressBar/ProgressBar';
 import Button from '../components/Button/Button';
+import ContentSwitcher from '../components/ContentSwitcher/ContentSwitcher';
 import Card from '../components/Card/Card';
 import Modal from '../components/Modal/Modal';
 import Input from '../components/Input/Input';
@@ -617,32 +618,17 @@ export default function BioRecall() {
   }
 
   const renderTabBar = () => (
-    <div className="recall-tab-bar">
-      <button
-        className={`recall-tab ${
-          activeTab === 'progress' ? 'is-active' : ''
-        }`}
-        onClick={() => setActiveTab('progress')}
-      >
-        Your Progress
-      </button>
-      <button
-        className={`recall-tab ${
-          activeTab === 'insights' ? 'is-active' : ''
-        }`}
-        onClick={() => setActiveTab('insights')}
-      >
-        Insights & Analytics
-      </button>
-      <button
-        className={`recall-tab ${
-          activeTab === 'leaderboard' ? 'is-active' : ''
-        }`}
-        onClick={() => setActiveTab('leaderboard')}
-      >
-        Leaderboard
-      </button>
-    </div>
+    <ContentSwitcher
+      title="Recall dashboard"
+      options={[
+        { value: 'progress', label: 'Your Progress', icon: <Icon name="chart-line" /> },
+        { value: 'insights', label: 'Insights & Analytics', icon: <Icon name="chart-pie" /> },
+        { value: 'leaderboard', label: 'Leaderboard', icon: <Icon name="trophy" /> }
+      ]}
+      value={activeTab}
+      onChange={setActiveTab}
+      className="recall-content-switcher"
+    />
   );
 
   if (isTabView) {
