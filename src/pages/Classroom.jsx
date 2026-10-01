@@ -13,6 +13,7 @@ import { listClassrooms, getUnits } from '../api/client';
 import Icon from '../components/Icon/Icon';
 import Spinner from '../components/Spinner/Spinner';
 import Button from '../components/Button/Button';
+import AnimatedActionButton from '../components/AnimatedActionButton/AnimatedActionButton';
 import EmptyState from '../components/EmptyState/EmptyState';
 
 const STATUS_ICONS = {
@@ -186,9 +187,7 @@ export default function Classroom() {
                   </div>
                   <div className="card-footer">
                     {room.status === 'live' || room.status === 'open_floor' ? (
-                      <Button size="sm" onClick={() => navigate(`/classroom/${room.id}`)}>
-                        <Icon name="door-open" /> Join
-                      </Button>
+                      <AnimatedActionButton primaryText="Join Today" secondaryText="Join Now" onClick={() => navigate(`/classroom/${room.id}`)} />
                     ) : room.status === 'upcoming' ? (
                       <Button size="sm" variant="secondary" disabled>
                         <Icon name="clock" />
