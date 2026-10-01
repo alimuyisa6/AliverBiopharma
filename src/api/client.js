@@ -303,15 +303,13 @@ export async function signin(
 email,
 password,
 turnstile_token,
-mfa_code,
-device = null
+mfa_code
 ) {
 return apiCall('auth', 'signin', {
 email,
 password,
 turnstile_token,
-mfa_code,
-device
+mfa_code
 });
 }
 
@@ -319,11 +317,10 @@ export async function getPasskeyConfig() {
 return getRequest('auth', 'passkey_config');
 }
 
-export async function signinWithPasskey(access_token, mfa_code = null, device = null) {
+export async function signinWithPasskey(access_token, mfa_code = null) {
 return apiCall('auth', 'passkey_signin', {
 access_token,
-mfa_code,
-device
+mfa_code
 });
 }
 
