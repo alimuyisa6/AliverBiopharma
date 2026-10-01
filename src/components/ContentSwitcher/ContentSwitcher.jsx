@@ -12,7 +12,6 @@ export default function ContentSwitcher({
   const [internalValue, setInternalValue] = useState(defaultValue ?? options[0]?.value);
   const activeValue = value ?? internalValue;
   const activeIndex = Math.max(0, options.findIndex((item) => item.value === activeValue));
-  const count = Math.max(options.length, 1);
 
   const select = (nextValue) => {
     if (value === undefined) setInternalValue(nextValue);
@@ -24,15 +23,16 @@ export default function ContentSwitcher({
   return (
     <div className={`content-switcher-card ${className}`.trim()}>
       {title && <div className="content-switcher-card__title">{title}</div>}
-      <div className="content-switcher" role="tablist" aria-label={title || 'Content categories'}>
-        <div
-          className="content-switcher__slider"
-          style={{
-            width: `calc((100% - ${(count - 1) * 8}px) / ${count})`,
-            transform: `translateX(${activeIndex * 100 + activeIndex * 8 / count * 100 / 100}%)`
-          }}
-          aria-hidden="true"
-        />
+      <div
+        className="content-switcher"
+        role="tablist"
+        aria-label={title || 'Content categories'}
+        style={{
+          '--content-switcher-count': options.length,
+          '--content-switcher-index': activeIndex
+        }}
+      >
+        <div className="content-switcher__slider" aria-hidden="true" />
         {options.map((item) => {
           const optionId = `${id}-${item.value}`;
           const active = item.value === activeValue;
