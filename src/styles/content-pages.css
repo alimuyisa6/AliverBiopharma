@@ -1,3 +1,4 @@
+ .notes-page-shell,
 .flashcards-page,
 .notes-page,
 .quiz-page,
@@ -8,7 +9,7 @@
   min-width: 0;
 }
 
-.flashcards-page,
+ .flashcards-page,
 .notes-page,
 .quiz-page,
 .recall-page {
@@ -16,7 +17,7 @@
   padding-bottom: var(--section-space-y);
 }
 
-.flashcard-subject-section,
+ .flashcard-subject-section,
 .notes-page,
 .quiz-page-section,
 .recall-page-section {
@@ -207,4 +208,15 @@
   .pp-page {
     margin-top: var(--space-4);
   }
+}
+
+
+.notes-page-shell {
+  width: 100%;
+  padding-inline: var(--page-gutter-x);
+}
+
+.notes-page-shell > .notes-page {
+  width: min(1180px, 100%);
+  margin-inline: auto;
 }
