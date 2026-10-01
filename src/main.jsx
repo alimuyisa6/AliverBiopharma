@@ -13,6 +13,10 @@ import './styles/animation.css';
 import './styles/global.css';
 import './styles/layout.css';
 import './styles/components.css';
+import './styles/uiverse-tokens.css';
+import './styles/content-switcher.css';
+import './styles/biopharm-toggle.css';
+import './styles/animated-action-button.css';
 
 
 function showFatalError(title, message, stack) {
