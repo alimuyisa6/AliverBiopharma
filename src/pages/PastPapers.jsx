@@ -25,6 +25,7 @@ import Select from '../components/Select/Select';
 import EmptyState from '../components/EmptyState/EmptyState';
 import { useToast } from '../components/Toast/Toast';
 import { useLayout } from '../contexts/LayoutContext';
+import ContentSwitcher from '../components/ContentSwitcher/ContentSwitcher';
 
 const TABS = [
   { key: 'all', label: 'All Papers' },
@@ -562,7 +563,19 @@ export default function PastPapers() {
           </div>
         )}
 
-        <div className="pp-tabs">
+        <ContentSwitcher
+          title="Paper collection"
+          options={TABS.map((tab) => ({
+            value: tab.key,
+            label: tab.label,
+            icon: <Icon name={tab.key === 'all' ? 'file-lines' : tab.key === 'bookmarked' ? 'bookmark' : 'download'} />
+          }))}
+          value={activeTab}
+          onChange={setActiveTab}
+          className="pp-content-switcher"
+        />
+
+        <div className="pp-tabs pp-tabs-legacy" aria-hidden="true">
           {TABS.map((tab) => (
             <Button
               key={tab.key}
