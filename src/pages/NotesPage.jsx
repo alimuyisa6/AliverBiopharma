@@ -330,7 +330,7 @@ export default function NotesPage() {
                       {note.read_time ? `${note.read_time} min read` : 'Study note'}
                       {note.is_premium ? ' · Premium' : ''}
                     </span>
-                    <Button size="sm" onClick={() => navigate(`/notes/read?id=${note.id}`)}>
+                    <Button variant="3d" size="sm" onClick={() => navigate(`/notes/read?id=${note.id}`)}>
                       Read Note
                     </Button>
                   </div>
