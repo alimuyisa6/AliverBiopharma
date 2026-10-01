@@ -327,3 +327,129 @@
 .notes-page {
   padding-top: var(--space-2);
 }
+
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.notes-card {
+  min-height: 0;
+  padding: var(--space-3);
+  border-radius: var(--radius-sm);
+}
+
+.notes-card .card-title {
+  margin-bottom: var(--space-1);
+  font-size: var(--text-xs);
+  line-height: 1.3;
+  font-weight: var(--weight-semibold);
+}
+
+.notes-card .card-text {
+  margin: 0;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+.notes-card .card-footer {
+  margin-top: var(--space-2);
+}
+
+.notes-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.notes-card-meta {
+  min-width: 0;
+  color: var(--text-muted);
+  font-size: 0.62rem;
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.notes-card .btn {
+  flex: 0 0 auto;
+  min-height: 30px;
+  padding: 0 var(--space-2);
+  font-size: 0.68rem;
+}
+
+.notes-card .card-image {
+  height: 90px;
+  margin: calc(var(--space-3) * -1) calc(var(--space-3) * -1) var(--space-2);
+  width: calc(100% + var(--space-6));
+  object-fit: cover;
+}
+
+@media (max-width: 1024px) {
+  .notes-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .notes-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .notes-card {
+    padding: var(--space-2);
+  }
+
+  .notes-card .card-image {
+    height: 72px;
+    margin: calc(var(--space-2) * -1) calc(var(--space-2) * -1) var(--space-2);
+    width: calc(100% + var(--space-4));
+  }
+
+  .notes-card .card-title {
+    font-size: 0.7rem;
+  }
+
+  .notes-card .card-text {
+    font-size: 0.64rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .notes-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-2);
+  }
+
+  .notes-card {
+    padding: var(--space-2);
+  }
+
+  .notes-card .card-image {
+    height: 60px;
+  }
+
+  .notes-card .card-title {
+    font-size: 0.68rem;
+  }
+
+  .notes-card .card-text {
+    font-size: 0.6rem;
+  }
+
+  .notes-card-meta {
+    font-size: 0.56rem;
+  }
+
+  .notes-card .btn {
+    min-height: 26px;
+    padding-inline: var(--space-2);
+    font-size: 0.6rem;
+  }
+}
