@@ -1,0 +1,69 @@
+:root {
+  --u3d-top-start: #6a11cb;
+  --u3d-top-end: #2575fc;
+  --u3d-bottom-start: #2575fc;
+  --u3d-bottom-end: #6a11cb;
+  --u3d-text: #ffffff;
+  --u3d-base: rgba(0, 0, 0, 0.15);
+  --u3d-shadow: rgba(0, 0, 0, 0.5);
+  --u3d-highlight: rgba(255, 255, 255, 0.75);
+  --u3d-radius: 20px;
+  --u3d-active-radius: 10px 10px 8px 8px / 8px;
+  --u3d-depth: 4px;
+  --u3d-transition: 0.3s;
+
+  --switcher-width: 360px;
+  --switcher-width-fluid: 90%;
+  --switcher-padding: 20px;
+  --switcher-radius: 35px;
+  --switcher-bg: #000000;
+  --switcher-text: #ffffff;
+  --switcher-muted: #888888;
+  --switcher-control-bg: #222222;
+  --switcher-control-radius: 20px;
+  --switcher-control-padding: 4px;
+  --switcher-option-gap: 8px;
+  --switcher-option-radius: 16px;
+  --switcher-option-text: #cccccc;
+  --switcher-slider-bg: rgba(255, 255, 255, 0.4);
+  --switcher-slider-border: rgba(255, 255, 255, 0.2);
+  --switcher-slider-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.4),
+    inset 0 -2px 4px rgba(255, 255, 255, 0.2);
+  --switcher-chart-bg: #1b1b1b;
+  --switcher-chart-radius: 12px;
+  --switcher-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  --switcher-transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  --tactile-toggle-width: 15rem;
+  --tactile-toggle-duration: 0.6s;
+  --tactile-toggle-easing: cubic-bezier(1, 0, 1, 1);
+  --tactile-toggle-hue: 220deg;
+  --tactile-toggle-accent-hue: 22deg;
+  --tactile-toggle-track-radius: 999px;
+  --tactile-toggle-shadow:
+    inset 10px 10px 10px hsl(220deg 20% 80%),
+    inset -10px -10px 10px hsl(220deg 20% 93%);
+  --tactile-toggle-thumb-shadow:
+    2px 2px 3px hsl(220deg 18% 50% / 80%),
+    2px 2px 6px hsl(220deg 18% 50% / 40%),
+    10px 20px 10px hsl(220deg 18% 50% / 40%),
+    20px 30px 30px hsl(220deg 18% 50% / 60%);
+
+  --action-purple-white: #ffe7ff;
+  --action-purple-100: #f4b1fd;
+  --action-purple-200: #d190ff;
+  --action-purple-300: #c389f2;
+  --action-purple-400: #8e26e2;
+  --action-purple-500: #5e2b83;
+  --action-purple-shadow: rgb(115 75 155 / 40%);
+  --action-purple-radius: 18px;
+  --action-purple-width: 220px;
+  --action-purple-height: 80px;
+  --action-purple-duration: 0.3s;
+  --action-purple-slow: 0.7s;
+  --action-purple-loop: 1s;
+  --action-purple-spin: 3s;
+  --action-purple-focus: 1.6s;
+  --action-purple-splash: 0.8s;
+}
