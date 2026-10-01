@@ -158,10 +158,8 @@ export default function NotesPage() {
   return (
     <Container>
       <div className="notes-page">
-        <span className="sec-label font-mono">Study Notes</span>
         <h1 className="section-title notes-page-title font-fraunces">
-          {contextTitle || 'Notes'}
-          {!contextTitle && !levelName && 'Study Notes'}
+          {contextTitle || 'Study Notes'}
         </h1>
 
         {classLabel && !contextTitle && <p className="notes-page-class font-maven-pro">{classLabel}</p>}
