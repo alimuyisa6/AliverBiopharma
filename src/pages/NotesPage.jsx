@@ -299,11 +299,7 @@ export default function NotesPage() {
             action={<Button onClick={() => loadContent()}>Try Again</Button>}
           />
         ) : notes.length === 0 ? (
-          <EmptyState
-            image={getEmptyStateImage('notes')}
-            title="Your Notes Will Appear Here"
-            description={`Study notes for ${contextTitle || classLabel || levelName || 'this curriculum'} will appear here as content is added.`}
-          />
+          <div className="notes-empty-space" aria-hidden="true" />
         ) : filteredNotes.length === 0 ? (
           <EmptyState
             image={getEmptyStateImage('notes')}
