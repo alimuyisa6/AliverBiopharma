@@ -12,6 +12,7 @@ import './styles/spacing.css';
 import './styles/animation.css';
 import './styles/global.css';
 import './styles/layout.css';
+import './styles/content-pages.css';
 import './styles/components.css';
 import './styles/uiverse-tokens.css';
 import './styles/content-switcher.css';
