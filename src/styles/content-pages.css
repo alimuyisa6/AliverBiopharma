@@ -309,3 +309,16 @@
   appearance: none;
   display: none;
 }
+
+
+.main-content:has(.notes-page-shell) {
+  padding-top: 0;
+}
+
+.notes-page-shell {
+  margin-top: 0;
+}
+
+.notes-page {
+  padding-top: var(--space-2);
+}
