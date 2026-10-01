@@ -303,3 +303,9 @@
     height: 44px;
   }
 }
+.notes-search input[type="search"]::-webkit-search-cancel-button,
+.notes-search input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+  display: none;
+}
