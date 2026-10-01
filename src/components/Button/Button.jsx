@@ -42,6 +42,30 @@ const Button = forwardRef(function Button(
   const safeIcon = icon === 'dna' ? 'microscope' : icon;
   const safeIconRight = iconRight === 'dna' ? 'microscope' : iconRight;
 
+  if (variant === '3d') {
+    return (
+      <button
+        ref={ref}
+        type={type}
+        className={classes}
+        disabled={loading || disabled}
+        aria-busy={loading || undefined}
+        {...props}
+      >
+        <span className="btn-3d__top">
+          {loading && <Spinner size="sm" context={loadingContext} variant="3d" />}
+          {status === 'success' && <Icon name="circle-check" />}
+          {status === 'error' && <Icon name="circle-xmark" />}
+          {safeIcon && !loading && !status && <Icon name={safeIcon} />}
+          {children && <span>{loading && loadingLabel ? loadingLabel : children}</span>}
+          {safeIconRight && !loading && <Icon name={safeIconRight} />}
+        </span>
+        <span className="btn-3d__bottom" aria-hidden="true" />
+        <span className="btn-3d__base" aria-hidden="true" />
+      </button>
+    );
+  }
+
   return (
     <button
       ref={ref}
