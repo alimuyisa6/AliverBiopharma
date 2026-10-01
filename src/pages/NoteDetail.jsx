@@ -18,7 +18,6 @@ import Card from '../components/Card/Card';
 import EmptyState from '../components/EmptyState/EmptyState';
 import Spinner from '../components/Spinner/Spinner';
 import Button from '../components/Button/Button';
-import SearchOverlay from '../components/SearchOverlay/SearchOverlay';
 
 let mermaidPromise = null;
 function loadMermaid() {
@@ -69,7 +68,6 @@ export default function NoteDetail() {
   const [metadata, setMetadata] = useState({});
   const [tocOpen, setTocOpen] = useState(false);
   const [lightboxImage, setLightboxImage] = useState(null);
-  const [searchOpen, setSearchOpen] = useState(false);
   const [reactionLoading, setReactionLoading] = useState(null);
   const [commentSubmitting, setCommentSubmitting] = useState(false);
 
@@ -414,8 +412,6 @@ export default function NoteDetail() {
 
   return (
     <>
-      <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
-
       {isBarFloating && createPortal(
         <div
           className="note-progress-bar note-progress-bar--floating"
@@ -512,10 +508,6 @@ export default function NoteDetail() {
       )}
 
       <div className="note-detail-container">
-        <button className="note-search-btn" onClick={() => setSearchOpen(true)} aria-label="Search notes">
-          <i className="fa-solid fa-magnifying-glass"></i> Search
-        </button>
-
         <div className="breadcrumb note-breadcrumb font-mono">
           {breadcrumb.map((crumb, index) => (
             <span key={index}>
