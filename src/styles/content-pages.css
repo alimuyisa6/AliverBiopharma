@@ -337,6 +337,8 @@
 
 .notes-card {
   min-height: 0;
+  background: #ffffff;
+  box-shadow: var(--shadow-subtle);
   padding: var(--space-3);
   border-radius: var(--radius-sm);
 }
