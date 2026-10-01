@@ -158,15 +158,44 @@ export default function NotesPage() {
   return (
     <Container className="notes-page-shell">
       <div className="notes-page">
-        <h1 className="section-title notes-page-title font-fraunces">
-          {contextTitle || 'Study Notes'}
-        </h1>
+        <div className="notes-page-heading">
+          <h1 className="section-title notes-page-title font-fraunces">
+            Study Notes
+          </h1>
+
+          <nav className="breadcrumb font-mono" aria-label="Breadcrumb">
+            <Link to="/"><Icon name="home" className="breadcrumb-icon" /> Home</Link>
+            <Icon name="chevron-right" className="breadcrumb-sep" />
+            <Link to="/notes">Notes</Link>
+
+            {contextLoading ? (
+              <>
+                <Icon name="chevron-right" className="breadcrumb-sep" />
+                <span className="font-maven-pro">Loading curriculum…</span>
+              </>
+            ) : contextTitle ? (
+              <>
+                {contextAncestors.map((ancestor) => (
+                  <span className="notes-breadcrumb-segment" key={ancestor.id}>
+                    <Icon name="chevron-right" className="breadcrumb-sep" />
+                    <span className="font-maven-pro">{ancestor.name}</span>
+                  </span>
+                ))}
+                <Icon name="chevron-right" className="breadcrumb-sep" />
+                <span className="font-maven-pro">{contextTitle}</span>
+              </>
+            ) : unitId ? (
+              <>
+                <Icon name="chevron-right" className="breadcrumb-sep" />
+                <span className="font-maven-pro">Selected curriculum</span>
+              </>
+            ) : null}
+          </nav>
+        </div>
 
         {classLabel && !contextTitle && <p className="notes-page-class font-maven-pro">{classLabel}</p>}
 
         <AdSlot placement="notes" pageContext="notes" />
-
-        <nav className="breadcrumb font-mono" aria-label="Breadcrumb">
           <Link to="/"><Icon name="home" className="breadcrumb-icon" /> Home</Link>
           <Icon name="chevron-right" className="breadcrumb-sep" />
           <Link to="/notes">Notes</Link>
