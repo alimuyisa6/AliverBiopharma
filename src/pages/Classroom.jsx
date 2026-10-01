@@ -241,9 +241,7 @@ export default function Classroom() {
                       </td>
                       <td data-label="Action">
                         {room.status === 'live' || room.status === 'open_floor' ? (
-                          <Button size="xs" onClick={() => navigate(`/classroom/${room.id}`)}>
-                            <Icon name="door-open" /> Join
-                          </Button>
+                          <AnimatedActionButton primaryText="Join Today" secondaryText="Join Now" onClick={() => navigate(`/classroom/${room.id}`)} />
                         ) : room.status === 'upcoming' ? (
                           <Button size="xs" variant="secondary" disabled>
                             <Icon name="clock" />
