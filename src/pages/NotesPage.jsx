@@ -40,6 +40,12 @@ function formatResourceCount(value) {
   return count === 1 ? '1 note' : `${count} notes`;
 }
 
+function getAutomaticReadTime(wordCount) {
+  const words = Number(wordCount) || 0;
+  if (!words) return null;
+  return Math.max(1, Math.ceil(words / 200));
+}
+
 export default function NotesPage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -324,7 +330,10 @@ export default function NotesPage() {
                 footer={
                   <div className="notes-card-footer">
                     <span className="notes-card-meta font-mono">
-                      {note.read_time ? `${note.read_time} min read` : 'Study note'}
+                      {(() => {
+                        const minutes = getAutomaticReadTime(note.word_count);
+                        return minutes ? `${minutes} min read` : 'Study note';
+                      })()}
                       {note.is_premium ? ' · Premium' : ''}
                     </span>
                     <Button variant="3d" size="sm" onClick={() => navigate(`/notes/read?id=${note.id}`)}>
