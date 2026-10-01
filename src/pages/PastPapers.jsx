@@ -575,25 +575,6 @@ export default function PastPapers() {
           className="pp-content-switcher"
         />
 
-        <div className="pp-tabs pp-tabs-legacy" aria-hidden="true">
-          {TABS.map((tab) => (
-            <Button
-              key={tab.key}
-              variant={activeTab === tab.key ? 'primary' : 'ghost'}
-              size="sm"
-              onClick={() => setActiveTab(tab.key)}
-            >
-              {tab.label}
-              {tab.key === 'bookmarked' && bookmarkedIds.size > 0 && (
-                <span className="pp-badge">{bookmarkedIds.size}</span>
-              )}
-              {tab.key === 'downloaded' && downloadedIds.size > 0 && (
-                <span className="pp-badge">{downloadedIds.size}</span>
-              )}
-            </Button>
-          ))}
-        </div>
-
         {activeTab === 'all' && (
           <div className="pp-toolbar">
             <div className="pp-search-wrapper">
