@@ -220,3 +220,86 @@
   width: min(1180px, 100%);
   margin-inline: auto;
 }
+.notes-page {
+  padding-top: var(--space-4);
+}
+
+.notes-search {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: min(100%, 560px);
+  min-height: 48px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  background: var(--bg-card);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: border-color var(--ease-fast), box-shadow var(--ease-fast);
+}
+
+.notes-search:focus-within {
+  border-color: var(--border-focus);
+  box-shadow: var(--shadow-focus), 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.notes-search > svg {
+  flex: 0 0 auto;
+  color: var(--text-muted);
+}
+
+.notes-search input {
+  flex: 1;
+  min-width: 0;
+  height: 46px;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text-main);
+  font: inherit;
+}
+
+.notes-search input::placeholder {
+  color: var(--text-muted);
+}
+
+.notes-search-clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.notes-search-clear:hover {
+  background: var(--surface-subtle);
+  color: var(--text-main);
+}
+
+@media (max-width: 768px) {
+  .notes-page {
+    padding-top: var(--space-3);
+  }
+}
+
+@media (max-width: 480px) {
+  .notes-page {
+    padding-top: var(--space-3);
+  }
+
+  .notes-search {
+    min-height: 46px;
+  }
+
+  .notes-search input {
+    height: 44px;
+  }
+}
