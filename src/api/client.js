@@ -6,6 +6,7 @@ const API_BASE = '/api/server';
 const pendingRequests = new Map();
 const requestQueue = [];
 const MAX_CONCURRENT = 3;
+const REQUEST_TIMEOUT_MS = 30000;
 
 let activeRequests = 0;
 let processingQueue = false;
@@ -159,7 +160,24 @@ nextOptions.headers = { ...(options?.headers || {}) };
 if (typeof window !== 'undefined') {
   nextOptions.headers['X-App-Route'] = window.location.pathname || '/';
 }
-const res = await fetch(url, nextOptions);
+
+const controller = new AbortController();
+const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+nextOptions.signal = controller.signal;
+
+let res;
+try {
+  res = await fetch(url, nextOptions);
+} catch (error) {
+  if (error?.name === 'AbortError') {
+    const timeoutError = new Error('The request timed out. Please try again.');
+    timeoutError.code = 'REQUEST_TIMEOUT';
+    throw timeoutError;
+  }
+  throw error;
+} finally {
+  clearTimeout(timeoutId);
+}
 const json = await parseResponse(res);
 
 if (json?.csrf_token) {
