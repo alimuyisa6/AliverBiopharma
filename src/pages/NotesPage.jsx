@@ -193,8 +193,6 @@ export default function NotesPage() {
           </nav>
         </div>
 
-        {classLabel && !contextTitle && <p className="notes-page-class font-maven-pro">{classLabel}</p>}
-
         <AdSlot placement="notes" pageContext="notes" />
         {contextTitle && (
           <section className="notes-curriculum-context" aria-label="Curriculum context">
@@ -250,7 +248,7 @@ export default function NotesPage() {
         )}
 
         <ContentSwitcher
-          title="Study collection"
+          title={contextTitle || classLabel || levelName || 'Study Notes'}
           options={[
             { value: 'notes', label: 'Notes', icon: <Icon name="book-open" /> },
             { value: 'curriculum', label: 'Curriculum', icon: <Icon name="sitemap" /> },
