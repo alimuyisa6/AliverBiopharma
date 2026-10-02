@@ -176,6 +176,83 @@
   --level-olevel: var(--level-o);
   --level-alevel: var(--level-a);
 
+
+  /* Profile surface tokens */
+  --profile-page-bg: var(--blue-50);
+  --profile-page-bottom-space: var(--space-8);
+  --profile-header-top-space: var(--space-2);
+  --profile-header-top-space-mobile: var(--space-2);
+  --profile-header-top-space-small: var(--space-1);
+  --profile-header-bottom-space: var(--space-4);
+  --profile-header-gap: var(--space-3);
+  --profile-title-gap: var(--space-2);
+  --profile-subtitle-max: var(--content-max-readable);
+
+  --profile-switcher-gap: var(--space-8);
+  --profile-switcher-min-width: var(--space-56);
+  --profile-switcher-height: var(--space-14);
+  --profile-switcher-padding-y: var(--space-3);
+  --profile-switcher-padding-x: var(--space-5);
+  --profile-switcher-icon-gap: var(--space-3);
+  --profile-switcher-icon-size: var(--space-6);
+  --profile-switcher-bg: var(--primary);
+  --profile-switcher-border: var(--primary-hover);
+  --profile-switcher-depth: var(--space-2);
+  --profile-switcher-shadow: 0 var(--space-2) var(--primary-hover), var(--shadow-floating);
+  --profile-switcher-shadow-hover: 0 var(--space-1) var(--primary-hover), var(--shadow-raised);
+  --profile-switcher-shadow-active: var(--shadow-subtle);
+
+  --profile-panel-side-space: var(--space-2);
+  --profile-panel-side-space-mobile: var(--space-1);
+  --profile-panel-padding-x: var(--space-8);
+  --profile-panel-padding-y: var(--space-8);
+  --profile-panel-padding-x-mobile: var(--space-5);
+  --profile-panel-padding-y-mobile: var(--space-6);
+  --profile-panel-padding-x-small: var(--space-4);
+  --profile-panel-padding-y-small: var(--space-5);
+  --profile-panel-bg: var(--surface-card);
+  --profile-panel-border: var(--primary-border);
+  --profile-panel-radius: var(--radius-xl);
+  --profile-panel-shadow: var(--shadow-none);
+
+  --profile-overview-heading-gap: var(--space-6);
+  --profile-overview-icon-size: var(--space-12);
+  --profile-overview-icon-glyph: var(--space-6);
+
+  --profile-summary-gap: var(--space-8);
+  --profile-summary-padding-x: var(--space-5);
+  --profile-summary-padding-y: var(--space-5);
+  --profile-summary-padding-x-small: var(--space-4);
+  --profile-summary-padding-y-small: var(--space-4);
+  --profile-summary-bg: var(--surface-tinted);
+  --profile-summary-border: var(--primary-border);
+  --profile-summary-radius: var(--radius-lg);
+  --profile-summary-divider-space: var(--space-6);
+  --profile-summary-divider-space-mobile: var(--space-4);
+  --profile-avatar-size: var(--space-24);
+
+  --profile-detail-icon-size: var(--space-5);
+  --profile-detail-label-width: var(--space-16);
+  --profile-detail-label-width-mobile: var(--space-20);
+
+  --profile-categories-gap: var(--space-8);
+  --profile-category-grid-gap: var(--space-5);
+  --profile-category-gap: var(--space-4);
+  --profile-category-padding-x: var(--space-4);
+  --profile-category-padding-y: var(--space-4);
+  --profile-category-radius: var(--radius-md);
+  --profile-category-bg: var(--surface-card);
+  --profile-category-border: var(--border-light);
+  --profile-category-shadow: var(--shadow-subtle);
+  --profile-category-shadow-hover: var(--shadow-card);
+  --profile-category-lift: var(--space-1);
+  --profile-category-icon-size: var(--space-10);
+  --profile-category-icon-glyph: var(--space-6);
+  --profile-category-arrow-size: var(--space-5);
+
+  --profile-sidebar-width: var(--space-56);
+  --profile-sidebar-offset: var(--space-8);
+
   /* --------------------------------------------------------------
      Existing page-level semantic contracts
      -------------------------------------------------------------- */
