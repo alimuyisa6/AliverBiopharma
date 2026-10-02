@@ -958,30 +958,23 @@ export default function Profile() {
         {profileError && <ProfileError error={profileError} title={t('profile.profileDataLoadError')} onRetry={loadProfile} />}
         {bundleError && <ProfileError error={bundleError} title={t('profile.settingsDataLoadError')} onRetry={loadBundle} />}
 
-        <div className="profile-toolbar">
-          <div className="profile-toolbar-copy">
-            <span style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 12, textTransform: 'uppercase' }}>
-              {t('profile.settings')}
-            </span>
-            <span style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
-              {t(`profile.${SECTIONS.find((section) => section.id === activeSection)?.key || 'profileOverview'}`)}
-            </span>
-          </div>
-
-          <Button
+        <div className="profile-section-switcher">
+          <button
             type="button"
-            variant="outline"
-            size="sm"
-            className="profile-sidebar-toggle"
+            className="profile-section-switcher-button"
             onClick={() => setSidebarOpen((open) => !open)}
             aria-expanded={sidebarOpen}
             aria-controls="profile-sidebar"
           >
-            {sidebarOpen ? t('profile.closeSections') : t('profile.profileSections')}
-          </Button>
+            <span className="profile-section-switcher-icon" aria-hidden="true">
+              <Icon name="gear" />
+            </span>
+            <span>{t('profile.profileSections')}</span>
+            <Icon name={sidebarOpen ? 'chevron-down' : 'chevron-right'} className="profile-section-switcher-arrow" />
+          </button>
         </div>
 
-        <div className={`profile-layout${sidebarOpen ? ' sidebar-open' : ''}`}>
+        <div className="profile-layout${sidebarOpen ? " sidebar-open" : ""}">
           <button
             type="button"
             className="profile-sidebar-backdrop"
@@ -990,38 +983,7 @@ export default function Profile() {
           />
 
           <aside id="profile-sidebar" className="profile-sidebar" aria-label={t('profile.profileSections')}>
-            <div className="profile-sidebar-inner" style={{ background: THEME.bgCard, border: `1px solid ${THEME.border}` }}>
-              <div className="profile-sidebar-profile">
-                <div className="profile-avatar-lg" style={{ color: THEME.accent, fontFamily: THEME.font }}>
-                  {initial}
-                </div>
-                <div className="profile-sidebar-details">
-                  <div style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 13, fontWeight: 600 }}>
-                    {profileMeta?.display_name || profileMeta?.full_name || 'Student'}
-                  </div>
-                  <div style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 11 }}>
-                    {profileMeta?.track || 'No level set'}
-                    <span aria-hidden="true"> · </span>
-                    {profileMeta?.class_name || 'No class set'}
-                  </div>
-                </div>
-              </div>
-
-              <div className="profile-stats-grid">
-                <div className="profile-stat-tile" style={{ border: `1px solid ${THEME.border}` }}>
-                  <div style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 500 }}>
-                    {bundle?.active_device_count ?? '—'}
-                  </div>
-                  <div style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 12 }}>{t('profile.devices')}</div>
-                </div>
-                <div className="profile-stat-tile" style={{ border: `1px solid ${THEME.border}` }}>
-                  <div style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 500 }}>
-                    {bundle?.referral_count ?? '—'}
-                  </div>
-                  <div style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 12 }}>{t('profile.referrals')}</div>
-                </div>
-              </div>
-
+            <div className="profile-sidebar-inner">
               <nav className="profile-nav" aria-label={t('profile.profileSections')}>
                 <ul className="profile-nav-list">
                   {SECTIONS.map((section) => (
@@ -1031,11 +993,6 @@ export default function Profile() {
                         className={activeSection === section.id ? 'active' : ''}
                         onClick={() => selectSection(section.id)}
                         aria-current={activeSection === section.id ? 'page' : undefined}
-                        style={{
-                          color: activeSection === section.id ? THEME.accent : THEME.textSecondary,
-                          fontFamily: THEME.font,
-                          fontSize: 14
-                        }}
                       >
                         {t(`profile.${section.key}`)}
                       </button>
@@ -1047,6 +1004,95 @@ export default function Profile() {
           </aside>
 
           <div className="profile-content">
+            <section className="profile-overview-panel" aria-labelledby="profile-overview-title">
+              <div className="profile-overview-heading">
+                <span className="profile-overview-icon" aria-hidden="true">
+                  <Icon name="user" />
+                </span>
+                <div>
+                  <h2 id="profile-overview-title">Profile Overview</h2>
+                  <p>View and manage your basic information, academic details and account status.</p>
+                </div>
+              </div>
+
+              <div className="profile-overview-summary">
+                <div className="profile-summary-identity">
+                  <div className="profile-summary-avatar">
+                    <ProfilePictureUpload
+                      currentUrl={user?.profile?.profile_picture_url}
+                      onUpdate={() => refresh()}
+                      size={96}
+                    />
+                  </div>
+                  <div className="profile-summary-name">
+                    <h3>{profileMeta?.display_name || profileMeta?.full_name || user?.email || 'Student'}</h3>
+                    <p>
+                      <Icon name="graduation-cap" />
+                      <span>{profileMeta?.role === 'teacher' ? 'Teacher' : profileMeta?.track || 'Student'}</span>
+                    </p>
+                    <span className="profile-summary-status">
+                      <span aria-hidden="true" />
+                      {profileMeta?.is_active === false ? 'Inactive' : 'Active'}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="profile-summary-details">
+                  <div className="profile-summary-detail">
+                    <Icon name="envelope" />
+                    <span className="profile-summary-detail-label">{t('profile.email')}</span>
+                    <strong>{profileMeta?.email || user?.email || '—'}</strong>
+                  </div>
+                  <div className="profile-summary-detail">
+                    <Icon name="book-open" />
+                    <span className="profile-summary-detail-label">Programme</span>
+                    <strong>{profileMeta?.programme || profileMeta?.track || profileMeta?.class_name || 'Not set'}</strong>
+                  </div>
+                  <div className="profile-summary-detail">
+                    <Icon name="calendar" />
+                    <span className="profile-summary-detail-label">Member Since</span>
+                    <strong>{profileMeta?.created_at ? new Date(profileMeta.created_at).toLocaleDateString(undefined, { month: 'short', year: 'numeric' }) : '—'}</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div className="profile-categories">
+                <div className="profile-categories-heading">
+                  <span />
+                  <h2>Profile Sections</h2>
+                  <span />
+                </div>
+
+                <div className="profile-category-grid">
+                  <button type="button" className="profile-category-card" onClick={() => selectSection('overview')}>
+                    <span className="profile-category-icon profile-category-icon-primary"><Icon name="user" /></span>
+                    <span>Personal Info</span>
+                    <Icon name="chevron-right" className="profile-category-arrow" />
+                  </button>
+                  <button type="button" className="profile-category-card" onClick={() => selectSection('curriculum')}>
+                    <span className="profile-category-icon profile-category-icon-success"><Icon name="graduation-cap" /></span>
+                    <span>Academic Details</span>
+                    <Icon name="chevron-right" className="profile-category-arrow" />
+                  </button>
+                  <button type="button" className="profile-category-card" onClick={() => selectSection('security')}>
+                    <span className="profile-category-icon profile-category-icon-warning"><Icon name="shield" /></span>
+                    <span>Security</span>
+                    <Icon name="chevron-right" className="profile-category-arrow" />
+                  </button>
+                  <button type="button" className="profile-category-card" onClick={() => selectSection('preferences')}>
+                    <span className="profile-category-icon profile-category-icon-violet"><Icon name="gear" /></span>
+                    <span>Preferences</span>
+                    <Icon name="chevron-right" className="profile-category-arrow" />
+                  </button>
+                  <button type="button" className="profile-category-card" onClick={() => selectSection('account')}>
+                    <span className="profile-category-icon profile-category-icon-info"><Icon name="file-lines" /></span>
+                    <span>Administrative</span>
+                    <Icon name="chevron-right" className="profile-category-arrow" />
+                  </button>
+                </div>
+              </div>
+            </section>
+
             {sectionError && (
               <ProfileError
                 error={sectionError}
@@ -1057,17 +1103,13 @@ export default function Profile() {
 
             {activeSection === 'overview' && (
               <>
-                <div className="profile-avatar-wrapper">
-                  <ProfilePictureUpload currentUrl={user?.profile?.profile_picture_url} onUpdate={() => refresh()} size={96} />
-                </div>
-
                 <form onSubmit={handleProfileSubmit}>
                   <Card variant="inset" className="profile-card-main card-lifted">
-                    <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
-                      <Icon name="id-card" style={{ color: THEME.accent }} />
+                    <h3 className="profile-detail-title">
+                      <Icon name="id-card" />
                       Personal Information
                     </h3>
-                    <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
+                    <p className="profile-detail-description">
                       Update your legal and display name. Your display name is shown publicly across reviews and comments.
                     </p>
 
@@ -1089,25 +1131,24 @@ export default function Profile() {
 
                 <form onSubmit={handleBioSubmit}>
                   <Card variant="inset" className="profile-card card-lifted">
-                    <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
-                      <Icon name="pen" style={{ color: 'var(--secondary)' }} />
+                    <h3 className="profile-detail-title">
+                      <Icon name="pen" />
                       Professional Biography
                     </h3>
-                    <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
+                    <p className="profile-detail-description">
                       Share a brief professional biography outlining your background, interests, and current course of study.
                     </p>
 
                     <textarea
                       className="form-textarea"
-                      style={{ color: THEME.textMain, fontFamily: THEME.font, background: THEME.bgCard, border: `1px solid ${THEME.border}` }}
-                      rows={3}
-                      maxLength={500}
                       value={bio}
                       onChange={(e) => setBio(e.target.value)}
                       placeholder={t('profile.bioPlaceholder')}
+                      rows={3}
+                      maxLength={500}
                     />
 
-                    <Button type="submit" loading={savingBio} status={saveStatus.bio} loadingContext="brand" variant="outline" icon="check" style={{ marginTop: 12 }}>
+                    <Button type="submit" loading={savingBio} status={saveStatus.bio} loadingContext="brand" variant="outline" icon="check">
                       Save Biography
                     </Button>
                   </Card>
