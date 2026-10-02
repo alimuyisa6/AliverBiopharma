@@ -974,7 +974,7 @@ export default function Profile() {
           </button>
         </div>
 
-        <div className="profile-layout${sidebarOpen ? " sidebar-open" : ""}">
+        <div className={`profile-layout${sidebarOpen ? ' sidebar-open' : ''}`}>
           <button
             type="button"
             className="profile-sidebar-backdrop"
