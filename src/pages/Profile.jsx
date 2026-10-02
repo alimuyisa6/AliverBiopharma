@@ -948,7 +948,7 @@ export default function Profile() {
   const initial = (profileMeta?.display_name || profileMeta?.full_name || user?.email || 'S').charAt(0).toUpperCase();
 
   return (
-    <div style={{ background: THEME.bgCard, minHeight: '100vh', fontFamily: THEME.font }}>
+    <div className="profile-page">
       <Container>
         <PageHeader
           title={t('profile.title')}
