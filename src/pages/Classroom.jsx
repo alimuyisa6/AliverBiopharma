@@ -266,5 +266,4 @@ export default function Classroom() {
         <ContentAnalytics variant="classroom" />
   );
 }
-        <ContentAnalytics variant="classroom" />
 
