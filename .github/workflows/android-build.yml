@@ -26,9 +26,9 @@ jobs:
         with:
           gradle-version: "8.13"
 
-      - name: Build installable test APK
+      - name: Build installable release APK
         working-directory: android
-        run: gradle assembleDebug
+        run: gradle assembleRelease
 
       - name: Build release AAB
         working-directory: android
@@ -39,6 +39,6 @@ jobs:
         with:
           name: aliverbiopharma-android
           path: |
-            android/app/build/outputs/apk/debug/app-debug.apk
+            android/app/build/outputs/apk/release/app-release.apk
             android/app/build/outputs/bundle/release/app-release.aab
           if-no-files-found: error
