@@ -1360,8 +1360,7 @@ export default function BioRecall() {
         </Modal>
       </div>
     </div>
-        <ContentAnalytics variant="rec
-    </>all" />
+        <ContentAnalytics variant="recall" />
   );
 }
 
