@@ -1,4 +1,5 @@
 import AdSlot from '../components/Advertising/AdSlot';
+import ContentAnalytics from '../components/charts/ContentAnalytics';
 import { useState, useEffect, useMemo } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useContentAccess } from '../hooks/useContentAccess';
@@ -341,3 +342,5 @@ export default function NotesPage() {
     </Container>
   );
 }
+        <ContentAnalytics variant="notes" />
+
