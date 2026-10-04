@@ -767,7 +767,5 @@ export default function Quiz() {
         </Modal>
       </div>
     </div>
-      </>
   );
 }
-
