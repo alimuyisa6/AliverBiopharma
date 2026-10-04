@@ -1,4 +1,5 @@
  /* pages/FlashcardsPage.jsx */
+import ContentAnalytics from '../components/charts/ContentAnalytics';
 import AdSlot from '../components/Advertising/AdSlot';
 import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -226,3 +227,5 @@ export default function FlashcardsPage() {
 
   return null;
 }
+        <ContentAnalytics variant="flashcards" />
+
