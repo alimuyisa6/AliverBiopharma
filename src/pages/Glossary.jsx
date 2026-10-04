@@ -1,5 +1,4 @@
  import { useState, useEffect, useCallback } from 'react';
-import ContentAnalytics from '../components/charts/ContentAnalytics';
 import GlossaryView from './GlossaryView';
 import { useAuth } from '../contexts/AuthContext';
 import {
@@ -94,6 +93,5 @@ export default function Glossary() {
       onToggleSidebar={() => setSidebarOpen(prev => !prev)}
       onClearSearch={() => { setSearchQuery(''); setSelectedCategory(''); }}
     />
-    <ContentAnalytics variant="resources" />
   );
 }
