@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import ContentAnalytics from '../components/charts/ContentAnalytics';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useRequireOnboarding } from '../hooks/useRequireOnboarding';
@@ -666,7 +665,6 @@ export default function BioRecall() {
   }
 
   return (
-    <>
     <div className="recall-page">
       <div className="section recall-page-section">
         <nav className="breadcrumb font-mono">
@@ -1360,7 +1358,6 @@ export default function BioRecall() {
         </Modal>
       </div>
     </div>
-        <ContentAnalytics variant="recall" />
   );
 }
 
