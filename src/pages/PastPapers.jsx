@@ -1,5 +1,4 @@
 /* pages/PastPapers.jsx */
-import ContentAnalytics from '../components/charts/ContentAnalytics';
 import { useState, useEffect, useRef } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
@@ -512,7 +511,6 @@ export default function PastPapers() {
   const classLabel = class_name || '';
 
   return (
-    <>
     <div className="pp-page">
       <div className="pp-hero">
         <div className="pp-hero-inner">
@@ -1048,7 +1046,6 @@ export default function PastPapers() {
         </div>
       )}
     </div>
-        <ContentAnalytics variant="pastPapers" />
   );
 }
 
