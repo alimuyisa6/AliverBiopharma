@@ -771,5 +771,4 @@ export default function Quiz() {
         <ContentAnalytics variant="quiz" />
   );
 }
-        <ContentAnalytics variant="quiz" />
 
