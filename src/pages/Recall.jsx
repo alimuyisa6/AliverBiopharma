@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import ContentAnalytics from '../components/charts/ContentAnalytics';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useRequireOnboarding } from '../hooks/useRequireOnboarding';
@@ -1360,3 +1361,5 @@ export default function BioRecall() {
     </div>
   );
 }
+        <ContentAnalytics variant="recall" />
+
