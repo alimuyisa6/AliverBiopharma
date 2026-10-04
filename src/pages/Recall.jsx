@@ -666,6 +666,7 @@ export default function BioRecall() {
   }
 
   return (
+    <>
     <div className="recall-page">
       <div className="section recall-page-section">
         <nav className="breadcrumb font-mono">
@@ -1359,7 +1360,8 @@ export default function BioRecall() {
         </Modal>
       </div>
     </div>
-        <ContentAnalytics variant="recall" />
+        <ContentAnalytics variant="rec
+    </>all" />
   );
 }
 
