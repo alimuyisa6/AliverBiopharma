@@ -1047,6 +1047,7 @@ export default function PastPapers() {
         </div>
       )}
     </div>
+        <ContentAnalytics variant="pastPapers" />
   );
 }
         <ContentAnalytics variant="pastPapers" />
