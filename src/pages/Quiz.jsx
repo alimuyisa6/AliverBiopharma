@@ -770,6 +770,7 @@ export default function Quiz() {
       </div>
     </div>
         <ContentAnalytics variant="quiz" />
+      </>
   );
 }
 
