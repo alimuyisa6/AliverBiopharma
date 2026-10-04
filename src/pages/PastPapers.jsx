@@ -1,4 +1,5 @@
 /* pages/PastPapers.jsx */
+import ContentAnalytics from '../components/charts/ContentAnalytics';
 import { useState, useEffect, useRef } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
@@ -1048,3 +1049,5 @@ export default function PastPapers() {
     </div>
   );
 }
+        <ContentAnalytics variant="pastPapers" />
+
