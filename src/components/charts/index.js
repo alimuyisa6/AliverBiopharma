@@ -10,3 +10,5 @@ export { default as LineAreaChart } from './LineAreaChart';
 export { default as DonutChart } from './DonutChart';
 export { default as RadarChart } from './RadarChart';
 export { default as ContentAnalytics } from './ContentAnalytics';
+
+export { TotalLearningActivity, LearningTrend, MasteryDonut, XpBars, PerformanceOverview } from './AnalyticsCharts';
