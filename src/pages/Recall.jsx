@@ -1362,5 +1362,4 @@ export default function BioRecall() {
         <ContentAnalytics variant="recall" />
   );
 }
-        <ContentAnalytics variant="recall" />
 
