@@ -1,9 +1,7 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { Bar, BarChart, CartesianGrid, Cell, Line, LineChart, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import ChartCard from './ChartCard';
-import ChartSelect from './ChartSelect';
 import ChartSegmentedControl from './ChartSegmentedControl';
-import ChartBadge from './ChartBadge';
 import ChartExportButton from './ChartExportButton';
 import ChartTooltip from './ChartTooltip';
 import useChartTheme from './useChartTheme';
