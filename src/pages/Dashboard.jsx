@@ -1,161 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Bar, Line } from 'react-chartjs-2';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  BarElement,
-  Tooltip,
-  Legend
-} from 'chart.js';
-import { Link } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
-import { useLayout } from '../contexts/LayoutContext';
-import { getUserDashboard } from '../api/cachedClient';
-import { useContentAccess } from '../hooks/useContentAccess';
-import { useSecurityUiLock } from '../hooks/useSecurityUiLock';
-import EmptyState from '../components/EmptyState/EmptyState';
-import Icon from '../components/Icon/Icon';
-import Container from '../components/Container/Container';
-import ProgressBar, { ProgressRing } from '../components/ProgressBar/ProgressBar';
-import { useI18n } from '../contexts/I18nContext';
-
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Tooltip, Legend);
-
-function getChartColors() {
-  if (typeof document === 'undefined') {
-    return { primary: '#2563eb', secondary: '#0f766e', grid: '#dbe3ea', text: '#64748b' };
-  }
-  const styles = getComputedStyle(document.documentElement);
-  return {
-    primary: styles.getPropertyValue('--primary').trim() || '#2563eb',
-    secondary: styles.getPropertyValue('--secondary').trim() || '#0f766e',
-    grid: styles.getPropertyValue('--border-subtle').trim() || '#dbe3ea',
-    text: styles.getPropertyValue('--text-muted').trim() || '#64748b'
-  };
-}
-
-function LearningActivityChart({ data }) {
-  const colors = getChartColors();
-  const rows = [...data]
-    .filter((item) => item?.activity_date)
-    .sort((a, b) => new Date(a.activity_date) - new Date(b.activity_date));
-
-  return (
-    <div className="dashboard-chart" aria-label="Learning activity over time">
-      <Line
-        data={{
-          labels: rows.map((item) =>
-            new Date(item.activity_date).toLocaleDateString(undefined, {
-              month: 'short',
-              day: 'numeric'
-            })
-          ),
-          datasets: [{
-            label: 'Activities completed',
-            data: rows.map((item) => Math.max(0, Number(item.count) || 0)),
-            borderColor: colors.primary,
-            backgroundColor: colors.primary,
-            borderWidth: 3,
-            pointRadius: 4,
-            pointHoverRadius: 6,
-            tension: 0.3,
-            fill: false
-          }]
-        }}
-        options={{
-          responsive: true,
-          maintainAspectRatio: false,
-          animation: false,
-          plugins: {
-            legend: { display: true, position: 'top', align: 'end' },
-            tooltip: {
-              displayColors: false,
-              callbacks: {
-                label: (context) => `${context.parsed.y} activities completed`
-              }
-            }
-          },
-          scales: {
-            x: {
-              grid: { display: false },
-              ticks: {
-                color: colors.text,
-                maxRotation: 0,
-                minRotation: 0,
-                autoSkip: true,
-                autoSkipPadding: 16,
-                maxTicksLimit: 5,
-                padding: 4,
-                font: { size: 11 }
-              }
-            },
-            y: {
-              beginAtZero: true,
-              grid: { color: colors.grid },
-              ticks: { color: colors.text, precision: 0, stepSize: 1 }
-            }
-          }
-        }}
-      />
-    </div>
-  );
-}
-
-function MasteryChart({ data }) {
-  const colors = getChartColors();
-  const chartRows = data.filter((item) => item.assessed).slice(0, 8);
-
-  return (
-    <div className="dashboard-chart dashboard-chart-mastery" aria-label="Mastery by curriculum unit">
-      <Bar
-        data={{
-          labels: chartRows.map((item) => item.unit_name),
-          datasets: [{
-            label: 'Your mastery',
-            data: chartRows.map((item) => Number(item.mastery) || 0),
-            backgroundColor: colors.secondary,
-            borderRadius: 5,
-            barThickness: 20
-          }]
-        }}
-        options={{
-          indexAxis: 'y',
-          responsive: true,
-          maintainAspectRatio: false,
-          animation: false,
-          plugins: {
-            legend: { display: true, position: 'top', align: 'end' },
-            tooltip: {
-              displayColors: false,
-              callbacks: {
-                label: (context) => `${context.parsed.x}% mastery`
-              }
-            }
-          },
-          scales: {
-            x: {
-              beginAtZero: true,
-              max: 100,
-              grid: { color: colors.grid },
-              ticks: {
-                color: colors.text,
-                callback: (value) => `${value}%`
-              }
-            },
-            y: {
-              grid: { display: false },
-              ticks: { color: colors.text, autoSkip: false }
-            }
-          }
-        }}
-      />
-    </div>
-  );
-}
-
+import LineAreaChart from '../components/charts/LineAreaChart';
+import BarChart from '../components/charts/BarChart';
 
 export default function Dashboard() {
   const { user } = useAuth();
@@ -444,7 +289,12 @@ export default function Dashboard() {
                   </div>
                 </div>
                 <div className="panel-body">
-                  <LearningActivityChart data={heatmapValues} />
+                  <LineAreaChart
+                    data={heatmapValues.map((item) => Math.max(0, Number(item.count) || 0))}
+                    labels={heatmapValues.map((item) => new Date(item.activity_date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }))}
+                    label="Activities completed"
+                    height={280}
+                  />
                 </div>
               </section>
             )}
@@ -459,7 +309,13 @@ export default function Dashboard() {
                 </div>
                 <div className="panel-body">
                   <p className="mastery-chart-explainer">Each bar shows how well you have performed in that curriculum unit. Longer bars mean higher mastery.</p>
-                  {assessedMastery.length > 0 && <MasteryChart data={assessedMastery} />}
+                  {assessedMastery.length > 0 && <BarChart
+                    data={assessedMastery.map((item) => Number(item.mastery) || 0)}
+                    labels={assessedMastery.map((item) => item.unit_name)}
+                    label="Your mastery"
+                    height={320}
+                    horizontal
+                  />}
                   <div className="mastery-summary">
                     <ProgressRing value={overallMastery} size="lg" tone="mastery" ariaLabel={`${overallMastery}% assessed mastery`} />
                     <div>
