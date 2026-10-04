@@ -35,7 +35,6 @@ import Button from '../components/Button/Button';
 import Card from '../components/Card/Card';
 import Modal from '../components/Modal/Modal';
 import { useI18n } from '../contexts/I18nContext';
-import ContentAnalytics from '../components/charts/ContentAnalytics';
 
 function createIdempotencyKey(prefix = 'quiz') {
   try {
@@ -431,7 +430,6 @@ export default function Quiz() {
   const timerClass = timerPercent > 50 ? 'is-good' : timerPercent > 20 ? 'is-warn' : 'is-danger';
 
   return (
-    <>
     <div className="quiz-page">
       <div className="section quiz-page-section">
         <span className="eyebrow">{t('common.assessments')}</span>
@@ -769,7 +767,6 @@ export default function Quiz() {
         </Modal>
       </div>
     </div>
-        <ContentAnalytics variant="quiz" />
       </>
   );
 }
