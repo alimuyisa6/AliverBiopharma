@@ -343,5 +343,4 @@ export default function NotesPage() {
         <ContentAnalytics variant="notes" />
   );
 }
-        <ContentAnalytics variant="notes" />
 
