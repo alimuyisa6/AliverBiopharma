@@ -225,6 +225,7 @@ export default function FlashcardsPage() {
     );
   }
 
+  <ContentAnalytics variant="flashcards" />
   return null;
 }
         <ContentAnalytics variant="flashcards" />
