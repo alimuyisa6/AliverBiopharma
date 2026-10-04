@@ -26,9 +26,28 @@ jobs:
         with:
           gradle-version: "8.13"
 
-      - name: Build installable release APK
+      - name: Build unsigned release APK
         working-directory: android
         run: gradle assembleRelease
+
+      - name: Align and sign release APK
+        working-directory: android
+        shell: bash
+        run: |
+          set -euo pipefail
+          BUILD_TOOLS="$(find "$ANDROID_HOME/build-tools" -mindepth 1 -maxdepth 1 -type d | sort -V | tail -n 1)"
+          KEYSTORE="$RUNNER_TEMP/aliverbiopharma-release.jks"
+          UNSIGNED="app/build/outputs/apk/release/app-release-unsigned.apk"
+          ALIGNED="app/build/outputs/apk/release/app-release-aligned.apk"
+          FINAL="app/build/outputs/apk/release/AliverBiopharm-1.0.3.apk"
+
+          keytool -genkeypair -v             -keystore "$KEYSTORE"             -storepass android             -keypass android             -alias aliverbiopharma             -keyalg RSA             -keysize 2048             -validity 10000             -dname "CN=AliverBiopharm, OU=Development, O=AliverBiopharm, L=Kampala, ST=Central, C=UG"
+
+          "$BUILD_TOOLS/zipalign" -f -p 4 "$UNSIGNED" "$ALIGNED"
+
+          "$BUILD_TOOLS/apksigner" sign             --ks "$KEYSTORE"             --ks-pass pass:android             --key-pass pass:android             --ks-key-alias aliverbiopharma             --out "$FINAL"             "$ALIGNED"
+
+          "$BUILD_TOOLS/apksigner" verify --verbose "$FINAL"
 
       - name: Build release AAB
         working-directory: android
@@ -37,8 +56,8 @@ jobs:
       - name: Upload Android artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: aliverbiopharma-android
+          name: aliverbiopharma-1.0.3
           path: |
-            android/app/build/outputs/apk/release/app-release.apk
+            android/app/build/outputs/apk/release/AliverBiopharm-1.0.3.apk
             android/app/build/outputs/bundle/release/app-release.aab
           if-no-files-found: error
