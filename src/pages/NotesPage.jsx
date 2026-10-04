@@ -157,6 +157,7 @@ export default function NotesPage() {
   }
 
   return (
+    <>
     <Container className="notes-page-shell">
       <div className="notes-page">
         <div className="notes-page-heading">
@@ -340,7 +341,8 @@ export default function NotesPage() {
         )}
       </div>
     </Container>
-        <ContentAnalytics variant="notes" />
+        <ContentAnalytics variant="no
+    </>tes" />
   );
 }
 
