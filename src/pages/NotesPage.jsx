@@ -341,8 +341,7 @@ export default function NotesPage() {
         )}
       </div>
     </Container>
-        <ContentAnalytics variant="no
-    </>tes" />
+        <ContentAnalytics variant="notes" />
   );
 }
 
