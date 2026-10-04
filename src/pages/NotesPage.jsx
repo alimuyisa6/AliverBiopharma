@@ -340,6 +340,7 @@ export default function NotesPage() {
         )}
       </div>
     </Container>
+        <ContentAnalytics variant="notes" />
   );
 }
         <ContentAnalytics variant="notes" />
