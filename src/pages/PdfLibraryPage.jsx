@@ -1,5 +1,4 @@
 /* pages/PdfLibraryPage.jsx */
-import ContentAnalytics from '../components/charts/ContentAnalytics';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useContentAccess } from '../hooks/useContentAccess';
@@ -138,6 +137,5 @@ export default function PdfLibraryPage() {
         )}
       </div>
     </Container>
-    <ContentAnalytics variant="resources" />
   );
 }
