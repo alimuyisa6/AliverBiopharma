@@ -1048,8 +1048,7 @@ export default function PastPapers() {
         </div>
       )}
     </div>
-        <ContentAnalytics variant="pastPap
-    </>ers" />
+        <ContentAnalytics variant="pastPapers" />
   );
 }
 
