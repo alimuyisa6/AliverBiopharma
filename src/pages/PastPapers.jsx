@@ -1050,5 +1050,4 @@ export default function PastPapers() {
         <ContentAnalytics variant="pastPapers" />
   );
 }
-        <ContentAnalytics variant="pastPapers" />
 
