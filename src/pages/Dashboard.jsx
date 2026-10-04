@@ -319,6 +319,7 @@ export default function Dashboard() {
                       value: Math.max(0, Number(item.mastery) || 0)
                     }))}
                   />}
+                  {unitXpChart.length > 0 && <XpBars data={unitXpChart} />}
                   <div className="mastery-summary">
                     <ProgressRing value={overallMastery} size="lg" tone="mastery" ariaLabel={`${overallMastery}% assessed mastery`} />
                     <div>
