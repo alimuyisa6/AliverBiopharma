@@ -152,7 +152,9 @@ export default function FlashcardsPage() {
 
   if (stage === STAGE.SUBJECT) {
     return (
-      <div className="flashcards-page">
+      <>
+        <ContentAnalytics variant="flashcards" />
+     <div className="flashcards-page">
         <div className="section flashcard-subject-section">
           <span className="sec-label">Study Tools</span>
           <h1 className="section-title flashcard-title">
@@ -224,9 +226,6 @@ export default function FlashcardsPage() {
       />
     );
   }
-
-  <ContentAnalytics variant="flashcards" />
   return null;
 }
-        <ContentAnalytics variant="flashcards" />
 
