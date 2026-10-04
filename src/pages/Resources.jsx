@@ -1,5 +1,4 @@
  // src/pages/Resources.jsx
-import ContentAnalytics from '../components/charts/ContentAnalytics';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
@@ -27,7 +26,6 @@ export default function Resources() {
         user={user}
         navigate={navigate}
       />
-      <ContentAnalytics variant="resources" />
     </>
   );
 }
