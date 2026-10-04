@@ -512,6 +512,7 @@ export default function PastPapers() {
   const classLabel = class_name || '';
 
   return (
+    <>
     <div className="pp-page">
       <div className="pp-hero">
         <div className="pp-hero-inner">
@@ -1047,7 +1048,8 @@ export default function PastPapers() {
         </div>
       )}
     </div>
-        <ContentAnalytics variant="pastPapers" />
+        <ContentAnalytics variant="pastPap
+    </>ers" />
   );
 }
 
