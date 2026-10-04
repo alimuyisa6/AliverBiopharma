@@ -768,6 +768,7 @@ export default function Quiz() {
         </Modal>
       </div>
     </div>
+        <ContentAnalytics variant="quiz" />
   );
 }
         <ContentAnalytics variant="quiz" />
