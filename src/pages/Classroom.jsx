@@ -263,6 +263,7 @@ export default function Classroom() {
         )}
       </div>
     </div>
+        <ContentAnalytics variant="classroom" />
   );
 }
         <ContentAnalytics variant="classroom" />
