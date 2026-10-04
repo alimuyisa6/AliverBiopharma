@@ -98,6 +98,7 @@ export default function Classroom() {
   const classLabel = class_name || '';
 
   return (
+    <>
     <div className="classroom-page">
       <div className="section classroom-list-section">
         <span className="sec-label">{t('common.liveLearning')}</span>
@@ -263,7 +264,8 @@ export default function Classroom() {
         )}
       </div>
     </div>
-        <ContentAnalytics variant="classroom" />
+        <ContentAnalytics variant="classr
+    </>oom" />
   );
 }
 
