@@ -1,106 +1,23 @@
- import { Line } from 'react-chartjs-2';
-import { useMemo } from 'react';
+import { LineChart, Line, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import ChartTooltip from './ChartTooltip';
+import ChartCard from './ChartCard';
+import useChartTheme from './useChartTheme';
 
-export default function LineAreaChart({ data, labels, label, color = '#2563EB', gradientTo = '#7C3AED', fill = true, height = 280 }) {
-  const chartData = useMemo(() => ({
-    labels,
-    datasets: [
-      {
-        label,
-        data,
-        borderColor: color,
-        backgroundColor: fill
-          ? (context) => {
-              const chart = context.chart;
-              const { ctx, chartArea } = chart;
-
-              if (!chartArea) return `${color}15`;
-
-              const gradient = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
-
-              gradient.addColorStop(0, `${color}35`);
-              gradient.addColorStop(0.5, `${color}12`);
-              gradient.addColorStop(1, `${color}02`);
-
-              return gradient;
-            }
-          : 'transparent',
-        borderWidth: 3.5,
-        pointBackgroundColor: color,
-        pointBorderColor: '#FFFFFF',
-        pointBorderWidth: 2.5,
-        pointRadius: 5,
-        pointHoverRadius: 7,
-        pointHoverBackgroundColor: gradientTo,
-        pointHoverBorderColor: '#FFFFFF',
-        pointHoverBorderWidth: 3,
-        fill,
-        tension: 0.4,
-        cubicInterpolationMode: 'monotone',
-        spanGaps: true
-      }
-    ]
-  }), [data, labels, label, color, gradientTo, fill]);
-
-  const options = useMemo(() => ({
-    responsive: true,
-    maintainAspectRatio: false,
-    interaction: {
-      mode: 'index',
-      intersect: false
-    },
-    plugins: {
-      legend: {
-        display: false
-      },
-      tooltip: {
-        backgroundColor: 'rgba(15, 23, 42, 0.9)',
-        titleFont: { weight: '700', size: 13 },
-        bodyFont: { size: 12 },
-        padding: 12,
-        cornerRadius: 8,
-        displayColors: false,
-        callbacks: {
-          label: (context) => `${context.parsed.y} ${label.toLowerCase()}`
-        }
-      }
-    },
-    scales: {
-      x: {
-        grid: {
-          display: false
-        },
-        border: {
-          display: false
-        },
-        ticks: {
-          maxRotation: 0,
-          autoSkip: true,
-          maxTicksLimit: 7,
-          font: { size: 11, weight: '500' }
-        }
-      },
-      y: {
-        beginAtZero: true,
-        grid: {
-          color: 'rgba(100, 116, 139, 0.08)',
-          drawBorder: false
-        },
-        border: {
-          display: false
-        },
-        ticks: {
-          padding: 8,
-          precision: 0,
-          font: { size: 11, weight: '500' }
-        }
-      }
-    }
-  }), [label]);
-
-  return (
-    <div style={{ height, width: '100%' }}>
-      <Line data={chartData} options={options} />
+export default function LineAreaChart({ data = [], labels = [], label = 'Value', title, subtitle, height = 280 }) {
+  const theme = useChartTheme();
+  const rows = data.map((value, index) => ({ label: labels[index] || String(index + 1), value: Number(value) || 0 }));
+  const chart = (
+    <div className="ch-chart-frame" style={{ height }}>
+      <ResponsiveContainer width="100%" height="100%">
+        <LineChart data={rows} margin={{ top: 8, right: 8, bottom: 8, left: 0 }}>
+          <CartesianGrid vertical={false} stroke={theme.subtleBorder} strokeDasharray="3 3" />
+          <XAxis dataKey="label" stroke={theme.muted} tickLine={false} axisLine={false} />
+          <YAxis stroke={theme.muted} tickLine={false} axisLine={false} allowDecimals={false} />
+          <Tooltip content={<ChartTooltip />} />
+          <Line type="monotone" dataKey="value" name={label} stroke={theme.series[1]} strokeWidth={2.5} dot={{ r: 4, fill: theme.surface, stroke: theme.series[1], strokeWidth: 2 }} activeDot={{ r: 5 }} />
+        </LineChart>
+      </ResponsiveContainer>
     </div>
   );
+  return title ? <ChartCard title={title} subtitle={subtitle} summary={label + ' trend with ' + rows.length + ' data points.'}>{chart}</ChartCard> : chart;
 }
