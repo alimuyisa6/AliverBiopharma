@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import LineAreaChart from '../components/charts/LineAreaChart';
-import BarChart from '../components/charts/BarChart';
+import { TotalLearningActivity, MasteryDonut, XpBars } from '../components/charts/AnalyticsCharts';
 
 export default function Dashboard() {
   const { user } = useAuth();
@@ -129,6 +128,11 @@ export default function Dashboard() {
   const planner = analytics?.planner || {};
   const heatmap = analytics?.heatmap || [];
   const personalRecords = analytics?.personal_records || {};
+  const unitXpChart = unitXp.slice(0, 6).map((item) => ({
+    label: item.unit_name,
+    value: Math.max(0, Number(item.xp) || 0)
+  }));
+
   const masteryMap = analytics?.mastery_map || [];
   const assessedMastery = masteryMap.filter((item) => item.assessed);
   const overallMastery = assessedMastery.length
@@ -289,11 +293,11 @@ export default function Dashboard() {
                   </div>
                 </div>
                 <div className="panel-body">
-                  <LineAreaChart
-                    data={heatmapValues.map((item) => Math.max(0, Number(item.count) || 0))}
-                    labels={heatmapValues.map((item) => new Date(item.activity_date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }))}
-                    label="Activities completed"
-                    height={280}
+                  <TotalLearningActivity
+                    data={heatmapValues.map((item) => ({
+                      label: new Date(item.activity_date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }),
+                      value: Math.max(0, Number(item.count) || 0)
+                    }))}
                   />
                 </div>
               </section>
@@ -309,12 +313,11 @@ export default function Dashboard() {
                 </div>
                 <div className="panel-body">
                   <p className="mastery-chart-explainer">Each bar shows how well you have performed in that curriculum unit. Longer bars mean higher mastery.</p>
-                  {assessedMastery.length > 0 && <BarChart
-                    data={assessedMastery.map((item) => Number(item.mastery) || 0)}
-                    labels={assessedMastery.map((item) => item.unit_name)}
-                    label="Your mastery"
-                    height={320}
-                    horizontal
+                  {assessedMastery.length > 0 && <MasteryDonut
+                    data={assessedMastery.map((item) => ({
+                      label: item.unit_name,
+                      value: Math.max(0, Number(item.mastery) || 0)
+                    }))}
                   />}
                   <div className="mastery-summary">
                     <ProgressRing value={overallMastery} size="lg" tone="mastery" ariaLabel={`${overallMastery}% assessed mastery`} />
