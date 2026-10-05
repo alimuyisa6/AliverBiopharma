@@ -85,6 +85,12 @@
   --pencil-loader-wood-shadow: hsl(33 90% 50%);
   --pencil-loader-graphite: hsl(223 10% 10%);
 
+  --hero-pattern-tile: 60px;
+  --hero-pattern-base: var(--blue-600);
+  --hero-pattern-accent: #47d3ff;
+  --hero-pattern-light: #adafff;
+  --hero-pattern-strong: #474bff;
+
   --theme-switch-height: 2em;
   --theme-switch-radius: 2em;
   --theme-switch-shadow-size: 0.66em;
