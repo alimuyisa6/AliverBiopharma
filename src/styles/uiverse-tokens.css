@@ -91,9 +91,9 @@
   --hero-pattern-light: #adafff;
   --hero-pattern-strong: #474bff;
 
-  --theme-switch-height: 2em;
-  --theme-switch-radius: 2em;
-  --theme-switch-shadow-size: 0.66em;
+  --theme-switch-height: 1.5em;
+  --theme-switch-radius: 1.5em;
+  --theme-switch-shadow-size: 0.5em;
   --theme-switch-track: var(--text-muted);
   --theme-switch-stroke: var(--text-inverse);
   --theme-switch-stroke-width: 16;
