@@ -219,7 +219,7 @@ export default function Dashboard() {
           <section className="panel dashboard-card dashboard-card-primary" id="today-plan-section" aria-labelledby="today-plan-title">
             <div className="panel-header">
               <h3 className="panel-title">
-                <Icon name="lightbulb" /> Today's Learning Plan
+                Today's Learning Plan
               </h3>
             </div>
             <div className="panel-body">
@@ -243,7 +243,7 @@ export default function Dashboard() {
             <div className="panel dashboard-card dashboard-card-primary" id="platform-stats-section">
               <div className="panel-header">
                 <h3 className="panel-title">
-                  <Icon name="chart-line" /> Platform Stats
+                  Platform Stats
                 </h3>
               </div>
               <div className="panel-body">
@@ -287,7 +287,7 @@ export default function Dashboard() {
               <section className="panel dashboard-card dashboard-card-primary" id="learning-activity-section">
                 <div className="panel-header">
                   <h3 className="panel-title">
-                    <Icon name="clock" /> Learning Activity
+                    Learning Activity
                   </h3>
                   <div className="segmented" role="group" aria-label="Learning activity period">
                     {['day', 'week', 'month'].map((range) => (
@@ -319,7 +319,7 @@ export default function Dashboard() {
               <section className="panel dashboard-card dashboard-card-primary" id="mastery-map-section">
                 <div className="panel-header">
                   <h3 className="panel-title">
-                    <Icon name="target" /> Your Mastery
+                    Your Mastery
                   </h3>
                   <span className="panel-meta">{overallMastery}% assessed mastery</span>
                 </div>
@@ -363,7 +363,7 @@ export default function Dashboard() {
               <div className="panel dashboard-card dashboard-card-primary" id="continue-reading-section">
                 <div className="panel-header">
                   <h3 className="panel-title">
-                    <Icon name="book-open" /> Continue Reading
+                    Continue Reading
                   </h3>
                 </div>
                 <div className="panel-body">
@@ -398,7 +398,7 @@ export default function Dashboard() {
               <div className="panel dashboard-card dashboard-card-primary" id="recommendations-section">
                 <div className="panel-header">
                   <h3 className="panel-title">
-                    <Icon name="lightbulb" /> Recommended For You
+                    Recommended For You
                   </h3>
                 </div>
                 <div className="panel-body">
@@ -452,7 +452,7 @@ export default function Dashboard() {
               <div className="panel dashboard-card dashboard-card-secondary" id="personal-records-section">
                 <div className="panel-header">
                   <h3 className="panel-title">
-                    <Icon name="star" /> Personal Records
+                    Personal Records
                   </h3>
                 </div>
                 <div className="panel-body">
@@ -482,7 +482,7 @@ export default function Dashboard() {
               <div className="panel dashboard-card dashboard-card-secondary" id="learning-records-section">
                 <div className="panel-header">
                   <h3 className="panel-title">
-                    <Icon name="trophy" /> Learning Records
+                    Learning Records
                   </h3>
                 </div>
                 <div className="panel-body">
@@ -508,7 +508,7 @@ export default function Dashboard() {
               <div className="panel dashboard-card dashboard-card-secondary" id="weak-areas-section">
                 <div className="panel-header">
                   <h3 className="panel-title">
-                    <Icon name="lightbulb" /> Weak Areas
+                    Weak Areas
                   </h3>
                 </div>
                 <div className="panel-body">
@@ -534,7 +534,7 @@ export default function Dashboard() {
               <div className="panel dashboard-card dashboard-card-secondary" id="recent-activity-section">
                 <div className="panel-header">
                   <h3 className="panel-title">
-                    <Icon name="clock" /> Recent Activity
+                    Recent Activity
                   </h3>
                 </div>
                 <div className="panel-body">
