@@ -25,9 +25,9 @@ function ActivityBars({ data = [] }) {
   </Frame>;
 }
 
-export function TotalLearningActivity({ data = [] }) {
+export function TotalLearningActivity({ data = [], embedded = false }) {
   const theme = useChartTheme();
-  return <ChartCard title="Total learning activity" subtitle="Recent activity from your learning dashboard." action={<ChartExportButton data={data} filename="learning-activity" />}>
+  return <ChartCard embedded={embedded} title="Total learning activity" subtitle="Recent activity from your learning dashboard." action={<ChartExportButton data={data} filename="learning-activity" />}>
     <ActivityBars data={data} />
     <div className="ch-stat-box"><div className="ch-stat-cell"><p className="ch-stat-label">Activity</p><p className="ch-stat-value">{data.reduce((s, x) => s + Number(x.value || 0), 0)}</p></div><div className="ch-stat-cell"><p className="ch-stat-label">Period</p><p className="ch-stat-value">{data.length} days</p></div></div>
   </ChartCard>;
@@ -44,10 +44,10 @@ export function LearningTrend({ data = [] }) {
   </ChartCard>;
 }
 
-export function MasteryDonut({ data = [] }) {
+export function MasteryDonut({ data = [], embedded = false }) {
   const theme = useChartTheme();
   const total = data.reduce((s, x) => s + Number(x.value || 0), 0);
-  return <ChartCard title="Mastery distribution" subtitle="Your assessed learning areas.">
+  return <ChartCard embedded={embedded} title="Mastery distribution" subtitle="Your assessed learning areas.">
     <Frame height={280} summary="Mastery distribution by learning unit.">
       <ResponsiveContainer width="100%" height="100%"><PieChart><Pie data={data} dataKey="value" nameKey="label" innerRadius="62%" outerRadius="82%" stroke="none">{data.map((x, i) => <Cell key={x.label} fill={theme.series[i % theme.series.length]} />)}</Pie><Tooltip content={<ChartTooltip />} /><text x="50%" y="47%" textAnchor="middle" fill={theme.main} fontSize="22" fontWeight="700">{Math.round(total / Math.max(data.length, 1))}%</text><text x="50%" y="57%" textAnchor="middle" fill={theme.muted} fontSize="11">Average</text></PieChart></ResponsiveContainer>
     </Frame>
@@ -55,8 +55,8 @@ export function MasteryDonut({ data = [] }) {
   </ChartCard>;
 }
 
-export function XpBars({ data = [] }) {
-  return <ChartCard title="XP by learning unit" subtitle="Experience earned across your active units."><Frame summary="XP earned by learning unit."><ResponsiveContainer width="100%" height="100%"><BarChart data={data}><XAxis dataKey="label" tickLine={false} axisLine={false} stroke="var(--text-muted)" /><YAxis tickLine={false} axisLine={false} stroke="var(--text-muted)" /><Tooltip content={<ChartTooltip />} /><Bar dataKey="value" name="XP" fill="var(--ch-1)" radius={[8,8,0,0]} /></BarChart></ResponsiveContainer></Frame></ChartCard>;
+export function XpBars({ data = [], embedded = false }) {
+  return <ChartCard embedded={embedded} title="XP by learning unit" subtitle="Experience earned across your active units."><Frame summary="XP earned by learning unit."><ResponsiveContainer width="100%" height="100%"><BarChart data={data}><XAxis dataKey="label" tickLine={false} axisLine={false} stroke="var(--text-muted)" /><YAxis tickLine={false} axisLine={false} stroke="var(--text-muted)" /><Tooltip content={<ChartTooltip />} /><Bar dataKey="value" name="XP" fill="var(--ch-1)" radius={[8,8,0,0]} /></BarChart></ResponsiveContainer></Frame></ChartCard>;
 }
 
 export function PerformanceOverview({ mastery = [], activity = [] }) {
