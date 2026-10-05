@@ -134,7 +134,7 @@ function PencilLoader({ sizeClass = '' }) {
 
 export default function Spinner({
   size,
-  variant = 'primary',
+  variant = 'brand',
   context = 'default'
 }) {
   const loaderMap = {
