@@ -1,5 +1,16 @@
 import { useState, useEffect } from 'react';
 import { TotalLearningActivity, MasteryDonut, XpBars } from '../components/charts/AnalyticsCharts';
+import { Link } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+import { useLayout } from '../contexts/LayoutContext';
+import { getUserDashboard } from '../api/cachedClient';
+import { useContentAccess } from '../hooks/useContentAccess';
+import { useSecurityUiLock } from '../hooks/useSecurityUiLock';
+import EmptyState from '../components/EmptyState/EmptyState';
+import Icon from '../components/Icon/Icon';
+import Container from '../components/Container/Container';
+import ProgressBar, { ProgressRing } from '../components/ProgressBar/ProgressBar';
+import { useI18n } from '../contexts/I18nContext';
 
 export default function Dashboard() {
   const { user } = useAuth();
