@@ -1,10 +1,5 @@
 /* src/styles/dashboard.css */
 
-/* =========================================================
-   DASHBOARD
-   Visual values are expressed through the platform token system.
-   ========================================================= */
-
 .dashboard-wrapper {
   width: 100%;
   max-width: var(--max-width);
@@ -17,7 +12,6 @@
   padding-bottom: var(--section-space-y-large);
 }
 
-/* Header */
 .dashboard-content .dashboard-header {
   display: flex;
   align-items: flex-end;
@@ -63,7 +57,6 @@
   letter-spacing: 0.05em;
 }
 
-/* Main grid */
 .dashboard-content .dashboard-grid {
   display: grid;
   grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
@@ -79,7 +72,6 @@
   gap: var(--space-6);
 }
 
-/* Panels */
 .dashboard-content .panel {
   display: block;
   overflow: hidden;
@@ -116,7 +108,6 @@
   padding: var(--card-padding-y) var(--card-padding-x);
 }
 
-/* Platform stats / XP */
 .dashboard-content .platform-stats-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -182,7 +173,6 @@
   line-height: var(--leading-normal);
 }
 
-/* Continue reading */
 .dashboard-content .reading-list {
   display: flex;
   flex-direction: column;
@@ -253,7 +243,6 @@
   content: attr(data-progress);
 }
 
-/* Recommendations */
 .dashboard-content .recommendation-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -305,7 +294,6 @@
   line-height: var(--leading-relaxed);
 }
 
-/* Continue practicing */
 .dashboard-content .dashboard-continue-link {
   display: block;
   overflow: hidden;
@@ -360,7 +348,6 @@
   font-size: var(--text-xl);
 }
 
-/* Sidebar lists */
 .dashboard-content .sidebar-list {
   display: flex;
   flex-direction: column;
@@ -418,7 +405,6 @@
   color: var(--danger);
 }
 
-/* Recent activity */
 .dashboard-content .activity-item {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
@@ -427,8 +413,16 @@
   padding: var(--space-3) 0;
   border-bottom: 1px solid var(--border-subtle);
 }
-.dashboard-content .activity-item:first-child { padding-top: 0; }
-.dashboard-content .activity-item:last-child { padding-bottom: 0; border-bottom: 0; }
+
+.dashboard-content .activity-item:first-child {
+  padding-top: 0;
+}
+
+.dashboard-content .activity-item:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
 .dashboard-content .activity-icon {
   display: flex;
   align-items: center;
@@ -442,9 +436,19 @@
   color: var(--text-muted);
   font-size: var(--text-sm);
 }
-.dashboard-content .activity-icon-reading { color: var(--primary); }
-.dashboard-content .activity-icon-quiz { color: var(--accent); }
-.dashboard-content .activity-icon-recall { color: var(--success); }
+
+.dashboard-content .activity-icon-reading {
+  color: var(--primary);
+}
+
+.dashboard-content .activity-icon-quiz {
+  color: var(--accent);
+}
+
+.dashboard-content .activity-icon-recall {
+  color: var(--success);
+}
+
 .dashboard-content .activity-details {
   display: grid;
   min-width: 0;
@@ -452,13 +456,18 @@
   align-items: center;
   gap: var(--space-3);
 }
-.dashboard-content .activity-content-row { display: contents; }
+
+.dashboard-content .activity-content-row {
+  display: contents;
+}
+
 .dashboard-content .activity-copy {
   display: flex;
   min-width: 0;
   flex-direction: column;
   gap: var(--space-1);
 }
+
 .dashboard-content .activity-type {
   color: var(--text-muted);
   font-size: var(--text-xs);
@@ -467,6 +476,7 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
+
 .dashboard-content .activity-details .act-text {
   overflow: hidden;
   color: var(--text-main);
@@ -475,12 +485,13 @@
   font-weight: var(--weight-medium);
   text-overflow: ellipsis;
 }
+
 .dashboard-content .activity-details .act-date {
   color: var(--text-placeholder);
   font-size: var(--text-xs);
   line-height: var(--leading-normal);
 }
-/* Unit XP */
+
 .dashboard-content .unit-xp-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -508,11 +519,6 @@
   font-weight: var(--weight-bold);
 }
 
-/* Keep the Unit XP panel visually consistent with the reference list: simple rows, no extra card treatment. */
-
-
-
-/* Loading */
 .dashboard-content .dashboard-loading-skeleton,
 .dashboard-content .dashboard-skeleton {
   width: 100%;
@@ -549,7 +555,6 @@
   height: var(--space-24);
 }
 
-/* Empty state wrapper */
 .dashboard-wrapper .empty-state {
   padding: var(--space-16) var(--space-8);
   border: 1px dashed var(--border-default);
@@ -572,7 +577,6 @@
   line-height: var(--leading-normal);
 }
 
-/* Responsive */
 @media (max-width: 900px) {
   .dashboard-content .dashboard-grid {
     grid-template-columns: 1fr;
@@ -603,8 +607,6 @@
   }
 }
 
-
-/* Dashboard navigation targets */
 .dashboard-content .sidebar-item-link,
 .dashboard-content .unit-xp-item-link {
   color: inherit;
@@ -637,7 +639,6 @@
   border-color: var(--border-subtle);
 }
 
-/* Mastery map */
 .dashboard-content .mastery-summary {
   display: flex;
   align-items: center;
@@ -646,19 +647,26 @@
   padding-bottom: var(--space-5);
   border-bottom: 1px solid var(--border-subtle);
 }
+
 .dashboard-content .mastery-summary strong {
   display: block;
   color: var(--text-main);
   font-size: var(--text-base);
   font-weight: var(--weight-semibold);
 }
+
 .dashboard-content .mastery-summary p {
   margin: var(--space-1) 0 0;
   color: var(--text-muted);
   font-size: var(--text-xs);
   line-height: var(--leading-relaxed);
 }
-.dashboard-content .mastery-list { display: flex; flex-direction: column; }
+
+.dashboard-content .mastery-list {
+  display: flex;
+  flex-direction: column;
+}
+
 .dashboard-content .mastery-item {
   display: flex;
   align-items: center;
@@ -670,18 +678,28 @@
   text-decoration: none;
   transition: background-color var(--ease-fast), transform var(--ease-fast);
 }
-.dashboard-content .mastery-item:first-child { padding-top: 0; }
-.dashboard-content .mastery-item:last-child { padding-bottom: 0; border-bottom: 0; }
+
+.dashboard-content .mastery-item:first-child {
+  padding-top: 0;
+}
+
+.dashboard-content .mastery-item:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
 .dashboard-content .mastery-item:hover {
   background: var(--surface-muted);
   transform: translateX(var(--space-1));
 }
+
 .dashboard-content .mastery-item-copy {
   display: flex;
   min-width: 0;
   flex-direction: column;
   gap: var(--space-1);
 }
+
 .dashboard-content .mastery-item-copy strong {
   overflow: hidden;
   color: var(--text-main);
@@ -691,11 +709,13 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .dashboard-content .mastery-item-copy small {
   color: var(--text-muted);
   font-size: var(--text-xs);
   line-height: var(--leading-normal);
 }
+
 .dashboard-content .mastery-item-value {
   flex: 0 0 auto;
   color: var(--primary);
@@ -863,6 +883,7 @@
 
 .dashboard-welcome-card {
   margin-bottom: var(--space-6);
+  padding-inline: var(--space-8);
 }
 
 .dashboard-welcome-card .dashboard-header {
@@ -922,5 +943,9 @@
 
   .unit-xp-chart {
     min-height: 220px;
+  }
+
+  .dashboard-welcome-card {
+    padding-inline: var(--space-6);
   }
 }
