@@ -10,9 +10,17 @@ export default function ChartCard({
   empty = false,
   error = null,
   summary = '',
-  className = ''
+  className = '',
+  embedded = false
 }) {
   const titleId = useId();
+
+  if (embedded) {
+    if (loading) return <div className="ch-skeleton" role="status" aria-label="Loading chart"><span className="ch-skeleton-line" /><span className="ch-skeleton-line" /><span className="ch-skeleton-line" /></div>;
+    if (error) return <div className="ch-error" role="alert">{error}</div>;
+    if (empty) return <div className="ch-empty" role="status">No chart data available.</div>;
+    return <>{children}{summary && <p className="ch-chart-summary">{summary}</p>}</>;
+  }
 
   return (
     <section className={`ch-shell ${className}`} aria-labelledby={titleId}>
