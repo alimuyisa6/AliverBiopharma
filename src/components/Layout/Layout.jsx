@@ -27,7 +27,7 @@ function MenuGlyph({ isOpen }) {
   return (
     <svg className="header-glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
       <path className="menu-line menu-line-top" d="M4 7h16" />
-      <path className="menu-line menu-line-middle" d="M4 12h10" />
+      <path className="menu-line menu-line-middle" d="M10 12h10" />
       <path className="menu-line menu-line-bottom" d="M4 17h16" />
     </svg>
   );
