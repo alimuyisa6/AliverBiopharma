@@ -201,19 +201,21 @@ export default function Dashboard() {
   return (
     <Container>
       <div className="dashboard-wrapper dashboard-content">
-        <header className="dashboard-header">
-          <div className="header-info">
-            <h1 id="welcome-title">
-              Welcome back{userName ? `, ${userName}` : ''}
-            </h1>
-            <p id="welcome-subtitle">
-              {platform.rank_title} · {levelName}
-            </p>
+        <section className="panel dashboard-card dashboard-welcome-card" aria-labelledby="welcome-title">
+          <div className="dashboard-header">
+            <div className="header-info">
+              <h1 id="welcome-title">
+                Welcome back{userName ? `, ${userName}` : ''}
+              </h1>
+              <p id="welcome-subtitle">
+                {platform.rank_title} · {levelName}
+              </p>
+            </div>
+            <span className="badge" id="level-badge">
+              {levelName}
+            </span>
           </div>
-          <span className="badge" id="level-badge">
-            {levelName}
-          </span>
-        </header>
+        </section>
 
         {todayTasks.length > 0 && (
           <section className="panel dashboard-card dashboard-card-primary" id="today-plan-section" aria-labelledby="today-plan-title">
