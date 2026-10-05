@@ -215,11 +215,11 @@ body.dark-mode .site-header, body.dark-mode .site-header.scrolled { background: 
     transform: translateX(-50%);
   }
 }
-.header-action-button { display: inline-flex !important; align-items: center; justify-content: center; width: var(--space-12); height: var(--space-12); min-width: var(--space-12); padding: 0 !important; border: 0 !important; border-radius: var(--radius-none) !important; background: transparent !important; color: var(--text-main); box-shadow: none !important; outline: none; cursor: pointer; }
+.header-action-button { display: inline-flex !important; align-items: center; justify-content: center; width: var(--space-10); height: var(--space-10); min-width: var(--space-10); padding: 0 !important; border: 0 !important; border-radius: var(--radius-none) !important; background: transparent !important; color: var(--text-main); box-shadow: none !important; outline: none; cursor: pointer; }
 .header-action-button:hover { border: 0 !important; background: var(--grey-200) !important; color: var(--primary); box-shadow: none !important; }
 .header-action-button:focus, .header-action-button:active { border: 0 !important; box-shadow: none !important; }
 .header-action-button:focus-visible { border: 0 !important; outline: 2px solid var(--primary-ring); outline-offset: var(--space-1); }
-.header-glyph { display: block; width: var(--space-7); height: var(--space-7); flex-shrink: 0; fill: none !important; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
+.header-glyph { display: block; width: var(--space-6); height: var(--space-6); flex-shrink: 0; fill: none !important; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
 .hamburger-btn { display: none; align-items: center; justify-content: center; flex-shrink: 0; width: var(--space-12); height: var(--space-12); min-width: var(--space-12); padding: 0 !important; border: 0 !important; border-radius: var(--radius-none) !important; background: transparent !important; color: var(--text-main); box-shadow: none !important; cursor: pointer; }
 .hamburger-btn:hover { border: 0 !important; background: var(--grey-200) !important; color: var(--primary); box-shadow: none !important; }
 .hamburger-btn:focus, .hamburger-btn:active { border: 0 !important; box-shadow: none !important; }
