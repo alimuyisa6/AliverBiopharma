@@ -13,6 +13,7 @@ import AdminLauncher from '../AdminLauncher';
 import NetworkStatus from '../NetworkStatus/NetworkStatus';
 import NotificationCenter from '../NotificationCenter/NotificationCenter';
 import ClassSwitcher from '../ClassSwitcher/ClassSwitcher';
+import BiopharmToggle from '../BiopharmToggle/BiopharmToggle';
 
 const EXCLUDED_PATHS = ['/login', '/register'];
 const SCROLL_STORAGE_KEY = 'scroll-positions';
@@ -84,7 +85,7 @@ export default function Layout({ children, showFooter = true }) {
         {isAuthenticated && <ClassSwitcher />}
         <button className="btn btn-ghost btn-sm btn-icon header-action-button" onClick={() => setSearchOpen(true)} aria-label={t('common.search')} type="button"><SearchGlyph /></button>
         <NotificationCenter />
-        <button className="btn btn-ghost btn-sm btn-icon header-action-button" onClick={toggleTheme} aria-label={t('common.toggleTheme')} type="button"><ThemeGlyph isDark={isDarkTheme} /></button>
+        <BiopharmToggle checked={isDarkTheme} onChange={toggleTheme} ariaLabel={t('common.toggleTheme')} />
         <button className="hamburger-btn header-action-button" style={{ color: 'var(--text-main)', width: 'var(--space-12)', height: 'var(--space-12)' }} onClick={() => setMobileOpen((prev) => !prev)} aria-label={mobileOpen ? t('common.closeMenu') : t('common.menu')} aria-expanded={mobileOpen} type="button"><MenuGlyph isOpen={mobileOpen} /></button>
       </div>
     </div></header>}
