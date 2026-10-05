@@ -1,18 +1,14 @@
-.biopharm-toggle {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
 .biopharm-toggle__switch {
   position: relative;
-  display: flex;
-  align-items: center;
-  width: min(var(--tactile-toggle-width), 100%);
-  height: calc(min(var(--tactile-toggle-width), 100%) / 2.5);
-  border-radius: var(--tactile-toggle-track-radius);
-  box-shadow: var(--tactile-toggle-shadow);
+  display: inline-flex;
+  width: auto;
+  height: var(--theme-switch-height);
+  flex: 0 0 auto;
+  aspect-ratio: 212.4992 / 84.4688;
+  border-radius: var(--theme-switch-radius);
+  background: var(--theme-switch-track);
+  box-shadow: 0 0 0 var(--theme-switch-shadow-size) var(--theme-switch-track);
+  color: var(--theme-switch-stroke);
   cursor: pointer;
 }
 
@@ -20,111 +16,44 @@
   position: absolute;
   inline-size: 1px;
   block-size: 1px;
+  margin: -1px;
   opacity: 0;
+  overflow: hidden;
   pointer-events: none;
 }
 
-.biopharm-toggle__indicator {
-  position: absolute;
-  width: 40%;
-  height: 60%;
-  transition: all var(--tactile-toggle-duration) var(--tactile-toggle-easing);
-  box-shadow:
-    inset 0 0 2px hsl(var(--tactile-toggle-hue) 20% 15% / 60%),
-    inset 0 0 3px 2px hsl(var(--tactile-toggle-hue) 20% 15% / 60%),
-    inset 0 0 5px 2px hsl(var(--tactile-toggle-hue) 20% 45% / 60%);
+.biopharm-toggle__switch svg {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
-.biopharm-toggle__indicator--left {
-  left: 10%;
-  border-radius: 100px 0 0 100px;
-  background: linear-gradient(
-    180deg,
-    hsl(calc(var(--tactile-toggle-accent-hue) + 20deg) 95% 80%) 10%,
-    hsl(calc(var(--tactile-toggle-accent-hue) + 20deg) 100% 60%) 30%,
-    hsl(var(--tactile-toggle-accent-hue) 90% 50%) 60%,
-    hsl(var(--tactile-toggle-accent-hue) 90% 60%) 75%,
-    hsl(var(--tactile-toggle-accent-hue) 90% 50%)
-  );
-  overflow: hidden;
+.biopharm-toggle__switch svg path {
+  color: inherit;
+  stroke-width: var(--theme-switch-stroke-width);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: var(--theme-switch-dasharray);
+  transition: all var(--theme-switch-duration) var(--theme-switch-easing), 0s transform;
+  transform-origin: center;
 }
 
-.biopharm-toggle__indicator--right {
-  right: 10%;
-  border-radius: 0 100px 100px 0;
-  background: linear-gradient(
-    180deg,
-    hsl(var(--tactile-toggle-hue) 20% 95%),
-    hsl(var(--tactile-toggle-hue) 20% 65%) 60%,
-    hsl(var(--tactile-toggle-hue) 20% 70%) 70%,
-    hsl(var(--tactile-toggle-hue) 20% 65%)
-  );
-}
-
-.biopharm-toggle__thumb {
-  position: absolute;
-  z-index: 1;
-  left: 5%;
-  width: 55%;
-  height: 80%;
-  border-radius: 100px;
-  background: linear-gradient(160deg, hsl(var(--tactile-toggle-hue) 20% 95%) 40%, hsl(var(--tactile-toggle-hue) 20% 65%) 70%);
-  transition: all var(--tactile-toggle-duration) var(--tactile-toggle-easing);
-  box-shadow: var(--tactile-toggle-thumb-shadow);
-}
-
-.biopharm-toggle__thumb span {
-  position: absolute;
-  top: 10%;
-  width: 41%;
-  height: 80%;
-  border-radius: 100%;
-}
-
-.biopharm-toggle__thumb span:first-child {
-  left: 5%;
-  box-shadow: inset 1px 1px 2px hsl(var(--tactile-toggle-hue) 20% 85%);
-  background: linear-gradient(-50deg, hsl(var(--tactile-toggle-hue) 20% 95%) 20%, hsl(var(--tactile-toggle-hue) 20% 85%) 80%);
-}
-
-.biopharm-toggle__thumb span:last-child {
-  right: 5%;
-  box-shadow: inset 1px 1px 3px hsl(var(--tactile-toggle-hue) 20% 70%);
-  background: linear-gradient(-50deg, hsl(var(--tactile-toggle-hue) 20% 95%) 20%, hsl(var(--tactile-toggle-hue) 20% 75%) 80%);
-}
-
-.biopharm-toggle__input:checked ~ .biopharm-toggle__thumb {
-  left: 40%;
-}
-
-.biopharm-toggle__input:not(:checked) ~ .biopharm-toggle__indicator--left,
-.biopharm-toggle__input:checked ~ .biopharm-toggle__indicator--right {
-  box-shadow:
-    inset 0 0 5px hsl(var(--tactile-toggle-hue) 20% 15%),
-    inset 20px 20px 10px hsl(var(--tactile-toggle-hue) 20% 15%),
-    inset 20px 20px 15px hsl(var(--tactile-toggle-hue) 20% 45%);
+.biopharm-toggle__input:checked ~ svg path {
+  stroke-dashoffset: var(--theme-switch-dashoffset);
+  transform: scaleY(-1);
 }
 
 .biopharm-toggle__switch:focus-within {
-  outline: 2px solid var(--border-focus);
+  outline: var(--border-width-thick) solid var(--border-focus);
   outline-offset: var(--space-2);
 }
 
-.biopharm-toggle__sr-label {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
+.nav-actions .biopharm-toggle__switch {
+  margin-inline: var(--space-1);
 }
 
-.biopharm-toggle__labels {
-  display: flex;
-  justify-content: space-between;
-  width: min(var(--tactile-toggle-width), 100%);
-  margin-top: var(--space-2);
-  color: var(--text-secondary);
-  font-size: var(--text-xs);
-  font-weight: var(--weight-semibold);
+@media (prefers-reduced-motion: reduce) {
+  .biopharm-toggle__switch svg path {
+    transition: none;
+  }
 }
