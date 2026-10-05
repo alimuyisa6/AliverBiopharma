@@ -26,9 +26,9 @@ function persistScrollMap(map) { try { sessionStorage.setItem(SCROLL_STORAGE_KEY
 function MenuGlyph({ isOpen }) {
   return (
     <svg className="header-glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path className="menu-line menu-line-top" d="M4 7h16" />
+      <path className="menu-line menu-line-top" d="M6 7h14" />
       <path className="menu-line menu-line-middle" d="M10 12h10" />
-      <path className="menu-line menu-line-bottom" d="M4 17h16" />
+      <path className="menu-line menu-line-bottom" d="M6 17h14" />
     </svg>
   );
 }
@@ -86,7 +86,7 @@ export default function Layout({ children, showFooter = true }) {
         <button className="btn btn-ghost btn-sm btn-icon header-action-button" onClick={() => setSearchOpen(true)} aria-label={t('common.search')} type="button"><SearchGlyph /></button>
         <NotificationCenter />
         <BiopharmToggle checked={isDarkTheme} onChange={toggleTheme} ariaLabel={t('common.toggleTheme')} />
-        <button className="hamburger-btn header-action-button" style={{ color: 'var(--text-main)', width: 'var(--space-12)', height: 'var(--space-12)' }} onClick={() => setMobileOpen((prev) => !prev)} aria-label={mobileOpen ? t('common.closeMenu') : t('common.menu')} aria-expanded={mobileOpen} type="button"><MenuGlyph isOpen={mobileOpen} /></button>
+        <button className="hamburger-btn header-action-button" style={{ color: 'var(--text-muted)', width: 'var(--space-12)', height: 'var(--space-12)' }} onClick={() => setMobileOpen((prev) => !prev)} aria-label={mobileOpen ? t('common.closeMenu') : t('common.menu')} aria-expanded={mobileOpen} type="button"><MenuGlyph isOpen={mobileOpen} /></button>
       </div>
     </div></header>}
     {!hideHeader && <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />}<AdminLauncher />
