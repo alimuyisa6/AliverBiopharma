@@ -883,3 +883,7 @@
 .dashboard-welcome-card #level-badge {
   margin-inline: auto;
 }
+
+#today-plan-section {
+  margin-bottom: var(--space-6);
+}
