@@ -62,7 +62,14 @@
 .hero-image-placeholder {
   width: 100%;
   height: 100%;
-  background: var(--hero-bg);
+  background-color: var(--hero-pattern-base);
+  background-image:
+    conic-gradient(at 50% 25%, transparent 75%, var(--hero-pattern-accent) 0),
+    conic-gradient(at 50% 25%, transparent 75%, var(--hero-pattern-accent) 0) var(--hero-pattern-tile) var(--hero-pattern-tile),
+    conic-gradient(at 50% 25%, transparent 75%, var(--hero-pattern-accent) 0) calc(2 * var(--hero-pattern-tile)) calc(2 * var(--hero-pattern-tile)),
+    conic-gradient(at 50% 25%, transparent 75%, var(--hero-pattern-accent) 0) calc(3 * var(--hero-pattern-tile)) calc(3 * var(--hero-pattern-tile)),
+    repeating-linear-gradient(135deg, var(--hero-pattern-light) 0 12.5%, var(--hero-pattern-strong) 0 25%);
+  background-size: calc(4 * var(--hero-pattern-tile)) calc(4 * var(--hero-pattern-tile));
 }
 
 .hero-scrim {
