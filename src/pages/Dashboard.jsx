@@ -305,6 +305,7 @@ export default function Dashboard() {
                 </div>
                 <div className="panel-body">
                   <TotalLearningActivity
+                    embedded
                     data={heatmapValues.map((item) => ({
                       label: new Date(item.activity_date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }),
                       value: Math.max(0, Number(item.count) || 0)
@@ -325,12 +326,13 @@ export default function Dashboard() {
                 <div className="panel-body">
                   <p className="mastery-chart-explainer">Each bar shows how well you have performed in that curriculum unit. Longer bars mean higher mastery.</p>
                   {assessedMastery.length > 0 && <MasteryDonut
+                    embedded
                     data={assessedMastery.map((item) => ({
                       label: item.unit_name,
                       value: Math.max(0, Number(item.mastery) || 0)
                     }))}
                   />}
-                  {unitXpChart.length > 0 && <XpBars data={unitXpChart} />}
+                  {unitXpChart.length > 0 && <XpBars embedded data={unitXpChart} />}
                   <div className="mastery-summary">
                     <ProgressRing value={overallMastery} size="lg" tone="mastery" ariaLabel={`${overallMastery}% assessed mastery`} />
                     <div>
