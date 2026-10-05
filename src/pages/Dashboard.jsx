@@ -211,9 +211,6 @@ export default function Dashboard() {
                 {platform.rank_title} · {levelName}
               </p>
             </div>
-            <span className="badge" id="level-badge">
-              {levelName}
-            </span>
           </div>
         </section>
 
