@@ -860,3 +860,11 @@
     padding-inline: var(--space-4);
   }
 }
+
+.dashboard-welcome-card {
+  margin-bottom: var(--space-6);
+}
+
+.dashboard-welcome-card .dashboard-header {
+  margin: 0;
+}
