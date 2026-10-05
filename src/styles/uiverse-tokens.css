@@ -67,6 +67,24 @@
   --action-purple-focus: 1.6s;
   --action-purple-splash: 0.8s;
 
+
+  --pencil-loader-size: 6rem;
+  --pencil-loader-size-sm: 2rem;
+  --pencil-loader-size-lg: 7rem;
+  --pencil-loader-duration: 3s;
+  --pencil-loader-body: hsl(223 90% 50%);
+  --pencil-loader-body-highlight: hsl(223 90% 60%);
+  --pencil-loader-body-shadow: hsl(223 90% 40%);
+  --pencil-loader-eraser: hsl(223 90% 70%);
+  --pencil-loader-eraser-shadow: hsl(223 90% 60%);
+  --pencil-loader-ferrule-light: hsl(223 10% 90%);
+  --pencil-loader-ferrule-mid: hsl(223 10% 70%);
+  --pencil-loader-ferrule-highlight: hsl(223 10% 80%);
+  --pencil-loader-ferrule-groove: hsl(223 10% 10% / 20%);
+  --pencil-loader-wood: hsl(33 90% 70%);
+  --pencil-loader-wood-shadow: hsl(33 90% 50%);
+  --pencil-loader-graphite: hsl(223 10% 10%);
+
   --theme-switch-height: 2em;
   --theme-switch-radius: 2em;
   --theme-switch-shadow-size: 0.66em;
