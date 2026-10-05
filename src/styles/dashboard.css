@@ -753,3 +753,110 @@
     height: 280px;
   }
 }
+
+.dashboard-content .main-column > .panel,
+.dashboard-content .sidebar-column > .panel {
+  min-width: 0;
+}
+
+.dashboard-content .panel-header {
+  flex-wrap: wrap;
+}
+
+.dashboard-content .panel-header .segmented {
+  flex: 0 0 auto;
+  max-width: 100%;
+}
+
+.dashboard-content .panel-body > .ch-shell {
+  width: 100%;
+  margin: 0;
+}
+
+.dashboard-content .panel-body > .ch-shell .ch-card {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.dashboard-content .panel-body > .ch-shell .ch-card-head {
+  display: none;
+}
+
+.dashboard-content .panel-body > .ch-shell .ch-card-body {
+  padding: 0;
+}
+
+.dashboard-content .panel-body > .ch-shell .ch-stat-box {
+  margin-top: var(--space-5);
+}
+
+.dashboard-content .panel-body > .ch-shell .ch-chart-frame {
+  min-width: 0;
+}
+
+.dashboard-content .mastery-chart-explainer {
+  max-width: 58rem;
+  margin: 0 0 var(--space-5);
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+}
+
+.dashboard-content .mastery-summary {
+  margin-top: var(--space-6);
+}
+
+@media (max-width: 900px) {
+  .dashboard-content {
+    padding-inline: var(--page-gutter-x);
+  }
+
+  .dashboard-content .dashboard-grid {
+    gap: var(--space-6);
+  }
+}
+
+@media (max-width: 600px) {
+  .dashboard-content .panel-header {
+    align-items: flex-start;
+  }
+
+  .dashboard-content .panel-title {
+    min-width: 0;
+  }
+
+  .dashboard-content .panel-header .segmented {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .dashboard-content .panel-body {
+    padding-inline: var(--card-padding-x);
+  }
+
+  .dashboard-content .platform-stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboard-content .xp-progress-container {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 420px) {
+  .dashboard-content .platform-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-content .xp-progress-container {
+    grid-column: auto;
+  }
+
+  .dashboard-content .panel-header,
+  .dashboard-content .panel-body {
+    padding-inline: var(--space-4);
+  }
+}
