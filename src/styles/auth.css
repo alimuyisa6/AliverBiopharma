@@ -61,7 +61,7 @@
       rgba(255, 255, 255, 0.10) 0%,
       transparent 72%
     ),
-    linear-gradient(160deg, var(--auth-brand) 0%, #3b82f6 42%, #1d4ed8 100%);
+    linear-gradient(160deg, var(--auth-brand) 0%, var(--auth-brand-mid) 42%, var(--auth-brand-strong) 100%);
 }
 
 .auth-brand-panel::before,
