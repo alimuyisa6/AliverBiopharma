@@ -26,9 +26,9 @@ function persistScrollMap(map) { try { sessionStorage.setItem(SCROLL_STORAGE_KEY
 function MenuGlyph({ isOpen }) {
   return (
     <svg className="header-glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path className="menu-line menu-line-top" d="M6 7h14" />
-      <path className="menu-line menu-line-middle" d="M10 12h10" />
-      <path className="menu-line menu-line-bottom" d="M6 17h14" />
+      <path className="menu-line menu-line-top" d={isOpen ? "M6 7l6 10" : "M6 7h14"} />
+      <path className="menu-line menu-line-middle" d={isOpen ? "M12 17V7" : "M10 12h10"} />
+      <path className="menu-line menu-line-bottom" d={isOpen ? "M12 17l6-10" : "M6 17h14"} />
     </svg>
   );
 }
