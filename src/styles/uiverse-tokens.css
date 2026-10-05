@@ -66,4 +66,15 @@
   --action-purple-spin: 3s;
   --action-purple-focus: 1.6s;
   --action-purple-splash: 0.8s;
+
+  --theme-switch-height: 2em;
+  --theme-switch-radius: 2em;
+  --theme-switch-shadow-size: 0.66em;
+  --theme-switch-track: var(--text-muted);
+  --theme-switch-stroke: var(--text-inverse);
+  --theme-switch-stroke-width: 16;
+  --theme-switch-dasharray: 136 224;
+  --theme-switch-dashoffset: 180;
+  --theme-switch-duration: 0.5s;
+  --theme-switch-easing: ease-out;
 }
