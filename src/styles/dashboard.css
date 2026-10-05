@@ -879,3 +879,7 @@
   flex-direction: column;
   align-items: center;
 }
+
+.dashboard-welcome-card #level-badge {
+  margin-inline: auto;
+}
