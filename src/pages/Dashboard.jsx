@@ -603,6 +603,7 @@ export default function Dashboard() {
                   </h3>
                 </div>
                 <div className="panel-body">
+                  <div className="unit-xp-layout">
                   <div className="unit-xp-grid" id="unit-xp-list">
                     {unitXp.map((unit, index) => (
                       <Link
@@ -615,6 +616,10 @@ export default function Dashboard() {
                       </Link>
                     ))}
                   </div>
+                  <div className="unit-xp-chart" aria-label="XP earned by learning unit">
+                    <XpBars embedded data={unitXpChart} />
+                  </div>
+                </div>
                 </div>
               </div>
             )}
