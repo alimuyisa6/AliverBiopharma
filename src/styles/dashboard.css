@@ -868,3 +868,14 @@
 .dashboard-welcome-card .dashboard-header {
   margin: 0;
 }
+
+.dashboard-welcome-card .dashboard-header {
+  justify-content: center;
+  text-align: center;
+}
+
+.dashboard-welcome-card .header-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
