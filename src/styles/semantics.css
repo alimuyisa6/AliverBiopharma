@@ -307,6 +307,8 @@
   --auth-radius: 14px;
   --auth-radius-lg: 20px;
   --auth-radius-xl: 28px;
+  --auth-brand-mid: var(--blue-500);
+  --auth-brand-strong: var(--blue-700);
 }
 
 body.dark-mode {
@@ -483,6 +485,35 @@ body.dark-mode {
   --level-pharmacy-light: var(--teal-900);
 
   --section-tint: var(--grey-900);
+
+  --profile-page-bg: var(--grey-950);
+
+  --auth-bg: var(--grey-950);
+  --auth-surface: var(--grey-900);
+  --auth-surface-alt: var(--grey-800);
+  --auth-border: var(--grey-700);
+  --auth-border-strong: var(--grey-600);
+  --auth-text: var(--grey-100);
+  --auth-text-muted: var(--grey-300);
+  --auth-text-faint: var(--grey-400);
+  --auth-brand: var(--blue-400);
+  --auth-brand-hover: var(--blue-300);
+  --auth-brand-soft: var(--blue-900);
+  --auth-brand-ring: rgba(96, 165, 250, 0.25);
+  --auth-accent: var(--blue-300);
+  --auth-accent-soft: var(--blue-800);
+  --auth-danger: var(--red-400);
+  --auth-danger-soft: var(--red-900);
+  --auth-success: var(--green-400);
+  --auth-success-soft: var(--green-900);
+  --auth-warning: var(--amber-400);
+  --auth-warning-soft: var(--amber-900);
+  --auth-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.28);
+  --auth-shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.32);
+  --auth-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.38), 0 2px 6px rgba(0, 0, 0, 0.28);
+  --auth-shadow-lg: 0 30px 60px -20px rgba(0, 0, 0, 0.55);
+  --auth-brand-mid: var(--blue-500);
+  --auth-brand-strong: var(--blue-700);
 }
 
 .section-tint {
