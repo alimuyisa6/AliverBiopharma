@@ -3,6 +3,7 @@ import { createContext, useContext, useState, useEffect, useMemo, useCallback } 
 import { useAuth } from './AuthContext';
 import { bootstrapPlatform, getAllSiteSections, switchClass, updatePreferences } from '../api/cachedClient';
 import { getCachedStale } from '../utils/cache';
+import Spinner from '../components/Spinner/Spinner';
 
 export const LayoutContext = createContext(null);
 
@@ -363,9 +364,17 @@ export function LayoutProvider({ children }) {
     uiPreferences
   ]);
 
+  const showGlobalLoader = authLoading || loading;
+
   return (
     <LayoutContext.Provider value={value}>
-      {children}
+      {showGlobalLoader ? (
+        <div className="global-loader" role="status" aria-label="Loading AliverBiopharm">
+          <Spinner size="lg" />
+        </div>
+      ) : (
+        children
+      )}
     </LayoutContext.Provider>
   );
 }
