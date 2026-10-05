@@ -56,7 +56,20 @@ export function MasteryDonut({ data = [], embedded = false }) {
 }
 
 export function XpBars({ data = [], embedded = false }) {
-  return <ChartCard embedded={embedded} title="XP by learning unit" subtitle="Experience earned across your active units."><Frame summary="XP earned by learning unit."><ResponsiveContainer width="100%" height="100%"><BarChart data={data}><XAxis dataKey="label" tickLine={false} axisLine={false} stroke="var(--text-muted)" /><YAxis tickLine={false} axisLine={false} stroke="var(--text-muted)" /><Tooltip content={<ChartTooltip />} /><Bar dataKey="value" name="XP" fill="var(--ch-1)" radius={[8,8,0,0]} /></BarChart></ResponsiveContainer></Frame></ChartCard>;
+  const theme = useChartTheme();
+  return <ChartCard embedded={embedded} title="XP by learning unit" subtitle="Experience points earned across your active learning units.">
+    <Frame summary="Horizontal bar chart comparing experience points earned by learning unit.">
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart data={data} layout="vertical" margin={{ top: 4, right: 12, bottom: 4, left: 8 }}>
+          <CartesianGrid horizontal={false} stroke={theme.subtleBorder} strokeDasharray="3 3" />
+          <XAxis type="number" tickLine={false} axisLine={false} stroke={theme.muted} allowDecimals={false} />
+          <YAxis type="category" dataKey="label" tickLine={false} axisLine={false} stroke={theme.muted} width={120} />
+          <Tooltip content={<ChartTooltip />} />
+          <Bar dataKey="value" name="XP" fill={theme.series[0]} radius={[0, 8, 8, 0]} />
+        </BarChart>
+      </ResponsiveContainer>
+    </Frame>
+  </ChartCard>;
 }
 
 export function PerformanceOverview({ mastery = [], activity = [] }) {
