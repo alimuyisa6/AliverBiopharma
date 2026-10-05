@@ -887,3 +887,18 @@
 #today-plan-section {
   margin-bottom: var(--space-6);
 }
+
+#unit-xp-section .unit-xp-grid {
+  align-items: stretch;
+}
+
+#unit-xp-section .unit-xp-item {
+  min-width: 0;
+  text-align: left;
+}
+
+#unit-xp-section .unit-name {
+  display: block;
+  min-width: 0;
+  text-align: left;
+}
