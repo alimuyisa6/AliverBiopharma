@@ -368,13 +368,7 @@ export function LayoutProvider({ children }) {
 
   return (
     <LayoutContext.Provider value={value}>
-      {showGlobalLoader ? (
-        <div className="global-loader" role="status" aria-label="Loading AliverBiopharm">
-          <Spinner size="lg" />
-        </div>
-      ) : (
-        children
-      )}
+      {showGlobalLoader ? <Spinner size="lg" /> : children}
     </LayoutContext.Provider>
   );
 }
