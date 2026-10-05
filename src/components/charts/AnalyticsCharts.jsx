@@ -46,12 +46,18 @@ export function LearningTrend({ data = [] }) {
 
 export function MasteryDonut({ data = [], embedded = false }) {
   const theme = useChartTheme();
-  const total = data.reduce((s, x) => s + Number(x.value || 0), 0);
-  return <ChartCard embedded={embedded} title="Mastery distribution" subtitle="Your assessed learning areas.">
-    <Frame height={280} summary="Mastery distribution by learning unit.">
-      <ResponsiveContainer width="100%" height="100%"><PieChart><Pie data={data} dataKey="value" nameKey="label" innerRadius="62%" outerRadius="82%" stroke="none">{data.map((x, i) => <Cell key={x.label} fill={theme.series[i % theme.series.length]} />)}</Pie><Tooltip content={<ChartTooltip />} /><text x="50%" y="47%" textAnchor="middle" fill={theme.main} fontSize="22" fontWeight="700">{Math.round(total / Math.max(data.length, 1))}%</text><text x="50%" y="57%" textAnchor="middle" fill={theme.muted} fontSize="11">Average</text></PieChart></ResponsiveContainer>
+  return <ChartCard embedded={embedded} title="Mastery by learning unit" subtitle="Assessed mastery scores for your curriculum units.">
+    <Frame height={Math.max(240, data.length * 42)} summary="Horizontal bar chart comparing assessed mastery percentages by learning unit.">
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart data={data} layout="vertical" margin={{ top: 4, right: 12, bottom: 4, left: 8 }}>
+          <CartesianGrid horizontal={false} stroke={theme.subtleBorder} strokeDasharray="3 3" />
+          <XAxis type="number" domain={[0, 100]} tickLine={false} axisLine={false} stroke={theme.muted} tickFormatter={(value) => value + '%'} />
+          <YAxis type="category" dataKey="label" tickLine={false} axisLine={false} stroke={theme.muted} width={120} />
+          <Tooltip content={<ChartTooltip />} />
+          <Bar dataKey="value" name="Mastery" fill={theme.series[1]} radius={[0, 8, 8, 0]} />
+        </BarChart>
+      </ResponsiveContainer>
     </Frame>
-    <div className="ch-chart-legend">{data.map((x, i) => <span className="ch-legend-item" key={x.label}><span className={'ch-legend-dot ch-legend-dot--' + ((i % 5) + 1)} />{x.label}</span>)}</div>
   </ChartCard>;
 }
 
