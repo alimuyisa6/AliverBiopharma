@@ -958,51 +958,43 @@ export default function Profile() {
         {profileError && <ProfileError error={profileError} title={t('profile.profileDataLoadError')} onRetry={loadProfile} />}
         {bundleError && <ProfileError error={bundleError} title={t('profile.settingsDataLoadError')} onRetry={loadBundle} />}
 
-        <div className="profile-section-switcher">
-          <button
-            type="button"
-            className="profile-section-switcher-button"
-            onClick={() => setSidebarOpen((open) => !open)}
-            aria-expanded={sidebarOpen}
-            aria-controls="profile-sidebar"
-          >
-            <span className="profile-section-switcher-icon" aria-hidden="true">
-              <Icon name="gear" />
-            </span>
-            <span>{t('profile.profileSections')}</span>
-            <Icon name={sidebarOpen ? 'chevron-down' : 'chevron-right'} className="profile-section-switcher-arrow" />
-          </button>
+        <div className="profile-tabs" role="tablist" aria-label={t('profile.profileSections')}>
+          <div className="profile-tabs-wrap">
+            {SECTIONS.map((section, index) => (
+              <div key={section.id} className="profile-tab-item">
+                <input
+                  type="radio"
+                  id={`profile-tab-${section.id}`}
+                  name="profile-sections"
+                  checked={activeSection === section.id}
+                  onChange={() => selectSection(section.id)}
+                  className={`profile-tab-radio profile-tab-${index + 1}`}
+                />
+                <label
+                  htmlFor={`profile-tab-${section.id}`}
+                  className="profile-tab-label"
+                  role="tab"
+                  aria-selected={activeSection === section.id}
+                  tabIndex={activeSection === section.id ? 0 : -1}
+                >
+                  <span>{t(`profile.${section.key}`)}</span>
+                </label>
+              </div>
+            ))}
+            <div
+              className="profile-tab-bar"
+              aria-hidden="true"
+              style={{ transform: `translateX(${SECTIONS.findIndex((section) => section.id === activeSection) * 100}%)` }}
+            />
+            <div
+              className="profile-tab-slidebar"
+              aria-hidden="true"
+              style={{ transform: `translateX(${SECTIONS.findIndex((section) => section.id === activeSection) * 100}%)` }}
+            />
+          </div>
         </div>
 
-        <div className={`profile-layout${sidebarOpen ? ' sidebar-open' : ''}`}>
-          <button
-            type="button"
-            className="profile-sidebar-backdrop"
-            aria-label={t('profile.closeSections')}
-            onClick={() => setSidebarOpen(false)}
-          />
-
-          <aside id="profile-sidebar" className="profile-sidebar" aria-label={t('profile.profileSections')}>
-            <div className="profile-sidebar-inner">
-              <nav className="profile-nav" aria-label={t('profile.profileSections')}>
-                <ul className="profile-nav-list">
-                  {SECTIONS.map((section) => (
-                    <li key={section.id}>
-                      <button
-                        type="button"
-                        className={activeSection === section.id ? 'active' : ''}
-                        onClick={() => selectSection(section.id)}
-                        aria-current={activeSection === section.id ? 'page' : undefined}
-                      >
-                        {t(`profile.${section.key}`)}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            </div>
-          </aside>
-
+        <div className="profile-layout">
           <div className="profile-content">
             <section className="profile-overview-panel" aria-labelledby="profile-overview-title">
               <div className="profile-overview-heading">
