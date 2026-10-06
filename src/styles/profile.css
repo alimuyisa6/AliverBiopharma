@@ -767,3 +767,120 @@
     width: 100%;
   }
 }
+
+
+.profile-tabs {
+  width: calc(100% - (var(--profile-panel-side-space) * 2));
+  margin: 0 auto var(--profile-switcher-gap);
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.profile-tabs-wrap {
+  position: relative;
+  display: flex;
+  width: max-content;
+  min-width: 100%;
+  padding: var(--space-1);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-pill);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-sm);
+}
+
+.profile-tab-item {
+  position: relative;
+  flex: 0 0 calc(100% / 13);
+  min-width: 120px;
+}
+
+.profile-tab-radio {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.profile-tab-label {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-pill);
+  color: var(--text-secondary);
+  font-family: var(--font-primary);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-tight);
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard);
+}
+
+.profile-tab-label:hover {
+  color: var(--text-main);
+  background: var(--bg-muted);
+}
+
+.profile-tab-radio:checked + .profile-tab-label {
+  color: var(--text-on-primary);
+}
+
+.profile-tab-radio:focus-visible + .profile-tab-label {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+.profile-tab-bar,
+.profile-tab-slidebar {
+  position: absolute;
+  top: var(--space-1);
+  bottom: var(--space-1);
+  left: var(--space-1);
+  width: calc((100% - (var(--space-1) * 2)) / 13);
+  border-radius: var(--radius-pill);
+  pointer-events: none;
+  transition: transform var(--duration-fast) var(--ease-standard);
+}
+
+.profile-tab-bar {
+  z-index: 0;
+  background: var(--primary);
+}
+
+.profile-tab-slidebar {
+  z-index: 1;
+  border: 1px solid var(--primary-border);
+  background: var(--primary-light);
+  opacity: 0.55;
+}
+
+@media (max-width: 768px) {
+  .profile-tabs {
+    width: calc(100% - (var(--profile-panel-side-space-mobile) * 2));
+  }
+
+  .profile-tabs-wrap {
+    min-width: max-content;
+  }
+
+  .profile-tab-item {
+    flex-basis: 120px;
+  }
+
+  .profile-tab-bar,
+  .profile-tab-slidebar {
+    width: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-tabs {
+    width: 100%;
+  }
+}
