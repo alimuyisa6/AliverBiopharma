@@ -816,10 +816,7 @@ export async function completePersonalizedDailyChallenge(
 }
 
 export async function getDailyChallenge() {
-return getRequest(
-'interactions',
-'daily-challenge'
-);
+  return getPersonalizedDailyChallenge();
 }
 
 export async function getWeakAreas() {
