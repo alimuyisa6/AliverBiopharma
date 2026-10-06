@@ -455,13 +455,27 @@ export default function Dashboard() {
             <section className="dashboard-activity-card" aria-labelledby="weekly-activity-title">
               <div className="dashboard-activity-header">
                 <div>
-                  <h3 id="weekly-activity-title">Weekly Activity</h3>
+                  <h3 id="weekly-activity-title">{activityRange === 'day' ? 'Daily Activity' : activityRange === 'month' ? 'Monthly Activity' : 'Weekly Activity'}</h3>
                   <button
                     type="button"
                     className="dashboard-activity-stats-btn"
-                    onClick={() => setActivityRange('month')}
+                    onClick={() => document.getElementById('learning-activity-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
                   >
-                    Full stats →
+                    Full {activityRange} stats
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
                   </button>
                 </div>
               </div>
@@ -513,7 +527,7 @@ export default function Dashboard() {
                   <strong>{heatmapValues[heatmapValues.length - 1]?.count || 0} sessions</strong>
                 </div>
                 <div className="dashboard-activity-reading">
-                  <span>Weekly average</span>
+                  <span>{activityRange === 'day' ? 'Daily average' : activityRange === 'month' ? 'Monthly average' : 'Weekly average'}</span>
                   <strong>{Math.round(heatmapValues.reduce((sum, item) => sum + (Number(item.count) || 0), 0) / heatmapValues.length)} sessions</strong>
                 </div>
               </div>
