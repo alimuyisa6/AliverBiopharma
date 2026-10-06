@@ -853,6 +853,9 @@ api.getMyBookmarks();
 
 export const getUserDashboard = () => api.getUserDashboard();
 
+export const getPersonalizedDailyChallenge = () =>
+api.getPersonalizedDailyChallenge();
+
 export const getDailyChallenge = () =>
 api.getDailyChallenge();
 
