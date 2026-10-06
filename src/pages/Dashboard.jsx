@@ -452,6 +452,72 @@ export default function Dashboard() {
           </main>
 
           <aside className="sidebar-column">
+            <section className="dashboard-activity-card" aria-labelledby="weekly-activity-title">
+              <div className="dashboard-activity-header">
+                <div>
+                  <h3 id="weekly-activity-title">Weekly Activity</h3>
+                  <button
+                    type="button"
+                    className="dashboard-activity-stats-btn"
+                    onClick={() => setActivityRange('month')}
+                  >
+                    Full stats →
+                  </button>
+                </div>
+              </div>
+
+              <div className="dashboard-activity-range">
+                <span className="dashboard-activity-range-value">
+                  {Math.min(...heatmapValues.map((item) => Number(item.count) || 0))}–{Math.max(...heatmapValues.map((item) => Number(item.count) || 0))}
+                </span>
+                <span className="dashboard-activity-range-unit">sessions</span>
+              </div>
+
+              <div className="dashboard-activity-date">
+                {new Date(heatmapValues[0]?.activity_date).toLocaleDateString(undefined, { day: '2-digit', month: 'short' })}
+                {' – '}
+                {new Date(heatmapValues[heatmapValues.length - 1]?.activity_date).toLocaleDateString(undefined, { day: '2-digit', month: 'short' })}
+              </div>
+
+              <div className="dashboard-activity-chart" aria-label="Weekly learning activity">
+                <div className="dashboard-activity-avg-line" />
+                <div className="dashboard-activity-avg-label">
+                  Avg. {Math.round(heatmapValues.reduce((sum, item) => sum + (Number(item.count) || 0), 0) / heatmapValues.length)}
+                </div>
+                <div className="dashboard-activity-bars">
+                  {heatmapValues.map((item, index) => {
+                    const value = Math.max(0, Number(item.count) || 0);
+                    const maxValue = Math.max(...heatmapValues.map((day) => Number(day.count) || 0), 1);
+                    const height = Math.max(12, Math.round((value / maxValue) * 62));
+                    const dayLabel = new Date(item.activity_date).toLocaleDateString(undefined, { weekday: 'short' }).slice(0, 2);
+
+                    return (
+                      <div className="dashboard-activity-bar-wrapper" key={item.activity_date}>
+                        <div className="dashboard-activity-bar-container">
+                          <div
+                            className="dashboard-activity-bar"
+                            style={{ height: `${height}px` }}
+                            title={`${value} learning sessions`}
+                          />
+                        </div>
+                        <span className="dashboard-activity-day">{dayLabel}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="dashboard-activity-readings">
+                <div className="dashboard-activity-reading">
+                  <span>{new Date().toLocaleDateString(undefined, { weekday: 'short' })}</span>
+                  <strong>{heatmapValues[heatmapValues.length - 1]?.count || 0} sessions</strong>
+                </div>
+                <div className="dashboard-activity-reading">
+                  <span>Weekly average</span>
+                  <strong>{Math.round(heatmapValues.reduce((sum, item) => sum + (Number(item.count) || 0), 0) / heatmapValues.length)} sessions</strong>
+                </div>
+              </div>
+            </section>
             {recall?.best_mastery > 0 && (
               <div className="panel dashboard-card dashboard-card-secondary" id="personal-records-section">
                 <div className="panel-header">
