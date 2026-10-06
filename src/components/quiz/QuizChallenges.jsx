@@ -1,6 +1,6 @@
  /* features/quiz/QuizChallenges.jsx */
 import { useEffect, useState } from 'react';
-import { getRequest } from '../../api/client';
+import { getPersonalizedDailyChallenge } from '../../api/client';
 import Icon from '../../components/Icon/Icon';
 import ProgressBar from '../../components/ProgressBar/ProgressBar';
 
@@ -10,7 +10,22 @@ export default function QuizChallenges({ user, level, class_name }) {
   useEffect(() => {
     if (!user) return;
 
-    getRequest('interactions', 'daily-challenge').then(setChallenge).catch(() => {});
+    getPersonalizedDailyChallenge()
+      .then((data) => {
+        const challenge = data?.challenge;
+        if (!challenge) {
+          setChallenge(null);
+          return;
+        }
+        setChallenge({
+          title: challenge.title,
+          reward_xp: challenge.reward_xp,
+          progress: challenge.progress || 0,
+          target: challenge.target || 0,
+          completed: challenge.passed === true || challenge.status === 'completed'
+        });
+      })
+      .catch(() => setChallenge(null));
   }, [user]);
 
   if (!challenge || !challenge.title) return null;
