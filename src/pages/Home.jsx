@@ -170,7 +170,8 @@ export default function Home() {
     Promise.all([
       getRecentViews(3),
       getUnits({ group_id: activeGroupId }),
-      getCurriculumTree(activeGroupId)
+      getCurriculumTree(activeGroupId),
+      getPersonalizedDailyChallenge()
     ]).then(([recentViews, units, curriculumTree, challengeData]) => {
       if (cancelled) return;
       const mappedUnits = mapCurriculumUnits(units);
