@@ -51,6 +51,7 @@ export default function FlashcardsPage() {
   const [error, setError] = useState(null);
 
   const curriculumUnitId = searchParams.get('unit_id') || null;
+  const challengeId = searchParams.get('challenge_id') || null;
   const levelName = displayName || level || '';
   const classLabel = class_name || '';
 
@@ -209,6 +210,7 @@ export default function FlashcardsPage() {
     return (
       <FlashcardDeckView
         deck={selectedDeck}
+        challengeId={challengeId}
         knownIds={knownIds}
         mode="flip"
         onComplete={handleStudyComplete}
