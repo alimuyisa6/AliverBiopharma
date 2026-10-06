@@ -19,18 +19,6 @@ function PencilLoader({ sizeClass = '' }) {
         </clipPath>
       </defs>
 
-      <circle
-        transform="rotate(-113,100,100)"
-        strokeLinecap="round"
-        strokeDashoffset="439.82"
-        strokeDasharray="439.82 439.82"
-        strokeWidth="2"
-        stroke="currentColor"
-        fill="none"
-        r="70"
-        className="pencil-loader__stroke"
-      />
-
       <g transform="translate(100,100)" className="pencil-loader__rotate">
         <g fill="none">
           <circle
