@@ -126,11 +126,12 @@ function CurriculumSnapshot({ nodes, activeLevelName, activeGroupName, sections 
 
 function ChallengeTreasureCard({ challenge, onOpen }) {
   if (!challenge) return null;
+  const challengeType = challenge.challenge_type || challenge.type;
   const labels = { recall: 'Recall Challenge', flashcards: 'Flashcard Challenge', quiz: 'Quiz Challenge' };
   const icons = { recall: 'brain', flashcards: 'layers', quiz: 'clipboard-check' };
-  return <section className={'section home-challenge-treasure home-challenge-' + challenge.challenge_type} aria-labelledby='home-challenge-heading'>
+  return <section className={'section home-challenge-treasure home-challenge-' + (challengeType || 'daily')} aria-labelledby='home-challenge-heading'>
     <div className='home-challenge-treasure-art' aria-hidden='true'><div className='home-challenge-character'><div className='home-challenge-face'><span /><span /></div><div className='home-challenge-smile' /><div className='home-challenge-book' /></div><span className='home-challenge-spark one' /><span className='home-challenge-spark two' /></div>
-    <div className='home-challenge-treasure-copy'><span className='eyebrow'>Daily challenge treasure</span><h2 id='home-challenge-heading'>{challenge.title}</h2><p>{challenge.description}</p><div className='home-challenge-meta'><span><Icon name={icons[challenge.challenge_type] || 'star'} /> {labels[challenge.challenge_type] || 'Challenge'}</span><span>+{challenge.reward_xp} XP</span></div><button type='button' className='btn btn-primary' onClick={onOpen}>{challenge.passed ? 'View challenge' : 'Open challenge'} <Icon name='arrow-right' /></button></div>
+    <div className='home-challenge-treasure-copy'><span className='eyebrow'>Daily challenge treasure</span><h2 id='home-challenge-heading'>{challenge.title}</h2><p>{challenge.description}</p><div className='home-challenge-meta'><span><Icon name={icons[challengeType] || 'star'} /> {labels[challengeType] || 'Challenge'}</span><span>+{challenge.reward_xp} XP</span></div><button type='button' className='btn btn-primary' onClick={onOpen}>{challenge.passed ? 'View challenge' : 'Open challenge'} <Icon name='arrow-right' /></button></div>
   </section>;
 }
 
