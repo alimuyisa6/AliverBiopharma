@@ -30,7 +30,7 @@ const MODE_CARD_COLOR = {
   structure_identification: 'card-amber'
 };
 
-export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode: initialMode = 'flip', onComplete }) {
+export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode: initialMode = 'flip', onComplete, challengeId = null }) {
   const [deck, setDeck] = useState(null);
   const [cards, setCards] = useState([]);
   const [index, setIndex] = useState(0);
@@ -77,7 +77,7 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
       setDeck(data);
       setCards(data.cards || []);
 
-      const session = await startFlashcardSession(deckMeta.id, mode);
+      const session = await startFlashcardSession(deckMeta.id, mode, challengeId);
 
       setSessionId(session?.session_id || null);
     } catch {
