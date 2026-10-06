@@ -2,12 +2,12 @@
 
 :root {
   --duration-fast: 150ms;
-  --duration-smooth: 250ms;
-  --duration-slow: 400ms;
-  --duration-bounce: 500ms;
+  --duration-smooth: 220ms;
+  --duration-slow: 300ms;
+  --duration-bounce: 300ms;
 
   --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-bounce-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-bounce-function: cubic-bezier(0.34, 1.2, 0.64, 1);
 
   --ease-fast: var(--duration-fast) var(--ease-standard);
   --ease-smooth: var(--duration-smooth) var(--ease-standard);
@@ -23,7 +23,7 @@
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
@@ -34,7 +34,7 @@
 @keyframes slideDown {
   from {
     opacity: 0;
-    transform: translateY(-16px);
+    transform: translateY(-8px);
   }
   to {
     opacity: 1;
@@ -45,7 +45,7 @@
 @keyframes scaleIn {
   from {
     opacity: 0;
-    transform: scale(0.92);
+    transform: scale(0.98);
   }
   to {
     opacity: 1;
@@ -93,7 +93,7 @@
 @keyframes questionSlideIn {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(8px);
   }
 
   to {
@@ -103,124 +103,20 @@
 }
 
 @keyframes resultPop {
-  0% {
-    transform: scale(0.5);
-    opacity: 0;
-  }
-
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes writeIn {
-  0% {
-    clip-path: inset(0 0 100% 0);
-  }
-
-  100% {
-    clip-path: inset(0 0 0 0);
-  }
-}
-
-@keyframes zoomPulse {
-  0% {
-    transform: scale(0.92);
-    opacity: 0.7;
-  }
-
-  50% {
-    transform: scale(1.06);
-    opacity: 1;
-  }
-
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes swipeInLeft {
   from {
-    transform: translateX(60px);
+    transform: scale(0.98);
     opacity: 0;
   }
 
   to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes swipeInRight {
-  from {
-    transform: translateX(-60px);
-    opacity: 0;
-  }
-
-  to {
-    transform: translateX(0);
+    transform: scale(1);
     opacity: 1;
   }
 }
 
 .page-entrance > * {
   opacity: 0;
-  animation: fadeIn 0.4s var(--ease-standard) forwards;
-}
-
-@keyframes modernEntrance {
-  0% {
-    clip-path: inset(0 0 100% 0);
-    opacity: 0;
-    transform: scale(0.92);
-  }
-
-  30% {
-    clip-path: inset(0 0 0 0);
-    opacity: 0.9;
-    transform: scale(0.92);
-  }
-
-  60% {
-    transform: scale(1.06);
-    opacity: 1;
-  }
-
-  80% {
-    transform: translateX(40px);
-  }
-
-  100% {
-    transform: translateX(0) scale(1);
-    opacity: 1;
-  }
-}
-
-.anim-write-in {
-  animation: writeIn 1.2s var(--ease-standard) both;
-  will-change: clip-path;
-}
-
-.anim-zoom-pulse {
-  animation: zoomPulse 0.9s var(--ease-bounce-function) both;
-  will-change: transform, opacity;
-}
-
-.anim-swipe-left {
-  animation: swipeInLeft 0.7s var(--ease-standard) both;
-  will-change: transform, opacity;
-}
-
-.anim-swipe-right {
-  animation: swipeInRight 0.7s var(--ease-standard) both;
-  will-change: transform, opacity;
-}
-
-.anim-modern-entrance {
-  animation: modernEntrance 1.8s var(--ease-bounce-function) both;
-  will-change: clip-path, transform, opacity;
+  animation: fadeIn var(--duration-smooth) var(--ease-standard) forwards;
 }
 
 .anim-fade-in {
@@ -236,11 +132,11 @@
 }
 
 .anim-scale-in {
-  animation: scaleIn var(--duration-bounce) var(--ease-bounce-function) both;
+  animation: scaleIn var(--duration-smooth) var(--ease-standard) both;
 }
 
 .anim-pop {
-  animation: resultPop var(--duration-bounce) var(--ease-bounce-function) both;
+  animation: resultPop var(--duration-smooth) var(--ease-standard) both;
 }
 
 .anim-fast {
