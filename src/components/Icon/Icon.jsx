@@ -2,7 +2,7 @@
 
 const ICON_DATA = {
   'arrow-left': { badge: 'circle', bg: '#9b59b6', r: 0, bgPath: "", glyph: "<path d=\"M16 12H8M12 8l-4 4 4 4\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/>" },
-  'arrow-right': { badge: 'circle', bg: '#9b59b6', r: 0, bgPath: "", glyph: "<path d=\"M8 12h8M12 8l4 4-4 4\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/>" },
+  'arrow-right': { badge: 'none', bg: '', r: 0, bgPath: "", glyph: "<path d=\"M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/>" },
   'arrow-up': { badge: 'circle', bg: '#9b59b6', r: 0, bgPath: "", glyph: "<path d=\"M12 16V8M8 12l4-4 4 4\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/>" },
   'atom': { badge: 'circle', bg: '#06b6d4', r: 0, bgPath: "", glyph: "<ellipse cx=\"12\" cy=\"12\" rx=\"8\" ry=\"3\" stroke=\"#fff\" stroke-width=\"1.5\" fill=\"none\"/><ellipse cx=\"12\" cy=\"12\" rx=\"8\" ry=\"3\" stroke=\"#fff\" stroke-width=\"1.5\" fill=\"none\" transform=\"rotate(60 12 12)\"/><ellipse cx=\"12\" cy=\"12\" rx=\"8\" ry=\"3\" stroke=\"#fff\" stroke-width=\"1.5\" fill=\"none\" transform=\"rotate(120 12 12)\"/><circle cx=\"12\" cy=\"12\" r=\"1.8\" fill=\"#fff\"/>" },
 
