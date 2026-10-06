@@ -16,7 +16,6 @@ const MODULE_MAP = {
   'content-guide-images': () => import('../lib/content-guide-images.js'),
   curriculum: () => import('../lib/curriculum.js'),
   'curriculum-navigation': () => import('../lib/curriculum-navigation.js'),
-  'daily-challenge': () => import('../lib/daily-challenge.js'),
   flashcards: () => import('../lib/flashcards.js'),
   glossary: () => import('../lib/glossary.js'),
   institutions: () => import('../lib/institutions.js'),
