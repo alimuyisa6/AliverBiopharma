@@ -46,7 +46,6 @@
 @import './newsletter.css';
 
 
-/* Global route/application loader: always centered in the viewport. */
 .global-loader {
   position: fixed;
   inset: 0;
