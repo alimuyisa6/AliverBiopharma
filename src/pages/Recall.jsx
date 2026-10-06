@@ -61,6 +61,7 @@ export default function BioRecall() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const curriculumUnitId = searchParams.get('unit_id') || null;
+  const challengeId = searchParams.get('challenge_id') || null;
   const { isReady } = useRequireOnboarding();
   const access = useContentAccess();
   const { locked, reason } = useSecurityUiLock();
@@ -239,7 +240,8 @@ export default function BioRecall() {
 
     try {
       const started = await startRecallSession(
-        topic.unit_id
+        topic.unit_id,
+        challengeId
       );
 
       if (
