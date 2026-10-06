@@ -795,7 +795,7 @@ return getRequest(
 }
 
 export async function getPersonalizedDailyChallenge() {
-  return apiCall(
+  return getRequest(
     'interactions',
     'personalized-daily-challenge'
   );
