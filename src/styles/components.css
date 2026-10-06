@@ -126,7 +126,7 @@
 .spinner-pencil .pencil-loader__point,
 .spinner-pencil .pencil-loader__rotate,
 .spinner-pencil .pencil-loader__stroke {
-  animation-duration: var(--pencil-loader-duration);
+  animation-duration: var(--pencil-loader-duration, 1.8s);
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
