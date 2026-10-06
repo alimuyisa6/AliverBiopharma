@@ -1887,14 +1887,16 @@ return getRequest(
 
 export async function startFlashcardSession(
 deckId,
-mode
+mode,
+challenge_id = null
 ) {
 return apiCall(
 'flashcards',
 'start_session',
 {
 deck_id: deckId,
-mode
+mode,
+challenge_id
 }
 );
 }
