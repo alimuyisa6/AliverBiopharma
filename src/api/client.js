@@ -794,6 +794,27 @@ return getRequest(
 );
 }
 
+export async function getPersonalizedDailyChallenge() {
+  return apiCall(
+    'interactions',
+    'personalized-daily-challenge'
+  );
+}
+
+export async function completePersonalizedDailyChallenge(
+  challenge_id,
+  source_id
+) {
+  return apiCall(
+    'interactions',
+    'complete-personalized-daily-challenge',
+    {
+      challenge_id,
+      source_id
+    }
+  );
+}
+
 export async function getDailyChallenge() {
 return getRequest(
 'interactions',
