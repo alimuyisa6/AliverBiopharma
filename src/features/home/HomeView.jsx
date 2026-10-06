@@ -124,6 +124,16 @@ function CurriculumSnapshot({ nodes, activeLevelName, activeGroupName, sections 
   );
 }
 
+function ChallengeTreasureCard({ challenge, onOpen }) {
+  if (!challenge) return null;
+  const labels = { recall: 'Recall Challenge', flashcards: 'Flashcard Challenge', quiz: 'Quiz Challenge' };
+  const icons = { recall: 'brain', flashcards: 'layers', quiz: 'clipboard-check' };
+  return <section className={'section home-challenge-treasure home-challenge-' + challenge.challenge_type} aria-labelledby='home-challenge-heading'>
+    <div className='home-challenge-treasure-art' aria-hidden='true'><div className='home-challenge-character'><div className='home-challenge-face'><span /><span /></div><div className='home-challenge-smile' /><div className='home-challenge-book' /></div><span className='home-challenge-spark one' /><span className='home-challenge-spark two' /></div>
+    <div className='home-challenge-treasure-copy'><span className='eyebrow'>Daily challenge treasure</span><h2 id='home-challenge-heading'>{challenge.title}</h2><p>{challenge.description}</p><div className='home-challenge-meta'><span><Icon name={icons[challenge.challenge_type] || 'star'} /> {labels[challenge.challenge_type] || 'Challenge'}</span><span>+{challenge.reward_xp} XP</span></div><button type='button' className='btn btn-primary' onClick={onOpen}>{challenge.passed ? 'View challenge' : 'Open challenge'} <Icon name='arrow-right' /></button></div>
+  </section>;
+}
+
 function DailyRecallCard({ recall, onReveal, onStart }) {
   if (!recall) return null;
   const { question_text, meta, score } = recall;
@@ -140,7 +150,7 @@ function DailyRecallCard({ recall, onReveal, onStart }) {
 }
 
 export default function HomeView(props) {
-  const { sections, user, navigate, activeLevelName, activeGroupName, publicStats, chatOpen, chatMessages, chatInput, adminOnline, newsletterEmail, newsletterStatus, newsletterLoading, chatRequestLoading, chatSending, chatDeletingId, handleNewsletterSubmit, sendChat, deleteChatMsg, setChatOpen, setChatInput, setNewsletterEmail, chatBodyRef, continueLearning, curriculumUnits, dailyRecall, onRevealRecall, onStartRecall } = props;
+  const { sections, user, navigate, activeLevelName, activeGroupName, publicStats, chatOpen, chatMessages, chatInput, adminOnline, newsletterEmail, newsletterStatus, newsletterLoading, chatRequestLoading, chatSending, chatDeletingId, handleNewsletterSubmit, sendChat, deleteChatMsg, setChatOpen, setChatInput, setNewsletterEmail, chatBodyRef, continueLearning, curriculumUnits, dailyRecall, onRevealRecall, onStartRecall, dailyChallenge, onOpenChallenge } = props;
 
   return (
     <div className="home-page">
@@ -152,7 +162,7 @@ export default function HomeView(props) {
       <HowItWorksSection />
       {user && <div className="home-student-sections-wrap"><CurriculumSnapshot nodes={curriculumUnits} activeLevelName={activeLevelName} activeGroupName={activeGroupName} sections={sections} /><LearningJourneySection sections={sections} navigate={navigate} /></div>}
       {!user && <LearningJourneySection sections={sections} navigate={navigate} />}
-      {user && <DailyRecallCard recall={dailyRecall} onReveal={onRevealRecall} onStart={onStartRecall} />}
+      {user && <ChallengeTreasureCard challenge={dailyChallenge} onOpen={onOpenChallenge} />}\n      {user && <DailyRecallCard recall={dailyRecall} onReveal={onRevealRecall} onStart={onStartRecall} />}
       <section className="home-testimonials-section"><TestimonialSlider quotes={sections?.testimonials?.quotes || []} /></section>
       <section className="home-classroom-section"><ClassroomTeaser /></section>
       <section className="home-tutor-section"><TutorMarketplaceTeaser /></section>
