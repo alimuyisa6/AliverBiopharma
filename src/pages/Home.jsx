@@ -15,6 +15,7 @@ import {
   getRecallDashboard,
   getPastPapers,
   getCurriculumTree,
+  getPersonalizedDailyChallenge,
   checkAdminOnline
 } from '../api/cachedClient';
 import { getSections } from '../api/sections';
@@ -132,6 +133,7 @@ export default function Home() {
   const [curriculumUnits, setCurriculumUnits] = useState([]);
   const [dailyRecall, setDailyRecall] = useState(null);
   const [pastPapers, setPastPapers] = useState([]);
+  const [dailyChallenge, setDailyChallenge] = useState(null);
   const [newsletterLoading, setNewsletterLoading] = useState(false);
   const [chatRequestLoading, setChatRequestLoading] = useState(false);
   const [chatSending, setChatSending] = useState(false);
@@ -160,6 +162,7 @@ export default function Home() {
       setCurriculumUnits([]);
       setDailyRecall(null);
       setPastPapers([]);
+      setDailyChallenge(null);
       return;
     }
 
@@ -168,15 +171,17 @@ export default function Home() {
       getRecentViews(3),
       getUnits({ group_id: activeGroupId }),
       getCurriculumTree(activeGroupId)
-    ]).then(([recentViews, units, curriculumTree]) => {
+    ]).then(([recentViews, units, curriculumTree, challengeData]) => {
       if (cancelled) return;
       const mappedUnits = mapCurriculumUnits(units);
       setContinueLearning(mapContinueLearning(recentViews));
       setCurriculumUnits(mapCanonicalCurriculumTree(curriculumTree, mappedUnits));
+      setDailyChallenge(challengeData?.challenge || null);
     }).catch(() => {
       if (cancelled) return;
       setContinueLearning([]);
       setCurriculumUnits([]);
+      setDailyChallenge(null);
     });
 
     const loadSecondaryHomeData = () => {
@@ -311,6 +316,8 @@ export default function Home() {
       onRevealRecall={handleRevealRecall}
       onStartRecall={handleStartRecall}
       pastPapers={pastPapers}
+      dailyChallenge={dailyChallenge}
+      onOpenChallenge={() => navigate('/challenges')}
     />
   );
 }
