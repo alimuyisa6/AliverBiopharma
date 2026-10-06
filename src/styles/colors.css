@@ -124,4 +124,15 @@
 
   --white: #ffffff;
   --black: #000000;
+
+  /* Interface roles — keep one primary action accent while preserving semantic colors */
+  --color-action-primary: var(--blue-600);
+  --color-action-primary-hover: var(--blue-700);
+  --color-action-primary-soft: var(--blue-50);
+  --color-focus: var(--blue-600);
+  --color-text-primary: var(--grey-900);
+  --color-text-secondary: var(--grey-600);
+  --color-surface: var(--white);
+  --color-surface-muted: var(--grey-50);
+  --color-border: var(--grey-200);
 }
