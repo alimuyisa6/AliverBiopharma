@@ -12,6 +12,7 @@ import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
 import Quiz from './pages/Quiz';
+import Challenges from './pages/Challenges';
 import FlashcardsPage from './pages/FlashcardsPage';
 import Classroom from './pages/Classroom';
 import ClassroomRoom from './pages/ClassroomRoom';
@@ -162,6 +163,7 @@ function AppRoutes() {
             <Route path="/resources" element={<Resources />} />
             <Route path="/curriculum/:groupId/*" element={<ProtectedRoute><CurriculumNodePage /></ProtectedRoute>} />
             <Route path="/quiz" element={<ProtectedRoute><FeatureRoute feature="quizzes"><Quiz /></FeatureRoute></ProtectedRoute>} />
+            <Route path="/challenges" element={<ProtectedRoute><Challenges /></ProtectedRoute>} />
             <Route path="/recall" element={<ProtectedRoute><FeatureRoute feature="recall"><Recall /></FeatureRoute></ProtectedRoute>} />
             <Route path="/flashcards" element={<ProtectedRoute><FeatureRoute feature="flashcards"><FlashcardsPage /></FeatureRoute></ProtectedRoute>} />
             <Route path="/classroom" element={<ProtectedRoute><FeatureRoute feature="classrooms"><Classroom /></FeatureRoute></ProtectedRoute>} />
