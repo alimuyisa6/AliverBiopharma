@@ -164,15 +164,7 @@ export default function Spinner({
   }
 
   if (variant === 'brand' && context === 'default') {
-    return (
-      <div
-        className={`${loaderMap.brand} ${sizeClass}`.trim()}
-        role="status"
-        aria-label="Loading"
-      >
-        <PencilLoader sizeClass={sizeClass} />
-      </div>
-    );
+    return <PencilLoader sizeClass={`${loaderMap.brand} ${sizeClass}`.trim()} />;
   }
 
   return (
