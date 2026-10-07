@@ -20,6 +20,8 @@ export default function QuizChallenges({ user, level, class_name }) {
           return;
         }
         setChallenge({
+          id: challenge.id,
+          unit_id: challenge.unit_id,
           title: challenge.title,
           reward_xp: challenge.reward_xp,
           progress: challenge.progress || 0,
