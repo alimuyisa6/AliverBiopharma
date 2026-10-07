@@ -14,6 +14,7 @@ import Profile from './pages/Profile';
 import Quiz from './pages/Quiz';
 import Challenges from './pages/Challenges';
 import ChallengeRunner from './pages/ChallengeRunner';
+import QuizChallengePage from './pages/challenges/QuizChallengePage';
 import FlashcardsPage from './pages/FlashcardsPage';
 import Classroom from './pages/Classroom';
 import ClassroomRoom from './pages/ClassroomRoom';
@@ -167,7 +168,7 @@ function AppRoutes() {
             <Route path="/challenges" element={<ProtectedRoute><Challenges /></ProtectedRoute>} />
             <Route path="/challenges/recall" element={<ProtectedRoute><FeatureRoute feature="recall"><ChallengeRunner forcedType="recall" /></FeatureRoute></ProtectedRoute>} />
             <Route path="/challenges/flashcards" element={<ProtectedRoute><FeatureRoute feature="flashcards"><ChallengeRunner forcedType="flashcards" /></FeatureRoute></ProtectedRoute>} />
-            <Route path="/challenges/quiz" element={<ProtectedRoute><FeatureRoute feature="quizzes"><ChallengeRunner forcedType="quiz" /></FeatureRoute></ProtectedRoute>} />
+            <Route path="/challenges/quiz" element={<ProtectedRoute><FeatureRoute feature="quizzes"><QuizChallengePage /></FeatureRoute></ProtectedRoute>} />
             <Route path="/recall" element={<ProtectedRoute><FeatureRoute feature="recall"><Recall /></FeatureRoute></ProtectedRoute>} />
             <Route path="/flashcards" element={<ProtectedRoute><FeatureRoute feature="flashcards"><FlashcardsPage /></FeatureRoute></ProtectedRoute>} />
             <Route path="/classroom" element={<ProtectedRoute><FeatureRoute feature="classrooms"><Classroom /></FeatureRoute></ProtectedRoute>} />
