@@ -160,9 +160,42 @@ select
 from public.user_interactions ui
 where ui.interaction_type = 'quiz_attempt'
   and ui.metadata->>'week_start' is not null
-  and ui.metadata->>'level_id' is not null
-  and ui.metadata->>'section_id' is not null
-  and ui.metadata->>'selected_option' ~ '^[0-9]+$'
+  and ui.metadata->>'level_id' ~* '^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}
+  and not exists (
+    select 1
+    from public.user_weekly_challenge_attempts wa
+    where wa.user_id = ui.user_id
+      and wa.week_start = (ui.metadata->>'week_start')::date
+      and wa.level_id = (ui.metadata->>'level_id')::uuid
+  );
+
+  and ui.metadata->>'section_id' ~* '^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}
+  and not exists (
+    select 1
+    from public.user_weekly_challenge_attempts wa
+    where wa.user_id = ui.user_id
+      and wa.week_start = (ui.metadata->>'week_start')::date
+      and wa.level_id = (ui.metadata->>'level_id')::uuid
+  );
+
+  and ui.metadata->>'selected_option' ~ '^[0-9]+
+  and not exists (
+    select 1
+    from public.user_weekly_challenge_attempts wa
+    where wa.user_id = ui.user_id
+      and wa.week_start = (ui.metadata->>'week_start')::date
+      and wa.level_id = (ui.metadata->>'level_id')::uuid
+  );
+
+  and ui.metadata->>'week_start' ~ '^\d{4}-\d{2}-\d{2}
+  and not exists (
+    select 1
+    from public.user_weekly_challenge_attempts wa
+    where wa.user_id = ui.user_id
+      and wa.week_start = (ui.metadata->>'week_start')::date
+      and wa.level_id = (ui.metadata->>'level_id')::uuid
+  );
+
   and not exists (
     select 1
     from public.user_weekly_challenge_attempts wa
