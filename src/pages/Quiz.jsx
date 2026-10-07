@@ -25,7 +25,6 @@ import { PendingApprovalScreen } from '../components/access/PendingApprovalScree
 import { AccessDenied } from '../components/access/AccessDenied';
 import QuizHero from '../components/quiz/QuizHero';
 import QuizDashboard from '../components/quiz/QuizDashboard';
-import QuizChallenges from '../components/quiz/QuizChallenges';
 import QuizLearningPath from '../components/quiz/QuizLearningPath';
 import QuizWeakAreas from '../components/quiz/QuizWeakAreas';
 import Icon from '../components/Icon/Icon';
@@ -49,7 +48,6 @@ export default function Quiz() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const curriculumUnitId = searchParams.get('unit_id') || null;
-  const challengeId = searchParams.get('challenge_id') || null;
   const { isReady } = useRequireOnboarding();
   const access = useContentAccess();
   const { locked, reason } = useSecurityUiLock();
@@ -150,32 +148,6 @@ export default function Quiz() {
       .catch(() => setAllTopics([]))
       .finally(() => setTopicsLoading(false));
   }, [isReady, access.canAccess, access.isPending, activeGroupId, curriculumUnitId]);
-
-  useEffect(() => {
-    if (!challengeId || !curriculumUnitId || topicsLoading || currentTopic || !allTopics.length) return;
-
-    const topic = allTopics.find((item) => item.unit_id === curriculumUnitId);
-    if (!topic) return;
-
-    const total = Number(topic.total_blocks) || 0;
-    if (total <= 0) return;
-
-    const completed = new Set((topic.completed_blocks || []).map(Number));
-    const lockedBlocks = new Set((topic.locked_blocks || []).map(Number));
-    const block = Array.from({ length: total }, (_, index) => index)
-      .find((index) => !completed.has(index) && !lockedBlocks.has(index));
-
-    if (block === undefined) {
-      addToast('No available quiz block for this challenge.', 'error');
-      return;
-    }
-
-    setCurrentTopic(topic.topic_name);
-    setActiveUnitId(topic.unit_id);
-    setTotalBlocks(total);
-    setPendingBlock(block);
-    setShowRulesModal(true);
-  }, [challengeId, curriculumUnitId, topicsLoading, allTopics, currentTopic, addToast]);
 
   useEffect(() => {
     if (timeLeft === null || resultData) return;
@@ -395,7 +367,6 @@ export default function Quiz() {
     try {
       const session = await startQuizSession(activeUnitId, blockNum, {
         mode: quizMode,
-        challenge_id: challengeId || null,
         idempotency_key: createIdempotencyKey('start')
       });
 
@@ -404,7 +375,7 @@ export default function Quiz() {
       setTabSwitchCount(session.tab_switches || 0);
       setMaxTabSwitches(session.max_allowed || 3);
 
-      const data = await getQuizBlock(activeUnitId, blockNum, challengeId);
+      const data = await getQuizBlock(activeUnitId, blockNum);
 
       if (!data?.questions?.length) {
         addToast('No questions available.', 'error');
@@ -491,7 +462,6 @@ export default function Quiz() {
           <>
             <QuizHero level={level} class_name={class_name} />
             {user && <QuizDashboard user={user} level={level} class_name={class_name} groupId={activeGroupId} />}
-            {user && <QuizChallenges user={user} groupId={activeGroupId} />}
             <QuizLearningPath level={level} class_name={class_name} groupId={activeGroupId} />
             <QuizWeakAreas user={user} level={level} class_name={class_name} groupId={activeGroupId} />
           </>
