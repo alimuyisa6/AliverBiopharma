@@ -453,14 +453,14 @@ export default function Quiz() {
         <AdSlot placement="quiz" pageContext="quiz" />
 
         <nav className="breadcrumb">
-          <Link to="/"><Icon name="home" className="breadcrumb-icon" /> Home</Link>
+          <Link to="/">Home</Link>
           <Icon name="chevron-right" className="breadcrumb-sep" />
           <span>{curriculumUnitId ? currentTopic || t('common.curriculumQuiz') : t('common.quizzes')}</span>
         </nav>
 
         {!currentTopic && !curriculumUnitId && (
           <>
-            <QuizHero level={level} class_name={class_name} />
+            <QuizHero level={level} class_name={class_name} groupId={activeGroupId} />
             {user && <QuizDashboard user={user} level={level} class_name={class_name} groupId={activeGroupId} />}
             <QuizLearningPath level={level} class_name={class_name} groupId={activeGroupId} />
             <QuizWeakAreas user={user} level={level} class_name={class_name} groupId={activeGroupId} />
