@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react';
 import { getUserDashboard } from '../../api/cachedClient';
 import Icon from '../../components/Icon/Icon';
-import ProgressBar from '../../components/ProgressBar/ProgressBar';
 import Skeleton from '../../components/Skeleton/Skeleton';
 
 export default function QuizDashboard({ user, level, class_name }) {
@@ -44,13 +43,6 @@ export default function QuizDashboard({ user, level, class_name }) {
           <Icon name="trophy" className="stat-icon stat-icon-warm" />
           <div className="stat-value font-poppins">{platform.rank_title}</div>
           <div className="stat-label font-source-sans">Rank</div>
-        </div>
-
-        <div className="stat-card card-surface-subtle card-elevation-none card-density-comfortable">
-          <Icon name="chart-line" className="stat-icon stat-icon-primary" />
-          <div className="stat-value font-poppins">{platform.total_xp}</div>
-          <div className="stat-label font-source-sans">XP</div>
-          <ProgressBar value={platform.xp_progress.progressPercent} max={100} variant="gradient" showLabel />
         </div>
 
         <div className="stat-card card-surface-subtle card-elevation-none card-density-comfortable">
