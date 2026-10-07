@@ -3520,3 +3520,35 @@ export async function getMaintenanceStatus(route = null, boundaryKey = null) {
     boundary_key: boundaryKey || undefined,
   });
 }
+
+export async function startQuizChallenge(challenge_id, idempotency_key) {
+  return apiCall('quiz', 'quiz_challenge_start', {
+    challenge_id,
+    idempotency_key
+  });
+}
+
+export async function getQuizChallengeSession(session_id) {
+  return getRequest('quiz', 'quiz_challenge_session', { session_id });
+}
+
+export async function submitQuizChallengeAnswer(
+  session_id,
+  question_id,
+  selected_option,
+  idempotency_key
+) {
+  return apiCall('quiz', 'quiz_challenge_answer', {
+    session_id,
+    question_id,
+    selected_option,
+    idempotency_key
+  });
+}
+
+export async function completeQuizChallenge(session_id, idempotency_key) {
+  return apiCall('quiz', 'quiz_challenge_complete', {
+    session_id,
+    idempotency_key
+  });
+}
