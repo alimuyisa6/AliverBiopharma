@@ -1655,14 +1655,16 @@ groupId
 
 export async function getQuizBlock(
 unitId,
-block
+block,
+challengeId = null
 ) {
 return getRequest(
 'quiz',
 'get_quiz_block',
 {
 unit_id: unitId,
-block_number: block
+block_number: block,
+challenge_id: challengeId
 }
 );
 }
