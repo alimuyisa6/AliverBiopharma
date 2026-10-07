@@ -55,8 +55,8 @@ export default function CommunityPage() {
   }, [moodSelected, moodMessage]);
 
   const handleWeeklyChallengeSubmit = useCallback(async (index) => {
-    setChallengeSubmitting(index);
     if (!user) return;
+    setChallengeSubmitting(index);
 
     try {
       const result = await submitWeeklyChallenge(null, index);
