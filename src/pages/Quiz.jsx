@@ -395,6 +395,7 @@ export default function Quiz() {
     try {
       const session = await startQuizSession(activeUnitId, blockNum, {
         mode: quizMode,
+        challenge_id: challengeId || null,
         idempotency_key: createIdempotencyKey('start')
       });
 
