@@ -404,7 +404,7 @@ export default function Quiz() {
       setTabSwitchCount(session.tab_switches || 0);
       setMaxTabSwitches(session.max_allowed || 3);
 
-      const data = await getQuizBlock(activeUnitId, blockNum);
+      const data = await getQuizBlock(activeUnitId, blockNum, challengeId);
 
       if (!data?.questions?.length) {
         addToast('No questions available.', 'error');
