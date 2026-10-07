@@ -402,9 +402,10 @@ false
 )();
 
 export const startRecallSession = (
-unitId
+unitId,
+challengeId = null
 ) =>
-api.startRecallSession(unitId);
+api.startRecallSession(unitId, challengeId);
 
 export const getRecallAchievements = () =>
 withCache(
