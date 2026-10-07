@@ -6,7 +6,8 @@ export function CommunitySection({
   activity = [],
   weeklyChallenge,
   weeklyChallengeAnswer,
-  onWeeklySubmit
+  onWeeklySubmit,
+  challengeSubmitting = null
 }) {
   return (
     <>
