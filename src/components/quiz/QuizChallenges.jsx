@@ -1,5 +1,6 @@
  /* features/quiz/QuizChallenges.jsx */
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getPersonalizedDailyChallenge } from '../../api/client';
 import Icon from '../../components/Icon/Icon';
 import ProgressBar from '../../components/ProgressBar/ProgressBar';
