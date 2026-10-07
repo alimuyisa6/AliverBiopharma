@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useLayout } from '../contexts/LayoutContext';
 import { getSections } from '../api/sections';
-import { getCommunityActivity, submitMood, submitWeeklyChallenge } from '../api/cachedClient';
+import { getCommunityActivity, getWeeklyChallengeStatus, submitMood, submitWeeklyChallenge } from '../api/cachedClient';
 import { MoodCheckSection } from '../features/mood/MoodCheckSection';
 import { CommunitySection } from '../features/community/CommunitySection';
 
@@ -23,6 +23,16 @@ export default function CommunityPage() {
     }
 
     getCommunityActivity().then(setCommunityActivity).catch(() => {});
+    getWeeklyChallengeStatus().then((result) => {
+      if (result?.progress?.answered) {
+        setWeeklyChallengeAnswer({
+          correct: result.progress.correct === true,
+          explanation: result.progress.explanation || ''
+        });
+      } else {
+        setWeeklyChallengeAnswer(null);
+      }
+    }).catch(() => {});
   }, [level]);
 
   const [moodSubmitting, setMoodSubmitting] = useState(false);
@@ -38,7 +48,7 @@ export default function CommunityPage() {
     } catch {}
   }, [moodSelected, moodMessage]);
 
-  const handleWeeklyChallengeSubmit = useCallback(async (index, correct, explanation) => {
+  const handleWeeklyChallengeSubmit = useCallback(async (index) => {
     setChallengeSubmitting(index);
     if (!user) return;
 
