@@ -32,7 +32,7 @@ export function CommunitySection({
                   <Button
                     key={index}
                     variant="secondary"
-                    onClick={() => onWeeklySubmit(index, weeklyChallenge.correct, weeklyChallenge.explanation)}
+                    onClick={() => onWeeklySubmit(index)}
                     loading={challengeSubmitting === index}
                   >
                     {String.fromCharCode(65 + index)}) {option}
