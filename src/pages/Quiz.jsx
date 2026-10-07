@@ -152,6 +152,32 @@ export default function Quiz() {
   }, [isReady, access.canAccess, access.isPending, activeGroupId, curriculumUnitId]);
 
   useEffect(() => {
+    if (!challengeId || !curriculumUnitId || topicsLoading || currentTopic || !allTopics.length) return;
+
+    const topic = allTopics.find((item) => item.unit_id === curriculumUnitId);
+    if (!topic) return;
+
+    const total = Number(topic.total_blocks) || 0;
+    if (total <= 0) return;
+
+    const completed = new Set((topic.completed_blocks || []).map(Number));
+    const lockedBlocks = new Set((topic.locked_blocks || []).map(Number));
+    const block = Array.from({ length: total }, (_, index) => index)
+      .find((index) => !completed.has(index) && !lockedBlocks.has(index));
+
+    if (block === undefined) {
+      addToast('No available quiz block for this challenge.', 'error');
+      return;
+    }
+
+    setCurrentTopic(topic.topic_name);
+    setActiveUnitId(topic.unit_id);
+    setTotalBlocks(total);
+    setPendingBlock(block);
+    setShowRulesModal(true);
+  }, [challengeId, curriculumUnitId, topicsLoading, allTopics, currentTopic, addToast]);
+
+  useEffect(() => {
     if (timeLeft === null || resultData) return;
 
     if (timeLeft <= 0) {
