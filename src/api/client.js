@@ -3243,12 +3243,13 @@ confidence
 );
 }
 
-export async function startRecallSession(unitId) {
+export async function startRecallSession(unitId, challengeId = null) {
 return apiCall(
 'recall',
 'start',
 {
-unit_id: unitId
+unit_id: unitId,
+challenge_id: challengeId
 }
 );
 }
