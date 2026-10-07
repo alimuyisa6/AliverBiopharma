@@ -2,7 +2,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useLayout } from '../contexts/LayoutContext';
-import { getSections } from '../api/sections';
 import { getCommunityActivity, getWeeklyChallengeStatus, submitMood, submitWeeklyChallenge } from '../api/cachedClient';
 import { MoodCheckSection } from '../features/mood/MoodCheckSection';
 import { CommunitySection } from '../features/community/CommunitySection';
@@ -10,7 +9,6 @@ import { CommunitySection } from '../features/community/CommunitySection';
 export default function CommunityPage() {
   const { user } = useAuth();
   const { level } = useLayout();
-  const [sections, setSections] = useState({});
   const [communityActivity, setCommunityActivity] = useState([]);
   const [moodSelected, setMoodSelected] = useState(null);
   const [moodMessage, setMoodMessage] = useState('');
@@ -19,10 +17,6 @@ export default function CommunityPage() {
   const [weeklyChallengeAnswer, setWeeklyChallengeAnswer] = useState(null);
 
   useEffect(() => {
-    if (level?.id) {
-      getSections(level.id).then(setSections).catch(() => {});
-    }
-
     getCommunityActivity().then(setCommunityActivity).catch(() => {});
     getWeeklyChallengeStatus().then((result) => {
       if (!result?.available || !result?.challenge?.question) {
