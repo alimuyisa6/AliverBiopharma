@@ -15,6 +15,7 @@ export default function CommunityPage() {
   const [moodSelected, setMoodSelected] = useState(null);
   const [moodMessage, setMoodMessage] = useState('');
   const [moodSubmitted, setMoodSubmitted] = useState(false);
+  const [weeklyChallenge, setWeeklyChallenge] = useState(null);
   const [weeklyChallengeAnswer, setWeeklyChallengeAnswer] = useState(null);
 
   useEffect(() => {
@@ -24,15 +25,26 @@ export default function CommunityPage() {
 
     getCommunityActivity().then(setCommunityActivity).catch(() => {});
     getWeeklyChallengeStatus().then((result) => {
-      if (result?.progress?.answered) {
+      if (!result?.available || !result?.challenge?.question) {
+        setWeeklyChallenge(null);
+        setWeeklyChallengeAnswer(null);
+        return;
+      }
+
+      setWeeklyChallenge(result.challenge);
+
+      if (result.progress?.answered) {
         setWeeklyChallengeAnswer({
           correct: result.progress.correct === true,
-          explanation: result.progress.explanation || ''
+          explanation: result.progress.explanation || result.challenge.explanation || ''
         });
       } else {
         setWeeklyChallengeAnswer(null);
       }
-    }).catch(() => {});
+    }).catch(() => {
+      setWeeklyChallenge(null);
+      setWeeklyChallengeAnswer(null);
+    });
   }, [level]);
 
   const [moodSubmitting, setMoodSubmitting] = useState(false);
@@ -53,14 +65,11 @@ export default function CommunityPage() {
     if (!user) return;
 
     try {
-      const result = await submitWeeklyChallenge(
-        new Date().toISOString().slice(0, 10),
-        index
-      );
+      const result = await submitWeeklyChallenge(null, index);
 
       setWeeklyChallengeAnswer({
         correct: result.correct === true,
-        explanation: result.explanation || explanation
+        explanation: result.explanation || ''
       });
     } catch {
       setWeeklyChallengeAnswer(null);
@@ -82,7 +91,7 @@ export default function CommunityPage() {
 
       <CommunitySection
         activity={communityActivity}
-        weeklyChallenge={sections?.weekly_challenge}
+        weeklyChallenge={weeklyChallenge}
         weeklyChallengeAnswer={weeklyChallengeAnswer}
         onWeeklySubmit={handleWeeklyChallengeSubmit} challengeSubmitting={challengeSubmitting}
       />
