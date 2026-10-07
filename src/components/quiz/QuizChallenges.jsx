@@ -55,7 +55,16 @@ export default function QuizChallenges({ user, level, class_name }) {
         {challenge.completed ? (
           <Icon name="circle-check" className="icon-complete" />
         ) : (
-          <span className="progress-label font-mono">{challenge.progress}/{challenge.target}</span>
+          <>
+            <span className="progress-label font-mono">{challenge.progress}/{challenge.target}</span>
+            <button
+              type="button"
+              className="btn btn-primary btn-sm"
+              onClick={() => navigate(`/quiz?unit_id=${encodeURIComponent(challenge.unit_id)}&challenge_id=${encodeURIComponent(challenge.id)}`)}
+            >
+              Start
+            </button>
+          </>
         )}
       </div>
     </div>
