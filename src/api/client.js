@@ -2445,14 +2445,12 @@ userId
 }
 
 export async function getWeeklyChallengeStatus(
-weekStart
+weekStart = null
 ) {
 return getRequest(
-'daily-challenge',
-'status',
-{
-week_start: weekStart
-}
+'interactions',
+'weekly-challenge',
+weekStart ? { week_start: weekStart } : {}
 );
 }
 
@@ -2461,8 +2459,8 @@ weekStart,
 selectedOption
 ) {
 return apiCall(
-'daily-challenge',
-'submit',
+'interactions',
+'submit-weekly-challenge',
 {
 week_start: weekStart,
 selected_option: selectedOption
