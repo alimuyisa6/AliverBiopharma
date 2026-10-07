@@ -896,9 +896,10 @@ api.getUnitBreadcrumb(unitId);
 
 export const getQuizBlock = (
 unitId,
-block
+block,
+challengeId = null
 ) =>
-api.getQuizBlock(unitId, block);
+api.getQuizBlock(unitId, block, challengeId);
 
 export const checkDailyRetry = (
 unitId,
