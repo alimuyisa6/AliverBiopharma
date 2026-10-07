@@ -42,11 +42,21 @@ export default function CommunityPage() {
     setChallengeSubmitting(index);
     if (!user) return;
 
-    setWeeklyChallengeAnswer({ correct: index === correct, explanation });
-
     try {
-      await submitWeeklyChallenge(new Date().toISOString().slice(0, 10), index);
-    } catch {}
+      const result = await submitWeeklyChallenge(
+        new Date().toISOString().slice(0, 10),
+        index
+      );
+
+      setWeeklyChallengeAnswer({
+        correct: result.correct === true,
+        explanation: result.explanation || explanation
+      });
+    } catch {
+      setWeeklyChallengeAnswer(null);
+    } finally {
+      setChallengeSubmitting(null);
+    }
   }, [user]);
 
   return (
