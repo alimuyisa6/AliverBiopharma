@@ -48,6 +48,9 @@ alter table public.user_daily_challenges
   add column if not exists created_at timestamptz default now(),
   add column if not exists updated_at timestamptz default now();
 
+create unique index if not exists uq_user_daily_challenges_user_date
+  on public.user_daily_challenges(user_id, challenge_date);
+
 create index if not exists idx_user_daily_challenges_user_date
   on public.user_daily_challenges(user_id, challenge_date desc);
 
@@ -70,6 +73,17 @@ create table if not exists public.user_daily_challenge_attempts (
   completed_at timestamptz not null default now(),
   created_at timestamptz not null default now()
 );
+
+create unique index if not exists uq_daily_challenge_attempts_attempt_number
+  on public.user_daily_challenge_attempts(daily_challenge_id, attempt_number);
+
+create unique index if not exists uq_daily_challenge_attempts_source_attempt
+  on public.user_daily_challenge_attempts(daily_challenge_id, source_attempt_id)
+  where source_attempt_id is not null;
+
+create unique index if not exists uq_daily_challenge_attempts_source_session
+  on public.user_daily_challenge_attempts(daily_challenge_id, source_session_id)
+  where source_session_id is not null;
 
 create index if not exists idx_daily_challenge_attempts_challenge
   on public.user_daily_challenge_attempts(daily_challenge_id, attempt_number desc);
