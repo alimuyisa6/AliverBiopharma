@@ -6,6 +6,7 @@ import Icon from '../../components/Icon/Icon';
 import ProgressBar from '../../components/ProgressBar/ProgressBar';
 
 export default function QuizChallenges({ user, level, class_name }) {
+  const navigate = useNavigate();
   const [challenge, setChallenge] = useState(null);
 
   useEffect(() => {
