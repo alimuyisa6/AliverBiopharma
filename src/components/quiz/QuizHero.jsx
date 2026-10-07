@@ -1,18 +1,34 @@
  /* features/quiz/QuizHero.jsx */
 import { useEffect, useState } from 'react';
 import { getPlatformStats } from '../../api/client';
+import { listQuizTopics } from '../../api/cachedClient';
 import Icon from '../../components/Icon/Icon';
 import Skeleton from '../../components/Skeleton/Skeleton';
 
-export default function QuizHero({ level, class_name }) {
+export default function QuizHero({ level, class_name, groupId }) {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [scopeStats, setScopeStats] = useState({ questions: 0, topics: 0 });
 
   useEffect(() => {
-    getPlatformStats()
-      .then(setStats)
-      .catch(() => setStats(null))
-      .finally(() => setLoading(false));
+    let cancelled = false;
+
+    Promise.all([
+      getPlatformStats().catch(() => null),
+      groupId ? listQuizTopics(groupId).catch(() => ({ topics: [] })) : Promise.resolve({ topics: [] })
+    ]).then(([platformStats, topicsRes]) => {
+      if (cancelled) return;
+      setStats(platformStats);
+      const topics = Array.isArray(topicsRes?.topics) ? topicsRes.topics : [];
+      setScopeStats({
+        topics: topics.length,
+        questions: topics.reduce((sum, topic) => sum + (Number(topic.question_count) || 0), 0)
+      });
+    }).finally(() => {
+      if (!cancelled) setLoading(false);
+    });
+
+    return () => { cancelled = true; };
   }, []);
 
   if (loading) {
@@ -48,13 +64,13 @@ export default function QuizHero({ level, class_name }) {
         <div className="grid grid-cols-4 quiz-hero-stats">
           <div className="stat-card card-surface-subtle card-elevation-none card-density-comfortable">
             <Icon name="book-open" className="stat-icon stat-icon-primary" />
-            <div className="stat-value font-poppins">{stats?.total_questions ?? 0}</div>
+            <div className="stat-value font-poppins">{scopeStats.questions}</div>
             <div className="stat-label font-source-sans">Questions</div>
           </div>
 
           <div className="stat-card card-surface-subtle card-elevation-none card-density-comfortable">
             <Icon name="microscope" className="stat-icon stat-icon-secondary" />
-            <div className="stat-value font-poppins">{stats?.total_topics ?? 0}</div>
+            <div className="stat-value font-poppins">{scopeStats.topics}</div>
             <div className="stat-label font-source-sans">Topics</div>
           </div>
 
