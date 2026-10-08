@@ -958,3 +958,58 @@
   margin-top: 0;
   padding-top: 0;
 }
+
+
+.quiz-blocks-navigation-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  width: min(100%, 220px);
+  margin: var(--space-8) auto 0;
+  padding: 6px;
+  border: 1px solid var(--border-color, rgba(15, 23, 42, 0.08));
+  border-radius: 14px;
+  background: var(--surface, #fff);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.10);
+}
+
+.quiz-blocks-nav-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: currentColor;
+  cursor: pointer;
+  transition: background-color 160ms ease, transform 160ms ease, opacity 160ms ease;
+}
+
+.quiz-blocks-nav-arrow:hover:not(:disabled) {
+  background: rgba(15, 23, 42, 0.06);
+  transform: translateY(-1px);
+}
+
+.quiz-blocks-nav-arrow:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.quiz-blocks-nav-arrow:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.quiz-blocks-nav-arrow:disabled {
+  opacity: 0.28;
+  cursor: not-allowed;
+}
+
+.quiz-blocks-nav-arrow svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
