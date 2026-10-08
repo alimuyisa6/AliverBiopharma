@@ -3,7 +3,7 @@
 .quiz-page-section {
   width: min(100%, var(--max-width));
   margin-inline: auto;
-  padding-block: var(--space-3) var(--section-space-y);
+  padding-block: var(--space-1) var(--section-space-y);
   padding-inline: var(--page-gutter-x);
 }
 
