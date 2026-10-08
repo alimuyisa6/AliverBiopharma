@@ -552,7 +552,7 @@ export default function Quiz() {
   return (
     <div className="quiz-page">
       <div className="section quiz-page-section">
-        {!currentTopic && !resultData && (
+        {!currentTopic && !resultData && !quizQuestions.length && !sessionId && (
           <>
                   <span className="eyebrow">{t('common.assessments')}</span>
                   <h1 className="section-title quiz-page-title">
