@@ -57,7 +57,7 @@ export default function Quiz() {
 
   const activeGroupId = profile?.active_group_id;
   const isPharmacy = /pharmacy/i.test(
-    `${level?.display_name || ''} ${level?.id || ''} ${profile?.track || ''}`
+    `${level?.display_name || ''} ${level?.id || ''} ${profile?.track || ''} ${displayName || ''}`
   );
   const topicHeading = isPharmacy ? 'Course Units' : t('common.availableTopics');
 
@@ -464,7 +464,7 @@ export default function Quiz() {
 
         {!currentTopic && !curriculumUnitId && (
           <>
-            <QuizHero level={level} class_name={class_name} groupId={activeGroupId} />
+            <QuizHero level={level} class_name={class_name} groupId={activeGroupId} isPharmacy={isPharmacy} />
             {user && <QuizDashboard user={user} level={level} class_name={class_name} groupId={activeGroupId} />}
             <QuizLearningPath level={level} class_name={class_name} groupId={activeGroupId} />
             <QuizWeakAreas user={user} level={level} class_name={class_name} groupId={activeGroupId} />
