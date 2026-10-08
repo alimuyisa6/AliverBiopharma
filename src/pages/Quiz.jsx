@@ -470,7 +470,6 @@ export default function Quiz() {
         {!currentTopic ? (
           <>
             <div className="quiz-section-heading quiz-section-heading-spacer">
-              <Icon name="layer-group" />
               <span>{curriculumUnitId ? t('common.curriculumTopic') : t('common.availableTopics')}</span>
             </div>
 
