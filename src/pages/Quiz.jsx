@@ -469,7 +469,7 @@ export default function Quiz() {
           <span>{curriculumUnitId ? currentTopic || t('common.curriculumQuiz') : t('common.quizzes')}</span>
         </nav>
 
-        {!currentTopic && !curriculumUnitId && !quizCardsScreen && (
+        {!currentTopic && !curriculumUnitId && (
           <QuizHero
             level={level}
             class_name={class_name}
