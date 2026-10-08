@@ -56,6 +56,10 @@ export default function Quiz() {
   const { t } = useI18n();
 
   const activeGroupId = profile?.active_group_id;
+  const isPharmacy = /pharmacy/i.test(
+    `${level?.display_name || ''} ${level?.id || ''} ${profile?.track || ''}`
+  );
+  const topicHeading = isPharmacy ? 'Course Units' : t('common.availableTopics');
 
   const [activeUnitId, setActiveUnitId] = useState(null);
   const [currentTopic, setCurrentTopic] = useState('');
@@ -470,7 +474,7 @@ export default function Quiz() {
         {!currentTopic ? (
           <>
             <div className="quiz-section-heading quiz-section-heading-spacer">
-              <span>{curriculumUnitId ? t('common.curriculumTopic') : t('common.availableTopics')}</span>
+              <span>{curriculumUnitId ? (isPharmacy ? 'Course Unit' : 'Topic') : topicHeading}</span>
             </div>
 
             <h2 className="quiz-topic-description">
