@@ -469,7 +469,7 @@ export default function Quiz() {
           <span>{curriculumUnitId ? currentTopic || t('common.curriculumQuiz') : t('common.quizzes')}</span>
         </nav>
 
-        {!currentTopic && !curriculumUnitId && (
+        {!currentTopic && !curriculumUnitId && !quizCardsScreen && (
           <QuizHero
             level={level}
             class_name={class_name}
@@ -728,7 +728,7 @@ export default function Quiz() {
 
           </div>       )}
 
-        {quizCardsScreen && !currentTopic && !curriculumUnitId && (
+        {false && quizCardsScreen && !currentTopic && !curriculumUnitId && (
           <div className="quiz-cards-screen-back">
             <button type="button" className="quiz-cards-back-link" onClick={() => setQuizCardsScreen(false)} aria-label="Back to quiz hero">
               <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -738,8 +738,8 @@ export default function Quiz() {
           </div>
         )}
 
-        {!currentTopic && !curriculumUnitId && <QuizLearningPath level={level} class_name={class_name} groupId={activeGroupId} />}
-        {!currentTopic && !curriculumUnitId && <QuizWeakAreas user={user} level={level} class_name={class_name} groupId={activeGroupId} />}
+        {!quizCardsScreen && !currentTopic && !curriculumUnitId && <QuizLearningPath level={level} class_name={class_name} groupId={activeGroupId} />}
+        {!quizCardsScreen && !currentTopic && !curriculumUnitId && <QuizWeakAreas user={user} level={level} class_name={class_name} groupId={activeGroupId} />}
 
         <Modal open={showRulesModal} onClose={() => setShowRulesModal(false)} title={t('common.quizRules')}>
           <ul className="quiz-rules-list">
