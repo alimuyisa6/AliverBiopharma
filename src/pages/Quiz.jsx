@@ -552,26 +552,32 @@ export default function Quiz() {
   return (
     <div className="quiz-page">
       <div className="section quiz-page-section">
-        <span className="eyebrow">{t('common.assessments')}</span>
-        <h1 className="section-title quiz-page-title">
-          {t('common.knowledgeQuizzes')}<br />{displayName ? `${t('common.forLearner')} ${displayName}` : ''}
-        </h1>
+        {!currentTopic && !resultData && (
+          <>
+                  <span className="eyebrow">{t('common.assessments')}</span>
+                  <h1 className="section-title quiz-page-title">
+                    {t('common.knowledgeQuizzes')}<br />{displayName ? `${t('common.forLearner')} ${displayName}` : ''}
+                  </h1>
 
-        <h2 className="quiz-intro-description">
-          {t('common.quizIntro')}
-        </h2>
+                  <h2 className="quiz-intro-description">
+                    {t('common.quizIntro')}
+                  </h2>
 
-        {class_name && <p className="quiz-group-label">{t('common.currentGroup')}: {class_name}</p>}
+                  {class_name && <p className="quiz-group-label">{t('common.currentGroup')}: {class_name}</p>}
 
-        {user && streak > 0 && (
-          <div className="quiz-streak-row">
-            <span className="badge badge-warm">
-              <Icon name="fire" /> {streak}-day streak
-            </span>
-          </div>
+                  {user && streak > 0 && (
+                    <div className="quiz-streak-row">
+                      <span className="badge badge-warm">
+                        <Icon name="fire" /> {streak}-day streak
+                      </span>
+                    </div>
+                  )}
+
+                  <AdSlot placement="quiz" pageContext="quiz" />
+
+
+          </>
         )}
-
-        <AdSlot placement="quiz" pageContext="quiz" />
 
         <nav className="breadcrumb">
           <Link to="/">Home</Link>
