@@ -1669,20 +1669,6 @@ challenge_id: challengeId
 );
 }
 
-export async function checkDailyRetry(
-unitId,
-block
-) {
-return getRequest(
-'quiz',
-'check_daily_retry',
-{
-unit_id: unitId,
-block_number: block
-}
-);
-}
-
 export async function checkQuizAnswer(payload) {
 return apiCall(
 'quiz',
