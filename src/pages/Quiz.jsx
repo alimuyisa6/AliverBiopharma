@@ -466,10 +466,6 @@ export default function Quiz() {
           <QuizHero level={level} class_name={class_name} groupId={activeGroupId} isPharmacy={isPharmacy} />
         )}
 
-        {!currentTopic && !curriculumUnitId && user && <QuizDashboard user={user} level={level} class_name={class_name} groupId={activeGroupId} />}
-        {!currentTopic && !curriculumUnitId && <QuizLearningPath level={level} class_name={class_name} groupId={activeGroupId} />}
-        {!currentTopic && !curriculumUnitId && <QuizWeakAreas user={user} level={level} class_name={class_name} groupId={activeGroupId} />}
-
         {!currentTopic ? (
           <>
             <div className="quiz-section-heading quiz-section-heading-spacer">
@@ -757,6 +753,10 @@ export default function Quiz() {
             </Button>
           </div>
         )}
+
+        {!currentTopic && !curriculumUnitId && user && <QuizDashboard user={user} level={level} class_name={class_name} groupId={activeGroupId} />}
+        {!currentTopic && !curriculumUnitId && <QuizLearningPath level={level} class_name={class_name} groupId={activeGroupId} />}
+        {!currentTopic && !curriculumUnitId && <QuizWeakAreas user={user} level={level} class_name={class_name} groupId={activeGroupId} />}
 
         <Modal open={showRulesModal} onClose={() => setShowRulesModal(false)} title={t('common.quizRules')}>
           <ul className="quiz-rules-list">
