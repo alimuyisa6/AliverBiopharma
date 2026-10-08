@@ -818,6 +818,7 @@ export default function Quiz() {
             <div className="quiz-nav-buttons">
               <Button
                 variant="secondary"
+                className="quiz-nav-button-card"
                 onClick={() => { if (currentIndex > 0) navigateTo(currentIndex - 1); }}
                 disabled={currentIndex === 0}
               >
@@ -837,6 +838,7 @@ export default function Quiz() {
               ) : (
                 <Button
                   variant="primary"
+                  className="quiz-nav-button-card"
                   onClick={() => {
                     if (firstUnanswered !== -1 && firstUnanswered !== currentIndex) {
                       navigateTo(firstUnanswered);
