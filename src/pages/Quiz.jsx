@@ -875,24 +875,28 @@ export default function Quiz() {
                   const selected = userAnswers[currentIndex]?.selected;
                   const correctOption = userAnswers[currentIndex]?.correct_option;
 
-                  let cls = 'btn btn-secondary';
+                  let stateClass = '';
 
                   if (answered) {
-                    if (option === correctOption) cls = 'btn btn-success';
-                    else if (option === selected) cls = 'btn btn-danger';
+                    if (option === correctOption) stateClass = 'correct';
+                    else if (option === selected) stateClass = 'incorrect';
                   }
 
                   return (
                     <button
                       key={option}
-                      className={`${cls} quiz-option-btn`}
+                      className={`quiz-option-btn ${stateClass}`}
                       onClick={() => selectAnswer(option)}
                       disabled={answered || answerSubmitting || locked}
                     >
                       <span className="quiz-option-letter">{option}.</span>
-                      <span>{quizQuestions[currentIndex][`option_${option.toLowerCase()}`]}</span>
-                      {answered && option === correctOption && <Icon name="circle-check" className="quiz-option-icon" />}
-                      {answered && option === selected && option !== correctOption && <Icon name="circle-xmark" className="quiz-option-icon" />}
+                      <span className="quiz-option-text">{quizQuestions[currentIndex][`option_${option.toLowerCase()}`]}</span>
+                      {answered && option === correctOption && (
+                        <span className="quiz-option-result quiz-option-result-correct" aria-label="Correct">✓</span>
+                      )}
+                      {answered && option === selected && option !== correctOption && (
+                        <span className="quiz-option-result quiz-option-result-incorrect" aria-label="Incorrect">✕</span>
+                      )}
                     </button>
                   );
                 })}
