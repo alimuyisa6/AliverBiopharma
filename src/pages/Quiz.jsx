@@ -1,7 +1,7 @@
  // src/pages/Quiz.jsx
 import AdSlot from '../components/Advertising/AdSlot';
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useRequireOnboarding } from '../hooks/useRequireOnboarding';
 import { useLevelFilter } from '../hooks/useLevelFilter';
@@ -45,6 +45,8 @@ function createIdempotencyKey(prefix = 'quiz') {
 export default function Quiz() {
   const { user, profile } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const isQuizCardsPage = location.pathname === '/quiz/blocks';
   const [searchParams] = useSearchParams();
   const curriculumUnitId = searchParams.get('unit_id') || null;
   const { isReady } = useRequireOnboarding();
@@ -82,7 +84,6 @@ export default function Quiz() {
   const [integrityOverlay, setIntegrityOverlay] = useState(null);
   const [sessionId, setSessionId] = useState(null);
   const [quizMode, setQuizMode] = useState('study');
-  const [quizCardsScreen, setQuizCardsScreen] = useState(false);
 
   const heartbeatRef = useRef(null);
 
@@ -102,7 +103,6 @@ export default function Quiz() {
     setIntegrityOverlay(null);
     setAnswerSubmitting(false);
     setSessionId(null);
-    setQuizCardsScreen(false);
   }, [activeGroupId, curriculumUnitId]);
 
   useEffect(() => {
@@ -434,6 +434,49 @@ export default function Quiz() {
     );
   }
 
+  if (isQuizCardsPage && !currentTopic && !quizQuestions.length && !resultData) {
+    return (
+      <div className="quiz-page quiz-cards-route-page">
+        <div className="section quiz-page-section">
+          <div className="quiz-cards-route-header">
+            <span className="eyebrow">{isPharmacy ? 'Course Units' : 'Topics'}</span>
+            <h1 className="section-title quiz-page-title">{isPharmacy ? 'Course Units' : 'Quiz Topics'}</h1>
+          </div>
+          <div className="grid grid-cols-3 quiz-topic-cards">
+            {topicsLoading ? (
+              Array.from({ length: 6 }).map((_, index) => (
+                <Card key={index} variant="round" loading={true} loadingLines={2} />
+              ))
+            ) : allTopics.length > 0 ? (
+              allTopics.map((topic) => {
+                const questionCount = Number(topic.question_count) || 0;
+                const blockCount = Number(topic.total_blocks) || Math.ceil(questionCount / 10);
+                const allDone = topic.all_done ?? (blockCount > 0 && topic.completed_blocks?.length === blockCount);
+
+                return (
+                  <Card
+                    key={topic.unit_id}
+                    image={topic.topic_image_url}
+                    title={topic.topic_name}
+                    description={questionCount > 0 ? questionCount + ' questions • ' + blockCount + ' blocks' : 'No questions available'}
+                    footer={
+                      questionCount > 0 && blockCount > 0 && !allDone ? (
+                        <Button variant="3d" size="sm" onClick={() => openTopicBlocks({ ...topic, total_blocks: blockCount })} disabled={locked}>
+                          Start
+                        </Button>
+                      ) : null
+                    }
+                    className={allDone ? 'card-compact' : undefined}
+                  />
+                );
+              })
+            ) : null}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   const firstUnanswered = getFirstUnansweredIndex(userAnswers);
   const allAnswered = userAnswers.length > 0 && userAnswers.every((answer) => answer !== null);
   const timerPercent = timeLeft !== null ? (timeLeft / 600) * 100 : 100;
@@ -476,11 +519,11 @@ export default function Quiz() {
             groupId={activeGroupId}
             isPharmacy={isPharmacy}
             onBack={() => navigate('/resources')}
-            onNext={() => setQuizCardsScreen(true)}
+            onNext={() => navigate('/quiz/blocks')}
           />
         )}
 
-        {quizCardsScreen && !currentTopic && (
+        {isQuizCardsPage && !currentTopic && (
           <div className="grid grid-cols-3 quiz-topic-cards">
             {topicsLoading ? (
               Array.from({ length: 6 }).map((_, index) => (
