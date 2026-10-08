@@ -1335,7 +1335,7 @@
   --quiz-loader-surface: var(--bg-card);
   --quiz-loader-primary: var(--primary);
   --quiz-loader-secondary: var(--violet);
-  --quiz-loader-text-shadow: var(--shadow-none);
+  --quiz-loader-animation-step: calc(var(--quiz-loader-animation-duration) / 12);
   --quiz-loader-animation-duration: 2s;
   --quiz-loader-clip-low: 75%;
   --quiz-loader-clip-high: 25%;
@@ -1391,13 +1391,11 @@
   content: "";
   display: block;
   left: 0;
-  transition: background-color var(--trans-dur);
 }
 
 .quiz-answer-loader-dot::before {
   z-index: 1;
   background: var(--quiz-loader-surface);
-  box-shadow: inset var(--space-1) 0 var(--space-1) var(--shadow-none);
   animation: quiz-loader-push-in-out var(--quiz-loader-animation-duration) infinite;
 }
 
@@ -1413,126 +1411,28 @@
   animation: quiz-loader-push-out var(--quiz-loader-animation-duration) infinite;
 }
 
-.quiz-answer-loader-dot:nth-child(1) { transform: rotate(0deg) translateX(var(--quiz-loader-orbit-radius)) rotate(0deg); z-index: 5; }
-.quiz-answer-loader-dot:nth-child(2) { transform: rotate(-30deg) translateX(var(--quiz-loader-orbit-radius)) rotate(30deg); z-index: 4; }
-.quiz-answer-loader-dot:nth-child(3) { transform: rotate(-60deg) translateX(var(--quiz-loader-orbit-radius)) rotate(60deg); z-index: 3; }
-.quiz-answer-loader-dot:nth-child(4) { transform: rotate(-90deg) translateX(var(--quiz-loader-orbit-radius)) rotate(90deg); z-index: 2; }
-.quiz-answer-loader-dot:nth-child(5) { transform: rotate(-120deg) translateX(var(--quiz-loader-orbit-radius)) rotate(120deg); z-index: 1; }
-.quiz-answer-loader-dot:nth-child(6) { transform: rotate(-150deg) translateX(var(--quiz-loader-orbit-radius)) rotate(150deg); z-index: 1; }
-.quiz-answer-loader-dot:nth-child(7) { transform: rotate(-180deg) translateX(var(--quiz-loader-orbit-radius)) rotate(180deg); z-index: 2; }
-.quiz-answer-loader-dot:nth-child(8) { transform: rotate(-210deg) translateX(var(--quiz-loader-orbit-radius)) rotate(210deg); z-index: 3; }
-.quiz-answer-loader-dot:nth-child(9) { transform: rotate(-240deg) translateX(var(--quiz-loader-orbit-radius)) rotate(240deg); z-index: 4; }
-.quiz-answer-loader-dot:nth-child(10) { transform: rotate(-270deg) translateX(var(--quiz-loader-orbit-radius)) rotate(270deg); z-index: 5; }
-.quiz-answer-loader-dot:nth-child(11) { transform: rotate(-300deg) translateX(var(--quiz-loader-orbit-radius)) rotate(300deg); z-index: 6; }
-.quiz-answer-loader-dot:nth-child(12) { transform: rotate(-330deg) translateX(var(--quiz-loader-orbit-radius)) rotate(330deg); z-index: 6; }
+.quiz-answer-loader-dot:nth-child(1) { --quiz-loader-angle: 0deg; --quiz-loader-z: 5; --quiz-loader-index: 0; }
+.quiz-answer-loader-dot:nth-child(2) { --quiz-loader-angle: -30deg; --quiz-loader-z: 4; --quiz-loader-index: 1; }
+.quiz-answer-loader-dot:nth-child(3) { --quiz-loader-angle: -60deg; --quiz-loader-z: 3; --quiz-loader-index: 2; }
+.quiz-answer-loader-dot:nth-child(4) { --quiz-loader-angle: -90deg; --quiz-loader-z: 2; --quiz-loader-index: 3; }
+.quiz-answer-loader-dot:nth-child(5) { --quiz-loader-angle: -120deg; --quiz-loader-z: 1; --quiz-loader-index: 4; }
+.quiz-answer-loader-dot:nth-child(6) { --quiz-loader-angle: -150deg; --quiz-loader-z: 1; --quiz-loader-index: 5; }
+.quiz-answer-loader-dot:nth-child(7) { --quiz-loader-angle: -180deg; --quiz-loader-z: 2; --quiz-loader-index: 6; }
+.quiz-answer-loader-dot:nth-child(8) { --quiz-loader-angle: -210deg; --quiz-loader-z: 3; --quiz-loader-index: 7; }
+.quiz-answer-loader-dot:nth-child(9) { --quiz-loader-angle: -240deg; --quiz-loader-z: 4; --quiz-loader-index: 8; }
+.quiz-answer-loader-dot:nth-child(10) { --quiz-loader-angle: -270deg; --quiz-loader-z: 5; --quiz-loader-index: 9; }
+.quiz-answer-loader-dot:nth-child(11) { --quiz-loader-angle: -300deg; --quiz-loader-z: 6; --quiz-loader-index: 10; }
+.quiz-answer-loader-dot:nth-child(12) { --quiz-loader-angle: -330deg; --quiz-loader-z: 6; --quiz-loader-index: 11; }
 
-.quiz-answer-loader-dot:nth-child(1),
-.quiz-answer-loader-dot:nth-child(1)::before,
-.quiz-answer-loader-dot:nth-child(1)::after { animation-delay: 0s; }
-.quiz-answer-loader-dot:nth-child(2),
-.quiz-answer-loader-dot:nth-child(2)::before,
-.quiz-answer-loader-dot:nth-child(2)::after { animation-delay: -0.1666666667s; }
-.quiz-answer-loader-dot:nth-child(3),
-.quiz-answer-loader-dot:nth-child(3)::before,
-.quiz-answer-loader-dot:nth-child(3)::after { animation-delay: -0.3333333333s; }
-.quiz-answer-loader-dot:nth-child(4),
-.quiz-answer-loader-dot:nth-child(4)::before,
-.quiz-answer-loader-dot:nth-child(4)::after { animation-delay: -0.5s; }
-.quiz-answer-loader-dot:nth-child(5),
-.quiz-answer-loader-dot:nth-child(5)::before,
-.quiz-answer-loader-dot:nth-child(5)::after { animation-delay: -0.6666666667s; }
-.quiz-answer-loader-dot:nth-child(6),
-.quiz-answer-loader-dot:nth-child(6)::before,
-.quiz-answer-loader-dot:nth-child(6)::after { animation-delay: -0.8333333333s; }
-.quiz-answer-loader-dot:nth-child(7),
-.quiz-answer-loader-dot:nth-child(7)::before,
-.quiz-answer-loader-dot:nth-child(7)::after { animation-delay: -1s; }
-.quiz-answer-loader-dot:nth-child(8),
-.quiz-answer-loader-dot:nth-child(8)::before,
-.quiz-answer-loader-dot:nth-child(8)::after { animation-delay: -1.1666666667s; }
-.quiz-answer-loader-dot:nth-child(9),
-.quiz-answer-loader-dot:nth-child(9)::before,
-.quiz-answer-loader-dot:nth-child(9)::after { animation-delay: -1.3333333333s; }
-.quiz-answer-loader-dot:nth-child(10),
-.quiz-answer-loader-dot:nth-child(10)::before,
-.quiz-answer-loader-dot:nth-child(10)::after { animation-delay: -1.5s; }
-.quiz-answer-loader-dot:nth-child(11),
-.quiz-answer-loader-dot:nth-child(11)::before,
-.quiz-answer-loader-dot:nth-child(11)::after { animation-delay: -1.6666666667s; }
-.quiz-answer-loader-dot:nth-child(12),
-.quiz-answer-loader-dot:nth-child(12)::before,
-.quiz-answer-loader-dot:nth-child(12)::after { animation-delay: -1.8333333333s; }
-
-.quiz-answer-loader-text {
-  position: relative;
-  max-width: var(--quiz-loader-text-max-width);
-  color: var(--text-inverse);
-  font-size: var(--text-xs);
-  font-weight: var(--weight-semibold);
-  letter-spacing: var(--tracking-widest);
-  text-shadow: var(--quiz-loader-text-shadow);
-  transform: rotateZ(calc(var(--quiz-loader-orbit-angle) * -1));
+.quiz-answer-loader-dot,
+.quiz-answer-loader-dot::before,
+.quiz-answer-loader-dot::after {
+  animation-delay: calc(var(--quiz-loader-index) * var(--quiz-loader-animation-step) * -1);
 }
 
-.quiz-spinner-label {
-  min-width: 0;
-  font-size: var(--text-sm);
-  line-height: var(--leading-normal);
-  text-align: center;
-}
-
-@keyframes quiz-loader-shadow {
-  from {
-    animation-timing-function: ease-in;
-    box-shadow: var(--quiz-loader-dot-shadow);
-  }
-
-  25% {
-    animation-timing-function: ease-out;
-    box-shadow: var(--shadow-md);
-  }
-
-  50%, to {
-    box-shadow: var(--quiz-loader-dot-shadow);
-  }
-}
-
-@keyframes quiz-loader-push-in-out {
-  from {
-    animation-timing-function: ease-in;
-    background-color: var(--quiz-loader-surface);
-    transform: translate(0, 0);
-  }
-
-  25% {
-    animation-timing-function: ease-out;
-    background-color: var(--quiz-loader-secondary);
-    transform: translate(calc(var(--quiz-loader-push-distance) * -1), calc(var(--quiz-loader-push-distance) * -1));
-  }
-
-  50%, to {
-    background-color: var(--quiz-loader-surface);
-    transform: translate(0, 0);
-  }
-}
-
-@keyframes quiz-loader-push-out {
-  from {
-    animation-timing-function: ease-in;
-    background-color: var(--quiz-loader-surface);
-    clip-path: polygon(0 var(--quiz-loader-clip-low), 100% var(--quiz-loader-clip-low), 100% 100%, 0 100%);
-  }
-
-  25% {
-    animation-timing-function: ease-out;
-    background-color: var(--quiz-loader-primary);
-    clip-path: polygon(0 var(--quiz-loader-clip-high), 100% var(--quiz-loader-clip-high), 100% 100%, 0 100%);
-  }
-
-  50%, to {
-    background-color: var(--quiz-loader-surface);
-    clip-path: polygon(0 var(--quiz-loader-clip-low), 100% var(--quiz-loader-clip-low), 100% 100%, 0 100%);
-  }
+.quiz-answer-loader-dot {
+  transform: rotate(var(--quiz-loader-angle)) translateX(var(--quiz-loader-orbit-radius)) rotate(calc(var(--quiz-loader-angle) * -1));
+  z-index: var(--quiz-loader-z);
 }
 
 @media (prefers-reduced-motion: reduce) {
