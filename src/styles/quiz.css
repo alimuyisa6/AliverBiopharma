@@ -1375,3 +1375,50 @@
     width: 1.35em;
   }
 }
+
+
+/* Answer result marks: only visible after an answer is checked. */
+.quiz-option-result {
+  flex: 0 0 auto;
+  width: var(--space-7);
+  height: var(--space-7);
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.quiz-option-result-correct {
+  color: var(--success);
+}
+
+.quiz-option-result-incorrect {
+  color: var(--danger);
+}
+
+.quiz-option-btn.correct,
+.quiz-option-btn.incorrect {
+  background: var(--bg-card);
+}
+
+.quiz-option-btn.correct {
+  border-color: var(--success);
+}
+
+.quiz-option-btn.incorrect {
+  border-color: var(--danger);
+}
+
+.quiz-option-btn.correct .quiz-option-letter {
+  border-color: var(--success);
+  background: var(--success);
+  color: var(--text-inverse);
+}
+
+.quiz-option-btn.incorrect .quiz-option-letter {
+  border-color: var(--danger);
+  background: var(--danger);
+  color: var(--text-inverse);
+}
