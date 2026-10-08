@@ -882,7 +882,7 @@ export default function Quiz() {
                 onClick={() => { if (currentIndex > 0) navigateTo(currentIndex - 1); }}
                 disabled={currentIndex === 0}
               >
-                <Icon name="arrow-left" /> Previous
+                Previous
               </Button>
 
               {allAnswered ? (
