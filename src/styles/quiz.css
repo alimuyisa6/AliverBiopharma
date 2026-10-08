@@ -942,3 +942,13 @@
     flex-direction: column;
   }
 }
+
+
+/* Quiz page owns its top rhythm; do not inherit the generic content-page section offset. */
+.quiz-page.quiz-page {
+  padding-top: 0;
+}
+
+.section.quiz-page-section {
+  margin-top: 0;
+}
