@@ -885,7 +885,7 @@ export default function Quiz() {
                 Previous
               </Button>
 
-              {allAnswered ? (
+              {allAnswered && (
                 <Button
                   variant="primary"
                   onClick={submitBlock}
@@ -894,21 +894,6 @@ export default function Quiz() {
                   loadingContext="brand"
                 >
                   {t('common.submitBlock')} <Icon name="check" />
-                </Button>
-              ) : (
-                <Button
-                  variant="primary"
-                  className="quiz-nav-button-card"
-                  onClick={() => {
-                    if (firstUnanswered !== -1 && firstUnanswered !== currentIndex) {
-                      navigateTo(firstUnanswered);
-                    } else if (currentIndex < quizQuestions.length - 1) {
-                      navigateTo(currentIndex + 1);
-                    }
-                  }}
-                  disabled={userAnswers[currentIndex] === null || currentIndex === quizQuestions.length - 1}
-                >
-                  Next
                 </Button>
               )}
             </div>
