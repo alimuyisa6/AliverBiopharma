@@ -80,6 +80,8 @@ export default function Quiz() {
   const [timeLeft, setTimeLeft] = useState(null);
   const [answerSubmitting, setAnswerSubmitting] = useState(false);
   const [startingBlock, setStartingBlock] = useState(false);
+  const [blockSubmitting, setBlockSubmitting] = useState(false);
+  const [checkingMessage, setCheckingMessage] = useState('Checking your answer');
   const [tabSwitchCount, setTabSwitchCount] = useState(0);
   const [maxTabSwitches, setMaxTabSwitches] = useState(3);
   const [integrityMonitoringStarted, setIntegrityMonitoringStarted] = useState(false);
@@ -223,6 +225,31 @@ export default function Quiz() {
       .catch(() => setAllTopics([]))
       .finally(() => setTopicsLoading(false));
   }, [isReady, access.canAccess, access.isPending, activeGroupId, curriculumUnitId, isQuizCardsPage]);
+
+  useEffect(() => {
+    if (!answerSubmitting) {
+      setCheckingMessage('Checking your answer');
+      return;
+    }
+
+    const messages = [
+      'Checking your answer',
+      'Analyzing your response',
+      'Comparing with the correct answer',
+      'Evaluating your response',
+      'Preparing your feedback'
+    ];
+
+    let current = 0;
+    setCheckingMessage(messages[current]);
+
+    const id = setInterval(() => {
+      current = (current + 1) % messages.length;
+      setCheckingMessage(messages[current]);
+    }, 700);
+
+    return () => clearInterval(id);
+  }, [answerSubmitting]);
 
   useEffect(() => {
     if (timeLeft === null || resultData) return;
@@ -379,6 +406,7 @@ export default function Quiz() {
       selectedOption: userAnswers[index]?.selected || 'X'
     }));
 
+    setBlockSubmitting(true);
     setLoading(true);
 
     try {
@@ -414,6 +442,7 @@ export default function Quiz() {
       addToast('Submission failed', 'error');
     } finally {
       setLoading(false);
+      setBlockSubmitting(false);
       setStartingBlock(false);
     }
   };
@@ -827,9 +856,9 @@ export default function Quiz() {
             </p>
 
             {answerSubmitting && (
-              <div className="quiz-answering-indicator">
+              <div className="quiz-answering-indicator" role="status" aria-live="polite">
                 <Spinner context="conic" size="sm" />
-                <span className="quiz-spinner-label">{t('common.checking')}</span>
+                <span className="quiz-spinner-label">{checkingMessage}</span>
               </div>
             )}
 
@@ -889,11 +918,18 @@ export default function Quiz() {
                 <Button
                   variant="primary"
                   onClick={submitBlock}
-                  disabled={locked || loading}
-                  loading={loading}
-                  loadingContext="brand"
+                  disabled={locked || loading || blockSubmitting}
+                  className={blockSubmitting ? 'quiz-submit-button is-submitting' : undefined}
                 >
-                  {t('common.submitBlock')} <Icon name="check" />
+                  {blockSubmitting ? (
+                    <span className="quiz-submitting-label">
+                      Submitting<span className="quiz-submitting-dots" aria-hidden="true">...</span>
+                    </span>
+                  ) : (
+                    <>
+                      {t('common.submitBlock')} <Icon name="check" />
+                    </>
+                  )}
                 </Button>
               )}
             </div>
