@@ -1256,3 +1256,47 @@
     gap: var(--space-4);
   }
 }
+
+
+/* Compact, equal-height quiz answer cards. */
+.quiz-options-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  align-items: stretch;
+}
+
+.quiz-option-btn {
+  width: 100%;
+  min-width: 0;
+  height: 4rem;
+  min-height: 4rem;
+  max-height: 4rem;
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+
+.quiz-option-btn .quiz-option-text,
+.quiz-option-btn span {
+  font-size: 0.875rem;
+  line-height: 1.25;
+}
+
+@media (max-width: 560px) {
+  .quiz-option-btn {
+    height: 3.75rem;
+    min-height: 3.75rem;
+    max-height: 3.75rem;
+    padding: var(--space-2);
+  }
+
+  .quiz-option-btn .quiz-option-text,
+  .quiz-option-btn span {
+    font-size: 0.8125rem;
+    line-height: 1.2;
+  }
+}
