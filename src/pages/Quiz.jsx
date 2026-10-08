@@ -18,7 +18,8 @@ import {
   getUserStreak,
   startQuizSession,
   trackTabSwitch,
-  submitQuizWithSession
+  submitQuizWithSession,
+  getQuizSessionStatus
 } from '../api/cachedClient';
 import { apiCall } from '../api/client';
 import { PendingApprovalScreen } from '../components/access/PendingApprovalScreen';
@@ -90,6 +91,8 @@ export default function Quiz() {
 
   const quizModeIsExam = quizMode === 'exam';
 
+  const activeQuizRoute = quizQuestions.length > 0 && activeUnitId && currentTopic && currentBlock !== null;
+
 
   useEffect(() => {
     setActiveUnitId(null);
@@ -126,6 +129,62 @@ export default function Quiz() {
         setLoading(false);
       }
     })();
+  }, [isReady, access.canAccess, access.isPending, user]);
+
+  useEffect(() => {
+    if (!isReady || !access.canAccess || access.isPending || !user) return;
+
+    let cancelled = false;
+
+    (async () => {
+      try {
+        const status = await getQuizSessionStatus();
+        if (cancelled || !status?.exists || String(status.status).toLowerCase() !== 'active') return;
+
+        const sessionUnitId = status.unit_id;
+        const sessionBlock = Number(status.block_number);
+
+        if (!sessionUnitId || !Number.isInteger(sessionBlock)) return;
+
+        const data = await getQuizBlock(sessionUnitId, sessionBlock);
+        if (cancelled || !data?.questions?.length) return;
+
+        const priorAnswers = (data.prior_answers || []).map((answer) =>
+          answer ? {
+            selected: answer.selected,
+            correct: answer.correct,
+            correct_option: answer.correct_option,
+            correct_answer_text: answer.correct_answer_text,
+            explanation: answer.explanation || null
+          } : null
+        );
+
+        setActiveUnitId(sessionUnitId);
+        setCurrentBlock(sessionBlock);
+        setCurrentTopic(status.topic || data.unit_name || '');
+        setSessionId(status.session_id || null);
+        setQuizMode(status.mode || 'study');
+        setTabSwitchCount(status.tab_switches || 0);
+        setMaxTabSwitches(status.max_allowed || 3);
+        setQuizQuestions(data.questions);
+        setUserAnswers(
+          priorAnswers.length === data.questions.length
+            ? priorAnswers
+            : new Array(data.questions.length).fill(null)
+        );
+        setCurrentIndex(Math.max(0, priorAnswers.findIndex((answer) => answer === null)));
+        setIntegrityMonitoringStarted(
+          status.monitoring_started === true ||
+          priorAnswers.some(Boolean)
+        );
+        setTimeLeft(status.time_left ?? data.time_left ?? 600);
+        setResultData(null);
+      } catch {
+        // A refresh should remain non-disruptive; normal quiz loading follows if no active session exists.
+      }
+    })();
+
+    return () => { cancelled = true; };
   }, [isReady, access.canAccess, access.isPending, user]);
 
   useEffect(() => {
