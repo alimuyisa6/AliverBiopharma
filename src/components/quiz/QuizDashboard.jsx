@@ -22,21 +22,9 @@ export default function QuizDashboard({ user, level, class_name }) {
   }
 
   const { platform, quiz, achievements } = summary;
-  const levelName = level?.display_name || level?.id || '';
-  const classLabel = class_name || '';
-
   return (
     <div className="quiz-dashboard">
-      <h3 className="quiz-section-heading font-poppins">
-        <Icon name="graduation-cap" className="icon" />
-        {levelName ? (
-          <>{levelName}<br />Dashboard</>
-        ) : (
-          'Your Dashboard'
-        )}
-
-        {classLabel && <span className="quiz-section-heading-sub font-maven-pro"> – {classLabel}</span>}
-      </h3>
+      <h3 className="quiz-section-heading font-poppins">Your Dashboard</h3>
 
       <div className="grid grid-cols-3">
         <div className="stat-card card-surface-subtle card-elevation-none card-density-comfortable">
