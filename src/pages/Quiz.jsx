@@ -794,12 +794,12 @@ export default function Quiz() {
             <div className="quiz-result-actions">
               {currentBlock + 1 < totalBlocks && (
                 <Button variant="3d" onClick={() => startBlock(currentBlock + 1)} disabled={locked}>
-                  Next Block <Icon name="arrow-right" />
+                  Next Block
                 </Button>
               )}
 
               <Button variant="secondary" onClick={() => { setCurrentTopic(''); setResultData(null); }}>
-                <Icon name="arrow-left" /> All Topics
+                All Topics
               </Button>
             </div>
           </div>
