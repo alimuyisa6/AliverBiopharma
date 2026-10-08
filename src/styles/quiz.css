@@ -1130,3 +1130,59 @@
   height: 22px;
   display: block;
 }
+
+
+/* Active quiz layout */
+.quiz-page .quiz-timer-row {
+  margin: var(--space-4) 0;
+  padding: var(--space-4);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  box-shadow:
+    0 6px 16px rgba(15, 23, 42, 0.07),
+    0 1px 4px rgba(15, 23, 42, 0.04);
+}
+
+.quiz-page .quiz-timer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--content-gap-compact);
+  margin-bottom: var(--space-3);
+}
+
+.quiz-page .quiz-nav-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.quiz-page .quiz-progress-label {
+  margin: var(--space-3) 0 var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+}
+
+.quiz-page .quiz-option-btn {
+  min-height: var(--space-16);
+  margin-bottom: var(--space-3);
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.quiz-page .quiz-options-list {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.quiz-page .quiz-options-list .quiz-option-btn {
+  margin-bottom: 0;
+}
+
+.quiz-page .quiz-nav-buttons {
+  margin-top: var(--space-5);
+}
