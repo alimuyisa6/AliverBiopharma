@@ -264,6 +264,11 @@ export default function Dashboard() {
                     <span className="stat-value">{achievements.earned_count}</span>
                     <span className="stat-label">{t('common.badges')}</span>
                   </div>
+                  <div className="stat-box">
+                    <span className="stat-icon"><Icon name="microscope" /></span>
+                    <span className="stat-value">{quiz.blocks_completed ?? 0}</span>
+                    <span className="stat-label">Quiz Blocks Done</span>
+                  </div>
                   <div className="xp-progress-container">
                     <div className="xp-labels">
                       <span id="xp-current">{platform.xp_progress.xpIntoLevel} XP</span>
