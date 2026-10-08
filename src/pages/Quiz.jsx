@@ -82,6 +82,7 @@ export default function Quiz() {
   const [integrityOverlay, setIntegrityOverlay] = useState(null);
   const [sessionId, setSessionId] = useState(null);
   const [quizMode, setQuizMode] = useState('study');
+  const [quizCardsScreen, setQuizCardsScreen] = useState(false);
 
   const heartbeatRef = useRef(null);
 
@@ -101,6 +102,7 @@ export default function Quiz() {
     setIntegrityOverlay(null);
     setAnswerSubmitting(false);
     setSessionId(null);
+    setQuizCardsScreen(false);
   }, [activeGroupId, curriculumUnitId]);
 
   useEffect(() => {
@@ -468,10 +470,17 @@ export default function Quiz() {
         </nav>
 
         {!currentTopic && !curriculumUnitId && (
-          <QuizHero level={level} class_name={class_name} groupId={activeGroupId} isPharmacy={isPharmacy} />
+          <QuizHero
+            level={level}
+            class_name={class_name}
+            groupId={activeGroupId}
+            isPharmacy={isPharmacy}
+            onBack={() => navigate('/resources')}
+            onNext={() => setQuizCardsScreen(true)}
+          />
         )}
 
-        {!currentTopic && (
+        {quizCardsScreen && !currentTopic && (
           <div className="grid grid-cols-3 quiz-topic-cards">
             {topicsLoading ? (
               Array.from({ length: 6 }).map((_, index) => (
@@ -745,6 +754,16 @@ export default function Quiz() {
               </button>
             </div>
           </div>       )}
+
+        {quizCardsScreen && !currentTopic && !curriculumUnitId && (
+          <div className="quiz-cards-screen-back">
+            <button type="button" className="quiz-cards-back-link" onClick={() => setQuizCardsScreen(false)} aria-label="Back to quiz hero">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M14.5 5.5 8 12l6.5 6.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+          </div>
+        )}
 
         {!currentTopic && !curriculumUnitId && <QuizLearningPath level={level} class_name={class_name} groupId={activeGroupId} />}
         {!currentTopic && !curriculumUnitId && <QuizWeakAreas user={user} level={level} class_name={class_name} groupId={activeGroupId} />}
