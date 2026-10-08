@@ -81,6 +81,7 @@ export default function Quiz() {
   const [startingBlock, setStartingBlock] = useState(false);
   const [tabSwitchCount, setTabSwitchCount] = useState(0);
   const [maxTabSwitches, setMaxTabSwitches] = useState(3);
+  const [integrityMonitoringStarted, setIntegrityMonitoringStarted] = useState(false);
   const [integrityOverlay, setIntegrityOverlay] = useState(null);
   const [sessionId, setSessionId] = useState(null);
   const [quizMode, setQuizMode] = useState('study');
@@ -196,7 +197,12 @@ export default function Quiz() {
   }, [sessionId, resultData]);
 
   useEffect(() => {
-    if (!activeUnitId || !quizQuestions.length || resultData) return;
+    if (
+      !activeUnitId ||
+      !quizQuestions.length ||
+      resultData ||
+      !integrityMonitoringStarted
+    ) return;
 
     const onVisibilityChange = async () => {
       if (document.visibilityState !== 'hidden') return;
@@ -218,7 +224,15 @@ export default function Quiz() {
     document.addEventListener('visibilitychange', onVisibilityChange);
 
     return () => document.removeEventListener('visibilitychange', onVisibilityChange);
-  }, [activeUnitId, currentBlock, quizQuestions.length, resultData, tabSwitchCount, maxTabSwitches]);
+  }, [
+    activeUnitId,
+    currentBlock,
+    quizQuestions.length,
+    resultData,
+    integrityMonitoringStarted,
+    tabSwitchCount,
+    maxTabSwitches
+  ]);
 
   useEffect(() => {
     if (!integrityOverlay) return;
@@ -278,6 +292,10 @@ export default function Quiz() {
       };
 
       setUserAnswers(newAnswers);
+
+      // The server activates monitoring when this answer is persisted.
+      // Start the client listener only after that successful response.
+      setIntegrityMonitoringStarted(true);
 
       const firstUnanswered = newAnswers.findIndex((answer) => answer === null);
 
@@ -397,10 +415,16 @@ export default function Quiz() {
         answer ? { selected: answer.selected, correct: answer.correct } : null
       ));
 
+      const resumedWithAnswer = priorAnswers.some(Boolean);
+
       setUserAnswers(
         priorAnswers.length === data.questions.length
           ? priorAnswers
           : new Array(data.questions.length).fill(null)
+      );
+
+      setIntegrityMonitoringStarted(
+        data.monitoring_started === true || resumedWithAnswer
       );
 
       setCurrentIndex(0);
