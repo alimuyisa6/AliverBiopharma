@@ -599,9 +599,6 @@ export default function Quiz() {
           )}
         </nav>
 
-        {!currentTopic && !curriculumUnitId && (
-        )}
-
         {isQuizCardsPage && !currentTopic && (
           <div className="grid grid-cols-3 quiz-topic-cards">
             {topicsLoading ? (
