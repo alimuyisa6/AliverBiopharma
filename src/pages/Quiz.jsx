@@ -469,7 +469,7 @@ export default function Quiz() {
           <QuizHero level={level} class_name={class_name} groupId={activeGroupId} isPharmacy={isPharmacy} />
         )}
 
-        ) : resultData ? (
+        {resultData ? (
           <div className="quiz-result-container">
             <Card variant="flat" className="quiz-result-card card-surface-solid card-elevation-soft">
               <Icon
