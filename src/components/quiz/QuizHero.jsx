@@ -5,7 +5,7 @@ import { listQuizTopics } from '../../api/cachedClient';
 import Icon from '../../components/Icon/Icon';
 import Skeleton from '../../components/Skeleton/Skeleton';
 
-export default function QuizHero({ level, class_name, groupId }) {
+export default function QuizHero({ level, class_name, groupId, isPharmacy = false }) {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
   const [scopeStats, setScopeStats] = useState({ questions: 0, topics: 0 });
@@ -29,7 +29,7 @@ export default function QuizHero({ level, class_name, groupId }) {
     });
 
     return () => { cancelled = true; };
-  }, []);
+  }, [groupId]);
 
   if (loading) {
     return (
@@ -71,7 +71,7 @@ export default function QuizHero({ level, class_name, groupId }) {
           <div className="stat-card card-surface-subtle card-elevation-none card-density-comfortable">
             <Icon name="microscope" className="stat-icon stat-icon-secondary" />
             <div className="stat-value font-poppins">{scopeStats.topics}</div>
-            <div className="stat-label font-source-sans">Topics</div>
+            <div className="stat-label font-source-sans">{isPharmacy ? 'Course Units' : 'Topics'}</div>
           </div>
 
           <div className="stat-card card-surface-subtle card-elevation-none card-density-comfortable">
