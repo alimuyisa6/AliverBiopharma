@@ -207,7 +207,7 @@ export default function Quiz() {
               question_count: topic.total_questions || 0,
               total_blocks: topic.total_blocks || 0,
               completed_blocks: topic.completed_blocks || [],
-              locked_blocks: topic.locked_blocks || [],
+              failed_blocks: topic.failed_blocks || [],
               all_done: topic.all_done || false
             }
           ] : []
@@ -567,17 +567,19 @@ export default function Quiz() {
           </div>
           <div className="quiz-blocks-grid">
             {Array.from({ length: blockCount }).map((_, index) => {
-              const lockedBlock = topicData?.locked_blocks?.includes(index);
-              const completed = topicData?.completed_blocks?.includes(index);
+              const failed = topicData?.failed_blocks?.includes(index);
+              const passed = topicData?.completed_blocks?.includes(index);
+              const finished = passed || failed;
               return (
                 <button
                   key={index}
-                  className={`btn ${completed ? 'btn-success' : lockedBlock ? 'btn-ghost' : 'btn-secondary'}`}
-                  disabled={lockedBlock || locked}
+                  className={`btn ${passed ? 'btn-success' : failed ? 'btn-danger' : 'btn-secondary'} quiz-block-status-button`}
+                  disabled={finished || locked}
                   onClick={() => startBlock(index)}
                 >
-                  {completed ? <Icon name="circle-check" /> : lockedBlock ? <Icon name="lock" /> : <Icon name="play" />}
-                  Block {index + 1}
+                  <span>Block {index + 1}</span>
+                  {passed && <span className="quiz-block-status-label">Passed</span>}
+                  {failed && <span className="quiz-block-status-label">Failed</span>}
                 </button>
               );
             })}
@@ -585,11 +587,11 @@ export default function Quiz() {
 
           <Modal open={showRulesModal} onClose={() => setShowRulesModal(false)} title={t('common.quizRules')}>
             <ul className="quiz-rules-list">
-              <li><Icon name="circle-check" className="quiz-rules-icon is-success" /> <span>{t('common.questionsPerBlock')}</span></li>
-              <li><Icon name="circle-check" className="quiz-rules-icon is-success" /> <span>{t('common.passMark')}</span></li>
-              <li><Icon name="circle-check" className="quiz-rules-icon is-success" /> <span>{t('common.immediateFeedback')}</span></li>
-              <li><Icon name="circle-check" className="quiz-rules-icon is-success" /> <span>{t('common.fullExplanations')}</span></li>
-              <li><Icon name="circle-check" className="quiz-rules-icon is-success" /> <span>{t('common.timeLimit')}</span></li>
+              <li><span className="quiz-rules-bullet" aria-hidden="true" /> <span>{t('common.questionsPerBlock')}</span></li>
+              <li><span className="quiz-rules-bullet" aria-hidden="true" /> <span>{t('common.passMark')}</span></li>
+              <li><span className="quiz-rules-bullet" aria-hidden="true" /> <span>{t('common.immediateFeedback')}</span></li>
+              <li><span className="quiz-rules-bullet" aria-hidden="true" /> <span>{t('common.fullExplanations')}</span></li>
+              <li><span className="quiz-rules-bullet" aria-hidden="true" /> <span>{t('common.timeLimit')}</span></li>
               <li><Icon name="exclamation-triangle" className="quiz-rules-icon is-warning" /> <span>{t('common.tabRecorded')}</span></li>
               <li><Icon name="exclamation-triangle" className="quiz-rules-icon is-error" /> <span>{t('common.tabAutoSubmit')}</span></li>
             </ul>
@@ -960,18 +962,20 @@ export default function Quiz() {
             <div className="quiz-blocks-grid">
               {Array.from({ length: totalBlocks }).map((_, index) => {
                 const topicData = allTopics.find((topic) => topic.topic_name === currentTopic);
-                const lockedBlock = topicData?.locked_blocks?.includes(index);
-                const completed = topicData?.completed_blocks?.includes(index);
+                const failed = topicData?.failed_blocks?.includes(index);
+                const passed = topicData?.completed_blocks?.includes(index);
+                const finished = passed || failed;
 
                 return (
                   <button
                     key={index}
-                    className={`btn ${completed ? 'btn-success' : lockedBlock ? 'btn-ghost' : 'btn-secondary'}`}
-                    disabled={lockedBlock || locked}
+                    className={`btn ${passed ? 'btn-success' : failed ? 'btn-danger' : 'btn-secondary'} quiz-block-status-button`}
+                    disabled={finished || locked}
                     onClick={() => startBlock(index)}
                   >
-                    {completed ? <Icon name="circle-check" /> : lockedBlock ? <Icon name="lock" /> : <Icon name="play" />}
-                    Block {index + 1}
+                    <span>Block {index + 1}</span>
+                    {passed && <span className="quiz-block-status-label">Passed</span>}
+                    {failed && <span className="quiz-block-status-label">Failed</span>}
                   </button>
                 );
               })}
