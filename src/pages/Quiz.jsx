@@ -463,18 +463,20 @@ export default function Quiz() {
         </nav>
 
         {!currentTopic && !curriculumUnitId && (
-          <>
-            <QuizHero level={level} class_name={class_name} groupId={activeGroupId} isPharmacy={isPharmacy} />
-            {user && <QuizDashboard user={user} level={level} class_name={class_name} groupId={activeGroupId} />}
-            <QuizLearningPath level={level} class_name={class_name} groupId={activeGroupId} />
-            <QuizWeakAreas user={user} level={level} class_name={class_name} groupId={activeGroupId} />
-          </>
+          <QuizHero level={level} class_name={class_name} groupId={activeGroupId} isPharmacy={isPharmacy} />
         )}
 
         {!currentTopic ? (
           <>
             <div className="quiz-section-heading quiz-section-heading-spacer">
-              <span>{curriculumUnitId ? (isPharmacy ? 'Course Unit' : 'Topic') : topicHeading}</span>
+              <span>
+                {curriculumUnitId ? (isPharmacy ? 'Course Unit' : 'Topic') : topicHeading}
+                {!curriculumUnitId && !topicsLoading && allTopics.length > 0 && (
+                  <span className="quiz-section-count">
+                    {allTopics.length} {isPharmacy ? 'course units' : 'topics'} · {allTopics.reduce((sum, topic) => sum + (Number(topic.question_count) || 0), 0)} questions
+                  </span>
+                )}
+              </span>
             </div>
 
             <h2 className="quiz-topic-description">
@@ -526,6 +528,10 @@ export default function Quiz() {
             </div>
           </>
         ) : resultData ? (
+        {!currentTopic && !curriculumUnitId && user && <QuizDashboard user={user} level={level} class_name={class_name} groupId={activeGroupId} />}
+        {!currentTopic && !curriculumUnitId && <QuizLearningPath level={level} class_name={class_name} groupId={activeGroupId} />}
+        {!currentTopic && !curriculumUnitId && <QuizWeakAreas user={user} level={level} class_name={class_name} groupId={activeGroupId} />}
+
           <div className="quiz-result-container">
             <Card variant="flat" className="quiz-result-card card-surface-solid card-elevation-soft">
               <Icon
