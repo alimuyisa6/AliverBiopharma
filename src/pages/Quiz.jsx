@@ -12,7 +12,6 @@ import {
   listQuizTopics,
   getQuizTopics,
   getQuizBlock,
-  checkDailyRetry,
   checkQuizAnswer,
   recordDailyVisit,
   getUserStreak,
