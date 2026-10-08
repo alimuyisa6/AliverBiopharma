@@ -581,8 +581,11 @@ payload
 ) =>
 api.checkQuizAnswer(payload);
 
-export const getQuizSessionStatus = () =>
-api.getQuizSessionStatus();
+export const getQuizSessionStatus = (
+unitId = null,
+blockNumber = null
+) =>
+api.getQuizSessionStatus(unitId, blockNumber);
 
 export const getUnits = (
 filters = {}
