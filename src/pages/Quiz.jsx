@@ -152,10 +152,15 @@ export default function Quiz() {
       .then((res) => {
         const topics = Array.isArray(res?.topics) ? res.topics : [];
         setAllTopics(topics);
+        if (isQuizCardsPage && curriculumUnitId) {
+          setActiveUnitId(curriculumUnitId);
+          setCurrentTopic(topics[0]?.topic_name || '');
+          setTotalBlocks(Number(topics[0]?.total_blocks) || Math.ceil((Number(topics[0]?.question_count) || 0) / 10));
+        }
       })
       .catch(() => setAllTopics([]))
       .finally(() => setTopicsLoading(false));
-  }, [isReady, access.canAccess, access.isPending, activeGroupId, curriculumUnitId]);
+  }, [isReady, access.canAccess, access.isPending, activeGroupId, curriculumUnitId, isQuizCardsPage]);
 
   useEffect(() => {
     if (timeLeft === null || resultData) return;
@@ -334,14 +339,7 @@ export default function Quiz() {
   };
 
   const openTopicBlocks = (topic) => {
-    const questionCount = Number(topic.question_count) || 0;
-    const blockCount = Number(topic.total_blocks) || Math.ceil(questionCount / 10);
-
-    setCurrentTopic(topic.topic_name);
-    setActiveUnitId(topic.unit_id);
-    setTotalBlocks(blockCount);
-    setQuizQuestions([]);
-    setResultData(null);
+    navigate(`/quiz/blocks?unit_id=${encodeURIComponent(topic.unit_id)}`);
   };
 
   const startBlock = async (blockNum) => {
@@ -430,6 +428,44 @@ export default function Quiz() {
     return (
       <div className="fcd-loading-wrap">
         <Spinner context="brand" size="lg" />
+      </div>
+    );
+  }
+
+  if (isQuizCardsPage && curriculumUnitId && currentTopic && !quizQuestions.length && !resultData) {
+    const topicData = allTopics.find((topic) => String(topic.unit_id) === String(curriculumUnitId)) || allTopics[0];
+    const blockCount = Number(topicData?.total_blocks) || Math.ceil((Number(topicData?.question_count) || 0) / 10);
+
+    return (
+      <div className="quiz-page quiz-blocks-route-page">
+        <div className="section quiz-page-section">
+          <button type="button" className="quiz-cards-route-back" onClick={() => navigate('/quiz/blocks')} aria-label="Back to quiz cards">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M14.5 5.5 8 12l6.5 6.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+          <div className="quiz-cards-route-header">
+            <span className="eyebrow">{isPharmacy ? 'Course Unit' : 'Topic'}</span>
+            <h1 className="section-title quiz-page-title">{currentTopic}</h1>
+          </div>
+          <div className="quiz-blocks-grid">
+            {Array.from({ length: blockCount }).map((_, index) => {
+              const lockedBlock = topicData?.locked_blocks?.includes(index);
+              const completed = topicData?.completed_blocks?.includes(index);
+              return (
+                <button
+                  key={index}
+                  className={`btn ${completed ? 'btn-success' : lockedBlock ? 'btn-ghost' : 'btn-secondary'}`}
+                  disabled={lockedBlock || locked}
+                  onClick={() => startBlock(index)}
+                >
+                  {completed ? <Icon name="circle-check" /> : lockedBlock ? <Icon name="lock" /> : <Icon name="play" />}
+                  Block {index + 1}
+                </button>
+              );
+            })}
+          </div>
+        </div>
       </div>
     );
   }
