@@ -1739,10 +1739,16 @@ time_taken: timeTaken
 );
 }
 
-export async function getQuizSessionStatus() {
+export async function getQuizSessionStatus(
+unitId = null,
+blockNumber = null
+) {
 return getRequest(
 'quiz',
-'quiz_session_status'
+'quiz_session_status',
+unitId && blockNumber !== null
+? { unit_id: unitId, block_number: blockNumber }
+: {}
 );
 }
 
