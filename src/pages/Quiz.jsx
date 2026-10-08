@@ -70,6 +70,7 @@ export default function Quiz() {
   const [quizQuestions, setQuizQuestions] = useState([]);
   const [userAnswers, setUserAnswers] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [showNextNavigation, setShowNextNavigation] = useState(false);
   const [currentBlock, setCurrentBlock] = useState(0);
   const [totalBlocks, setTotalBlocks] = useState(0);
   const [resultData, setResultData] = useState(null);
@@ -102,6 +103,7 @@ export default function Quiz() {
     setQuizQuestions([]);
     setUserAnswers([]);
     setCurrentIndex(0);
+    setShowNextNavigation(false);
     setCurrentBlock(0);
     setTotalBlocks(0);
     setResultData(null);
@@ -386,6 +388,10 @@ export default function Quiz() {
       // The server activates monitoring when this answer is persisted.
       // Start the client listener only after that successful response.
       setIntegrityMonitoringStarted(true);
+
+      // Normal answer flow auto-advances; the temporary Next control
+      // should only appear when the user explicitly taps Previous.
+      setShowNextNavigation(false);
 
       const firstUnanswered = newAnswers.findIndex((answer) => answer === null);
 
@@ -917,11 +923,30 @@ export default function Quiz() {
               <Button
                 variant="secondary"
                 className="quiz-nav-button-card"
-                onClick={() => { if (currentIndex > 0) navigateTo(currentIndex - 1); }}
+                onClick={() => {
+                  if (currentIndex > 0) {
+                    navigateTo(currentIndex - 1);
+                    setShowNextNavigation(true);
+                  }
+                }}
                 disabled={currentIndex === 0}
               >
                 Previous
               </Button>
+
+              {showNextNavigation && currentIndex < quizQuestions.length - 1 && (
+                <Button
+                  variant="primary"
+                  className="quiz-nav-button-card"
+                  onClick={() => {
+                    navigateTo(currentIndex + 1);
+                    setShowNextNavigation(false);
+                  }}
+                  disabled={locked || answerSubmitting}
+                >
+                  Next
+                </Button>
+              )}
 
               {allAnswered && (
                 <Button
