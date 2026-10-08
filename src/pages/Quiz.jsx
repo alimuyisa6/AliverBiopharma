@@ -333,9 +333,12 @@ export default function Quiz() {
   };
 
   const openTopicBlocks = (topic) => {
+    const questionCount = Number(topic.question_count) || 0;
+    const blockCount = Number(topic.total_blocks) || Math.ceil(questionCount / 10);
+
     setCurrentTopic(topic.topic_name);
     setActiveUnitId(topic.unit_id);
-    setTotalBlocks(Number(topic.total_blocks) || 0);
+    setTotalBlocks(blockCount);
     setQuizQuestions([]);
     setResultData(null);
   };
@@ -469,6 +472,38 @@ export default function Quiz() {
           <QuizHero level={level} class_name={class_name} groupId={activeGroupId} isPharmacy={isPharmacy} />
         )}
 
+        {!currentTopic && (
+          <div className="grid grid-cols-3 quiz-topic-cards">
+            {topicsLoading ? (
+              Array.from({ length: 6 }).map((_, index) => (
+                <Card key={index} variant="round" loading={true} loadingLines={2} />
+              ))
+            ) : allTopics.length > 0 ? (
+              allTopics.map((topic) => {
+                const questionCount = Number(topic.question_count) || 0;
+                const blockCount = Number(topic.total_blocks) || Math.ceil(questionCount / 10);
+                const allDone = topic.all_done ?? (blockCount > 0 && topic.completed_blocks?.length === blockCount);
+
+                return (
+                  <Card
+                    key={topic.unit_id}
+                    image={topic.topic_image_url}
+                    title={topic.topic_name}
+                    description={questionCount > 0 ? questionCount + ' questions • ' + blockCount + ' blocks' : 'No questions available'}
+                    footer={
+                      questionCount > 0 && blockCount > 0 && !allDone ? (
+                        <Button variant="3d" size="sm" onClick={() => openTopicBlocks({ ...topic, total_blocks: blockCount })} disabled={locked}>
+                          Start
+                        </Button>
+                      ) : null
+                    }
+                    className={allDone ? 'card-compact' : undefined}
+                  />
+                );
+              })
+            ) : null}
+          </div>
+        )}
         {resultData ? (
           <div className="quiz-result-container">
             <Card variant="flat" className="quiz-result-card card-surface-solid card-elevation-soft">
