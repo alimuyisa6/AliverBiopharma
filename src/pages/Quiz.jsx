@@ -103,6 +103,7 @@ export default function Quiz() {
     setTimeLeft(null);
     setIntegrityOverlay(null);
     setAnswerSubmitting(false);
+    setIntegrityMonitoringStarted(false);
     setSessionId(null);
   }, [activeGroupId, curriculumUnitId]);
 
@@ -239,6 +240,7 @@ export default function Quiz() {
 
     const id = setTimeout(() => {
       setIntegrityOverlay(null);
+      setIntegrityMonitoringStarted(false);
       setCurrentTopic('');
       setQuizQuestions([]);
       setResultData(null);
@@ -379,6 +381,7 @@ export default function Quiz() {
     }
 
     setPendingBlock(blockNum);
+    setIntegrityMonitoringStarted(false);
     setShowRulesModal(true);
   };
 
@@ -398,6 +401,7 @@ export default function Quiz() {
       });
 
       setSessionId(session.session_id || null);
+      setIntegrityMonitoringStarted(false);
       setQuizMode(session.mode || 'study');
       setTabSwitchCount(session.tab_switches || 0);
       setMaxTabSwitches(session.max_allowed || 3);
