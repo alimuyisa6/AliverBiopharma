@@ -240,13 +240,14 @@ export default function Quiz() {
       'Preparing your feedback'
     ];
 
-    let current = 0;
-    setCheckingMessage(messages[current]);
+    const pickMessage = () => {
+      const index = Math.floor(Math.random() * messages.length);
+      setCheckingMessage(messages[index]);
+    };
 
-    const id = setInterval(() => {
-      current = (current + 1) % messages.length;
-      setCheckingMessage(messages[current]);
-    }, 700);
+    pickMessage();
+
+    const id = setInterval(pickMessage, 700);
 
     return () => clearInterval(id);
   }, [answerSubmitting]);
