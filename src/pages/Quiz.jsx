@@ -438,6 +438,16 @@ export default function Quiz() {
     return (
       <div className="quiz-page quiz-cards-route-page">
         <div className="section quiz-page-section">
+          <button
+            type="button"
+            className="quiz-cards-route-back"
+            onClick={() => navigate('/quiz')}
+            aria-label="Back to Quiz Hero"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M14.5 5.5 8 12l6.5 6.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
           <div className="quiz-cards-route-header">
             <span className="eyebrow">{isPharmacy ? 'Course Units' : 'Topics'}</span>
             <h1 className="section-title quiz-page-title">{isPharmacy ? 'Course Units' : 'Quiz Topics'}</h1>
