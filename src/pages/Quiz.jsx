@@ -594,14 +594,6 @@ export default function Quiz() {
         </nav>
 
         {!currentTopic && !curriculumUnitId && (
-          <QuizHero
-            level={level}
-            class_name={class_name}
-            groupId={activeGroupId}
-            isPharmacy={isPharmacy}
-            onBack={() => navigate('/resources')}
-            onNext={() => navigate('/quiz/blocks')}
-          />
         )}
 
         {isQuizCardsPage && !currentTopic && (
