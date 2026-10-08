@@ -908,7 +908,7 @@ export default function Quiz() {
                   }}
                   disabled={userAnswers[currentIndex] === null || currentIndex === quizQuestions.length - 1}
                 >
-                  Next <Icon name="arrow-right" />
+                  Next
                 </Button>
               )}
             </div>
