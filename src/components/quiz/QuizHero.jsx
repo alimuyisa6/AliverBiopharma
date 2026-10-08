@@ -61,19 +61,6 @@ export default function QuizHero({ level, class_name, groupId, isPharmacy = fals
             : 'Build scientific knowledge, track progress, earn achievements, and master every topic.'}
         </p>
 
-        <div className="quiz-hero-navigation" aria-label="Quiz navigation">
-          <button type="button" className="quiz-hero-nav-arrow" aria-label="Back to resources" onClick={onBack}>
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="M14.5 5.5 8 12l6.5 6.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
-          <button type="button" className="quiz-hero-nav-arrow" aria-label="View quiz cards" onClick={onNext}>
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="M9.5 5.5 16 12l-6.5 6.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
-        </div>
-
         <div className="grid grid-cols-4 quiz-hero-stats">
           <div className="stat-card card-surface-subtle card-elevation-none card-density-comfortable">
             <Icon name="book-open" className="stat-icon stat-icon-primary" />
@@ -99,6 +86,20 @@ export default function QuizHero({ level, class_name, groupId, isPharmacy = fals
             <div className="stat-label font-source-sans">Pass Rate</div>
           </div>
         </div>
+
+        <div className="quiz-hero-navigation" aria-label="Quiz navigation">
+          <button type="button" className="quiz-hero-nav-arrow" aria-label="Back to resources" onClick={onBack}>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M14.5 5.5 8 12l6.5 6.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+          <button type="button" className="quiz-hero-nav-arrow" aria-label="View quiz cards" onClick={onNext}>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M9.5 5.5 16 12l-6.5 6.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+        </div>
+
       </div>
     </section>
   );
