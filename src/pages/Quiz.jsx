@@ -728,16 +728,6 @@ export default function Quiz() {
 
           </div>       )}
 
-        {false && quizCardsScreen && !currentTopic && !curriculumUnitId && (
-          <div className="quiz-cards-screen-back">
-            <button type="button" className="quiz-cards-back-link" onClick={() => setQuizCardsScreen(false)} aria-label="Back to quiz hero">
-              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path d="M14.5 5.5 8 12l6.5 6.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-          </div>
-        )}
-
         {!quizCardsScreen && !currentTopic && !curriculumUnitId && <QuizLearningPath level={level} class_name={class_name} groupId={activeGroupId} />}
         {!quizCardsScreen && !currentTopic && !curriculumUnitId && <QuizWeakAreas user={user} level={level} class_name={class_name} groupId={activeGroupId} />}
 
