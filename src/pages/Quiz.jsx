@@ -139,10 +139,11 @@ export default function Quiz() {
     (async () => {
       try {
         const status = await getQuizSessionStatus();
-        if (cancelled || !status?.exists || String(status.status).toLowerCase() !== 'active') return;
+        const session = status?.session;
+        if (cancelled || !status?.exists || !session || session.auto_submitted) return;
 
-        const sessionUnitId = status.unit_id;
-        const sessionBlock = Number(status.block_number);
+        const sessionUnitId = session.unit_id;
+        const sessionBlock = Number(session.block_number);
 
         if (!sessionUnitId || !Number.isInteger(sessionBlock)) return;
 
@@ -161,11 +162,11 @@ export default function Quiz() {
 
         setActiveUnitId(sessionUnitId);
         setCurrentBlock(sessionBlock);
-        setCurrentTopic(status.topic || data.unit_name || '');
-        setSessionId(status.session_id || null);
-        setQuizMode(status.mode || 'study');
-        setTabSwitchCount(status.tab_switches || 0);
-        setMaxTabSwitches(status.max_allowed || 3);
+        setCurrentTopic(session.topic || data.unit_name || '');
+        setSessionId(session.session_id || null);
+        setQuizMode(session.mode || 'study');
+        setTabSwitchCount(session.tab_switches || 0);
+        setMaxTabSwitches(session.max_allowed || 3);
         setQuizQuestions(data.questions);
         setUserAnswers(
           priorAnswers.length === data.questions.length
@@ -174,10 +175,10 @@ export default function Quiz() {
         );
         setCurrentIndex(Math.max(0, priorAnswers.findIndex((answer) => answer === null)));
         setIntegrityMonitoringStarted(
-          status.monitoring_started === true ||
+          session.monitoring_started === true ||
           priorAnswers.some(Boolean)
         );
-        setTimeLeft(status.time_left ?? data.time_left ?? 600);
+        setTimeLeft(session.time_left ?? data.time_left ?? 600);
         setResultData(null);
       } catch {
         // A refresh should remain non-disruptive; normal quiz loading follows if no active session exists.
