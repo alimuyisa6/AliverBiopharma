@@ -466,6 +466,10 @@ export default function Quiz() {
           <QuizHero level={level} class_name={class_name} groupId={activeGroupId} isPharmacy={isPharmacy} />
         )}
 
+        {!currentTopic && !curriculumUnitId && user && <QuizDashboard user={user} level={level} class_name={class_name} groupId={activeGroupId} />}
+        {!currentTopic && !curriculumUnitId && <QuizLearningPath level={level} class_name={class_name} groupId={activeGroupId} />}
+        {!currentTopic && !curriculumUnitId && <QuizWeakAreas user={user} level={level} class_name={class_name} groupId={activeGroupId} />}
+
         {!currentTopic ? (
           <>
             <div className="quiz-section-heading quiz-section-heading-spacer">
@@ -528,10 +532,6 @@ export default function Quiz() {
             </div>
           </>
         ) : resultData ? (
-        {!currentTopic && !curriculumUnitId && user && <QuizDashboard user={user} level={level} class_name={class_name} groupId={activeGroupId} />}
-        {!currentTopic && !curriculumUnitId && <QuizLearningPath level={level} class_name={class_name} groupId={activeGroupId} />}
-        {!currentTopic && !curriculumUnitId && <QuizWeakAreas user={user} level={level} class_name={class_name} groupId={activeGroupId} />}
-
           <div className="quiz-result-container">
             <Card variant="flat" className="quiz-result-card card-surface-solid card-elevation-soft">
               <Icon
