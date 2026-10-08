@@ -2,9 +2,14 @@
 
 .quiz-page-section {
   width: min(100%, var(--max-width));
-  margin-inline: auto;
-  padding-block: 2px var(--section-space-y);
-  padding-inline: var(--page-gutter-x);
+  margin-top: 0;
+  margin-right: auto;
+  margin-bottom: var(--section-space-y);
+  margin-left: auto;
+  padding-top: 2px;
+  padding-right: var(--page-gutter-x);
+  padding-bottom: 0;
+  padding-left: var(--page-gutter-x);
 }
 
 .quiz-page-title {
