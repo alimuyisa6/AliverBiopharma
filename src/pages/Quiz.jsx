@@ -145,10 +145,13 @@ export default function Quiz() {
             }
           ] : []
         }))
-      : listQuizTopics(activeGroupId);
+      : listQuizTopics();
 
     request
-      .then((res) => setAllTopics(Array.isArray(res?.topics) ? res.topics : []))
+      .then((res) => {
+        const topics = Array.isArray(res?.topics) ? res.topics : [];
+        setAllTopics(topics);
+      })
       .catch(() => setAllTopics([]))
       .finally(() => setTopicsLoading(false));
   }, [isReady, access.canAccess, access.isPending, activeGroupId, curriculumUnitId]);
