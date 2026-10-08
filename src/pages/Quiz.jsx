@@ -24,7 +24,6 @@ import { apiCall } from '../api/client';
 import { PendingApprovalScreen } from '../components/access/PendingApprovalScreen';
 import { AccessDenied } from '../components/access/AccessDenied';
 import QuizHero from '../components/quiz/QuizHero';
-import QuizDashboard from '../components/quiz/QuizDashboard';
 import QuizLearningPath from '../components/quiz/QuizLearningPath';
 import QuizWeakAreas from '../components/quiz/QuizWeakAreas';
 import Icon from '../components/Icon/Icon';
@@ -731,7 +730,6 @@ export default function Quiz() {
           </div>
         )}
 
-        {!currentTopic && !curriculumUnitId && user && <QuizDashboard user={user} level={level} class_name={class_name} groupId={activeGroupId} />}
         {!currentTopic && !curriculumUnitId && <QuizLearningPath level={level} class_name={class_name} groupId={activeGroupId} />}
         {!currentTopic && !curriculumUnitId && <QuizWeakAreas user={user} level={level} class_name={class_name} groupId={activeGroupId} />}
 
