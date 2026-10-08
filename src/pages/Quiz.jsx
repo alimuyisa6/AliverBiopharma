@@ -465,6 +465,21 @@ export default function Quiz() {
               );
             })}
           </div>
+
+          <Modal open={showRulesModal} onClose={() => setShowRulesModal(false)} title={t('common.quizRules')}>
+            <ul className="quiz-rules-list">
+              <li><Icon name="circle-check" className="quiz-rules-icon is-success" /> <span>{t('common.questionsPerBlock')}</span></li>
+              <li><Icon name="circle-check" className="quiz-rules-icon is-success" /> <span>{t('common.passMark')}</span></li>
+              <li><Icon name="circle-check" className="quiz-rules-icon is-success" /> <span>{t('common.immediateFeedback')}</span></li>
+              <li><Icon name="circle-check" className="quiz-rules-icon is-success" /> <span>{t('common.fullExplanations')}</span></li>
+              <li><Icon name="circle-check" className="quiz-rules-icon is-success" /> <span>{t('common.timeLimit')}</span></li>
+              <li><Icon name="exclamation-triangle" className="quiz-rules-icon is-warning" /> <span>{t('common.tabRecorded')}</span></li>
+              <li><Icon name="exclamation-triangle" className="quiz-rules-icon is-error" /> <span>{t('common.tabAutoSubmit')}</span></li>
+            </ul>
+            <div className="quiz-rules-submit">
+              <Button variant="3d" onClick={confirmStartBlock} loading={startingBlock} loadingContext="brand" loadingLabel={t('common.start')} className="quiz-rules-submit-btn">{t('common.start')}</Button>
+            </div>
+          </Modal>
         </div>
       </div>
     );
