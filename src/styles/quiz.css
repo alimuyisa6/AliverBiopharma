@@ -1186,3 +1186,34 @@
 .quiz-page .quiz-nav-buttons {
   margin-top: var(--space-5);
 }
+
+
+/* Quiz block cards: clear separation and responsive spacing. */
+.quiz-blocks-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-5);
+  width: 100%;
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-8);
+}
+
+.quiz-blocks-grid > * {
+  min-width: 0;
+  width: 100%;
+  min-height: var(--space-12);
+}
+
+@media (max-width: 900px) {
+  .quiz-blocks-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+}
+
+@media (max-width: 560px) {
+  .quiz-blocks-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+}
