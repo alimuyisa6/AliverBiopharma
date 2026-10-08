@@ -15,7 +15,7 @@ export default function QuizHero({ level, class_name, groupId, isPharmacy = fals
 
     Promise.all([
       getPlatformStats().catch(() => null),
-      groupId ? listQuizTopics(groupId).catch(() => ({ topics: [] })) : Promise.resolve({ topics: [] })
+      listQuizTopics(groupId).catch(() => ({ topics: [] }))
     ]).then(([platformStats, topicsRes]) => {
       if (cancelled) return;
       setStats(platformStats);
