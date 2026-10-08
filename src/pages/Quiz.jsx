@@ -523,6 +523,12 @@ export default function Quiz() {
     );
   }
 
+  const quizBreadcrumb = isQuizCardsPage
+    ? (curriculumUnitId
+      ? { label: currentTopic || (isPharmacy ? 'Course Unit' : 'Topic'), parentLabel: isPharmacy ? 'Course Units' : 'Topics' }
+      : { label: isPharmacy ? 'Course Units' : 'Topics' })
+    : null;
+
   const firstUnanswered = getFirstUnansweredIndex(userAnswers);
   const allAnswered = userAnswers.length > 0 && userAnswers.every((answer) => answer !== null);
   const timerPercent = timeLeft !== null ? (timeLeft / 600) * 100 : 100;
@@ -555,7 +561,21 @@ export default function Quiz() {
         <nav className="breadcrumb">
           <Link to="/">Home</Link>
           <Icon name="chevron-right" className="breadcrumb-sep" />
-          <span>{curriculumUnitId ? currentTopic || t('common.curriculumQuiz') : t('common.quizzes')}</span>
+          <Link to="/quiz">Quiz</Link>
+          {quizBreadcrumb && (
+            <>
+              <Icon name="chevron-right" className="breadcrumb-sep" />
+              {quizBreadcrumb.parentLabel ? (
+                <>
+                  <Link to="/quiz/blocks">{quizBreadcrumb.parentLabel}</Link>
+                  <Icon name="chevron-right" className="breadcrumb-sep" />
+                  <span>{quizBreadcrumb.label}</span>
+                </>
+              ) : (
+                <span>{quizBreadcrumb.label}</span>
+              )}
+            </>
+          )}
         </nav>
 
         {!currentTopic && !curriculumUnitId && (
