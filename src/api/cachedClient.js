@@ -905,12 +905,6 @@ challengeId = null
 ) =>
 api.getQuizBlock(unitId, block, challengeId);
 
-export const checkDailyRetry = (
-unitId,
-block
-) =>
-api.checkDailyRetry(unitId, block);
-
 export const addQuizQuestionsBatch = (
 unitId,
 questions
