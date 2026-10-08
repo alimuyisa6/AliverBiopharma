@@ -781,8 +781,8 @@ export default function Quiz() {
 
           </div>       )}
 
-        {!quizCardsScreen && !currentTopic && !curriculumUnitId && <QuizLearningPath level={level} class_name={class_name} groupId={activeGroupId} />}
-        {!quizCardsScreen && !currentTopic && !curriculumUnitId && <QuizWeakAreas user={user} level={level} class_name={class_name} groupId={activeGroupId} />}
+        {!isQuizCardsPage && !currentTopic && !curriculumUnitId && <QuizLearningPath level={level} class_name={class_name} groupId={activeGroupId} />}
+        {!isQuizCardsPage && !currentTopic && !curriculumUnitId && <QuizWeakAreas user={user} level={level} class_name={class_name} groupId={activeGroupId} />}
 
         <Modal open={showRulesModal} onClose={() => setShowRulesModal(false)} title={t('common.quizRules')}>
           <ul className="quiz-rules-list">
