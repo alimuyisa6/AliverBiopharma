@@ -469,13 +469,6 @@ export default function Quiz() {
       return;
     }
 
-    const retry = await checkDailyRetry(activeUnitId, blockNum).catch(() => null);
-
-    if (retry && !retry.can_retry) {
-      addToast(retry.reason || 'Block locked.', 'error');
-      return;
-    }
-
     setPendingBlock(blockNum);
     setIntegrityMonitoringStarted(false);
     setShowRulesModal(true);
@@ -768,11 +761,6 @@ export default function Quiz() {
               </div>
               <p>{resultData.score}/{resultData.total} correct</p>
 
-              {resultData.retry_available && (
-                <Button variant="secondary" size="sm" onClick={() => openTopicBlocks({ topic_name: currentTopic, unit_id: activeUnitId, total_blocks: totalBlocks })}>
-                  Retry Wrong Questions
-                </Button>
-              )}
             </Card>
 
             <div className="quiz-review-section">
@@ -781,10 +769,9 @@ export default function Quiz() {
               {(resultData.answers || []).map((answer, idx) => (
                 <Card key={idx} variant="flat" className="quiz-review-card card-surface-subtle card-elevation-none">
                   <div className="quiz-review-header">
-                    <Icon
-                      name={answer.isCorrect ? 'circle-check' : 'circle-xmark'}
-                      className={`icon ${answer.isCorrect ? 'is-correct' : 'is-incorrect'}`}
-                    />
+                    <span className={`quiz-review-status ${answer.isCorrect ? 'is-passed' : 'is-failed'}`}>
+                      {answer.isCorrect ? 'Passed' : 'Failed'}
+                    </span>
                     <span className="quiz-review-qnum">Q{idx + 1}</span>
                   </div>
                   <p>{answer.question}</p>
