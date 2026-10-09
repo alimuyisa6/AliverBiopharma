@@ -1,5 +1,27 @@
  /* src/styles/advertising.css */
 
+/* Advertisement component sizing tokens.
+   Shared spacing and typography continue to come from the global token scales. */
+:root {
+  --advertise-width-wide: 20rem;
+  --advertise-width-copy: 42rem;
+  --advertise-width-content: 45rem;
+  --advertise-width-readable: 39rem;
+  --advertise-orbit-size: 31rem;
+  --advertise-home-image-min-height: 20rem;
+  --advertise-image-min-height: 24rem;
+  --advertise-width-heading: 44rem;
+  --advertise-width-form-copy: 41rem;
+  --advertise-control-min-height: 2.75rem;
+  --advertise-textarea-min-height: 7.5rem;
+  --advertise-radio-size: 1.125rem;
+  --advertise-width-preview: 60rem;
+  --advertise-width-compact: 32rem;
+  --advertise-payment-min-height: 22rem;
+  --advertise-image-min-height-mobile: 18rem;
+}
+
+
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -78,7 +100,7 @@
 .ads-home-image {
   display: block;
   width: 100%;
-  min-height: var(--advertise-width-wide);
+  min-height: var(--advertise-home-image-min-height);
   object-fit: cover;
 }
 
@@ -534,7 +556,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: var(--advertise-width-wide);
+  min-height: var(--advertise-home-image-min-height);
   padding: var(--space-8);
   color: var(--text-secondary);
   font-family: var(--font-reading);
