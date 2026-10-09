@@ -34,14 +34,14 @@
 .skeleton {
   border-radius: var(--radius-sm);
   background:
-    linear-gradient(90deg, rgba(100, 116, 139, 0.08) 25%, rgba(255, 255, 255, 0.35) 50%, rgba(100, 116, 139, 0.08) 75%);
+    linear-gradient(90deg, rgb(var(--slate-muted-rgb) / 0.08) 25%, rgb(var(--white-rgb) / 0.35) 50%, rgb(var(--slate-muted-rgb) / 0.08) 75%);
   background-size: 200% 100%;
   animation: shimmer var(--duration-slow) var(--ease-standard) infinite;
 }
 
 body.dark-mode .skeleton {
   background:
-    linear-gradient(90deg, rgba(148, 163, 184, 0.08) 25%, rgba(15, 23, 42, 0.35) 50%, rgba(148, 163, 184, 0.08) 75%);
+    linear-gradient(90deg, rgb(var(--slate-light-rgb) / 0.08) 25%, rgb(var(--ink-rgb) / 0.35) 50%, rgb(var(--slate-light-rgb) / 0.08) 75%);
   background-size: 200% 100%;
 }
 

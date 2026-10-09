@@ -3,10 +3,10 @@
   --u3d-top-end: #2575fc;
   --u3d-bottom-start: #2575fc;
   --u3d-bottom-end: #6a11cb;
-  --u3d-text: #ffffff;
-  --u3d-base: rgba(0, 0, 0, 0.15);
-  --u3d-shadow: rgba(0, 0, 0, 0.5);
-  --u3d-highlight: rgba(255, 255, 255, 0.75);
+  --u3d-text: var(--white);
+  --u3d-base: rgb(var(--black-rgb) / 0.15);
+  --u3d-shadow: rgb(var(--black-rgb) / 0.5);
+  --u3d-highlight: rgb(var(--white-rgb) / 0.75);
   --u3d-radius: 20px;
   --u3d-active-radius: 10px 10px 8px 8px / 8px;
   --u3d-depth: 4px;
@@ -16,8 +16,8 @@
   --switcher-width-fluid: 90%;
   --switcher-padding: 20px;
   --switcher-radius: 35px;
-  --switcher-bg: #000000;
-  --switcher-text: #ffffff;
+  --switcher-bg: var(--black);
+  --switcher-text: var(--white);
   --switcher-muted: #888888;
   --switcher-control-bg: #222222;
   --switcher-control-radius: 20px;
@@ -25,14 +25,14 @@
   --switcher-option-gap: 8px;
   --switcher-option-radius: 16px;
   --switcher-option-text: #cccccc;
-  --switcher-slider-bg: rgba(255, 255, 255, 0.4);
-  --switcher-slider-border: rgba(255, 255, 255, 0.2);
+  --switcher-slider-bg: rgb(var(--white-rgb) / 0.4);
+  --switcher-slider-border: rgb(var(--white-rgb) / 0.2);
   --switcher-slider-shadow:
-    0 4px 8px rgba(0, 0, 0, 0.4),
-    inset 0 -2px 4px rgba(255, 255, 255, 0.2);
+    0 4px 8px rgb(var(--black-rgb) / 0.4),
+    inset 0 -2px 4px rgb(var(--white-rgb) / 0.2);
   --switcher-chart-bg: #1b1b1b;
   --switcher-chart-radius: 12px;
-  --switcher-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  --switcher-shadow: 0 10px 30px rgb(var(--black-rgb) / 0.5);
   --switcher-transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
   --tactile-toggle-width: 15rem;

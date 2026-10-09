@@ -122,8 +122,19 @@
   --grey-900: #111827;
   --grey-950: #030712;
 
-  --white: #ffffff;
-  --black: #000000;
+  --white: #e7e9eb;
+  --white-rgb: 231 233 235;
+  --black: #242424;
+  --black-rgb: 36 36 36;
+  --ink-rgb: 15 23 42;
+  --slate-muted-rgb: 100 116 139;
+  --slate-light-rgb: 148 163 184;
+  --amber-500-rgb: 245 158 11;
+  --action-purple-rgb: 115 75 155;
+  --blue-600-rgb: 37 99 235;
+  --emerald-600-rgb: 5 150 105;
+  --amber-600-rgb: 217 119 6;
+  --grey-500-rgb: 107 114 128;
 
   /* Interface roles — keep one primary action accent while preserving semantic colors */
   --color-action-primary: var(--blue-600);

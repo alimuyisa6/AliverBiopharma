@@ -95,7 +95,7 @@
   flex-wrap: wrap;
   gap: var(--hero-eyebrow-gap);
   margin-bottom: var(--text-gap-title);
-  color: rgba(255, 255, 255, 0.92);
+  color: rgb(var(--white-rgb) / 0.92);
   font-family: var(--font-mono);
   font-size: var(--text-eyebrow);
   font-weight: var(--weight-eyebrow);
@@ -114,7 +114,7 @@
 }
 
 .hero-eyebrow-context {
-  color: rgba(255, 255, 255, 0.72);
+  color: rgb(var(--white-rgb) / 0.72);
 }
 
 .hero-title {
@@ -141,7 +141,7 @@
 .hero-tagline {
   max-width: var(--hero-tagline-max-width);
   margin-bottom: var(--text-gap-action);
-  color: rgba(255, 255, 255, 0.88);
+  color: rgb(var(--white-rgb) / 0.88);
   font-family: var(--font-reading);
   font-size: var(--text-body);
   font-weight: var(--weight-normal);
