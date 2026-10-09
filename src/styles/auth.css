@@ -361,9 +361,9 @@
 }
 
 .auth-alert-error {
-  border-color: #fecaca;
+  border-color: var(--red-200);
   background: var(--auth-danger-soft);
-  color: #991b1b;
+  color: var(--red-800);
 }
 
 .auth-alert-error svg {
