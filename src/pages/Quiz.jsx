@@ -876,9 +876,7 @@ export default function Quiz() {
 
             {answerSubmitting && (
               <div className="quiz-answering-indicator" role="status" aria-live="polite">
-                <div className="quiz-answer-loader" aria-hidden="true">
-                  <div className="quiz-answer-loader-dot"></div><div className="quiz-answer-loader-dot"></div><div className="quiz-answer-loader-dot"></div><div className="quiz-answer-loader-dot"></div><div className="quiz-answer-loader-dot"></div><div className="quiz-answer-loader-dot"></div><div className="quiz-answer-loader-dot"></div><div className="quiz-answer-loader-dot"></div><div className="quiz-answer-loader-dot"></div><div className="quiz-answer-loader-dot"></div><div className="quiz-answer-loader-dot"></div><div className="quiz-answer-loader-dot"></div>
-                </div>
+                <Spinner context="default" variant="brand" size="sm" />
                 <span className="quiz-spinner-label">{checkingMessage}</span>
               </div>
             )}
