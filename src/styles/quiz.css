@@ -1892,3 +1892,13 @@
     padding: var(--space-3) var(--space-4);
   }
 }
+
+
+/* Keep the result-screen return dropdown centered in its action row. */
+.quiz-result-container .quiz-result-actions {
+  justify-content: center;
+}
+
+.quiz-result-container .quiz-result-return-menu {
+  margin-inline: auto;
+}
