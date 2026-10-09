@@ -280,7 +280,7 @@ body.dark-mode .site-header, body.dark-mode .site-header.scrolled { background: 
 .footer-social-link[data-platform="x"], .footer-social-link[data-platform="twitter"] { background: var(--black); }
 .footer-social-link[data-platform="whatsapp"] { background: var(--green-500); }
 .footer-social-link[data-platform="telegram"] { background: var(--blue-500); }
-.footer-social-link[data-platform="tiktok"] { background: #000000; }
+.footer-social-link[data-platform="tiktok"] { background: var(--black); }
 .footer-social-link[data-platform="linkedin"] { background: var(--blue-700); }
 .footer-social-link[data-platform="github"] { background: var(--grey-800); }
 
