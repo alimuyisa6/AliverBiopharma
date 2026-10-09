@@ -123,7 +123,9 @@
   --grey-950: #030712;
 
   --white: #e7e9eb;
+  --white-rgb: 231 233 235;
   --black: #242424;
+  --black-rgb: 36 36 36;
 
   /* Interface roles — keep one primary action accent while preserving semantic colors */
   --color-action-primary: var(--blue-600);
