@@ -746,10 +746,6 @@ export default function Quiz() {
         {resultData ? (
           <div className="quiz-result-container">
             <Card variant="flat" className="quiz-result-card card-surface-solid card-elevation-soft">
-              <Icon
-                name={resultData.passed ? 'trophy' : 'book-open'}
-                className={`quiz-result-icon ${resultData.passed ? 'is-pass' : 'is-fail'}`}
-              />
               <h2>{resultData.passed ? `${t('common.congratulations')}, ${user?.full_name || 'Learner'}!` : t('common.blockComplete')}</h2>
               <div className={`quiz-result-score ${resultData.passed ? 'is-pass' : 'is-fail'}`}>
                 {resultData.percentage}%
