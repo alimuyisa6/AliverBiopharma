@@ -911,16 +911,6 @@ export default function Quiz() {
                     >
                       <span className="quiz-option-letter">{option}.</span>
                       <span className="quiz-option-text">{quizQuestions[currentIndex][`option_${option.toLowerCase()}`]}</span>
-                      {answered && option === correctOption && (
-                        <span className="quiz-option-result quiz-option-result-correct" aria-label="Correct">
-                          <Icon name="circle-check" />
-                        </span>
-                      )}
-                      {answered && option === selected && option !== correctOption && (
-                        <span className="quiz-option-result quiz-option-result-incorrect" aria-label="Incorrect">
-                          <Icon name="circle-xmark" />
-                        </span>
-                      )}
                     </button>
                   );
                 })}
