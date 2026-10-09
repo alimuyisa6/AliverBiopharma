@@ -674,22 +674,8 @@ export default function Quiz() {
   const timerClass = timerPercent > 50 ? 'is-good' : timerPercent > 20 ? 'is-warn' : 'is-danger';
 
   return (
-    <div className="quiz-page">
-      <div className="section quiz-page-section">
-        {!isQuizCardsPage && !currentTopic && !resultData && !quizQuestions.length && !sessionId && (
-          <>
-            <QuizHero
-              level={level}
-              class_name={class_name}
-              groupId={activeGroupId}
-              isPharmacy={isPharmacy}
-              onBack={() => navigate('/resources')}
-              onNext={() => navigate('/quiz/blocks')}
-            />
-            <AdSlot placement="quiz" pageContext="quiz" />
-          </>
-        )}
-
+    <div className={`quiz-page${!isQuizCardsPage && !currentTopic && !resultData && !quizQuestions.length && !sessionId ? ' quiz-landing-page' : ''}`}>
+      <div className={`section quiz-page-section${!isQuizCardsPage && !currentTopic && !resultData && !quizQuestions.length && !sessionId ? ' quiz-landing-section' : ''}`}>
         <nav className="breadcrumb">
           <Link to="/">Home</Link>
           <Icon name="chevron-right" className="breadcrumb-sep" />
@@ -709,6 +695,20 @@ export default function Quiz() {
             </>
           )}
         </nav>
+
+        {!isQuizCardsPage && !currentTopic && !resultData && !quizQuestions.length && !sessionId && (
+          <>
+            <QuizHero
+              level={level}
+              class_name={class_name}
+              groupId={activeGroupId}
+              isPharmacy={isPharmacy}
+              onBack={() => navigate('/resources')}
+              onNext={() => navigate('/quiz/blocks')}
+            />
+            <AdSlot placement="quiz" pageContext="quiz" />
+          </>
+        )}
 
         {isQuizCardsPage && !currentTopic && (
           <div className="grid grid-cols-3 quiz-topic-cards">
