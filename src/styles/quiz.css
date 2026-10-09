@@ -1585,3 +1585,56 @@
   background: currentColor;
   opacity: 0.55;
 }
+
+/* Token-driven ribbon for completed topic/course-unit cards. */
+.quiz-topic-ribbon-card {
+  position: relative;
+  min-width: 0;
+  overflow: visible;
+  border-radius: var(--radius-lg);
+}
+
+.quiz-topic-ribbon-card .quiz-topic-status-ribbon {
+  position: absolute;
+  z-index: var(--z-raised, 2);
+  top: calc(var(--space-2) * -1);
+  left: calc(var(--space-2) * -1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-24);
+  min-height: var(--space-8);
+  padding: var(--space-1) var(--space-3);
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(
+    45deg,
+    var(--color-success, var(--success)),
+    var(--color-success-strong, var(--success))
+  );
+  color: var(--text-inverse);
+  box-shadow: var(--shadow-sm);
+  font-size: var(--text-2xs, var(--text-xs));
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  line-height: var(--leading-tight);
+  text-align: center;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.quiz-topic-ribbon-card.is-completed .card {
+  padding-top: var(--space-3);
+}
+
+@media (max-width: 40rem) {
+  .quiz-topic-ribbon-card .quiz-topic-status-ribbon {
+    top: calc(var(--space-1) * -1);
+    left: calc(var(--space-1) * -1);
+    width: var(--space-20);
+    min-height: var(--space-7);
+    padding-inline: var(--space-2);
+    font-size: var(--text-2xs, var(--text-xs));
+  }
+}
