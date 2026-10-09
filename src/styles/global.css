@@ -49,3 +49,90 @@ li + li { margin-top: var(--text-gap-list); }
 .pdf-library-class{margin:var(--space-2) 0 0;color:var(--text-muted);font-size:var(--text-sm);font-weight:var(--weight-medium)}
 .pdf-library-page>.pdf-library-class{margin:calc(var(--space-2) * -1) 0 var(--space-5);padding:var(--space-3) var(--space-3);border-left:3px solid var(--primary);border-radius:0 var(--radius-sm) var(--radius-sm) 0;background:var(--surface-subtle);font-size:var(--text-xs)}
 @media(max-width:640px){.pdf-library-page>.toolbar{align-items:center;flex-wrap:wrap;padding:var(--space-3)}.pdf-library-page .result-count{flex:1}.pdf-library-page .toolbar-spacer{display:none}.pdf-library-page .sort-select{width:100%;min-width:0}}
+
+/* Global compact typography rhythm.
+   Component styles may override these semantic defaults when needed. */
+body {
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-block: 0 var(--text-gap-title);
+  line-height: var(--leading-tight);
+}
+
+h1 {
+  font-size: var(--text-page-title);
+  font-weight: var(--weight-page-title);
+  line-height: var(--leading-page-title);
+}
+
+h2 {
+  font-size: var(--text-section-title);
+  font-weight: var(--weight-section-title);
+  line-height: var(--leading-section-title);
+}
+
+h3 {
+  font-size: var(--text-subsection-title);
+  font-weight: var(--weight-section-title);
+  line-height: var(--leading-subsection-title);
+}
+
+h4 {
+  font-size: var(--text-card-title);
+  font-weight: var(--weight-card-title);
+  line-height: var(--leading-card-title);
+}
+
+h5 {
+  font-size: var(--text-body-lead);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-body-lead);
+}
+
+h6 {
+  font-size: var(--text-supporting);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-supporting);
+}
+
+p {
+  margin-block: 0 var(--text-gap-paragraph);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+}
+
+small,
+.text-caption {
+  font-size: var(--text-caption);
+  line-height: var(--leading-caption);
+}
+
+label,
+legend {
+  font-size: var(--text-sm);
+  line-height: var(--leading-label);
+}
+
+@media (max-width: 640px) {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: var(--text-gap-subtitle);
+  }
+
+  p {
+    margin-bottom: var(--text-gap-paragraph);
+  }
+}
+
