@@ -23,7 +23,7 @@
 
 .ads-home-panel {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.9fr);
+  grid-template-columns: minmax(0, 1fr) minmax(var(--advertise-width-wide), 0.9fr);
   gap: var(--space-12);
   align-items: center;
   max-width: var(--max-width);
@@ -31,11 +31,11 @@
 }
 
 .ads-home-copy {
-  max-width: 42rem;
+  max-width: var(--advertise-width-copy);
 }
 
 .ads-home-title {
-  max-width: 45rem;
+  max-width: var(--advertise-width-content);
   margin: 0;
   color: var(--text-main);
   font-family: var(--font-primary);
@@ -50,7 +50,7 @@
 }
 
 .ads-home-description {
-  max-width: 39rem;
+  max-width: var(--advertise-width-readable);
   margin-top: var(--space-4);
   color: var(--text-secondary);
   font-family: var(--font-reading);
@@ -78,7 +78,7 @@
 .ads-home-image {
   display: block;
   width: 100%;
-  min-height: 20rem;
+  min-height: var(--advertise-width-wide);
   object-fit: cover;
 }
 
@@ -104,10 +104,10 @@
   position: relative;
   overflow: hidden;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.8fr);
+  grid-template-columns: minmax(0, 1fr) minmax(var(--advertise-width-wide), 0.8fr);
   gap: var(--space-20);
   align-items: center;
-  max-width: 1280px;
+  max-width: var(--max-width);
   margin: 0 auto;
   padding: var(--space-24) var(--space-8);
 }
@@ -115,10 +115,10 @@
 .advertise-hero::after {
   content: "";
   position: absolute;
-  right: -11rem;
-  bottom: -15rem;
-  width: 31rem;
-  height: 31rem;
+  right: calc(var(--advertise-orbit-size) * -0.355);
+  bottom: calc(var(--advertise-orbit-size) * -0.484);
+  width: var(--advertise-orbit-size);
+  height: var(--advertise-orbit-size);
   border: 1px solid var(--amber-200);
   border-radius: 50%;
   pointer-events: none;
@@ -127,7 +127,7 @@
 .advertise-hero-copy {
   position: relative;
   z-index: 1;
-  max-width: 45rem;
+  max-width: var(--advertise-width-content);
 }
 
 .advertise-hero-copy h1 {
@@ -141,7 +141,7 @@
 }
 
 .advertise-hero-copy p {
-  max-width: 39rem;
+  max-width: var(--advertise-width-readable);
   margin: var(--space-5) 0 0;
   color: var(--text-secondary);
   font-family: var(--font-reading);
@@ -184,7 +184,7 @@
 .advertise-hero-image {
   display: block;
   width: 100%;
-  min-height: 24rem;
+  min-height: var(--advertise-image-min-height);
   border-radius: var(--radius-md);
   object-fit: cover;
   background: var(--bg-muted);
@@ -201,7 +201,7 @@
 }
 
 .advertise-section-heading {
-  max-width: 45rem;
+  max-width: var(--advertise-width-content);
   margin: 0 auto var(--space-12);
   text-align: center;
 }
@@ -223,7 +223,7 @@
 }
 
 .advertise-section-heading p {
-  max-width: 39rem;
+  max-width: var(--advertise-width-readable);
   margin: var(--space-4) auto 0;
   color: var(--text-secondary);
   font-family: var(--font-reading);
@@ -342,7 +342,7 @@
 }
 
 .advertise-process-heading h2 {
-  max-width: 44rem;
+  max-width: var(--advertise-width-heading);
   margin: 0;
   color: var(--text-main);
   font-family: var(--font-primary);
@@ -353,7 +353,7 @@
 }
 
 .advertise-process-heading p {
-  max-width: 42rem;
+  max-width: var(--advertise-width-copy);
   margin: var(--space-4) 0 0;
   color: var(--text-secondary);
   font-family: var(--font-reading);
@@ -369,7 +369,7 @@
   display: grid;
   grid-template-columns: auto 1fr;
   gap: var(--space-4);
-  max-width: 45rem;
+  max-width: var(--advertise-width-content);
   margin: var(--space-10) auto 0;
   padding: var(--space-6);
   border: 1px solid var(--border-default);
@@ -419,7 +419,7 @@
 
 .advertise-create-header,
 .advertise-payment-header {
-  max-width: 56rem;
+  max-width: var(--content-max-wide);
   margin: 0 auto;
 }
 
@@ -457,7 +457,7 @@
 
 .advertise-create-header p,
 .advertise-payment-header p {
-  max-width: 41rem;
+  max-width: var(--advertise-width-form-copy);
   margin: var(--space-4) 0 0;
   color: var(--text-secondary);
   font-family: var(--font-reading);
@@ -468,7 +468,7 @@
 .advertise-create-progress {
   display: flex;
   gap: var(--space-1);
-  max-width: 56rem;
+  max-width: var(--content-max-wide);
   margin: var(--space-10) auto 0;
   padding: var(--space-2);
   border: 1px solid var(--border-light);
@@ -516,9 +516,9 @@
 
 .advertise-create-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 20rem;
+  grid-template-columns: minmax(0, 1fr) var(--advertise-width-wide);
   gap: var(--space-6);
-  max-width: 56rem;
+  max-width: var(--content-max-wide);
   margin: var(--space-8) auto 0;
   align-items: start;
 }
@@ -534,7 +534,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 20rem;
+  min-height: var(--advertise-width-wide);
   padding: var(--space-8);
   color: var(--text-secondary);
   font-family: var(--font-reading);
@@ -605,7 +605,7 @@
 .advertise-create-step textarea,
 .advertise-payment-form input {
   width: 100%;
-  min-height: 2.75rem;
+  min-height: var(--advertise-control-min-height);
   padding: var(--space-2) var(--space-3);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-xs);
@@ -620,7 +620,7 @@
 .advertise-form-grid textarea,
 .advertise-form-stack textarea,
 .advertise-create-step textarea {
-  min-height: 7.5rem;
+  min-height: var(--advertise-textarea-min-height);
   resize: vertical;
 }
 
@@ -674,8 +674,8 @@
 }
 
 .advertise-option input[type="radio"] {
-  width: 1.125rem;
-  height: 1.125rem;
+  width: var(--advertise-radio-size);
+  height: var(--advertise-radio-size);
   min-height: 0;
   margin: 0;
   accent-color: var(--primary);
@@ -878,7 +878,7 @@
 }
 
 .ad-campaign-success {
-  max-width: 60rem;
+  max-width: var(--advertise-width-preview);
   margin: var(--space-20) auto;
   padding: 0 var(--space-6);
 }
@@ -898,7 +898,7 @@
 }
 
 .ad-campaign-success-header p {
-  max-width: 39rem;
+  max-width: var(--advertise-width-readable);
   margin: var(--space-4) auto 0;
   color: var(--text-secondary);
   font-family: var(--font-reading);
@@ -907,7 +907,7 @@
 }
 
 .ad-campaign-success-reference {
-  max-width: 32rem;
+  max-width: var(--advertise-width-compact);
   margin: var(--space-6) auto 0;
   padding: var(--space-4) var(--space-5);
   border: 1px solid var(--border-default);
@@ -939,7 +939,7 @@
 .ad-campaign-success-progress {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  max-width: 48rem;
+  max-width: var(--content-max-readable);
   margin: var(--space-12) auto 0;
 }
 
@@ -1049,7 +1049,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 22rem;
+  min-height: var(--advertise-payment-min-height);
   color: var(--text-secondary);
 }
 
@@ -1060,9 +1060,9 @@
 
 .advertise-payment-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 20rem;
+  grid-template-columns: minmax(0, 1fr) var(--advertise-width-wide);
   gap: var(--space-6);
-  max-width: 56rem;
+  max-width: var(--content-max-wide);
   margin: var(--space-8) auto 0;
   align-items: start;
 }
@@ -1121,7 +1121,7 @@
 }
 
 .advertise-payment-empty p {
-  max-width: 32rem;
+  max-width: var(--advertise-width-compact);
   margin: var(--space-2) auto 0;
   color: var(--text-secondary);
   font-family: var(--font-reading);
@@ -1358,12 +1358,12 @@
 
   .ads-home-copy,
   .advertise-hero-copy {
-    max-width: 48rem;
+    max-width: var(--content-max-readable);
   }
 
   .ads-home-visual,
   .advertise-hero-visual {
-    max-width: 45rem;
+    max-width: var(--advertise-width-content);
   }
 
   .ads-home-step-grid,
@@ -1438,7 +1438,7 @@
 
   .ads-home-image-frame,
   .advertise-hero-image {
-    min-height: 18rem;
+    min-height: var(--advertise-image-min-height-mobile);
   }
 
   .ads-home-step-grid,
@@ -1564,7 +1564,7 @@
 .advertise-create-layout,
 .advertise-create-header,
 .advertise-payment-header,
-.advertise-create-progress { max-width: var(--ui-content-max-width, 56rem); }
+.advertise-create-progress { max-width: var(--ui-content-max-width, var(--content-max-wide)); }
 .advertise-create-layout { gap: var(--ui-content-gap, var(--content-gap)); }
 @media (max-width: 768px) {
   .advertise-hero { gap: var(--ui-content-gap-compact, var(--content-gap-compact)); }
@@ -1577,7 +1577,7 @@ html[data-ui-surface="flat"] .advertise-create-form { box-shadow: var(--shadow-n
 
 /* Learner-facing served advertisements */
 .ad-slot { width: 100%; margin: var(--space-8) 0; }
-.ad-slot-loading { min-height: 5rem; display: flex; align-items: center; justify-content: center; }
+.ad-slot-loading { min-height: var(--space-20); display: flex; align-items: center; justify-content: center; }
 .ad-slot-label { display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-2); font: 600 var(--text-xs)/1.4 var(--font-mono); text-transform: uppercase; letter-spacing: .08em; color: var(--text-secondary); }
 .ad-slot-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(18rem, 1fr); overflow: hidden; border: 1px solid var(--border-color); border-radius: var(--radius-lg); background: var(--surface); color: inherit; text-decoration: none; box-shadow: var(--shadow-sm); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
 .ad-slot-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--primary); }
