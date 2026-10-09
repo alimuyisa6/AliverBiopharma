@@ -1435,6 +1435,39 @@
   z-index: var(--quiz-loader-z);
 }
 
+/* The original loader referenced these animations but their keyframes were missing,
+   which left the 12-dot loader visually static. */
+@keyframes quiz-loader-shadow {
+  0%, 100% {
+    box-shadow: var(--quiz-loader-dot-shadow);
+  }
+  50% {
+    box-shadow: var(--shadow-md);
+  }
+}
+
+@keyframes quiz-loader-push-in-out {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.15);
+    opacity: 0.35;
+  }
+}
+
+@keyframes quiz-loader-push-out {
+  0%, 100% {
+    transform: rotate(calc(var(--quiz-loader-orbit-angle) * -1)) translateY(0) scaleY(1);
+    opacity: 1;
+  }
+  50% {
+    transform: rotate(calc(var(--quiz-loader-orbit-angle) * -1)) translateY(calc(var(--quiz-loader-push-distance) * -1)) scaleY(0.6);
+    opacity: 0.45;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .quiz-answer-loader-dot,
   .quiz-answer-loader-dot::before,
