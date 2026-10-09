@@ -789,7 +789,6 @@ export default function Quiz() {
                   onClick={() => setShowResultNavigationMenu((open) => !open)}
                 >
                   {isPharmacy ? 'Back to Course Units' : 'Back to Topics'}
-                  <Icon name={showResultNavigationMenu ? 'chevron-up' : 'chevron-down'} />
                 </Button>
                 {showResultNavigationMenu && (
                   <div className="quiz-result-return-options" role="menu">
