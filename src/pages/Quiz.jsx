@@ -633,20 +633,26 @@ export default function Quiz() {
                 const allDone = topic.all_done ?? (blockCount > 0 && topic.completed_blocks?.length === blockCount);
 
                 return (
-                  <Card
-                    key={topic.unit_id}
-                    image={topic.topic_image_url}
-                    title={topic.topic_name}
-                    description={questionCount > 0 ? questionCount + ' questions • ' + blockCount + ' blocks' : 'No questions available'}
-                    footer={
-                      questionCount > 0 && blockCount > 0 && !allDone ? (
-                        <Button variant="3d" size="sm" onClick={() => openTopicBlocks({ ...topic, total_blocks: blockCount })} disabled={locked}>
-                          Start
-                        </Button>
-                      ) : null
-                    }
-                    className={allDone ? 'card-compact' : undefined}
-                  />
+                  <div key={topic.unit_id} className={`quiz-topic-ribbon-card${allDone ? ' is-completed' : ''}`}>
+                    {allDone && (
+                      <span className="quiz-topic-status-ribbon" aria-label="Completed">
+                        Completed
+                      </span>
+                    )}
+                    <Card
+                      image={topic.topic_image_url}
+                      title={topic.topic_name}
+                      description={questionCount > 0 ? questionCount + ' questions • ' + blockCount + ' blocks' : 'No questions available'}
+                      footer={
+                        questionCount > 0 && blockCount > 0 && !allDone ? (
+                          <Button variant="3d" size="sm" onClick={() => openTopicBlocks({ ...topic, total_blocks: blockCount })} disabled={locked}>
+                            Start
+                          </Button>
+                        ) : null
+                      }
+                      className={allDone ? 'card-compact' : undefined}
+                    />
+                  </div>
                 );
               })
             ) : null}
