@@ -73,6 +73,7 @@ export default function Quiz() {
   const [currentBlock, setCurrentBlock] = useState(0);
   const [totalBlocks, setTotalBlocks] = useState(0);
   const [resultData, setResultData] = useState(null);
+  const [showResultNavigationMenu, setShowResultNavigationMenu] = useState(false);
   const [showRulesModal, setShowRulesModal] = useState(false);
   const [pendingBlock, setPendingBlock] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -785,16 +786,50 @@ export default function Quiz() {
                 </Button>
               )}
 
-              <Button
-                variant="secondary"
-                onClick={() => {
-                  setCurrentTopic('');
-                  setResultData(null);
-                  navigate('/quiz/blocks');
-                }}
-              >
-                {isPharmacy ? 'Back to Course Units' : 'Back to Topics'}
-              </Button>
+              <div className="quiz-result-return-menu">
+                <Button
+                  variant="secondary"
+                  type="button"
+                  aria-expanded={showResultNavigationMenu}
+                  aria-haspopup="menu"
+                  onClick={() => setShowResultNavigationMenu((open) => !open)}
+                >
+                  {isPharmacy ? 'Back to Course Units' : 'Back to Topics'}
+                  <Icon name={showResultNavigationMenu ? 'chevron-up' : 'chevron-down'} />
+                </Button>
+                {showResultNavigationMenu && (
+                  <div className="quiz-result-return-options" role="menu">
+                    <button
+                      type="button"
+                      role="menuitem"
+                      onClick={() => {
+                        setShowResultNavigationMenu(false);
+                        setCurrentTopic('');
+                        setResultData(null);
+                        navigate(activeUnitId
+                          ? `/quiz/blocks?unit_id=${encodeURIComponent(activeUnitId)}`
+                          : '/quiz/blocks');
+                      }}
+                    >
+                      {isPharmacy ? 'Continue with this course unit' : 'Continue with this topic'}
+                      <span>Choose another block here</span>
+                    </button>
+                    <button
+                      type="button"
+                      role="menuitem"
+                      onClick={() => {
+                        setShowResultNavigationMenu(false);
+                        setCurrentTopic('');
+                        setResultData(null);
+                        navigate('/quiz/blocks');
+                      }}
+                    >
+                      {isPharmacy ? 'Choose another course unit' : 'Choose another topic'}
+                      <span>Return to all question cards</span>
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         ) : quizQuestions.length > 0 ? (
