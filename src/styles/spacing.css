@@ -65,6 +65,16 @@
   --auth-control-padding-x: var(--space-3);
   --auth-form-max-width: 460px;
 
+  /* Shared notification and toolbar dimensions */
+  --status-banner-max-width: 23.75rem;
+  --status-banner-min-height: 3.375rem;
+  --status-icon-size: 1.875rem;
+  --status-close-size: 1.75rem;
+  --toolbar-min-height: 3.625rem;
+  --select-control-height: 2.625rem;
+  --select-control-min-width: 9.375rem;
+  --border-width-emphasis: 3px;
+
   /* Shared interactive control sizing */
   --control-height-xs: 2rem;
   --control-height-sm: 2.125rem;
