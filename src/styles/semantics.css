@@ -728,3 +728,18 @@ body.accessibility-dyslexia-font * {
   --font-reading: Verdana, Arial, sans-serif;
   font-family: Verdana, Arial, sans-serif !important;
 }
+
+/* Brand and overlay color tokens used by shared layout components. */
+:root {
+  --overlay-backdrop: rgb(0 0 0 / 28%);
+  --social-default-bg: var(--grey-800);
+  --social-facebook: #1877f2;
+  --social-instagram: #e4405f;
+  --social-youtube: #ff0000;
+  --social-x: #000000;
+  --social-whatsapp: #25d366;
+  --social-telegram: #229ed9;
+  --social-linkedin: #0a66c2;
+  --social-github: #24292f;
+}
+
