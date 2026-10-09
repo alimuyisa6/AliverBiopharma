@@ -646,7 +646,7 @@ export default function Quiz() {
                       description={questionCount > 0 ? questionCount + ' questions • ' + blockCount + ' blocks' : 'No questions available'}
                       footer={
                         questionCount > 0 && blockCount > 0 && !allDone ? (
-                          <Button variant="3d" size="sm" onClick={() => openTopicBlocks({ ...topic, total_blocks: blockCount })} disabled={locked}>
+                          <Button variant="primary" size="sm" onClick={() => openTopicBlocks({ ...topic, total_blocks: blockCount })} disabled={locked}>
                             Start
                           </Button>
                         ) : null
@@ -731,7 +731,7 @@ export default function Quiz() {
                     description={questionCount > 0 ? questionCount + ' questions • ' + blockCount + ' blocks' : 'No questions available'}
                     footer={
                       questionCount > 0 && blockCount > 0 && !allDone ? (
-                        <Button variant="3d" size="sm" onClick={() => openTopicBlocks({ ...topic, total_blocks: blockCount })} disabled={locked}>
+                        <Button variant="primary" size="sm" onClick={() => openTopicBlocks({ ...topic, total_blocks: blockCount })} disabled={locked}>
                           Start
                         </Button>
                       ) : null
