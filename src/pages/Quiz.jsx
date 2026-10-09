@@ -785,8 +785,15 @@ export default function Quiz() {
                 </Button>
               )}
 
-              <Button variant="secondary" onClick={() => { setCurrentTopic(''); setResultData(null); }}>
-                All Topics
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  setCurrentTopic('');
+                  setResultData(null);
+                  navigate('/quiz/blocks');
+                }}
+              >
+                {isPharmacy ? 'Back to Course Units' : 'Back to Topics'}
               </Button>
             </div>
           </div>
