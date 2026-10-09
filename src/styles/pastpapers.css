@@ -282,7 +282,7 @@
   font-weight: var(--weight-medium);
   color: var(--text-main);
   cursor: pointer;
-  padding: 3px 0;
+  padding: var(--space-1) 0;
   font-family: var(--font-primary);
 }
 
@@ -560,8 +560,8 @@
 }
 
 .pp-skeleton-card {
-  min-width: 200px;
-  max-width: 200px;
+  min-width: var(--pastpapers-card-min-width);
+  max-width: var(--pastpapers-card-min-width);
   flex: 0 0 auto;
   background: var(--bg-card);
   border: 1px solid var(--border-default);
@@ -690,7 +690,7 @@
 .pp-modal-subject {
   font-size: var(--text-sm);
   color: var(--text-dim);
-  margin: 2px 0 0;
+  margin: var(--space-1) 0 0;
 }
 
 .pp-modal-close {
