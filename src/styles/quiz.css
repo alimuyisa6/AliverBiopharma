@@ -1902,3 +1902,36 @@
 .quiz-result-container .quiz-result-return-menu {
   margin-inline: auto;
 }
+
+
+/* Smaller answer option cards: compact but readable on phones. */
+.quiz-page .quiz-options-list {
+  gap: var(--space-2);
+}
+
+.quiz-page .quiz-options-list .quiz-option-btn {
+  height: auto;
+  min-height: var(--space-12);
+  max-height: none;
+  padding: var(--space-2) var(--space-3);
+  gap: var(--space-2);
+}
+
+.quiz-page .quiz-options-list .quiz-option-letter {
+  width: var(--space-7);
+  height: var(--space-7);
+  flex-basis: var(--space-7);
+  font-size: var(--text-2xs, var(--text-xs));
+}
+
+.quiz-page .quiz-options-list .quiz-option-text {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+@media (max-width: 560px) {
+  .quiz-page .quiz-options-list .quiz-option-btn {
+    min-height: var(--space-10);
+    padding: var(--space-2);
+  }
+}
