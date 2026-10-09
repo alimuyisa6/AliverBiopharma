@@ -780,12 +780,6 @@ export default function Quiz() {
             </div>
 
             <div className="quiz-result-actions">
-              {currentBlock + 1 < totalBlocks && (
-                <Button variant="3d" onClick={() => startBlock(currentBlock + 1)} disabled={locked}>
-                  Next Block
-                </Button>
-              )}
-
               <div className="quiz-result-return-menu">
                 <Button
                   variant="secondary"
