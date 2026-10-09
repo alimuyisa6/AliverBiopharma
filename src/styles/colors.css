@@ -130,6 +130,7 @@
   --slate-muted-rgb: 100 116 139;
   --slate-light-rgb: 148 163 184;
   --amber-500-rgb: 245 158 11;
+  --action-purple-rgb: 115 75 155;
 
   /* Interface roles — keep one primary action accent while preserving semantic colors */
   --color-action-primary: var(--blue-600);
