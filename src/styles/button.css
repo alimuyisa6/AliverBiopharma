@@ -237,14 +237,14 @@
 .btn-icon.btn-sm {
   width: var(--control-height-sm);
   height: var(--control-height-sm);
-  min-height: 34px;
+  min-height: var(--control-height-sm);
   padding: 0;
 }
 
 .btn-icon.btn-lg {
   width: var(--control-height-lg);
   height: var(--control-height-lg);
-  min-height: 48px;
+  min-height: var(--control-height-lg);
 }
 
 .btn-icon.btn-card {
