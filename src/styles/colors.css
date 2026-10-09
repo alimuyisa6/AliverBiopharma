@@ -126,6 +126,10 @@
   --white-rgb: 231 233 235;
   --black: #242424;
   --black-rgb: 36 36 36;
+  --ink-rgb: 15 23 42;
+  --slate-muted-rgb: 100 116 139;
+  --slate-light-rgb: 148 163 184;
+  --amber-500-rgb: 245 158 11;
 
   /* Interface roles — keep one primary action accent while preserving semantic colors */
   --color-action-primary: var(--blue-600);
