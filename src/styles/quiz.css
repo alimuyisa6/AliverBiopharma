@@ -1671,3 +1671,61 @@
     padding-inline: var(--space-1);
   }
 }
+
+
+/* Completed quiz explanations: separate review cards clearly. */
+.quiz-result-container .quiz-review-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-4);
+  width: 100%;
+  margin-top: var(--space-6);
+}
+
+.quiz-result-container .quiz-review-heading {
+  margin: 0 0 var(--space-1);
+}
+
+.quiz-result-container .quiz-review-card {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+}
+
+.quiz-result-container .quiz-review-card .quiz-review-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.quiz-result-container .quiz-review-card > p {
+  margin: 0;
+}
+
+.quiz-result-container .quiz-review-card > p + p {
+  margin-top: var(--space-3);
+}
+
+.quiz-result-container .quiz-review-card .quiz-review-explanation {
+  margin-top: var(--space-4);
+  padding: var(--space-4);
+  border-inline-start: var(--space-1) solid var(--primary);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  line-height: var(--leading-relaxed);
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 640px) {
+  .quiz-result-container .quiz-review-card {
+    padding: var(--space-4);
+  }
+
+  .quiz-result-container .quiz-review-card .quiz-review-explanation {
+    padding: var(--space-3);
+  }
+}
