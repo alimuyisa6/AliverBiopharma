@@ -72,6 +72,20 @@
   --auth-control-padding-x: var(--space-3);
   --auth-form-max-width: 460px;
 
+  /* Challenge page component dimensions shared by both challenge views. */
+  --challenge-showcase-max-width: 61.25rem;
+  --challenge-runner-max-width: 67.5rem;
+  --challenge-heading-max-width: 47.5rem;
+  --challenge-description-max-width: 38.75rem;
+  --challenge-visual-min-height: 21.25rem;
+  --challenge-visual-min-height-mobile: 17.5rem;
+  --challenge-character-size: 13.125rem;
+  --challenge-runner-visual-min-height: 29.375rem;
+  --challenge-runner-visual-min-height-mobile: 20.625rem;
+  --challenge-runner-character-size: 16.875rem;
+  --challenge-card-radius: var(--radius-2xl);
+  --challenge-character-shadow-color: color-mix(in srgb, var(--text-main) 8%, transparent);
+
   /* Shared notification and toolbar dimensions */
   --nav-switcher-max-width: 11.25rem;
   --nav-switcher-label-max-width: 9.375rem;
