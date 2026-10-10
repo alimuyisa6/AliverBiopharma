@@ -197,7 +197,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: var(--btn-height-sm, var(--space-9));
+    min-height: var(--control-height-sm);
     padding: var(--space-2) var(--space-3);
     background: var(--bg-card);
     border: var(--border-width-thin) solid var(--border-default);
