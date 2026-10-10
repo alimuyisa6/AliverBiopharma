@@ -356,7 +356,7 @@
 .notes-card .card-text {
   margin: 0;
   font-size: var(--text-xs);
-  line-height: 1.4;
+  line-height: var(--leading-caption);
   color: var(--text-muted);
 }
 
@@ -376,7 +376,7 @@
   min-width: 0;
   color: var(--text-muted);
   font-size: var(--text-2xs);
-  line-height: 1.25;
+  line-height: var(--leading-tight);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
