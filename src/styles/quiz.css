@@ -10,7 +10,7 @@
   --quiz-option-text-size: var(--text-sm);
   --quiz-option-height: var(--quiz-result-action-height);
   --quiz-option-height-mobile: 4.25rem;
-  --quiz-result-action-height: var(--quiz-result-action-height);
+  --quiz-result-action-height: 4.5rem;
   --quiz-result-action-height-mobile: 4rem;
   --quiz-control-radius: var(--radius-md);
   --quiz-control-hover-surface: var(--surface-subtle);
