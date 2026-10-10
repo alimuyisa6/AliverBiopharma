@@ -82,6 +82,7 @@
   --action-purple-height: 80px;
   --action-purple-duration: 0.3s;
   --action-purple-slow: 0.7s;
+  --action-purple-char-delay-step: 0.03s;
   --action-purple-loop: 1s;
   --action-purple-spin: 3s;
   --action-purple-focus: 1.6s;
