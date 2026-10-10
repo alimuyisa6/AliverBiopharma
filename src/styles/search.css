@@ -13,7 +13,7 @@
 }
 
 .search-input-wrapper {
-  max-width: 640px;
+  max-width: var(--content-max-search);
   margin: 0 auto;
   position: relative;
 }
