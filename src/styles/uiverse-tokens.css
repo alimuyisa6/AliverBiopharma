@@ -53,6 +53,16 @@
     10px 20px 10px hsl(220deg 18% 50% / 40%),
     20px 30px 30px hsl(220deg 18% 50% / 60%);
 
+  --action-purple-outline-width: 7.5rem;
+  --action-purple-outline-height: 18.75rem;
+  --action-purple-wrap-padding: var(--space-1);
+  --action-purple-splash-border-width: var(--border-width-thick, 3px);
+  --action-purple-outline-inset: var(--space-1);
+  --action-purple-path-width: 1.5rem;
+  --action-purple-path-height: var(--border-width-thick, 3px);
+  --action-purple-path-short-width: 0.875rem;
+  --action-purple-path-dot-size: 1px;
+  --action-purple-outline-duration: var(--duration-fast);
   --action-purple-white: #ffe7ff;
   --action-purple-100: #f4b1fd;
   --action-purple-200: #d190ff;
