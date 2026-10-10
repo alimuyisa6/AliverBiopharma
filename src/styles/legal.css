@@ -1,10 +1,15 @@
   /* src/styles/legal.css */
+
+:root {
+  --legal-content-max-width: 47.5rem;
+}
+
 .legal-section {
   padding: var(--section-space-y-large) var(--page-gutter-x);
 }
 
 .legal-content-wrap {
-  max-width: 760px;
+  max-width: var(--legal-content-max-width);
   margin: 0 auto;
 }
 
