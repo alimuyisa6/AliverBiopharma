@@ -238,7 +238,7 @@
   margin-inline: auto;
 }
 .notes-page {
-  padding-top: var(--space-4);
+  padding-top: var(--space-2);
 }
 
 .notes-search {
@@ -308,10 +308,6 @@
 }
 
 @media (max-width: 480px) {
-  .notes-page {
-    padding-top: var(--space-3);
-  }
-
   .notes-search {
     min-height: var(--content-page-search-height);
   }
@@ -335,11 +331,6 @@
 .notes-page-shell {
   margin-top: 0;
 }
-
-.notes-page {
-  padding-top: var(--space-2);
-}
-
 
 .notes-grid {
   display: grid;
