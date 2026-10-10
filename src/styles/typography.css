@@ -5,6 +5,7 @@
 :root {
   --font-primary: var(--ui-font-family, 'Maven Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif);
   --font-heading: var(--ui-font-family, 'Maven Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif);
+  --font-button: var(--font-primary);
   --font-maven: 'Maven Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   --font-reading: var(--ui-font-family, 'Maven Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif);
   --font-mono: 'DM Mono', monospace;
