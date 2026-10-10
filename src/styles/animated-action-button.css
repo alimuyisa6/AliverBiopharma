@@ -52,7 +52,7 @@
   position: absolute;
   inset: -45% -30%;
   pointer-events: none;
-  border: 3px solid transparent;
+  border: var(--action-purple-splash-border-width) solid transparent;
   border-radius: 50%;
   opacity: 0;
 }
@@ -60,7 +60,7 @@
 .animated-action-button__wrap {
   overflow: hidden;
   transform: translate(6px, -6px);
-  padding: 3px;
+  padding: var(--action-purple-wrap-padding);
   background: linear-gradient(to bottom, var(--action-purple-100), var(--action-purple-400));
   transition: all var(--action-purple-duration) var(--ease-standard);
 }
@@ -68,15 +68,15 @@
 .animated-action-button__outline {
   overflow: hidden;
   opacity: 0;
-  transition: opacity 0.4s var(--ease-standard);
+  transition: opacity var(--action-purple-outline-duration) var(--ease-standard);
 }
 
 .animated-action-button__outline::before {
   content: "";
   position: absolute;
-  inset: 2px;
-  width: 120px;
-  height: 300px;
+  inset: var(--action-purple-outline-inset);
+  width: var(--action-purple-outline-width);
+  height: var(--action-purple-outline-height);
   margin: auto;
   background: linear-gradient(to right, transparent, var(--white) 50%, transparent);
   animation: animatedActionSpin var(--action-purple-spin) linear infinite paused;
@@ -137,8 +137,8 @@
 
 .animated-action-button__icon {
   z-index: 4;
-  width: 24px;
-  height: 3px;
+  width: var(--action-purple-path-width);
+  height: var(--action-purple-path-height);
   position: relative;
   margin-left: auto;
   margin-right: var(--space-6);
@@ -152,8 +152,8 @@
   content: "";
   position: absolute;
   right: 0;
-  width: 14px;
-  height: 3px;
+  width: var(--action-purple-path-short-width);
+  height: var(--action-purple-path-height);
   border-radius: 15px;
   background: var(--action-purple-white);
   transform-origin: center right;
@@ -171,8 +171,8 @@
 
 .animated-action-button__label {
   position: absolute;
-  width: 1px;
-  height: 1px;
+  width: var(--action-purple-path-dot-size);
+  height: var(--action-purple-path-dot-size);
   overflow: hidden;
   clip: rect(0 0 0 0);
   white-space: nowrap;
