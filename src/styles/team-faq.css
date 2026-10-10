@@ -102,7 +102,7 @@
   justify-content: center;
   font-size: var(--text-lg);
   font-weight: var(--weight-bold);
-  line-height: 1;
+  line-height: var(--leading-none);
   transition: transform var(--ease-fast), background var(--ease-fast), border-color var(--ease-fast), color var(--ease-fast);
 }
 
@@ -281,7 +281,7 @@
   text-transform: uppercase;
   letter-spacing: var(--tracking-wider);
   margin-bottom: var(--space-3);
-  padding: 2px var(--space-3);
+  padding: var(--space-1) var(--space-3);
   border-radius: var(--radius-full);
 }
 
@@ -513,8 +513,8 @@
   border-radius: var(--radius-full);
   background: var(--teal-100);
   color: var(--teal-700);
-  font-size: 4rem;
-  box-shadow: 0 24px 60px rgba(13, 148, 136, 0.18);
+  font-size: var(--space-16);
+  box-shadow: var(--shadow-lg);
 }
 
 .faq-illustration-orb {
@@ -760,7 +760,7 @@
   color: var(--text-muted);
   font-family: var(--font-mono);
   font-size: var(--text-caption);
-  font-weight: 600;
+  font-weight: var(--weight-semibold);
 }
 
 .faq-question-text {
@@ -878,7 +878,7 @@
   color: var(--text-on-primary);
   font-family: var(--font-primary);
   font-size: var(--text-body-sm);
-  font-weight: 700;
+  font-weight: var(--weight-bold);
   text-decoration: none;
   cursor: pointer;
 }
@@ -986,7 +986,7 @@
   border-radius: var(--radius-full);
   background: var(--amber-100);
   color: var(--amber-700);
-  font-size: 5rem;
+  font-size: var(--space-20);
   opacity: 0.8;
 }
 
@@ -1001,7 +1001,7 @@
   border-radius: var(--radius-full);
   background: var(--teal-50);
   color: var(--teal-500);
-  font-size: 3rem;
+  font-size: var(--space-12);
   opacity: 0.7;
 }
 
@@ -1101,7 +1101,7 @@
     height: 130px;
     inset-inline-end: -25px;
     inset-block-end: -25px;
-    font-size: 3rem;
+    font-size: var(--space-12);
   }
 }
 
