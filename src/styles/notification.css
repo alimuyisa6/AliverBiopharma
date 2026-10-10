@@ -1,6 +1,6 @@
 /* Notification panel list sizing. */
 :root {
-  --notification-list-max-height: var(--notification-list-max-height);
+  --notification-list-max-height: 25rem;
 }
 
 /* styles/notification.css */
