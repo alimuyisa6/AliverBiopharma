@@ -1,3 +1,8 @@
+/* Notification panel list sizing. */
+:root {
+  --notification-list-max-height: var(--notification-list-max-height);
+}
+
 /* styles/notification.css */
 .notification-center {
   position: relative;
