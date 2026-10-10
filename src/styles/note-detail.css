@@ -275,7 +275,7 @@
   padding: var(--space-1) var(--space-2);
   border-radius: var(--radius-xs);
   font-family: var(--font-mono);
-  font-size: 0.9em;
+  font-size: var(--text-sm);
   color: var(--text-main);
 }
 
