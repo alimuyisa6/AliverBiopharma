@@ -71,6 +71,10 @@
   --auth-form-max-width: 460px;
 
   /* Shared notification and toolbar dimensions */
+  --nav-switcher-max-width: 11.25rem;
+  --nav-switcher-label-max-width: 9.375rem;
+  --dropdown-menu-min-width: 13.75rem;
+  --footer-tagline-max-width: 17.5rem;
   --status-banner-max-width: 23.75rem;
   --status-banner-min-height: 3.375rem;
   --status-icon-size: 1.875rem;
