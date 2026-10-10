@@ -5,7 +5,7 @@
   --maintenance-alert-max-width: var(--content-max-readable);
   --maintenance-card-radius: var(--radius-2xl);
   --maintenance-alert-radius: var(--radius-lg);
-  --maintenance-boundary-min-height: 13.75rem;
+  --maintenance-boundary-min-height: var(--maintenance-boundary-min-height);
 }
 
 .maintenance-screen {
