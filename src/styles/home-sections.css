@@ -204,7 +204,7 @@
 .home-faq-item:hover { border-color: var(--border-strong); }
 .home-faq-grey,.home-faq-green,.home-faq-blue,.home-faq-amber,.home-faq-emerald { border-inline-start-color: var(--border-strong); }
 .home-faq-grey .home-faq-icon,.home-faq-green .home-faq-icon,.home-faq-blue .home-faq-icon,.home-faq-amber .home-faq-icon,.home-faq-emerald .home-faq-icon { background: var(--surface-subtle); color: var(--grey-700); }
-.home-faq-plus { flex: 0 0 var(--space-7); width: var(--space-7); height: var(--space-7); display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-strong); border-radius: var(--radius-full); background: var(--surface-card); color: var(--text-main); font-family: var(--font-primary); font-size: var(--text-lg); font-weight: var(--weight-semibold); line-height: 1; }
+.home-faq-plus { flex: 0 0 var(--space-7); width: var(--space-7); height: var(--space-7); display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-strong); border-radius: var(--radius-full); background: var(--surface-card); color: var(--text-main); font-family: var(--font-primary); font-size: var(--text-lg); font-weight: var(--weight-semibold); line-height: var(--leading-none); }
 .home-faq-grey .home-faq-plus,.home-faq-green .home-faq-plus,.home-faq-blue .home-faq-plus,.home-faq-amber .home-faq-plus,.home-faq-emerald .home-faq-plus { border-color: var(--border-strong); background: var(--surface-card); color: var(--text-main); }
 .home-faq-item.active { border-color: var(--border-strong); background: var(--surface-card); }
 .home-faq-grey.active,.home-faq-green.active,.home-faq-blue.active,.home-faq-amber.active,.home-faq-emerald.active { background: var(--surface-card); }
