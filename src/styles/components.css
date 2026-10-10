@@ -211,7 +211,7 @@
 .spinner-conic {
   border-radius: var(--radius-full);
   background: conic-gradient(from 0deg, currentColor 0 25%, transparent 25% 100%);
-  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 0);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), var(--black) 0);
   mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 0);
 }
 
