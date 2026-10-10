@@ -1,3 +1,8 @@
+:root {
+  --content-switcher-option-min-height: var(--control-height-lg);
+  --content-switcher-option-min-height-mobile: var(--control-height-md);
+}
+
 .content-switcher-card {
   width: min(var(--switcher-width), var(--switcher-width-fluid));
   max-width: 100%;
@@ -30,7 +35,7 @@
   position: relative;
   z-index: 2;
   min-width: 0;
-  min-height: 40px;
+  min-height: var(--content-switcher-option-min-height);
   padding: var(--space-2) var(--space-1);
   border: 0;
   border-radius: var(--switcher-option-radius);
@@ -81,7 +86,7 @@
   }
 
   .content-switcher__option {
-    min-height: 38px;
+    min-height: var(--content-switcher-option-min-height-mobile);
     font-size: var(--text-xs);
   }
 }
