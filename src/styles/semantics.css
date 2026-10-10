@@ -6,6 +6,8 @@
      -------------------------------------------------------------- */
   --primary: var(--blue-600);
   --primary-hover: var(--blue-700);
+  --primary-dark: var(--primary-hover);
+  --primary-soft: var(--primary-light);
   --primary-light: var(--blue-50);
   --primary-border: var(--blue-200);
   --primary-ring: rgba(37, 99, 235, 0.2);
