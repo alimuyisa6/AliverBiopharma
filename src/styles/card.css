@@ -385,7 +385,7 @@
 .dash-strip {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
+  gap: var(--space-1);
   overflow: hidden;
   margin-bottom: var(--content-gap);
   background: var(--border-default);
@@ -474,7 +474,7 @@
 }
 
 .section-head-left p {
-  max-width: 680px;
+  max-width: var(--content-max-readable);
   margin: var(--text-gap-subtitle) 0 0;
   color: var(--text-secondary);
   font-family: var(--font-primary);
