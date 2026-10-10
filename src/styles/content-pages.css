@@ -450,7 +450,7 @@
   }
 
   .notes-card .card-title {
-    font-size: 0.68rem;
+    font-size: var(--text-2xs);
   }
 
   .notes-card .card-text {
@@ -465,6 +465,6 @@
     width: 100%;
     min-height: var(--content-page-card-action-height);
     padding-inline: var(--space-2);
-    font-size: 0.6rem;
+    font-size: var(--text-2xs);
   }
 }
