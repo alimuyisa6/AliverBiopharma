@@ -1,3 +1,11 @@
+:root {
+  --flashcard-control-max-width: 12.5rem;
+  --flashcard-description-max-width: 18.75rem;
+  --flashcard-panel-max-width: 25rem;
+  --flashcard-face-height: 15rem;
+  --flashcard-content-max-width: 31.25rem;
+}
+
  /* src/styles/flashcard.css */
 .fcd-section {
   padding-top: var(--space-6);
@@ -87,13 +95,13 @@
 }
 
 .fcd-card-image {
-  max-width: 200px;
+  max-width: var(--flashcard-control-max-width);
   margin: 0 auto;
   border-radius: var(--radius-sm);
 }
 
 .fcd-structure-image {
-  max-width: 300px;
+  max-width: var(--flashcard-description-max-width);
   margin: 0 auto;
   border-radius: var(--radius-sm);
 }
@@ -180,14 +188,14 @@
 
 .fcw-flip-container {
   perspective: 1200px;
-  max-width: 400px;
+  max-width: var(--flashcard-panel-max-width);
   margin: 0 auto;
 }
 
 .fcw-flip-inner {
   position: relative;
   width: 100%;
-  height: 240px;
+  height: var(--flashcard-face-height);
   transition: transform var(--duration-slow) var(--ease-standard);
   transform-style: preserve-3d;
 }
@@ -225,7 +233,7 @@
 
 .fcp-card {
   padding: var(--space-10);
-  max-width: 500px;
+  max-width: var(--flashcard-content-max-width);
   margin: 0 auto;
 }
 
