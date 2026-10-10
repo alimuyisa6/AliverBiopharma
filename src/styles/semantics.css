@@ -21,6 +21,8 @@
   --accent-border: var(--amber-200);
 
   --success: var(--green-600);
+  --color-success: var(--success);
+  --color-success-strong: var(--success-hover);
   --success-hover: var(--green-700);
   --success-light: var(--green-50);
   --success-border: var(--green-200);
