@@ -268,7 +268,7 @@
 
 .fcp-stat-value {
   font-size: var(--text-4xl);
-  font-weight: var(--weight-black);
+  font-weight: var(--weight-bold);
 }
 
 .fcp-stat-value.is-score { color: var(--primary); }
