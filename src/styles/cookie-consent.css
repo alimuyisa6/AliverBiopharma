@@ -28,7 +28,7 @@
 }
 .cookie-consent-brand { flex: 0 0 auto; display:flex; align-items:center; }
 .cookie-consent-logo { display:block; width:auto; max-width:var(--cookie-consent-logo-max-width); max-height:var(--cookie-consent-logo-max-height); object-fit:contain; }
-.cookie-consent-wordmark { font-weight:700; color:var(--text-main); }
+.cookie-consent-wordmark { font-weight:var(--weight-bold); color:var(--text-main); }
 .cookie-consent-content { min-width:0; flex:1; }
 .cookie-consent-content h2 { margin:0 0 var(--space-2); font-size:var(--text-lg); color:var(--text-main); }
 .cookie-consent-content p { margin:0; color:var(--text-muted); line-height:var(--leading-body); }
