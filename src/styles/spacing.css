@@ -172,6 +172,7 @@
   --z-modal: 200;
   --z-toast: 300;
   --z-tooltip: 400;
+  --z-maintenance: 10000;
 
   --breakpoint-sm: 640px;
   --breakpoint-md: 768px;
