@@ -743,3 +743,15 @@ body.accessibility-dyslexia-font * {
   --social-github: #24292f;
 }
 
+
+
+/* Skeleton shimmer tones adapt to the active color scheme. */
+:root {
+  --skeleton-shimmer-base: rgb(100 116 139 / 8%);
+  --skeleton-shimmer-highlight: rgb(255 255 255 / 35%);
+}
+
+body.dark-mode {
+  --skeleton-shimmer-base: rgb(148 163 184 / 8%);
+  --skeleton-shimmer-highlight: rgb(15 23 42 / 35%);
+}
