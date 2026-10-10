@@ -34,8 +34,8 @@
 }
 
 .why-choose-card {
-  --why-line: rgba(37, 99, 235, 0.16);
-  --why-soft: rgba(37, 99, 235, 0.06);
+  --why-line: color-mix(in srgb, var(--why-color, var(--primary)) 16%, transparent);
+  --why-soft: color-mix(in srgb, var(--why-color, var(--primary)) 6%, transparent);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -90,8 +90,8 @@
 
 .why-choose-card-green {
   --why-color: var(--secondary);
-  --why-line: rgba(5, 150, 105, 0.17);
-  --why-soft: rgba(5, 150, 105, 0.06);
+  --why-line: color-mix(in srgb, var(--why-color) 17%, transparent);
+  --why-soft: color-mix(in srgb, var(--why-color) 6%, transparent);
 }
 
 .why-choose-card-green::before {
@@ -109,8 +109,8 @@
 
 .why-choose-card-amber {
   --why-color: var(--accent);
-  --why-line: rgba(217, 119, 6, 0.18);
-  --why-soft: rgba(217, 119, 6, 0.06);
+  --why-line: color-mix(in srgb, var(--why-color) 18%, transparent);
+  --why-soft: color-mix(in srgb, var(--why-color) 6%, transparent);
 }
 
 .why-choose-card-amber::before {
@@ -129,8 +129,8 @@
 
 .why-choose-card-grey {
   --why-color: var(--text-muted);
-  --why-line: rgba(107, 114, 128, 0.17);
-  --why-soft: rgba(107, 114, 128, 0.05);
+  --why-line: color-mix(in srgb, var(--why-color) 17%, transparent);
+  --why-soft: color-mix(in srgb, var(--why-color) 5%, transparent);
 }
 
 .why-choose-card-grey::before {
