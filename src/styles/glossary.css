@@ -1,3 +1,9 @@
+:root {
+  --glossary-sidebar-width: 18.75rem;
+  --glossary-header-max-width: var(--modal-content-max-width, 32.5rem);
+  --glossary-search-max-width: 26.25rem;
+}
+
  /* src/styles/glossary.css */
 
 .glossary-page {
@@ -95,7 +101,7 @@
 }
 
 .glossary-subtitle {
-  max-width: 520px;
+  max-width: var(--glossary-header-max-width);
   margin: 0 auto var(--text-gap-description);
   color: var(--text-inverse);
   opacity: 0.9;
@@ -109,7 +115,7 @@
   align-items: center;
   gap: var(--space-2);
   padding: var(--space-2) var(--space-4);
-  border: 1px solid rgba(255, 255, 255, 0.65);
+  border: 1px solid color-mix(in srgb, var(--text-inverse) 65%, transparent);
   border-radius: var(--radius-sm);
   background: transparent;
   color: var(--text-inverse);
@@ -157,7 +163,7 @@
 
 .glossary-sidebar {
   flex-shrink: 0;
-  width: 300px;
+  width: var(--glossary-sidebar-width);
   transition: width var(--ease-smooth), opacity var(--ease-smooth);
 }
 
@@ -359,7 +365,7 @@
 }
 
 .glossary-welcome p {
-  max-width: 420px;
+  max-width: var(--glossary-search-max-width);
   margin-bottom: var(--text-gap-action);
   color: var(--text-secondary);
   font-family: var(--font-reading);
@@ -515,7 +521,7 @@
 
 .glossary-meta-item {
   flex: 1;
-  min-width: 200px;
+  min-width: var(--dropdown-menu-min-width);
   padding: var(--space-3);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
