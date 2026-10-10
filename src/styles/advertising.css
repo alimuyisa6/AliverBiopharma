@@ -162,7 +162,7 @@
   font-family: var(--font-maven);
   font-size: var(--type-page-title-size);
   font-weight: var(--weight-bold);
-  line-height: 1;
+  line-height: var(--leading-none);
   letter-spacing: var(--tracking-tight);
 }
 
@@ -286,7 +286,7 @@
   font-family: var(--font-maven);
   font-size: var(--text-xs);
   font-weight: var(--weight-bold);
-  line-height: 1;
+  line-height: var(--leading-none);
 }
 
 .advertise-programme h3 {
@@ -477,7 +477,7 @@
   font-family: var(--font-maven);
   font-size: var(--type-page-title-size);
   font-weight: var(--weight-bold);
-  line-height: 1;
+  line-height: var(--leading-none);
   letter-spacing: var(--tracking-tight);
 }
 
@@ -919,7 +919,7 @@
   font-family: var(--font-maven);
   font-size: var(--type-page-title-size);
   font-weight: var(--weight-bold);
-  line-height: 1;
+  line-height: var(--leading-none);
   letter-spacing: var(--tracking-tight);
 }
 
