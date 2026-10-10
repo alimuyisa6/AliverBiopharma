@@ -1,10 +1,22 @@
+/* Content-page component sizing follows the shared design tokens. */
+:root {
+  --content-page-search-max-width: 35rem;
+  --content-page-search-height: var(--control-height-lg);
+  --content-page-search-input-height: 2.875rem;
+  --content-page-search-clear-size: var(--control-height-xs);
+  --content-page-card-image-height: 5.625rem;
+  --content-page-card-image-height-tablet: 4.5rem;
+  --content-page-card-image-height-mobile: 3.75rem;
+  --content-page-card-action-height: var(--control-height-xs);
+}
+
  .notes-page-shell,
 .flashcards-page,
 .notes-page,
 .quiz-page,
 .recall-page,
 .pp-page {
-  width: min(1280px, calc(100% - clamp(32px, 6vw, 80px)));
+  width: min(var(--max-width), calc(100% - (var(--page-gutter-x) * 2)));
   margin-inline: auto;
   min-width: 0;
 }
@@ -38,7 +50,7 @@
 .quiz-page-title,
 .recall-page-title,
 .pp-title {
-  max-width: 900px;
+  max-width: var(--content-max-wide);
   margin: 0;
   color: var(--text-main);
   letter-spacing: var(--tracking-tight);
@@ -63,7 +75,7 @@
 .flashcard-subtitle,
 .quiz-intro-description,
 .recall-page-intro {
-  max-width: 680px;
+  max-width: var(--content-max-compact);
   margin-top: var(--space-3);
   color: var(--text-secondary);
   line-height: var(--leading-relaxed);
@@ -113,7 +125,7 @@
 .quiz-blocks-empty,
 .recall-leaderboard-empty {
   width: 100%;
-  max-width: 760px;
+  max-width: var(--content-max-readable);
   margin-inline: auto;
 }
 
@@ -135,7 +147,7 @@
 
 .pp-hero-inner,
 .pp-main {
-  max-width: 1180px;
+  max-width: var(--max-width);
 }
 
 .pp-hero {
@@ -167,7 +179,7 @@
   .quiz-page,
   .recall-page,
   .pp-page {
-    width: calc(100% - 32px);
+    width: calc(100% - (var(--page-gutter-x) * 2));
   }
 
   .flashcards-page,
@@ -199,7 +211,7 @@
   .quiz-page,
   .recall-page,
   .pp-page {
-    width: calc(100% - 24px);
+    width: calc(100% - (var(--page-gutter-x) * 2));
   }
 
   .flashcards-page,
@@ -222,7 +234,7 @@
 }
 
 .notes-page-shell > .notes-page {
-  width: min(1180px, 100%);
+  width: min(var(--max-width), 100%);
   margin-inline: auto;
 }
 .notes-page {
@@ -233,19 +245,19 @@
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  width: min(100%, 560px);
-  min-height: 48px;
+  width: min(100%, var(--content-page-search-max-width));
+  min-height: var(--content-page-search-height);
   padding: 0 var(--space-3);
   border: 1px solid var(--border-default);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   background: var(--bg-card);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-sm);
   transition: border-color var(--ease-fast), box-shadow var(--ease-fast);
 }
 
 .notes-search:focus-within {
   border-color: var(--border-focus);
-  box-shadow: var(--shadow-focus), 0 4px 14px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-focus);
 }
 
 .notes-search > svg {
@@ -256,7 +268,7 @@
 .notes-search input {
   flex: 1;
   min-width: 0;
-  height: 46px;
+  height: var(--content-page-search-input-height);
   padding: 0;
   border: 0;
   outline: 0;
@@ -274,11 +286,11 @@
   align-items: center;
   justify-content: center;
   flex: 0 0 auto;
-  width: 30px;
-  height: 30px;
+  width: var(--content-page-search-clear-size);
+  height: var(--content-page-search-clear-size);
   padding: 0;
   border: 0;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   background: transparent;
   color: var(--text-muted);
   cursor: pointer;
@@ -301,11 +313,11 @@
   }
 
   .notes-search {
-    min-height: 46px;
+    min-height: var(--content-page-search-height);
   }
 
   .notes-search input {
-    height: 44px;
+    height: var(--content-page-search-input-height);
   }
 }
 .notes-search input[type="search"]::-webkit-search-cancel-button,
@@ -346,13 +358,13 @@
 .notes-card .card-title {
   margin-bottom: var(--space-1);
   font-size: var(--text-xs);
-  line-height: 1.3;
+  line-height: var(--leading-normal);
   font-weight: var(--weight-semibold);
 }
 
 .notes-card .card-text {
   margin: 0;
-  font-size: 0.72rem;
+  font-size: var(--text-xs);
   line-height: 1.4;
   color: var(--text-muted);
 }
@@ -372,7 +384,7 @@
 .notes-card-meta {
   min-width: 0;
   color: var(--text-muted);
-  font-size: 0.62rem;
+  font-size: var(--text-2xs);
   line-height: 1.25;
   white-space: nowrap;
   overflow: hidden;
@@ -381,13 +393,13 @@
 
 .notes-card .btn {
   width: 100%;
-  min-height: 30px;
+  min-height: var(--content-page-card-action-height);
   padding: 0 var(--space-3);
-  font-size: 0.68rem;
+  font-size: var(--text-2xs);
 }
 
 .notes-card .card-image {
-  height: 90px;
+  height: var(--content-page-card-image-height);
   margin: calc(var(--space-3) * -1) calc(var(--space-3) * -1) var(--space-2);
   width: calc(100% + var(--space-6));
   object-fit: cover;
@@ -409,17 +421,17 @@
   }
 
   .notes-card .card-image {
-    height: 72px;
+    height: var(--content-page-card-image-height-tablet);
     margin: calc(var(--space-2) * -1) calc(var(--space-2) * -1) var(--space-2);
     width: calc(100% + var(--space-4));
   }
 
   .notes-card .card-title {
-    font-size: 0.7rem;
+    font-size: var(--text-xs);
   }
 
   .notes-card .card-text {
-    font-size: 0.64rem;
+    font-size: var(--text-2xs);
   }
 }
 
@@ -434,7 +446,7 @@
   }
 
   .notes-card .card-image {
-    height: 60px;
+    height: var(--content-page-card-image-height-mobile);
   }
 
   .notes-card .card-title {
@@ -442,16 +454,16 @@
   }
 
   .notes-card .card-text {
-    font-size: 0.6rem;
+    font-size: var(--text-2xs);
   }
 
   .notes-card-meta {
-    font-size: 0.56rem;
+    font-size: var(--text-2xs);
   }
 
   .notes-card .btn {
     width: 100%;
-    min-height: 26px;
+    min-height: var(--content-page-card-action-height);
     padding-inline: var(--space-2);
     font-size: 0.6rem;
   }
