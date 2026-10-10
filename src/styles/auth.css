@@ -180,8 +180,8 @@
 .auth-feature-list {
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
-  margin: 1.85rem 0 0;
+  gap: var(--space-4);
+  margin: var(--space-7) 0 0;
   padding: 0;
   list-style: none;
 }
@@ -189,7 +189,7 @@
 .auth-feature-list li {
   display: flex;
   align-items: center;
-  gap: 0.7rem;
+  gap: var(--space-3);
   color: var(--auth-glass-white-92);
   font-family: var(--auth-font-body);
   font-size: var(--text-sm);
@@ -234,7 +234,7 @@
 }
 
 .auth-form-head {
-  margin-bottom: 1.75rem;
+  margin-bottom: var(--space-7);
 }
 
 .auth-heading {
@@ -267,7 +267,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.45rem;
+  margin-bottom: var(--space-2);
   color: var(--auth-text);
   font-family: var(--auth-font-body);
   font-size: var(--text-xs);
@@ -275,7 +275,7 @@
 }
 
 .auth-page .form-input {
-  min-height: 48px;
+  min-height: var(--control-height-lg);
   padding: var(--auth-control-padding-y) 2.75rem var(--auth-control-padding-y) 2.7rem;
   border: 1.5px solid var(--auth-border);
   border-radius: var(--auth-radius-sm);
@@ -324,7 +324,7 @@
 
 .auth-page .password-toggle {
   right: 0.55rem;
-  padding: 0.4rem;
+  padding: var(--space-1);
   border-radius: var(--auth-radius-xs);
   color: var(--auth-text-faint);
   transition: color 150ms ease, background 150ms ease;
@@ -336,7 +336,7 @@
 }
 
 .auth-page .form-hint {
-  margin-top: 0.4rem;
+  margin-top: var(--space-2);
   color: var(--auth-text-muted);
   font-family: var(--auth-font-body);
   font-size: var(--text-xs);
@@ -345,17 +345,17 @@
 
 .auth-password-strength {
   margin-top: -0.45rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: var(--space-3);
 }
 
 .auth-strength-bars {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 4px;
+  gap: var(--space-1);
 }
 
 .auth-strength-bars span {
-  height: 4px;
+  height: var(--space-1);
   border-radius: var(--radius-pill);
   background: var(--auth-border);
 }
@@ -367,9 +367,9 @@
 .auth-alert {
   display: flex;
   align-items: flex-start;
-  gap: 0.6rem;
-  margin-bottom: 1.1rem;
-  padding: 0.75rem 0.95rem;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+  padding: var(--space-3) var(--space-4);
   border: 1px solid transparent;
   border-radius: var(--auth-radius-sm);
   font-family: var(--auth-font-alt);
@@ -407,25 +407,25 @@
   align-items: center;
   justify-content: center;
   min-height: 65px;
-  margin: 0.9rem 0 0.4rem;
+  margin: var(--space-4) 0 var(--space-2);
   overflow: hidden;
   border-radius: var(--auth-radius-sm);
 }
 
 .auth-submit {
   width: 100%;
-  margin-top: 0.4rem;
+  margin-top: var(--space-2);
 }
 
 .auth-passkey {
-  margin-top: 0.75rem;
+  margin-top: var(--space-3);
 }
 
 .auth-check-row {
   display: flex;
   align-items: flex-start;
-  gap: 0.6rem;
-  margin: 1rem 0 0.35rem;
+  gap: var(--space-2);
+  margin: var(--space-4) 0 var(--space-1);
   color: var(--auth-text-muted);
   font-family: var(--auth-font-body);
   font-size: var(--text-xs);
@@ -482,7 +482,7 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-1);
-  margin-top: 1.5rem;
+  margin-top: var(--space-6);
   color: var(--auth-text-muted);
   font-family: var(--auth-font-body);
   font-size: var(--text-sm);
@@ -540,30 +540,30 @@
 .auth-options {
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
+  gap: var(--space-3);
 }
 
 .auth-options .btn {
   width: 100%;
   justify-content: flex-start;
-  min-height: 48px;
-  padding: 0.9rem 1.15rem;
+  min-height: var(--control-height-lg);
+  padding: var(--space-4) var(--space-5);
   font-weight: var(--weight-semibold);
 }
 
 .auth-options .btn svg {
-  margin-right: 0.4rem;
+  margin-right: var(--space-2);
 }
 
 .auth-levels-loading {
   display: flex;
   justify-content: center;
-  padding: 1.5rem 0;
+  padding: var(--space-6) 0;
 }
 
 .auth-mfa-field .form-input {
-  padding-left: 0.95rem;
-  padding-right: 0.95rem;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
   text-align: center;
   font-family: var(--font-mono);
   font-size: var(--text-subsection-title);
@@ -576,7 +576,7 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding: 1rem 0;
+  padding: var(--space-4) 0;
   text-align: center;
   animation: auth-fade-in 350ms ease;
 }
@@ -585,7 +585,7 @@
   display: grid;
   width: 76px;
   height: 76px;
-  margin-bottom: 1.4rem;
+  margin-bottom: var(--space-6);
   place-items: center;
   border-radius: var(--radius-round);
   background: var(--auth-brand-soft);
