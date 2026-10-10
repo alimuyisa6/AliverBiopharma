@@ -37,6 +37,7 @@
   --content-gap-compact: var(--space-3);
   --content-gap-large: var(--space-5);
   --content-max-compact: 42.5rem;
+  --content-max-search: 40rem;
   --content-max-readable: 48rem;
   --content-max-wide: 56.25rem;
   --content-max-card: 15.625rem;
