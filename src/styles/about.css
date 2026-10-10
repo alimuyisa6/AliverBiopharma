@@ -1,5 +1,18 @@
  /* src/styles/about.css */
 
+:root {
+  --about-hero-content-max-width: 43.75rem;
+  --about-hero-copy-max-width: 35rem;
+  --about-content-max-width: 53.75rem;
+  --about-heading-accent-width: 3rem;
+  --about-heading-border-width: var(--border-width-emphasis, 2px);
+  --about-social-link-size: 2.25rem;
+  --about-contributor-avatar-size: 3.25rem;
+  --about-contributor-grid-min-width: 13.75rem;
+  --about-contact-page-max-width: 58rem;
+  --about-contact-form-max-width: var(--about-contact-form-max-width);
+}
+
 .about-hero {
   display: flex;
   align-items: center;
@@ -16,7 +29,7 @@
 }
 
 .about-hero-content {
-  max-width: 700px;
+  max-width: var(--about-hero-content-max-width);
 }
 
 .about-hero-title {
@@ -33,7 +46,7 @@
   font-size: var(--text-md);
   line-height: var(--leading-relaxed);
   color: var(--text-inverse);
-  max-width: 560px;
+  max-width: var(--about-hero-copy-max-width);
   margin: 0 auto;
   opacity: 0.9;
 }
@@ -43,7 +56,7 @@
 }
 
 .about-content-wrap {
-  width: min(calc(100% - (var(--page-gutter-x) * 2)), 860px);
+  width: min(calc(100% - (var(--page-gutter-x) * 2)), var(--about-content-max-width));
   margin-inline: auto;
 }
 
@@ -73,7 +86,7 @@
   color: var(--text-main);
   margin-bottom: var(--space-4);
   padding-bottom: var(--space-2);
-  border-bottom: 2px solid var(--border-default);
+  border-bottom: var(--about-heading-border-width) solid var(--border-default);
   position: relative;
 }
 
@@ -81,9 +94,9 @@
   content: '';
   position: absolute;
   left: 0;
-  bottom: -2px;
-  width: 48px;
-  height: 2px;
+  bottom: calc(-1 * var(--about-heading-border-width));
+  width: var(--about-heading-accent-width);
+  height: var(--about-heading-border-width);
   background: var(--primary);
 }
 
@@ -179,8 +192,8 @@
 }
 
 .team-social-link {
-  width: 36px;
-  height: 36px;
+  width: var(--about-social-link-size);
+  height: var(--about-social-link-size);
   border-radius: var(--radius-full);
   border: 1.5px solid var(--border-default);
   display: inline-flex;
@@ -198,7 +211,7 @@
 
 .contributors-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(var(--about-contributor-grid-min-width), 1fr));
   gap: var(--space-3);
   margin-top: var(--space-5);
 }
@@ -214,8 +227,8 @@
 }
 
 .contributor-card img {
-  width: 52px;
-  height: 52px;
+  width: var(--about-contributor-avatar-size);
+  height: var(--about-contributor-avatar-size);
   border-radius: var(--radius-full);
   object-fit: cover;
   flex-shrink: 0;
@@ -331,8 +344,8 @@ a.about-contact-item:hover {
 }
 
 .about-social-link {
-  width: 36px;
-  height: 36px;
+  width: var(--about-social-link-size);
+  height: var(--about-social-link-size);
   border-radius: var(--radius-full);
   border: 1.5px solid var(--border-default);
   display: inline-flex;
@@ -357,7 +370,7 @@ a.about-contact-item:hover {
 
 .about-cta-text {
   color: var(--text-dim);
-  max-width: 560px;
+  max-width: var(--about-hero-copy-max-width);
   margin: var(--space-3) auto;
 }
 
@@ -410,7 +423,7 @@ a.about-contact-item:hover {
 
 /* Contact page layout */
 .contact-page {
-  width: min(100%, 58rem);
+  width: min(100%, var(--about-contact-page-max-width));
   margin-inline: auto;
   padding: var(--space-10) var(--page-gutter-x) var(--space-16);
 }
@@ -422,7 +435,7 @@ a.about-contact-item:hover {
 
 .contact-form-wrap {
   width: 100%;
-  max-width: 46rem;
+  max-width: var(--about-contact-form-max-width);
   margin-inline: auto;
 }
 
