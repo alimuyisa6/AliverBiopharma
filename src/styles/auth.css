@@ -1,5 +1,18 @@
 /* src/styles/auth.css */
 
+:root {
+  --auth-decoration-orb-one-width: 16.25rem;
+  --auth-decoration-orb-one-height: 10.625rem;
+  --auth-decoration-orb-two-width: 18.75rem;
+  --auth-decoration-orb-two-height: 9.6875rem;
+  --auth-decoration-orb-one-offset-y: -4.5rem;
+  --auth-decoration-orb-two-offset-y: -3.625rem;
+  --auth-brand-mark-size: 2.25rem;
+  --auth-brand-icon-size: 1.125rem;
+  --auth-feature-icon-size: 1.125rem;
+  --auth-brand-title-gap: 0.9rem;
+}
+
 .auth-page {
   position: relative;
   z-index: 1;
@@ -73,9 +86,9 @@
 }
 
 .auth-brand-panel::before {
-  width: 260px;
-  height: 170px;
-  top: -72px;
+  width: var(--auth-decoration-orb-one-width);
+  height: var(--auth-decoration-orb-one-height);
+  top: var(--auth-decoration-orb-one-offset-y);
   right: 18%;
   background: var(--auth-glass-white-12);
   filter: blur(34px);
@@ -83,9 +96,9 @@
 }
 
 .auth-brand-panel::after {
-  width: 300px;
-  height: 155px;
-  bottom: -58px;
+  width: var(--auth-decoration-orb-two-width);
+  height: var(--auth-decoration-orb-two-height);
+  bottom: var(--auth-decoration-orb-two-offset-y);
   left: 18%;
   background: var(--auth-glass-white-13);
   filter: blur(36px);
@@ -116,8 +129,8 @@
 
 .auth-brand-mark {
   display: grid;
-  width: 36px;
-  height: 36px;
+  width: var(--auth-brand-mark-size);
+  height: var(--auth-brand-mark-size);
   place-items: center;
   border: 1px solid var(--auth-glass-white-24);
   border-radius: var(--auth-radius-sm);
@@ -127,8 +140,8 @@
 }
 
 .auth-brand-mark svg {
-  width: 18px;
-  height: 18px;
+  width: var(--auth-brand-icon-size);
+  height: var(--auth-brand-icon-size);
 }
 
 .auth-brand-copy {
@@ -136,7 +149,7 @@
 }
 
 .auth-brand-copy h1 {
-  margin: 0 0 0.9rem;
+  margin: 0 0 var(--auth-brand-title-gap);
   color: var(--white);
   font-family: var(--auth-font-display);
   font-size: var(--text-section-title);
@@ -173,9 +186,9 @@
 }
 
 .auth-feature-list svg {
-  width: 18px;
-  height: 18px;
-  flex: 0 0 18px;
+  width: var(--auth-brand-icon-size);
+  height: var(--auth-brand-icon-size);
+  flex: 0 0 var(--auth-feature-icon-size);
   color: var(--auth-glass-white-88);
 }
 
@@ -288,8 +301,8 @@
 
 .auth-page .input-icon {
   left: 0.9rem;
-  width: 18px;
-  height: 18px;
+  width: var(--auth-brand-icon-size);
+  height: var(--auth-brand-icon-size);
   color: var(--auth-text-faint);
   transition: color 150ms ease;
 }
@@ -354,9 +367,9 @@
 }
 
 .auth-alert svg {
-  width: 18px;
-  height: 18px;
-  flex: 0 0 18px;
+  width: var(--auth-brand-icon-size);
+  height: var(--auth-brand-icon-size);
+  flex: 0 0 var(--auth-feature-icon-size);
   margin-top: 1px;
 }
 
@@ -411,9 +424,9 @@
 .auth-check-row input {
   appearance: none;
   position: relative;
-  width: 18px;
-  height: 18px;
-  flex: 0 0 18px;
+  width: var(--auth-brand-icon-size);
+  height: var(--auth-brand-icon-size);
+  flex: 0 0 var(--auth-feature-icon-size);
   margin-top: 2px;
   border: 1.5px solid var(--auth-border-strong);
   border-radius: 5px;
@@ -574,8 +587,8 @@
 }
 
 .auth-state-icon {
-  width: 36px;
-  height: 36px;
+  width: var(--auth-brand-mark-size);
+  height: var(--auth-brand-mark-size);
 }
 
 .auth-state-title {
