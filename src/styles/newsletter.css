@@ -2,7 +2,7 @@
   --newsletter-card-max-width: 20rem;
   --newsletter-card-padding: var(--space-5);
   --newsletter-card-radius: var(--radius-lg);
-  --newsletter-card-border-width: var(--border-width, 1px);
+  --newsletter-card-border-width: var(--border-width-thin);
   --newsletter-icon-size: 3.75rem;
   --newsletter-icon-radius: var(--radius-md);
   --newsletter-icon-bg: color-mix(in srgb, var(--primary) 9%, var(--surface-card));
