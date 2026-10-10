@@ -1,5 +1,9 @@
 /* src/styles/access-state.css */
 
+:root {
+  --access-state-card-max-width: 30rem;
+}
+
 .pending-approval,
 .access-denied {
   display: flex;
@@ -11,7 +15,7 @@
 
 .pending-approval-card,
 .access-denied-card {
-  max-width: 480px;
+  max-width: var(--access-state-card-max-width);
   width: 100%;
   padding: var(--card-padding-y-spacious) var(--card-padding-x-spacious);
   text-align: center;
