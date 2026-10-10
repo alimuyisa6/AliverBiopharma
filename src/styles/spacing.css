@@ -91,6 +91,9 @@
   --nav-switcher-label-max-width: 9.375rem;
   --dropdown-menu-min-width: 13.75rem;
   --footer-tagline-max-width: 17.5rem;
+  --icon-size-hero: var(--space-16);
+  --icon-size-display: var(--space-20);
+  --icon-size-large: var(--space-12);
   --status-banner-max-width: 23.75rem;
   --status-banner-min-height: 3.375rem;
   --status-icon-size: 1.875rem;
