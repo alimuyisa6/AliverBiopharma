@@ -77,7 +77,7 @@
 .theme-swatch-option { display: inline-flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-3); border: 1px solid var(--border-default); border-radius: var(--radius-sm); background: var(--bg-card); color: var(--text-secondary); font-family: var(--font-primary); font-size: var(--text-sm); line-height: var(--leading-normal); text-transform: capitalize; }
 .theme-swatch-option:hover { border-color: var(--border-strong); color: var(--text-main); }
 .theme-swatch-option.active { border-color: var(--primary); color: var(--text-main); }
-.theme-swatch { width: var(--space-4); height: var(--space-4); flex: 0 0 auto; background: var(--swatch-color); border-radius: var(--radius-sm); }
+.theme-swatch { width: var(--space-4); height: var(--space-4); flex: 0 0 auto; background: var(--primary); border-radius: var(--radius-sm); }
 .toggle-switch {
   position: relative;
   display: inline-flex;
