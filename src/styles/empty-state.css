@@ -1,3 +1,9 @@
+/* Empty and error state component widths. */
+:root {
+  --empty-state-image-max-width: 17.5rem;
+  --empty-state-copy-max-width: 25rem;
+}
+
  /* styles/empty-state.css */
 .empty-state {
   display: flex;
@@ -15,7 +21,7 @@
 }
 
 .empty-state-image {
-  max-width: 280px;
+  max-width: var(--empty-state-image-max-width);
   width: 100%;
   height: auto;
   margin-bottom: var(--space-6);
@@ -33,7 +39,7 @@
 .empty-state-text {
   font-size: var(--text-body);
   color: var(--text-secondary);
-  max-width: 400px;
+  max-width: var(--empty-state-copy-max-width);
   line-height: var(--leading-body);
 }
 
@@ -62,6 +68,6 @@
 .error-state-text {
   font-size: var(--text-body);
   color: var(--text-secondary);
-  max-width: 400px;
+  max-width: var(--empty-state-copy-max-width);
   line-height: var(--leading-body);
 }
