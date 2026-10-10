@@ -90,7 +90,7 @@
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-xl);
   transform-origin: bottom right;
-  animation: chat-panel-in var(--duration-normal) var(--ease-standard) both;
+  animation: chat-panel-in var(--duration-smooth) var(--ease-standard) both;
 }
 
 @keyframes chat-panel-in {
