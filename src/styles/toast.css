@@ -1,3 +1,7 @@
+:root {
+  --toast-max-width: 25rem;
+}
+
  /* src/styles/toast.css */
 .toast-container {
   position: fixed;
@@ -7,7 +11,7 @@
   display: flex;
   flex-direction: column-reverse;
   gap: var(--space-3);
-  max-width: 400px;
+  max-width: var(--toast-max-width);
 }
 
 .toast {
