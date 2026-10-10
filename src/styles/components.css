@@ -80,8 +80,8 @@
 }
 
 .spinner-lg {
-  width: 3.5rem;
-  height: 3.5rem;
+  width: var(--space-14);
+  height: var(--space-14);
 }
 
 .spinner-primary { color: var(--primary); }
