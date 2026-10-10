@@ -91,7 +91,7 @@
 .curriculum-node-link-type { color: var(--text-muted); font-family: var(--font-mono); font-size: var(--text-xs); text-transform: capitalize; }
 
 /* Curriculum-aware notes index */
-.notes-page { width: 100%; min-width: 0; padding: var(--space-8) 0 var(--space-16); }
+.notes-page { width: 100%; min-width: 0; padding: var(--space-2) 0 var(--space-4); }
 .notes-page-title { max-width: 900px; margin-bottom: var(--space-3); letter-spacing: var(--tracking-tight); }
 .notes-page-class { margin-bottom: var(--space-5); color: var(--text-muted); }
 .notes-breadcrumb-segment { display: inline-flex; align-items: center; }
@@ -152,7 +152,7 @@
   .curriculum-node-block { padding: var(--space-4) 0; }
   .curriculum-node-block-image { max-height: var(--curriculum-image-max-height-mobile); }
   .curriculum-node-link { grid-template-columns: 1fr; gap: var(--space-1); }
-  .notes-page { padding-top: var(--space-5); }
+  .notes-page { padding-top: var(--space-2); }
   .notes-curriculum-context { align-items: flex-start; flex-direction: column; }
   .notes-context-meta { align-items: flex-start; min-width: 0; padding: var(--space-3) 0 0; border-top: 1px solid var(--border-subtle); border-left: 0; }
   .notes-section-heading { align-items: flex-start; flex-direction: column; }
