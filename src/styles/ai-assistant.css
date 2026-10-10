@@ -1,3 +1,8 @@
+ :root {
+  --ai-assistant-panel-min-height: var(--ai-assistant-panel-min-height);
+  --ai-assistant-panel-min-height-mobile: 20rem;
+}
+
 .ai-assistant {
   position: fixed;
   right: var(--page-gutter-x);
@@ -360,7 +365,7 @@
   .ai-assistant-panel {
     width: calc(100vw - (var(--page-gutter-x) * 2));
     height: min(var(--chat-panel-max-height), calc(100vh - var(--space-16)));
-    min-height: 20rem;
+    min-height: var(--ai-assistant-panel-min-height-mobile);
   }
 
   .ai-assistant-starters {
