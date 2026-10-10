@@ -126,8 +126,8 @@
   display: block;
   color: var(--action-purple-white);
   text-shadow: -1px 1px 2px var(--action-purple-500);
-  animation: animatedActionCharIn 0.7s ease both paused;
-  animation-delay: calc(var(--char-index) * 0.03s);
+  animation: animatedActionCharIn var(--action-purple-slow) var(--ease-standard) both paused;
+  animation-delay: calc(var(--char-index, 0) * var(--action-purple-char-delay-step));
 }
 
 .animated-action-button__words--secondary {
