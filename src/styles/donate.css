@@ -114,8 +114,8 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  min-height: 42px;
-  padding: 0.55rem 1.2rem;
+  min-height: var(--select-control-height);
+  padding: var(--space-2) var(--space-5);
   border: 1.5px solid var(--primary);
   border-radius: var(--radius-full);
   background: transparent;
@@ -197,7 +197,7 @@
 .donate-external-button {
   display: inline-flex;
   align-items: center;
-  min-height: 42px;
+  min-height: var(--select-control-height);
   padding: 0.65rem 1.15rem;
   border-radius: var(--radius-full);
   background: var(--primary);
@@ -255,12 +255,12 @@
   display: grid;
   min-height: 44px;
   place-items: center;
-  font-size: 1.55rem;
+  font-size: var(--text-section-title);
   font-weight: 800;
 }
 
-.donate-mtn { color: #eab308; }
-.donate-airtel { color: #ef4444; }
+.donate-mtn { color: var(--yellow-500); }
+.donate-airtel { color: var(--red-500); }
 
 .donate-copy {
   display: inline-flex;
