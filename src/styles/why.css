@@ -76,8 +76,8 @@
 
 .why-choose-card-blue {
   --why-color: var(--primary);
-  --why-line: rgba(37, 99, 235, 0.16);
-  --why-soft: rgba(37, 99, 235, 0.06);
+  --why-line: color-mix(in srgb, var(--why-color, var(--primary)) 16%, transparent);
+  --why-soft: color-mix(in srgb, var(--why-color, var(--primary)) 6%, transparent);
 }
 
 .why-choose-card-blue::before { border-radius: 50%; }
