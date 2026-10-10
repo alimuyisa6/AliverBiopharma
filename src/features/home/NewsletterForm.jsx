@@ -10,8 +10,6 @@ export function NewsletterForm({ email, status, loading = false, onChange, onSub
             className="newsletter-envelope"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 34 34"
-            width="34"
-            height="34"
             fill="none"
             focusable="false"
           >
