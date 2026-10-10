@@ -39,12 +39,12 @@
   filter: blur(5px);
   box-shadow:
     -7px 6px 0 0 var(--action-purple-shadow),
-    -14px 12px 0 0 rgb(115 75 155 / 30%),
-    -21px 18px 4px 0 rgb(115 75 155 / 25%),
-    -28px 24px 8px 0 rgb(115 75 155 / 15%),
-    -35px 30px 12px 0 rgb(115 75 155 / 12%),
-    -42px 36px 16px 0 rgb(115 75 155 / 8%),
-    -56px 42px 20px 0 rgb(115 75 155 / 5%);
+    -14px 12px 0 0 var(--action-purple-shadow-30),
+    -21px 18px 4px 0 var(--action-purple-shadow-25),
+    -28px 24px 8px 0 var(--action-purple-shadow-15),
+    -35px 30px 12px 0 var(--action-purple-shadow-12),
+    -42px 36px 16px 0 var(--action-purple-shadow-8),
+    -56px 42px 20px 0 var(--action-purple-shadow-5);
   transition: all var(--action-purple-duration) var(--ease-standard);
 }
 
@@ -78,7 +78,7 @@
   width: 120px;
   height: 300px;
   margin: auto;
-  background: linear-gradient(to right, transparent, white 50%, transparent);
+  background: linear-gradient(to right, transparent, var(--white) 50%, transparent);
   animation: animatedActionSpin var(--action-purple-spin) linear infinite paused;
 }
 
@@ -97,7 +97,7 @@
   background: linear-gradient(to bottom, var(--action-purple-300), var(--action-purple-400));
   box-shadow:
     inset -2px 12px 11px -5px var(--action-purple-200),
-    inset 1px -3px 11px 0 rgb(0 0 0 / 35%);
+    var(--action-purple-inset-shadow);
   transition: all var(--action-purple-duration) var(--ease-standard);
 }
 
