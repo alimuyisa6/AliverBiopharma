@@ -1,5 +1,18 @@
 /* src/styles/dashboard.css */
 
+:root {
+  --dashboard-chart-height: 16.25rem;
+  --dashboard-mastery-chart-height: 18.75rem;
+  --dashboard-unit-xp-min-height: 15rem;
+  --dashboard-unit-xp-height: 17.5rem;
+  --dashboard-unit-xp-min-height-mobile: 13.75rem;
+  --dashboard-unit-xp-height-mobile: 16.25rem;
+  --dashboard-activity-chart-height: 5.625rem;
+  --dashboard-activity-average-line-height: var(--dashboard-activity-average-line-height);
+  --dashboard-activity-bars-height: 4.375rem;
+}
+
+
 .dashboard-wrapper {
   width: 100%;
   max-width: var(--max-width);
@@ -124,8 +137,8 @@
 .dashboard-content .dashboard-card-secondary .panel-header { background: transparent; border-bottom-color: var(--border-subtle); }
 .dashboard-content .dashboard-card-secondary .panel-body { padding-top: var(--space-5); padding-bottom: var(--space-5); }
 
-.dashboard-content .dashboard-chart { position: relative; width: 100%; height: 260px; margin-bottom: var(--space-6); }
-.dashboard-content .dashboard-chart-mastery { height: 300px; }
+.dashboard-content .dashboard-chart { position: relative; width: 100%; height: var(--dashboard-chart-height); margin-bottom: var(--space-6); }
+.dashboard-content .dashboard-chart-mastery { height: var(--dashboard-mastery-chart-height); }
 .dashboard-content .dashboard-chart canvas { max-width: 100%; }
 
 .dashboard-content .main-column > .panel, .dashboard-content .sidebar-column > .panel { min-width: 0; }
@@ -156,12 +169,12 @@
 #unit-xp-section .unit-name { display: block; min-width: 0; text-align: left; }
 
 .unit-xp-layout { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(260px, .9fr); gap: var(--space-6); align-items: center; }
-.unit-xp-chart { min-width: 0; min-height: 240px; height: 280px; }
+.unit-xp-chart { min-width: 0; min-height: var(--dashboard-unit-xp-min-height); height: var(--dashboard-unit-xp-height); }
 .unit-xp-chart > * { width: 100%; height: 100%; }
 
 @media (max-width: 700px) {
   .unit-xp-layout { grid-template-columns: 1fr; }
-  .unit-xp-chart { min-height: 220px; height: 260px; }
+  .unit-xp-chart { min-height: var(--dashboard-unit-xp-min-height-mobile); height: var(--dashboard-unit-xp-height-mobile); }
   .dashboard-welcome-card { padding-inline: var(--space-6); }
 }
 
@@ -181,12 +194,12 @@
 .dashboard-activity-range-value { color: var(--text-main); font-size: var(--text-2xl); font-weight: var(--weight-bold); letter-spacing: -0.02em; }
 .dashboard-activity-range-unit { color: var(--text-muted); font-size: var(--text-lg); }
 .dashboard-activity-date { margin-top: var(--space-1); margin-bottom: var(--space-5); color: var(--text-muted); font-size: var(--text-xs); }
-.dashboard-activity-chart { position: relative; height: 90px; margin-bottom: var(--space-5); }
+.dashboard-activity-chart { position: relative; height: var(--dashboard-activity-chart-height); margin-bottom: var(--space-5); }
 .dashboard-activity-bars { display: flex; align-items: flex-end; justify-content: space-around; height: 100%; padding: 0 var(--space-3); position: relative; z-index: 2; }
 .dashboard-activity-avg-line { position: absolute; left: 0; right: 0; top: 45%; height: 1px; background: var(--border-subtle); z-index: 1; }
 .dashboard-activity-avg-label { position: absolute; top: -10px; right: 0; padding: var(--space-1) var(--space-2); border-radius: var(--radius-sm); background: var(--text-main); color: var(--surface-card); font-size: var(--text-2xs); font-weight: var(--weight-semibold); z-index: 3; }
 .dashboard-activity-bar-wrapper { display: flex; flex: 1; flex-direction: column; align-items: center; gap: var(--space-2); }
-.dashboard-activity-bar-container { display: flex; align-items: flex-end; justify-content: center; width: 100%; height: 70px; }
+.dashboard-activity-bar-container { display: flex; align-items: flex-end; justify-content: center; width: 100%; height: var(--dashboard-activity-bars-height); }
 .dashboard-activity-bar { width: 18px; min-height: 12px; border-radius: var(--radius-pill); background: var(--primary); transition: transform var(--ease-fast), opacity var(--ease-fast); }
 .dashboard-activity-bar:hover { transform: scale(1.06); opacity: .85; }
 .dashboard-activity-day { color: var(--text-muted); font-size: var(--text-2xs); font-weight: var(--weight-medium); }
