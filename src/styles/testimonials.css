@@ -60,7 +60,7 @@
   font-family: var(--font-reading);
   font-size: var(--text-5xl);
   font-weight: var(--weight-bold);
-  line-height: 1;
+  line-height: var(--leading-none);
   pointer-events: none;
 }
 
