@@ -60,6 +60,13 @@
   --action-purple-400: #8e26e2;
   --action-purple-500: #5e2b83;
   --action-purple-shadow: rgb(115 75 155 / 40%);
+  --action-purple-shadow-30: color-mix(in srgb, var(--action-purple-shadow) 75%, transparent);
+  --action-purple-shadow-25: color-mix(in srgb, var(--action-purple-shadow) 62.5%, transparent);
+  --action-purple-shadow-15: color-mix(in srgb, var(--action-purple-shadow) 37.5%, transparent);
+  --action-purple-shadow-12: color-mix(in srgb, var(--action-purple-shadow) 30%, transparent);
+  --action-purple-shadow-8: color-mix(in srgb, var(--action-purple-shadow) 20%, transparent);
+  --action-purple-shadow-5: color-mix(in srgb, var(--action-purple-shadow) 12.5%, transparent);
+  --action-purple-inset-shadow: inset 1px -3px 11px 0 rgb(0 0 0 / 35%);
   --action-purple-radius: 18px;
   --action-purple-width: 220px;
   --action-purple-height: 80px;
