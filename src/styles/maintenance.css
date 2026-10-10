@@ -114,7 +114,7 @@
 .maintenance-boundary {
   display: grid;
   place-items: center;
-  min-height: 13.75rem;
+  min-height: var(--maintenance-boundary-min-height);
   padding: var(--space-6);
 }
 
