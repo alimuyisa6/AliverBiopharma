@@ -1,5 +1,11 @@
  /* src/styles/newsletter.css */
 
+:root {
+  --newsletter-copy-max-width: var(--newsletter-copy-max-width);
+  --newsletter-heading-max-width: var(--newsletter-heading-max-width);
+  --newsletter-form-max-width: var(--newsletter-form-max-width);
+}
+
 .newsletter-section {
   width: 100%;
   max-width: var(--max-width);
