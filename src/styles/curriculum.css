@@ -103,7 +103,7 @@
 .notes-context-link { display: inline-flex; align-items: center; gap: var(--space-2); width: fit-content; color: var(--primary); font-size: var(--text-sm); font-weight: var(--weight-semibold); }
 .notes-context-link:hover { color: var(--primary-hover); text-decoration: underline; }
 .notes-context-meta { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; min-width: var(--control-height-lg); padding-left: var(--space-5); border-left: 1px solid var(--border-subtle); }
-.notes-context-meta strong { color: var(--text-main); font-family: var(--font-heading); font-size: var(--text-2xl); line-height: 1; }
+.notes-context-meta strong { color: var(--text-main); font-family: var(--font-heading); font-size: var(--text-2xl); line-height: var(--leading-none); }
 .notes-context-meta span { margin-top: var(--space-1); color: var(--text-muted); font-family: var(--font-mono); font-size: var(--text-xs); text-transform: lowercase; }
 .notes-pathway { margin-bottom: var(--space-8); }
 .notes-section-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-4); }
