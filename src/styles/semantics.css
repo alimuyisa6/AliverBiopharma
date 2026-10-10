@@ -759,3 +759,29 @@ body.dark-mode {
   --skeleton-shimmer-base: rgb(148 163 184 / 8%);
   --skeleton-shimmer-highlight: rgb(15 23 42 / 35%);
 }
+
+
+/* Auth glass highlights: centralized as reusable color tokens. */
+:root {
+  --auth-glass-white-72: rgb(255 255 255 / 72%);
+  --auth-glass-white-52: rgb(255 255 255 / 52%);
+  --auth-glass-white-34: rgb(255 255 255 / 34%);
+  --auth-glass-white-12: rgb(255 255 255 / 12%);
+  --auth-glass-white-44: rgb(255 255 255 / 44%);
+  --auth-glass-white-27: rgb(255 255 255 / 27%);
+  --auth-glass-white-8: rgb(255 255 255 / 8%);
+  --auth-glass-white-43: rgb(255 255 255 / 43%);
+  --auth-glass-white-25: rgb(255 255 255 / 25%);
+  --auth-glass-white-38: rgb(255 255 255 / 38%);
+  --auth-glass-white-22: rgb(255 255 255 / 22%);
+  --auth-glass-white-7: rgb(255 255 255 / 7%);
+  --auth-glass-white-10: rgb(255 255 255 / 10%);
+  --auth-glass-white-13: rgb(255 255 255 / 13%);
+  --auth-glass-white-24: rgb(255 255 255 / 24%);
+  --auth-glass-white-16: rgb(255 255 255 / 16%);
+  --auth-glass-white-78: rgb(255 255 255 / 78%);
+  --auth-glass-white-92: rgb(255 255 255 / 92%);
+  --auth-glass-white-88: rgb(255 255 255 / 88%);
+  --auth-glass-white-55: rgb(255 255 255 / 55%);
+}
+
