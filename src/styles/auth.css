@@ -1,5 +1,6 @@
 /* Auth-only translucent highlights retain the glass-panel design through named tokens. */
 :root {
+  --auth-glass-white-72: rgb(255 255 255 / 72%);
   --auth-glass-white-52: rgb(255 255 255 / 52%);
   --auth-glass-white-34: rgb(255 255 255 / 34%);
   --auth-glass-white-12: rgb(255 255 255 / 12%);
@@ -32,7 +33,7 @@
   min-height: var(--auth-shell-min-height);
   margin: calc(-1 * var(--header-height)) auto 0;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--auth-glass-white-72);
   border-radius: var(--auth-radius-xl);
   background: var(--auth-surface);
   box-shadow: var(--auth-shadow-lg);
