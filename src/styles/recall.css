@@ -940,10 +940,10 @@
   }
 
   .recall-tab-fullscreen {
-    padding-inline: 16px;
+    padding-inline: var(--page-gutter-x);
   }
 
   .recall-question-card {
-    padding-inline: 16px;
+    padding-inline: var(--page-gutter-x);
   }
 }
