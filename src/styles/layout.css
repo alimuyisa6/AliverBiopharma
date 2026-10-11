@@ -356,3 +356,15 @@ body.dark-mode .site-header, body.dark-mode .site-header.scrolled { background: 
   position: relative;
   z-index: 1;
 }
+
+
+/* Hand-drawn illustrations remain transparent and unframed. */
+.footer-science-art-wrap,
+.footer-science-art,
+.home-scope-switcher .home-scope-switcher-art,
+.home-scope-switcher .scope-level-art {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
