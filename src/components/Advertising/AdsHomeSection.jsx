@@ -1,24 +1,12 @@
 /* src/components/Advertising/AdsHomeSection.jsx */
 import { Link } from 'react-router-dom';
 import Icon from '../Icon/Icon';
+import AdvertisingReachIllustration from './AdvertisingReachIllustration';
 import { useLayout } from '../../contexts/LayoutContext';
 
 export default function AdsHomeSection() {
   const { bootstrap } = useLayout();
 
-  const uiComponents = bootstrap?.ui_components || [];
-
-  const component = uiComponents.find(
-    (item) => item.component_key === 'ads_home_section'
-  );
-
-  const imageUrl =
-    component?.properties?.image_url ||
-    '/images/advertising-illustration.jpg';
-
-  const imageAlt =
-    component?.properties?.image_alt ||
-    'Educational advertising opportunities for AliverBiopharm learners';
 
   return (
     <section
@@ -49,13 +37,8 @@ export default function AdsHomeSection() {
         </div>
 
         <div className="ads-home-visual">
-          <div className="ads-home-image-frame">
-            <img
-              className="ads-home-image"
-              src={imageUrl}
-              alt={imageAlt}
-              loading="lazy"
-            />
+          <div className="ads-home-image-frame ads-home-illustration-frame">
+            <AdvertisingReachIllustration />
           </div>
 
           <Link
