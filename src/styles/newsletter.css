@@ -56,26 +56,21 @@
   width: var(--newsletter-envelope-size);
   height: var(--newsletter-envelope-size);
   overflow: visible;
-  animation: newsletter-envelope-float var(--newsletter-envelope-duration) var(--ease-standard) infinite;
 }
 
 .newsletter-envelope__letter {
   transform-box: view-box;
   transform-origin: center bottom;
-  animation: newsletter-envelope-letter var(--newsletter-envelope-letter-duration) var(--ease-standard) infinite;
 }
 
 .newsletter-envelope__flap {
   transform-box: view-box;
   transform-origin: 24px 18px;
-  animation: newsletter-envelope-flap var(--newsletter-envelope-duration) var(--ease-standard) infinite;
-  backface-visibility: hidden;
 }
 
 .newsletter-envelope__seal {
   transform-box: fill-box;
   transform-origin: center;
-  animation: newsletter-envelope-seal var(--newsletter-envelope-duration) ease-in-out infinite;
 }
 
 .newsletter-note {
@@ -222,10 +217,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .newsletter-envelope,
-  .newsletter-envelope__letter,
-  .newsletter-envelope__flap,
-  .newsletter-envelope__seal {
+  .newsletter-envelope {
     animation: none;
   }
 }
