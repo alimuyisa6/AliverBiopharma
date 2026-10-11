@@ -54,9 +54,9 @@ export function NewsletterForm({ email, status, loading = false, onChange, onSub
               stroke="currentColor"
               strokeWidth="1.8"
               strokeLinejoin="round"
-              animate={{ rotateX: [0, -150, -150, 0] }}
+              animate={{ rotate: [0, 180, 180, 0] }}
               transition={{ duration: 3.4, times: [0, 0.2, 0.62, 1], ease: "easeInOut", repeat: Infinity }}
-              style={{ transformOrigin: "24px 18px", transformPerspective: 120 }}
+              style={{ transformOrigin: "24px 18px" }}
             />
             <path
               className="newsletter-envelope__seal"
