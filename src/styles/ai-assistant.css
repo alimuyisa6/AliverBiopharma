@@ -225,6 +225,98 @@
   color: var(--blue-700);
 }
 
+.ai-assistant-live-chat .live-chat-animation {
+  display: block;
+  flex: 0 0 auto;
+  width: var(--space-12);
+  height: var(--space-12);
+  overflow: visible;
+  color: var(--blue-700);
+}
+
+.live-chat-bubble-back {
+  transform-origin: 26px 16px;
+  animation: live-chat-back-bob 2.8s ease-in-out infinite;
+}
+
+.live-chat-bubble-back > path:first-child {
+  fill: var(--amber-300);
+  stroke: var(--amber-500);
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+}
+
+.live-chat-bubble-line {
+  fill: none;
+  stroke: var(--white);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+}
+
+.live-chat-bubble-front {
+  transform-origin: 42px 33px;
+  animation: live-chat-front-bob 2.2s ease-in-out infinite;
+}
+
+.live-chat-bubble-front > path {
+  fill: var(--blue-600);
+  stroke: var(--blue-700);
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+}
+
+.live-chat-bubble-front > circle {
+  fill: var(--white);
+  animation: live-chat-typing 1.2s ease-in-out infinite;
+}
+
+.live-chat-bubble-front > circle:nth-of-type(2) {
+  animation-delay: 120ms;
+}
+
+.live-chat-bubble-front > circle:nth-of-type(3) {
+  animation-delay: 240ms;
+}
+
+.live-chat-spark {
+  fill: var(--teal-500, var(--blue-500));
+  animation: live-chat-sparkle 1.8s ease-in-out infinite;
+}
+
+.live-chat-spark-two {
+  animation-delay: 900ms;
+}
+
+@keyframes live-chat-back-bob {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(calc(var(--space-1) * -1)) rotate(-3deg); }
+}
+
+@keyframes live-chat-front-bob {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(var(--space-1)) rotate(2deg); }
+}
+
+@keyframes live-chat-typing {
+  0%, 60%, 100% { opacity: .45; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(calc(var(--space-1) * -1)); }
+}
+
+@keyframes live-chat-sparkle {
+  0%, 100% { opacity: .25; transform: scale(.7); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-chat-bubble-back,
+  .live-chat-bubble-front,
+  .live-chat-bubble-front > circle,
+  .live-chat-spark {
+    animation: none;
+  }
+}
+
+
 .ai-assistant-live-chat > span {
   display: flex;
   flex: 1 1 auto;
