@@ -393,19 +393,21 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
           </div>
         )}
 
-        <div className="fcd-rate-row">
-          <Button variant="ghost" size="sm" onClick={() => handleRate('easy')} disabled={locked}>Easy</Button>
-          <Button variant="ghost" size="sm" onClick={() => handleRate('medium')} disabled={locked}>Medium</Button>
-          <Button variant="ghost" size="sm" onClick={() => handleRate('hard')} disabled={locked}>Hard</Button>
-        </div>
+        <div className="fcd-review-controls">
+          <div className="fcd-rate-row">
+            <Button variant="ghost" size="sm" onClick={() => handleRate('easy')} disabled={locked}>Easy</Button>
+            <Button variant="ghost" size="sm" onClick={() => handleRate('medium')} disabled={locked}>Medium</Button>
+            <Button variant="ghost" size="sm" onClick={() => handleRate('hard')} disabled={locked}>Hard</Button>
+          </div>
 
-        <div className="fcd-actions-row">
-          <Button variant={isKnown ? 'primary' : 'ghost'} size="sm" onClick={handleToggleKnown} icon={isKnown ? 'circle-check' : 'circle'} disabled={locked}>
-            {isKnown ? 'Known' : 'Mark Known'}
-          </Button>
-          <Button variant={isBookmarked ? 'warm' : 'ghost'} size="sm" onClick={handleToggleBookmark} icon="bookmark" disabled={locked}>
-            {isBookmarked ? 'Saved' : 'Save'}
-          </Button>
+          <div className="fcd-actions-row">
+            <Button variant={isKnown ? 'primary' : 'ghost'} size="sm" onClick={handleToggleKnown} icon={isKnown ? 'circle-check' : 'circle'} disabled={locked}>
+              {isKnown ? 'Known' : 'Mark Known'}
+            </Button>
+            <Button variant={isBookmarked ? 'warm' : 'ghost'} size="sm" onClick={handleToggleBookmark} icon="bookmark" disabled={locked}>
+              {isBookmarked ? 'Saved' : 'Save'}
+            </Button>
+          </div>
         </div>
 
         <div className="fcd-nav-row">
