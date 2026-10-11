@@ -6,6 +6,7 @@ import Button from '../../components/Button/Button';
 import { useLayout } from '../../contexts/LayoutContext';
 import '../../styles/resources.css';
 import DynamicActions from '../../components/DynamicActions';
+import ResourceIllustration from './ResourceIllustration';
 
 const CONTENT_TYPES = [
   {
@@ -193,7 +194,7 @@ export default function ResourcesView({ navigate, user, sections }) {
                       {imageUrl ? (
                         <img src={imageUrl} alt="" loading="lazy" />
                       ) : (
-                        <Icon name={type.icon} />
+                        <ResourceIllustration type={type.key} />
                       )}
                     </div>
                     <span className="resource-card-badge">
