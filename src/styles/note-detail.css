@@ -1081,3 +1081,23 @@
     margin-top: var(--space-1);
   }
 }
+
+/* Keep the note breadcrumb close to the global site header. */
+.note-detail-container {
+  padding-top: var(--space-1);
+}
+.note-detail-container .note-breadcrumb {
+  margin-top: 0;
+  margin-bottom: var(--space-3);
+}
+.note-detail-container .note-search-btn {
+  top: var(--space-1);
+}
+@media (max-width: 768px) {
+  .note-detail-container {
+    padding-top: var(--space-1);
+  }
+  .note-detail-container .note-breadcrumb {
+    margin-bottom: var(--space-2);
+  }
+}
