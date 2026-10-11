@@ -45,15 +45,23 @@ export default function ClassSwitcher({ className = '' }) {
   return (
     <div className={`class-switcher ${className}`.trim()}>
       {isHomeSwitcher && (
-        <svg className="home-scope-switcher-art" viewBox="0 0 320 100" aria-hidden="true" focusable="false">
-          <path d="M24 77C64 77 62 24 104 24S145 77 184 77 224 24 296 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity=".13" />
-          <path d="M24 77H72M104 24H145M184 77H232M256 24H296" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity=".13" />
-          <circle cx="24" cy="77" r="5" fill="var(--primary)" opacity=".18" />
-          <circle cx="104" cy="24" r="6" fill="var(--secondary)" opacity=".2" />
-          <circle cx="184" cy="77" r="5" fill="var(--primary)" opacity=".18" />
-          <circle cx="256" cy="24" r="6" fill="var(--accent)" opacity=".18" />
-          <circle cx="296" cy="24" r="3" fill="currentColor" opacity=".18" />
-        </svg>
+        <div className="home-scope-switcher-art" aria-hidden="true">
+          <svg className="scope-level-art scope-level-art--olevel" viewBox="0 0 48 48" focusable="false">
+            <path d="M17 7h14M20 7v12L11 35a4 4 0 0 0 3.5 6h19a4 4 0 0 0 3.5-6L28 19V7" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M15 32h18M19 26h10" fill="none" stroke="var(--primary)" strokeWidth="1.7" strokeLinecap="round"/>
+            <circle cx="24" cy="35" r="2" fill="var(--primary)" opacity=".55"/>
+          </svg>
+          <svg className="scope-level-art scope-level-art--alevel" viewBox="0 0 48 48" focusable="false">
+            <path d="M18 7h12M21 7v13L12 36a3.5 3.5 0 0 0 3 5h18a3.5 3.5 0 0 0 3-5l-9-16V7" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M16 31h16M19 26h10" fill="none" stroke="var(--secondary)" strokeWidth="1.7" strokeLinecap="round"/>
+            <path d="M21 35l3-3 3 3" fill="none" stroke="var(--secondary)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+          <svg className="scope-level-art scope-level-art--pharmacy" viewBox="0 0 48 48" focusable="false">
+            <path d="M9 28a15 15 0 0 0 30 0H9Z" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round"/>
+            <path d="M17 16l15 15M14 13l5 5M30 29l5 5" fill="none" stroke="var(--accent)" strokeWidth="2.2" strokeLinecap="round"/>
+            <path d="M13 36h22" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/>
+          </svg>
+        </div>
       )}
       {isHomeSwitcher && <span className="class-switcher-label">{label}</span>}
       <button
