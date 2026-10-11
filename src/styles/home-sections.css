@@ -99,17 +99,17 @@
 .home-get-started-art {
   position: absolute;
   display: block;
-  width: clamp(2.75rem, 6vw, 4.5rem);
+  width: clamp(1.75rem, 3.4vw, 2.5rem);
   aspect-ratio: 1;
-  filter: drop-shadow(0 0.35rem 0.65rem color-mix(in srgb, var(--text-main) 12%, transparent));
-  animation: get-started-drift 7s ease-in-out infinite;
+  filter: drop-shadow(0 0.2rem 0.35rem color-mix(in srgb, var(--text-main) 14%, transparent));
+  animation: get-started-drift 4.8s ease-in-out infinite;
   will-change: transform;
 }
 .home-get-started-art svg { display: block; width: 100%; height: 100%; overflow: visible; }
-.home-get-started-art--notes { top: 8%; left: 2%; animation-delay: -1.2s; }
-.home-get-started-art--flask { top: 15%; right: 3%; animation-delay: -3.4s; }
-.home-get-started-art--cards { right: 8%; bottom: 7%; animation-delay: -5s; }
-.home-get-started-art--molecule { left: 7%; bottom: 5%; animation-delay: -2.5s; }
+ .home-get-started-art--notes { top: 12%; left: 3%; animation-delay: -1.2s; }
+.home-get-started-art--flask { top: 18%; right: 4%; animation-delay: -2.4s; }
+.home-get-started-art--cards { right: 12%; bottom: 10%; animation-delay: -3.6s; }
+.home-get-started-art--molecule { left: 12%; bottom: 8%; animation-delay: -0.8s; }
 .home-learning-journey-images .home-learning-journey-image,
 .home-learning-journey-images .home-learning-journey-image-secondary {
   position: absolute;
@@ -130,13 +130,11 @@
 }
 @media (max-width: 640px) {
   .home-learning-journey-images { min-height: 16rem; }
-  .home-get-started-art { width: 2.75rem; opacity: .78; }
+  .home-get-started-art { width: 1.75rem; opacity: .9; }
   .home-get-started-art--notes { left: 0; top: 5%; }
   .home-get-started-art--flask { right: 0; top: 8%; }
   .home-get-started-art--cards { right: 0; bottom: 2%; }
   .home-get-started-art--molecule { left: 0; bottom: 2%; }
-  .home-learning-journey-images .home-learning-journey-image,
-  .home-learning-journey-images .home-learning-journey-image-secondary { display: none; }
 }
 .home-learning-journey-title {
   max-width: var(--content-max-readable);
