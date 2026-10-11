@@ -7,7 +7,6 @@ import { AuthProvider } from './contexts/AuthContext';
 import { I18nProvider } from './contexts/I18nContext';
  import './styles/colors.css';
 import './styles/semantics.css';
-import './styles/palette-combo05.css';
 import './styles/typography.css';
 import './styles/spacing.css';
 import './styles/animation.css';
@@ -18,6 +17,7 @@ import './styles/components.css';
 import './styles/uiverse-tokens.css';
 import './styles/content-switcher.css';
 import './styles/biopharm-toggle.css';
+import './styles/palette-combo05.css';
 
 
 function showFatalError(title, message, stack) {
