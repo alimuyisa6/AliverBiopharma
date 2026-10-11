@@ -13,6 +13,8 @@ import DynamicActions from '../components/DynamicActions';
 import Container from '../components/Container/Container';
 import './PdfLibraryPage.css';
 
+const pdfLibraryCache = new Map();
+
 export default function PdfLibraryPage() {
   const access = useContentAccess();
   const { level, class_name, displayName } = useLevelFilter();
@@ -23,24 +25,35 @@ export default function PdfLibraryPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [sortBy, setSortBy] = useState('title');
+  const cacheKey = `${level || ''}:${class_name || ''}:${curriculumUnitId || 'all'}`;
 
   useEffect(() => {
     if (access.loading || !access.canAccess) return undefined;
     let mounted = true;
-    loadPdfs(mounted);
+    const cachedPdfs = pdfLibraryCache.get(cacheKey);
+    if (cachedPdfs) {
+      setPdfs(cachedPdfs);
+      setLoading(false);
+      setError(null);
+      loadPdfs(() => mounted, false);
+    } else {
+      loadPdfs(() => mounted, true);
+    }
     return () => { mounted = false; };
   }, [access.loading, access.canAccess, level, class_name, curriculumUnitId]);
 
-  async function loadPdfs(mounted = true) {
-    setLoading(true);
+  async function loadPdfs(isMounted = () => true, showLoading = true) {
+    if (showLoading) setLoading(true);
     setError(null);
     try {
       const data = await getPdfsByLevel(curriculumUnitId);
-      if (mounted) setPdfs(Array.isArray(data) ? data : []);
+      const nextPdfs = Array.isArray(data) ? data : [];
+      pdfLibraryCache.set(cacheKey, nextPdfs);
+      if (isMounted()) setPdfs(nextPdfs);
     } catch {
-      if (mounted) setError('Failed to load PDF resources.');
+      if (isMounted() && !pdfLibraryCache.has(cacheKey)) setError('Failed to load PDF resources.');
     } finally {
-      if (mounted) setLoading(false);
+      if (isMounted()) setLoading(false);
     }
   }
 
@@ -115,7 +128,7 @@ export default function PdfLibraryPage() {
             <Skeleton height={160} />
           </div>
         ) : error ? (
-          <EmptyState image={getEmptyStateImage('error')} title="Error" description={error} action={<Button onClick={() => loadPdfs()}>Try Again</Button>} />
+          <EmptyState image={getEmptyStateImage('error')} title="Error" description={error} action={<Button onClick={() => loadPdfs(() => true, true)}>Try Again</Button>} />
         ) : pdfs.length === 0 ? (
           <EmptyState image={getEmptyStateImage('pdfs')} title="No PDFs Available" />
         ) : (
