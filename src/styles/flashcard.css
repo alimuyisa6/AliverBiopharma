@@ -33,10 +33,49 @@
 }
 
 .fcd-mode-row {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: stretch;
   gap: var(--space-2);
+  width: 100%;
   margin-bottom: var(--space-6);
-  flex-wrap: wrap;
+  padding: var(--space-2);
+  border: 1px solid var(--border-subtle, currentColor);
+  border-radius: var(--radius-md);
+  background: var(--bg-secondary, transparent);
+  box-shadow: var(--shadow-subtle);
+}
+
+.fcd-mode-row > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  width: 100%;
+  min-width: 0;
+  min-height: var(--space-10);
+  padding: var(--space-2) var(--space-1);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-xs);
+  white-space: nowrap;
+}
+
+.fcd-mode-row > button svg,
+.fcd-mode-row > button i {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 420px) {
+  .fcd-mode-row {
+    gap: var(--space-1);
+    padding: var(--space-1);
+  }
+
+  .fcd-mode-row > button {
+    gap: var(--space-1);
+    padding-inline: 0;
+    font-size: var(--text-xs);
+  }
 }
 
 .fcd-meta-row {
