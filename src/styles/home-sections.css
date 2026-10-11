@@ -453,3 +453,30 @@ body.dark-mode .testimonial-flat cite { color: var(--success-hover); }
   .home-classroom-section .live-room-art-float,
   .home-classroom-section .live-room-art-pulse { animation: none; }
 }
+
+
+/* Custom SVG artwork sits directly on the page surface: no framed image box. */
+.home-classroom-section .section-teaser-illustration-wrap,
+.home-tutor-section .section-teaser-illustration-wrap {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.home-classroom-section .section-teaser-image-wrap:has(.resource-art-live-room) {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.home-classroom-section .resource-art-live-room {
+  background: transparent;
+}
+.home-learning-journey-images,
+.home-get-started-art,
+.home-get-started-art svg {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
