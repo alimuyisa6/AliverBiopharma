@@ -277,3 +277,52 @@
     width: 100%;
   }
 }
+
+
+/* Subtle, resource-specific SVG watermark behind each card's text. */
+.resource-card {
+  isolation: isolate;
+}
+.resource-card-top {
+  position: relative;
+  z-index: 1;
+  justify-content: flex-end;
+}
+.resource-card-body {
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: calc(var(--space-12) * 2);
+}
+.resource-card-artwork {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  right: var(--card-padding-x-compact);
+  width: clamp(5.5rem, 38%, 8rem);
+  opacity: 0.13;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+.resource-card-artwork .resource-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+}
+.resource-card-title,
+.resource-card-desc {
+  position: relative;
+  z-index: 1;
+  max-width: 88%;
+}
+.resource-card-footer {
+  position: relative;
+  z-index: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .resource-card-artwork .resource-art * {
+    animation: none !important;
+  }
+}
