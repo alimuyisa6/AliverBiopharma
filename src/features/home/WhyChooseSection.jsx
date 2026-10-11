@@ -1,4 +1,3 @@
-import { useLayout } from '../../contexts/LayoutContext';
 import WhyChooseIllustration from './WhyChooseIllustration';
 
  /* features/home/WhyChooseSection.jsx */
@@ -49,7 +48,6 @@ const REASONS = [
 ];
 
 export function WhyChooseSection() {
-  const { bootstrap } = useLayout();
 
   return (
     <section className="section why-choose-section">
