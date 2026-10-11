@@ -23,8 +23,6 @@ function LearningJourneySection({ sections, navigate }) {
   const { bootstrap } = useLayout();
   const uiComponents = bootstrap?.ui_components || [];
   const component = uiComponents.find((item) => item.component_key === 'learning_journey_section');
-  const primaryImage = component?.properties?.image_url || component?.image_url || null;
-  const secondaryImage = component?.properties?.secondary_image_url || null;
   const subtitle = sections?.section_headings?.content_types_subtitle ||
     'Notes, flashcards, quizzes, past papers and recall — everything you need, all in one place.';
 
@@ -47,8 +45,6 @@ function LearningJourneySection({ sections, navigate }) {
           <div className="home-get-started-art home-get-started-art--molecule" aria-hidden="true">
             <svg viewBox="0 0 72 72" focusable="false"><path d="m20 20 30 32M50 20 20 52" stroke="var(--primary)" strokeWidth="3" strokeLinecap="round" opacity=".65"/><circle cx="20" cy="20" r="8" fill="var(--primary)"/><circle cx="50" cy="20" r="8" fill="var(--secondary)"/><circle cx="20" cy="52" r="8" fill="var(--accent)"/><circle cx="50" cy="52" r="8" fill="var(--primary)"/><circle cx="35" cy="36" r="7" fill="var(--surface-card)" stroke="var(--secondary)" strokeWidth="2.5"/></svg>
           </div>
-          {primaryImage && <img src={primaryImage} alt="Learning journey" className="home-learning-journey-image" loading="lazy" />}
-          {secondaryImage && <img src={secondaryImage} alt="" className="home-learning-journey-image-secondary" loading="lazy" />}
         </div>
         <button type="button" className="btn btn-primary home-learning-journey-cta" onClick={() => navigate('/resources')}>Browse resources →</button>
       </div>
