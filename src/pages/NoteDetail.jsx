@@ -623,22 +623,12 @@ export default function NoteDetail() {
           </div>
 
           <div className="note-discussion-art" aria-hidden="true">
-            <svg viewBox="0 0 320 150" role="presentation" focusable="false">
-              <defs>
-                <linearGradient id="discussionBubbleGradient" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#d9f7f0" />
-                  <stop offset="100%" stopColor="#b9e9e6" />
-                </linearGradient>
-                <linearGradient id="discussionNoteGradient" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#fff5d8" />
-                  <stop offset="100%" stopColor="#f5dca0" />
-                </linearGradient>
-              </defs>
-              <ellipse cx="160" cy="132" rx="98" ry="8" fill="currentColor" opacity=".07" />
-              <path d="M48 28h104a17 17 0 0 1 17 17v31a17 17 0 0 1-17 17H91L69 110V93h-4a17 17 0 0 1-17-17V45a17 17 0 0 1 17-17Z" fill="url(#discussionBubbleGradient)" stroke="#0d9488" strokeWidth="2.5" strokeLinejoin="round" />
-              <path d="M72 52h58M72 65h42" fill="none" stroke="#0d9488" strokeWidth="5" strokeLinecap="round" opacity=".72" />
-              <path d="M151 57h105a17 17 0 0 1 17 17v27a17 17 0 0 1-17 17h-9v14l-20-14h-76a17 17 0 0 1-17-17V74a17 17 0 0 1 17-17Z" fill="url(#discussionNoteGradient)" stroke="#b8873a" strokeWidth="2.5" strokeLinejoin="round" />
-              <path d="M170 79h69M170 92h48" fill="none" stroke="#b8873a" strokeWidth="5" strokeLinecap="round" opacity=".76" />
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 150" role="presentation" focusable="false" width="320" height="150">
+              <ellipse cx="160" cy="132" rx="98" ry="8" fill="#0d9488" opacity=".1" />
+              <path d="M48 28h104a17 17 0 0 1 17 17v31a17 17 0 0 1-17 17H91L69 110V93h-4a17 17 0 0 1-17-17V45a17 17 0 0 1 17-17Z" fill="#d9f7f0" stroke="#0d9488" strokeWidth="2.5" strokeLinejoin="round" />
+              <path d="M72 52h58M72 65h42" fill="none" stroke="#0d9488" strokeWidth="5" strokeLinecap="round" />
+              <path d="M151 57h105a17 17 0 0 1 17 17v27a17 17 0 0 1-17 17h-9v14l-20-14h-76a17 17 0 0 1-17-17V74a17 17 0 0 1 17-17Z" fill="#fff1c9" stroke="#b8873a" strokeWidth="2.5" strokeLinejoin="round" />
+              <path d="M170 79h69M170 92h48" fill="none" stroke="#b8873a" strokeWidth="5" strokeLinecap="round" />
               <path d="m222 20 4 9 10 2-8 6 1 10-7-6-9 4 4-9-6-8 10 1Z" fill="#e2c06a" stroke="#b8873a" strokeWidth="1.5" strokeLinejoin="round" />
               <path d="m91 14 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z" fill="#8ad8cb" />
               <circle cx="282" cy="38" r="4" fill="#7c3aed" opacity=".65" />
