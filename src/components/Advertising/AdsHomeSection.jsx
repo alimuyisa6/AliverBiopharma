@@ -2,11 +2,8 @@
 import { Link } from 'react-router-dom';
 import Icon from '../Icon/Icon';
 import AdvertisingReachIllustration from './AdvertisingReachIllustration';
-import { useLayout } from '../../contexts/LayoutContext';
 
 export default function AdsHomeSection() {
-  const { bootstrap } = useLayout();
-
 
   return (
     <section
