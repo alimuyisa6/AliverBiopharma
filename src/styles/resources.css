@@ -178,3 +178,15 @@
     animation: none !important;
   }
 }
+
+
+/* Keep the authored SVG colours and strokes; remove only the surrounding tile. */
+.resource-card-icon:has(.resource-art) {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.resource-card-icon .resource-art {
+  background: transparent;
+}
