@@ -241,21 +241,27 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
         </div>
 
         {mode === 'flip' && (
-          <div className={`card ${cardColor} fcd-question-card is-flip`} onClick={() => setFlipped((current) => !current)}>
-            {!flipped ? (
-              <div>
+          <button
+            type="button"
+            className={`card ${cardColor} fcd-question-card is-flip`}
+            onClick={() => setFlipped((current) => !current)}
+            aria-label={flipped ? 'Show question side' : 'Flip card to reveal answer'}
+            aria-pressed={flipped}
+          >
+            <span className={`fcd-flip-inner${flipped ? ' is-flipped' : ''}`}>
+              <span className="fcd-flip-face is-front">
                 <span className="chip fcd-answer-chip">Question</span>
-                <h3 className="fcd-card-heading">{card.front_text}</h3>
+                <span className="fcd-card-heading">{card.front_text}</span>
                 {card.image_url && <img src={card.image_url} alt="" className="fcd-card-image" />}
-                <p className="fcd-tap-hint"><Icon name="hand" /> Tap to flip</p>
-              </div>
-            ) : (
-              <div>
+                <span className="fcd-tap-hint"><Icon name="hand" /> Tap to flip</span>
+              </span>
+              <span className="fcd-flip-face is-back">
                 <span className="chip fcd-answer-chip is-correct">Answer</span>
-                <h3 className="fcd-card-heading">{card.back_text}</h3>
-              </div>
-            )}
-          </div>
+                <span className="fcd-card-heading">{card.back_text}</span>
+                <span className="fcd-tap-hint">Tap to see question</span>
+              </span>
+            </span>
+          </button>
         )}
 
         {mode === 'typed' && (
