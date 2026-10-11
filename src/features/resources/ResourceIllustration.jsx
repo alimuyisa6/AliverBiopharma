@@ -78,6 +78,39 @@ export default function ResourceIllustration({ type }) {
           <rect x="61" y="28" width="23" height="9" rx="3" fill="#3A9277" />
         </g>
       </svg>;
+    case 'live-room':
+      return <svg {...common} viewBox="0 0 480 260" className="resource-art resource-art-live-room" aria-labelledby="live-room-art-title">
+        <title id="live-room-art-title">Live tutor session</title>
+        <ellipse cx="240" cy="232" rx="158" ry="12" fill="currentColor" opacity=".08" />
+        <g className="live-room-art-float">
+          <rect x="105" y="24" width="270" height="174" rx="15" fill="#E8F3FF" stroke="#3978D4" strokeWidth="3" />
+          <rect x="119" y="38" width="242" height="145" rx="9" fill="#FFFFFF" stroke="#A8C7F0" strokeWidth="2" />
+          <rect x="134" y="52" width="212" height="15" rx="7.5" fill="#DDEBFF" />
+          <circle cx="145" cy="59.5" r="3" fill="#3978D4" /><circle cx="156" cy="59.5" r="3" fill="#0E8B79" /><circle cx="167" cy="59.5" r="3" fill="#D49A2A" />
+          <rect x="136" y="79" width="111" height="88" rx="8" fill="#E2F5F0" />
+          <circle cx="191" cy="107" r="16" fill="#F2C5A5" />
+          <path d="M174 104 Q175 86 191 88 Q207 88 208 104 L204 100 Q193 95 179 101Z" fill="#394B67" />
+          <path d="M163 155 Q166 126 191 126 Q216 126 219 155 V161 H163Z" fill="#0E8B79" />
+          <path d="M180 133 L191 146 L202 133" fill="none" stroke="#FFFFFF" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+          <rect x="258" y="81" width="85" height="9" rx="4.5" fill="#C8D9F0" />
+          <rect x="258" y="98" width="72" height="7" rx="3.5" fill="#D7E4F5" />
+          <rect x="258" y="112" width="80" height="7" rx="3.5" fill="#D7E4F5" />
+          <rect x="258" y="126" width="58" height="7" rx="3.5" fill="#D7E4F5" />
+          <rect x="258" y="145" width="69" height="22" rx="11" fill="#0E8B79" />
+          <circle cx="272" cy="156" r="4" fill="#FFFFFF" />
+          <path d="M282 156 H315" stroke="#FFFFFF" strokeWidth="3" strokeLinecap="round" />
+          <path d="M88 200 H392 L369 219 H111Z" fill="#3978D4" opacity=".18" />
+          <path d="M105 198 H375 L352 215 H128Z" fill="#3978D4" stroke="#3978D4" strokeWidth="2" strokeLinejoin="round" />
+          <rect x="218" y="201" width="44" height="5" rx="2.5" fill="#FFFFFF" opacity=".8" />
+        </g>
+        <g className="live-room-art-pulse">
+          <circle cx="83" cy="75" r="16" fill="#DDF6F1" stroke="#0E8B79" strokeWidth="2" />
+          <path d="M76 75 L81 80 L90 69" fill="none" stroke="#0E8B79" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+          <circle cx="396" cy="111" r="15" fill="#FFF0C9" stroke="#D49A2A" strokeWidth="2" />
+          <path d="M389 111 H403 M396 104 V118" stroke="#D49A2A" strokeWidth="2.5" strokeLinecap="round" />
+          <path d="M58 124 Q48 137 58 150 M422 51 Q432 64 422 77" fill="none" stroke="#3978D4" strokeWidth="3" strokeLinecap="round" />
+        </g>
+      </svg>;
     case 'recall':
       return <svg {...common}>
         <ellipse cx="80" cy="103" rx="42" ry="7" fill="currentColor" opacity=".08" />
