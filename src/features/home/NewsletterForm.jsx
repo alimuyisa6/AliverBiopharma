@@ -33,7 +33,8 @@ export function NewsletterForm({ email, status, loading = false, onChange, onSub
             </g>
             <path
               className="newsletter-envelope__flap"
-              d="m4.5 13 12.5 9 12.5-9"
+              d="M4.5 13 17 22 29.5 13V27a3 3 0 0 1-3 3h-21a3 3 0 0 1-3-3V13Z"
+              fill="var(--newsletter-icon-bg)"
               stroke="currentColor"
               strokeWidth="2"
               strokeLinecap="round"
