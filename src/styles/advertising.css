@@ -1767,7 +1767,12 @@ html[data-ui-surface="flat"] .advertise-create-form { box-shadow: var(--shadow-n
   .advertising-reach-notification,
   .advertising-reach-spark,
   .advertising-reach-learner,
-  .advertising-reach-orbit {
+  .advertising-reach-orbit,
+  .advertising-reach-eyes,
+  .advertising-reach-smile,
+  .advertising-reach-arm,
+  .advertising-reach-typing,
+  .advertising-reach-laptop {
     animation: none;
   }
 }
