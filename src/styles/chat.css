@@ -12,7 +12,6 @@
 .chat-toggle-btn {
   display: none;
   position: relative;
-  display: inline-flex;
   align-items: center;
   justify-content: center;
   min-width: var(--chat-toggle-size);
