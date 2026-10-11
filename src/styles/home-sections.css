@@ -414,3 +414,42 @@ body.dark-mode .testimonial-flat cite { color: var(--success-hover); }
     font-size: var(--text-xl);
   }
 }
+
+
+/* Live-room teaser illustration replaces the former photo while preserving
+   the shared SVG artwork's authored colours, geometry, and stroke values. */
+.home-classroom-section .section-teaser-illustration-wrap {
+  display: grid;
+  place-items: center;
+  min-height: clamp(12rem, 34vw, 22rem);
+  padding: var(--space-4);
+  background: var(--surface-subtle);
+}
+.home-classroom-section .resource-art-live-room {
+  display: block;
+  width: min(100%, 30rem);
+  height: auto;
+  overflow: visible;
+}
+.home-classroom-section .live-room-art-float {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: live-room-art-float 4.8s ease-in-out infinite;
+}
+.home-classroom-section .live-room-art-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: live-room-art-pulse 3.2s ease-in-out infinite;
+}
+@keyframes live-room-art-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(calc(var(--space-2) * -1)); }
+}
+@keyframes live-room-art-pulse {
+  0%, 100% { opacity: .85; }
+  50% { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-classroom-section .live-room-art-float,
+  .home-classroom-section .live-room-art-pulse { animation: none; }
+}
