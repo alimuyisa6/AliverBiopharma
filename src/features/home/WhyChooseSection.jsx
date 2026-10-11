@@ -1,4 +1,5 @@
 import { useLayout } from '../../contexts/LayoutContext';
+import WhyChooseIllustration from './WhyChooseIllustration';
 
  /* features/home/WhyChooseSection.jsx */
 
@@ -49,9 +50,6 @@ const REASONS = [
 
 export function WhyChooseSection() {
   const { bootstrap } = useLayout();
-  const uiComponents = bootstrap?.ui_components || [];
-  const component = uiComponents.find((item) => item.component_key === 'aliverbiopharm_core_illustration');
-  const imageUrl = component?.properties?.image_url || component?.image_url || null;
 
   return (
     <section className="section why-choose-section">
@@ -66,7 +64,7 @@ export function WhyChooseSection() {
             students learn, practise, recall and prepare with the right content
             at the right level.
           </p>
-          {imageUrl && <div className="why-choose-illustration" aria-hidden="true"><img src={imageUrl} alt="" loading="lazy" /></div>}
+          <div className="why-choose-illustration"><WhyChooseIllustration /></div>
         </div>
       </div>
 
