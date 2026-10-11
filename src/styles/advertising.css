@@ -1615,3 +1615,93 @@ html[data-ui-surface="flat"] .advertise-create-form { box-shadow: var(--shadow-n
 .ad-slot-body { margin: 0; color: var(--text-secondary); line-height: var(--leading-relaxed); }
 .ad-slot-cta { display: inline-flex; align-items: center; gap: var(--space-2); width: fit-content; font-weight: var(--weight-bold); color: var(--primary); }
 @media (max-width: 700px) { .ad-slot-card { grid-template-columns: 1fr; } .ad-slot-content { padding: var(--space-5); } }
+
+
+/* Original animated SVG artwork for the homepage advertising section. */
+:root {
+  --advertising-illustration-radius: var(--radius-lg);
+  --advertising-illustration-float-distance: var(--space-2);
+  --advertising-illustration-float-duration: 4.8s;
+  --advertising-illustration-drift-duration: 7s;
+}
+
+.ads-home-illustration-frame {
+  display: grid;
+  place-items: center;
+  min-height: var(--advertise-home-image-min-height);
+  padding: var(--space-3);
+  border-radius: var(--advertising-illustration-radius);
+  background: var(--bg-muted);
+}
+
+.advertising-reach-illustration {
+  display: block;
+  width: 100%;
+  max-width: 35rem;
+  height: auto;
+  overflow: visible;
+}
+
+.advertising-reach-campaign,
+.advertising-reach-audience,
+.advertising-reach-notification,
+.advertising-reach-spark {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: advertising-reach-float var(--advertising-illustration-float-duration) var(--ease-standard) infinite;
+}
+
+.advertising-reach-audience {
+  animation-delay: -1.4s;
+}
+
+.advertising-reach-notification {
+  animation-delay: -2.2s;
+}
+
+.advertising-reach-spark--one {
+  animation-duration: var(--advertising-illustration-drift-duration);
+}
+
+.advertising-reach-spark--two {
+  animation-duration: 5.6s;
+  animation-delay: -2.8s;
+}
+
+.advertising-reach-learner {
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  animation: advertising-reach-breathe 5.5s var(--ease-standard) infinite;
+}
+
+.advertising-reach-orbit {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: advertising-reach-pulse var(--advertising-illustration-drift-duration) ease-in-out infinite;
+}
+
+@keyframes advertising-reach-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(calc(-1 * var(--advertising-illustration-float-distance))); }
+}
+
+@keyframes advertising-reach-breathe {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(calc(var(--space-1) * -1)); }
+}
+
+@keyframes advertising-reach-pulse {
+  0%, 100% { opacity: .45; }
+  50% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .advertising-reach-campaign,
+  .advertising-reach-audience,
+  .advertising-reach-notification,
+  .advertising-reach-spark,
+  .advertising-reach-learner,
+  .advertising-reach-orbit {
+    animation: none;
+  }
+}
