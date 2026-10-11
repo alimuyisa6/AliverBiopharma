@@ -1,118 +1,74 @@
 import React from 'react';
 
-/** Playful dimensional science artwork for the Biology and Pharmacy footer. */
+/** Clean, flat SVG artwork connecting cell biology, chemistry, laboratory science and plant biology. */
 export default function FooterScienceIllustration() {
   return (
     <svg
       className="footer-science-art"
-      viewBox="0 0 560 180"
+      viewBox="0 0 560 170"
       role="img"
       aria-labelledby="footer-science-title footer-science-desc"
       xmlns="http://www.w3.org/2000/svg"
     >
       <title id="footer-science-title">Biology and Pharmacy learning</title>
-      <desc id="footer-science-desc">A colorful dimensional cell, molecular model, bubbling laboratory flask, and growing leaves represent life science and medicine.</desc>
-      <defs>
-        <linearGradient id="footer-cell-shell" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#a5f3fc" />
-          <stop offset=".52" stopColor="#38bdf8" />
-          <stop offset="1" stopColor="#2563eb" />
-        </linearGradient>
-        <linearGradient id="footer-cell-core" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#c4b5fd" />
-          <stop offset="1" stopColor="#7c3aed" />
-        </linearGradient>
-        <linearGradient id="footer-glass" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#dbeafe" stopOpacity=".92" />
-          <stop offset="1" stopColor="#93c5fd" stopOpacity=".48" />
-        </linearGradient>
-        <linearGradient id="footer-liquid" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#5eead4" />
-          <stop offset="1" stopColor="#0d9488" />
-        </linearGradient>
-        <linearGradient id="footer-leaf" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#bbf7d0" />
-          <stop offset="1" stopColor="#16a34a" />
-        </linearGradient>
-        <radialGradient id="footer-orb-glow" cx=".3" cy=".2" r=".9">
-          <stop offset="0" stopColor="#fff" stopOpacity=".9" />
-          <stop offset="1" stopColor="#fff" stopOpacity="0" />
-        </radialGradient>
-        <filter id="footer-soft-shadow" x="-30%" y="-30%" width="160%" height="180%">
-          <feDropShadow dx="0" dy="5" stdDeviation="4" floodColor="#16324f" floodOpacity=".18" />
-        </filter>
-      </defs>
+      <desc id="footer-science-desc">A clearly structured animal cell, ball-and-stick molecular model, laboratory flask containing solution, and botanical sprig represent the sciences taught on this platform.</desc>
 
-      <ellipse cx="280" cy="157" rx="245" ry="8" fill="currentColor" opacity=".07" />
-
-      {/* Dimensional cell */}
-      <g filter="url(#footer-soft-shadow)">
-        <path d="M37 85C37 54 62 33 91 38c15-20 49-11 56 9 29 1 43 30 30 52 7 27-20 48-43 39-20 17-48 7-53-9-28 2-48-17-44-44Z" fill="url(#footer-cell-shell)" stroke="#2563eb" strokeOpacity=".6" strokeWidth="2"/>
-        <path d="M49 75C53 54 73 47 91 51c16-13 38-7 44 11 20 3 30 20 21 36 3 17-14 29-30 23-14 12-32 6-38-5-20 1-36-14-32-32Z" fill="#e0f2fe" fillOpacity=".38"/>
-        <ellipse cx="104" cy="83" rx="23" ry="25" fill="url(#footer-cell-core)" stroke="#6d28d9" strokeWidth="2"/>
-        <ellipse cx="97" cy="75" rx="8" ry="6" fill="#fff" opacity=".32"/>
-        <g fill="#fef08a">
-          <ellipse cx="65" cy="72" rx="6" ry="3.5" transform="rotate(-28 65 72)"/>
-          <ellipse cx="139" cy="91" rx="7" ry="4" transform="rotate(24 139 91)"/>
-          <ellipse cx="82" cy="111" rx="5" ry="3"/>
-        </g>
-        <g fill="#0f766e">
-          <circle cx="70" cy="91" r="3.5"/><circle cx="128" cy="62" r="3"/><circle cx="124" cy="108" r="4"/>
-        </g>
-        <ellipse cx="73" cy="53" rx="19" ry="7" fill="url(#footer-orb-glow)" transform="rotate(-25 73 53)"/>
+      {/* Animal cell: membrane, cytoplasm, nucleus and organelles */}
+      <g strokeLinecap="round" strokeLinejoin="round">
+        <path d="M25 82C25 55 46 39 69 42C82 24 111 31 120 48C145 45 161 64 156 86C165 107 145 128 123 121C108 140 81 133 74 119C48 126 27 108 25 82Z"
+          fill="#dbeafe" stroke="#2563eb" strokeWidth="3"/>
+        <path d="M40 82C40 61 58 51 76 55C91 42 112 49 116 65C135 65 146 81 137 96C137 111 119 117 106 108C91 122 72 113 69 102C52 105 40 96 40 82Z"
+          fill="#bfdbfe" stroke="#60a5fa" strokeWidth="1.5"/>
+        <ellipse cx="91" cy="81" rx="19" ry="21" fill="#a78bfa" stroke="#6d28d9" strokeWidth="2"/>
+        <circle cx="95" cy="80" r="6" fill="#6d28d9"/>
+        <path d="M51 70c7-7 12-4 15 1M113 99c7-5 12-2 14 2" fill="none" stroke="#0f766e" strokeWidth="4"/>
+        <circle cx="57" cy="91" r="3.5" fill="#f59e0b"/>
+        <circle cx="119" cy="58" r="3" fill="#f59e0b"/>
+        <circle cx="79" cy="111" r="3" fill="#f59e0b"/>
       </g>
 
-      {/* Colorful molecular model */}
-      <g filter="url(#footer-soft-shadow)" strokeLinecap="round">
-        <g stroke="#64748b" strokeWidth="8">
-          <path d="M207 53L239 76L270 48L301 71L328 47"/>
-          <path d="M239 76L235 112L270 129L301 103L301 71"/>
-        </g>
-        <g stroke="#fff" strokeOpacity=".55" strokeWidth="2">
-          <path d="M207 50L239 73L270 45L301 68L328 44"/>
-          <path d="M239 73L235 109L270 126L301 100"/>
-        </g>
-        <g>
-          <circle cx="207" cy="53" r="13" fill="#fb7185"/><circle cx="239" cy="76" r="12" fill="#fbbf24"/>
-          <circle cx="270" cy="48" r="14" fill="#60a5fa"/><circle cx="301" cy="71" r="12" fill="#34d399"/>
-          <circle cx="328" cy="47" r="11" fill="#a78bfa"/><circle cx="235" cy="112" r="10" fill="#38bdf8"/>
-          <circle cx="270" cy="129" r="13" fill="#2dd4bf"/><circle cx="301" cy="103" r="10" fill="#f472b6"/>
-        </g>
-        <g fill="#fff" opacity=".68">
-          <circle cx="203" cy="48" r="4"/><circle cx="235" cy="71" r="3.5"/><circle cx="265" cy="42" r="4"/>
-          <circle cx="297" cy="66" r="3.5"/><circle cx="324" cy="43" r="3"/>
-        </g>
+      {/* Ball-and-stick molecular model: bonds connect distinct atoms */}
+      <g strokeLinecap="round" strokeLinejoin="round">
+        <path d="M205 54L236 76L270 52L302 75L329 49M236 76L233 111L269 128L302 104L302 75"
+          fill="none" stroke="#64748b" strokeWidth="6"/>
+        <path d="M205 54L236 76L270 52L302 75L329 49M236 76L233 111L269 128L302 104L302 75"
+          fill="none" stroke="#cbd5e1" strokeWidth="2"/>
+        <circle cx="205" cy="54" r="12" fill="#ef4444" stroke="#b91c1c" strokeWidth="1.5"/>
+        <circle cx="236" cy="76" r="12" fill="#fbbf24" stroke="#b45309" strokeWidth="1.5"/>
+        <circle cx="270" cy="52" r="13" fill="#3b82f6" stroke="#1d4ed8" strokeWidth="1.5"/>
+        <circle cx="302" cy="75" r="12" fill="#10b981" stroke="#047857" strokeWidth="1.5"/>
+        <circle cx="329" cy="49" r="10" fill="#a78bfa" stroke="#6d28d9" strokeWidth="1.5"/>
+        <circle cx="233" cy="111" r="10" fill="#38bdf8" stroke="#0369a1" strokeWidth="1.5"/>
+        <circle cx="269" cy="128" r="12" fill="#14b8a6" stroke="#0f766e" strokeWidth="1.5"/>
+        <circle cx="302" cy="104" r="10" fill="#f472b6" stroke="#be185d" strokeWidth="1.5"/>
       </g>
 
-      {/* Glass flask with bright liquid and bubbles */}
-      <g filter="url(#footer-soft-shadow)">
-        <path d="M389 34h37v8h-7v34l27 45c5 9-1 19-12 19h-54c-11 0-17-10-12-19l27-45V42h-6Z" fill="url(#footer-glass)" stroke="#60a5fa" strokeWidth="2.5" strokeLinejoin="round"/>
-        <path d="M382 91h51l15 26c4 7-1 14-10 14h-52c-9 0-14-7-10-14Z" fill="url(#footer-liquid)"/>
-        <path d="M384 92c13 5 28-5 47 0" fill="none" stroke="#ccfbf1" strokeWidth="3" strokeLinecap="round"/>
-        <path d="M396 48v25l-24 42c-3 6 0 10 6 11" fill="none" stroke="#fff" strokeWidth="4" strokeLinecap="round" opacity=".72"/>
-        <g fill="#ecfeff" stroke="#0d9488" strokeWidth="1">
-          <circle cx="397" cy="107" r="4"/><circle cx="414" cy="117" r="3"/><circle cx="424" cy="100" r="2.5"/>
-        </g>
-        <path d="M386 34h42" stroke="#2563eb" strokeWidth="5" strokeLinecap="round"/>
+      {/* Laboratory flask with a visible solution level */}
+      <g strokeLinecap="round" strokeLinejoin="round">
+        <path d="M389 32H427V41H420V76L447 119Q454 132 438 132H378Q362 132 369 119L396 76V41H389Z"
+          fill="#eff6ff" stroke="#2563eb" strokeWidth="2.5"/>
+        <path d="M383 97H433L447 119Q454 130 438 130H378Q364 130 371 119Z"
+          fill="#2dd4bf" stroke="#0f766e" strokeWidth="1.5"/>
+        <path d="M385 97Q397 101 409 97T433 97" fill="none" stroke="#0f766e" strokeWidth="2"/>
+        <path d="M398 48V74L377 109" fill="none" stroke="#93c5fd" strokeWidth="3"/>
+        <circle cx="398" cy="111" r="4" fill="#ecfeff" stroke="#0f766e" strokeWidth="1.2"/>
+        <circle cx="415" cy="119" r="3" fill="#ecfeff" stroke="#0f766e" strokeWidth="1.2"/>
+        <circle cx="424" cy="106" r="2.5" fill="#ecfeff" stroke="#0f766e" strokeWidth="1.2"/>
       </g>
 
-      {/* Soft, dimensional botanical growth */}
-      <g filter="url(#footer-soft-shadow)" stroke="#15803d" strokeWidth="1.6" strokeLinejoin="round">
-        <path d="M486 139Q490 98 526 65" fill="none" strokeWidth="4" strokeLinecap="round"/>
-        <path d="M504 105C475 106 465 87 469 70c23 1 38 14 35 35Z" fill="url(#footer-leaf)"/>
-        <path d="M503 105L469 70" fill="none" stroke="#dcfce7" strokeWidth="2"/>
-        <path d="M510 91C505 66 519 48 542 45c4 23-8 40-32 46Z" fill="url(#footer-leaf)"/>
-        <path d="M510 91l32-46" fill="none" stroke="#dcfce7" strokeWidth="2"/>
-        <path d="M488 132C467 126 459 111 463 99c19 3 29 15 25 33Z" fill="url(#footer-leaf)"/>
-        <path d="M488 132l-25-33" fill="none" stroke="#dcfce7" strokeWidth="2"/>
+      {/* Botanical sprig: stem, leaves and midribs */}
+      <g strokeLinecap="round" strokeLinejoin="round">
+        <path d="M488 137Q490 100 530 59" fill="none" stroke="#15803d" strokeWidth="4"/>
+        <path d="M502 111C478 108 465 91 469 73C489 76 504 91 502 111Z"
+          fill="#86efac" stroke="#15803d" strokeWidth="2"/>
+        <path d="M502 111L469 73" fill="none" stroke="#15803d" strokeWidth="1.5"/>
+        <path d="M511 91C505 68 519 48 542 45C546 67 533 85 511 91Z"
+          fill="#4ade80" stroke="#15803d" strokeWidth="2"/>
+        <path d="M511 91L542 45" fill="none" stroke="#15803d" strokeWidth="1.5"/>
+        <path d="M490 131C470 127 459 113 463 99C481 102 493 115 490 131Z"
+          fill="#bbf7d0" stroke="#15803d" strokeWidth="2"/>
+        <path d="M490 131L463 99" fill="none" stroke="#15803d" strokeWidth="1.5"/>
       </g>
-
-      {/* Small floating highlights */}
-      <g fill="#fbbf24">
-        <path d="M172 36l3 7 7 3-7 3-3 7-3-7-7-3 7-3Z"/>
-        <path d="M352 24l2.5 5.5 5.5 2.5-5.5 2.5-2.5 5.5-2.5-5.5-5.5-2.5 5.5-2.5Z"/>
-      </g>
-      <g fill="#38bdf8"><circle cx="187" cy="122" r="4"/><circle cx="453" cy="48" r="3.5"/></g>
     </svg>
   );
 }
