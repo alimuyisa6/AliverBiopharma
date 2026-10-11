@@ -42,10 +42,10 @@ export function NewsletterForm({ email, status, loading = false, onChange, onSub
             />
             <path
               className="newsletter-envelope__flap"
-              d="M5 18 21.5 29.5Q24 31.5 26.5 29.5L43 18"
+              d="M5 18 24 5 43 18 24 29Z"
+              fill="var(--newsletter-icon-bg)"
               stroke="currentColor"
               strokeWidth="1.8"
-              strokeLinecap="round"
               strokeLinejoin="round"
             />
             <path
