@@ -109,6 +109,17 @@ export function ChatWidget({ chatOpen, chatMessages = [], chatInput, adminOnline
           </div>
         </div>
       )}
+
+      <button
+        type="button"
+        className="chat-toggle-btn"
+        onClick={onToggle}
+        aria-label={chatOpen ? 'Close live chat' : 'Open live chat'}
+        aria-expanded={chatOpen}
+      >
+        <Icon name={chatOpen ? 'xmark' : 'message'} className="chat-icon" />
+        <span className="chat-toggle-label">{chatOpen ? 'Close' : 'Live Chat'}</span>
+      </button>
     </div>
   );
 }
