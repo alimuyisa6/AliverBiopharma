@@ -7,6 +7,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import { I18nProvider } from './contexts/I18nContext';
  import './styles/colors.css';
 import './styles/semantics.css';
+import './styles/palette-combo05.css';
 import './styles/typography.css';
 import './styles/spacing.css';
 import './styles/animation.css';
