@@ -6,6 +6,8 @@ import { useLayout } from '../contexts/LayoutContext';
 import { getSections } from '../api/sections';
 import ResourcesView from '../features/resources/ResourcesView';
 
+const resourcesSectionsCache = new Map();
+
 export default function Resources() {
   const { user } = useAuth();
   const { level } = useLayout();
@@ -14,10 +16,23 @@ export default function Resources() {
   const [sections, setSections] = useState({});
 
   useEffect(() => {
-    if (level?.id) {
-      getSections(level.id).then(setSections).catch(() => {});
-    }
-  }, [level]);
+    const levelId = level?.id;
+    if (!levelId) return undefined;
+
+    let mounted = true;
+    const cached = resourcesSectionsCache.get(levelId);
+    if (cached) setSections(cached);
+
+    getSections(levelId)
+      .then((data) => {
+        const next = data || {};
+        resourcesSectionsCache.set(levelId, next);
+        if (mounted) setSections(next);
+      })
+      .catch(() => {});
+
+    return () => { mounted = false; };
+  }, [level?.id]);
 
   return (
     <>
