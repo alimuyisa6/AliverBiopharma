@@ -69,6 +69,7 @@
   transform-box: view-box;
   transform-origin: 24px 18px;
   animation: newsletter-envelope-flap var(--newsletter-envelope-duration) var(--ease-standard) infinite;
+  backface-visibility: hidden;
 }
 
 .newsletter-envelope__seal {
@@ -190,11 +191,11 @@
 
 @keyframes newsletter-envelope-flap {
   0%, 15%, 72%, 100% {
-    transform: rotateX(0deg);
+    transform: scaleY(1);
   }
 
   38%, 55% {
-    transform: rotateX(165deg);
+    transform: scaleY(0.08);
   }
 }
 
