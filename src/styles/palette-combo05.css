@@ -1,0 +1,63 @@
+/* Experimental Combo 05 palette.
+   Kept in one file so the trial can be reverted without touching components. */
+:root {
+  --palette-combo05-mint: #00ffd4;
+  --palette-combo05-blue: #5465ff;
+  --palette-combo05-periwinkle: #d2ddff;
+  --palette-combo05-ink: #050208;
+
+  --primary: var(--palette-combo05-blue);
+  --primary-hover: #4353e8;
+  --primary-dark: var(--primary-hover);
+  --primary-light: var(--palette-combo05-periwinkle);
+  --primary-soft: var(--primary-light);
+  --primary-border: #aab8ff;
+  --primary-ring: rgb(84 101 255 / 22%);
+
+  --secondary: #00bfa0;
+  --secondary-hover: #009b82;
+  --secondary-light: #d9fff7;
+  --secondary-border: #8af5e3;
+
+  --info: #008f88;
+  --info-hover: #00756f;
+  --info-light: #d9fff7;
+  --info-border: #8af5e3;
+
+  --surface-tinted: #eef1ff;
+  --hero-bg: #eef1ff;
+  --hero-border: #d2ddff;
+  --text-link: var(--palette-combo05-blue);
+  --text-link-hover: #3544d8;
+  --border-focus: var(--palette-combo05-blue);
+}
+
+body.dark-mode {
+  --primary: #8995ff;
+  --primary-hover: #b1b9ff;
+  --primary-light: #24274f;
+  --primary-border: #454c91;
+  --primary-ring: rgb(137 149 255 / 28%);
+
+  --secondary: #00ffd4;
+  --secondary-hover: #7dffeb;
+  --secondary-light: #123a35;
+  --secondary-border: #17685c;
+
+  --info: #00d7cb;
+  --info-hover: #5ef0e7;
+  --info-light: #123a35;
+  --info-border: #17685c;
+
+  --surface-tinted: #20233f;
+  --hero-bg: #20233f;
+  --hero-border: #454c91;
+  --text-link: #aab3ff;
+  --text-link-hover: #d2ddff;
+  --border-focus: #8995ff;
+}
+
+/* Keep keyboard focus clearly visible with the experimental accent. */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline-color: var(--primary);
+}
