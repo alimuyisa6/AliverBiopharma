@@ -30,9 +30,20 @@ export function NewsletterForm({ email, status, loading = false, onChange, onSub
               strokeWidth="1.8"
               strokeLinejoin="round"
             />
+            <motion.path
+              className="newsletter-envelope__flap"
+              d="M5 18 24 5 43 18Z"
+              fill="var(--newsletter-icon-bg)"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinejoin="round"
+              animate={{ rotate: [0, 180, 180, 0] }}
+              transition={{ duration: 3.4, times: [0, 0.2, 0.62, 1], ease: "easeInOut", repeat: Infinity }}
+              style={{ transformOrigin: "24px 18px" }}
+            />
             <motion.g
               className="newsletter-envelope__letter"
-              animate={{ y: [0, -5, -5, 0] }}
+              animate={{ y: [0, -8, -8, 0] }}
               transition={{ duration: 3.4, times: [0, 0.36, 0.62, 1], ease: "easeInOut", repeat: Infinity }}
             >
               <rect x="13.5" y="6.5" width="21" height="29" rx="3" fill="url(#newsletter-envelope-paper)" stroke="currentColor" strokeWidth="1.7" />
@@ -46,17 +57,6 @@ export function NewsletterForm({ email, status, loading = false, onChange, onSub
               stroke="currentColor"
               strokeWidth="1.8"
               strokeLinejoin="round"
-            />
-            <motion.path
-              className="newsletter-envelope__flap"
-              d="M5 18 24 5 43 18Z"
-              fill="var(--newsletter-icon-bg)"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinejoin="round"
-              animate={{ rotate: [0, 180, 180, 0] }}
-              transition={{ duration: 3.4, times: [0, 0.2, 0.62, 1], ease: "easeInOut", repeat: Infinity }}
-              style={{ transformOrigin: "24px 18px" }}
             />
             <path
               className="newsletter-envelope__seal"
