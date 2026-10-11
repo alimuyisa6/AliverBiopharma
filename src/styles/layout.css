@@ -419,3 +419,11 @@ body.dark-mode .site-header, body.dark-mode .site-header.scrolled { background: 
   .footer-science-art-wrap { padding: 0; }
   .footer-science-art { max-width: none; }
 }
+
+
+/* Visibility pass for the campus scene: keep it legible behind, never over, footer links. */
+.footer-science-art-wrap { opacity: 0.42; }
+.footer-science-art { overflow: visible; }
+@media (max-width: 768px) {
+  .footer-science-art-wrap { opacity: 0.30; }
+}
