@@ -326,3 +326,12 @@
 
   .why-choose-card::after { right: 2.75rem; }
 }
+
+/* The learning-cycle SVG blends into the section surface without a frame. */
+.why-choose-illustration,
+.why-choose-science-art {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
