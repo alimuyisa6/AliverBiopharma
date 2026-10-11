@@ -638,6 +638,7 @@ export default function NoteDetail() {
               <circle cx="292" cy="40" r="4" fill="#7c3aed" opacity=".65" />
               <circle cx="28" cy="86" r="4" fill="#e2c06a" />
               <path d="M285 75c8-12 17-11 22-5-2 10-10 15-22 5Zm0 0c-1-9-7-13-14-11 0 8 5 12 14 11Z" fill="#0d9488" opacity=".8" />
+            </svg>
             <p className="note-discussion-art-caption">Every thoughtful question helps us grow.</p>
           </div>
         </div>
