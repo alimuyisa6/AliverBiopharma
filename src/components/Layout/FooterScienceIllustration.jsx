@@ -1,6 +1,6 @@
 import React from 'react';
 
-/** Clean, flat SVG artwork connecting cell biology, chemistry, laboratory science and plant biology. */
+/** Clean, animated flat SVG artwork for Biology and Pharmacy learning. */
 export default function FooterScienceIllustration() {
   return (
     <svg
@@ -11,7 +11,24 @@ export default function FooterScienceIllustration() {
       xmlns="http://www.w3.org/2000/svg"
     >
       <title id="footer-science-title">Biology and Pharmacy learning</title>
-      <desc id="footer-science-desc">A clearly structured animal cell, ball-and-stick molecular model, laboratory flask containing solution, and botanical sprig represent the sciences taught on this platform.</desc>
+      <desc id="footer-science-desc">An animal cell, connected molecular model, laboratory flask and botanical sprig. The leaves gently sway while remaining attached to the branch.</desc>
+      <style>{`
+        .footer-botanical-leaf {
+          transform-box: view-box;
+          transform-origin: center;
+          animation: footer-leaf-sway 3.8s ease-in-out infinite;
+        }
+        .footer-botanical-leaf--lower { transform-origin: 495px 123px; animation-delay: -1.1s; }
+        .footer-botanical-leaf--left { transform-origin: 507px 100px; animation-delay: -.6s; }
+        .footer-botanical-leaf--top { transform-origin: 519px 80px; animation-delay: -1.7s; }
+        @keyframes footer-leaf-sway {
+          0%, 100% { transform: rotate(0deg); }
+          50% { transform: rotate(3deg); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .footer-botanical-leaf { animation: none; }
+        }
+      `}</style>
 
       {/* Animal cell: membrane, cytoplasm, nucleus and organelles */}
       <g strokeLinecap="round" strokeLinejoin="round">
@@ -56,18 +73,24 @@ export default function FooterScienceIllustration() {
         <circle cx="424" cy="106" r="2.5" fill="#ecfeff" stroke="#0f766e" strokeWidth="1.2"/>
       </g>
 
-      {/* Botanical sprig: stem, leaves and midribs */}
+      {/* Botanical stem with each leaf base placed directly on a branch node */}
       <g strokeLinecap="round" strokeLinejoin="round">
-        <path d="M488 137Q490 100 530 59" fill="none" stroke="#15803d" strokeWidth="4"/>
-        <path d="M502 111C478 108 465 91 469 73C489 76 504 91 502 111Z"
-          fill="#86efac" stroke="#15803d" strokeWidth="2"/>
-        <path d="M502 111L469 73" fill="none" stroke="#15803d" strokeWidth="1.5"/>
-        <path d="M511 91C505 68 519 48 542 45C546 67 533 85 511 91Z"
-          fill="#4ade80" stroke="#15803d" strokeWidth="2"/>
-        <path d="M511 91L542 45" fill="none" stroke="#15803d" strokeWidth="1.5"/>
-        <path d="M490 131C470 127 459 113 463 99C481 102 493 115 490 131Z"
-          fill="#bbf7d0" stroke="#15803d" strokeWidth="2"/>
-        <path d="M490 131L463 99" fill="none" stroke="#15803d" strokeWidth="1.5"/>
+        <path d="M488 137Q493 120 507 100Q520 80 530 59" fill="none" stroke="#15803d" strokeWidth="4"/>
+        <g className="footer-botanical-leaf footer-botanical-leaf--lower">
+          <path d="M495 123C475 120 465 108 466 94C483 97 496 108 495 123Z"
+            fill="#bbf7d0" stroke="#15803d" strokeWidth="2"/>
+          <path d="M495 123L466 94" fill="none" stroke="#15803d" strokeWidth="1.5"/>
+        </g>
+        <g className="footer-botanical-leaf footer-botanical-leaf--left">
+          <path d="M507 100C484 100 472 86 474 70C494 73 508 85 507 100Z"
+            fill="#86efac" stroke="#15803d" strokeWidth="2"/>
+          <path d="M507 100L474 70" fill="none" stroke="#15803d" strokeWidth="1.5"/>
+        </g>
+        <g className="footer-botanical-leaf footer-botanical-leaf--top">
+          <path d="M519 80C512 60 523 43 542 41C546 60 536 75 519 80Z"
+            fill="#4ade80" stroke="#15803d" strokeWidth="2"/>
+          <path d="M519 80L542 41" fill="none" stroke="#15803d" strokeWidth="1.5"/>
+        </g>
       </g>
     </svg>
   );
