@@ -73,9 +73,9 @@ export default function AdvertisingReachIllustration() {
         <path d="M218 290c3-37 21-58 60-58s58 21 62 58v24H218Z" fill="var(--secondary)" />
         <path d="M245 250c7 12 19 18 33 18s27-6 34-18l12 13-15 29h-61l-15-29Z" fill="var(--bg-card)" opacity=".9" />
         <path d="M256 226h44v42c-11 12-33 12-44 0Z" fill="var(--accent)" />
-        <ellipse cx="278" cy="188" rx="45" ry="51" fill="var(--skin-tone, #D99A76)" />
+        <ellipse cx="278" cy="188" rx="45" ry="51" fill="var(--illustration-skin, var(--accent))" />
         <path d="M234 187c-5-31 11-56 43-59 29-3 49 17 48 47l-10-8-7-20c-20 15-43 20-70 16Z" fill="var(--text-main)" />
-        <path d="M234 183c-9 3-8 18 2 21M322 183c9 3 8 18-2 21" fill="none" stroke="var(--skin-tone, #D99A76)" strokeWidth="8" strokeLinecap="round" />
+        <path d="M234 183c-9 3-8 18 2 21M322 183c9 3 8 18-2 21" fill="none" stroke="var(--illustration-skin, var(--accent))" strokeWidth="8" strokeLinecap="round" />
         <path d="M260 190h1M294 190h1" stroke="var(--text-main)" strokeWidth="4" strokeLinecap="round" />
         <path d="M268 208c7 6 15 6 22 0" fill="none" stroke="var(--text-main)" strokeWidth="2.5" strokeLinecap="round" />
         <path d="M249 176c5-4 10-4 15-1M291 175c5-3 10-3 15 1" fill="none" stroke="var(--text-main)" strokeWidth="2.5" strokeLinecap="round" />
