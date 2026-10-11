@@ -117,17 +117,81 @@
 }
 
 .fcd-question-card.is-flip {
-  cursor: pointer;
+  display: block;
+  position: relative;
+  width: 100%;
+  min-height: var(--flashcard-face-height);
+  padding: 0;
   border: 1px solid var(--border-subtle, currentColor);
   border-radius: var(--radius-md);
+  background: transparent;
   box-shadow: var(--shadow-subtle);
+  color: inherit;
+  text-align: center;
+  cursor: pointer;
+  perspective: 1200px;
+  overflow: visible;
   overflow-wrap: anywhere;
+  appearance: none;
+  -webkit-appearance: none;
 }
 
 .fcd-question-card.is-flip:hover {
   transform: none;
   border-color: var(--border-subtle, currentColor);
   box-shadow: var(--shadow-subtle);
+}
+
+.fcd-flip-inner {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: var(--flashcard-face-height);
+  transform-style: preserve-3d;
+  transition: transform var(--duration-slow, 600ms) var(--ease-standard, ease-in-out);
+}
+
+.fcd-flip-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.fcd-flip-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--flashcard-face-height);
+  padding: var(--space-6);
+  border-radius: inherit;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow-wrap: anywhere;
+}
+
+.fcd-flip-face.is-front {
+  transform: rotateY(0deg);
+}
+
+.fcd-flip-face.is-back {
+  transform: rotateY(180deg);
+}
+
+.fcd-flip-face .fcd-card-heading {
+  margin: 0;
+  max-width: 100%;
+}
+
+.fcd-flip-face .fcd-answer-chip,
+.fcd-flip-face .fcd-tap-hint {
+  flex: 0 0 auto;
+}
+
+.fcd-question-card.is-flip:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
 }
 
 .fcd-question-card-static {
