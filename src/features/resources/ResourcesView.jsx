@@ -208,18 +208,13 @@ export default function ResourcesView({ navigate, user, sections }) {
                   </div>
 
                   <div className="resource-card-footer">
-                    <span className="resource-card-meta">
-                      <Icon name="arrow-right" />
-                      Open resource
-                    </span>
-
                     <Button
                       size="sm"
                       variant="secondary"
                       onClick={() => handleBrowse(type)}
-                      aria-label={`Browse ${type.label}`}
+                      aria-label={`Open ${type.label}`}
                     >
-                      Browse
+                      Open resource
                     </Button>
                   </div>
                 </article>
