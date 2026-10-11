@@ -109,33 +109,33 @@
 .resource-art-float {
   transform-box: fill-box;
   transform-origin: center;
-  animation: resource-art-float 4s ease-in-out infinite;
+  animation: resource-art-float var(--illustration-motion-duration, 4s) ease-in-out infinite;
 }
 
 .resource-art-back {
   transform-box: fill-box;
   transform-origin: center;
-  animation: resource-art-sway 5s ease-in-out infinite;
+  animation: resource-art-sway var(--illustration-motion-duration, 4s) ease-in-out infinite;
 }
 
 .resource-art-flip {
   transform-box: fill-box;
   transform-origin: 50% 50%;
-  animation: resource-art-card-lift 3.8s ease-in-out infinite;
+  animation: resource-art-card-lift var(--illustration-motion-duration, 4s) ease-in-out infinite;
 }
 
 .resource-art-download {
-  animation: resource-art-download 2.2s ease-in-out infinite;
+  animation: resource-art-download var(--illustration-motion-duration, 4s) ease-in-out infinite;
 }
 
 .resource-art-pulse {
   transform-box: fill-box;
   transform-origin: center;
-  animation: resource-art-brain-pulse 3.6s ease-in-out infinite;
+  animation: resource-art-brain-pulse var(--illustration-motion-duration, 4s) ease-in-out infinite;
 }
 
 .resource-art-ripple {
-  animation: resource-art-ripple 2.2s ease-in-out infinite;
+  animation: resource-art-ripple var(--illustration-motion-duration, 4s) ease-in-out infinite;
 }
 
 @keyframes resource-art-float {
