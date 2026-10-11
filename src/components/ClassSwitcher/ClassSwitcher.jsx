@@ -44,6 +44,17 @@ export default function ClassSwitcher({ className = '' }) {
 
   return (
     <div className={`class-switcher ${className}`.trim()}>
+      {isHomeSwitcher && (
+        <svg className="home-scope-switcher-art" viewBox="0 0 320 100" aria-hidden="true" focusable="false">
+          <path d="M24 77C64 77 62 24 104 24S145 77 184 77 224 24 296 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity=".13" />
+          <path d="M24 77H72M104 24H145M184 77H232M256 24H296" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity=".13" />
+          <circle cx="24" cy="77" r="5" fill="var(--primary)" opacity=".18" />
+          <circle cx="104" cy="24" r="6" fill="var(--secondary)" opacity=".2" />
+          <circle cx="184" cy="77" r="5" fill="var(--primary)" opacity=".18" />
+          <circle cx="256" cy="24" r="6" fill="var(--accent)" opacity=".18" />
+          <circle cx="296" cy="24" r="3" fill="currentColor" opacity=".18" />
+        </svg>
+      )}
       {isHomeSwitcher && <span className="class-switcher-label">{label}</span>}
       <button
         type="button"
