@@ -73,6 +73,7 @@ export default function AdvertisingReachIllustration() {
         <path d="M218 290c3-37 21-58 60-58s58 21 62 58v24H218Z" fill="var(--secondary)" />
         <path d="M245 250c7 12 19 18 33 18s27-6 34-18l12 13-15 29h-61l-15-29Z" fill="var(--bg-card)" opacity=".9" />
         <path d="M256 226h44v42c-11 12-33 12-44 0Z" fill="var(--accent)" />
+        <g className="advertising-reach-head">
         <ellipse cx="278" cy="188" rx="45" ry="51" fill="var(--illustration-skin, var(--accent))" />
         <path d="M234 187c-5-31 11-56 43-59 29-3 49 17 48 47l-10-8-7-20c-20 15-43 20-70 16Z" fill="var(--text-main)" />
         <path d="M234 183c-9 3-8 18 2 21M322 183c9 3 8 18-2 21" fill="none" stroke="var(--illustration-skin, var(--accent))" strokeWidth="8" strokeLinecap="round" />
@@ -82,6 +83,7 @@ export default function AdvertisingReachIllustration() {
         </g>
         <path className="advertising-reach-smile" d="M268 208c7 6 15 6 22 0" fill="none" stroke="var(--text-main)" strokeWidth="2.5" strokeLinecap="round" />
         <path d="M249 176c5-4 10-4 15-1M291 175c5-3 10-3 15 1" fill="none" stroke="var(--text-main)" strokeWidth="2.5" strokeLinecap="round" />
+        </g>
       </g>
 
       <g className="advertising-reach-arms" fill="none" stroke="var(--illustration-skin, var(--accent))" strokeWidth="13" strokeLinecap="round" strokeLinejoin="round">
@@ -102,9 +104,11 @@ export default function AdvertisingReachIllustration() {
         <path d="M171 414h214l-13 8H184Z" fill="var(--border-default)" opacity=".75" />
         <path d="M240 416h77" stroke="var(--text-inverse)" strokeWidth="2.5" strokeLinecap="round" opacity=".3" />
       </g>
+
+
       <g className="advertising-reach-hands" fill="none" stroke="var(--illustration-skin, var(--accent))" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round">
-        <path className="advertising-reach-hand-left" d="M220 407c-4 2-7 5-7 8m7-8 1 8m5-8 2 8m4-8 3 7" />
-        <path className="advertising-reach-hand-right" d="M340 407c4 2 7 5 7 8m-7-8-1 8m-5-8-2 8m-4-8-3 7" />
+        <path className="advertising-reach-hand advertising-reach-hand--left" d="M220 407c-4 2-7 5-7 8m7-8 1 8m5-8 2 8m4-8 3 7" />
+        <path className="advertising-reach-hand advertising-reach-hand--right" d="M340 407c4 2 7 5 7 8m-7-8-1 8m-5-8-2 8m-4-8-3 7" />
       </g>
 
       <g className="advertising-reach-notification">
