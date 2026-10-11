@@ -28,6 +28,8 @@ function resourcePath(resource, unitId) {
   return `${route}?unit_id=${encodeURIComponent(unitId)}`;
 }
 
+const curriculumNodeCache = new Map();
+
 const RESOURCE_LABELS = {
   notes: 'Notes',
   quiz: 'Quiz',
@@ -90,16 +92,25 @@ export default function CurriculumNodePage() {
 
   useEffect(() => {
     let mounted = true;
+    const cacheKey = `${groupId || ''}:${nodePath || ''}`;
+    const cached = curriculumNodeCache.get(cacheKey);
 
-    setLoading(true);
-    setError(null);
+    if (cached) {
+      setData(cached);
+      setLoading(false);
+      setError(null);
+    } else {
+      setLoading(true);
+      setError(null);
+    }
 
     getCurriculumNodeByPath(groupId, nodePath)
       .then((result) => {
+        curriculumNodeCache.set(cacheKey, result);
         if (mounted) setData(result);
       })
       .catch((err) => {
-        if (mounted) setError(err?.message || 'Unable to load this curriculum node.');
+        if (mounted && !cached) setError(err?.message || 'Unable to load this curriculum node.');
       })
       .finally(() => {
         if (mounted) setLoading(false);
