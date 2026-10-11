@@ -8,7 +8,23 @@
 
  /* src/styles/flashcard.css */
 .fcd-section {
-  padding-top: var(--space-6);
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: var(--space-5);
+  margin-inline: auto;
+}
+
+.flashcard-deck-view {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: var(--space-4);
+  padding-bottom: var(--space-8);
+}
+
+.fcd-section > * {
+  min-width: 0;
 }
 
 .fcd-loading-wrap {
@@ -102,10 +118,15 @@
 
 .fcd-question-card.is-flip {
   cursor: pointer;
+  border: 1px solid var(--border-subtle, currentColor);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-subtle);
+  overflow-wrap: anywhere;
 }
 
 .fcd-question-card.is-flip:hover {
   transform: none;
+  border-color: var(--border-subtle, currentColor);
   box-shadow: var(--shadow-subtle);
 }
 
@@ -471,5 +492,28 @@
 @media (max-width: 640px) {
   .flashcard-decks-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+
+@media (max-width: 640px) {
+  .flashcard-deck-view {
+    padding: var(--space-2);
+    padding-bottom: var(--space-6);
+  }
+
+  .fcd-section {
+    padding: var(--space-3);
+  }
+
+  .fcd-question-card,
+  .fcd-question-card-static {
+    padding: var(--space-5);
+  }
+}
+
+@media (min-width: 641px) {
+  .flashcard-deck-view {
+    padding-inline: var(--space-5);
   }
 }
