@@ -19,6 +19,8 @@ import EmptyState from '../components/EmptyState/EmptyState';
 import Spinner from '../components/Spinner/Spinner';
 import Button from '../components/Button/Button';
 
+const noteDetailContentCache = new Map();
+
 let mermaidPromise = null;
 function loadMermaid() {
   if (!mermaidPromise) {
@@ -92,18 +94,28 @@ export default function NoteDetail() {
     let mounted = true;
 
     const init = async () => {
-      setLoading(true);
+      const cachedNote = noteDetailContentCache.get(noteId);
+      setLoading(!cachedNote);
       setFetchError(null);
-      setInternalLinks({ inline_links: [], related_links: [] });
-      setComments([]);
-      setReactions({ counts: {}, user: [] });
-      setReadProgress(0);
-      setToc([]);
-      setMetadata({});
+      if (!cachedNote) {
+        setNote(null);
+        setInternalLinks({ inline_links: [], related_links: [] });
+        setComments([]);
+        setReactions({ counts: {}, user: [] });
+        setReadProgress(0);
+        setToc([]);
+        setMetadata({});
+      } else {
+        setNote(cachedNote);
+        setBreadcrumb(cachedNote.breadcrumb || []);
+        setToc(cachedNote.toc || []);
+        setMetadata(cachedNote.metadata || {});
+      }
 
       try {
-        const data = await getNoteDetail(noteId);
+        const data = cachedNote || await getNoteDetail(noteId);
         if (!mounted) return;
+        noteDetailContentCache.set(noteId, data);
 
         setNote(data);
         setBreadcrumb(data.breadcrumb || []);
