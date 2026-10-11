@@ -106,6 +106,7 @@ export default function NoteDetail() {
         setToc([]);
         setMetadata({});
       } else {
+        setLoading(false);
         setNote(cachedNote);
         setBreadcrumb(cachedNote.breadcrumb || []);
         setToc(cachedNote.toc || []);
