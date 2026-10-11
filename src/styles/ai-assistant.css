@@ -464,3 +464,15 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+/* Compact the floating AI Tutor launcher while preserving a comfortable tap target. */
+.ai-assistant-toggle {
+  min-height: var(--space-10);
+  gap: var(--space-1);
+  padding-inline: var(--space-3);
+  font-size: var(--text-xs);
+}
+.ai-assistant-toggle > .icon {
+  font-size: var(--text-sm);
+}
