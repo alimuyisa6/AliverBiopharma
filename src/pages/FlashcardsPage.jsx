@@ -25,6 +25,9 @@ import EmptyState from '../components/EmptyState/EmptyState';
 import { useLayout } from '../contexts/LayoutContext';
 import { useToast } from '../components/Toast/Toast';
 
+const flashcardPageCache = new Map();
+const flashcardPageRequests = new Map();
+
 const STAGE = {
   LOADING: 'loading',
   SUBJECT: 'subject',
@@ -50,6 +53,8 @@ export default function FlashcardsPage() {
   const [decks, setDecks] = useState([]);
   const [error, setError] = useState(null);
 
+  const cacheKey = `${user?.id || 'anonymous'}:${level || ''}:${class_name || ''}:${curriculumUnitId || 'all'}`;
+
   const curriculumUnitId = searchParams.get('unit_id') || null;
   const challengeId = searchParams.get('challenge_id') || null;
   const deckId = searchParams.get('deck_id') || null;
@@ -57,36 +62,82 @@ export default function FlashcardsPage() {
   const classLabel = class_name || '';
 
   useEffect(() => {
-    if (!user || !isReady || !access.canAccess) return;
+    if (!user || !isReady || !access.canAccess) return undefined;
 
-    init();
-  }, [user, isReady, access.canAccess, level, class_name, curriculumUnitId, deckId]);
+    let active = true;
+    init({ active: () => active });
+    return () => { active = false; };
+  }, [user?.id, isReady, access.canAccess, level, class_name, curriculumUnitId, deckId]);
 
-  async function init() {
+  async function init(lifecycle = { active: () => true }) {
+    const cached = flashcardPageCache.get(cacheKey);
+
+    if (cached) {
+      setKnownIds(cached.knownIds);
+      setDecks(cached.decks);
+      setError(null);
+      applyRequestedDeck(cached.decks);
+      // Refresh in the background without replacing visible content with a spinner.
+      refreshFlashcards(lifecycle, false);
+      return;
+    }
+
     setStage(STAGE.LOADING);
+    setError(null);
 
     try {
-      const [knownData, decksData] = await Promise.all([
+      const data = await refreshFlashcards(lifecycle, true);
+      if (!lifecycle.active() || !data) return;
+      applyRequestedDeck(data.decks);
+    } catch {
+      if (lifecycle.active()) setError('Failed to load flashcards. Please refresh.');
+    }
+  }
+
+  function applyRequestedDeck(deckList) {
+    const requestedDeck = deckId
+      ? (deckList || []).find((deck) => String(deck.id) === String(deckId))
+      : null;
+
+    if (requestedDeck) {
+      setSelectedDeck(requestedDeck);
+      setStage(STAGE.STUDY);
+    } else {
+      setSelectedDeck(null);
+      setStage(STAGE.SUBJECT);
+    }
+  }
+
+  async function refreshFlashcards(lifecycle, throwOnError = false) {
+    let request = flashcardPageRequests.get(cacheKey);
+    if (!request) {
+      request = Promise.all([
         getKnownFlashcards(),
         getFlashcardDecks(curriculumUnitId ? { unit_id: curriculumUnitId } : {})
-      ]);
+      ]).then(([knownData, decksData]) => {
+        const data = {
+          knownIds: Array.isArray(knownData) ? knownData : [],
+          decks: Array.isArray(decksData) ? decksData : []
+        };
+        flashcardPageCache.set(cacheKey, data);
+        return data;
+      }).finally(() => {
+        flashcardPageRequests.delete(cacheKey);
+      });
+      flashcardPageRequests.set(cacheKey, request);
+    }
 
-      setKnownIds(knownData || []);
-      setDecks(decksData || []);
-
-      const requestedDeck = deckId
-        ? (decksData || []).find((deck) => String(deck.id) === String(deckId))
-        : null;
-
-      if (requestedDeck) {
-        setSelectedDeck(requestedDeck);
-        setStage(STAGE.STUDY);
-      } else {
-        setSelectedDeck(null);
-        setStage(STAGE.SUBJECT);
+    try {
+      const data = await request;
+      if (lifecycle.active()) {
+        setKnownIds(data.knownIds);
+        setDecks(data.decks);
+        setError(null);
       }
-    } catch {
-      setError('Failed to load flashcards. Please refresh.');
+      return data;
+    } catch (error) {
+      if (throwOnError) throw error;
+      return null;
     }
   }
 
