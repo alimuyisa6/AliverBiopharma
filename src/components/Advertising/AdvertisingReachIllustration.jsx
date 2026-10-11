@@ -102,6 +102,11 @@ export default function AdvertisingReachIllustration() {
         <path d="M171 414h214l-13 8H184Z" fill="var(--border-default)" opacity=".75" />
         <path d="M240 416h77" stroke="var(--text-inverse)" strokeWidth="2.5" strokeLinecap="round" opacity=".3" />
       </g>
+      <g className="advertising-reach-hands" fill="none" stroke="var(--illustration-skin, var(--accent))" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round">
+        <path className="advertising-reach-hand-left" d="M220 407c-4 2-7 5-7 8m7-8 1 8m5-8 2 8m4-8 3 7" />
+        <path className="advertising-reach-hand-right" d="M340 407c4 2 7 5 7 8m-7-8-1 8m-5-8-2 8m-4-8-3 7" />
+      </g>
+
       <g className="advertising-reach-notification">
         <rect x="351" y="257" width="139" height="46" rx="14" fill="var(--bg-card)" stroke="var(--border-default)" strokeWidth="1.5" />
         <circle cx="370" cy="280" r="8" fill="var(--secondary)" />
