@@ -9,6 +9,7 @@ import { NotificationProvider } from './contexts/NotificationContext';
 import Layout from './components/Layout/Layout';
 import Seo from './components/Seo/Seo';
 import Home from './pages/Home';
+import AIAssistant from './features/chat/AIAssistant';
 import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
 import Quiz from './pages/Quiz';
@@ -198,6 +199,7 @@ function AppRoutes() {
         <CookieConsent />
         <MaintenanceGate />
       </Layout>
+      <AIAssistant />
     </>
   );
 }
