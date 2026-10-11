@@ -326,3 +326,24 @@
     animation: none !important;
   }
 }
+
+
+/* Make the resource watermark larger and easier to notice without competing with text. */
+.resource-card-artwork {
+  width: clamp(8rem, 54%, 11rem);
+  right: var(--space-2);
+  opacity: 0.2;
+}
+.resource-card-body {
+  min-height: calc(var(--space-12) * 2.5);
+}
+.resource-card-title,
+.resource-card-desc {
+  max-width: 82%;
+}
+@media (max-width: 640px) {
+  .resource-card-artwork {
+    width: clamp(8.5rem, 56%, 11.5rem);
+    opacity: 0.21;
+  }
+}
