@@ -212,7 +212,20 @@ export default function AIAssistant() {
               className="ai-assistant-live-chat"
               onClick={handleOpenLiveChat}
             >
-              <Icon name="message" />
+              <svg className="live-chat-animation" viewBox="0 0 64 56" role="img" aria-label="Animated live chat bubbles" focusable="false">
+                <g className="live-chat-bubble live-chat-bubble-back">
+                  <path d="M8 7.5A5.5 5.5 0 0 1 13.5 2h25A5.5 5.5 0 0 1 44 7.5v15a5.5 5.5 0 0 1-5.5 5.5H22l-8 6v-6.3A5.5 5.5 0 0 1 8 22.5z" />
+                  <path className="live-chat-bubble-line" d="M16 11h20M16 17h14" />
+                </g>
+                <g className="live-chat-bubble live-chat-bubble-front">
+                  <path d="M24 25.5A6.5 6.5 0 0 1 30.5 19h23a6.5 6.5 0 0 1 6.5 6.5v13a6.5 6.5 0 0 1-6.5 6.5H43l-8 6v-6h-4.5a6.5 6.5 0 0 1-6.5-6.5z" />
+                  <circle cx="34" cy="32" r="1.8" />
+                  <circle cx="42" cy="32" r="1.8" />
+                  <circle cx="50" cy="32" r="1.8" />
+                </g>
+                <circle className="live-chat-spark" cx="12" cy="43" r="2" />
+                <circle className="live-chat-spark live-chat-spark-two" cx="55" cy="10" r="1.5" />
+              </svg>
               <span>
                 <strong>Live Chat</strong>
                 <small>Talk to our support team</small>
