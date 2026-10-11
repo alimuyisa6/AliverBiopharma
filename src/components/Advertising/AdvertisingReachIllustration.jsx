@@ -10,7 +10,7 @@ export default function AdvertisingReachIllustration() {
     >
       <title id="advertising-reach-title">Connecting campaigns with learners</title>
       <desc id="advertising-reach-description">
-        An original illustration of a learner using a laptop, connected to a campaign card and a focused audience.
+        An original illustration of a learner working at a laptop, with the display facing the learner and the back of the laptop facing the viewer, connected to a campaign card and a focused audience.
       </desc>
 
       <defs>
@@ -90,24 +90,18 @@ export default function AdvertisingReachIllustration() {
       </g>
 
       <g className="advertising-reach-laptop">
+        {/* Back of the display faces the viewer; the screen faces the learner. */}
         <rect x="169" y="286" width="218" height="127" rx="13" fill="var(--text-main)" />
-        <rect x="179" y="296" width="198" height="105" rx="6" fill="url(#reach-screen-gradient)" />
-        <rect x="195" y="311" width="86" height="8" rx="4" fill="var(--text-inverse)" opacity=".95" />
-        <rect x="195" y="326" width="57" height="5" rx="2.5" fill="var(--text-inverse)" opacity=".65" />
-        <rect x="195" y="343" width="68" height="43" rx="7" fill="var(--text-inverse)" opacity=".15" />
-        <path d="M205 374l14-14 10 7 17-18" fill="none" stroke="var(--text-inverse)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-        <rect x="275" y="343" width="83" height="7" rx="3.5" fill="var(--text-inverse)" opacity=".85" />
-        <rect x="275" y="357" width="68" height="6" rx="3" fill="var(--text-inverse)" opacity=".55" />
-        <rect x="275" y="369" width="75" height="6" rx="3" fill="var(--text-inverse)" opacity=".55" />
-        <path d="M151 414h254l-18 12H169Z" fill="var(--text-main)" />
-        <path d="M240 416h77" stroke="var(--text-inverse)" strokeWidth="2.5" strokeLinecap="round" opacity=".3" />
-        <g className="advertising-reach-typing" fill="var(--text-inverse)" opacity=".8">
-          <circle cx="300" cy="383" r="2" />
-          <circle cx="309" cy="383" r="2" />
-          <circle cx="318" cy="383" r="2" />
+        <rect x="177" y="294" width="202" height="111" rx="8" fill="var(--primary)" />
+        <rect x="184" y="301" width="188" height="97" rx="5" fill="var(--section-tint)" opacity=".24" />
+        <g className="advertising-reach-lid-mark" fill="none" stroke="var(--text-inverse)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" opacity=".78">
+          <path d="M267 343c-7-8-2-19 8-20 7 0 11 5 11 12 0 8-7 13-15 13" />
+          <path d="M287 335c7 8 2 19-8 20-7 0-11-5-11-12" />
         </g>
+        <path d="M151 414h254l-18 12H169Z" fill="var(--text-main)" />
+        <path d="M171 414h214l-13 8H184Z" fill="var(--border-default)" opacity=".75" />
+        <path d="M240 416h77" stroke="var(--text-inverse)" strokeWidth="2.5" strokeLinecap="round" opacity=".3" />
       </g>
-
       <g className="advertising-reach-notification">
         <rect x="351" y="257" width="139" height="46" rx="14" fill="var(--bg-card)" stroke="var(--border-default)" strokeWidth="1.5" />
         <circle cx="370" cy="280" r="8" fill="var(--secondary)" />
