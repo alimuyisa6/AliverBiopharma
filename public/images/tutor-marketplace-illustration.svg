@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 390" role="img" aria-labelledby="title desc">
+  <title id="title">Tutor marketplace</title>
+  <desc id="desc">A tutor and student learning together with biology and pharmacy study symbols.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#E9F4FF"/><stop offset="1" stop-color="#E4F8F1"/></linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#3978D4"/><stop offset="1" stop-color="#0E8B79"/></linearGradient>
+  </defs>
+  <ellipse cx="278" cy="341" rx="206" ry="22" fill="#153D5B" opacity=".09"/>
+  <circle cx="280" cy="180" r="153" fill="url(#bg)"/>
+  <circle cx="124" cy="99" r="25" fill="#F4C66A" opacity=".8"/>
+  <circle cx="430" cy="104" r="16" fill="#8BD6C5"/>
+  <g class="float-symbol">
+    <rect x="378" y="55" width="90" height="67" rx="14" fill="#FFFFFF" stroke="#3978D4" stroke-width="3"/>
+    <path d="M397 77h52M397 88h40M397 99h31" stroke="#82AEEB" stroke-width="5" stroke-linecap="round"/>
+    <path d="M407 65h32" stroke="#0E8B79" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <g class="float-symbol-delay">
+    <circle cx="117" cy="173" r="31" fill="#FFFFFF" stroke="#0E8B79" stroke-width="3"/>
+    <path d="M117 151v44M95 173h44" stroke="#0E8B79" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="117" cy="173" r="11" fill="#DDF6F1"/>
+  </g>
+  <!-- desk and laptop -->
+  <path d="M108 289h347l-24 31H133Z" fill="#D9A76D"/>
+  <path d="M129 319h307v11H129Z" fill="#B9814D"/>
+  <g>
+    <path d="M216 211h130q9 0 9 9v72H207v-72q0-9 9-9Z" fill="#25445B"/>
+    <rect x="217" y="221" width="128" height="59" rx="4" fill="url(#screen)"/>
+    <circle cx="280" cy="246" r="14" fill="#DDF6F1" opacity=".95"/>
+    <path d="M268 246h24M280 234v24" stroke="#0E8B79" stroke-width="3" stroke-linecap="round"/>
+    <path d="M197 292h168l-12 10H209Z" fill="#B7C7D4"/>
+    <path d="M251 294h60" stroke="#6B8296" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <!-- tutor -->
+  <g>
+    <path d="M143 218q4-46 44-46t44 46v42h-88Z" fill="#3978D4"/>
+    <path d="M154 218q0-30 33-30t33 30v40h-66Z" fill="#5A95E7"/>
+    <circle cx="187" cy="150" r="32" fill="#8B5A3C"/>
+    <path d="M155 148q0-35 34-35 30 0 32 31l-10-7-8-15q-17 14-47 13Z" fill="#263A48"/>
+    <circle cx="177" cy="152" r="3" fill="#263A48"/><circle cx="198" cy="152" r="3" fill="#263A48"/>
+    <path d="M179 166q8 7 16 0" fill="none" stroke="#633D2C" stroke-width="3" stroke-linecap="round"/>
+    <path d="M163 211l34 25 26-23" fill="none" stroke="#8B5A3C" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M221 213l24-19" stroke="#8B5A3C" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="246" cy="193" r="7" fill="#8B5A3C"/>
+  </g>
+  <!-- student -->
+  <g>
+    <path d="M348 239q5-43 42-43t40 43v20h-82Z" fill="#0E8B79"/>
+    <circle cx="390" cy="169" r="30" fill="#B87951"/>
+    <path d="M361 167q-2-31 29-35 29-2 32 31l-13-5-6-12q-16 10-42 8Z" fill="#25384A"/>
+    <circle cx="380" cy="170" r="3" fill="#25384A"/><circle cx="399" cy="170" r="3" fill="#25384A"/>
+    <path d="M382 183q8 6 15 0" fill="none" stroke="#75462F" stroke-width="3" stroke-linecap="round"/>
+    <path d="M359 225l-22 24-19-12" fill="none" stroke="#B87951" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M354 226l-20 20" stroke="#B87951" stroke-width="11" stroke-linecap="round"/>
+  </g>
+  <!-- open study notebook -->
+  <g class="notebook-bob">
+    <path d="M145 270q35-12 70 0v34q-35-12-70 0Z" fill="#FFFFFF" stroke="#3978D4" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M215 270q35-12 70 0v34q-35-12-70 0Z" fill="#F8FBFF" stroke="#3978D4" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M215 270v34M156 280h47M156 289h42M225 280h46M225 289h40" stroke="#8BB4E8" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+  <g class="chat-bubble">
+    <path d="M303 119q0-11 12-11h69q12 0 12 11v29q0 11-12 11h-34l-13 12v-12h-22q-12 0-12-11Z" fill="#FFFFFF" stroke="#0E8B79" stroke-width="2.5"/>
+    <circle cx="328" cy="133" r="3.5" fill="#0E8B79"/><circle cx="348" cy="133" r="3.5" fill="#0E8B79"/><circle cx="368" cy="133" r="3.5" fill="#0E8B79"/>
+  </g>
+  <style>
+    .float-symbol,.float-symbol-delay,.notebook-bob,.chat-bubble{transform-box:fill-box;transform-origin:center;animation:float 4s ease-in-out infinite}
+    .float-symbol-delay{animation-delay:-1.5s}.notebook-bob{animation-delay:-.8s}.chat-bubble{animation:pop 3.5s ease-in-out infinite}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+    @keyframes pop{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-4px) scale(1.025)}}
+    @media(prefers-reduced-motion:reduce){.float-symbol,.float-symbol-delay,.notebook-bob,.chat-bubble{animation:none}}
+  </style>
+</svg>
