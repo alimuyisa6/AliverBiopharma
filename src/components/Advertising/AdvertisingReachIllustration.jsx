@@ -76,9 +76,17 @@ export default function AdvertisingReachIllustration() {
         <ellipse cx="278" cy="188" rx="45" ry="51" fill="var(--illustration-skin, var(--accent))" />
         <path d="M234 187c-5-31 11-56 43-59 29-3 49 17 48 47l-10-8-7-20c-20 15-43 20-70 16Z" fill="var(--text-main)" />
         <path d="M234 183c-9 3-8 18 2 21M322 183c9 3 8 18-2 21" fill="none" stroke="var(--illustration-skin, var(--accent))" strokeWidth="8" strokeLinecap="round" />
-        <path d="M260 190h1M294 190h1" stroke="var(--text-main)" strokeWidth="4" strokeLinecap="round" />
-        <path d="M268 208c7 6 15 6 22 0" fill="none" stroke="var(--text-main)" strokeWidth="2.5" strokeLinecap="round" />
+        <g className="advertising-reach-eyes" fill="var(--text-main)">
+          <ellipse cx="260" cy="190" rx="2.5" ry="4" />
+          <ellipse cx="295" cy="190" rx="2.5" ry="4" />
+        </g>
+        <path className="advertising-reach-smile" d="M268 208c7 6 15 6 22 0" fill="none" stroke="var(--text-main)" strokeWidth="2.5" strokeLinecap="round" />
         <path d="M249 176c5-4 10-4 15-1M291 175c5-3 10-3 15 1" fill="none" stroke="var(--text-main)" strokeWidth="2.5" strokeLinecap="round" />
+      </g>
+
+      <g className="advertising-reach-arms" fill="none" stroke="var(--illustration-skin, var(--accent))" strokeWidth="13" strokeLinecap="round" strokeLinejoin="round">
+        <path className="advertising-reach-arm advertising-reach-arm--left" d="M231 276c-10 13-13 27-6 39l24 11" />
+        <path className="advertising-reach-arm advertising-reach-arm--right" d="M325 276c11 12 14 26 7 39l-22 11" />
       </g>
 
       <g className="advertising-reach-laptop">
@@ -93,6 +101,11 @@ export default function AdvertisingReachIllustration() {
         <rect x="275" y="369" width="75" height="6" rx="3" fill="var(--text-inverse)" opacity=".55" />
         <path d="M151 414h254l-18 12H169Z" fill="var(--text-main)" />
         <path d="M240 416h77" stroke="var(--text-inverse)" strokeWidth="2.5" strokeLinecap="round" opacity=".3" />
+        <g className="advertising-reach-typing" fill="var(--text-inverse)" opacity=".8">
+          <circle cx="300" cy="383" r="2" />
+          <circle cx="309" cy="383" r="2" />
+          <circle cx="318" cy="383" r="2" />
+        </g>
       </g>
 
       <g className="advertising-reach-notification">
