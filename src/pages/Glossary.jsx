@@ -8,6 +8,10 @@ import {
 } from '../api/client';
 import { useLevelFilter } from '../hooks/useLevelFilter';
 
+const glossaryTermsCache = new Map();
+const glossaryCategoriesCache = new Map();
+const glossaryTermCache = new Map();
+
 export default function Glossary() {
   const { user } = useAuth();
   const { level, class_name } = useLevelFilter();
@@ -22,20 +26,41 @@ export default function Glossary() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   useEffect(() => {
+    const key = `${level || ''}:${class_name || ''}`;
+    const cached = glossaryCategoriesCache.get(key);
+    if (cached) setCategories(cached);
+
     getGlossaryCategories(level, class_name)
-      .then(setCategories)
-      .catch(() => setCategories([]));
+      .then((data) => {
+        const next = Array.isArray(data) ? data : [];
+        glossaryCategoriesCache.set(key, next);
+        setCategories(next);
+      })
+      .catch(() => {
+        if (!cached) setCategories([]);
+      });
   }, [level, class_name]);
 
   const fetchTerms = useCallback(() => {
-    setLoading(true);
+    const key = `${level || ''}:${class_name || ''}:${selectedCategory || ''}:${searchQuery || ''}`;
+    const cached = glossaryTermsCache.get(key);
+
+    if (cached) {
+      setTerms(cached);
+      setLoading(false);
+    } else {
+      setLoading(true);
+    }
+
     getGlossaryTerms(level, selectedCategory || undefined, searchQuery || undefined, class_name)
-      .then(data => {
-        setTerms(data || []);
-        setActiveTerm(null);
-        setTermContent(null);
+      .then((data) => {
+        const next = Array.isArray(data) ? data : [];
+        glossaryTermsCache.set(key, next);
+        setTerms(next);
       })
-      .catch(() => setTerms([]))
+      .catch(() => {
+        if (!cached) setTerms([]);
+      })
       .finally(() => setLoading(false));
   }, [level, selectedCategory, searchQuery, class_name]);
 
@@ -44,14 +69,17 @@ export default function Glossary() {
   }, [fetchTerms]);
 
   const handleTermClick = useCallback(async (term) => {
+    const key = `${level || ''}:${class_name || ''}:${term.slug}`;
+    const cached = glossaryTermCache.get(key);
     setActiveTerm(term);
-    setTermLoading(true);
-    setTermContent(null);
+    setTermContent(cached || null);
+    setTermLoading(!cached);
     try {
       const data = await getGlossaryTerm(term.slug, level, class_name);
+      glossaryTermCache.set(key, data);
       setTermContent(data);
     } catch {
-      setTermContent(null);
+      if (!cached) setTermContent(null);
     } finally {
       setTermLoading(false);
     }
