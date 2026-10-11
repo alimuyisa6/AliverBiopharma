@@ -1,63 +1,211 @@
-/* Experimental Combo 05 palette.
-   Kept in one file so the trial can be reverted without touching components. */
+/* Combo 05 semantic theme.
+   Components should consume semantic tokens, not individual hex values. */
 :root {
-  --palette-combo05-mint: #00ffd4;
-  --palette-combo05-blue: #5465ff;
-  --palette-combo05-periwinkle: #d2ddff;
-  --palette-combo05-ink: #050208;
+  --palette-combo05-mint: var(--palette-mint);
+  --palette-combo05-blue: var(--palette-blue);
+  --palette-combo05-periwinkle: var(--palette-periwinkle);
+  --palette-combo05-ink: var(--palette-ink);
 
-  --primary: var(--palette-combo05-blue);
-  --primary-hover: #4353e8;
-  --primary-dark: var(--primary-hover);
-  --primary-light: var(--palette-combo05-periwinkle);
-  --primary-soft: var(--primary-light);
-  --primary-border: #aab8ff;
-  --primary-ring: rgb(84 101 255 / 22%);
+  --primary: var(--palette-blue);
+  --primary-hover: var(--blue-700);
+  --primary-dark: var(--blue-800);
+  --primary-light: var(--blue-100);
+  --primary-soft: var(--blue-50);
+  --primary-border: var(--blue-300);
+  --primary-ring: rgb(84 101 255 / 24%);
 
-  --secondary: #00bfa0;
-  --secondary-hover: #009b82;
-  --secondary-light: #d9fff7;
-  --secondary-border: #8af5e3;
+  --secondary: var(--emerald-600);
+  --secondary-hover: var(--emerald-700);
+  --secondary-light: var(--emerald-50);
+  --secondary-border: var(--emerald-200);
+  --accent: var(--palette-mint);
+  --accent-hover: var(--emerald-600);
+  --accent-light: var(--emerald-50);
+  --accent-border: var(--emerald-200);
+  --info: var(--emerald-700);
+  --info-hover: var(--emerald-800);
+  --info-light: var(--emerald-50);
+  --info-border: var(--emerald-200);
 
-  --info: #008f88;
-  --info-hover: #00756f;
-  --info-light: #d9fff7;
-  --info-border: #8af5e3;
+  --surface-page: #ffffff;
+  --surface-card: #ffffff;
+  --surface-raised: #ffffff;
+  --surface-muted: var(--grey-50);
+  --surface-subtle: var(--blue-50);
+  --surface-tinted: var(--blue-100);
+  --surface-inverse: var(--palette-ink);
+  --surface-disabled: var(--grey-100);
+  --bg-page: var(--surface-page);
+  --bg-card: var(--surface-card);
+  --bg-card-hover: var(--blue-50);
+  --bg-card-tinted: var(--surface-tinted);
+  --bg-muted: var(--surface-muted);
+  --bg-input: #ffffff;
+  --bg-input-disabled: var(--surface-disabled);
 
-  --surface-tinted: #eef1ff;
-  --hero-bg: #eef1ff;
-  --hero-border: #d2ddff;
-  --text-link: var(--palette-combo05-blue);
-  --text-link-hover: #3544d8;
-  --border-focus: var(--palette-combo05-blue);
+  --text-main: var(--palette-ink);
+  --text-secondary: #4c4560;
+  --text-muted: #68617a;
+  --text-placeholder: #817b91;
+  --text-inverse: #ffffff;
+  --text-link: var(--palette-blue);
+  --text-link-hover: var(--blue-800);
+  --text-on-primary: #ffffff;
+  --text-on-dark: var(--blue-100);
+
+  --border-subtle: var(--blue-100);
+  --border-light: var(--blue-200);
+  --border-default: #c1cbed;
+  --border-strong: #929fc9;
+  --border-focus: var(--palette-blue);
+  --shadow-focus: 0 0 0 3px var(--primary-ring);
+
+  --profile-page-bg: var(--blue-50);
+  --hero-bg: var(--blue-50);
+  --hero-border: var(--blue-200);
+  --header-bg: #ffffff;
+  --header-border: var(--blue-100);
+  --footer-bg: var(--palette-ink);
+  --footer-text: var(--blue-100);
+  --footer-border: var(--grey-800);
+  --section-tint: var(--grey-50);
+
+  /* Authentication screens use the same palette tokens. */
+  --auth-bg: var(--blue-50);
+  --auth-surface: #ffffff;
+  --auth-surface-alt: var(--grey-50);
+  --auth-border: var(--blue-100);
+  --auth-border-strong: var(--blue-200);
+  --auth-text: var(--palette-ink);
+  --auth-text-muted: var(--text-secondary);
+  --auth-text-faint: var(--text-muted);
+  --auth-brand: var(--palette-blue);
+  --auth-brand-hover: var(--blue-700);
+  --auth-brand-soft: var(--blue-50);
+  --auth-brand-ring: var(--primary-ring);
+  --auth-accent: var(--palette-mint);
+  --auth-accent-soft: var(--emerald-100);
+  --auth-brand-mid: var(--blue-500);
+  --auth-brand-strong: var(--blue-800);
+
+  /* Animated and specialist components inherit the same theme. */
+  --u3d-top-start: var(--palette-blue);
+  --u3d-top-end: var(--blue-700);
+  --u3d-bottom-start: var(--blue-700);
+  --u3d-bottom-end: var(--palette-blue);
+  --switcher-bg: var(--palette-ink);
+  --switcher-control-bg: var(--grey-800);
+  --switcher-chart-bg: var(--grey-800);
+  --tactile-toggle-hue: 238deg;
+  --tactile-toggle-accent-hue: 168deg;
+  --action-purple-white: var(--blue-50);
+  --action-purple-100: var(--blue-200);
+  --action-purple-200: var(--blue-300);
+  --action-purple-300: var(--blue-400);
+  --action-purple-400: var(--blue-600);
+  --action-purple-500: var(--blue-800);
+  --action-purple-shadow: rgb(84 101 255 / 40%);
+  --hero-pattern-base: var(--palette-blue);
+  --hero-pattern-accent: var(--palette-mint);
+  --hero-pattern-light: var(--palette-periwinkle);
+  --hero-pattern-strong: var(--blue-700);
 }
 
+/* The ink colour is the dark theme foundation; mint and periwinkle remain accents. */
 body.dark-mode {
-  --primary: #8995ff;
-  --primary-hover: #b1b9ff;
-  --primary-light: #24274f;
-  --primary-border: #454c91;
-  --primary-ring: rgb(137 149 255 / 28%);
-
-  --secondary: #00ffd4;
+  --primary: var(--blue-400);
+  --primary-hover: var(--blue-300);
+  --primary-dark: var(--blue-200);
+  --primary-light: #20203c;
+  --primary-soft: #17152a;
+  --primary-border: #454b80;
+  --primary-ring: rgb(129 144 255 / 30%);
+  --secondary: var(--palette-mint);
   --secondary-hover: #7dffeb;
   --secondary-light: #123a35;
   --secondary-border: #17685c;
-
-  --info: #00d7cb;
-  --info-hover: #5ef0e7;
+  --accent: var(--palette-mint);
+  --accent-hover: #7dffeb;
+  --accent-light: #123a35;
+  --accent-border: #17685c;
+  --info: #6dffe2;
+  --info-hover: #9effeb;
   --info-light: #123a35;
   --info-border: #17685c;
 
-  --surface-tinted: #20233f;
-  --hero-bg: #20233f;
-  --hero-border: #454c91;
-  --text-link: #aab3ff;
-  --text-link-hover: #d2ddff;
-  --border-focus: #8995ff;
+  --surface-page: var(--palette-ink);
+  --surface-card: #100d1a;
+  --surface-raised: #191727;
+  --surface-muted: #100d1a;
+  --surface-subtle: #191727;
+  --surface-tinted: #20203c;
+  --surface-inverse: var(--blue-100);
+  --surface-disabled: #191727;
+  --bg-page: var(--surface-page);
+  --bg-card: var(--surface-card);
+  --bg-card-hover: #191727;
+  --bg-card-tinted: var(--surface-tinted);
+  --bg-muted: var(--surface-muted);
+  --bg-input: #100d1a;
+  --bg-input-disabled: #191727;
+
+  --text-main: #f8f7ff;
+  --text-secondary: #d2d0e4;
+  --text-muted: #aaa6c1;
+  --text-placeholder: #85809e;
+  --text-inverse: var(--palette-ink);
+  --text-link: #aab8ff;
+  --text-link-hover: var(--palette-periwinkle);
+  --text-on-primary: var(--palette-ink);
+  --text-on-dark: #f8f7ff;
+
+  --border-subtle: #24213a;
+  --border-light: #302c4a;
+  --border-default: #45405f;
+  --border-strong: #68617f;
+  --border-focus: var(--blue-400);
+  --shadow-focus: 0 0 0 3px var(--primary-ring);
+
+  --profile-page-bg: var(--palette-ink);
+  --hero-bg: #100d1a;
+  --hero-border: #454b80;
+  --header-bg: #100d1a;
+  --header-border: #24213a;
+  --footer-bg: var(--palette-ink);
+  --footer-text: #d2d0e4;
+  --footer-border: #24213a;
+  --section-tint: #100d1a;
+
+  --auth-bg: var(--palette-ink);
+  --auth-surface: #100d1a;
+  --auth-surface-alt: #191727;
+  --auth-border: #302c4a;
+  --auth-border-strong: #45405f;
+  --auth-text: #f8f7ff;
+  --auth-text-muted: #d2d0e4;
+  --auth-text-faint: #aaa6c1;
+  --auth-brand: var(--blue-400);
+  --auth-brand-hover: var(--blue-300);
+  --auth-brand-soft: #20203c;
+  --auth-brand-ring: var(--primary-ring);
+  --auth-accent: var(--palette-mint);
+  --auth-accent-soft: #123a35;
+  --auth-brand-mid: var(--blue-500);
+  --auth-brand-strong: var(--blue-300);
+
+  --u3d-top-start: var(--blue-500);
+  --u3d-top-end: var(--blue-700);
+  --u3d-bottom-start: var(--blue-700);
+  --u3d-bottom-end: var(--blue-500);
+  --switcher-bg: var(--palette-ink);
+  --switcher-control-bg: #191727;
+  --switcher-chart-bg: #191727;
+  --hero-pattern-base: var(--blue-400);
+  --hero-pattern-accent: var(--palette-mint);
+  --hero-pattern-light: var(--blue-300);
+  --hero-pattern-strong: var(--blue-500);
 }
 
-/* Keep keyboard focus clearly visible with the experimental accent. */
 :where(a, button, input, select, textarea, [tabindex]):focus-visible {
   outline-color: var(--primary);
 }
