@@ -1620,9 +1620,9 @@ html[data-ui-surface="flat"] .advertise-create-form { box-shadow: var(--shadow-n
 /* Original animated SVG artwork for the homepage advertising section. */
 :root {
   --advertising-illustration-radius: var(--radius-lg);
-  --advertising-illustration-float-distance: var(--space-2);
-  --advertising-illustration-float-duration: 4.8s;
-  --advertising-illustration-drift-duration: 7s;
+  --advertising-illustration-float-distance: var(--space-3);
+  --advertising-illustration-float-duration: 3.2s;
+  --advertising-illustration-drift-duration: 4.6s;
 }
 
 .ads-home-illustration-frame {
@@ -1652,11 +1652,11 @@ html[data-ui-surface="flat"] .advertise-create-form { box-shadow: var(--shadow-n
 }
 
 .advertising-reach-audience {
-  animation-delay: -1.4s;
+  animation-delay: -0.8s;
 }
 
 .advertising-reach-notification {
-  animation-delay: -2.2s;
+  animation-delay: -1.1s;
 }
 
 .advertising-reach-spark--one {
@@ -1664,14 +1664,14 @@ html[data-ui-surface="flat"] .advertise-create-form { box-shadow: var(--shadow-n
 }
 
 .advertising-reach-spark--two {
-  animation-duration: 5.6s;
-  animation-delay: -2.8s;
+  animation-duration: 3.8s;
+  animation-delay: -1.9s;
 }
 
 .advertising-reach-learner {
   transform-box: fill-box;
   transform-origin: center bottom;
-  animation: advertising-reach-breathe 5.5s var(--ease-standard) infinite;
+  animation: advertising-reach-breathe 3.6s var(--ease-standard) infinite;
 }
 
 .advertising-reach-orbit {
@@ -1681,13 +1681,13 @@ html[data-ui-surface="flat"] .advertise-create-form { box-shadow: var(--shadow-n
 }
 
 @keyframes advertising-reach-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(calc(-1 * var(--advertising-illustration-float-distance))); }
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(calc(-1 * var(--advertising-illustration-float-distance))) scale(1.025); }
 }
 
 @keyframes advertising-reach-breathe {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(calc(var(--space-1) * -1)); }
+  50% { transform: translateY(calc(var(--space-2) * -1)); }
 }
 
 @keyframes advertising-reach-pulse {
