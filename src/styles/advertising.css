@@ -1695,6 +1695,72 @@ html[data-ui-surface="flat"] .advertise-create-form { box-shadow: var(--shadow-n
   50% { opacity: 1; }
 }
 
+/* Character acting: blinking, typing and independent arm movement. */
+.advertising-reach-eyes {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: advertising-reach-blink 4.2s steps(1, end) infinite;
+}
+
+.advertising-reach-smile {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: advertising-reach-smile-shift 4.2s ease-in-out infinite;
+}
+
+.advertising-reach-arm {
+  transform-box: fill-box;
+  transform-origin: top center;
+}
+
+.advertising-reach-arm--left {
+  animation: advertising-reach-type-left 1.1s ease-in-out infinite alternate;
+}
+
+.advertising-reach-arm--right {
+  animation: advertising-reach-type-right 0.9s ease-in-out infinite alternate;
+}
+
+.advertising-reach-typing {
+  animation: advertising-reach-typing 0.65s steps(2, end) infinite;
+}
+
+.advertising-reach-laptop {
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  animation: advertising-reach-laptop-tap 0.9s ease-in-out infinite;
+}
+
+@keyframes advertising-reach-blink {
+  0%, 44%, 48%, 72%, 76%, 100% { transform: scaleY(1); }
+  46%, 74% { transform: scaleY(0.12); }
+}
+
+@keyframes advertising-reach-smile-shift {
+  0%, 100% { transform: translateY(0) scaleX(1); }
+  46%, 74% { transform: translateY(-1px) scaleX(0.92); }
+}
+
+@keyframes advertising-reach-type-left {
+  from { transform: rotate(-4deg) translateY(0); }
+  to { transform: rotate(5deg) translateY(2px); }
+}
+
+@keyframes advertising-reach-type-right {
+  from { transform: rotate(5deg) translateY(2px); }
+  to { transform: rotate(-5deg) translateY(0); }
+}
+
+@keyframes advertising-reach-typing {
+  0%, 100% { opacity: .25; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-1px); }
+}
+
+@keyframes advertising-reach-laptop-tap {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(calc(var(--space-1) * -1)); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .advertising-reach-campaign,
   .advertising-reach-audience,
