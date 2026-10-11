@@ -35,7 +35,7 @@ const STAGE = {
 export default function FlashcardsPage() {
   const { user } = useAuth();
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const { isReady } = useRequireOnboarding();
   const access = useContentAccess();
   const { locked, reason } = useSecurityUiLock();
@@ -52,6 +52,7 @@ export default function FlashcardsPage() {
 
   const curriculumUnitId = searchParams.get('unit_id') || null;
   const challengeId = searchParams.get('challenge_id') || null;
+  const deckId = searchParams.get('deck_id') || null;
   const levelName = displayName || level || '';
   const classLabel = class_name || '';
 
@@ -59,7 +60,7 @@ export default function FlashcardsPage() {
     if (!user || !isReady || !access.canAccess) return;
 
     init();
-  }, [user, isReady, access.canAccess, level, class_name, curriculumUnitId]);
+  }, [user, isReady, access.canAccess, level, class_name, curriculumUnitId, deckId]);
 
   async function init() {
     setStage(STAGE.LOADING);
@@ -72,7 +73,18 @@ export default function FlashcardsPage() {
 
       setKnownIds(knownData || []);
       setDecks(decksData || []);
-      setStage(STAGE.SUBJECT);
+
+      const requestedDeck = deckId
+        ? (decksData || []).find((deck) => String(deck.id) === String(deckId))
+        : null;
+
+      if (requestedDeck) {
+        setSelectedDeck(requestedDeck);
+        setStage(STAGE.STUDY);
+      } else {
+        setSelectedDeck(null);
+        setStage(STAGE.SUBJECT);
+      }
     } catch {
       setError('Failed to load flashcards. Please refresh.');
     }
@@ -85,6 +97,11 @@ export default function FlashcardsPage() {
     }
 
     setSelectedDeck(deck);
+    setSearchParams((current) => {
+      const next = new URLSearchParams(current);
+      next.set('deck_id', String(deck.id));
+      return next;
+    }, { replace: true });
     setStage(STAGE.STUDY);
   }
 
@@ -116,6 +133,11 @@ export default function FlashcardsPage() {
   function handleRestart() {
     setSelectedDeck(null);
     setSessionResult(null);
+    setSearchParams((current) => {
+      const next = new URLSearchParams(current);
+      next.delete('deck_id');
+      return next;
+    }, { replace: true });
     setStage(STAGE.SUBJECT);
   }
 
