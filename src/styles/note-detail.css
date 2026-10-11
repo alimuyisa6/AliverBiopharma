@@ -1101,3 +1101,19 @@
     margin-bottom: var(--space-2);
   }
 }
+
+/* The global main-content top offset is larger than this page needs.
+   Keep the breadcrumb below the fixed header without the extra blank band. */
+.main-content:has(.note-detail-container) {
+  padding-top: calc(var(--header-height) - var(--space-4));
+}
+
+.note-detail-container {
+  padding-top: 0;
+}
+
+@media (max-width: 640px) {
+  .main-content:has(.note-detail-container) {
+    padding-top: calc(var(--header-height) - var(--space-3));
+  }
+}
