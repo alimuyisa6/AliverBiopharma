@@ -327,8 +327,8 @@ export default function AIAssistant() {
         aria-label={open ? 'Close AliverBiopharm AI Tutor' : 'Open AliverBiopharm AI Tutor'}
         aria-expanded={open}
       >
-        <Icon name={open ? 'xmark' : 'message'} />
-        <span>{open ? 'Close' : 'Live Chat'}</span>
+        <Icon name={open ? 'xmark' : 'graduation-cap'} />
+        <span>{open ? 'Close' : 'AI Tutor'}</span>
       </button>
     </div>
   );
