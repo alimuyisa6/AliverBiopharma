@@ -324,3 +324,23 @@ body.dark-mode .site-header, body.dark-mode .site-header.scrolled { background: 
   .footer-science-art-wrap { padding-top: var(--space-3); }
   .footer-science-art { max-width: 100%; }
 }
+
+
+.home-scope-switcher .home-scope-switcher-art {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 50%;
+  width: min(100%, 20rem);
+  height: auto;
+  max-height: 6.25rem;
+  color: var(--text-muted);
+  opacity: 0.55;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+.home-scope-switcher .class-switcher-label,
+.home-scope-switcher .class-switcher-trigger {
+  position: relative;
+  z-index: 1;
+}
