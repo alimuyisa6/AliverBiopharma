@@ -368,3 +368,54 @@ body.dark-mode .site-header, body.dark-mode .site-header.scrolled { background: 
   background: transparent;
   box-shadow: none;
 }
+
+
+/* Footer campus scene: full-width background behind the existing footer content. */
+.footer { isolation: isolate; overflow: hidden; }
+.footer-science-art-wrap {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.24;
+}
+.footer-science-art {
+  display: block;
+  flex: 0 0 100%;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  margin: 0;
+  color: var(--footer-text);
+  --footer-art-ink: var(--text-primary, var(--footer-text));
+  --footer-art-blue: var(--primary);
+  --footer-art-mint: var(--accent, var(--primary));
+  --footer-art-periwinkle: var(--surface-muted, var(--footer-bg));
+  --footer-art-white: var(--surface-card, var(--footer-bg));
+  --footer-art-glass: var(--surface-muted, var(--footer-bg));
+  --footer-art-gold: var(--color-amber-500, var(--primary));
+  --footer-art-wood: var(--color-amber-700, var(--footer-text));
+  --footer-art-skin-light: var(--color-amber-300, var(--footer-text));
+  --footer-art-skin-medium: var(--color-amber-400, var(--footer-text));
+  --footer-art-skin-deep: var(--color-amber-700, var(--footer-text));
+  --footer-art-hair-dark: var(--text-primary, var(--footer-text));
+  --footer-art-hair-curly: var(--text-primary, var(--footer-text));
+}
+.footer-inner,
+.footer-bottom {
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 640px) {
+  .footer-science-art-wrap { padding: 0; }
+  .footer-science-art { max-width: none; }
+}
