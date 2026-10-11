@@ -63,8 +63,8 @@
     <circle cx="328" cy="133" r="3.5" fill="#0E8B79"/><circle cx="348" cy="133" r="3.5" fill="#0E8B79"/><circle cx="368" cy="133" r="3.5" fill="#0E8B79"/>
   </g>
   <style>
-    .float-symbol,.float-symbol-delay,.notebook-bob,.chat-bubble{transform-box:fill-box;transform-origin:center;animation:float 4s ease-in-out infinite}
-    .float-symbol-delay{animation-delay:-1.5s}.notebook-bob{animation-delay:-.8s}.chat-bubble{animation:pop 3.5s ease-in-out infinite}
+    .float-symbol,.float-symbol-delay,.notebook-bob,.chat-bubble{transform-box:fill-box;transform-origin:center;animation:float var(--illustration-motion-duration,4s) ease-in-out infinite}
+    .float-symbol-delay{animation-delay:-1.5s}.notebook-bob{animation-delay:-.8s}.chat-bubble{animation:pop var(--illustration-motion-duration,4s) ease-in-out infinite}
     @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
     @keyframes pop{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-4px) scale(1.025)}}
     @media(prefers-reduced-motion:reduce){.float-symbol,.float-symbol-delay,.notebook-bob,.chat-bubble{animation:none}}
