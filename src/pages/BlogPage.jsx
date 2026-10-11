@@ -1,4 +1,5 @@
 /* pages/BlogPage.jsx */
+const blogPageCache = new Map();
 import { useEffect, useState } from 'react';
 import { useLayout } from '../contexts/LayoutContext';
 import { useParams } from 'react-router-dom';
@@ -13,40 +14,53 @@ export default function BlogPage() {
   const [databasePosts, setDatabasePosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const cacheKey = slug ? `article:${slug}` : `list:${level?.id || 'default'}`;
 
   useEffect(() => {
     let cancelled = false;
 
-    setLoading(true);
+    const cached = blogPageCache.get(cacheKey);
+    setLoading(!cached);
     setError(null);
+    if (cached) {
+      setSections(cached.sections);
+      setArticle(cached.article);
+      setDatabasePosts(cached.databasePosts);
+    }
 
     const request = slug
       ? getArticleBySlug(slug).then((data) => {
           if (cancelled) return;
-          setArticle(data || null);
-          setSections(null);
-          setDatabasePosts([]);
+          const next = { article: data || null, sections: null, databasePosts: [] };
+          blogPageCache.set(cacheKey, next);
+          setArticle(next.article);
+          setSections(next.sections);
+          setDatabasePosts(next.databasePosts);
         })
       : Promise.all([
           level?.id ? getSections(level.id) : Promise.resolve({}),
           listArticles({ page: 1, limit: 12 }),
         ]).then(([sectionData, articleData]) => {
           if (cancelled) return;
-          setSections(sectionData || {});
-          setArticle(null);
-          setDatabasePosts(
-            Array.isArray(articleData?.articles)
-              ? articleData.articles
-              : []
-          );
+          const next = {
+            sections: sectionData || {},
+            article: null,
+            databasePosts: Array.isArray(articleData?.articles) ? articleData.articles : [],
+          };
+          blogPageCache.set(cacheKey, next);
+          setSections(next.sections);
+          setArticle(next.article);
+          setDatabasePosts(next.databasePosts);
         });
 
     request
       .catch((err) => {
         if (cancelled) return;
-        setArticle(null);
-        setSections(null);
-        setError(err?.message || 'Unable to load blog content.');
+        if (!cached) {
+          setArticle(null);
+          setSections(null);
+          setError(err?.message || 'Unable to load blog content.');
+        }
       })
       .finally(() => {
         if (!cancelled) setLoading(false);
