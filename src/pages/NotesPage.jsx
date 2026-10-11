@@ -4,7 +4,7 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useContentAccess } from '../hooks/useContentAccess';
 import { useLevelFilter } from '../hooks/useLevelFilter';
 import { useLayout } from '../contexts/LayoutContext';
-import { getNotesList } from '../api/client';
+import { getNotesStructure } from '../api/cachedClient';
 import { getCurriculumNode } from '../api/curriculumNavigation';
 import Card from '../components/Card/Card';
 import Icon from '../components/Icon/Icon';
@@ -12,6 +12,9 @@ import Skeleton from '../components/Skeleton/Skeleton';
 import EmptyState from '../components/EmptyState/EmptyState';
 import Button from '../components/Button/Button';
 import Container from '../components/Container/Container';
+
+const notesPageCache = new Map();
+const notesContextCache = new Map();
 
 function normalizeCurriculumResponse(data) {
   const payload = data?.node?.node ? data.node : data;
@@ -53,6 +56,7 @@ export default function NotesPage() {
   const [loading, setLoading] = useState(true);
   const [contextLoading, setContextLoading] = useState(false);
   const [error, setError] = useState(null);
+  const cacheKey = `${level || ''}:${class_name || ''}:${unitId || 'all'}`;
 
   useEffect(() => {
     if (!access.canAccess) {
@@ -61,8 +65,17 @@ export default function NotesPage() {
     }
 
     let mounted = true;
+    const cachedNotes = notesPageCache.get(cacheKey);
 
-    loadContent(mounted);
+    if (cachedNotes) {
+      setNotes(cachedNotes);
+      setLoading(false);
+      setError(null);
+      loadContent(() => mounted, false);
+    } else {
+      setLoading(true);
+      loadContent(() => mounted, true);
+    }
 
     return () => {
       mounted = false;
@@ -77,14 +90,22 @@ export default function NotesPage() {
     }
 
     let mounted = true;
-    setContextLoading(true);
+    const cachedContext = notesContextCache.get(unitId);
+    if (cachedContext) {
+      setCurriculumContext(cachedContext);
+      setContextLoading(false);
+    } else {
+      setContextLoading(true);
+    }
 
     getCurriculumNode(unitId)
       .then((data) => {
-        if (mounted) setCurriculumContext(normalizeCurriculumResponse(data));
+        const context = normalizeCurriculumResponse(data);
+        notesContextCache.set(unitId, context);
+        if (mounted) setCurriculumContext(context);
       })
       .catch(() => {
-        if (mounted) setCurriculumContext(null);
+        if (mounted && !cachedContext) setCurriculumContext(null);
       })
       .finally(() => {
         if (mounted) setContextLoading(false);
@@ -95,18 +116,19 @@ export default function NotesPage() {
     };
   }, [access.canAccess, unitId]);
 
-  async function loadContent(mounted = true) {
-    setLoading(true);
+  async function loadContent(isMounted = () => true, showLoading = true) {
+    if (showLoading) setLoading(true);
     setError(null);
 
     try {
-      const data = await getNotesList(unitId || null);
-
-      if (mounted) setNotes(Array.isArray(data) ? data : []);
+      const data = await getNotesStructure(unitId || null);
+      const nextNotes = Array.isArray(data) ? data : [];
+      notesPageCache.set(cacheKey, nextNotes);
+      if (isMounted()) setNotes(nextNotes);
     } catch {
-      if (mounted) setError('Failed to load notes.');
+      if (isMounted() && !notesPageCache.has(cacheKey)) setError('Failed to load notes.');
     } finally {
-      if (mounted) setLoading(false);
+      if (isMounted()) setLoading(false);
     }
   }
 
@@ -279,7 +301,7 @@ export default function NotesPage() {
             image={getEmptyStateImage('error')}
             title="Error"
             description={error}
-            action={<Button onClick={() => loadContent()}>Try Again</Button>}
+            action={<Button onClick={() => loadContent(() => true, true)}>Try Again</Button>}
           />
         ) : notes.length === 0 ? (
           <EmptyState
