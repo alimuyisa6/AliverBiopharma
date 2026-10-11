@@ -956,3 +956,60 @@
     font-size: var(--text-xs);
   }
 }
+
+
+/* Compact controls on the note-reading page. */
+.note-detail-container input,
+.note-detail-container textarea,
+.note-detail-container select,
+.note-detail-container .note-search-btn,
+.note-detail-container .note-comment-submit,
+.note-detail-container .note-back-btn,
+.note-detail-container .note-related-card {
+  border-radius: var(--radius-sm);
+}
+
+.note-detail-container .note-reactions-section {
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+}
+
+.note-detail-container .note-reactions-buttons {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.note-detail-container .note-reaction-btn {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: var(--space-10);
+  justify-content: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-2);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-xs);
+  white-space: nowrap;
+}
+
+.note-detail-container .note-reaction-count {
+  margin-left: 0;
+}
+
+.note-detail-container .note-comment-input {
+  min-width: 0;
+  border-radius: var(--radius-sm);
+}
+
+@media (max-width: 420px) {
+  .note-detail-container .note-reactions-buttons {
+    gap: var(--space-1);
+  }
+
+  .note-detail-container .note-reaction-btn {
+    padding-inline: var(--space-1);
+    font-size: var(--text-xs);
+  }
+}
