@@ -347,3 +347,14 @@
     opacity: 0.21;
   }
 }
+
+
+/* Keep the filter tray close to the site header. */
+.resources-main {
+  padding-block-start: var(--space-2);
+}
+@media (max-width: 768px) {
+  .resources-main {
+    padding-block-start: var(--space-2);
+  }
+}
