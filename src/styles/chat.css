@@ -10,6 +10,7 @@
 }
 
 .chat-toggle-btn {
+  display: none;
   position: relative;
   display: inline-flex;
   align-items: center;
