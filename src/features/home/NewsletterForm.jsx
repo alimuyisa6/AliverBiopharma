@@ -9,34 +9,50 @@ export function NewsletterForm({ email, status, loading = false, onChange, onSub
           <svg
             className="newsletter-envelope"
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 34 34"
+            viewBox="0 0 48 48"
             fill="none"
             focusable="false"
           >
+            <defs>
+              <linearGradient id="newsletter-envelope-paper" x1="14" y1="7" x2="34" y2="34" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stopColor="var(--surface-card)" />
+                <stop offset="100%" stopColor="var(--newsletter-icon-bg)" />
+              </linearGradient>
+            </defs>
             <path
-              className="newsletter-envelope__body"
-              d="M3.5 14.5H10 M24 14.5H30 M3.5 14.5V27a3 3 0 0 0 3 3h21a3 3 0 0 0 3-3V14.5H24"
+              className="newsletter-envelope__back"
+              d="M5 17.5 24 29 43 17.5V38a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V17.5Z"
               fill="var(--newsletter-icon-bg)"
               stroke="currentColor"
-              strokeWidth="2"
+              strokeWidth="1.8"
               strokeLinejoin="round"
             />
-            <g
-              className="newsletter-envelope__letter"
-              stroke="currentColor"
-              strokeWidth="1.6"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <rect x="10" y="4.5" width="14" height="17" rx="1.5" />
-              <path d="M13 9h8M13 12.5h8M13 16h5" />
+            <g className="newsletter-envelope__letter">
+              <rect x="13.5" y="6.5" width="21" height="29" rx="3" fill="url(#newsletter-envelope-paper)" stroke="currentColor" strokeWidth="1.7" />
+              <path d="M18 14h12M18 18.5h12M18 23h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity=".72" />
+              <path d="m18 28 3 3 7-7" stroke="var(--primary)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
             </g>
             <path
-              className="newsletter-envelope__flap"
-              d="M4.5 13 17 22 29.5 13V27a3 3 0 0 1-3 3h-21a3 3 0 0 1-3-3V13Z"
+              className="newsletter-envelope__front"
+              d="M5 18 24 31.5 43 18V38a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V18Z"
               fill="var(--newsletter-icon-bg)"
               stroke="currentColor"
-              strokeWidth="2"
+              strokeWidth="1.8"
+              strokeLinejoin="round"
+            />
+            <path
+              className="newsletter-envelope__flap"
+              d="M5 18 21.5 29.5Q24 31.5 26.5 29.5L43 18"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              className="newsletter-envelope__seal"
+              d="m20.5 22.5 3.5 3 3.5-3"
+              stroke="currentColor"
+              strokeWidth="1.6"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
