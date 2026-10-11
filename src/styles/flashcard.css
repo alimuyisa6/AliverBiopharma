@@ -11,7 +11,7 @@
   box-sizing: border-box;
   width: 100%;
   min-width: 0;
-  padding: var(--space-5);
+  padding: var(--space-2) var(--space-5) var(--space-5);
   margin-inline: auto;
 }
 
@@ -19,8 +19,7 @@
   box-sizing: border-box;
   width: 100%;
   min-width: 0;
-  padding: var(--space-4);
-  padding-bottom: var(--space-8);
+  padding: var(--space-2) var(--space-4) var(--space-8);
 }
 
 .fcd-section > * {
