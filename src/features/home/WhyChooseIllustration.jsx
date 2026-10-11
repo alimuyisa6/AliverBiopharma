@@ -24,11 +24,15 @@ export default function WhyChooseIllustration() {
         }
       `}</style>
 
-      {/* A connected route ties the study tools together. */}
-      <path d="M110 91C145 47 174 50 206 76S275 119 310 83S377 54 411 88"
-        fill="none" stroke="#93c5fd" strokeWidth="4" strokeLinecap="round"/>
-      <path className="why-art-flow" d="M110 91C145 47 174 50 206 76S275 119 310 83S377 54 411 88"
-        fill="none" stroke="#2563eb" strokeWidth="2.5" strokeLinecap="round"/>
+      {/* Clear connectors run only through the gaps between the three learning cards. */}
+      <g fill="none" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M145 125H174" stroke="#93c5fd" strokeWidth="5"/>
+        <path className="why-art-flow" d="M145 125H170" stroke="#2563eb" strokeWidth="2.5"/>
+        <path d="m167 120 7 5-7 5" stroke="#2563eb" strokeWidth="2.5"/>
+        <path d="M290 125H323" stroke="#93c5fd" strokeWidth="5"/>
+        <path className="why-art-flow" d="M290 125H319" stroke="#2563eb" strokeWidth="2.5"/>
+        <path d="m316 120 7 5-7 5" stroke="#2563eb" strokeWidth="2.5"/>
+      </g>
 
       {/* Notes: a structured study card, not a book stack. */}
       <g className="why-art-note">
