@@ -28,16 +28,23 @@ export default function FooterScienceIllustration() {
       <style>{`
         .footer-campus-line { stroke: var(--footer-art-ink); stroke-linecap: round; stroke-linejoin: round; }
         .footer-campus-student { stroke: var(--footer-art-ink); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
-        .footer-campus-walk-leg { transform-box: fill-box; transform-origin: 50% 8%; animation: footer-campus-walk 1.1s ease-in-out infinite alternate; }
+        .footer-campus-walk-leg { transform-box: view-box; transform-origin: 50% 244px; animation: footer-campus-walk 0.55s ease-in-out infinite alternate; }
+        .footer-campus-walker { transform-box: view-box; animation: footer-campus-bob .55s ease-in-out infinite alternate; }
+        .footer-campus-walker--two { animation-delay: -.275s; }
+        .footer-campus-lab-hand { transform-box: view-box; transform-origin: 1215px 185px; animation: footer-campus-lab-work 1.2s ease-in-out infinite alternate; }
+        .footer-campus-flask-liquid { transform-box: view-box; transform-origin: 1177px 211px; animation: footer-campus-liquid 2s ease-in-out infinite alternate; }
         .footer-campus-walk-leg--delay { animation-delay: -.55s; }
         .footer-campus-writing-hand { transform-box: fill-box; transform-origin: 20% 50%; animation: footer-campus-write 1.8s ease-in-out infinite; }
         .footer-campus-bubble { transform-box: fill-box; transform-origin: center; animation: footer-campus-bubble 3.2s ease-in-out infinite; }
         .footer-campus-bubble--delay { animation-delay: -1.6s; }
-        @keyframes footer-campus-walk { from { transform: rotate(-10deg); } to { transform: rotate(11deg); } }
+        @keyframes footer-campus-walk { from { transform: rotate(-18deg); } to { transform: rotate(18deg); } }
+        @keyframes footer-campus-bob { from { transform: translateY(0); } to { transform: translateY(-5px); } }
+        @keyframes footer-campus-lab-work { from { transform: rotate(-5deg); } to { transform: rotate(7deg); } }
+        @keyframes footer-campus-liquid { from { transform: translateY(1px); } to { transform: translateY(-2px); } }
         @keyframes footer-campus-write { 0%,100% { transform: rotate(-2deg); } 50% { transform: rotate(7deg); } }
         @keyframes footer-campus-bubble { 0%,100% { opacity: .45; transform: translateY(2px); } 50% { opacity: 1; transform: translateY(-5px); } }
         @media (prefers-reduced-motion: reduce) {
-          .footer-campus-walk-leg, .footer-campus-writing-hand, .footer-campus-bubble { animation: none; }
+          .footer-campus-walk-leg, .footer-campus-writing-hand, .footer-campus-bubble, .footer-campus-walker, .footer-campus-lab-hand, .footer-campus-flask-liquid { animation: none; }
         }
       `}</style>
 
@@ -57,7 +64,7 @@ export default function FooterScienceIllustration() {
         <path d="M124 62V120M68 91H180" className="footer-campus-line" fill="none" strokeWidth="2" opacity=".55" />
         <path d="M205 72H353" className="footer-campus-line" fill="none" strokeWidth="5" opacity=".7" />
         <path d="M221 83H320" className="footer-campus-line" fill="none" strokeWidth="2" opacity=".5" />
-        <text x="210" y="56" fill="var(--footer-art-blue)" fontSize="18" fontWeight="700" letterSpacing="2">LEARN</text>
+        <text x="210" y="56" fill="var(--footer-art-blue)" fontSize="18" fontWeight="700" letterSpacing="2">CLASSROOM</text>
 
         {/* Student A: natural seated posture, curly hair, shirt and notebook. */}
         <g className="footer-campus-student">
@@ -107,7 +114,7 @@ export default function FooterScienceIllustration() {
       {/* CAMPUS WALKWAY — two students moving between classes. */}
       <g id="footer-campus-walkway">
         <path d="M472 284Q640 255 800 284" fill="none" stroke="var(--footer-art-mint)" strokeWidth="5" strokeLinecap="round" opacity=".8" />
-        <path d="M495 301H779" className="footer-campus-line" fill="none" strokeWidth="2" strokeDasharray="4 12" opacity=".5" />
+        <text x="585" y="83" fill="var(--footer-art-blue)" fontSize="18" fontWeight="700" letterSpacing="2">CAMPUS LIFE</text><path d="M495 301H779" className="footer-campus-line" fill="none" strokeWidth="2" strokeDasharray="4 12" opacity=".5" />
         <g className="footer-campus-student">
           {/* Walking student one */}
           <path d="M555 152Q553 132 570 125Q587 120 598 136L598 155L587 168H568Z" fill="var(--footer-art-skin-medium)" />
@@ -165,7 +172,7 @@ export default function FooterScienceIllustration() {
         <rect x="1050" y="50" width="282" height="78" rx="7" fill="url(#footer-campus-glass)" stroke="var(--footer-art-blue)" strokeWidth="3" />
         <path d="M1191 50V128M1050 89H1332" className="footer-campus-line" fill="none" strokeWidth="2" opacity=".5" />
         <path d="M1080 66H1168M1210 66H1306M1080 108H1168M1210 108H1306" className="footer-campus-line" fill="none" strokeWidth="2" opacity=".28" />
-        <text x="1065" y="37" fill="var(--footer-art-blue)" fontSize="18" fontWeight="700" letterSpacing="2">DISCOVER</text>
+        <text x="1065" y="37" fill="var(--footer-art-blue)" fontSize="18" fontWeight="700" letterSpacing="2">LABORATORY</text>
         {/* Lab partner at left */}
         <g className="footer-campus-student">
           <path d="M1072 178Q1073 157 1092 151Q1110 151 1121 169L1123 202L1070 202Z" fill="url(#footer-campus-coat)" />
@@ -187,7 +194,7 @@ export default function FooterScienceIllustration() {
           <rect x="1251" y="133" width="15" height="10" rx="4" fill="var(--footer-art-glass)" stroke="var(--footer-art-blue)" strokeWidth="2" />
           <rect x="1271" y="133" width="15" height="10" rx="4" fill="var(--footer-art-glass)" stroke="var(--footer-art-blue)" strokeWidth="2" />
           <path d="M1266 137H1271" fill="none" strokeWidth="2" />
-          <path d="M1250 165L1229 188L1215 185" fill="none" strokeWidth="9" />
+          <g className="footer-campus-lab-hand"><path d="M1250 165L1229 188L1215 185" fill="none" strokeWidth="9" /></g>
           <path d="M1286 166L1305 190L1324 185" fill="none" strokeWidth="9" />
           <path d="M1215 185L1207 182M1324 185L1333 180" fill="none" strokeWidth="5" />
           <path d="M1261 171L1270 190L1280 171" fill="none" stroke="var(--footer-art-blue)" strokeWidth="2" />
@@ -199,7 +206,7 @@ export default function FooterScienceIllustration() {
         <path d="M1128 185L1114 173L1122 164L1141 181" fill="none" stroke="var(--footer-art-blue)" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M1108 219H1150" fill="none" stroke="var(--footer-art-ink)" strokeWidth="7" strokeLinecap="round" />
         <path d="M1170 177H1182V193L1196 215Q1200 221 1190 221H1161Q1153 221 1158 213L1170 193Z" fill="var(--footer-art-white)" stroke="var(--footer-art-blue)" strokeWidth="2.5" />
-        <path d="M1162 209H1193L1197 215Q1200 221 1190 221H1161Q1153 221 1158 213Z" fill="var(--footer-art-mint)" opacity=".9" />
+        <path className="footer-campus-flask-liquid" d="M1162 209H1193L1197 215Q1200 221 1190 221H1161Q1153 221 1158 213Z" fill="var(--footer-art-mint)" opacity=".9" />
         <path d="M1173 183V193" fill="none" stroke="var(--footer-art-blue)" strokeWidth="2" />
         <circle cx="1170" cy="208" r="2.5" fill="var(--footer-art-blue)" />
         <circle cx="1183" cy="214" r="3" fill="var(--footer-art-blue)" />
