@@ -190,3 +190,31 @@
 .resource-card-icon .resource-art {
   background: transparent;
 }
+
+
+/* Resources search: keep the magnifier visibly inside the field and use tighter corners. */
+.resources-toolbar .resources-search {
+  position: relative;
+  isolation: isolate;
+}
+.resources-toolbar .resources-search > .icon,
+.resources-toolbar .resources-search > svg {
+  position: absolute;
+  top: 50%;
+  left: var(--space-4);
+  z-index: 2;
+  display: block;
+  width: var(--space-5);
+  height: var(--space-5);
+  margin: 0;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+.resources-toolbar .resources-search input {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding-left: var(--space-10);
+  border-radius: var(--radius-sm);
+}
