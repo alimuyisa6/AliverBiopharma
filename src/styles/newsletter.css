@@ -10,9 +10,9 @@
   --newsletter-heading-max-width: 100%;
   --newsletter-form-max-width: 100%;
   --newsletter-input-height: var(--control-height-lg);
-  --newsletter-envelope-size: 2.75rem;
-  --newsletter-envelope-duration: 2.8s;
-  --newsletter-envelope-letter-duration: 2.2s;
+  --newsletter-envelope-size: 3rem;
+  --newsletter-envelope-duration: 3.4s;
+  --newsletter-envelope-letter-duration: 2.6s;
   --newsletter-submit-gap: var(--space-2);
 }
 
@@ -60,9 +60,21 @@
 }
 
 .newsletter-envelope__letter {
-  transform-box: fill-box;
+  transform-box: view-box;
   transform-origin: center bottom;
   animation: newsletter-envelope-letter var(--newsletter-envelope-letter-duration) var(--ease-standard) infinite;
+}
+
+.newsletter-envelope__flap {
+  transform-box: view-box;
+  transform-origin: 24px 18px;
+  animation: newsletter-envelope-flap var(--newsletter-envelope-duration) var(--ease-standard) infinite;
+}
+
+.newsletter-envelope__seal {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: newsletter-envelope-seal var(--newsletter-envelope-duration) ease-in-out infinite;
 }
 
 .newsletter-note {
@@ -158,23 +170,43 @@
 @keyframes newsletter-envelope-float {
   0%,
   100% {
-    transform: translateY(0);
+    transform: translateY(0) rotate(0deg);
   }
 
   50% {
-    transform: translateY(calc(var(--space-1) * -1));
+    transform: translateY(calc(var(--space-1) * -1)) rotate(-2deg);
   }
 }
 
 @keyframes newsletter-envelope-letter {
-  0%,
-  100% {
+  0%, 12%, 100% {
     transform: translateY(0);
   }
 
-  45%,
-  65% {
-    transform: translateY(calc(var(--space-1) * -1));
+  42%, 68% {
+    transform: translateY(calc(var(--space-2) * -1));
+  }
+}
+
+@keyframes newsletter-envelope-flap {
+  0%, 15%, 72%, 100% {
+    transform: rotateX(0deg);
+  }
+
+  38%, 55% {
+    transform: rotateX(165deg);
+  }
+}
+
+@keyframes newsletter-envelope-seal {
+  0%, 15%, 72%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  38%, 55% {
+    opacity: .25;
+    transform: scale(.75);
   }
 }
 
@@ -190,7 +222,9 @@
 
 @media (prefers-reduced-motion: reduce) {
   .newsletter-envelope,
-  .newsletter-envelope__letter {
+  .newsletter-envelope__letter,
+  .newsletter-envelope__flap,
+  .newsletter-envelope__seal {
     animation: none;
   }
 }
