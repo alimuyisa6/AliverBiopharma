@@ -15,7 +15,7 @@ export function NewsletterForm({ email, status, loading = false, onChange, onSub
           >
             <path
               className="newsletter-envelope__body"
-              d="M3.5 14.5V27a3 3 0 0 0 3 3h21a3 3 0 0 0 3-3V14.5"
+              d="M3.5 14.5H10 M24 14.5H30 M3.5 14.5V27a3 3 0 0 0 3 3h21a3 3 0 0 0 3-3V14.5H24"
               fill="var(--newsletter-icon-bg)"
               stroke="currentColor"
               strokeWidth="2"
