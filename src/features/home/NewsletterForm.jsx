@@ -42,7 +42,7 @@ export function NewsletterForm({ email, status, loading = false, onChange, onSub
             />
             <path
               className="newsletter-envelope__flap"
-              d="M5 18 24 5 43 18 24 29Z"
+              d="M5 18 24 5 43 18Z"
               fill="var(--newsletter-icon-bg)"
               stroke="currentColor"
               strokeWidth="1.8"
