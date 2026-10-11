@@ -53,9 +53,8 @@ export default function FlashcardsPage() {
   const [decks, setDecks] = useState([]);
   const [error, setError] = useState(null);
 
-  const cacheKey = `${user?.id || 'anonymous'}:${level || ''}:${class_name || ''}:${curriculumUnitId || 'all'}`;
-
   const curriculumUnitId = searchParams.get('unit_id') || null;
+  const cacheKey = `${user?.id || 'anonymous'}:${level || ''}:${class_name || ''}:${curriculumUnitId || 'all'}`;
   const challengeId = searchParams.get('challenge_id') || null;
   const deckId = searchParams.get('deck_id') || null;
   const levelName = displayName || level || '';
