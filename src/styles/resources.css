@@ -88,3 +88,93 @@
 .resources-intro h1{margin:0 0 var(--space-2);color:var(--text-main);font-family:var(--font-heading);font-size:var(--text-section-title);font-weight:var(--weight-section-title);line-height:var(--leading-section-title);letter-spacing:var(--tracking-tight)}
 .resources-intro p{max-width:62ch;margin:0;color:var(--text-secondary);font-family:var(--font-reading);font-size:var(--text-body-sm);line-height:var(--leading-relaxed)}
 @media (max-width:640px){.resources-toolbar{gap:var(--space-3)}.resources-filter-chips{order:1;width:100%;flex-basis:100%}.resources-search{order:2;max-width:none;flex-basis:100%}.resources-intro{align-items:start;flex-direction:column;margin-bottom:var(--space-6)}.resources-intro p{font-size:var(--text-body-sm)}}
+
+
+/* Purpose-built SVG artwork for the resource cards */
+.resource-card-icon {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.resource-card-icon .resource-art {
+  display: block;
+  width: 100%;
+  max-width: var(--resources-art-max-size, 8.75rem);
+  height: auto;
+  overflow: visible;
+  color: var(--text-secondary);
+}
+
+.resource-art-float {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: resource-art-float 4s ease-in-out infinite;
+}
+
+.resource-art-back {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: resource-art-sway 5s ease-in-out infinite;
+}
+
+.resource-art-flip {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: resource-art-card-lift 3.8s ease-in-out infinite;
+}
+
+.resource-art-download {
+  animation: resource-art-download 2.2s ease-in-out infinite;
+}
+
+.resource-art-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: resource-art-brain-pulse 3.6s ease-in-out infinite;
+}
+
+.resource-art-ripple {
+  animation: resource-art-ripple 2.2s ease-in-out infinite;
+}
+
+@keyframes resource-art-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(calc(var(--space-1) * -1)); }
+}
+
+@keyframes resource-art-sway {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(2deg); }
+}
+
+@keyframes resource-art-card-lift {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(calc(var(--space-1) * -1)) rotate(1.5deg); }
+}
+
+@keyframes resource-art-download {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(var(--space-1)); opacity: .65; }
+}
+
+@keyframes resource-art-brain-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.035); }
+}
+
+@keyframes resource-art-ripple {
+  0%, 100% { opacity: .45; }
+  50% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .resource-art-float,
+  .resource-art-back,
+  .resource-art-flip,
+  .resource-art-download,
+  .resource-art-pulse,
+  .resource-art-ripple {
+    animation: none !important;
+  }
+}
