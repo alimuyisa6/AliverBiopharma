@@ -182,27 +182,21 @@ export default function ResourcesView({ navigate, user, sections }) {
         {filteredTypes.length > 0 ? (
           <div className="resources-grid">
             {filteredTypes.map((type) => {
-              const imageUrl = getImage(type.key);
-
               return (
                 <article
                   key={type.key}
                   className={`resource-card resource-card-${type.color}`}
                 >
                   <div className="resource-card-top">
-                    <div className="resource-card-icon" aria-hidden="true">
-                      {imageUrl ? (
-                        <img src={imageUrl} alt="" loading="lazy" />
-                      ) : (
-                        <ResourceIllustration type={type.key} />
-                      )}
-                    </div>
                     <span className="resource-card-badge">
                       {CATEGORY_LABELS[type.category]}
                     </span>
                   </div>
 
                   <div className="resource-card-body">
+                    <div className="resource-card-artwork" aria-hidden="true">
+                      <ResourceIllustration type={type.key} />
+                    </div>
                     <h3 className="resource-card-title">{type.label}</h3>
                     <p className="resource-card-desc">{type.description}</p>
                   </div>
