@@ -339,3 +339,69 @@
   .dashboard-content .dashboard-recall-grid > div { padding: var(--space-3); }
   .dashboard-content .dashboard-section-link { width: 100%; }
 }
+
+
+/* Download history and Recall XP additions. */
+.dashboard-content .dashboard-recall-xp {
+  border-color: var(--border-default);
+  background: var(--surface-muted);
+}
+.dashboard-content .dashboard-recall-xp strong { color: var(--primary); }
+.dashboard-content .dashboard-download-summary {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  padding: var(--space-3) 0 var(--space-4);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.dashboard-content .dashboard-download-summary strong {
+  color: var(--text-main);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+}
+.dashboard-content .dashboard-download-summary span {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+.dashboard-content .dashboard-download-list {
+  display: flex;
+  flex-direction: column;
+}
+.dashboard-content .dashboard-download-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.dashboard-content .dashboard-download-file {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.dashboard-content .dashboard-download-file strong {
+  color: var(--text-main);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  overflow-wrap: anywhere;
+}
+.dashboard-content .dashboard-download-file small,
+.dashboard-content .dashboard-download-date {
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+}
+.dashboard-content .dashboard-download-date {
+  flex: 0 0 auto;
+  text-align: right;
+}
+@media (max-width: 480px) {
+  .dashboard-content .dashboard-download-item {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+  .dashboard-content .dashboard-download-date { text-align: left; }
+}
