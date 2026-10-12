@@ -585,12 +585,12 @@ export default function Dashboard() {
                     <h4>Recent download attempts</h4>
                     {downloadAttempts.recent.slice(0, 5).map((attempt) => {
                       const statusLabel = attempt.status === 'link_issued'
-                        ? 'Link issued'
+                        ? 'Ready to download'
                         : attempt.status === 'premium_blocked'
-                          ? 'Premium restricted'
+                          ? 'Premium access needed'
                           : attempt.status === 'network_error'
-                            ? 'Network problem'
-                            : 'Request failed';
+                            ? 'Connection issue'
+                            : 'Please try again';
                       return (
                         <div className="dashboard-download-attempt" key={attempt.id}>
                           <span className={`dashboard-download-status dashboard-download-status-${attempt.status}`}>{statusLabel}</span>
@@ -607,12 +607,11 @@ export default function Dashboard() {
                 <div className="dashboard-download-help">
                   <strong>Having trouble downloading?</strong>
                   <ul>
-                    <li><b>Premium restriction:</b> open the paper's access details or choose an unlocked paper.</li>
-                    <li><b>Network failure:</b> check your connection, retry the download, and avoid refreshing until the request finishes.</li>
-                    <li><b>Link issued:</b> the site created a short-lived link; if the file did not save, try again from Past Papers.</li>
+                    <li>Check your internet connection and try again.</li>
+                    <li>If a paper needs premium access, choose an available paper or review its access options.</li>
+                    <li>If the PDF doesn't appear, open Past Papers and start the download again.</li>
                   </ul>
                 </div>
-                <p className="dashboard-quiz-note">Download events are recorded from the app. A browser cannot reliably confirm that the PDF finished saving, and a total network outage can prevent a failure event from reaching the server.</p>
               </div>
             </section>
 
