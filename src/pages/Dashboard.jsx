@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { TotalLearningActivity, MasteryDonut, XpBars } from '../components/charts/AnalyticsCharts';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
@@ -28,6 +28,7 @@ export default function Dashboard() {
   const [downloadHistory, setDownloadHistory] = useState({ papers: [], total: 0 });
   const [downloadAttempts, setDownloadAttempts] = useState({ counts: {}, recent: [] });
   const [classroomRooms, setClassroomRooms] = useState([]);
+  const summaryLoadedRef = useRef(false);
 
   useEffect(() => {
     if (!access.canAccess) {
@@ -36,17 +37,19 @@ export default function Dashboard() {
     }
 
     let mounted = true;
+    summaryLoadedRef.current = false;
 
     const refreshDashboard = () => {
       getUserDashboard()
         .then((data) => {
           if (mounted) {
+            summaryLoadedRef.current = true;
             setSummary(data);
             setError(null);
           }
         })
         .catch(() => {
-          if (mounted && !summary) {
+          if (mounted && !summaryLoadedRef.current) {
             setError('Unable to load your dashboard right now. Please try again later.');
           }
         })
