@@ -3,7 +3,7 @@ import { TotalLearningActivity, MasteryDonut, XpBars } from '../components/chart
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useLayout } from '../contexts/LayoutContext';
-import { getUserDashboard } from '../api/cachedClient';
+import { getUserDashboard, listClassrooms } from '../api/cachedClient';
 import { getDownloadHistory, getDownloadAttemptSummary } from '../api/client';
 import { useContentAccess } from '../hooks/useContentAccess';
 import { useSecurityUiLock } from '../hooks/useSecurityUiLock';
@@ -26,6 +26,7 @@ export default function Dashboard() {
   const [activityRange, setActivityRange] = useState('week');
   const [downloadHistory, setDownloadHistory] = useState({ papers: [], total: 0 });
   const [downloadAttempts, setDownloadAttempts] = useState({ counts: {}, recent: [] });
+  const [classroomRooms, setClassroomRooms] = useState([]);
 
   useEffect(() => {
     if (!access.canAccess) {
@@ -92,6 +93,34 @@ export default function Dashboard() {
       mounted = false;
     };
   }, [user?.id]);
+
+  useEffect(() => {
+    let mounted = true;
+    const groupId = summary?.group_id;
+
+    if (!groupId) {
+      setClassroomRooms([]);
+      return () => { mounted = false; };
+    }
+
+    listClassrooms(null, groupId)
+      .then((rooms) => {
+        if (mounted) {
+          setClassroomRooms(
+            (Array.isArray(rooms) ? rooms : [])
+              .filter((room) => ['live', 'open_floor', 'upcoming'].includes(room.status))
+              .slice(0, 4)
+          );
+        }
+      })
+      .catch(() => {
+        if (mounted) setClassroomRooms([]);
+      });
+
+    return () => {
+      mounted = false;
+    };
+  }, [summary?.group_id]);
 
   function getEmptyStateImage(key) {
     const uiComponents = bootstrap?.ui_components || [];
@@ -171,7 +200,8 @@ export default function Dashboard() {
     weak_areas,
     recent_activity,
     unit_xp,
-    analytics
+    analytics,
+    level_user_counts: levelUserCounts = {}
   } = summary;
 
   const levelName = level?.display_name || 'No Level';
@@ -759,6 +789,61 @@ export default function Dashboard() {
                 </div>
               </div>
             )}
+
+            <section className="panel dashboard-card dashboard-card-secondary" id="learning-community-section" aria-labelledby="learning-community-title">
+              <div className="panel-header">
+                <h3 className="panel-title" id="learning-community-title">Learning community</h3>
+              </div>
+              <div className="panel-body">
+                {levelUserCounts.available ? (
+                  <>
+                    <div className="dashboard-community-total">
+                      <strong>{Number(levelUserCounts.total || 0).toLocaleString()}</strong>
+                      <span>learners across all three levels</span>
+                    </div>
+                    <div className="dashboard-community-levels">
+                      <div><span>O-Level</span><strong>{levelUserCounts.o_level ?? 0}</strong></div>
+                      <div><span>A-Level</span><strong>{levelUserCounts.a_level ?? 0}</strong></div>
+                      <div><span>Pharmacy</span><strong>{levelUserCounts.pharmacy ?? 0}</strong></div>
+                    </div>
+                  </>
+                ) : (
+                  <p className="dashboard-quiz-note">Learner totals are temporarily unavailable.</p>
+                )}
+              </div>
+            </section>
+
+            <section className="panel dashboard-card dashboard-card-secondary" id="live-classrooms-section" aria-labelledby="live-classrooms-title">
+              <div className="panel-header">
+                <h3 className="panel-title" id="live-classrooms-title">Your classrooms</h3>
+                <Link to="/classroom" className="dashboard-section-link">View classrooms</Link>
+              </div>
+              <div className="panel-body">
+                {classroomRooms.length > 0 ? (
+                  <div className="dashboard-classroom-list">
+                    {classroomRooms.map((room) => (
+                      <Link to={`/classroom/${room.id}`} className="dashboard-classroom-item" key={room.id}>
+                        <span className={`dashboard-classroom-status dashboard-classroom-status-${room.status}`}>
+                          {room.status === 'open_floor' ? 'Open floor' : room.status === 'upcoming' ? 'Upcoming' : 'Live'}
+                        </span>
+                        <span className="dashboard-classroom-copy">
+                          <strong>{room.title || room.topic_name || 'Classroom session'}</strong>
+                          <small>{room.class_name || levelName}{room.participant_count != null ? ` · ${room.participant_count} participants` : ''}</small>
+                          {room.scheduled_at && room.status === 'upcoming' && (
+                            <small>Starts {new Date(room.scheduled_at).toLocaleString()}</small>
+                          )}
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="dashboard-classroom-empty">
+                    <p>No live or upcoming classrooms are available for your current class or programme right now.</p>
+                    <Link to="/classroom" className="dashboard-section-link">Check classroom schedule</Link>
+                  </div>
+                )}
+              </div>
+            </section>
 
             {weakAreas.length > 0 && (
               <div className="panel dashboard-card dashboard-card-secondary" id="weak-areas-section">
