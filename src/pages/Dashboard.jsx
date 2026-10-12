@@ -3,7 +3,8 @@ import { TotalLearningActivity, MasteryDonut, XpBars } from '../components/chart
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useLayout } from '../contexts/LayoutContext';
-import { getUserDashboard, listClassrooms } from '../api/cachedClient';
+import { getUserDashboard } from '../api/cachedClient';
+import { listClassrooms as fetchClassrooms } from '../api/client';
 import { getDownloadHistory, getDownloadAttemptSummary } from '../api/client';
 import { useContentAccess } from '../hooks/useContentAccess';
 import { useSecurityUiLock } from '../hooks/useSecurityUiLock';
@@ -36,61 +37,80 @@ export default function Dashboard() {
 
     let mounted = true;
 
-    getUserDashboard()
-      .then((data) => {
-        if (mounted) setSummary(data);
-      })
-      .catch(() => {
-        if (mounted) setError('Unable to load your dashboard right now. Please try again later.');
-      })
-      .finally(() => {
-        if (mounted) setLoading(false);
-      });
+    const refreshDashboard = () => {
+      getUserDashboard()
+        .then((data) => {
+          if (mounted) {
+            setSummary(data);
+            setError(null);
+          }
+        })
+        .catch(() => {
+          if (mounted && !summary) {
+            setError('Unable to load your dashboard right now. Please try again later.');
+          }
+        })
+        .finally(() => {
+          if (mounted) setLoading(false);
+        });
+    };
+
+    refreshDashboard();
+    const refreshTimer = window.setInterval(refreshDashboard, 60000);
 
     return () => {
       mounted = false;
+      window.clearInterval(refreshTimer);
     };
-  }, [access.canAccess]);
+  }, [access.canAccess, user?.id]);
 
   useEffect(() => {
     let mounted = true;
 
-    getDownloadHistory(1, 5)
-      .then((data) => {
-        if (mounted) {
-          setDownloadHistory({
-            papers: Array.isArray(data?.papers) ? data.papers : [],
-            total: Number(data?.total) || 0
-          });
-        }
-      })
-      .catch(() => {
-        if (mounted) setDownloadHistory({ papers: [], total: 0 });
-      });
+    const refreshHistory = () => {
+      getDownloadHistory(1, 5)
+        .then((data) => {
+          if (mounted) {
+            setDownloadHistory({
+              papers: Array.isArray(data?.papers) ? data.papers : [],
+              total: Number(data?.total) || 0
+            });
+          }
+        })
+        .catch(() => {});
+    };
+
+    refreshHistory();
+    const refreshTimer = window.setInterval(refreshHistory, 60000);
 
     return () => {
       mounted = false;
+      window.clearInterval(refreshTimer);
     };
   }, [user?.id]);
 
   useEffect(() => {
     let mounted = true;
 
-    getDownloadAttemptSummary()
-      .then((data) => {
-        if (mounted) {
-          setDownloadAttempts({
-            counts: data?.counts || {},
-            recent: Array.isArray(data?.recent) ? data.recent : []
-          });
-        }
-      })
-      .catch(() => {
-        if (mounted) setDownloadAttempts({ counts: {}, recent: [] });
-      });
+    const refreshAttempts = () => {
+      getDownloadAttemptSummary()
+        .then((data) => {
+          if (mounted) {
+            setDownloadAttempts({
+              counts: data?.counts || {},
+              recent: Array.isArray(data?.recent) ? data.recent : []
+            });
+          }
+        })
+        .catch(() => {});
+    };
+
+    refreshAttempts();
+    const refreshTimer = window.setInterval(refreshAttempts, 60000);
 
     return () => {
       mounted = false;
+      window.clearInterval(refreshTimer);
     };
   }, [user?.id]);
 
@@ -103,22 +123,26 @@ export default function Dashboard() {
       return () => { mounted = false; };
     }
 
-    listClassrooms(null, groupId)
-      .then((rooms) => {
-        if (mounted) {
-          setClassroomRooms(
-            (Array.isArray(rooms) ? rooms : [])
-              .filter((room) => ['live', 'open_floor', 'upcoming'].includes(room.status))
-              .slice(0, 4)
-          );
-        }
-      })
-      .catch(() => {
-        if (mounted) setClassroomRooms([]);
-      });
+    const refreshClassrooms = () => {
+      fetchClassrooms(null, groupId)
+        .then((rooms) => {
+          if (mounted) {
+            setClassroomRooms(
+              (Array.isArray(rooms) ? rooms : [])
+                .filter((room) => ['live', 'open_floor', 'upcoming'].includes(room.status))
+                .slice(0, 4)
+            );
+          }
+        })
+        .catch(() => {});
+    };
+
+    refreshClassrooms();
+    const refreshTimer = window.setInterval(refreshClassrooms, 30000);
 
     return () => {
       mounted = false;
+      window.clearInterval(refreshTimer);
     };
   }, [summary?.group_id]);
 
