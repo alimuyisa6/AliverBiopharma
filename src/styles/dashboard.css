@@ -689,3 +689,36 @@
   margin-top: var(--space-2);
   margin-bottom: var(--space-3);
 }
+
+
+/* Small contextual aside inside each dashboard section. */
+.dashboard-content .dashboard-section-aside {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  column-gap: var(--space-3);
+  row-gap: var(--space-1);
+  margin: 0 0 var(--space-5);
+  padding: var(--space-3) var(--space-4);
+  border-left: var(--border-width-medium, 3px) solid var(--accent, var(--border-strong));
+  border-radius: var(--radius-md);
+  background: var(--surface-subtle);
+}
+.dashboard-content .dashboard-section-aside strong {
+  color: var(--text-main);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-relaxed);
+}
+.dashboard-content .dashboard-section-aside p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+}
+@media (max-width: 480px) {
+  .dashboard-content .dashboard-section-aside {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--space-1);
+  }
+}
