@@ -285,7 +285,7 @@ export default function PastPapers() {
       return;
     }
 
-    if (paper.locked || paper.is_premium) {
+    if (paper.locked) {
       recordDownloadAttempt(paper, 'premium_blocked', paper.reason || 'Premium access required');
       addToast('This paper requires premium access', 'warning');
       return;
