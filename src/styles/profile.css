@@ -884,3 +884,111 @@
     width: 100%;
   }
 }
+
+
+/* Profile claymorphism: match the dashboard's soft raised surfaces. */
+.profile-page {
+  background: var(--profile-page-bg);
+}
+
+.profile-page .profile-sidebar-inner,
+.profile-page .profile-overview-panel,
+.profile-page .profile-content > .profile-card,
+.profile-page .profile-content > form,
+.profile-page .profile-tabs-wrap {
+  border: var(--border-width-thin) solid color-mix(in srgb, var(--border-default) 72%, var(--bg-card));
+  border-radius: var(--radius-card, var(--radius-lg));
+  box-shadow:
+    var(--shadow-md),
+    inset 1px 1px 0 color-mix(in srgb, var(--bg-card) 90%, transparent),
+    inset -1px -1px 0 color-mix(in srgb, var(--border-subtle) 20%, transparent);
+}
+
+.profile-page .profile-sidebar-inner,
+.profile-page .profile-overview-panel,
+.profile-page .profile-content > .profile-card,
+.profile-page .profile-content > form {
+  background: var(--bg-card);
+}
+
+.profile-page .profile-overview-summary {
+  border-color: color-mix(in srgb, var(--profile-summary-border) 75%, var(--bg-card));
+  box-shadow:
+    inset 3px 3px 7px color-mix(in srgb, var(--border-default) 22%, transparent),
+    inset -3px -3px 7px color-mix(in srgb, var(--bg-card) 92%, transparent);
+}
+
+.profile-page .profile-category-card,
+.profile-page .profile-stat-tile,
+.profile-page .theme-swatch-option,
+.profile-page .profile-preference-control select {
+  border-color: color-mix(in srgb, var(--border-default) 70%, var(--bg-card));
+  border-radius: var(--radius-lg, var(--radius-md));
+  background: var(--bg-card);
+  box-shadow:
+    3px 3px 8px color-mix(in srgb, var(--border-default) 30%, transparent),
+    -3px -3px 8px color-mix(in srgb, var(--bg-card) 88%, transparent),
+    inset 1px 1px 0 color-mix(in srgb, var(--bg-card) 78%, transparent);
+}
+
+.profile-page .profile-category-card:hover,
+.profile-page .theme-swatch-option:hover {
+  border-color: var(--primary-border);
+  box-shadow:
+    5px 5px 11px color-mix(in srgb, var(--border-default) 34%, transparent),
+    -4px -4px 10px color-mix(in srgb, var(--bg-card) 90%, transparent);
+}
+
+.profile-page .profile-category-card:active {
+  box-shadow:
+    inset 2px 2px 5px color-mix(in srgb, var(--border-default) 28%, transparent),
+    inset -2px -2px 5px color-mix(in srgb, var(--bg-card) 86%, transparent);
+}
+
+.profile-page .profile-nav-list button {
+  border-radius: var(--radius-md);
+  transition: background-color var(--duration-fast) var(--ease-standard),
+              border-color var(--duration-fast) var(--ease-standard),
+              box-shadow var(--duration-fast) var(--ease-standard);
+}
+
+.profile-page .profile-nav-list button.active {
+  box-shadow:
+    inset 2px 2px 5px color-mix(in srgb, var(--primary) 12%, transparent),
+    inset -2px -2px 5px color-mix(in srgb, var(--bg-card) 88%, transparent);
+}
+
+.profile-page .profile-section-switcher-button {
+  box-shadow:
+    var(--profile-switcher-shadow),
+    inset 1px 1px 0 color-mix(in srgb, var(--text-on-primary) 22%, transparent);
+}
+
+.profile-page .profile-tabs-wrap {
+  background: var(--bg-card);
+}
+
+.profile-page .profile-sidebar-toggle,
+.profile-page .profile-preference-control select,
+.profile-page .toggle-switch {
+  box-shadow:
+    2px 2px 5px color-mix(in srgb, var(--border-default) 26%, transparent),
+    -2px -2px 5px color-mix(in srgb, var(--bg-card) 82%, transparent);
+}
+
+.profile-page .profile-sidebar-toggle:focus-visible,
+.profile-page .profile-category-card:focus-visible,
+.profile-page .theme-swatch-option:focus-visible,
+.profile-page .profile-preference-control select:focus-visible,
+.profile-page .profile-nav-list button:focus-visible {
+  outline: var(--border-width-medium, 3px) solid var(--border-focus);
+  outline-offset: var(--space-1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .profile-page .profile-category-card,
+  .profile-page .profile-nav-list button,
+  .profile-page .profile-section-switcher-button {
+    transition: none;
+  }
+}
