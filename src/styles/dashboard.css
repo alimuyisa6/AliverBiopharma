@@ -668,3 +668,24 @@
   .dashboard-content .dashboard-quiz-trend-score,
   .dashboard-content .dashboard-quiz-trend-column small { font-size: var(--text-2xs, var(--text-xs)); }
 }
+
+
+/* Plain-language guidance that helps learners understand each dashboard section. */
+.dashboard-content .dashboard-section-intro {
+  max-width: 68ch;
+  margin: 0 0 var(--space-4);
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+}
+.dashboard-content .dashboard-welcome-guidance {
+  display: block;
+  margin-top: var(--space-2);
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+}
+.dashboard-content .dashboard-activity-header .dashboard-section-intro {
+  margin-top: var(--space-2);
+  margin-bottom: var(--space-3);
+}
