@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { TotalLearningActivity, MasteryDonut, XpBars } from '../components/charts/AnalyticsCharts';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useLayout } from '../contexts/LayoutContext';
 import { getUserDashboard } from '../api/cachedClient';
+import { listClassrooms as fetchClassrooms } from '../api/client';
+import { getDownloadHistory, getDownloadAttemptSummary } from '../api/client';
 import { useContentAccess } from '../hooks/useContentAccess';
 import { useSecurityUiLock } from '../hooks/useSecurityUiLock';
 import EmptyState from '../components/EmptyState/EmptyState';
@@ -23,6 +25,10 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activityRange, setActivityRange] = useState('week');
+  const [downloadHistory, setDownloadHistory] = useState({ papers: [], total: 0 });
+  const [downloadAttempts, setDownloadAttempts] = useState({ counts: {}, recent: [] });
+  const [classroomRooms, setClassroomRooms] = useState([]);
+  const summaryLoadedRef = useRef(false);
 
   useEffect(() => {
     if (!access.canAccess) {
@@ -31,22 +37,117 @@ export default function Dashboard() {
     }
 
     let mounted = true;
+    summaryLoadedRef.current = false;
 
-    getUserDashboard()
-      .then((data) => {
-        if (mounted) setSummary(data);
-      })
-      .catch(() => {
-        if (mounted) setError('Unable to load your dashboard right now. Please try again later.');
-      })
-      .finally(() => {
-        if (mounted) setLoading(false);
-      });
+    const refreshDashboard = () => {
+      getUserDashboard()
+        .then((data) => {
+          if (mounted) {
+            summaryLoadedRef.current = true;
+            setSummary(data);
+            setError(null);
+          }
+        })
+        .catch(() => {
+          if (mounted && !summaryLoadedRef.current) {
+            setError('Unable to load your dashboard right now. Please try again later.');
+          }
+        })
+        .finally(() => {
+          if (mounted) setLoading(false);
+        });
+    };
+
+    refreshDashboard();
+    const refreshTimer = window.setInterval(refreshDashboard, 60000);
 
     return () => {
       mounted = false;
+      window.clearInterval(refreshTimer);
     };
-  }, [access.canAccess]);
+  }, [access.canAccess, user?.id]);
+
+  useEffect(() => {
+    let mounted = true;
+
+    const refreshHistory = () => {
+      getDownloadHistory(1, 5)
+        .then((data) => {
+          if (mounted) {
+            setDownloadHistory({
+              papers: Array.isArray(data?.papers) ? data.papers : [],
+              total: Number(data?.total) || 0
+            });
+          }
+        })
+        .catch(() => {});
+    };
+
+    refreshHistory();
+    const refreshTimer = window.setInterval(refreshHistory, 60000);
+
+    return () => {
+      mounted = false;
+      window.clearInterval(refreshTimer);
+    };
+  }, [user?.id]);
+
+  useEffect(() => {
+    let mounted = true;
+
+    const refreshAttempts = () => {
+      getDownloadAttemptSummary()
+        .then((data) => {
+          if (mounted) {
+            setDownloadAttempts({
+              counts: data?.counts || {},
+              recent: Array.isArray(data?.recent) ? data.recent : []
+            });
+          }
+        })
+        .catch(() => {});
+    };
+
+    refreshAttempts();
+    const refreshTimer = window.setInterval(refreshAttempts, 60000);
+
+    return () => {
+      mounted = false;
+      window.clearInterval(refreshTimer);
+    };
+  }, [user?.id]);
+
+  useEffect(() => {
+    let mounted = true;
+    const groupId = summary?.group_id;
+
+    if (!groupId) {
+      setClassroomRooms([]);
+      return () => { mounted = false; };
+    }
+
+    const refreshClassrooms = () => {
+      fetchClassrooms(null, groupId)
+        .then((rooms) => {
+          if (mounted) {
+            setClassroomRooms(
+              (Array.isArray(rooms) ? rooms : [])
+                .filter((room) => ['live', 'open_floor', 'upcoming'].includes(room.status))
+                .slice(0, 4)
+            );
+          }
+        })
+        .catch(() => {});
+    };
+
+    refreshClassrooms();
+    const refreshTimer = window.setInterval(refreshClassrooms, 30000);
+
+    return () => {
+      mounted = false;
+      window.clearInterval(refreshTimer);
+    };
+  }, [summary?.group_id]);
 
   function getEmptyStateImage(key) {
     const uiComponents = bootstrap?.ui_components || [];
@@ -126,7 +227,8 @@ export default function Dashboard() {
     weak_areas,
     recent_activity,
     unit_xp,
-    analytics
+    analytics,
+    level_user_counts: levelUserCounts = {}
   } = summary;
 
   const levelName = level?.display_name || 'No Level';
@@ -287,6 +389,84 @@ export default function Dashboard() {
               </div>
             </div>
 
+            <section className="panel dashboard-card dashboard-card-primary" id="quiz-performance-section" aria-labelledby="quiz-performance-title">
+              <div className="panel-header">
+                <h3 className="panel-title" id="quiz-performance-title">Quiz performance</h3>
+                <Link to="/quiz" className="dashboard-section-link">Practice quizzes</Link>
+              </div>
+              <div className="panel-body">
+                <div className="dashboard-quiz-metrics">
+                  <div className="dashboard-quiz-metric">
+                    <span className="dashboard-quiz-metric-value">{quiz.total_attempts ?? 0}</span>
+                    <span className="dashboard-quiz-metric-label">Attempts recorded</span>
+                  </div>
+                  <div className="dashboard-quiz-metric dashboard-quiz-metric-pass">
+                    <span className="dashboard-quiz-metric-value">{quiz.passed_count ?? 0}</span>
+                    <span className="dashboard-quiz-metric-label">Passed</span>
+                  </div>
+                  <div className="dashboard-quiz-metric dashboard-quiz-metric-fail">
+                    <span className="dashboard-quiz-metric-value">{quiz.failed_count ?? 0}</span>
+                    <span className="dashboard-quiz-metric-label">Not passed</span>
+                  </div>
+                  <div className="dashboard-quiz-metric">
+                    <span className="dashboard-quiz-metric-value">{quiz.average_score ?? 0}%</span>
+                    <span className="dashboard-quiz-metric-label">Average score</span>
+                  </div>
+                </div>
+                <div className="dashboard-quiz-outcome" aria-label="Quiz pass and not-passed comparison">
+                  <div className="dashboard-quiz-outcome-labels">
+                    <span>Pass rate</span>
+                    <strong>{quiz.recent_pass_rate ?? 0}%</strong>
+                  </div>
+                  <div className="dashboard-quiz-outcome-track" role="img" aria-label={`${quiz.recent_pass_rate ?? 0}% recent pass rate`}>
+                    <span style={{ width: `${Math.max(0, Math.min(100, Number(quiz.recent_pass_rate) || 0))}%` }} />
+                  </div>
+                  {Array.isArray(quiz.score_trend) && quiz.score_trend.length > 0 ? (
+                    <div className="dashboard-quiz-trend-wrap">
+                      <div className="dashboard-quiz-trend-heading">
+                        <strong>Recent score trend</strong>
+                        <span>Last {quiz.score_trend.length} recorded attempts</span>
+                      </div>
+                      <div className="dashboard-quiz-trend" role="img" aria-label="Recent quiz scores from oldest to newest">
+                        {quiz.score_trend.map((attempt, index) => {
+                          const score = Math.max(0, Math.min(100, Number(attempt.score) || 0));
+                          return (
+                            <div className="dashboard-quiz-trend-column" key={`${attempt.completed_at || 'attempt'}-${index}`} title={`${attempt.topic || 'Quiz'}: ${score}%`}>
+                              <span className="dashboard-quiz-trend-score">{score}%</span>
+                              <div className="dashboard-quiz-trend-bar-track">
+                                <span className={attempt.passed ? 'is-pass' : 'is-fail'} style={{ height: `${Math.max(4, score)}%` }} />
+                              </div>
+                              <small>{attempt.completed_at ? new Date(attempt.completed_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) : `#${index + 1}`}</small>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  ) : (
+                    <p className="dashboard-quiz-note">Complete a scored quiz to start your score trend graph.</p>
+                  )}
+                  <p className="dashboard-quiz-note">Based on your recorded quiz attempts. Use the unit mastery and weak-area sections to decide what to revise next.</p>
+                </div>
+              </div>
+            </section>
+
+            <section className="panel dashboard-card dashboard-card-secondary" id="recall-progress-section" aria-labelledby="recall-progress-title">
+              <div className="panel-header">
+                <h3 className="panel-title" id="recall-progress-title">Recall progress</h3>
+                <Link to="/recall" className="dashboard-section-link">Open BioRecall</Link>
+              </div>
+              <div className="panel-body">
+                <div className="dashboard-recall-grid">
+                  <div><strong>{recall.total_sessions ?? 0}</strong><span>Sessions</span></div>
+                  <div><strong>{recall.total_questions ?? 0}</strong><span>Questions practiced</span></div>
+                  <div><strong>{recall.accuracy ?? 0}%</strong><span>Recall accuracy</span></div>
+                  <div><strong>{recall.best_mastery ?? 0}%</strong><span>Best mastery</span></div>
+                  <div className="dashboard-recall-xp"><strong>{Number(recall.total_xp ?? 0).toLocaleString()}</strong><span>Recall XP earned</span></div>
+                </div>
+                <p className="dashboard-quiz-note">Recall is tracked separately from scored quiz attempts so your memory practice and assessment results stay distinct.</p>
+              </div>
+            </section>
+
             {heatmapValues.length > 0 && (
               <section className="panel dashboard-card dashboard-card-primary" id="learning-activity-section">
                 <div className="panel-header">
@@ -367,6 +547,74 @@ export default function Dashboard() {
                 </div>
               </section>
             )}
+
+            <section className="panel dashboard-card dashboard-card-primary" id="pdf-downloads-section" aria-labelledby="pdf-downloads-title">
+              <div className="panel-header">
+                <h3 className="panel-title" id="pdf-downloads-title">PDF downloads</h3>
+                <Link to="/past-papers" className="dashboard-section-link">Browse past papers</Link>
+              </div>
+              <div className="panel-body">
+                <div className="dashboard-download-summary">
+                  <strong>{downloadHistory.total}</strong>
+                  <span>Recorded download-link events</span>
+                </div>
+                <div className="dashboard-download-attempt-metrics">
+                  <div><strong>{downloadAttempts.counts.links_issued ?? 0}</strong><span>Links issued</span></div>
+                  <div><strong>{downloadAttempts.counts.premium_blocked ?? 0}</strong><span>Premium blocked</span></div>
+                  <div><strong>{(Number(downloadAttempts.counts.request_failed) || 0) + (Number(downloadAttempts.counts.network_error) || 0)}</strong><span>Request/network failures</span></div>
+                </div>
+                {downloadHistory.papers.length > 0 ? (
+                  <div className="dashboard-download-list">
+                    {downloadHistory.papers.slice(0, 5).map((paper, index) => (
+                      <div className="dashboard-download-item" key={paper.id || `${paper.title}-${paper.downloaded_at}-${index}`}>
+                        <span className="dashboard-download-file">
+                          <strong>{paper.title || 'Past paper PDF'}</strong>
+                          <small>{paper.subject || 'Study resource'}{paper.year ? ` · ${paper.year}` : ''}</small>
+                        </span>
+                        <span className="dashboard-download-date">
+                          {paper.downloaded_at ? new Date(paper.downloaded_at).toLocaleDateString() : 'Recorded'}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="dashboard-quiz-note">No successful download links have been recorded yet. Browse past papers to get started.</p>
+                )}
+                {downloadAttempts.recent.length > 0 && (
+                  <div className="dashboard-download-attempts">
+                    <h4>Recent download attempts</h4>
+                    {downloadAttempts.recent.slice(0, 5).map((attempt) => {
+                      const statusLabel = attempt.status === 'link_issued'
+                        ? 'Link issued'
+                        : attempt.status === 'premium_blocked'
+                          ? 'Premium restricted'
+                          : attempt.status === 'network_error'
+                            ? 'Network problem'
+                            : 'Request failed';
+                      return (
+                        <div className="dashboard-download-attempt" key={attempt.id}>
+                          <span className={`dashboard-download-status dashboard-download-status-${attempt.status}`}>{statusLabel}</span>
+                          <span className="dashboard-download-attempt-copy">
+                            <strong>{attempt.paper_title || 'Past paper PDF'}</strong>
+                            {attempt.reason && <small>{attempt.reason}</small>}
+                          </span>
+                          <time dateTime={attempt.created_at}>{new Date(attempt.created_at).toLocaleDateString()}</time>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+                <div className="dashboard-download-help">
+                  <strong>Having trouble downloading?</strong>
+                  <ul>
+                    <li><b>Premium restriction:</b> open the paper's access details or choose an unlocked paper.</li>
+                    <li><b>Network failure:</b> check your connection, retry the download, and avoid refreshing until the request finishes.</li>
+                    <li><b>Link issued:</b> the site created a short-lived link; if the file did not save, try again from Past Papers.</li>
+                  </ul>
+                </div>
+                <p className="dashboard-quiz-note">Download events are recorded from the app. A browser cannot reliably confirm that the PDF finished saving, and a total network outage can prevent a failure event from reaching the server.</p>
+              </div>
+            </section>
 
             {continueReading.length > 0 && (
               <div className="panel dashboard-card dashboard-card-primary" id="continue-reading-section">
@@ -592,6 +840,61 @@ export default function Dashboard() {
                 </div>
               </div>
             )}
+
+            <section className="panel dashboard-card dashboard-card-secondary" id="learning-community-section" aria-labelledby="learning-community-title">
+              <div className="panel-header">
+                <h3 className="panel-title" id="learning-community-title">Learning community</h3>
+              </div>
+              <div className="panel-body">
+                {levelUserCounts.available ? (
+                  <>
+                    <div className="dashboard-community-total">
+                      <strong>{Number(levelUserCounts.total || 0).toLocaleString()}</strong>
+                      <span>learners across all three levels</span>
+                    </div>
+                    <div className="dashboard-community-levels">
+                      <div><span>O-Level</span><strong>{levelUserCounts.o_level ?? 0}</strong></div>
+                      <div><span>A-Level</span><strong>{levelUserCounts.a_level ?? 0}</strong></div>
+                      <div><span>Pharmacy</span><strong>{levelUserCounts.pharmacy ?? 0}</strong></div>
+                    </div>
+                  </>
+                ) : (
+                  <p className="dashboard-quiz-note">Learner totals are temporarily unavailable.</p>
+                )}
+              </div>
+            </section>
+
+            <section className="panel dashboard-card dashboard-card-secondary" id="live-classrooms-section" aria-labelledby="live-classrooms-title">
+              <div className="panel-header">
+                <h3 className="panel-title" id="live-classrooms-title">Your classrooms</h3>
+                <Link to="/classroom" className="dashboard-section-link">View classrooms</Link>
+              </div>
+              <div className="panel-body">
+                {classroomRooms.length > 0 ? (
+                  <div className="dashboard-classroom-list">
+                    {classroomRooms.map((room) => (
+                      <Link to={`/classroom/${room.id}`} className="dashboard-classroom-item" key={room.id}>
+                        <span className={`dashboard-classroom-status dashboard-classroom-status-${room.status}`}>
+                          {room.status === 'open_floor' ? 'Open floor' : room.status === 'upcoming' ? 'Upcoming' : 'Live'}
+                        </span>
+                        <span className="dashboard-classroom-copy">
+                          <strong>{room.title || room.topic_name || 'Classroom session'}</strong>
+                          <small>{room.class_name || levelName}{room.participant_count != null ? ` · ${room.participant_count} participants` : ''}</small>
+                          {room.scheduled_at && room.status === 'upcoming' && (
+                            <small>Starts {new Date(room.scheduled_at).toLocaleString()}</small>
+                          )}
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="dashboard-classroom-empty">
+                    <p>No live or upcoming classrooms are available for your current class or programme right now.</p>
+                    <Link to="/classroom" className="dashboard-section-link">Check classroom schedule</Link>
+                  </div>
+                )}
+              </div>
+            </section>
 
             {weakAreas.length > 0 && (
               <div className="panel dashboard-card dashboard-card-secondary" id="weak-areas-section">

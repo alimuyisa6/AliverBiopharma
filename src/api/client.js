@@ -3116,6 +3116,18 @@ limit
 );
 }
 
+export async function trackPaperDownloadAttempt(paperId, status, reason = null) {
+return apiCall('past-papers', 'track_download_attempt', {
+  paper_id: paperId || null,
+  status,
+  reason
+});
+}
+
+export async function getDownloadAttemptSummary() {
+return getRequest('past-papers', 'get_download_attempts');
+}
+
 export async function getPaperReviews(
 paperId,
 page = 1,
