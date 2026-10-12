@@ -287,6 +287,59 @@ export default function Dashboard() {
               </div>
             </div>
 
+            <section className="panel dashboard-card dashboard-card-primary" id="quiz-performance-section" aria-labelledby="quiz-performance-title">
+              <div className="panel-header">
+                <h3 className="panel-title" id="quiz-performance-title">Quiz performance</h3>
+                <Link to="/quiz" className="dashboard-section-link">Practice quizzes</Link>
+              </div>
+              <div className="panel-body">
+                <div className="dashboard-quiz-metrics">
+                  <div className="dashboard-quiz-metric">
+                    <span className="dashboard-quiz-metric-value">{quiz.total_attempts ?? 0}</span>
+                    <span className="dashboard-quiz-metric-label">Attempts recorded</span>
+                  </div>
+                  <div className="dashboard-quiz-metric dashboard-quiz-metric-pass">
+                    <span className="dashboard-quiz-metric-value">{quiz.passed_count ?? 0}</span>
+                    <span className="dashboard-quiz-metric-label">Passed</span>
+                  </div>
+                  <div className="dashboard-quiz-metric dashboard-quiz-metric-fail">
+                    <span className="dashboard-quiz-metric-value">{quiz.failed_count ?? 0}</span>
+                    <span className="dashboard-quiz-metric-label">Not passed</span>
+                  </div>
+                  <div className="dashboard-quiz-metric">
+                    <span className="dashboard-quiz-metric-value">{quiz.average_score ?? 0}%</span>
+                    <span className="dashboard-quiz-metric-label">Average score</span>
+                  </div>
+                </div>
+                <div className="dashboard-quiz-outcome" aria-label="Quiz pass and not-passed comparison">
+                  <div className="dashboard-quiz-outcome-labels">
+                    <span>Pass rate</span>
+                    <strong>{quiz.recent_pass_rate ?? 0}%</strong>
+                  </div>
+                  <div className="dashboard-quiz-outcome-track" role="img" aria-label={`${quiz.recent_pass_rate ?? 0}% recent pass rate`}>
+                    <span style={{ width: `${Math.max(0, Math.min(100, Number(quiz.recent_pass_rate) || 0))}%` }} />
+                  </div>
+                  <p className="dashboard-quiz-note">Based on your recorded quiz attempts. Use the unit mastery and weak-area sections to decide what to revise next.</p>
+                </div>
+              </div>
+            </section>
+
+            <section className="panel dashboard-card dashboard-card-secondary" id="recall-progress-section" aria-labelledby="recall-progress-title">
+              <div className="panel-header">
+                <h3 className="panel-title" id="recall-progress-title">Recall progress</h3>
+                <Link to="/recall" className="dashboard-section-link">Open BioRecall</Link>
+              </div>
+              <div className="panel-body">
+                <div className="dashboard-recall-grid">
+                  <div><strong>{recall.total_sessions ?? 0}</strong><span>Sessions</span></div>
+                  <div><strong>{recall.total_questions ?? 0}</strong><span>Questions practiced</span></div>
+                  <div><strong>{recall.accuracy ?? 0}%</strong><span>Recall accuracy</span></div>
+                  <div><strong>{recall.best_mastery ?? 0}%</strong><span>Best mastery</span></div>
+                </div>
+                <p className="dashboard-quiz-note">Recall is tracked separately from scored quiz attempts so your memory practice and assessment results stay distinct.</p>
+              </div>
+            </section>
+
             {heatmapValues.length > 0 && (
               <section className="panel dashboard-card dashboard-card-primary" id="learning-activity-section">
                 <div className="panel-header">
