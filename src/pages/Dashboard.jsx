@@ -394,6 +394,30 @@ export default function Dashboard() {
                   <div className="dashboard-quiz-outcome-track" role="img" aria-label={`${quiz.recent_pass_rate ?? 0}% recent pass rate`}>
                     <span style={{ width: `${Math.max(0, Math.min(100, Number(quiz.recent_pass_rate) || 0))}%` }} />
                   </div>
+                  {Array.isArray(quiz.score_trend) && quiz.score_trend.length > 0 ? (
+                    <div className="dashboard-quiz-trend-wrap">
+                      <div className="dashboard-quiz-trend-heading">
+                        <strong>Recent score trend</strong>
+                        <span>Last {quiz.score_trend.length} recorded attempts</span>
+                      </div>
+                      <div className="dashboard-quiz-trend" role="img" aria-label="Recent quiz scores from oldest to newest">
+                        {quiz.score_trend.map((attempt, index) => {
+                          const score = Math.max(0, Math.min(100, Number(attempt.score) || 0));
+                          return (
+                            <div className="dashboard-quiz-trend-column" key={`${attempt.completed_at || 'attempt'}-${index}`} title={`${attempt.topic || 'Quiz'}: ${score}%`}>
+                              <span className="dashboard-quiz-trend-score">{score}%</span>
+                              <div className="dashboard-quiz-trend-bar-track">
+                                <span className={attempt.passed ? 'is-pass' : 'is-fail'} style={{ height: `${Math.max(4, score)}%` }} />
+                              </div>
+                              <small>{attempt.completed_at ? new Date(attempt.completed_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) : `#${index + 1}`}</small>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  ) : (
+                    <p className="dashboard-quiz-note">Complete a scored quiz to start your score trend graph.</p>
+                  )}
                   <p className="dashboard-quiz-note">Based on your recorded quiz attempts. Use the unit mastery and weak-area sections to decide what to revise next.</p>
                 </div>
               </div>
