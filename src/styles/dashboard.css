@@ -595,3 +595,76 @@
   line-height: var(--leading-relaxed);
 }
 .dashboard-content .dashboard-classroom-empty .dashboard-section-link { width: 100%; }
+
+
+.dashboard-content .dashboard-quiz-trend-wrap {
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-subtle);
+}
+.dashboard-content .dashboard-quiz-trend-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+.dashboard-content .dashboard-quiz-trend-heading strong {
+  color: var(--text-main);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+}
+.dashboard-content .dashboard-quiz-trend-heading span {
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+}
+.dashboard-content .dashboard-quiz-trend {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  gap: var(--space-2);
+  min-height: 9rem;
+  align-items: end;
+}
+.dashboard-content .dashboard-quiz-trend-column {
+  display: flex;
+  min-width: 0;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-1);
+}
+.dashboard-content .dashboard-quiz-trend-score {
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+  font-variant-numeric: tabular-nums;
+}
+.dashboard-content .dashboard-quiz-trend-bar-track {
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  width: 100%;
+  height: 6.5rem;
+  border-radius: var(--radius-sm);
+  background: var(--surface-muted);
+}
+.dashboard-content .dashboard-quiz-trend-bar-track span {
+  display: block;
+  width: 100%;
+  min-height: var(--space-1);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  transition: height var(--duration-normal, 250ms) var(--ease-standard);
+}
+.dashboard-content .dashboard-quiz-trend-bar-track span.is-pass { background: var(--success, var(--primary)); }
+.dashboard-content .dashboard-quiz-trend-bar-track span.is-fail { background: var(--warning, var(--primary)); }
+.dashboard-content .dashboard-quiz-trend-column small {
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+  white-space: nowrap;
+}
+@media (max-width: 480px) {
+  .dashboard-content .dashboard-quiz-trend { gap: var(--space-1); }
+  .dashboard-content .dashboard-quiz-trend-score,
+  .dashboard-content .dashboard-quiz-trend-column small { font-size: var(--text-2xs, var(--text-xs)); }
+}
