@@ -11,6 +11,7 @@ import {
   getBookmarkedPapers,
   trackPaperView,
   getDownloadHistory,
+  trackPaperDownloadAttempt,
   getPaperReviews,
   ratePaper,
   deletePaperReview,
@@ -272,6 +273,12 @@ export default function PastPapers() {
     }
   };
 
+  const recordDownloadAttempt = (paper, status, reason) => {
+    trackPaperDownloadAttempt(paper?.id, status, reason).catch(() => {
+      // Best-effort audit only: logging must never block a user's download flow.
+    });
+  };
+
   const handleDownload = async (paper) => {
     if (!user) {
       addToast('Please sign in to download', 'warning');
@@ -279,6 +286,7 @@ export default function PastPapers() {
     }
 
     if (paper.locked || paper.is_premium) {
+      recordDownloadAttempt(paper, 'premium_blocked', paper.reason || 'Premium access required');
       addToast('This paper requires premium access', 'warning');
       return;
     }
@@ -291,6 +299,8 @@ export default function PastPapers() {
       if (!result?.url) {
         throw new Error('Download URL was not returned');
       }
+
+      recordDownloadAttempt(paper, 'link_issued', 'A signed download link was issued; file completion cannot be confirmed by the browser.');
 
       const anchor = document.createElement('a');
 
@@ -311,10 +321,19 @@ export default function PastPapers() {
 
       addToast('Download started', 'success');
     } catch (error) {
+      const status = error?.status === 403
+        ? 'premium_blocked'
+        : (error?.code === 'REQUEST_TIMEOUT' || error instanceof TypeError)
+          ? 'network_error'
+          : 'request_failed';
+      recordDownloadAttempt(paper, status, error?.message || 'Download request failed');
+
       if (error?.status === 403) {
         addToast('Premium access required for this paper', 'warning');
+      } else if (status === 'network_error') {
+        addToast('Network problem. Check your connection and try again.', 'error');
       } else {
-        addToast('Download failed', 'error');
+        addToast('Download failed. Please try again.', 'error');
       }
     } finally {
       setDownloadingId(null);
