@@ -311,6 +311,7 @@ export default function Dashboard() {
               </h1>
               <p id="welcome-subtitle">
                 {platform.rank_title} · {levelName}
+              <span className="dashboard-welcome-guidance">Ready to study? Check your progress, practise a quiz, or continue where you left off.</span>
               </p>
             </div>
           </div>
@@ -324,6 +325,7 @@ export default function Dashboard() {
               </h3>
             </div>
             <div className="panel-body">
+                <p className="dashboard-section-intro">Here’s a simple place to start. Work through these suggested tasks at your own pace.</p>
               <div className="sidebar-list">
                 {todayTasks.map((task, index) => (
                   <Link key={task.key} to={task.to} className="sidebar-item sidebar-item-link">
@@ -348,6 +350,7 @@ export default function Dashboard() {
                 </h3>
               </div>
               <div className="panel-body">
+                <p className="dashboard-section-intro">A quick snapshot of your learning so far, including progress and practice activity.</p>
                 <div className="platform-stats-grid" id="top-stats">
                   <div className="stat-box">
                     <span className="stat-icon"><Icon name="rocket" /></span>
@@ -395,6 +398,7 @@ export default function Dashboard() {
                 <Link to="/quiz" className="dashboard-section-link">Practice quizzes</Link>
               </div>
               <div className="panel-body">
+                <p className="dashboard-section-intro">See how you’re doing in scored quizzes and use your results to guide your next revision.</p>
                 <div className="dashboard-quiz-metrics">
                   <div className="dashboard-quiz-metric">
                     <span className="dashboard-quiz-metric-value">{quiz.total_attempts ?? 0}</span>
@@ -456,6 +460,7 @@ export default function Dashboard() {
                 <Link to="/recall" className="dashboard-section-link">Open BioRecall</Link>
               </div>
               <div className="panel-body">
+                <p className="dashboard-section-intro">Track the memory practice you’ve completed with BioRecall and keep building what you remember.</p>
                 <div className="dashboard-recall-grid">
                   <div><strong>{recall.total_sessions ?? 0}</strong><span>Sessions</span></div>
                   <div><strong>{recall.total_questions ?? 0}</strong><span>Questions practiced</span></div>
@@ -488,6 +493,7 @@ export default function Dashboard() {
                   </div>
                 </div>
                 <div className="panel-body">
+                <p className="dashboard-section-intro">See how regularly you’ve been studying and spot the habits that help you make progress.</p>
                   <TotalLearningActivity
                     embedded
                     data={heatmapValues.map((item) => ({
@@ -508,6 +514,7 @@ export default function Dashboard() {
                   <span className="panel-meta">{overallMastery}% assessed mastery</span>
                 </div>
                 <div className="panel-body">
+                <p className="dashboard-section-intro">Explore the topics you’ve practised and see which areas may need another review.</p>
                   {assessedMastery.length > 0 ? (
                     <>
                       <p className="mastery-chart-explainer">This chart compares your assessed mastery across curriculum units. Larger segments represent higher mastery scores.</p>
@@ -554,6 +561,7 @@ export default function Dashboard() {
                 <Link to="/past-papers" className="dashboard-section-link">Browse past papers</Link>
               </div>
               <div className="panel-body">
+                <p className="dashboard-section-intro">Keep track of your past-paper downloads and find help if a file doesn’t open.</p>
                 <div className="dashboard-download-summary">
                   <strong>{downloadHistory.total}</strong>
                   <span>Recorded download-link events</span>
@@ -623,6 +631,7 @@ export default function Dashboard() {
                   </h3>
                 </div>
                 <div className="panel-body">
+                <p className="dashboard-section-intro">Pick up where you left off instead of searching for your study material again.</p>
                   <div className="reading-list" id="continue-reading-list">
                     {continueReading.map((item) => {
                       const progress = Math.round(item.progress_percentage);
@@ -658,6 +667,7 @@ export default function Dashboard() {
                   </h3>
                 </div>
                 <div className="panel-body">
+                <p className="dashboard-section-intro">These suggestions can help you choose a useful next step based on your learning.</p>
                   <div className="recommendation-grid" id="recommendations-list">
                     {recommendations.slice(0, 4).map((item, index) => {
                       const link = item.type === 'due_review'
@@ -708,6 +718,7 @@ export default function Dashboard() {
               <div className="dashboard-activity-header">
                 <div>
                   <h3 id="weekly-activity-title">{activityRange === 'day' ? 'Daily Activity' : activityRange === 'month' ? 'Monthly Activity' : 'Weekly Activity'}</h3>
+                  <p className="dashboard-section-intro">Your recent study activity, grouped by the time period you choose.</p>
                   <button
                     type="button"
                     className="dashboard-activity-stats-btn"
@@ -792,6 +803,7 @@ export default function Dashboard() {
                   </h3>
                 </div>
                 <div className="panel-body">
+                <p className="dashboard-section-intro">A look at the personal learning milestones you’ve reached so far.</p>
                   <div className="sidebar-list" id="personal-records-stats">
                     <div className="sidebar-item">
                       <span className="item-text">{t('common.bestRecallMastery')}</span>
@@ -822,6 +834,7 @@ export default function Dashboard() {
                   </h3>
                 </div>
                 <div className="panel-body">
+                <p className="dashboard-section-intro">Review your recorded learning achievements and progress over time.</p>
                   <div className="sidebar-list">
                     {[
                       ['highest_score', 'Highest Score'],
@@ -845,6 +858,7 @@ export default function Dashboard() {
                 <h3 className="panel-title" id="learning-community-title">Learning community</h3>
               </div>
               <div className="panel-body">
+                <p className="dashboard-section-intro">See how many learners are studying across the different programmes.</p>
                 {levelUserCounts.available ? (
                   <>
                     <div className="dashboard-community-total">
@@ -869,6 +883,7 @@ export default function Dashboard() {
                 <Link to="/classroom" className="dashboard-section-link">View classrooms</Link>
               </div>
               <div className="panel-body">
+                <p className="dashboard-section-intro">Find the classrooms connected to your learning group and check what’s happening there.</p>
                 {classroomRooms.length > 0 ? (
                   <div className="dashboard-classroom-list">
                     {classroomRooms.map((room) => (
@@ -903,6 +918,7 @@ export default function Dashboard() {
                   </h3>
                 </div>
                 <div className="panel-body">
+                <p className="dashboard-section-intro">Use these topics as a guide for what to revise next. Finding a difficult area is part of learning.</p>
                   <div className="sidebar-list" id="weak-areas-list">
                     {weakAreas.map((weak, index) => (
                       <Link
@@ -929,6 +945,7 @@ export default function Dashboard() {
                   </h3>
                 </div>
                 <div className="panel-body">
+                <p className="dashboard-section-intro">A quick recap of your latest learning actions so you can continue from there.</p>
                   <div className="sidebar-list" id="recent-activity-list">
                     {recentActivity.map((activity, index) => {
                       const progress = Math.max(0, Math.min(100, Math.round(Number(activity.progress_percentage) || 0)));
@@ -995,6 +1012,7 @@ export default function Dashboard() {
                   </h3>
                 </div>
                 <div className="panel-body">
+                <p className="dashboard-section-intro">See where you’ve earned learning points and which course units you’ve been practising.</p>
                   <div className="unit-xp-layout">
                   <div className="unit-xp-grid" id="unit-xp-list">
                     {unitXp.map((unit, index) => (
