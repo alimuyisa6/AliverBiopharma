@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useLayout } from '../contexts/LayoutContext';
 import { getUserDashboard } from '../api/cachedClient';
+import { getDownloadHistory } from '../api/client';
 import { useContentAccess } from '../hooks/useContentAccess';
 import { useSecurityUiLock } from '../hooks/useSecurityUiLock';
 import EmptyState from '../components/EmptyState/EmptyState';
@@ -23,6 +24,7 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activityRange, setActivityRange] = useState('week');
+  const [downloadHistory, setDownloadHistory] = useState({ papers: [], total: 0 });
 
   useEffect(() => {
     if (!access.canAccess) {
@@ -47,6 +49,27 @@ export default function Dashboard() {
       mounted = false;
     };
   }, [access.canAccess]);
+
+  useEffect(() => {
+    let mounted = true;
+
+    getDownloadHistory(1, 5)
+      .then((data) => {
+        if (mounted) {
+          setDownloadHistory({
+            papers: Array.isArray(data?.papers) ? data.papers : [],
+            total: Number(data?.total) || 0
+          });
+        }
+      })
+      .catch(() => {
+        if (mounted) setDownloadHistory({ papers: [], total: 0 });
+      });
+
+    return () => {
+      mounted = false;
+    };
+  }, [user?.id]);
 
   function getEmptyStateImage(key) {
     const uiComponents = bootstrap?.ui_components || [];
@@ -335,6 +358,7 @@ export default function Dashboard() {
                   <div><strong>{recall.total_questions ?? 0}</strong><span>Questions practiced</span></div>
                   <div><strong>{recall.accuracy ?? 0}%</strong><span>Recall accuracy</span></div>
                   <div><strong>{recall.best_mastery ?? 0}%</strong><span>Best mastery</span></div>
+                  <div className="dashboard-recall-xp"><strong>{Number(recall.total_xp ?? 0).toLocaleString()}</strong><span>Recall XP earned</span></div>
                 </div>
                 <p className="dashboard-quiz-note">Recall is tracked separately from scored quiz attempts so your memory practice and assessment results stay distinct.</p>
               </div>
@@ -420,6 +444,37 @@ export default function Dashboard() {
                 </div>
               </section>
             )}
+
+            <section className="panel dashboard-card dashboard-card-primary" id="pdf-downloads-section" aria-labelledby="pdf-downloads-title">
+              <div className="panel-header">
+                <h3 className="panel-title" id="pdf-downloads-title">PDF downloads</h3>
+                <Link to="/past-papers" className="dashboard-section-link">Browse past papers</Link>
+              </div>
+              <div className="panel-body">
+                <div className="dashboard-download-summary">
+                  <strong>{downloadHistory.total}</strong>
+                  <span>Recorded successful download links</span>
+                </div>
+                {downloadHistory.papers.length > 0 ? (
+                  <div className="dashboard-download-list">
+                    {downloadHistory.papers.slice(0, 5).map((paper, index) => (
+                      <div className="dashboard-download-item" key={paper.id || `${paper.title}-${paper.downloaded_at}-${index}`}>
+                        <span className="dashboard-download-file">
+                          <strong>{paper.title || 'Past paper PDF'}</strong>
+                          <small>{paper.subject || 'Study resource'}{paper.year ? ` · ${paper.year}` : ''}</small>
+                        </span>
+                        <span className="dashboard-download-date">
+                          {paper.downloaded_at ? new Date(paper.downloaded_at).toLocaleDateString() : 'Recorded'}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="dashboard-quiz-note">No successful download links have been recorded yet. Browse past papers to get started.</p>
+                )}
+                <p className="dashboard-quiz-note">These are recorded download-link events, not proof that a file finished saving on your device. Failed and blocked attempts will appear here once attempt tracking is enabled.</p>
+              </div>
+            </section>
 
             {continueReading.length > 0 && (
               <div className="panel dashboard-card dashboard-card-primary" id="continue-reading-section">
