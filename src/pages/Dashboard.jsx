@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useLayout } from '../contexts/LayoutContext';
 import { getUserDashboard } from '../api/cachedClient';
-import { getDownloadHistory } from '../api/client';
+import { getDownloadHistory, getDownloadAttemptSummary } from '../api/client';
 import { useContentAccess } from '../hooks/useContentAccess';
 import { useSecurityUiLock } from '../hooks/useSecurityUiLock';
 import EmptyState from '../components/EmptyState/EmptyState';
@@ -25,6 +25,7 @@ export default function Dashboard() {
   const [error, setError] = useState(null);
   const [activityRange, setActivityRange] = useState('week');
   const [downloadHistory, setDownloadHistory] = useState({ papers: [], total: 0 });
+  const [downloadAttempts, setDownloadAttempts] = useState({ counts: {}, recent: [] });
 
   useEffect(() => {
     if (!access.canAccess) {
@@ -64,6 +65,27 @@ export default function Dashboard() {
       })
       .catch(() => {
         if (mounted) setDownloadHistory({ papers: [], total: 0 });
+      });
+
+    return () => {
+      mounted = false;
+    };
+  }, [user?.id]);
+
+  useEffect(() => {
+    let mounted = true;
+
+    getDownloadAttemptSummary()
+      .then((data) => {
+        if (mounted) {
+          setDownloadAttempts({
+            counts: data?.counts || {},
+            recent: Array.isArray(data?.recent) ? data.recent : []
+          });
+        }
+      })
+      .catch(() => {
+        if (mounted) setDownloadAttempts({ counts: {}, recent: [] });
       });
 
     return () => {
@@ -455,6 +477,11 @@ export default function Dashboard() {
                   <strong>{downloadHistory.total}</strong>
                   <span>Recorded successful download links</span>
                 </div>
+                <div className="dashboard-download-attempt-metrics">
+                  <div><strong>{downloadAttempts.counts.links_issued ?? 0}</strong><span>Links issued</span></div>
+                  <div><strong>{downloadAttempts.counts.premium_blocked ?? 0}</strong><span>Premium blocked</span></div>
+                  <div><strong>{(Number(downloadAttempts.counts.request_failed) || 0) + (Number(downloadAttempts.counts.network_error) || 0)}</strong><span>Request/network failures</span></div>
+                </div>
                 {downloadHistory.papers.length > 0 ? (
                   <div className="dashboard-download-list">
                     {downloadHistory.papers.slice(0, 5).map((paper, index) => (
@@ -472,7 +499,39 @@ export default function Dashboard() {
                 ) : (
                   <p className="dashboard-quiz-note">No successful download links have been recorded yet. Browse past papers to get started.</p>
                 )}
-                <p className="dashboard-quiz-note">These are recorded download-link events, not proof that a file finished saving on your device. Failed and blocked attempts will appear here once attempt tracking is enabled.</p>
+                {downloadAttempts.recent.length > 0 && (
+                  <div className="dashboard-download-attempts">
+                    <h4>Recent download attempts</h4>
+                    {downloadAttempts.recent.slice(0, 5).map((attempt) => {
+                      const statusLabel = attempt.status === 'link_issued'
+                        ? 'Link issued'
+                        : attempt.status === 'premium_blocked'
+                          ? 'Premium restricted'
+                          : attempt.status === 'network_error'
+                            ? 'Network problem'
+                            : 'Request failed';
+                      return (
+                        <div className="dashboard-download-attempt" key={attempt.id}>
+                          <span className={`dashboard-download-status dashboard-download-status-${attempt.status}`}>{statusLabel}</span>
+                          <span className="dashboard-download-attempt-copy">
+                            <strong>{attempt.paper_title || 'Past paper PDF'}</strong>
+                            {attempt.reason && <small>{attempt.reason}</small>}
+                          </span>
+                          <time dateTime={attempt.created_at}>{new Date(attempt.created_at).toLocaleDateString()}</time>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+                <div className="dashboard-download-help">
+                  <strong>Having trouble downloading?</strong>
+                  <ul>
+                    <li><b>Premium restriction:</b> open the paper's access details or choose an unlocked paper.</li>
+                    <li><b>Network failure:</b> check your connection, retry the download, and avoid refreshing until the request finishes.</li>
+                    <li><b>Link issued:</b> the site created a short-lived link; if the file did not save, try again from Past Papers.</li>
+                  </ul>
+                </div>
+                <p className="dashboard-quiz-note">Download events are recorded from the app. A browser cannot reliably confirm that the PDF finished saving, and a total network outage can prevent a failure event from reaching the server.</p>
               </div>
             </section>
 
