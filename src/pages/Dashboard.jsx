@@ -505,7 +505,7 @@ export default function Dashboard() {
               <div className="panel-body">
                 <div className="dashboard-download-summary">
                   <strong>{downloadHistory.total}</strong>
-                  <span>Recorded successful download links</span>
+                  <span>Recorded download-link events</span>
                 </div>
                 <div className="dashboard-download-attempt-metrics">
                   <div><strong>{downloadAttempts.counts.links_issued ?? 0}</strong><span>Links issued</span></div>
