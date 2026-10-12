@@ -722,3 +722,126 @@
     row-gap: var(--space-1);
   }
 }
+
+
+/* Dashboard claymorphism: soft raised surfaces with accessible contrast. */
+.dashboard-content {
+  isolation: isolate;
+}
+
+.dashboard-content .panel,
+.dashboard-wrapper .empty-state {
+  border: 1px solid color-mix(in srgb, var(--border-subtle) 72%, var(--surface-card));
+  border-radius: var(--radius-xl, var(--radius-lg));
+  background: var(--surface-card);
+  box-shadow:
+    var(--shadow-md),
+    inset 1px 1px 0 color-mix(in srgb, var(--surface-card) 88%, transparent),
+    inset -1px -1px 0 color-mix(in srgb, var(--border-subtle) 22%, transparent);
+  transition: box-shadow var(--duration-normal, 250ms) var(--ease-standard),
+              border-color var(--ease-fast),
+              transform var(--ease-fast);
+}
+
+.dashboard-content .dashboard-card-primary {
+  background: var(--surface-card);
+  box-shadow:
+    var(--shadow-md),
+    inset 2px 2px 5px color-mix(in srgb, var(--border-subtle) 24%, transparent),
+    inset -3px -3px 7px color-mix(in srgb, var(--surface-card) 92%, transparent);
+}
+
+.dashboard-content .dashboard-card-secondary {
+  background: var(--surface-subtle);
+  box-shadow:
+    var(--shadow-sm),
+    inset 2px 2px 5px color-mix(in srgb, var(--border-subtle) 25%, transparent),
+    inset -3px -3px 7px color-mix(in srgb, var(--surface-card) 82%, transparent);
+}
+
+.dashboard-content .panel-header {
+  background: color-mix(in srgb, var(--surface-muted) 78%, var(--surface-card));
+  border-bottom-color: color-mix(in srgb, var(--border-subtle) 65%, transparent);
+}
+
+.dashboard-content .dashboard-card-secondary .panel-header {
+  background: transparent;
+}
+
+.dashboard-content .stat-box,
+.dashboard-content .dashboard-quiz-metric,
+.dashboard-content .dashboard-recall-grid > div,
+.dashboard-content .dashboard-download-attempt-metrics > div {
+  border: 1px solid color-mix(in srgb, var(--border-subtle) 70%, var(--surface-card));
+  border-radius: var(--radius-lg, var(--radius-md));
+  background: var(--surface-subtle);
+  box-shadow:
+    3px 3px 8px color-mix(in srgb, var(--border-default) 32%, transparent),
+    -3px -3px 8px color-mix(in srgb, var(--surface-card) 88%, transparent),
+    inset 1px 1px 0 color-mix(in srgb, var(--surface-card) 78%, transparent);
+}
+
+.dashboard-content .dashboard-section-aside,
+.dashboard-content .dashboard-download-help {
+  border-radius: var(--radius-lg, var(--radius-md));
+  background: var(--surface-subtle);
+  box-shadow:
+    inset 2px 2px 5px color-mix(in srgb, var(--border-subtle) 25%, transparent),
+    inset -2px -2px 5px color-mix(in srgb, var(--surface-card) 88%, transparent);
+}
+
+.dashboard-content .reading-item,
+.dashboard-content .rec-card,
+.dashboard-content .mastery-item,
+.dashboard-content .activity-item,
+.dashboard-content .sidebar-item-link,
+.dashboard-content .unit-xp-item-link,
+.dashboard-content .dashboard-classroom-item {
+  border-radius: var(--radius-md);
+  transition: box-shadow var(--duration-normal, 250ms) var(--ease-standard),
+              border-color var(--ease-fast),
+              background-color var(--ease-fast),
+              transform var(--ease-fast);
+}
+
+.dashboard-content .reading-item,
+.dashboard-content .rec-card {
+  box-shadow:
+    3px 3px 8px color-mix(in srgb, var(--border-default) 28%, transparent),
+    -3px -3px 8px color-mix(in srgb, var(--surface-card) 82%, transparent);
+}
+
+.dashboard-content .reading-item:hover,
+.dashboard-content .rec-card:hover {
+  border-color: var(--primary);
+  box-shadow:
+    5px 5px 11px color-mix(in srgb, var(--border-default) 32%, transparent),
+    -4px -4px 10px color-mix(in srgb, var(--surface-card) 88%, transparent);
+}
+
+.dashboard-content .dashboard-section-link,
+.dashboard-content .dashboard-activity-stats-btn {
+  border-radius: var(--radius-md);
+  box-shadow:
+    2px 2px 5px color-mix(in srgb, var(--border-default) 25%, transparent),
+    -2px -2px 5px color-mix(in srgb, var(--surface-card) 80%, transparent);
+}
+
+.dashboard-content .dashboard-section-link:focus-visible,
+.dashboard-content .dashboard-activity-stats-btn:focus-visible,
+.dashboard-content a:focus-visible,
+.dashboard-content button:focus-visible {
+  outline: var(--border-width-medium, 3px) solid var(--primary);
+  outline-offset: var(--space-1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-content .panel,
+  .dashboard-content .stat-box,
+  .dashboard-content .reading-item,
+  .dashboard-content .rec-card,
+  .dashboard-content .dashboard-section-link,
+  .dashboard-content .dashboard-activity-stats-btn {
+    transition: none;
+  }
+}
