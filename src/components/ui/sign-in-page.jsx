@@ -51,7 +51,6 @@ export function LoginPage({
           onChange={(event) => setEmail(event.target.value)}
           required
           disabled={submitting}
-          icon="envelope"
           className="auth-field"
         />
 
@@ -64,7 +63,6 @@ export function LoginPage({
           onChange={(event) => setPassword(event.target.value)}
           required
           disabled={submitting}
-          icon="lock"
           className="auth-field"
         />
 
