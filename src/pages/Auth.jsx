@@ -9,6 +9,7 @@ import Button from '../components/Button/Button';
 import Icon from '../components/Icon/Icon';
 import Spinner from '../components/Spinner/Spinner';
 import { useI18n } from '../contexts/I18nContext';
+import { LoginPage, MolecularBrandIllustration } from '../components/ui/sign-in-page';
 
 const TURNSTILE_SITE_KEY = '0x4AAAAAADknPpI_XcH1KfPe';
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -409,6 +410,7 @@ export default function Auth() {
   return (
     <div className="auth-page">
       <aside className="auth-brand-panel">
+        <MolecularBrandIllustration />
         <div className="auth-brand-top">
           <div className="auth-brand-logo" aria-label="AliverBiopharm">
             <span className="auth-brand-mark" aria-hidden="true">
@@ -660,187 +662,206 @@ export default function Auth() {
               )}
             </div>
           ) : (
-            <div className="auth-form-block">
-              <div className="auth-form-head">
-                <h2 className="auth-heading">
-                  {mode === 'login'
-                    ? t('auth.loginTitle')
-                    : t('auth.registerTitle')}
-                </h2>
-                <p className="auth-subheading">
-                  {mode === 'login'
-                    ? t('auth.accessAccount')
-                    : t('auth.joinLearners')}
-                </p>
-              </div>
-
-              {error && (
-                <div className="auth-alert auth-alert-error">
-                  <Icon name="exclamation-triangle" />
-                  <span>{error}</span>
+            {mode === 'login' ? (
+              <LoginPage
+                email={email}
+                setEmail={setEmail}
+                password={password}
+                setPassword={setPassword}
+                error={error}
+                setCaptchaSlot={setCaptchaSlot}
+                handleLogin={handleLogin}
+                handlePasskeyLogin={handlePasskeyLogin}
+                submitting={submitting}
+                passkeySubmitting={passkeySubmitting}
+                onSignUp={() => switchMode('register')}
+                t={t}
+              />
+            ) : (
+              <div className="auth-form-block">
+  
+                <div className="auth-form-head">
+                  <h2 className="auth-heading">
+                    {mode === 'login'
+                      ? t('auth.loginTitle')
+                      : t('auth.registerTitle')}
+                  </h2>
+                  <p className="auth-subheading">
+                    {mode === 'login'
+                      ? t('auth.accessAccount')
+                      : t('auth.joinLearners')}
+                  </p>
                 </div>
-              )}
-
-              <form
-                className="auth-form"
-                onSubmit={mode === 'login' ? handleLogin : handleRegister}
-              >
-                {mode === 'register' && (
-                  <Input
-                    label={t('auth.fullNameLabel')}
-                    placeholder={t('auth.enterFullName')}
-                    value={fullName}
-                    onChange={(event) => setFullName(event.target.value)}
-                    required
-                    disabled={submitting}
-                    icon="user"
-                    className="auth-field"
-                  />
+  
+                {error && (
+                  <div className="auth-alert auth-alert-error">
+                    <Icon name="exclamation-triangle" />
+                    <span>{error}</span>
+                  </div>
                 )}
-
-                <Input
-                  label={t('auth.emailAddress')}
-                  type="email"
-                  placeholder={t('auth.enterEmail')}
-                  value={email}
-                  onChange={(event) => setEmail(event.target.value)}
-                  required
-                  disabled={submitting}
-                  icon="envelope"
-                  className="auth-field"
-                />
-
-                <div className="auth-password-field">
-                  <Input
-                    label={t('auth.password')}
-                    type="password"
-                    placeholder={
-                      mode === 'register'
-                        ? t('auth.createPassword')
-                        : t('auth.enterPassword')
-                    }
-                    value={password}
-                    onChange={(event) => setPassword(event.target.value)}
-                    required
-                    disabled={submitting}
-                    icon="lock"
-                    hint={
-                      mode === 'register'
-                        ? t('auth.passwordHint')
-                        : undefined
-                    }
-                    className="auth-field"
-                  />
-
-                  {mode === 'register' && password.length > 0 && (
-                    <div className="auth-password-strength">
-                      <div className="auth-strength-bars">
-                        {[1, 2, 3, 4].map((level) => {
-                          const active =
-                            password.length >= 10
-                              ? [
-                                  password.length >= 10,
-                                  /[A-Z]/.test(password) && /[a-z]/.test(password),
-                                  /[0-9]/.test(password),
-                                  /[^A-Za-z0-9]/.test(password) && password.length >= 12
-                                ].filter(Boolean).length >= level
-                              : false;
-
-                          return (
-                            <span
-                              key={level}
-                              className={active ? 'active' : ''}
-                            />
-                          );
-                        })}
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {mode === 'register' && (
-                  <Input
-                    label={t('auth.confirmPasswordInput')}
-                    type="password"
-                    placeholder={t('auth.confirmPasswordInput')}
-                    value={confirm}
-                    onChange={(event) => setConfirm(event.target.value)}
-                    required
-                    disabled={submitting}
-                    icon="lock"
-                    className="auth-field"
-                  />
-                )}
-
-                {onboardingStep === 0 && (
-                  <div ref={setCaptchaSlot} className="auth-captcha" />
-                )}
-
-                {mode === 'register' && (
-                  <label className="auth-check-row">
-                    <input
-                      type="checkbox"
-                      checked={termsAccepted}
-                      onChange={(event) => setTermsAccepted(event.target.checked)}
+  
+                <form
+                  className="auth-form"
+                  onSubmit={mode === 'login' ? handleLogin : handleRegister}
+                >
+                  {mode === 'register' && (
+                    <Input
+                      label={t('auth.fullNameLabel')}
+                      placeholder={t('auth.enterFullName')}
+                      value={fullName}
+                      onChange={(event) => setFullName(event.target.value)}
+                      required
                       disabled={submitting}
+                      icon="user"
+                      className="auth-field"
                     />
-                    <span>
-                      I agree to the <a href="/terms">Terms of Service</a> and{' '}
-                      <a href="/privacy">Privacy Policy</a>.
-                    </span>
-                  </label>
-                )}
-
-                <Button
-                  type="submit"
-                  loading={submitting}
-                  loadingContext="brand"
-                  variant="primary"
-                  className="auth-submit"
-                >
-                  {mode === 'login' ? (
-                    <>
-                      <Icon name="right-to-bracket" />
-                      {t('common.signIn')}
-                    </>
-                  ) : (
-                    <>
-                      <Icon name="user-plus" />
-                      {t('auth.createAccount')}
-                    </>
                   )}
-                </Button>
-              </form>
-
-              {mode === 'login' && (
-                <Button
-                  type="button"
-                  variant="secondary"
-                  loading={passkeySubmitting}
-                  loadingContext="brand"
-                  onClick={handlePasskeyLogin}
-                  className="auth-submit auth-passkey"
-                >
-                  <Icon name="fingerprint" />
-                  Sign in with a Passkey
-                </Button>
-              )}
-
-              <div className="auth-switch">
-                <span>
-                  {mode === 'login'
-                    ? t('auth.noAccount')
-                    : t('auth.haveAccount')}
-                </span>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => switchMode(mode === 'login' ? 'register' : 'login')}
-                >
-                  {mode === 'login' ? 'Sign Up' : t('common.signIn')}
-                </Button>
+  
+                  <Input
+                    label={t('auth.emailAddress')}
+                    type="email"
+                    placeholder={t('auth.enterEmail')}
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
+                    required
+                    disabled={submitting}
+                    icon="envelope"
+                    className="auth-field"
+                  />
+  
+                  <div className="auth-password-field">
+                    <Input
+                      label={t('auth.password')}
+                      type="password"
+                      placeholder={
+                        mode === 'register'
+                          ? t('auth.createPassword')
+                          : t('auth.enterPassword')
+                      }
+                      value={password}
+                      onChange={(event) => setPassword(event.target.value)}
+                      required
+                      disabled={submitting}
+                      icon="lock"
+                      hint={
+                        mode === 'register'
+                          ? t('auth.passwordHint')
+                          : undefined
+                      }
+                      className="auth-field"
+                    />
+  
+                    {mode === 'register' && password.length > 0 && (
+                      <div className="auth-password-strength">
+                        <div className="auth-strength-bars">
+                          {[1, 2, 3, 4].map((level) => {
+                            const active =
+                              password.length >= 10
+                                ? [
+                                    password.length >= 10,
+                                    /[A-Z]/.test(password) && /[a-z]/.test(password),
+                                    /[0-9]/.test(password),
+                                    /[^A-Za-z0-9]/.test(password) && password.length >= 12
+                                  ].filter(Boolean).length >= level
+                                : false;
+  
+                            return (
+                              <span
+                                key={level}
+                                className={active ? 'active' : ''}
+                              />
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+  
+                  {mode === 'register' && (
+                    <Input
+                      label={t('auth.confirmPasswordInput')}
+                      type="password"
+                      placeholder={t('auth.confirmPasswordInput')}
+                      value={confirm}
+                      onChange={(event) => setConfirm(event.target.value)}
+                      required
+                      disabled={submitting}
+                      icon="lock"
+                      className="auth-field"
+                    />
+                  )}
+  
+                  {onboardingStep === 0 && (
+                    <div ref={setCaptchaSlot} className="auth-captcha" />
+                  )}
+  
+                  {mode === 'register' && (
+                    <label className="auth-check-row">
+                      <input
+                        type="checkbox"
+                        checked={termsAccepted}
+                        onChange={(event) => setTermsAccepted(event.target.checked)}
+                        disabled={submitting}
+                      />
+                      <span>
+                        I agree to the <a href="/terms">Terms of Service</a> and{' '}
+                        <a href="/privacy">Privacy Policy</a>.
+                      </span>
+                    </label>
+                  )}
+  
+                  <Button
+                    type="submit"
+                    loading={submitting}
+                    loadingContext="brand"
+                    variant="primary"
+                    className="auth-submit"
+                  >
+                    {mode === 'login' ? (
+                      <>
+                        <Icon name="right-to-bracket" />
+                        {t('common.signIn')}
+                      </>
+                    ) : (
+                      <>
+                        <Icon name="user-plus" />
+                        {t('auth.createAccount')}
+                      </>
+                    )}
+                  </Button>
+                </form>
+  
+                {mode === 'login' && (
+                  <Button
+                    type="button"
+                    variant="secondary"
+                    loading={passkeySubmitting}
+                    loadingContext="brand"
+                    onClick={handlePasskeyLogin}
+                    className="auth-submit auth-passkey"
+                  >
+                    <Icon name="fingerprint" />
+                    Sign in with a Passkey
+                  </Button>
+                )}
+  
+                <div className="auth-switch">
+                  <span>
+                    {mode === 'login'
+                      ? t('auth.noAccount')
+                      : t('auth.haveAccount')}
+                  </span>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => switchMode(mode === 'login' ? 'register' : 'login')}
+                  >
+                    {mode === 'login' ? 'Sign Up' : t('common.signIn')}
+                  </Button>
+                </div>
+  
               </div>
-            </div>
+            )}
           )}
         </div>
       </main>
