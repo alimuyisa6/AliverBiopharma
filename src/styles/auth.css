@@ -867,67 +867,39 @@ body.dark-mode {
 }
 
 
-/* Floating inner card for the authentication form. */
-.auth-form-panel {
-  padding: clamp(var(--space-4), 3vw, var(--space-8));
-}
-
-.auth-form-container {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  width: 100%;
-  max-width: 31rem;
-  padding: clamp(var(--space-5), 3.2vw, var(--space-8));
-  border: 1px solid color-mix(in srgb, var(--auth-border) 72%, transparent);
-  border-radius: var(--auth-radius-xl);
-  background: color-mix(in srgb, var(--auth-surface) 94%, var(--palette-periwinkle));
-  box-shadow:
-    0 1.25rem 3.5rem color-mix(in srgb, var(--palette-ink) 12%, transparent),
-    0 0.125rem 0.5rem color-mix(in srgb, var(--palette-blue) 7%, transparent);
-}
-
-.auth-form-container > .auth-form-watermark {
-  z-index: 0;
-  top: 50%;
-  right: -3rem;
-  width: 92%;
-  height: 110%;
-  transform: translateY(-50%);
-  opacity: 0.20;
-}
-
-.auth-form-container > :not(.auth-form-watermark) {
-  position: relative;
-  z-index: 1;
-}
-
+/* Keep the whole authentication experience inside one shared outer card. */
 @media (max-width: 920px) {
-  .auth-form-panel {
-    padding: var(--space-5);
+  .auth-page {
+    width: min(calc(100% - (var(--space-4) * 2)), var(--auth-shell-max-width));
+    min-height: auto;
+    margin: calc(-1 * var(--header-height) + var(--space-5)) auto var(--space-5);
+    overflow: hidden;
+    border: 1px solid var(--auth-glass-white-72);
+    border-radius: var(--auth-radius-xl);
+    box-shadow: var(--auth-shadow-lg);
   }
 
   .auth-form-container {
-    max-width: 34rem;
-    padding: clamp(var(--space-5), 5vw, var(--space-7));
+    max-width: var(--auth-form-max-width);
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
   }
 }
 
 @media (max-width: 440px) {
-  .auth-form-panel {
-    padding: var(--space-4);
+  .auth-page {
+    width: calc(100% - (var(--space-4) * 2));
+    min-height: auto;
+    margin: calc(-1 * var(--header-height) + var(--space-4)) auto var(--space-4);
+    border: 1px solid var(--auth-glass-white-72);
+    border-radius: var(--auth-radius-lg);
+    box-shadow: var(--auth-shadow-lg);
   }
 
   .auth-form-container {
-    padding: var(--space-5);
-    border-radius: var(--auth-radius-lg);
-    box-shadow: 0 0.75rem 2rem color-mix(in srgb, var(--palette-ink) 10%, transparent);
-  }
-
-  .auth-form-container > .auth-form-watermark {
-    right: -3.5rem;
-    width: 105%;
-    height: 90%;
-    opacity: 0.14;
+    padding: 0;
   }
 }
