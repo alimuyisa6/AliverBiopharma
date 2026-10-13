@@ -31,7 +31,6 @@ const VERTEX = `
 
 const FRAGMENT = `
   precision highp float;
-
   uniform float u_time;
   uniform vec3 u_color1;
   uniform vec3 u_color2;
@@ -45,104 +44,96 @@ const FRAGMENT = `
     return fract(sin(dot(st, vec2(12.9898, 78.233))) * 43758.5453);
   }
 
-  // centered coordinates, y in [-0.5, 0.5], x stretched by the aspect ratio
-  vec2 centered(vec2 uv) {
-    vec2 p = uv - 0.5;
-    p.x *= u_resolution.x / max(u_resolution.y, 1.0);
-    return p;
-  }
-
   mat2 rot(float a) {
     float s = sin(a);
     float c = cos(a);
     return mat2(c, -s, s, c);
   }
 
-  // AliverBiopharm molecular light: restrained moving particles travel along
-  // curved paths between the folds, suggesting molecular activity without
-  // turning the hero into a literal stock-science illustration.
-  vec3 molecularFlow(vec2 uv, float time) {
-    float aspect = u_resolution.x / max(u_resolution.y, 1.0);
-    vec3 particles = vec3(0.0);
-
-    for (int i = 0; i < 7; i++) {
-      float fi = float(i);
-      float x = fract(uv.x * 0.82 - time * (0.018 + fi * 0.0015) + fi * 0.173);
-      float y = 0.5
-        + 0.19 * sin(x * 6.2 + fi * 1.17 + time * 0.13)
-        + 0.055 * sin(x * 12.0 - fi * 0.7 - time * 0.08);
-
-      vec2 delta = vec2((uv.x - x) * aspect, uv.y - y);
-      float radius = length(delta);
-      float glow = exp(-radius * 95.0);
-      float core = exp(-radius * 460.0);
-
-      // A short, fading mint trail follows each moving point.
-      float behind = fract(uv.x * 0.82 - time * (0.018 + fi * 0.0015) + fi * 0.173);
-      float trailY = y;
-      float trailDistance = abs(uv.y - trailY
-        - 0.035 * sin((uv.x - x) * 10.0 + fi));
-      float trail = exp(-trailDistance * 150.0)
-        * (1.0 - smoothstep(0.0, 0.11, abs(uv.x - x)))
-        * step(0.0, uv.x - x);
-
-      particles += u_color3 * (glow * 0.055 + core * 0.52 + trail * 0.035);
-    }
-
-    return particles;
+  // Asymmetric, breathing membrane curves form the distinctive glass layers.
+  float membrane(float x, float phase, float time) {
+    return 0.5
+      + 0.145 * sin(x * 5.0 + phase + time * 0.12)
+      + 0.052 * sin(x * 10.5 - phase * 1.4 - time * 0.075)
+      + 0.018 * sin(x * 19.0 + phase * 0.6 + time * 0.05);
   }
 
-  // panes of glass folded over each other. Each pane has one creased edge
-  // that catches the light and thins out to nothing behind it; panes screen
-  // over one another, so overlaps get brighter instead of darker.
   vec3 shade(vec2 uv, float time) {
-    vec2 q = rot(0.6) * centered(uv) * 2.0 * u_scale;
-    float t = time * 0.6;
-    float pixel = 2.0 * u_scale / max(u_resolution.y, 1.0);
+    float aspect = u_resolution.x / max(u_resolution.y, 1.0);
+    vec2 p = uv - 0.5;
+    p.x *= aspect;
+    p *= 1.65 * u_scale;
 
-    vec3 color = mix(u_color2, u_color2 * 0.45, clamp(length(centered(uv)) * 1.3, 0.0, 1.0));
+    float halo = exp(-length(p - vec2(-0.16, 0.02)) * 1.5);
+    vec3 color = mix(u_color2, u_color1 * 0.19, halo * 0.82);
+    color += u_color1 * 0.045 * exp(-length(p + vec2(0.24, 0.18)) * 2.1);
 
-    for (int i = 0; i < 6; i++) {
+    // Four offset membranes create an uneven, flowing silhouette.
+    vec2 q = rot(-0.24) * p;
+    for (int i = 0; i < 4; i++) {
       float fi = float(i);
-      float bend = mod(fi, 2.0) * 2.0 - 1.0;
+      float x = q.x + fi * 0.16;
+      float phase = fi * 1.73;
+      float ridge = membrane(x, phase, time) - 0.5;
+      ridge += 0.12 * x + 0.035 * sin(x * 3.2 - time * 0.1 + phase);
+      float d = q.y - ridge + (fi - 1.5) * 0.235;
+      float body = exp(-abs(d) * (2.8 + fi * 0.12));
+      float edge = exp(-abs(d) * 42.0);
+      float fineEdge = exp(-pow((abs(d) - 0.027) / 0.012, 2.0));
+      float shadow = exp(-pow((d + 0.075) / 0.055, 2.0));
+      float sheen = 0.5 + 0.5 * sin(x * 3.6 - time * 0.22 + phase);
+      vec3 tint = mix(u_color1, u_color3, 0.16 + 0.26 * sheen);
 
-      float crease = (fi - 2.5) * 0.4
-                   + 0.26 * sin(q.x * (1.05 + 0.12 * fi) + fi * 1.9 + t * (0.25 + 0.05 * fi))
-                   + 0.1 * bend * q.x * q.x;
-      float s = q.y - crease;
-      float pane = smoothstep(-pixel, pixel, s);
-      float back = max(s, 0.0);
-
-      // thick near the crease, clear further in
-      float body = exp(-back * 1.7);
-      float fresnel = exp(-back * 8.0);
-      // the lit edge, and a fainter line just inside it for the glass's thickness
-      float rim = exp(-back * 80.0);
-      float inner = exp(-pow((back - 0.045) / 0.014, 2.0));
-      float bloom = exp(-abs(s) * 20.0);
-
-      vec3 tint = mix(u_color1, u_color3, clamp(fresnel * 0.6 + 0.08 + 0.14 * sin(fi * 2.1 + q.x * 0.8 + t * 0.2), 0.0, 1.0));
-      vec3 light = tint * pane * (body * 0.42 + fresnel * 0.4)
-                 + u_color3 * (pane * (rim * 0.6 + inner * 0.12) + bloom * 0.1);
-
-      // screen blend
-      color += light * (1.0 - color);
+      color += tint * body * 0.105;
+      color += u_color3 * edge * (0.10 + 0.18 * sheen);
+      color += mix(u_color1, u_color3, 0.45) * fineEdge * 0.13;
+      color *= 1.0 - shadow * 0.075;
     }
 
-    // Keep the scientific details subtle: they should enrich the glass,
-    // never compete with the hero heading.
-    color += molecularFlow(uv, time);
+    // Fine molecular pathways are embedded in the glass, not pasted on top.
+    for (int j = 0; j < 3; j++) {
+      float fj = float(j);
+      float x = (uv.x - 0.5) * aspect * 1.65 * u_scale;
+      float path = membrane(x * 0.8, fj * 2.0 + 0.7, time * 0.75);
+      path = (path - 0.5) * 0.82 + 0.24 + (fj - 1.0) * 0.19;
+      float d = abs(uv.y - path);
+      float filament = exp(-d * u_resolution.y * 0.095);
+      float core = exp(-d * u_resolution.y * 0.42);
+      float pulseX = fract(0.12 + uv.x * 0.72 - time * (0.045 + fj * 0.012) + fj * 0.29);
+      float pulseD = abs(uv.x - pulseX);
+      pulseD = min(pulseD, 1.0 - pulseD);
+      float pulse = exp(-pulseD * u_resolution.x * 0.045);
+      color += u_color3 * filament * (0.025 + pulse * 0.12);
+      color += u_color3 * core * pulse * 0.35;
+    }
+
+    // Small moving junctions give the pathways a restrained living quality.
+    for (int k = 0; k < 5; k++) {
+      float fk = float(k);
+      float nx = fract(0.11 + fk * 0.187 + time * (0.018 + fk * 0.002));
+      float ny = membrane((nx - 0.5) * aspect * 1.32 * u_scale,
+        fk * 1.9 + 0.7, time * 0.75);
+      ny = (ny - 0.5) * 0.82 + 0.24 + (mod(fk, 3.0) - 1.0) * 0.19;
+      vec2 delta = vec2((uv.x - nx) * aspect, uv.y - ny);
+      float radius = length(delta);
+      color += u_color3 * (exp(-radius * 75.0) * 0.055 + exp(-radius * 360.0) * 0.28);
+    }
+
+    vec3 coolHighlight = mix(u_color1, vec3(0.82, 0.87, 1.0), 0.38);
+    float glint = pow(max(0.0, sin(q.x * 2.4 - q.y * 1.3 - time * 0.16)), 12.0);
+    color += coolHighlight * glint * 0.055;
+
+    if (u_noise > 0.001) {
+      float g = grain(uv * 240.0 + time * 0.03);
+      color *= 1.0 - u_noise * 0.25 + u_noise * g * 0.25;
+    }
     return clamp(color, 0.0, 1.0);
   }
 
   void main() {
-    vec3 color = shade(vUv, u_time);
-    if (u_noise > 0.001) {
-      float g = grain(vUv * 200.0 + u_time * 0.1);
-      color *= 1.0 - u_noise * 0.4 + u_noise * g * 0.4;
-    }
-    gl_FragColor = vec4(color, 1.0);
+    gl_FragColor = vec4(shade(vUv, u_time), 1.0);
   }
+
 `
 
 function hexToVec3(hex: string): [number, number, number] {
