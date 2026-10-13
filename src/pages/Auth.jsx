@@ -9,7 +9,7 @@ import Button from '../components/Button/Button';
 import Icon from '../components/Icon/Icon';
 import Spinner from '../components/Spinner/Spinner';
 import { useI18n } from '../contexts/I18nContext';
-import { LoginPage, MolecularBrandIllustration } from '../components/ui/sign-in-page';
+import { AuthFormWatermark, LoginPage, MolecularBrandIllustration } from '../components/ui/sign-in-page';
 
 const TURNSTILE_SITE_KEY = '0x4AAAAAADknPpI_XcH1KfPe';
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -451,6 +451,7 @@ export default function Auth() {
       </aside>
 
       <main className="auth-form-panel">
+        <AuthFormWatermark />
         <div className="auth-form-container">
           {pendingConfirmation ? (
             <div className="auth-state">
