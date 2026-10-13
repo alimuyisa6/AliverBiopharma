@@ -65,18 +65,18 @@ export default function FooterScienceIllustration() {
           lungs -> pulmonary veins -> left heart -> aorta -> body. */}
       <g className="circ-vessel">
         {/* Deoxygenated return from body to right atrium */}
-        <path d="M83 132 H285 Q312 132 334 151 L366 171" stroke="url(#circ-blue)" strokeWidth="14" opacity=".22" />
-        <path d="M83 132 H285 Q312 132 334 151 L366 171" stroke="url(#circ-blue)" strokeWidth="7" />
-        <path d="M83 132 H285 Q312 132 334 151 L366 171" className="circ-flow" />
+        <path d="M83 132 H285 Q312 132 334 143 Q349 151 365 151" stroke="url(#circ-blue)" strokeWidth="14" opacity=".22" />
+        <path d="M83 132 H285 Q312 132 334 143 Q349 151 365 151" stroke="url(#circ-blue)" strokeWidth="7" />
+        <path d="M83 132 H285 Q312 132 334 143 Q349 151 365 151" className="circ-flow" />
         {/* Right ventricle to pulmonary artery, then lungs */}
-        <path d="M390 185 C390 211 369 218 365 192 L365 151 Q365 129 383 112 L383 96" stroke="url(#circ-blue)" strokeWidth="10" />
-        <path d="M390 185 C390 211 369 218 365 192 L365 151 Q365 129 383 112 L383 96" className="circ-flow" />
+        <path d="M383 181 C382 169 376 163 374 151 L374 128 Q374 111 389 96" stroke="url(#circ-blue)" strokeWidth="10" />
+        <path d="M383 181 C382 169 376 163 374 151 L374 128 Q374 111 389 96" className="circ-flow" />
         {/* Oxygenated blood from lungs to left atrium */}
-        <path d="M417 96 L417 113 Q435 130 435 151 L435 170" stroke="url(#circ-red)" strokeWidth="10" />
-        <path d="M417 96 L417 113 Q435 130 435 151 L435 170" className="circ-flow" />
+        <path d="M425 96 L425 113 Q425 126 421 140 L421 151" stroke="url(#circ-red)" strokeWidth="10" />
+        <path d="M425 96 L425 113 Q425 126 421 140 L421 151" className="circ-flow" />
         {/* Left ventricle to aorta and systemic body */}
-        <path d="M437 169 C456 171 478 153 492 111 V85 Q492 55 521 55 H694 Q725 55 745 83 L790 132 H917" stroke="url(#circ-red)" strokeWidth="15" opacity=".22" />
-        <path d="M437 169 C456 171 478 153 492 111 V85 Q492 55 521 55 H694 Q725 55 745 83 L790 132 H917" stroke="url(#circ-red)" strokeWidth="7.5" />
+        <path d="M426 181 Q445 174 457 157 Q477 130 492 105 V85 Q492 55 521 55 H694 Q725 55 745 83 L790 132 H917" stroke="url(#circ-red)" strokeWidth="15" opacity=".22" />
+        <path d="M426 181 Q445 174 457 157 Q477 130 492 105 V85 Q492 55 521 55 H694 Q725 55 745 83 L790 132 H917" stroke="url(#circ-red)" strokeWidth="7.5" />
         <path d="M456 171 C478 153 492 137 492 111 V85 Q492 55 521 55 H694 Q725 55 745 83 L790 132 H917" className="circ-flow" />
       </g>
 
@@ -96,50 +96,31 @@ export default function FooterScienceIllustration() {
       </g>
       <text x="400" y="230" textAnchor="middle" fill="currentColor" fontSize="12" fontWeight="700" letterSpacing="1.2">HEART</text>
 
-      {/* Short, separated vessel cuffs clarify the four heart junctions without
-          stacking duplicate vessel routes over one another. */}
-      <g className="circ-vessel" aria-hidden="true">
-        {/* Venae cavae enter the right atrium. */}
-        <path d="M350 139 Q359 140 367 148" stroke="#7f1d1d" strokeWidth="10" />
-        <path d="M350 139 Q359 140 367 148" stroke="url(#circ-blue)" strokeWidth="6" />
-        <path d="M350 190 Q360 182 369 169" stroke="#7f1d1d" strokeWidth="10" />
-        <path d="M350 190 Q360 182 369 169" stroke="url(#circ-blue)" strokeWidth="6" />
-        {/* Pulmonary artery exits the right ventricle. */}
-        <path d="M383 181 Q374 169 372 153 L372 128 Q372 117 382 106" stroke="#7f1d1d" strokeWidth="10" />
-        <path d="M383 181 Q374 169 372 153 L372 128 Q372 117 382 106" stroke="url(#circ-blue)" strokeWidth="6" />
-        {/* Pulmonary veins enter the left atrium. */}
-        <path d="M420 105 Q429 118 430 135 L430 149" stroke="#7f1d1d" strokeWidth="9" />
-        <path d="M420 105 Q429 118 430 135 L430 149" stroke="url(#circ-red)" strokeWidth="5.5" />
-        {/* Aortic root leaves the left ventricle, offset from the pulmonary veins. */}
-        <path d="M430 180 Q442 173 451 160 Q463 140 475 108" stroke="#7f1d1d" strokeWidth="11" />
-        <path d="M430 180 Q442 173 451 160 Q463 140 475 108" stroke="url(#circ-red)" strokeWidth="6.5" />
-      </g>
-
       {/* Red cells travel along each vessel centreline in physiological order.
           Separate motion paths make them enter the heart and lungs rather than
           jumping across gaps between unrelated vessel segments. */}
       <g className="circ-rbc">
         {/* Systemic venous return: body capillaries into the right heart */}
         <ellipse rx="7" ry="4.5" fill="#2563eb" stroke="#bfdbfe" strokeWidth="1.4">
-          <animateMotion dur="2.8s" repeatCount="indefinite" path="M83 132 H285 Q312 132 334 151 L366 171" />
+          <animateMotion dur="2.8s" repeatCount="indefinite" path="M83 132 H285 Q312 132 334 143 Q349 151 365 151" />
         </ellipse>
         <ellipse rx="7" ry="4.5" fill="#2563eb" stroke="#bfdbfe" strokeWidth="1.4">
-          <animateMotion dur="2.8s" begin="-1.4s" repeatCount="indefinite" path="M83 132 H285 Q312 132 334 151 L366 171" />
+          <animateMotion dur="2.8s" begin="-1.4s" repeatCount="indefinite" path="M83 132 H285 Q312 132 334 143 Q349 151 365 151" />
         </ellipse>
         {/* Right heart through pulmonary artery into the lungs */}
         <ellipse rx="7" ry="4.5" fill="#2563eb" stroke="#bfdbfe" strokeWidth="1.4">
-          <animateMotion dur="2.1s" begin="-0.7s" repeatCount="indefinite" path="M390 185 C390 211 369 218 365 192 L365 151 Q365 129 383 112 L383 96" />
+          <animateMotion dur="2.1s" begin="-0.7s" repeatCount="indefinite" path="M383 181 C382 169 376 163 374 151 L374 128 Q374 111 389 96" />
         </ellipse>
         {/* Pulmonary veins carry oxygenated blood from lungs into left heart */}
         <ellipse rx="7" ry="4.5" fill="#ef4444" stroke="#fecaca" strokeWidth="1.4">
-          <animateMotion dur="1.9s" begin="-0.4s" repeatCount="indefinite" path="M417 96 L417 113 Q435 130 435 151 L435 170" />
+          <animateMotion dur="1.9s" begin="-0.4s" repeatCount="indefinite" path="M425 96 L425 113 Q425 126 421 140 L421 151" />
         </ellipse>
         {/* Left heart ejects oxygenated blood through the aorta to body capillaries */}
         <ellipse rx="7" ry="4.5" fill="#ef4444" stroke="#fecaca" strokeWidth="1.4">
-          <animateMotion dur="3.4s" begin="-1.1s" repeatCount="indefinite" path="M437 169 C456 171 478 153 492 111 V85 Q492 55 521 55 H694 Q725 55 745 83 L790 132 H917" />
+          <animateMotion dur="3.4s" begin="-1.1s" repeatCount="indefinite" path="M426 181 Q445 174 457 157 Q477 130 492 105 V85 Q492 55 521 55 H694 Q725 55 745 83 L790 132 H917" />
         </ellipse>
         <ellipse rx="7" ry="4.5" fill="#ef4444" stroke="#fecaca" strokeWidth="1.4">
-          <animateMotion dur="3.4s" begin="-2.8s" repeatCount="indefinite" path="M437 169 C456 171 478 153 492 111 V85 Q492 55 521 55 H694 Q725 55 745 83 L790 132 H917" />
+          <animateMotion dur="3.4s" begin="-2.8s" repeatCount="indefinite" path="M426 181 Q445 174 457 157 Q477 130 492 105 V85 Q492 55 521 55 H694 Q725 55 745 83 L790 132 H917" />
         </ellipse>
       </g>
 
