@@ -77,7 +77,6 @@ export function LoginPage({
           variant="primary"
           className="auth-submit auth-login-submit"
         >
-          <Icon name="right-to-bracket" />
           {t('common.signIn')}
         </Button>
       </form>
@@ -90,7 +89,6 @@ export function LoginPage({
         onClick={handlePasskeyLogin}
         className="auth-submit auth-passkey"
       >
-        <Icon name="fingerprint" />
         Sign in with a Passkey
       </Button>
 
