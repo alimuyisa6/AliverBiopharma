@@ -98,12 +98,12 @@ export default function Hero() {
       >
         <div className="hero-image" aria-hidden="true">
           <GlassFold
-            color1="#1e3cc8"
-            color2="#06081e"
-            color3="#96d7ff"
-            speed={0.5}
+            color1="#5465ff"
+            color2="#050208"
+            color3="#00ffd4"
+            speed={0.34}
             scale={1}
-            noise={0.12}
+            noise={0.055}
             className="hero-glass-fold"
           />
         </div>
