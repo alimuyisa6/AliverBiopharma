@@ -51,7 +51,7 @@ function LearningJourneySection({ sections, navigate }) {
             <svg viewBox="0 0 72 72" focusable="false"><path d="m20 20 30 32M50 20 20 52" stroke="var(--primary)" strokeWidth="3" strokeLinecap="round" opacity=".65"/><circle cx="20" cy="20" r="8" fill="var(--primary)"/><circle cx="50" cy="20" r="8" fill="var(--secondary)"/><circle cx="20" cy="52" r="8" fill="var(--accent)"/><circle cx="50" cy="52" r="8" fill="var(--primary)"/><circle cx="35" cy="36" r="7" fill="var(--surface-card)" stroke="var(--secondary)" strokeWidth="2.5"/></svg>
           </div>
         </div>
-        <button type="button" className="btn btn-primary home-learning-journey-cta" onClick={() => navigate('/resources')}>Browse resources →</button>
+        <button type="button" className="btn btn-primary home-learning-journey-cta" onClick={() => navigate('/resources')}>Browse resources <svg className="home-learning-journey-cta-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></button>
       </div>
     </section>
   );
