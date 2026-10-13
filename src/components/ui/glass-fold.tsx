@@ -83,7 +83,7 @@ const FRAGMENT = `
       float trailDistance = abs(uv.y - trailY
         - 0.035 * sin((uv.x - x) * 10.0 + fi));
       float trail = exp(-trailDistance * 150.0)
-        * smoothstep(0.11, 0.0, abs(uv.x - x))
+        * (1.0 - smoothstep(0.0, 0.11, abs(uv.x - x)))
         * step(0.0, uv.x - x);
 
       particles += u_color3 * (glow * 0.055 + core * 0.52 + trail * 0.035);
