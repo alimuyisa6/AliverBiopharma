@@ -545,7 +545,6 @@ export default function Auth() {
                     setPasskeyMfaToken('');
                   }}
                 >
-                  <Icon name="arrow-left" />
                   Back to sign in
                 </Button>
               </div>
@@ -591,8 +590,7 @@ export default function Auth() {
                         setOnboardingStep(2);
                       }}
                     >
-                      <Icon name="user-graduate" />
-                      {t('auth.student')}
+                          {t('auth.student')}
                     </Button>
 
                     <Button
@@ -602,8 +600,7 @@ export default function Auth() {
                         setOnboardingStep(2);
                       }}
                     >
-                      <Icon name="user-pen" />
-                      {t('auth.teacher')}
+                          {t('auth.teacher')}
                     </Button>
                   </div>
                 </div>
@@ -819,12 +816,10 @@ export default function Auth() {
                   >
                     {mode === 'login' ? (
                       <>
-                        <Icon name="right-to-bracket" />
                         {t('common.signIn')}
                       </>
                     ) : (
                       <>
-                        <Icon name="user-plus" />
                         {t('auth.createAccount')}
                       </>
                     )}
@@ -840,7 +835,6 @@ export default function Auth() {
                     onClick={handlePasskeyLogin}
                     className="auth-submit auth-passkey"
                   >
-                    <Icon name="fingerprint" />
                     Sign in with a Passkey
                   </Button>
                 )}
