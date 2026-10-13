@@ -903,3 +903,44 @@ body.dark-mode {
     padding: 0;
   }
 }
+
+
+/* The watermark is decorative only: overlay it inside the form card, out of layout flow. */
+.auth-form-container {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.auth-form-container > .auth-form-watermark {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  right: -2rem;
+  bottom: auto;
+  left: auto;
+  display: block;
+  width: min(95%, 32rem);
+  height: 115%;
+  max-width: none;
+  transform: translateY(-50%);
+  opacity: 0.16;
+  pointer-events: none;
+}
+
+.auth-form-container > :not(.auth-form-watermark) {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 560px) {
+  .auth-form-container > .auth-form-watermark {
+    top: 50%;
+    right: -3rem;
+    bottom: auto;
+    width: 110%;
+    height: 100%;
+    transform: translateY(-50%);
+    opacity: 0.12;
+  }
+}
