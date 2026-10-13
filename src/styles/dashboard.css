@@ -845,3 +845,43 @@
     transition: none;
   }
 }
+
+
+/* Dashboard insight charts: responsive, token-driven, and safe in the narrow sidebar. */
+.dashboard-insight-chart {
+  width: 100%;
+  min-width: 0;
+  margin-block: var(--space-4);
+}
+
+.dashboard-insight-chart .ch-shell,
+.dashboard-insight-chart .ch-card {
+  width: 100%;
+  min-width: 0;
+}
+
+.dashboard-insight-chart .ch-shell {
+  margin: 0;
+}
+
+.dashboard-insight-chart .ch-card-head {
+  gap: var(--space-3);
+}
+
+.dashboard-insight-chart .ch-card-title {
+  overflow-wrap: anywhere;
+}
+
+.dashboard-insight-chart .ch-chart-frame {
+  max-width: 100%;
+}
+
+@media (max-width: 40rem) {
+  .dashboard-insight-chart {
+    margin-block: var(--space-3);
+  }
+
+  .dashboard-insight-chart .ch-card-body {
+    padding-inline: var(--space-2);
+  }
+}
