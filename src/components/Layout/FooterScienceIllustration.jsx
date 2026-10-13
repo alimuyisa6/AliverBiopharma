@@ -49,7 +49,14 @@ export default function FooterScienceIllustration() {
       <g id="circ-lungs" strokeLinecap="round" strokeLinejoin="round">
         <path d="M380 67 C352 44 326 66 320 101 C315 131 326 151 350 148 C370 146 383 126 387 101Z" fill="#fca5a5" fillOpacity=".32" stroke="#f87171" strokeWidth="2.5" />
         <path d="M420 67 C448 44 474 66 480 101 C485 131 474 151 450 148 C430 146 417 126 413 101Z" fill="#fca5a5" fillOpacity=".32" stroke="#f87171" strokeWidth="2.5" />
+        {/* Bronchi branch into fine pulmonary capillary networks around alveoli. */}
         <path d="M400 42V90 M400 70L377 91 M400 70L423 91 M377 91L358 113 M377 91L379 124 M423 91L442 113 M423 91L421 124" fill="none" stroke="#f87171" strokeWidth="3" />
+        <g fill="#fda4af" fillOpacity=".85" stroke="#be123c" strokeWidth="1">
+          <circle cx="348" cy="111" r="4"/><circle cx="354" cy="120" r="4"/><circle cx="362" cy="126" r="4"/>
+          <circle cx="371" cy="119" r="4"/><circle cx="375" cy="130" r="4"/><circle cx="442" cy="111" r="4"/>
+          <circle cx="448" cy="120" r="4"/><circle cx="456" cy="126" r="4"/><circle cx="465" cy="119" r="4"/>
+          <circle cx="469" cy="130" r="4"/>
+        </g>
         <text x="400" y="174" textAnchor="middle" fill="currentColor" fontSize="11" fontWeight="700" letterSpacing="1">LUNGS</text>
       </g>
 
@@ -73,12 +80,19 @@ export default function FooterScienceIllustration() {
         <path d="M456 171 C478 153 492 137 492 111 V85 Q492 55 521 55 H694 Q725 55 745 83 L790 132 H917" className="circ-flow" />
       </g>
 
-      {/* Central heart with a visible septum and four simplified chambers. */}
+      {/* Heart chambers are shown in anatomical flow order. In this front view,
+          the right-heart chambers appear on the viewer's left. */}
       <g className="circ-heart" filter="url(#circ-soft-glow)">
         <path d="M400 203 C387 191 350 171 356 145 C362 122 386 120 400 139 C414 120 438 122 444 145 C450 171 413 191 400 203Z" fill="url(#circ-heart)" stroke="#fecdd3" strokeWidth="2.5" />
         <path d="M400 139V197" fill="none" stroke="#7f1d1d" strokeWidth="2.5" />
         <path d="M363 149 Q381 139 396 156 M404 156 Q419 139 437 149" fill="none" stroke="#ffe4e6" strokeWidth="2.5" />
         <path d="M369 169 Q383 159 396 171 M404 171 Q417 159 431 169" fill="none" stroke="#fecdd3" strokeWidth="2" />
+        {/* Small valve leaflets between atria and ventricles. */}
+        <path d="M379 157l8 6 8-6 M405 157l8 6 8-6" fill="none" stroke="#fff1f2" strokeWidth="1.7" />
+      </g>
+      <g fill="#fff1f2" fontSize="7.5" fontWeight="800" textAnchor="middle">
+        <text x="379" y="147">RA</text><text x="420" y="147">LA</text>
+        <text x="380" y="181">RV</text><text x="420" y="181">LV</text>
       </g>
       <text x="400" y="230" textAnchor="middle" fill="currentColor" fontSize="12" fontWeight="700" letterSpacing="1.2">HEART</text>
 
@@ -110,10 +124,16 @@ export default function FooterScienceIllustration() {
         </ellipse>
       </g>
 
-      {/* Clear directional cues and legend. */}
+      {/* Anatomical vessel labels make the pathway explicit rather than decorative. */}
+      <g fill="currentColor" fontSize="9.5" fontWeight="700" opacity=".92">
+        <text x="202" y="151" textAnchor="middle">Venae cavae</text>
+        <text x="341" y="89" textAnchor="middle">Pulmonary artery</text>
+        <text x="464" y="101" textAnchor="middle">Pulmonary veins</text>
+        <text x="604" y="76" textAnchor="middle">AORTA</text>
+      </g>
       <g fill="currentColor" fontSize="10" fontWeight="600" opacity=".85">
-        <text x="180" y="119" textAnchor="middle">RETURN TO HEART</text>
-        <text x="682" y="38" textAnchor="middle">PUMPED TO BODY</text>
+        <text x="180" y="119" textAnchor="middle">BODY RETURN</text>
+        <text x="682" y="38" textAnchor="middle">SYSTEMIC OUTFLOW</text>
       </g>
       <g transform="translate(330 263)" fontSize="10" fill="currentColor">
         <path d="M0 0H24" stroke="#2563eb" strokeWidth="5" strokeLinecap="round" />
