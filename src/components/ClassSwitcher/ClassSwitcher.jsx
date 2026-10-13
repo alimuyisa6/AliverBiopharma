@@ -6,9 +6,44 @@ import Icon from '../Icon/Icon';
 
 function SwitchGlyph() {
   return (
-    <svg className="class-switcher-glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path d="M7 7h10l-2.5-2.5M17 17H7l2.5 2.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M17 7v3M7 17v-3" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    <svg
+      className="class-switcher-glyph"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path
+        d="M20 7H8a4 4 0 0 0-4 4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="m7 4-3 3 3 3"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M4 17h12a4 4 0 0 0 4-4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="m17 10 3 3-3 3"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
