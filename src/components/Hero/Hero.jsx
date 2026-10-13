@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { useLayout } from '../../contexts/LayoutContext';
+import { GlassFold } from '../ui/glass-fold';
 
 const MODULE_LABELS = {
   quiz: 'Quiz',
@@ -48,10 +49,6 @@ export default function Hero() {
     (features?.[resumeFeatureKey] ?? true);
 
   const uiComponents = bootstrap?.ui_components || [];
-
-  const featuredVideo = uiComponents.find(
-    (item) => item.component_key === 'featured_video'
-  )?.properties;
 
   const heroGallery = uiComponents.find(
     (item) => item.component_key === 'hero_gallery'
@@ -100,22 +97,15 @@ export default function Hero() {
         aria-labelledby="hero-title"
       >
         <div className="hero-image" aria-hidden="true">
-          {featuredVideo?.video_url ? (
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              poster={featuredVideo.thumbnail_url}
-            >
-              <source
-                src={featuredVideo.video_url}
-                type="video/mp4"
-              />
-            </video>
-          ) : (
-            <div className="hero-image-placeholder" />
-          )}
+          <GlassFold
+            color1="#1e3cc8"
+            color2="#06081e"
+            color3="#96d7ff"
+            speed={0.5}
+            scale={1}
+            noise={0.12}
+            className="hero-glass-fold"
+          />
         </div>
 
         <div className="hero-scrim" aria-hidden="true" />
