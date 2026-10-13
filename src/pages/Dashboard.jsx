@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { TotalLearningActivity, MasteryDonut, XpBars } from '../components/charts/AnalyticsCharts';
+import DualAreaTrend from '../components/charts/DualAreaTrend';
 import BarChart from '../components/charts/BarChart';
 import DonutChart from '../components/charts/DonutChart';
 import { Link } from 'react-router-dom';
@@ -542,6 +543,11 @@ export default function Dashboard() {
                 <div className="panel-body">
                 <p className="dashboard-section-intro">See how regularly you’ve been studying and spot the habits that help you make progress.</p>
                 <DashboardSectionAside>Aim for a steady study routine. A short, focused session today is a useful start.</DashboardSectionAside>
+                  <DualAreaTrend
+                    embedded
+                    activities={recentActivity}
+                    days={activityDays}
+                  />
                   <TotalLearningActivity
                     embedded
                     data={heatmapValues.map((item) => ({
