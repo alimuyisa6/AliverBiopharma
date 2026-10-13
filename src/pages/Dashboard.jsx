@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { TotalLearningActivity, MasteryDonut, XpBars } from '../components/charts/AnalyticsCharts';
+import BarChart from '../components/charts/BarChart';
+import DonutChart from '../components/charts/DonutChart';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useLayout } from '../contexts/LayoutContext';
@@ -254,6 +256,28 @@ export default function Dashboard() {
     label: item.unit_name,
     value: Math.max(0, Number(item.xp) || 0)
   }));
+  const quizOutcomeChart = [
+    { label: 'Passed', value: Math.max(0, Number(quiz.passed_count) || 0) },
+    { label: 'Not passed', value: Math.max(0, Number(quiz.failed_count) || 0) }
+  ];
+  const recallComparisonChart = [
+    Math.max(0, Math.min(100, Number(recall.accuracy) || 0)),
+    Math.max(0, Math.min(100, Number(recall.best_mastery) || 0))
+  ];
+  const downloadOutcomeChart = [
+    Math.max(0, Number(downloadAttempts.counts.links_issued) || 0),
+    Math.max(0, Number(downloadAttempts.counts.premium_blocked) || 0),
+    Math.max(0, (Number(downloadAttempts.counts.request_failed) || 0) + (Number(downloadAttempts.counts.network_error) || 0))
+  ];
+  const weakAreaChart = weakAreas.slice(0, 5).map((item) => ({
+    label: item.concept || 'Concept',
+    value: Math.max(0, Number(item.incorrect_attempts) || 0)
+  }));
+  const recentActivityMix = [
+    { label: 'Quizzes', value: recentActivity.filter((item) => item.type === 'quiz').length },
+    { label: 'Recall', value: recentActivity.filter((item) => item.type === 'recall').length },
+    { label: 'Reading', value: recentActivity.filter((item) => item.type === 'reading').length }
+  ];
 
   const masteryMap = analytics?.mastery_map || [];
   const assessedMastery = masteryMap.filter((item) => item.assessed);
@@ -429,6 +453,11 @@ export default function Dashboard() {
                     <span className="dashboard-quiz-metric-label">Average score</span>
                   </div>
                 </div>
+                {Number(quiz.total_attempts) > 0 && quizOutcomeChart.some((item) => item.value > 0) && (
+                  <div className="dashboard-insight-chart dashboard-insight-chart-compact">
+                    <DonutChart data={quizOutcomeChart.map((item) => item.value)} labels={quizOutcomeChart.map((item) => item.label)} title="Quiz outcomes" subtitle="Passed versus not-passed recorded attempts." height={220} />
+                  </div>
+                )}
                 <div className="dashboard-quiz-outcome" aria-label="Quiz pass and not-passed comparison">
                   <div className="dashboard-quiz-outcome-labels">
                     <span>Pass rate</span>
@@ -481,6 +510,11 @@ export default function Dashboard() {
                   <div><strong>{recall.best_mastery ?? 0}%</strong><span>Best mastery</span></div>
                   <div className="dashboard-recall-xp"><strong>{Number(recall.total_xp ?? 0).toLocaleString()}</strong><span>Recall XP earned</span></div>
                 </div>
+                {Number(recall.total_sessions) > 0 && (
+                  <div className="dashboard-insight-chart dashboard-insight-chart-compact">
+                    <BarChart data={recallComparisonChart} labels={['Recall accuracy', 'Best mastery']} label="Score" title="Recall performance" subtitle="Your recall accuracy and best recorded mastery, shown as percentages." height={220} />
+                  </div>
+                )}
                 <p className="dashboard-quiz-note">Recall is tracked separately from scored quiz attempts so your memory practice and assessment results stay distinct.</p>
               </div>
             </section>
@@ -582,6 +616,11 @@ export default function Dashboard() {
                   <strong>{downloadHistory.total}</strong>
                   <span>Recorded download-link events</span>
                 </div>
+                {downloadOutcomeChart.some((value) => value > 0) && (
+                  <div className="dashboard-insight-chart dashboard-insight-chart-compact">
+                    <DonutChart data={downloadOutcomeChart} labels={['Links issued', 'Premium blocked', 'Request/network failures']} title="Download request outcomes" subtitle="Breakdown of recorded PDF download attempts." height={220} />
+                  </div>
+                )}
                 <div className="dashboard-download-attempt-metrics">
                   <div><strong>{downloadAttempts.counts.links_issued ?? 0}</strong><span>Links issued</span></div>
                   <div><strong>{downloadAttempts.counts.premium_blocked ?? 0}</strong><span>Premium blocked</span></div>
@@ -943,6 +982,11 @@ export default function Dashboard() {
                 <div className="panel-body">
                 <p className="dashboard-section-intro">Use these topics as a guide for what to revise next. Finding a difficult area is part of learning.</p>
                 <DashboardSectionAside>Start with one topic, review the lesson, and try a few practice questions to check your understanding.</DashboardSectionAside>
+                  {weakAreaChart.some((item) => item.value > 0) && (
+                    <div className="dashboard-insight-chart dashboard-insight-chart-compact">
+                      <BarChart data={weakAreaChart.map((item) => item.value)} labels={weakAreaChart.map((item) => item.label)} label="Incorrect attempts" title="Concepts to revisit" subtitle="Most frequently missed concepts among your unresolved weak areas." horizontal height={Math.max(220, weakAreaChart.length * 48)} />
+                    </div>
+                  )}
                   <div className="sidebar-list" id="weak-areas-list">
                     {weakAreas.map((weak, index) => (
                       <Link
@@ -971,6 +1015,11 @@ export default function Dashboard() {
                 <div className="panel-body">
                 <p className="dashboard-section-intro">A quick recap of your latest learning actions so you can continue from there.</p>
                 <DashboardSectionAside>Use this recap to return to a recent activity or pick one small task to do next.</DashboardSectionAside>
+                  {recentActivityMix.some((item) => item.value > 0) && (
+                    <div className="dashboard-insight-chart dashboard-insight-chart-compact">
+                      <DonutChart data={recentActivityMix.map((item) => item.value)} labels={recentActivityMix.map((item) => item.label)} title="Recent learning mix" subtitle="The types of activity in your latest recorded learning history." height={220} />
+                    </div>
+                  )}
                   <div className="sidebar-list" id="recent-activity-list">
                     {recentActivity.map((activity, index) => {
                       const progress = Math.max(0, Math.min(100, Math.round(Number(activity.progress_percentage) || 0)));
