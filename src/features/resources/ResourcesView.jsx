@@ -120,7 +120,7 @@ export default function ResourcesView({ navigate, user, sections }) {
 
   const subtitle =
     sections?.section_headings?.content_types_subtitle ||
-    'Notes, flashcards, quizzes, past papers and recall — everything you need to study Biology and Pharmacy with purpose.';
+    'Course-matched notes, flashcards, clinical cases, quizzes, past papers, downloadable PDFs and active-recall practice—plus learning and assessment resources tailored to your course unit, from certificate through to degree level.';
 
   function handleBrowse(type) {
     navigate(user ? type.route : '/login');
