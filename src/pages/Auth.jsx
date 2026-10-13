@@ -773,7 +773,7 @@ export default function Auth() {
   
                   {mode === 'register' && (
                     <Input
-                      label={t('auth.confirmPasswordInput')}
+                      label={t('auth.confirmPasswordLabel')}
                       type="password"
                       placeholder={t('auth.confirmPasswordInput')}
                       value={confirm}
