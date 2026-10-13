@@ -60,8 +60,8 @@ export const TRANSLATIONS = {
       verifyAndSignIn: 'Verify and Sign In', completeProfile: 'Complete Your Profile', personaliseLearning: 'Help us personalise your learning experience',
       iAmA: 'I am a...', student: 'Student', teacher: 'Teacher', selectLevel: 'Select your level',
       createAccount: 'Create Account', accessAccount: 'Access your account securely', joinLearners: 'Join thousands of learners worldwide',
-      fullNameLabel: 'Full Name', enterFullName: 'Enter your full name', emailAddress: 'Email Address', enterEmail: 'Enter your email',
-      createPassword: 'Create a password', enterPassword: 'Enter your password', confirmPasswordInput: 'Confirm your password',
+      fullNameLabel: 'Full Name', enterFullName: 'Enter your full name', emailAddress: 'Email Address', enterEmail: 'Enter your email address',
+      createPassword: 'Create a password', enterPassword: 'Enter your password to sign in', confirmPasswordInput: 'Re-enter your password',
       passwordHint: 'Minimum 10 characters, with at least 3 of: uppercase, lowercase, number, symbol',
       signingIn: 'Signing in...', creatingAccount: 'Creating account...'
     },
@@ -217,8 +217,8 @@ export const TRANSLATIONS = {
       verifyAndSignIn: 'Thibitisha na Ingia', completeProfile: 'Kamilisha Wasifu Wako', personaliseLearning: 'Tusaidie kubinafsisha uzoefu wako wa kujifunza',
       iAmA: 'Mimi ni...', student: 'Mwanafunzi', teacher: 'Mwalimu', selectLevel: 'Chagua ngazi yako',
       createAccount: 'Fungua Akaunti', accessAccount: 'Fikia akaunti yako kwa usalama', joinLearners: 'Jiunge na maelfu ya wanafunzi duniani',
-      fullNameLabel: 'Jina Kamili', enterFullName: 'Weka jina lako kamili', emailAddress: 'Anwani ya Barua Pepe', enterEmail: 'Weka barua pepe yako',
-      createPassword: 'Unda nenosiri', enterPassword: 'Weka nenosiri lako', confirmPasswordInput: 'Thibitisha nenosiri lako',
+      fullNameLabel: 'Jina Kamili', enterFullName: 'Weka jina lako kamili', emailAddress: 'Anwani ya Barua Pepe', enterEmail: 'Weka anwani yako ya barua pepe',
+      createPassword: 'Unda nenosiri', enterPassword: 'Weka nenosiri lako ili kuingia', confirmPasswordInput: 'Weka tena nenosiri lako',
       passwordHint: 'Angalau herufi 10, zikiwa na angalau 3 kati ya: herufi kubwa, ndogo, namba, alama',
       signingIn: 'Inaingia...', creatingAccount: 'Inaunda akaunti...'
     },
