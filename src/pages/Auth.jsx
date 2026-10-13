@@ -709,7 +709,6 @@ export default function Auth() {
                       onChange={(event) => setFullName(event.target.value)}
                       required
                       disabled={submitting}
-                      icon="user"
                       className="auth-field"
                     />
                   )}
@@ -722,7 +721,6 @@ export default function Auth() {
                     onChange={(event) => setEmail(event.target.value)}
                     required
                     disabled={submitting}
-                    icon="envelope"
                     className="auth-field"
                   />
   
@@ -739,7 +737,6 @@ export default function Auth() {
                       onChange={(event) => setPassword(event.target.value)}
                       required
                       disabled={submitting}
-                      icon="lock"
                       hint={
                         mode === 'register'
                           ? t('auth.passwordHint')
@@ -783,7 +780,6 @@ export default function Auth() {
                       onChange={(event) => setConfirm(event.target.value)}
                       required
                       disabled={submitting}
-                      icon="lock"
                       className="auth-field"
                     />
                   )}
