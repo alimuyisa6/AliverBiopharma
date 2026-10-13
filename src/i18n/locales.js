@@ -61,7 +61,7 @@ export const TRANSLATIONS = {
       iAmA: 'I am a...', student: 'Student', teacher: 'Teacher', selectLevel: 'Select your level',
       createAccount: 'Create Account', accessAccount: 'Access your account securely', joinLearners: 'Join thousands of learners worldwide',
       fullNameLabel: 'Full Name', enterFullName: 'Type your full name here', emailAddress: 'Email Address', enterEmail: 'Type your email address here',
-      createPassword: 'Choose a password for your account', enterPassword: 'Type your password to sign in', confirmPasswordLabel: 'Confirm Password', confirmPasswordInput: 'Type your password again',
+      createPassword: 'Choose a password for your account', enterPassword: 'Type your password to sign in', confirmPasswordLabel: 'Confirm Password', confirmPasswordInput: 'Re-enter your password',
       passwordHint: 'Minimum 10 characters, with at least 3 of: uppercase, lowercase, number, symbol',
       signingIn: 'Signing in...', creatingAccount: 'Creating account...'
     },
@@ -218,7 +218,7 @@ export const TRANSLATIONS = {
       iAmA: 'Mimi ni...', student: 'Mwanafunzi', teacher: 'Mwalimu', selectLevel: 'Chagua ngazi yako',
       createAccount: 'Fungua Akaunti', accessAccount: 'Fikia akaunti yako kwa usalama', joinLearners: 'Jiunge na maelfu ya wanafunzi duniani',
       fullNameLabel: 'Jina Kamili', enterFullName: 'Andika jina lako kamili hapa', emailAddress: 'Anwani ya Barua Pepe', enterEmail: 'Andika anwani yako ya barua pepe hapa',
-      createPassword: 'Chagua nenosiri la akaunti yako', enterPassword: 'Andika nenosiri lako ili kuingia', confirmPasswordLabel: 'Thibitisha Nenosiri', confirmPasswordInput: 'Andika nenosiri lako tena',
+      createPassword: 'Chagua nenosiri la akaunti yako', enterPassword: 'Andika nenosiri lako ili kuingia', confirmPasswordLabel: 'Thibitisha Nenosiri', confirmPasswordInput: 'Ingiza tena nenosiri lako',
       passwordHint: 'Angalau herufi 10, zikiwa na angalau 3 kati ya: herufi kubwa, ndogo, namba, alama',
       signingIn: 'Inaingia...', creatingAccount: 'Inaunda akaunti...'
     },
