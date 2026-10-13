@@ -155,6 +155,7 @@
   object-fit: cover;
 }
 .home-learning-journey-cta { display: flex; align-items: center; justify-content: center; align-self: center; width: fit-content; pointer-events: auto; cursor: pointer; }
+.home-learning-journey-cta-icon { display: block; width: 18px; height: 18px; flex: 0 0 18px; margin-inline-start: .5rem; }
 .home-learning-journey-cta::first-letter { font-size: var(--text-xl); font-weight: var(--weight-bold); }
 
 .home-student-sections-wrap { width: 100%; margin-inline: 0; padding-inline: 0; display: flex; flex-direction: column; gap: 0; }
