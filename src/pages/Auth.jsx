@@ -451,8 +451,8 @@ export default function Auth() {
       </aside>
 
       <main className="auth-form-panel">
-        <AuthFormWatermark />
         <div className="auth-form-container">
+          <AuthFormWatermark />
           {pendingConfirmation ? (
             <div className="auth-state">
               <div className="auth-state-icon-wrap">
