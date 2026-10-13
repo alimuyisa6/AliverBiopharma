@@ -21,11 +21,15 @@ import { useLayout } from '../../contexts/LayoutContext';
 const CONTINUE_ICON = { note: 'book-open', video: 'play', quiz: 'clipboard-check' };
 
 function LearningJourneySection({ sections, navigate }) {
-  const { bootstrap } = useLayout();
+  const { bootstrap, level } = useLayout();
   const uiComponents = bootstrap?.ui_components || [];
   const component = uiComponents.find((item) => item.component_key === 'learning_journey_section');
-  const subtitle = sections?.section_headings?.content_types_subtitle ||
-    'Course-matched notes, flashcards, clinical cases, quizzes, past papers, downloadable PDFs and active-recall practice—plus learning and assessment resources tailored to your course unit, from certificate through to degree level.';
+  const levelName = `${level?.display_name || level?.name || level?.title || ''}`.toLowerCase();
+  const isPharmacy = levelName.includes('pharmacy');
+  const defaultSubtitle = isPharmacy
+    ? 'Pharmacy course-unit notes, flashcards, clinical cases, quizzes, past papers, downloadable PDFs, reference materials and active-recall practice—matched to your level, from certificate through to degree.'
+    : 'Biology topics and course-unit notes, flashcards, quizzes, past papers, downloadable PDFs, diagrams, reference materials and active-recall practice—matched to your level, from O-Level through A-Level.';
+  const subtitle = sections?.section_headings?.content_types_subtitle || defaultSubtitle;
 
   return (
     <section className="section home-learning-journey-section">
