@@ -265,7 +265,7 @@
 
 .auth-page .form-input {
   min-height: var(--control-height-lg);
-  padding: var(--auth-control-padding-y) 2.75rem var(--auth-control-padding-y) 2.7rem;
+  padding: var(--auth-control-padding-y) 2.75rem var(--auth-control-padding-y) var(--space-3);
   border: 1.5px solid var(--auth-border);
   border-radius: var(--auth-radius-sm);
   background: var(--auth-surface);
@@ -946,22 +946,6 @@ body.dark-mode {
 }
 
 
-/* Auth input icons should sit directly on the field, without icon boxes or borders. */
-.auth-page .input-icon {
-  display: block;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-  outline: 0;
-}
-
-.auth-page .input-wrapper:focus-within .input-icon {
-  border: 0;
-  box-shadow: none;
-}
-
 
 /* Cloudflare Turnstile must retain its full challenge frame and controls. */
 .auth-page .auth-captcha {
@@ -1002,35 +986,4 @@ body.dark-mode {
   display: none !important;
 }
 
-/* Keep email/password icons visible, but remove every surrounding box treatment. */
-.auth-page .input-wrapper .input-icon,
-.auth-page .input-wrapper > svg.input-icon {
-  display: block;
-  padding: 0 !important;
-  border: 0 !important;
-  outline: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-}
 
-.auth-page .input-wrapper .input-icon svg,
-.auth-page .input-wrapper > svg.input-icon {
-  border: 0 !important;
-  outline: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-}
-
-
-/* Auth forms: remove leading field icons entirely; keep the password visibility eye toggle. */
-.auth-page .input-wrapper > .input-icon,
-.auth-page .input-wrapper > svg.input-icon,
-.auth-page .input-wrapper > [class~="input-icon"] {
-  display: none !important;
-}
-
-.auth-page .input-wrapper .form-input {
-  padding-left: var(--input-padding-x, var(--space-3, 0.75rem));
-}
