@@ -1022,3 +1022,15 @@ body.dark-mode {
   background: transparent !important;
   box-shadow: none !important;
 }
+
+
+/* Auth forms: remove leading field icons entirely; keep the password visibility eye toggle. */
+.auth-page .input-wrapper > .input-icon,
+.auth-page .input-wrapper > svg.input-icon,
+.auth-page .input-wrapper > [class~="input-icon"] {
+  display: none !important;
+}
+
+.auth-page .input-wrapper .form-input {
+  padding-left: var(--input-padding-x, var(--space-3, 0.75rem));
+}
