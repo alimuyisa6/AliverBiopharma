@@ -45,6 +45,18 @@
   inset: 0;
   z-index: 0;
   overflow: hidden;
+  background: var(--palette-ink);
+}
+
+/* Brand-specific atmospheric light over the custom molecular-glass shader. */
+.hero-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 76% 46%, color-mix(in srgb, var(--palette-blue) 20%, transparent) 0%, transparent 56%),
+    radial-gradient(ellipse at 88% 76%, color-mix(in srgb, var(--palette-mint) 8%, transparent) 0%, transparent 42%);
 }
 
 .hero-image img,
@@ -73,8 +85,17 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: var(--surface-overlay);
-  opacity: var(--hero-scrim-opacity);
+  background:
+    linear-gradient(90deg,
+      color-mix(in srgb, var(--palette-ink) 94%, transparent) 0%,
+      color-mix(in srgb, var(--palette-ink) 82%, transparent) 36%,
+      color-mix(in srgb, var(--palette-ink) 38%, transparent) 70%,
+      color-mix(in srgb, var(--palette-ink) 24%, transparent) 100%),
+    linear-gradient(0deg,
+      color-mix(in srgb, var(--palette-ink) 38%, transparent) 0%,
+      transparent 48%,
+      color-mix(in srgb, var(--palette-ink) 18%, transparent) 100%);
+  opacity: 1;
 }
 
 .hero-content {
@@ -102,12 +123,12 @@
 }
 
 .hero-eyebrow-accent {
-  color: var(--amber-300);
+  color: var(--palette-mint);
   font-weight: var(--weight-semibold);
 }
 
 .hero-eyebrow-dot {
-  color: var(--amber-300);
+  color: var(--palette-mint);
 }
 
 .hero-eyebrow-context {
