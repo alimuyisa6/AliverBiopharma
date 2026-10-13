@@ -827,13 +827,13 @@ body.dark-mode {
 
 .auth-form-watermark {
   position: absolute;
-  z-index: -1;
+  z-index: 0;
   top: 50%;
   right: -5.5rem;
   width: min(78%, 37rem);
   height: min(100%, 48rem);
   transform: translateY(-50%);
-  opacity: 0.16;
+  opacity: 0.30;
   pointer-events: none;
 }
 
@@ -850,7 +850,7 @@ body.dark-mode {
   .auth-form-watermark {
     right: -7rem;
     width: min(90%, 32rem);
-    opacity: 0.10;
+    opacity: 0.22;
   }
 }
 
@@ -862,6 +862,6 @@ body.dark-mode {
     width: 95%;
     height: 70%;
     transform: none;
-    opacity: 0.075;
+    opacity: 0.17;
   }
 }
