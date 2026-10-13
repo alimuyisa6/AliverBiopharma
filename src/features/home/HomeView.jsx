@@ -4,6 +4,7 @@ import Icon from '../../components/Icon/Icon';
 import ClassSwitcher from '../../components/ClassSwitcher/ClassSwitcher';
 import { WhyChooseSection } from './WhyChooseSection';
 import { HowItWorksSection } from './HowItWorksSection';
+import EducationalShowcase from './EducationalShowcase';
 import { StatsGrid } from './StatsGrid';
 import { TestimonialSlider } from './TestimonialSlider';
 import { ChatWidget } from '../chat/ChatWidget';
@@ -169,6 +170,7 @@ export default function HomeView(props) {
       {user && <section className="home-student-section"><ClassSwitcher className="home-scope-switcher" /><HomeDashboardCard /><ContinueLearningRail items={continueLearning} navigate={navigate} /></section>}
       <WhyChooseSection />
       <HowItWorksSection />
+      <EducationalShowcase />
       {user && <div className="home-student-sections-wrap"><CurriculumSnapshot nodes={curriculumUnits} activeLevelName={activeLevelName} activeGroupName={activeGroupName} sections={sections} /><LearningJourneySection sections={sections} navigate={navigate} /></div>}
       {!user && <LearningJourneySection sections={sections} navigate={navigate} />}
       {user && <ChallengeTreasureCard challenge={dailyChallenge} onOpen={onOpenChallenge} />}
