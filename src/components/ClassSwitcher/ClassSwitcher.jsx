@@ -13,34 +13,18 @@ function SwitchGlyph() {
       focusable="false"
     >
       <path
-        d="M20 7H8a4 4 0 0 0-4 4"
+        d="M20 7H5m0 0 4-4M5 7l4 4"
         fill="none"
         stroke="currentColor"
-        strokeWidth="1.8"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
-        d="m7 4-3 3 3 3"
+        d="M4 17h15m0 0-4-4m4 4-4 4"
         fill="none"
         stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M4 17h12a4 4 0 0 0 4-4"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="m17 10 3 3-3 3"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
