@@ -25,7 +25,7 @@ function LearningJourneySection({ sections, navigate }) {
   const uiComponents = bootstrap?.ui_components || [];
   const component = uiComponents.find((item) => item.component_key === 'learning_journey_section');
   const subtitle = sections?.section_headings?.content_types_subtitle ||
-    'Choose the format that suits your next study session: read notes, revise with flashcards, solve quizzes, practise past papers or strengthen memory with active recall.';
+    'Course-matched notes, flashcards, clinical cases, quizzes, past papers, downloadable PDFs and active-recall practice—plus learning and assessment resources tailored to your course unit, from certificate through to degree level.';
 
   return (
     <section className="section home-learning-journey-section">
