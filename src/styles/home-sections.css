@@ -481,3 +481,14 @@ body.dark-mode .testimonial-flat cite { color: var(--success-hover); }
   background: transparent;
   box-shadow: none;
 }
+
+.home-learning-snapshot-dashboard-link .home-dashboard-link-arrow {
+  width: var(--space-6);
+  height: var(--space-6);
+  flex: 0 0 var(--space-6);
+  margin-inline-start: var(--space-2);
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+.home-learning-snapshot-dashboard-link:hover .home-dashboard-link-arrow {
+  transform: translateX(var(--space-1));
+}
