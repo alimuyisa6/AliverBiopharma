@@ -21,7 +21,7 @@ const Input = forwardRef(function Input(
       )}
 
       <div className="input-wrapper">
-        {safeIcon && <Icon name={safeIcon} className="input-icon" />}
+        {safeIcon && <Icon name={safeIcon} className="input-icon" plain /> }
         <input
           ref={ref}
           id={inputId}
