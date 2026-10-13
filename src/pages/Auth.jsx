@@ -661,8 +661,7 @@ export default function Auth() {
                 </div>
               )}
             </div>
-          ) : (
-            {mode === 'login' ? (
+          ) : mode === 'login' ? (
               <LoginPage
                 email={email}
                 setEmail={setEmail}
@@ -861,7 +860,6 @@ export default function Auth() {
                 </div>
   
               </div>
-            )}
           )}
         </div>
       </main>
