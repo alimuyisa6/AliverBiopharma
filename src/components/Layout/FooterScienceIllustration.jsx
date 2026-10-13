@@ -68,8 +68,8 @@ export default function FooterScienceIllustration() {
         <path d="M417 96 L417 113 Q435 130 435 151 L435 170" stroke="url(#circ-red)" strokeWidth="10" />
         <path d="M417 96 L417 113 Q435 130 435 151 L435 170" className="circ-flow" />
         {/* Left ventricle to aorta and systemic body */}
-        <path d="M456 171 C478 153 492 137 492 111 V85 Q492 55 521 55 H694 Q725 55 745 83 L790 132 H917" stroke="url(#circ-red)" strokeWidth="15" opacity=".22" />
-        <path d="M456 171 C478 153 492 137 492 111 V85 Q492 55 521 55 H694 Q725 55 745 83 L790 132 H917" stroke="url(#circ-red)" strokeWidth="7.5" />
+        <path d="M437 169 C456 171 478 153 492 111 V85 Q492 55 521 55 H694 Q725 55 745 83 L790 132 H917" stroke="url(#circ-red)" strokeWidth="15" opacity=".22" />
+        <path d="M437 169 C456 171 478 153 492 111 V85 Q492 55 521 55 H694 Q725 55 745 83 L790 132 H917" stroke="url(#circ-red)" strokeWidth="7.5" />
         <path d="M456 171 C478 153 492 137 492 111 V85 Q492 55 521 55 H694 Q725 55 745 83 L790 132 H917" className="circ-flow" />
       </g>
 
@@ -82,19 +82,31 @@ export default function FooterScienceIllustration() {
       </g>
       <text x="400" y="230" textAnchor="middle" fill="currentColor" fontSize="12" fontWeight="700" letterSpacing="1.2">HEART</text>
 
-      {/* Moving erythrocytes follow the direction of the circuit. */}
+      {/* Red cells travel along each vessel centreline in physiological order.
+          Separate motion paths make them enter the heart and lungs rather than
+          jumping across gaps between unrelated vessel segments. */}
       <g className="circ-rbc">
+        {/* Systemic venous return: body capillaries into the right heart */}
         <ellipse rx="7" ry="4.5" fill="#2563eb" stroke="#bfdbfe" strokeWidth="1.4">
-          <animateMotion dur="4.6s" repeatCount="indefinite" path="M83 132 H285 Q312 132 334 151 L366 171 C390 190 390 160 383 112 L383 96" />
+          <animateMotion dur="2.8s" repeatCount="indefinite" path="M83 132 H285 Q312 132 334 151 L366 171" />
         </ellipse>
         <ellipse rx="7" ry="4.5" fill="#2563eb" stroke="#bfdbfe" strokeWidth="1.4">
-          <animateMotion dur="4.6s" begin="-2.2s" repeatCount="indefinite" path="M83 132 H285 Q312 132 334 151 L366 171 C390 190 390 160 383 112 L383 96" />
+          <animateMotion dur="2.8s" begin="-1.4s" repeatCount="indefinite" path="M83 132 H285 Q312 132 334 151 L366 171" />
+        </ellipse>
+        {/* Right heart through pulmonary artery into the lungs */}
+        <ellipse rx="7" ry="4.5" fill="#2563eb" stroke="#bfdbfe" strokeWidth="1.4">
+          <animateMotion dur="2.1s" begin="-0.7s" repeatCount="indefinite" path="M390 185 C390 211 369 218 365 192 L365 151 Q365 129 383 112 L383 96" />
+        </ellipse>
+        {/* Pulmonary veins carry oxygenated blood from lungs into left heart */}
+        <ellipse rx="7" ry="4.5" fill="#ef4444" stroke="#fecaca" strokeWidth="1.4">
+          <animateMotion dur="1.9s" begin="-0.4s" repeatCount="indefinite" path="M417 96 L417 113 Q435 130 435 151 L435 170" />
+        </ellipse>
+        {/* Left heart ejects oxygenated blood through the aorta to body capillaries */}
+        <ellipse rx="7" ry="4.5" fill="#ef4444" stroke="#fecaca" strokeWidth="1.4">
+          <animateMotion dur="3.4s" begin="-1.1s" repeatCount="indefinite" path="M437 169 C456 171 478 153 492 111 V85 Q492 55 521 55 H694 Q725 55 745 83 L790 132 H917" />
         </ellipse>
         <ellipse rx="7" ry="4.5" fill="#ef4444" stroke="#fecaca" strokeWidth="1.4">
-          <animateMotion dur="4.2s" repeatCount="indefinite" path="M417 96 L417 113 Q435 130 435 151 L435 170 C456 171 478 153 492 111 V85 Q492 55 521 55 H694 Q725 55 745 83 L790 132 H917" />
-        </ellipse>
-        <ellipse rx="7" ry="4.5" fill="#ef4444" stroke="#fecaca" strokeWidth="1.4">
-          <animateMotion dur="4.2s" begin="-2s" repeatCount="indefinite" path="M417 96 L417 113 Q435 130 435 151 L435 170 C456 171 478 153 492 111 V85 Q492 55 521 55 H694 Q725 55 745 83 L790 132 H917" />
+          <animateMotion dur="3.4s" begin="-2.8s" repeatCount="indefinite" path="M437 169 C456 171 478 153 492 111 V85 Q492 55 521 55 H694 Q725 55 745 83 L790 132 H917" />
         </ellipse>
       </g>
 
