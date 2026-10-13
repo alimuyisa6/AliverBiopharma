@@ -993,3 +993,32 @@ body.dark-mode {
     justify-content: flex-start;
   }
 }
+
+
+/* Final auth icon cleanup: no decorative SVGs inside auth action buttons. */
+.auth-page .auth-submit > svg,
+.auth-page .auth-passkey > svg,
+.auth-page .auth-form button[type="submit"] > svg {
+  display: none !important;
+}
+
+/* Keep email/password icons visible, but remove every surrounding box treatment. */
+.auth-page .input-wrapper .input-icon,
+.auth-page .input-wrapper > svg.input-icon {
+  display: block;
+  padding: 0 !important;
+  border: 0 !important;
+  outline: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.auth-page .input-wrapper .input-icon svg,
+.auth-page .input-wrapper > svg.input-icon {
+  border: 0 !important;
+  outline: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
