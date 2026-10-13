@@ -96,25 +96,26 @@ export default function FooterScienceIllustration() {
       </g>
       <text x="400" y="230" textAnchor="middle" fill="currentColor" fontSize="12" fontWeight="700" letterSpacing="1.2">HEART</text>
 
-      {/* Vessel ostia sit visibly over the heart silhouette so each vessel appears
-          to enter or leave a real chamber opening instead of stopping behind the wall. */}
+      {/* Short, separated vessel cuffs clarify the four heart junctions without
+          stacking duplicate vessel routes over one another. */}
       <g className="circ-vessel" aria-hidden="true">
-        {/* Superior and inferior venae cavae enter the right atrium (viewer left). */}
-        <path d="M350 139 C358 139 362 143 368 148 M350 190 C358 186 363 178 370 169" stroke="#7f1d1d" strokeWidth="11" />
-        <path d="M350 139 C358 139 362 143 368 148 M350 190 C358 186 363 178 370 169" stroke="url(#circ-blue)" strokeWidth="7" />
-        {/* Pulmonary trunk exits the right ventricle and turns toward the lungs. */}
-        <path d="M381 177 C373 169 370 160 369 150 L369 126 Q369 115 380 105" stroke="#7f1d1d" strokeWidth="12" />
-        <path d="M381 177 C373 169 370 160 369 150 L369 126 Q369 115 380 105" stroke="url(#circ-blue)" strokeWidth="8" />
-        {/* Pulmonary veins enter the left atrium (viewer right) from the lungs. */}
-        <path d="M420 104 C430 116 431 127 431 140 L431 151" stroke="#7f1d1d" strokeWidth="11" />
-        <path d="M420 104 C430 116 431 127 431 140 L431 151" stroke="url(#circ-red)" strokeWidth="7" />
-        {/* Aortic root leaves the left ventricle through the aortic valve. */}
-        <path d="M426 177 C440 172 450 163 458 151 Q470 131 478 105" stroke="#7f1d1d" strokeWidth="13" />
-        <path d="M426 177 C440 172 450 163 458 151 Q470 131 478 105" stroke="url(#circ-red)" strokeWidth="8" />
+        {/* Venae cavae enter the right atrium. */}
+        <path d="M350 139 Q359 140 367 148" stroke="#7f1d1d" strokeWidth="10" />
+        <path d="M350 139 Q359 140 367 148" stroke="url(#circ-blue)" strokeWidth="6" />
+        <path d="M350 190 Q360 182 369 169" stroke="#7f1d1d" strokeWidth="10" />
+        <path d="M350 190 Q360 182 369 169" stroke="url(#circ-blue)" strokeWidth="6" />
+        {/* Pulmonary artery exits the right ventricle. */}
+        <path d="M383 181 Q374 169 372 153 L372 128 Q372 117 382 106" stroke="#7f1d1d" strokeWidth="10" />
+        <path d="M383 181 Q374 169 372 153 L372 128 Q372 117 382 106" stroke="url(#circ-blue)" strokeWidth="6" />
+        {/* Pulmonary veins enter the left atrium. */}
+        <path d="M420 105 Q429 118 430 135 L430 149" stroke="#7f1d1d" strokeWidth="9" />
+        <path d="M420 105 Q429 118 430 135 L430 149" stroke="url(#circ-red)" strokeWidth="5.5" />
+        {/* Aortic root leaves the left ventricle, offset from the pulmonary veins. */}
+        <path d="M430 180 Q442 173 451 160 Q463 140 475 108" stroke="#7f1d1d" strokeWidth="11" />
+        <path d="M430 180 Q442 173 451 160 Q463 140 475 108" stroke="url(#circ-red)" strokeWidth="6.5" />
       </g>
 
-
-      {/* Red cells travel along each vessel centreline in physiological order.
+      {/* Red cells travel along each vessel centreline      {/* Red cells travel along each vessel centreline in physiological order.
           Separate motion paths make them enter the heart and lungs rather than
           jumping across gaps between unrelated vessel segments. */}
       <g className="circ-rbc">
