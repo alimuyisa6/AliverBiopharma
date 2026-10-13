@@ -121,7 +121,7 @@ export default function ResourcesView({ navigate, user, sections }) {
   const isPharmacy = /pharmacy/i.test(String(levelName));
   const subtitle = isPharmacy
     ? 'Pharmacy course-unit notes, flashcards, clinical cases, quizzes, past papers, downloadable PDFs, reference materials and active-recall practice—matched to your level, from certificate through to degree.'
-    : 'Biology topics and course-unit notes, flashcards, quizzes, past papers, downloadable PDFs, diagrams, reference materials and active-recall practice—matched to your level, from O-Level through A-Level.';
+    : 'Biology notes organised by topic, flashcards, quizzes, past papers, downloadable PDFs, diagrams, reference materials and active-recall practice—matched to your level, from O-Level through A-Level.';
 
   function handleBrowse(type) {
     navigate(user ? type.route : '/login');
