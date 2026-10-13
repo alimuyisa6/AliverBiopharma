@@ -58,6 +58,40 @@ const FRAGMENT = `
     return mat2(c, -s, s, c);
   }
 
+  // AliverBiopharm molecular light: restrained moving particles travel along
+  // curved paths between the folds, suggesting molecular activity without
+  // turning the hero into a literal stock-science illustration.
+  vec3 molecularFlow(vec2 uv, float time) {
+    float aspect = u_resolution.x / max(u_resolution.y, 1.0);
+    vec3 particles = vec3(0.0);
+
+    for (int i = 0; i < 7; i++) {
+      float fi = float(i);
+      float x = fract(uv.x * 0.82 - time * (0.018 + fi * 0.0015) + fi * 0.173);
+      float y = 0.5
+        + 0.19 * sin(x * 6.2 + fi * 1.17 + time * 0.13)
+        + 0.055 * sin(x * 12.0 - fi * 0.7 - time * 0.08);
+
+      vec2 delta = vec2((uv.x - x) * aspect, uv.y - y);
+      float radius = length(delta);
+      float glow = exp(-radius * 95.0);
+      float core = exp(-radius * 460.0);
+
+      // A short, fading mint trail follows each moving point.
+      float behind = fract(uv.x * 0.82 - time * (0.018 + fi * 0.0015) + fi * 0.173);
+      float trailY = y;
+      float trailDistance = abs(uv.y - trailY
+        - 0.035 * sin((uv.x - x) * 10.0 + fi));
+      float trail = exp(-trailDistance * 150.0)
+        * smoothstep(0.11, 0.0, abs(uv.x - x))
+        * step(0.0, uv.x - x);
+
+      particles += u_color3 * (glow * 0.055 + core * 0.52 + trail * 0.035);
+    }
+
+    return particles;
+  }
+
   // panes of glass folded over each other. Each pane has one creased edge
   // that catches the light and thins out to nothing behind it; panes screen
   // over one another, so overlaps get brighter instead of darker.
@@ -95,6 +129,9 @@ const FRAGMENT = `
       color += light * (1.0 - color);
     }
 
+    // Keep the scientific details subtle: they should enrich the glass,
+    // never compete with the hero heading.
+    color += molecularFlow(uv, time);
     return clamp(color, 0.0, 1.0);
   }
 
@@ -123,12 +160,12 @@ function compile(gl: WebGLRenderingContext, type: number, source: string) {
 }
 
 export function GlassFold({
-  color1 = "#1e3cc8",
-  color2 = "#06081e",
-  color3 = "#96d7ff",
-  speed = 0.5,
+  color1 = "#5465ff",
+  color2 = "#050208",
+  color3 = "#00ffd4",
+  speed = 0.34,
   scale = 1,
-  noise = 0.12,
+  noise = 0.055,
   className,
 }: GlassFoldProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
