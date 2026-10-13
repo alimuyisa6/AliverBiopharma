@@ -48,15 +48,12 @@
 }
 
 .hero-image img,
-.hero-image video {
+.hero-image video,
+.hero-image canvas {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-}
-
-.hero-image video {
-  object-position: center;
 }
 
 .hero-image-placeholder {
@@ -156,7 +153,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .hero-image img,
-  .hero-image video {
+  .hero-image video,
+  .hero-image canvas {
     transition: none;
   }
 }
