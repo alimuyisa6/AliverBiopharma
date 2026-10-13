@@ -118,9 +118,10 @@ export default function ResourcesView({ navigate, user, sections }) {
   const levelName =
     level?.display_name || level?.name || level?.title || 'Your level';
 
-  const subtitle =
-    sections?.section_headings?.content_types_subtitle ||
-    'Course-matched notes, flashcards, clinical cases, quizzes, past papers, downloadable PDFs and active-recall practice—plus learning and assessment resources tailored to your course unit, from certificate through to degree level.';
+  const isPharmacy = /pharmacy/i.test(String(levelName));
+  const subtitle = isPharmacy
+    ? 'Pharmacy course-unit notes, flashcards, clinical cases, quizzes, past papers, downloadable PDFs, reference materials and active-recall practice—matched to your level, from certificate through to degree.'
+    : 'Biology topics and course-unit notes, flashcards, quizzes, past papers, downloadable PDFs, diagrams, reference materials and active-recall practice—matched to your level, from O-Level through A-Level.';
 
   function handleBrowse(type) {
     navigate(user ? type.route : '/login');
