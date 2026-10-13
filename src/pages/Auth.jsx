@@ -508,7 +508,7 @@ export default function Auth() {
                   inputMode="numeric"
                   autoComplete="one-time-code"
                   maxLength={6}
-                  placeholder="000000"
+                  placeholder={t('auth.enterMfaCode')}
                   value={mfaCode}
                   onChange={(event) =>
                     setMfaCode(
