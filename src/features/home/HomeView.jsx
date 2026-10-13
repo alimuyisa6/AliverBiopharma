@@ -25,13 +25,13 @@ function LearningJourneySection({ sections, navigate }) {
   const uiComponents = bootstrap?.ui_components || [];
   const component = uiComponents.find((item) => item.component_key === 'learning_journey_section');
   const subtitle = sections?.section_headings?.content_types_subtitle ||
-    'Notes, flashcards, quizzes, past papers and recall — everything you need, all in one place.';
+    'Choose the format that suits your next study session: read notes, revise with flashcards, solve quizzes, practise past papers or strengthen memory with active recall.';
 
   return (
     <section className="section home-learning-journey-section">
       <div className="home-learning-journey-content">
-        <span className="eyebrow">Get started</span>
-        <h2 className="home-learning-journey-title">Start learning with the resources you need</h2>
+        <span className="eyebrow">YOUR STUDY TOOLKIT</span>
+        <h2 className="home-learning-journey-title">Find the right resource for your next study session</h2>
         <p className="section-description home-learning-journey-description">{subtitle}</p>
         <div className="home-learning-journey-images">
           <div className="home-get-started-art home-get-started-art--notes" aria-hidden="true">
