@@ -13,7 +13,7 @@ function SwitchGlyph() {
       focusable="false"
     >
       <path
-        d="M20 7H5m0 0 4-4M5 7l4 4"
+        d="M19 7H5m0 0 3-3M5 7l3 3"
         fill="none"
         stroke="currentColor"
         strokeWidth="2"
@@ -21,7 +21,7 @@ function SwitchGlyph() {
         strokeLinejoin="round"
       />
       <path
-        d="M4 17h15m0 0-4-4m4 4-4 4"
+        d="M5 17h14m0 0-3-3m3 3-3 3"
         fill="none"
         stroke="currentColor"
         strokeWidth="2"
