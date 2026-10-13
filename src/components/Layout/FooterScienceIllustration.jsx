@@ -115,7 +115,7 @@ export default function FooterScienceIllustration() {
         <path d="M430 180 Q442 173 451 160 Q463 140 475 108" stroke="url(#circ-red)" strokeWidth="6.5" />
       </g>
 
-      {/* Red cells travel along each vessel centreline      {/* Red cells travel along each vessel centreline in physiological order.
+      {/* Red cells travel along each vessel centreline in physiological order.
           Separate motion paths make them enter the heart and lungs rather than
           jumping across gaps between unrelated vessel segments. */}
       <g className="circ-rbc">
