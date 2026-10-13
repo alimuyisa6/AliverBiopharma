@@ -99,7 +99,7 @@ const FRAGMENT = `
       float d = abs(uv.y - path);
       float filament = exp(-d * u_resolution.y * 0.095);
       float core = exp(-d * u_resolution.y * 0.42);
-      float pulseX = fract(0.12 + uv.x * 0.72 - time * (0.045 + fj * 0.012) + fj * 0.29);
+      float pulseX = fract(0.12 - time * (0.045 + fj * 0.012) + fj * 0.29);
       float pulseD = abs(uv.x - pulseX);
       pulseD = min(pulseD, 1.0 - pulseD);
       float pulse = exp(-pulseD * u_resolution.x * 0.045);
@@ -108,12 +108,12 @@ const FRAGMENT = `
     }
 
     // Small moving junctions give the pathways a restrained living quality.
-    for (int k = 0; k < 5; k++) {
+    for (int k = 0; k < 3; k++) {
       float fk = float(k);
       float nx = fract(0.11 + fk * 0.187 + time * (0.018 + fk * 0.002));
       float ny = membrane((nx - 0.5) * aspect * 1.32 * u_scale,
-        fk * 1.9 + 0.7, time * 0.75);
-      ny = (ny - 0.5) * 0.82 + 0.24 + (mod(fk, 3.0) - 1.0) * 0.19;
+        fk * 2.0 + 0.7, time * 0.75);
+      ny = (ny - 0.5) * 0.82 + 0.24 + (fk - 1.0) * 0.19;
       vec2 delta = vec2((uv.x - nx) * aspect, uv.y - ny);
       float radius = length(delta);
       color += u_color3 * (exp(-radius * 75.0) * 0.055 + exp(-radius * 360.0) * 0.28);
