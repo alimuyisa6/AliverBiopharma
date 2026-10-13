@@ -104,6 +104,48 @@ export function LoginPage({
   );
 }
 
+export function AuthFormWatermark() {
+  return (
+    <svg
+      className="auth-form-watermark"
+      viewBox="0 0 620 760"
+      fill="none"
+      aria-hidden="true"
+      focusable="false"
+      preserveAspectRatio="xMidYMid slice"
+    >
+      <defs>
+        <linearGradient id="aliver-form-helix" x1="90" y1="70" x2="490" y2="650" gradientUnits="userSpaceOnUse">
+          <stop stopColor="var(--palette-blue)" />
+          <stop offset="1" stopColor="var(--palette-mint)" />
+        </linearGradient>
+        <radialGradient id="aliver-form-cell" cx="0" cy="0" r="1" gradientTransform="translate(380 300) rotate(90) scale(175)" gradientUnits="userSpaceOnUse">
+          <stop stopColor="var(--palette-mint)" stopOpacity=".34" />
+          <stop offset="1" stopColor="var(--palette-blue)" stopOpacity=".02" />
+        </radialGradient>
+      </defs>
+      <circle cx="380" cy="300" r="174" fill="url(#aliver-form-cell)" />
+      <circle cx="380" cy="300" r="173" stroke="url(#aliver-form-helix)" strokeWidth="1.4" strokeDasharray="4 11" />
+      <circle cx="380" cy="300" r="139" stroke="url(#aliver-form-helix)" strokeWidth="1.2" opacity=".72" />
+      <circle cx="380" cy="300" r="96" stroke="url(#aliver-form-helix)" strokeWidth="1.1" opacity=".48" />
+      <path d="M118 44C118 105 296 114 296 175S118 244 118 305 296 374 296 435 118 504 118 565 296 634 296 695" stroke="url(#aliver-form-helix)" strokeWidth="3" strokeLinecap="round" opacity=".85" />
+      <path d="M296 44C296 105 118 114 118 175S296 244 296 305 118 374 118 435 296 504 296 565 118 634 118 695" stroke="url(#aliver-form-helix)" strokeWidth="3" strokeLinecap="round" opacity=".72" />
+      <g stroke="url(#aliver-form-helix)" strokeWidth="1.8" strokeLinecap="round" opacity=".72">
+        <path d="M139 91H275M184 132H230M122 174H292M148 217H266M197 260H217M122 305H292M148 348H266M197 391H217M122 435H292M148 478H266M197 521H217M122 565H292M148 608H266M197 651H217" />
+      </g>
+      <g stroke="url(#aliver-form-helix)" strokeWidth="1.4" opacity=".8">
+        <path d="M380 126V174M380 426V474M206 300H254M506 300H554M257 177L291 211M469 389L503 423M257 423L291 389M469 211L503 177" />
+        <circle cx="380" cy="126" r="5" fill="var(--palette-mint)" />
+        <circle cx="380" cy="474" r="5" fill="var(--palette-blue)" />
+        <circle cx="206" cy="300" r="5" fill="var(--palette-blue)" />
+        <circle cx="554" cy="300" r="5" fill="var(--palette-mint)" />
+        <circle cx="257" cy="177" r="4" fill="var(--palette-mint)" />
+        <circle cx="503" cy="423" r="4" fill="var(--palette-blue)" />
+      </g>
+    </svg>
+  );
+}
+
 export function MolecularBrandIllustration() {
   return (
     <svg
