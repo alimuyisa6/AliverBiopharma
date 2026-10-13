@@ -961,3 +961,35 @@ body.dark-mode {
   border: 0;
   box-shadow: none;
 }
+
+
+/* Cloudflare Turnstile must retain its full challenge frame and controls. */
+.auth-page .auth-captcha {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  min-width: 0;
+  min-height: 5.25rem;
+  height: auto;
+  padding: var(--space-1) 0;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+}
+
+.auth-page .auth-captcha > div {
+  max-width: 100%;
+  flex: 0 0 auto;
+}
+
+.auth-page .auth-captcha iframe {
+  display: block;
+  max-width: 100%;
+}
+
+@media (max-width: 360px) {
+  .auth-page .auth-captcha {
+    justify-content: flex-start;
+  }
+}
