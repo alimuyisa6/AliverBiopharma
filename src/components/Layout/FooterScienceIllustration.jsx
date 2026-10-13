@@ -96,6 +96,24 @@ export default function FooterScienceIllustration() {
       </g>
       <text x="400" y="230" textAnchor="middle" fill="currentColor" fontSize="12" fontWeight="700" letterSpacing="1.2">HEART</text>
 
+      {/* Vessel ostia sit visibly over the heart silhouette so each vessel appears
+          to enter or leave a real chamber opening instead of stopping behind the wall. */}
+      <g className="circ-vessel" aria-hidden="true">
+        {/* Superior and inferior venae cavae enter the right atrium (viewer left). */}
+        <path d="M350 139 C358 139 362 143 368 148 M350 190 C358 186 363 178 370 169" stroke="#7f1d1d" strokeWidth="11" />
+        <path d="M350 139 C358 139 362 143 368 148 M350 190 C358 186 363 178 370 169" stroke="url(#circ-blue)" strokeWidth="7" />
+        {/* Pulmonary trunk exits the right ventricle and turns toward the lungs. */}
+        <path d="M381 177 C373 169 370 160 369 150 L369 126 Q369 115 380 105" stroke="#7f1d1d" strokeWidth="12" />
+        <path d="M381 177 C373 169 370 160 369 150 L369 126 Q369 115 380 105" stroke="url(#circ-blue)" strokeWidth="8" />
+        {/* Pulmonary veins enter the left atrium (viewer right) from the lungs. */}
+        <path d="M420 104 C430 116 431 127 431 140 L431 151" stroke="#7f1d1d" strokeWidth="11" />
+        <path d="M420 104 C430 116 431 127 431 140 L431 151" stroke="url(#circ-red)" strokeWidth="7" />
+        {/* Aortic root leaves the left ventricle through the aortic valve. */}
+        <path d="M426 177 C440 172 450 163 458 151 Q470 131 478 105" stroke="#7f1d1d" strokeWidth="13" />
+        <path d="M426 177 C440 172 450 163 458 151 Q470 131 478 105" stroke="url(#circ-red)" strokeWidth="8" />
+      </g>
+
+
       {/* Red cells travel along each vessel centreline in physiological order.
           Separate motion paths make them enter the heart and lungs rather than
           jumping across gaps between unrelated vessel segments. */}
