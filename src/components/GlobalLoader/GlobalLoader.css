@@ -87,20 +87,18 @@ body.dark-mode .aliver-global-loader {
 .aliver-loader-tagline { fill: var(--loader-ink); font-size: 8.5px; letter-spacing: 1.2px; opacity: .72; }
 .aliver-loader-logo {
   opacity: 0;
-  animation: aliver-loader-logo var(--loader-cycle) ease-in-out both;
+  animation: aliver-loader-logo var(--loader-cycle) ease-out both;
   pointer-events: none;
 }
 @keyframes aliver-loader-logo {
-  0%, 3% { opacity: 0; transform: translateY(3px); }
-  6%, 20% { opacity: 1; transform: translateY(0); }
-  25%, 80% { opacity: 0; transform: translateY(-2px); }
-  86%, 100% { opacity: 1; transform: translateY(0); }
+  0%, 4% { opacity: 0; transform: translateY(3px); }
+  8% { opacity: 1; transform: translateY(0); }
+  8%, 100% { opacity: 1; transform: translateY(0); }
 }
 @keyframes aliver-loader-text {
-  0%, 2% { transform: scale(.04); opacity: 0; animation-timing-function: cubic-bezier(.2, .75, .2, 1); }
-  5%, 20% { transform: scale(1); opacity: 1; }
-  25%, 80% { transform: scale(.96); opacity: 0; }
-  86%, 100% { transform: scale(1); opacity: 1; }
+  0%, 3% { transform: scale(.94); opacity: 0; animation-timing-function: cubic-bezier(.2, .75, .2, 1); }
+  8% { transform: scale(1); opacity: 1; }
+  8%, 100% { transform: scale(1); opacity: 1; }
 }
 .aliver-loader-brain { opacity: 0; animation: aliver-loader-brain var(--loader-cycle) infinite; }
 .aliver-loader-breathe { transform-box: fill-box; transform-origin: center; animation: aliver-loader-breathe 2.4s ease-in-out infinite; }
