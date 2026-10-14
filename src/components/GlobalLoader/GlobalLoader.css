@@ -1,0 +1,126 @@
+/* Global loader: Combo 05 palette tokens, isolated to avoid leaking styles. */
+.aliver-global-loader {
+  --loader-accent: var(--palette-mint, #00ffd4);
+  --loader-accent-secondary: var(--palette-blue, #5465ff);
+  --loader-accent-light: var(--emerald-100, #cffff6);
+  --loader-accent-deep: var(--emerald-700, #009b82);
+  --loader-base-A: var(--palette-mint, #00ffd4);
+  --loader-base-T: var(--amber-500, #f59e0b);
+  --loader-base-G: var(--palette-blue, #5465ff);
+  --loader-base-C: var(--palette-periwinkle, #d2ddff);
+  --loader-letter: var(--palette-ink, #050208);
+  --loader-pill-light: var(--white, #fff);
+  --loader-pill-mid: var(--blue-100, #eef1ff);
+  --loader-pill-deep: var(--blue-300, #aab8ff);
+  --loader-brain-light: var(--blue-100, #eef1ff);
+  --loader-brain-mid: var(--blue-400, #8190ff);
+  --loader-brain-deep: var(--blue-700, #4353e8);
+  --loader-brain-line: var(--blue-900, #202879);
+  --loader-highlight: var(--white, #fff);
+  --loader-pill-outline: var(--grey-500, #69749b);
+  --loader-ink: var(--palette-ink, #050208);
+  --loader-glass: rgb(255 255 255 / 38%);
+  --loader-glass-border: rgb(255 255 255 / 68%);
+  --loader-background-start: var(--blue-50, #f5f6ff);
+  --loader-background-end: var(--blue-200, #d2ddff);
+  --loader-cycle: 15s;
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal, 10000);
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: var(--space-5, 1.25rem);
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 40%, var(--loader-background-start), var(--loader-background-end));
+  color: var(--loader-ink);
+  isolation: isolate;
+}
+body.dark-mode .aliver-global-loader {
+  --loader-glass: rgb(255 255 255 / 7%);
+  --loader-glass-border: rgb(255 255 255 / 20%);
+  --loader-ink: #f8f7ff;
+  --loader-background-start: var(--palette-ink, #050208);
+  --loader-background-end: #11182f;
+  --loader-pill-light: #f8f7ff;
+  --loader-pill-mid: var(--blue-200, #d2ddff);
+  --loader-pill-deep: var(--blue-700, #4353e8);
+  --loader-letter: var(--palette-ink, #050208);
+}
+.aliver-loader-stage { position: relative; width: min(320px, 86vw); }
+.aliver-loader-card {
+  aspect-ratio: 26 / 15;
+  border: 1px solid var(--loader-glass-border);
+  border-radius: var(--radius-xl, 1.5rem);
+  background: var(--loader-glass);
+  box-shadow: 0 24px 40px -14px rgb(5 2 8 / 30%), inset 0 1px 0 rgb(255 255 255 / 45%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  backdrop-filter: blur(18px) saturate(160%);
+  animation: aliver-loader-lift 3s ease-in-out infinite;
+}
+.aliver-loader-card svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.aliver-loader-shadow {
+  position: absolute;
+  right: 12%;
+  bottom: -34px;
+  left: 12%;
+  height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgb(5 2 8 / 32%), transparent 70%);
+  filter: blur(6px);
+  animation: aliver-loader-shadow 3s ease-in-out infinite;
+}
+@keyframes aliver-loader-lift { 50% { transform: translateY(-8px); } }
+@keyframes aliver-loader-shadow { 50% { transform: scale(.86); opacity: .6; } }
+.aliver-loader-mark { opacity: 0; animation: aliver-loader-mark var(--loader-cycle) infinite; }
+.aliver-loader-mark-rotation { transform: rotate(-35deg); transform-box: fill-box; transform-origin: center; }
+@keyframes aliver-loader-mark {
+  0% { transform: translate(130px, 75px) scale(.3); opacity: 0; }
+  5%, 12% { transform: translate(130px, 75px) scale(1); opacity: 1; }
+  26%, 34% { transform: translate(130px, 30px) scale(.8); opacity: 1; }
+  38%, 100% { transform: translate(130px, 30px) scale(.8); opacity: 0; }
+}
+.aliver-loader-brand { transform-origin: 130px 75px; opacity: 0; animation: aliver-loader-text var(--loader-cycle) infinite; }
+.aliver-loader-brand-name { fill: var(--loader-ink); font-size: 22px; font-weight: 700; letter-spacing: .2px; }
+.aliver-loader-tagline { fill: var(--loader-ink); font-size: 8.5px; letter-spacing: 1.2px; opacity: .72; }
+@keyframes aliver-loader-text {
+  0%, 6% { transform: scale(.04); opacity: 0; animation-timing-function: cubic-bezier(.2, .75, .2, 1); }
+  9% { opacity: 1; }
+  26%, 34% { transform: scale(1); opacity: 1; }
+  38%, 100% { transform: scale(1); opacity: 0; }
+}
+.aliver-loader-brain { opacity: 0; animation: aliver-loader-brain 15s infinite; }
+.aliver-loader-breathe { transform-box: fill-box; transform-origin: center; animation: aliver-loader-breathe 2.4s ease-in-out infinite; }
+.aliver-loader-sulcus { fill: none; stroke: var(--loader-brain-line); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: aliver-loader-draw 15s infinite; }
+@keyframes aliver-loader-breathe { 50% { transform: scale(1.03); } }
+@keyframes aliver-loader-brain { 0%, 40% { opacity: 0; } 42%, 55% { opacity: 1; } 58%, 100% { opacity: 0; } }
+@keyframes aliver-loader-draw { 0%, 40% { stroke-dashoffset: 1; } 52%, 100% { stroke-dashoffset: 0; } }
+.aliver-loader-dna { opacity: 0; animation: aliver-loader-dna 15s infinite; }
+@keyframes aliver-loader-dna { 0%, 58% { opacity: 0; } 61%, 73% { opacity: 1; } 76%, 100% { opacity: 0; } }
+.aliver-loader-pill { opacity: 0; animation: aliver-loader-pill 15s infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes aliver-loader-pill {
+  0%, 78% { opacity: 0; transform: rotate(-35deg) scale(.6); }
+  80% { opacity: 1; transform: rotate(-35deg) scale(1); }
+  94% { opacity: 1; transform: rotate(325deg) scale(1); }
+  97%, 100% { opacity: 0; transform: rotate(325deg) scale(1); }
+}
+.aliver-loader-pill-left { animation: aliver-loader-pill-left 15s infinite; }
+.aliver-loader-pill-right { animation: aliver-loader-pill-right 15s infinite; }
+.aliver-loader-pill-shadow { fill: var(--loader-ink); filter: blur(3px); opacity: 0; animation: aliver-loader-pill-shadow 15s infinite; }
+@keyframes aliver-loader-pill-shadow { 0%, 79% { opacity: 0; } 84%, 94% { opacity: .2; } 97%, 100% { opacity: 0; } }
+@keyframes aliver-loader-pill-left { 0%, 80% { transform: translateX(-30px); } 86%, 100% { transform: translateX(0); } }
+@keyframes aliver-loader-pill-right { 0%, 80% { transform: translateX(30px); } 86%, 100% { transform: translateX(0); } }
+.aliver-loader-progress { fill: var(--loader-accent-secondary); opacity: .8; transform-box: fill-box; transform-origin: left; animation: aliver-loader-progress var(--loader-cycle) linear infinite; }
+@keyframes aliver-loader-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@media (prefers-reduced-motion: reduce) {
+  .aliver-loader-card, .aliver-loader-shadow, .aliver-loader-mark, .aliver-loader-brand,
+  .aliver-loader-brain, .aliver-loader-breathe, .aliver-loader-sulcus, .aliver-loader-dna,
+  .aliver-loader-pill, .aliver-loader-pill-left, .aliver-loader-pill-right, .aliver-loader-pill-shadow,
+  .aliver-loader-progress { animation: none !important; }
+  .aliver-loader-brand { opacity: 1; transform: none; }
+  .aliver-loader-mark { opacity: 0; }
+  .aliver-loader-dna { opacity: 1; }
+  .aliver-loader-pill { opacity: 0; }
+}
