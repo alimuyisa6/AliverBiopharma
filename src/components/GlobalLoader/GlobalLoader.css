@@ -77,52 +77,52 @@ body.dark-mode .aliver-global-loader {
 .aliver-loader-mark { opacity: 0; animation: aliver-loader-mark var(--loader-cycle) infinite; }
 .aliver-loader-mark-rotation { transform: rotate(-35deg); transform-box: fill-box; transform-origin: center; }
 @keyframes aliver-loader-mark {
-  0% { transform: translate(130px, 75px) scale(.3); opacity: 0; }
-  5%, 12% { transform: translate(130px, 75px) scale(1); opacity: 1; }
-  26%, 34% { transform: translate(130px, 30px) scale(.8); opacity: 1; }
-  38%, 100% { transform: translate(130px, 30px) scale(.8); opacity: 0; }
+  0%, 84% { transform: translate(130px, 75px) scale(.3); opacity: 0; }
+  5%, 13% { transform: translate(130px, 75px) scale(1); opacity: 1; }
+  20%, 27% { transform: translate(130px, 30px) scale(.8); opacity: 1; }
+  31%, 83%, 100% { transform: translate(130px, 30px) scale(.8); opacity: 0; }
 }
 .aliver-loader-brand { transform-origin: 130px 75px; opacity: 0; animation: aliver-loader-text var(--loader-cycle) infinite; }
 .aliver-loader-brand-name { fill: var(--loader-ink); font-size: 22px; font-weight: 700; letter-spacing: .2px; }
 .aliver-loader-tagline { fill: var(--loader-ink); font-size: 8.5px; letter-spacing: 1.2px; opacity: .72; }
 .aliver-loader-logo {
   opacity: 0;
-  animation: aliver-loader-logo 15s ease-in-out both;
-  animation-delay: 0s;
+  animation: aliver-loader-logo var(--loader-cycle) ease-in-out both;
   pointer-events: none;
 }
 @keyframes aliver-loader-logo {
-  0%, 7% { opacity: 0; transform: translateY(3px); }
-  12%, 33% { opacity: 1; transform: translateY(0); }
-  38%, 100% { opacity: 0; transform: translateY(-2px); }
+  0%, 3% { opacity: 0; transform: translateY(3px); }
+  6%, 20% { opacity: 1; transform: translateY(0); }
+  25%, 80% { opacity: 0; transform: translateY(-2px); }
+  86%, 100% { opacity: 1; transform: translateY(0); }
 }
 @keyframes aliver-loader-text {
-  0%, 6% { transform: scale(.04); opacity: 0; animation-timing-function: cubic-bezier(.2, .75, .2, 1); }
-  9% { opacity: 1; }
-  26%, 34% { transform: scale(1); opacity: 1; }
-  38%, 100% { transform: scale(1); opacity: 0; }
+  0%, 2% { transform: scale(.04); opacity: 0; animation-timing-function: cubic-bezier(.2, .75, .2, 1); }
+  5%, 20% { transform: scale(1); opacity: 1; }
+  25%, 80% { transform: scale(.96); opacity: 0; }
+  86%, 100% { transform: scale(1); opacity: 1; }
 }
-.aliver-loader-brain { opacity: 0; animation: aliver-loader-brain 15s infinite; }
+.aliver-loader-brain { opacity: 0; animation: aliver-loader-brain var(--loader-cycle) infinite; }
 .aliver-loader-breathe { transform-box: fill-box; transform-origin: center; animation: aliver-loader-breathe 2.4s ease-in-out infinite; }
-.aliver-loader-sulcus { fill: none; stroke: var(--loader-brain-line); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: aliver-loader-draw 15s infinite; }
+.aliver-loader-sulcus { fill: none; stroke: var(--loader-brain-line); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: aliver-loader-draw var(--loader-cycle) infinite; }
 @keyframes aliver-loader-breathe { 50% { transform: scale(1.03); } }
-@keyframes aliver-loader-brain { 0%, 40% { opacity: 0; } 42%, 55% { opacity: 1; } 58%, 100% { opacity: 0; } }
-@keyframes aliver-loader-draw { 0%, 40% { stroke-dashoffset: 1; } 52%, 100% { stroke-dashoffset: 0; } }
-.aliver-loader-dna { opacity: 0; animation: aliver-loader-dna 15s infinite; }
-@keyframes aliver-loader-dna { 0%, 58% { opacity: 0; } 61%, 73% { opacity: 1; } 76%, 100% { opacity: 0; } }
-.aliver-loader-pill { opacity: 0; animation: aliver-loader-pill 15s infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes aliver-loader-brain { 0%, 17% { opacity: 0; } 20%, 39% { opacity: 1; } 43%, 100% { opacity: 0; } } 42%, 55% { opacity: 1; } 58%, 100% { opacity: 0; } }
+@keyframes aliver-loader-draw { 0%, 17% { stroke-dashoffset: 1; } 35%, 100% { stroke-dashoffset: 0; } } 52%, 100% { stroke-dashoffset: 0; } }
+.aliver-loader-dna { opacity: 0; animation: aliver-loader-dna var(--loader-cycle) infinite; }
+@keyframes aliver-loader-dna { 0%, 38% { opacity: 0; } 42%, 62% { opacity: 1; } 66%, 100% { opacity: 0; } } 61%, 73% { opacity: 1; } 76%, 100% { opacity: 0; } }
+.aliver-loader-pill { opacity: 0; animation: aliver-loader-pill var(--loader-cycle) infinite; transform-box: fill-box; transform-origin: center; }
 @keyframes aliver-loader-pill {
-  0%, 78% { opacity: 0; transform: rotate(-35deg) scale(.6); }
-  80% { opacity: 1; transform: rotate(-35deg) scale(1); }
-  94% { opacity: 1; transform: rotate(325deg) scale(1); }
-  97%, 100% { opacity: 0; transform: rotate(325deg) scale(1); }
+  0%, 61% { opacity: 0; transform: rotate(-35deg) scale(.6); }
+  65% { opacity: 1; transform: rotate(-35deg) scale(1); }
+  83% { opacity: 1; transform: rotate(325deg) scale(1); }
+  87%, 100% { opacity: 0; transform: rotate(325deg) scale(1); }
 }
-.aliver-loader-pill-left { animation: aliver-loader-pill-left 15s infinite; }
-.aliver-loader-pill-right { animation: aliver-loader-pill-right 15s infinite; }
-.aliver-loader-pill-shadow { fill: var(--loader-ink); filter: blur(3px); opacity: 0; animation: aliver-loader-pill-shadow 15s infinite; }
-@keyframes aliver-loader-pill-shadow { 0%, 79% { opacity: 0; } 84%, 94% { opacity: .2; } 97%, 100% { opacity: 0; } }
-@keyframes aliver-loader-pill-left { 0%, 80% { transform: translateX(-30px); } 86%, 100% { transform: translateX(0); } }
-@keyframes aliver-loader-pill-right { 0%, 80% { transform: translateX(30px); } 86%, 100% { transform: translateX(0); } }
+.aliver-loader-pill-left { animation: aliver-loader-pill-left var(--loader-cycle) infinite; }
+.aliver-loader-pill-right { animation: aliver-loader-pill-right var(--loader-cycle) infinite; }
+.aliver-loader-pill-shadow { fill: var(--loader-ink); filter: blur(3px); opacity: 0; animation: aliver-loader-pill-shadow var(--loader-cycle) infinite; }
+@keyframes aliver-loader-pill-shadow { 0%, 63% { opacity: 0; } 69%, 83% { opacity: .2; } 87%, 100% { opacity: 0; } } 84%, 94% { opacity: .2; } 97%, 100% { opacity: 0; } }
+@keyframes aliver-loader-pill-left { 0%, 65% { transform: translateX(-30px); } 73%, 100% { transform: translateX(0); } } 86%, 100% { transform: translateX(0); } }
+@keyframes aliver-loader-pill-right { 0%, 65% { transform: translateX(30px); } 73%, 100% { transform: translateX(0); } } 86%, 100% { transform: translateX(0); } }
 .aliver-loader-progress { fill: var(--loader-accent-secondary); opacity: .8; transform-box: fill-box; transform-origin: left; animation: aliver-loader-progress var(--loader-cycle) linear infinite; }
 @keyframes aliver-loader-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @media (prefers-reduced-motion: reduce) {
