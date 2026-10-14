@@ -89,7 +89,11 @@ function buildHelix(group, options) {
   };
 }
 
-export default function GlobalLoader({ brandName = 'AliverBiopharm', tagline = 'Welcome to biology & pharmacy' }) {
+export default function GlobalLoader({
+  brandName = 'AliverBiopharm',
+  tagline = 'Welcome to biology & pharmacy',
+  onAnimationComplete
+}) {
   const dnaRef = useRef(null);
   const miniDnaRef = useRef(null);
   const reactId = useId();
@@ -125,6 +129,16 @@ export default function GlobalLoader({ brandName = 'AliverBiopharm', tagline = '
       window.cancelAnimationFrame(frameId);
     };
   }, []);
+
+  // The overlay cannot finish merely because app data became available.
+  // Let the entire 15-second animation sequence run before signalling completion.
+  useEffect(() => {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const timer = window.setTimeout(() => {
+      onAnimationComplete?.();
+    }, reducedMotion ? 900 : 15000);
+    return () => window.clearTimeout(timer);
+  }, [onAnimationComplete]);
 
   return (
     <div className="aliver-global-loader" role="status" aria-live="polite" aria-label="Loading AliverBiopharm">
@@ -206,6 +220,16 @@ export default function GlobalLoader({ brandName = 'AliverBiopharm', tagline = '
               <text className="aliver-loader-brand-name" x="130" y="82" textAnchor="middle">{brandName}</text>
               <text className="aliver-loader-tagline" x="130" y="106" textAnchor="middle">{tagline}</text>
             </g>
+            <image
+              className="aliver-loader-logo"
+              href="/images/logo.png"
+              x="101"
+              y="111"
+              width="58"
+              height="27"
+              preserveAspectRatio="xMidYMid meet"
+              aria-label="AliverBiopharm logo"
+            />
             <rect className="aliver-loader-progress" x="40" y="145" width="180" height="2" rx="1" />
           </svg>
         </div>
