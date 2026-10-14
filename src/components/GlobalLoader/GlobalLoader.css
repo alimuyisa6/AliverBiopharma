@@ -47,12 +47,19 @@ body.dark-mode .aliver-global-loader {
   width: 100%;
   height: 100%;
 }
-.aliver-loader-opening-mark {
+.aliver-loader-dna {
   opacity: 0;
-  transform: translateY(7px) scale(.86);
+  stroke-width: 2;
+  animation: aliver-loader-dna-enter 700ms ease-out 80ms forwards, aliver-loader-dna-float 3s ease-in-out 800ms infinite;
+}
+.aliver-loader-dna-strand-a { stroke: var(--loader-accent); stroke-width: 2.5; }
+.aliver-loader-dna-strand-b { stroke: var(--loader-accent-secondary); stroke-width: 2.5; }
+.aliver-loader-dna-rung { stroke: var(--loader-accent-secondary); stroke-width: 1.3; opacity: .75; }
+.aliver-loader-pill {
+  opacity: 0;
   transform-box: fill-box;
   transform-origin: center;
-  animation: aliver-loader-mark-enter 700ms cubic-bezier(.2, .75, .2, 1) forwards;
+  animation: aliver-loader-pill-enter 700ms cubic-bezier(.2, .75, .2, 1) 220ms forwards, aliver-loader-pill-float 2.8s ease-in-out 950ms infinite;
 }
 .aliver-loader-tagline {
   fill: var(--loader-ink);
@@ -88,8 +95,19 @@ body.dark-mode .aliver-global-loader {
   filter: blur(6px);
   animation: aliver-loader-shadow 3s ease-in-out infinite;
 }
-@keyframes aliver-loader-mark-enter {
-  to { opacity: 1; transform: translateY(0) scale(1); }
+@keyframes aliver-loader-dna-enter {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes aliver-loader-dna-float {
+  50% { transform: translateY(-3px); }
+}
+@keyframes aliver-loader-pill-enter {
+  from { opacity: 0; transform: rotate(-28deg) scale(.72); }
+  to { opacity: 1; transform: rotate(-28deg) scale(1); }
+}
+@keyframes aliver-loader-pill-float {
+  50% { transform: rotate(-23deg) translateY(-3px); }
 }
 @keyframes aliver-loader-caption-enter {
   to { opacity: .82; }
@@ -112,13 +130,15 @@ body.dark-mode .aliver-global-loader {
 @media (prefers-reduced-motion: reduce) {
   .aliver-loader-card,
   .aliver-loader-shadow,
-  .aliver-loader-opening-mark,
+  .aliver-loader-dna,
+  .aliver-loader-pill,
   .aliver-loader-tagline,
   .aliver-loader-logo,
   .aliver-loader-progress {
     animation: none !important;
   }
-  .aliver-loader-opening-mark,
+  .aliver-loader-dna,
+  .aliver-loader-pill,
   .aliver-loader-tagline,
   .aliver-loader-logo {
     opacity: 1;
