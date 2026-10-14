@@ -384,7 +384,6 @@ export function LayoutProvider({ children }) {
       {children}
       {!initialLoaderFinished && (
         <GlobalLoader
-          brandName="AliverBiopharm"
           tagline="Welcome to biology & pharmacy"
           onAnimationComplete={handleLoaderAnimationComplete}
         />
