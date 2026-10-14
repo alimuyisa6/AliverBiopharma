@@ -364,11 +364,31 @@ export function LayoutProvider({ children }) {
     uiPreferences
   ]);
 
-  const showGlobalLoader = authLoading || loading;
+  // The full-screen loader is a one-time app-start experience. Once it has
+  // finished, later route changes or background refreshes never show it again.
+  const [loaderCycleComplete, setLoaderCycleComplete] = useState(false);
+  const [initialLoaderFinished, setInitialLoaderFinished] = useState(false);
+
+  const handleLoaderAnimationComplete = useCallback(() => {
+    setLoaderCycleComplete(true);
+  }, []);
+
+  useEffect(() => {
+    if (!initialLoaderFinished && loaderCycleComplete && !authLoading && !loading) {
+      setInitialLoaderFinished(true);
+    }
+  }, [initialLoaderFinished, loaderCycleComplete, authLoading, loading]);
 
   return (
     <LayoutContext.Provider value={value}>
-      {showGlobalLoader ? <GlobalLoader brandName="AliverBiopharm" tagline="Welcome to biology & pharmacy" /> : children}
+      {children}
+      {!initialLoaderFinished && (
+        <GlobalLoader
+          brandName="AliverBiopharm"
+          tagline="Welcome to biology & pharmacy"
+          onAnimationComplete={handleLoaderAnimationComplete}
+        />
+      )}
     </LayoutContext.Provider>
   );
 }
