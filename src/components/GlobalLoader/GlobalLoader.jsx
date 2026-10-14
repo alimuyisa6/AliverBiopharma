@@ -90,7 +90,6 @@ function buildHelix(group, options) {
 }
 
 export default function GlobalLoader({
-  brandName = 'AliverBiopharm',
   tagline = 'Welcome to biology & pharmacy',
   onAnimationComplete
 }) {
@@ -217,7 +216,6 @@ export default function GlobalLoader({
             </g>
 
             <g className="aliver-loader-brand">
-              <text className="aliver-loader-brand-name" x="130" y="82" textAnchor="middle">{brandName}</text>
               <text className="aliver-loader-tagline" x="130" y="106" textAnchor="middle">{tagline}</text>
             </g>
             <image
