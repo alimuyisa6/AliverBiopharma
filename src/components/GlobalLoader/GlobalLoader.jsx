@@ -31,22 +31,16 @@ export default function GlobalLoader({
               </linearGradient>
             </defs>
 
-            <g className="aliver-loader-opening-mark">
-              <circle cx="130" cy="43" r="25" fill={`url(#${logoId})`} opacity=".12" />
-              <path
-                d="M130 25c-8 0-14 6-14 14s6 14 14 14 14-6 14-14-6-14-14-14Z"
-                fill="none"
-                stroke={`url(#${logoId})`}
-                strokeWidth="2.5"
-              />
-              <path
-                d="M116 39h28M130 25v28M121 30l18 18M139 30l-18 18"
-                fill="none"
-                stroke={`url(#${logoId})`}
-                strokeWidth="1.6"
-                strokeLinecap="round"
-                opacity=".85"
-              />
+            <g className="aliver-loader-dna" fill="none" strokeLinecap="round">
+              <path className="aliver-loader-dna-strand aliver-loader-dna-strand-a" d="M83 18 C111 27 111 39 130 45 S149 63 177 72" />
+              <path className="aliver-loader-dna-strand aliver-loader-dna-strand-b" d="M177 18 C149 27 149 39 130 45 S111 63 83 72" />
+              <path className="aliver-loader-dna-rung" d="M96 23 L164 23 M108 32 L152 32 M119 41 L141 41 M119 49 L141 49 M108 59 L152 59 M96 68 L164 68" />
+            </g>
+            <g className="aliver-loader-pill" transform="translate(130 43) rotate(-28)">
+              <rect x="-26" y="-9" width="52" height="18" rx="9" fill="var(--loader-pill-light)" stroke="var(--loader-accent-secondary)" strokeWidth="1.5" />
+              <path d="M0 -9H-17A9 9 0 0 0 -17 9H0Z" fill={`url(#${logoId})`} />
+              <path d="M0 -8V8" stroke="var(--loader-accent-secondary)" strokeWidth="1.2" />
+              <path d="M-19 -4H-7" stroke="white" strokeWidth="2" strokeLinecap="round" opacity=".8" />
             </g>
 
             <text
