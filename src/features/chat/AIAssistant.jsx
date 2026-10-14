@@ -322,12 +322,18 @@ export default function AIAssistant() {
 
       <button
         type="button"
-        className="ai-assistant-toggle"
+        className={`ai-assistant-toggle${open ? ' is-open' : ''}`}
         onClick={() => setOpen((current) => !current)}
         aria-label={open ? 'Close AliverBiopharm AI Tutor' : 'Open AliverBiopharm AI Tutor'}
         aria-expanded={open}
       >
-        <Icon name={open ? 'xmark' : 'graduation-cap'} />
+        <img
+          className="ai-assistant-mascot"
+          src="/ai-tutor-mascot.svg"
+          alt=""
+          aria-hidden="true"
+          draggable="false"
+        />
         <span>{open ? 'Close' : 'AI Tutor'}</span>
       </button>
     </div>
