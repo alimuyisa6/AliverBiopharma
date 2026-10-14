@@ -85,6 +85,17 @@ body.dark-mode .aliver-global-loader {
 .aliver-loader-brand { transform-origin: 130px 75px; opacity: 0; animation: aliver-loader-text var(--loader-cycle) infinite; }
 .aliver-loader-brand-name { fill: var(--loader-ink); font-size: 22px; font-weight: 700; letter-spacing: .2px; }
 .aliver-loader-tagline { fill: var(--loader-ink); font-size: 8.5px; letter-spacing: 1.2px; opacity: .72; }
+.aliver-loader-logo {
+  opacity: 0;
+  animation: aliver-loader-logo 15s ease-in-out both;
+  animation-delay: 0s;
+  pointer-events: none;
+}
+@keyframes aliver-loader-logo {
+  0%, 7% { opacity: 0; transform: translateY(3px); }
+  12%, 33% { opacity: 1; transform: translateY(0); }
+  38%, 100% { opacity: 0; transform: translateY(-2px); }
+}
 @keyframes aliver-loader-text {
   0%, 6% { transform: scale(.04); opacity: 0; animation-timing-function: cubic-bezier(.2, .75, .2, 1); }
   9% { opacity: 1; }
@@ -117,9 +128,10 @@ body.dark-mode .aliver-global-loader {
 @media (prefers-reduced-motion: reduce) {
   .aliver-loader-card, .aliver-loader-shadow, .aliver-loader-mark, .aliver-loader-brand,
   .aliver-loader-brain, .aliver-loader-breathe, .aliver-loader-sulcus, .aliver-loader-dna,
-  .aliver-loader-pill, .aliver-loader-pill-left, .aliver-loader-pill-right, .aliver-loader-pill-shadow,
+  .aliver-loader-logo, .aliver-loader-pill, .aliver-loader-pill-left, .aliver-loader-pill-right, .aliver-loader-pill-shadow,
   .aliver-loader-progress { animation: none !important; }
   .aliver-loader-brand { opacity: 1; transform: none; }
+  .aliver-loader-logo { opacity: 1; transform: none; }
   .aliver-loader-mark { opacity: 0; }
   .aliver-loader-dna { opacity: 1; }
   .aliver-loader-pill { opacity: 0; }
