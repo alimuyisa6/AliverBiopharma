@@ -18,8 +18,7 @@
   justify-content: center;
 }
 
-.pdf-loading-spinner,
-.glossary-loading-spinner {
+.pdf-loading-spinner {
   display: flex;
   gap: var(--space-2);
 }
