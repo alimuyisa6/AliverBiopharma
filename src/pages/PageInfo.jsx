@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { getInfoSection, getAllSiteSections } from '../api/client';
+import Spinner from '../components/Spinner/Spinner';
 
 const pageVariants = {
   initial: {
@@ -168,7 +169,7 @@ export default function InfoPage() {
         {header}
         {mobileNav}
         <div className="info-page-loading">
-          <div className="info-page-spinner" />
+          <Spinner size="lg" />
           <p>Loading content...</p>
         </div>
       </motion.div>
