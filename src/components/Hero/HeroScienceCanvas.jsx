@@ -30,14 +30,6 @@ function rgba(color, alpha) {
   return `rgba(${color[0] | 0},${color[1] | 0},${color[2] | 0},${alpha})`;
 }
 
-function parseHex(hex) {
-  const value = hex.replace('#', '');
-  const full = value.length === 3
-    ? value.split('').map((char) => char + char).join('')
-    : value;
-  return [1, 3, 5].map((index) => parseInt(full.slice(index, index + 2), 16));
-}
-
 function drawSperm(ctx, x, y, heading, radius, tailLength, time, phase, color, alpha = 1) {
   const px = -Math.sin(heading);
   const py = Math.cos(heading);
@@ -404,6 +396,9 @@ export default function HeroScienceCanvas() {
   const [scene, setScene] = useState(0);
   const sceneRef = useRef(0);
   const reducedRef = useRef(false);
+  const autoRotateRef = useRef(true);
+  const sceneStartRef = useRef(0);
+  const repaintRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -449,13 +444,11 @@ export default function HeroScienceCanvas() {
     let height = 0;
     let pixelRatio = 1;
     let startTime = 0;
-    let lastTime = 0;
     let frameId = 0;
     let pointerX = 0;
     let pointerY = 0;
     let driftX = 0;
     let driftY = 0;
-    let autoRotate = true;
     const periods = [18, 15];
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     reducedRef.current = reducedMotion.matches;
@@ -485,30 +478,25 @@ export default function HeroScienceCanvas() {
 
     const renderFrame = (now) => {
       const absoluteTime = (now - startTime) / 1000;
-      let elapsed = absoluteTime - lastTime;
-      if (elapsed < 0) elapsed = 0;
-      lastTime = absoluteTime;
-      let time = absoluteTime - startTime / 1000;
-      // startTime is an absolute performance timestamp; use a local timeline instead.
-      time = absoluteTime;
-      const currentPeriod = periods[sceneRef.current];
-      let sceneTime = time % currentPeriod;
-      if (autoRotate && sceneTime >= currentPeriod) sceneTime = 0;
-      if (autoRotate && sceneTime >= currentPeriod - 0.016) {
+      let sceneElapsed = (now - sceneStartRef.current) / 1000;
+      if (autoRotateRef.current && sceneElapsed >= periods[sceneRef.current]) {
         sceneRef.current = 1 - sceneRef.current;
         setScene(sceneRef.current);
+        sceneStartRef.current = now;
+        sceneElapsed = 0;
       }
       driftX += (pointerX - driftX) * 0.05;
       driftY += (pointerY - driftY) * 0.05;
       const period = periods[sceneRef.current];
-      const localTime = ((time % period) + period) % period;
-      paint(localTime, time, Math.min(smooth(localTime / 0.7), smooth((period - localTime) / 0.8)));
+      const localTime = autoRotateRef.current ? sceneElapsed : sceneElapsed % period;
+      paint(localTime, absoluteTime, Math.min(smooth(localTime / 0.7), smooth((period - localTime) / 0.8)));
       if (!reducedRef.current) frameId = window.requestAnimationFrame(renderFrame);
     };
 
     const renderStill = () => {
       paint(sceneRef.current === 0 ? 13.2 : 7.5, 3, 1);
     };
+    repaintRef.current = renderStill;
 
     const onPointerMove = (event) => {
       const rect = hero.getBoundingClientRect();
@@ -522,13 +510,14 @@ export default function HeroScienceCanvas() {
       if (event.matches) renderStill();
       else {
         startTime = performance.now();
-        lastTime = 0;
+        sceneStartRef.current = startTime;
         frameId = window.requestAnimationFrame(renderFrame);
       }
     };
 
     resize();
     startTime = performance.now();
+    sceneStartRef.current = startTime;
     frameId = window.requestAnimationFrame(renderFrame);
     const observer = new ResizeObserver(() => {
       resize();
@@ -548,9 +537,10 @@ export default function HeroScienceCanvas() {
 
   const selectScene = (nextScene) => {
     sceneRef.current = nextScene;
+    autoRotateRef.current = false;
+    sceneStartRef.current = performance.now();
     setScene(nextScene);
-    // Once the visitor chooses a subject, stop automatic scene switching.
-    // The canvas animation loop reads this closure through the mutable ref.
+    if (reducedRef.current) repaintRef.current?.();
   };
 
   return (
