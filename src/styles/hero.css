@@ -368,3 +368,9 @@
     transition: none;
   }
 }
+
+
+/* Keep the subject selector above the hero scrim while text remains above the artwork. */
+.hero-image {
+  z-index: 2;
+}
