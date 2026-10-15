@@ -1207,7 +1207,7 @@ export default function Profile() {
                   Learning Curriculum
                 </h3>
                 <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
-                  Your current level is <strong style={{ color: THEME.textMain }}>{profileMeta?.track || 'Not set'}</strong>, class{' '}
+                  Your current level is <strong style={{ color: THEME.textMain }}>{profileMeta?.track || 'Not set'}</strong>, {String(profileMeta?.track || '').toLowerCase().includes('pharmacy') ? 'programme' : 'class'}{' '}
                   <strong style={{ color: THEME.textMain }}>{profileMeta?.class_name || 'Not set'}</strong>. Level changes require
                   administrator approval.
                 </p>
