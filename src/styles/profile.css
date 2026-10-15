@@ -992,3 +992,103 @@
     transition: none;
   }
 }
+
+/* Combo 05 profile polish: tighter page start and a contained section-filter tray. */
+.profile-page {
+  background: var(--profile-page-bg, var(--surface-page));
+  color: var(--text-main);
+}
+
+.profile-page > .page-container {
+  padding-top: 0;
+}
+
+.profile-page .page-header {
+  margin-top: 0;
+  padding-top: var(--space-1);
+  padding-bottom: var(--space-3);
+}
+
+.profile-page .profile-tabs {
+  width: min(100%, calc(100% - (var(--profile-panel-side-space) * 2)));
+  margin: 0 auto var(--space-3);
+  padding: 0;
+  border-radius: var(--radius-card);
+  scrollbar-width: thin;
+}
+
+.profile-page .profile-tabs-wrap {
+  width: max-content;
+  min-width: 100%;
+  box-sizing: border-box;
+  gap: var(--space-1);
+  padding: var(--space-2);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-card);
+  background: var(--surface-subtle);
+  box-shadow:
+    inset 0 var(--space-1) var(--space-2) color-mix(in srgb, var(--text-main) 8%, transparent),
+    inset 0 1px 2px color-mix(in srgb, var(--text-main) 5%, transparent),
+    var(--shadow-subtle);
+}
+
+.profile-page .profile-tab-label {
+  min-height: var(--control-height-md);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  transition:
+    color var(--ease-fast),
+    background-color var(--ease-fast),
+    border-color var(--ease-fast),
+    box-shadow var(--ease-fast);
+}
+
+.profile-page .profile-tab-label:hover {
+  background: color-mix(in srgb, var(--palette-blue) 8%, var(--surface-card));
+  color: var(--text-main);
+}
+
+.profile-page .profile-tab-radio:checked + .profile-tab-label {
+  border-color: color-mix(in srgb, var(--palette-blue) 38%, var(--border-default));
+  background: var(--primary);
+  color: var(--text-on-primary);
+  box-shadow: 0 2px 5px color-mix(in srgb, var(--palette-blue) 22%, transparent);
+}
+
+.profile-page .profile-tab-radio:focus-visible + .profile-tab-label {
+  outline: 2px solid var(--palette-mint);
+  outline-offset: 2px;
+}
+
+.profile-page .profile-tab-bar,
+.profile-page .profile-tab-slidebar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .profile-page .page-header {
+    padding-top: var(--space-1);
+    padding-bottom: var(--space-2);
+  }
+
+  .profile-page .profile-tabs {
+    width: 100%;
+    margin-bottom: var(--space-3);
+  }
+
+  .profile-page .profile-tabs-wrap {
+    min-width: max-content;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-page .page-header {
+    padding-top: 0;
+  }
+
+  .profile-page .profile-tabs-wrap {
+    padding: var(--space-1);
+  }
+}
+
