@@ -89,6 +89,18 @@ export default function QuizAnswerLoader({ status = 'checking', size = 100, labe
             />
           )}
           <g transform={"scale(" + scale + ")"}>
+            {!checking && (
+              <animateTransform
+                attributeName="transform"
+                type="scale"
+                from="1"
+                to={String(scale)}
+                dur="300ms"
+                calcMode="spline"
+                keySplines="0.34 1.56 0.64 1"
+                fill="freeze"
+              />
+            )}
             <circle r="7" fill="currentColor" fillOpacity="0.06" stroke="currentColor" strokeOpacity="0.25" strokeWidth="1" />
             <circle r="4.6" fill="currentColor" fillOpacity="0.14" />
             <circle r="4.6" fill={"url(#" + bubbleId + ")"} opacity="0" filter={"url(#" + glowId + ")"}>
