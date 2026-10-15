@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 
+// Canvas drawing helpers consume RGB channel arrays, not CSS hex strings.
 const PALETTE = {
-  primary: '#5465FF',
-  accent: '#00FFD4',
-  periwinkle: '#D2DDFF',
+  primary: [84, 101, 255],
+  accent: [0, 255, 212],
+  periwinkle: [210, 221, 255],
 };
 
 function seededRandom(seed) {
