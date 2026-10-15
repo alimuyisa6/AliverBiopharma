@@ -43,6 +43,8 @@ const DEFAULT_LABELS = {
  */
 export default function QuizAnswerLoader({ status = 'checking', size = 100, labels }) {
   const uid = useId().replace(/:/g, '');
+  const bubbleId = uid + '-bub';
+  const glowId = uid + '-glow';
   const checking = status === 'checking';
   const points = SHAPE_BY_STATUS[status] ?? RING;
   const scale = checking ? 1 : RESULT_SCALE;
@@ -59,11 +61,11 @@ export default function QuizAnswerLoader({ status = 'checking', size = 100, labe
       focusable="false"
     >
       <defs>
-        <radialGradient id={`${uid}-bub`} cx="40%" cy="35%" r="70%">
+        <radialGradient id={bubbleId} cx="40%" cy="35%" r="70%">
           <stop offset="0%" style={{ stopColor: 'var(--accent, currentColor)' }} />
           <stop offset="100%" style={{ stopColor: 'var(--primary, currentColor)' }} />
         </radialGradient>
-        <filter id={`${uid}-glow`} x="-60%" y="-60%" width="220%" height="220%">
+        <filter id={glowId} x="-60%" y="-60%" width="220%" height="220%">
           <feGaussianBlur stdDeviation="1.4" result="b" />
           <feMerge>
             <feMergeNode in="b" />
@@ -75,11 +77,11 @@ export default function QuizAnswerLoader({ status = 'checking', size = 100, labe
       {points.map(([x, y], i) => (
         <g
           key={i}
-          transform={`translate(${x} ${y}) scale(${scale})`}
+          transform={"translate(" + x + " " + y + ") scale(" + scale + ")"}
           style={{
             transformBox: 'view-box',
-            transformOrigin: `${x}px ${y}px`,
-            transition: `transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1) ${i * 8}ms`,
+            transformOrigin: x + 'px ' + y + 'px',
+            transition: 'transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1) ' + (i * 8) + 'ms',
           }}
         >
           <g>
@@ -94,9 +96,9 @@ export default function QuizAnswerLoader({ status = 'checking', size = 100, labe
             <circle r="4.6" fill="currentColor" fillOpacity="0.14" />
             <circle
               r="4.6"
-              fill={`url(#${uid}-bub)`}
+              fill={"url(#" + bubbleId + ")"}
               opacity="0"
-              filter={`url(#${uid}-glow)`}
+              filter={"url(#" + glowId + ")"}
             >
               {checking && (
                 <animate
@@ -114,7 +116,7 @@ export default function QuizAnswerLoader({ status = 'checking', size = 100, labe
               style={{
                 fill: resultColor,
                 opacity: checking ? 0 : 1,
-                transition: `opacity 180ms linear ${i * 8}ms`,
+                transition: 'opacity 180ms linear ' + (i * 8) + 'ms',
               }}
             />
             {checking && (
