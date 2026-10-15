@@ -75,85 +75,48 @@ export default function QuizAnswerLoader({ status = 'checking', size = 100, labe
       </defs>
 
       {points.map(([x, y], i) => (
-        <g
-          key={i}
-          transform={"translate(" + x + " " + y + ") scale(" + scale + ")"}
-          style={{
-            transformBox: 'view-box',
-            transformOrigin: x + 'px ' + y + 'px',
-            transition: 'transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1) ' + (i * 8) + 'ms',
-          }}
-        >
-          <g>
-            <circle
-              r="7"
-              fill="currentColor"
-              fillOpacity="0.06"
-              stroke="currentColor"
-              strokeOpacity="0.25"
-              strokeWidth="1"
+        <g key={i} transform={"translate(" + x + " " + y + ")"}>
+          {!checking && (
+            <animateTransform
+              attributeName="transform"
+              type="translate"
+              from={RING[i][0] + " " + RING[i][1]}
+              to={x + " " + y}
+              dur="360ms"
+              calcMode="spline"
+              keySplines="0.34 1.56 0.64 1"
+              fill="freeze"
             />
+          )}
+          <g transform={"scale(" + scale + ")"}>
+            <circle r="7" fill="currentColor" fillOpacity="0.06" stroke="currentColor" strokeOpacity="0.25" strokeWidth="1" />
             <circle r="4.6" fill="currentColor" fillOpacity="0.14" />
-            <circle
-              r="4.6"
-              fill={"url(#" + bubbleId + ")"}
-              opacity="0"
-              filter={"url(#" + glowId + ")"}
-            >
-              {checking && (
-                <animate
-                  attributeName="opacity"
-                  values="0;1;0.35;0;0"
-                  keyTimes={KEY_TIMES}
-                  dur="1.2s"
-                  begin={BEGINS[i]}
-                  repeatCount="indefinite"
-                />
-              )}
+            <circle r="4.6" fill={"url(#" + bubbleId + ")"} opacity="0" filter={"url(#" + glowId + ")"}>
+              {checking && <animate attributeName="opacity" values="0;1;0.35;0;0" keyTimes={KEY_TIMES} dur="1.2s" begin={BEGINS[i]} repeatCount="indefinite" />}
             </circle>
-            <circle
-              r="7.5"
-              style={{
-                fill: resultColor,
-                opacity: checking ? 0 : 1,
-                transition: 'opacity 180ms linear ' + (i * 8) + 'ms',
-              }}
-            />
+            <circle r="7.5" style={{ fill: resultColor, opacity: checking ? 0 : 1, transition: 'opacity 180ms linear ' + (i * 8) + 'ms' }} />
             {checking && (
-              <animateTransform
-                attributeName="transform"
-                type="scale"
-                values="1;1.4;0.95;1;1"
-                keyTimes={KEY_TIMES}
-                calcMode="spline"
-                keySplines="0.2 0.7 0.3 1;0.4 0 0.6 1;0.4 0 0.6 1;0 0 1 1"
-                dur="1.2s"
-                begin={BEGINS[i]}
-                repeatCount="indefinite"
-              />
+              <animateTransform attributeName="transform" type="scale" values="1;1.4;0.95;1;1" keyTimes={KEY_TIMES} calcMode="spline" keySplines="0.2 0.7 0.3 1;0.4 0 0.6 1;0.4 0 0.6 1;0 0 1 1" dur="1.2s" begin={BEGINS[i]} repeatCount="indefinite" />
             )}
           </g>
         </g>
       ))}
 
-      {PATH_BY_STATUS[status] && (
-        <path
-          d={PATH_BY_STATUS[status]}
-          pathLength="1"
-          fill="none"
-          strokeWidth="10"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          style={{
-            stroke: resultColor,
-            strokeDasharray: 1,
-            strokeDashoffset: checking ? 1 : 0,
-            opacity: checking ? 0 : 1,
-            transition:
-              'stroke-dashoffset 260ms cubic-bezier(0.4, 0, 0.2, 1) 120ms, opacity 100ms linear 120ms',
-          }}
-        />
-      )}
+      <path
+        d={PATH_BY_STATUS[status] || ''}
+        pathLength="1"
+        fill="none"
+        strokeWidth="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        style={{
+          stroke: resultColor,
+          strokeDasharray: 1,
+          strokeDashoffset: checking ? 1 : 0,
+          opacity: checking ? 0 : 1,
+          transition: 'stroke-dashoffset 260ms cubic-bezier(0.4, 0, 0.2, 1) 120ms, opacity 100ms linear 120ms',
+        }}
+      />
     </svg>
   );
 }
