@@ -988,19 +988,19 @@ export default function Profile() {
 
                 <div className="profile-summary-details">
                   <div className="profile-summary-detail">
-                    <Icon name="envelope" />
+                    <svg className="profile-detail-symbol profile-detail-symbol-mail" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M4.5 9.5 16 18l11.5-8.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/><path d="M6.5 6.5h19A2.5 2.5 0 0 1 28 9v14a2.5 2.5 0 0 1-2.5 2.5h-19A2.5 2.5 0 0 1 4 23V9a2.5 2.5 0 0 1 2.5-2.5Z" stroke="currentColor" strokeWidth="1.8"/><path d="M4.8 23.2 12 16.8m15.2 6.4L20 16.8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/><circle cx="25.5" cy="6.5" r="3" fill="var(--palette-mint, var(--primary))" stroke="var(--surface-card)" strokeWidth="1.2"/></svg>
                     <span className="profile-summary-detail-label">{t('profile.email')}</span>
                     <strong>{profileMeta?.email || user?.email || '—'}</strong>
                   </div>
                   <div className="profile-summary-detail">
-                    <Icon name="book-open" />
+                    <svg className="profile-detail-symbol profile-detail-symbol-programme" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M4.5 9.5c4.2-1.8 8-.9 11.5 1.8v15c-3.5-2.7-7.3-3.6-11.5-1.8v-15Zm23 0c-4.2-1.8-8-.9-11.5 1.8v15c3.5-2.7 7.3-3.6 11.5-1.8v-15Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round"/><path d="M8 13.5c1.7-.3 3.4 0 4.8.8m-4.8 3c1.7-.3 3.4 0 4.8.8m11.2-4.6c-1.7-.3-3.4 0-4.8.8m4.8 3c-1.7-.3-3.4 0-4.8.8" stroke="currentColor" strokeWidth="1.35" strokeLinecap="round"/><path d="M16 5.5v4" stroke="var(--palette-blue, var(--primary))" strokeWidth="2" strokeLinecap="round"/><circle cx="16" cy="4" r="2" fill="var(--palette-mint, var(--primary))"/></svg>
                     <span className="profile-summary-detail-label">Programme</span>
                     <strong>{profileMeta?.programme || profileMeta?.track || profileMeta?.class_name || 'Not set'}</strong>
                   </div>
                   <div className="profile-summary-detail">
-                    <Icon name="calendar" />
+                    <svg className="profile-detail-symbol profile-detail-symbol-member" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 3.5 19.1 6l4-.2 1.7 3.6 3.6 1.7-.2 4L30.5 18l-2.3 3.1.2 4-3.6 1.7-1.7 3.6-4-.2L16 32.5l-3.1-2.3-4 .2-1.7-3.6-3.6-1.7.2-4L1.5 18l2.3-3.1-.2-4 3.6-1.7 1.7-3.6 4 .2L16 3.5Z" transform="translate(0 -2)" stroke="currentColor" strokeWidth="1.35" strokeLinejoin="round"/><circle cx="16" cy="16" r="8.2" stroke="currentColor" strokeWidth="1.5"/><path d="M16 10.5v5.8l4 2.3" stroke="var(--palette-blue, var(--primary))" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/><circle cx="16" cy="16" r="1.6" fill="var(--palette-mint, var(--primary))"/></svg>
                     <span className="profile-summary-detail-label">Member Since</span>
-                    <strong>{profileMeta?.created_at ? new Date(profileMeta.created_at).toLocaleDateString(undefined, { month: 'short', year: 'numeric' }) : '—'}</strong>
+                    <strong>{profileMeta?.created_at ? new Date(profileMeta.created_at).toLocaleString(undefined, { day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: '2-digit' }) : '—'}</strong>
                   </div>
                 </div>
               </div>
