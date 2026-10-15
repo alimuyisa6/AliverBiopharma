@@ -1204,3 +1204,14 @@
   margin-block-start: var(--space-3);
 }
 
+/* Profile uses the shared Container, which renders a generic .section wrapper.
+   Remove that wrapper's default top spacing as well as the main header spacer. */
+.main-content.main-content-profile > .profile-page > .section {
+  margin-block-start: 0 !important;
+  padding-block-start: 0 !important;
+}
+
+.main-content.main-content-profile > .profile-page > .section > .profile-overview-panel {
+  margin-block-start: 0 !important;
+}
+
