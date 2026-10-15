@@ -1014,23 +1014,23 @@ export default function Profile() {
 
                 <div className="profile-category-grid">
                   <button type="button" className="profile-category-card" onClick={() => selectSection('overview')}>
-                    <span className="profile-category-icon profile-category-icon-primary"><Icon name="user" /></span>
+                    <span className="profile-category-icon profile-category-icon-primary"><svg viewBox="0 0 40 40" aria-hidden="true" fill="none"><path d="M7 30.5c1.8-5.8 6.3-8.7 13-8.7s11.2 2.9 13 8.7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/><path d="M20 20.2c4.2 0 7.4-3.3 7.4-7.5S24.2 5.2 20 5.2s-7.4 3.3-7.4 7.5 3.2 7.5 7.4 7.5Z" stroke="currentColor" strokeWidth="1.8"/><path d="M5 18.5v-7l3.2-3.2m26.8 10.2v-7l-3.2-3.2" stroke="var(--palette-mint, currentColor)" strokeWidth="1.5" strokeLinecap="round"/><circle cx="20" cy="12.7" r="2" fill="var(--palette-blue, currentColor)"/></svg></span>
                     <span>Personal Info</span>
                   </button>
                   <button type="button" className="profile-category-card" onClick={() => selectSection('curriculum')}>
-                    <span className="profile-category-icon profile-category-icon-success"><Icon name="graduation-cap" /></span>
+                    <span className="profile-category-icon profile-category-icon-success"><svg viewBox="0 0 40 40" aria-hidden="true" fill="none"><path d="m4 13.5 16-8 16 8-16 8-16-8Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/><path d="M10 17v8.5c5.7 5.1 14.3 5.1 20 0V17M36 14v10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/><circle cx="36" cy="26.5" r="2" fill="var(--palette-mint, currentColor)"/><path d="M14 11.5 20 8.7l6 2.8" stroke="var(--palette-blue, currentColor)" strokeWidth="1.5" strokeLinecap="round"/></svg></span>
                     <span>Academic Details</span>
                   </button>
                   <button type="button" className="profile-category-card" onClick={() => selectSection('security')}>
-                    <span className="profile-category-icon profile-category-icon-warning"><Icon name="shield" /></span>
+                    <span className="profile-category-icon profile-category-icon-warning"><svg viewBox="0 0 40 40" aria-hidden="true" fill="none"><path d="M20 4.5 32 9v9.3c0 7.7-4.8 13.3-12 17.2-7.2-3.9-12-9.5-12-17.2V9l12-4.5Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/><path d="M20 10v19" stroke="currentColor" strokeWidth="1.5" strokeDasharray="2.5 3"/><path d="m14.5 19.5 3.7 3.6 7.6-8" stroke="var(--palette-mint, currentColor)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><circle cx="29.5" cy="9.5" r="2.3" fill="var(--palette-blue, currentColor)"/></svg></span>
                     <span>Security</span>
                   </button>
                   <button type="button" className="profile-category-card" onClick={() => selectSection('preferences')}>
-                    <span className="profile-category-icon profile-category-icon-violet"><Icon name="gear" /></span>
+                    <span className="profile-category-icon profile-category-icon-violet"><svg viewBox="0 0 40 40" aria-hidden="true" fill="none"><path d="m20 5 3 2.2 3.7-.2 1.5 3.4 3.4 1.5-.2 3.7 2.2 3-2.2 3 .2 3.7-3.4 1.5-1.5 3.4-3.7-.2-3 2.2-3-2.2-3.7.2-1.5-3.4-3.4-1.5.2-3.7-2.2-3 2.2-3-.2-3.7 3.4-1.5 1.5-3.4 3.7.2L20 5Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round"/><circle cx="20" cy="19.5" r="6.5" stroke="currentColor" strokeWidth="1.7"/><circle cx="20" cy="19.5" r="2.5" fill="var(--palette-mint, currentColor)"/><path d="M20 13v2m0 9v2m6.5-6.5h-2m-9 0h-2" stroke="var(--palette-blue, currentColor)" strokeWidth="1.6" strokeLinecap="round"/></svg></span>
                     <span>Preferences</span>
                   </button>
                   <button type="button" className="profile-category-card" onClick={() => selectSection('account')}>
-                    <span className="profile-category-icon profile-category-icon-info"><Icon name="file-lines" /></span>
+                    <span className="profile-category-icon profile-category-icon-info"><svg viewBox="0 0 40 40" aria-hidden="true" fill="none"><path d="M10 5.5h13l7 7v21H10v-28Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/><path d="M23 5.5v7h7M15 18h10m-10 5h10m-10 5h6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/><path d="M5 10.5v24h20" stroke="var(--palette-blue, currentColor)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/><circle cx="28" cy="29" r="4" fill="var(--palette-mint, currentColor)" stroke="var(--surface-card, white)" strokeWidth="1.3"/><path d="m26.5 29 1 1 2-2" stroke="var(--surface-card, white)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg></span>
                     <span>Administrative</span>
                   </button>
                 </div>
