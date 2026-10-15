@@ -29,7 +29,7 @@ const COLOR_BY_STATUS = {
 
 const RESULT_SCALE = 0.5;
 const KEY_TIMES = '0;0.18;0.34;0.45;1';
-const BEGINS = RING.map((_, i) => (i === 0 ? '0s' : `-${(1.2 - i * 0.1).toFixed(1)}s'));
+const BEGINS = RING.map((_, i) => (i === 0 ? '0s' : '-' + (1.2 - i * 0.1).toFixed(1) + 's'));
 
 const DEFAULT_LABELS = {
   checking: 'Checking your answer',
