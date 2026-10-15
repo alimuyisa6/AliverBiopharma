@@ -1,0 +1,136 @@
+/* Global loader — original Aliver DNA helix and split capsule animations, without the brain sequence. */
+.aliver-global-loader {
+  --loader-accent: var(--palette-mint, #00ffd4);
+  --loader-accent-secondary: var(--palette-blue, #5465ff);
+  --loader-accent-light: var(--emerald-100, #cffff6);
+  --loader-accent-deep: var(--emerald-700, #009b82);
+  --loader-base-A: var(--palette-mint, #00ffd4);
+  --loader-base-T: var(--amber-500, #f59e0b);
+  --loader-base-G: var(--palette-blue, #5465ff);
+  --loader-base-C: var(--palette-periwinkle, #d2ddff);
+  --loader-letter: var(--palette-ink, #050208);
+  --loader-pill-light: var(--white, #fff);
+  --loader-pill-mid: var(--blue-100, #eef1ff);
+  --loader-pill-deep: var(--blue-300, #aab8ff);
+  --loader-highlight: var(--white, #fff);
+  --loader-pill-outline: var(--grey-500, #69749b);
+  --loader-ink: var(--palette-ink, #050208);
+  --loader-glass: rgb(255 255 255 / 38%);
+  --loader-glass-border: rgb(255 255 255 / 68%);
+  --loader-background-start: var(--blue-50, #f5f6ff);
+  --loader-background-end: var(--palette-periwinkle, #d2ddff);
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal, 10000);
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: var(--space-5, 1.25rem);
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 40%, var(--loader-background-start), var(--loader-background-end));
+  color: var(--loader-ink);
+  isolation: isolate;
+}
+body.dark-mode .aliver-global-loader {
+  --loader-glass: rgb(255 255 255 / 7%);
+  --loader-glass-border: rgb(255 255 255 / 20%);
+  --loader-ink: #f8f7ff;
+  --loader-background-start: var(--palette-ink, #050208);
+  --loader-background-end: #11182f;
+  --loader-pill-light: #f8f7ff;
+  --loader-pill-mid: var(--blue-200, #d2ddff);
+  --loader-pill-deep: var(--blue-700, #4353e8);
+  --loader-letter: var(--palette-ink, #050208);
+}
+.aliver-loader-stage { position: relative; width: min(320px, 86vw); }
+.aliver-loader-card {
+  aspect-ratio: 26 / 15;
+  border: 1px solid var(--loader-glass-border);
+  border-radius: var(--radius-xl, 1.5rem);
+  background: var(--loader-glass);
+  box-shadow: 0 24px 40px -14px rgb(5 2 8 / 30%), inset 0 1px 0 rgb(255 255 255 / 45%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  backdrop-filter: blur(18px) saturate(160%);
+  animation: aliver-loader-lift 3s ease-in-out infinite;
+}
+.aliver-loader-card svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.aliver-loader-shadow {
+  position: absolute; right: 12%; bottom: -34px; left: 12%; height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgb(5 2 8 / 32%), transparent 70%);
+  filter: blur(6px);
+  animation: aliver-loader-shadow 3s ease-in-out infinite;
+}
+@keyframes aliver-loader-lift { 50% { transform: translateY(-5px); } }
+@keyframes aliver-loader-shadow { 50% { transform: scale(.88); opacity: .6; } }
+
+/* The actual DNA helix is generated as two sine-wave backbones with paired rungs and base letters. */
+.aliver-loader-dna { opacity: 1; }
+.aliver-loader-dna path { stroke-linejoin: round; }
+.aliver-loader-dna line { stroke-linecap: round; }
+.aliver-loader-pill-shadow { fill: var(--loader-ink); filter: blur(3px); opacity: .18; animation: aliver-loader-pill-shadow 2.8s ease-in-out infinite; }
+.aliver-loader-pill {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: aliver-loader-pill-float 3.2s ease-in-out infinite;
+}
+.aliver-loader-pill-left { animation: aliver-loader-pill-left 1.1s cubic-bezier(.2,.75,.2,1) both; }
+.aliver-loader-pill-right { animation: aliver-loader-pill-right 1.1s cubic-bezier(.2,.75,.2,1) both; }
+@keyframes aliver-loader-pill-left {
+  from { transform: translateX(-30px); }
+  to { transform: translateX(0); }
+}
+@keyframes aliver-loader-pill-right {
+  from { transform: translateX(30px); }
+  to { transform: translateX(0); }
+}
+@keyframes aliver-loader-pill-float {
+  0%, 100% { transform: rotate(-12deg) translateY(0); }
+  50% { transform: rotate(8deg) translateY(-4px); }
+}
+@keyframes aliver-loader-pill-shadow {
+  0%, 100% { transform: scale(.9); opacity: .12; }
+  50% { transform: scale(1); opacity: .22; }
+}
+
+/* Brand elements enter once, then stay visible for the entire initial load. */
+.aliver-loader-brand { opacity: 1; }
+.aliver-loader-tagline {
+  fill: var(--loader-ink);
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: .45px;
+  opacity: 0;
+  animation: aliver-loader-caption-enter 650ms 180ms ease-out forwards;
+}
+.aliver-loader-logo {
+  opacity: 0;
+  animation: aliver-loader-logo-enter 650ms 320ms ease-out forwards;
+  pointer-events: none;
+}
+.aliver-loader-progress {
+  fill: var(--loader-accent-secondary);
+  opacity: .8;
+  transform-box: fill-box;
+  transform-origin: left;
+  animation: aliver-loader-progress 1.2s ease-in-out infinite;
+}
+@keyframes aliver-loader-caption-enter { to { opacity: .82; } }
+@keyframes aliver-loader-logo-enter { to { opacity: 1; } }
+@keyframes aliver-loader-progress {
+  0% { transform: scaleX(.08); transform-origin: left; }
+  50% { transform: scaleX(1); transform-origin: left; }
+  51% { transform: scaleX(1); transform-origin: right; }
+  100% { transform: scaleX(.08); transform-origin: right; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aliver-loader-card, .aliver-loader-shadow, .aliver-loader-pill,
+  .aliver-loader-pill-left, .aliver-loader-pill-right, .aliver-loader-pill-shadow,
+  .aliver-loader-logo, .aliver-loader-tagline, .aliver-loader-progress {
+    animation: none !important;
+  }
+  .aliver-loader-tagline, .aliver-loader-logo { opacity: 1; transform: none; }
+  .aliver-loader-progress { transform: scaleX(.65); }
+}
