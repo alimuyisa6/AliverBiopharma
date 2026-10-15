@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Icon from '../components/Icon/Icon';
+import Spinner from '../components/Spinner/Spinner';
 import { getDonateConfig, getDonors, submitMomoDonation } from '../api/client';
 import '../styles/donate.css';
 
@@ -118,7 +119,7 @@ export default function Donate() {
     return (
       <main className="donate-page">
         <div className="donate-loading">
-          <span className="spinner spinner-brand spinner-lg" aria-label="Loading donations" />
+          <Spinner size="lg" />
         </div>
       </main>
     );
