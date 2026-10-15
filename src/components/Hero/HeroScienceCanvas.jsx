@@ -7,8 +7,8 @@ const PALETTE = {
 };
 
 function seededRandom(seed) {
+  let s = seed | 0;
   return () => {
-    let s = seed | 0;
     s = (s + 0x6D2B79F5) | 0;
     let t = Math.imul(s ^ (s >>> 15), 1 | s);
     t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
@@ -518,7 +518,8 @@ export default function HeroScienceCanvas() {
     resize();
     startTime = performance.now();
     sceneStartRef.current = startTime;
-    frameId = window.requestAnimationFrame(renderFrame);
+    if (reducedRef.current) renderStill();
+    else frameId = window.requestAnimationFrame(renderFrame);
     const observer = new ResizeObserver(() => {
       resize();
       if (reducedRef.current) renderStill();
