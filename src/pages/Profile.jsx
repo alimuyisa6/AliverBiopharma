@@ -950,52 +950,9 @@ export default function Profile() {
   return (
     <div className="profile-page">
       <Container>
-        <PageHeader
-          title={t('profile.title')}
-          subtitle={t('profile.subtitle')}
-        />
-
         {profileError && <ProfileError error={profileError} title={t('profile.profileDataLoadError')} onRetry={loadProfile} />}
         {bundleError && <ProfileError error={bundleError} title={t('profile.settingsDataLoadError')} onRetry={loadBundle} />}
 
-        <div className="profile-tabs" role="tablist" aria-label={t('profile.profileSections')}>
-          <div className="profile-tabs-wrap">
-            {SECTIONS.map((section, index) => (
-              <div key={section.id} className="profile-tab-item">
-                <input
-                  type="radio"
-                  id={`profile-tab-${section.id}`}
-                  name="profile-sections"
-                  checked={activeSection === section.id}
-                  onChange={() => selectSection(section.id)}
-                  className={`profile-tab-radio profile-tab-${index + 1}`}
-                />
-                <label
-                  htmlFor={`profile-tab-${section.id}`}
-                  className="profile-tab-label"
-                  role="tab"
-                  aria-selected={activeSection === section.id}
-                  tabIndex={activeSection === section.id ? 0 : -1}
-                >
-                  <span>{t(`profile.${section.key}`)}</span>
-                </label>
-              </div>
-            ))}
-            <div
-              className="profile-tab-bar"
-              aria-hidden="true"
-              style={{ transform: `translateX(${SECTIONS.findIndex((section) => section.id === activeSection) * 100}%)` }}
-            />
-            <div
-              className="profile-tab-slidebar"
-              aria-hidden="true"
-              style={{ transform: `translateX(${SECTIONS.findIndex((section) => section.id === activeSection) * 100}%)` }}
-            />
-          </div>
-        </div>
-
-        <div className="profile-layout">
-          <div className="profile-content">
             <section className="profile-overview-panel" aria-labelledby="profile-overview-title">
               <div className="profile-overview-heading">
                 <span className="profile-overview-icon" aria-hidden="true">
@@ -1084,6 +1041,46 @@ export default function Profile() {
                 </div>
               </div>
             </section>
+
+        <div className="profile-tabs" role="tablist" aria-label={t('profile.profileSections')}>
+          <div className="profile-tabs-wrap">
+            {SECTIONS.map((section, index) => (
+              <div key={section.id} className="profile-tab-item">
+                <input
+                  type="radio"
+                  id={`profile-tab-${section.id}`}
+                  name="profile-sections"
+                  checked={activeSection === section.id}
+                  onChange={() => selectSection(section.id)}
+                  className={`profile-tab-radio profile-tab-${index + 1}`}
+                />
+                <label
+                  htmlFor={`profile-tab-${section.id}`}
+                  className="profile-tab-label"
+                  role="tab"
+                  aria-selected={activeSection === section.id}
+                  tabIndex={activeSection === section.id ? 0 : -1}
+                >
+                  <span>{t(`profile.${section.key}`)}</span>
+                </label>
+              </div>
+            ))}
+            <div
+              className="profile-tab-bar"
+              aria-hidden="true"
+              style={{ transform: `translateX(${SECTIONS.findIndex((section) => section.id === activeSection) * 100}%)` }}
+            />
+            <div
+              className="profile-tab-slidebar"
+              aria-hidden="true"
+              style={{ transform: `translateX(${SECTIONS.findIndex((section) => section.id === activeSection) * 100}%)` }}
+            />
+          </div>
+        </div>
+
+        <div className="profile-layout">
+          <div className="profile-content">
+
 
             {sectionError && (
               <ProfileError
