@@ -81,6 +81,7 @@ export default function Quiz() {
   const [streak, setStreak] = useState(0);
   const [timeLeft, setTimeLeft] = useState(null);
   const [answerSubmitting, setAnswerSubmitting] = useState(false);
+  const [answerFeedback, setAnswerFeedback] = useState(null);
   const [startingBlock, setStartingBlock] = useState(false);
   const [blockSubmitting, setBlockSubmitting] = useState(false);
   const [checkingMessage, setCheckingMessage] = useState('Checking your answer');
@@ -356,6 +357,7 @@ export default function Quiz() {
   const selectAnswer = async (optionLetter) => {
     if (locked || userAnswers[currentIndex] !== null || answerSubmitting) return;
 
+    setAnswerFeedback(null);
     setAnswerSubmitting(true);
 
     const question = quizQuestions[currentIndex];
@@ -385,6 +387,9 @@ export default function Quiz() {
       };
 
       setUserAnswers(newAnswers);
+      // Keep the result visible briefly so the SVG can animate before auto-advance.
+      setAnswerFeedback(result.correct ? 'correct' : 'wrong');
+      await new Promise((resolve) => setTimeout(resolve, 520));
 
       // The server activates monitoring when this answer is persisted.
       // Start the client listener only after that successful response.
@@ -399,6 +404,7 @@ export default function Quiz() {
       if (firstUnanswered !== -1 && firstUnanswered !== currentIndex) {
         navigateTo(firstUnanswered);
       }
+      setAnswerFeedback(null);
     } catch (error) {
       addToast(error.message || 'Failed to verify answer', 'error');
     } finally {
@@ -875,12 +881,18 @@ export default function Quiz() {
               Block {currentBlock + 1} • Q {currentIndex + 1}/{quizQuestions.length} • {currentTopic}
             </p>
 
-            {answerSubmitting && (
+            {(answerSubmitting || answerFeedback) && (
               <div className="quiz-answering-indicator" role="status" aria-live="polite">
                 <div className="quiz-answer-loader" aria-hidden="true">
-                  <QuizAnswerLoader status="checking" size={72} />
+                  <QuizAnswerLoader status={answerFeedback || 'checking'} size={72} />
                 </div>
-                <span className="quiz-spinner-label">{checkingMessage}</span>
+                <span className="quiz-spinner-label">
+                  {answerFeedback === 'correct'
+                    ? 'Correct answer'
+                    : answerFeedback === 'wrong'
+                      ? 'Review this answer'
+                      : checkingMessage}
+                </span>
               </div>
             )}
 
