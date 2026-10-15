@@ -3,6 +3,7 @@ import { createContext, useContext, useState, useEffect, useMemo, useCallback } 
 import { useAuth } from './AuthContext';
 import { bootstrapPlatform, getAllSiteSections, switchClass, updatePreferences } from '../api/cachedClient';
 import { getCachedStale } from '../utils/cache';
+import GlobalLoader from '../components/GlobalLoader/GlobalLoader';
 
 export const LayoutContext = createContext(null);
 
@@ -363,9 +364,30 @@ export function LayoutProvider({ children }) {
     uiPreferences
   ]);
 
+  // The full-screen loader is a one-time app-start experience. Once it has
+  // finished, later route changes or background refreshes never show it again.
+  const [loaderCycleComplete, setLoaderCycleComplete] = useState(false);
+  const [initialLoaderFinished, setInitialLoaderFinished] = useState(false);
+
+  const handleLoaderAnimationComplete = useCallback(() => {
+    setLoaderCycleComplete(true);
+  }, []);
+
+  useEffect(() => {
+    if (!initialLoaderFinished && loaderCycleComplete && !authLoading && !loading) {
+      setInitialLoaderFinished(true);
+    }
+  }, [initialLoaderFinished, loaderCycleComplete, authLoading, loading]);
+
   return (
     <LayoutContext.Provider value={value}>
       {children}
+      {!initialLoaderFinished && (
+        <GlobalLoader
+          tagline="Welcome to biology & pharmacy"
+          onAnimationComplete={handleLoaderAnimationComplete}
+        />
+      )}
     </LayoutContext.Provider>
   );
 }
