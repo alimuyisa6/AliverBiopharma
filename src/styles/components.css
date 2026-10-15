@@ -46,22 +46,6 @@
 @import './newsletter.css';
 
 
-.global-loader {
-  position: fixed;
-  inset: 0;
-  z-index: var(--z-modal);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-}
-
-.global-loader .spinner {
-  flex: 0 0 auto;
-}
-
 /* Loading primitives ---------------------------------------------------- */
 .spinner {
   display: inline-flex;
@@ -174,7 +158,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   /* Loading indicators remain animated so active work is visible. */
-  .spinner:not(.spinner-pencil),
+  .spinner,
   .skeleton {
     animation-duration: revert !important;
     animation-iteration-count: infinite !important;
