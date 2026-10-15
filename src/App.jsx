@@ -1,5 +1,6 @@
  /* src/App.jsx */
 import { Routes, Route, useLocation } from 'react-router-dom';
+import NotFoundPage from './components/NotFoundPage';
 import { useState, useEffect } from 'react';
 import { ProtectedRoute } from './contexts/AuthContext';
 import { LayoutProvider, useLayout } from './contexts/LayoutContext';
@@ -84,20 +85,6 @@ function FeatureRoute({ feature, children }) {
   return <MaintenanceBoundary boundaryKey={feature}>{children}</MaintenanceBoundary>;
 }
 
-function NotFoundPage() {
-  return (
-    <div className="section not-found-section">
-      <div className="card not-found-card">
-        <img
-          src="/images/illustrations/404.png"
-          alt="Page not found"
-          className="not-found-illustration"
-        />
-        <a href="/" className="btn btn-primary">Return home</a>
-      </div>
-    </div>
-  );
-}
 
 function AppRoutes() {
   const location = useLocation();
