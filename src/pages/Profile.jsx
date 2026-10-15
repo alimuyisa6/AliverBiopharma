@@ -186,13 +186,73 @@ function logProfileError(context, error) {
   console.error(`[PROFILE] ${context}`, error);
 }
 
+
+/**
+ * AliverBiopharm's profile-only illustration glyphs.
+ * Each symbol is purpose-drawn for its meaning and uses the active brand palette.
+ */
+function AliverProfileGlyph({ name, style }) {
+  const common = {
+    viewBox: '0 0 40 40',
+    width: '1em',
+    height: '1em',
+    fill: 'none',
+    'aria-hidden': true,
+    focusable: 'false',
+    style: { flexShrink: 0, overflow: 'visible', ...style },
+  };
+  const blue = 'var(--palette-blue, var(--primary, currentColor))';
+  const mint = 'var(--palette-mint, var(--accent, currentColor))';
+  const stroke = { stroke: 'currentColor', strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round' };
+  switch (name) {
+    case 'alert-circle':
+      return <svg {...common}><path d="M20 4.5 34 12v16L20 35.5 6 28V12L20 4.5Z" {...stroke}/><path d="M20 12v10" stroke={blue} strokeWidth="2.4" strokeLinecap="round"/><circle cx="20" cy="27" r="1.6" fill={mint}/><path d="M10 14.5 20 9l10 5.5" stroke={mint} strokeWidth="1.3" strokeLinecap="round"/></svg>;
+    case 'user':
+      return <svg {...common}><path d="M7 31c2.2-6 6.5-9 13-9s10.8 3 13 9" {...stroke}/><path d="M20 19.5c4.1 0 7.1-3.2 7.1-7.2S24.1 5 20 5s-7.1 3.3-7.1 7.3 3 7.2 7.1 7.2Z" {...stroke}/><path d="M5 17V9l3-2.5m27 10.5V9L32 6.5" stroke={mint} strokeWidth="1.5" strokeLinecap="round"/><circle cx="20" cy="12.5" r="2" fill={blue}/></svg>;
+    case 'graduation-cap':
+      return <svg {...common}><path d="m3.5 13.5 16.5-8 16.5 8L20 22l-16.5-8.5Z" {...stroke}/><path d="M10 17v8.2c5.8 5 14.2 5 20 0V17M36.5 14v10" {...stroke}/><circle cx="36.5" cy="26.5" r="2" fill={mint}/><path d="M14 11.5 20 8.7l6 2.8" stroke={blue} strokeWidth="1.5" strokeLinecap="round"/></svg>;
+    case 'id-card':
+      return <svg {...common}><rect x="4.5" y="7" width="31" height="26" rx="4" {...stroke}/><circle cx="13.5" cy="17" r="4" stroke={blue} strokeWidth="1.7"/><path d="M7.5 27c1.2-3 3.2-4.4 6-4.4s4.8 1.4 6 4.4M23 15h7m-7 5h7m-7 5h4" {...stroke}/><path d="m28 7 3 3" stroke={mint} strokeWidth="2" strokeLinecap="round"/></svg>;
+    case 'pen':
+      return <svg {...common}><path d="m8 28-1.5 6.5L13 33l19-19-5-5L8 28Z" {...stroke}/><path d="m23.5 12.5 5 5M7 34.5l6-1.5" stroke={blue} strokeWidth="1.7" strokeLinecap="round"/><path d="m25 7 3-3 8 8-3 3" stroke={mint} strokeWidth="1.7" strokeLinejoin="round"/><path d="M6 7h11M6 12h7" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity=".6"/></svg>;
+    case 'route':
+      return <svg {...common}><path d="M8 31c0-6 8-6 8-12S8 14 8 9m24 22c0-6-8-6-8-12s8-5 8-10" {...stroke}/><circle cx="8" cy="7" r="3" stroke={mint} strokeWidth="1.8"/><circle cx="32" cy="7" r="3" stroke={blue} strokeWidth="1.8"/><path d="M16 20h8m-4-4 4 4-4 4" stroke={mint} strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/><circle cx="20" cy="32" r="2" fill={blue}/></svg>;
+    case 'bell':
+      return <svg {...common}><path d="M10 27h20l-3-4v-7c0-5-2.7-8-7-8s-7 3-7 8v7l-3 4Z" {...stroke}/><path d="M16 31c1.5 3 6.5 3 8 0" stroke={blue} strokeWidth="1.8" strokeLinecap="round"/><path d="M7 15c0-4 2-7 5-9m21 9c0-4-2-7-5-9" stroke={mint} strokeWidth="1.6" strokeLinecap="round"/><circle cx="29" cy="8" r="3" fill={mint} stroke="var(--surface-card, white)" strokeWidth="1.2"/></svg>;
+    case 'key':
+      return <svg {...common}><circle cx="14" cy="17" r="8" {...stroke}/><circle cx="14" cy="17" r="2.5" stroke={mint} strokeWidth="1.6"/><path d="m20 22 12 12m-4-4 4-4m-8 0 4-4" {...stroke}/><path d="M9 8.5 12 5" stroke={blue} strokeWidth="2" strokeLinecap="round"/></svg>;
+    case 'fingerprint':
+      return <svg {...common}><path d="M9 18c0-7 4-11 11-11s11 4 11 11m-26 1c0-9 5-15 15-15s15 6 15 15M14 20c0-4 2-6 6-6s6 2 6 6c0 7-2 11-5 14m-12-8c1-3 1-5 1-7m19 0c0 5-1 10-4 14M18 21c0 5-1 8-3 11" {...stroke}/><path d="M20 19v5" stroke={mint} strokeWidth="2.2" strokeLinecap="round"/><circle cx="20" cy="16" r="2" fill={blue}/></svg>;
+    case 'laptop':
+      return <svg {...common}><rect x="7" y="6" width="26" height="21" rx="2.5" {...stroke}/><path d="M3.5 31h33l-3-4H6.5l-3 4Z" {...stroke}/><path d="M12 12h10m-10 4h7" stroke={blue} strokeWidth="1.5" strokeLinecap="round"/><circle cx="27.5" cy="18.5" r="2.5" stroke={mint} strokeWidth="1.6"/><path d="M25 22h5" stroke={mint} strokeWidth="1.5" strokeLinecap="round"/></svg>;
+    case 'sliders':
+      return <svg {...common}><path d="M7 8h26M7 20h26M7 32h26" {...stroke}/><circle cx="15" cy="8" r="3.5" fill="var(--surface-card, white)" stroke={blue} strokeWidth="2"/><circle cx="25" cy="20" r="3.5" fill="var(--surface-card, white)" stroke={mint} strokeWidth="2"/><circle cx="13" cy="32" r="3.5" fill="var(--surface-card, white)" stroke="currentColor" strokeWidth="1.8"/></svg>;
+    case 'gift':
+      return <svg {...common}><rect x="6" y="17" width="28" height="18" rx="2" {...stroke}/><path d="M4 12h32v6H4zM20 12v23" {...stroke}/><path d="M20 12c-9 0-12-3-9-6 3-3 7 1 9 6Zm0 0c9 0 12-3 9-6-3-3-7 1-9 6Z" stroke={blue} strokeWidth="1.7" strokeLinejoin="round"/><path d="M8 23h8m8 0h8" stroke={mint} strokeWidth="1.4" strokeLinecap="round"/></svg>;
+    case 'user-group':
+      return <svg {...common}><circle cx="15" cy="13" r="5" {...stroke}/><circle cx="28" cy="15" r="4" stroke={blue} strokeWidth="1.7"/><path d="M4.5 31c.8-5.2 4.3-8 10.5-8s9.7 2.8 10.5 8m-1.5-7c5.8-.8 9.4 1.6 10.5 6.2" {...stroke}/><path d="M20 5v4m-2-2h4" stroke={mint} strokeWidth="1.5" strokeLinecap="round"/></svg>;
+    case 'credit-card':
+      return <svg {...common}><rect x="4" y="8" width="32" height="24" rx="4" {...stroke}/><path d="M4.5 15h31" stroke={blue} strokeWidth="3"/><path d="M9 24h8m-8 4h5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/><circle cx="29" cy="25" r="3.5" stroke={mint} strokeWidth="1.8"/><path d="m27.5 25 1 1 2-2" stroke={mint} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>;
+    case 'award':
+      return <svg {...common}><path d="m11 22-2 13 11-5 11 5-2-13" stroke={blue} strokeWidth="1.8" strokeLinejoin="round"/><circle cx="20" cy="15" r="10" {...stroke}/><path d="m20 8 2.1 4.4 4.9.7-3.5 3.4.8 4.9-4.3-2.3-4.3 2.3.8-4.9-3.5-3.4 4.9-.7L20 8Z" stroke={mint} strokeWidth="1.5" strokeLinejoin="round"/></svg>;
+    case 'terminal':
+      return <svg {...common}><rect x="4.5" y="6" width="31" height="28" rx="3" {...stroke}/><path d="M5 12h30" stroke={blue} strokeWidth="2"/><path d="m10 18 5 4-5 4m9 0h8" stroke={mint} strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"/><circle cx="9" cy="9" r="1" fill={mint}/><circle cx="13" cy="9" r="1" fill={blue}/></svg>;
+    case 'webhook':
+      return <svg {...common}><path d="M15 10a7 7 0 0 1 13 2m-1 9a7 7 0 0 1-12 5m-7-4a7 7 0 0 1 0-12" {...stroke}/><circle cx="13" cy="10" r="4" stroke={blue} strokeWidth="1.8"/><circle cx="28" cy="13" r="4" stroke={mint} strokeWidth="1.8"/><circle cx="18" cy="27" r="4" stroke="currentColor" strokeWidth="1.8"/><path d="m16 13 5 8m4-4-4 6" stroke={blue} strokeWidth="1.5" strokeLinecap="round"/><circle cx="13" cy="10" r="1.2" fill={mint}/></svg>;
+    case 'shield':
+      return <svg {...common}><path d="M20 4 33 9v9c0 8-5.3 13.8-13 18-7.7-4.2-13-10-13-18V9l13-5Z" {...stroke}/><path d="M20 10v18" stroke={blue} strokeWidth="1.4" strokeDasharray="2.5 3"/><path d="m13.5 19.5 4.2 4 8.8-9" stroke={mint} strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round"/><circle cx="29" cy="9.5" r="2" fill={blue}/></svg>;
+    default:
+      return <svg {...common}><circle cx="20" cy="20" r="13" {...stroke}/><path d="m13 20 5 5 9-11" stroke={mint} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>;
+  }
+}
+
 function ProfileError({ error, title = 'Unable to load this section', onRetry, t }) {
   if (!error) return null;
 
   return (
     <div className="profile-error" role="alert" aria-live="assertive">
       <div className="profile-error-icon">
-        <Icon name="alert-circle" />
+        <AliverProfileGlyph name="alert-circle" />
       </div>
       <div className="profile-error-body">
         <h4 style={{ color: THEME.error, fontFamily: THEME.font, margin: 0 }}>{title}</h4>
@@ -956,7 +1016,7 @@ export default function Profile() {
             <section className="profile-overview-panel" aria-labelledby="profile-overview-title">
               <div className="profile-overview-heading">
                 <span className="profile-overview-icon" aria-hidden="true">
-                  <Icon name="user" />
+                  <AliverProfileGlyph name="user" />
                 </span>
                 <div>
                   <h2 id="profile-overview-title">Profile Overview</h2>
@@ -976,7 +1036,7 @@ export default function Profile() {
                   <div className="profile-summary-name">
                     <h3>{profileMeta?.display_name || profileMeta?.full_name || user?.email || 'Student'}</h3>
                     <p>
-                      <Icon name="graduation-cap" />
+                      <AliverProfileGlyph name="graduation-cap" />
                       <span>{profileMeta?.role === 'teacher' ? 'Teacher' : profileMeta?.track || 'Student'}</span>
                     </p>
                     <span className="profile-summary-status">
@@ -1090,7 +1150,7 @@ export default function Profile() {
                 <form onSubmit={handleProfileSubmit}>
                   <Card variant="inset" className="profile-card-main card-lifted">
                     <h3 className="profile-detail-title">
-                      <Icon name="id-card" />
+                      <AliverProfileGlyph name="id-card" />
                       Personal Information
                     </h3>
                     <p className="profile-detail-description">
@@ -1116,7 +1176,7 @@ export default function Profile() {
                 <form onSubmit={handleBioSubmit}>
                   <Card variant="inset" className="profile-card card-lifted">
                     <h3 className="profile-detail-title">
-                      <Icon name="pen" />
+                      <AliverProfileGlyph name="pen" />
                       Professional Biography
                     </h3>
                     <p className="profile-detail-description">
@@ -1143,7 +1203,7 @@ export default function Profile() {
             {activeSection === 'curriculum' && (
               <Card variant="inset" className="profile-card card-lifted">
                 <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
-                  <Icon name="route" style={{ color: 'var(--accent)' }} />
+                  <AliverProfileGlyph name="route" style={{ color: 'var(--accent)' }} />
                   Learning Curriculum
                 </h3>
                 <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
@@ -1200,7 +1260,7 @@ export default function Profile() {
             {activeSection === 'notifications' && (
               <Card variant="inset" className="profile-card card-lifted">
                 <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
-                  <Icon name="bell" style={{ color: THEME.accent }} />
+                  <AliverProfileGlyph name="bell" style={{ color: THEME.accent }} />
                   Notifications
                 </h3>
                 <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
@@ -1240,7 +1300,7 @@ export default function Profile() {
               <form onSubmit={handlePasswordSubmit}>
                 <Card variant="inset" className="profile-card card-lifted">
                   <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
-                    <Icon name="key" style={{ color: 'var(--warning)' }} />
+                    <AliverProfileGlyph name="key" style={{ color: 'var(--warning)' }} />
                     Password & Security
                   </h3>
                   <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
@@ -1301,7 +1361,7 @@ export default function Profile() {
 
               <Card variant="inset" className="profile-card card-lifted">
                 <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
-                  <Icon name="fingerprint" style={{ color: THEME.accent }} />
+                  <AliverProfileGlyph name="fingerprint" style={{ color: THEME.accent }} />
                   Passkeys
                 </h3>
                 <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
@@ -1384,7 +1444,7 @@ export default function Profile() {
             {activeSection === 'devices' && (
               <Card variant="inset" className="profile-card card-lifted">
                 <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
-                  <Icon name="laptop" style={{ color: THEME.accent }} />
+                  <AliverProfileGlyph name="laptop" style={{ color: THEME.accent }} />
                   Connected Devices
                 </h3>
                 <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
@@ -1427,7 +1487,7 @@ export default function Profile() {
             {activeSection === 'preferences' && (
               <Card variant="inset" className="profile-card card-lifted">
                 <h3 className="profile-preferences-title">
-                  <Icon name="sliders" style={{ color: 'var(--secondary)' }} />
+                  <AliverProfileGlyph name="sliders" style={{ color: 'var(--secondary)' }} />
                   {t('profile.preferencesTheme')}
                 </h3>
                 <p className="profile-preferences-description">
@@ -1653,7 +1713,7 @@ export default function Profile() {
             {activeSection === 'referral' && (
               <Card variant="inset" className="profile-card card-lifted">
                 <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
-                  <Icon name="gift" style={{ color: 'var(--accent)' }} />
+                  <AliverProfileGlyph name="gift" style={{ color: 'var(--accent)' }} />
                   {t('profile.referralProgram')}
                 </h3>
                 <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
@@ -1699,7 +1759,7 @@ export default function Profile() {
               <form onSubmit={handleSaveGuardian}>
                 <Card variant="inset" className="profile-card card-lifted">
                   <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
-                    <Icon name="user-group" style={{ color: THEME.accent }} />
+                    <AliverProfileGlyph name="user-group" style={{ color: THEME.accent }} />
                     {t('profile.parentGuardianInformation')}
                   </h3>
                   <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
@@ -1741,7 +1801,7 @@ export default function Profile() {
             {activeSection === 'billing' && (
               <Card variant="inset" className="profile-card card-lifted">
                 <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
-                  <Icon name="credit-card" style={{ color: THEME.success }} />
+                  <AliverProfileGlyph name="credit-card" style={{ color: THEME.success }} />
                   {t('profile.billingPayments')}
                 </h3>
                 <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
@@ -1776,7 +1836,7 @@ export default function Profile() {
             {activeSection === 'certificates' && (
               <Card variant="inset" className="profile-card card-lifted">
                 <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
-                  <Icon name="award" style={{ color: 'var(--accent)' }} />
+                  <AliverProfileGlyph name="award" style={{ color: 'var(--accent)' }} />
                   {t('profile.certificatesEarned')}
                 </h3>
                 <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
@@ -1823,7 +1883,7 @@ export default function Profile() {
             {activeSection === 'api' && (
               <Card variant="inset" className="profile-card card-lifted">
                 <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
-                  <Icon name="terminal" style={{ color: THEME.accent }} />
+                  <AliverProfileGlyph name="terminal" style={{ color: THEME.accent }} />
                   {t('profile.apiAccess')}
                 </h3>
                 <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
@@ -1872,7 +1932,7 @@ export default function Profile() {
             {activeSection === 'webhooks' && (
               <Card variant="inset" className="profile-card card-lifted">
                 <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
-                  <Icon name="webhook" style={{ color: 'var(--secondary)' }} />
+                  <AliverProfileGlyph name="webhook" style={{ color: 'var(--secondary)' }} />
                   {t('profile.webhooks')}
                 </h3>
                 <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
@@ -1942,7 +2002,7 @@ export default function Profile() {
             {activeSection === 'account' && (
               <Card variant="inset" className="profile-card card-lifted">
                 <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
-                  <Icon name="shield" style={{ color: THEME.error }} />
+                  <AliverProfileGlyph name="shield" style={{ color: THEME.error }} />
                   {t('profile.accountData')}
                 </h3>
                 <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
