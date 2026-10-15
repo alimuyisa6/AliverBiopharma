@@ -94,6 +94,16 @@ import Card from '../components/Card/Card';
 import Modal from '../components/Modal/Modal';
 import { useI18n } from '../contexts/I18nContext';
 
+function formatQuizRetryTime(retryAt) {
+  if (!retryAt) return 'Retry later';
+  const remaining = new Date(retryAt).getTime() - Date.now();
+  if (!Number.isFinite(remaining) || remaining <= 0) return 'Retry';
+  const totalMinutes = Math.ceil(remaining / 60000);
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+  return hours > 0 ? 'Retry in ' + hours + 'h ' + minutes + 'm' : 'Retry in ' + minutes + 'm';
+}
+
 function createIdempotencyKey(prefix = 'quiz') {
   try {
     return `${prefix}_${crypto.randomUUID()}`;
@@ -509,7 +519,9 @@ export default function Quiz() {
             question_count: topicsRes.total_questions || 0,
             total_blocks: topicsRes.total_blocks || 0,
             completed_blocks: topicsRes.completed_blocks || [],
+            failed_blocks: topicsRes.failed_blocks || [],
             locked_blocks: topicsRes.locked_blocks || [],
+            retry_after: topicsRes.retry_after || {},
             all_done: topicsRes.all_done || false
           }] : [])
         : (Array.isArray(topicsRes?.topics) ? topicsRes.topics : []));
@@ -591,10 +603,11 @@ export default function Quiz() {
       setCurrentIndex(0);
       setResultData(null);
       setTimeLeft(data.time_left ?? 600);
-    } catch {
-      addToast('Failed to load block', 'error');
+    } catch (error) {
+      addToast(error?.message || 'Failed to load block', 'error');
     } finally {
       setLoading(false);
+      setStartingBlock(false);
     }
   };
 
@@ -637,17 +650,23 @@ export default function Quiz() {
             {Array.from({ length: blockCount }).map((_, index) => {
               const failed = topicData?.failed_blocks?.includes(index);
               const passed = topicData?.completed_blocks?.includes(index);
-              const finished = passed || failed;
+              const retryLocked = topicData?.locked_blocks?.includes(index);
+              const retryLabel = formatQuizRetryTime(topicData?.retry_after?.[index]);
               return (
                 <button
                   key={index}
                   className={`btn ${passed ? 'btn-success' : failed ? 'btn-danger' : 'btn-secondary'} quiz-block-status-button`}
-                  disabled={finished || locked}
+                  disabled={passed || retryLocked || locked}
                   onClick={() => startBlock(index)}
+                  title={retryLocked ? retryLabel : undefined}
                 >
                   <span>Block {index + 1}</span>
                   {passed && <span className="quiz-block-status-label">Passed</span>}
-                  {failed && <span className="quiz-block-status-label">Failed</span>}
+                  {failed && (
+                    <span className="quiz-block-status-label">
+                      {retryLocked ? retryLabel : 'Retry'}
+                    </span>
+                  )}
                 </button>
               );
             })}
@@ -1053,18 +1072,24 @@ export default function Quiz() {
                 const topicData = allTopics.find((topic) => topic.topic_name === currentTopic);
                 const failed = topicData?.failed_blocks?.includes(index);
                 const passed = topicData?.completed_blocks?.includes(index);
-                const finished = passed || failed;
+                const retryLocked = topicData?.locked_blocks?.includes(index);
+                const retryLabel = formatQuizRetryTime(topicData?.retry_after?.[index]);
 
                 return (
                   <button
                     key={index}
                     className={`btn ${passed ? 'btn-success' : failed ? 'btn-danger' : 'btn-secondary'} quiz-block-status-button`}
-                    disabled={finished || locked}
+                    disabled={passed || retryLocked || locked}
                     onClick={() => startBlock(index)}
+                    title={retryLocked ? retryLabel : undefined}
                   >
                     <span>Block {index + 1}</span>
                     {passed && <span className="quiz-block-status-label">Passed</span>}
-                    {failed && <span className="quiz-block-status-label">Failed</span>}
+                    {failed && (
+                      <span className="quiz-block-status-label">
+                        {retryLocked ? retryLabel : 'Retry'}
+                      </span>
+                    )}
                   </button>
                 );
               })}
