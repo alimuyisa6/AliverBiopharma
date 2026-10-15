@@ -28,6 +28,7 @@ import QuizLearningPath from '../components/quiz/QuizLearningPath';
 import QuizWeakAreas from '../components/quiz/QuizWeakAreas';
 import Icon from '../components/Icon/Icon';
 import Spinner from '../components/Spinner/Spinner';
+import QuizAnswerLoader from '../components/quiz/QuizAnswerLoader';
 import ProgressBar from '../components/ProgressBar/ProgressBar';
 import Button from '../components/Button/Button';
 import Card from '../components/Card/Card';
@@ -877,7 +878,7 @@ export default function Quiz() {
             {answerSubmitting && (
               <div className="quiz-answering-indicator" role="status" aria-live="polite">
                 <div className="quiz-answer-loader" aria-hidden="true">
-                  <div className="quiz-answer-loader-dot"></div><div className="quiz-answer-loader-dot"></div><div className="quiz-answer-loader-dot"></div><div className="quiz-answer-loader-dot"></div><div className="quiz-answer-loader-dot"></div><div className="quiz-answer-loader-dot"></div><div className="quiz-answer-loader-dot"></div><div className="quiz-answer-loader-dot"></div><div className="quiz-answer-loader-dot"></div><div className="quiz-answer-loader-dot"></div><div className="quiz-answer-loader-dot"></div><div className="quiz-answer-loader-dot"></div>
+                  <QuizAnswerLoader status="checking" size={72} />
                 </div>
                 <span className="quiz-spinner-label">{checkingMessage}</span>
               </div>
