@@ -1,5 +1,6 @@
  import { useState, useEffect } from 'react';
 import { useLayout } from '../contexts/LayoutContext';
+import Spinner from '../components/Spinner/Spinner';
 
 function RichText({ text }) {
   const TOKEN_RE = /([a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,})|((https?:\/\/)[^\s<>"']+)/g;
@@ -35,7 +36,7 @@ export default function LegalPage({ type }) {
   if (loading || !sections) {
     return (
       <div className="info-page-loading">
-        <div className="info-page-spinner" />
+        <Spinner size="lg" />
         <p>Loading...</p>
       </div>
     );
