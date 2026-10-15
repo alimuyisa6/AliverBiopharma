@@ -1092,3 +1092,98 @@
   }
 }
 
+/* Follow-up: remove the page's remaining top offset and give every section tab
+   its own raised-edge / recessed-card treatment without compressing labels. */
+.profile-page > .page-container {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.profile-page .page-header {
+  margin-block-start: 0 !important;
+  padding-block-start: 0 !important;
+}
+
+.profile-page .profile-tabs {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: var(--space-1);
+  box-sizing: border-box;
+  scrollbar-width: thin;
+}
+
+.profile-page .profile-tabs-wrap {
+  display: flex;
+  width: max-content;
+  min-width: 100%;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  box-sizing: border-box;
+  border-radius: var(--radius-card);
+  background: var(--surface-subtle);
+}
+
+.profile-page .profile-tab-item {
+  flex: 0 0 auto;
+  min-width: max-content;
+}
+
+.profile-page .profile-tab-label {
+  min-width: max-content;
+  min-height: var(--control-height-md);
+  padding-inline: var(--space-4);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--surface-card);
+  color: var(--text-secondary);
+  box-shadow:
+    inset 2px 2px 4px color-mix(in srgb, var(--text-main) 7%, transparent),
+    inset -2px -2px 4px color-mix(in srgb, var(--surface-card) 95%, transparent),
+    0 1px 2px color-mix(in srgb, var(--text-main) 5%, transparent);
+}
+
+.profile-page .profile-tab-label:hover {
+  border-color: color-mix(in srgb, var(--palette-blue, var(--primary)) 35%, var(--border-default));
+  background: color-mix(in srgb, var(--palette-blue, var(--primary)) 7%, var(--surface-card));
+}
+
+.profile-page .profile-tab-radio:checked + .profile-tab-label {
+  border-color: color-mix(in srgb, var(--palette-blue, var(--primary)) 48%, var(--border-default));
+  background: var(--primary);
+  color: var(--text-on-primary);
+  box-shadow:
+    inset 1px 1px 2px color-mix(in srgb, var(--text-main) 14%, transparent),
+    0 2px 4px color-mix(in srgb, var(--primary) 20%, transparent);
+}
+
+.profile-page .profile-tab-bar,
+.profile-page .profile-tab-slidebar {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .profile-page .page-header {
+    padding-block-start: 0 !important;
+    margin-block-start: 0 !important;
+  }
+
+  .profile-page .profile-tabs {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .profile-page .profile-tabs-wrap {
+    min-width: max-content;
+    gap: var(--space-2);
+  }
+
+  .profile-page .profile-tab-item {
+    flex: 0 0 auto;
+    min-width: max-content;
+  }
+}
+
