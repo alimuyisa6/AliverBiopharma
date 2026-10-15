@@ -1187,3 +1187,20 @@
   }
 }
 
+/* Keep the profile overview as the first visible page section. */
+.profile-page > .page-container {
+  padding-block-start: 0 !important;
+}
+
+.profile-page > .page-container > .page-header {
+  display: none;
+}
+
+.profile-page > .page-container > .profile-overview-panel {
+  margin-block-start: 0 !important;
+}
+
+.profile-page > .page-container > .profile-tabs {
+  margin-block-start: var(--space-3);
+}
+
