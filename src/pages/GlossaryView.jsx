@@ -1,5 +1,6 @@
  /* pages/GlossaryView.jsx */
 import { Link } from 'react-router-dom';
+import Spinner from '../components/Spinner/Spinner';
 
 export default function GlossaryView({
   user,
@@ -23,7 +24,14 @@ export default function GlossaryView({
   onClearSearch
 }) {
   if (loading && terms.length === 0) {
-    return null;
+    return (
+      <div className="glossary-page glossary-initial-loading">
+        <div className="glossary-loading-state" role="status" aria-live="polite">
+          <Spinner size="lg" />
+          <p>Loading terms...</p>
+        </div>
+      </div>
+    );
   }
 
   const levelColor = getLevelColor(selectedLevel);
@@ -101,11 +109,7 @@ export default function GlossaryView({
             <div className="glossary-terms-list">
               {loading ? (
                 <div className="glossary-loading-state">
-                  <div className="glossary-loading-spinner">
-                    <div className="spinner-dot dot-magenta"></div>
-                    <div className="spinner-dot dot-cyan"></div>
-                    <div className="spinner-dot dot-orange"></div>
-                  </div>
+                  <Spinner size="lg" />
                   <p>Loading terms...</p>
                 </div>
               ) : Object.keys(groupedTerms).length === 0 ? (
@@ -166,11 +170,7 @@ export default function GlossaryView({
             </div>
           ) : termLoading ? (
             <div className="glossary-loading-state glossary-term-loading">
-              <div className="glossary-loading-spinner">
-                <div className="spinner-dot dot-magenta"></div>
-                <div className="spinner-dot dot-cyan"></div>
-                <div className="spinner-dot dot-orange"></div>
-              </div>
+              <Spinner size="lg" />
               <p>Loading {activeTerm.term}...</p>
             </div>
           ) : termContent ? (
