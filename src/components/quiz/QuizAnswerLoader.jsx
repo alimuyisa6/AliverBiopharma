@@ -7,7 +7,7 @@ const RING = [
 
 const TICK = [
   [20, 52], [24, 56], [28, 60], [32, 64], [36, 68], [40, 72],
-  [48, 62], [56, 52], [64, 42], [72, 32], [78, 24], [84, 16],
+  [44, 61], [48, 50], [52, 39], [56, 28], [60, 17], [62, 12],
 ];
 
 const CROSS = [
@@ -18,7 +18,7 @@ const CROSS = [
 const SHAPE_BY_STATUS = { checking: RING, correct: TICK, wrong: CROSS };
 
 const PATH_BY_STATUS = {
-  correct: 'M20 52L40 72L84 16',
+  correct: 'M20 52L40 72L62 12',
   wrong: 'M28 28L72 72M72 28L28 72',
 };
 
