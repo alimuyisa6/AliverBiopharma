@@ -29,6 +29,65 @@ import QuizWeakAreas from '../components/quiz/QuizWeakAreas';
 import Icon from '../components/Icon/Icon';
 import Spinner from '../components/Spinner/Spinner';
 import QuizAnswerLoader from '../components/quiz/QuizAnswerLoader';
+
+// Browser-native answer sounds. Prepare audio on the learner's tap for mobile autoplay rules.
+let quizAudioContext = null;
+
+function prepareQuizAnswerAudio() {
+  try {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) return;
+    if (!quizAudioContext || quizAudioContext.state === 'closed') {
+      quizAudioContext = new AudioContextClass();
+    }
+    if (quizAudioContext.state === 'suspended') {
+      quizAudioContext.resume().catch(() => {});
+    }
+  } catch {
+    // Audio is optional and must never interrupt quiz progress.
+  }
+}
+
+function playQuizAnswerSound(isCorrect) {
+  try {
+    const audio = quizAudioContext;
+    if (!audio || audio.state === 'closed') return;
+
+    const play = () => {
+      const now = audio.currentTime;
+      const gain = audio.createGain();
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.connect(audio.destination);
+
+      const notes = isCorrect
+        ? [{ frequency: 660, start: 0, duration: 0.12 }, { frequency: 880, start: 0.11, duration: 0.17 }]
+        : [{ frequency: 300, start: 0, duration: 0.15 }, { frequency: 220, start: 0.13, duration: 0.18 }];
+
+      notes.forEach(({ frequency, start, duration }) => {
+        const oscillator = audio.createOscillator();
+        const noteStart = now + start;
+        oscillator.type = isCorrect ? 'sine' : 'triangle';
+        oscillator.frequency.setValueAtTime(frequency, noteStart);
+        oscillator.connect(gain);
+        gain.gain.setValueAtTime(0.0001, noteStart);
+        gain.gain.exponentialRampToValueAtTime(isCorrect ? 0.12 : 0.09, noteStart + 0.018);
+        gain.gain.exponentialRampToValueAtTime(0.0001, noteStart + duration);
+        oscillator.start(noteStart);
+        oscillator.stop(noteStart + duration + 0.02);
+      });
+    };
+
+    if (audio.state === 'suspended') {
+      audio.resume().then(play).catch(() => {});
+    } else {
+      play();
+    }
+  } catch {
+    // Audio must never interrupt answer verification or quiz progression.
+  }
+}
+
+
 import ProgressBar from '../components/ProgressBar/ProgressBar';
 import Button from '../components/Button/Button';
 import Card from '../components/Card/Card';
@@ -357,6 +416,7 @@ export default function Quiz() {
   const selectAnswer = async (optionLetter) => {
     if (locked || userAnswers[currentIndex] !== null || answerSubmitting) return;
 
+    prepareQuizAnswerAudio();
     setAnswerFeedback(null);
     setAnswerSubmitting(true);
 
@@ -387,6 +447,7 @@ export default function Quiz() {
       };
 
       setUserAnswers(newAnswers);
+      playQuizAnswerSound(Boolean(result.correct));
       // Keep the result visible briefly so the SVG can animate before auto-advance.
       setAnswerFeedback(result.correct ? 'correct' : 'wrong');
       await new Promise((resolve) => setTimeout(resolve, 520));
