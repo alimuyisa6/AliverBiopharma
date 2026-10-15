@@ -22,7 +22,7 @@ import {
 
 import { getUser } from '../api/cachedClient';
 
-import Spinner from '../components/Spinner/Spinner';
+import GlobalLoader from '../components/GlobalLoader/GlobalLoader';
 
 export const AuthContext = createContext(null);
 
@@ -328,7 +328,7 @@ export function AuthProvider({ children }) {
         refresh
       }}
     >
-      {children}
+      {loading ? <GlobalLoader /> : children}
     </AuthContext.Provider>
   );
 }
@@ -374,9 +374,7 @@ export function ProtectedRoute({ children }) {
 
   if (loading) {
     return (
-      <div className="fcd-loading-wrap">
-        <Spinner size="lg" />
-      </div>
+      <GlobalLoader />
     );
   }
 
