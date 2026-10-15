@@ -1016,27 +1016,22 @@ export default function Profile() {
                   <button type="button" className="profile-category-card" onClick={() => selectSection('overview')}>
                     <span className="profile-category-icon profile-category-icon-primary"><Icon name="user" /></span>
                     <span>Personal Info</span>
-                    <Icon name="chevron-right" className="profile-category-arrow" />
                   </button>
                   <button type="button" className="profile-category-card" onClick={() => selectSection('curriculum')}>
                     <span className="profile-category-icon profile-category-icon-success"><Icon name="graduation-cap" /></span>
                     <span>Academic Details</span>
-                    <Icon name="chevron-right" className="profile-category-arrow" />
                   </button>
                   <button type="button" className="profile-category-card" onClick={() => selectSection('security')}>
                     <span className="profile-category-icon profile-category-icon-warning"><Icon name="shield" /></span>
                     <span>Security</span>
-                    <Icon name="chevron-right" className="profile-category-arrow" />
                   </button>
                   <button type="button" className="profile-category-card" onClick={() => selectSection('preferences')}>
                     <span className="profile-category-icon profile-category-icon-violet"><Icon name="gear" /></span>
                     <span>Preferences</span>
-                    <Icon name="chevron-right" className="profile-category-arrow" />
                   </button>
                   <button type="button" className="profile-category-card" onClick={() => selectSection('account')}>
                     <span className="profile-category-icon profile-category-icon-info"><Icon name="file-lines" /></span>
                     <span>Administrative</span>
-                    <Icon name="chevron-right" className="profile-category-arrow" />
                   </button>
                 </div>
               </div>
