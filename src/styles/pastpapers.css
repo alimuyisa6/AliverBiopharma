@@ -833,16 +833,16 @@
 }
 
 
-/* Premium corner ribbon adapted for the existing resource-card layout. */
-.pp-card-premium { overflow: hidden; }
+/* Premium corner ribbon sits over the card's outside corner, not clipped inside it. */
+.pp-card-premium { overflow: visible; }
 .pp-premium-ribbon {
   position: absolute;
   z-index: 3;
-  top: 0;
-  left: 0;
+  top: calc(var(--space-2) * -1);
+  left: calc(var(--space-2) * -1);
   width: var(--space-20);
   height: var(--space-20);
-  overflow: hidden;
+  overflow: visible;
   pointer-events: none;
 }
 .pp-premium-ribbon::before {
