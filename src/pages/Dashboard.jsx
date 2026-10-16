@@ -1034,7 +1034,7 @@ export default function Dashboard() {
                       <DonutChart data={recentActivityMix.map((item) => item.value)} labels={recentActivityMix.map((item) => item.label)} title="Recent learning mix" subtitle="The types of activity in your latest recorded learning history." height={220} />
                     </div>
                   )}
-                  <div className="sidebar-list" id="recent-activity-list">
+                  <div className="sidebar-list dashboard-activity-timeline" id="recent-activity-list">
                     {recentActivity.map((activity, index) => {
                       const progress = Math.max(0, Math.min(100, Math.round(Number(activity.progress_percentage) || 0)));
                       const contentLabel = activity.type === 'recall' ? 'Recall' : activity.type === 'quiz' ? 'Quiz' : 'Reading';
