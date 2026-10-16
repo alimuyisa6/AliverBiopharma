@@ -818,13 +818,13 @@ export default function PastPapers() {
                 className={`pp-card ${paper.is_premium ? 'pp-card-premium' : ''}`}
                 onClick={() => handlePaperOpen(paper)}
               >
+                {paper.is_premium && (
+                  <span className="pp-premium-ribbon" aria-label="Premium resource">
+                    <span aria-hidden="true" />
+                  </span>
+                )}
                 <div className="pp-card-icon">
                   <Icon name="file-pdf" />
-                  {paper.is_premium && (
-                    <span className="pp-premium-badge">
-                      <Icon name="crown" /> Premium
-                    </span>
-                  )}
                 </div>
                 <div className="pp-card-body">
                   <div className="pp-card-title-row">
