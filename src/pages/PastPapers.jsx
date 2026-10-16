@@ -773,9 +773,6 @@ export default function PastPapers() {
           <div className="pp-skeleton-grid">
             {Array.from({ length: 6 }, (_, index) => (
               <div key={index} className="pp-skeleton-card" aria-hidden="true">
-                <div className="pp-skeleton-icon">
-                  <Icon name="file-pdf" />
-                </div>
                 <div className="pp-skeleton-body">
                   <Skeleton width="80%" height={20} borderRadius="var(--radius-sm)" />
                   <Skeleton width="50%" height={14} borderRadius="var(--radius-sm)" />
@@ -823,9 +820,6 @@ export default function PastPapers() {
                     <span aria-hidden="true" />
                   </span>
                 )}
-                <div className="pp-card-icon">
-                  <Icon name="file-pdf" />
-                </div>
                 <div className="pp-card-body">
                   <div className="pp-card-title-row">
                     <h3 className="pp-card-title">{paper.title}</h3>
