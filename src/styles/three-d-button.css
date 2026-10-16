@@ -1,0 +1,104 @@
+/* Reusable 3D action button — inherits AliverBiopharm semantic theme tokens. */
+.btn-3d.three-d-button {
+  --u3d-button-min-height: var(--control-height-lg);
+  --u3d-radius: var(--radius-lg);
+  --u3d-depth: var(--space-2);
+  --u3d-press-layer-offset: var(--space-2);
+  --u3d-press-padding: var(--space-1);
+  --u3d-transition: var(--duration-fast);
+  --u3d-text: var(--text-on-primary);
+  --u3d-text-shadow: none;
+  --u3d-top-start: var(--primary);
+  --u3d-top-end: var(--primary-hover);
+  --u3d-bottom-start: var(--primary-hover);
+  --u3d-bottom-end: var(--primary);
+  --u3d-base: color-mix(in srgb, var(--primary) 20%, var(--surface-inverse));
+  --u3d-shadow: color-mix(in srgb, var(--palette-ink) 24%, transparent);
+  --u3d-highlight: color-mix(in srgb, var(--white) 42%, transparent);
+  min-height: var(--control-height-lg);
+  padding: 0;
+  color: var(--u3d-text);
+  vertical-align: middle;
+}
+
+.btn-3d.three-d-button .btn-3d__top {
+  min-height: var(--control-height-lg);
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--u3d-radius);
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-normal);
+}
+
+.btn-3d.three-d-button--soft {
+  --u3d-text: var(--primary);
+  --u3d-text-shadow: none;
+  --u3d-top-start: var(--primary-soft);
+  --u3d-top-end: var(--primary-light);
+  --u3d-bottom-start: var(--primary-border);
+  --u3d-bottom-end: var(--primary-light);
+  --u3d-base: color-mix(in srgb, var(--primary) 14%, var(--surface-card));
+  --u3d-shadow: color-mix(in srgb, var(--palette-ink) 12%, transparent);
+  --u3d-highlight: color-mix(in srgb, var(--white) 65%, transparent);
+}
+
+.btn-3d.three-d-button--muted {
+  --u3d-text: var(--text-main);
+  --u3d-text-shadow: none;
+  --u3d-top-start: var(--surface-muted);
+  --u3d-top-end: var(--surface-tinted);
+  --u3d-bottom-start: var(--border-default);
+  --u3d-bottom-end: var(--border-light);
+  --u3d-base: color-mix(in srgb, var(--text-main) 10%, var(--surface-card));
+  --u3d-shadow: color-mix(in srgb, var(--palette-ink) 10%, transparent);
+  --u3d-highlight: color-mix(in srgb, var(--white) 50%, transparent);
+}
+
+.btn-3d.three-d-button--sm,
+.btn-3d.three-d-button--sm .btn-3d__top {
+  min-height: var(--control-height-md);
+}
+
+.btn-3d.three-d-button--sm .btn-3d__top {
+  padding-inline: var(--space-4);
+  font-size: var(--text-sm);
+}
+
+.btn-3d.three-d-button--lg,
+.btn-3d.three-d-button--lg .btn-3d__top {
+  min-height: var(--control-height-lg);
+}
+
+.btn-3d.three-d-button--lg .btn-3d__top {
+  padding-inline: var(--space-6);
+  font-size: var(--text-lg);
+}
+
+.btn-3d.three-d-button:focus-visible {
+  outline: var(--focus-ring-width) solid var(--border-focus);
+  outline-offset: var(--space-2);
+  box-shadow: var(--shadow-focus);
+}
+
+.btn-3d.three-d-button:disabled {
+  opacity: 0.55;
+}
+
+@media (max-width: 480px) {
+  .btn-3d.three-d-button,
+  .btn-3d.three-d-button .btn-3d__top {
+    max-width: 100%;
+  }
+
+  .btn-3d.three-d-button .btn-3d__top {
+    padding-inline: var(--space-4);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-3d.three-d-button .btn-3d__top,
+  .btn-3d.three-d-button .btn-3d__bottom,
+  .btn-3d.three-d-button .btn-3d__base {
+    transition-duration: 0.01ms;
+  }
+}
