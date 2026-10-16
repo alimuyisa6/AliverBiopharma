@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Icon from '../components/Icon/Icon';
 import AdStepIcon from '../components/Advertising/AdStepIcon';
+import SlideToConfirmButton from '../components/buttons/slide-to-confirm-button';
 import {
 verifyAdPayment,
 getAdCampaigns,
@@ -121,7 +122,7 @@ return () => {
 }, [campaignPlacementId]);
 
 async function handleVerify(event) {
-event.preventDefault();
+event?.preventDefault?.();
 
 if (!paymentId.trim()) {
   setError('Enter the payment reference before continuing.');
@@ -155,6 +156,7 @@ try {
     requestError?.message ||
       'Payment could not be verified. Check the reference and try again.'
   );
+  throw requestError;
 } finally {
   setVerifying(false);
 }
@@ -370,15 +372,13 @@ Advertising
                   />
                 </label>
 
-                <button
-                  type="submit"
-                  className="btn btn-primary"
-                  disabled={verifying}
-                >
-                  {verifying
-                    ? 'Verifying…'
-                    : 'Verify payment'}
-                </button>
+                <SlideToConfirmButton
+                  label="Slide to verify payment"
+                  confirmLabel="Payment verification submitted"
+                  disabled={!paymentId.trim()}
+                  loading={verifying}
+                  onConfirm={() => handleVerify()}
+                />
               </form>
             )}
 
