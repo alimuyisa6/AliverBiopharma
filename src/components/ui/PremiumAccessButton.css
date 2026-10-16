@@ -26,5 +26,10 @@
 .premium-access-button-lock { display: inline-flex; width: var(--space-5); height: var(--space-5); color: var(--secondary); }
 .premium-access-button-lock svg { width: 100%; height: 100%; overflow: visible; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .premium-access-button-lock .premium-lock-shackle { transform-origin: 12px 10px; transition: transform var(--ease-fast); }
-.premium-access-button:hover:not(:disabled) .premium-lock-shackle { transform: translateY(-1px) rotate(-9deg); }
+.premium-access-button:hover:not(:disabled):not(.is-loading) .premium-lock-shackle { transform: translateY(-1px) rotate(-9deg); }
+.premium-access-button.is-loading .premium-lock-shackle { animation: premiumLockCheck 900ms ease-in-out infinite alternate; }
+@keyframes premiumLockCheck {
+  from { transform: rotate(-8deg); }
+  to { transform: rotate(8deg); }
+}
 .premium-access-button-lock .premium-lock-keyhole { stroke-width: 2.4; }
