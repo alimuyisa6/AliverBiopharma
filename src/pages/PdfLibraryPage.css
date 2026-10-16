@@ -73,22 +73,32 @@
   box-shadow: 0 0 0 4px var(--primary-ring);
 }
 
-.pdf-grid,
+.pdf-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--pastpapers-card-min-width, 12.5rem), var(--pastpapers-card-min-width, 12.5rem)));
+  align-items: stretch;
+  gap: var(--content-gap);
+}
+
 .pdf-skeleton-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(var(--pastpapers-card-min-width, 12.5rem), var(--pastpapers-card-min-width, 12.5rem)));
   gap: var(--content-gap);
 }
 
 .pdf-card {
   position: relative;
   display: flex;
-  min-width: 0;
+  width: var(--pastpapers-card-min-width, 12.5rem);
+  min-width: var(--pastpapers-card-min-width, 12.5rem);
+  max-width: var(--pastpapers-card-min-width, 12.5rem);
   flex-direction: column;
   overflow: visible;
   padding: 0;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
   background: var(--surface-card);
-  box-shadow: var(--shadow-subtle);
+  box-shadow: var(--shadow-sm);
   transition:
     transform .2s ease,
     box-shadow .2s ease,
@@ -227,7 +237,7 @@
 @media (max-width: 1024px) {
   .pdf-grid,
   .pdf-skeleton-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(var(--pastpapers-card-min-width, 12.5rem), var(--pastpapers-card-min-width, 12.5rem)));
   }
 }
 
@@ -250,7 +260,7 @@
 @media (max-width: 640px) {
   .pdf-grid,
   .pdf-skeleton-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(var(--pastpapers-card-min-width, 12.5rem), var(--pastpapers-card-min-width, 12.5rem)));
   }
 
   .toolbar {
