@@ -106,9 +106,9 @@
 }
 
 .pdf-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--border-strong);
-  box-shadow: var(--shadow-card, var(--shadow-subtle));
+  transform: translateY(-4px);
+  border-color: var(--grey-300);
+  box-shadow: var(--shadow-md);
 }
 
 .pdf-card-image {
