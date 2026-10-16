@@ -807,8 +807,8 @@
 .pp-premium-ribbon {
   position: absolute;
   z-index: 4;
-  top: calc(var(--space-1) * -1);
-  left: calc(var(--space-1) * -1);
+  top: 0;
+  left: 0;
   width: calc(var(--space-20) + var(--space-8));
   height: calc(var(--space-20) + var(--space-8));
   overflow: hidden;
