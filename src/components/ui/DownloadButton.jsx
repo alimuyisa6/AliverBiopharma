@@ -11,7 +11,7 @@ export default function DownloadButton({
   return (
     <button
       type={type}
-      className={['buttonDownload', className].filter(Boolean).join(' ')}
+      className={['buttonDownload', loading ? 'is-loading' : '', className].filter(Boolean).join(' ')}
       disabled={loading || disabled}
       aria-busy={loading || undefined}
       {...props}
