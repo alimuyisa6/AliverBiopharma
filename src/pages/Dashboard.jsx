@@ -832,14 +832,22 @@ export default function Dashboard() {
                     const height = Math.max(12, Math.round((value / maxValue) * 62));
                     const dayLabel = new Date(item.activity_date).toLocaleDateString(undefined, { weekday: 'short' }).slice(0, 2);
 
+                    const isHighest = value > 0 && value === maxValue;
+                    const isLowest = value < maxValue && value === Math.min(...heatmapValues.map((day) => Number(day.count) || 0));
+
                     return (
                       <div className="dashboard-activity-bar-wrapper" key={item.activity_date}>
                         <div className="dashboard-activity-bar-container">
                           <div
-                            className="dashboard-activity-bar"
+                            className={`dashboard-activity-bar${isHighest ? ' dashboard-activity-bar-high' : ''}`}
                             style={{ height: `${height}px` }}
-                            title={`${value} learning sessions`}
-                          />
+                            title={`${value} learning sessions on ${new Date(item.activity_date).toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' })}`}
+                            role="img"
+                            aria-label={`${dayLabel}: ${value} learning sessions`}
+                          >
+                            {isHighest && <span className="dashboard-activity-bar-dot dashboard-activity-bar-dot-top" aria-hidden="true" />}
+                            {isLowest && <span className="dashboard-activity-bar-dot dashboard-activity-bar-dot-bottom" aria-hidden="true" />}
+                          </div>
                         </div>
                         <span className="dashboard-activity-day">{dayLabel}</span>
                       </div>
