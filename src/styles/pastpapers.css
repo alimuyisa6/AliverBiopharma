@@ -353,10 +353,11 @@
   min-width: var(--pastpapers-card-min-width);
   max-width: var(--pastpapers-card-min-width);
   flex: 0 0 auto;
+  position: relative;
   background: var(--bg-card);
   border-radius: var(--radius-md);
   border: 1px solid var(--border-default);
-  overflow: hidden;
+  overflow: visible;
   transition: all var(--ease-smooth);
   display: flex;
   flex-direction: column;
@@ -807,8 +808,8 @@
 .pp-premium-ribbon {
   position: absolute;
   z-index: 4;
-  top: 0;
-  left: 0;
+  top: calc(var(--space-1) * -1);
+  left: calc(var(--space-1) * -1);
   width: calc(var(--space-20) + var(--space-8));
   height: calc(var(--space-20) + var(--space-8));
   overflow: hidden;
