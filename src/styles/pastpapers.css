@@ -811,16 +811,17 @@
 }
 
 
-/* Premium corner ribbon sits over the card's outside corner, not clipped inside it. */
+/* Folded corner ribbon: the wrapper clips the diagonal band into the card corner,
+   while the card itself stays overflow-visible so the ribbon sits outside its edge. */
 .pp-card-premium { overflow: visible; }
 .pp-premium-ribbon {
   position: absolute;
-  z-index: 3;
-  top: calc(var(--space-2) * -1);
-  left: calc(var(--space-2) * -1);
-  width: var(--space-20);
-  height: var(--space-20);
-  overflow: visible;
+  z-index: 4;
+  top: calc(var(--space-1) * -1);
+  left: calc(var(--space-1) * -1);
+  width: calc(var(--space-20) + var(--space-8));
+  height: calc(var(--space-20) + var(--space-8));
+  overflow: hidden;
   pointer-events: none;
 }
 .pp-premium-ribbon::before {
@@ -831,10 +832,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: calc(var(--space-20) + var(--space-8));
+  width: calc(var(--space-20) + var(--space-8) + var(--space-8));
   min-height: var(--space-6);
   padding: 0 var(--space-2);
   transform: rotate(-45deg);
+  transform-origin: center;
   background: var(--secondary);
   color: var(--text-on-primary, var(--text-inverse));
   box-shadow: var(--shadow-sm);
@@ -846,14 +848,23 @@
 .pp-premium-ribbon::after {
   content: '';
   position: absolute;
-  top: calc(var(--space-20) - var(--space-1));
+  top: calc(var(--space-20) + var(--space-2));
   left: 0;
   width: var(--space-2);
   height: var(--space-2);
   background: var(--secondary-hover, var(--secondary));
-  box-shadow: calc(var(--space-20) - var(--space-2)) calc(var(--space-20) * -1) 0 var(--secondary-hover, var(--secondary));
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+  box-shadow: var(--shadow-sm);
 }
-.pp-card-premium .pp-card-icon { padding-top: var(--space-2); }
+.pp-premium-ribbon > span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--space-2);
+  height: var(--space-2);
+  background: var(--secondary-hover, var(--secondary));
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
 @media (prefers-reduced-motion: reduce) {
   .pp-card { transition: none; }
 }
