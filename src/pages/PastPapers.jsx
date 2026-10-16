@@ -815,11 +815,12 @@ export default function PastPapers() {
                 className={`pp-card ${paper.is_premium ? 'pp-card-premium' : ''}`}
                 onClick={() => handlePaperOpen(paper)}
               >
-                {paper.is_premium && (
-                  <span className="pp-premium-ribbon" aria-label="Premium resource">
-                    <span aria-hidden="true" />
-                  </span>
-                )}
+                <span
+                  className={`pp-premium-ribbon ${paper.is_premium ? 'pp-premium-ribbon--premium' : 'pp-premium-ribbon--free'}`}
+                  aria-label={paper.is_premium ? 'Premium resource' : 'Free resource'}
+                >
+                  <span aria-hidden="true" />
+                </span>
                 <div className="pp-card-body">
                   <div className="pp-card-title-row">
                     <h3 className="pp-card-title">{paper.title}</h3>
