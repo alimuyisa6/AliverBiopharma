@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useContentAccess } from '../hooks/useContentAccess';
+import { useAuth } from '../contexts/AuthContext';
 import { useLevelFilter } from '../hooks/useLevelFilter';
 import { useLayout } from '../contexts/LayoutContext';
 import { getPdfsByLevel } from '../api/client';
@@ -14,11 +15,11 @@ import DynamicActions from '../components/DynamicActions';
 import Container from '../components/Container/Container';
 import './PdfLibraryPage.css';
 
-const pdfLibraryCache = new Map();
-
 export default function PdfLibraryPage() {
   const access = useContentAccess();
+  const { user } = useAuth();
   const { level, class_name, displayName } = useLevelFilter();
+  const activeGroupId = user?.profile?.active_group_id || null;
   const { bootstrap } = useLayout();
   const [searchParams] = useSearchParams();
   const curriculumUnitId = searchParams.get('unit_id') || null;
@@ -26,22 +27,20 @@ export default function PdfLibraryPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [sortBy, setSortBy] = useState('title');
-  const cacheKey = `${level || ''}:${class_name || ''}:${curriculumUnitId || 'all'}`;
-
+  
   useEffect(() => {
     if (access.loading || !access.canAccess) return undefined;
     let mounted = true;
-    const cachedPdfs = pdfLibraryCache.get(cacheKey);
-    if (cachedPdfs) {
-      setPdfs(cachedPdfs);
-      setLoading(false);
-      setError(null);
-      loadPdfs(() => mounted, false);
-    } else {
-      loadPdfs(() => mounted, true);
-    }
+
+    // Never render a previous class's cached PDFs while the active curriculum
+    // scope changes. The server resolves the authorised group from the session.
+    setPdfs([]);
+    setLoading(true);
+    setError(null);
+    loadPdfs(() => mounted, true);
+
     return () => { mounted = false; };
-  }, [access.loading, access.canAccess, level, class_name, curriculumUnitId]);
+  }, [access.loading, access.canAccess, level, class_name, activeGroupId, curriculumUnitId]);
 
   async function loadPdfs(isMounted = () => true, showLoading = true) {
     if (showLoading) setLoading(true);
@@ -49,10 +48,9 @@ export default function PdfLibraryPage() {
     try {
       const data = await getPdfsByLevel(curriculumUnitId);
       const nextPdfs = Array.isArray(data) ? data : [];
-      pdfLibraryCache.set(cacheKey, nextPdfs);
       if (isMounted()) setPdfs(nextPdfs);
     } catch {
-      if (isMounted() && !pdfLibraryCache.has(cacheKey)) setError('Failed to load PDF resources.');
+      if (isMounted()) setError('Failed to load PDF resources.');
     } finally {
       if (isMounted()) setLoading(false);
     }
