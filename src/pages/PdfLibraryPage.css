@@ -131,7 +131,7 @@
   min-width: 0;
   flex: 1 1 auto;
   flex-direction: column;
-  padding: var(--space-3) var(--space-3);
+  padding: var(--space-12) var(--space-3) var(--space-3);
 }
 
 .pdf-card-title {
@@ -261,7 +261,18 @@
 @media (max-width: 640px) {
   .pdf-grid,
   .pdf-skeleton-grid {
-    grid-template-columns: repeat(auto-fill, minmax(var(--pdf-card-width, 11rem), var(--pdf-card-width, 11rem)));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3);
+  }
+
+  .pdf-card {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .pdf-card-body {
+    padding: var(--space-12) var(--space-3) var(--space-3);
   }
 
   .toolbar {
