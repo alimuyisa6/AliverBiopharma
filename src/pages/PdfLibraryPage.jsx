@@ -107,10 +107,14 @@ export default function PdfLibraryPage() {
             <p>Choose how to arrange the documents below. Sort by title, author, or file size to find study material more easily.</p>
           </div>
           <div className="toolbar">
-            <span className="result-count"><strong>{pdfs.length}</strong>{' '}{pdfs.length === 1 ? 'document' : 'documents'} available</span>
+            <div className="result-count" aria-live="polite">
+              <span className="result-count-label">Documents available</span>
+              <strong>{pdfs.length}</strong>
+              <span>{pdfs.length === 1 ? 'document' : 'documents'}</span>
+            </div>
             <div className="toolbar-spacer" />
             <label className="sort-control" htmlFor="sortSelect">
-              <span>Sort documents by</span>
+              <span>Sort documents by:</span>
               <select className="sort-select" id="sortSelect" value={sortBy} onChange={(event) => setSortBy(event.target.value)}>
                 <option value="title">Title</option>
                 <option value="author">Author</option>
