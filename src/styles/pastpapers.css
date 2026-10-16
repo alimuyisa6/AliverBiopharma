@@ -371,7 +371,7 @@
 }
 
 .pp-card-premium {
-  border-color: var(--amber-300);
+  border-color: var(--border-default);
   position: relative;
 }
 
@@ -834,17 +834,6 @@
   font-weight: var(--weight-bold);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
-}
-.pp-premium-ribbon::after {
-  content: '';
-  position: absolute;
-  top: calc(var(--space-20) + var(--space-2));
-  left: 0;
-  width: var(--space-2);
-  height: var(--space-2);
-  background: var(--secondary-hover, var(--secondary));
-  clip-path: polygon(0 0, 100% 0, 100% 100%);
-  box-shadow: var(--shadow-sm);
 }
 @media (prefers-reduced-motion: reduce) {
   .pp-card { transition: none; }
