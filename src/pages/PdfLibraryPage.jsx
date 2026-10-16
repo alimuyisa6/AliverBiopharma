@@ -144,6 +144,10 @@ export default function PdfLibraryPage() {
           <div className="pdf-grid">
             {sortedPdfs.map((pdf) => (
               <article key={pdf.id} className="pdf-card">
+                <span
+                  className={`pdf-premium-ribbon ${pdf.is_premium ? 'pdf-premium-ribbon--premium' : 'pdf-premium-ribbon--free'}`}
+                  aria-label={pdf.is_premium ? 'Premium PDF' : 'Free PDF'}
+                />
                 <div className="pdf-card-body">
                   <div className="pdf-card-type"><Icon name="file-pdf" className="pdf-card-icon" /></div>
                   <h3 className="pdf-card-title">{pdf.title}</h3>
