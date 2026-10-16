@@ -26,7 +26,7 @@
   position: absolute;
   z-index: -1;
   inset: var(--space-1) auto var(--space-1) var(--space-1);
-  width: calc(var(--slide-confirm-progress, 0) * 1%);
+  width: var(--slide-confirm-progress, 0%);
   border-radius: var(--radius-pill);
   background: var(--primary-light);
   content: "";
@@ -116,4 +116,17 @@
 @media (prefers-reduced-motion: reduce) {
   .slide-confirm-knob { transition: none; }
   .slide-confirm-spinner { animation-duration: 1.5s; }
+}
+
+.profile-account-delete-confirm {
+  display: grid;
+  width: min(100%, var(--content-max-readable));
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+.profile-account-delete-confirm > p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
 }
