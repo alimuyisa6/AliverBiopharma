@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { useLayout } from '../../contexts/LayoutContext';
 import HeroScienceCanvas from './HeroScienceCanvas';
+import { GlassFold } from '../ui/glass-fold';
 
 const MODULE_LABELS = {
   quiz: 'Quiz',
@@ -96,7 +97,16 @@ export default function Hero() {
         className="hero hero-enhanced"
         aria-labelledby="hero-title"
       >
-        <div className="hero-image">
+        <div className="hero-image" aria-hidden="true">
+          <GlassFold
+            color1="#7180FF"
+            color2="#111044"
+            color3="#00FFD4"
+            speed={0.28}
+            scale={0.9}
+            noise={0.025}
+            className="hero-glass-fold"
+          />
           <HeroScienceCanvas />
         </div>
 
@@ -165,17 +175,6 @@ export default function Hero() {
           )}
         </div>
 
-        <Link
-          to={isAuthenticated
-            ? (resume && resumeAllowed ? resumeHref(resume) : '/quiz')
-            : '/register'}
-          className="hero-science-cta"
-          aria-label={isAuthenticated ? 'Continue learning' : 'Start learning'}
-        >
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M5 12h14M13 6l6 6-6 6" />
-          </svg>
-        </Link>
       </section>
 
       {galleryImages.length > 0 && (
