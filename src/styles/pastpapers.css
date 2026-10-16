@@ -385,20 +385,6 @@
   background: var(--amber-500);
 }
 
-.pp-card-icon {
-  height: var(--space-20);
-  background: var(--grey-50);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  font-size: var(--text-2xl);
-  color: var(--grey-400);
-  border-bottom: 1px solid var(--border-default);
-}
-
-.pp-card-icon i { color: var(--error); }
-
 .pp-premium-badge {
   position: absolute;
   top: var(--space-2);
@@ -568,14 +554,6 @@
   border-radius: var(--radius-md);
   padding: var(--space-3);
   box-shadow: var(--shadow-sm);
-}
-
-.pp-skeleton-icon {
-  display: flex;
-  justify-content: center;
-  margin-bottom: var(--space-2);
-  color: var(--grey-300);
-  font-size: var(--text-2xl);
 }
 
 .pp-skeleton-body {
