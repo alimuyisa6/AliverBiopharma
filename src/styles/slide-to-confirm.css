@@ -1,0 +1,119 @@
+/* Reusable drag-to-confirm control — uses AliverBiopharm design tokens. */
+.slide-confirm-wrap {
+  width: 100%;
+  min-width: 0;
+}
+.slide-confirm {
+  --slide-confirm-knob-size: var(--space-12);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+  min-height: calc(var(--slide-confirm-knob-size) + var(--space-2));
+  padding: var(--space-1);
+  overflow: hidden;
+  border: var(--border-width-thin) solid var(--border-default);
+  border-radius: var(--radius-pill);
+  background: var(--bg-muted);
+  color: var(--text-main);
+  isolation: isolate;
+  touch-action: pan-y;
+  user-select: none;
+}
+.slide-confirm::before {
+  position: absolute;
+  z-index: -1;
+  inset: var(--space-1) auto var(--space-1) var(--space-1);
+  width: calc(var(--slide-confirm-progress, 0) * 1%);
+  border-radius: var(--radius-pill);
+  background: var(--primary-light);
+  content: "";
+}
+.slide-confirm-label {
+  position: relative;
+  z-index: 1;
+  max-width: calc(100% - var(--space-16));
+  overflow: hidden;
+  color: var(--text-main);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.slide-confirm-hint {
+  position: absolute;
+  right: var(--space-3);
+  bottom: var(--space-1);
+  left: var(--space-3);
+  color: var(--text-muted);
+  font-size: var(--text-2xs);
+  line-height: var(--leading-tight);
+  text-align: center;
+  pointer-events: none;
+}
+.slide-confirm-knob {
+  position: absolute;
+  z-index: 2;
+  top: var(--space-1);
+  left: var(--space-1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--slide-confirm-knob-size);
+  height: var(--slide-confirm-knob-size);
+  padding: 0;
+  border: var(--border-width-thin) solid var(--border-default);
+  border-radius: var(--radius-round);
+  background: var(--bg-card);
+  color: var(--primary);
+  box-shadow: var(--shadow-md);
+  cursor: grab;
+  touch-action: pan-y;
+  transition: background-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard);
+  will-change: transform;
+}
+.slide-confirm-knob:active { cursor: grabbing; }
+.slide-confirm-knob svg {
+  width: var(--space-5);
+  height: var(--space-5);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.slide-confirm-knob:focus-visible {
+  outline: var(--border-width-thick) solid var(--border-focus);
+  outline-offset: var(--space-1);
+}
+.slide-confirm--danger { border-color: var(--danger); }
+.slide-confirm--danger::before { background: var(--danger-light, var(--primary-light)); }
+.slide-confirm--danger .slide-confirm-knob { color: var(--danger); }
+.slide-confirm.is-confirmed { border-color: var(--success); background: var(--success-light); }
+.slide-confirm.is-confirmed .slide-confirm-knob { color: var(--success); }
+.slide-confirm.is-disabled { opacity: .72; }
+.slide-confirm-knob:disabled { cursor: not-allowed; }
+.slide-confirm-spinner {
+  width: var(--space-5);
+  height: var(--space-5);
+  border: var(--border-width-thick) solid currentColor;
+  border-right-color: transparent;
+  border-radius: var(--radius-round);
+  animation: slide-confirm-spin .7s linear infinite;
+}
+.slide-confirm-error {
+  margin: var(--space-2) 0 0;
+  color: var(--danger);
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+}
+@keyframes slide-confirm-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .slide-confirm-knob { transition: none; }
+  .slide-confirm-spinner { animation-duration: 1.5s; }
+}
