@@ -5,6 +5,7 @@ const Card = forwardRef(function Card(
   {
     image,
     icon,
+    media,
     title,
     description,
     footer,
@@ -56,6 +57,8 @@ const Card = forwardRef(function Card(
       onClick={onClick}
       {...props}
     >
+      {media && <div className="card-media-slot">{media}</div>}
+
       {hasMedia && (
         <img src={image} alt={title || ''} className={imageClassName} loading="lazy" />
       )}
