@@ -519,3 +519,61 @@ body.dark-mode .site-header, body.dark-mode .site-header.scrolled { background: 
 @media (max-width: 600px) {
   .home-scope-switcher .class-switcher-menu { right: 50%; transform: translateX(50%); }
 }
+
+
+/* Social icon dock: raised, tactile tiles while preserving configured destinations. */
+.footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--stack-gap);
+  perspective: 36rem;
+}
+.footer-social-link {
+  position: relative;
+  isolation: isolate;
+  width: var(--space-12);
+  height: var(--space-12);
+  flex: 0 0 var(--space-12);
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--text-inverse) 18%, transparent);
+  border-radius: var(--radius-md);
+  background: var(--social-default-bg);
+  color: var(--text-inverse);
+  box-shadow: 0 3px 0 color-mix(in srgb, var(--text-main) 24%, transparent), var(--shadow-sm);
+  transform: translateY(0) rotateX(0);
+  transition: transform var(--ease-fast), box-shadow var(--ease-fast), filter var(--ease-fast);
+}
+.footer-social-link::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: var(--space-1);
+  background: color-mix(in srgb, var(--text-inverse) 18%, transparent);
+  content: "";
+  opacity: .65;
+  pointer-events: none;
+}
+.footer-social-link svg, .footer-social-link i {
+  position: relative;
+  z-index: 1;
+  width: var(--space-6);
+  height: var(--space-6);
+  font-size: var(--space-6);
+  color: var(--text-inverse);
+}
+.footer-social-link:hover {
+  color: var(--text-inverse);
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--text-main) 24%, transparent), var(--shadow-md);
+  transform: translateY(2px) rotateX(-3deg);
+  filter: brightness(1.05);
+}
+.footer-social-link:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .footer-social-link { transition: none; }
+}
