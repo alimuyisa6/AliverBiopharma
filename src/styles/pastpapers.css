@@ -829,11 +829,17 @@
   transform-origin: center;
   background: var(--secondary);
   color: var(--text-on-primary, var(--text-inverse));
-  box-shadow: var(--shadow-sm);
+  border-top: 1px solid color-mix(in srgb, white 34%, var(--secondary));
+  border-bottom: 2px solid color-mix(in srgb, black 20%, var(--secondary));
+  box-shadow: 0 2px 4px color-mix(in srgb, black 24%, transparent), inset 0 1px 0 color-mix(in srgb, white 18%, transparent);
+  filter: drop-shadow(0 1px 1px color-mix(in srgb, black 18%, transparent));
   font-size: var(--text-2xs);
   font-weight: var(--weight-bold);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
+}
+.pp-premium-ribbon {
+  border-top-left-radius: var(--radius-md);
 }
 @media (prefers-reduced-motion: reduce) {
   .pp-card { transition: none; }
