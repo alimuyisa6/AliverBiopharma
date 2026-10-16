@@ -48,6 +48,7 @@ import Card from '../components/Card/Card';
 import Icon from '../components/Icon/Icon';
 import { useToast } from '../components/Toast/Toast';
 import { registerPasskey, signInForPasskeyEnrollment } from '../lib/passkeyClient';
+import SlideToConfirmButton from '../components/buttons/slide-to-confirm-button';
 
 const THEME = {
   textMain: 'var(--text-main)',
@@ -966,7 +967,6 @@ export default function Profile() {
   };
 
   const handleAccountDeletion = async () => {
-    if (!window.confirm('This permanently deletes your account and associated personal data. Continue?')) return;
     setDeletionLoading(true);
     try {
       const result = await requestAccountDeletion();
@@ -980,8 +980,8 @@ export default function Profile() {
     } catch (err) {
       const message = getExactErrorMessage(err, 'Failed to delete your account');
       logProfileError('handleAccountDeletion failed', err);
-      addToast(message, 'error');
       setDeletionLoading(false);
+      throw new Error(message);
     }
   };
 
@@ -2029,9 +2029,16 @@ export default function Profile() {
                   <Button variant="outline" icon="download" loading={exportLoading} loadingContext="brand" loadingLabel={t('profile.preparing')} onClick={handleDataExport}>
                     {t('profile.exportAllData')}
                   </Button>
-                  <Button variant="danger" icon="trash" loading={deletionLoading} loadingContext="default" loadingLabel={t('profile.requesting')} onClick={handleAccountDeletion}>
-                    {t('profile.requestAccountDeletion')}
-                  </Button>
+                  <div className="profile-account-delete-confirm">
+                    <p>To protect your account, slide to confirm permanent account deletion. This action cannot be undone.</p>
+                    <SlideToConfirmButton
+                      label={t('profile.requestAccountDeletion')}
+                      confirmLabel="Deletion confirmed"
+                      variant="danger"
+                      loading={deletionLoading}
+                      onConfirm={handleAccountDeletion}
+                    />
+                  </div>
                 </div>
               </Card>
             )}
