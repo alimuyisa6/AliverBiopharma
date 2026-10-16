@@ -1,0 +1,79 @@
+.buttonDownload {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: var(--control-height-md, 2.75rem);
+  padding: var(--space-2, .5rem) var(--space-5, 1.25rem) var(--space-2, .5rem) calc(var(--space-5, 1.25rem) + 1rem);
+  border: var(--border-width-thin, 1px) solid var(--secondary-hover);
+  border-radius: var(--radius-md, .5rem);
+  background: var(--secondary);
+  color: var(--text-on-primary);
+  font: inherit;
+  font-size: var(--text-sm, .9rem);
+  font-weight: var(--weight-semibold, 600);
+  line-height: var(--leading-normal, 1.4);
+  text-align: center;
+  cursor: pointer;
+  transition: background-color var(--duration-fast, 160ms) ease, border-color var(--duration-fast, 160ms) ease, transform var(--duration-fast, 160ms) ease;
+}
+.buttonDownload:hover:not(:disabled) {
+  background: var(--secondary-hover);
+  border-color: var(--secondary-hover);
+  color: var(--text-on-primary);
+}
+.buttonDownload:active:not(:disabled) { transform: translateY(1px); }
+.buttonDownload:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 3px;
+  box-shadow: var(--shadow-focus);
+}
+.buttonDownload:disabled {
+  opacity: .68;
+  cursor: not-allowed;
+}
+.buttonDownload-label { display: inline-block; }
+.buttonDownload::before,
+.buttonDownload::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: var(--space-3, .75rem);
+  top: 50%;
+  pointer-events: none;
+}
+.buttonDownload::before {
+  width: .65rem;
+  height: .16rem;
+  margin-top: .18rem;
+  border: solid currentColor;
+  border-width: 0 2px 2px;
+  opacity: .95;
+}
+.buttonDownload::after {
+  width: 0;
+  height: 0;
+  margin-left: .15rem;
+  margin-top: -.42rem;
+  border-style: solid;
+  border-width: .28rem .28rem 0;
+  border-color: transparent;
+  border-top-color: currentColor;
+  animation: downloadArrow 1s linear infinite;
+  animation-play-state: paused;
+}
+.buttonDownload:hover:not(:disabled)::after,
+.buttonDownload:focus-visible:not(:disabled)::after {
+  animation-play-state: running;
+}
+.buttonDownload:disabled::after { animation: none; }
+@keyframes downloadArrow {
+  0% { margin-top: -.42rem; opacity: 1; }
+  .001% { margin-top: -.9rem; opacity: .4; }
+  50% { opacity: 1; }
+  100% { margin-top: 0; opacity: .4; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .buttonDownload { transition: none; }
+  .buttonDownload::after { animation: none !important; }
+}
