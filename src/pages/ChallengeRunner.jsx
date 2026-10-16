@@ -4,6 +4,7 @@ import Icon from '../components/Icon/Icon';
 import Spinner from '../components/Spinner/Spinner';
 import { getPersonalizedDailyChallenge } from '../api/client';
 import './challenge-runner.css';
+import ThreeDButton from '../components/buttons/ThreeDButton';
 
 const META = {
   recall: { title: 'Recall Challenge', eyebrow: 'Active recall mission', color: 'cyan', icon: 'brain', route: '/recall' },
@@ -41,7 +42,7 @@ export default function ChallengeRunner({ forcedType }) {
   return <main className={"challenge-runner-page challenge-runner-" + meta.color}>
     <section className="challenge-runner-hero">
       <div className="challenge-runner-visual"><Cartoon type={type} /><span className="challenge-type-badge"><Icon name={meta.icon} /> {meta.title}</span></div>
-      <div className="challenge-runner-copy"><span className="eyebrow">{meta.eyebrow}</span><h1>{data.challenge.title}</h1><p>{data.challenge.description}</p><div className="challenge-runner-facts"><span>{data.scope?.level_name || 'Active level'}</span><span>{data.scope?.group_name || 'Active programme'}</span><span>+{data.challenge.reward_xp} XP</span></div><div className="challenge-runner-note"><strong>How it works</strong><span>Complete the challenge in the existing {type} learning system. Your result is verified by the server before the XP reward is issued.</span></div><div className="challenge-runner-actions"><button className="btn btn-primary" onClick={() => navigate(meta.route + '?unit_id=' + encodeURIComponent(data.challenge.unit_id) + '&challenge_id=' + encodeURIComponent(data.challenge.id))}>Begin mission <Icon name="arrow-right" /></button><button className="btn btn-secondary" onClick={() => navigate('/challenges')}>Back</button></div></div>
+      <div className="challenge-runner-copy"><span className="eyebrow">{meta.eyebrow}</span><h1>{data.challenge.title}</h1><p>{data.challenge.description}</p><div className="challenge-runner-facts"><span>{data.scope?.level_name || 'Active level'}</span><span>{data.scope?.group_name || 'Active programme'}</span><span>+{data.challenge.reward_xp} XP</span></div><div className="challenge-runner-note"><strong>How it works</strong><span>Complete the challenge in the existing {type} learning system. Your result is verified by the server before the XP reward is issued.</span></div><div className="challenge-runner-actions"><ThreeDButton variant="solid" iconRight="arrow-right" onClick={() => navigate(meta.route + '?unit_id=' + encodeURIComponent(data.challenge.unit_id) + '&challenge_id=' + encodeURIComponent(data.challenge.id))}>Begin mission</ThreeDButton><button className="btn btn-secondary" onClick={() => navigate('/challenges')}>Back</button></div></div>
     </section>
   </main>;
 }
