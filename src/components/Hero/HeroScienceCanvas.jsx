@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 // Canvas drawing helpers consume RGB channel arrays, not CSS hex strings.
 const PALETTE = {
@@ -394,7 +394,6 @@ function drawBloodstream(ctx, width, height, time, absoluteTime, opacity, cells,
 
 export default function HeroScienceCanvas() {
   const canvasRef = useRef(null);
-  const [scene, setScene] = useState(0);
   const sceneRef = useRef(0);
   const reducedRef = useRef(false);
   const autoRotateRef = useRef(true);
@@ -482,7 +481,6 @@ export default function HeroScienceCanvas() {
       let sceneElapsed = (now - sceneStartRef.current) / 1000;
       if (autoRotateRef.current && sceneElapsed >= periods[sceneRef.current]) {
         sceneRef.current = 1 - sceneRef.current;
-        setScene(sceneRef.current);
         sceneStartRef.current = now;
         sceneElapsed = 0;
       }
@@ -537,48 +535,11 @@ export default function HeroScienceCanvas() {
     };
   }, []);
 
-  const selectScene = (nextScene) => {
-    sceneRef.current = nextScene;
-    autoRotateRef.current = false;
-    sceneStartRef.current = performance.now();
-    setScene(nextScene);
-    if (reducedRef.current) repaintRef.current?.();
-  };
-
   return (
-    <>
-      <canvas
-        ref={canvasRef}
-        className="hero-science-canvas"
-        aria-hidden="true"
-      />
-      <div className="hero-science-controls" role="group" aria-label="Choose a learning scene">
-        <button
-          className="hero-science-control"
-          type="button"
-          aria-label="Biology: fertilisation"
-          aria-pressed={scene === 0}
-          onClick={() => selectScene(0)}
-        >
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="15" cy="12" r="6" />
-            <circle cx="5.5" cy="7" r="1.6" />
-            <path d="M6.8 8.2c2 1.2 1 3 3 4" />
-          </svg>
-        </button>
-        <button
-          className="hero-science-control"
-          type="button"
-          aria-label="Pharmacy: drug in the bloodstream"
-          aria-pressed={scene === 1}
-          onClick={() => selectScene(1)}
-        >
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <rect x="3" y="8.5" width="18" height="7" rx="3.5" transform="rotate(-45 12 12)" />
-            <path d="M9.2 14.8l5.6-5.6" />
-          </svg>
-        </button>
-      </div>
-    </>
+    <canvas
+      ref={canvasRef}
+      className="hero-science-canvas"
+      aria-hidden="true"
+    />
   );
 }
