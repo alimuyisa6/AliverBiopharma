@@ -99,9 +99,11 @@ export default function ClassSwitcher({ className = '' }) {
       {open && (
         <>
           <div className="dropdown-backdrop" onClick={() => setOpen(false)} />
-          <div className="dropdown-menu">
-            <div className="dropdown-item dropdown-heading" aria-hidden="true">
-              {label}
+          <div className="dropdown-menu class-switcher-menu" role="menu" aria-label={label}>
+            <div className="class-switcher-menu-intro">
+              <span className="class-switcher-menu-eyebrow">CURRENT LEVEL</span>
+              <strong>{level?.display_name || level?.name || 'Your learning level'}</strong>
+              <span className="class-switcher-menu-caption">Choose an available class or programme below.</span>
             </div>
             <div className="dropdown-divider" />
 
@@ -109,13 +111,22 @@ export default function ClassSwitcher({ className = '' }) {
               <button
                 key={group.id}
                 type="button"
-                className={`dropdown-item${group.id === activeGroupId ? ' is-active' : ''}`}
+                className={`dropdown-item class-switcher-option${group.id === activeGroupId ? ' is-active' : ''}`}
                 onClick={() => handleSelect(group.id)}
+                role="menuitem"
+                aria-current={group.id === activeGroupId ? 'true' : undefined}
               >
                 <span>{group.name}</span>
                 {group.id === activeGroupId && <Icon name="check" />}
               </button>
             ))}
+            <div className="dropdown-divider" />
+            <div className="class-switcher-approval-note">
+              <span className="class-switcher-approval-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false"><path d="M12 3.5 19 6v5.3c0 4.2-2.8 7.4-7 9.2-4.2-1.8-7-5-7-9.2V6l7-2.5Z" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round"/><path d="m9 12 2 2 4-4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </span>
+              <span><strong>Changing learning level?</strong><small>Level changes require admin approval.</small><a href="/profile" onClick={() => setOpen(false)}>Request a level change</a></span>
+            </div>
           </div>
         </>
       )}
