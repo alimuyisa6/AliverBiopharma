@@ -12,6 +12,7 @@ import Skeleton from '../components/Skeleton/Skeleton';
 import EmptyState from '../components/EmptyState/EmptyState';
 import Button from '../components/Button/Button';
 import Container from '../components/Container/Container';
+import StickyNotePolaroidFrame from '../components/StickyNotePolaroidFrame/StickyNotePolaroidFrame';
 
 const notesPageCache = new Map();
 const notesContextCache = new Map();
@@ -323,8 +324,18 @@ export default function NotesPage() {
                 key={note.id}
                 variant="blue-strong"
                 className="card-round notes-card folded-card folded-card-blue"
-                image={note.topic_image_url || undefined}
-                icon={note.topic_image_url ? undefined : 'book-open'}
+                media={
+                  <StickyNotePolaroidFrame
+                    noteTitle={note.title}
+                    noteText={note.content_preview || 'Explore this topic in your study notes.'}
+                    noteFooter={note.read_time ? note.read_time + ' min read' : 'AliverBiopharm study note'}
+                    noteColor={note.is_premium ? 'gold' : 'teal'}
+                    rotation={0}
+                    className="notes-card-polaroid"
+                  >
+                    {note.topic_image_url ? <img src={note.topic_image_url} alt={note.title || 'Study topic'} loading="lazy" /> : null}
+                  </StickyNotePolaroidFrame>
+                }
                 title={note.title}
                 description={note.content_preview}
                 footer={
