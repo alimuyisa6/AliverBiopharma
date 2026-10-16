@@ -1117,3 +1117,81 @@
     padding-top: calc(var(--header-height) - var(--space-3));
   }
 }
+
+
+/* Uiverse-inspired like control, adapted to the existing note reaction API. */
+.note-reactions-buttons .note-reaction-btn-like {
+  position: relative;
+  isolation: isolate;
+  min-height: var(--space-12);
+  min-width: 8.5rem;
+  justify-content: flex-start;
+  gap: var(--space-2);
+  padding: 0 var(--space-2) 0 var(--space-3);
+  overflow: hidden;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  background: var(--surface-raised, var(--bg-card));
+  color: var(--text-main);
+  box-shadow: inset -2px -2px 5px rgb(255 255 255 / 10%), inset 2px 2px 5px rgb(0 0 0 / 5%), var(--shadow-sm);
+  transform: none;
+}
+.note-reactions-buttons .note-reaction-btn-like:hover {
+  border-color: var(--primary-border, var(--primary));
+  color: var(--text-main);
+  transform: translateY(-1px);
+}
+.note-reactions-buttons .note-reaction-btn-like .note-like-heart {
+  width: var(--space-7);
+  height: var(--space-7);
+  flex: 0 0 var(--space-7);
+  fill: var(--text-muted);
+  transition: fill var(--ease-fast), transform var(--ease-fast);
+}
+.note-reactions-buttons .note-reaction-btn-like .note-reaction-label {
+  font-size: var(--text-sm);
+  white-space: nowrap;
+}
+.note-reactions-buttons .note-reaction-btn-like .note-reaction-count {
+  align-self: stretch;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--space-9);
+  margin: 0 0 0 auto;
+  padding-inline: var(--space-2);
+  border-left: 1px solid var(--border-default);
+  color: var(--text-muted);
+  transition: color var(--ease-fast), background-color var(--ease-fast);
+}
+.note-reactions-buttons .note-reaction-btn-like.active {
+  border-color: var(--accent-border, var(--primary));
+  background: var(--surface-raised, var(--bg-card));
+  color: var(--text-main);
+}
+.note-reactions-buttons .note-reaction-btn-like.active .note-like-heart {
+  fill: var(--danger, #e05263);
+  animation: note-like-pop 220ms ease-out;
+}
+.note-reactions-buttons .note-reaction-btn-like.active .note-reaction-count {
+  color: var(--text-main);
+  background: var(--surface-muted, transparent);
+}
+.note-reactions-buttons .note-reaction-btn-like:disabled {
+  cursor: progress;
+  opacity: .7;
+  transform: none;
+}
+.note-reactions-buttons .note-reaction-btn:focus-visible {
+  outline: 2px solid var(--border-focus, var(--primary));
+  outline-offset: 3px;
+}
+@keyframes note-like-pop {
+  0% { transform: scale(.55); }
+  70% { transform: scale(1.18); }
+  100% { transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .note-reactions-buttons .note-reaction-btn-like .note-like-heart { transition: none; }
+  .note-reactions-buttons .note-reaction-btn-like.active .note-like-heart { animation: none; }
+}
