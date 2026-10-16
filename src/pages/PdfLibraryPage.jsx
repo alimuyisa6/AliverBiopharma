@@ -8,6 +8,7 @@ import { getPdfsByLevel } from '../api/client';
 import Icon from '../components/Icon/Icon';
 import Skeleton from '../components/Skeleton/Skeleton';
 import EmptyState from '../components/EmptyState/EmptyState';
+import EmptyComponent from '../components/ui/empty8';
 import Button from '../components/Button/Button';
 import DynamicActions from '../components/DynamicActions';
 import Container from '../components/Container/Container';
@@ -128,7 +129,15 @@ export default function PdfLibraryPage() {
             <Skeleton height={160} />
           </div>
         ) : error ? (
-          <EmptyState image={getEmptyStateImage('error')} title="Error" description={error} action={<Button onClick={() => loadPdfs(() => true, true)}>Try Again</Button>} />
+          typeof navigator !== 'undefined' && !navigator.onLine ? (
+            <EmptyComponent
+              title="No Internet Connection"
+              description="Your PDF resources could not be reached. Reconnect to the internet and try loading them again."
+              onRetry={() => loadPdfs(() => true, true)}
+            />
+          ) : (
+            <EmptyState image={getEmptyStateImage('error')} title="Unable to Load PDFs" description={error} action={<Button onClick={() => loadPdfs(() => true, true)}>Try Again</Button>} />
+          )
         ) : pdfs.length === 0 ? (
           <EmptyState image={getEmptyStateImage('pdfs')} title="No PDFs Available" />
         ) : (
