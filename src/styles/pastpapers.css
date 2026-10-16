@@ -375,16 +375,6 @@
   position: relative;
 }
 
-.pp-card-premium::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--amber-500);
-}
-
 .pp-premium-badge {
   position: absolute;
   top: var(--space-2);
@@ -855,15 +845,6 @@
   background: var(--secondary-hover, var(--secondary));
   clip-path: polygon(0 0, 100% 0, 100% 100%);
   box-shadow: var(--shadow-sm);
-}
-.pp-premium-ribbon > span {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: var(--space-2);
-  height: var(--space-2);
-  background: var(--secondary-hover, var(--secondary));
-  clip-path: polygon(0 0, 100% 0, 0 100%);
 }
 @media (prefers-reduced-motion: reduce) {
   .pp-card { transition: none; }
