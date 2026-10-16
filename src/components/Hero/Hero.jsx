@@ -6,6 +6,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useLayout } from '../../contexts/LayoutContext';
 import HeroScienceCanvas from './HeroScienceCanvas';
 import { GlassFold } from '../ui/glass-fold';
+import AnimatedJoinButton from '../ui/AnimatedJoinButton';
 
 const MODULE_LABELS = {
   quiz: 'Quiz',
@@ -147,12 +148,7 @@ export default function Hero() {
 
           {!isAuthenticated && (
             <div className="hero-actions">
-              <Link
-                to="/register"
-                className="btn btn-primary"
-              >
-                Start Learning Free
-              </Link>
+              <AnimatedJoinButton />
 
               <Link
                 to="/login"
