@@ -139,7 +139,7 @@ export default function SlideToConfirmButton({
           onPointerUp={handlePointerUp}
           onPointerCancel={() => setPosition(0)}
           onKeyDown={handleKeyDown}
-          style={{ transform: `translateX(${offset}px)` }}
+          style={{ transform: `translateX(${offset}px)`, '--slide-confirm-progress': maxOffset ? (offset / maxOffset) * 100 : 0 }}
         >
           {loading ? (
             <span className="slide-confirm-spinner" aria-hidden="true" />
