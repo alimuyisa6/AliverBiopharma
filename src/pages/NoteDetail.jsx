@@ -584,10 +584,20 @@ export default function NoteDetail() {
             ].map(({ type, icon, label }) => (
               <button
                 key={type}
-                className={`note-reaction-btn ${reactions.user.includes(type) ? 'active' : ''}`}
+                type="button"
+                data-reaction-type={type}
+                className={`note-reaction-btn ${type === 'like' ? 'note-reaction-btn-like' : ''} ${reactions.user.includes(type) ? 'active' : ''}`}
                 onClick={() => handleReaction(type)}
+                aria-pressed={reactions.user.includes(type)}
+                disabled={reactionLoading === type}
+                aria-label={`${label}: ${reactions.counts?.[type] || 0} reactions`}
               >
-                <i className={`fa-regular ${icon}`}></i> {label}
+                {type === 'like' ? (
+                  <svg className="note-like-heart" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 21s-1.45-.86-2.7-1.72C5.4 16.55 2 13.15 2 8.9 2 5.9 4.3 3.5 7.25 3.5c1.9 0 3.6 1 4.75 2.55A5.8 5.8 0 0 1 16.75 3.5C19.7 3.5 22 5.9 22 8.9c0 4.25-3.4 7.65-7.3 10.38C13.45 20.14 12 21 12 21Z" />
+                  </svg>
+                ) : <i className={`fa-regular ${icon}`} aria-hidden="true" />}
+                <span className="note-reaction-label">{label}</span>
                 <span className="note-reaction-count font-mono">{reactions.counts?.[type] || 0}</span>
               </button>
             ))}
