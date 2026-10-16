@@ -4,7 +4,7 @@ export default function PremiumAccessButton({ loading = false, onClick, children
   return (
     <button
       type="button"
-      className="premium-access-button"
+      className={`premium-access-button ${loading ? 'is-loading' : ''}`}
       onClick={onClick}
       disabled={disabled || loading}
       aria-busy={loading || undefined}
