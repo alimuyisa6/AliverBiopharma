@@ -149,7 +149,6 @@ export default function PdfLibraryPage() {
                   aria-label={pdf.is_premium ? 'Premium PDF' : 'Free PDF'}
                 />
                 <div className="pdf-card-body">
-                  <div className="pdf-card-type"><Icon name="file-pdf" className="pdf-card-icon" /></div>
                   <h3 className="pdf-card-title">{pdf.title}</h3>
                   {pdf.author && !/^(aliverbiopharm|aliver biopharm|aliver-biopharma|aliverbiopharm\.com|aliver-biopharma\.vercel\.app)$/i.test(String(pdf.author).trim()) && <p className="pdf-card-author">{pdf.author}</p>}
                   {pdf.file_size && <span className="pdf-card-size">{pdf.file_size}</span>}
