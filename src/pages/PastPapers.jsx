@@ -22,6 +22,7 @@ import {
 import Icon from '../components/Icon/Icon';
 import Skeleton from '../components/Skeleton/Skeleton';
 import Button from '../components/Button/Button';
+import DownloadButton from '../components/ui/DownloadButton';
 import Select from '../components/Select/Select';
 import EmptyState from '../components/EmptyState/EmptyState';
 import { useToast } from '../components/Toast/Toast';
@@ -870,22 +871,30 @@ export default function PastPapers() {
                   </div>
                 </div>
                 <div className="pp-card-footer">
-                  <Button
-                    size="sm"
-                    loading={downloadingId === paper.id}
-                    onClick={(event) => {
-                      event.stopPropagation();
-                      handleDownload(paper);
-                    }}
-                    variant={paper.is_premium ? 'warm' : 'primary'}
-                  >
-                    <Icon name={paper.is_premium ? 'lock' : 'download'} />
-                    {paper.is_premium
-                      ? 'Premium Download'
-                      : user
-                      ? 'Download'
-                      : 'Sign in to Download'}
-                  </Button>
+                  {paper.is_premium ? (
+                    <Button
+                      size="sm"
+                      loading={downloadingId === paper.id}
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        handleDownload(paper);
+                      }}
+                      variant="warm"
+                    >
+                      <Icon name="lock" />
+                      Premium Download
+                    </Button>
+                  ) : (
+                    <DownloadButton
+                      loading={downloadingId === paper.id}
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        handleDownload(paper);
+                      }}
+                    >
+                      {user ? 'Download' : 'Sign in to Download'}
+                    </DownloadButton>
+                  )}
                 </div>
               </div>
             ))}
@@ -956,15 +965,24 @@ export default function PastPapers() {
               </div>
 
               <div className="pp-modal-actions">
-                <Button
-                  size="sm"
-                  loading={downloadingId === selectedPaper.id}
-                  onClick={() => handleDownload(selectedPaper)}
-                  variant={selectedPaper.is_premium ? 'warm' : 'primary'}
-                >
-                  <Icon name={selectedPaper.is_premium ? 'lock' : 'download'} />
-                  {selectedPaper.is_premium ? 'Premium Download' : 'Download'}
-                </Button>
+                {selectedPaper.is_premium ? (
+                  <Button
+                    size="sm"
+                    loading={downloadingId === selectedPaper.id}
+                    onClick={() => handleDownload(selectedPaper)}
+                    variant="warm"
+                  >
+                    <Icon name="lock" />
+                    Premium Download
+                  </Button>
+                ) : (
+                  <DownloadButton
+                    loading={downloadingId === selectedPaper.id}
+                    onClick={() => handleDownload(selectedPaper)}
+                  >
+                    Download
+                  </DownloadButton>
+                )}
                 <Button
                   size="sm"
                   variant="secondary"
