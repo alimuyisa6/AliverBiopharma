@@ -23,6 +23,7 @@ import Icon from '../components/Icon/Icon';
 import Skeleton from '../components/Skeleton/Skeleton';
 import Button from '../components/Button/Button';
 import DownloadButton from '../components/ui/DownloadButton';
+import PremiumAccessButton from '../components/ui/PremiumAccessButton';
 import Select from '../components/Select/Select';
 import EmptyState from '../components/EmptyState/EmptyState';
 import { useToast } from '../components/Toast/Toast';
@@ -872,18 +873,15 @@ export default function PastPapers() {
                 </div>
                 <div className="pp-card-footer">
                   {paper.is_premium ? (
-                    <Button
-                      size="sm"
+                    <PremiumAccessButton
                       loading={downloadingId === paper.id}
                       onClick={(event) => {
                         event.stopPropagation();
                         handleDownload(paper);
                       }}
-                      variant="warm"
                     >
-                      <Icon name="lock" />
                       Premium Download
-                    </Button>
+                    </PremiumAccessButton>
                   ) : (
                     <DownloadButton
                       loading={downloadingId === paper.id}
