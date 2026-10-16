@@ -18,6 +18,7 @@ import HomeDashboardCard from '../../components/dashboard/HomeDashboardCard';
 import DynamicActions from '../../components/DynamicActions';
 import { useLayout } from '../../contexts/LayoutContext';
 import ThreeDButton from '../../components/buttons/ThreeDButton';
+import StudyQuoteCard from './StudyQuoteCard';
 
 const CONTINUE_ICON = { note: 'book-open', video: 'play', quiz: 'clipboard-check' };
 
@@ -176,6 +177,7 @@ export default function HomeView(props) {
       <WhyChooseSection />
       <HowItWorksSection />
       <EducationalShowcase />
+      <StudyQuoteCard />
       {user && <div className="home-student-sections-wrap"><CurriculumSnapshot nodes={curriculumUnits} activeLevelName={activeLevelName} activeGroupName={activeGroupName} sections={sections} /><LearningJourneySection sections={sections} navigate={navigate} /></div>}
       {!user && <LearningJourneySection sections={sections} navigate={navigate} />}
       {user && <ChallengeTreasureCard challenge={dailyChallenge} onOpen={onOpenChallenge} />}
