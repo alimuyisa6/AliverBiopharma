@@ -4,6 +4,7 @@ import Icon from '../components/Icon/Icon';
 import Spinner from '../components/Spinner/Spinner';
 import { getPersonalizedDailyChallenge } from '../api/client';
 import './challenges.css';
+import ThreeDButton from '../components/buttons/ThreeDButton';
 
 const challengeMeta = {
   recall: { label: 'Recall Challenge', route: '/challenges/recall', icon: 'brain', accent: 'cyan', animation: 'recall' },
@@ -32,7 +33,7 @@ function ChallengeCard({ challenge, onOpen }) {
       <span className="eyebrow">Today's mission</span><h1>{challenge.title}</h1><p>{challenge.description}</p>
       <div className="challenge-scope"><span>{challenge.unit_name || 'Your active topic'}</span><span>{challenge.target_count} tasks</span><span>+{challenge.reward_xp} XP</span></div>
       <div className="challenge-progress"><div className="challenge-progress-head"><span>{completed ? 'Completed' : 'Progress'}</span><strong>{Math.round(progress)}%</strong></div><div className="challenge-progress-track"><span style={{ width: progress + '%' }} /></div></div>
-      <button type="button" className="btn btn-primary challenge-open-button" onClick={() => onOpen(meta.route, challenge.id)}>{completed ? 'Review challenge' : 'Start challenge'} <Icon name="arrow-right" /></button>
+      <ThreeDButton type="button" variant="solid" iconRight="arrow-right" className="challenge-open-button" onClick={() => onOpen(meta.route, challenge.id)}>{completed ? 'Review challenge' : 'Start challenge'}</ThreeDButton>
     </div>
   </article>;
 }
