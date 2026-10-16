@@ -62,11 +62,10 @@
   animation: downloadArrow 1s linear infinite;
   animation-play-state: paused;
 }
-.buttonDownload:hover:not(:disabled)::after,
-.buttonDownload:focus-visible:not(:disabled)::after {
+.buttonDownload.is-loading::after {
   animation-play-state: running;
 }
-.buttonDownload:disabled::after { animation: none; }
+.buttonDownload:disabled:not(.is-loading)::after { animation: none; }
 @keyframes downloadArrow {
   0% { margin-top: -.42rem; opacity: 1; }
   .001% { margin-top: -.9rem; opacity: .4; }
