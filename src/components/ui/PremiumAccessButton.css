@@ -1,0 +1,30 @@
+.premium-access-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--space-10);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid color-mix(in srgb, var(--warning, var(--secondary)) 42%, var(--border-default));
+  border-radius: var(--radius-button);
+  background: var(--surface-card);
+  color: var(--text-main);
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-normal);
+  cursor: pointer;
+  transition: border-color var(--ease-fast), background var(--ease-fast), transform var(--ease-fast);
+}
+.premium-access-button:hover:not(:disabled) {
+  border-color: var(--secondary);
+  background: var(--surface-subtle);
+  transform: translateY(-1px);
+}
+.premium-access-button:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+.premium-access-button:disabled { opacity: .65; cursor: wait; }
+.premium-access-button-lock { display: inline-flex; width: var(--space-5); height: var(--space-5); color: var(--secondary); }
+.premium-access-button-lock svg { width: 100%; height: 100%; overflow: visible; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.premium-access-button-lock .premium-lock-shackle { transform-origin: 12px 10px; transition: transform var(--ease-fast); }
+.premium-access-button:hover:not(:disabled) .premium-lock-shackle { transform: translateY(-1px) rotate(-9deg); }
+.premium-access-button-lock .premium-lock-keyhole { stroke-width: 2.4; }
