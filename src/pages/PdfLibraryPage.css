@@ -81,10 +81,11 @@
 }
 
 .pdf-card {
+  position: relative;
   display: flex;
   min-width: 0;
   flex-direction: column;
-  overflow: hidden;
+  overflow: visible;
   padding: 0;
   background: var(--surface-card);
   box-shadow: var(--shadow-subtle);
@@ -179,6 +180,48 @@
 .pdf-card-footer .pdf-download:hover {
   background: var(--primary-hover, var(--primary));
   border-color: var(--primary-hover, var(--primary));
+}
+
+/* PDF access ribbon: anchored to each card and wrapped just outside its top-left border. */
+.pdf-premium-ribbon {
+  position: absolute;
+  z-index: 4;
+  top: calc(var(--space-1) * -1);
+  left: calc(var(--space-1) * -1);
+  width: calc(var(--space-20) + var(--space-8));
+  height: calc(var(--space-20) + var(--space-8));
+  overflow: hidden;
+  pointer-events: none;
+}
+.pdf-premium-ribbon::before {
+  content: 'Premium';
+  position: absolute;
+  top: var(--space-5);
+  left: calc(var(--space-8) * -1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--space-20) + var(--space-8) + var(--space-8));
+  min-height: var(--space-6);
+  padding: 0 var(--space-2);
+  transform: rotate(-45deg);
+  transform-origin: center;
+  background: var(--secondary);
+  color: var(--text-on-primary, var(--text-inverse));
+  border-top: 1px solid color-mix(in srgb, white 34%, var(--secondary));
+  border-bottom: 2px solid color-mix(in srgb, black 20%, var(--secondary));
+  box-shadow: 0 2px 4px color-mix(in srgb, black 24%, transparent), inset 0 1px 0 color-mix(in srgb, white 18%, transparent);
+  filter: drop-shadow(0 1px 1px color-mix(in srgb, black 18%, transparent));
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+.pdf-premium-ribbon--free::before {
+  content: 'Free';
+  background: var(--success, var(--teal-600, var(--secondary)));
+  border-top-color: color-mix(in srgb, white 34%, var(--success, var(--secondary)));
+  border-bottom-color: color-mix(in srgb, black 20%, var(--success, var(--secondary)));
 }
 
 @media (max-width: 1024px) {
