@@ -101,15 +101,24 @@ export default function PdfLibraryPage() {
   return (
     <Container className="pdf-library-section">
       <div className="pdf-library-page">
-        <div className="toolbar">
-          <span className="result-count"><strong>{pdfs.length}</strong>{' '}{pdfs.length === 1 ? 'document' : 'documents'}</span>
-          <div className="toolbar-spacer" />
-          <select className="sort-select" id="sortSelect" value={sortBy} onChange={(event) => setSortBy(event.target.value)} aria-label="Sort documents">
-            <option value="title">Title</option>
-            <option value="author">Author</option>
-            <option value="size">Size</option>
-          </select>
-        </div>
+        <section className="pdf-library-controls" aria-labelledby="pdf-library-controls-title">
+          <div className="pdf-library-controls-copy">
+            <h2 id="pdf-library-controls-title">Organise your PDFs</h2>
+            <p>Choose how to arrange the documents below. Sort by title, author, or file size to find study material more easily.</p>
+          </div>
+          <div className="toolbar">
+            <span className="result-count"><strong>{pdfs.length}</strong>{' '}{pdfs.length === 1 ? 'document' : 'documents'} available</span>
+            <div className="toolbar-spacer" />
+            <label className="sort-control" htmlFor="sortSelect">
+              <span>Sort documents by</span>
+              <select className="sort-select" id="sortSelect" value={sortBy} onChange={(event) => setSortBy(event.target.value)}>
+                <option value="title">Title</option>
+                <option value="author">Author</option>
+                <option value="size">File size</option>
+              </select>
+            </label>
+          </div>
+        </section>
 
         <div className="pdf-library-heading">
           <h1 className="section-title pdf-library-title">PDF Library</h1>
