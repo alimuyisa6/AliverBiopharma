@@ -518,6 +518,11 @@ body.dark-mode .site-header, body.dark-mode .site-header.scrolled { background: 
 .class-switcher-approval-note a:hover { color: var(--primary-hover, var(--primary)); }
 /* Keep the class/programme picker fully visible on small screens and
    centred in the viewport instead of letting its anchored dropdown clip. */
+/* Keep the switcher's stacking context above its dismissible backdrop,
+   so the option buttons receive taps on mobile and desktop. */
+.class-switcher.is-open {
+  z-index: calc(var(--z-modal) + 2);
+}
 .class-switcher-menu {
   position: fixed;
   top: 50%;
