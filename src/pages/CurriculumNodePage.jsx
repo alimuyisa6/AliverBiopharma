@@ -127,6 +127,7 @@ export default function CurriculumNodePage() {
   const relationships = data?.relationships || [];
   const counts = data?.resource_counts || {};
   const blocks = data?.blocks || [];
+  const linkedContent = data?.linked_content || [];
 
   const breadcrumbItems = useMemo(() => {
     const group = ancestors[1];
@@ -273,6 +274,70 @@ export default function CurriculumNodePage() {
                 <Icon name="arrow-right" />
               </Link>
             ))}
+          </div>
+        </section>
+      )}
+
+
+      {linkedContent.length > 0 && (
+        <section className="curriculum-node-section">
+          <div className="curriculum-node-section-heading">
+            <div>
+              <span className="curriculum-node-kicker">Connected resources</span>
+              <h2>Resources linked to {node.name}</h2>
+            </div>
+            <span className="curriculum-node-count">
+              {linkedContent.length} {linkedContent.length === 1 ? 'resource' : 'resources'}
+            </span>
+          </div>
+
+          <div className="curriculum-node-links">
+            {linkedContent.map((item) => {
+              const labels = {
+                note: 'Note',
+                article: 'Article',
+                video: 'Video',
+                flashcard_deck: 'Flashcards',
+                quiz_question: 'Quiz question',
+                recall_question: 'BioRecall question',
+                past_paper: 'Past paper',
+                pdf_resource: 'PDF',
+                curriculum_unit_block: 'Lesson content',
+                glossary_term: 'Glossary term'
+              };
+              const routes = {
+                note: '/notes',
+                article: '/articles',
+                video: '/resources',
+                flashcard_deck: '/flashcards',
+                quiz_question: '/quiz',
+                recall_question: '/recall',
+                past_paper: '/past-papers',
+                pdf_resource: '/pdfs',
+                curriculum_unit_block: null,
+                glossary_term: '/glossary'
+              };
+              const route = routes[item.content_type];
+              const destination = route ? `${route}?unit_id=${encodeURIComponent(node.id)}` : null;
+
+              return (
+                <div
+                  key={item.id}
+                  className="curriculum-node-link"
+                >
+                  <span className="curriculum-node-link-type">
+                    {labels[item.content_type] || item.content_type.replaceAll('_', ' ')}
+                  </span>
+                  <span>{item.title}</span>
+                  {item.is_primary && <small>Primary</small>}
+                  {destination && (
+                    <Link to={destination} className="curriculum-node-resource-action">
+                      Open collection <Icon name="arrow-right" />
+                    </Link>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </section>
       )}
