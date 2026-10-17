@@ -66,6 +66,7 @@ export default function NoteDetail() {
   const [readingComplete, setReadingComplete] = useState(false);
   const [understanding, setUnderstanding] = useState(null);
   const [learningQuestion, setLearningQuestion] = useState('');
+  const [learningError, setLearningError] = useState('');
   const [learningSubmitting, setLearningSubmitting] = useState(false);
   const [trialQuestions, setTrialQuestions] = useState([]);
   const [trialAnswers, setTrialAnswers] = useState({});
@@ -394,13 +395,14 @@ export default function NoteDetail() {
     const question = learningQuestion.trim();
     if (question.length < 3 || learningSubmitting) return;
 
+    setLearningError('');
     setLearningSubmitting(true);
     try {
       const result = await createNoteLearningThread(noteId, question);
       if (!result?.thread?.id) throw new Error('Learning thread was not created');
       navigate(`/learning/explanation?id=${encodeURIComponent(result.thread.id)}`);
     } catch (error) {
-      setFetchError(error?.message || 'Could not save your question. Please try again.');
+      setLearningError(error?.message || 'Could not save your question. Please try again.');
     } finally {
       setLearningSubmitting(false);
     }
@@ -638,6 +640,7 @@ export default function NoteDetail() {
             {understanding === 'no' && (
               <form className="note-learning-question-form" onSubmit={handleLearningQuestionSubmit}>
                 <label htmlFor="note-learning-question">What was unclear?</label>
+                {learningError && <p className="note-learning-error" role="alert">{learningError}</p>}
                 <textarea
                   id="note-learning-question"
                   value={learningQuestion}
