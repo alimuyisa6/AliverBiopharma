@@ -22,6 +22,7 @@ const MODULE_MAP = {
   interactions: () => import('../lib/interactions.js'),
   lab: () => import('../lib/lab.js'),
   notes: () => import('../lib/notes.js'),
+  'note-learning': () => import('../lib/note-learning.js'),
   'past-papers': () => import('../lib/past-papers.js'),
   'payments-escrow': () => import('../lib/payments-escrow.js'),
   platform: () => import('../lib/platform.js'),
