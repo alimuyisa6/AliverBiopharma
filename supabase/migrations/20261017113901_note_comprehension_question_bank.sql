@@ -38,34 +38,5 @@ where not exists (
     and lower(trim(existing.question_text)) = lower(trim(q.question_text))
 );
 
--- Link the new question-bank rows through the existing canonical content-link table.
-insert into public.learning_content_links
-  (curriculum_unit_id,content_type,content_id,relationship_type,is_primary,link_origin)
-select q.unit_id,'quiz_question',q.id::text,'assesses',false,'imported'
-from public.quiz_questions q
-where q.question_text in (
-  'During the light-dependent reactions of photosynthesis, which substance is split and releases oxygen?',
-  'What is the main role of ATP and NADPH produced in the light-dependent reactions?',
-  'A student increases light intensity but the rate of photosynthesis no longer rises. What is the best explanation?',
-  'Which statement best describes negative feedback in homeostasis?',
-  'After a meal, which hormone is released by pancreatic beta cells to help lower blood glucose?',
-  'When the body needs to conserve water, increased ADH action causes the kidneys to:',
-  'In a simple complete-dominance cross Tt × Tt, what genotype ratio is expected?',
-  'What is the difference between genotype and phenotype?',
-  'Which process exchanges DNA between non-sister chromatids of homologous chromosomes during meiosis?',
-  'How do enzymes increase the rate of a chemical reaction?',
-  'Why may enzyme activity fall sharply above its temperature optimum?',
-  'In the simple reversible competitive-inhibition model, what happens when substrate concentration is increased sufficiently?',
-  'A test cross yields 180 recombinant offspring among 1,000 total offspring. What is the recombination frequency?',
-  'Why can observed recombination frequency underestimate the distance between genes that are far apart on a chromosome?',
-  'Which offspring classes are generally expected to be most frequent in a simple linked-gene test cross?',
-  'Which statement correctly distinguishes potency from efficacy?',
-  'A partial agonist differs from a full agonist because it:',
-  'Which factor is most appropriate when selecting a medicine for an individual patient?',
-  'A solution contains 250 mg in 5 mL. What is its concentration?',
-  'A verified educational example requires 100 mg and the supplied concentration is 50 mg/mL. What volume gives that mass?',
-  'Which conversion is correct?'
-)
-and q.status='published'
-on conflict (curriculum_unit_id,content_type,content_id,relationship_type)
-do nothing;
+-- These are note-only comprehension checks, not formal quiz resources.
+-- They intentionally are not inserted into learning_content_links.
