@@ -127,6 +127,13 @@ export default function CurriculumNodePage() {
   const relationships = data?.relationships || [];
   const counts = data?.resource_counts || {};
   const blocks = data?.blocks || [];
+  const linkedContent = data?.linked_content || [];
+  const linkedContentGroups = linkedContent.reduce((groups, item) => {
+    const key = item.content_type;
+    if (!groups[key]) groups[key] = [];
+    groups[key].push(item);
+    return groups;
+  }, {});
 
   const breadcrumbItems = useMemo(() => {
     const group = ancestors[1];
@@ -273,6 +280,71 @@ export default function CurriculumNodePage() {
                 <Icon name="arrow-right" />
               </Link>
             ))}
+          </div>
+        </section>
+      )}
+
+
+      {Object.keys(linkedContentGroups).length > 0 && (
+        <section className="curriculum-node-section">
+          <div className="curriculum-node-section-heading">
+            <div>
+              <span className="curriculum-node-kicker">Connected resources</span>
+              <h2>Study {node.name} across resource types</h2>
+            </div>
+          </div>
+
+          <div className="curriculum-node-linked-groups">
+            {Object.entries(linkedContentGroups).map(([type, items]) => {
+              const resourceKeys = {
+                note: 'notes',
+                article: 'articles',
+                video: 'videos',
+                flashcard_deck: 'flashcards',
+                quiz_question: 'quiz',
+                recall_question: 'recall',
+                past_paper: 'past-papers',
+                pdf_resource: 'pdfs',
+                curriculum_unit_block: null,
+                glossary_term: null
+              };
+              const resourceKey = resourceKeys[type];
+              const label = {
+                note: 'Notes',
+                article: 'Articles',
+                video: 'Videos',
+                flashcard_deck: 'Flashcards',
+                quiz_question: 'Quiz questions',
+                recall_question: 'BioRecall questions',
+                past_paper: 'Past papers',
+                pdf_resource: 'PDF resources',
+                curriculum_unit_block: 'Lesson content',
+                glossary_term: 'Glossary terms'
+              }[type] || type.replaceAll('_', ' ');
+              const destination = resourceKey ? resourcePath(resourceKey, node.id) : null;
+
+              return (
+                <article key={type} className="curriculum-node-linked-group">
+                  <div className="curriculum-node-linked-group-heading">
+                    <strong>{label}</strong>
+                    <span className="curriculum-node-count">
+                      {items.length} {items.length === 1 ? 'item' : 'items'}
+                    </span>
+                  </div>
+                  <ul className="curriculum-node-linked-preview">
+                    {items.slice(0, 3).map((item) => (
+                      <li key={item.id}>{item.title}</li>
+                    ))}
+                    {items.length > 3 && <li>And {items.length - 3} more</li>}
+                  </ul>
+                  {destination && (
+                    <Link to={destination} className="curriculum-node-resource-action">
+                      Open {label.toLowerCase()} <Icon name="arrow-right" />
+                    </Link>
+                  )}
+                </article>
+              );
+            })}
           </div>
         </section>
       )}
