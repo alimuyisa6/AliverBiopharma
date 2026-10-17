@@ -1,5 +1,6 @@
  /* components/ClassSwitcher/ClassSwitcher.jsx */
 import { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useLayout } from '../../contexts/LayoutContext';
 import { useToast } from '../Toast/Toast';
 import Icon from '../Icon/Icon';
@@ -96,9 +97,9 @@ export default function ClassSwitcher({ className = '' }) {
         <Icon name="chevron-down" />
       </button>
 
-      {open && (
+      {open && createPortal(
         <>
-          <div className="dropdown-backdrop" onClick={() => setOpen(false)} />
+          <div className="dropdown-backdrop class-switcher-backdrop" onClick={() => setOpen(false)} />
           <div className="dropdown-menu class-switcher-menu" role="menu" aria-label={label}>
             <div className="class-switcher-menu-intro">
               <span className="class-switcher-menu-eyebrow">CURRENT LEVEL</span>
@@ -128,7 +129,8 @@ export default function ClassSwitcher({ className = '' }) {
               <span><strong>Changing learning level?</strong><small>Level changes require admin approval.</small><a href="/profile" onClick={() => setOpen(false)}>Request a level change</a></span>
             </div>
           </div>
-        </>
+        </>,
+        document.body
       )}
     </div>
   );
