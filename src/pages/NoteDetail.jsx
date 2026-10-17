@@ -12,7 +12,10 @@ import {
   getComments,
   saveReadingProgress,
   getReadingProgress,
-  getNoteInternalLinks
+  getNoteInternalLinks,
+  createNoteLearningThread,
+  getNoteTrialQuestions,
+  checkNoteTrialAnswer
 } from '../api/client';
 import Card from '../components/Card/Card';
 import EmptyState from '../components/EmptyState/EmptyState';
@@ -60,6 +63,14 @@ export default function NoteDetail() {
   const [commentInput, setCommentInput] = useState('');
   const [readProgress, setReadProgress] = useState(0);
   const [progressSaved, setProgressSaved] = useState(false);
+  const [readingComplete, setReadingComplete] = useState(false);
+  const [understanding, setUnderstanding] = useState(null);
+  const [learningQuestion, setLearningQuestion] = useState('');
+  const [learningSubmitting, setLearningSubmitting] = useState(false);
+  const [trialQuestions, setTrialQuestions] = useState([]);
+  const [trialAnswers, setTrialAnswers] = useState({});
+  const [trialFeedback, setTrialFeedback] = useState({});
+  const [trialLoading, setTrialLoading] = useState(false);
   const [internalLinks, setInternalLinks] = useState({ inline_links: [], related_links: [] });
   const [linkPreview, setLinkPreview] = useState(null);
   const [linkPreviewPosition, setLinkPreviewPosition] = useState({ x: 0, y: 0 });
@@ -144,10 +155,18 @@ export default function NoteDetail() {
 
         if (user) {
           const progress = await getReadingProgress(noteId);
-          if (mounted && progress?.scroll_position) {
-            setTimeout(() => {
-              window.scrollTo({ top: progress.scroll_position, behavior: 'smooth' });
-            }, 500);
+          if (mounted && progress) {
+            setReadProgress(Number(progress.scroll_percentage) || 0);
+            setReadingComplete(
+              progress.completed === true
+              && Number(progress.scroll_percentage) >= 90
+              && Number(progress.time_spent) >= 30
+            );
+            if (progress.scroll_position) {
+              setTimeout(() => {
+                window.scrollTo({ top: progress.scroll_position, behavior: 'smooth' });
+              }, 500);
+            }
           }
         }
       } catch (error) {
@@ -182,7 +201,8 @@ export default function NoteDetail() {
       progressTimer.current = setTimeout(async () => {
         const timeSpent = Math.round((Date.now() - startTime.current) / 1000);
         try {
-          await saveReadingProgress(noteId, percentage, scrollTop, timeSpent, percentage >= 90);
+          const savedProgress = await saveReadingProgress(noteId, percentage, scrollTop, timeSpent);
+          setReadingComplete(savedProgress?.completed === true);
           setProgressSaved(true);
           setTimeout(() => setProgressSaved(false), 2000);
         } catch {}
@@ -353,6 +373,53 @@ export default function NoteDetail() {
       cancelled = true;
     };
   }, [note, metadata]);
+
+  async function handleUnderstandingYes() {
+    setUnderstanding('yes');
+    setTrialLoading(true);
+    setTrialAnswers({});
+    setTrialFeedback({});
+    try {
+      const result = await getNoteTrialQuestions(noteId);
+      setTrialQuestions(Array.isArray(result?.questions) ? result.questions : []);
+    } catch {
+      setTrialQuestions([]);
+    } finally {
+      setTrialLoading(false);
+    }
+  }
+
+  async function handleLearningQuestionSubmit(event) {
+    event.preventDefault();
+    const question = learningQuestion.trim();
+    if (question.length < 3 || learningSubmitting) return;
+
+    setLearningSubmitting(true);
+    try {
+      const result = await createNoteLearningThread(noteId, question);
+      if (!result?.thread?.id) throw new Error('Learning thread was not created');
+      navigate(`/learning/explanation?id=${encodeURIComponent(result.thread.id)}`);
+    } catch (error) {
+      setFetchError(error?.message || 'Could not save your question. Please try again.');
+    } finally {
+      setLearningSubmitting(false);
+    }
+  }
+
+  async function handleTrialAnswer(questionId) {
+    const selectedOption = trialAnswers[questionId];
+    if (!selectedOption || trialFeedback[questionId]) return;
+
+    try {
+      const result = await checkNoteTrialAnswer(noteId, questionId, selectedOption);
+      setTrialFeedback((current) => ({ ...current, [questionId]: result }));
+    } catch {
+      setTrialFeedback((current) => ({
+        ...current,
+        [questionId]: { error: 'Could not check this answer. Please try again.' }
+      }));
+    }
+  }
 
   async function handleReaction(reactionType) {
     if (!user) {
@@ -554,6 +621,79 @@ export default function NoteDetail() {
             dangerouslySetInnerHTML={{ __html: finalContent || '<p>Content not available.</p>' }}
           />
         </article>
+
+        {user && readingComplete && (
+          <section className="note-understanding-panel" aria-labelledby="note-understanding-title">
+            <h2 id="note-understanding-title" className="font-poppins">Did you understand this note?</h2>
+            <p>Choose what you need next. Your practice here is separate from formal quizzes and does not award quiz or BioRecall XP.</p>
+            <div className="note-understanding-actions">
+              <button type="button" className={`note-understanding-choice${understanding === 'yes' ? ' is-selected' : ''}`} onClick={handleUnderstandingYes}>
+                Yes, I understand
+              </button>
+              <button type="button" className={`note-understanding-choice${understanding === 'no' ? ' is-selected' : ''}`} onClick={() => setUnderstanding('no')}>
+                Not yet — explain it
+              </button>
+            </div>
+
+            {understanding === 'no' && (
+              <form className="note-learning-question-form" onSubmit={handleLearningQuestionSubmit}>
+                <label htmlFor="note-learning-question">What was unclear?</label>
+                <textarea
+                  id="note-learning-question"
+                  value={learningQuestion}
+                  onChange={(event) => setLearningQuestion(event.target.value.slice(0, 4000))}
+                  maxLength={4000}
+                  minLength={3}
+                  rows={4}
+                  required
+                  placeholder="Tell your AI tutor which idea, step, or term you would like explained."
+                />
+                <button type="submit" disabled={learningSubmitting || learningQuestion.trim().length < 3}>
+                  {learningSubmitting ? 'Saving your question…' : 'Open my explanation'}
+                </button>
+              </form>
+            )}
+
+            {understanding === 'yes' && (
+              <div className="note-trial-questions">
+                <h3 className="font-poppins">Quick practice</h3>
+                {trialLoading ? <p>Finding questions from this curriculum unit…</p> : trialQuestions.length === 0 ? (
+                  <p>No published practice questions are linked to this unit yet. Your progress is saved; try another note or return later.</p>
+                ) : trialQuestions.map((question, index) => {
+                  const feedback = trialFeedback[question.id];
+                  return (
+                    <article className="note-trial-question" key={question.id}>
+                      <h4>{index + 1}. {question.question_text}</h4>
+                      {question.image_url && <img src={question.image_url} alt={question.image_alt_text || ''} loading="lazy" />}
+                      <div className="note-trial-options">
+                        {question.options.map((option) => (
+                          <label key={option.key} className={trialAnswers[question.id] === option.key ? 'is-selected' : ''}>
+                            <input
+                              type="radio"
+                              name={`trial-${question.id}`}
+                              value={option.key}
+                              checked={trialAnswers[question.id] === option.key}
+                              onChange={() => setTrialAnswers((current) => ({ ...current, [question.id]: option.key }))}
+                              disabled={!!feedback}
+                            />
+                            <span><strong>{option.key}.</strong> {option.text}</span>
+                          </label>
+                        ))}
+                      </div>
+                      {!feedback && <button type="button" onClick={() => handleTrialAnswer(question.id)} disabled={!trialAnswers[question.id]}>Check answer</button>}
+                      {feedback && (
+                        <div className={`note-trial-feedback${feedback.correct ? ' is-correct' : ' is-incorrect'}`} role="status">
+                          {feedback.error || (feedback.correct ? 'Correct.' : 'Not quite.')}
+                          {feedback.explanation && <p>{feedback.explanation}</p>}
+                        </div>
+                      )}
+                    </article>
+                  );
+                })}
+              </div>
+            )}
+          </section>
+        )}
 
         {internalLinks.related_links.length > 0 && (
           <div className="note-related-section">
