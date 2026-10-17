@@ -260,7 +260,8 @@ return apiCall(moduleName, path, params, 'DELETE');
 export async function getRequest(
 moduleName,
 path,
-params = {}
+params = {},
+options = {}
 ) {
 const queryParams = new URLSearchParams();
 
@@ -289,7 +290,12 @@ const url =
 `&path=${encodeURIComponent(path)}` +
 `${query ? `&${query}` : ''}`;
 
-const cacheKey = `GET:${moduleName}:${path}:${query}`;
+// Some authenticated lists depend on the user's active curriculum scope,
+ // which is resolved server-side and is not part of the URL query. Include the
+ // scope in the in-flight request key so a class switch cannot reuse a prior
+ // class's still-pending response. This key is client-side only.
+const requestScope = options?.requestScope == null ? '' : String(options.requestScope);
+const cacheKey = `GET:${moduleName}:${path}:${query}:scope=${requestScope}`;
 
 return dedupeAndQueue(cacheKey, async () => {
 return executeRequest(url, {
@@ -2088,13 +2094,14 @@ level
 );
 }
 
-export async function getPdfsByLevel(unitId) {
+export async function getPdfsByLevel(unitId, activeGroupId = null) {
 const data = await getRequest(
 'pdf-resources',
 'list',
 unitId
 ? { unit_id: unitId }
-: {}
+: {},
+{ requestScope: activeGroupId }
 );
 return Array.isArray(data) ? data : (Array.isArray(data?.pdfs) ? data.pdfs : []);
 }
