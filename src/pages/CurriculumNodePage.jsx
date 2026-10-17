@@ -307,7 +307,7 @@ export default function CurriculumNodePage() {
               };
               const routes = {
                 note: '/notes',
-                article: '/articles',
+                article: '/resources',
                 video: '/resources',
                 flashcard_deck: '/flashcards',
                 quiz_question: '/quiz',
