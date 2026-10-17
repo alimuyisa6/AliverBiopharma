@@ -98,7 +98,7 @@ export default function NoteLearningExplanation() {
     const controller = new AbortController();
     abortRef.current = controller;
     try {
-      await streamAIAssistant(conversation, {
+      const answer = await streamAIAssistant(conversation, {
         level: levelName,
         mode: 'learn',
         pageContext: `Note explanation: ${noteTitle}`,
@@ -113,7 +113,7 @@ export default function NoteLearningExplanation() {
 
       const completedMessages = [...conversation, {
         ...assistantMessage,
-        content: await getFinalAssistantContent()
+        content: answer
       }];
       setMessages(completedMessages);
       setSaving(true);
@@ -130,7 +130,7 @@ export default function NoteLearningExplanation() {
           role,
           content: messageContent
         })),
-        explanation: completedMessages[completedMessages.length - 1].content,
+        explanation: answer,
         status: 'answered'
       }));
     } catch (sendError) {
@@ -140,24 +140,6 @@ export default function NoteLearningExplanation() {
     } finally {
       setSaving(false);
       setStreaming(false);
-    }
-
-    async function getFinalAssistantContent() {
-      // The streamed text is mirrored in state; keep a local copy to avoid stale React state.
-      return await new Promise((resolve) => {
-        let attempts = 0;
-        const check = () => {
-          const current = bodyRef.current?.querySelector('[data-message-id="' + assistantMessage.id + '"]');
-          const contentNode = current?.querySelector('.note-learning-message-content');
-          const text = contentNode?.textContent || '';
-          if (text || attempts >= 10) resolve(text);
-          else {
-            attempts += 1;
-            setTimeout(check, 20);
-          }
-        };
-        check();
-      });
     }
   }
 
