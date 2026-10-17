@@ -628,6 +628,7 @@ export default function NoteDetail() {
           <section className="note-understanding-panel" aria-labelledby="note-understanding-title">
             <h2 id="note-understanding-title" className="font-poppins">Did you understand this note?</h2>
             <p>Choose what you need next. Your practice here is separate from formal quizzes and does not award quiz or BioRecall XP.</p>
+            <p><Link to="/learning/explanation" className="note-learning-history-link">View your saved explanations</Link></p>
             <div className="note-understanding-actions">
               <button type="button" className={`note-understanding-choice${understanding === 'yes' ? ' is-selected' : ''}`} onClick={handleUnderstandingYes}>
                 Yes, I understand

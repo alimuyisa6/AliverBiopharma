@@ -5,6 +5,7 @@ import { useLayout } from '../contexts/LayoutContext';
 import {
   getNoteDetail,
   getNoteLearningThread,
+  getNoteLearningThreads,
   saveNoteLearningExchange,
   streamAIAssistant
 } from '../api/client';
@@ -29,6 +30,7 @@ export default function NoteLearningExplanation() {
   const threadId = searchParams.get('id');
   const { level } = useLayout();
   const [thread, setThread] = useState(null);
+  const [history, setHistory] = useState([]);
   const [noteTitle, setNoteTitle] = useState('Your note');
   const [noteContext, setNoteContext] = useState('');
   const [noteContextLoaded, setNoteContextLoaded] = useState(false);
@@ -47,12 +49,13 @@ export default function NoteLearningExplanation() {
   useEffect(() => {
     let mounted = true;
     async function load() {
-      if (!threadId) {
-        setError('This explanation link is missing its learning thread.');
-        setLoading(false);
-        return;
-      }
       try {
+        if (!threadId) {
+          const historyResult = await getNoteLearningThreads(50);
+          if (!mounted) return;
+          setHistory(Array.isArray(historyResult?.threads) ? historyResult.threads : []);
+          return;
+        }
         const result = await getNoteLearningThread(threadId);
         if (!mounted) return;
         const savedThread = result?.thread;
@@ -163,13 +166,43 @@ export default function NoteLearningExplanation() {
 
   if (loading) return <div className="fcd-loading-wrap"><Spinner size="lg" /></div>;
 
+  if (!threadId) {
+    return (
+      <section className="note-learning-page">
+        <header className="note-learning-header">
+          <Link to="/notes" className="note-learning-back">← Back to notes</Link>
+          <p className="note-learning-eyebrow">ALIVER BIOPHARM · LEARNING HISTORY</p>
+          <h1>Your learning history</h1>
+          <p>Your saved note questions and explanations stay here so you can revisit them.</p>
+        </header>
+        {error && <div className="note-learning-card"><p role="alert">{error}</p></div>}
+        {!error && history.length === 0 && (
+          <div className="note-learning-card">
+            <h2>No saved explanations yet</h2>
+            <p>When a note needs more explanation, submit your question from the end of that note. It will appear here.</p>
+            <Link to="/notes">Browse study notes</Link>
+          </div>
+        )}
+        {history.map((item) => (
+          <article className="note-learning-card" key={item.id}>
+            <p className="note-learning-eyebrow">{item.note_title || 'Study note'} · {item.status === 'answered' ? 'Explanation saved' : 'Awaiting explanation'}</p>
+            <h2>{item.learner_question}</h2>
+            {item.explanation && <p>{item.explanation.slice(0, 260)}{item.explanation.length > 260 ? '…' : ''}</p>}
+            <p><small>Last updated {item.updated_at ? new Date(item.updated_at).toLocaleString() : 'recently'}</small></p>
+            <Link className="note-learning-back" to={`/learning/explanation?id=${encodeURIComponent(item.id)}`}>Open saved explanation →</Link>
+          </article>
+        ))}
+      </section>
+    );
+  }
+
   if (error && !thread) {
     return (
       <section className="note-learning-page">
         <div className="note-learning-card">
           <h1>Explanation unavailable</h1>
           <p role="alert">{error}</p>
-          <Link to="/notes">Back to notes</Link>
+          <Link to="/learning/explanation">Back to learning history</Link>
         </div>
       </section>
     );

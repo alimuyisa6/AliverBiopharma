@@ -564,6 +564,10 @@ export async function getNoteLearningThread(id) {
 return getRequest('note-learning', 'thread', { id });
 }
 
+export async function getNoteLearningThreads(limit = 25) {
+return getRequest('note-learning', 'threads', { limit });
+}
+
 export async function saveNoteLearningExchange(threadId, messages) {
 return apiCall('note-learning', 'save_exchange', {
 thread_id: threadId,
