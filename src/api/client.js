@@ -3458,6 +3458,7 @@ export async function streamAIAssistant(
     level = '',
     mode = 'learn',
     pageContext = '',
+    noteContext = '',
     signal,
     onChunk,
   } = {}
@@ -3483,6 +3484,7 @@ export async function streamAIAssistant(
       level,
       mode,
       page_context: pageContext,
+      note_context: noteContext,
     }),
   });
 
