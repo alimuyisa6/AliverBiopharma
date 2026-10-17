@@ -22,6 +22,7 @@ import Classroom from './pages/Classroom';
 import ClassroomRoom from './pages/ClassroomRoom';
 import PastPapers from './pages/PastPapers';
 import NoteDetail from './pages/NoteDetail';
+import NoteLearningExplanation from './pages/NoteLearningExplanation';
 import NotesPage from './pages/NotesPage';
 import PdfLibraryPage from './pages/PdfLibraryPage';
 import Glossary from './pages/Glossary';
@@ -165,6 +166,7 @@ function AppRoutes() {
             <Route path="/past-papers" element={<FeatureRoute feature="past_papers"><PastPapers /></FeatureRoute>} />
             <Route path="/notes" element={<ProtectedRoute><NotesPage /></ProtectedRoute>} />
             <Route path="/notes/read" element={<ProtectedRoute><NoteDetail key={location.search} /></ProtectedRoute>} />
+            <Route path="/learning/explanation" element={<ProtectedRoute><NoteLearningExplanation key={location.search} /></ProtectedRoute>} />
             <Route path="/pdfs" element={<ProtectedRoute><PdfLibraryPage /></ProtectedRoute>} />
             <Route path="/glossary/:slug" element={<ProtectedRoute><FeatureRoute feature="glossary"><Glossary /></FeatureRoute></ProtectedRoute>} />
             <Route path="/glossary" element={<ProtectedRoute><FeatureRoute feature="glossary"><Glossary /></FeatureRoute></ProtectedRoute>} />
