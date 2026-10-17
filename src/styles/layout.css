@@ -516,9 +516,27 @@ body.dark-mode .site-header, body.dark-mode .site-header.scrolled { background: 
   text-underline-offset: var(--space-1);
 }
 .class-switcher-approval-note a:hover { color: var(--primary-hover, var(--primary)); }
-@media (max-width: 600px) {
-  .home-scope-switcher .class-switcher-menu { right: 50%; transform: translateX(50%); }
+/* Keep the class/programme picker fully visible on small screens and
+   centred in the viewport instead of letting its anchored dropdown clip. */
+.class-switcher-menu {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  z-index: 1002;
+  width: min(26rem, calc(100vw - (var(--page-gutter-x) * 2)));
+  max-height: min(78dvh, 42rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  transform: translate(-50%, -50%);
 }
+.dropdown-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1001;
+}
+
 
 
 /* Social icon dock: raised, tactile tiles while preserving configured destinations. */
