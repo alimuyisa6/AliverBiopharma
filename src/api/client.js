@@ -2095,12 +2095,14 @@ level
 }
 
 export async function getPdfsByLevel(unitId, activeGroupId = null) {
+const params = {};
+if (unitId) params.unit_id = unitId;
+if (activeGroupId) params.group_id = activeGroupId;
+
 const data = await getRequest(
 'pdf-resources',
 'list',
-unitId
-? { unit_id: unitId }
-: {},
+params,
 { requestScope: activeGroupId }
 );
 return Array.isArray(data) ? data : (Array.isArray(data?.pdfs) ? data.pdfs : []);
