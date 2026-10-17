@@ -62,7 +62,7 @@ export default function ClassSwitcher({ className = '' }) {
   const isHomeSwitcher = className.split(/\s+/).includes('home-scope-switcher');
 
   return (
-    <div className={`class-switcher ${className}`.trim()}>
+    <div className={`class-switcher ${open ? 'is-open' : ''} ${className}`.trim()}>
       {isHomeSwitcher && (
         <div className="home-scope-switcher-art" aria-hidden="true">
           <svg className="scope-level-art scope-level-art--olevel" viewBox="0 0 48 48" focusable="false">
