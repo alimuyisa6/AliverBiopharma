@@ -31,6 +31,7 @@ export default function NoteLearningExplanation() {
   const [thread, setThread] = useState(null);
   const [noteTitle, setNoteTitle] = useState('Your note');
   const [noteContext, setNoteContext] = useState('');
+  const [noteContextLoaded, setNoteContextLoaded] = useState(false);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(true);
@@ -39,6 +40,7 @@ export default function NoteLearningExplanation() {
   const [error, setError] = useState('');
   const bodyRef = useRef(null);
   const abortRef = useRef(null);
+  const initialRequestStarted = useRef(false);
 
   const levelName = useMemo(() => levelKey(level), [level]);
 
@@ -65,6 +67,7 @@ export default function NoteLearningExplanation() {
         const note = await getNoteDetail(savedThread.note_id);
         if (!mounted) return;
         setNoteContext(noteText(note?.content));
+        setNoteContextLoaded(true);
       } catch (loadError) {
         if (mounted) setError(loadError?.message || 'Could not load this explanation.');
       } finally {
@@ -82,16 +85,31 @@ export default function NoteLearningExplanation() {
     if (bodyRef.current) bodyRef.current.scrollTop = bodyRef.current.scrollHeight;
   }, [messages]);
 
-  async function sendMessage(event) {
+  useEffect(() => {
+    if (
+      !thread
+      || !noteContextLoaded
+      || thread.explanation
+      || messages.length !== 1
+      || messages[0]?.role !== 'user'
+      || streaming
+      || initialRequestStarted.current
+    ) return;
+
+    initialRequestStarted.current = true;
+    sendMessage(null, true);
+  }, [thread, noteContextLoaded, messages, streaming]);
+
+  async function sendMessage(event, initial = false) {
     event?.preventDefault();
     const content = input.trim();
-    if (!content || streaming || !thread) return;
+    if ((!initial && !content) || streaming || !thread) return;
 
     setError('');
-    setInput('');
+    if (!initial) setInput('');
     const userMessage = { id: `user-${Date.now()}`, role: 'user', content };
     const assistantMessage = { id: `assistant-${Date.now()}`, role: 'assistant', content: '' };
-    const conversation = [...messages, userMessage];
+    const conversation = initial ? messages : [...messages, userMessage];
     setMessages([...conversation, assistantMessage]);
     setStreaming(true);
 
