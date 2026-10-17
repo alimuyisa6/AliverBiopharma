@@ -46,7 +46,10 @@ export default function PdfLibraryPage() {
     if (showLoading) setLoading(true);
     setError(null);
     try {
-      const data = await getPdfsByLevel(curriculumUnitId);
+      // Scope the client-side in-flight request key to the current curriculum.
+      // The server still authorises the request from the authenticated session.
+      const requestScope = activeGroupId || `${level || ''}:${class_name || ''}`;
+      const data = await getPdfsByLevel(curriculumUnitId, requestScope);
       const nextPdfs = Array.isArray(data) ? data : [];
       if (isMounted()) setPdfs(nextPdfs);
     } catch {
