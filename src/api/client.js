@@ -553,19 +553,35 @@ note_id: noteId
 });
 }
 
+export async function createNoteLearningThread(noteId, question) {
+return apiCall('note-learning', 'create_thread', {
+note_id: noteId,
+question
+});
+}
+
+export async function getNoteLearningThread(id) {
+return getRequest('note-learning', 'thread', { id });
+}
+
+export async function saveNoteLearningExchange(threadId, messages) {
+return apiCall('note-learning', 'save_exchange', {
+thread_id: threadId,
+messages
+});
+}
+
 export async function saveReadingProgress(
 noteId,
 scrollPercentage,
 scrollPosition,
-timeSpent,
-completed
+timeSpent
 ) {
 return apiCall('notes', 'save_progress', {
 note_id: noteId,
 scroll_percentage: scrollPercentage,
 scroll_position: scrollPosition,
-time_spent: timeSpent,
-completed
+time_spent: timeSpent
 });
 }
 
