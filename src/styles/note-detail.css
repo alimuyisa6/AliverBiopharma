@@ -1195,3 +1195,241 @@
   .note-reactions-buttons .note-reaction-btn-like .note-like-heart { transition: none; }
   .note-reactions-buttons .note-reaction-btn-like.active .note-like-heart { animation: none; }
 }
+
+
+/* Understanding check and private, no-XP practice linked to note reading. */
+.note-understanding-panel {
+  margin: var(--space-8) 0;
+  padding: var(--space-6);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+}
+.note-understanding-panel h2,
+.note-trial-questions h3 {
+  margin: 0 0 var(--space-2);
+  color: var(--text-main);
+  font-size: var(--text-xl);
+}
+.note-understanding-panel > p {
+  margin: 0 0 var(--space-4);
+  color: var(--text-dim);
+  line-height: var(--leading-relaxed);
+}
+.note-understanding-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.note-understanding-choice,
+.note-learning-question-form button,
+.note-trial-question > button {
+  min-height: 44px;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  color: var(--text-main);
+  font: inherit;
+  cursor: pointer;
+}
+.note-understanding-choice:hover,
+.note-understanding-choice.is-selected {
+  border-color: var(--primary);
+  background: var(--primary-light);
+}
+.note-learning-question-form {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+.note-learning-question-form label,
+.note-learning-composer label {
+  color: var(--text-main);
+  font-weight: var(--weight-semibold);
+}
+.note-learning-question-form textarea,
+.note-learning-composer textarea {
+  width: 100%;
+  min-height: 7rem;
+  padding: var(--space-3);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  color: var(--text-main);
+  font: inherit;
+  resize: vertical;
+}
+.note-learning-question-form button,
+.note-learning-composer button {
+  justify-self: start;
+  background: var(--primary);
+  color: var(--text-inverse);
+  border-color: var(--primary);
+  font-weight: var(--weight-semibold);
+}
+.note-learning-question-form button:disabled,
+.note-learning-composer button:disabled {
+  cursor: not-allowed;
+  opacity: .65;
+}
+.note-learning-error {
+  margin: 0;
+  color: var(--danger, #b42336);
+  font-size: var(--text-sm);
+}
+.note-trial-questions {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+.note-trial-question {
+  padding: var(--space-4);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+}
+.note-trial-question h4 {
+  margin: 0 0 var(--space-3);
+  color: var(--text-main);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+}
+.note-trial-question > img {
+  max-width: 100%;
+  max-height: 18rem;
+  object-fit: contain;
+  margin: var(--space-3) 0;
+}
+.note-trial-options {
+  display: grid;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+.note-trial-options label {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: var(--space-3);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.note-trial-options label.is-selected {
+  border-color: var(--primary);
+  background: var(--primary-light);
+}
+.note-trial-options input {
+  margin-top: .2em;
+  accent-color: var(--primary);
+}
+.note-trial-feedback {
+  margin-top: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card-hover);
+  color: var(--text-main);
+}
+.note-trial-feedback.is-correct {
+  border-left: 3px solid var(--success);
+}
+.note-trial-feedback.is-incorrect {
+  border-left: 3px solid var(--danger, #b42336);
+}
+.note-trial-feedback p {
+  margin: var(--space-2) 0 0;
+  color: var(--text-dim);
+}
+@media (max-width: 520px) {
+  .note-understanding-panel { padding: var(--space-4); }
+  .note-understanding-actions { display: grid; grid-template-columns: 1fr; }
+  .note-understanding-choice { width: 100%; }
+}
+
+/* Persistent explanation page shares the note design tokens and spacing. */
+.note-learning-page {
+  width: min(100% - var(--space-8), 900px);
+  margin: 0 auto;
+  padding: var(--space-6) 0 var(--space-16);
+  color: var(--text-main);
+}
+.note-learning-header {
+  margin-bottom: var(--space-5);
+}
+.note-learning-back {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--primary);
+  text-decoration: none;
+}
+.note-learning-eyebrow {
+  margin: var(--space-4) 0 var(--space-2);
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+}
+.note-learning-header h1 {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  line-height: var(--leading-tight);
+}
+.note-learning-header > p:last-child {
+  margin: 0;
+  color: var(--text-dim);
+  line-height: var(--leading-relaxed);
+}
+.note-learning-card {
+  padding: var(--space-5);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+}
+.note-learning-messages {
+  display: grid;
+  gap: var(--space-4);
+  max-height: min(60vh, 700px);
+  overflow-y: auto;
+  padding: var(--space-1) var(--space-1) var(--space-4);
+}
+.note-learning-message {
+  min-width: 0;
+  padding: var(--space-4);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  overflow-wrap: anywhere;
+}
+.note-learning-message--assistant {
+  background: var(--bg-card-hover);
+}
+.note-learning-message strong {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--text-main);
+}
+.note-learning-message-content {
+  color: var(--text-dim);
+  line-height: var(--leading-relaxed);
+  white-space: pre-wrap;
+}
+.note-learning-composer {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-default);
+}
+.note-learning-save-status {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+@media (max-width: 520px) {
+  .note-learning-page { width: calc(100% - var(--space-4) * 2); }
+  .note-learning-card { padding: var(--space-3); }
+  .note-learning-header h1 { font-size: var(--text-2xl); }
+  .note-learning-composer button { width: 100%; }
+}
