@@ -103,7 +103,7 @@ export default function ClassSwitcher({ className = '' }) {
             <div className="class-switcher-menu-intro">
               <span className="class-switcher-menu-eyebrow">CURRENT LEVEL</span>
               <strong>{level?.display_name || level?.name || 'Your learning level'}</strong>
-              <span className="class-switcher-menu-caption">Choose an available class or programme below.</span>
+              <span className="class-switcher-menu-caption">{isPharmacy ? 'Switch to a programme of your choice.' : 'Switch to a class of your choice.'}</span>
             </div>
             <div className="dropdown-divider" />
 
