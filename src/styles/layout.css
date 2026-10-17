@@ -516,29 +516,24 @@ body.dark-mode .site-header, body.dark-mode .site-header.scrolled { background: 
   text-underline-offset: var(--space-1);
 }
 .class-switcher-approval-note a:hover { color: var(--primary-hover, var(--primary)); }
-/* Keep the class/programme picker fully visible on small screens and
-   centred in the viewport instead of letting its anchored dropdown clip. */
-/* The menu is portalled to body, outside page/header stacking contexts.
-   Keep the dismissible backdrop below it so option taps reach the buttons. */
-.class-switcher-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 2147483000;
-  background: transparent;
-}
+/* Keep the class/programme picker centred and accessible on small screens. */
 .class-switcher-menu {
   position: fixed;
   top: 50%;
   left: 50%;
   right: auto;
   bottom: auto;
-  z-index: 2147483001;
+  z-index: var(--z-modal);
   width: min(26rem, calc(100vw - (var(--page-gutter-x) * 2)));
   max-height: min(78dvh, 42rem);
   overflow-y: auto;
   overscroll-behavior: contain;
   transform: translate(-50%, -50%);
-  pointer-events: auto;
+}
+.dropdown-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-modal) - 1);
 }
 
 
