@@ -1,0 +1,71 @@
+-- Add focused comprehension questions for the newly seeded notes.
+-- These remain in the existing question bank and are served through the no-XP
+-- note-practice endpoints. The insert is idempotent by curriculum unit + question text.
+
+insert into public.quiz_questions
+  (question_text, option_a, option_b, option_c, option_d, correct_option, explanation,
+   difficulty, is_active, unit_id, concept_name, subtopic, learning_objective, status, version)
+select
+  q.question_text, q.option_a, q.option_b, q.option_c, q.option_d,
+  q.correct_option, q.explanation, q.difficulty, true, q.unit_id,
+  q.concept_name, q.subtopic, q.learning_objective, 'published', 1
+from (values
+('97f7fd08-1714-42e6-a37f-eddd34a0008d'::uuid,'During the light-dependent reactions of photosynthesis, which substance is split and releases oxygen?','Carbon dioxide','Water','Glucose','Chlorophyll','B','Oxygen released by photosynthesis originates from the splitting of water during the light-dependent reactions.','easy','Photosynthesis','Light-dependent reactions','Explain the source of oxygen in photosynthesis'),
+('97f7fd08-1714-42e6-a37f-eddd34a0008d'::uuid,'What is the main role of ATP and NADPH produced in the light-dependent reactions?','They digest chlorophyll','They provide energy and reducing power for carbon fixation','They convert oxygen into nitrogen','They form the cell wall','B','ATP supplies energy and NADPH supplies reducing power for carbon fixation in the Calvin cycle.','medium','Photosynthesis','Calvin cycle','Relate light-dependent reactions to carbon fixation'),
+('97f7fd08-1714-42e6-a37f-eddd34a0008d'::uuid,'A student increases light intensity but the rate of photosynthesis no longer rises. What is the best explanation?','The plant has stopped respiring','Light is always harmful at high intensity','Another factor may now be limiting the rate','Chlorophyll has become a carbohydrate','C','Once light is no longer the limiting factor, carbon dioxide, temperature or another requirement may limit the rate.','medium','Photosynthesis','Limiting factors','Interpret limiting factors in photosynthesis'),
+('059aa074-7228-458d-a6d2-c270bdb972f2'::uuid,'Which statement best describes negative feedback in homeostasis?','It increases the original change continuously','It opposes a deviation and helps return a variable towards its regulated range','It prevents receptors from detecting change','It always lowers body temperature','B','Negative feedback counteracts the initial deviation; it does not necessarily mean that the variable is lowered.','easy','Homeostasis','Negative feedback','Explain negative-feedback control'),
+('059aa074-7228-458d-a6d2-c270bdb972f2'::uuid,'After a meal, which hormone is released by pancreatic beta cells to help lower blood glucose?','Glucagon','Adrenaline','Insulin','ADH','C','Pancreatic beta cells release insulin when blood glucose rises; insulin promotes glucose uptake and storage.','easy','Homeostasis','Blood glucose regulation','Describe hormonal regulation of blood glucose'),
+('059aa074-7228-458d-a6d2-c270bdb972f2'::uuid,'When the body needs to conserve water, increased ADH action causes the kidneys to:','Produce a larger volume of dilute urine','Reabsorb less water','Reabsorb more water and produce more concentrated urine','Stop filtering blood','C','ADH increases water permeability in the collecting ducts, increasing water reabsorption.','medium','Homeostasis','Water balance','Explain the role of ADH in water balance'),
+('0ed34551-ca95-45c0-93a8-90eb7b93e23e'::uuid,'In a simple complete-dominance cross Tt × Tt, what genotype ratio is expected?','3 TT : 1 tt','1 TT : 2 Tt : 1 tt','1 Tt : 1 tt','All Tt','B','Each heterozygous parent produces T and t gametes, giving TT, Tt, Tt and tt combinations.','easy','Genetics','Monohybrid inheritance','Calculate genotype ratios in a monohybrid cross'),
+('0ed34551-ca95-45c0-93a8-90eb7b93e23e'::uuid,'What is the difference between genotype and phenotype?','Genotype is the observable trait; phenotype is the DNA sequence','Genotype is genetic make-up; phenotype is the observable characteristic','They always mean the same thing','Phenotype is inherited only from the mother','B','Genotype describes genetic constitution, while phenotype is the observable outcome of genotype interacting with environment.','easy','Genetics','Genetic terminology','Distinguish genotype from phenotype'),
+('0ed34551-ca95-45c0-93a8-90eb7b93e23e'::uuid,'Which process exchanges DNA between non-sister chromatids of homologous chromosomes during meiosis?','Binary fission','Translation','Crossing over','Mitosis','C','Crossing over during prophase I can create recombinant combinations of alleles.','medium','Genetics','Meiosis','Explain how meiosis contributes to genetic variation'),
+('67245ca2-e8b7-4992-9fe5-3cb75b09a604'::uuid,'How do enzymes increase the rate of a chemical reaction?','By increasing the final equilibrium yield in every case','By lowering the activation energy','By being permanently consumed','By making all reactions occur at the same temperature','B','Enzymes provide a pathway with lower activation energy and are not consumed by the reaction.','easy','Enzymes','Enzyme catalysis','Explain the catalytic role of enzymes'),
+('67245ca2-e8b7-4992-9fe5-3cb75b09a604'::uuid,'Why may enzyme activity fall sharply above its temperature optimum?','The substrate becomes a chromosome','The enzyme structure and active site may be disrupted','The enzyme gains unlimited active sites','All molecules stop moving','B','Excess heat can disrupt interactions maintaining the enzyme structure, altering its active site.','easy','Enzymes','Temperature','Explain temperature effects on enzyme activity'),
+('67245ca2-e8b7-4992-9fe5-3cb75b09a604'::uuid,'In the simple reversible competitive-inhibition model, what happens when substrate concentration is increased sufficiently?','The inhibitor may be outcompeted at the active site','Vmax must become zero','The enzyme is converted into substrate','The inhibitor becomes the product','A','Competitive inhibitors and substrate compete for the active site; increased substrate can reduce inhibition in the simple model.','medium','Enzymes','Enzyme inhibition','Compare competitive inhibition with other inhibition models'),
+('1a6da14f-a371-41cd-800b-9885c4769d6a'::uuid,'A test cross yields 180 recombinant offspring among 1,000 total offspring. What is the recombination frequency?','1.8%','18%','50%','82%','B','Recombination frequency = (180 ÷ 1,000) × 100 = 18%.','medium','Advanced Genetics','Gene mapping','Calculate recombination frequency'),
+('1a6da14f-a371-41cd-800b-9885c4769d6a'::uuid,'Why can observed recombination frequency underestimate the distance between genes that are far apart on a chromosome?','Multiple crossovers can restore parental allele combinations','Genes stop replicating','All recombinant offspring die','Crossing over occurs only between different chromosomes','A','Multiple crossovers can produce parental-looking combinations and are not all counted as recombinants.','hard','Advanced Genetics','Gene linkage','Explain limitations of recombination-based mapping'),
+('1a6da14f-a371-41cd-800b-9885c4769d6a'::uuid,'Which offspring classes are generally expected to be most frequent in a simple linked-gene test cross?','Parental combinations','Double-crossover combinations','All classes in exactly equal numbers','Only lethal genotypes','A','Linked genes tend to be inherited together, so parental combinations are commonly the most frequent classes.','medium','Advanced Genetics','Test crosses','Interpret parental and recombinant offspring classes'),
+('62f176ee-0381-4da2-849d-d8de510a6eb9'::uuid,'Which statement correctly distinguishes potency from efficacy?','Potency is maximum effect; efficacy is the dose required','Potency concerns amount needed for a defined effect; efficacy concerns the maximum effect','Potency and efficacy are identical','Efficacy measures only adverse effects','B','Potency and efficacy describe different features of a dose-response relationship.','easy','Pharmacodynamics','Dose-response','Distinguish potency and efficacy'),
+('62f176ee-0381-4da2-849d-d8de510a6eb9'::uuid,'A partial agonist differs from a full agonist because it:','Cannot bind to a receptor','Always has zero affinity','Produces a lower maximum response in the same system','Always causes more toxicity','C','A partial agonist activates the receptor but has a lower maximum response than a full agonist under comparable conditions.','medium','Pharmacodynamics','Agonists','Compare full and partial agonists'),
+('62f176ee-0381-4da2-849d-d8de510a6eb9'::uuid,'Which factor is most appropriate when selecting a medicine for an individual patient?','Potency alone','The colour of the package','Evidence, clinical indication, safety and patient-specific factors','The largest available dose','C','Clinical selection requires assessment of indication, evidence, safety, interactions and individual circumstances.','easy','Pharmacodynamics','Therapeutic safety','Relate pharmacodynamic principles to safe clinical decisions'),
+('102a7a2e-5d91-4ca9-8464-ae54a478ab70'::uuid,'A solution contains 250 mg in 5 mL. What is its concentration?','25 mg/mL','50 mg/mL','125 mg/mL','250 mg/mL','B','250 mg ÷ 5 mL = 50 mg/mL.','easy','Pharmaceutical Calculations','Concentration','Calculate mass-per-volume concentration'),
+('102a7a2e-5d91-4ca9-8464-ae54a478ab70'::uuid,'A verified educational example requires 100 mg and the supplied concentration is 50 mg/mL. What volume gives that mass?','0.5 mL','1 mL','2 mL','5 mL','C','Volume = dose ÷ concentration = 100 mg ÷ 50 mg/mL = 2 mL. Real orders require independent clinical verification.','easy','Pharmaceutical Calculations','Dose-volume calculation','Calculate volume using concentration'),
+('102a7a2e-5d91-4ca9-8464-ae54a478ab70'::uuid,'Which conversion is correct?','1 mg = 10 micrograms','1 g = 100 mg','1 mg = 1,000 micrograms','1 L = 100 mL','C','One milligram equals one thousand micrograms; write units clearly to reduce calculation errors.','easy','Pharmaceutical Calculations','Metric conversions','Convert metric units accurately')
+) as q(unit_id,question_text,option_a,option_b,option_c,option_d,correct_option,explanation,difficulty,concept_name,subtopic,learning_objective)
+where not exists (
+  select 1 from public.quiz_questions existing
+  where existing.unit_id = q.unit_id
+    and lower(trim(existing.question_text)) = lower(trim(q.question_text))
+);
+
+-- Link the new question-bank rows through the existing canonical content-link table.
+insert into public.learning_content_links
+  (curriculum_unit_id,content_type,content_id,relationship_type,is_primary,link_origin)
+select q.unit_id,'quiz_question',q.id::text,'assesses',false,'imported'
+from public.quiz_questions q
+where q.question_text in (
+  'During the light-dependent reactions of photosynthesis, which substance is split and releases oxygen?',
+  'What is the main role of ATP and NADPH produced in the light-dependent reactions?',
+  'A student increases light intensity but the rate of photosynthesis no longer rises. What is the best explanation?',
+  'Which statement best describes negative feedback in homeostasis?',
+  'After a meal, which hormone is released by pancreatic beta cells to help lower blood glucose?',
+  'When the body needs to conserve water, increased ADH action causes the kidneys to:',
+  'In a simple complete-dominance cross Tt × Tt, what genotype ratio is expected?',
+  'What is the difference between genotype and phenotype?',
+  'Which process exchanges DNA between non-sister chromatids of homologous chromosomes during meiosis?',
+  'How do enzymes increase the rate of a chemical reaction?',
+  'Why may enzyme activity fall sharply above its temperature optimum?',
+  'In the simple reversible competitive-inhibition model, what happens when substrate concentration is increased sufficiently?',
+  'A test cross yields 180 recombinant offspring among 1,000 total offspring. What is the recombination frequency?',
+  'Why can observed recombination frequency underestimate the distance between genes that are far apart on a chromosome?',
+  'Which offspring classes are generally expected to be most frequent in a simple linked-gene test cross?',
+  'Which statement correctly distinguishes potency from efficacy?',
+  'A partial agonist differs from a full agonist because it:',
+  'Which factor is most appropriate when selecting a medicine for an individual patient?',
+  'A solution contains 250 mg in 5 mL. What is its concentration?',
+  'A verified educational example requires 100 mg and the supplied concentration is 50 mg/mL. What volume gives that mass?',
+  'Which conversion is correct?'
+)
+and q.status='published'
+on conflict (curriculum_unit_id,content_type,content_id,relationship_type)
+do nothing;
