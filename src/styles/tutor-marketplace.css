@@ -1,10 +1,15 @@
  /* src/styles/tutor-marketplace.css */
 
 .tutor-marketplace-page {
-  width: min(100%, var(--max-width));
-  margin-inline: auto;
-  padding-inline: var(--page-gutter-x);
-  padding-block-end: var(--space-16);
+  width: min(var(--page-shell-max-width), calc(100% - (var(--page-gutter-x) * 2)));
+  min-width: 0;
+  margin: var(--page-space-top) auto var(--page-space-bottom);
+  padding-inline: 0;
+  box-sizing: border-box;
+}
+
+.tutor-marketplace-page > .section:first-child {
+  margin-top: 0;
 }
 
 .tutor-marketplace-page .section-head {
@@ -87,7 +92,7 @@
   flex: 0 0 auto;
 }
 
-.tutor-profile-page { padding-block: var(--section-space-y); }
+.tutor-profile-page { padding-block: var(--page-space-top) var(--page-space-bottom); }
 .tutor-profile-shell { width: min(calc(100% - (var(--page-gutter-x) * 2)), var(--content-max-wide)); margin-inline: auto; padding-block-end: var(--space-16); }
 .tutor-profile-back { display: inline-flex; align-items: center; gap: var(--stack-gap-tight); margin-block-end: var(--content-gap); color: var(--text-secondary); text-decoration: none; }
 .tutor-profile-card, .tutor-profile-state { padding: var(--card-padding-y-spacious) var(--card-padding-x-spacious); }
@@ -103,7 +108,7 @@
 
 
 /* Central UI preference integration for tutor marketplace pages. */
-.tutor-marketplace-page { width: min(100%, var(--ui-content-max-width, var(--max-width))); padding-inline: var(--ui-page-gutter-x, var(--page-gutter-x)); }
+.tutor-marketplace-page { width: min(calc(100% - (var(--page-gutter-x) * 2)), var(--ui-content-max-width, var(--page-shell-max-width))); margin-inline: auto; padding-inline: 0; box-sizing: border-box; }
 .tutor-marketplace-page .section-head { margin-bottom: var(--ui-content-gap, var(--content-gap)); }
 .tutor-marketplace-page .tutor-search { gap: var(--ui-content-gap-compact, var(--content-gap-compact)); margin-bottom: var(--ui-content-gap, var(--content-gap)); }
 .tutor-marketplace-page .filter-select { min-height: calc(var(--space-10) * var(--ui-button-scale, 1)); padding-inline: var(--ui-card-padding-x-compact, var(--card-padding-x-compact)); }

@@ -14,15 +14,17 @@
 
 
 .dashboard-wrapper {
-  width: 100%;
-  max-width: var(--max-width);
-  margin-inline: auto;
+  width: min(var(--page-shell-max-width), calc(100% - (var(--page-gutter-x) * 2)));
+  max-width: var(--page-shell-max-width);
+  margin: var(--page-space-top) auto 0;
+  min-width: 0;
 }
 
 .dashboard-content {
   width: 100%;
-  padding-inline: var(--page-gutter-x);
-  padding-bottom: var(--section-space-y-large);
+  min-width: 0;
+  padding-inline: 0;
+  padding-bottom: var(--page-space-bottom);
 }
 
 .dashboard-content .dashboard-header {

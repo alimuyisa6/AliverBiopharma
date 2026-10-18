@@ -8,7 +8,8 @@
 
 .glossary-page {
   width: 100%;
-  padding-top: var(--space-5);
+  min-width: 0;
+  padding-top: var(--page-space-top);
 }
 
 .glossary-loading-wrap {
@@ -133,10 +134,11 @@
   display: flex;
   align-items: flex-start;
   gap: var(--content-gap);
-  width: min(100%, var(--max-width));
-  margin: var(--section-space-y-compact) auto 0;
-  padding-inline: var(--page-gutter-x);
-  padding-bottom: var(--section-space-y);
+  width: min(var(--page-shell-max-width), calc(100% - (var(--page-gutter-x) * 2)));
+  min-width: 0;
+  margin: 0 auto var(--page-space-bottom);
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .glossary-sidebar-toggle {

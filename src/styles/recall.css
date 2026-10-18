@@ -1,14 +1,18 @@
 /* src/styles/recall.css */
 
 .recall-page {
-  width: 100%;
-  max-width: var(--max-width);
+  width: min(var(--page-shell-max-width), calc(100% - (var(--page-gutter-x) * 2)));
+  max-width: var(--page-shell-max-width);
   margin: 0 auto;
-  padding: var(--page-gutter-y) var(--page-gutter-x);
+  padding: var(--page-space-top) 0 var(--page-space-bottom);
+  box-sizing: border-box;
 }
 
 .recall-page-section {
-  padding-top: var(--space-4);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .recall-page-header {
@@ -779,11 +783,13 @@
 
 @media (max-width: 768px) {
   .recall-page {
-    padding: var(--page-gutter-y) var(--page-gutter-x);
+    padding-block: var(--page-space-top) var(--page-space-bottom);
+    padding-inline: 0;
   }
 
   .recall-page-section {
-    padding-top: var(--space-3);
+    margin: 0;
+    padding-top: 0;
   }
 
   .recall-page-title {
@@ -885,10 +891,13 @@
 
 
 .recall-page {
-  width: min(1180px, calc(100% - clamp(32px, 6vw, 80px)));
+  width: min(var(--page-shell-max-width), calc(100% - (var(--page-gutter-x) * 2)));
+  max-width: var(--page-shell-max-width);
   min-width: 0;
   margin-inline: auto;
+  padding-block: var(--page-space-top) var(--page-space-bottom);
   padding-inline: 0;
+  box-sizing: border-box;
 }
 
 .recall-page-section,
@@ -931,7 +940,8 @@
 
 @media (max-width: 640px) {
   .recall-page {
-    width: calc(100% - 32px);
+    width: min(var(--page-shell-max-width), calc(100% - (var(--page-gutter-x) * 2)));
+    padding-block: var(--page-space-top) var(--page-space-bottom);
   }
 
   .recall-cards-grid,

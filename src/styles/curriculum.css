@@ -16,12 +16,16 @@
 }
 
 
+/* The rail lives inside a page-guttered section, so it must not add a
+   second viewport gutter of its own. */
 .curriculum-rail {
   width: 100%;
+  min-width: 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(var(--curriculum-grid-min-width), 1fr));
   gap: var(--content-gap-compact);
-  padding-inline: var(--page-gutter-x);
+  padding-inline: 0;
+  box-sizing: border-box;
 }
 
 .curriculum-card {
@@ -149,7 +153,7 @@
 }
 
 /* Curriculum-aware notes index */
-.notes-page { width: 100%; min-width: 0; padding: var(--space-2) 0 var(--space-4); }
+.notes-page { width: min(var(--page-shell-max-width), 100%); min-width: 0; padding: var(--page-space-top) 0 var(--page-space-bottom); box-sizing: border-box; }
 .notes-page-title { max-width: 900px; margin-bottom: var(--space-3); letter-spacing: var(--tracking-tight); }
 .notes-page-class { margin-bottom: var(--space-5); color: var(--text-muted); }
 .notes-breadcrumb-segment { display: inline-flex; align-items: center; }
@@ -201,7 +205,7 @@
 }
 
 @media (max-width: 480px) {
-  .curriculum-rail { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--stack-gap-tight); padding-inline: var(--space-3); }
+  .curriculum-rail { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--stack-gap-tight); padding-inline: 0; }
   .curriculum-card { padding: var(--card-padding-x-compact); }
   .curriculum-card-badge { width: var(--space-10); height: var(--space-10); }
   .curriculum-node-header { padding: var(--space-5) 0 var(--space-6); }
@@ -210,7 +214,7 @@
   .curriculum-node-block { padding: var(--space-4) 0; }
   .curriculum-node-block-image { max-height: var(--curriculum-image-max-height-mobile); }
   .curriculum-node-link { grid-template-columns: 1fr; gap: var(--space-1); }
-  .notes-page { padding-top: var(--space-2); }
+  .notes-page { padding-top: var(--page-space-top); }
   .notes-curriculum-context { align-items: flex-start; flex-direction: column; }
   .notes-context-meta { align-items: flex-start; min-width: 0; padding: var(--space-3) 0 0; border-top: 1px solid var(--border-subtle); border-left: 0; }
   .notes-section-heading { align-items: flex-start; flex-direction: column; }

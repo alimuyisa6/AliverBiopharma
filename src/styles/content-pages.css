@@ -16,17 +16,18 @@
 .quiz-page,
 .recall-page,
 .pp-page {
-  width: min(var(--max-width), calc(100% - (var(--page-gutter-x) * 2)));
+  width: min(var(--page-shell-max-width), calc(100% - (var(--page-gutter-x) * 2)));
   margin-inline: auto;
   min-width: 0;
+  box-sizing: border-box;
 }
 
- .flashcards-page,
+.flashcards-page,
 .notes-page,
 .quiz-page,
 .recall-page {
-  padding-top: var(--section-space-y);
-  padding-bottom: var(--section-space-y);
+  padding-top: var(--page-space-top);
+  padding-bottom: var(--page-space-bottom);
 }
 
  .flashcard-subject-section,
@@ -36,6 +37,10 @@
   width: 100%;
   margin-inline: auto;
   min-width: 0;
+}
+
+.flashcard-subject-section {
+  margin-top: 0;
 }
 
 .flashcard-subject-section,
@@ -129,9 +134,9 @@
   margin-inline: auto;
 }
 
-.pp-page {
-  margin-top: var(--section-space-y);
-  margin-bottom: var(--section-space-y);
+ .pp-page {
+  margin-top: var(--page-space-top);
+  margin-bottom: var(--page-space-bottom);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-md);
   background: var(--bg-card);
@@ -179,20 +184,20 @@
   .quiz-page,
   .recall-page,
   .pp-page {
-    width: calc(100% - (var(--page-gutter-x) * 2));
+    width: min(var(--page-shell-max-width), calc(100% - (var(--page-gutter-x) * 2)));
   }
 
   .flashcards-page,
   .notes-page,
   .quiz-page,
   .recall-page {
-    padding-top: var(--space-8);
-    padding-bottom: var(--space-10);
+    padding-top: var(--page-space-top);
+    padding-bottom: var(--page-space-bottom);
   }
 
   .pp-page {
-    margin-top: var(--space-5);
-    margin-bottom: var(--space-6);
+    margin-top: var(--page-space-top);
+    margin-bottom: var(--page-space-bottom);
     border-radius: var(--radius-sm);
   }
 
@@ -218,27 +223,32 @@
   .notes-page,
   .quiz-page,
   .recall-page {
-    padding-top: var(--space-6);
-    padding-bottom: var(--space-8);
+    padding-top: var(--page-space-top);
+    padding-bottom: var(--page-space-bottom);
   }
 
   .pp-page {
-    margin-top: var(--space-4);
+    margin-top: var(--page-space-top);
   }
 }
 
 
 .notes-page-shell {
   width: 100%;
-  padding-inline: var(--page-gutter-x);
+  max-width: none;
+  padding: 0 var(--page-gutter-x);
+  margin-inline: 0;
+  box-sizing: border-box;
 }
 
 .notes-page-shell > .notes-page {
-  width: min(var(--max-width), 100%);
+  width: min(var(--page-shell-max-width), 100%);
   margin-inline: auto;
+  box-sizing: border-box;
 }
 .notes-page {
-  padding-top: var(--space-2);
+  padding-top: var(--page-space-top);
+  padding-bottom: var(--page-space-bottom);
 }
 
 .notes-search {
@@ -303,7 +313,7 @@
 
 @media (max-width: 768px) {
   .notes-page {
-    padding-top: var(--space-3);
+    padding-top: var(--page-space-top);
   }
 }
 
@@ -324,9 +334,7 @@
 }
 
 
-.main-content:has(.notes-page-shell) {
-  padding-top: 0;
-}
+/* Notes use the same fixed-header clearance as the other standard pages. */
 
 .notes-page-shell {
   margin-top: 0;
@@ -460,9 +468,8 @@
   }
 }
 
-/* The Past Papers page has its own internal hero/content padding. Keep its
-   outer card at the shared content width so the page gutter is applied once,
-   not once outside the card and again inside it. */
+/* The outer Past Papers surface respects the global viewport gutter.
+   Hero and main sections keep their own internal padding for content. */
 .pp-page {
-  width: min(100%, var(--max-width));
+  width: min(var(--page-shell-max-width), calc(100% - (var(--page-gutter-x) * 2)));
 }
