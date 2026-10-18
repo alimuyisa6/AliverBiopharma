@@ -136,13 +136,12 @@ legend {
   }
 }
 
-/* Consistent horizontal page gutter for the Notes page shell.
-   Other primary pages use their own layout wrapper and already consume
-   --page-gutter-x; this normalises the generic Container-based Notes page. */
+/* The Notes Container is the outer shell: apply the global gutter once.
+   Its inner .notes-page owns the max-width, not a second viewport gutter. */
 .section.notes-page-shell {
-  width: min(var(--max-width), calc(100% - (var(--page-gutter-x) * 2)));
-  max-width: var(--max-width);
-  margin-inline: auto;
-  padding-inline: 0;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0 var(--page-gutter-x);
   box-sizing: border-box;
 }
