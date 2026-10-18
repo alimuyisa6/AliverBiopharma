@@ -29,8 +29,13 @@
   /* --------------------------------------------------------------
      Page / section rhythm
      -------------------------------------------------------------- */
-  --page-gutter-x: var(--space-4);
-  --page-gutter-y: var(--space-4);
+  /* One source of truth for page-level spacing. Individual components may
+     control their internal padding, but page shells consume these tokens. */
+  --page-gutter-x: clamp(0.875rem, 2.4vw, 1.5rem);
+  --page-gutter-y: var(--space-3);
+  --page-space-top: var(--space-3);
+  --page-space-bottom: var(--space-8);
+  --page-shell-max-width: var(--max-width);
   --section-space-y: var(--space-6);
   --section-space-y-compact: var(--space-5);
   --section-space-y-large: var(--space-10);
