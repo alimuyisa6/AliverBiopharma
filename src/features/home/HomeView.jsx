@@ -151,8 +151,12 @@ function CurriculumSnapshot({ nodes, activeLevelName, activeGroupName, sections 
   if (!nodes?.length) return null;
   const isPharmacy = /pharmacy/i.test(`${activeLevelName || ''} ${activeGroupName || ''}`);
   const firstStepLabel = isPharmacy ? 'course unit' : 'topic';
-  const description = sections?.section_headings?.curriculum_subtitle ||
-    `Choose a ${firstStepLabel}, then move through its subtopics, themes and lessons. Your curriculum is matched to your selected class or programme.`;
+  const configuredDescription = sections?.section_headings?.curriculum_subtitle;
+  const description = isPharmacy
+    ? 'Choose a course unit, then move through its sub-course units, themes and lessons. Your curriculum is matched to your selected programme.'
+    : configuredDescription && !/sub?[- ]?course unit|course unit/i.test(configuredDescription)
+      ? configuredDescription
+      : 'Choose a topic, then move through its subtopics, themes and lessons. Your curriculum is matched to your selected class.';
 
   return (
     <section className="section home-curriculum-section" aria-labelledby="home-curriculum-heading">
