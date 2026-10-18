@@ -21,6 +21,7 @@ import Card from '../components/Card/Card';
 import EmptyState from '../components/EmptyState/EmptyState';
 import Spinner from '../components/Spinner/Spinner';
 import Button from '../components/Button/Button';
+import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 
 const noteDetailContentCache = new Map();
 
