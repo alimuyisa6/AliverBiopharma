@@ -14,6 +14,13 @@ function slugify(value) {
     .replace(/^-+|-+$/g, '');
 }
 
+function curriculumLevelLabel(depth, isPharmacy) {
+  if (depth <= 0) return isPharmacy ? 'Course Unit' : 'Topic';
+  if (depth === 1) return isPharmacy ? 'Sub-course Unit' : 'Subtopic';
+  if (depth === 2) return 'Theme';
+  return 'Lesson';
+}
+
 function resourcePath(resource, unitId) {
   const routes = {
     notes: '/notes',
@@ -128,16 +135,10 @@ export default function CurriculumNodePage() {
   const counts = data?.resource_counts || {};
   const blocks = data?.blocks || [];
   const linkedContent = data?.linked_content || [];
-  const curriculumContext = `${ancestors[1]?.name || ''} ${ancestors[0]?.name || ''}`.toLowerCase();
+  const curriculumContext = `${ancestors.map((item) => item.name || '').join(' ')} ${node?.name || ''}`.toLowerCase();
   const isPharmacy = curriculumContext.includes('pharmacy') || String(node?.node_type || '').toLowerCase() === 'sub_course_unit';
-  const nodeType = String(node?.node_type || 'unit').toLowerCase();
-  const nodeLabel = nodeType === 'sub_course_unit' ? 'Sub-course Unit'
-    : nodeType === 'unit' ? (isPharmacy ? 'Course Unit' : 'Topic')
-    : nodeType === 'topic' ? (isPharmacy ? 'Course Unit' : 'Topic')
-    : nodeType === 'subtopic' ? (isPharmacy ? 'Sub-course Unit' : 'Subtopic')
-    : nodeType === 'theme' ? 'Theme'
-    : nodeType === 'lesson' ? 'Lesson'
-    : nodeType.replaceAll('_', ' ');
+  const curriculumDepth = ancestors.filter((item) => item.group_id === groupId).length;
+  const nodeLabel = curriculumLevelLabel(curriculumDepth, isPharmacy);
   const linkedContentGroups = linkedContent.reduce((groups, item) => {
     const key = item.content_type;
     if (!groups[key]) groups[key] = [];
@@ -266,7 +267,7 @@ export default function CurriculumNodePage() {
                   </span>
                   <span className="curriculum-node-child-body">
                     <strong>{child.name}</strong>
-                    <small>{child.node_type || 'topic'}</small>
+                    <small>{curriculumLevelLabel(curriculumDepth + 1, isPharmacy)}</small>
                   </span>
                   <Icon name="chevron-right" />
                 </Link>
