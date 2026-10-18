@@ -1,9 +1,9 @@
 // src/features/resources/ResourcesView.jsx
 
 import { useMemo, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Icon from '../../components/Icon/Icon';
+import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import Button from '../../components/Button/Button';
 import { useLayout } from '../../contexts/LayoutContext';
 import '../../styles/resources.css';
@@ -84,7 +84,6 @@ const CATEGORY_LABELS = {
 
 export default function ResourcesView({ navigate, user, sections }) {
   const { level, bootstrap, groups } = useLayout();
-  const location = useLocation();
   const activeGroupId = user?.profile?.active_group_id || null;
   const activeGroup = (groups || []).find((group) => group.id === activeGroupId) || null;
   const [filter, setFilter] = useState('all');
@@ -148,11 +147,7 @@ export default function ResourcesView({ navigate, user, sections }) {
     <div className="resources-page">
       <main className="resources-main">
         <DynamicActions pageId="resources" className="resources-dynamic-actions" />
-        <nav className="resources-breadcrumb" aria-label="Breadcrumb">
-          <Link to="/">Home</Link>
-          <Icon name="chevron-right" />
-          <Link to={`${location.pathname}${location.search}${location.hash}`} aria-current="page" title="Resources">Resources</Link>
-        </nav>
+        <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Resources' }]} />
 
         <div className="resources-intro">
           <div>
