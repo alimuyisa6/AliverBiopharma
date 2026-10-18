@@ -149,7 +149,7 @@ function CurriculumNodeList({ nodes, parentId = null, isPharmacy = false }) {
 
 function CurriculumSnapshot({ nodes, activeLevelName, activeGroupName, sections }) {
   if (!nodes?.length) return null;
-  const isPharmacy = /pharmacy/i.test(String(activeLevelName || ''));
+  const isPharmacy = /pharmacy/i.test(`${activeLevelName || ''} ${activeGroupName || ''}`);
   const firstStepLabel = isPharmacy ? 'course unit' : 'topic';
   const description = sections?.section_headings?.curriculum_subtitle ||
     `Choose a ${firstStepLabel}, then move through its subtopics, themes and lessons. Your curriculum is matched to your selected class or programme.`;
