@@ -1,11 +1,22 @@
-/* src/styles/breadcrumb.css */
+/* src/styles/breadcrumb.css
+   Shared sizing and behaviour for the reusable component and legacy breadcrumb markup.
+*/
 .breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: var(--space-1);
   width: 100%;
   min-width: 0;
+  margin: 0;
   padding: var(--space-1) 0;
+  overflow-x: auto;
+  overflow-y: hidden;
   color: var(--text-muted);
   font-size: var(--text-xs);
   line-height: var(--leading-normal);
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
 }
 
 .breadcrumb-list {
@@ -18,23 +29,26 @@
   margin: 0;
   padding: 0 0 var(--space-1);
   list-style: none;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scrollbar-width: thin;
-  -webkit-overflow-scrolling: touch;
+  overflow: visible;
 }
 
-.breadcrumb-item {
+.breadcrumb-item,
+.breadcrumb > a,
+.breadcrumb > span,
+.breadcrumb > svg {
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
   gap: var(--space-1);
   min-width: 0;
-  max-width: min(9rem, 34vw);
+  max-width: min(10rem, 34vw);
 }
 
 .breadcrumb-link,
-.breadcrumb-current {
+.breadcrumb-current,
+.breadcrumb > a,
+.breadcrumb > span,
+.breadcrumb-item > span {
   display: inline-block;
   min-width: 0;
   max-width: 100%;
@@ -45,21 +59,25 @@
   white-space: nowrap;
   font-size: var(--text-xs);
   font-weight: var(--weight-medium);
+  line-height: var(--leading-normal);
 }
 
-.breadcrumb-link:hover {
+.breadcrumb-link:hover,
+.breadcrumb > a:hover {
   color: var(--text-link-hover);
   text-decoration: underline;
   text-underline-offset: 0.15em;
 }
 
-.breadcrumb-link:focus-visible {
+.breadcrumb-link:focus-visible,
+.breadcrumb > a:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
   border-radius: var(--radius-xs);
 }
 
-.breadcrumb-current {
+.breadcrumb-current,
+.breadcrumb [aria-current="page"] {
   color: var(--text-secondary);
   font-weight: var(--weight-semibold);
 }
@@ -68,17 +86,39 @@
   flex: 0 0 auto;
   width: 0.65rem;
   height: 0.65rem;
+  margin: 0;
   color: var(--text-muted);
   font-size: var(--text-xs);
 }
 
+.breadcrumb .notes-breadcrumb-segment {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: var(--space-1);
+  max-width: min(10rem, 34vw);
+}
+
+.breadcrumb .notes-breadcrumb-segment > span {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 @media (min-width: 48rem) {
-  .breadcrumb-item {
+  .breadcrumb-item,
+  .breadcrumb > a,
+  .breadcrumb > span,
+  .breadcrumb > svg,
+  .breadcrumb .notes-breadcrumb-segment {
     max-width: 12rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .breadcrumb,
   .breadcrumb-list {
     scroll-behavior: auto;
   }
