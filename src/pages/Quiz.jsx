@@ -3,6 +3,7 @@ import AdSlot from '../components/Advertising/AdSlot';
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 import { useRequireOnboarding } from '../hooks/useRequireOnboarding';
 import { useLevelFilter } from '../hooks/useLevelFilter';
 import { useContentAccess } from '../hooks/useContentAccess';
@@ -764,25 +765,18 @@ export default function Quiz() {
   return (
     <div className={`quiz-page${!isQuizCardsPage && !currentTopic && !resultData && !quizQuestions.length && !sessionId ? ' quiz-landing-page' : ''}`}>
       <div className={`section quiz-page-section${!isQuizCardsPage && !currentTopic && !resultData && !quizQuestions.length && !sessionId ? ' quiz-landing-section' : ''}`}>
-        <nav className="breadcrumb">
-          <Link to="/">Home</Link>
-          <Icon name="chevron-right" className="breadcrumb-sep" />
-          <Link to="/quiz">Quiz</Link>
-          {quizBreadcrumb && (
-            <>
-              <Icon name="chevron-right" className="breadcrumb-sep" />
-              {quizBreadcrumb.parentLabel ? (
-                <>
-                  <Link to="/quiz/blocks">{quizBreadcrumb.parentLabel}</Link>
-                  <Icon name="chevron-right" className="breadcrumb-sep" />
-                  <span>{quizBreadcrumb.label}</span>
-                </>
-              ) : (
-                <span>{quizBreadcrumb.label}</span>
-              )}
-            </>
-          )}
-        </nav>
+        <Breadcrumb items={[
+          { label: 'Home', href: '/' },
+          { label: 'Quiz', href: '/quiz' },
+          ...(quizBreadcrumb
+            ? [
+                ...(quizBreadcrumb.parentLabel
+                  ? [{ label: quizBreadcrumb.parentLabel, href: '/quiz/blocks' }]
+                  : []),
+                { label: quizBreadcrumb.label },
+              ]
+            : []),
+        ]} />
 
         {!isQuizCardsPage && !currentTopic && !resultData && !quizQuestions.length && !sessionId && (
           <>
