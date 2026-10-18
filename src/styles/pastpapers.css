@@ -11,6 +11,8 @@
 }
 
 .pp-page {
+  width: min(var(--max-width), calc(100% - (var(--page-gutter-x) * 2)));
+  min-width: 0;
   font-family: var(--font-primary);
   max-width: var(--max-width);
   margin: 0 auto;
