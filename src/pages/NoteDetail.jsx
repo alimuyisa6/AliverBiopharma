@@ -601,18 +601,7 @@ export default function NoteDetail() {
           </div>
         )}
 
-        <div className="breadcrumb note-breadcrumb font-mono">
-          {breadcrumb.map((crumb, index) => (
-            <span key={index}>
-              {crumb.href ? (
-                <Link to={crumb.href} className="breadcrumb-link">{crumb.label}</Link>
-              ) : (
-                <span className="breadcrumb-current">{crumb.label}</span>
-              )}
-              {index < breadcrumb.length - 1 && <span className="breadcrumb-sep">›</span>}
-            </span>
-          ))}
-        </div>
+        <Breadcrumb items={breadcrumb} className="note-breadcrumb" />
 
         <article ref={contentRef} className="note-article">
           <div className="note-hero">
