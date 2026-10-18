@@ -4,6 +4,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { useRequireOnboarding } from '../hooks/useRequireOnboarding';
 import { useLevelFilter } from '../hooks/useLevelFilter';
 import { useContentAccess } from '../hooks/useContentAccess';
+import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 import { useSecurityUiLock } from '../hooks/useSecurityUiLock';
 import { useToast } from '../components/Toast/Toast';
 import {
@@ -669,24 +670,7 @@ export default function BioRecall() {
   return (
     <div className="recall-page">
       <div className="section recall-page-section">
-        <nav className="breadcrumb font-mono">
-          <Link to="/">
-            <Icon
-              name="home"
-              className="breadcrumb-icon"
-            />
-            Home
-          </Link>
-
-          <Icon
-            name="chevron-right"
-            className="breadcrumb-sep"
-          />
-
-          <span className="font-maven-pro">
-            Recall Practice
-          </span>
-        </nav>
+        <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Recall Practice' }]} />
 
         <div className="recall-page-header">
           <span className="sec-label font-mono">

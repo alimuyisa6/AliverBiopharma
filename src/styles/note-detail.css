@@ -92,32 +92,7 @@
 }
 
 .note-breadcrumb {
-  margin-bottom: var(--space-6);
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: var(--space-1);
-  font-size: var(--text-sm);
-}
-
-.breadcrumb-link {
-  color: var(--primary);
-  text-decoration: none;
-  font-weight: var(--weight-medium);
-}
-
-.breadcrumb-link:hover {
-  text-decoration: underline;
-  color: var(--primary-hover);
-}
-
-.breadcrumb-current {
-  color: var(--text-dim);
-}
-
-.breadcrumb-sep {
-  color: var(--text-muted);
-  margin: 0 var(--space-1);
+  margin-bottom: var(--space-4);
 }
 
 .note-class-badge {

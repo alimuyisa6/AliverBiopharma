@@ -360,27 +360,4 @@
 }
 
 
-.resources-breadcrumb {
-  display: flex;
-  min-height: 2.75rem;
-  align-items: center;
-  gap: var(--space-2);
-  margin-bottom: var(--space-3);
-  color: var(--text-muted);
-  font-size: var(--text-sm);
-}
-.resources-breadcrumb a {
-  color: var(--primary);
-  text-decoration: none;
-}
-.resources-breadcrumb a:hover {
-  text-decoration: underline;
-}
-.resources-breadcrumb svg {
-  width: var(--space-3);
-  height: var(--space-3);
-}
-.resources-breadcrumb [aria-current="page"] {
-  color: var(--text-main);
-  font-weight: var(--weight-semibold);
-}
+/* Resources use the shared .breadcrumb component for uniform sizing and spacing. */

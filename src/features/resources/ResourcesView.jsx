@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Icon from '../../components/Icon/Icon';
+import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import Button from '../../components/Button/Button';
 import { useLayout } from '../../contexts/LayoutContext';
 import '../../styles/resources.css';
@@ -146,11 +147,7 @@ export default function ResourcesView({ navigate, user, sections }) {
     <div className="resources-page">
       <main className="resources-main">
         <DynamicActions pageId="resources" className="resources-dynamic-actions" />
-        <nav className="resources-breadcrumb" aria-label="Breadcrumb">
-          <Link to="/">Home</Link>
-          <Icon name="chevron-right" />
-          <span aria-current="page">Resources</span>
-        </nav>
+        <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Resources' }]} />
 
         <div className="resources-intro">
           <div>
