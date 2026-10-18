@@ -215,7 +215,7 @@ export default function CurriculumNodePage() {
 
   if (!node && Array.isArray(rootNodes)) {
     const groupName = rootNodes[0]?.group_name || '';
-    const isPharmacyRoot = /pharmacy/i.test(String(groupName)) || rootNodes.some((item) => /pharmacy/i.test(String(item.level_id || '')));
+    const isPharmacyRoot = /pharmacy/i.test(String(groupId)) || /pharmacy/i.test(String(groupName)) || rootNodes.some((item) => /pharmacy/i.test(String(item.level_id || '')));
     const rootLabel = isPharmacyRoot ? 'course unit' : 'topic';
     return (
       <Container className="curriculum-node-page">
