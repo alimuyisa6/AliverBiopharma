@@ -254,9 +254,18 @@ export default function CurriculumNodePage() {
   }
 
   const isLeaf = children.length === 0;
-  const availableResources = (isLeaf ? Object.entries(RESOURCE_LABELS) : []).filter(
-    ([key]) => Number(counts[key === 'quiz' ? 'quiz_questions' : key === 'flashcards' ? 'flashcard_decks' : key === 'pdfs' ? 'pdf_resources' : key] || 0) > 0
-  );
+  const RESOURCE_COUNT_KEYS = {
+    notes: 'notes',
+    quiz: 'quiz_questions',
+    flashcards: 'flashcard_decks',
+    recall: 'recall_questions_bank',
+    pdfs: 'pdf_resources',
+    'past-papers': 'past_papers'
+  };
+  const availableResources = (isLeaf ? Object.entries(RESOURCE_LABELS) : [])
+    .filter(([key]) => Number(counts[RESOURCE_COUNT_KEYS[key] || key] || 0) > 0)
+    .sort(([a], [b]) => (a === resourceFocus ? -1 : b === resourceFocus ? 1 : 0));
+  const returnToLesson = `/curriculum/${encodeURIComponent(groupId)}/${nodePath}${resourceFocus ? `?resource=${encodeURIComponent(resourceFocus)}` : ''}`;
 
   return (
     <Container className="curriculum-node-page">
@@ -283,7 +292,7 @@ export default function CurriculumNodePage() {
           <p className="curriculum-node-reading-intro">Begin with the explanation below, then return here for practice questions, flashcards and revision resources.</p>
           <div className="curriculum-node-core-reading-list">
             {linkedNotes.map((item) => (
-              <Link key={item.id} to={`/notes/read?id=${encodeURIComponent(item.content_id)}`} className="curriculum-node-core-reading-link">
+              <Link key={item.id} to={`/notes/read?id=${encodeURIComponent(item.content_id)}&return_to=${encodeURIComponent(returnToLesson)}`} className="curriculum-node-core-reading-link">
                 <span className="curriculum-node-child-icon"><Icon name="book-open" /></span>
                 <span className="curriculum-node-child-body">
                   <strong>{item.title || 'Read core concepts'}</strong>
