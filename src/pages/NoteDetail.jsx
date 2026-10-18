@@ -403,7 +403,7 @@ export default function NoteDetail() {
     try {
       const result = await createNoteLearningThread(noteId, question);
       if (!result?.thread?.id) throw new Error('Learning thread was not created');
-      navigate(`/learning/explanation?id=${encodeURIComponent(result.thread.id)}`);
+      navigate('/learning/explanation?id=' + encodeURIComponent(result.thread.id) + (returnToLesson ? '&return_to=' + encodeURIComponent(returnToLesson) : ''));
     } catch (error) {
       setLearningError(error?.message || 'Could not save your question. Please try again.');
     } finally {
