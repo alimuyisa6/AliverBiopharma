@@ -19,6 +19,14 @@
   -webkit-overflow-scrolling: touch;
 }
 
+.breadcrumb-list,
+.breadcrumb-item,
+.breadcrumb-link,
+.breadcrumb-current {
+  margin-block: 0;
+  padding-block: 0;
+}
+
 .breadcrumb-list {
   display: flex;
   align-items: center;
