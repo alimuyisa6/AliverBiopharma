@@ -1446,3 +1446,49 @@
     font-size: var(--text-lg) !important;
   }
 }
+
+
+/* Compact, consistent note reactions: keep the Helpful pill shape without crowding. */
+.note-reactions-buttons {
+  align-items: center;
+  gap: var(--space-2);
+  row-gap: var(--space-2);
+}
+
+.note-reaction-btn {
+  min-height: 40px;
+  min-width: 0;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-full);
+  gap: var(--space-1);
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+  white-space: nowrap;
+  flex: 0 1 auto;
+}
+
+.note-reaction-btn i,
+.note-reaction-btn svg {
+  flex: 0 0 auto;
+  font-size: var(--text-sm);
+}
+
+.note-reaction-count {
+  margin-left: 0;
+  font-size: var(--text-xs);
+}
+
+@media (max-width: 520px) {
+  .note-reactions-section {
+    padding: var(--space-4);
+  }
+
+  .note-reactions-buttons {
+    justify-content: center;
+    gap: var(--space-2);
+  }
+
+  .note-reaction-btn {
+    padding-inline: var(--space-2);
+  }
+}
