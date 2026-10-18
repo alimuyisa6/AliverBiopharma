@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 import { useLevelFilter } from '../hooks/useLevelFilter';
 import {
   getPastPapers,
@@ -551,14 +552,10 @@ export default function PastPapers() {
               </p>
             )}
 
-            <nav className="pp-breadcrumb">
-              <Link to="/">
-                <Icon name="home" className="pp-breadcrumb-icon" />
-                Home
-              </Link>
-              <Icon name="chevron-right" className="pp-breadcrumb-sep" />
-              <span>{curriculumUnitId ? 'Curriculum Past Papers' : 'Past Papers'}</span>
-            </nav>
+            <Breadcrumb items={[
+              { label: 'Home', href: '/' },
+              { label: curriculumUnitId ? 'Curriculum Past Papers' : 'Past Papers' },
+            ]} />
 
             <div className="pp-meta">
               <span className="pp-meta-item">
