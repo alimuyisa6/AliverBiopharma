@@ -136,7 +136,7 @@ export default function CurriculumNodePage() {
   const blocks = data?.blocks || [];
   const linkedContent = data?.linked_content || [];
   const curriculumContext = `${ancestors.map((item) => item.name || '').join(' ')} ${node?.name || ''}`.toLowerCase();
-  const isPharmacy = curriculumContext.includes('pharmacy') || String(node?.node_type || '').toLowerCase() === 'sub_course_unit';
+  const isPharmacy = String(data?.curriculum_group?.level_id || '').toLowerCase().includes('pharmacy') || curriculumContext.includes('pharmacy') || String(node?.node_type || '').toLowerCase() === 'sub_course_unit';
   const curriculumDepth = ancestors.filter((item) => item.group_id === groupId).length;
   const nodeLabel = curriculumLevelLabel(curriculumDepth, isPharmacy);
   const linkedContentGroups = linkedContent.reduce((groups, item) => {
