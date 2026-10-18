@@ -216,3 +216,84 @@
   .notes-section-heading { align-items: flex-start; flex-direction: column; }
   .notes-grid, .notes-skeleton-grid { grid-template-columns: 1fr; }
 }
+
+
+/* Connected homepage → curriculum → core-concept reading flow */
+.curriculum-node-focus-note {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin-top: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border-left: 3px solid var(--primary);
+  background: var(--bg-card-tinted);
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+}
+.curriculum-node-core-reading {
+  border-bottom: 1px solid var(--border-subtle);
+}
+.curriculum-node-reading-intro {
+  max-width: var(--curriculum-block-copy-max-width);
+  margin: 0 0 var(--space-4);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+}
+.curriculum-node-core-reading-list {
+  display: grid;
+  gap: var(--content-gap-compact);
+}
+.curriculum-node-core-reading-link {
+  display: flex;
+  min-width: 0;
+  min-height: 4rem;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid var(--border-default);
+  background: var(--bg-card);
+  color: var(--text-main);
+  text-decoration: none;
+  transition: border-color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard);
+}
+.curriculum-node-core-reading-link:hover {
+  border-color: var(--border-strong);
+  background: var(--bg-card-hover);
+}
+.curriculum-node-reading-cta {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--primary);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+}
+.note-return-to-lesson {
+  margin: 0 0 var(--space-4);
+}
+.note-return-to-lesson-link {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--border-default);
+  color: var(--primary);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  text-decoration: none;
+}
+.note-return-to-lesson-link:hover {
+  border-color: var(--border-strong);
+  background: var(--bg-card-hover);
+}
+@media (max-width: 40rem) {
+  .curriculum-node-core-reading-link {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .curriculum-node-reading-cta {
+    margin-left: calc(var(--space-10) + var(--space-3));
+  }
+}
