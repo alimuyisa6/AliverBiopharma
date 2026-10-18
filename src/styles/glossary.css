@@ -136,7 +136,7 @@
   gap: var(--content-gap);
   width: min(var(--page-shell-max-width), calc(100% - (var(--page-gutter-x) * 2)));
   min-width: 0;
-  margin: var(--page-space-top) auto var(--page-space-bottom);
+  margin: 0 auto var(--page-space-bottom);
   padding: 0;
   box-sizing: border-box;
 }
