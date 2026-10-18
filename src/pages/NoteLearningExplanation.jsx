@@ -28,6 +28,8 @@ function noteText(html) {
 export default function NoteLearningExplanation() {
   const [searchParams] = useSearchParams();
   const threadId = searchParams.get('id');
+  const requestedReturnTo = searchParams.get('return_to') || '';
+  const returnToLesson = requestedReturnTo.startsWith('/') && !requestedReturnTo.startsWith('//') ? requestedReturnTo : '';
   const { level } = useLayout();
   const [thread, setThread] = useState(null);
   const [history, setHistory] = useState([]);
@@ -253,8 +255,16 @@ export default function NoteLearningExplanation() {
       </div>
 
       <nav className="note-learning-bottom-navigation" aria-label="Note navigation">
+        {returnToLesson && (
+          <Link to={returnToLesson} className="note-learning-nav-button">
+            <svg aria-hidden="true" viewBox="0 0 20 20" width="16" height="16" fill="none">
+              <path d="M12.5 4.5 7 10l5.5 5.5M7.5 10H17" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            <span>Return to Lesson</span>
+          </Link>
+        )}
         <Link
-          to={`/notes/read?id=${encodeURIComponent(thread.note_id)}`}
+          to={'/notes/read?id=' + encodeURIComponent(thread.note_id) + (returnToLesson ? '&return_to=' + encodeURIComponent(returnToLesson) : '')}
           className="note-learning-nav-button"
         >
           <svg aria-hidden="true" viewBox="0 0 20 20" width="16" height="16" fill="none">
