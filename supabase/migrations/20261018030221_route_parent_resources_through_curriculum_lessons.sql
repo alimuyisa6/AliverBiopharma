@@ -9,6 +9,7 @@ WITH resource_units AS (
   UNION SELECT unit_id FROM public.past_papers WHERE unit_id IS NOT NULL
   UNION SELECT unit_id FROM public.videos WHERE unit_id IS NOT NULL
   UNION SELECT unit_id FROM public.articles WHERE unit_id IS NOT NULL
+  UNION SELECT curriculum_unit_id FROM public.learning_content_links WHERE content_type <> 'curriculum_unit_block'
 )
 INSERT INTO public.curriculum_units
   (group_id,parent_id,name,code,icon,display_order,is_hard_topic,is_premium,is_active,slug,node_type)
@@ -28,6 +29,7 @@ WITH resource_units AS (
   UNION SELECT unit_id FROM public.past_papers WHERE unit_id IS NOT NULL
   UNION SELECT unit_id FROM public.videos WHERE unit_id IS NOT NULL
   UNION SELECT unit_id FROM public.articles WHERE unit_id IS NOT NULL
+  UNION SELECT curriculum_unit_id FROM public.learning_content_links WHERE content_type <> 'curriculum_unit_block'
 )
 INSERT INTO public.curriculum_units
   (group_id,parent_id,name,code,icon,display_order,is_hard_topic,is_premium,is_active,slug,node_type)
