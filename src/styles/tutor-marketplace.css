@@ -8,6 +8,10 @@
   box-sizing: border-box;
 }
 
+.tutor-marketplace-page > .section:first-child {
+  margin-top: 0;
+}
+
 .tutor-marketplace-page .section-head {
   margin-bottom: var(--content-gap);
 }
