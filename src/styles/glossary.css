@@ -8,7 +8,8 @@
 
 .glossary-page {
   width: 100%;
-  padding-top: var(--space-5);
+  min-width: 0;
+  padding-top: var(--page-space-top);
 }
 
 .glossary-loading-wrap {
