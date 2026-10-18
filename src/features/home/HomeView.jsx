@@ -96,44 +96,77 @@ function ContinueLearningRail({ items, navigate }) {
   );
 }
 
-function CurriculumNodeList({ nodes, parentId = null, depth = 0 }) {
+function CurriculumNodeList({ nodes, parentId = null, isPharmacy = false }) {
   const children = nodes
     .filter((node) => (node.parent_id || null) === parentId)
     .sort((a, b) => (a.display_order ?? 0) - (b.display_order ?? 0) || a.name.localeCompare(b.name));
+
   if (!children.length) return null;
 
   return (
-    <div className={`home-curriculum-node-list home-curriculum-depth-${depth}`}>
-      {children.map((node) => (
-        <div key={node.id} className="home-curriculum-node">
-          <div className="home-curriculum-node-line">
+    <div className="home-curriculum-node-list" aria-label="Available curriculum topics">
+      {children.map((node) => {
+        const nodeSlug = node.slug || String(node.name || '')
+          .trim()
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-+|-+$/g, '');
+        const nodeType = String(node.node_type || '').toLowerCase();
+        const pharmacyNode = isPharmacy || nodeType === 'sub_course_unit';
+        const label = nodeType === 'sub_course_unit'
+          ? 'Sub-course Unit'
+          : nodeType === 'topic'
+            ? 'Topic'
+            : nodeType === 'unit'
+              ? (pharmacyNode ? 'Course Unit' : 'Topic')
+              : nodeType === 'subtopic'
+                ? 'Subtopic'
+                : nodeType === 'theme'
+                  ? 'Theme'
+                  : nodeType === 'lesson'
+                    ? 'Lesson'
+                    : 'Learning area';
+
+        return (
+          <Link
+            key={node.id}
+            to={`/curriculum/${node.group_id}/${nodeSlug}`}
+            className="home-curriculum-node home-curriculum-node-link"
+            aria-label={`Open ${label.toLowerCase()} ${node.name}`}
+          >
             <span className="home-curriculum-node-marker" aria-hidden="true" />
-            <span className="home-curriculum-node-name">{node.name}</span>
-            <span className="home-curriculum-node-type">{node.node_type}</span>
-          </div>
-          <CurriculumNodeList nodes={nodes} parentId={node.id} depth={depth + 1} />
-        </div>
-      ))}
+            <span className="home-curriculum-node-copy">
+              <strong className="home-curriculum-node-name">{node.name}</strong>
+              <small className="home-curriculum-node-type">{label}</small>
+            </span>
+            <Icon name="chevron-right" />
+          </Link>
+        );
+      })}
     </div>
   );
 }
 
 function CurriculumSnapshot({ nodes, activeLevelName, activeGroupName, sections }) {
   if (!nodes?.length) return null;
+  const isPharmacy = /pharmacy/i.test(`${activeLevelName || ''} ${activeGroupName || ''}`);
+  const firstStepLabel = isPharmacy ? 'course unit' : 'topic';
   const description = sections?.section_headings?.curriculum_subtitle ||
-    'Your syllabus structure, from programme level down to the topics and concepts it contains.';
+    `Choose a ${firstStepLabel}, then move through its subtopics, themes and lessons. Your curriculum is matched to your selected class or programme.`;
 
   return (
     <section className="section home-curriculum-section" aria-labelledby="home-curriculum-heading">
       <div className="section-head">
         <div className="section-head-left">
           <span className="eyebrow">{activeLevelName}{activeGroupName ? ` · ${activeGroupName}` : ''}</span>
-          <h2 id="home-curriculum-heading" className="home-curriculum-heading">Your curriculum</h2>
+          <h2 id="home-curriculum-heading" className="home-curriculum-heading">
+            Choose a {firstStepLabel}
+          </h2>
           <p className="section-description home-curriculum-description">{description}</p>
         </div>
       </div>
-      <div className="home-curriculum-map" aria-label="Curriculum overview">
-        <CurriculumNodeList nodes={nodes} />
+      <div className="home-curriculum-map" aria-label="Choose a curriculum topic or course unit">
+        <CurriculumNodeList nodes={nodes} isPharmacy={isPharmacy} />
       </div>
     </section>
   );

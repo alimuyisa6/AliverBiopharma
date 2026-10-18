@@ -494,3 +494,24 @@ body.dark-mode .testimonial-flat cite { color: var(--success-hover); }
 .home-learning-snapshot-dashboard-link:hover .home-dashboard-link-arrow {
   transform: translateX(var(--space-1));
 }
+
+
+/* Clickable curriculum entry points: learners advance one level at a time. */
+.home-curriculum-node-link {
+  display: flex;
+  min-height: 3.5rem;
+  align-items: center;
+  gap: var(--stack-gap-tight);
+  padding: var(--space-3) var(--card-padding-x-compact);
+  color: var(--text-main);
+  text-decoration: none;
+  border-block-start: 1px solid var(--border-default);
+  transition: background-color var(--duration-fast) var(--ease-standard);
+}
+.home-curriculum-node-link:first-child { border-block-start: 0; }
+.home-curriculum-node-link:hover,
+.home-curriculum-node-link:focus-visible { background: var(--bg-card-hover); }
+.home-curriculum-node-copy { display: flex; flex: 1; min-width: 0; flex-direction: column; gap: var(--space-1); }
+.home-curriculum-node-copy .home-curriculum-node-name { overflow-wrap: anywhere; }
+.home-curriculum-node-link > svg { flex: 0 0 auto; color: var(--primary); }
+.home-curriculum-node-link .home-curriculum-node-marker { border-radius: 50%; }
