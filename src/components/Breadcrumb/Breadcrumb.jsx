@@ -17,7 +17,7 @@ export default function Breadcrumb({ items = [], className = '' }) {
 
           return (
             <li className="breadcrumb-item" key={`${item.label}-${idx}`}>
-              {idx > 0 && <Icon name="chevron-right" className="breadcrumb-sep" />}
+              {idx > 0 && <Icon name="chevron-right" className="breadcrumb-sep" plain size="0.65rem" />}
               {href ? (
                 <Link
                   to={href}
