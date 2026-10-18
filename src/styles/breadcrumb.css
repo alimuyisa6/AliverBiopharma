@@ -76,7 +76,8 @@
   line-height: 0;
   vertical-align: middle;
 }
-.breadcrumb-link.is-inactive {
+.breadcrumb-link.is-inactive,
+.breadcrumb-current.is-inactive {
   color: var(--text-muted);
   font-weight: var(--weight-medium);
 }
