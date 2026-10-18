@@ -12,6 +12,7 @@ import Skeleton from '../components/Skeleton/Skeleton';
 import EmptyState from '../components/EmptyState/EmptyState';
 import Button from '../components/Button/Button';
 import Container from '../components/Container/Container';
+import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 import StickyNotePolaroidFrame from '../components/StickyNotePolaroidFrame/StickyNotePolaroidFrame';
 
 const notesPageCache = new Map();
@@ -160,6 +161,31 @@ export default function NotesPage() {
 
   const contextTitle = curriculumContext?.node?.name || null;
   const contextAncestors = curriculumContext?.ancestors || [];
+  const breadcrumbItems = useMemo(() => {
+    const items = [
+      { label: 'Home', href: '/' },
+      { label: 'Notes', href: unitId ? `/notes?unit_id=${encodeURIComponent(unitId)}` : '/notes' },
+    ];
+
+    if (contextLoading) {
+      items.push({ label: 'Loading curriculum…' });
+    } else if (contextTitle) {
+      contextAncestors.forEach((ancestor, index) => {
+        items.push({
+          label: ancestor.name,
+          href: buildCurriculumPath({
+            node: ancestor,
+            ancestors: contextAncestors.slice(0, index),
+          }),
+        });
+      });
+      items.push({ label: contextTitle });
+    } else if (unitId) {
+      items.push({ label: 'Selected curriculum' });
+    }
+
+    return items;
+  }, [unitId, contextLoading, contextTitle, contextAncestors]);
   const contextChildren = curriculumContext?.children || [];
   const resourceNoteCount = curriculumContext?.resourceCounts?.notes;
   const levelName = displayName || level || '';
@@ -185,34 +211,7 @@ export default function NotesPage() {
             Study Notes
           </h1>
 
-          <nav className="breadcrumb font-mono" aria-label="Breadcrumb">
-            <Link to="/">Home</Link>
-            <Icon name="chevron-right" className="breadcrumb-sep" />
-            <Link to="/notes">Notes</Link>
-
-            {contextLoading ? (
-              <>
-                <Icon name="chevron-right" className="breadcrumb-sep" />
-                <span className="font-maven-pro">Loading curriculum…</span>
-              </>
-            ) : contextTitle ? (
-              <>
-                {contextAncestors.map((ancestor) => (
-                  <span className="notes-breadcrumb-segment" key={ancestor.id}>
-                    <Icon name="chevron-right" className="breadcrumb-sep" />
-                    <span className="font-maven-pro">{ancestor.name}</span>
-                  </span>
-                ))}
-                <Icon name="chevron-right" className="breadcrumb-sep" />
-                <span className="font-maven-pro">{contextTitle}</span>
-              </>
-            ) : unitId ? (
-              <>
-                <Icon name="chevron-right" className="breadcrumb-sep" />
-                <span className="font-maven-pro">Selected curriculum</span>
-              </>
-            ) : null}
-          </nav>
+          <Breadcrumb items={breadcrumbItems} />
         </div>
 
         <AdSlot placement="notes" pageContext="notes" />
