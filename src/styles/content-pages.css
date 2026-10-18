@@ -459,3 +459,10 @@
     font-size: var(--text-2xs);
   }
 }
+
+/* The Past Papers page has its own internal hero/content padding. Keep its
+   outer card at the shared content width so the page gutter is applied once,
+   not once outside the card and again inside it. */
+.pp-page {
+  width: min(100%, var(--max-width));
+}
