@@ -278,7 +278,7 @@ export default function CurriculumNodePage() {
         <p>{children.length > 0
           ? `Choose a ${curriculumLevelLabel(curriculumDepth + 1, isPharmacy).toLowerCase()} to continue. Your selected class or programme is kept throughout the journey.`
           : `This is your lesson. Read its core concepts, then use the connected practice and reference materials to strengthen your understanding.`}</p>
-        {focusedResourceLabel && <p className="curriculum-node-focus-note">Your selected resource: <strong>{focusedResourceLabel}</strong>. We will keep it in focus as you move through this pathway.</p>}
+        {focusedResourceLabel && <p className="curriculum-node-focus-note"><span>Your selected resource:</span> <strong>{focusedResourceLabel}</strong><span> — we’ll keep it in focus as you move through this pathway.</span></p>}
       </header>
 
       {isLeaf && linkedNotes.length > 0 && (
