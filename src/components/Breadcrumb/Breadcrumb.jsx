@@ -2,14 +2,14 @@
 import { Link, useLocation } from 'react-router-dom';
 import Icon from '../Icon/Icon';
 
-export default function Breadcrumb({ items = [] }) {
+export default function Breadcrumb({ items = [], className = '' }) {
   const location = useLocation();
   if (!items.length) return null;
 
   const currentHref = `${location.pathname}${location.search}${location.hash}`;
 
   return (
-    <nav className="breadcrumb" aria-label="Breadcrumb">
+    <nav className={["breadcrumb", className].filter(Boolean).join(" ")} aria-label="Breadcrumb">
       <ol className="breadcrumb-list">
         {items.map((item, idx) => {
           const isCurrent = idx === items.length - 1;
