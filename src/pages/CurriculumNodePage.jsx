@@ -213,7 +213,7 @@ export default function CurriculumNodePage() {
         <span className="curriculum-node-type">{nodeLabel}</span>
         <h1>{node.name}</h1>
         <p>{children.length > 0
-          ? `Choose a ${nodeType === 'unit' || nodeType === 'topic' ? (isPharmacy ? 'sub-course unit' : 'subtopic') : nodeType === 'subtopic' || nodeType === 'sub_course_unit' ? 'theme' : nodeType === 'theme' ? 'lesson' : 'next learning step'} to continue. Resources appear after you open the lesson or final learning item.`
+          ? `Choose a ${curriculumLevelLabel(curriculumDepth + 1, isPharmacy).toLowerCase()} to continue. Resources appear after you open the lesson.`
           : `Explore the lessons and learning materials connected to this ${nodeLabel.toLowerCase()}, including notes, quizzes, flashcards, recall practice and other available resources.`}</p>
       </header>
 
