@@ -2,7 +2,7 @@
 
 .page-header {
   margin-bottom: var(--section-space-y-compact);
-  padding: var(--space-6) 0;
+  padding: var(--page-space-top) 0 var(--space-4);
   border-bottom: 1px solid var(--border-subtle);
 }
 
