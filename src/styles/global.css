@@ -189,3 +189,50 @@ figcaption {
     font-size: var(--text-lg) !important;
   }
 }
+
+
+/* Keep named page/section headings on the same quiet scale too. */
+.section-title,
+.page-title,
+.page-heading,
+.about-title,
+.legal-title,
+.modal-title,
+.glossary-title,
+.note-title,
+.quiz-hero-title,
+.empty-state-title,
+.ab-empty-title,
+.curriculum-node-title,
+.curriculum-node-section-title,
+.notes-page-title,
+.flashcard-title,
+.quiz-page-title,
+.recall-page-title {
+  font-size: var(--text-xl) !important;
+  font-weight: var(--weight-medium) !important;
+  line-height: var(--leading-card-title) !important;
+  color: var(--text-secondary) !important;
+}
+
+@media (max-width: 640px) {
+  .section-title,
+  .page-title,
+  .page-heading,
+  .about-title,
+  .legal-title,
+  .modal-title,
+  .glossary-title,
+  .note-title,
+  .quiz-hero-title,
+  .empty-state-title,
+  .ab-empty-title,
+  .curriculum-node-title,
+  .curriculum-node-section-title,
+  .notes-page-title,
+  .flashcard-title,
+  .quiz-page-title,
+  .recall-page-title {
+    font-size: var(--text-lg) !important;
+  }
+}
