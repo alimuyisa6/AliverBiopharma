@@ -1,6 +1,7 @@
 // src/features/resources/ResourcesView.jsx
 
 import { useMemo, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Icon from '../../components/Icon/Icon';
 import Button from '../../components/Button/Button';
@@ -83,6 +84,7 @@ const CATEGORY_LABELS = {
 
 export default function ResourcesView({ navigate, user, sections }) {
   const { level, bootstrap, groups } = useLayout();
+  const location = useLocation();
   const activeGroupId = user?.profile?.active_group_id || null;
   const activeGroup = (groups || []).find((group) => group.id === activeGroupId) || null;
   const [filter, setFilter] = useState('all');
@@ -149,7 +151,7 @@ export default function ResourcesView({ navigate, user, sections }) {
         <nav className="resources-breadcrumb" aria-label="Breadcrumb">
           <Link to="/">Home</Link>
           <Icon name="chevron-right" />
-          <span aria-current="page">Resources</span>
+          <Link to={`${location.pathname}${location.search}${location.hash}`} aria-current="page" title="Resources">Resources</Link>
         </nav>
 
         <div className="resources-intro">
