@@ -894,7 +894,7 @@
 
 @media (max-width: 640px) {
   .note-detail-container {
-    padding: var(--space-6) var(--space-4) var(--space-12);
+    padding: var(--page-space-top) 0 var(--page-space-bottom);
   }
   .note-hero {
     padding: var(--space-6) var(--space-5);
