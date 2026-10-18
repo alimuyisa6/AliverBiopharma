@@ -139,9 +139,10 @@ legend {
 /* Consistent horizontal page gutter for the Notes page shell.
    Other primary pages use their own layout wrapper and already consume
    --page-gutter-x; this normalises the generic Container-based Notes page. */
-.notes-page-shell {
+.section.notes-page-shell {
   width: min(var(--max-width), calc(100% - (var(--page-gutter-x) * 2)));
   max-width: var(--max-width);
   margin-inline: auto;
+  padding-inline: 0;
   box-sizing: border-box;
 }
