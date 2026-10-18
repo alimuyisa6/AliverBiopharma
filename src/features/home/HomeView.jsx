@@ -96,7 +96,7 @@ function ContinueLearningRail({ items, navigate }) {
   );
 }
 
-function CurriculumNodeList({ nodes, parentId = null }) {
+function CurriculumNodeList({ nodes, parentId = null, isPharmacy = false }) {
   const children = nodes
     .filter((node) => (node.parent_id || null) === parentId)
     .sort((a, b) => (a.display_order ?? 0) - (b.display_order ?? 0) || a.name.localeCompare(b.name));
@@ -112,14 +112,13 @@ function CurriculumNodeList({ nodes, parentId = null }) {
           .replace(/[^a-z0-9]+/g, '-')
           .replace(/^-+|-+$/g, '');
         const nodeType = String(node.node_type || '').toLowerCase();
-        const isPharmacy = nodeType === 'sub_course_unit' ||
-          /pharmacy/i.test(String(node.level_name || node.program_name || ''));
+        const pharmacyNode = isPharmacy || nodeType === 'sub_course_unit';
         const label = nodeType === 'sub_course_unit'
           ? 'Sub-course Unit'
           : nodeType === 'topic'
             ? 'Topic'
             : nodeType === 'unit'
-              ? (isPharmacy ? 'Course Unit' : 'Topic')
+              ? (pharmacyNode ? 'Course Unit' : 'Topic')
               : nodeType === 'subtopic'
                 ? 'Subtopic'
                 : nodeType === 'theme'
@@ -167,7 +166,7 @@ function CurriculumSnapshot({ nodes, activeLevelName, activeGroupName, sections 
         </div>
       </div>
       <div className="home-curriculum-map" aria-label="Choose a curriculum topic or course unit">
-        <CurriculumNodeList nodes={nodes} />
+        <CurriculumNodeList nodes={nodes} isPharmacy={isPharmacy} />
       </div>
     </section>
   );
