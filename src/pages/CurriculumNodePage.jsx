@@ -164,7 +164,8 @@ export default function CurriculumNodePage() {
   const nodeType = String(node?.node_type || '').toLowerCase();
   const nodeLabel = curriculumLevelLabel(curriculumDepth, isPharmacy);
   const linkedNotes = linkedContent.filter((item) => item.content_type === 'note' && item.content_id);
-  const focusedResourceLabel = RESOURCE_LABELS[resourceFocus] || '';
+  const normalizedResourceFocus = ({ quizzes: 'quiz', past_papers: 'past-papers' })[resourceFocus] || resourceFocus;
+  const focusedResourceLabel = RESOURCE_LABELS[normalizedResourceFocus] || '';
   const linkedContentGroups = linkedContent.reduce((groups, item) => {
     const key = item.content_type;
     if (!groups[key]) groups[key] = [];
@@ -264,7 +265,7 @@ export default function CurriculumNodePage() {
   };
   const availableResources = (isLeaf ? Object.entries(RESOURCE_LABELS) : [])
     .filter(([key]) => Number(counts[RESOURCE_COUNT_KEYS[key] || key] || 0) > 0)
-    .sort(([a], [b]) => (a === resourceFocus ? -1 : b === resourceFocus ? 1 : 0));
+    .sort(([a], [b]) => (a === normalizedResourceFocus ? -1 : b === normalizedResourceFocus ? 1 : 0));
   const returnToLesson = `/curriculum/${encodeURIComponent(groupId)}/${nodePath}${resourceFocus ? `?resource=${encodeURIComponent(resourceFocus)}` : ''}`;
 
   return (
