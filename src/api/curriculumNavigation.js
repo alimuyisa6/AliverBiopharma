@@ -9,7 +9,7 @@ export function getCurriculumNode(unitId) {
 export function getCurriculumNodeByPath(groupId, path) {
   return getRequest('curriculum-navigation', 'node_by_path', {
     group_id: groupId,
-    path
+    node_path: path
   });
 }
 
