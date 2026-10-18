@@ -28,7 +28,7 @@ export default function Breadcrumb({ items = [], className = '' }) {
                   {item.label}
                 </Link>
               ) : (
-                <span className="breadcrumb-current is-active" title={item.label}>{item.label}</span>
+                <span className={`breadcrumb-current ${isCurrent ? "is-active" : "is-inactive"}`} title={item.label}>{item.label}</span>
               )}
             </li>
           );
