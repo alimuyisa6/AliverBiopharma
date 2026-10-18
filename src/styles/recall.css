@@ -1,10 +1,11 @@
 /* src/styles/recall.css */
 
 .recall-page {
-  width: 100%;
-  max-width: var(--max-width);
+  width: min(var(--page-shell-max-width), calc(100% - (var(--page-gutter-x) * 2)));
+  max-width: var(--page-shell-max-width);
   margin: 0 auto;
-  padding: var(--page-gutter-y) var(--page-gutter-x);
+  padding: var(--page-space-top) 0 var(--page-space-bottom);
+  box-sizing: border-box;
 }
 
 .recall-page-section {
