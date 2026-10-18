@@ -803,13 +803,20 @@ export default function NoteDetail() {
         </div>
 
         <nav className="note-bottom-navigation" aria-label="Note navigation">
-          {returnToLesson && (
+          {returnToLesson ? (
             <Link to={returnToLesson} className="note-return-to-lesson-link note-nav-button">
               <svg aria-hidden="true" viewBox="0 0 20 20" width="16" height="16" fill="none">
                 <path d="M12.5 4.5 7 10l5.5 5.5M7.5 10H17" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              <span>Return to lesson</span>
+              <span>Back to Lesson</span>
             </Link>
+          ) : (
+            <button type="button" className="note-return-to-lesson-link note-nav-button" onClick={() => navigate(-1)}>
+              <svg aria-hidden="true" viewBox="0 0 20 20" width="16" height="16" fill="none">
+                <path d="M12.5 4.5 7 10l5.5 5.5M7.5 10H17" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <span>Back to Lesson</span>
+            </button>
           )}
           <button type="button" className="note-back-btn note-back-bottom note-nav-button" onClick={handleBack}>
             <svg aria-hidden="true" viewBox="0 0 20 20" width="16" height="16" fill="none">
