@@ -16,10 +16,11 @@
 }
 
 
+/* The rail lives inside a page-guttered section, so it must not add a
+   second viewport gutter of its own. */
 .curriculum-rail {
-  width: min(var(--page-shell-max-width), calc(100% - (var(--page-gutter-x) * 2)));
+  width: 100%;
   min-width: 0;
-  margin-inline: auto;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(var(--curriculum-grid-min-width), 1fr));
   gap: var(--content-gap-compact);
