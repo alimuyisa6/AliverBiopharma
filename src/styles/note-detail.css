@@ -1404,3 +1404,45 @@
   .note-learning-header h1 { font-size: var(--text-2xl); }
   .note-learning-composer button { width: 100%; }
 }
+
+
+/* Keep long-form study notes compact and easy to scan. */
+.notes-content-container {
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+}
+
+.notes-content-container p,
+.notes-content-container li,
+.notes-content-container blockquote,
+.notes-content-container table tbody td {
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+}
+
+.notes-content-container h2,
+.notes-content-container h3,
+.notes-content-container h4,
+.notes-content-container h5,
+.notes-content-container h6 {
+  font-size: var(--text-xl) !important;
+  font-weight: var(--weight-medium) !important;
+  color: var(--text-secondary) !important;
+}
+
+.note-title {
+  font-size: var(--text-xl) !important;
+  font-weight: var(--weight-medium) !important;
+  color: var(--text-secondary) !important;
+}
+
+@media (max-width: 640px) {
+  .notes-content-container h2,
+  .notes-content-container h3,
+  .notes-content-container h4,
+  .notes-content-container h5,
+  .notes-content-container h6,
+  .note-title {
+    font-size: var(--text-lg) !important;
+  }
+}

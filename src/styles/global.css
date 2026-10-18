@@ -145,3 +145,94 @@ legend {
   padding: 0 var(--page-gutter-x);
   box-sizing: border-box;
 }
+
+
+/* Site-wide compact, low-emphasis typography scale.
+   Semantic headings share one size for a quieter, consistent page rhythm. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--text-xl) !important;
+  font-weight: var(--weight-medium) !important;
+  line-height: var(--leading-card-title) !important;
+  color: var(--text-secondary) !important;
+  letter-spacing: var(--tracking-normal);
+}
+
+body {
+  font-size: var(--text-body-sm);
+}
+
+p,
+li {
+  font-size: var(--text-sm);
+  line-height: var(--leading-body);
+}
+
+small,
+.text-caption,
+figcaption {
+  font-size: var(--text-xs);
+  line-height: var(--leading-caption);
+}
+
+@media (max-width: 640px) {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: var(--text-lg) !important;
+  }
+}
+
+
+/* Keep named page/section headings on the same quiet scale too. */
+.section-title,
+.page-title,
+.page-heading,
+.about-title,
+.legal-title,
+.modal-title,
+.glossary-title,
+.note-title,
+.quiz-hero-title,
+.empty-state-title,
+.ab-empty-title,
+.curriculum-node-title,
+.curriculum-node-section-title,
+.notes-page-title,
+.flashcard-title,
+.quiz-page-title,
+.recall-page-title {
+  font-size: var(--text-xl) !important;
+  font-weight: var(--weight-medium) !important;
+  line-height: var(--leading-card-title) !important;
+  color: var(--text-secondary) !important;
+}
+
+@media (max-width: 640px) {
+  .section-title,
+  .page-title,
+  .page-heading,
+  .about-title,
+  .legal-title,
+  .modal-title,
+  .glossary-title,
+  .note-title,
+  .quiz-hero-title,
+  .empty-state-title,
+  .ab-empty-title,
+  .curriculum-node-title,
+  .curriculum-node-section-title,
+  .notes-page-title,
+  .flashcard-title,
+  .quiz-page-title,
+  .recall-page-title {
+    font-size: var(--text-lg) !important;
+  }
+}
