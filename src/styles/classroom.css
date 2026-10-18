@@ -1,8 +1,10 @@
 /* Central UI preference integration for classroom and live-room layouts. */
 .classroom-page {
-  width: min(100%, var(--ui-content-max-width, var(--max-width)));
+  width: min(calc(100% - (var(--page-gutter-x) * 2)), var(--ui-content-max-width, var(--page-shell-max-width)));
+  min-width: 0;
   margin-inline: auto;
-  padding-inline: var(--ui-page-gutter-x, var(--page-gutter-x));
+  padding-inline: 0;
+  box-sizing: border-box;
 }
 .classroom-list-section { padding-block: var(--ui-section-space-y, var(--section-space-y)); }
 .classroom-page .grid { gap: var(--ui-content-gap, var(--content-gap)); }
