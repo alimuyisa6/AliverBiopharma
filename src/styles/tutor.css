@@ -4,7 +4,7 @@
   width: min(calc(100% - (var(--page-gutter-x) * 2)), var(--page-shell-max-width));
   min-width: 0;
   margin-inline: auto;
-  padding-block: var(--section-space-y);
+  padding-block: var(--page-space-top) var(--page-space-bottom);
   padding-inline: 0;
   box-sizing: border-box;
 }
@@ -129,8 +129,8 @@
 
 @media (max-width: 768px) {
   .tutor-page-section {
-    padding-block: var(--section-space-y);
-    padding-inline: var(--page-gutter-x);
+    padding-block: var(--page-space-top) var(--page-space-bottom);
+    padding-inline: 0;
   }
 
   .tutor-page-title {
@@ -144,7 +144,7 @@
 
 @media (max-width: 480px) {
   .tutor-page-section {
-    padding-inline: var(--page-gutter-x);
+    padding-inline: 0;
   }
 
   .tutor-page-title {
