@@ -128,6 +128,16 @@ export default function CurriculumNodePage() {
   const counts = data?.resource_counts || {};
   const blocks = data?.blocks || [];
   const linkedContent = data?.linked_content || [];
+  const curriculumContext = `${ancestors[1]?.name || ''} ${ancestors[0]?.name || ''}`.toLowerCase();
+  const isPharmacy = curriculumContext.includes('pharmacy') || String(node?.node_type || '').toLowerCase() === 'sub_course_unit';
+  const nodeType = String(node?.node_type || 'unit').toLowerCase();
+  const nodeLabel = nodeType === 'sub_course_unit' ? 'Sub-course Unit'
+    : nodeType === 'unit' ? (isPharmacy ? 'Course Unit' : 'Topic')
+    : nodeType === 'topic' ? (isPharmacy ? 'Course Unit' : 'Topic')
+    : nodeType === 'subtopic' ? (isPharmacy ? 'Sub-course Unit' : 'Subtopic')
+    : nodeType === 'theme' ? 'Theme'
+    : nodeType === 'lesson' ? 'Lesson'
+    : nodeType.replaceAll('_', ' ');
   const linkedContentGroups = linkedContent.reduce((groups, item) => {
     const key = item.content_type;
     if (!groups[key]) groups[key] = [];
@@ -189,7 +199,8 @@ export default function CurriculumNodePage() {
     );
   }
 
-  const availableResources = Object.entries(RESOURCE_LABELS).filter(
+  const isLeaf = children.length === 0;
+  const availableResources = (isLeaf ? Object.entries(RESOURCE_LABELS) : []).filter(
     ([key]) => Number(counts[key === 'quiz' ? 'quiz_questions' : key === 'flashcards' ? 'flashcard_decks' : key === 'pdfs' ? 'pdf_resources' : key] || 0) > 0
   );
 
@@ -198,12 +209,14 @@ export default function CurriculumNodePage() {
       <Breadcrumb items={breadcrumbItems} />
 
       <header className="curriculum-node-header">
-        <span className="curriculum-node-type">{node.node_type || 'unit'}</span>
+        <span className="curriculum-node-type">{nodeLabel}</span>
         <h1>{node.name}</h1>
-        <p>Continue learning through the concepts, resources, and related curriculum connected to this node.</p>
+        <p>{children.length > 0
+          ? `Choose a ${nodeType === 'unit' || nodeType === 'topic' ? (isPharmacy ? 'sub-course unit' : 'subtopic') : nodeType === 'subtopic' || nodeType === 'sub_course_unit' ? 'theme' : nodeType === 'theme' ? 'lesson' : 'next learning step'} to continue. Resources appear after you open the lesson or final learning item.`
+          : `Explore the lessons and learning materials connected to this ${nodeLabel.toLowerCase()}, including notes, quizzes, flashcards, recall practice and other available resources.`}</p>
       </header>
 
-      {blocks.length > 0 && (
+      {isLeaf && blocks.length > 0 && (
         <section className="curriculum-node-section curriculum-node-learning">
           <div className="curriculum-node-section-heading">
             <div>
@@ -239,10 +252,9 @@ export default function CurriculumNodePage() {
 
           <div className="curriculum-node-children">
             {children.map((child) => {
-              const parentPath = ancestors
-                .slice(2)
-                .map((item) => slugify(item.slug || item.name))
-                .join('/');
+              const ancestorPathParts = ancestors.slice(2).map((item) => slugify(item.slug || item.name));
+              if (!ancestors.some((item) => item.id === node.id)) ancestorPathParts.push(slugify(node.slug || node.name));
+              const parentPath = ancestorPathParts.join('/');
               const childPath = [parentPath, slugify(child.slug || child.name)]
                 .filter(Boolean)
                 .join('/');
@@ -285,7 +297,7 @@ export default function CurriculumNodePage() {
       )}
 
 
-      {Object.keys(linkedContentGroups).length > 0 && (
+      {isLeaf && Object.keys(linkedContentGroups).length > 0 && (
         <section className="curriculum-node-section">
           <div className="curriculum-node-section-heading">
             <div>
