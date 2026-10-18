@@ -3,10 +3,10 @@
   width: min(calc(100% - (var(--page-gutter-x) * 2)), var(--ui-content-max-width, var(--page-shell-max-width)));
   min-width: 0;
   margin-inline: auto;
-  padding-inline: 0;
+  padding: var(--page-space-top) 0 var(--page-space-bottom);
   box-sizing: border-box;
 }
-.classroom-list-section { padding-block: var(--ui-section-space-y, var(--section-space-y)); }
+.classroom-list-section { margin-block: 0; padding-block: 0 var(--ui-section-space-y, var(--section-space-y)); }
 .classroom-page .grid { gap: var(--ui-content-gap, var(--content-gap)); }
 .classroom-page .classroom-room-card { padding: var(--ui-card-padding-y, var(--card-padding-y)) var(--ui-card-padding-x, var(--card-padding-x)); }
 .classroom-page .classroom-list-table-wrap { margin-block-start: var(--ui-content-gap, var(--content-gap)); }
