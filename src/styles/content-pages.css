@@ -10,7 +10,7 @@
   --content-page-card-action-height: var(--control-height-xs);
 }
 
-.notes-page-shell,
+ .notes-page-shell,
 .flashcards-page,
 .notes-page,
 .quiz-page,
@@ -240,6 +240,7 @@
 .notes-page-shell > .notes-page {
   width: min(var(--page-shell-max-width), 100%);
   margin-inline: auto;
+  box-sizing: border-box;
 }
 .notes-page {
   padding-top: var(--page-space-top);
