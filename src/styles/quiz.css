@@ -20,15 +20,11 @@
 /* src/styles/quiz.css */
 
 .quiz-page-section {
-  width: min(100%, var(--max-width));
-  margin-top: 0;
-  margin-right: auto;
-  margin-bottom: var(--section-space-y);
-  margin-left: auto;
-  padding-top: var(--space-1);
-  padding-right: var(--page-gutter-x);
-  padding-bottom: 0;
-  padding-left: var(--page-gutter-x);
+  width: min(var(--page-shell-max-width), calc(100% - (var(--page-gutter-x) * 2)));
+  min-width: 0;
+  margin: 0 auto var(--section-space-y);
+  padding: var(--page-space-top) 0 0;
+  box-sizing: border-box;
 }
 
 .quiz-page-title {
