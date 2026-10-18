@@ -1,6 +1,7 @@
 // src/features/resources/ResourcesView.jsx
 
 import { useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Icon from '../../components/Icon/Icon';
 import Button from '../../components/Button/Button';
 import { useLayout } from '../../contexts/LayoutContext';
@@ -81,7 +82,9 @@ const CATEGORY_LABELS = {
 };
 
 export default function ResourcesView({ navigate, user, sections }) {
-  const { level, bootstrap } = useLayout();
+  const { level, bootstrap, groups } = useLayout();
+  const activeGroupId = user?.profile?.active_group_id || null;
+  const activeGroup = (groups || []).find((group) => group.id === activeGroupId) || null;
   const [filter, setFilter] = useState('all');
   const [query, setQuery] = useState('');
 
@@ -124,13 +127,42 @@ export default function ResourcesView({ navigate, user, sections }) {
     : 'Biology notes organised by topic, flashcards, quizzes, past papers, downloadable PDFs, diagrams, reference materials and active-recall practice—matched to your level, from O-Level through A-Level.';
 
   function handleBrowse(type) {
-    navigate(user ? type.route : '/login');
+    if (!user) {
+      navigate('/login');
+      return;
+    }
+
+    // Keep the chosen resource type active while the learner moves through
+    // topic → subtopic → theme → lesson.
+    if (activeGroupId) {
+      navigate(`/curriculum/${encodeURIComponent(activeGroupId)}?resource=${encodeURIComponent(type.key)}`);
+      return;
+    }
+
+    navigate(type.route);
   }
 
   return (
     <div className="resources-page">
       <main className="resources-main">
         <DynamicActions pageId="resources" className="resources-dynamic-actions" />
+        <nav className="resources-breadcrumb" aria-label="Breadcrumb">
+          <Link to="/">Home</Link>
+          <Icon name="chevron-right" />
+          <span aria-current="page">Resources</span>
+        </nav>
+
+        <div className="resources-intro">
+          <div>
+            <span className="resources-section-kicker">Resources · {levelName}{activeGroup?.name ? ` · ${activeGroup.name}` : ''}</span>
+            <h1>Your learning library</h1>
+            <p>{subtitle}</p>
+          </div>
+          <span className="resources-section-context">
+            {filteredTypes.length} of {CONTENT_TYPES.length}
+          </span>
+        </div>
+
         <div className="resources-toolbar">
           <div className="resources-filter-chips" role="group" aria-label="Filter resources">
             {FILTERS.map((item) => (
@@ -157,17 +189,6 @@ export default function ResourcesView({ navigate, user, sections }) {
               aria-label="Search resources"
             />
           </label>
-        </div>
-
-        <div className="resources-intro">
-          <div>
-            <span className="resources-section-kicker">Resources · {levelName}</span>
-            <h1>Your learning library</h1>
-            <p>{subtitle}</p>
-          </div>
-          <span className="resources-section-context">
-            {filteredTypes.length} of {CONTENT_TYPES.length}
-          </span>
         </div>
 
         <div className="resources-section-head">
@@ -209,7 +230,7 @@ export default function ResourcesView({ navigate, user, sections }) {
                       onClick={() => handleBrowse(type)}
                       aria-label={`Open ${type.label}`}
                     >
-                      Open resource
+                      Explore by {isPharmacy ? 'course unit' : 'topic'}
                     </Button>
                   </div>
                 </article>

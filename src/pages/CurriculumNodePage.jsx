@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import Container from '../components/Container/Container';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 import Spinner from '../components/Spinner/Spinner';
 import Icon from '../components/Icon/Icon';
-import { getCurriculumNodeByPath } from '../api/curriculumNavigation';
+import { getCurriculumNodeByPath, getCurriculumTree } from '../api/curriculumNavigation';
 
 function slugify(value) {
   return String(value || '')
@@ -93,6 +93,9 @@ function renderBlockContent(block) {
 
 export default function CurriculumNodePage() {
   const { groupId, '*': nodePath = '' } = useParams();
+  const [searchParams] = useSearchParams();
+  const resourceFocus = searchParams.get('resource') || '';
+  const [rootNodes, setRootNodes] = useState(null);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -102,6 +105,26 @@ export default function CurriculumNodePage() {
     const cacheKey = `${groupId || ''}:${nodePath || ''}`;
     const cached = curriculumNodeCache.get(cacheKey);
 
+    if (!nodePath) {
+      setData(null);
+      setRootNodes(null);
+      setLoading(true);
+      setError(null);
+      getCurriculumTree(groupId)
+        .then((tree) => {
+          if (!mounted) return;
+          setRootNodes((Array.isArray(tree) ? tree : [])
+            .filter((item) => !item.parent_id && Number(item.depth || 0) === 0)
+            .sort((a, b) => (a.display_order ?? 0) - (b.display_order ?? 0) || a.name.localeCompare(b.name)));
+        })
+        .catch((err) => {
+          if (mounted) setError(err?.message || 'Unable to load this curriculum.');
+        })
+        .finally(() => { if (mounted) setLoading(false); });
+      return () => { mounted = false; };
+    }
+
+    setRootNodes(null);
     if (cached) {
       setData(cached);
       setLoading(false);
@@ -140,6 +163,9 @@ export default function CurriculumNodePage() {
   const curriculumDepth = Math.max(0, ancestors.filter((item) => item.group_id === groupId).length - 1);
   const nodeType = String(node?.node_type || '').toLowerCase();
   const nodeLabel = curriculumLevelLabel(curriculumDepth, isPharmacy);
+  const linkedNotes = linkedContent.filter((item) => item.content_type === 'note' && item.content_id);
+  const normalizedResourceFocus = ({ quizzes: 'quiz', past_papers: 'past-papers' })[resourceFocus] || resourceFocus;
+  const focusedResourceLabel = RESOURCE_LABELS[normalizedResourceFocus] || '';
   const linkedContentGroups = linkedContent.reduce((groups, item) => {
     const key = item.content_type;
     if (!groups[key]) groups[key] = [];
@@ -154,7 +180,7 @@ export default function CurriculumNodePage() {
     if (group) {
       items.push({
         label: group.name,
-        href: `/curriculum/${groupId}`
+        href: `/curriculum/${encodeURIComponent(groupId)}${resourceFocus ? `?resource=${encodeURIComponent(resourceFocus)}` : ''}`
       });
     }
 
@@ -166,7 +192,7 @@ export default function CurriculumNodePage() {
       const isCurrent = ancestor.id === node?.id;
       items.push({
         label: ancestor.name,
-        href: isCurrent ? null : `/curriculum/${groupId}/${path}`
+        href: isCurrent ? null : `/curriculum/${encodeURIComponent(groupId)}/${path}${resourceFocus ? `?resource=${encodeURIComponent(resourceFocus)}` : ''}`
       });
     });
 
@@ -175,7 +201,7 @@ export default function CurriculumNodePage() {
     }
 
     return items;
-  }, [ancestors, node, data?.curriculum_group, groupId]);
+  }, [ancestors, node, data?.curriculum_group, groupId, resourceFocus]);
 
   if (loading) {
     return (
@@ -183,6 +209,34 @@ export default function CurriculumNodePage() {
         <div className="curriculum-node-loading">
           <Spinner context="brand" size="lg" />
         </div>
+      </Container>
+    );
+  }
+
+  if (!node && Array.isArray(rootNodes)) {
+    const groupName = rootNodes[0]?.group_name || '';
+    const isPharmacyRoot = /pharmacy/i.test(String(groupId)) || /pharmacy/i.test(String(groupName)) || rootNodes.some((item) => /pharmacy/i.test(String(item.level_id || '')));
+    const rootLabel = isPharmacyRoot ? 'course unit' : 'topic';
+    return (
+      <Container className="curriculum-node-page">
+        <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Resources', href: '/resources' }, { label: isPharmacyRoot ? 'Course units' : 'Topics', href: null }]} />
+        <header className="curriculum-node-header">
+          <span className="curriculum-node-type">Your curriculum</span>
+          <h1>Choose a {rootLabel}</h1>
+          <p>Start here, then follow the connected {isPharmacyRoot ? 'sub-course units' : 'subtopics'}, themes and lessons. Your selected class or programme determines what you see.{focusedResourceLabel ? ` You chose ${focusedResourceLabel}; we will keep that resource in focus as you move through the curriculum.` : ''}</p>
+        </header>
+        <section className="curriculum-node-section">
+          <div className="curriculum-node-section-heading"><div><span className="curriculum-node-kicker">Step 1 of 4</span><h2>{isPharmacyRoot ? 'Course units' : 'Topics'}</h2></div><span className="curriculum-node-count">{rootNodes.length} available</span></div>
+          <div className="curriculum-node-children">
+            {rootNodes.map((item) => (
+              <Link key={item.id} to={`/curriculum/${encodeURIComponent(groupId)}/${slugify(item.slug || item.name)}${resourceFocus ? `?resource=${encodeURIComponent(resourceFocus)}` : ''}`} className="curriculum-node-child">
+                <span className="curriculum-node-child-icon"><Icon name={item.icon || 'book-open'} /></span>
+                <span className="curriculum-node-child-body"><strong>{item.name}</strong><small>{isPharmacyRoot ? 'Course Unit' : 'Topic'}</small></span>
+                <Icon name="arrow-right" />
+              </Link>
+            ))}
+          </div>
+        </section>
       </Container>
     );
   }
@@ -201,21 +255,56 @@ export default function CurriculumNodePage() {
   }
 
   const isLeaf = children.length === 0;
-  const availableResources = (isLeaf ? Object.entries(RESOURCE_LABELS) : []).filter(
-    ([key]) => Number(counts[key === 'quiz' ? 'quiz_questions' : key === 'flashcards' ? 'flashcard_decks' : key === 'pdfs' ? 'pdf_resources' : key] || 0) > 0
-  );
+  const RESOURCE_COUNT_KEYS = {
+    notes: 'notes',
+    quiz: 'quiz_questions',
+    flashcards: 'flashcard_decks',
+    recall: 'recall_questions_bank',
+    pdfs: 'pdf_resources',
+    'past-papers': 'past_papers'
+  };
+  const availableResources = (isLeaf ? Object.entries(RESOURCE_LABELS) : [])
+    .filter(([key]) => Number(counts[RESOURCE_COUNT_KEYS[key] || key] || 0) > 0)
+    .sort(([a], [b]) => (a === normalizedResourceFocus ? -1 : b === normalizedResourceFocus ? 1 : 0));
+  const returnToLesson = `/curriculum/${encodeURIComponent(groupId)}/${nodePath}${resourceFocus ? `?resource=${encodeURIComponent(resourceFocus)}` : ''}`;
 
   return (
     <Container className="curriculum-node-page">
       <Breadcrumb items={breadcrumbItems} />
 
       <header className="curriculum-node-header">
-        <span className="curriculum-node-type">{nodeLabel}</span>
+        <span className="curriculum-node-type">{nodeLabel}{curriculumDepth >= 0 ? ` · Step ${Math.min(curriculumDepth + 1, 4)} of 4` : ''}</span>
         <h1>{node.name}</h1>
         <p>{children.length > 0
-          ? `Choose a ${curriculumLevelLabel(curriculumDepth + 1, isPharmacy).toLowerCase()} to continue. Resources appear after you open the lesson.`
-          : `Explore the lessons and learning materials connected to this ${nodeLabel.toLowerCase()}, including notes, quizzes, flashcards, recall practice and other available resources.`}</p>
+          ? `Choose a ${curriculumLevelLabel(curriculumDepth + 1, isPharmacy).toLowerCase()} to continue. Your selected class or programme is kept throughout the journey.`
+          : `This is your lesson. Read its core concepts, then use the connected practice and reference materials to strengthen your understanding.`}</p>
+        {focusedResourceLabel && <p className="curriculum-node-focus-note">Your selected resource: <strong>{focusedResourceLabel}</strong>. We will keep it in focus as you move through this pathway.</p>}
       </header>
+
+      {isLeaf && linkedNotes.length > 0 && (
+        <section className="curriculum-node-section curriculum-node-core-reading" aria-labelledby="curriculum-core-reading-title">
+          <div className="curriculum-node-section-heading">
+            <div>
+              <span className="curriculum-node-kicker">Core concepts · Start reading</span>
+              <h2 id="curriculum-core-reading-title">Build your understanding of {node.name}</h2>
+            </div>
+            <span className="curriculum-node-count">{linkedNotes.length} {linkedNotes.length === 1 ? 'reading' : 'readings'}</span>
+          </div>
+          <p className="curriculum-node-reading-intro">Begin with the explanation below, then return here for practice questions, flashcards and revision resources.</p>
+          <div className="curriculum-node-core-reading-list">
+            {linkedNotes.map((item) => (
+              <Link key={item.id} to={`/notes/read?id=${encodeURIComponent(item.content_id)}&return_to=${encodeURIComponent(returnToLesson)}`} className="curriculum-node-core-reading-link">
+                <span className="curriculum-node-child-icon"><Icon name="book-open" /></span>
+                <span className="curriculum-node-child-body">
+                  <strong>{item.title || 'Read core concepts'}</strong>
+                  <small>Open the full explanation</small>
+                </span>
+                <span className="curriculum-node-reading-cta">Read now <Icon name="arrow-right" /></span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       {isLeaf && blocks.length > 0 && (
         <section className="curriculum-node-section curriculum-node-learning">
@@ -259,9 +348,10 @@ export default function CurriculumNodePage() {
               const childPath = [parentPath, slugify(child.slug || child.name)]
                 .filter(Boolean)
                 .join('/');
+              const childHref = `/curriculum/${encodeURIComponent(groupId)}/${childPath}${resourceFocus ? `?resource=${encodeURIComponent(resourceFocus)}` : ''}`;
 
               return (
-                <Link key={child.id} to={`/curriculum/${groupId}/${childPath}`} className="curriculum-node-child">
+                <Link key={child.id} to={childHref} className="curriculum-node-child">
                   <span className="curriculum-node-child-icon">
                     {child.icon ? <Icon name={child.icon} /> : <Icon name="book-open" />}
                   </span>

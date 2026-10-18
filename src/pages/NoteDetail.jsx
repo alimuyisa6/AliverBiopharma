@@ -55,6 +55,8 @@ export default function NoteDetail() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const noteId = searchParams.get('id');
+  const requestedReturnTo = searchParams.get('return_to') || '';
+  const returnToLesson = requestedReturnTo.startsWith('/') && !requestedReturnTo.startsWith('//') ? requestedReturnTo : '';
 
   const [note, setNote] = useState(null);
   const [breadcrumb, setBreadcrumb] = useState([]);
@@ -590,6 +592,15 @@ export default function NoteDetail() {
       )}
 
       <div className="note-detail-container">
+        {returnToLesson && (
+          <div className="note-return-to-lesson">
+            <Link to={returnToLesson} className="note-return-to-lesson-link">
+              <span aria-hidden="true">←</span>
+              <span>Return to lesson</span>
+            </Link>
+          </div>
+        )}
+
         <div className="breadcrumb note-breadcrumb font-mono">
           {breadcrumb.map((crumb, index) => (
             <span key={index}>
