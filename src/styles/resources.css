@@ -362,23 +362,36 @@
 
 .resources-breadcrumb {
   display: flex;
-  min-height: 2.75rem;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
   align-items: center;
-  gap: var(--space-2);
-  margin-bottom: var(--space-3);
+  gap: var(--space-1);
+  margin-bottom: var(--space-2);
+  padding: var(--space-1) 0;
   color: var(--text-muted);
-  font-size: var(--text-sm);
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
 }
 .resources-breadcrumb a {
+  display: inline-block;
+  max-width: min(9rem, 34vw);
+  overflow: hidden;
   color: var(--primary);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
   text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .resources-breadcrumb a:hover {
   text-decoration: underline;
+  text-underline-offset: 0.15em;
 }
 .resources-breadcrumb svg {
-  width: var(--space-3);
-  height: var(--space-3);
+  flex: 0 0 auto;
+  width: 0.65rem;
+  height: 0.65rem;
 }
 .resources-breadcrumb [aria-current="page"] {
   color: var(--text-main);
