@@ -329,9 +329,7 @@
 }
 
 
-.main-content:has(.notes-page-shell) {
-  padding-top: 0;
-}
+/* Notes use the same fixed-header clearance as the other standard pages. */
 
 .notes-page-shell {
   margin-top: 0;
@@ -465,9 +463,8 @@
   }
 }
 
-/* The Past Papers page has its own internal hero/content padding. Keep its
-   outer card at the shared content width so the page gutter is applied once,
-   not once outside the card and again inside it. */
+/* The outer Past Papers surface respects the global viewport gutter.
+   Hero and main sections keep their own internal padding for content. */
 .pp-page {
-  width: min(100%, var(--max-width));
+  width: min(var(--page-shell-max-width), calc(100% - (var(--page-gutter-x) * 2)));
 }
