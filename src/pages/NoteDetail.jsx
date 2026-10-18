@@ -593,15 +593,6 @@ export default function NoteDetail() {
       )}
 
       <div className="note-detail-container">
-        {returnToLesson && (
-          <div className="note-return-to-lesson">
-            <Link to={returnToLesson} className="note-return-to-lesson-link">
-              <span aria-hidden="true">←</span>
-              <span>Return to lesson</span>
-            </Link>
-          </div>
-        )}
-
         <Breadcrumb items={breadcrumb} className="note-breadcrumb" />
 
         <article ref={contentRef} className="note-article">
@@ -811,9 +802,22 @@ export default function NoteDetail() {
           </div>
         </div>
 
-        <button className="note-back-btn note-back-bottom" onClick={handleBack}>
-          <i className="fa-solid fa-arrow-left"></i> Back to Notes
-        </button>
+        <nav className="note-bottom-navigation" aria-label="Note navigation">
+          {returnToLesson && (
+            <Link to={returnToLesson} className="note-return-to-lesson-link">
+              <svg aria-hidden="true" viewBox="0 0 20 20" width="16" height="16" fill="none">
+                <path d="M12.5 4.5 7 10l5.5 5.5M7.5 10H17" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <span>Return to lesson</span>
+            </Link>
+          )}
+          <button className="note-back-btn note-back-bottom" onClick={handleBack}>
+            <svg aria-hidden="true" viewBox="0 0 20 20" width="16" height="16" fill="none">
+              <path d="M12.5 4.5 7 10l5.5 5.5M7.5 10H17" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            <span>Back to Notes</span>
+          </button>
+        </nav>
       </div>
     </>
   );
