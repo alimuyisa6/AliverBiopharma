@@ -137,7 +137,8 @@ export default function CurriculumNodePage() {
   const linkedContent = data?.linked_content || [];
   const curriculumContext = `${ancestors.map((item) => item.name || '').join(' ')} ${node?.name || ''}`.toLowerCase();
   const isPharmacy = String(data?.curriculum_group?.level_id || '').toLowerCase().includes('pharmacy') || curriculumContext.includes('pharmacy') || String(node?.node_type || '').toLowerCase() === 'sub_course_unit';
-  const curriculumDepth = ancestors.filter((item) => item.group_id === groupId).length;
+  const curriculumDepth = Math.max(0, ancestors.filter((item) => item.group_id === groupId).length - 1);
+  const nodeType = String(node?.node_type || '').toLowerCase();
   const nodeLabel = curriculumLevelLabel(curriculumDepth, isPharmacy);
   const linkedContentGroups = linkedContent.reduce((groups, item) => {
     const key = item.content_type;
@@ -147,35 +148,34 @@ export default function CurriculumNodePage() {
   }, {});
 
   const breadcrumbItems = useMemo(() => {
-    const group = ancestors[1];
     const items = [{ label: 'Home', href: '/' }];
+    const group = data?.curriculum_group;
 
     if (group) {
       items.push({
         label: group.name,
-        href: `/curriculum/${group.group_id}`
+        href: `/curriculum/${groupId}`
       });
     }
 
     ancestors.forEach((ancestor, index) => {
-      if (index < 2) return;
       const path = ancestors
-        .slice(2, index + 1)
+        .slice(0, index + 1)
         .map((item) => slugify(item.slug || item.name))
         .join('/');
-
+      const isCurrent = ancestor.id === node?.id;
       items.push({
         label: ancestor.name,
-        href: path ? `/curriculum/${group?.group_id}/${path}` : null
+        href: isCurrent ? null : `/curriculum/${groupId}/${path}`
       });
     });
 
-    if (node && items[items.length - 1]?.label !== node.name) {
+    if (node && !ancestors.some((ancestor) => ancestor.id === node.id)) {
       items.push({ label: node.name, href: null });
     }
 
     return items;
-  }, [ancestors, node]);
+  }, [ancestors, node, data?.curriculum_group, groupId]);
 
   if (loading) {
     return (
@@ -253,9 +253,9 @@ export default function CurriculumNodePage() {
 
           <div className="curriculum-node-children">
             {children.map((child) => {
-              const ancestorPathParts = ancestors.slice(2).map((item) => slugify(item.slug || item.name));
-              if (!ancestors.some((item) => item.id === node.id)) ancestorPathParts.push(slugify(node.slug || node.name));
-              const parentPath = ancestorPathParts.join('/');
+              const parentPath = ancestors
+                .map((item) => slugify(item.slug || item.name))
+                .join('/');
               const childPath = [parentPath, slugify(child.slug || child.name)]
                 .filter(Boolean)
                 .join('/');
