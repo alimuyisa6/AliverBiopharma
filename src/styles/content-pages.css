@@ -39,6 +39,10 @@
   min-width: 0;
 }
 
+.flashcard-subject-section {
+  margin-top: 0;
+}
+
 .flashcard-subject-section,
 .notes-page,
 .quiz-page-section,
