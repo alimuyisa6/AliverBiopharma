@@ -19,11 +19,13 @@
 
 /* src/styles/quiz.css */
 
+/* This section is nested inside the .quiz-page shell, which already
+   applies the global viewport gutter and page-top spacing. */
 .quiz-page-section {
-  width: min(var(--page-shell-max-width), calc(100% - (var(--page-gutter-x) * 2)));
+  width: 100%;
   min-width: 0;
-  margin: 0 auto var(--section-space-y);
-  padding: var(--page-space-top) 0 0;
+  margin: 0 0 var(--section-space-y);
+  padding: 0;
   box-sizing: border-box;
 }
 
