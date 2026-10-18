@@ -9,7 +9,10 @@
 }
 
 .recall-page-section {
-  padding-top: var(--space-4);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .recall-page-header {
@@ -785,7 +788,8 @@
   }
 
   .recall-page-section {
-    padding-top: var(--space-3);
+    margin: 0;
+    padding-top: 0;
   }
 
   .recall-page-title {
