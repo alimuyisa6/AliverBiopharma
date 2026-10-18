@@ -712,9 +712,10 @@
 
 
 .pp-page {
-  width: min(var(--page-shell-max-width), 100%);
-  max-width: none;
+  width: min(var(--page-shell-max-width), calc(100% - (var(--page-gutter-x) * 2)));
+  max-width: var(--page-shell-max-width);
   min-width: 0;
+  box-sizing: border-box;
 }
 
 .pp-grid,
