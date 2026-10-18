@@ -984,7 +984,7 @@
 }
 
 .quiz-page.quiz-page {
-  padding-top: 0;
+  padding-top: var(--page-space-top);
   margin-top: 0;
 }
 
