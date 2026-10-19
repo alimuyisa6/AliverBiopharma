@@ -400,3 +400,29 @@
     opacity: 0.78;
   }
 }
+
+/* The global compact heading scale uses !important. Explicitly exempt the
+   homepage display heading so the hero retains its intended responsive scale. */
+.hero .hero-title {
+  color: var(--text-inverse) !important;
+  font-size: clamp(
+    var(--hero-title-size-min),
+    var(--hero-title-size-fluid),
+    var(--hero-title-size-max)
+  ) !important;
+  font-weight: var(--weight-display) !important;
+  line-height: var(--hero-title-line-height) !important;
+  letter-spacing: var(--hero-title-letter-spacing) !important;
+}
+
+@media (max-width: 768px) {
+  .hero .hero-title {
+    font-size: clamp(
+      var(--hero-mobile-title-size-min),
+      var(--hero-mobile-title-size-fluid),
+      var(--hero-mobile-title-size-max)
+    ) !important;
+    line-height: var(--hero-mobile-title-line-height) !important;
+    letter-spacing: var(--hero-mobile-title-letter-spacing) !important;
+  }
+}
