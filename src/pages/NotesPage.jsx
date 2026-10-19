@@ -207,9 +207,15 @@ export default function NotesPage() {
     <Container className="notes-page-shell">
       <div className="notes-page">
         <div className="notes-page-heading">
-          <h1 className="section-title notes-page-title font-fraunces">
-            Study Notes
-          </h1>
+          <div className="notes-page-intro">
+            <span className="notes-page-kicker">Learn at your pace</span>
+            <h1 className="section-title notes-page-title font-fraunces">
+              Study notes
+            </h1>
+            <p className="notes-page-description">
+              Build understanding one topic at a time. Search your notes, follow your curriculum and return to the concepts you want to strengthen.
+            </p>
+          </div>
 
           <Breadcrumb items={breadcrumbItems} />
         </div>

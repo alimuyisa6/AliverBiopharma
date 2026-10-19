@@ -879,3 +879,197 @@
 @media (prefers-reduced-motion: reduce) {
   .pp-card { transition: none; }
 }
+
+
+.pp-page {
+  border: 1px solid var(--blue-100);
+  border-radius: 1.5rem;
+  background: var(--white);
+  box-shadow: 0 1rem 2.5rem rgb(48 61 192 / 6%);
+}
+.pp-hero {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--blue-200);
+  background: linear-gradient(120deg, var(--blue-50), var(--white) 65%, var(--emerald-50));
+  padding-block: clamp(2rem, 5vw, 4rem);
+}
+.pp-hero-content {
+  max-width: 58rem;
+}
+.pp-eyebrow {
+  color: var(--blue-800);
+}
+.pp-eyebrow-line {
+  background: var(--palette-mint);
+}
+.pp-title {
+  max-width: 20ch;
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  line-height: 1.08;
+  text-wrap: balance;
+}
+.pp-subtitle {
+  margin-top: var(--space-2);
+  color: var(--blue-800);
+  font-weight: var(--weight-semibold);
+}
+.pp-description {
+  max-width: 68ch;
+  margin-top: var(--space-3);
+  color: var(--text-secondary);
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  line-height: 1.7;
+}
+.pp-meta {
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+}
+.pp-meta-item strong {
+  color: var(--blue-800);
+}
+.pp-main {
+  padding-block: clamp(1.5rem, 3vw, 2.75rem) clamp(2.5rem, 5vw, 4rem);
+}
+.pp-alert-info {
+  border-color: var(--blue-200);
+  border-radius: 0.875rem;
+  background: var(--blue-50);
+  color: var(--blue-900);
+}
+.pp-toolbar {
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+  padding: var(--space-4);
+  border-color: var(--blue-200);
+  border-radius: 1rem;
+  background: var(--blue-50);
+}
+.pp-search-input {
+  min-height: 3rem;
+  border-color: var(--blue-200);
+  border-radius: 0.875rem;
+}
+.pp-search-input:focus {
+  border-color: var(--blue-600);
+  box-shadow: 0 0 0 3px rgb(84 101 255 / 15%);
+}
+.pp-count {
+  color: var(--text-secondary);
+}
+.pp-badge {
+  background: var(--blue-100);
+  color: var(--blue-900);
+}
+.pp-presets,
+.pp-filters {
+  border-color: var(--blue-200);
+  border-radius: 1rem;
+  background: var(--white);
+}
+.pp-card {
+  overflow: hidden;
+  border: 1px solid var(--blue-200);
+  border-bottom: 3px solid var(--blue-200);
+  border-radius: 1.125rem;
+  background: var(--white);
+  box-shadow: 0 0.375rem 1.25rem rgb(48 61 192 / 5%);
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+.pp-card:hover {
+  border-color: var(--blue-300);
+  border-bottom-color: var(--blue-600);
+  box-shadow: 0 0.875rem 1.875rem rgb(48 61 192 / 9%);
+  transform: translateY(-2px);
+}
+.pp-card-title {
+  color: var(--text-main);
+  font-size: clamp(0.9375rem, 1.4vw, 1.125rem);
+  line-height: 1.35;
+}
+.pp-card-footer {
+  border-top-color: var(--blue-100);
+}
+.pp-card-footer .btn-primary,
+.pp-modal-actions .btn-primary {
+  background: var(--blue-600);
+  color: var(--white);
+}
+.pp-card-footer .btn-primary:hover,
+.pp-modal-actions .btn-primary:hover {
+  background: var(--blue-700);
+}
+.pp-tabs .btn-primary {
+  background: var(--blue-600);
+  color: var(--white);
+}
+.pp-tabs .btn-primary:hover {
+  background: var(--blue-700);
+}
+.pp-tabs .btn-ghost:hover {
+  background: var(--blue-50);
+  color: var(--blue-900);
+}
+.pp-search-input:focus-visible,
+.pp-page :is(button, a, select, input):focus-visible {
+  outline: 3px solid var(--blue-600);
+  outline-offset: 3px;
+}
+body.dark-mode .pp-page {
+  border-color: #302c4a;
+  background: #100d1a;
+}
+body.dark-mode .pp-hero {
+  border-bottom-color: #45405f;
+  background: linear-gradient(120deg, #20203c, #100d1a 65%, #123a35);
+}
+body.dark-mode .pp-eyebrow,
+body.dark-mode .pp-meta-item strong {
+  color: var(--palette-periwinkle);
+}
+body.dark-mode .pp-toolbar {
+  border-color: #45405f;
+  background: #17152a;
+}
+body.dark-mode .pp-search-input {
+  border-color: #45405f;
+  background: #100d1a;
+  color: #f8f7ff;
+}
+body.dark-mode .pp-alert-info {
+  border-color: #454b80;
+  background: #20203c;
+  color: #f8f7ff;
+}
+body.dark-mode .pp-card {
+  border-color: #45405f;
+  border-bottom-color: #454b80;
+  background: #100d1a;
+}
+body.dark-mode .pp-card-footer {
+  border-top-color: #302c4a;
+}
+body.dark-mode .pp-presets,
+body.dark-mode .pp-filters {
+  border-color: #45405f;
+  background: #100d1a;
+}
+@media (max-width: 640px) {
+  .pp-page {
+    border-radius: 1.125rem;
+  }
+  .pp-main {
+    padding-inline: var(--space-3);
+  }
+  .pp-toolbar {
+    padding: var(--space-3);
+  }
+  .pp-description {
+    font-size: 1rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pp-card {
+    transition: none;
+  }
+}

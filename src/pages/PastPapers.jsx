@@ -543,7 +543,7 @@ export default function PastPapers() {
             </span>
 
             <h1 className="pp-title">
-              {levelName || 'Past Papers'}
+              {levelName ? `${levelName} past papers` : 'Past papers'}
             </h1>
 
             {classLabel && (
@@ -551,6 +551,10 @@ export default function PastPapers() {
                 {classLabel}
               </p>
             )}
+
+            <p className="pp-description">
+              Prepare with past exam papers. Search by subject, year or exam board, save papers for revision, and work through questions at your own pace.
+            </p>
 
             <Breadcrumb items={[
               { label: 'Home', href: '/' },
