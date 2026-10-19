@@ -30,6 +30,9 @@
 
 .home-page > .section::before,
 .home-page > section.section::before,
+.home-page > .home-student-section::before,
+.home-page > .home-student-sections-wrap > .home-curriculum-section::before,
+.home-page > .home-student-sections-wrap > .home-learning-journey-section::before,
 .home-page > .home-student-section > .section::before,
 .home-page > .home-student-sections-wrap > .section::before {
   position: absolute;
@@ -286,14 +289,12 @@
   color: var(--blue-800);
 }
 
-.home-page .home-page .text-link,
 .home-page .text-link {
   color: var(--blue-800);
   text-decoration-thickness: 0.08em;
   text-underline-offset: 0.2em;
 }
 
-.home-page .home-page .text-link:hover,
 .home-page .text-link:hover {
   color: var(--blue-700);
 }
@@ -412,8 +413,7 @@
   outline-offset: 3px;
 }
 
-.home-page .home-page .section-description,
-.home-page .home-page p {
+.home-page .section-description {
   color: var(--text-secondary);
 }
 
