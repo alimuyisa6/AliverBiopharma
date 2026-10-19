@@ -22,6 +22,13 @@ const MODULE_ROUTES = {
   notes: '/notes/read'
 };
 
+const MODULE_FEATURE_KEYS = {
+  quiz: 'quizzes',
+  flashcards: 'flashcards',
+  recall: 'recall',
+  notes: null
+};
+
 function resumeHref(resume) {
   const module = resume?.module;
   const payload = resume?.payload || {};
