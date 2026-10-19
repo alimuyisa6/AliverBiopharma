@@ -124,8 +124,8 @@ export default function ResourcesView({ navigate, user, sections }) {
 
   const isPharmacy = /pharmacy/i.test(String(levelName));
   const subtitle = isPharmacy
-    ? 'Pharmacy course-unit notes, flashcards, clinical cases, quizzes, past papers, downloadable PDFs, reference materials and active-recall practice—matched to your level, from certificate through to degree.'
-    : 'Biology notes organised by topic, flashcards, quizzes, past papers, downloadable PDFs, diagrams, reference materials and active-recall practice—matched to your level, from O-Level through A-Level.';
+    ? 'Build your Pharmacy knowledge with course-unit notes, flashcards, clinical cases, quizzes, past papers and focused recall practice—organised around your programme.'
+    : 'Study Biology with topic-based notes, diagrams, flashcards, quizzes and past-paper practice. Choose a resource, strengthen your understanding and check what you remember.';
 
   function handleBrowse(type) {
     if (!user) {
@@ -152,7 +152,7 @@ export default function ResourcesView({ navigate, user, sections }) {
         <div className="resources-intro">
           <div>
             <span className="resources-section-kicker">Resources · {levelName}{activeGroup?.name ? ` · ${activeGroup.name}` : ''}</span>
-            <h1>Your learning library</h1>
+            <h1>Find the right resource for your next study session</h1>
             <p>{subtitle}</p>
           </div>
           <span className="resources-section-context">
@@ -190,9 +190,9 @@ export default function ResourcesView({ navigate, user, sections }) {
 
         <div className="resources-section-head">
           <div>
-            <span className="resources-section-kicker">Learning library</span>
+            <span className="resources-section-kicker">Explore · Learn · Practise</span>
             <h2 className="resources-section-title">
-              Explore your resources
+              Explore the learning library
               <span className="resources-section-count">{filteredTypes.length}</span>
             </h2>
           </div>
@@ -227,7 +227,7 @@ export default function ResourcesView({ navigate, user, sections }) {
                       onClick={() => handleBrowse(type)}
                       aria-label={`Open ${type.label}`}
                     >
-                      Explore by {isPharmacy ? 'course unit' : 'topic'}
+                      Explore resources
                     </Button>
                   </div>
                 </article>
