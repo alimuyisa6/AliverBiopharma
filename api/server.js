@@ -33,6 +33,7 @@ const MODULE_MAP = {
   dashboard: () => import('../lib/dashboard.js'),
   recall: () => import('../lib/recall.js'),
   resources: () => import('../lib/resources.js'),
+  resume: () => import('../lib/resume.js'),
   search: () => import('../lib/search.js'),
   'site-sections': () => import('../lib/site.js'),
   'trust-safety': () => import('../lib/trust-safety.js'),
