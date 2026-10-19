@@ -441,11 +441,16 @@ export default function Dashboard() {
                     {curriculumRoots.slice(0, 6).map((item) => {
                       const childCount = curriculumNodes.filter((child) => child.parent_id === item.id).length;
                       const detailPath = `/curriculum/${encodeURIComponent(summary.group_id)}/${curriculumSlug(item.slug || item.name)}`;
+                      const resourceCounts = item.resource_counts || {};
                       const availableCounts = [
-                        Number(item.quiz_question_count || 0) > 0 ? { label: 'Quiz questions', value: Number(item.quiz_question_count) } : null,
-                        Number(item.recall_question_count || 0) > 0 ? { label: 'BioRecall', value: Number(item.recall_question_count) } : null,
-                        Number(item.pdf_count || 0) > 0 ? { label: 'PDFs', value: Number(item.pdf_count) } : null
-                      ].filter(Boolean);
+                        { label: 'Notes', value: Number(resourceCounts.notes || 0) },
+                        { label: 'Flashcards', value: Number(resourceCounts.flashcards || 0) },
+                        { label: 'BioRecall', value: Number(resourceCounts.recall_questions_bank ?? item.recall_question_count ?? 0) },
+                        { label: 'Glossary', value: Number(resourceCounts.glossary_terms || 0) },
+                        { label: 'Quizzes', value: Number(resourceCounts.quiz_questions ?? item.quiz_question_count ?? 0) },
+                        { label: 'PDFs', value: Number(resourceCounts.pdf_resources ?? item.pdf_count ?? 0) },
+                        { label: 'Past papers', value: Number(resourceCounts.past_papers || 0) }
+                      ].filter((resource) => resource.value > 0);
                       return (
                         <Link key={item.id} to={detailPath} className="dashboard-curriculum-card">
                           <span className="dashboard-curriculum-card-top">
