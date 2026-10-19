@@ -3322,7 +3322,7 @@ limit
 }
 
 export async function getCurriculumTree(groupId = null) {
-  return getRequest('curriculum', 'tree', groupId ? { group_id: groupId } : {});
+  return getRequest('curriculum-navigation', 'tree', groupId ? { group_id: groupId } : {});
 }
 
 export async function updateNotificationPreferences(preferences) {
