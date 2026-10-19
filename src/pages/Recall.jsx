@@ -63,6 +63,7 @@ export default function BioRecall() {
   const [searchParams] = useSearchParams();
   const curriculumUnitId = searchParams.get('unit_id') || null;
   const challengeId = searchParams.get('challenge_id') || null;
+  const resumeRequested = searchParams.get('resume') === '1';
   const { isReady } = useRequireOnboarding();
   const access = useContentAccess();
   const { locked, reason } = useSecurityUiLock();
@@ -119,6 +120,7 @@ export default function BioRecall() {
 
   const answerInputRef = useRef(null);
   const isMounted = useRef(true);
+  const resumeStarted = useRef(false);
 
   useEffect(() => {
     isMounted.current = true;
@@ -134,6 +136,35 @@ export default function BioRecall() {
     loadUserProgress();
     loadDueQueue();
   }, [isReady, access.canAccess, access.isPending, curriculumUnitId]);
+
+  useEffect(() => {
+    if (
+      !resumeRequested ||
+      resumeStarted.current ||
+      loading ||
+      !isReady ||
+      !access.canAccess ||
+      access.isPending ||
+      !curriculumUnitId
+    ) return;
+
+    const topic = topicList.find(
+      (item) => String(item.unit_id) === String(curriculumUnitId)
+    );
+
+    if (!topic) return;
+
+    resumeStarted.current = true;
+    handleStartSession(topic);
+  }, [
+    resumeRequested,
+    loading,
+    isReady,
+    access.canAccess,
+    access.isPending,
+    curriculumUnitId,
+    topicList
+  ]);
 
   async function loadUserProgress() {
     setLoading(true);
