@@ -1,8 +1,8 @@
 :root {
-  --u3d-top-start: #6a11cb;
-  --u3d-top-end: #2575fc;
-  --u3d-bottom-start: #2575fc;
-  --u3d-bottom-end: #6a11cb;
+  --u3d-top-start: var(--palette-blue);
+  --u3d-top-end: var(--blue-700);
+  --u3d-bottom-start: var(--blue-700);
+  --u3d-bottom-end: var(--palette-blue);
   --u3d-text: #ffffff;
   --u3d-text-shadow: 0 -1px rgb(0 0 0 / 25%);
   --u3d-inset-shadow: inset 0 2px 2px rgb(0 0 0 / 25%);
@@ -19,10 +19,10 @@
   --switcher-width-fluid: 90%;
   --switcher-padding: 20px;
   --switcher-radius: 35px;
-  --switcher-bg: #000000;
+  --switcher-bg: var(--palette-ink);
   --switcher-text: #ffffff;
   --switcher-muted: #888888;
-  --switcher-control-bg: #222222;
+  --switcher-control-bg: var(--grey-800);
   --switcher-control-radius: 20px;
   --switcher-control-padding: 4px;
   --switcher-option-gap: 8px;
@@ -33,7 +33,7 @@
   --switcher-slider-shadow:
     0 4px 8px rgba(0, 0, 0, 0.4),
     inset 0 -2px 4px rgba(255, 255, 255, 0.2);
-  --switcher-chart-bg: #1b1b1b;
+  --switcher-chart-bg: var(--grey-800);
   --switcher-chart-radius: 12px;
   --switcher-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   --switcher-transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -41,8 +41,8 @@
   --tactile-toggle-width: 15rem;
   --tactile-toggle-duration: 0.6s;
   --tactile-toggle-easing: cubic-bezier(1, 0, 1, 1);
-  --tactile-toggle-hue: 220deg;
-  --tactile-toggle-accent-hue: 22deg;
+  --tactile-toggle-hue: 238deg;
+  --tactile-toggle-accent-hue: 168deg;
   --tactile-toggle-track-radius: 999px;
   --tactile-toggle-shadow:
     inset 10px 10px 10px hsl(220deg 20% 80%),
@@ -63,13 +63,13 @@
   --action-purple-path-short-width: 0.875rem;
   --action-purple-path-dot-size: 1px;
   --action-purple-outline-duration: var(--duration-fast);
-  --action-purple-white: #ffe7ff;
-  --action-purple-100: #f4b1fd;
-  --action-purple-200: #d190ff;
-  --action-purple-300: #c389f2;
-  --action-purple-400: #8e26e2;
-  --action-purple-500: #5e2b83;
-  --action-purple-shadow: rgb(115 75 155 / 40%);
+  --action-purple-white: var(--blue-50);
+  --action-purple-100: var(--blue-200);
+  --action-purple-200: var(--blue-300);
+  --action-purple-300: var(--blue-400);
+  --action-purple-400: var(--blue-600);
+  --action-purple-500: var(--blue-800);
+  --action-purple-shadow: rgb(84 101 255 / 40%);
   --action-purple-shadow-30: color-mix(in srgb, var(--action-purple-shadow) 75%, transparent);
   --action-purple-shadow-25: color-mix(in srgb, var(--action-purple-shadow) 62.5%, transparent);
   --action-purple-shadow-15: color-mix(in srgb, var(--action-purple-shadow) 37.5%, transparent);
@@ -91,9 +91,9 @@
 
   --hero-pattern-tile: 60px;
   --hero-pattern-base: var(--blue-600);
-  --hero-pattern-accent: #47d3ff;
-  --hero-pattern-light: #adafff;
-  --hero-pattern-strong: #474bff;
+  --hero-pattern-accent: var(--palette-mint);
+  --hero-pattern-light: var(--palette-periwinkle);
+  --hero-pattern-strong: var(--blue-700);
 
   --theme-switch-height: 0.9em;
   --theme-switch-radius: 0.9em;

@@ -17,7 +17,6 @@ import './styles/components.css';
 import './styles/uiverse-tokens.css';
 import './styles/content-switcher.css';
 import './styles/biopharm-toggle.css';
-import './styles/palette-combo05.css';
 import './styles/slide-to-confirm.css';
 import './styles/three-d-button.css';
 
