@@ -424,7 +424,11 @@ export default function CurriculumNodePage() {
                 curriculum_unit_block: 'Lesson content',
                 glossary_term: 'Glossary terms'
               }[type] || type.replaceAll('_', ' ');
-              const destination = resourceKey ? resourcePath(resourceKey, node.id) : null;
+              const destination = resourceKey
+                ? resourcePath(resourceKey, node.id)
+                : type === 'glossary_term'
+                  ? '/glossary'
+                  : null;
 
               return (
                 <article key={type} className="curriculum-node-linked-group">
@@ -436,7 +440,11 @@ export default function CurriculumNodePage() {
                   </div>
                   <ul className="curriculum-node-linked-preview">
                     {items.slice(0, 3).map((item) => (
-                      <li key={item.id}>{item.title}</li>
+                      <li key={item.id}>
+                        {type === 'glossary_term' && item.slug
+                          ? <Link to={`/glossary/${encodeURIComponent(item.slug)}`}>{item.title}</Link>
+                          : item.title}
+                      </li>
                     ))}
                     {items.length > 3 && <li>And {items.length - 3} more</li>}
                   </ul>
