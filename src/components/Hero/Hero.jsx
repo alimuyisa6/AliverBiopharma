@@ -19,18 +19,36 @@ const MODULE_ROUTES = {
   quiz: '/quiz',
   flashcards: '/flashcards',
   recall: '/recall',
-  notes: '/notes'
-};
-
-const MODULE_FEATURE_KEYS = {
-  quiz: 'quizzes',
-  flashcards: 'flashcards',
-  recall: 'recall',
-  notes: null
+  notes: '/notes/read'
 };
 
 function resumeHref(resume) {
-  return MODULE_ROUTES[resume?.module] || '/';
+  const module = resume?.module;
+  const payload = resume?.payload || {};
+  const params = new URLSearchParams();
+
+  if (module === 'quiz' && payload.unit_id) {
+    params.set('unit_id', payload.unit_id);
+  }
+
+  if (module === 'flashcards' && payload.deck_id) {
+    params.set('deck_id', payload.deck_id);
+  }
+
+  if (module === 'recall') {
+    if (payload.unit_id) params.set('unit_id', payload.unit_id);
+    params.set('resume', '1');
+  }
+
+  if (module === 'notes' && payload.note_id) {
+    params.set('id', payload.note_id);
+  }
+
+  const route = MODULE_ROUTES[module];
+  if (!route) return '/';
+
+  const query = params.toString();
+  return query ? `${route}?${query}` : route;
 }
 
 export default function Hero() {
