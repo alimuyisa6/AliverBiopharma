@@ -9,6 +9,7 @@ import { useLayout } from '../contexts/LayoutContext';
 import { getUserDashboard } from '../api/cachedClient';
 import { listClassrooms as fetchClassrooms } from '../api/client';
 import { getDownloadHistory, getDownloadAttemptSummary } from '../api/client';
+import { getCurriculumTree } from '../api/curriculumNavigation';
 import { useContentAccess } from '../hooks/useContentAccess';
 import { useSecurityUiLock } from '../hooks/useSecurityUiLock';
 import EmptyState from '../components/EmptyState/EmptyState';
@@ -40,6 +41,9 @@ export default function Dashboard() {
   const [downloadHistory, setDownloadHistory] = useState({ papers: [], total: 0 });
   const [downloadAttempts, setDownloadAttempts] = useState({ counts: {}, recent: [] });
   const [classroomRooms, setClassroomRooms] = useState([]);
+  const [curriculumNodes, setCurriculumNodes] = useState([]);
+  const [curriculumLoading, setCurriculumLoading] = useState(false);
+  const [curriculumError, setCurriculumError] = useState(null);
   const summaryLoadedRef = useRef(false);
 
   useEffect(() => {
@@ -161,6 +165,42 @@ export default function Dashboard() {
     };
   }, [summary?.group_id]);
 
+  useEffect(() => {
+    const groupId = summary?.group_id;
+    let mounted = true;
+
+    if (!groupId) {
+      setCurriculumNodes([]);
+      setCurriculumLoading(false);
+      setCurriculumError(null);
+      return () => { mounted = false; };
+    }
+
+    setCurriculumLoading(true);
+    setCurriculumError(null);
+    getCurriculumTree(groupId)
+      .then((tree) => {
+        if (!mounted) return;
+        const nodes = Array.isArray(tree) ? tree : [];
+        setCurriculumNodes(nodes.sort((a, b) =>
+          Number(a.depth || 0) - Number(b.depth || 0) ||
+          Number(a.display_order || 0) - Number(b.display_order || 0) ||
+          String(a.name || '').localeCompare(String(b.name || ''))
+        ));
+      })
+      .catch(() => {
+        if (mounted) {
+          setCurriculumNodes([]);
+          setCurriculumError('Your curriculum pathway could not be loaded right now.');
+        }
+      })
+      .finally(() => {
+        if (mounted) setCurriculumLoading(false);
+      });
+
+    return () => { mounted = false; };
+  }, [summary?.group_id]);
+
   function getEmptyStateImage(key) {
     const uiComponents = bootstrap?.ui_components || [];
     const component = uiComponents.find((item) => item.component_key === `empty_state_${key}`);
@@ -244,6 +284,26 @@ export default function Dashboard() {
   } = summary;
 
   const levelName = level?.display_name || 'No Level';
+  const curriculumIsPharmacy = /pharmacy/i.test([
+    level?.display_name,
+    level?.name,
+    summary?.level_name,
+    summary?.program_name
+  ].filter(Boolean).join(' '));
+  const curriculumRootLabel = curriculumIsPharmacy ? 'Course Unit' : 'Topic';
+  const curriculumChildLabel = curriculumIsPharmacy ? 'sub-course units' : 'subtopics';
+  const curriculumRoots = curriculumNodes
+    .filter((item) => !item.parent_id && Number(item.depth || 0) === 0)
+    .sort((a, b) =>
+      Number(a.display_order || 0) - Number(b.display_order || 0) ||
+      String(a.name || '').localeCompare(String(b.name || ''))
+    );
+  const curriculumSlug = (value) => String(value || '')
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+
   const userName = user?.full_name || '';
   const continueReading = notes.continue_reading || [];
   const recommendations = analytics?.recommendations || [];
@@ -350,6 +410,85 @@ export default function Dashboard() {
             </div>
           </div>
         </section>
+
+        {summary.group_id && (
+          <section className="panel dashboard-card dashboard-card-primary dashboard-curriculum-section" id="dashboard-curriculum-section" aria-labelledby="dashboard-curriculum-title">
+            <div className="panel-header">
+              <div className="dashboard-curriculum-heading">
+                <span className="dashboard-curriculum-eyebrow">Your learning pathway</span>
+                <h2 className="panel-title" id="dashboard-curriculum-title">
+                  {curriculumIsPharmacy ? 'Continue by course unit' : 'Continue by topic'}
+                </h2>
+              </div>
+              <Link to={`/curriculum/${encodeURIComponent(summary.group_id)}`} className="dashboard-section-link">
+                Browse all {curriculumIsPharmacy ? 'course units' : 'topics'}
+              </Link>
+            </div>
+            <div className="panel-body">
+              <p className="dashboard-section-intro">
+                Follow your selected class or programme from {curriculumRootLabel.toLowerCase()} to sub-levels, themes and lessons. Each lesson shows its connected learning materials where links exist.
+              </p>
+              {curriculumLoading ? (
+                <div className="dashboard-curriculum-loading" role="status">Loading your curriculum…</div>
+              ) : curriculumError ? (
+                <div className="dashboard-curriculum-empty" role="status">
+                  <p>{curriculumError}</p>
+                  <Link to="/resources" className="dashboard-section-link">Browse learning resources</Link>
+                </div>
+              ) : curriculumRoots.length > 0 ? (
+                <>
+                  <div className="dashboard-curriculum-grid">
+                    {curriculumRoots.slice(0, 6).map((item) => {
+                      const childCount = curriculumNodes.filter((child) => child.parent_id === item.id).length;
+                      const detailPath = `/curriculum/${encodeURIComponent(summary.group_id)}/${curriculumSlug(item.slug || item.name)}`;
+                      const availableCounts = [
+                        Number(item.quiz_question_count || 0) > 0 ? { label: 'Quiz questions', value: Number(item.quiz_question_count) } : null,
+                        Number(item.recall_question_count || 0) > 0 ? { label: 'BioRecall', value: Number(item.recall_question_count) } : null,
+                        Number(item.pdf_count || 0) > 0 ? { label: 'PDFs', value: Number(item.pdf_count) } : null
+                      ].filter(Boolean);
+                      return (
+                        <Link key={item.id} to={detailPath} className="dashboard-curriculum-card">
+                          <span className="dashboard-curriculum-card-top">
+                            <span className="dashboard-curriculum-card-type">{curriculumRootLabel}</span>
+                            {item.is_premium && <span className="dashboard-curriculum-premium">Premium</span>}
+                          </span>
+                          <strong className="dashboard-curriculum-card-title">{item.name}</strong>
+                          <span className="dashboard-curriculum-card-detail">
+                            {childCount} {childCount === 1 ? (curriculumIsPharmacy ? 'sub-course unit' : 'subtopic') : curriculumChildLabel}
+                          </span>
+                          {availableCounts.length > 0 && (
+                            <span className="dashboard-curriculum-counts">
+                              {availableCounts.map((count) => (
+                                <span key={count.label} className="dashboard-curriculum-count">
+                                  <strong>{count.value}</strong> {count.label}
+                                </span>
+                              ))}
+                            </span>
+                          )}
+                          <span className="dashboard-curriculum-card-action">Open pathway <Icon name="arrow-right" /></span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                  {curriculumRoots.length > 6 && (
+                    <div className="dashboard-curriculum-footer">
+                      <span>Showing 6 of {curriculumRoots.length} {curriculumIsPharmacy ? 'course units' : 'topics'}.</span>
+                      <Link to={`/curriculum/${encodeURIComponent(summary.group_id)}`} className="dashboard-section-link">View all</Link>
+                    </div>
+                  )}
+                </>
+              ) : (
+                <div className="dashboard-curriculum-empty">
+                  <p>No curriculum topics are available for your current class or programme yet.</p>
+                  <Link to="/resources" className="dashboard-section-link">Browse available resources</Link>
+                </div>
+              )}
+              <p className="dashboard-curriculum-sequence">
+                <strong>Learning sequence:</strong> {curriculumIsPharmacy ? 'Course Unit' : 'Topic'} <span aria-hidden="true">→</span> {curriculumIsPharmacy ? 'Sub-course Unit' : 'Subtopic'} <span aria-hidden="true">→</span> Theme <span aria-hidden="true">→</span> Lesson
+              </p>
+            </div>
+          </section>
+        )}
 
         {todayTasks.length > 0 && (
           <section className="panel dashboard-card dashboard-card-primary" id="today-plan-section" aria-labelledby="today-plan-title">
