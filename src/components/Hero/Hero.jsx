@@ -165,7 +165,7 @@ export default function Hero() {
                 to={resumeHref(resume)}
                 className="btn btn-primary"
               >
-                Continue {MODULE_LABELS[resume.module] || 'Learning'}
+                Continue to {MODULE_LABELS[resume.module] || 'Learning'}
               </Link>
             </div>
           )}
