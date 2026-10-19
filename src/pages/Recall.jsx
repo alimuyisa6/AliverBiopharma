@@ -145,6 +145,7 @@ export default function BioRecall() {
       !isReady ||
       !access.canAccess ||
       access.isPending ||
+      locked ||
       !curriculumUnitId
     ) return;
 
@@ -155,15 +156,45 @@ export default function BioRecall() {
     if (!topic) return;
 
     resumeStarted.current = true;
-    handleStartSession(topic);
+    setSelectedTopic(topic);
+    setLoading(true);
+
+    startRecallSession(topic.unit_id, challengeId)
+      .then((started) => {
+        if (!started?.session_id || !started?.current_question) {
+          addToast('No active questions available for this topic', 'warning');
+          return;
+        }
+
+        setSessionId(started.session_id);
+        setTotalQuestions(started.total_questions || 0);
+        setCurrentIndex(started.current_index || 0);
+        setCurrentQuestion(started.current_question);
+        setSessionQuote(started.quote || null);
+
+        if (started.level) setLevelMeta(started.level);
+
+        setFeedbackResult(null);
+        setClozeAnswer('');
+        setReviewMode(false);
+        setSessionActive(true);
+        setIsTabView(false);
+      })
+      .catch(() => {
+        addToast('Failed to resume BioRecall session', 'error');
+      })
+      .finally(() => setLoading(false));
   }, [
     resumeRequested,
     loading,
     isReady,
     access.canAccess,
     access.isPending,
+    locked,
     curriculumUnitId,
-    topicList
+    challengeId,
+    topicList,
+    addToast
   ]);
 
   async function loadUserProgress() {
