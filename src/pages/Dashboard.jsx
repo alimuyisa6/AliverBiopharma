@@ -445,10 +445,10 @@ export default function Dashboard() {
                       const availableCounts = [
                         { label: 'Notes', value: Number(resourceCounts.notes || 0) },
                         { label: 'Flashcards', value: Number(resourceCounts.flashcards || 0) },
-                        { label: 'BioRecall', value: Number(resourceCounts.recall_questions_bank ?? item.recall_question_count ?? 0) },
+                        { label: 'BioRecall', value: Number(resourceCounts.recall_questions_bank || item.recall_question_count || 0) },
                         { label: 'Glossary', value: Number(resourceCounts.glossary_terms || 0) },
-                        { label: 'Quizzes', value: Number(resourceCounts.quiz_questions ?? item.quiz_question_count ?? 0) },
-                        { label: 'PDFs', value: Number(resourceCounts.pdf_resources ?? item.pdf_count ?? 0) },
+                        { label: 'Quizzes', value: Number(resourceCounts.quiz_questions || item.quiz_question_count || 0) },
+                        { label: 'PDFs', value: Number(resourceCounts.pdf_resources || item.pdf_count || 0) },
                         { label: 'Past papers', value: Number(resourceCounts.past_papers || 0) }
                       ].filter((resource) => resource.value > 0);
                       return (
