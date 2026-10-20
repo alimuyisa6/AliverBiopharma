@@ -69,7 +69,7 @@ export default function Dashboard() {
         })
         .catch(() => {
           if (mounted && !summaryLoadedRef.current) {
-            setError('We couldn't load your dashboard. Please try again in a moment.');
+            setError("We couldn't load your dashboard. Please try again in a moment.");
           }
         })
         .finally(() => {
@@ -194,7 +194,7 @@ export default function Dashboard() {
       .catch(() => {
         if (mounted) {
           setCurriculumNodes([]);
-          setCurriculumError('We couldn't load your learning pathway. Please try again.');
+          setCurriculumError("We couldn't load your learning pathway. Please try again.");
         }
       })
       .finally(() => {
