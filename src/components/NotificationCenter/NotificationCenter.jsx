@@ -14,9 +14,9 @@ function formatNotificationTime(value) {
   const day = 24 * hour;
 
   if (diff < minute) return 'Just now';
-  if (diff < hour) return `${Math.floor(diff / minute)}m ago`;
-  if (diff < day) return `${Math.floor(diff / hour)}h ago`;
-  if (diff < 7 * day) return `${Math.floor(diff / day)}d ago`;
+  if (diff < hour) return `${Math.floor(diff / minute)} min ago`;
+  if (diff < day) return `${Math.floor(diff / hour)} hr ago`;
+  if (diff < 7 * day) return `${Math.floor(diff / day)} days ago`;
 
   return date.toLocaleDateString();
 }
@@ -124,7 +124,7 @@ export default function NotificationCenter() {
                 onClick={markAllRead}
                 disabled={loading}
               >
-                Mark all read
+                Mark all as read
               </button>
             )}
           </div>
@@ -138,7 +138,7 @@ export default function NotificationCenter() {
             <path d="M10 21h4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
           </svg>
         </span>
-                <span>{loading ? 'Loading notifications...' : 'You are all caught up.'}</span>
+                <span>{loading ? 'Loading your notifications…' : 'You're all caught up. No new notifications.'}</span>
               </div>
             ) : (
               notifications.map((notification) => (
