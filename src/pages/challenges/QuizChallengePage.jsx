@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import Icon from '../../components/Icon/Icon';
 import Spinner from '../../components/Spinner/Spinner';
+import './quiz-challenge.css';
 import {
   getPersonalizedDailyChallenge,
   startQuizChallenge,
@@ -152,7 +153,7 @@ export default function QuizChallengePage() {
 
   if (loading) {
     return (
-      <main className="quiz-challenge-page">
+      <main className="quiz-page quiz-challenge-page">
         <div className="fcd-loading-wrap">
           <Spinner context="brand" size="lg" />
         </div>
@@ -162,7 +163,7 @@ export default function QuizChallengePage() {
 
   if (error) {
     return (
-      <main className="quiz-challenge-page">
+      <main className="quiz-page quiz-challenge-page">
         <section className="section quiz-challenge-state">
           <Icon name="alert-circle" />
           <span className="eyebrow">Quiz practice</span>
@@ -178,7 +179,7 @@ export default function QuizChallengePage() {
 
   if (!currentQuestion && !result) {
     return (
-      <main className="quiz-challenge-page">
+      <main className="quiz-page quiz-challenge-page">
         <section className="section quiz-challenge-state">
           <span className="eyebrow">Quiz practice</span>
           <h1>No questions available yet</h1>
@@ -193,7 +194,7 @@ export default function QuizChallengePage() {
 
   if (isComplete) {
     return (
-      <main className="quiz-challenge-page">
+      <main className="quiz-page quiz-challenge-page">
         <section className="section quiz-challenge-result">
           <span className="challenge-type-badge">
             <Icon name="clipboard-check" /> Quiz Challenge
@@ -221,7 +222,7 @@ export default function QuizChallengePage() {
   }
 
   return (
-    <main className="quiz-challenge-page">
+    <main className="quiz-page quiz-challenge-page">
       <section className="section quiz-challenge-shell">
         <div className="quiz-challenge-header">
           <div>
