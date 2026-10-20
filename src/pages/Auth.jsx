@@ -15,8 +15,8 @@ const TURNSTILE_SITE_KEY = '0x4AAAAAADknPpI_XcH1KfPe';
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 function validatePasswordRules(password) {
-  if (!password || password.length < 10) return 'Password must be at least 10 characters';
-  if (password.length > 128) return 'Password must not exceed 128 characters';
+  if (!password || password.length < 10) return 'Use at least 10 characters for your password.';
+  if (password.length > 128) return 'Use no more than 128 characters for your password.';
 
   const hasUpper = /[A-Z]/.test(password);
   const hasLower = /[a-z]/.test(password);
@@ -25,7 +25,7 @@ function validatePasswordRules(password) {
   const categories = [hasUpper, hasLower, hasDigit, hasSpecial].filter(Boolean).length;
 
   if (categories < 3) {
-    return 'Use at least 3 of these: uppercase letter, lowercase letter, number, or symbol';
+    return 'Use at least 3 of these: uppercase letters, lowercase letters, numbers, or symbols.';
   }
 
   return null;
@@ -34,8 +34,8 @@ function validatePasswordRules(password) {
 function validateFullNameRules(fullName) {
   const trimmed = fullName.trim();
 
-  if (trimmed.length < 2 || trimmed.length > 100) return 'Full name must be between 2 and 100 characters';
-  if (/[<>]/.test(trimmed)) return 'Full name contains invalid characters';
+  if (trimmed.length < 2 || trimmed.length > 100) return 'Enter a name between 2 and 100 characters.';
+  if (/[<>]/.test(trimmed)) return 'Remove invalid characters from your name.';
 
   return null;
 }
@@ -216,7 +216,7 @@ export default function Auth() {
 
       navigate(redirectTo, { replace: true });
     } catch (err) {
-      setError(err.message || 'Login failed.');
+      setError(err.message || 'We couldn’t sign you in. Check your details and try again.');
       resetTurnstile();
     } finally {
       setSubmitting(false);
@@ -227,7 +227,7 @@ export default function Auth() {
     setError('');
 
     if (typeof window === 'undefined' || !window.isSecureContext || !window.PublicKeyCredential) {
-      setError('Passkey sign-in is not available in this browser.');
+      setError('Passkey sign-in isn’t available in this browser.');
       return;
     }
 
@@ -253,7 +253,7 @@ export default function Auth() {
 
       navigate(redirectTo, { replace: true });
     } catch (err) {
-      setError(err.message || 'Passkey sign-in failed.');
+      setError(err.message || 'We couldn’t sign you in with your passkey. Please try again.');
       resetTurnstile();
     } finally {
       setPasskeySubmitting(false);
@@ -301,7 +301,7 @@ export default function Auth() {
 
       navigate(redirectTo, { replace: true });
     } catch (err) {
-      setMfaError(err.message || 'Verification failed.');
+      setMfaError(err.message || 'We couldn’t verify your code. Please try again.');
       if (!passkeyMfaToken) resetTurnstile();
     } finally {
       setSubmitting(false);
@@ -320,12 +320,12 @@ export default function Auth() {
     }
 
     if (!EMAIL_PATTERN.test(email.trim())) {
-      setError('Please enter a valid email address');
+      setError('Enter a valid email address.');
       return;
     }
 
     if (password !== confirm) {
-      setError('Passwords do not match');
+      setError('Your passwords don’t match.');
       return;
     }
 
@@ -337,7 +337,7 @@ export default function Auth() {
     }
 
     if (!termsAccepted) {
-      setError('Please accept the Terms of Service and Privacy Policy.');
+      setError('Please accept the Terms of Service and Privacy Policy to continue.');
       return;
     }
 
@@ -348,14 +348,14 @@ export default function Auth() {
     setError('');
 
     if (!selectedRole || !selectedLevel) {
-      setError('Please complete each step to continue.');
+      setError('Complete each step before continuing.');
       return;
     }
 
     const token = getTurnstileToken();
 
     if (!token) {
-      setError('Your security check has expired. Please try again.');
+      setError('Your security check expired. Please complete it again.');
       return;
     }
 
@@ -384,7 +384,7 @@ export default function Auth() {
         setPendingConfirmation(true);
       }
     } catch (err) {
-      setError(err.message || 'Registration failed.');
+      setError(err.message || 'We couldn’t create your account. Please try again.');
       resetTurnstile();
     } finally {
       setSubmitting(false);
@@ -425,27 +425,27 @@ export default function Auth() {
         <div className="auth-brand-copy">
           <h1>Learn with clarity. Build confidence.</h1>
           <p>
-            A place to study Biology and Pharmacy with clear resources, practice, and tools to help you remember what you learn.
+            Study Biology or Pharmacy with clear resources and practice tools that help you understand and remember what you learn.
           </p>
 
           <ul className="auth-feature-list">
             <li>
               <Icon name="circle-check" />
-              Resources for Biology and Pharmacy
+              Learning resources for Biology and Pharmacy
             </li>
             <li>
               <Icon name="circle-check" />
-              Notes, flashcards, quizzes, and revision
+              Notes, flashcards, quizzes, and revision practice
             </li>
             <li>
               <Icon name="circle-check" />
-              Track your learning as you go
+              Track your progress as you learn
             </li>
           </ul>
         </div>
 
         <div className="auth-brand-footer">
-          Helping you learn, practise, and progress
+          Helping you learn, practise, and make progress
         </div>
       </aside>
 
@@ -458,7 +458,7 @@ export default function Auth() {
                 <Icon name="envelope-circle-check" className="auth-state-icon" />
               </div>
               <h2 className="auth-state-title">
-                Check Your Inbox
+                Check your inbox
               </h2>
               <p className="auth-state-text">
                 {confirmationMessage}
