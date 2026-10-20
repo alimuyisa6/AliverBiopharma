@@ -21,6 +21,7 @@ import './styles/biopharm-toggle.css';
 import './styles/slide-to-confirm.css';
 import './styles/three-d-button.css';
 import './styles/section-bands.css';
+import './styles/site-typography.css';
 
 
 function showFatalError(title, message, stack) {
