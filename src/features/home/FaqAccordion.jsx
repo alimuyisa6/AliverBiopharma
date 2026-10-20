@@ -28,22 +28,22 @@ function normalizeFaqData(data) {
   const categories = Array.isArray(data?.categories) ? data.categories.filter(Boolean) : [];
   const normalizedCategories = categories.length
     ? categories
-    : [{ id: 'all', label: 'All questions', description: 'Browse all available answers.', icon: 'fa-circle-question', tone: 'blue' }];
+    : [{ id: 'all', label: 'All questions', description: 'Find answers to common questions.', icon: 'fa-circle-question', tone: 'blue' }];
 
   return {
     hero: data?.hero || {
       eyebrow: 'HELP CENTRE',
-      title: 'How can we help you?',
-      description: 'Find clear answers about learning, accounts, courses and using AliverBiopharm.',
-      search_placeholder: 'Search questions, topics or answers...',
+      title: 'What can we help you with?',
+      description: 'Find answers about learning, your account, courses, and using AliverBiopharm.',
+      search_placeholder: 'Search questions and answers…',
     },
     categories: normalizedCategories,
     questions,
     resources: Array.isArray(data?.resources) ? data.resources.filter(Boolean) : [],
     support: data?.support || {
-      title: 'Still need help?',
-      description: 'If your question is not answered here, our support team can help.',
-      button: 'Contact Support',
+      title: 'Still have questions?',
+      description: 'If you can’t find the answer here, our support team is ready to help.',
+      button: 'Contact support',
       href: '/contact',
     },
     illustrations: data?.illustrations || {},
@@ -114,8 +114,8 @@ export function FaqAccordion({ items, data, standalone = false }) {
       <section id="faq" className="section reveal home-faq-section">
         <div className="section-head">
           <div className="section-head-left">
-            <span className="eyebrow">Before you ask</span>
-            <h2>The questions we get all the time</h2>
+            <span className="eyebrow">Quick answers</span>
+            <h2>Frequently asked questions</h2>
           </div>
         </div>
 
