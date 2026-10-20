@@ -26,7 +26,7 @@ export default function ContactPage() {
     setSubmitting(true);
     try {
       await submitContact(contactForm);
-      setContactStatus({ success: true, message: 'Message sent!' });
+      setContactStatus({ success: true, message: 'Your message has been sent.' });
       setContactForm({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
       setContactStatus({ success: false, message: error.message });
@@ -35,8 +35,8 @@ export default function ContactPage() {
 
   return (
     <div className="section contact-page">
-      <h1 className="section-title">Get in Touch</h1>
-      <p className="section-subtitle">Have a question, some feedback, or an idea for working together? We would love to hear from you.</p>
+      <h1 className="section-title">Contact us</h1>
+      <p className="section-subtitle">Have a question or feedback? Send us a message—we’d be happy to hear from you.</p>
       <ContactSection
         contactForm={contactForm}
         contactStatus={contactStatus}
