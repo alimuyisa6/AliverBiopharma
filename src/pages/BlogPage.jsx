@@ -59,7 +59,7 @@ export default function BlogPage() {
         if (!cached) {
           setArticle(null);
           setSections(null);
-          setError(err?.message || 'Unable to load blog content.');
+          setError(err?.message || "We couldn't load the blog content. Please try again.");
         }
       })
       .finally(() => {
@@ -577,12 +577,12 @@ export default function BlogPage() {
                         {post.excerpt && <p className="blog-post-excerpt">{post.excerpt}</p>}
                         {post.slug && (
                           <a href={`/blog/${post.slug}`} className="blog-read-more">
-                            {post.read_more_label || 'Read More'}
+                            {post.read_more_label || 'Read article'}
                           </a>
                         )}
                         {post.slug && (
                           <a href={`/blog/${post.slug}`} className="blog-read-more">
-                            {post.read_more_label || 'Read More'}
+                            {post.read_more_label || 'Read article'}
                           </a>
                         )}
                       </div>
