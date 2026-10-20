@@ -147,31 +147,47 @@ legend {
 }
 
 
-/* Site-wide compact, low-emphasis typography scale.
-   Semantic headings share one size for a quieter, consistent page rhythm. */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-size: var(--text-xl) !important;
-  font-weight: var(--weight-medium) !important;
-  line-height: var(--leading-card-title) !important;
-  color: var(--text-secondary) !important;
-  letter-spacing: var(--tracking-normal);
+/* Shared typography defaults preserve a clear heading hierarchy.
+   Page and component styles can refine these values without fighting global !important rules. */
+h1 {
+  font-size: var(--text-page-title);
+  font-weight: var(--weight-page-title);
+  line-height: var(--leading-page-title);
+  letter-spacing: var(--tracking-tight);
 }
-
+h2 {
+  font-size: var(--text-section-title);
+  font-weight: var(--weight-section-title);
+  line-height: var(--leading-section-title);
+}
+h3 {
+  font-size: var(--text-subsection-title);
+  font-weight: var(--weight-section-title);
+  line-height: var(--leading-subsection-title);
+}
+h4 {
+  font-size: var(--text-card-title);
+  font-weight: var(--weight-card-title);
+  line-height: var(--leading-card-title);
+}
+h5 {
+  font-size: var(--text-body-lead);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-body-lead);
+}
+h6 {
+  font-size: var(--text-supporting);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-supporting);
+}
 body {
   font-size: var(--text-body-sm);
 }
-
 p,
 li {
   font-size: var(--text-sm);
   line-height: var(--leading-body);
 }
-
 small,
 .text-caption,
 figcaption {
@@ -179,60 +195,21 @@ figcaption {
   line-height: var(--leading-caption);
 }
 
-@media (max-width: 640px) {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-size: var(--text-lg) !important;
-  }
-}
-
-
-/* Keep named page/section headings on the same quiet scale too. */
-.section-title,
+/* Named page titles share a token, not a forced identical size for every heading. */
 .page-title,
 .page-heading,
 .about-title,
 .legal-title,
-.modal-title,
-.glossary-title,
-.note-title,
-.quiz-hero-title,
-.empty-state-title,
-.ab-empty-title,
-.curriculum-node-title,
-.curriculum-node-section-title,
 .notes-page-title,
-.flashcard-title,
-.quiz-page-title,
 .recall-page-title {
-  font-size: var(--text-xl) !important;
-  font-weight: var(--weight-medium) !important;
-  line-height: var(--leading-card-title) !important;
-  color: var(--text-secondary) !important;
+  font-size: var(--type-page-title-size);
+  font-weight: var(--type-page-title-weight);
+  line-height: var(--type-page-title-leading);
 }
-
-@media (max-width: 640px) {
-  .section-title,
-  .page-title,
-  .page-heading,
-  .about-title,
-  .legal-title,
-  .modal-title,
-  .glossary-title,
-  .note-title,
-  .quiz-hero-title,
-  .empty-state-title,
-  .ab-empty-title,
-  .curriculum-node-title,
-  .curriculum-node-section-title,
-  .notes-page-title,
-  .flashcard-title,
-  .quiz-page-title,
-  .recall-page-title {
-    font-size: var(--text-lg) !important;
-  }
+.section-title,
+.glossary-title,
+.curriculum-node-section-title {
+  font-size: var(--type-section-title-size);
+  font-weight: var(--type-section-title-weight);
+  line-height: var(--type-section-title-leading);
 }
