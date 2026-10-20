@@ -23,7 +23,8 @@ export default function ChallengeRunner({ forcedType }) {
   const [data, setData] = useState(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
-  const type = forcedType || useParams().type;
+  const routeParams = useParams();
+  const type = forcedType || routeParams.type;
   const meta = META[type] || META.quiz;
 
   useEffect(() => {
