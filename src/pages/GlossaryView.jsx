@@ -28,7 +28,7 @@ export default function GlossaryView({
       <div className="glossary-page glossary-initial-loading">
         <div className="glossary-loading-state" role="status" aria-live="polite">
           <Spinner size="lg" />
-          <p>Loading terms...</p>
+          <p>Loading glossary terms…</p>
         </div>
       </div>
     );
@@ -45,12 +45,12 @@ export default function GlossaryView({
             <span className="title-word cyan-word">Glossary</span>
           </h1>
           <p className="glossary-subtitle">
-            Master every term with linked quizzes, notes, flashcards, and past papers.
+            Look up key terms and explore related quizzes, study notes, flashcards, and past papers.
           </p>
 
           {selectedClass && (
             <div className="glossary-class-badge" style={{ '--badge-accent': levelColor }}>
-              <span className="glossary-class-badge-label">Class:</span>
+              <span className="glossary-class-badge-label">Your class:</span>
               <span className="glossary-class-badge-value">{selectedClass}</span>
             </div>
           )}
@@ -67,10 +67,10 @@ export default function GlossaryView({
         <button
           className="glossary-sidebar-toggle"
           onClick={onToggleSidebar}
-          aria-label={sidebarOpen ? 'Close sidebar' : 'Open sidebar'}
+          aria-label={sidebarOpen ? 'Hide glossary terms' : 'Show glossary terms'}
         >
           <i className={`fa-solid fa-${sidebarOpen ? 'chevron-left' : 'chevron-right'}`}></i>
-          <span>{sidebarOpen ? 'Hide' : 'Show'} Terms</span>
+          <span>{sidebarOpen ? 'Hide' : 'Show'} terms</span>
         </button>
 
         <div className={`glossary-sidebar ${sidebarOpen ? 'open' : 'closed'}`}>
@@ -81,7 +81,7 @@ export default function GlossaryView({
                 <input
                   type="text"
                   className="glossary-search-input"
-                  placeholder="Search terms..."
+                  placeholder="Search for a term…"
                   value={searchQuery}
                   onChange={(event) => onSearchChange(event.target.value)}
                 />
@@ -98,7 +98,7 @@ export default function GlossaryView({
                   value={selectedCategory}
                   onChange={(event) => onCategoryChange(event.target.value)}
                 >
-                  <option value="">All Categories</option>
+                  <option value="">All categories</option>
                   {categories.map((category) => (
                     <option key={category} value={category}>{category}</option>
                   ))}
@@ -110,14 +110,14 @@ export default function GlossaryView({
               {loading ? (
                 <div className="glossary-loading-state">
                   <Spinner size="lg" />
-                  <p>Loading terms...</p>
+                  <p>Loading glossary terms…</p>
                 </div>
               ) : Object.keys(groupedTerms).length === 0 ? (
                 <div className="glossary-empty-state">
                   <i className="fa-solid fa-book-open"></i>
                   <p>No terms found{searchQuery ? ` for "${searchQuery}"` : ''}.</p>
                   {searchQuery && (
-                    <button className="btn-primary" onClick={onClearSearch}>Clear Search</button>
+                    <button className="btn-primary" onClick={onClearSearch}>Clear search</button>
                   )}
                 </div>
               ) : (
@@ -151,8 +151,8 @@ export default function GlossaryView({
               <div className="glossary-welcome-icon">
                 <i className="fa-solid fa-microscope"></i>
               </div>
-              <h2>Select a term to begin</h2>
-              <p>Choose any term from the sidebar to see its definition, linked quizzes, study notes, flashcards, and more.</p>
+              <h2>Choose a term to get started</h2>
+              <p>Select a term to read its definition and find related quizzes, study notes, flashcards, and practice.</p>
               <div className="glossary-welcome-stats">
                 <div className="glossary-welcome-stat stat-cyan">
                   <span className="glossary-welcome-stat-number">{terms.length}</span>
@@ -194,7 +194,7 @@ export default function GlossaryView({
 
                   {termContent.term.technical_definition && (
                     <div className="glossary-definition-technical">
-                      <h4><i className="fa-solid fa-microscope"></i> Technical Definition</h4>
+                      <h4><i className="fa-solid fa-microscope"></i> Technical definition</h4>
                       <p>{termContent.term.technical_definition}</p>
                     </div>
                   )}
@@ -211,7 +211,7 @@ export default function GlossaryView({
 
                     {termContent.term.mnemonic && (
                       <div className="glossary-meta-item meta-mnemonic">
-                        <span className="glossary-meta-label"><i className="fa-solid fa-lightbulb"></i> Memory Aid</span>
+                        <span className="glossary-meta-label"><i className="fa-solid fa-lightbulb"></i> Memory aid</span>
                         <span className="glossary-meta-value">{termContent.term.mnemonic}</span>
                       </div>
                     )}
@@ -246,7 +246,7 @@ export default function GlossaryView({
                   <div className="glossary-route-section route-notes">
                     <div className="glossary-route-header">
                       <i className="fa-solid fa-file-lines"></i>
-                      <h3>Study Notes</h3>
+                      <h3>Study notes</h3>
                       <span className="glossary-route-count">{termContent.content.notes.length}</span>
                     </div>
                     <div className="glossary-route-grid">
@@ -268,7 +268,7 @@ export default function GlossaryView({
                   <div className="glossary-route-section route-flashcard">
                     <div className="glossary-route-header">
                       <i className="fa-solid fa-layer-group"></i>
-                      <h3>Flashcard Decks</h3>
+                      <h3>Flashcard decks</h3>
                       <span className="glossary-route-count">{termContent.content.flashcards.length}</span>
                     </div>
                     <div className="glossary-route-grid">
@@ -290,7 +290,7 @@ export default function GlossaryView({
                   <div className="glossary-route-section route-recall">
                     <div className="glossary-route-header">
                       <i className="fa-solid fa-brain"></i>
-                      <h3>Recall Practice</h3>
+                      <h3>Recall practice</h3>
                       <span className="glossary-route-count">{termContent.content.recall_questions.length}</span>
                     </div>
                     <div className="glossary-route-grid">
@@ -312,7 +312,7 @@ export default function GlossaryView({
                   <div className="glossary-route-section route-related">
                     <div className="glossary-route-header">
                       <i className="fa-solid fa-link"></i>
-                      <h3>Related Terms</h3>
+                      <h3>Related terms</h3>
                     </div>
                     <div className="glossary-related-terms">
                       {termContent.term.related_terms_data.map((related) => (
