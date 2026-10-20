@@ -580,11 +580,6 @@ export default function BlogPage() {
                             {post.read_more_label || 'Read article'}
                           </a>
                         )}
-                        {post.slug && (
-                          <a href={`/blog/${post.slug}`} className="blog-read-more">
-                            {post.read_more_label || 'Read article'}
-                          </a>
-                        )}
                       </div>
                     </article>
                   ))}
