@@ -24,14 +24,16 @@ function ChallengeCharacter({ type }) {
 }
 
 function ChallengeCard({ challenge, onOpen }) {
-  const meta = challengeMeta[challenge.challenge_type] || challengeMeta.quiz;
-  const progress = challenge.target_count ? Math.min(100, (challenge.progress / challenge.target_count) * 100) : 0;
+  const type = challenge.challenge_type || challenge.type;
+  const targetCount = Number(challenge.target_count ?? challenge.target ?? 0);
+  const meta = challengeMeta[type] || challengeMeta.quiz;
+  const progress = targetCount ? Math.min(100, (challenge.progress / targetCount) * 100) : 0;
   const completed = challenge.passed === true || challenge.status === 'completed';
   return <article className={"challenge-showcase-card challenge-accent-" + meta.accent}>
-    <div className="challenge-showcase-visual"><ChallengeCharacter type={challenge.challenge_type} /><span className="challenge-showcase-badge"><Icon name={meta.icon} /> {meta.label}</span></div>
+    <div className="challenge-showcase-visual"><ChallengeCharacter type={type} /><span className="challenge-showcase-badge"><Icon name={meta.icon} /> {meta.label}</span></div>
     <div className="challenge-showcase-content">
       <span className="eyebrow">Today’s challenge</span><h1>{challenge.title}</h1><p>{challenge.description}</p>
-      <div className="challenge-scope"><span>{challenge.unit_name || 'Your selected topic'}</span><span>{challenge.target_count} {challenge.target_count === 1 ? 'task' : 'tasks'}</span><span>+{challenge.reward_xp} XP</span></div>
+      <div className="challenge-scope"><span>{challenge.unit_name || 'Your selected topic'}</span><span>{targetCount} {targetCount === 1 ? 'task' : 'tasks'}</span><span>+{challenge.reward_xp} XP</span></div>
       <div className="challenge-progress"><div className="challenge-progress-head"><span>{completed ? 'Completed' : 'Your progress'}</span><strong>{Math.round(progress)}%</strong></div><div className="challenge-progress-track"><span style={{ width: progress + '%' }} /></div></div>
       <ThreeDButton type="button" variant="solid" iconRight="arrow-right" className="challenge-open-button" onClick={() => onOpen(meta.route, challenge.id)}>{completed ? 'Review challenge' : 'Start practising'}</ThreeDButton>
     </div>
