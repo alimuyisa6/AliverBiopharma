@@ -175,7 +175,7 @@ export default function NoteDetail() {
         }
       } catch (error) {
         console.error('[NOTE_DETAIL_LOAD_ERROR]', error);
-        if (mounted) setFetchError('Failed to load the note. Please try again.');
+        if (mounted) setFetchError("We couldn't load this note. Please try again.");
       } finally {
         if (mounted) setLoading(false);
       }
@@ -267,7 +267,7 @@ export default function NoteDetail() {
     const imageHtml = (img) => {
       const caption = img.caption ? `<figcaption class="note-image-caption">${img.caption}</figcaption>` : '';
       return `<figure class="note-image-wrapper" data-image-src="${img.src}">
-        <img src="${img.src}" alt="${img.caption || 'Note image'}" loading="lazy" />
+        <img src="${img.src}" alt="${img.caption || 'Illustration for this note'}" loading="lazy" />
         ${caption}
       </figure>`;
     };
@@ -405,7 +405,7 @@ export default function NoteDetail() {
       if (!result?.thread?.id) throw new Error('Learning thread was not created');
       navigate('/learning/explanation?id=' + encodeURIComponent(result.thread.id) + (returnToLesson ? '&return_to=' + encodeURIComponent(returnToLesson) : ''));
     } catch (error) {
-      setLearningError(error?.message || 'Could not save your question. Please try again.');
+      setLearningError(error?.message || "We couldn't save your question. Please try again.");
     } finally {
       setLearningSubmitting(false);
     }
@@ -421,7 +421,7 @@ export default function NoteDetail() {
     } catch {
       setTrialFeedback((current) => ({
         ...current,
-        [questionId]: { error: 'Could not check this answer. Please try again.' }
+        [questionId]: { error: "We couldn't check your answer. Please try again." }
       }));
     }
   }
@@ -481,7 +481,7 @@ export default function NoteDetail() {
       <div className="section" style={{ paddingTop: 'var(--space-16)' }}>
         <EmptyState
           image={getEmptyStateImage('notes')}
-          title="Note Unavailable"
+          title="This note is unavailable"
           description={fetchError || 'The requested note could not be found.'}
           action={<Button onClick={() => navigate('/notes')}>Browse Notes</Button>}
         />
@@ -618,8 +618,8 @@ export default function NoteDetail() {
 
         {user && readingComplete && (
           <section className="note-understanding-panel" aria-labelledby="note-understanding-title">
-            <h2 id="note-understanding-title" className="font-poppins">Did you understand this note?</h2>
-            <p>Choose what you need next. Your practice here is separate from formal quizzes and does not award quiz or BioRecall XP.</p>
+            <h2 id="note-understanding-title" className="font-poppins">How well did you understand this note?</h2>
+            <p>Choose what would help you next. This practice is separate from formal quizzes and doesn’t award quiz or BioRecall XP.</p>
             <p><Link to="/learning/explanation" className="note-learning-history-link">View your saved explanations</Link></p>
             <div className="note-understanding-actions">
               <button type="button" className={`note-understanding-choice${understanding === 'yes' ? ' is-selected' : ''}`} onClick={handleUnderstandingYes}>
@@ -632,7 +632,7 @@ export default function NoteDetail() {
 
             {understanding === 'no' && (
               <form className="note-learning-question-form" onSubmit={handleLearningQuestionSubmit}>
-                <label htmlFor="note-learning-question">What was unclear?</label>
+                <label htmlFor="note-learning-question">What would you like explained?</label>
                 {learningError && <p className="note-learning-error" role="alert">{learningError}</p>}
                 <textarea
                   id="note-learning-question"
@@ -653,8 +653,8 @@ export default function NoteDetail() {
             {understanding === 'yes' && (
               <div className="note-trial-questions">
                 <h3 className="font-poppins">Quick practice</h3>
-                {trialLoading ? <p>Finding questions from this curriculum unit…</p> : trialQuestions.length === 0 ? (
-                  <p>No published practice questions are linked to this unit yet. Your progress is saved; try another note or return later.</p>
+                {trialLoading ? <p>Finding practice questions for this topic…</p> : trialQuestions.length === 0 ? (
+                  <p>No practice questions are available for this topic yet. Your progress is saved, so try another note or come back later.</p>
                 ) : trialQuestions.map((question, index) => {
                   const feedback = trialFeedback[question.id];
                   return (
@@ -693,7 +693,7 @@ export default function NoteDetail() {
 
         {internalLinks.related_links.length > 0 && (
           <div className="note-related-section">
-            <h3 className="note-related-title font-poppins"><i className="fa-solid fa-link"></i> Related Notes</h3>
+            <h3 className="note-related-title font-poppins"><i className="fa-solid fa-link"></i> Related notes</h3>
             <div className="note-related-grid">
               {internalLinks.related_links.map((link) => (
                 <Card
