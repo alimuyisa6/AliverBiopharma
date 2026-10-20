@@ -49,7 +49,7 @@ export default function QuizChallengePage() {
         }
 
         if (!challengeId) {
-          throw new Error('No Quiz Challenge is currently available.');
+          throw new Error('No quiz challenge is available right now. Please return to the challenges page and try again.');
         }
 
         if (challengeData?.challenge) {
@@ -78,7 +78,7 @@ export default function QuizChallengePage() {
         );
       } catch (err) {
         if (!cancelled) {
-          setError(err?.message || 'Unable to open this Quiz Challenge.');
+          setError(err?.message || "We couldn't open this quiz challenge. Please try again.");
         }
       } finally {
         if (!cancelled) setLoading(false);
@@ -144,7 +144,7 @@ export default function QuizChallengePage() {
         );
       }
     } catch (err) {
-      setError(err?.message || 'Unable to submit that answer.');
+      setError(err?.message || "We couldn't submit your answer. Please try again.");
     } finally {
       setSubmitting(false);
     }
@@ -165,7 +165,7 @@ export default function QuizChallengePage() {
       <main className="quiz-challenge-page">
         <section className="section quiz-challenge-state">
           <Icon name="alert-circle" />
-          <span className="eyebrow">Quiz Challenge</span>
+          <span className="eyebrow">Quiz practice</span>
           <h1>We could not open this challenge</h1>
           <p>{error}</p>
           <button className="btn btn-secondary" onClick={() => navigate('/challenges')}>
@@ -180,8 +180,8 @@ export default function QuizChallengePage() {
     return (
       <main className="quiz-challenge-page">
         <section className="section quiz-challenge-state">
-          <span className="eyebrow">Quiz Challenge</span>
-          <h1>No questions are available</h1>
+          <span className="eyebrow">Quiz practice</span>
+          <h1>No questions available yet</h1>
           <p>This challenge does not currently have enough dedicated challenge content.</p>
           <button className="btn btn-secondary" onClick={() => navigate('/challenges')}>
             Back to challenges
@@ -202,8 +202,8 @@ export default function QuizChallengePage() {
             name={result?.passed ? 'trophy' : 'book-open'}
             className="quiz-challenge-result-icon"
           />
-          <span className="eyebrow">Challenge complete</span>
-          <h1>{result?.passed ? 'Mission complete!' : 'Challenge completed'}</h1>
+          <span className="eyebrow">Quiz complete</span>
+          <h1>{result?.passed ? 'Well done!' : 'Quiz completed'}</h1>
           <div className="quiz-challenge-score">
             {Number(result?.score ?? session?.score ?? 0)}%
           </div>
@@ -225,8 +225,8 @@ export default function QuizChallengePage() {
       <section className="section quiz-challenge-shell">
         <div className="quiz-challenge-header">
           <div>
-            <span className="eyebrow">Dedicated Quiz Challenge</span>
-            <h1>{challenge?.title || 'Quiz Challenge'}</h1>
+            <span className="eyebrow">Quiz practice</span>
+            <h1>{challenge?.title || 'Quiz practice'}</h1>
             {challenge?.description && <p>{challenge.description}</p>}
           </div>
           <button
