@@ -53,7 +53,7 @@ function renderBlockContent(block) {
     return block.media_url ? (
       <img
         src={block.media_url}
-        alt={block.title || 'Curriculum learning illustration'}
+        alt={block.title || 'Learning illustration'}
         className="curriculum-node-block-image"
         loading="lazy"
       />
@@ -75,7 +75,7 @@ function renderBlockContent(block) {
   if (block.content_type === 'interactive') {
     return (
       <div className="curriculum-node-block-interactive">
-        {content ? <p>{content}</p> : <p>Interactive learning content will appear here.</p>}
+        {content ? <p>{content}</p> : <p>Interactive activities will appear here when available.</p>}
       </div>
     );
   }
@@ -83,7 +83,7 @@ function renderBlockContent(block) {
   if (block.content_type === 'quiz_ref') {
     return (
       <div className="curriculum-node-block-quiz">
-        {content ? <p>{content}</p> : <p>Test your understanding of this topic.</p>}
+        {content ? <p>{content}</p> : <p>Answer a few questions to check your understanding.</p>}
       </div>
     );
   }
@@ -118,7 +118,7 @@ export default function CurriculumNodePage() {
             .sort((a, b) => (a.display_order ?? 0) - (b.display_order ?? 0) || a.name.localeCompare(b.name)));
         })
         .catch((err) => {
-          if (mounted) setError(err?.message || 'Unable to load this curriculum.');
+          if (mounted) setError(err?.message || 'We couldn’t load this curriculum. Please try again.');
         })
         .finally(() => { if (mounted) setLoading(false); });
       return () => { mounted = false; };
@@ -140,7 +140,7 @@ export default function CurriculumNodePage() {
         if (mounted) setData(result);
       })
       .catch((err) => {
-        if (mounted && !cached) setError(err?.message || 'Unable to load this curriculum node.');
+        if (mounted && !cached) setError(err?.message || 'We couldn’t load this learning item. Please try again.');
       })
       .finally(() => {
         if (mounted) setLoading(false);
@@ -221,9 +221,9 @@ export default function CurriculumNodePage() {
       <Container className="curriculum-node-page">
         <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Resources', href: '/resources' }, { label: isPharmacyRoot ? 'Course units' : 'Topics', href: null }]} />
         <header className="curriculum-node-header">
-          <span className="curriculum-node-type">Your curriculum</span>
+          <span className="curriculum-node-type">Your learning pathway</span>
           <h1>Choose a {rootLabel}</h1>
-          <p>Start here, then follow the connected {isPharmacyRoot ? 'sub-course units' : 'subtopics'}, themes and lessons. Your selected class or programme determines what you see.{focusedResourceLabel ? ` You chose ${focusedResourceLabel}; we will keep that resource in focus as you move through the curriculum.` : ''}</p>
+          <p>Start here, then explore the connected {isPharmacyRoot ? 'sub-course units' : 'subtopics'}, themes and lessons. Your selected class or programme determines what you see.{focusedResourceLabel ? ` You chose ${focusedResourceLabel}; we’ll keep that resource in focus as you move through the curriculum.` : ''}</p>
         </header>
         <section className="curriculum-node-section">
           <div className="curriculum-node-section-heading"><div><span className="curriculum-node-kicker">Step 1 of 4</span><h2>{isPharmacyRoot ? 'Course units' : 'Topics'}</h2></div><span className="curriculum-node-count">{rootNodes.length} available</span></div>
@@ -246,9 +246,9 @@ export default function CurriculumNodePage() {
       <Container className="curriculum-node-page">
         <div className="curriculum-node-error">
           <Icon name="triangle-exclamation" />
-          <h1>Curriculum node unavailable</h1>
-          <p>{error || 'The requested curriculum node could not be found.'}</p>
-          <Link to="/resources" className="btn btn-primary">Back to Resources</Link>
+          <h1>This learning item isn’t available</h1>
+          <p>{error || 'We couldn’t find the learning item you requested.'}</p>
+          <Link to="/resources" className="btn btn-primary">Back to learning resources</Link>
         </div>
       </Container>
     );
@@ -277,7 +277,7 @@ export default function CurriculumNodePage() {
         <h1>{node.name}</h1>
         <p>{children.length > 0
           ? `Choose a ${curriculumLevelLabel(curriculumDepth + 1, isPharmacy).toLowerCase()} to continue. Your selected class or programme is kept throughout the journey.`
-          : `This is your lesson. Read its core concepts, then use the connected practice and reference materials to strengthen your understanding.`}</p>
+          : `You’re at the lesson. Start with the key ideas, then use the linked questions and revision materials to check your understanding.`}</p>
         {focusedResourceLabel && <p className="curriculum-node-focus-note"><span>Your selected resource:</span> <strong>{focusedResourceLabel}</strong><span> — we’ll keep it in focus as you move through this pathway.</span></p>}
       </header>
 
@@ -285,21 +285,21 @@ export default function CurriculumNodePage() {
         <section className="curriculum-node-section curriculum-node-core-reading" aria-labelledby="curriculum-core-reading-title">
           <div className="curriculum-node-section-heading">
             <div>
-              <span className="curriculum-node-kicker">Core concepts · Start reading</span>
+              <span className="curriculum-node-kicker">Start with the key ideas</span>
               <h2 id="curriculum-core-reading-title">Build your understanding of {node.name}</h2>
             </div>
             <span className="curriculum-node-count">{linkedNotes.length} {linkedNotes.length === 1 ? 'reading' : 'readings'}</span>
           </div>
-          <p className="curriculum-node-reading-intro">Begin with the explanation below, then return here for practice questions, flashcards and revision resources.</p>
+          <p className="curriculum-node-reading-intro">Read the explanation first, then return here for questions, flashcards and other revision materials.</p>
           <div className="curriculum-node-core-reading-list">
             {linkedNotes.map((item) => (
               <Link key={item.id} to={`/notes/read?id=${encodeURIComponent(item.content_id)}&return_to=${encodeURIComponent(returnToLesson)}`} className="curriculum-node-core-reading-link">
                 <span className="curriculum-node-child-icon"><Icon name="book-open" /></span>
                 <span className="curriculum-node-child-body">
                   <strong>{item.title || 'Read core concepts'}</strong>
-                  <small>Open the full explanation</small>
+                  <small>Read the full explanation</small>
                 </span>
-                <span className="curriculum-node-reading-cta">Read now <Icon name="arrow-right" /></span>
+                <span className="curriculum-node-reading-cta">Read lesson <Icon name="arrow-right" /></span>
               </Link>
             ))}
           </div>
@@ -334,8 +334,8 @@ export default function CurriculumNodePage() {
         <section className="curriculum-node-section">
           <div className="curriculum-node-section-heading">
             <div>
-              <span className="curriculum-node-kicker">Next level</span>
-              <h2>Continue into {node.name}</h2>
+              <span className="curriculum-node-kicker">Next step</span>
+              <h2>Explore {node.name}</h2>
             </div>
             <span className="curriculum-node-count">{children.length} {children.length === 1 ? 'item' : 'items'}</span>
           </div>
@@ -371,8 +371,8 @@ export default function CurriculumNodePage() {
         <section className="curriculum-node-section">
           <div className="curriculum-node-section-heading">
             <div>
-              <span className="curriculum-node-kicker">Study resources</span>
-              <h2>Learn this {node.node_type || 'unit'}</h2>
+              <span className="curriculum-node-kicker">Resources for this lesson</span>
+              <h2>Practise what you’ve learned</h2>
             </div>
           </div>
 
@@ -392,8 +392,8 @@ export default function CurriculumNodePage() {
         <section className="curriculum-node-section">
           <div className="curriculum-node-section-heading">
             <div>
-              <span className="curriculum-node-kicker">Connected resources</span>
-              <h2>Study {node.name} across resource types</h2>
+              <span className="curriculum-node-kicker">More ways to study</span>
+              <h2>Explore resources for {node.name}</h2>
             </div>
           </div>
 
