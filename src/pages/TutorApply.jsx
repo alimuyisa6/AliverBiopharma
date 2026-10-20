@@ -105,12 +105,12 @@ export default function TutorApply() {
     const levelToSubmit = storedTrack || selectedLevel?.key;
 
     if (!levelToSubmit || !selectedClass || selectedTopics.length === 0) {
-      addToast('Please complete all required fields', 'error');
+      addToast('Please complete all required fields before submitting.', 'error');
       return;
     }
 
     if (storedTrack && selectedLevel && selectedLevel.key !== storedTrack) {
-      addToast('Submitted level does not match your signup level', 'error');
+      addToast('The selected teaching level doesn’t match your account level.', 'error');
       return;
     }
 
@@ -127,7 +127,7 @@ export default function TutorApply() {
 
       setSubmitted(true);
     } catch (err) {
-      addToast(err.message || 'Failed to submit application', 'error');
+      addToast(err.message || 'We couldn’t submit your application. Please try again.', 'error');
     } finally {
       setSubmitting(false);
     }
@@ -143,9 +143,9 @@ export default function TutorApply() {
 
   if (existingApplication) {
     const statusLabels = {
-      pending: { label: 'Pending Review', color: 'var(--warning)' },
-      scheduled: { label: 'Interview Scheduled', color: 'var(--primary)' },
-      interviewed: { label: 'Interview Completed', color: 'var(--accent)' },
+      pending: { label: 'Under review', color: 'var(--warning)' },
+      scheduled: { label: 'Interview scheduled', color: 'var(--primary)' },
+      interviewed: { label: 'Interview completed', color: 'var(--accent)' },
       approved: { label: 'Approved', color: 'var(--success)' },
       rejected: { label: 'Rejected', color: 'var(--error)' }
     };
@@ -156,10 +156,10 @@ export default function TutorApply() {
       <div className="section" style={{ paddingTop: 'var(--space-6)' }}>
         <span className="eyebrow">Teaching</span>
         <h1 className="section-title" style={{ textAlign: 'left', margin: '0 0 var(--space-2)' }}>
-          Tutor Application<br />Status
+          Tutor application<br />status
         </h1>
         <h2 className="page-intro">
-          View the current status of your tutor application.
+          Check the latest status of your tutor application.
         </h2>
 
         <Card style={{ padding: 'var(--space-8)', textAlign: 'center', maxWidth: 500, margin: '0 auto' }}>
@@ -187,10 +187,10 @@ export default function TutorApply() {
       <div className="section" style={{ paddingTop: 'var(--space-6)', textAlign: 'center' }}>
         <Icon name="circle-check" style={{ fontSize: '3rem', color: 'var(--success)', marginBottom: 'var(--space-4)' }} />
         <h1 className="section-title">
-          Application<br />Submitted
+          Application<br />submitted
         </h1>
         <h2 className="status-description">
-          Your tutor application has been received. We will review it shortly.
+          Your application has been received. We’ll review it and update your status here.
         </h2>
 
         <div style={{ display: 'flex', gap: 'var(--space-4)', justifyContent: 'center', marginTop: 'var(--space-6)' }}>
@@ -206,10 +206,10 @@ export default function TutorApply() {
       <div className="section" style={{ paddingTop: 'var(--space-6)' }}>
         <span className="eyebrow">Teaching</span>
         <h1 className="section-title" style={{ textAlign: 'left', margin: '0 0 var(--space-2)' }}>
-          Become a<br />Tutor
+          Apply to become a<br />tutor
         </h1>
         <h2 className="page-intro">
-          Share your knowledge with students by becoming a tutor. Complete the steps below to apply.
+          Share your knowledge and help learners succeed. Complete the steps below to apply.
         </h2>
 
         <div style={{ display: 'flex', justifyContent: 'center', gap: 'var(--space-8)', marginBottom: 'var(--space-8)' }}>
@@ -227,7 +227,7 @@ export default function TutorApply() {
 
         {step === 1 && !user?.profile?.track && (
           <div>
-            <h3 style={{ marginBottom: 'var(--space-6)' }}>Choose the level you wish to teach</h3>
+            <h3 style={{ marginBottom: 'var(--space-6)' }}>Choose the level you’d like to teach</h3>
 
             <div className="grid grid-cols-3">
               {levels.map((level, index) => (
@@ -250,7 +250,7 @@ export default function TutorApply() {
         {step === 2 && selectedLevel && (
           <div>
             <Button variant="ghost" onClick={() => setStep(1)} icon="arrow-left" style={{ marginBottom: 'var(--space-6)' }}>Back</Button>
-            <h3 style={{ marginBottom: 'var(--space-6)' }}>Select the class you want to teach in {selectedLevel.key}</h3>
+            <h3 style={{ marginBottom: 'var(--space-6)' }}>Choose the class you’d like to teach in {selectedLevel.key}</h3>
 
             <div className="grid grid-cols-3">
               {(selectedLevel.classes || []).map((cls, index) => {
@@ -279,7 +279,7 @@ export default function TutorApply() {
           <div>
             <Button variant="ghost" onClick={() => setStep(2)} icon="arrow-left" style={{ marginBottom: 'var(--space-6)' }}>Back</Button>
             <h3 style={{ marginBottom: 'var(--space-6)' }}>
-              Select topics you can teach in {selectedClass?.name}
+              Choose the topics you can teach in {selectedClass?.name}
             </h3>
 
             {topics.length === 0 ? (
@@ -318,7 +318,7 @@ export default function TutorApply() {
 
             <div style={{ marginTop: 'var(--space-8)', textAlign: 'right' }}>
               <Button onClick={handleSubmit} loading={submitting} disabled={selectedTopics.length === 0} icon="paper-plane">
-                Submit Application
+                Submit application
               </Button>
             </div>
           </div>
