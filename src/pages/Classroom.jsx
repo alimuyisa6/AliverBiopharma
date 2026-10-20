@@ -145,7 +145,7 @@ export default function Classroom() {
           <EmptyState
             image={getEmptyStateImage('classrooms')}
             title="No classrooms available yet"
-            description={`There are no active classrooms for ${classLabel || levelName || 'your selected level'} right now. Check back later or apply to become a tutor.`}
+            description={`There are no active classrooms for ${classLabel || levelName || 'your selected level'} right now. Check back soon, or apply to teach as a tutor.`}
             action={
               <Button onClick={() => navigate('/tutor/apply')}>
                 <Icon name="user-pen" /> Apply to become a tutor
@@ -211,7 +211,7 @@ export default function Classroom() {
               <thead>
                 <tr>
                   <th>Status</th>
-                  <th>Classroom / topic</th>
+                  <th>Classroom or topic</th>
                   <th>Class</th>
                   <th>Tutor</th>
                   <th>Participants</th>
