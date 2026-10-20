@@ -61,7 +61,7 @@ export default function NoteLearningExplanation() {
         const result = await getNoteLearningThread(threadId);
         if (!mounted) return;
         const savedThread = result?.thread;
-        if (!savedThread?.id) throw new Error('We couldn't find this learning explanation.');
+        if (!savedThread?.id) throw new Error("We couldn’t find this learning explanation.");
         setThread(savedThread);
         setNoteTitle(result.note_title || 'Your note');
         setMessages((savedThread.messages || []).map((message, index) => ({
