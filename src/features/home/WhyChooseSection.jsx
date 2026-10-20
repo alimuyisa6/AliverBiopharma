@@ -5,43 +5,43 @@ import WhyChooseIllustration from './WhyChooseIllustration';
 const REASONS = [
   {
     number: '01',
-    title: 'Content That Matches Your Curriculum',
-    text: 'Learn from notes, quizzes, flashcards, recall activities, PDFs and past papers organized around your actual syllabus and academic pathway.',
+    title: 'Resources for Your Syllabus',
+    text: 'Find notes, questions and revision materials that follow the topics you are studying.',
     color: 'blue',
     label: 'Curriculum aligned'
   },
   {
     number: '02',
-    title: 'Your Level. Your Content.',
-    text: 'Choose your level and class or programme, and your learning environment stays focused on the content that belongs to you instead of mixing unrelated material.',
+    title: 'Learning That Fits Your Level',
+    text: 'Choose your class or programme to keep your study materials relevant to what you need to learn.',
     color: 'green',
     label: 'Focused learning'
   },
   {
     number: '03',
-    title: 'Everything You Need to Learn',
-    text: 'Study a topic with detailed notes, reinforce it with flashcards, strengthen recall, test yourself with quizzes and practise with past papers.',
+    title: 'Study, Practise, Remember',
+    text: 'Read a topic, test yourself with questions, and revisit the parts you find difficult.',
     color: 'amber',
     label: 'Learn · Recall · Practise'
   },
   {
     number: '04',
-    title: 'A Clear Learning Path',
-    text: 'Content is arranged logically by level, class or programme, subject and topic, so you can move through your studies without getting lost.',
+    title: 'Know What to Study Next',
+    text: 'Find your subject and topic without having to search through unrelated materials.',
     color: 'grey',
     label: 'Organized by design'
   },
   {
     number: '05',
-    title: 'Study Beyond Reading',
-    text: 'AliverBiopharm is built around active learning. Recall what you studied, answer questions, identify gaps and return to the areas that need more work.',
+    title: 'Go Beyond Reading',
+    text: 'Close your notes and see what you can remember. Your answers can show you what to review next.',
     color: 'blue',
     label: 'Active learning'
   },
   {
     number: '06',
-    title: 'Keep Learning When You Need Help',
-    text: 'When studying on your own is not enough, live classrooms and tutors give you additional ways to get guidance and keep moving forward.',
+    title: 'Get Help When You Need It',
+    text: 'When you get stuck, explore the available classroom and tutor options for extra guidance.',
     color: 'green',
     label: 'Support when needed'
   }
@@ -55,7 +55,7 @@ export function WhyChooseSection() {
         <div className="section-head-left">
           <span className="eyebrow">Why AliverBiopharm</span>
 
-          <h2>Why Many Choose AliverBiopharm</h2>
+          <h2>A Better Way to Study</h2>
 
           <p>
             A focused learning environment built to help Biology and Pharmacy
