@@ -564,3 +564,87 @@ body.dark-mode .resources-empty-state {
     width: 100%;
   }
 }
+
+
+/* Compact resource cards: reduce their visual footprint while keeping all actions usable. */
+.resources-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+.resource-card {
+  border-radius: var(--radius-md);
+}
+.resource-card-top {
+  padding: var(--space-2) var(--space-3) 0;
+}
+.resource-card-badge {
+  padding: 2px var(--space-2);
+  font-size: 0.6875rem;
+}
+.resource-card-body {
+  min-height: 0;
+  padding: var(--space-2) var(--space-3) var(--space-3);
+}
+.resource-card-artwork {
+  width: clamp(3.5rem, 34%, 5rem);
+  right: var(--space-2);
+  opacity: 0.14;
+}
+.resource-card-title {
+  margin-bottom: var(--space-1);
+  font-size: 0.875rem;
+  line-height: 1.3;
+}
+.resource-card-desc {
+  max-width: 100%;
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+.resource-card-footer {
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+}
+.resource-card-footer .btn {
+  min-height: 2rem;
+  padding: var(--space-1) var(--space-2);
+  font-size: 0.75rem;
+}
+@media (max-width: 1024px) {
+  .resources-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-3);
+  }
+}
+@media (max-width: 640px) {
+  .resources-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-2);
+  }
+  .resource-card-top {
+    padding-inline: var(--space-2);
+  }
+  .resource-card-body {
+    padding: var(--space-2);
+  }
+  .resource-card-footer {
+    padding: var(--space-2);
+  }
+  .resource-card-title,
+  .resource-card-desc {
+    max-width: 100%;
+  }
+  .resource-card-artwork {
+    width: clamp(2.75rem, 35%, 4rem);
+    opacity: 0.1;
+  }
+  .resource-card-footer .btn {
+    width: 100%;
+    white-space: normal;
+    line-height: 1.2;
+  }
+}
+@media (max-width: 360px) {
+  .resources-grid {
+    grid-template-columns: 1fr;
+  }
+}
