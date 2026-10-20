@@ -91,3 +91,77 @@ h1,h2,h3,h4,h5,h6 { font-family: var(--font-heading); margin: 0; }
 .font-maven { font-family: var(--font-maven); }
 .font-reading { font-family: var(--font-reading); }
 .font-mono { font-family: var(--font-mono); }
+
+
+/* Shared site-wide typography scale.
+   Match the Dashboard's clear hierarchy on every page; Note Detail is exempt. */
+:root {
+  --site-page-title-size: var(--text-page-title);
+  --site-section-title-size: var(--text-section-title);
+  --site-subsection-title-size: var(--text-subsection-title);
+  --site-card-title-size: var(--text-card-title);
+  --site-body-size: var(--text-body);
+  --site-supporting-size: var(--text-supporting);
+  --site-caption-size: var(--text-caption);
+}
+
+body {
+  color: var(--text-main);
+  font-size: var(--site-body-size);
+  line-height: var(--leading-body);
+}
+
+#root :is(h1, .page-title, .page-heading, .about-title, .legal-title,
+  .modal-title, .quiz-hero-title, .notes-page-title, .recall-page-title,
+  .quiz-page-title, .flashcard-title, .curriculum-node-title):not(.note-detail-container *) {
+  color: var(--text-main);
+  font-family: var(--font-heading);
+  font-size: var(--site-page-title-size);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-page-title);
+  letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
+}
+
+#root :is(h2, .section-title, .glossary-title, .curriculum-node-section-title):not(.note-detail-container *) {
+  color: var(--text-main);
+  font-size: var(--site-section-title-size);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-section-title);
+}
+
+#root h3:not(.note-detail-container *) {
+  color: var(--text-main);
+  font-size: var(--site-subsection-title-size);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-subsection-title);
+}
+
+#root :is(h4, h5, h6):not(.note-detail-container *) {
+  color: var(--text-main);
+  font-size: var(--site-card-title-size);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-card-title);
+}
+
+#root :is(p, li):not(.note-detail-container *) {
+  font-size: var(--site-body-size);
+  line-height: var(--leading-body);
+}
+
+#root :is(small, .text-caption, figcaption):not(.note-detail-container *) {
+  font-size: var(--site-caption-size);
+  line-height: var(--leading-caption);
+}
+
+@media (max-width: 640px) {
+  #root :is(h1, .page-title, .page-heading, .about-title, .legal-title,
+    .modal-title, .quiz-hero-title, .notes-page-title, .recall-page-title,
+    .quiz-page-title, .flashcard-title, .curriculum-node-title):not(.note-detail-container *) {
+    font-size: clamp(1.75rem, 7vw, 2.5rem);
+  }
+
+  #root :is(h2, .section-title, .glossary-title, .curriculum-node-section-title):not(.note-detail-container *) {
+    font-size: clamp(1.25rem, 5vw, 1.75rem);
+  }
+}
