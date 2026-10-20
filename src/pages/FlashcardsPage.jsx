@@ -89,7 +89,7 @@ export default function FlashcardsPage() {
       if (!lifecycle.active() || !data) return;
       applyRequestedDeck(data.decks);
     } catch {
-      if (lifecycle.active()) setError('Failed to load flashcards. Please refresh.');
+      if (lifecycle.active()) setError("We couldn't load your flashcards. Please try again.");
     }
   }
 
@@ -214,9 +214,9 @@ export default function FlashcardsPage() {
       <div className="section flashcard-error">
         <EmptyState
           image={getEmptyStateImage('general')}
-          title="Error"
+          title="Couldn't load flashcards"
           description={error}
-          action={<Button onClick={init}>Try Again</Button>}
+          action={<Button onClick={init}>Try again</Button>}
         />
       </div>
     );
@@ -227,7 +227,7 @@ export default function FlashcardsPage() {
       <>
      <div className="flashcards-page">
         <div className="section flashcard-subject-section">
-          <span className="sec-label">Study Tools</span>
+          <span className="sec-label">Study tools</span>
           <h1 className="section-title flashcard-title">
             {levelName || 'Flashcards'}
           </h1>
@@ -237,14 +237,14 @@ export default function FlashcardsPage() {
           <AdSlot placement="flashcards" pageContext="flashcards" />
 
           <p className="section-subtitle flashcard-subtitle">
-            Study cards for {levelName || 'your programme'}.
+            Use flashcards to test what you remember about {levelName || 'your programme'}. 
           </p>
 
           {decks.length === 0 ? (
             <EmptyState
               image={getEmptyStateImage('flashcards')}
-              title="Build Your Recall"
-              description={`Flashcard decks for ${classLabel || levelName || 'this programme'} will appear here when they are ready.`}
+              title="No flashcard decks yet"
+              description={`Flashcards for ${classLabel || levelName || 'your programme'} will appear here when they're available.`}
             />
           ) : (
             <div className="flashcard-decks-grid">
@@ -253,11 +253,11 @@ export default function FlashcardsPage() {
                   key={deck.id}
                   icon="layer-group"
                   title={deck.title}
-                  description={deck.description || 'No description'}
+                  description={deck.description || 'Review key ideas and test your recall.'}
                   className="flashcard-deck-card"
                   footer={
                     <Button variant="3d" size="sm" icon="play" onClick={() => handleDeckSelect(deck)} disabled={locked}>
-                      Start
+                      Start studying
                     </Button>
                   }
                 >
