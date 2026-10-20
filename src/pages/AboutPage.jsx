@@ -196,7 +196,7 @@ export default function AboutPage() {
 
           {page?.team?.length > 0 && (
             <div className="about-block">
-              <h2 className="about-block-heading">{page.team_heading || 'Meet Our Team'}</h2>
+              <h2 className="about-block-heading">{page.team_heading || 'Meet the team'}</h2>
               <div className="team-grid">
                 {page.team.map((member, idx) => (
                   <TeamCard key={idx} member={member} />
@@ -207,7 +207,7 @@ export default function AboutPage() {
 
           {page?.contributors?.length > 0 && (
             <div className="about-block">
-              <h2 className="about-block-heading">{page.contributors_heading || 'Contributors & Reviewers'}</h2>
+              <h2 className="about-block-heading">{page.contributors_heading || 'Contributors and reviewers'}</h2>
               <div className="contributors-grid">
                 {page.contributors.map((contributor, idx) => (
                   <ContributorCard key={idx} contributor={contributor} />
@@ -292,7 +292,7 @@ export default function AboutPage() {
 
           {page?.call_to_action && (
             <div className="about-block about-cta">
-              <h2 className="about-block-heading">{page.call_to_action.heading || 'Start Your Learning Journey'}</h2>
+              <h2 className="about-block-heading">{page.call_to_action.heading || 'Start learning today'}</h2>
               {page.call_to_action.content && <p className="about-cta-text"><RichText text={page.call_to_action.content} /></p>}
               {page.call_to_action.button_text && (
                 <Link
