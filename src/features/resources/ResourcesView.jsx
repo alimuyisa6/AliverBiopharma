@@ -14,7 +14,7 @@ const CONTENT_TYPES = [
   {
     key: 'notes',
     label: 'Notes',
-    description: 'Clear explanations, diagrams and summaries to help you understand each topic.',
+    description: 'Understand each topic with clear explanations, diagrams, and summaries.',
     icon: 'book-open',
     route: '/notes',
     color: 'blue',
@@ -23,7 +23,7 @@ const CONTENT_TYPES = [
   {
     key: 'flashcards',
     label: 'Flashcards',
-    description: 'Use short question-and-answer cards to test what you remember.',
+    description: 'Test your memory with quick question-and-answer cards.',
     icon: 'layer-group',
     route: '/flashcards',
     color: 'teal',
@@ -32,7 +32,7 @@ const CONTENT_TYPES = [
   {
     key: 'pdfs',
     label: 'PDF Library',
-    description: 'Download study guides, reference sheets and other useful documents.',
+    description: 'Find study guides, reference sheets, and other useful documents.',
     icon: 'file-pdf',
     route: '/pdfs',
     color: 'grey',
@@ -41,7 +41,7 @@ const CONTENT_TYPES = [
   {
     key: 'quizzes',
     label: 'Quizzes',
-    description: 'Check your understanding with questions from your course or subject.',
+    description: 'Check your understanding with questions matched to your course or subject.',
     icon: 'clipboard-check',
     route: '/quiz',
     color: 'amber',
@@ -50,7 +50,7 @@ const CONTENT_TYPES = [
   {
     key: 'past_papers',
     label: 'Past Papers',
-    description: 'Practise with past exam papers and build confidence before your exams.',
+    description: 'Prepare for exams by practising with past papers.',
     icon: 'file-lines',
     route: '/past-papers',
     color: 'emerald',
@@ -59,7 +59,7 @@ const CONTENT_TYPES = [
   {
     key: 'recall',
     label: 'Recall',
-    description: 'Revisit key ideas over time to help move them into long-term memory.',
+    description: 'Review key ideas over time to help remember them for longer.',
     icon: 'brain',
     route: '/recall',
     color: 'violet',
@@ -124,8 +124,8 @@ export default function ResourcesView({ navigate, user, sections }) {
 
   const isPharmacy = /pharmacy/i.test(String(levelName));
   const subtitle = isPharmacy
-    ? 'Explore course-unit notes, flashcards, quizzes, past papers and recall practice matched to your Pharmacy programme.'
-    : 'Explore Biology notes, diagrams, flashcards, quizzes and past papers. Choose a resource to understand a topic, practise and check what you remember.';
+    ? 'Explore notes, flashcards, quizzes, past papers, and recall practice for your Pharmacy programme.'
+    : 'Explore Biology notes, diagrams, flashcards, quizzes, and past papers. Choose a resource to learn a topic, practise, and check your understanding.';
 
   function handleBrowse(type) {
     if (!user) {
@@ -152,7 +152,7 @@ export default function ResourcesView({ navigate, user, sections }) {
         <div className="resources-intro">
           <div>
             <span className="resources-section-kicker">Resources · {levelName}{activeGroup?.name ? ` · ${activeGroup.name}` : ''}</span>
-            <h1>Choose a resource and get started</h1>
+            <h1>Choose a resource to get started</h1>
             <p>{subtitle}</p>
           </div>
           <span className="resources-section-context">
@@ -192,7 +192,7 @@ export default function ResourcesView({ navigate, user, sections }) {
           <div>
             <span className="resources-section-kicker">Study · Practise · Review</span>
             <h2 className="resources-section-title">
-              Browse your study resources
+              Browse study resources
               <span className="resources-section-count">{filteredTypes.length}</span>
             </h2>
           </div>
@@ -239,9 +239,9 @@ export default function ResourcesView({ navigate, user, sections }) {
             <div className="resources-empty-icon" aria-hidden="true">
               <Icon name="search" />
             </div>
-            <h3>No matching resources</h3>
+            <h3>No resources found</h3>
             <p>
-              Try a different search or choose another category.
+              Try another search or choose a different category.
             </p>
             <Button
               variant="secondary"
