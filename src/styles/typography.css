@@ -31,15 +31,15 @@
   --text-4xl: 2.25rem;
   --text-5xl: 3rem;
 
-  /* Compact, consistent title scale; keep body copy and controls unchanged. */
+  /* Compact title scale; body copy is refined separately without changing controls. */
   --text-display: clamp(1.5rem, 3vw, 2rem);
   --text-page-title: clamp(1.25rem, 2.2vw, 1.5rem);
   --text-section-title: clamp(1.0625rem, 1.7vw, 1.1875rem);
   --text-subsection-title: 1rem;
   --text-card-title: 0.9375rem;
-  --text-body-lead: 1.125rem;
+  --text-body-lead: 1rem;
   --text-body: 1rem;
-  --text-body-sm: 0.9375rem;
+  --text-body-sm: 0.875rem;
   --text-supporting: var(--text-sm);
   --text-label: 0.75rem;
   --text-eyebrow: 0.75rem;
@@ -72,7 +72,7 @@
   --leading-subsection-title: 1.35;
   --leading-card-title: 1.4;
   --leading-body-lead: 1.6;
-  --leading-body: 1.5;
+  --leading-body: 1.45;
   --leading-supporting: 1.45;
   --leading-label: 1.3;
   --leading-caption: 1.4;
@@ -150,8 +150,8 @@ h1,h2,h3,h4,h5,h6 { margin: 0 0 var(--text-gap-title); color: var(--heading-colo
   line-height: var(--leading-card-title);
 }
 
-#root :is(p, li):not(.note-detail-container *) {
-  font-size: var(--site-body-size);
+#root :is(p, li, blockquote, figcaption, .text-body, .body-copy, .description, .subtitle, .supporting-text):not(.note-detail-container *) {
+  font-size: var(--text-body-sm);
   line-height: var(--leading-body);
 }
 
