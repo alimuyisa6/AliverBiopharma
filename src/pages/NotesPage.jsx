@@ -197,7 +197,7 @@ export default function NotesPage() {
         <EmptyState
           image={getEmptyStateImage('notes')}
           title="Study notes unavailable"
-          description="Your current account doesn't have access to these study notes."
+          description="Your account doesn’t currently have access to these study notes."
         />
       </Container>
     );
@@ -213,7 +213,7 @@ export default function NotesPage() {
               Study notes
             </h1>
             <p className="notes-page-description">
-              Build your understanding one topic at a time. Search your notes, follow your learning pathway, and revisit ideas that need more practice.
+              Build your understanding one topic at a time. Search your notes, follow your learning path, and revisit ideas that need more practice.
             </p>
           </div>
 
@@ -226,7 +226,7 @@ export default function NotesPage() {
             <div className="notes-context-main">
               <div className="notes-context-kicker font-mono">Your learning pathway</div>
               <p className="notes-context-description">
-                These notes cover <strong>{contextTitle}</strong>. Explore the related areas below when you're ready to continue.
+                These notes cover <strong>{contextTitle}</strong>. Explore the related topics below when you’re ready to continue.
               </p>
               {contextPath && (
                 <Link className="notes-context-link" to={contextPath}>
@@ -305,14 +305,14 @@ export default function NotesPage() {
         ) : error ? (
           <EmptyState
             image={getEmptyStateImage('error')}
-            title="Couldn't load notes"
+            title="We couldn’t load your notes"
             description={error}
             action={<Button onClick={() => loadContent(() => true, true)}>Try again</Button>}
           />
         ) : notes.length === 0 ? (
           <EmptyState
             image={getEmptyStateImage('notes')}
-            title="No notes available yet"
+            title="No study notes available yet"
             description={`Notes for ${contextTitle || classLabel || levelName || 'your selected study level'} will appear here as they become available.`}
           />
         ) : filteredNotes.length === 0 ? (
