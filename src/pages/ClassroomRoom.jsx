@@ -82,7 +82,7 @@ export default function ClassroomRoom() {
       setRoom(data);
       setLoading(false);
     } catch {
-      setError('Failed to load room');
+      setError("We couldn't load this classroom. Please try again.");
       setLoading(false);
     }
   }
@@ -180,11 +180,11 @@ export default function ClassroomRoom() {
       <div className="section classroom-room-error">
         <EmptyState
           image={getEmptyStateImage('classrooms')}
-          title="Room Not Found"
-          description={error || 'The classroom does not exist or has ended.'}
+          title="This classroom is unavailable"
+          description={error || 'This classroom may have ended or the link may be incorrect.'}
           action={
             <Button onClick={() => navigate('/classroom')}>
-              <Icon name="arrow-left" /> Back to Classrooms
+              <Icon name="arrow-left" /> Back to classrooms
             </Button>
           }
         />
@@ -233,7 +233,7 @@ export default function ClassroomRoom() {
                 {participant.role === 'tutor' && <span className="tile-badge tutor">Tutor</span>}
                 {participant.role === 'admin' && <span className="tile-badge admin">Admin</span>}
                 <i className={`avatar fa-solid ${participant.role === 'tutor' ? 'fa-user-graduate' : participant.role === 'admin' ? 'fa-user-tie' : 'fa-user'}`}></i>
-                <span className="name">{participant.user_name || 'User'}{participant.user_id === user?.id ? ' (you)' : ''}</span>
+                <span className="name">{participant.user_name || 'Participant'}{participant.user_id === user?.id ? ' (you)' : ''}</span>
                 {participant.is_muted && <i className="tile-status muted fa-solid fa-microphone-slash"></i>}
                 {participant.hand_raised && <i className="tile-status hand fa-solid fa-hand"></i>}
                 {participant.is_screen_sharing && <i className="tile-status screen fa-solid fa-desktop"></i>}
@@ -256,11 +256,11 @@ export default function ClassroomRoom() {
             </Button>
             <Button variant={handRaised ? 'warm' : 'secondary'} size="sm" onClick={handleRaiseHand} loading={raisingHand}>
               <Icon name="hand" />
-              {handRaised ? 'Hand Raised' : 'Raise Hand'}
+              {handRaised ? 'Hand raised' : 'Raise hand'}
             </Button>
             <Button variant="secondary" size="sm" onClick={toggleWhiteboard}>
               <Icon name="pencil" />
-              {isWhiteboardVisible ? 'Board' : 'Show Board'}
+              {isWhiteboardVisible ? 'Hide board' : 'Show board'}
             </Button>
           </div>
 
@@ -274,11 +274,11 @@ export default function ClassroomRoom() {
                 <Button variant="secondary" size="xs"><Icon name="undo" /></Button>
                 <Button variant="secondary" size="xs"><Icon name="redo" /></Button>
                 <Button variant="secondary" size="xs"><Icon name="trash" /> Clear</Button>
-                <span className="whiteboard-label">Collaborative Whiteboard</span>
+                <span className="whiteboard-label">Shared whiteboard</span>
               </div>
               <div className="whiteboard-canvas">
                 <Icon name="pen-fancy" />
-                <span>Draw here — everyone sees it live</span>
+                <span>Draw here to share your ideas with the class.</span>
               </div>
             </div>
           )}
@@ -287,7 +287,7 @@ export default function ClassroomRoom() {
         <div className="classroom-room-right">
           <div className="classroom-chat-panel">
             <div className="chat-panel-header">
-              <h4><Icon name="comment-dots" /> Live Chat</h4>
+              <h4><Icon name="comment-dots" /> Live chat</h4>
               <div className="chat-actions">
                 <Button variant="ghost" size="xs"><Icon name="smile" /></Button>
                 <Button variant="ghost" size="xs"><Icon name="ellipsis-vertical" /></Button>
@@ -344,7 +344,7 @@ export default function ClassroomRoom() {
                 value={chatInput}
                 onChange={(event) => setChatInput(event.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Type a message..."
+                placeholder="Write a message…"
                 rows={1}
                 maxLength={1000}
               />
@@ -369,7 +369,7 @@ export default function ClassroomRoom() {
                     className={`classroom-participant-role-icon ${participant.role === 'tutor' ? 'tutor' : participant.role === 'admin' ? 'admin' : ''}`}
                   />
                   <div>
-                    <div className="classroom-participant-name">{participant.user_name || 'User'}</div>
+                    <div className="classroom-participant-name">{participant.user_name || 'Participant'}</div>
                     <div className="classroom-participant-role">{participant.role}</div>
                   </div>
                   {participant.is_muted && <Icon name="microphone-slash" className="classroom-participant-status-icon icon-muted" />}
@@ -381,12 +381,12 @@ export default function ClassroomRoom() {
           </div>
 
           <div className="classroom-room-info-panel">
-            <h4><Icon name="circle-info" /> Session Info</h4>
+            <h4><Icon name="circle-info" /> Session details</h4>
             <div className="classroom-room-info-grid">
               {room.level && <div className="info-item"><strong>Level</strong> {room.level}</div>}
               {roomClass && <div className="info-item"><strong>Class</strong> {roomClass}</div>}
               {room.topic_name && <div className="info-item"><strong>Topic</strong> {room.topic_name}</div>}
-              <div className="info-item"><strong>Type</strong> {room.room_type === 'free' ? 'Free Discussion' : room.room_type === 'hard_topic' ? 'Hard Topic' : 'Premium'}</div>
+              <div className="info-item"><strong>Type</strong> {room.room_type === 'free' ? 'Open discussion' : room.room_type === 'hard_topic' ? 'Focused topic' : 'Premium'}</div>
               {room.tutor_name && <div className="info-item"><strong>Tutor</strong> {room.tutor_name}</div>}
               <div className="info-item"><strong>Status</strong> {room.status === 'live' ? '● Live' : room.status}</div>
             </div>
@@ -396,13 +396,13 @@ export default function ClassroomRoom() {
 
       <div className="classroom-room-footer">
         <Button variant="danger" size="sm" onClick={handleLeaveRoom}>
-          <Icon name="right-from-bracket" /> Leave
+          <Icon name="right-from-bracket" /> Leave classroom
         </Button>
         <Button variant="secondary" size="sm">
           <Icon name="file-export" /> Export notes
         </Button>
         <Button variant="secondary" size="sm">
-          <Icon name="flag" /> Report
+          <Icon name="flag" /> Report an issue
         </Button>
       </div>
     </div>
