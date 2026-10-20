@@ -247,7 +247,7 @@ function AliverProfileGlyph({ name, style }) {
   }
 }
 
-function ProfileError({ error, title = 'We couldn't load this section', onRetry, t }) {
+function ProfileError({ error, title = "We couldn't load this section", onRetry, t }) {
   if (!error) return null;
 
   return (
