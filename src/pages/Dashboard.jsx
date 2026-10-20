@@ -1,8 +1,11 @@
-import { useState, useEffect, useRef } from 'react';
-import { TotalLearningActivity, MasteryDonut, XpBars } from '../components/charts/AnalyticsCharts';
-import DualAreaTrend from '../components/charts/DualAreaTrend';
-import BarChart from '../components/charts/BarChart';
-import DonutChart from '../components/charts/DonutChart';
+import { lazy, Suspense, useState, useEffect, useRef } from 'react';
+import ChartWhenVisible from '../components/charts/ChartWhenVisible';
+const TotalLearningActivity = lazy(() => import('../components/charts/AnalyticsCharts').then((m) => ({ default: m.TotalLearningActivity })));
+const MasteryDonut = lazy(() => import('../components/charts/AnalyticsCharts').then((m) => ({ default: m.MasteryDonut })));
+const XpBars = lazy(() => import('../components/charts/AnalyticsCharts').then((m) => ({ default: m.XpBars })));
+const DualAreaTrend = lazy(() => import('../components/charts/DualAreaTrend'));
+const BarChart = lazy(() => import('../components/charts/BarChart'));
+const DonutChart = lazy(() => import('../components/charts/DonutChart'));
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useLayout } from '../contexts/LayoutContext';
@@ -600,7 +603,7 @@ export default function Dashboard() {
                 </div>
                 {Number(quiz.total_attempts) > 0 && quizOutcomeChart.some((item) => item.value > 0) && (
                   <div className="dashboard-insight-chart dashboard-insight-chart-compact">
-                    <DonutChart data={quizOutcomeChart.map((item) => item.value)} labels={quizOutcomeChart.map((item) => item.label)} title="Quiz outcomes" subtitle="Passed versus not-passed recorded attempts." height={220} />
+                    <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><DonutChart data={quizOutcomeChart.map((item) => item.value)} labels={quizOutcomeChart.map((item) => item.label)} title="Quiz outcomes" subtitle="Passed versus not-passed recorded attempts." height={220} /></Suspense></ChartWhenVisible>
                   </div>
                 )}
                 <div className="dashboard-quiz-outcome" aria-label="Quiz pass and not-passed comparison">
@@ -657,7 +660,7 @@ export default function Dashboard() {
                 </div>
                 {Number(recall.total_sessions) > 0 && (
                   <div className="dashboard-insight-chart dashboard-insight-chart-compact">
-                    <BarChart data={recallComparisonChart} labels={['Recall accuracy', 'Best mastery']} label="Score" title="Recall performance" subtitle="Your recall accuracy and best recorded mastery, shown as percentages." height={220} />
+                    <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><BarChart data={recallComparisonChart} labels={['Recall accuracy', 'Best mastery']} label="Score" title="Recall performance" subtitle="Your recall accuracy and best recorded mastery, shown as percentages." height={220} /></Suspense></ChartWhenVisible>
                   </div>
                 )}
                 <p className="dashboard-quiz-note">Recall is tracked separately from scored quiz attempts so your memory practice and assessment results stay distinct.</p>
@@ -687,18 +690,18 @@ export default function Dashboard() {
                 <div className="panel-body">
                 <p className="dashboard-section-intro">See how regularly you’ve been studying and spot the habits that help you make progress.</p>
                 <DashboardSectionAside>Aim for a steady study routine. A short, focused session today is a useful start.</DashboardSectionAside>
-                  <DualAreaTrend
+                  <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><DualAreaTrend
                     embedded
                     activities={recentActivity}
                     days={activityDays}
-                  />
-                  <TotalLearningActivity
+                  /></Suspense></ChartWhenVisible>
+                  <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><TotalLearningActivity
                     embedded
                     data={heatmapValues.map((item) => ({
                       label: new Date(item.activity_date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }),
                       value: Math.max(0, Number(item.count) || 0)
                     }))}
-                  />
+                  /></Suspense></ChartWhenVisible>
                 </div>
               </section>
             )}
@@ -717,13 +720,13 @@ export default function Dashboard() {
                   {assessedMastery.length > 0 ? (
                     <>
                       <p className="mastery-chart-explainer">This chart compares your assessed mastery across curriculum units. Larger segments represent higher mastery scores.</p>
-                      <MasteryDonut
+                      <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><MasteryDonut
                         embedded
                         data={assessedMastery.map((item) => ({
                           label: item.unit_name,
                           value: Math.max(0, Number(item.mastery) || 0)
                         }))}
-                      />
+                      /></Suspense></ChartWhenVisible>
                     </>
                   ) : (
                     <p className="mastery-chart-explainer">Complete an assessment to see your mastery distribution.</p>
@@ -768,7 +771,7 @@ export default function Dashboard() {
                 </div>
                 {downloadOutcomeChart.some((value) => value > 0) && (
                   <div className="dashboard-insight-chart dashboard-insight-chart-compact">
-                    <DonutChart data={downloadOutcomeChart} labels={['Links issued', 'Premium blocked', 'Request/network failures']} title="Download request outcomes" subtitle="Breakdown of recorded PDF download attempts." height={220} />
+                    <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><DonutChart data={downloadOutcomeChart} labels={['Links issued', 'Premium blocked', 'Request/network failures']} title="Download request outcomes" subtitle="Breakdown of recorded PDF download attempts." height={220} /></Suspense></ChartWhenVisible>
                   </div>
                 )}
                 <div className="dashboard-download-attempt-metrics">
@@ -1142,7 +1145,7 @@ export default function Dashboard() {
                 <DashboardSectionAside>Start with one topic, review the lesson, and try a few practice questions to check your understanding.</DashboardSectionAside>
                   {weakAreaChart.some((item) => item.value > 0) && (
                     <div className="dashboard-insight-chart dashboard-insight-chart-compact">
-                      <BarChart data={weakAreaChart.map((item) => item.value)} labels={weakAreaChart.map((item) => item.label)} label="Incorrect attempts" title="Concepts to revisit" subtitle="Most frequently missed concepts among your unresolved weak areas." horizontal height={Math.max(220, weakAreaChart.length * 48)} />
+                      <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><BarChart data={weakAreaChart.map((item) => item.value)} labels={weakAreaChart.map((item) => item.label)} label="Incorrect attempts" title="Concepts to revisit" subtitle="Most frequently missed concepts among your unresolved weak areas." horizontal height={Math.max(220, weakAreaChart.length * 48)} /></Suspense></ChartWhenVisible>
                     </div>
                   )}
                   <div className="sidebar-list" id="weak-areas-list">
@@ -1175,7 +1178,7 @@ export default function Dashboard() {
                 <DashboardSectionAside>Use this recap to return to a recent activity or pick one small task to do next.</DashboardSectionAside>
                   {recentActivityMix.some((item) => item.value > 0) && (
                     <div className="dashboard-insight-chart dashboard-insight-chart-compact">
-                      <DonutChart data={recentActivityMix.map((item) => item.value)} labels={recentActivityMix.map((item) => item.label)} title="Recent learning mix" subtitle="The types of activity in your latest recorded learning history." height={220} />
+                      <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><DonutChart data={recentActivityMix.map((item) => item.value)} labels={recentActivityMix.map((item) => item.label)} title="Recent learning mix" subtitle="The types of activity in your latest recorded learning history." height={220} /></Suspense></ChartWhenVisible>
                     </div>
                   )}
                   <div className="sidebar-list dashboard-activity-timeline" id="recent-activity-list">
@@ -1260,7 +1263,7 @@ export default function Dashboard() {
                     ))}
                   </div>
                   <div className="unit-xp-chart" aria-label="XP earned by learning unit">
-                    <XpBars embedded data={unitXpChart} />
+                    <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><XpBars embedded data={unitXpChart} /></Suspense></ChartWhenVisible>
                   </div>
                 </div>
                 </div>
