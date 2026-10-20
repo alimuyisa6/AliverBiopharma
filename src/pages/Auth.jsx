@@ -85,7 +85,7 @@ export default function Auth() {
 
     getCurriculumLevels()
       .then((data) => setLevels(data || []))
-      .catch(() => setLevelsError('We couldn't load the available study levels. Please try again.'))
+      .catch(() => setLevelsError("We couldn't load the available study levels. Please try again."))
       .finally(() => setLevelsLoading(false));
   }, [onboardingStep, levels.length, levelsLoading]);
 
@@ -294,7 +294,7 @@ export default function Auth() {
           );
 
       if (result?.mfa_required) {
-        setMfaError('That code doesn't look right. Try again.');
+        setMfaError("That code doesn't look right. Try again.");
         if (!passkeyMfaToken) resetTurnstile();
         return;
       }
@@ -378,7 +378,7 @@ export default function Auth() {
       } else {
         setConfirmationMessage(
           result?.message ||
-          'If an account can be created with this email, we'll send you a message with the next steps.'
+          "If an account can be created with this email, we'll send you a message with the next steps."
         );
 
         setPendingConfirmation(true);
