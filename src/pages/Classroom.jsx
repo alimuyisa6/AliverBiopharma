@@ -70,7 +70,7 @@ export default function Classroom() {
       const data = await listClassrooms(activeUnitId, null);
       setRooms(data || []);
     } catch {
-      setError('Failed to load classrooms');
+      setError("We couldn't load the classrooms. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -124,31 +124,31 @@ export default function Classroom() {
             className={`view-toggle-btn ${viewMode === 'grid' ? 'active' : ''}`}
             onClick={() => setViewMode('grid')}
           >
-            <Icon name="grid" /> Grid
+            <Icon name="grid" /> Grid view
           </button>
           <button
             className={`view-toggle-btn ${viewMode === 'list' ? 'active' : ''}`}
             onClick={() => setViewMode('list')}
           >
-            <Icon name="list" /> List
+            <Icon name="list" /> List view
           </button>
         </div>
 
         {error && (
           <div className="alert alert-error classroom-error-alert">
             <Icon name="exclamation-triangle" /> {error}
-            <Button variant="secondary" size="sm" onClick={fetchRooms} className="classroom-error-retry">Retry</Button>
+            <Button variant="secondary" size="sm" onClick={fetchRooms} className="classroom-error-retry">Try again</Button>
           </div>
         )}
 
         {!loading && !error && rooms.length === 0 && (
           <EmptyState
             image={getEmptyStateImage('classrooms')}
-            title="No Classrooms Available"
-            description={`No active rooms for ${classLabel || levelName || 'your level'}.`}
+            title="No classrooms available yet"
+            description={`There are no active classrooms for ${classLabel || levelName || 'your selected level'} right now. Check back later or apply to become a tutor.`}
             action={
               <Button onClick={() => navigate('/tutor/apply')}>
-                <Icon name="user-pen" /> Become a Tutor
+                <Icon name="user-pen" /> Apply to become a tutor
               </Button>
             }
           />
@@ -181,13 +181,13 @@ export default function Classroom() {
                     )}
                     {room.participant_count > 0 && (
                       <p className="card-text classroom-room-meta">
-                        <Icon name="users" /> {room.participant_count} participants
+                        <Icon name="users" /> {room.participant_count} {room.participant_count === 1 ? 'participant' : 'participants'}
                       </p>
                     )}
                   </div>
                   <div className="card-footer">
                     {room.status === 'live' || room.status === 'open_floor' ? (
-                      <AnimatedActionButton primaryText="Join Today" secondaryText="Join Now" onClick={() => navigate(`/classroom/${room.id}`)} />
+                      <AnimatedActionButton primaryText="Join classroom" secondaryText="Join now" onClick={() => navigate(`/classroom/${room.id}`)} />
                     ) : room.status === 'upcoming' ? (
                       <Button size="sm" variant="secondary" disabled>
                         <Icon name="clock" />
@@ -211,7 +211,7 @@ export default function Classroom() {
               <thead>
                 <tr>
                   <th>Status</th>
-                  <th>Classroom / Topic</th>
+                  <th>Classroom / topic</th>
                   <th>Class</th>
                   <th>Tutor</th>
                   <th>Participants</th>
@@ -241,7 +241,7 @@ export default function Classroom() {
                       </td>
                       <td data-label="Action">
                         {room.status === 'live' || room.status === 'open_floor' ? (
-                          <AnimatedActionButton primaryText="Join Today" secondaryText="Join Now" onClick={() => navigate(`/classroom/${room.id}`)} />
+                          <AnimatedActionButton primaryText="Join classroom" secondaryText="Join now" onClick={() => navigate(`/classroom/${room.id}`)} />
                         ) : room.status === 'upcoming' ? (
                           <Button size="xs" variant="secondary" disabled>
                             <Icon name="clock" />
