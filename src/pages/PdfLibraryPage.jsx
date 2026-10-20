@@ -53,7 +53,7 @@ export default function PdfLibraryPage() {
       const nextPdfs = Array.isArray(data) ? data : [];
       if (isMounted()) setPdfs(nextPdfs);
     } catch {
-      if (isMounted()) setError('Failed to load PDF resources.');
+      if (isMounted()) setError("We couldn't load the PDF resources. Please try again.");
     } finally {
       if (isMounted()) setLoading(false);
     }
@@ -90,7 +90,7 @@ export default function PdfLibraryPage() {
   if (!access.canAccess) {
     return (
       <Container className="pdf-library-section">
-        <EmptyState image={getEmptyStateImage('pdfs')} title="Access Restricted" description="Your account does not have access to the PDF library." />
+        <EmptyState image={getEmptyStateImage('pdfs')} title="PDF library access is restricted" description="Your account doesn’t currently have access to these PDF resources." />
       </Container>
     );
   }
@@ -104,18 +104,18 @@ export default function PdfLibraryPage() {
       <div className="pdf-library-page">
         <section className="pdf-library-controls" aria-labelledby="pdf-library-controls-title">
           <div className="pdf-library-controls-copy">
-            <h2 id="pdf-library-controls-title">Organise your PDFs</h2>
-            <p>Choose how to arrange the documents below. Sort by title, author, or file size to find study material more easily.</p>
+            <h2 id="pdf-library-controls-title">Find your study PDFs</h2>
+            <p>Sort by title, author, or file size to find the study material you need.</p>
           </div>
           <div className="toolbar">
             <div className="result-count" aria-live="polite">
-              <span className="result-count-label">Documents available</span>
+              <span className="result-count-label">Available resources</span>
               <strong>{pdfs.length}</strong>
               <span>{pdfs.length === 1 ? 'document' : 'documents'}</span>
             </div>
             <div className="toolbar-spacer" />
             <label className="sort-control" htmlFor="sortSelect">
-              <span>Sort documents by:</span>
+              <span>Sort by:</span>
               <select className="sort-select" id="sortSelect" value={sortBy} onChange={(event) => setSortBy(event.target.value)}>
                 <option value="title">Title</option>
                 <option value="author">Author</option>
@@ -126,7 +126,7 @@ export default function PdfLibraryPage() {
         </section>
 
         <div className="pdf-library-heading">
-          <h1 className="section-title pdf-library-title">PDF Library</h1>
+          <h1 className="section-title pdf-library-title">Study PDF library</h1>
           {(levelName || classLabel) && (
             <p className="pdf-library-class">
               {levelName}{levelName && classLabel ? ' · ' : ''}{classLabel}
@@ -134,7 +134,7 @@ export default function PdfLibraryPage() {
           )}
         </div>
 
-        {curriculumUnitId && <p className="pdf-library-class">Showing resources for this curriculum node.</p>}
+        {curriculumUnitId && <p className="pdf-library-class">Showing resources for this topic.</p>}
 
         {loading ? (
           <div className="pdf-skeleton-grid">
@@ -145,15 +145,15 @@ export default function PdfLibraryPage() {
         ) : error ? (
           typeof navigator !== 'undefined' && !navigator.onLine ? (
             <EmptyComponent
-              title="No Internet Connection"
+              title="No internet connection"
               description="Your PDF resources could not be reached. Reconnect to the internet and try loading them again."
               onRetry={() => loadPdfs(() => true, true)}
             />
           ) : (
-            <EmptyState image={getEmptyStateImage('error')} title="Unable to Load PDFs" description={error} action={<Button onClick={() => loadPdfs(() => true, true)}>Try Again</Button>} />
+            <EmptyState image={getEmptyStateImage('error')} title="We couldn’t load your PDFs" description={error} action={<Button onClick={() => loadPdfs(() => true, true)}>Try Again</Button>} />
           )
         ) : pdfs.length === 0 ? (
-          <EmptyState image={getEmptyStateImage('pdfs')} title="No PDFs Available" />
+          <EmptyState image={getEmptyStateImage('pdfs')} title="No PDFs available" />
         ) : (
           <div className="pdf-grid">
             {sortedPdfs.map((pdf) => (
