@@ -128,7 +128,7 @@ export default function NotesPage() {
       notesPageCache.set(cacheKey, nextNotes);
       if (isMounted()) setNotes(nextNotes);
     } catch {
-      if (isMounted() && !notesPageCache.has(cacheKey)) setError('Failed to load notes.');
+      if (isMounted() && !notesPageCache.has(cacheKey)) setError("We couldn't load your notes. Please try again.");
     } finally {
       if (isMounted()) setLoading(false);
     }
@@ -196,8 +196,8 @@ export default function NotesPage() {
       <Container>
         <EmptyState
           image={getEmptyStateImage('notes')}
-          title="Access Restricted"
-          description="Your account does not have access to study notes."
+          title="Study notes unavailable"
+          description="Your current account doesn't have access to these study notes."
         />
       </Container>
     );
@@ -208,12 +208,12 @@ export default function NotesPage() {
       <div className="notes-page">
         <div className="notes-page-heading">
           <div className="notes-page-intro">
-            <span className="notes-page-kicker">Learn at your pace</span>
+            <span className="notes-page-kicker">STUDY AT YOUR PACE</span>
             <h1 className="section-title notes-page-title font-fraunces">
               Study notes
             </h1>
             <p className="notes-page-description">
-              Build understanding one topic at a time. Search your notes, follow your curriculum and return to the concepts you want to strengthen.
+              Build your understanding one topic at a time. Search your notes, follow your learning pathway, and revisit ideas that need more practice.
             </p>
           </div>
 
@@ -222,11 +222,11 @@ export default function NotesPage() {
 
         <AdSlot placement="notes" pageContext="notes" />
         {contextTitle && (
-          <section className="notes-curriculum-context" aria-label="Curriculum context">
+          <section className="notes-curriculum-context" aria-label="Learning pathway context">
             <div className="notes-context-main">
-              <div className="notes-context-kicker font-mono">Curriculum focus</div>
+              <div className="notes-context-kicker font-mono">Your learning pathway</div>
               <p className="notes-context-description">
-                These notes support <strong>{contextTitle}</strong>. Follow the connected curriculum areas below when you are ready to continue.
+                These notes cover <strong>{contextTitle}</strong>. Explore the related areas below when you're ready to continue.
               </p>
               {contextPath && (
                 <Link className="notes-context-link" to={contextPath}>
@@ -247,10 +247,10 @@ export default function NotesPage() {
           <section className="notes-pathway" aria-labelledby="notes-pathway-title">
             <div className="notes-section-heading">
               <div>
-                <span className="sec-label font-mono">Continue through the curriculum</span>
-                <h2 id="notes-pathway-title">Connected areas</h2>
+                <span className="sec-label font-mono">Explore related topics</span>
+                <h2 id="notes-pathway-title">Related topics</h2>
               </div>
-              <span className="notes-section-count font-mono">{contextChildren.length} areas</span>
+              <span className="notes-section-count font-mono">{contextChildren.length} topics</span>
             </div>
 
             <div className="notes-pathway-list">
@@ -277,7 +277,7 @@ export default function NotesPage() {
         <div className="notes-toolbar" role="search">
           <div className="notes-toolbar-label">
             <span className="sec-label font-mono">Your notes</span>
-            {!loading && <span className="notes-result-count font-mono">{filteredNotes.length} shown</span>}
+            {!loading && <span className="notes-result-count font-mono">{filteredNotes.length} {filteredNotes.length === 1 ? 'note' : 'notes'} found</span>}
           </div>
           <label className="notes-search">
             <Icon name="search" />
@@ -305,22 +305,22 @@ export default function NotesPage() {
         ) : error ? (
           <EmptyState
             image={getEmptyStateImage('error')}
-            title="Error"
+            title="Couldn't load notes"
             description={error}
-            action={<Button onClick={() => loadContent(() => true, true)}>Try Again</Button>}
+            action={<Button onClick={() => loadContent(() => true, true)}>Try again</Button>}
           />
         ) : notes.length === 0 ? (
           <EmptyState
             image={getEmptyStateImage('notes')}
-            title="No Notes Available"
-            description={`Study notes for ${contextTitle || classLabel || levelName || 'this curriculum'} will appear here as content is added.`}
+            title="No notes available yet"
+            description={`Notes for ${contextTitle || classLabel || levelName || 'your selected study level'} will appear here as they become available.`}
           />
         ) : filteredNotes.length === 0 ? (
           <EmptyState
             image={getEmptyStateImage('notes')}
-            title="No Matching Notes"
-            description={`No notes match “${searchTerm}”. Try a different title, topic, category, or keyword.`}
-            action={<Button onClick={() => setSearchTerm('')}>Clear Search</Button>}
+            title="No matching notes"
+            description={`No notes match “${searchTerm}”. Try another title, topic, or keyword.`}
+            action={<Button onClick={() => setSearchTerm('')}>Clear search</Button>}
           />
         ) : (
           <div className="notes-grid">
@@ -332,13 +332,13 @@ export default function NotesPage() {
                 media={
                   <StickyNotePolaroidFrame
                     noteTitle={note.title}
-                    noteText={note.content_preview || 'Explore this topic in your study notes.'}
-                    noteFooter={note.read_time ? note.read_time + ' min read' : 'AliverBiopharm study note'}
+                    noteText={note.content_preview || 'Review the key ideas in this topic.'}
+                    noteFooter={note.read_time ? note.read_time + ' min read' : 'Read note'}
                     noteColor={note.is_premium ? 'gold' : 'teal'}
                     rotation={0}
                     className="notes-card-polaroid"
                   >
-                    {note.topic_image_url ? <img src={note.topic_image_url} alt={note.title || 'Study topic'} loading="lazy" /> : null}
+                    {note.topic_image_url ? <img src={note.topic_image_url} alt={note.title || 'Topic illustration'} loading="lazy" /> : null}
                   </StickyNotePolaroidFrame>
                 }
                 title={note.title}
@@ -346,11 +346,11 @@ export default function NotesPage() {
                 footer={
                   <div className="notes-card-footer">
                     <span className="notes-card-meta font-mono">
-                      {note.read_time ? `${note.read_time} min read` : 'Study note'}
+                      {note.read_time ? `${note.read_time} min read` : 'Read note'}
                       {note.is_premium ? ' · Premium' : ''}
                     </span>
                     <Button variant="primary" size="sm" onClick={() => navigate(`/notes/read?id=${note.id}`)}>
-                      Read Note
+                      Read note
                     </Button>
                   </div>
                 }
