@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react';
+import { lazy, Suspense, useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import Card from '../Card/Card';
 import Icon from '../Icon/Icon';
 import Button from '../Button/Button';
-import LineAreaChart from '../charts/LineAreaChart';
-import DonutChart from '../charts/DonutChart';
-import BarChart from '../charts/BarChart';
-import RadarChart from '../charts/RadarChart';
+const LineAreaChart = lazy(() => import('../charts/LineAreaChart'));
+const DonutChart = lazy(() => import('../charts/DonutChart'));
+const BarChart = lazy(() => import('../charts/BarChart'));
+const RadarChart = lazy(() => import('../charts/RadarChart'));
 import Skeleton from '../Skeleton/Skeleton';
 import { getRecallDashboard, getRecallStats } from '../../api/cachedClient';
 
@@ -167,7 +167,9 @@ export default function RecallAnalyticsHub() {
           </div>
 
           <div className="recall-graph-fullpage-area">
-            {renderGraph()}
+            <Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}>
+              {renderGraph()}
+            </Suspense>
           </div>
 
           <div className="recall-graph-fullpage-insight">
