@@ -4,7 +4,7 @@ export default function NotFoundPage() {
   return (
     <main className="ab-not-found" aria-labelledby="ab-not-found-title">
       <div className="ab-not-found__content">
-        <svg className="ab-not-found__scene" viewBox="0 0 400 300" role="img" aria-label="A confused explorer holding an upside-down map, surrounded by question marks">
+        <svg className="ab-not-found__scene" viewBox="0 0 400 300" role="img" aria-label="An explorer holding a map and looking for the right path">
           <text x="200" y="118" textAnchor="middle" className="ab-not-found__ghost-number">404</text>
           <ellipse cx="200" cy="268" rx="130" ry="13" className="ab-not-found__ground" />
           <g className="ab-not-found__sign">
@@ -41,9 +41,9 @@ export default function NotFoundPage() {
             <g className="ab-not-found__expression ab-not-found__expression--sad"><path d="M-21 4A8 9 0 0 1-5 4ZM5 4A8 9 0 0 1 21 4Z" className="ab-not-found__face-lids"/><path className="ab-not-found__brow" d="M-22-5L-5-14M5-14L22-5"/><path className="ab-not-found__mouth" d="M-11 28Q0 17 11 28"/><ellipse className="ab-not-found__tear" cx="-17" cy="14" rx="2.2" ry="3.2"/><ellipse className="ab-not-found__tear ab-not-found__tear--late" cx="17" cy="14" rx="2.2" ry="3.2"/></g>
           </g></g>
         </svg>
-        <h1 id="ab-not-found-title">Page not found</h1>
-        <p>We looked everywhere, but this page isn’t here.</p>
-        <a href="/" className="ab-not-found__button">Take me home</a>
+        <h1 id="ab-not-found-title">We couldn’t find that page</h1>
+        <p>The link may be out of date, or the page may have moved.</p>
+        <a href="/" className="ab-not-found__button">Back to home</a>
       </div>
     </main>
   );
