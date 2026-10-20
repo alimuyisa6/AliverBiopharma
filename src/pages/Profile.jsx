@@ -47,7 +47,7 @@ import Skeleton from '../components/Skeleton/Skeleton';
 import Card from '../components/Card/Card';
 import Icon from '../components/Icon/Icon';
 import { useToast } from '../components/Toast/Toast';
-import { registerPasskey, signInForPasskeyEnrollment } from '../lib/passkeyClient';
+
 import SlideToConfirmButton from '../components/buttons/slide-to-confirm-button';
 
 const THEME = {
@@ -655,6 +655,7 @@ export default function Profile() {
     setRegisteringPasskey(true);
 
     try {
+      const { signInForPasskeyEnrollment, registerPasskey } = await import('../lib/passkeyClient');
       await signInForPasskeyEnrollment(user.email, passkeyPassword, passkeyCaptchaToken);
       const { data, error } = await registerPasskey();
       if (error) throw error;
