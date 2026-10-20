@@ -37,7 +37,7 @@ export default function LegalPage({ type }) {
     return (
       <div className="info-page-loading">
         <Spinner size="lg" />
-        <p>Loading...</p>
+        <p>Loading page…</p>
       </div>
     );
   }
@@ -47,7 +47,7 @@ export default function LegalPage({ type }) {
   return (
     <section className="legal-section">
       <div className="legal-content-wrap">
-        <h1 className="legal-title">{page?.title || 'Page Not Found'}</h1>
+        <h1 className="legal-title">{page?.title || 'This page isn’t available'}</h1>
         {page?.sections?.length ? (
           <div className="legal-body">
             {page.sections.map((block, idx) => (
@@ -62,7 +62,7 @@ export default function LegalPage({ type }) {
             ))}
           </div>
         ) : (
-          <p className="legal-empty">No content has been added for this page yet.</p>
+          <p className="legal-empty">This page’s content hasn’t been added yet. Please check back later.</p>
         )}
       </div>
     </section>
