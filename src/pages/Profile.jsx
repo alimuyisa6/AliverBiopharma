@@ -1718,7 +1718,7 @@ export default function Profile() {
                   {t('profile.referralProgram')}
                 </h3>
                 <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
-                  Share your referral code. When someone joins using your code, you can earn experience points.
+                  Share your referral code. When someone signs up with it, you can earn experience points.
                 </p>
 
                 {sectionLoading ? (
@@ -1804,7 +1804,7 @@ export default function Profile() {
                   {t('profile.billingPayments')}
                 </h3>
                 <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
-                  View your current plan and compare available options.
+                  View your current plan and compare the available plans.
                 </p>
 
                 {sectionLoading ? (
@@ -2029,10 +2029,10 @@ export default function Profile() {
                     {t('profile.exportAllData')}
                   </Button>
                   <div className="profile-account-delete-confirm">
-                    <p>To permanently delete your account, slide to confirm. This action cannot be undone.</p>
+                    <p>To permanently delete your account, slide to confirm. You can’t undo this action.</p>
                     <SlideToConfirmButton
                       label={t('profile.requestAccountDeletion')}
-                      confirmLabel="Deletion confirmed"
+                      confirmLabel="Confirm account deletion"
                       variant="danger"
                       loading={deletionLoading}
                       onConfirm={handleAccountDeletion}
