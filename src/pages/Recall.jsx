@@ -459,7 +459,7 @@ export default function BioRecall() {
       }
     } catch {
       addToast(
-        'Failed to submit answer',
+        "We couldn't submit your answer. Please try again.",
         'error'
       );
     } finally {
@@ -588,7 +588,7 @@ export default function BioRecall() {
       setClozeAnswer('');
     } catch {
       addToast(
-        'Failed to load next question',
+        "We couldn't load the next question. Please try again.",
         'error'
       );
     } finally {
@@ -732,7 +732,7 @@ export default function BioRecall() {
   return (
     <div className="recall-page">
       <div className="section recall-page-section">
-        <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Recall Practice' }]} />
+        <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Recall practice' }]} />
 
         <div className="recall-page-header">
           <span className="sec-label font-mono">
@@ -740,14 +740,14 @@ export default function BioRecall() {
           </span>
 
           <h1 className="section-title recall-page-title font-fraunces">
-            {levelName || 'Master Biology with Active Recall'}
+            {levelName || 'Strengthen your learning with active recall'}
           </h1>
 
           <p className="recall-page-intro">
-            Welcome{displayName ? `, ${displayName}` : ''}! 🧠<br />
-            Strengthen your long‑term memory through spaced repetition. 
-            Answer questions, earn XP, and track your mastery across every topic.
-            <span className="highlight"> Consistent practice builds lasting knowledge.</span>
+            Welcome{displayName ? `, ${displayName}` : ''}!<br />
+            Use spaced repetition to revisit key ideas and remember them for longer. 
+            Answer questions, earn XP, and track your progress topic by topic.
+            <span className="highlight"> A little practice each day helps knowledge stick.</span>
           </p>
 
           {levelName && (
@@ -778,11 +778,11 @@ export default function BioRecall() {
 
                 <div>
                   <h3 className="recall-due-banner-title font-poppins">
-                    {dueTotal} reviews due
+                    {dueTotal} {dueTotal === 1 ? 'review' : 'reviews'} due
                   </h3>
 
                   <p className="recall-due-banner-text font-source-sans">
-                    Review these while they're fresh
+                    Revisit these questions to strengthen your memory.
                   </p>
                 </div>
               </div>
@@ -793,7 +793,7 @@ export default function BioRecall() {
                 onClick={openDueQueue}
               >
                 <Icon name="layer-group" />
-                Review Now
+                Review now
               </Button>
             </div>
           )}
@@ -825,7 +825,7 @@ export default function BioRecall() {
                       size="lg"
                       disabled={locked}
                     >
-                      Continue to Topics
+                      Choose a topic
                     </Button>
 
                     <div className="recall-intro-stats">
@@ -836,7 +836,7 @@ export default function BioRecall() {
                         />
 
                         <span className="recall-intro-stat-text font-source-sans">
-                          {streakDays} Day Streak
+                          {streakDays}-day streak
                         </span>
                       </div>
 
@@ -862,13 +862,13 @@ export default function BioRecall() {
                       onClick={() => setIsTabView(true)}
                     >
                       <Icon name="expand" />
-                      Open Full Screen
+                      Open full screen
                     </Button>
                   </div>
 
                   <div className="recall-sound-toggle-wrap">
                     <h3 className="recall-section-heading font-poppins">
-                      Study Preferences
+                      Study preferences
                     </h3>
 
                     <Button
@@ -1017,8 +1017,8 @@ export default function BioRecall() {
                       }
                     >
                       {feedbackResult.is_complete
-                        ? 'Finish Session'
-                        : 'Next Question'}
+                        ? 'Finish session'
+                        : 'Next question'}
 
                       <Icon name="arrow-right" />
                     </Button>
