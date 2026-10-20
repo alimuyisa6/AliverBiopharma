@@ -31,7 +31,7 @@ export default function ChallengeRunner({ forcedType }) {
       const challenge = result?.challenge;
       if (!challenge) throw new Error('No daily challenge is available yet. Return to the challenges page and try again.');
       if (challengeId && challenge.id !== challengeId) throw new Error('This challenge is no longer active. Return to the challenges page to see your current challenge.');
-      if (challenge.challenge_type !== type) throw new Error('This challenge uses a different study mode. Choose the matching challenge to continue.');
+      if ((challenge.challenge_type || challenge.type) !== type) throw new Error('This challenge uses a different study mode. Choose the matching challenge to continue.');
       setData(result);
     }).catch((e) => setError(e.message || "We couldn't load this challenge. Please try again.")).finally(() => setLoading(false));
   }, [challengeId, type]);
