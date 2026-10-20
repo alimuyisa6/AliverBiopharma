@@ -102,9 +102,9 @@ export default function NotificationBell({ user }) {
     const diff = Date.now() - date.getTime();
 
     if (diff < 60000) return 'Just now';
-    if (diff < 3600000) return `${Math.floor(diff / 60000)}m ago`;
-    if (diff < 86400000) return `${Math.floor(diff / 3600000)}h ago`;
-    if (diff < 604800000) return `${Math.floor(diff / 86400000)}d ago`;
+    if (diff < 3600000) return `${Math.floor(diff / 60000)} min ago`;
+    if (diff < 86400000) return `${Math.floor(diff / 3600000)} hr ago`;
+    if (diff < 604800000) return `${Math.floor(diff / 86400000)} days ago`;
 
     return date.toLocaleDateString();
   }
@@ -127,7 +127,7 @@ export default function NotificationBell({ user }) {
           <div className="notification-dropdown-header">
             <span className="notification-dropdown-title">Notifications</span>
             {unreadCount > 0 && (
-              <button className="btn btn-ghost btn-sm" onClick={handleMarkAllRead}>Mark all read</button>
+              <button className="btn btn-ghost btn-sm" onClick={handleMarkAllRead}>Mark all as read</button>
             )}
           </div>
 
@@ -137,12 +137,12 @@ export default function NotificationBell({ user }) {
             {loading && notifications.length === 0 ? (
               <div className="notification-empty">
                 <Icon name="bell" className="notification-empty-icon" />
-                <p>Loading...</p>
+                <p>Loading your notifications…</p>
               </div>
             ) : !loading && notifications.length === 0 ? (
               <div className="notification-empty">
                 <Icon name="bell" className="notification-empty-icon" />
-                <p>No notifications yet</p>
+                <p>You're all caught up. No new notifications.</p>
               </div>
             ) : (
               notifications.map((notification) => (
