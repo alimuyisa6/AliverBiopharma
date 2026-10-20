@@ -661,7 +661,7 @@ export default function PastPapers() {
         {showPresets && activeTab === 'all' && user && (
           <div className="pp-presets">
             {presets.length === 0 ? (
-              <p className="pp-presets-empty">No saved filters yet.</p>
+              <p className="pp-presets-empty">No saved filters yet. Save a filter to reuse it later.</p>
             ) : (
               presets.map((preset) => (
                 <div key={preset.id} className="pp-preset-item">
@@ -686,7 +686,7 @@ export default function PastPapers() {
             <div className="pp-preset-form">
               <input
                 type="text"
-                placeholder="Preset name..."
+                placeholder="Name this filter…"
                 value={presetName}
                 onChange={(event) => setPresetName(event.target.value)}
                 className="pp-preset-input"
@@ -795,10 +795,10 @@ export default function PastPapers() {
             }
             description={
               activeTab === 'bookmarked'
-                ? 'Save papers to find them here when you need them.'
+                ? 'Save papers here to find them quickly next time.'
                 : activeTab === 'downloaded'
-                ? 'Papers you download will appear here for easy access.'
-                : `No past papers are listed for ${classLabel || levelName || 'your selected programme'} yet. Try changing the filters above.`
+                ? 'Your downloaded papers will appear here for easy access.'
+                : `There are no past papers listed for ${classLabel || levelName || 'your selected programme'} yet. Try adjusting the filters above.`
             }
             action={
               activeTab === 'all' && (
@@ -876,7 +876,7 @@ export default function PastPapers() {
                         handleDownload(paper);
                       }}
                     >
-                      Premium Download
+                      Download premium paper
                     </PremiumAccessButton>
                   ) : (
                     <DownloadButton
@@ -967,7 +967,7 @@ export default function PastPapers() {
                     variant="warm"
                   >
                     <Icon name="lock" />
-                    Premium Download
+                    Download premium paper
                   </Button>
                 ) : (
                   <DownloadButton
@@ -1003,7 +1003,7 @@ export default function PastPapers() {
                 </div>
                 <textarea
                   className="pp-review-input"
-                  placeholder="What did you think of this paper? (Optional)"
+                  placeholder="Share your thoughts on this paper (optional)…"
                   value={reviewComment}
                   onChange={(event) => setReviewComment(event.target.value)}
                   rows={3}
@@ -1023,7 +1023,7 @@ export default function PastPapers() {
                   <Spinner size="sm" />
                 </div>
               ) : reviews.length === 0 ? (
-                <p className="pp-reviews-empty">No reviews yet. Share your feedback to help other learners.</p>
+                <p className="pp-reviews-empty">No reviews yet. Leave a review to help other learners choose useful papers.</p>
               ) : (
                 <div className="pp-reviews-list">
                   {reviews.map((review) => (
