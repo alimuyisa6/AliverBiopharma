@@ -408,7 +408,7 @@ export default function Dashboard() {
               </h1>
               <p id="welcome-subtitle">
                 {platform.rank_title} · {levelName}
-              <span className="dashboard-welcome-guidance">Ready to study? Review your progress, try a quiz, or pick up where you left off.</span>
+              <span className="dashboard-welcome-guidance">Ready to learn? Check your progress, practise with a quiz, or continue where you left off.</span>
               </p>
             </div>
           </div>
@@ -487,7 +487,7 @@ export default function Dashboard() {
                 </>
               ) : (
                 <div className="dashboard-curriculum-empty">
-                  <p>No curriculum topics are available for your current class or programme yet.</p>
+                  <p>No topics are available for your selected class or programme yet.</p>
                   <Link to="/resources" className="dashboard-section-link">Browse available resources</Link>
                 </div>
               )}
@@ -794,7 +794,7 @@ export default function Dashboard() {
                     ))}
                   </div>
                 ) : (
-                  <p className="dashboard-quiz-note">No successful download links have been recorded yet. Browse past papers to get started.</p>
+                  <p className="dashboard-quiz-note">No completed downloads yet. Browse past papers to find a paper to practise with.</p>
                 )}
                 {downloadAttempts.recent.length > 0 && (
                   <div className="dashboard-download-attempts">
@@ -839,7 +839,7 @@ export default function Dashboard() {
                   </h3>
                 </div>
                 <div className="panel-body">
-                <p className="dashboard-section-intro">Pick up where you left off instead of searching for your study material again.</p>
+                <p className="dashboard-section-intro">Continue where you left off without having to search for your study materials.</p>
                 <DashboardSectionAside>Open the item you were reading and continue from your last saved progress.</DashboardSectionAside>
                   <div className="reading-list" id="continue-reading-list">
                     {continueReading.map((item) => {
@@ -876,7 +876,7 @@ export default function Dashboard() {
                   </h3>
                 </div>
                 <div className="panel-body">
-                <p className="dashboard-section-intro">These suggestions can help you choose a useful next step based on your learning.</p>
+                <p className="dashboard-section-intro">These suggestions can help you decide what to study next.</p>
                 <DashboardSectionAside>Choose the recommendation that matches what you want to improve, and start with that one.</DashboardSectionAside>
                   <div className="recommendation-grid" id="recommendations-list">
                     {recommendations.slice(0, 4).map((item, index) => {
@@ -1094,7 +1094,7 @@ export default function Dashboard() {
                     </div>
                   </>
                 ) : (
-                  <p className="dashboard-quiz-note">Learner totals aren't available right now.</p>
+                  <p className="dashboard-quiz-note">Learner totals aren’t available right now.</p>
                 )}
               </div>
             </section>
