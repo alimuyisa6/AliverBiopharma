@@ -147,69 +147,113 @@ legend {
 }
 
 
-/* Shared typography defaults preserve a clear heading hierarchy.
-   Page and component styles can refine these values without fighting global !important rules. */
+/* Site-wide typography aligned with the Dashboard learning experience.
+   Note-detail components retain their own dedicated styles. */
+:root {
+  --site-page-title-size: clamp(1.875rem, 4vw, 3rem);
+  --site-section-title-size: clamp(1.25rem, 2vw, 1.5rem);
+  --site-subsection-title-size: clamp(1.125rem, 1.6vw, 1.25rem);
+  --site-card-title-size: clamp(1rem, 1.5vw, 1.125rem);
+  --site-body-size: 1rem;
+  --site-supporting-size: 0.9375rem;
+  --site-caption-size: 0.8125rem;
+}
+
+body {
+  font-size: var(--site-body-size);
+  line-height: var(--leading-body);
+  color: var(--text-main);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-main);
+  font-family: var(--font-heading);
+  margin-block: 0 var(--text-gap-title);
+  text-wrap: pretty;
+}
+
 h1 {
-  font-size: var(--text-page-title);
-  font-weight: var(--weight-page-title);
-  line-height: var(--leading-page-title);
+  font-size: var(--site-page-title-size);
+  font-weight: var(--weight-bold);
+  line-height: 1.1;
   letter-spacing: var(--tracking-tight);
 }
+
 h2 {
-  font-size: var(--text-section-title);
-  font-weight: var(--weight-section-title);
-  line-height: var(--leading-section-title);
+  font-size: var(--site-section-title-size);
+  font-weight: var(--weight-bold);
+  line-height: 1.25;
 }
+
 h3 {
-  font-size: var(--text-subsection-title);
-  font-weight: var(--weight-section-title);
-  line-height: var(--leading-subsection-title);
+  font-size: var(--site-subsection-title-size);
+  font-weight: var(--weight-semibold);
+  line-height: 1.3;
 }
+
 h4 {
-  font-size: var(--text-card-title);
-  font-weight: var(--weight-card-title);
-  line-height: var(--leading-card-title);
+  font-size: var(--site-card-title-size);
+  font-weight: var(--weight-semibold);
+  line-height: 1.35;
 }
+
 h5 {
-  font-size: var(--text-body-lead);
+  font-size: var(--site-body-size);
   font-weight: var(--weight-semibold);
-  line-height: var(--leading-body-lead);
+  line-height: 1.4;
 }
+
 h6 {
-  font-size: var(--text-supporting);
+  font-size: var(--site-supporting-size);
   font-weight: var(--weight-semibold);
-  line-height: var(--leading-supporting);
+  line-height: 1.45;
 }
-body {
-  font-size: var(--text-body-sm);
-}
-p,
-li {
-  font-size: var(--text-sm);
+
+p, li {
+  font-size: var(--site-body-size);
   line-height: var(--leading-body);
 }
-small,
-.text-caption,
-figcaption {
-  font-size: var(--text-xs);
+
+small, .text-caption, figcaption {
+  font-size: var(--site-caption-size);
   line-height: var(--leading-caption);
 }
 
-/* Named page titles share a token, not a forced identical size for every heading. */
+/* Shared page-title classes use the Dashboard's clear, strong title scale.
+   The note-detail title is intentionally not included. */
 .page-title,
 .page-heading,
 .about-title,
 .legal-title,
 .notes-page-title,
 .recall-page-title {
-  font-size: var(--type-page-title-size);
-  font-weight: var(--type-page-title-weight);
-  line-height: var(--type-page-title-leading);
+  color: var(--text-main);
+  font-size: var(--site-page-title-size);
+  font-weight: var(--weight-bold);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tight);
 }
+
 .section-title,
 .glossary-title,
 .curriculum-node-section-title {
-  font-size: var(--type-section-title-size);
-  font-weight: var(--type-section-title-weight);
-  line-height: var(--type-section-title-leading);
+  color: var(--text-main);
+  font-size: var(--site-section-title-size);
+  font-weight: var(--weight-bold);
+  line-height: 1.25;
+}
+
+@media (max-width: 640px) {
+  h1, .page-title, .page-heading, .about-title, .legal-title,
+  .notes-page-title, .recall-page-title {
+    font-size: clamp(1.75rem, 7vw, 2.25rem);
+  }
+
+  h2, .section-title, .glossary-title, .curriculum-node-section-title {
+    font-size: clamp(1.2rem, 5vw, 1.4rem);
+  }
+
+  p, li {
+    font-size: 1rem;
+  }
 }
