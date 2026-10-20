@@ -70,7 +70,7 @@ export default function Donate() {
       setCopied(provider);
       window.setTimeout(() => setCopied(''), 1800);
     } catch {
-      setStatus({ type: 'error', message: 'Unable to copy the number on this device.' });
+      setStatus({ type: 'error', message: 'We couldn’t copy the number on this device. Please copy it manually.' });
     }
   };
 
@@ -81,7 +81,7 @@ export default function Donate() {
     const txid = form.txid.trim().slice(0, 100);
 
     if (!amount || !txid || Number(amount) <= 0) {
-      setStatus({ type: 'error', message: 'Amount and Transaction ID are required.' });
+      setStatus({ type: 'error', message: 'Enter a valid amount and your transaction ID.' });
       return;
     }
 
@@ -102,7 +102,7 @@ export default function Donate() {
       });
       await loadDonors();
     } catch (error) {
-      setStatus({ type: 'error', message: error.message || 'Unable to submit the donation.' });
+      setStatus({ type: 'error', message: error.message || 'We couldn’t submit your donation. Please try again.' });
     } finally {
       setSubmitting(false);
     }
@@ -131,15 +131,15 @@ export default function Donate() {
         <div className="donate-hero-overlay" />
         <div className="donate-hero-content">
           <span className="eyebrow">Support AliverBiopharm</span>
-          <h1>{config?.title || 'Support Our Mission'}</h1>
-          <p>{config?.subtitle || 'Help keep biology and pharmacy education free and accessible.'}</p>
+          <h1>{config?.title || 'Support our mission'}</h1>
+          <p>{config?.subtitle || 'Help make Biology and Pharmacy learning more accessible.'}</p>
         </div>
       </section>
 
       <div className="donate-content">
         <section className="donate-goal" aria-label="Donation progress">
           <div className="donate-goal-label">
-            <span>Monthly Goal</span>
+            <span>Monthly goal</span>
             <strong>{percentage}%</strong>
           </div>
           <div className="donate-goal-track">
@@ -178,9 +178,9 @@ export default function Donate() {
           <section className="donate-card" aria-labelledby="crypto-title">
             <div className="donate-card-heading">
               <Icon name="credit-card" />
-              <h2 id="crypto-title">Donate with Cryptocurrency</h2>
+              <h2 id="crypto-title">Donate with cryptocurrency</h2>
             </div>
-            <p className="donate-muted donate-center">Choose your preferred method below.</p>
+            <p className="donate-muted donate-center">Choose how you’d like to donate.</p>
 
             {cryptoKey ? (
               <>
@@ -199,14 +199,14 @@ export default function Donate() {
                     rel="noreferrer noopener"
                     className="donate-external-button"
                   >
-                    Open Crypto Donation
+                    Donate with crypto
                   </a>
                 </div>
               </>
             ) : (
               <div className="donate-unavailable">
                 <Icon name="circle-info" />
-                <p>Cryptocurrency donations are being configured. Please use Mobile Money for now.</p>
+                <p>Cryptocurrency donations aren’t available yet. Please use Mobile Money for now.</p>
               </div>
             )}
           </section>
@@ -246,7 +246,7 @@ export default function Donate() {
             </div>
 
             <form className="donate-form" onSubmit={handleSubmit}>
-              <p className="donate-muted">After sending, enter your transaction details so the donation can be verified.</p>
+              <p className="donate-muted">After sending your donation, enter the transaction details so we can verify it.</p>
 
               <div className="donate-form-grid">
                 <label>
@@ -259,13 +259,13 @@ export default function Donate() {
                 </label>
                 <label>
                   <span>Transaction ID *</span>
-                  <input value={form.txid} onChange={(e) => updateField('txid', e.target.value)} maxLength={100} placeholder="From your Mobile Money SMS" required />
+                  <input value={form.txid} onChange={(e) => updateField('txid', e.target.value)} maxLength={100} placeholder="Enter the ID from your Mobile Money message" required />
                 </label>
               </div>
 
               <button type="submit" className="btn btn-primary donate-submit" disabled={submitting}>
                 <Icon name={submitting ? 'clock' : 'paper-plane'} />
-                {submitting ? 'Submitting...' : 'Confirm Donation'}
+                {submitting ? 'Submitting…' : 'Submit donation'}
               </button>
 
               {status && (
@@ -280,13 +280,13 @@ export default function Donate() {
         <section className="donate-card" aria-labelledby="supporters-title">
           <div className="donate-card-heading">
             <Icon name="heart" />
-            <h2 id="supporters-title">Recent Supporters</h2>
+            <h2 id="supporters-title">Recent supporters</h2>
           </div>
 
           <div className="donor-list">
-            {donorsLoading && <p className="donate-muted donate-center">Loading supporters...</p>}
+            {donorsLoading && <p className="donate-muted donate-center">Loading supporters…</p>}
             {!donorsLoading && donors.length === 0 && (
-              <p className="donate-muted donate-center">Be the first supporter.</p>
+              <p className="donate-muted donate-center">Be the first to support our work.</p>
             )}
             {!donorsLoading && donors.map((donor, index) => (
               <div className="donor-row" key={donor.id || `${donor.name}-${donor.date}-${index}`}>
@@ -304,7 +304,7 @@ export default function Donate() {
         <div className="donate-return">
           <Link to="/" className="btn btn-secondary">
             <Icon name="arrow-left" />
-            Return Home
+            Return home
           </Link>
         </div>
       </div>
