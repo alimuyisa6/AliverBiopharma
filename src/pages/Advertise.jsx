@@ -65,15 +65,13 @@ export default function Advertise() {
           </span>
 
           <h1>
-            Put your message in front of
+            Reach
             <br />
-            students who are paying attention.
+            learners who are ready to discover opportunities.
           </h1>
 
           <p>
-            Promote your organisation, programme or service to learners
-            studying Biology and Pharmacy, at the moment they're most open
-            to new opportunities.
+            Promote your organisation, programme, or service to learners studying Biology and Pharmacy.
           </p>
 
           <div className="advertise-hero-actions">
@@ -115,13 +113,13 @@ export default function Advertise() {
           </span>
 
           <h2 id="advertise-programmes-title">
-            Advertise where
+            Reach learners where
             <br />
-            learners are studying.
+            they study.
           </h2>
 
           <p>
-            Match your campaign to the programme most relevant to your offer.
+            Choose the learning programme that best fits your campaign.
           </p>
         </div>
 
@@ -156,14 +154,13 @@ export default function Advertise() {
           </span>
 
           <h2 id="advertise-benefits-title">
-            Built for relevance,
+            Reach the right learners,
             <br />
-            not just reach.
+            with a relevant message.
           </h2>
 
           <p>
-            Every part of the experience is designed around how learners
-            actually discover opportunities.
+            Help learners discover opportunities that are relevant to their studies.
           </p>
         </div>
 
@@ -195,21 +192,20 @@ export default function Advertise() {
           </span>
 
           <h2>
-            Create your campaign
+            Set up your campaign
             <br />
-            in minutes.
+            in a few steps.
           </h2>
 
           <p>
-            Set your audience and placement, add your campaign details, then
-            submit for review.
+            Choose your audience and placement, add your advert details, and submit your campaign for review.
           </p>
 
           <Link
             to="/advertise/create"
             className="btn btn-primary"
           >
-            Place Your Ad
+            Create campaign
             <Icon name="arrow-right" />
           </Link>
         </div>
@@ -223,11 +219,10 @@ export default function Advertise() {
           </div>
 
           <div>
-            <h3>Reviewed before launch</h3>
+            <h3>Reviewed before it goes live</h3>
 
             <p>
-              We check each campaign for accuracy and relevance before it
-              reaches learners.
+              We review each campaign for accuracy and relevance before it appears to learners.
             </p>
           </div>
         </div>
