@@ -163,7 +163,7 @@ function Toggle({ active, onClick, label }) {
   );
 }
 
-function getExactErrorMessage(error, fallback = 'An unexpected error occurred.') {
+function getExactErrorMessage(error, fallback = 'Something went wrong. Please try again.') {
   if (!error) return fallback;
   if (typeof error === 'string') return error;
   if (error instanceof Error && error.message) return error.message;
@@ -247,7 +247,7 @@ function AliverProfileGlyph({ name, style }) {
   }
 }
 
-function ProfileError({ error, title = 'Unable to load this section', onRetry, t }) {
+function ProfileError({ error, title = 'We couldn't load this section', onRetry, t }) {
   if (!error) return null;
 
   return (
@@ -1718,8 +1718,7 @@ export default function Profile() {
                   {t('profile.referralProgram')}
                 </h3>
                 <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
-                  Share your referral code with colleagues and peers to earn experience points when they join. Every new member
-                  contributes to the growth of our community.
+                  Share your referral code. When someone joins using your code, you can earn experience points.
                 </p>
 
                 {sectionLoading ? (
@@ -1727,7 +1726,7 @@ export default function Profile() {
                 ) : referral ? (
                   <>
                     <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15 }}>
-                      Your Referral Code: <strong style={{ color: THEME.accent }}>{referral.referral_code}</strong>
+                      Referral code: <strong style={{ color: THEME.accent }}>{referral.referral_code}</strong>
                     </p>
 
                     <Button
@@ -1739,7 +1738,7 @@ export default function Profile() {
                         addToast(t('profile.referralCopied'), 'success');
                       }}
                     >
-                      Copy Referral Code
+                      Copy code
                     </Button>
 
                     <p style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 13, marginTop: 8 }}>
@@ -1749,7 +1748,7 @@ export default function Profile() {
                 ) : (
                   !sectionError && (
                     <p style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 14 }}>
-                      No referral data is currently available.
+                      Referral information isn't available right now.
                     </p>
                   )
                 )}
@@ -1764,8 +1763,7 @@ export default function Profile() {
                     {t('profile.parentGuardianInformation')}
                   </h3>
                   <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
-                    Provide contact information for a parent or guardian. This information is used for emergency contact
-                    purposes and consent verification.
+                    Add a parent or guardian's contact details for emergencies and, where needed, consent verification.
                   </p>
 
                   <Input label={t('profile.guardianName')} value={guardianName} onChange={(e) => setGuardianName(e.target.value)} required disabled={savingGuardian} />
@@ -1806,7 +1804,7 @@ export default function Profile() {
                   {t('profile.billingPayments')}
                 </h3>
                 <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
-                  Review your current subscription plan and explore available upgrade options.
+                  View your current plan and compare available options.
                 </p>
 
                 {sectionLoading ? (
@@ -1965,7 +1963,7 @@ export default function Profile() {
                 </div>
                 {webhookSecret && (
                   <div className="notification-row" style={{ marginTop: 12, border: '1px solid var(--warning)', padding: 12 }}>
-                    <strong style={{ color: THEME.textMain }}>Save this webhook signing secret now.</strong>
+                    <strong style={{ color: THEME.textMain }}>Save this webhook secret now. You won't be able to view it again here.</strong>
                     <code style={{ display: 'block', marginTop: 6, wordBreak: 'break-all' }}>{webhookSecret}</code>
                   </div>
                 )}
@@ -2031,7 +2029,7 @@ export default function Profile() {
                     {t('profile.exportAllData')}
                   </Button>
                   <div className="profile-account-delete-confirm">
-                    <p>To protect your account, slide to confirm permanent account deletion. This action cannot be undone.</p>
+                    <p>To permanently delete your account, slide to confirm. This action cannot be undone.</p>
                     <SlideToConfirmButton
                       label={t('profile.requestAccountDeletion')}
                       confirmLabel="Deletion confirmed"
