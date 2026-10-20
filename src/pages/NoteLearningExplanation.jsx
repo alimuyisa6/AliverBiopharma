@@ -61,7 +61,7 @@ export default function NoteLearningExplanation() {
         const result = await getNoteLearningThread(threadId);
         if (!mounted) return;
         const savedThread = result?.thread;
-        if (!savedThread?.id) throw new Error('Learning explanation not found.');
+        if (!savedThread?.id) throw new Error('We couldn't find this learning explanation.');
         setThread(savedThread);
         setNoteTitle(result.note_title || 'Your note');
         setMessages((savedThread.messages || []).map((message, index) => ({
@@ -74,7 +74,7 @@ export default function NoteLearningExplanation() {
         setNoteContext(noteText(note?.content));
         setNoteContextLoaded(true);
       } catch (loadError) {
-        if (mounted) setError(loadError?.message || 'Could not load this explanation.');
+        if (mounted) setError(loadError?.message || "We couldn't load this explanation. Please try again.");
       } finally {
         if (mounted) setLoading(false);
       }
@@ -158,7 +158,7 @@ export default function NoteLearningExplanation() {
       }));
     } catch (sendError) {
       if (sendError?.name !== 'AbortError') {
-        setError(sendError?.message || 'The explanation could not be saved. Please try again.');
+        setError(sendError?.message || "We couldn't save your explanation. Please try again.");
       }
     } finally {
       setSaving(false);
@@ -173,25 +173,25 @@ export default function NoteLearningExplanation() {
       <section className="note-learning-page">
         <header className="note-learning-header">
           <Link to="/notes" className="note-learning-back">← Back to notes</Link>
-          <p className="note-learning-eyebrow">ALIVER BIOPHARM · LEARNING HISTORY</p>
+          <p className="note-learning-eyebrow">YOUR LEARNING HISTORY</p>
           <h1>Your learning history</h1>
-          <p>Your saved note questions and explanations stay here so you can revisit them.</p>
+          <p>Return here whenever you want to revisit a question you asked about a study note.</p>
         </header>
         {error && <div className="note-learning-card"><p role="alert">{error}</p></div>}
         {!error && history.length === 0 && (
           <div className="note-learning-card">
             <h2>No saved explanations yet</h2>
-            <p>When a note needs more explanation, submit your question from the end of that note. It will appear here.</p>
+            <p>Need help with a study note? Ask your question at the end of the note, and your saved explanation will appear here.</p>
             <Link to="/notes">Browse study notes</Link>
           </div>
         )}
         {history.map((item) => (
           <article className="note-learning-card" key={item.id}>
-            <p className="note-learning-eyebrow">{item.note_title || 'Study note'} · {item.status === 'answered' ? 'Explanation saved' : 'Awaiting explanation'}</p>
+            <p className="note-learning-eyebrow">{item.note_title || 'Study note'} · {item.status === 'answered' ? 'Answered' : 'Waiting for an answer'}</p>
             <h2>{item.learner_question}</h2>
             {item.explanation && <p>{item.explanation.slice(0, 260)}{item.explanation.length > 260 ? '…' : ''}</p>}
             <p><small>Last updated {item.updated_at ? new Date(item.updated_at).toLocaleString() : 'recently'}</small></p>
-            <Link className="note-learning-back" to={`/learning/explanation?id=${encodeURIComponent(item.id)}`}>Open saved explanation →</Link>
+            <Link className="note-learning-back" to={`/learning/explanation?id=${encodeURIComponent(item.id)}`}>View explanation →</Link>
           </article>
         ))}
       </section>
@@ -214,9 +214,9 @@ export default function NoteLearningExplanation() {
     <section className="note-learning-page">
       <header className="note-learning-header">
         
-        <p className="note-learning-eyebrow">ALIVER BIOPHARM · LEARNING HISTORY</p>
+        <p className="note-learning-eyebrow">YOUR LEARNING HISTORY</p>
         <h1>{noteTitle}</h1>
-        <p>Your question and explanation are saved here, so you can return and continue later.</p>
+        <p>Your question and explanation are saved here, so you can pick up where you left off.</p>
       </header>
 
       <div className="note-learning-card">
@@ -227,29 +227,29 @@ export default function NoteLearningExplanation() {
               data-message-id={message.id}
               className={`note-learning-message note-learning-message--${message.role}`}
             >
-              <strong>{message.role === 'user' ? 'Your question' : 'AI Tutor'}</strong>
-              <div className="note-learning-message-content">{message.content || (streaming ? 'Thinking…' : '')}</div>
+              <strong>{message.role === 'user' ? 'Your question' : 'AI tutor'}</strong>
+              <div className="note-learning-message-content">{message.content || (streaming ? 'Preparing an explanation…' : '')}</div>
             </article>
           ))}
-          {messages.length === 0 && <p>Ask what you would like clarified from this note.</p>}
+          {messages.length === 0 && <p>What would you like help understanding in this note?</p>}
         </div>
 
         {error && <p className="note-learning-error" role="alert">{error}</p>}
-        {saving && <p className="note-learning-save-status" role="status">Saving your learning history…</p>}
+        {saving && <p className="note-learning-save-status" role="status">Saving your explanation…</p>}
 
         <form className="note-learning-composer" onSubmit={sendMessage}>
-          <label htmlFor="note-learning-followup">Ask a follow-up question</label>
+          <label htmlFor="note-learning-followup">Ask another question</label>
           <textarea
             id="note-learning-followup"
             value={input}
             onChange={(event) => setInput(event.target.value.slice(0, 2000))}
             maxLength={2000}
             rows={3}
-            placeholder="Which step, term, or idea should the tutor explain further?"
+            placeholder="What step, term, or idea would you like explained further?"
             disabled={streaming}
           />
           <button type="submit" disabled={!input.trim() || streaming || saving}>
-            {streaming ? 'Explaining…' : 'Ask AI Tutor'}
+            {streaming ? 'Writing your explanation…' : 'Ask AI tutor'}
           </button>
         </form>
       </div>
@@ -260,7 +260,7 @@ export default function NoteLearningExplanation() {
             <svg aria-hidden="true" viewBox="0 0 20 20" width="16" height="16" fill="none">
               <path d="M12.5 4.5 7 10l5.5 5.5M7.5 10H17" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            <span>Return to Lesson</span>
+            <span>Return to lesson</span>
           </Link>
         )}
         <Link
@@ -270,7 +270,7 @@ export default function NoteLearningExplanation() {
           <svg aria-hidden="true" viewBox="0 0 20 20" width="16" height="16" fill="none">
             <path d="M12.5 4.5 7 10l5.5 5.5M7.5 10H17" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-          <span>Back to Note</span>
+          <span>Back to note</span>
         </Link>
       </nav>
     </section>
