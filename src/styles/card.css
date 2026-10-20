@@ -4,7 +4,7 @@
   background: var(--bg-card);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-card);
-  padding: var(--card-padding-y) var(--card-padding-x);
+  padding: var(--card-padding-y-compact) var(--card-padding-x-compact);
   margin: 0;
   color: var(--text-main);
 }
@@ -213,7 +213,7 @@
 }
 
 .card-title {
-  margin: 0 0 var(--text-gap-title);
+  margin: 0 0 var(--space-2);
   color: var(--text-main);
   font-family: var(--font-primary);
   font-size: var(--text-card-title);
@@ -238,7 +238,7 @@
   display: flex;
   align-items: center;
   gap: var(--stack-gap-tight);
-  margin-top: var(--text-gap-action);
+  margin-top: var(--space-2);
 }
 
 .folded-card {
@@ -395,7 +395,7 @@
 
 .dash-cell {
   min-width: 0;
-  padding: var(--space-4);
+  padding: var(--space-3);
   background: var(--bg-card);
 }
 
@@ -427,7 +427,7 @@
 }
 
 .stat-item {
-  padding: var(--space-4);
+  padding: var(--space-3);
   background: var(--bg-card);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
