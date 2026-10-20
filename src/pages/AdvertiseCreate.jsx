@@ -227,11 +227,11 @@ setError('');
 function validateStep(currentStep) {
 if (currentStep === 0) {
 if (!form.advertiserName.trim()) {
-return 'Enter the organisation or advertiser name.';
+return 'Enter your organisation or advertiser name.';
 }
 
   if (!form.contactEmail.trim()) {
-    return 'Enter a contact email address.';
+    return 'Enter an email address we can use to contact you.';
   }
 
   return '';
@@ -247,11 +247,11 @@ if (currentStep === 1) {
   }
 
   if (!form.landingUrl.trim()) {
-    return 'Enter the page learners should visit after clicking the advert.';
+    return 'Enter the web address learners should visit when they click your advert.';
   }
 
   if (!form.headline.trim()) {
-    return 'Enter the headline for your advert.';
+    return 'Add a headline for your advert.';
   }
 
   return '';
@@ -259,7 +259,7 @@ if (currentStep === 1) {
 
 if (currentStep === 2) {
   if (!form.scopeId) {
-    return 'Choose who should see the campaign.';
+    return 'Choose which learners should see your campaign.';
   }
 
   if (
@@ -273,7 +273,7 @@ if (currentStep === 2) {
     selectedScope?.scope_type === 'specific_class' &&
     (!form.levelId || !form.className)
   ) {
-    return 'Choose both a learning level and class or programme.';
+    return 'Choose a learning level and the relevant class or programme.';
   }
 
   return '';
@@ -281,11 +281,11 @@ if (currentStep === 2) {
 
 if (currentStep === 3) {
   if (!form.placementId) {
-    return 'Choose where the advert should appear.';
+    return 'Choose where you want your advert to appear.';
   }
 
   if (!form.durationTierId) {
-    return 'Choose how long the campaign should run.';
+    return 'Choose how long you want your campaign to run.';
   }
 
   if (!form.startDate) {
@@ -849,7 +849,7 @@ Advertising
             </h2>
 
             <p>
-              Availability is confirmed when you submit the campaign.
+              Placement availability is confirmed when you submit your campaign.
             </p>
           </div>
 
@@ -1066,7 +1066,7 @@ Advertising
           {estimatedPrice && (
             <div className="advertise-create-price">
               <span>
-                Estimated campaign price
+                Estimated campaign cost
               </span>
 
               <strong>
@@ -1077,7 +1077,7 @@ Advertising
               </strong>
 
               <small>
-                Final price is confirmed when you submit the campaign.
+                Your final price will be confirmed when you submit the campaign.
               </small>
             </div>
           )}
@@ -1155,7 +1155,7 @@ Advertising
       </div>
 
       <span className="eyebrow">
-        Advertising on Aliver
+        Advertising on AliverBiopharm
       </span>
 
       <h2>
@@ -1165,7 +1165,7 @@ Advertising
       </h2>
 
       <p>
-        AliverBiopharm is a learning environment — campaigns should add
+        AliverBiopharm is a learning environment. Campaigns should add
         real value for the learners who see them.
       </p>
 
@@ -1173,7 +1173,7 @@ Advertising
         to="/advertise"
         className="advertise-text-link"
       >
-        Review advertising guidelines
+        Read the advertising guidelines
       </Link>
     </aside>
   </section>
