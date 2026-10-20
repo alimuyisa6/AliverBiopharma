@@ -62,7 +62,7 @@ async function loadCampaign() {
   if (!campaignPlacementId) {
     setLoading(false);
     setError(
-      'No campaign placement was provided. Please return to advertising and start again.'
+      'We couldn’t find a campaign placement. Return to advertising and start again.'
     );
     return;
   }
@@ -94,7 +94,7 @@ async function loadCampaign() {
 
     if (!found) {
       setError(
-        'The campaign placement could not be found.'
+        'We couldn’t find this campaign placement.'
       );
     }
   } catch (requestError) {
@@ -104,7 +104,7 @@ async function loadCampaign() {
 
     setError(
       requestError?.message ||
-        'Unable to load your campaign payment status.'
+        'We couldn’t load your campaign’s payment status. Please try again.'
     );
   } finally {
     if (active) {
@@ -125,7 +125,7 @@ async function handleVerify(event) {
 event?.preventDefault?.();
 
 if (!paymentId.trim()) {
-  setError('Enter the payment reference before continuing.');
+  setError('Enter your payment reference to continue.');
   return;
 }
 
@@ -141,7 +141,7 @@ try {
 
   setMessage(
     result?.message ||
-      'Payment verification was submitted successfully.'
+      'Your payment reference has been submitted for verification.'
   );
 
   setCampaign((current) => ({
@@ -154,7 +154,7 @@ try {
 } catch (requestError) {
   setError(
     requestError?.message ||
-      'Payment could not be verified. Check the reference and try again.'
+      'We couldn’t verify the payment. Check the reference and try again.'
   );
   throw requestError;
 } finally {
@@ -199,12 +199,11 @@ Advertising
     <h1>
       Confirm your
       <br />
-      payment.
+      campaign payment.
     </h1>
 
     <p>
-      Enter the payment reference from your transaction. We'll verify it
-      against your campaign before it moves forward.
+      Enter your transaction’s payment reference. We’ll check it against your campaign before it moves forward.
     </p>
   </section>
 
@@ -237,8 +236,7 @@ Advertising
           <h2>Campaign details unavailable</h2>
 
           <p>
-            We couldn't find the campaign associated with this payment
-            page.
+            We couldn’t find the campaign linked to this payment page.
           </p>
 
           <button
