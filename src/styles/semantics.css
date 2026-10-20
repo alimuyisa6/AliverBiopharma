@@ -276,8 +276,8 @@
   --level-a: var(--emerald-600);
   --level-a-light: var(--emerald-50);
 
-  --level-pharmacy: var(--teal-600);
-  --level-pharmacy-light: var(--teal-50);
+  --level-pharmacy: var(--emerald-800);
+  --level-pharmacy-light: var(--emerald-100);
 
   --section-tint: var(--grey-50);
 
@@ -487,8 +487,8 @@ body.dark-mode {
   --level-a: var(--emerald-400);
   --level-a-light: var(--emerald-900);
 
-  --level-pharmacy: var(--teal-400);
-  --level-pharmacy-light: var(--teal-900);
+  --level-pharmacy: var(--emerald-300);
+  --level-pharmacy-light: var(--emerald-900);
 
   --section-tint: #100d1a;
 
