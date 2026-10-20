@@ -10,15 +10,15 @@ export default function TutorProfile() {
 
   useEffect(() => {
     let active = true;
-    getTutorDetail(profileId).then((data) => active && setTutor(data)).catch((err) => active && setError(err?.message || 'Unable to load this tutor profile.'));
+    getTutorDetail(profileId).then((data) => active && setTutor(data)).catch((err) => active && setError(err?.message || 'We couldn’t load this tutor profile. Please try again.'));
     return () => { active = false; };
   }, [profileId]);
 
   return (
     <main className="section tutor-profile-page">
       <div className="tutor-profile-shell">
-        <Link to="/tutors" className="tutor-profile-back"><Icon name="arrow-left" /> Back to tutors</Link>
-        {error ? <div className="card tutor-profile-state"><h1>Tutor profile unavailable</h1><p>{error}</p></div> :
+        <Link to="/tutors" className="tutor-profile-back"><Icon name="arrow-left" /> Back to tutor listings</Link>
+        {error ? <div className="card tutor-profile-state"><h1>This tutor profile is unavailable</h1><p>{error}</p></div> :
           !tutor ? <div className="card tutor-profile-state" aria-busy="true"><h1>Loading tutor profile…</h1></div> :
           <article className="card tutor-profile-card">
             <header className="tutor-profile-header">
@@ -29,7 +29,7 @@ export default function TutorProfile() {
             <section className="tutor-profile-details">
               {tutor.years_experience != null && <div><span>Experience</span><strong>{tutor.years_experience} years</strong></div>}
               {(tutor.district || tutor.country) && <div><span>Location</span><strong>{[tutor.district, tutor.country].filter(Boolean).join(', ')}</strong></div>}
-              {tutor.teaching_mode && <div><span>Teaching mode</span><strong>{tutor.teaching_mode}</strong></div>}
+              {tutor.teaching_mode && <div><span>Teaching format</span><strong>{tutor.teaching_mode}</strong></div>}
               {tutor.hourly_rate ? <div><span>Hourly rate</span><strong>{tutor.hourly_rate}</strong></div> : null}
             </section>
           </article>}
