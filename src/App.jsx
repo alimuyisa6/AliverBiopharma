@@ -1,7 +1,7 @@
  /* src/App.jsx */
 import { Routes, Route, useLocation } from 'react-router-dom';
-import NotFoundPage from './components/NotFoundPage';
-import { useState, useEffect } from 'react';
+const NotFoundPage = lazy(() => import('./components/NotFoundPage'));
+import { lazy, Suspense, useState, useEffect } from 'react';
 import { ProtectedRoute } from './contexts/AuthContext';
 import { LayoutProvider, useLayout } from './contexts/LayoutContext';
 import { ChatProvider } from './contexts/ChatContext';
@@ -9,41 +9,41 @@ import { ToastProvider } from './components/Toast/Toast';
 import { NotificationProvider } from './contexts/NotificationContext';
 import Layout from './components/Layout/Layout';
 import Seo from './components/Seo/Seo';
-import Home from './pages/Home';
-import AIAssistant from './features/chat/AIAssistant';
-import Dashboard from './pages/Dashboard';
-import Profile from './pages/Profile';
-import Quiz from './pages/Quiz';
-import Challenges from './pages/Challenges';
-import ChallengeRunner from './pages/ChallengeRunner';
-import QuizChallengePage from './pages/challenges/QuizChallengePage';
-import FlashcardsPage from './pages/FlashcardsPage';
-import Classroom from './pages/Classroom';
-import ClassroomRoom from './pages/ClassroomRoom';
-import PastPapers from './pages/PastPapers';
-import NoteDetail from './pages/NoteDetail';
-import NoteLearningExplanation from './pages/NoteLearningExplanation';
-import NotesPage from './pages/NotesPage';
-import PdfLibraryPage from './pages/PdfLibraryPage';
-import Glossary from './pages/Glossary';
-import Recall from './pages/Recall';
-import AboutPage from './pages/AboutPage';
-import LegalPage from './pages/LegalPage';
-import Auth from './pages/Auth';
-import TutorApply from './pages/TutorApply';
-import TutorDashboard from './pages/TutorDashboard';
-import TutorMarketplace from './pages/TutorMarketplace';
-import TutorProfile from './pages/TutorProfile';
-import FaqPage from './pages/FaqPage';
-import BlogPage from './pages/BlogPage';
-import ContactPage from './pages/ContactPage';
-import CommunityPage from './pages/CommunityPage';
-import Resources from './pages/Resources';
-import Advertise from './pages/Advertise';
-import AdvertiseCreate from './pages/AdvertiseCreate';
-import AdvertisePayment from './pages/AdvertisePayment';
-import CurriculumNodePage from './pages/CurriculumNodePage';
-import Donate from './pages/Donate';
+const Home = lazy(() => import('./pages/Home'));
+const AIAssistant = lazy(() => import('./features/chat/AIAssistant'));
+const Dashboard = lazy(() => import('./pages/Dashboard'));
+const Profile = lazy(() => import('./pages/Profile'));
+const Quiz = lazy(() => import('./pages/Quiz'));
+const Challenges = lazy(() => import('./pages/Challenges'));
+const ChallengeRunner = lazy(() => import('./pages/ChallengeRunner'));
+const QuizChallengePage = lazy(() => import('./pages/challenges/QuizChallengePage'));
+const FlashcardsPage = lazy(() => import('./pages/FlashcardsPage'));
+const Classroom = lazy(() => import('./pages/Classroom'));
+const ClassroomRoom = lazy(() => import('./pages/ClassroomRoom'));
+const PastPapers = lazy(() => import('./pages/PastPapers'));
+const NoteDetail = lazy(() => import('./pages/NoteDetail'));
+const NoteLearningExplanation = lazy(() => import('./pages/NoteLearningExplanation'));
+const NotesPage = lazy(() => import('./pages/NotesPage'));
+const PdfLibraryPage = lazy(() => import('./pages/PdfLibraryPage'));
+const Glossary = lazy(() => import('./pages/Glossary'));
+const Recall = lazy(() => import('./pages/Recall'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const LegalPage = lazy(() => import('./pages/LegalPage'));
+const Auth = lazy(() => import('./pages/Auth'));
+const TutorApply = lazy(() => import('./pages/TutorApply'));
+const TutorDashboard = lazy(() => import('./pages/TutorDashboard'));
+const TutorMarketplace = lazy(() => import('./pages/TutorMarketplace'));
+const TutorProfile = lazy(() => import('./pages/TutorProfile'));
+const FaqPage = lazy(() => import('./pages/FaqPage'));
+const BlogPage = lazy(() => import('./pages/BlogPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const CommunityPage = lazy(() => import('./pages/CommunityPage'));
+const Resources = lazy(() => import('./pages/Resources'));
+const Advertise = lazy(() => import('./pages/Advertise'));
+const AdvertiseCreate = lazy(() => import('./pages/AdvertiseCreate'));
+const AdvertisePayment = lazy(() => import('./pages/AdvertisePayment'));
+const CurriculumNodePage = lazy(() => import('./pages/CurriculumNodePage'));
+const Donate = lazy(() => import('./pages/Donate'));
 import CookieConsent from './components/CookieConsent/CookieConsent';
 import MaintenanceGate, { MaintenanceBoundary } from './components/Maintenance/MaintenanceGate';
 import './styles/cookie-consent.css';
@@ -121,7 +121,8 @@ function AppRoutes() {
     <>
       <Seo />
       <Layout>
-        <Routes location={location}>
+        <Suspense fallback={<div className="route-loading" role="status">Loading page…</div>}>
+          <Routes location={location}>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Auth />} />
             <Route path="/register" element={<Auth />} />
@@ -184,11 +185,12 @@ function AppRoutes() {
             <Route path="/tutors" element={<TutorMarketplace />} />
             <Route path="/tutor/:profileId" element={<TutorProfile />} />
             <Route path="*" element={<NotFoundPage />} />
-        </Routes>
+          </Routes>
+        </Suspense>
         <CookieConsent />
         <MaintenanceGate />
       </Layout>
-      <AIAssistant />
+      <Suspense fallback={null}><AIAssistant /></Suspense>
     </>
   );
 }
