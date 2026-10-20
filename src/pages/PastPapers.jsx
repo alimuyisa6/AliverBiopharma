@@ -32,8 +32,8 @@ import { useLayout } from '../contexts/LayoutContext';
 import ContentSwitcher from '../components/ContentSwitcher/ContentSwitcher';
 
 const TABS = [
-  { key: 'all', label: 'All Papers' },
-  { key: 'bookmarked', label: 'Bookmarked' },
+  { key: 'all', label: 'All papers' },
+  { key: 'bookmarked', label: 'Saved papers' },
   { key: 'downloaded', label: 'Downloaded' }
 ];
 
@@ -251,7 +251,7 @@ export default function PastPapers() {
       }
 
       console.error('[PAST_PAPERS_LOAD_ERROR]', error);
-      addToast('Failed to load papers', 'error');
+      addToast("We couldn't load the past papers. Please try again.", 'error');
 
       setPapers([]);
       setTotalPages(1);
@@ -284,13 +284,13 @@ export default function PastPapers() {
 
   const handleDownload = async (paper) => {
     if (!user) {
-      addToast('Please sign in to download', 'warning');
+      addToast('Sign in to download this paper.', 'warning');
       return;
     }
 
     if (paper.locked) {
       recordDownloadAttempt(paper, 'premium_blocked', paper.reason || 'Premium access required');
-      addToast('This paper requires premium access', 'warning');
+      addToast('Premium access is required to download this paper.', 'warning');
       return;
     }
 
@@ -332,11 +332,11 @@ export default function PastPapers() {
       recordDownloadAttempt(paper, status, error?.message || 'Download request failed');
 
       if (error?.status === 403) {
-        addToast('Premium access required for this paper', 'warning');
+        addToast('Premium access is required to download this paper.', 'warning');
       } else if (status === 'network_error') {
-        addToast('Network problem. Check your connection and try again.', 'error');
+        addToast('Connection problem. Check your internet and try again.', 'error');
       } else {
-        addToast('Download failed. Please try again.', 'error');
+        addToast("We couldn't download this paper. Please try again.", 'error');
       }
     } finally {
       setDownloadingId(null);
@@ -345,7 +345,7 @@ export default function PastPapers() {
 
   const handleBookmark = async (paperId) => {
     if (!user) {
-      addToast('Please sign in to bookmark', 'warning');
+      addToast('Sign in to save this paper to your bookmarks.', 'warning');
       return;
     }
 
@@ -369,7 +369,7 @@ export default function PastPapers() {
         loadPapers();
       }
     } catch {
-      addToast('Failed to update bookmark', 'error');
+      addToast("We couldn't update your bookmark. Please try again.", 'error');
     } finally {
       setBookmarkingId(null);
     }
@@ -403,12 +403,12 @@ export default function PastPapers() {
     }
 
     if (!user) {
-      addToast('Please sign in to review this paper', 'warning');
+      addToast('Sign in to leave a review for this paper.', 'warning');
       return;
     }
 
     if (!reviewRating) {
-      addToast('Please select a rating', 'warning');
+      addToast('Choose a star rating before submitting your review.', 'warning');
       return;
     }
 
@@ -428,7 +428,7 @@ export default function PastPapers() {
 
       loadReviews(selectedPaper.id);
     } catch {
-      addToast('Failed to submit review', 'error');
+      addToast("We couldn't submit your review. Please try again.", 'error');
     } finally {
       setSubmittingReview(false);
     }
@@ -446,7 +446,7 @@ export default function PastPapers() {
       addToast('Review deleted', 'success');
       loadReviews(selectedPaper.id);
     } catch {
-      addToast('Failed to delete review', 'error');
+      addToast("We couldn't delete your review. Please try again.", 'error');
     } finally {
       setDeletingReview(false);
     }
@@ -454,7 +454,7 @@ export default function PastPapers() {
 
   const handleSavePreset = async () => {
     if (!user) {
-      addToast('Please sign in to save filter presets', 'warning');
+      addToast('Sign in to save your filter settings.', 'warning');
       return;
     }
 
@@ -478,7 +478,7 @@ export default function PastPapers() {
 
       addToast('Filter preset saved', 'success');
     } catch {
-      addToast('Failed to save preset', 'error');
+      addToast("We couldn't save these filters. Please try again.", 'error');
     } finally {
       setSavingPreset(false);
     }
@@ -505,7 +505,7 @@ export default function PastPapers() {
         prev.filter((preset) => preset.id !== presetId)
       );
     } catch {
-      addToast('Failed to delete preset', 'error');
+      addToast("We couldn't delete this saved filter. Please try again.", 'error');
     } finally {
       setDeletingPresetId(null);
     }
@@ -581,12 +581,12 @@ export default function PastPapers() {
       <div className="pp-main">
         {!user && (
           <div className="pp-alert pp-alert-info">
-            <Icon name="lock" /> <span>Sign in to download papers. You can browse freely.</span>
+            <Icon name="lock" /> <span>You can browse past papers freely. Sign in when you're ready to download one.</span>
           </div>
         )}
 
         <ContentSwitcher
-          title="Paper collection"
+          title="Past paper collection"
           options={TABS.map((tab) => ({
             value: tab.key,
             label: tab.label,
@@ -602,11 +602,11 @@ export default function PastPapers() {
             <div className="pp-search-wrapper">
               <input
                 type="search"
-                placeholder="Search papers..."
+                placeholder="Search past papers…"
                 value={searchQuery}
                 onChange={(event) => setSearchQuery(event.target.value)}
                 className="pp-search-input"
-                aria-label="Search papers"
+                aria-label="Search past papers"
               />
               <span className="pp-search-icon">
                 <Icon name="magnifying-glass" />
@@ -614,12 +614,12 @@ export default function PastPapers() {
             </div>
 
             <Select
-              label="Sort"
+              label="Sort by"
               options={[
                 { value: 'year_desc', label: 'Newest' },
                 { value: 'year_asc', label: 'Oldest' },
-                { value: 'downloads', label: 'Most Downloaded' },
-                { value: 'rating', label: 'Highest Rated' }
+                { value: 'downloads', label: 'Most downloaded' },
+                { value: 'rating', label: 'Highest rated' }
               ]}
               value={sortBy}
               onChange={(event) => setSortBy(event.target.value)}
@@ -630,7 +630,7 @@ export default function PastPapers() {
               size="sm"
               onClick={() => setShowFilters((value) => !value)}
             >
-              <Icon name="filter" /> Filters
+              <Icon name="filter" /> Filter papers
               {activeFilterCount > 0 && (
                 <span className="pp-badge">{activeFilterCount}</span>
               )}
@@ -648,12 +648,12 @@ export default function PastPapers() {
 
             {activeFilterCount > 0 && (
               <Button variant="ghost" size="sm" onClick={clearFilters}>
-                <Icon name="xmark" /> Clear
+                <Icon name="xmark" /> Clear filters
               </Button>
             )}
 
             <p className="pp-count">
-              {papersLoading ? 'Loading papers...' : `${total} paper${total !== 1 ? 's' : ''} found`}
+              {papersLoading ? 'Loading past papers…' : `${total} ${total === 1 ? 'paper' : 'papers'} found`}
             </p>
           </div>
         )}
@@ -661,7 +661,7 @@ export default function PastPapers() {
         {showPresets && activeTab === 'all' && user && (
           <div className="pp-presets">
             {presets.length === 0 ? (
-              <p className="pp-presets-empty">No saved presets yet.</p>
+              <p className="pp-presets-empty">No saved filters yet.</p>
             ) : (
               presets.map((preset) => (
                 <div key={preset.id} className="pp-preset-item">
@@ -788,22 +788,22 @@ export default function PastPapers() {
             image={getEmptyStateImage('past_papers')}
             title={
               activeTab === 'bookmarked'
-                ? 'Your Saved Papers'
+                ? 'Your saved papers'
                 : activeTab === 'downloaded'
-                ? 'Your Downloads'
-                : 'Your Paper Library'
+                ? 'Your downloads'
+                : 'Past papers for your studies'
             }
             description={
               activeTab === 'bookmarked'
-                ? 'Papers you save will appear here for quick access.'
+                ? 'Save papers to find them here when you need them.'
                 : activeTab === 'downloaded'
-                ? 'Papers you download will stay here for easy access.'
-                : `Browse past papers for ${classLabel || levelName || 'your programme'} using the filters above.`
+                ? 'Papers you download will appear here for easy access.'
+                : `No past papers are listed for ${classLabel || levelName || 'your selected programme'} yet. Try changing the filters above.`
             }
             action={
               activeTab === 'all' && (
                 <Button variant="secondary" onClick={clearFilters}>
-                  Clear Filters
+                  Clear filters
                 </Button>
               )
             }
@@ -886,7 +886,7 @@ export default function PastPapers() {
                         handleDownload(paper);
                       }}
                     >
-                      {user ? 'Download' : 'Sign in to Download'}
+                      {user ? 'Download paper' : 'Sign in to download'}
                     </DownloadButton>
                   )}
                 </div>
@@ -988,7 +988,7 @@ export default function PastPapers() {
               </div>
 
               <div className="pp-review-form">
-                <span className="pp-review-label">Rate this paper</span>
+                <span className="pp-review-label">Your rating</span>
                 <div className="pp-rating-stars">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <button
@@ -1003,7 +1003,7 @@ export default function PastPapers() {
                 </div>
                 <textarea
                   className="pp-review-input"
-                  placeholder="Share your experience with this paper..."
+                  placeholder="What did you think of this paper? (Optional)"
                   value={reviewComment}
                   onChange={(event) => setReviewComment(event.target.value)}
                   rows={3}
@@ -1014,7 +1014,7 @@ export default function PastPapers() {
                   loading={submittingReview}
                   onClick={handleSubmitReview}
                 >
-                  <Icon name="paper-plane" /> Submit Review
+                  <Icon name="paper-plane" /> Submit review
                 </Button>
               </div>
 
@@ -1023,7 +1023,7 @@ export default function PastPapers() {
                   <Spinner size="sm" />
                 </div>
               ) : reviews.length === 0 ? (
-                <p className="pp-reviews-empty">No reviews yet. Be the first to review.</p>
+                <p className="pp-reviews-empty">No reviews yet. Share your feedback to help other learners.</p>
               ) : (
                 <div className="pp-reviews-list">
                   {reviews.map((review) => (
