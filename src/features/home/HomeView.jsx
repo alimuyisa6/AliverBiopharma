@@ -28,9 +28,15 @@ function LearningJourneySection({ sections, navigate }) {
   const component = uiComponents.find((item) => item.component_key === 'learning_journey_section');
   const levelName = `${level?.display_name || level?.name || level?.title || ''}`.toLowerCase();
   const isPharmacy = levelName.includes('pharmacy');
+  const isALevel = /a[- ]?level/.test(levelName);
+  const isOLevel = /o[- ]?level/.test(levelName);
   const defaultSubtitle = isPharmacy
-    ? 'Pharmacy course-unit notes, flashcards, clinical cases, quizzes, past papers, downloadable PDFs, reference materials and active-recall practice—matched to your level, from certificate through to degree.'
-    : 'Biology notes organised by topic, flashcards, quizzes, past papers, downloadable PDFs, diagrams, reference materials and active-recall practice—matched to your level, from O-Level through A-Level.';
+    ? 'Course-unit notes, medicine-focused flashcards, clinical cases, and quizzes for your Pharmacy programme.'
+    : isALevel
+      ? 'Build deeper Biology understanding with topic notes, diagrams, past papers, and active-recall practice.'
+      : isOLevel
+        ? 'Build strong Biology foundations with clear topic notes, flashcards, quizzes, and exam practice.'
+        : 'Find Biology notes, flashcards, quizzes, and recall practice matched to your learning pathway.';
   const subtitle = sections?.section_headings?.content_types_subtitle || defaultSubtitle;
 
   return (
