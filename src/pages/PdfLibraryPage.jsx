@@ -104,14 +104,14 @@ export default function PdfLibraryPage() {
       <div className="pdf-library-page">
         <section className="pdf-library-controls" aria-labelledby="pdf-library-controls-title">
           <div className="pdf-library-controls-copy">
-            <h2 id="pdf-library-controls-title">Find your study PDFs</h2>
+            <h2 id="pdf-library-controls-title">Find study PDFs</h2>
             <p>Sort by title, author, or file size to find the study material you need.</p>
           </div>
           <div className="toolbar">
             <div className="result-count" aria-live="polite">
               <span className="result-count-label">Available resources</span>
               <strong>{pdfs.length}</strong>
-              <span>{pdfs.length === 1 ? 'document' : 'documents'}</span>
+              <span>{pdfs.length === 1 ? 'PDF' : 'PDFs'}</span>
             </div>
             <div className="toolbar-spacer" />
             <label className="sort-control" htmlFor="sortSelect">
@@ -134,7 +134,7 @@ export default function PdfLibraryPage() {
           )}
         </div>
 
-        {curriculumUnitId && <p className="pdf-library-class">Showing resources for this topic.</p>}
+        {curriculumUnitId && <p className="pdf-library-class">Showing PDFs for this topic.</p>}
 
         {loading ? (
           <div className="pdf-skeleton-grid">
@@ -146,14 +146,14 @@ export default function PdfLibraryPage() {
           typeof navigator !== 'undefined' && !navigator.onLine ? (
             <EmptyComponent
               title="No internet connection"
-              description="Your PDF resources could not be reached. Reconnect to the internet and try loading them again."
+              description="We couldn’t load your PDFs. Check your internet connection and try again."
               onRetry={() => loadPdfs(() => true, true)}
             />
           ) : (
-            <EmptyState image={getEmptyStateImage('error')} title="We couldn’t load your PDFs" description={error} action={<Button onClick={() => loadPdfs(() => true, true)}>Try Again</Button>} />
+            <EmptyState image={getEmptyStateImage('error')} title="We couldn’t load your PDFs" description={error} action={<Button onClick={() => loadPdfs(() => true, true)}>Try again</Button>} />
           )
         ) : pdfs.length === 0 ? (
-          <EmptyState image={getEmptyStateImage('pdfs')} title="No PDFs available" />
+          <EmptyState image={getEmptyStateImage('pdfs')} title="No study PDFs available yet" />
         ) : (
           <div className="pdf-grid">
             {sortedPdfs.map((pdf) => (
