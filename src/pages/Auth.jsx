@@ -25,7 +25,7 @@ function validatePasswordRules(password) {
   const categories = [hasUpper, hasLower, hasDigit, hasSpecial].filter(Boolean).length;
 
   if (categories < 3) {
-    return 'Password must contain at least 3 of: uppercase letter, lowercase letter, number, special character';
+    return 'Use at least 3 of these: uppercase letter, lowercase letter, number, or symbol';
   }
 
   return null;
@@ -85,7 +85,7 @@ export default function Auth() {
 
     getCurriculumLevels()
       .then((data) => setLevels(data || []))
-      .catch(() => setLevelsError('Could not load available levels. Please try again.'))
+      .catch(() => setLevelsError('We couldn't load the available study levels. Please try again.'))
       .finally(() => setLevelsLoading(false));
   }, [onboardingStep, levels.length, levelsLoading]);
 
@@ -199,7 +199,7 @@ export default function Auth() {
     const token = getTurnstileToken();
 
     if (!token) {
-      setError('Please complete the verification');
+      setError('Please complete the security check.');
       return;
     }
 
@@ -227,14 +227,14 @@ export default function Auth() {
     setError('');
 
     if (typeof window === 'undefined' || !window.isSecureContext || !window.PublicKeyCredential) {
-      setError('This browser does not currently support secure passkey sign-in.');
+      setError('Passkey sign-in is not available in this browser.');
       return;
     }
 
     const captchaToken = getTurnstileToken();
 
     if (!captchaToken) {
-      setError('Please complete the verification before signing in with a passkey.');
+      setError('Please complete the security check before using your passkey.');
       return;
     }
 
@@ -265,7 +265,7 @@ export default function Auth() {
     setMfaError('');
 
     if (!/^\d{6}$/.test(mfaCode.trim())) {
-      setMfaError('Please enter the 6-digit code from your authenticator app');
+      setMfaError('Enter the 6-digit code from your authenticator app.');
       return;
     }
 
@@ -273,7 +273,7 @@ export default function Auth() {
       const token = getTurnstileToken();
 
       if (!token) {
-        setMfaError('Please complete the verification again');
+        setMfaError('Please complete the security check again.');
         return;
       }
     }
@@ -294,7 +294,7 @@ export default function Auth() {
           );
 
       if (result?.mfa_required) {
-        setMfaError('Incorrect code. Please try again.');
+        setMfaError('That code doesn't look right. Try again.');
         if (!passkeyMfaToken) resetTurnstile();
         return;
       }
@@ -348,14 +348,14 @@ export default function Auth() {
     setError('');
 
     if (!selectedRole || !selectedLevel) {
-      setError('Please complete all onboarding steps');
+      setError('Please complete each step to continue.');
       return;
     }
 
     const token = getTurnstileToken();
 
     if (!token) {
-      setError('Verification expired.');
+      setError('Your security check has expired. Please try again.');
       return;
     }
 
@@ -378,7 +378,7 @@ export default function Auth() {
       } else {
         setConfirmationMessage(
           result?.message ||
-          'If this email is valid, please check your inbox to confirm your account.'
+          'If an account can be created with this email, we'll send you a message with the next steps.'
         );
 
         setPendingConfirmation(true);
@@ -423,30 +423,29 @@ export default function Auth() {
         </div>
 
         <div className="auth-brand-copy">
-          <h1>Learn with clarity. Grow with confidence.</h1>
+          <h1>Learn with clarity. Build confidence.</h1>
           <p>
-            A focused learning platform for Biology and Pharmacy students,
-            built to make studying, recall, and assessment feel connected.
+            A place to study Biology and Pharmacy with clear resources, practice, and tools to help you remember what you learn.
           </p>
 
           <ul className="auth-feature-list">
             <li>
               <Icon name="circle-check" />
-              Structured Biology and Pharmacy learning
+              Resources for Biology and Pharmacy
             </li>
             <li>
               <Icon name="circle-check" />
-              Notes, recall, flashcards, and assessments
+              Notes, flashcards, quizzes, and revision
             </li>
             <li>
               <Icon name="circle-check" />
-              Learning progress that stays connected
+              Track your learning as you go
             </li>
           </ul>
         </div>
 
         <div className="auth-brand-footer">
-          Advancing biology and pharmacy education
+          Helping you learn, practise, and progress
         </div>
       </aside>
 
