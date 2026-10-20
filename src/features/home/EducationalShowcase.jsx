@@ -4,16 +4,16 @@ import './EducationalShowcase.css';
 import StickyNotePolaroidFrame from '../../components/StickyNotePolaroidFrame/StickyNotePolaroidFrame';
 
 const screens = [
-  { label: 'Pathway', eyebrow: '01 · YOUR PATHWAY', title: 'Learning that fits your course', text: 'Choose a study pathway, then explore structured learning resources designed to support your studies.' },
-  { label: 'Curriculum', eyebrow: '02 · YOUR CURRICULUM', title: 'Connect topics to real understanding', text: 'Follow a clear learning sequence, then see how key ideas connect to the questions you will be expected to answer.' },
-  { label: 'Visual lesson', eyebrow: '03 · VISUAL LEARNING', title: 'See how osmosis works', text: 'Water moves across a selectively permeable membrane from a more dilute solution towards a more concentrated solution.' },
-  { label: 'Quick quiz', eyebrow: '04 · CHECK YOUR UNDERSTANDING', title: 'Try a quick knowledge check', text: 'A plant cell is placed in distilled water. What is most likely to happen to it?' },
-  { label: 'Next steps', eyebrow: '05 · KEEP THE KNOWLEDGE', title: 'Turn knowledge into progress', text: 'Use focused resources to understand a concept, questions to test it, and active recall to strengthen long-term memory.' }
+  { label: 'Pathway', eyebrow: '01 · YOUR PATHWAY', title: 'Learning that fits your course', text: 'Pick your course to see topics and practice activities that fit your studies.' },
+  { label: 'Curriculum', eyebrow: '02 · YOUR CURRICULUM', title: 'Connect topics to real understanding', text: 'Move from core ideas to exam-style questions, one topic at a time.' },
+  { label: 'Visual lesson', eyebrow: '03 · VISUAL LEARNING', title: 'See how osmosis works', text: 'See how water moves across a partially permeable membrane by osmosis.' },
+  { label: 'Quick quiz', eyebrow: '04 · CHECK YOUR UNDERSTANDING', title: 'Try a quick knowledge check', text: 'A plant cell sits in distilled water. What happens next?' },
+  { label: 'Next steps', eyebrow: '05 · KEEP THE KNOWLEDGE', title: 'Turn knowledge into progress', text: 'Learn the idea, test yourself, then revisit it with active recall.' }
 ];
 const pathways = [
-  { id: 'O-Level', detail: 'Build strong Biology foundations', icon: '◉' },
-  { id: 'A-Level', detail: 'Explore concepts in greater depth', icon: '⌬' },
-  { id: 'Pharmacy', detail: 'Connect science with medicines', icon: '⚕' }
+  { id: 'O-Level', detail: 'Build Biology foundations topic by topic', icon: '◉' },
+  { id: 'A-Level', detail: 'Explain complex Biology with confidence', icon: '⌬' },
+  { id: 'Pharmacy', detail: 'Link science to medicines and safe use', icon: '⚕' }
 ];
 const pathwayKnowledge = {
   'O-Level': [
@@ -50,7 +50,7 @@ export default function EducationalShowcase() {
   const current = screens[screen];
 
   return <section className="section educational-showcase" aria-labelledby="edu-showcase-title">
-    <header className="edu-showcase-heading"><span className="eyebrow">EXPLORE · UNDERSTAND · PRACTISE</span><h2 id="edu-showcase-title">See science come to life</h2><p className="section-description">Explore course-specific knowledge, try a visual lesson, and test how well you understand the idea.</p></header>
+    <header className="edu-showcase-heading"><span className="eyebrow">EXPLORE · UNDERSTAND · PRACTISE</span><h2 id="edu-showcase-title">See science come to life</h2><p className="section-description">Choose your pathway, explore a topic, and check what you understand.</p></header>
     <div className="edu-showcase-shell">
       <nav className="edu-showcase-steps" aria-label="Learning tour">
         {screens.map((item, index) => <button key={item.label} type="button" aria-current={screen === index ? 'step' : undefined} className={'edu-showcase-step ' + (screen === index ? 'is-current' : '')} onClick={() => change(index)}><span className="edu-showcase-step-number">{'0' + (index + 1)}</span><span>{item.label}</span></button>)}
@@ -58,7 +58,7 @@ export default function EducationalShowcase() {
       <div className="edu-showcase-content">
         <div className="edu-showcase-copy"><span className="eyebrow">{current.eyebrow}</span><h3>{current.title}</h3><p>{current.text}</p>
           {screen === 0 && <div className="edu-pathway-options">{pathways.map((item) => <button key={item.id} type="button" aria-pressed={pathway === item.id} className={'edu-pathway-option ' + (pathway === item.id ? 'is-selected' : '')} onClick={() => setPathway(item.id)}><span className="edu-pathway-icon">{item.icon}</span><span><strong>{item.id}</strong><small>{item.detail}</small></span><span className="edu-pathway-radio" /></button>)}</div>}
-          {screen === 1 && <><div className="edu-curriculum-preview">{[['01','Understand','Start with definitions, diagrams and the reason a process happens.'],['02','Apply','Use the idea to explain a new example or solve a question.'],['03','Remember','Retrieve the key idea later with active recall.']].map((row) => <div className="edu-curriculum-line" key={row[0]}><span>{row[0]}</span><div><strong>{row[1]}</strong><small>{row[2]}</small></div></div>)}</div><div className="edu-knowledge-spotlight"><span className="edu-knowledge-label">{pathway} · KNOWLEDGE SPOTLIGHT</span>{pathwayKnowledge[pathway].map(([title, detail]) => <article className="edu-knowledge-item" key={title}><strong>{title}</strong><p>{detail}</p></article>)}</div></>}
+          {screen === 1 && <><div className="edu-curriculum-preview">{[['01','Understand','Get the key idea clear.'],['02','Apply','Use it to answer a question.'],['03','Remember','Recall it without looking.']].map((row) => <div className="edu-curriculum-line" key={row[0]}><span>{row[0]}</span><div><strong>{row[1]}</strong><small>{row[2]}</small></div></div>)}</div><div className="edu-knowledge-spotlight"><span className="edu-knowledge-label">{pathway} · KNOWLEDGE SPOTLIGHT</span>{pathwayKnowledge[pathway].map(([title, detail]) => <article className="edu-knowledge-item" key={title}><strong>{title}</strong><p>{detail}</p></article>)}</div></>}
           {screen === 3 && <div className="edu-quiz-options">{answers.map((item) => <button key={item.id} type="button" aria-pressed={answer === item.id} className={'edu-quiz-option ' + (answer === item.id ? (item.id === 'turgid' ? 'is-correct' : 'is-incorrect') : '')} onClick={() => setAnswer(item.id)}>{item.label}</button>)}{answer && <p className={'edu-quiz-feedback ' + (answer === 'turgid' ? 'is-correct' : '')} role="status">{answer === 'turgid' ? 'Correct. Water enters by osmosis, increasing turgor pressure and helping support the plant.' : 'Not quite. Distilled water has a higher water potential than the cell sap, so water enters the cell by osmosis.'}</p>}</div>}
           {screen === 4 && <div className="edu-showcase-links"><Link className="btn btn-primary" to="/resources">Explore resources →</Link><Link className="btn btn-secondary" to="/quiz">Try a quiz →</Link><Link className="edu-recall-link" to="/recall">Strengthen your memory with BioRecall</Link></div>}
           <div className="edu-showcase-controls"><button type="button" className="btn btn-secondary edu-showcase-nav-button" disabled={screen === 0} onClick={() => change(screen - 1)} aria-label="Previous step"><svg className="edu-showcase-nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M19 12H5M12 19l-7-7 7-7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg><span>Back</span></button><span>{screen + 1} of 5</span><button type="button" className="btn btn-primary edu-showcase-nav-button" onClick={() => change(screen === 4 ? 0 : screen + 1)}>{screen === 4 ? <><span>Replay tour</span><svg className="edu-showcase-nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 7v5h-5M4.9 9A7.5 7.5 0 0 1 18 6l2 6M4 17v-5h5m6.1 3A7.5 7.5 0 0 1 6 18l-2-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></> : <><span>Next step</span><svg className="edu-showcase-nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></>}</button></div>
