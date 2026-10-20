@@ -52,7 +52,7 @@ export default function TutorDashboard() {
 
   useEffect(() => {
     if (!user) {
-      setError('You must be logged in.');
+      setError('Please sign in to access your tutor dashboard.');
       setLoading(false);
       return;
     }
@@ -77,7 +77,7 @@ export default function TutorDashboard() {
         fetchActiveRooms();
       }
     } catch {
-      setError('Failed to load dashboard.');
+      setError('We couldn’t load your dashboard. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -89,7 +89,7 @@ export default function TutorDashboard() {
 
       setActiveRooms(data?.rooms || data || []);
     } catch {
-      addToast('Failed to load your rooms.', 'error');
+      addToast('We couldn’t load your classrooms. Please try again.', 'error');
     }
   }
 
@@ -109,7 +109,7 @@ export default function TutorDashboard() {
 
   async function handleCreateRoom() {
     if (!form.title || !form.level || !form.class_name || !form.topic_id || !form.topic_name) {
-      setCreateError('Please fill all required fields.');
+      setCreateError('Complete all required fields before creating a classroom.');
       return;
     }
 
@@ -124,7 +124,7 @@ export default function TutorDashboard() {
         scheduled_at: form.scheduled_at || null
       });
 
-      addToast('Classroom created successfully!', 'success');
+      addToast('Your classroom has been created.', 'success');
       setShowCreateForm(false);
       setForm({
         title: '',
@@ -138,7 +138,7 @@ export default function TutorDashboard() {
       });
       fetchActiveRooms();
     } catch (err) {
-      setCreateError(err.message || 'Failed to create room.');
+      setCreateError(err.message || 'We couldn’t create the classroom. Please try again.');
     } finally {
       setSubmitting(false);
     }
@@ -148,10 +148,10 @@ export default function TutorDashboard() {
     setEndingRoomId(roomId);
     try {
       await endClassroom(roomId);
-      addToast('Room ended.', 'success');
+      addToast('The classroom has ended.', 'success');
       fetchActiveRooms();
     } catch (err) {
-      addToast(err.message || 'Failed to end room.', 'error');
+      addToast(err.message || 'We couldn’t end the classroom. Please try again.', 'error');
     }
   }    setEndingRoomId(null);
 
@@ -188,11 +188,11 @@ export default function TutorDashboard() {
   const isApproved = application?.status === 'approved';
 
   const statusLabels = {
-    pending: { label: 'Pending Review', color: 'var(--warning)', icon: 'clock' },
-    scheduled: { label: 'Interview Scheduled', color: 'var(--primary)', icon: 'calendar' },
-    interviewed: { label: 'Interview Completed', color: 'var(--accent)', icon: 'check-double' },
-    approved: { label: 'Approved Tutor', color: 'var(--success)', icon: 'circle-check' },
-    rejected: { label: 'Application Rejected', color: 'var(--error)', icon: 'circle-xmark' }
+    pending: { label: 'Under review', color: 'var(--warning)', icon: 'clock' },
+    scheduled: { label: 'Interview scheduled', color: 'var(--primary)', icon: 'calendar' },
+    interviewed: { label: 'Interview completed', color: 'var(--accent)', icon: 'check-double' },
+    approved: { label: 'Approved tutor', color: 'var(--success)', icon: 'circle-check' },
+    rejected: { label: 'Application rejected', color: 'var(--error)', icon: 'circle-xmark' }
   };
 
   const levelName = displayName || '';
@@ -200,9 +200,9 @@ export default function TutorDashboard() {
   return (
     <div className="tutor-dashboard-page">
       <div className="section" style={{ paddingTop: 'var(--space-6)' }}>
-        <span className="eyebrow">Teaching Portal</span>
+        <span className="eyebrow">Tutor portal</span>
         <h1 className="section-title" style={{ textAlign: 'left', margin: '0 0 var(--space-2)' }}>
-          Tutor Dashboard<br />{levelName ? `– ${levelName}` : ''}
+          Tutor dashboard<br />{levelName ? `– ${levelName}` : ''}
         </h1>
         <h2 className="page-intro">
           Manage your teaching sessions, create new classrooms, and track your tutoring activity.
@@ -244,7 +244,7 @@ export default function TutorDashboard() {
             <div className="alert alert-success" style={{ marginBottom: 'var(--space-6)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div>
                 <Icon name="circle-check" style={{ marginRight: 'var(--space-3)' }} />
-                Approved Tutor — {application.display_name || 'Tutor'}
+                Approved tutor — {application.display_name || 'Tutor'}
               </div>
               <Button
                 variant={showCreateForm ? 'secondary' : 'primary'}
