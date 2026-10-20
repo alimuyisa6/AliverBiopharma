@@ -5,19 +5,19 @@ const STEPS = [
     number: '01',
     componentKey: 'how_it_works_account_icon',
     title: 'Create your account',
-    text: 'Sign up for free and choose the learning pathway that matches your studies — O-Level, A-Level, or Pharmacy.'
+    text: 'Choose O-Level, A-Level, or Pharmacy to see learning resources for your course.'
   },
   {
     number: '02',
     componentKey: 'how_it_works_study_icon',
     title: 'Study with purpose',
-    text: 'Explore syllabus-aligned notes, flashcards, quizzes, recall activities, and other resources designed to support the way you learn.'
+    text: 'Use focused notes, flashcards, quizzes, and recall practice to make each study session count.'
   },
   {
     number: '03',
     componentKey: 'how_it_works_progress_icon',
     title: 'Build your progress',
-    text: 'Keep learning consistently, strengthen weaker areas, and watch your knowledge, activity, and progress develop over time.'
+    text: 'Review the topics that need work, practise again, and track how far you have come.'
   }
 ];
 
@@ -35,9 +35,7 @@ export function HowItWorksSection() {
           <h2>Start learning in three simple steps</h2>
 
           <p className="section-description">
-            AliverBiopharm keeps the beginning simple: choose your pathway,
-            find the right learning resources, and build your understanding
-            step by step.
+            Choose your course, study the right topics, and practise until the ideas stick.
           </p>
         </div>
       </div>
