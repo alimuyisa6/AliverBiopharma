@@ -30,7 +30,6 @@ import QuizWeakAreas from '../components/quiz/QuizWeakAreas';
 import Icon from '../components/Icon/Icon';
 import Spinner from '../components/Spinner/Spinner';
 import QuizAnswerLoader from '../components/quiz/QuizAnswerLoader';
-import './quiz-practice-refinements.css';
 
 // Browser-native answer sounds. Prepare audio on the learner's tap for mobile autoplay rules.
 let quizAudioContext = null;
