@@ -214,7 +214,7 @@ export default function FlashcardsPage() {
       <div className="section flashcard-error">
         <EmptyState
           image={getEmptyStateImage('general')}
-          title="Couldn't load flashcards"
+          title="We couldn’t load your flashcards"
           description={error}
           action={<Button onClick={init}>Try again</Button>}
         />
@@ -237,14 +237,14 @@ export default function FlashcardsPage() {
           <AdSlot placement="flashcards" pageContext="flashcards" />
 
           <p className="section-subtitle flashcard-subtitle">
-            Use flashcards to test what you remember about {levelName || 'your programme'}. 
+            Use flashcards to practise recalling what you’ve learned in {levelName || 'your programme'}. 
           </p>
 
           {decks.length === 0 ? (
             <EmptyState
               image={getEmptyStateImage('flashcards')}
               title="No flashcard decks yet"
-              description={`Flashcards for ${classLabel || levelName || 'your programme'} will appear here when they're available.`}
+              description={`Flashcards for ${classLabel || levelName || 'your programme'} will appear here when they’re ready.`}
             />
           ) : (
             <div className="flashcard-decks-grid">
@@ -253,11 +253,11 @@ export default function FlashcardsPage() {
                   key={deck.id}
                   icon="layer-group"
                   title={deck.title}
-                  description={deck.description || 'Review key ideas and test your recall.'}
+                  description={deck.description || 'Review key ideas and practise recalling them.'}
                   className="flashcard-deck-card"
                   footer={
                     <Button variant="3d" size="sm" icon="play" onClick={() => handleDeckSelect(deck)} disabled={locked}>
-                      Start studying
+                      Study flashcards
                     </Button>
                   }
                 >
