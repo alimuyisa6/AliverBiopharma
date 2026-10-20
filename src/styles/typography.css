@@ -83,19 +83,6 @@
   --type-card-title-size: var(--text-card-title);
   --type-card-title-weight: var(--weight-card-title);
   --type-card-title-leading: var(--leading-card-title);
-}
-
-html { font-size: calc(100% * var(--ui-font-scale, 1)); }
-body { font-family: var(--font-primary); font-weight: var(--weight-normal); line-height: var(--leading-normal); }
-h1,h2,h3,h4,h5,h6 { font-family: var(--font-heading); margin: 0; }
-.font-maven { font-family: var(--font-maven); }
-.font-reading { font-family: var(--font-reading); }
-.font-mono { font-family: var(--font-mono); }
-
-
-/* Shared site-wide typography scale.
-   Match the Dashboard's clear hierarchy on every page; Note Detail is exempt. */
-:root {
   --site-page-title-size: var(--text-page-title);
   --site-section-title-size: var(--text-section-title);
   --site-subsection-title-size: var(--text-subsection-title);
@@ -105,12 +92,16 @@ h1,h2,h3,h4,h5,h6 { font-family: var(--font-heading); margin: 0; }
   --site-caption-size: var(--text-caption);
 }
 
-body {
-  color: var(--text-main);
-  font-size: var(--site-body-size);
-  line-height: var(--leading-body);
-}
+html { font-size: calc(100% * var(--ui-font-scale, 1)); }
+body { color: var(--text-main); font-family: var(--font-primary); font-size: var(--site-body-size); font-weight: var(--weight-normal); line-height: var(--leading-body); }
+h1,h2,h3,h4,h5,h6 { font-family: var(--font-heading); margin: 0 0 var(--text-gap-title); }
+.font-maven { font-family: var(--font-maven); }
+.font-reading { font-family: var(--font-reading); }
+.font-mono { font-family: var(--font-mono); }
 
+
+/* Shared site-wide typography scale.
+   Match the Dashboard's clear hierarchy on every page; Note Detail is exempt. */
 #root :is(h1, .page-title, .page-heading, .about-title, .legal-title,
   .modal-title, .quiz-hero-title, .notes-page-title, .recall-page-title,
   .quiz-page-title, .flashcard-title, .curriculum-node-title):not(.note-detail-container *) {
