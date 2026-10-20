@@ -138,7 +138,7 @@ export default function NotificationCenter() {
             <path d="M10 21h4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
           </svg>
         </span>
-                <span>{loading ? 'Loading your notifications…' : 'You're all caught up. No new notifications.'}</span>
+                <span>{loading ? 'Loading your notifications…' : "You're all caught up. No new notifications."}</span>
               </div>
             ) : (
               notifications.map((notification) => (
