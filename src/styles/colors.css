@@ -128,6 +128,30 @@
   --white: #ffffff;
   --black: var(--palette-ink);
 
+  /* Shared night-surface and contrast tones for dark mode and semantic roles */
+  --night-950: var(--palette-ink);
+  --night-900: #0e0a16;
+  --night-850: #100d1a;
+  --night-800: #191727;
+  --night-700: #20203c;
+  --night-600: #24213a;
+  --night-550: #302c4a;
+  --night-500: #45405f;
+  --night-450: #454b80;
+  --night-400: #68617f;
+  --night-text-primary: #f8f7ff;
+  --night-text-secondary: #d2d0e4;
+  --night-text-muted: #aaa6c1;
+  --night-text-placeholder: #85809e;
+  --blue-ring: rgb(84 101 255 / 24%);
+  --blue-ring-dark: rgb(129 144 255 / 30%);
+  --emerald-ring: rgb(0 191 160 / 24%);
+  --emerald-ring-dark: rgb(109 255 226 / 30%);
+  --amber-ring: rgb(217 119 6 / 20%);
+  --amber-ring-dark: rgb(251 191 36 / 25%);
+  --neutral-ring: rgb(25 23 39 / 20%);
+  --neutral-ring-dark: rgb(209 213 219 / 25%);
+
   /* Legacy interface aliases */
   --color-action-primary: var(--palette-blue);
   --color-action-primary-hover: var(--blue-700);
