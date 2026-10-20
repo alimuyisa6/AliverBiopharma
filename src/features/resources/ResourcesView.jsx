@@ -14,7 +14,7 @@ const CONTENT_TYPES = [
   {
     key: 'notes',
     label: 'Notes',
-    description: 'Structured Biology and Pharmacy notes with clear explanations, diagrams, and summaries.',
+    description: 'Clear explanations, diagrams and summaries to help you understand each topic.',
     icon: 'book-open',
     route: '/notes',
     color: 'blue',
@@ -23,7 +23,7 @@ const CONTENT_TYPES = [
   {
     key: 'flashcards',
     label: 'Flashcards',
-    description: 'Active recall with focused cards designed to strengthen memory and understanding.',
+    description: 'Use short question-and-answer cards to test what you remember.',
     icon: 'layer-group',
     route: '/flashcards',
     color: 'teal',
@@ -32,7 +32,7 @@ const CONTENT_TYPES = [
   {
     key: 'pdfs',
     label: 'PDF Library',
-    description: 'Downloadable guides, reference sheets, and carefully organised study documents.',
+    description: 'Download study guides, reference sheets and other useful documents.',
     icon: 'file-pdf',
     route: '/pdfs',
     color: 'grey',
@@ -41,7 +41,7 @@ const CONTENT_TYPES = [
   {
     key: 'quizzes',
     label: 'Quizzes',
-    description: 'Structured assessments across Biology and Pharmacy topics to test what you know.',
+    description: 'Check your understanding with questions from your course or subject.',
     icon: 'clipboard-check',
     route: '/quiz',
     color: 'amber',
@@ -50,7 +50,7 @@ const CONTENT_TYPES = [
   {
     key: 'past_papers',
     label: 'Past Papers',
-    description: 'Exam papers organised for focused practice, revision, and exam preparation.',
+    description: 'Practise with past exam papers and build confidence before your exams.',
     icon: 'file-lines',
     route: '/past-papers',
     color: 'emerald',
@@ -59,7 +59,7 @@ const CONTENT_TYPES = [
   {
     key: 'recall',
     label: 'Recall',
-    description: 'Spaced repetition that brings important topics back at the right time for review.',
+    description: 'Revisit key ideas over time to help move them into long-term memory.',
     icon: 'brain',
     route: '/recall',
     color: 'violet',
@@ -124,8 +124,8 @@ export default function ResourcesView({ navigate, user, sections }) {
 
   const isPharmacy = /pharmacy/i.test(String(levelName));
   const subtitle = isPharmacy
-    ? 'Build your Pharmacy knowledge with course-unit notes, flashcards, clinical cases, quizzes, past papers and focused recall practice—organised around your programme.'
-    : 'Study Biology with topic-based notes, diagrams, flashcards, quizzes and past-paper practice. Choose a resource, strengthen your understanding and check what you remember.';
+    ? 'Explore course-unit notes, flashcards, quizzes, past papers and recall practice matched to your Pharmacy programme.'
+    : 'Explore Biology notes, diagrams, flashcards, quizzes and past papers. Choose a resource to understand a topic, practise and check what you remember.';
 
   function handleBrowse(type) {
     if (!user) {
@@ -152,7 +152,7 @@ export default function ResourcesView({ navigate, user, sections }) {
         <div className="resources-intro">
           <div>
             <span className="resources-section-kicker">Resources · {levelName}{activeGroup?.name ? ` · ${activeGroup.name}` : ''}</span>
-            <h1>Find the right resource for your next study session</h1>
+            <h1>Choose a resource and get started</h1>
             <p>{subtitle}</p>
           </div>
           <span className="resources-section-context">
@@ -190,9 +190,9 @@ export default function ResourcesView({ navigate, user, sections }) {
 
         <div className="resources-section-head">
           <div>
-            <span className="resources-section-kicker">Explore · Learn · Practise</span>
+            <span className="resources-section-kicker">Study · Practise · Review</span>
             <h2 className="resources-section-title">
-              Explore the learning library
+              Browse your study resources
               <span className="resources-section-count">{filteredTypes.length}</span>
             </h2>
           </div>
@@ -227,7 +227,7 @@ export default function ResourcesView({ navigate, user, sections }) {
                       onClick={() => handleBrowse(type)}
                       aria-label={`Open ${type.label}`}
                     >
-                      Explore resources
+                      Open resource
                     </Button>
                   </div>
                 </article>
@@ -239,9 +239,9 @@ export default function ResourcesView({ navigate, user, sections }) {
             <div className="resources-empty-icon" aria-hidden="true">
               <Icon name="search" />
             </div>
-            <h3>No resources found</h3>
+            <h3>No matching resources</h3>
             <p>
-              Try another search term or choose a different resource category.
+              Try a different search or choose another category.
             </p>
             <Button
               variant="secondary"
@@ -252,7 +252,7 @@ export default function ResourcesView({ navigate, user, sections }) {
               }}
             >
               <Icon name="refresh" />
-              Reset filters
+              Clear search and filters
             </Button>
           </div>
         )}
