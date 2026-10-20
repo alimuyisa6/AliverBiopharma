@@ -4,11 +4,11 @@ import './EducationalShowcase.css';
 import StickyNotePolaroidFrame from '../../components/StickyNotePolaroidFrame/StickyNotePolaroidFrame';
 
 const screens = [
-  { label: 'Pathway', eyebrow: '01 · YOUR PATHWAY', title: 'Learning that fits your course', text: 'Pick your course to see topics and practice activities that fit your studies.' },
-  { label: 'Curriculum', eyebrow: '02 · YOUR CURRICULUM', title: 'Connect topics to real understanding', text: 'Move from core ideas to exam-style questions, one topic at a time.' },
-  { label: 'Visual lesson', eyebrow: '03 · VISUAL LEARNING', title: 'See how osmosis works', text: 'See how water moves across a partially permeable membrane by osmosis.' },
-  { label: 'Quick quiz', eyebrow: '04 · CHECK YOUR UNDERSTANDING', title: 'Try a quick knowledge check', text: 'A plant cell sits in distilled water. What happens next?' },
-  { label: 'Next steps', eyebrow: '05 · KEEP THE KNOWLEDGE', title: 'Turn knowledge into progress', text: 'Learn the idea, test yourself, then revisit it with active recall.' }
+  { label: 'Pathway', eyebrow: '01 · YOUR PATHWAY', title: 'Start with your learning pathway', text: 'Choose O-Level, A-Level or Pharmacy to find materials for your studies.' },
+  { label: 'Curriculum', eyebrow: '02 · YOUR CURRICULUM', title: 'Make sense of each topic', text: 'Start with the key idea, see how it works, then try a question.' },
+  { label: 'Visual lesson', eyebrow: '03 · VISUAL LEARNING', title: 'See osmosis in action', text: 'Watch how water moves across a partially permeable membrane.' },
+  { label: 'Quick quiz', eyebrow: '04 · CHECK YOUR UNDERSTANDING', title: 'Check what you understand', text: 'A plant cell is placed in distilled water. What happens next?' },
+  { label: 'Next steps', eyebrow: '05 · KEEP THE KNOWLEDGE', title: 'Keep what you learn', text: 'Study the idea, test yourself, and return to anything you missed.' }
 ];
 const pathways = [
   { id: 'O-Level', detail: 'Build Biology foundations topic by topic', icon: '◉' },
@@ -50,7 +50,7 @@ export default function EducationalShowcase() {
   const current = screens[screen];
 
   return <section className="section educational-showcase" aria-labelledby="edu-showcase-title">
-    <header className="edu-showcase-heading"><span className="eyebrow">EXPLORE · UNDERSTAND · PRACTISE</span><h2 id="edu-showcase-title">See science come to life</h2><p className="section-description">Choose your pathway, explore a topic, and check what you understand.</p></header>
+    <header className="edu-showcase-heading"><span className="eyebrow">LEARN · TRY · REMEMBER</span><h2 id="edu-showcase-title">Learn it. Try it. Remember it.</h2><p className="section-description">Choose a pathway, explore a lesson, and try a question.</p></header>
     <div className="edu-showcase-shell">
       <nav className="edu-showcase-steps" aria-label="Learning tour">
         {screens.map((item, index) => <button key={item.label} type="button" aria-current={screen === index ? 'step' : undefined} className={'edu-showcase-step ' + (screen === index ? 'is-current' : '')} onClick={() => change(index)}><span className="edu-showcase-step-number">{'0' + (index + 1)}</span><span>{item.label}</span></button>)}
