@@ -200,7 +200,7 @@ export default function Quiz() {
           setStreak(streakData?.count || 0);
         }
       } catch {
-        addToast('Failed to load data', 'error');
+        addToast("We couldn't load your study data. Please try again.", 'error');
       } finally {
         setLoading(false);
       }
@@ -380,7 +380,7 @@ export default function Quiz() {
           setIntegrityOverlay(result.message || 'Quiz locked due to a tab-switch violation.');
         }
       } catch {
-        addToast('Failed to record tab switch', 'error');
+        addToast("We couldn't record that tab change. Please continue with the quiz.", 'error');
       }
     };
 
@@ -478,7 +478,7 @@ export default function Quiz() {
       }
       setAnswerFeedback(null);
     } catch (error) {
-      addToast(error.message || 'Failed to verify answer', 'error');
+      addToast(error.message || "We couldn't verify your answer. Please try again.", 'error');
     } finally {
       setAnswerSubmitting(false);
     }
@@ -527,7 +527,7 @@ export default function Quiz() {
           }] : [])
         : (Array.isArray(topicsRes?.topics) ? topicsRes.topics : []));
     } catch {
-      addToast('Submission failed', 'error');
+      addToast("Your answers couldn't be submitted. Please try again.", 'error');
     } finally {
       setLoading(false);
       setBlockSubmitting(false);
@@ -541,12 +541,12 @@ export default function Quiz() {
 
   const startBlock = async (blockNum) => {
     if (locked || !user) {
-      addToast(locked ? reason || 'Action temporarily disabled' : 'Please sign in.', 'error');
+      addToast(locked ? reason || 'This action is temporarily unavailable.' : 'Please sign in to start the quiz.', 'error');
       return;
     }
 
     if (!activeUnitId) {
-      addToast('Select a topic first.', 'error');
+      addToast('Choose a topic before starting the quiz.', 'error');
       return;
     }
 
@@ -579,7 +579,7 @@ export default function Quiz() {
       const data = await getQuizBlock(activeUnitId, blockNum);
 
       if (!data?.questions?.length) {
-        addToast('No questions available.', 'error');
+        addToast('There are no questions available for this block yet.', 'error');
         return;
       }
 
@@ -605,7 +605,7 @@ export default function Quiz() {
       setResultData(null);
       setTimeLeft(data.time_left ?? 600);
     } catch (error) {
-      addToast(error?.message || 'Failed to load block', 'error');
+      addToast(error?.message || "We couldn't load this question block. Please try again.", 'error');
     } finally {
       setLoading(false);
       setStartingBlock(false);
@@ -661,11 +661,11 @@ export default function Quiz() {
                   onClick={() => startBlock(index)}
                   title={retryLocked ? retryLabel : undefined}
                 >
-                  <span>Block {index + 1}</span>
+                  <span>Question set {index + 1}</span>
                   {passed && <span className="quiz-block-status-label">Passed</span>}
                   {failed && (
                     <span className="quiz-block-status-label">
-                      {retryLocked ? retryLabel : 'Retry'}
+                      {retryLocked ? retryLabel : 'Try again'}
                     </span>
                   )}
                 </button>
@@ -700,7 +700,7 @@ export default function Quiz() {
             type="button"
             className="quiz-cards-route-back"
             onClick={() => navigate('/quiz')}
-            aria-label="Back to Quiz Hero"
+            aria-label="Back to the quiz overview"
           >
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <path d="M14.5 5.5 8 12l6.5 6.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
@@ -731,7 +731,7 @@ export default function Quiz() {
                     <Card
                       image={topic.topic_image_url}
                       title={topic.topic_name}
-                      description={questionCount > 0 ? questionCount + ' questions • ' + blockCount + ' blocks' : 'No questions available'}
+                      description={questionCount > 0 ? questionCount + ' questions · ' + blockCount + ' blocks' : 'Questions haven’t been added yet'}
                       footer={
                         questionCount > 0 && blockCount > 0 && !allDone ? (
                           <Button variant="primary" size="sm" onClick={() => openTopicBlocks({ ...topic, total_blocks: blockCount })} disabled={locked}>
@@ -809,7 +809,7 @@ export default function Quiz() {
                     key={topic.unit_id}
                     image={topic.topic_image_url}
                     title={topic.topic_name}
-                    description={questionCount > 0 ? questionCount + ' questions • ' + blockCount + ' blocks' : 'No questions available'}
+                    description={questionCount > 0 ? questionCount + ' questions · ' + blockCount + ' blocks' : 'Questions haven’t been added yet'}
                     footer={
                       questionCount > 0 && blockCount > 0 && !allDone ? (
                         <Button variant="primary" size="sm" onClick={() => openTopicBlocks({ ...topic, total_blocks: blockCount })} disabled={locked}>
@@ -836,7 +836,7 @@ export default function Quiz() {
             </Card>
 
             <div className="quiz-review-section">
-              <h3 className="quiz-review-heading">Block {currentBlock + 1} Review for {currentTopic}</h3>
+              <h3 className="quiz-review-heading">Review: Question set {currentBlock + 1} · {currentTopic}</h3>
 
               {(resultData.answers || []).map((answer, idx) => (
                 <Card key={idx} variant="flat" className="quiz-review-card card-surface-subtle card-elevation-none">
@@ -925,7 +925,7 @@ export default function Quiz() {
                     className={`${cls} ${idx === currentIndex ? 'btn-secondary' : ''} quiz-nav-pill`}
                     onClick={() => {
                       if (!canNavigateTo(idx, userAnswers)) {
-                        addToast('Answer previous questions first', 'warning');
+                        addToast('Answer the earlier questions before moving ahead.', 'warning');
                       } else {
                         navigateTo(idx);
                       }
@@ -1077,11 +1077,11 @@ export default function Quiz() {
                     onClick={() => startBlock(index)}
                     title={retryLocked ? retryLabel : undefined}
                   >
-                    <span>Block {index + 1}</span>
+                    <span>Question set {index + 1}</span>
                     {passed && <span className="quiz-block-status-label">Passed</span>}
                     {failed && (
                       <span className="quiz-block-status-label">
-                        {retryLocked ? retryLabel : 'Retry'}
+                        {retryLocked ? retryLabel : 'Try again'}
                       </span>
                     )}
                   </button>
