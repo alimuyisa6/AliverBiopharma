@@ -85,17 +85,17 @@ export default function TutorMarketplace() {
 
   async function handleContact(tutor) {
     if (!user) {
-      addToast('Please sign in to contact a tutor', 'warning');
+      addToast('Please sign in before contacting a tutor.', 'warning');
       return;
     }
 
     try {
       const tutorUserId = typeof tutor === 'string' ? tutor : tutor?.user_id;
-      if (!tutorUserId) throw new Error('Tutor account could not be identified. Please refresh and try again.');
+      if (!tutorUserId) throw new Error('We couldn’t identify this tutor’s account. Refresh the page and try again.');
       await sendContactRequest(tutorUserId, '');
-      addToast('Request sent!', 'success');
+      addToast('Your request has been sent.', 'success');
     } catch (error) {
-      addToast(error?.message || 'Could not send request', 'error');
+      addToast(error?.message || 'We couldn’t send your request. Please try again.', 'error');
     }
   }
 
@@ -124,11 +124,10 @@ export default function TutorMarketplace() {
           <div className="tutor-marketplace-intro-content">
             <span className="eyebrow">{t('common.tutorMarketplace')}</span>
 
-            <h2>Find a qualified tutor</h2>
+            <h2>Find a tutor who fits your needs</h2>
 
             <h3 className="section-description">
-              For individual learners, schools and institutions — filter by
-              subject, level and availability.
+              For learners, schools, and institutions. Filter tutors by subject, level, and teaching format.
             </h3>
 
             {getUiImage('tutor_marketplace_hero') && (
@@ -158,7 +157,7 @@ export default function TutorMarketplace() {
             value={subjectFilter}
             onChange={(e) => setSubjectFilter(e.target.value)}
           >
-            <option value="">{level === 'Pharmacy' ? 'All Course Units' : 'All Subjects'}</option>
+            <option value="">{level === 'Pharmacy' ? 'All course units' : 'All subjects'}</option>
             {curriculumUnits.map((unit) => (
               <option key={unit.id} value={unit.id}>
                 {unit.name}
@@ -172,7 +171,7 @@ export default function TutorMarketplace() {
             value={formatFilter}
             onChange={(e) => setFormatFilter(e.target.value)}
           >
-            <option value="">All Formats</option>
+            <option value="">All formats</option>
             <option value="online">Online</option>
             <option value="in-person">In-person</option>
           </select>
@@ -182,7 +181,7 @@ export default function TutorMarketplace() {
           <EmptyState
             image={getUiImage('empty_state_tutors')}
             title="No tutors found"
-            description="Try adjusting your filters or search terms."
+            description="Try changing your filters or search terms."
             action={
               <Button
                 onClick={() => {
