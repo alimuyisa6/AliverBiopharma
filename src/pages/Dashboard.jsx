@@ -69,7 +69,7 @@ export default function Dashboard() {
         })
         .catch(() => {
           if (mounted && !summaryLoadedRef.current) {
-            setError('Unable to load your dashboard right now. Please try again later.');
+            setError('We couldn't load your dashboard. Please try again in a moment.');
           }
         })
         .finally(() => {
@@ -194,7 +194,7 @@ export default function Dashboard() {
       .catch(() => {
         if (mounted) {
           setCurriculumNodes([]);
-          setCurriculumError('Your curriculum pathway could not be loaded right now.');
+          setCurriculumError('We couldn't load your learning pathway. Please try again.');
         }
       })
       .finally(() => {
@@ -217,7 +217,7 @@ export default function Dashboard() {
           <EmptyState
             image={getEmptyStateImage('dashboard')}
             title="Access Restricted"
-            description="Your account does not have access to this area."
+            description="Your account can't access this area."
           />
         </div>
       </Container>
@@ -251,8 +251,8 @@ export default function Dashboard() {
         <div className="dashboard-wrapper dashboard-content">
           <EmptyState
             icon="lock"
-            title="Action temporarily disabled"
-            description={reason || 'Suspicious activity detected. Please try again later.'}
+            title="This action is temporarily unavailable"
+            description={reason || 'For your security, this action is temporarily unavailable. Please try again later.'}
           />
         </div>
       </Container>
@@ -265,8 +265,8 @@ export default function Dashboard() {
         <div className="dashboard-wrapper dashboard-content">
           <EmptyState
             image={getEmptyStateImage('error')}
-            title="Something went wrong"
-            description={error || 'Dashboard unavailable.'}
+            title="We couldn't load your dashboard"
+            description={error || 'Your dashboard is temporarily unavailable. Please try again.'}
           />
         </div>
       </Container>
@@ -360,7 +360,7 @@ export default function Dashboard() {
     planner.due_reviews > 0
       ? {
           key: 'review',
-          label: 'Review due Recall',
+          label: 'Review due recall questions',
           detail: `${planner.due_reviews} review${planner.due_reviews === 1 ? '' : 's'} ready`,
           to: '/recall',
           icon: 'brain'
@@ -370,7 +370,7 @@ export default function Dashboard() {
       ? {
           key: 'weak',
           label: `Practice ${weakAreas[0].concept}`,
-          detail: 'Target your current learning gap',
+          detail: 'Focus on a topic to practise next',
           to: weakAreas[0].unit_id ? `/quiz?unit_id=${encodeURIComponent(weakAreas[0].unit_id)}` : '/quiz',
           icon: 'lightbulb'
         }
@@ -408,7 +408,7 @@ export default function Dashboard() {
               </h1>
               <p id="welcome-subtitle">
                 {platform.rank_title} · {levelName}
-              <span className="dashboard-welcome-guidance">Ready to study? Check your progress, practise a quiz, or continue where you left off.</span>
+              <span className="dashboard-welcome-guidance">Ready to study? Review your progress, try a quiz, or pick up where you left off.</span>
               </p>
             </div>
           </div>
@@ -429,14 +429,14 @@ export default function Dashboard() {
             </div>
             <div className="panel-body">
               <p className="dashboard-section-intro">
-                Follow your selected class or programme from {curriculumRootLabel.toLowerCase()} to sub-levels, themes and lessons. Each lesson shows its connected learning materials where links exist.
+                Explore your selected class or programme from {curriculumRootLabel.toLowerCase()} through to sub-levels, themes and lessons. Open a lesson to see its available learning materials.
               </p>
               {curriculumLoading ? (
-                <div className="dashboard-curriculum-loading" role="status">Loading your curriculum…</div>
+                <div className="dashboard-curriculum-loading" role="status">Loading your learning pathway…</div>
               ) : curriculumError ? (
                 <div className="dashboard-curriculum-empty" role="status">
                   <p>{curriculumError}</p>
-                  <Link to="/resources" className="dashboard-section-link">Browse learning resources</Link>
+                  <Link to="/resources" className="dashboard-section-link">Explore learning resources</Link>
                 </div>
               ) : curriculumRoots.length > 0 ? (
                 <>
@@ -473,7 +473,7 @@ export default function Dashboard() {
                               ))}
                             </span>
                           )}
-                          <span className="dashboard-curriculum-card-action">Open pathway <Icon name="arrow-right" /></span>
+                          <span className="dashboard-curriculum-card-action">Explore topic <Icon name="arrow-right" /></span>
                         </Link>
                       );
                     })}
@@ -1022,7 +1022,7 @@ export default function Dashboard() {
                   </h3>
                 </div>
                 <div className="panel-body">
-                <p className="dashboard-section-intro">A look at the personal learning milestones you’ve reached so far.</p>
+                <p className="dashboard-section-intro">Here are some of the learning milestones you've reached so far.</p>
                 <DashboardSectionAside>Use your best result as encouragement, then set a small goal for your next session.</DashboardSectionAside>
                   <div className="sidebar-list" id="personal-records-stats">
                     <div className="sidebar-item">
@@ -1054,7 +1054,7 @@ export default function Dashboard() {
                   </h3>
                 </div>
                 <div className="panel-body">
-                <p className="dashboard-section-intro">Review your recorded learning achievements and progress over time.</p>
+                <p className="dashboard-section-intro">See the learning milestones you've reached and how your progress has changed.</p>
                 <DashboardSectionAside>Look for a skill you have improved and decide what you would like to strengthen next.</DashboardSectionAside>
                   <div className="sidebar-list">
                     {[
@@ -1079,13 +1079,13 @@ export default function Dashboard() {
                 <h3 className="panel-title" id="learning-community-title">Learning community</h3>
               </div>
               <div className="panel-body">
-                <p className="dashboard-section-intro">See how many learners are studying across the different programmes.</p>
-                <DashboardSectionAside>Keep learning at your own pace and use the resources designed for your programme.</DashboardSectionAside>
+                <p className="dashboard-section-intro">See how many learners are studying in each programme.</p>
+                <DashboardSectionAside>Learn at your own pace with resources matched to your programme.</DashboardSectionAside>
                 {levelUserCounts.available ? (
                   <>
                     <div className="dashboard-community-total">
                       <strong>{Number(levelUserCounts.total || 0).toLocaleString()}</strong>
-                      <span>learners across all three levels</span>
+                      <span>learners across the programmes</span>
                     </div>
                     <div className="dashboard-community-levels">
                       <div><span>O-Level</span><strong>{levelUserCounts.o_level ?? 0}</strong></div>
@@ -1094,7 +1094,7 @@ export default function Dashboard() {
                     </div>
                   </>
                 ) : (
-                  <p className="dashboard-quiz-note">Learner totals are temporarily unavailable.</p>
+                  <p className="dashboard-quiz-note">Learner totals aren't available right now.</p>
                 )}
               </div>
             </section>
@@ -1105,7 +1105,7 @@ export default function Dashboard() {
                 <Link to="/classroom" className="dashboard-section-link">View classrooms</Link>
               </div>
               <div className="panel-body">
-                <p className="dashboard-section-intro">Find the classrooms connected to your learning group and check what’s happening there.</p>
+                <p className="dashboard-section-intro">See what's happening in the classrooms linked to your learning group.</p>
                 <DashboardSectionAside>Open your classroom to check current discussions, shared work, or upcoming learning activities.</DashboardSectionAside>
                 {classroomRooms.length > 0 ? (
                   <div className="dashboard-classroom-list">
@@ -1126,8 +1126,8 @@ export default function Dashboard() {
                   </div>
                 ) : (
                   <div className="dashboard-classroom-empty">
-                    <p>No live or upcoming classrooms are available for your current class or programme right now.</p>
-                    <Link to="/classroom" className="dashboard-section-link">Check classroom schedule</Link>
+                    <p>There are no live or upcoming classrooms for your class or programme right now.</p>
+                    <Link to="/classroom" className="dashboard-section-link">View classroom schedule</Link>
                   </div>
                 )}
               </div>
@@ -1141,7 +1141,7 @@ export default function Dashboard() {
                   </h3>
                 </div>
                 <div className="panel-body">
-                <p className="dashboard-section-intro">Use these topics as a guide for what to revise next. Finding a difficult area is part of learning.</p>
+                <p className="dashboard-section-intro">Use these topics to decide what to revise next. Finding a difficult area is a useful first step.</p>
                 <DashboardSectionAside>Start with one topic, review the lesson, and try a few practice questions to check your understanding.</DashboardSectionAside>
                   {weakAreaChart.some((item) => item.value > 0) && (
                     <div className="dashboard-insight-chart dashboard-insight-chart-compact">
@@ -1174,7 +1174,7 @@ export default function Dashboard() {
                   </h3>
                 </div>
                 <div className="panel-body">
-                <p className="dashboard-section-intro">A quick recap of your latest learning actions so you can continue from there.</p>
+                <p className="dashboard-section-intro">Review your recent learning and choose what you'd like to do next.</p>
                 <DashboardSectionAside>Use this recap to return to a recent activity or pick one small task to do next.</DashboardSectionAside>
                   {recentActivityMix.some((item) => item.value > 0) && (
                     <div className="dashboard-insight-chart dashboard-insight-chart-compact">
