@@ -2066,9 +2066,9 @@
   outline-offset: 3px;
 }
 body.dark-mode .quiz-hero-card {
-  border-color: #45405f;
-  border-bottom-color: #454b80;
-  background: linear-gradient(120deg, #20203c, #100d1a 68%, #123a35);
+  border-color: var(--night-500);
+  border-bottom-color: var(--night-450);
+  background: linear-gradient(120deg, var(--night-700), var(--night-850) 68%, var(--emerald-900));
   box-shadow: 0 0.75rem 2.25rem rgb(0 0 0 / 18%);
 }
 body.dark-mode .quiz-hero-classlabel,
@@ -2079,35 +2079,35 @@ body.dark-mode .quiz-dashboard .stat-value {
 body.dark-mode .quiz-hero-stats .stat-card,
 body.dark-mode .quiz-dashboard .stat-card,
 body.dark-mode .quiz-page .quiz-question-card {
-  border-color: #45405f;
-  background: #100d1a;
+  border-color: var(--night-500);
+  background: var(--night-850);
 }
 body.dark-mode .quiz-page .quiz-options-list .quiz-option-btn {
-  border-color: #45405f;
-  background: #17152a;
-  color: #f8f7ff;
+  border-color: var(--night-500);
+  background: var(--night-800);
+  color: var(--night-text-primary);
 }
 body.dark-mode .quiz-page .quiz-options-list .quiz-option-btn:hover:not(:disabled),
 body.dark-mode .quiz-page .quiz-options-list .quiz-option-btn[aria-pressed="true"],
 body.dark-mode .quiz-page .quiz-options-list .quiz-option-btn.selected {
-  border-color: #8190ff;
-  background: #20203c;
+  border-color: var(--blue-400);
+  background: var(--night-700);
 }
 body.dark-mode .quiz-page .quiz-options-list .quiz-option-btn.correct {
   border-color: var(--success);
-  background: #123a35;
+  background: var(--emerald-900);
 }
 body.dark-mode .quiz-page .quiz-options-list .quiz-option-btn.incorrect {
   border-color: var(--danger);
   background: #3c1e2a;
 }
 body.dark-mode .quiz-result-container .quiz-review-card {
-  border-color: #45405f;
-  background: #17152a;
+  border-color: var(--night-500);
+  background: var(--night-800);
 }
 body.dark-mode .quiz-result-container .quiz-review-card .quiz-review-explanation {
   border-inline-start-color: var(--palette-mint);
-  background: #100d1a;
+  background: var(--night-850);
 }
 @media (max-width: 640px) {
   .quiz-hero-card {

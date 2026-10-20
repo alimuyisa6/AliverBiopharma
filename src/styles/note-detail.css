@@ -1870,40 +1870,40 @@
   border-radius: 0.75rem;
 }
 body.dark-mode .note-hero {
-  border-color: #45405f;
-  border-bottom-color: #454b80;
-  background: linear-gradient(120deg, #20203c, #100d1a 68%, #123a35);
+  border-color: var(--night-500);
+  border-bottom-color: var(--night-450);
+  background: linear-gradient(120deg, var(--night-700), var(--night-850) 68%, var(--emerald-900));
 }
 body.dark-mode .notes-content-container h2 {
-  border-bottom-color: #45405f;
+  border-bottom-color: var(--night-500);
 }
 body.dark-mode .notes-content-container blockquote {
   border-inline-start-color: var(--palette-mint);
-  background: #20203c;
-  color: #f8f7ff;
+  background: var(--night-700);
+  color: var(--night-text-primary);
 }
 body.dark-mode .notes-content-container th {
-  border-color: #45405f;
-  background: #20203c;
-  color: #f8f7ff;
+  border-color: var(--night-500);
+  background: var(--night-700);
+  color: var(--night-text-primary);
 }
 body.dark-mode .notes-content-container td {
-  border-color: #45405f;
+  border-color: var(--night-500);
 }
 body.dark-mode .note-understanding-panel,
 body.dark-mode .note-related-section,
 body.dark-mode .note-reactions-section,
 body.dark-mode .note-comments-section,
 body.dark-mode .note-trial-question {
-  border-color: #45405f;
-  background: #100d1a;
+  border-color: var(--night-500);
+  background: var(--night-850);
 }
 body.dark-mode .note-understanding-panel {
-  background: linear-gradient(145deg, #20203c, #100d1a 75%);
+  background: linear-gradient(145deg, var(--night-700), var(--night-850) 75%);
 }
 body.dark-mode .note-trial-options label.is-selected {
-  border-color: #8190ff;
-  background: #20203c;
+  border-color: var(--blue-400);
+  background: var(--night-700);
 }
 @media (max-width: 640px) {
   .note-detail-container {
