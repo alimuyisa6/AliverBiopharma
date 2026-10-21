@@ -41,11 +41,11 @@ export default function GlossaryView({
       <div className="glossary-header">
         <div className="glossary-header-inner">
           <h1 className="glossary-main-title">
-            <span className="title-word magenta-word">Biology</span>
+            <span className="title-word magenta-word">Learning</span>
             <span className="title-word cyan-word">Glossary</span>
           </h1>
           <p className="glossary-subtitle">
-            Look up key terms and explore related quizzes, study notes, flashcards, and past papers.
+            Find clear definitions for key terms, then open related quizzes, notes, flashcards, and past papers.
           </p>
 
           {selectedClass && (
@@ -151,8 +151,8 @@ export default function GlossaryView({
               <div className="glossary-welcome-icon">
                 <i className="fa-solid fa-microscope"></i>
               </div>
-              <h2>Choose a term to get started</h2>
-              <p>Select a term to read its definition and find related quizzes, study notes, flashcards, and practice.</p>
+              <h2>Choose a term to see its definition</h2>
+              <p>Open a term to read its definition and find related study material and practice.</p>
               <div className="glossary-welcome-stats">
                 <div className="glossary-welcome-stat stat-cyan">
                   <span className="glossary-welcome-stat-number">{terms.length}</span>
