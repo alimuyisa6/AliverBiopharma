@@ -579,7 +579,7 @@ export default function Quiz() {
       const data = await getQuizBlock(activeUnitId, blockNum);
 
       if (!data?.questions?.length) {
-        addToast('There are no questions available for this block yet.', 'error');
+        addToast('This question set is not ready yet. Try another set later.', 'error');
         return;
       }
 
@@ -731,7 +731,7 @@ export default function Quiz() {
                     <Card
                       image={topic.topic_image_url}
                       title={topic.topic_name}
-                      description={questionCount > 0 ? questionCount + ' questions · ' + blockCount + ' blocks' : 'Questions haven’t been added yet'}
+                      description={questionCount > 0 ? questionCount + ' questions · ' + blockCount + ' blocks' : 'Questions are being prepared for this learning area.'}
                       footer={
                         questionCount > 0 && blockCount > 0 && !allDone ? (
                           <Button variant="primary" size="sm" onClick={() => openTopicBlocks({ ...topic, total_blocks: blockCount })} disabled={locked}>
@@ -809,7 +809,7 @@ export default function Quiz() {
                     key={topic.unit_id}
                     image={topic.topic_image_url}
                     title={topic.topic_name}
-                    description={questionCount > 0 ? questionCount + ' questions · ' + blockCount + ' blocks' : 'Questions haven’t been added yet'}
+                    description={questionCount > 0 ? questionCount + ' questions · ' + blockCount + ' blocks' : 'Questions are being prepared for this learning area.'}
                     footer={
                       questionCount > 0 && blockCount > 0 && !allDone ? (
                         <Button variant="primary" size="sm" onClick={() => openTopicBlocks({ ...topic, total_blocks: blockCount })} disabled={locked}>
@@ -836,7 +836,7 @@ export default function Quiz() {
             </Card>
 
             <div className="quiz-review-section">
-              <h3 className="quiz-review-heading">Review: Question set {currentBlock + 1} · {currentTopic}</h3>
+              <h3 className="quiz-review-heading">Review question set {currentBlock + 1} · {currentTopic}</h3>
 
               {(resultData.answers || []).map((answer, idx) => (
                 <Card key={idx} variant="flat" className="quiz-review-card card-surface-subtle card-elevation-none">
@@ -895,7 +895,7 @@ export default function Quiz() {
                       }}
                     >
                       {isPharmacy ? 'Choose another course unit' : 'Choose another topic'}
-                      <span>Return to all question cards</span>
+                      <span>Return to all question sets</span>
                     </button>
                   </div>
                 )}
