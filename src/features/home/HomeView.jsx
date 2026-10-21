@@ -43,7 +43,7 @@ function LearningJourneySection({ sections, navigate }) {
     <section className="section home-learning-journey-section">
       <div className="home-learning-journey-content">
         <span className="eyebrow">YOUR STUDY TOOLKIT</span>
-        <h2 className="home-learning-journey-title">Find the right resource for your next study session</h2>
+        <h2 className="home-learning-journey-title">Find what you need for your next study session</h2>
         <p className="section-description home-learning-journey-description">{subtitle}</p>
         <div className="home-learning-journey-images">
           <div className="home-get-started-art home-get-started-art--notes" aria-hidden="true">
@@ -59,7 +59,7 @@ function LearningJourneySection({ sections, navigate }) {
             <svg viewBox="0 0 72 72" focusable="false"><path d="m20 20 30 32M50 20 20 52" stroke="var(--primary)" strokeWidth="3" strokeLinecap="round" opacity=".65"/><circle cx="20" cy="20" r="8" fill="var(--primary)"/><circle cx="50" cy="20" r="8" fill="var(--secondary)"/><circle cx="20" cy="52" r="8" fill="var(--accent)"/><circle cx="50" cy="52" r="8" fill="var(--primary)"/><circle cx="35" cy="36" r="7" fill="var(--surface-card)" stroke="var(--secondary)" strokeWidth="2.5"/></svg>
           </div>
         </div>
-        <ThreeDButton type="button" variant="solid" iconRight="arrow-right" className="home-learning-journey-cta" onClick={() => navigate('/resources')}>Browse resources</ThreeDButton>
+        <ThreeDButton type="button" variant="solid" iconRight="arrow-right" className="home-learning-journey-cta" onClick={() => navigate('/resources')}>Explore learning resources</ThreeDButton>
       </div>
     </section>
   );
@@ -71,10 +71,10 @@ function ContinueLearningRail({ items, navigate }) {
     <section className="section home-continue-learning-section">
       <div className="section-head">
         <div className="section-head-left">
-          <span className="eyebrow">Pick up where you stopped</span>
+          <span className="eyebrow">Pick up where you left off</span>
           <h2>Continue learning</h2>
         </div>
-        <Link to="/activity" className="text-link">See all activity →</Link>
+        <Link to="/activity" className="text-link">View all learning activity →</Link>
       </div>
       <div className="row-list home-continue-learning-list">
         {items.map((item) => (
@@ -162,7 +162,7 @@ function CurriculumSnapshot({ nodes, activeLevelName, activeGroupName, sections 
     ? 'Choose a course unit, then move through its sub-course units, themes and lessons. Your curriculum is matched to your selected programme.'
     : configuredDescription && !/sub?[- ]?course unit|course unit/i.test(configuredDescription)
       ? configuredDescription
-      : 'Choose a topic, then move through its subtopics, themes and lessons. Your curriculum is matched to your selected class.';
+      : 'Choose a Biology topic, then explore its subtopics, themes and lessons for your selected class.';
 
   return (
     <section className="section home-curriculum-section" aria-labelledby="home-curriculum-heading">
@@ -175,7 +175,7 @@ function CurriculumSnapshot({ nodes, activeLevelName, activeGroupName, sections 
           <p className="section-description home-curriculum-description">{description}</p>
         </div>
       </div>
-      <div className="home-curriculum-map" aria-label="Choose a curriculum topic or course unit">
+      <div className="home-curriculum-map" aria-label="Your curriculum">
         <CurriculumNodeList nodes={nodes} isPharmacy={isPharmacy} />
       </div>
     </section>
@@ -189,7 +189,7 @@ function ChallengeTreasureCard({ challenge, onOpen }) {
   const icons = { recall: 'brain', flashcards: 'layers', quiz: 'clipboard-check' };
   return <section className={'section home-challenge-treasure home-challenge-' + (challengeType || 'daily')} aria-labelledby='home-challenge-heading'>
     <div className='home-challenge-treasure-art' aria-hidden='true'><div className='home-challenge-character'><div className='home-challenge-face'><span /><span /></div><div className='home-challenge-smile' /><div className='home-challenge-book' /></div><span className='home-challenge-spark one' /><span className='home-challenge-spark two' /></div>
-    <div className='home-challenge-treasure-copy'><span className='eyebrow'>Daily challenge treasure</span><h2 id='home-challenge-heading'>{challenge.title}</h2><p>{challenge.description}</p><div className='home-challenge-meta'><span><Icon name={icons[challengeType] || 'star'} /> {labels[challengeType] || 'Challenge'}</span><span>+{challenge.reward_xp} XP</span></div><ThreeDButton type='button' variant='solid' iconRight='arrow-right' onClick={onOpen}>{challenge.passed ? 'View challenge' : 'Open challenge'}</ThreeDButton></div>
+    <div className='home-challenge-treasure-copy'><span className='eyebrow'>Your daily challenge</span><h2 id='home-challenge-heading'>{challenge.title}</h2><p>{challenge.description}</p><div className='home-challenge-meta'><span><Icon name={icons[challengeType] || 'star'} /> {labels[challengeType] || 'Challenge'}</span><span>+{challenge.reward_xp} XP</span></div><ThreeDButton type='button' variant='solid' iconRight='arrow-right' onClick={onOpen}>{challenge.passed ? 'View challenge' : 'Start challenge'}</ThreeDButton></div>
   </section>;
 }
 
