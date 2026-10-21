@@ -98,11 +98,11 @@ export default function Donate() {
       setForm({ name: '', amount: '', txid: '' });
       setStatus({
         type: 'success',
-        message: 'Thank you. Your donation has been submitted for confirmation.',
+        message: 'Thank you. Thank you. Your donation details have been submitted for verification.',
       });
       await loadDonors();
     } catch (error) {
-      setStatus({ type: 'error', message: error.message || 'We couldn’t submit your donation. Please try again.' });
+      setStatus({ type: 'error', message: error.message || 'We couldn’t submit your donation details. Please try again.' });
     } finally {
       setSubmitting(false);
     }
@@ -131,15 +131,15 @@ export default function Donate() {
         <div className="donate-hero-overlay" />
         <div className="donate-hero-content">
           <span className="eyebrow">Support AliverBiopharm</span>
-          <h1>{config?.title || 'Support our mission'}</h1>
-          <p>{config?.subtitle || 'Help make Biology and Pharmacy learning more accessible.'}</p>
+          <h1>{config?.title || 'Help learners study Biology and Pharmacy'}</h1>
+          <p>{config?.subtitle || 'Your contribution helps us improve access to Biology and Pharmacy learning materials.'}</p>
         </div>
       </section>
 
       <div className="donate-content">
-        <section className="donate-goal" aria-label="Donation progress">
+        <section className="donate-goal" aria-label="Monthly donation progress">
           <div className="donate-goal-label">
-            <span>Monthly goal</span>
+            <span>Monthly support goal</span>
             <strong>{percentage}%</strong>
           </div>
           <div className="donate-goal-track">
@@ -180,7 +180,7 @@ export default function Donate() {
               <Icon name="credit-card" />
               <h2 id="crypto-title">Donate with cryptocurrency</h2>
             </div>
-            <p className="donate-muted donate-center">Choose how you’d like to donate.</p>
+            <p className="donate-muted donate-center">Choose a donation method.</p>
 
             {cryptoKey ? (
               <>
@@ -206,7 +206,7 @@ export default function Donate() {
             ) : (
               <div className="donate-unavailable">
                 <Icon name="circle-info" />
-                <p>Cryptocurrency donations aren’t available yet. Please use Mobile Money for now.</p>
+                <p>Crypto donations are not available yet. You can donate through Mobile Money.</p>
               </div>
             )}
           </section>
@@ -246,7 +246,7 @@ export default function Donate() {
             </div>
 
             <form className="donate-form" onSubmit={handleSubmit}>
-              <p className="donate-muted">After sending your donation, enter the transaction details so we can verify it.</p>
+              <p className="donate-muted">After sending your donation, enter the transaction ID and amount so our team can verify the payment.</p>
 
               <div className="donate-form-grid">
                 <label>
@@ -259,7 +259,7 @@ export default function Donate() {
                 </label>
                 <label>
                   <span>Transaction ID *</span>
-                  <input value={form.txid} onChange={(e) => updateField('txid', e.target.value)} maxLength={100} placeholder="Enter the ID from your Mobile Money message" required />
+                  <input value={form.txid} onChange={(e) => updateField('txid', e.target.value)} maxLength={100} placeholder="Enter the transaction ID from your Mobile Money confirmation message" required />
                 </label>
               </div>
 
