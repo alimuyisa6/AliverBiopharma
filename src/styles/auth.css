@@ -18,7 +18,7 @@
   z-index: 1;
   display: grid;
   grid-template-columns: 0.95fr 1.05fr;
-  width: min(calc(100% - (var(--space-8) * 2)), var(--auth-shell-max-width));
+  width: min(calc(100% - (var(--page-gutter-x) * 2)), var(--auth-shell-max-width));
   min-height: var(--auth-shell-min-height);
   margin: calc(-1 * var(--header-height)) auto 0;
   overflow: hidden;
@@ -629,7 +629,7 @@
 @media (max-width: 920px) {
   .auth-page {
     grid-template-columns: 1fr;
-    width: min(100%, 500px);
+    width: min(calc(100% - (var(--page-gutter-x) * 2)), 500px);
     min-height: auto;
     margin-top: calc(-1 * var(--header-height));
   }
