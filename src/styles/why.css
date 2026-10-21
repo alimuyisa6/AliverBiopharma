@@ -263,7 +263,6 @@
 @media (max-width: 768px) {
   .why-choose-section {
     padding-block: var(--section-space-y);
-    padding-inline: var(--page-gutter-x);
   }
 
   .why-choose-card { padding: var(--card-padding-y) var(--card-padding-x); }
@@ -312,8 +311,6 @@
 }
 
 @media (max-width: 480px) {
-  .why-choose-section { padding-inline: var(--page-gutter-x); }
-
   .why-choose-card-top { gap: var(--content-gap-compact); }
 
   .why-choose-label { max-width: 52%; }
