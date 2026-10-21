@@ -35,8 +35,8 @@ export default function ContactPage() {
 
   return (
     <div className="section contact-page">
-      <h1 className="section-title">Contact us</h1>
-      <p className="section-subtitle">Have a question or feedback? Send us a message—we’d be happy to hear from you.</p>
+      <h1 className="section-title">Contact AliverBiopharm</h1>
+      <p className="section-subtitle">Need help with your account, study materials, or a website feature? Send our team a message.</p>
       <ContactSection
         contactForm={contactForm}
         contactStatus={contactStatus}
