@@ -14,7 +14,7 @@ const CONTENT_TYPES = [
   {
     key: 'notes',
     label: 'Notes',
-    description: 'Understand each topic with clear explanations, diagrams, and summaries.',
+    description: 'Learn with clear explanations, diagrams, and concise summaries.',
     icon: 'book-open',
     route: '/notes',
     color: 'blue',
@@ -23,7 +23,7 @@ const CONTENT_TYPES = [
   {
     key: 'flashcards',
     label: 'Flashcards',
-    description: 'Test your memory with quick question-and-answer cards.',
+    description: 'Recall key facts with quick question-and-answer cards.',
     icon: 'layer-group',
     route: '/flashcards',
     color: 'teal',
@@ -32,7 +32,7 @@ const CONTENT_TYPES = [
   {
     key: 'pdfs',
     label: 'PDF Library',
-    description: 'Find study guides, reference sheets, and other useful documents.',
+    description: 'Find study guides, reference sheets, and course documents.',
     icon: 'file-pdf',
     route: '/pdfs',
     color: 'grey',
@@ -41,7 +41,7 @@ const CONTENT_TYPES = [
   {
     key: 'quizzes',
     label: 'Quizzes',
-    description: 'Check your understanding with questions matched to your course or subject.',
+    description: 'Check your understanding with questions matched to your selected programme.',
     icon: 'clipboard-check',
     route: '/quiz',
     color: 'amber',
@@ -50,7 +50,7 @@ const CONTENT_TYPES = [
   {
     key: 'past_papers',
     label: 'Past Papers',
-    description: 'Prepare for exams by practising with past papers.',
+    description: 'Build exam confidence with questions from previous exam papers.',
     icon: 'file-lines',
     route: '/past-papers',
     color: 'emerald',
@@ -59,7 +59,7 @@ const CONTENT_TYPES = [
   {
     key: 'recall',
     label: 'Recall',
-    description: 'Review key ideas over time to help remember them for longer.',
+    description: 'Revisit key ideas at spaced intervals to strengthen long-term recall.',
     icon: 'brain',
     route: '/recall',
     color: 'violet',
@@ -69,17 +69,17 @@ const CONTENT_TYPES = [
 
 const FILTERS = [
   { key: 'all', label: 'All' },
-  { key: 'study', label: 'Study' },
-  { key: 'practice', label: 'Practice' },
-  { key: 'assessment', label: 'Assessment' },
-  { key: 'reference', label: 'Reference' }
+  { key: 'study', label: 'Study materials' },
+  { key: 'practice', label: 'Practice tools' },
+  { key: 'assessment', label: 'Assessments' },
+  { key: 'reference', label: 'Reference materials' }
 ];
 
 const CATEGORY_LABELS = {
-  study: 'Study',
-  practice: 'Practice',
-  assessment: 'Assessment',
-  reference: 'Reference'
+  study: 'Study materials',
+  practice: 'Practice tools',
+  assessment: 'Assessments',
+  reference: 'Reference materials'
 };
 
 export default function ResourcesView({ navigate, user, sections }) {
@@ -125,7 +125,7 @@ export default function ResourcesView({ navigate, user, sections }) {
   const isPharmacy = /pharmacy/i.test(String(levelName));
   const subtitle = isPharmacy
     ? 'Explore notes, flashcards, quizzes, past papers, and recall practice for your Pharmacy programme.'
-    : 'Explore Biology notes, diagrams, flashcards, quizzes, and past papers. Choose a resource to learn a topic, practise, and check your understanding.';
+    : 'Explore Biology notes, diagrams, flashcards, quizzes, and past papers. Choose a resource to study a topic, practise key ideas, and check your understanding.';
 
   function handleBrowse(type) {
     if (!user) {
@@ -152,7 +152,7 @@ export default function ResourcesView({ navigate, user, sections }) {
         <div className="resources-intro">
           <div>
             <span className="resources-section-kicker">Resources · {levelName}{activeGroup?.name ? ` · ${activeGroup.name}` : ''}</span>
-            <h1>Choose a resource to get started</h1>
+            <h1>Explore your study tools</h1>
             <p>{subtitle}</p>
           </div>
           <span className="resources-section-context">
@@ -190,9 +190,9 @@ export default function ResourcesView({ navigate, user, sections }) {
 
         <div className="resources-section-head">
           <div>
-            <span className="resources-section-kicker">Study · Practise · Review</span>
+            <span className="resources-section-kicker">Study · Practise · Check your progress</span>
             <h2 className="resources-section-title">
-              Browse study resources
+              Your study resources
               <span className="resources-section-count">{filteredTypes.length}</span>
             </h2>
           </div>
@@ -227,7 +227,7 @@ export default function ResourcesView({ navigate, user, sections }) {
                       onClick={() => handleBrowse(type)}
                       aria-label={`Open ${type.label}`}
                     >
-                      Open resource
+                      Explore
                     </Button>
                   </div>
                 </article>
@@ -239,9 +239,9 @@ export default function ResourcesView({ navigate, user, sections }) {
             <div className="resources-empty-icon" aria-hidden="true">
               <Icon name="search" />
             </div>
-            <h3>No resources found</h3>
+            <h3>No matching resources</h3>
             <p>
-              Try another search or choose a different category.
+              Change your search term and select a category to narrow the results.
             </p>
             <Button
               variant="secondary"
@@ -252,7 +252,7 @@ export default function ResourcesView({ navigate, user, sections }) {
               }}
             >
               <Icon name="refresh" />
-              Clear search and filters
+              Reset search and filters
             </Button>
           </div>
         )}
