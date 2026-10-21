@@ -1,9 +1,9 @@
 /* Quiz challenge screens reuse the established quiz-page visual language. */
 .quiz-challenge-page {
   width: min(100%, var(--max-width, 1180px));
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - var(--header-height));
   margin-inline: auto;
-  padding: var(--section-space-y-compact, 1.5rem) var(--page-gutter-x, 1rem);
+  padding: var(--page-space-top) var(--page-gutter-x) var(--page-space-bottom);
   color: var(--text-main);
 }
 .quiz-challenge-page .quiz-challenge-shell,
