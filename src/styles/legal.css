@@ -80,10 +80,6 @@
 
 
 @media (max-width: 768px) {
-  .legal-section {
-    padding: var(--page-space-top) var(--page-gutter-x) var(--page-space-bottom);
-  }
-
   .legal-title {
     font-size: var(--text-3xl);
   }
