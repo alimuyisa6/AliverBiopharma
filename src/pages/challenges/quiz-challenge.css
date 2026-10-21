@@ -235,7 +235,7 @@ body.dark-mode .quiz-challenge-page .quiz-challenge-option.is-selected {
   .quiz-challenge-page .quiz-challenge-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 560px) {
-  .quiz-challenge-page { padding-top: 1rem; padding-bottom: 1.5rem; }
+  .quiz-challenge-page { padding-top: var(--page-space-top); padding-bottom: var(--page-space-bottom); }
   .quiz-challenge-page .quiz-challenge-shell,
   .quiz-challenge-page .quiz-challenge-state,
   .quiz-challenge-page .quiz-challenge-result { padding: 1rem; border-radius: 1rem; }
