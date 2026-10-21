@@ -9,7 +9,7 @@ export function PdfLibrarySection({ pdfs, onPreview, onDownload }) {
         <div className="pdf-library-inner">
           <div className="pdf-library-heading">
             <span className="sec-label pdf-sec-label">PDF Resources</span>
-            <h2 className="pdf-section-title pdf-gradient-title">Your Study Materials Library</h2>
+            <h2 className="pdf-section-title pdf-gradient-title">Your study materials library</h2>
             <p className="section-subtitle pdf-subtitle">
               Curated PDF resources for your level. Preview any document before downloading.
             </p>
@@ -19,8 +19,8 @@ export function PdfLibrarySection({ pdfs, onPreview, onDownload }) {
               <div className="pdf-cards-area">
                 <div className="pdf-empty-state">
                   <i className="fa-solid fa-file-pdf pdf-empty-icon"></i>
-                  <p>No PDF resources available for your level yet.</p>
-                  <span>Check back soon as new materials are added.</span>
+                  <p>No PDF resources are available for your selected level yet.</p>
+                  <span>New study materials will appear here when they’re available.</span>
                 </div>
               </div>
             </div>
@@ -37,7 +37,7 @@ export function PdfLibrarySection({ pdfs, onPreview, onDownload }) {
       <div className="pdf-library-inner">
         <div className="pdf-library-heading">
           <span className="sec-label pdf-sec-label">PDF Resources</span>
-          <h2 className="pdf-section-title pdf-gradient-title">Your Study Materials Library</h2>
+          <h2 className="pdf-section-title pdf-gradient-title">Your study materials library</h2>
           <p className="section-subtitle pdf-subtitle">
             Curated PDF resources for your level. Preview any document before downloading.
           </p>
@@ -75,7 +75,7 @@ export function PdfLibrarySection({ pdfs, onPreview, onDownload }) {
               ))}
             </div>
             <div className="pdf-subtopics-column">
-              <div className="pdf-subtopics-header">Browse Topics</div>
+              <div className="pdf-subtopics-header">Browse learning areas</div>
               <div className="pdf-subtopics-list">
                 {topics.map(topic => (
                   <button

@@ -57,8 +57,8 @@ export default function QuizHero({ level, class_name, groupId, isPharmacy = fals
 
         <p className="quiz-hero-subtitle font-source-sans">
           {levelName
-            ? `Build your knowledge in ${levelName}${classLabel ? ` (${classLabel})` : ''}, track progress, and master every topic.`
-            : 'Build scientific knowledge, track progress, earn achievements, and master every topic.'}
+            ? `Build your knowledge in ${levelName}${classLabel ? ` (${classLabel})` : ''}, track progress, and strengthen your understanding.`
+            : 'Build scientific knowledge, track progress, earn achievements, and strengthen your understanding.'}
         </p>
 
         <div className="grid grid-cols-4 quiz-hero-stats">

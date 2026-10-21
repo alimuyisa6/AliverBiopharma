@@ -24,7 +24,7 @@ export default function QuizDashboard({ user, level, class_name }) {
   const { platform, quiz, achievements } = summary;
   return (
     <div className="quiz-dashboard">
-      <h3 className="quiz-section-heading font-poppins">Your Dashboard</h3>
+      <h3 className="quiz-section-heading font-poppins">Your learning dashboard</h3>
 
       <div className="grid grid-cols-3">
         <div className="stat-card card-surface-subtle card-elevation-none card-density-comfortable">
@@ -48,13 +48,13 @@ export default function QuizDashboard({ user, level, class_name }) {
         <div className="stat-card card-surface-subtle card-elevation-none card-density-comfortable">
           <Icon name="microscope" className="stat-icon stat-icon-secondary" />
           <div className="stat-value font-poppins">{quiz.blocks_completed}</div>
-          <div className="stat-label font-source-sans">Blocks Done</div>
+          <div className="stat-label font-source-sans">Question sets completed</div>
         </div>
 
         <div className="stat-card card-surface-subtle card-elevation-none card-density-comfortable">
           <Icon name="bullseye" className="stat-icon stat-icon-accent" />
           <div className="stat-value font-poppins">{quiz.recent_pass_rate}%</div>
-          <div className="stat-label font-source-sans">Recent Pass Rate</div>
+          <div className="stat-label font-source-sans">Recent pass rate</div>
         </div>
       </div>
     </div>

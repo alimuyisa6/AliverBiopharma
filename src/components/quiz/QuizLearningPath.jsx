@@ -23,7 +23,7 @@ export default function QuizLearningPath({ level, class_name }) {
     <section className="section quiz-learning-path">
       <h3 className="quiz-section-heading font-poppins">
         <Icon name="route" className="icon stat-icon-secondary" />
-        Your Learning<br />Path{levelName ? ` in ${levelName}` : ''}
+        Your learning<br />path{levelName ? ` in ${levelName}` : ''}
         {class_name && <span className="quiz-section-heading-sub font-maven-pro"> – {class_name}</span>}
       </h3>
 
