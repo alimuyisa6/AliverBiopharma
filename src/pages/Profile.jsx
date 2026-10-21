@@ -666,7 +666,7 @@ export default function Profile() {
       addToast(
         data?.friendly_name
           ? `Passkey added: ${data.friendly_name}`
-          : 'Passkey added successfully',
+          : 'Your passkey has been added',
         'success'
       );
     } catch (err) {
@@ -769,7 +769,7 @@ export default function Profile() {
       const updated = await updatePreferences({ [field]: value });
       setBundle((prev) => (prev ? { ...prev, profile: { ...prev.profile, ...updated.profile } } : prev));
       await refresh();
-      addToast(field === 'language' ? 'Language preference updated' : 'Timezone preference updated', 'success');
+      addToast(field === 'language' ? 'Your language preference has been saved' : 'Your time zone preference has been saved', 'success');
     } catch (err) {
       const message = getExactErrorMessage(err, 'Failed to update preference');
       logProfileError('handlePreferenceChange failed', err);
@@ -1020,8 +1020,8 @@ export default function Profile() {
                   <AliverProfileGlyph name="user" />
                 </span>
                 <div>
-                  <h2 id="profile-overview-title">Profile Overview</h2>
-                  <p>View and manage your basic information, academic details and account status.</p>
+                  <h2 id="profile-overview-title">Your profile</h2>
+                  <p>Keep your personal details and learning programme up to date.</p>
                 </div>
               </div>
 
@@ -1056,7 +1056,7 @@ export default function Profile() {
                   <div className="profile-summary-detail">
                     <svg className="profile-detail-symbol profile-detail-symbol-programme" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M4.5 9.5c4.2-1.8 8-.9 11.5 1.8v15c-3.5-2.7-7.3-3.6-11.5-1.8v-15Zm23 0c-4.2-1.8-8-.9-11.5 1.8v15c3.5-2.7 7.3-3.6 11.5-1.8v-15Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round"/><path d="M8 13.5c1.7-.3 3.4 0 4.8.8m-4.8 3c1.7-.3 3.4 0 4.8.8m11.2-4.6c-1.7-.3-3.4 0-4.8.8m4.8 3c-1.7-.3-3.4 0-4.8.8" stroke="currentColor" strokeWidth="1.35" strokeLinecap="round"/><path d="M16 5.5v4" stroke="var(--palette-blue, var(--primary))" strokeWidth="2" strokeLinecap="round"/><circle cx="16" cy="4" r="2" fill="var(--palette-mint, var(--primary))"/></svg>
                     <span className="profile-summary-detail-label">Programme:</span>
-                    <strong>{profileMeta?.programme || profileMeta?.track || profileMeta?.class_name || 'Not set'}</strong>
+                    <strong>{profileMeta?.programme || profileMeta?.track || profileMeta?.class_name || 'Not set yet'}</strong>
                   </div>
                   <div className="profile-summary-detail">
                     <svg className="profile-detail-symbol profile-detail-symbol-member" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 3.5 19.1 6l4-.2 1.7 3.6 3.6 1.7-.2 4L30.5 18l-2.3 3.1.2 4-3.6 1.7-1.7 3.6-4-.2L16 32.5l-3.1-2.3-4 .2-1.7-3.6-3.6-1.7.2-4L1.5 18l2.3-3.1-.2-4 3.6-1.7 1.7-3.6 4 .2L16 3.5Z" transform="translate(0 -2)" stroke="currentColor" strokeWidth="1.35" strokeLinejoin="round"/><circle cx="16" cy="16" r="8.2" stroke="currentColor" strokeWidth="1.5"/><path d="M16 10.5v5.8l4 2.3" stroke="var(--palette-blue, var(--primary))" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/><circle cx="16" cy="16" r="1.6" fill="var(--palette-mint, var(--primary))"/></svg>
@@ -1069,18 +1069,18 @@ export default function Profile() {
               <div className="profile-categories">
                 <div className="profile-categories-heading">
                   <span />
-                  <h2>Profile Sections</h2>
+                  <h2>Manage your profile</h2>
                   <span />
                 </div>
 
                 <div className="profile-category-grid">
                   <button type="button" className="profile-category-card" onClick={() => selectSection('overview')}>
                     <span className="profile-category-icon profile-category-icon-primary"><svg viewBox="0 0 40 40" aria-hidden="true" fill="none"><path d="M7 30.5c1.8-5.8 6.3-8.7 13-8.7s11.2 2.9 13 8.7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/><path d="M20 20.2c4.2 0 7.4-3.3 7.4-7.5S24.2 5.2 20 5.2s-7.4 3.3-7.4 7.5 3.2 7.5 7.4 7.5Z" stroke="currentColor" strokeWidth="1.8"/><path d="M5 18.5v-7l3.2-3.2m26.8 10.2v-7l-3.2-3.2" stroke="var(--palette-mint, currentColor)" strokeWidth="1.5" strokeLinecap="round"/><circle cx="20" cy="12.7" r="2" fill="var(--palette-blue, currentColor)"/></svg></span>
-                    <span>Personal Info</span>
+                    <span>Personal details</span>
                   </button>
                   <button type="button" className="profile-category-card" onClick={() => selectSection('curriculum')}>
                     <span className="profile-category-icon profile-category-icon-success"><svg viewBox="0 0 40 40" aria-hidden="true" fill="none"><path d="m4 13.5 16-8 16 8-16 8-16-8Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/><path d="M10 17v8.5c5.7 5.1 14.3 5.1 20 0V17M36 14v10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/><circle cx="36" cy="26.5" r="2" fill="var(--palette-mint, currentColor)"/><path d="M14 11.5 20 8.7l6 2.8" stroke="var(--palette-blue, currentColor)" strokeWidth="1.5" strokeLinecap="round"/></svg></span>
-                    <span>Academic Details</span>
+                    <span>Learning programme</span>
                   </button>
                   <button type="button" className="profile-category-card" onClick={() => selectSection('security')}>
                     <span className="profile-category-icon profile-category-icon-warning"><svg viewBox="0 0 40 40" aria-hidden="true" fill="none"><path d="M20 4.5 32 9v9.3c0 7.7-4.8 13.3-12 17.2-7.2-3.9-12-9.5-12-17.2V9l12-4.5Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/><path d="M20 10v19" stroke="currentColor" strokeWidth="1.5" strokeDasharray="2.5 3"/><path d="m14.5 19.5 3.7 3.6 7.6-8" stroke="var(--palette-mint, currentColor)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><circle cx="29.5" cy="9.5" r="2.3" fill="var(--palette-blue, currentColor)"/></svg></span>
@@ -1092,7 +1092,7 @@ export default function Profile() {
                   </button>
                   <button type="button" className="profile-category-card" onClick={() => selectSection('account')}>
                     <span className="profile-category-icon profile-category-icon-info"><svg viewBox="0 0 40 40" aria-hidden="true" fill="none"><path d="M10 5.5h13l7 7v21H10v-28Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/><path d="M23 5.5v7h7M15 18h10m-10 5h10m-10 5h6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/><path d="M5 10.5v24h20" stroke="var(--palette-blue, currentColor)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/><circle cx="28" cy="29" r="4" fill="var(--palette-mint, currentColor)" stroke="var(--surface-card, white)" strokeWidth="1.3"/><path d="m26.5 29 1 1 2-2" stroke="var(--surface-card, white)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg></span>
-                    <span>Administrative</span>
+                    <span>Account and data</span>
                   </button>
                 </div>
               </div>
@@ -1152,7 +1152,7 @@ export default function Profile() {
                   <Card variant="inset" className="profile-card-main card-lifted">
                     <h3 className="profile-detail-title">
                       <AliverProfileGlyph name="id-card" />
-                      Personal Information
+                      Your personal details
                     </h3>
                     <p className="profile-detail-description">
                       Update your legal and display name. Your display name is shown publicly across reviews and comments.
@@ -1208,19 +1208,19 @@ export default function Profile() {
                   Learning Curriculum
                 </h3>
                 <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
-                  Your current level is <strong style={{ color: THEME.textMain }}>{profileMeta?.track || 'Not set'}</strong>, {String(profileMeta?.track || '').toLowerCase().includes('pharmacy') ? 'programme' : 'class'}{' '}
-                  <strong style={{ color: THEME.textMain }}>{profileMeta?.class_name || 'Not set'}</strong>. Level changes require
+                  Your current programme is <strong style={{ color: THEME.textMain }}>{profileMeta?.track || 'Not set yet'}</strong>, {String(profileMeta?.track || '').toLowerCase().includes('pharmacy') ? 'programme' : 'class'}{' '}
+                  <strong style={{ color: THEME.textMain }}>{profileMeta?.class_name || 'Not set yet'}</strong>. Level changes require
                   administrator approval.
                 </p>
 
                 {curriculumError && (
-                  <ProfileError error={curriculumError} title="Curriculum levels could not be loaded" onRetry={loadCurriculumLevels} />
+                  <ProfileError error={curriculumError} title="We couldn’t load the available learning programmes" onRetry={loadCurriculumLevels} />
                 )}
 
                 {profileMeta?.role !== 'teacher' && (
                   <form onSubmit={handleLevelChangeRequest}>
                     <div className="form-group">
-                      <label style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14 }}>New Level</label>
+                      <label style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14 }}>New learning programme</label>
                       <select
                         className="form-select"
                         style={{ color: THEME.textMain, fontFamily: THEME.font, background: THEME.bgCard, border: `1px solid ${THEME.border}` }}
@@ -1240,7 +1240,7 @@ export default function Profile() {
                     </div>
 
                     <div className="form-group">
-                      <label style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14 }}>Reason</label>
+                      <label style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14 }}>Why are you requesting this change?</label>
                       <textarea
                         className="form-textarea"
                         style={{ color: THEME.textMain, fontFamily: THEME.font, background: THEME.bgCard, border: `1px solid ${THEME.border}` }}
