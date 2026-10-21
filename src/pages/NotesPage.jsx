@@ -213,7 +213,7 @@ export default function NotesPage() {
               Study notes
             </h1>
             <p className="notes-page-description">
-              Build your understanding one topic at a time. Search your notes, follow your learning path, and revisit ideas that need more practice.
+              Build your understanding step by step. Search your notes, follow your learning path, and revisit ideas that need more practice.
             </p>
           </div>
 
@@ -226,7 +226,7 @@ export default function NotesPage() {
             <div className="notes-context-main">
               <div className="notes-context-kicker font-mono">Your learning pathway</div>
               <p className="notes-context-description">
-                These notes cover <strong>{contextTitle}</strong>. Explore the related topics below when you’re ready to continue.
+                These notes cover <strong>{contextTitle}</strong>. Explore related learning areas when you’re ready to continue.
               </p>
               {contextPath && (
                 <Link className="notes-context-link" to={contextPath}>
@@ -247,10 +247,10 @@ export default function NotesPage() {
           <section className="notes-pathway" aria-labelledby="notes-pathway-title">
             <div className="notes-section-heading">
               <div>
-                <span className="sec-label font-mono">Explore related topics</span>
-                <h2 id="notes-pathway-title">Related topics</h2>
+                <span className="sec-label font-mono">Explore related learning areas</span>
+                <h2 id="notes-pathway-title">Related learning areas</h2>
               </div>
-              <span className="notes-section-count font-mono">{contextChildren.length} topics</span>
+              <span className="notes-section-count font-mono">{contextChildren.length} learning areas</span>
             </div>
 
             <div className="notes-pathway-list">
@@ -285,8 +285,8 @@ export default function NotesPage() {
               type="search"
               value={searchTerm}
               onChange={(event) => setSearchTerm(event.target.value)}
-              placeholder="Search notes"
-              aria-label="Search notes"
+              placeholder="Search your notes"
+              aria-label="Search your notes"
             />
             {searchTerm && (
               <button type="button" className="notes-search-clear" onClick={() => setSearchTerm('')} aria-label="Clear note search">
@@ -312,14 +312,14 @@ export default function NotesPage() {
         ) : notes.length === 0 ? (
           <EmptyState
             image={getEmptyStateImage('notes')}
-            title="No study notes available yet"
+            title="No study notes are available for this selection yet"
             description={`Notes for ${contextTitle || classLabel || levelName || 'your selected study level'} will appear here as they become available.`}
           />
         ) : filteredNotes.length === 0 ? (
           <EmptyState
             image={getEmptyStateImage('notes')}
-            title="No matching notes"
-            description={`No notes match “${searchTerm}”. Try another title, topic, or keyword.`}
+            title="No matching study notes"
+            description={`No notes match “${searchTerm}”. Try a different search term.`}
             action={<Button onClick={() => setSearchTerm('')}>Clear search</Button>}
           />
         ) : (
@@ -332,7 +332,7 @@ export default function NotesPage() {
                 media={
                   <StickyNotePolaroidFrame
                     noteTitle={note.title}
-                    noteText={note.content_preview || 'Review the key ideas in this topic.'}
+                    noteText={note.content_preview || 'Review the key ideas in this note.'}
                     noteFooter={note.read_time ? note.read_time + ' min read' : 'Read note'}
                     noteColor={note.is_premium ? 'gold' : 'teal'}
                     rotation={0}
