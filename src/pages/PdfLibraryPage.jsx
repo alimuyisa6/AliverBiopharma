@@ -104,12 +104,12 @@ export default function PdfLibraryPage() {
       <div className="pdf-library-page">
         <section className="pdf-library-controls" aria-labelledby="pdf-library-controls-title">
           <div className="pdf-library-controls-copy">
-            <h2 id="pdf-library-controls-title">Find study PDFs</h2>
-            <p>Sort by title, author, or file size to find the study material you need.</p>
+            <h2 id="pdf-library-controls-title">Find study PDFs and reference guides</h2>
+            <p>Sort the library by title, author, or file size to find the right document.</p>
           </div>
           <div className="toolbar">
             <div className="result-count" aria-live="polite">
-              <span className="result-count-label">Available resources</span>
+              <span className="result-count-label">PDFs available</span>
               <strong>{pdfs.length}</strong>
               <span>{pdfs.length === 1 ? 'PDF' : 'PDFs'}</span>
             </div>
@@ -126,7 +126,7 @@ export default function PdfLibraryPage() {
         </section>
 
         <div className="pdf-library-heading">
-          <h1 className="section-title pdf-library-title">Study PDF library</h1>
+          <h1 className="section-title pdf-library-title">Study PDFs</h1>
           {(levelName || classLabel) && (
             <p className="pdf-library-class">
               {levelName}{levelName && classLabel ? ' · ' : ''}{classLabel}
@@ -134,7 +134,7 @@ export default function PdfLibraryPage() {
           )}
         </div>
 
-        {curriculumUnitId && <p className="pdf-library-class">Showing PDFs for this topic.</p>}
+        {curriculumUnitId && <p className="pdf-library-class">Showing PDFs for this selected learning area.</p>}
 
         {loading ? (
           <div className="pdf-skeleton-grid">
@@ -153,7 +153,7 @@ export default function PdfLibraryPage() {
             <EmptyState image={getEmptyStateImage('error')} title="We couldn’t load your PDFs" description={error} action={<Button onClick={() => loadPdfs(() => true, true)}>Try again</Button>} />
           )
         ) : pdfs.length === 0 ? (
-          <EmptyState image={getEmptyStateImage('pdfs')} title="No study PDFs available yet" />
+          <EmptyState image={getEmptyStateImage('pdfs')} title="No PDFs are available for this selection yet." />
         ) : (
           <div className="pdf-grid">
             {sortedPdfs.map((pdf) => (
