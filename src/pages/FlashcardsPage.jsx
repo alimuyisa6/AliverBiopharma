@@ -227,7 +227,7 @@ export default function FlashcardsPage() {
       <>
      <div className="flashcards-page">
         <div className="section flashcard-subject-section">
-          <span className="sec-label">Study tools</span>
+          <span className="sec-label">FLASHCARD PRACTICE</span>
           <h1 className="section-title flashcard-title">
             {levelName || 'Flashcards'}
           </h1>
@@ -243,7 +243,7 @@ export default function FlashcardsPage() {
           {decks.length === 0 ? (
             <EmptyState
               image={getEmptyStateImage('flashcards')}
-              title="No flashcard decks yet"
+              title="No flashcard sets are available yet"
               description={`Flashcards for ${classLabel || levelName || 'your programme'} will appear here when they’re ready.`}
             />
           ) : (
@@ -257,7 +257,7 @@ export default function FlashcardsPage() {
                   className="flashcard-deck-card"
                   footer={
                     <Button variant="3d" size="sm" icon="play" onClick={() => handleDeckSelect(deck)} disabled={locked}>
-                      Study flashcards
+                      Review flashcards
                     </Button>
                   }
                 >
