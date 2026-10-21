@@ -4,7 +4,7 @@
   width: 100%;
   max-width: none;
   margin: 0;
-  padding-inline: clamp(var(--space-4), 3vw, var(--space-10));
+  padding-inline: var(--page-gutter-x);
 }
 
 .pdf-library-page {
@@ -307,7 +307,7 @@
 
 @media (max-width: 768px) {
   .section.pdf-library-section {
-    padding-inline: var(--space-4);
+    padding-inline: var(--page-gutter-x);
   }
 
   .pdf-library-page {
