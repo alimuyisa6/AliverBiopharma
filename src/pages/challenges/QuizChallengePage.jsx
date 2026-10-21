@@ -167,7 +167,7 @@ export default function QuizChallengePage() {
         <section className="section quiz-challenge-state">
           <Icon name="alert-circle" />
           <span className="eyebrow">Quiz practice</span>
-          <h1>We could not open this challenge</h1>
+          <h1>We couldn’t open your quiz challenge</h1>
           <p>{error}</p>
           <button className="btn btn-secondary" onClick={() => navigate('/challenges')}>
             Back to challenges
@@ -182,8 +182,8 @@ export default function QuizChallengePage() {
       <main className="quiz-page quiz-challenge-page">
         <section className="section quiz-challenge-state">
           <span className="eyebrow">Quiz practice</span>
-          <h1>No questions available yet</h1>
-          <p>This challenge does not currently have enough dedicated challenge content.</p>
+          <h1>Your quiz challenge isn’t ready yet</h1>
+          <p>This quiz challenge is still being prepared. Return to the challenge centre and try again later.</p>
           <button className="btn btn-secondary" onClick={() => navigate('/challenges')}>
             Back to challenges
           </button>
@@ -203,8 +203,8 @@ export default function QuizChallengePage() {
             name={result?.passed ? 'trophy' : 'book-open'}
             className="quiz-challenge-result-icon"
           />
-          <span className="eyebrow">Quiz complete</span>
-          <h1>{result?.passed ? 'Well done!' : 'Quiz completed'}</h1>
+          <span className="eyebrow">Challenge complete</span>
+          <h1>{result?.passed ? 'Well done!' : 'Challenge completed'}</h1>
           <div className="quiz-challenge-score">
             {Number(result?.score ?? session?.score ?? 0)}%
           </div>
@@ -214,7 +214,7 @@ export default function QuizChallengePage() {
               : 'Keep practising and use your next challenge to strengthen this area.'}
           </p>
           <button className="btn btn-primary" onClick={() => navigate('/challenges')}>
-            Back to challenge centre
+            Back to challenges
           </button>
         </section>
       </main>
