@@ -609,7 +609,7 @@ export default function PastPapers() {
             <div className="search-input-wrapper past-papers-search-wrapper">
               <input
                 type="search"
-                placeholder="Search papers..."
+                placeholder="Search past papers..."
                 value={searchQuery}
                 onChange={(event) =>
                   setSearchQuery(event.target.value)
@@ -881,16 +881,16 @@ export default function PastPapers() {
             image={getEmptyStateImage('past_papers')}
             title={
               activeTab === 'bookmarked'
-                ? 'No Bookmarked Papers'
+                ? 'No saved past papers'
                 : activeTab === 'downloaded'
-                  ? 'No Downloads Yet'
-                  : 'No Papers Found'
+                  ? 'No downloads yet'
+                  : 'No matching past papers'
             }
             description={
               activeTab === 'bookmarked'
-                ? 'Bookmark papers to find them here later.'
+                ? 'Your saved papers will appear here.'
                 : activeTab === 'downloaded'
-                  ? 'Papers you download will appear here.'
+                  ? 'Your downloaded papers will be listed here.'
                   : `No past papers match your filters for ${
                       classLabel ||
                       levelName ||
@@ -903,7 +903,7 @@ export default function PastPapers() {
                   variant="secondary"
                   onClick={clearFilters}
                 >
-                  Clear Filters
+                  Clear filters
                 </Button>
               )
             }
