@@ -221,8 +221,6 @@ html[data-ui-density="spacious"] { --content-gap: calc(var(--space-6) * var(--ui
 @media (max-width: 768px) {
   :root {
     --header-height: 56px;
-    --page-gutter-x: var(--space-4);
-    --page-gutter-y: var(--space-3);
     --section-space-y: var(--space-6);
     --section-space-y-compact: var(--space-3);
     --section-space-y-large: var(--space-8);
@@ -242,8 +240,6 @@ html[data-ui-density="spacious"] { --content-gap: calc(var(--space-6) * var(--ui
 
 @media (max-width: 480px) {
   :root {
-    --page-gutter-x: var(--space-3);
-    --page-gutter-y: var(--space-3);
     --section-space-y: var(--space-5);
     --section-space-y-compact: var(--space-3);
     --section-space-y-large: var(--space-6);
