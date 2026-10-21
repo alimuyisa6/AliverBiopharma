@@ -75,7 +75,7 @@ function renderBlockContent(block) {
   if (block.content_type === 'interactive') {
     return (
       <div className="curriculum-node-block-interactive">
-        {content ? <p>{content}</p> : <p>Interactive activities will appear here when available.</p>}
+        {content ? <p>{content}</p> : <p>Interactive activities will be added here when they are ready.</p>}
       </div>
     );
   }
@@ -83,7 +83,7 @@ function renderBlockContent(block) {
   if (block.content_type === 'quiz_ref') {
     return (
       <div className="curriculum-node-block-quiz">
-        {content ? <p>{content}</p> : <p>Answer a few questions to check your understanding.</p>}
+        {content ? <p>{content}</p> : <p>Answer a few questions to check what you’ve learned.</p>}
       </div>
     );
   }
@@ -223,7 +223,7 @@ export default function CurriculumNodePage() {
         <header className="curriculum-node-header">
           <span className="curriculum-node-type">Your learning pathway</span>
           <h1>Choose a {rootLabel}</h1>
-          <p>Start here, then explore the connected {isPharmacyRoot ? 'sub-course units' : 'subtopics'}, themes and lessons. Your selected class or programme determines what you see.{focusedResourceLabel ? ` You chose ${focusedResourceLabel}; we’ll keep that resource in focus as you move through the curriculum.` : ''}</p>
+          <p>Start here, then explore the connected {isPharmacyRoot ? 'sub-course units' : 'subtopics'}, themes and lessons. Your selected curriculum determines what you see.{focusedResourceLabel ? ` You chose ${focusedResourceLabel}; we’ll keep that resource in focus as you move through the curriculum.` : ''}</p>
         </header>
         <section className="curriculum-node-section">
           <div className="curriculum-node-section-heading"><div><span className="curriculum-node-kicker">Step 1 of 4</span><h2>{isPharmacyRoot ? 'Course units' : 'Topics'}</h2></div><span className="curriculum-node-count">{rootNodes.length} available</span></div>
@@ -276,8 +276,8 @@ export default function CurriculumNodePage() {
         <span className="curriculum-node-type">{nodeLabel}{curriculumDepth >= 0 ? ` · Step ${Math.min(curriculumDepth + 1, 4)} of 4` : ''}</span>
         <h1>{node.name}</h1>
         <p>{children.length > 0
-          ? `Choose a ${curriculumLevelLabel(curriculumDepth + 1, isPharmacy).toLowerCase()} to continue. Your selected class or programme is kept throughout the journey.`
-          : `You’re at the lesson. Start with the key ideas, then use the linked questions and revision materials to check your understanding.`}</p>
+          ? `Choose a ${curriculumLevelLabel(curriculumDepth + 1, isPharmacy).toLowerCase()} to continue. Your selected curriculum stays in place throughout the journey.`
+          : `You’ve reached the lesson. Start with the key ideas, then use the linked questions and revision materials to check your understanding.`}</p>
         {focusedResourceLabel && <p className="curriculum-node-focus-note"><span>Your selected resource:</span> <strong>{focusedResourceLabel}</strong><span> — we’ll keep it in focus as you move through this pathway.</span></p>}
       </header>
 
@@ -286,11 +286,11 @@ export default function CurriculumNodePage() {
           <div className="curriculum-node-section-heading">
             <div>
               <span className="curriculum-node-kicker">Start with the key ideas</span>
-              <h2 id="curriculum-core-reading-title">Build your understanding of {node.name}</h2>
+              <h2 id="curriculum-core-reading-title">Understand {node.name}</h2>
             </div>
             <span className="curriculum-node-count">{linkedNotes.length} {linkedNotes.length === 1 ? 'reading' : 'readings'}</span>
           </div>
-          <p className="curriculum-node-reading-intro">Read the explanation first, then return here for questions, flashcards and other revision materials.</p>
+          <p className="curriculum-node-reading-intro">Read the explanation first, then return for questions, flashcards and revision materials.</p>
           <div className="curriculum-node-core-reading-list">
             {linkedNotes.map((item) => (
               <Link key={item.id} to={`/notes/read?id=${encodeURIComponent(item.content_id)}&return_to=${encodeURIComponent(returnToLesson)}`} className="curriculum-node-core-reading-link">

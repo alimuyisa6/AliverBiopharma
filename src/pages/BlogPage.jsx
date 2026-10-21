@@ -59,7 +59,7 @@ export default function BlogPage() {
         if (!cached) {
           setArticle(null);
           setSections(null);
-          setError(err?.message || "We couldn't load the blog content. Please try again.");
+          setError(err?.message || "We couldn’t load the articles. Please try again.");
         }
       })
       .finally(() => {
@@ -492,7 +492,7 @@ export default function BlogPage() {
           </section>
         ) : !featured && posts.length === 0 ? (
           <section className="blog-article-body">
-            <p>No blog content is currently available.</p>
+            <p>No articles have been published yet.</p>
           </section>
         ) : (
           <>

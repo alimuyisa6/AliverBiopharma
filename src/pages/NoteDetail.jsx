@@ -483,7 +483,7 @@ export default function NoteDetail() {
           image={getEmptyStateImage('notes')}
           title="This note is unavailable"
           description={fetchError || 'The requested note could not be found.'}
-          action={<Button onClick={() => navigate('/notes')}>Browse Notes</Button>}
+          action={<Button onClick={() => navigate('/notes')}>Browse study notes</Button>}
         />
       </div>
     );
@@ -619,8 +619,8 @@ export default function NoteDetail() {
         {user && readingComplete && (
           <section className="note-understanding-panel" aria-labelledby="note-understanding-title">
             <h2 id="note-understanding-title" className="font-poppins">How well did you understand this note?</h2>
-            <p>Choose what would help you next. This practice is separate from formal quizzes and doesn’t award quiz or BioRecall XP.</p>
-            <p><Link to="/learning/explanation" className="note-learning-history-link">View your saved explanations</Link></p>
+            <p>Choose what would help you next. This practice is separate from formal quizzes. It doesn’t award quiz XP or BioRecall XP.</p>
+            <p><Link to="/learning/explanation" className="note-learning-history-link">View saved explanations</Link></p>
             <div className="note-understanding-actions">
               <button type="button" className={`note-understanding-choice${understanding === 'yes' ? ' is-selected' : ''}`} onClick={handleUnderstandingYes}>
                 Yes, I understand
@@ -642,7 +642,7 @@ export default function NoteDetail() {
                   minLength={3}
                   rows={4}
                   required
-                  placeholder="Tell your AI tutor which idea, step, or term you would like explained."
+                  placeholder="Tell your AI tutor what you would like explained."
                 />
                 <button type="submit" disabled={learningSubmitting || learningQuestion.trim().length < 3}>
                   {learningSubmitting ? 'Saving your question…' : 'Open my explanation'}
@@ -653,8 +653,8 @@ export default function NoteDetail() {
             {understanding === 'yes' && (
               <div className="note-trial-questions">
                 <h3 className="font-poppins">Quick practice</h3>
-                {trialLoading ? <p>Finding practice questions for this topic…</p> : trialQuestions.length === 0 ? (
-                  <p>No practice questions are available for this topic yet. Your progress is saved, so try another note or come back later.</p>
+                {trialLoading ? <p>Finding practice questions for this learning area…</p> : trialQuestions.length === 0 ? (
+                  <p>No practice questions are available for this learning area yet. Your progress is saved. Try another note later.</p>
                 ) : trialQuestions.map((question, index) => {
                   const feedback = trialFeedback[question.id];
                   return (
@@ -751,7 +751,7 @@ export default function NoteDetail() {
               <input
                 type="text"
                 className="note-comment-input"
-                placeholder="Share a thought or ask a question..."
+                placeholder="Share a thought about this note..."
                 value={commentInput}
                 onChange={(event) => setCommentInput(event.target.value)}
                 onKeyDown={(event) => event.key === 'Enter' && handleComment()}
@@ -808,21 +808,21 @@ export default function NoteDetail() {
               <svg aria-hidden="true" viewBox="0 0 20 20" width="16" height="16" fill="none">
                 <path d="M12.5 4.5 7 10l5.5 5.5M7.5 10H17" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              <span>Back to Lesson</span>
+              <span>Back to the lesson</span>
             </Link>
           ) : (
             <button type="button" className="note-return-to-lesson-link note-nav-button" onClick={() => navigate(-1)}>
               <svg aria-hidden="true" viewBox="0 0 20 20" width="16" height="16" fill="none">
                 <path d="M12.5 4.5 7 10l5.5 5.5M7.5 10H17" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              <span>Back to Lesson</span>
+              <span>Back to the lesson</span>
             </button>
           )}
           <button type="button" className="note-back-btn note-back-bottom note-nav-button" onClick={handleBack}>
             <svg aria-hidden="true" viewBox="0 0 20 20" width="16" height="16" fill="none">
               <path d="M12.5 4.5 7 10l5.5 5.5M7.5 10H17" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            <span>Back to Notes</span>
+            <span>Back to study notes</span>
           </button>
         </nav>
       </div>
