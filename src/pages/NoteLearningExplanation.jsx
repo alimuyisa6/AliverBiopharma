@@ -172,16 +172,16 @@ export default function NoteLearningExplanation() {
     return (
       <section className="note-learning-page">
         <header className="note-learning-header">
-          <Link to="/notes" className="note-learning-back">← Back to notes</Link>
+          <Link to="/notes" className="note-learning-back">← Back to study notes</Link>
           <p className="note-learning-eyebrow">YOUR LEARNING HISTORY</p>
           <h1>Your learning history</h1>
-          <p>Return here whenever you want to revisit a question you asked about a study note.</p>
+          <p>Return here to revisit questions you asked about a study note.</p>
         </header>
         {error && <div className="note-learning-card"><p role="alert">{error}</p></div>}
         {!error && history.length === 0 && (
           <div className="note-learning-card">
             <h2>No saved explanations yet</h2>
-            <p>Need help with a study note? Ask your question at the end of the note, and your saved explanation will appear here.</p>
+            <p>Need help understanding a study note? Ask your question at the end of the note. Your saved explanation will appear here.</p>
             <Link to="/notes">Browse study notes</Link>
           </div>
         )}
@@ -216,7 +216,7 @@ export default function NoteLearningExplanation() {
         
         <p className="note-learning-eyebrow">YOUR LEARNING HISTORY</p>
         <h1>{noteTitle}</h1>
-        <p>Your question and explanation are saved here, so you can pick up where you left off.</p>
+        <p>Your question and explanation are saved here, so you can continue where you left off.</p>
       </header>
 
       <div className="note-learning-card">
@@ -231,7 +231,7 @@ export default function NoteLearningExplanation() {
               <div className="note-learning-message-content">{message.content || (streaming ? 'Preparing an explanation…' : '')}</div>
             </article>
           ))}
-          {messages.length === 0 && <p>What would you like help understanding in this note?</p>}
+          {messages.length === 0 && <p>What would you like explained from this note?</p>}
         </div>
 
         {error && <p className="note-learning-error" role="alert">{error}</p>}
@@ -245,7 +245,7 @@ export default function NoteLearningExplanation() {
             onChange={(event) => setInput(event.target.value.slice(0, 2000))}
             maxLength={2000}
             rows={3}
-            placeholder="What step, term, or idea would you like explained further?"
+            placeholder="What would you like your AI tutor to explain further?"
             disabled={streaming}
           />
           <button type="submit" disabled={!input.trim() || streaming || saving}>
