@@ -746,7 +746,7 @@ export default function BioRecall() {
           <p className="recall-page-intro">
             Welcome{displayName ? `, ${displayName}` : ''}!<br />
             Use spaced repetition to revisit key ideas and remember them for longer. 
-            Answer questions, earn XP, and track your progress topic by topic.
+            Answer questions, earn XP, and track your progress as you study.
             <span className="highlight"> A little practice each day helps knowledge stick.</span>
           </p>
 
@@ -782,7 +782,7 @@ export default function BioRecall() {
                   </h3>
 
                   <p className="recall-due-banner-text font-source-sans">
-                    Revisit these questions to strengthen your memory.
+                    Review these questions to strengthen your memory.
                   </p>
                 </div>
               </div>
