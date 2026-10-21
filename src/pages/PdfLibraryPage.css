@@ -11,7 +11,7 @@
   width: 100%;
   max-width: 1240px;
   margin-inline: auto;
-  padding-block: var(--space-10) var(--space-16);
+  padding-block: var(--page-space-top) var(--page-space-bottom);
 }
 
 .pdf-library-heading {
@@ -312,7 +312,7 @@
 
   .pdf-library-page {
     max-width: none;
-    padding-block: var(--space-8) var(--space-12);
+    padding-block: var(--page-space-top) var(--page-space-bottom);
   }
 
   .pdf-library-heading {
