@@ -780,7 +780,7 @@
 
 @media (max-width: 640px) {
   .glossary-page {
-    padding-top: var(--space-4);
+    padding-top: var(--page-space-top);
   }
 
   .glossary-header {
