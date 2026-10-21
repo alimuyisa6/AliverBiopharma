@@ -52,10 +52,6 @@
 }
 
 @media (max-width: 768px) {
-  .tutor-marketplace-page {
-    padding-inline: var(--page-gutter-x);
-  }
-
   .tutor-marketplace-page .tutor-search {
     align-items: stretch;
   }
@@ -68,10 +64,6 @@
 }
 
 @media (max-width: 480px) {
-  .tutor-marketplace-page {
-    padding-inline: var(--page-gutter-x);
-  }
-
   .tutor-marketplace-page .section-head {
     margin-bottom: var(--content-gap-compact);
   }
