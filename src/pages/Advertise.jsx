@@ -9,32 +9,32 @@ const BENEFITS = [
   {
     icon: 'audience',
     title: 'Relevant learners',
-    description: 'Target by learning level, class or programme.',
+    description: 'Target learners by Biology level, school class, and Pharmacy programme.',
   },
   {
     icon: 'campaign',
     title: 'Clear campaigns',
-    description: 'Present your message with a focused headline and creative.',
+    description: 'Present your offer with a clear headline and campaign artwork.',
   },
   {
     icon: 'review',
     title: 'Responsible advertising',
-    description: 'Every campaign is reviewed before it goes live.',
+    description: 'Every campaign is checked before it appears to learners.',
   },
 ];
 
 const PROGRAMMES = [
   {
     title: 'Biology O-Level',
-    description: 'Learners studying Biology at ordinary secondary level.',
+    description: 'Students studying O-Level Biology in Forms 1–4.',
   },
   {
     title: 'Biology A-Level',
-    description: 'Learners pursuing advanced Biology studies.',
+    description: 'Students studying A-Level Biology in Forms 5–6.',
   },
   {
     title: 'Pharmacy',
-    description: 'Learners across our Pharmacy programmes.',
+    description: 'Students enrolled in Pharmacy Certificate, Diploma, and Degree programmes.',
   },
 ];
 
@@ -71,7 +71,7 @@ export default function Advertise() {
           </h1>
 
           <p>
-            Promote your organisation, programme, or service to learners studying Biology and Pharmacy.
+            Introduce your organisation to learners studying Biology and Pharmacy.
           </p>
 
           <div className="advertise-hero-actions">
@@ -109,7 +109,7 @@ export default function Advertise() {
       >
         <div className="advertise-section-heading">
           <span className="eyebrow">
-            Built around our learners
+            Reach the right learners
           </span>
 
           <h2 id="advertise-programmes-title">
@@ -119,7 +119,7 @@ export default function Advertise() {
           </h2>
 
           <p>
-            Choose the learning programme that best fits your campaign.
+            Select the learner group you want your campaign to reach.
           </p>
         </div>
 
@@ -160,7 +160,7 @@ export default function Advertise() {
           </h2>
 
           <p>
-            Help learners discover opportunities that are relevant to their studies.
+            Show learners opportunities that match their studies and career goals.
           </p>
         </div>
 
@@ -198,7 +198,7 @@ export default function Advertise() {
           </h2>
 
           <p>
-            Choose your audience and placement, add your advert details, and submit your campaign for review.
+            Select your audience and ad placement, enter your campaign details, then submit it for review.
           </p>
 
           <Link
@@ -222,7 +222,7 @@ export default function Advertise() {
             <h3>Reviewed before it goes live</h3>
 
             <p>
-              We review each campaign for accuracy and relevance before it appears to learners.
+              We check each campaign for accuracy and relevance before it appears on the site.
             </p>
           </div>
         </div>
