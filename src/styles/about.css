@@ -459,7 +459,7 @@ a.about-contact-item:hover {
 
 @media (max-width: 480px) {
   .contact-page {
-    padding-inline: var(--space-3);
+    padding-inline: var(--page-gutter-x);
     padding-block: var(--space-6) var(--space-10);
   }
   .contact-form .form-card {
