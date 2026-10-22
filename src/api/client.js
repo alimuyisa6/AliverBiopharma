@@ -2126,16 +2126,18 @@ level
 );
 }
 
-export async function getPdfsByLevel(unitId, activeGroupId = null) {
+export async function getPdfsByLevel(unitId, activeGroupId = null, requestScope = activeGroupId) {
 const params = {};
 if (unitId) params.unit_id = unitId;
+// Only send a real curriculum group ID to the backend. requestScope is a
+// client-side deduplication key and may also contain level/class fallback text.
 if (activeGroupId) params.group_id = activeGroupId;
 
 const data = await getRequest(
 'pdf-resources',
 'list',
 params,
-{ requestScope: activeGroupId }
+{ requestScope }
 );
 return Array.isArray(data) ? data : (Array.isArray(data?.pdfs) ? data.pdfs : []);
 }
