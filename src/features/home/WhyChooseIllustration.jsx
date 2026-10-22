@@ -1,9 +1,43 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 /** Animated, flat illustration of the AliverBiopharm learning cycle. */
 export default function WhyChooseIllustration() {
+  const svgRef = useRef(null);
+
+  useEffect(() => {
+    const svg = svgRef.current;
+    if (!svg) return undefined;
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let isInView = false;
+
+    const syncAnimationState = () => {
+      const shouldPause = reducedMotion.matches || !isInView;
+      svg.classList.toggle('is-visible', !shouldPause);
+      if (shouldPause) svg.pauseAnimations?.();
+      else svg.unpauseAnimations?.();
+    };
+
+    const observer = typeof IntersectionObserver !== 'undefined'
+      ? new IntersectionObserver(([entry]) => {
+          isInView = entry.isIntersecting;
+          syncAnimationState();
+        }, { rootMargin: '120px 0px' })
+      : null;
+
+    observer?.observe(svg);
+    reducedMotion.addEventListener?.('change', syncAnimationState);
+    syncAnimationState();
+
+    return () => {
+      observer?.disconnect();
+      reducedMotion.removeEventListener?.('change', syncAnimationState);
+      svg.pauseAnimations?.();
+    };
+  }, []);
+
   return (
-    <svg className="why-choose-science-art" viewBox="0 0 520 270" role="img"
+    <svg ref={svgRef} className="why-choose-science-art" viewBox="0 0 520 270" role="img"
       aria-labelledby="why-art-title why-art-description" xmlns="http://www.w3.org/2000/svg">
       <title id="why-art-title">A connected learning journey</title>
       <desc id="why-art-description">Notes, active recall, quizzes and progress connect in a learning cycle. Cards and progress indicators animate gently.</desc>
@@ -14,6 +48,12 @@ export default function WhyChooseIllustration() {
         .why-art-quiz { transform-box: fill-box; transform-origin: center; animation: why-art-float 4.4s ease-in-out -2.7s infinite; }
         .why-art-progress { stroke-dasharray: 90; stroke-dashoffset: 90; animation: why-art-progress 3.5s ease-in-out infinite alternate; }
         .why-art-check { transform-box: fill-box; transform-origin: center; animation: why-art-check 2.8s ease-in-out infinite; }
+        .why-choose-science-art:not(.is-visible) .why-art-flow,
+        .why-choose-science-art:not(.is-visible) .why-art-note,
+        .why-choose-science-art:not(.is-visible) .why-art-recall,
+        .why-choose-science-art:not(.is-visible) .why-art-quiz,
+        .why-choose-science-art:not(.is-visible) .why-art-progress,
+        .why-choose-science-art:not(.is-visible) .why-art-check { animation-play-state: paused; }
         @keyframes why-art-flow { to { stroke-dashoffset: -120; } }
         @keyframes why-art-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
         @keyframes why-art-progress { to { stroke-dashoffset: 0; } }
