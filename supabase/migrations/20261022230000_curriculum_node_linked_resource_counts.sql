@@ -86,9 +86,9 @@ resource_counts as (
       select l.content_id from public.learning_content_links l join public.articles a on a.id::text=l.content_id and a.status='published' where l.curriculum_unit_id in (select id from descendants) and l.content_type='article'
     ) x),
     'glossary_terms', (select count(*) from (
-      select g.id::text resource_id from public.glossary_terms g where g.unit_id in (select id from descendants) and g.is_active
-      union
-      select l.content_id from public.learning_content_links l join public.glossary_terms g on g.id::text=l.content_id and g.is_active where l.curriculum_unit_id in (select id from descendants) and l.content_type='glossary_term'
+      select l.content_id from public.learning_content_links l
+      join public.glossary_terms g on g.id::text=l.content_id
+      where l.curriculum_unit_id in (select id from descendants) and l.content_type='glossary_term'
     ) x),
     'curriculum_unit_blocks', (select count(*) from (
       select b.id::text resource_id from public.curriculum_unit_blocks b where b.unit_id in (select id from descendants)
