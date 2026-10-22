@@ -264,8 +264,15 @@ export function GlassFold({
     if (still) draw(performance.now())
     else start()
 
+    let resizeFrame = 0
     const resizeObserver = new ResizeObserver(() => {
-      if (still) draw(performance.now())
+      // Run WebGL backing-store updates after observer delivery to avoid a
+      // ResizeObserver feedback loop when responsive layout is recalculated.
+      if (resizeFrame) cancelAnimationFrame(resizeFrame)
+      resizeFrame = requestAnimationFrame(() => {
+        resizeFrame = 0
+        if (still) draw(performance.now())
+      })
     })
     resizeObserver.observe(canvas)
     const visibilityObserver = new IntersectionObserver(([entry]) => {
@@ -283,6 +290,7 @@ export function GlassFold({
 
     return () => {
       stop()
+      cancelAnimationFrame(resizeFrame)
       resizeObserver.disconnect()
       visibilityObserver.disconnect()
       reducedMotion.removeEventListener?.("change", syncMotion)
