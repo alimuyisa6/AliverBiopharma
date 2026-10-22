@@ -695,13 +695,13 @@ export default function Dashboard() {
                 <div className="panel-body">
                 <p className="dashboard-section-intro">See how regularly you’ve been studying and spot the habits that help you make progress.</p>
                 <DashboardSectionAside>Aim for a steady study routine. A short, focused session today is a useful start.</DashboardSectionAside>
-                  <p className="dashboard-graph-guide">Track changes in your quiz and recall practice over time. Look for regular practice and gaps between sessions.</p>
+                  <p className="dashboard-graph-guide">The area chart compares recorded quiz and recall activity across the selected period. Peaks indicate days with more activity; flat periods may indicate time away from practice.</p>
                   <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><DualAreaTrend
                     embedded
                     activities={recentActivity}
                     days={activityDays}
                   /></Suspense></ChartWhenVisible>
-                  <p className="dashboard-graph-guide">Each bar shows the learning activity recorded for a day. Compare days to spot your most active periods and gaps in your routine.</p>
+                  <p className="dashboard-graph-guide">This activity view summarizes the number of learning events recorded on each date. Use it to identify consistent study periods and days when you may want to resume practice.</p>
                   <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><TotalLearningActivity
                     embedded
                     data={heatmapValues.map((item) => ({
@@ -726,7 +726,7 @@ export default function Dashboard() {
                 <DashboardSectionAside>Choose one topic with a lower mastery level and revise it before testing yourself again.</DashboardSectionAside>
                   {assessedMastery.length > 0 ? (
                     <>
-                      <p className="mastery-chart-explainer">Graph type: horizontal bar chart. Best for comparing mastery across curriculum units. Each bar represents one unit; longer bars indicate a higher assessed mastery percentage. Use this comparison to identify a strong topic and the next topic to revise.</p>
+                      <p className="mastery-chart-explainer">Each segment represents a curriculum unit with an assessed mastery score. Compare the segments to review your results across units and identify topics that need further study.</p>
                       <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><MasteryDonut
                         embedded
                         data={assessedMastery.map((item) => ({
@@ -736,7 +736,7 @@ export default function Dashboard() {
                       /></Suspense></ChartWhenVisible>
                     </>
                   ) : (
-                    <p className="mastery-chart-explainer">Graph type: horizontal bar chart. Best for comparing assessed mastery across curriculum units. Complete an assessment to plot unit scores and identify topics that need more practice.</p>
+                    <p className="mastery-chart-explainer">No unit mastery scores are available yet. Complete a scored assessment to see your results here and identify topics for further study.</p>
                   )}
                   <div className="mastery-summary">
                     <ProgressRing value={overallMastery} size="lg" tone="mastery" ariaLabel={`${overallMastery}% assessed mastery`} />
@@ -1208,7 +1208,7 @@ export default function Dashboard() {
                   {Array.isArray(flashcards.recent_sessions) && flashcards.recent_sessions.length > 0 && (
                     <div className="dashboard-insight-chart dashboard-insight-chart-compact">
                       <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><BarChart data={flashcards.recent_sessions.map((item) => Math.max(0, Number(item.cards_seen) || 0))} labels={flashcards.recent_sessions.map((item) => item.date ? new Date(item.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) : 'Session')} label="Cards seen" title="Flashcard practice" subtitle="Cards seen in each of your latest completed flashcard sessions." height={Math.max(220, flashcards.recent_sessions.length * 28)} /></Suspense></ChartWhenVisible>
-                      <p className="dashboard-graph-guide">Each bar represents a completed flashcard session. Taller bars mean you reviewed more cards; use your accuracy and incorrect answers to choose what to practise again.</p>
+                      <p className="dashboard-graph-guide">Each bar shows the number of cards seen in a completed flashcard session. Compare sessions to track practice volume; use your accuracy and missed cards to decide what to review next.</p>
                       <div className="dashboard-activity-summary" role="group" aria-label="Flashcard practice summary">
                         <div><span>Completed sessions</span><strong>{Number(flashcards.session_count) || 0}</strong></div>
                         <div><span>Cards seen</span><strong>{Number(flashcards.cards_seen) || 0}</strong></div>
@@ -1219,7 +1219,7 @@ export default function Dashboard() {
                   {recentActivityMix.some((item) => item.value > 0) && (
                     <div className="dashboard-insight-chart dashboard-insight-chart-compact">
                       <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><DonutChart data={recentActivityMix.map((item) => item.value)} labels={recentActivityMix.map((item) => item.label)} title="Learning Activity Distribution" subtitle="A view of your recent reading, quiz, recall, and flashcard activity." height={220} /></Suspense></ChartWhenVisible>
-                      <p className="dashboard-graph-guide">This chart shows how your recent learning activities are distributed across reading, quizzes, recall practice, and flashcards. Use it to see which study methods you have been using most and where you could balance your learning routine.</p>
+                      <p className="dashboard-graph-guide">Each segment represents a type of learning activity recorded recently. Compare the segments to see how your recent study time is distributed across reading, quizzes, recall practice, and flashcards.</p>
                     </div>
                   )}
                   <div className="sidebar-list dashboard-activity-timeline" id="recent-activity-list">
@@ -1307,7 +1307,7 @@ export default function Dashboard() {
                   </div>
                   <div className="unit-xp-chart" aria-label="XP earned by learning unit">
                     <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><XpBars embedded data={unitXpChart} /></Suspense></ChartWhenVisible>
-                    <p className="dashboard-graph-guide">Compare earned XP across learning units to see where you have been most active. XP reflects activity, so use your mastery and assessment results to judge understanding.</p>
+                    <p className="dashboard-graph-guide">The bars compare experience points earned in each learning unit. Higher values indicate more recorded activity, while assessment results provide a better measure of subject understanding.</p>
                   </div>
                 </div>
                 </div>
