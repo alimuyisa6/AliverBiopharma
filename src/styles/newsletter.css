@@ -138,14 +138,17 @@
   box-shadow: var(--shadow-focus);
 }
 
-.newsletter-submit {
+.newsletter-section .newsletter-submit {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 100%;
+  min-width: 0;
   min-height: var(--newsletter-input-height);
+  padding-inline: var(--space-4);
   gap: var(--space-2);
   border-radius: var(--radius-sm);
+  white-space: nowrap;
 }
 
 .newsletter-section .form-status {
@@ -236,16 +239,18 @@
 
   .newsletter-form-row {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr) minmax(8rem, 0.34fr);
     align-items: stretch;
     gap: var(--space-3);
     max-width: none;
   }
 
-  .newsletter-submit {
-    width: auto;
-    min-width: var(--space-28);
-    padding-inline: var(--space-5);
+  .newsletter-section .newsletter-submit {
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    min-height: var(--newsletter-input-height);
+    padding-inline: var(--space-3);
   }
 
   .newsletter-section .form-status {
