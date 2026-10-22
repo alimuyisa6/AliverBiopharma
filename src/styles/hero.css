@@ -426,3 +426,39 @@
     letter-spacing: var(--hero-mobile-title-letter-spacing) !important;
   }
 }
+
+/* Touch-first devices may request desktop-site mode, which widens the CSS
+   viewport and bypasses width-based mobile rules. Keep the hero proportionate. */
+@media (pointer: coarse) and (max-height: 950px) {
+  .hero,
+  .hero-enhanced {
+    min-height: min(80svh, 48rem);
+  }
+
+  .hero-content {
+    padding-block: var(--space-8);
+  }
+
+  .hero .hero-title {
+    font-size: clamp(2.5rem, 6vw, 4rem) !important;
+    line-height: 1 !important;
+    letter-spacing: -0.035em !important;
+  }
+
+  .hero-tagline {
+    max-width: 38rem;
+    font-size: var(--text-base);
+  }
+
+  .hero-actions {
+    gap: var(--content-gap-compact);
+  }
+}
+
+@media (pointer: coarse) and (prefers-reduced-motion: reduce) {
+  .hero-glass-fold,
+  .hero-science-canvas {
+    animation: none;
+  }
+}
+
