@@ -690,11 +690,13 @@ export default function Dashboard() {
                 <div className="panel-body">
                 <p className="dashboard-section-intro">See how regularly you’ve been studying and spot the habits that help you make progress.</p>
                 <DashboardSectionAside>Aim for a steady study routine. A short, focused session today is a useful start.</DashboardSectionAside>
+                  <p className="dashboard-graph-guide"><strong>Graph type: area trend.</strong> Best for tracking changes over time. The horizontal axis shows dates; the vertical axis shows recorded sessions. Compare quiz and BioRecall activity to spot changes in your study routine.</p>
                   <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><DualAreaTrend
                     embedded
                     activities={recentActivity}
                     days={activityDays}
                   /></Suspense></ChartWhenVisible>
+                  <p className="dashboard-graph-guide"><strong>Graph type: bar chart.</strong> Best for comparing activity between days. Each bar represents recorded learning activity for a date; taller bars indicate more activity.</p>
                   <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><TotalLearningActivity
                     embedded
                     data={heatmapValues.map((item) => ({
@@ -719,7 +721,8 @@ export default function Dashboard() {
                 <DashboardSectionAside>Choose one topic with a lower mastery level and revise it before testing yourself again.</DashboardSectionAside>
                   {assessedMastery.length > 0 ? (
                     <>
-                      <p className="mastery-chart-explainer">This chart compares your assessed mastery across curriculum units. Larger segments represent higher mastery scores.</p>
+                      <p className="mastery-chart-explainer">Graph type: horizontal bar chart. Best for comparing mastery across curriculum units. Each bar represents one unit; longer bars indicate a higher assessed mastery percentage. Use this comparison to identify a strong topic and the next topic to revise.</p>
+                      <p className="dashboard-graph-guide"><strong>Graph type: horizontal bar chart.</strong> Best for comparing values across categories. Each bar represents a curriculum unit, and its length shows the assessed mastery percentage.</p>
                       <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><MasteryDonut
                         embedded
                         data={assessedMastery.map((item) => ({
@@ -729,7 +732,7 @@ export default function Dashboard() {
                       /></Suspense></ChartWhenVisible>
                     </>
                   ) : (
-                    <p className="mastery-chart-explainer">Complete an assessment to see your mastery distribution.</p>
+                    <p className="mastery-chart-explainer">Graph type: horizontal bar chart. Best for comparing assessed mastery across curriculum units. Complete an assessment to plot unit scores and identify topics that need more practice.</p>
                   )}
                   <div className="mastery-summary">
                     <ProgressRing value={overallMastery} size="lg" tone="mastery" ariaLabel={`${overallMastery}% assessed mastery`} />
