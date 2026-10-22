@@ -1670,12 +1670,14 @@ unit_id: unitId
 );
 }
 
-export async function getQuizTopics(unitId) {
+export async function getQuizTopics(unitId, noteId = null, activityScope = null) {
 return getRequest(
 'quiz',
 'get_quiz_topics',
 {
-unit_id: unitId
+unit_id: unitId,
+note_id: noteId,
+activity_scope: activityScope
 }
 );
 }
@@ -1693,6 +1695,8 @@ groupId
 export async function getQuizBlock(
 unitId,
 block,
+noteId = null,
+activityScope = null,
 challengeId = null
 ) {
 return getRequest(
@@ -1701,6 +1705,8 @@ return getRequest(
 {
 unit_id: unitId,
 block_number: block,
+note_id: noteId,
+activity_scope: activityScope,
 challenge_id: challengeId
 }
 );
@@ -1725,21 +1731,27 @@ return apiCall(
 {
 unit_id: unitId,
 block_number: block,
-state
+...state
 }
 );
 }
 
 export async function trackTabSwitch(
 unitId,
-block
+block,
+idempotencyKey = null,
+noteId = null,
+activityScope = null
 ) {
 return apiCall(
 'quiz',
 'quiz_tab_switch',
 {
 unit_id: unitId,
-block_number: block
+block_number: block,
+idempotency_key: idempotencyKey,
+note_id: noteId,
+activity_scope: activityScope
 }
 );
 }
@@ -1748,7 +1760,9 @@ export async function submitQuizWithSession(
 unitId,
 block,
 answers,
-timeTaken
+timeTaken,
+noteId = null,
+activityScope = null
 ) {
 return apiCall(
 'quiz',
@@ -1757,21 +1771,28 @@ return apiCall(
 unit_id: unitId,
 block_number: block,
 answers,
-time_taken: timeTaken
+time_taken: timeTaken,
+note_id: noteId,
+activity_scope: activityScope
 }
 );
 }
 
 export async function getQuizSessionStatus(
 unitId = null,
-blockNumber = null
+blockNumber = null,
+noteId = null,
+activityScope = null
 ) {
 return getRequest(
 'quiz',
 'quiz_session_status',
-unitId && blockNumber !== null
-? { unit_id: unitId, block_number: blockNumber }
-: {}
+{
+...(unitId ? { unit_id: unitId } : {}),
+...(blockNumber !== null ? { block_number: blockNumber } : {}),
+...(noteId ? { note_id: noteId } : {}),
+...(activityScope ? { activity_scope: activityScope } : {})
+}
 );
 }
 
