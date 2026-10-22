@@ -24,19 +24,30 @@ import { useChat } from '../contexts/ChatContext';
 
 function mapContinueLearning(rawList) {
   if (!Array.isArray(rawList)) return [];
-  return rawList.map((item) => ({
-    id: item.id ?? item.content_id,
-    type: item.content_type ?? item.type ?? 'note',
-    title: item.title,
-    description: item.description ?? item.excerpt ?? item.summary ?? '',
-    subject: item.subject,
-    thumbnail_url: item.thumbnail_url ?? item.cover_image_url ?? null,
-    progress_percent: item.progress_percent ?? item.percent ?? 0,
-    progress_color: (item.progress_percent ?? 0) >= 80 ? 'emerald' : (item.progress_percent ?? 0) >= 40 ? 'blue' : 'amber',
-    progress_label: item.progress_label ?? `${item.progress_percent ?? 0}% complete`,
-    cta_label: item.content_type === 'video' ? 'Watch' : item.content_type === 'quiz' ? 'Resume' : 'Continue',
-    route: item.route ?? item.url ?? '#'
-  }));
+  return rawList.map((item) => {
+    // The recent-views endpoint returns note_id (not id/content_id) and does
+    // not provide a route. Map its actual response shape to the note reader.
+    const noteId = item.note_id ?? item.id ?? item.content_id;
+    const route = item.route ?? item.url ?? (
+      noteId
+        ? `/notes/read?id=${encodeURIComponent(noteId)}&return_to=${encodeURIComponent('/')}`
+        : '/resources'
+    );
+
+    return {
+      id: noteId ?? item.slug ?? item.title,
+      type: 'note',
+      title: item.title || 'Continue reading',
+      description: item.description ?? item.excerpt ?? item.summary ?? '',
+      subject: item.subject,
+      thumbnail_url: item.thumbnail_url ?? item.cover_image_url ?? null,
+      progress_percent: item.progress_percent ?? item.percent ?? 0,
+      progress_color: (item.progress_percent ?? 0) >= 80 ? 'emerald' : (item.progress_percent ?? 0) >= 40 ? 'blue' : 'amber',
+      progress_label: item.progress_label ?? (item.progress_percent != null ? `${item.progress_percent}% complete` : 'Recently opened'),
+      cta_label: 'Continue reading',
+      route
+    };
+  });
 }
 
 function mapCurriculumUnits(rawUnits) {
