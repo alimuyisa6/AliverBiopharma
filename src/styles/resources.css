@@ -648,3 +648,48 @@ body.dark-mode .resources-empty-state {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* Curriculum entry point: keep the syllabus as the primary route into content. */
+.resources-curriculum-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin: 1.25rem 0 1.5rem;
+  padding: clamp(1rem, 3vw, 1.5rem);
+  border: 1px solid var(--border, rgba(100, 116, 139, 0.24));
+  border-radius: 1rem;
+  background: var(--surface-card, var(--surface, #fff));
+  box-shadow: var(--shadow-sm, 0 4px 18px rgba(15, 23, 42, 0.05));
+}
+
+.resources-curriculum-entry-copy {
+  min-width: 0;
+  max-width: 48rem;
+}
+
+.resources-curriculum-entry h2 {
+  margin: 0.25rem 0 0.5rem;
+}
+
+.resources-curriculum-entry p {
+  margin: 0;
+  color: var(--text-muted, #64748b);
+  line-height: 1.6;
+}
+
+.resources-curriculum-entry > button {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 640px) {
+  .resources-curriculum-entry {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .resources-curriculum-entry > button {
+    width: 100%;
+  }
+}
