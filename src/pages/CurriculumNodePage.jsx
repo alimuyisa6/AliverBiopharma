@@ -33,7 +33,7 @@ function curriculumLevelLabel(depth, isPharmacy) {
 function resourcePath(resource, unitId, nodeType = null) {
   const routes = {
     notes: '/notes',
-    quiz: '/quiz',
+    quiz: '/quiz/blocks',
     flashcards: '/flashcards',
     recall: '/recall',
     pdfs: '/pdfs',
