@@ -1,5 +1,5 @@
 :root {
-  --newsletter-card-max-width: min(100%, 68rem);
+  --newsletter-card-max-width: var(--content-max-wide);
   --newsletter-card-padding: var(--space-5);
   --newsletter-card-radius: var(--radius-lg);
   --newsletter-card-border-width: var(--border-width-thin);
@@ -208,18 +208,14 @@
 }
 
 
-@media (min-width: 768px) {
-  .newsletter-section {
-    justify-content: stretch;
-  }
 
+@media (min-width: 768px) {
   .newsletter-card {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
     align-items: center;
     column-gap: var(--space-6);
     row-gap: var(--space-4);
-    margin-inline: auto;
     padding: clamp(var(--space-5), 2.5vw, var(--space-8));
   }
 
@@ -234,16 +230,8 @@
     height: clamp(var(--space-10), 4vw, var(--space-14));
   }
 
-  .newsletter-note {
-    min-width: 0;
-  }
-
   .newsletter-title {
-    font-size: clamp(var(--text-xl), 2vw, var(--text-2xl));
-  }
-
-  .newsletter-description {
-    max-width: var(--content-max-wide);
+    font-size: clamp(var(--text-lg), 2vw, var(--text-2xl));
   }
 
   .newsletter-form-row {
@@ -251,27 +239,17 @@
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: stretch;
     gap: var(--space-3);
+    max-width: none;
   }
 
   .newsletter-submit {
     width: auto;
-    min-width: var(--space-32);
+    min-width: var(--space-28);
     padding-inline: var(--space-5);
   }
 
   .newsletter-section .form-status {
     grid-column: 2;
-  }
-}
-
-@media (min-width: 1200px) {
-  .newsletter-card {
-    grid-template-columns: auto minmax(0, 1fr);
-    column-gap: var(--space-8);
-  }
-
-  .newsletter-form-row {
-    max-width: none;
   }
 }
 
