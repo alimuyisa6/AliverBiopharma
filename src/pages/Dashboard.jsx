@@ -605,6 +605,7 @@ export default function Dashboard() {
                 {Number(quiz.total_attempts) > 0 && quizOutcomeChart.some((item) => item.value > 0) && (
                   <div className="dashboard-insight-chart dashboard-insight-chart-compact">
                     <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><DonutChart data={quizOutcomeChart.map((item) => item.value)} labels={quizOutcomeChart.map((item) => item.label)} title="Quiz outcomes" subtitle="Passed versus not-passed recorded attempts." height={220} /></Suspense></ChartWhenVisible>
+                    <p className="dashboard-graph-guide"><strong>Graph type: donut chart.</strong> Best for showing parts of a whole. Each slice represents passed or not-passed recorded attempts; larger slices represent a larger share of your quiz outcomes.</p>
                   </div>
                 )}
                 <div className="dashboard-quiz-outcome" aria-label="Quiz pass and not-passed comparison">
@@ -662,6 +663,7 @@ export default function Dashboard() {
                 {Number(recall.total_sessions) > 0 && (
                   <div className="dashboard-insight-chart dashboard-insight-chart-compact">
                     <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><BarChart data={recallComparisonChart} labels={['Recall accuracy', 'Best mastery']} label="Score" title="Recall performance" subtitle="Your recall accuracy and best recorded mastery, shown as percentages." height={220} /></Suspense></ChartWhenVisible>
+                    <p className="dashboard-graph-guide"><strong>Graph type: bar chart.</strong> Best for comparing values. Both bars use a percentage scale, so compare their heights to see the difference between recall accuracy and best recorded mastery.</p>
                   </div>
                 )}
                 <p className="dashboard-quiz-note">Recall is tracked separately from scored quiz attempts so your memory practice and assessment results stay distinct.</p>
@@ -777,6 +779,7 @@ export default function Dashboard() {
                 {downloadOutcomeChart.some((value) => value > 0) && (
                   <div className="dashboard-insight-chart dashboard-insight-chart-compact">
                     <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><DonutChart data={downloadOutcomeChart} labels={['Links issued', 'Premium blocked', 'Request/network failures']} title="Download request outcomes" subtitle="Breakdown of recorded PDF download attempts." height={220} /></Suspense></ChartWhenVisible>
+                    <p className="dashboard-graph-guide"><strong>Graph type: donut chart.</strong> Best for showing the composition of recorded download events. Compare the slices to see the relative share of links issued, premium blocks, and request or network failures.</p>
                   </div>
                 )}
                 <div className="dashboard-download-attempt-metrics">
@@ -1151,6 +1154,7 @@ export default function Dashboard() {
                   {weakAreaChart.some((item) => item.value > 0) && (
                     <div className="dashboard-insight-chart dashboard-insight-chart-compact">
                       <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><BarChart data={weakAreaChart.map((item) => item.value)} labels={weakAreaChart.map((item) => item.label)} label="Incorrect attempts" title="Concepts to revisit" subtitle="Most frequently missed concepts among your unresolved weak areas." horizontal height={Math.max(220, weakAreaChart.length * 48)} /></Suspense></ChartWhenVisible>
+                      <p className="dashboard-graph-guide"><strong>Graph type: horizontal bar chart.</strong> Best for ranking categories. Longer bars indicate concepts with more incorrect attempts, so start revision with the highest bars.</p>
                     </div>
                   )}
                   <div className="sidebar-list" id="weak-areas-list">
@@ -1184,6 +1188,7 @@ export default function Dashboard() {
                   {recentActivityMix.some((item) => item.value > 0) && (
                     <div className="dashboard-insight-chart dashboard-insight-chart-compact">
                       <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><DonutChart data={recentActivityMix.map((item) => item.value)} labels={recentActivityMix.map((item) => item.label)} title="Recent learning mix" subtitle="The types of activity in your latest recorded learning history." height={220} /></Suspense></ChartWhenVisible>
+                      <p className="dashboard-graph-guide"><strong>Graph type: donut chart.</strong> Best for comparing parts of a whole. Each slice shows the share of recent reading, quiz, or recall activity; use the relative slice sizes to see which activity dominates your recent history.</p>
                     </div>
                   )}
                   <div className="sidebar-list dashboard-activity-timeline" id="recent-activity-list">
@@ -1269,6 +1274,7 @@ export default function Dashboard() {
                   </div>
                   <div className="unit-xp-chart" aria-label="XP earned by learning unit">
                     <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><XpBars embedded data={unitXpChart} /></Suspense></ChartWhenVisible>
+                    <p className="dashboard-graph-guide"><strong>Graph type: horizontal bar chart.</strong> Best for comparing values across learning units. Longer bars represent more earned XP; XP reflects recorded activity, not mastery by itself.</p>
                   </div>
                 </div>
                 </div>
