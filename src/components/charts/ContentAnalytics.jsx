@@ -75,10 +75,30 @@ export default function ContentAnalytics({ variant = 'resources' }) {
   }
 
   if (variant === 'flashcards') {
+    const flashcards = summary.flashcards || {};
+    const sessions = Array.isArray(flashcards.recent_sessions) ? flashcards.recent_sessions : [];
     return (
       <div className="ch-shell">
-        <ChartCard title={config.title} subtitle={config.subtitle}>
-          <BarChart data={xp.map((item) => item.xp)} labels={xp.map((item) => item.unit_name)} label="XP" height={250} />
+        <ChartCard title="Flashcard practice" subtitle="Cards seen in your latest completed flashcard sessions." summary={`${flashcards.session_count || 0} completed sessions, ${flashcards.cards_seen || 0} cards seen, and ${flashcards.accuracy || 0}% accuracy.`}>
+          {sessions.length > 0
+            ? <BarChart data={sessions.map((item) => item.cards_seen)} labels={sessions.map((item) => item.date ? new Date(item.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) : 'Session')} label="Cards seen" height={250} />
+            : <p className="dashboard-section-intro">Complete a flashcard session to start seeing your practice history here.</p>}
+          <p className="dashboard-graph-guide">Each bar represents one completed session; taller bars mean you reviewed more cards. Use the accuracy summary to check how well you're recalling the material, not just how many cards you opened.</p>
+        </ChartCard>
+      </div>
+    );
+  }
+
+  if (variant === 'notes') {
+    const reading = summary.notes?.reading_analytics || {};
+    const progress = Array.isArray(reading.recent_progress) ? reading.recent_progress : [];
+    return (
+      <div className="ch-shell">
+        <ChartCard title="Notes reading progress" subtitle="Latest saved progress for notes in your active curriculum." summary={`${reading.notes_started || 0} notes started, ${reading.notes_completed || 0} completed, ${reading.average_progress || 0}% average progress.`}>
+          {progress.length > 0
+            ? <BarChart data={progress.map((item) => item.progress_percentage)} labels={progress.map((item) => item.title || 'Study note')} label="Progress (%)" height={250} horizontal />
+            : <p className="dashboard-section-intro">Open a study note and your saved reading progress will appear here.</p>}
+          <p className="dashboard-graph-guide">Each bar shows your latest saved progress for one note. Longer bars indicate notes closer to completion; resume a partially read note to continue from where you left off.</p>
         </ChartCard>
       </div>
     );
