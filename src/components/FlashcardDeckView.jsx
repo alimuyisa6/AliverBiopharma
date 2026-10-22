@@ -51,7 +51,7 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
 
   useEffect(() => {
     loadDeck();
-  }, [deckMeta.id]);
+  }, [deckMeta.id, sourceNoteId, activityScope, unitId, challengeId]);
 
   useEffect(() => {
     const handler = (event) => {
