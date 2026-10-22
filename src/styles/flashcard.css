@@ -11,7 +11,7 @@
   box-sizing: border-box;
   width: 100%;
   min-width: 0;
-  padding: var(--space-2) var(--space-5) var(--space-5);
+  padding: var(--space-2) var(--page-gutter-x) var(--space-5);
   margin-inline: auto;
 }
 
@@ -19,7 +19,7 @@
   box-sizing: border-box;
   width: 100%;
   min-width: 0;
-  padding: var(--space-2) var(--space-4) var(--space-8);
+  padding: var(--space-2) var(--page-gutter-x) var(--space-8);
 }
 
 .fcd-section > * {
@@ -581,12 +581,11 @@
 
 @media (max-width: 640px) {
   .flashcard-deck-view {
-    padding: var(--space-2);
-    padding-bottom: var(--space-6);
+    padding: var(--space-2) var(--page-gutter-x) var(--space-6);
   }
 
   .fcd-section {
-    padding: var(--space-2) var(--space-3) var(--space-3);
+    padding: var(--space-2) var(--page-gutter-x) var(--space-3);
   }
 
   .fcd-question-card,
@@ -595,8 +594,3 @@
   }
 }
 
-@media (min-width: 641px) {
-  .flashcard-deck-view {
-    padding-inline: var(--space-5);
-  }
-}
