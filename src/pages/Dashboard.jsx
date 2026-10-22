@@ -607,7 +607,7 @@ export default function Dashboard() {
                 {Number(quiz.total_attempts) > 0 && quizOutcomeChart.some((item) => item.value > 0) && (
                   <div className="dashboard-insight-chart dashboard-insight-chart-compact">
                     <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><DonutChart data={quizOutcomeChart.map((item) => item.value)} labels={quizOutcomeChart.map((item) => item.label)} title="Quiz outcomes" subtitle="Passed versus not-passed recorded attempts." height={220} /></Suspense></ChartWhenVisible>
-                    <p className="dashboard-graph-guide"><strong>Graph type: donut chart.</strong> Best for showing parts of a whole. Each slice represents passed or not-passed recorded attempts; larger slices represent a larger share of your quiz outcomes.</p>
+                    <p className="dashboard-graph-guide">Each slice shows the share of quiz attempts that passed or did not pass. Compare the slices to see your recent quiz results.</p>
                   </div>
                 )}
                 <div className="dashboard-quiz-outcome" aria-label="Quiz pass and not-passed comparison">
@@ -665,7 +665,7 @@ export default function Dashboard() {
                 {Number(recall.total_sessions) > 0 && (
                   <div className="dashboard-insight-chart dashboard-insight-chart-compact">
                     <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><BarChart data={recallComparisonChart} labels={['Recall accuracy', 'Best mastery']} label="Score" title="Recall performance" subtitle="Your recall accuracy and best recorded mastery, shown as percentages." height={220} /></Suspense></ChartWhenVisible>
-                    <p className="dashboard-graph-guide"><strong>Graph type: bar chart.</strong> Best for comparing values. Both bars use a percentage scale, so compare their heights to see the difference between recall accuracy and best recorded mastery.</p>
+                    <p className="dashboard-graph-guide">Compare your recall accuracy with your highest recorded mastery. The percentages show how closely they match.</p>
                   </div>
                 )}
                 <p className="dashboard-quiz-note">Recall is tracked separately from scored quiz attempts so your memory practice and assessment results stay distinct.</p>
@@ -695,13 +695,13 @@ export default function Dashboard() {
                 <div className="panel-body">
                 <p className="dashboard-section-intro">See how regularly you’ve been studying and spot the habits that help you make progress.</p>
                 <DashboardSectionAside>Aim for a steady study routine. A short, focused session today is a useful start.</DashboardSectionAside>
-                  <p className="dashboard-graph-guide"><strong>Graph type: area trend.</strong> This chart compares daily quiz and recall activity recorded in the recent activity feed. It is useful for spotting short-term changes; it does not include every activity type or represent your full account history.</p>
+                  <p className="dashboard-graph-guide">Track changes in your quiz and recall practice over time. Look for regular practice and gaps between sessions.</p>
                   <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><DualAreaTrend
                     embedded
                     activities={recentActivity}
                     days={activityDays}
                   /></Suspense></ChartWhenVisible>
-                  <p className="dashboard-graph-guide"><strong>Graph type: daily activity bars.</strong> Each bar represents the activity count saved for one date. Compare heights to identify more active days; these values depend on what the activity tracker records.</p>
+                  <p className="dashboard-graph-guide">Each bar shows the learning activity recorded for a day. Compare days to spot your most active periods and gaps in your routine.</p>
                   <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><TotalLearningActivity
                     embedded
                     data={heatmapValues.map((item) => ({
@@ -779,7 +779,7 @@ export default function Dashboard() {
                 {downloadOutcomeChart.some((value) => value > 0) && (
                   <div className="dashboard-insight-chart dashboard-insight-chart-compact">
                     <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><DonutChart data={downloadOutcomeChart} labels={['Links issued', 'Premium blocked', 'Request/network failures']} title="Download request outcomes" subtitle="Breakdown of recorded PDF download attempts." height={220} /></Suspense></ChartWhenVisible>
-                    <p className="dashboard-graph-guide"><strong>Graph type: donut chart.</strong> Best for showing the composition of recorded download events. Compare the slices to see the relative share of links issued, premium blocks, and request or network failures.</p>
+                    <p className="dashboard-graph-guide">The slices show the outcomes of download requests, including successful links, premium restrictions, and failed requests. Use them to understand what happened when you tried to download content.</p>
                   </div>
                 )}
                 <div className="dashboard-download-attempt-metrics">
@@ -853,7 +853,7 @@ export default function Dashboard() {
                   </div>
                   <div className="dashboard-insight-chart dashboard-insight-chart-compact">
                     <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><BarChart data={notes.reading_analytics.recent_progress.map((item) => Math.max(0, Math.min(100, Number(item.progress_percentage) || 0)))} labels={notes.reading_analytics.recent_progress.map((item) => item.title || 'Study note')} label="Reading progress (%)" title="Progress by note" subtitle="Latest saved reading progress for notes you've opened." horizontal height={Math.max(220, notes.reading_analytics.recent_progress.length * 42)} /></Suspense></ChartWhenVisible>
-                    <p className="dashboard-graph-guide"><strong>Graph type: horizontal bar chart.</strong> Each bar shows the latest saved reading progress for one note, from 0% to 100%. Longer bars indicate notes closer to completion; resume shorter bars first if you want to finish work already started.</p>
+                    <p className="dashboard-graph-guide">Each bar shows your saved reading progress for a note. Start with notes showing less progress if you want to continue unfinished reading.</p>
                   </div>
                 </div>
               </section>
@@ -1174,7 +1174,7 @@ export default function Dashboard() {
                   {weakAreaChart.some((item) => item.value > 0) && (
                     <div className="dashboard-insight-chart dashboard-insight-chart-compact">
                       <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><BarChart data={weakAreaChart.map((item) => item.value)} labels={weakAreaChart.map((item) => item.label)} label="Incorrect attempts" title="Concepts to revisit" subtitle="Most frequently missed concepts among your unresolved weak areas." horizontal height={Math.max(220, weakAreaChart.length * 48)} /></Suspense></ChartWhenVisible>
-                      <p className="dashboard-graph-guide"><strong>Graph type: horizontal bar chart.</strong> Best for ranking categories. Longer bars indicate concepts with more incorrect attempts, so start revision with the highest bars.</p>
+                      <p className="dashboard-graph-guide">Concepts with more incorrect attempts need extra practice. Start with the longest bars, then review those concepts and try again.</p>
                     </div>
                   )}
                   <div className="sidebar-list" id="weak-areas-list">
@@ -1208,7 +1208,7 @@ export default function Dashboard() {
                   {Array.isArray(flashcards.recent_sessions) && flashcards.recent_sessions.length > 0 && (
                     <div className="dashboard-insight-chart dashboard-insight-chart-compact">
                       <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><BarChart data={flashcards.recent_sessions.map((item) => Math.max(0, Number(item.cards_seen) || 0))} labels={flashcards.recent_sessions.map((item) => item.date ? new Date(item.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) : 'Session')} label="Cards seen" title="Flashcard practice" subtitle="Cards seen in each of your latest completed flashcard sessions." height={Math.max(220, flashcards.recent_sessions.length * 28)} /></Suspense></ChartWhenVisible>
-                      <p className="dashboard-graph-guide"><strong>Graph type: bar chart.</strong> Each bar represents one completed flashcard session; taller bars mean you reviewed more cards in that session. Compare sessions to track practice volume, then use accuracy and incorrect answers to decide what needs another review.</p>
+                      <p className="dashboard-graph-guide">Each bar represents a completed flashcard session. Taller bars mean you reviewed more cards; use your accuracy and incorrect answers to choose what to practise again.</p>
                       <div className="dashboard-activity-summary" role="group" aria-label="Flashcard practice summary">
                         <div><span>Completed sessions</span><strong>{Number(flashcards.session_count) || 0}</strong></div>
                         <div><span>Cards seen</span><strong>{Number(flashcards.cards_seen) || 0}</strong></div>
@@ -1218,8 +1218,8 @@ export default function Dashboard() {
                   )}
                   {recentActivityMix.some((item) => item.value > 0) && (
                     <div className="dashboard-insight-chart dashboard-insight-chart-compact">
-                      <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><DonutChart data={recentActivityMix.map((item) => item.value)} labels={recentActivityMix.map((item) => item.label)} title="Latest 10 recorded activities" subtitle="A snapshot of the dashboard's latest activity feed, not a full-history breakdown." height={220} /></Suspense></ChartWhenVisible>
-                      <p className="dashboard-graph-guide"><strong>Graph type: donut chart.</strong> Slices compare the reading, quiz, and recall items in the latest activity feed. Because this feed is limited to recent records, use it as a quick snapshot rather than a measure of your overall study habits.</p>
+                      <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><DonutChart data={recentActivityMix.map((item) => item.value)} labels={recentActivityMix.map((item) => item.label)} title="Learning Activity Distribution" subtitle="A view of your recent reading, quiz, recall, and flashcard activity." height={220} /></Suspense></ChartWhenVisible>
+                      <p className="dashboard-graph-guide">This chart shows how your recent learning activities are distributed across reading, quizzes, recall practice, and flashcards. Use it to see which study methods you have been using most and where you could balance your learning routine.</p>
                     </div>
                   )}
                   <div className="sidebar-list dashboard-activity-timeline" id="recent-activity-list">
@@ -1307,7 +1307,7 @@ export default function Dashboard() {
                   </div>
                   <div className="unit-xp-chart" aria-label="XP earned by learning unit">
                     <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><XpBars embedded data={unitXpChart} /></Suspense></ChartWhenVisible>
-                    <p className="dashboard-graph-guide"><strong>Graph type: horizontal bar chart.</strong> Best for comparing values across learning units. Longer bars represent more earned XP; XP reflects recorded activity, not mastery by itself.</p>
+                    <p className="dashboard-graph-guide">Compare earned XP across learning units to see where you have been most active. XP reflects activity, so use your mastery and assessment results to judge understanding.</p>
                   </div>
                 </div>
                 </div>
