@@ -83,18 +83,21 @@ export default function ClassSwitcher({ className = '' }) {
         </div>
       )}
       {isHomeSwitcher && <span className="class-switcher-label">{label}</span>}
-      <button
-        type="button"
-        className="btn btn-card class-switcher-trigger"
-        onClick={() => setOpen((value) => !value)}
-        disabled={switching}
-        aria-haspopup="menu"
-        aria-expanded={open}
-      >
+      <div className="btn btn-card class-switcher-trigger">
         <SwitchGlyph />
         <span>{switching ? <>Switching<span className="switching-dots" aria-hidden="true"><i>.</i><i>.</i><i>.</i></span></> : current?.name || 'Select'}</span>
-        <Icon name="chevron-down" />
-      </button>
+        <button
+          type="button"
+          className="class-switcher-chevron"
+          onClick={() => setOpen((value) => !value)}
+          disabled={switching}
+          aria-label={open ? 'Close class switcher' : label}
+          aria-haspopup="menu"
+          aria-expanded={open}
+        >
+          <Icon name="chevron-down" />
+        </button>
+      </div>
 
       {open && (
         <>
