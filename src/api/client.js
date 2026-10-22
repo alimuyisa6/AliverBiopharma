@@ -1761,6 +1761,7 @@ unitId,
 block,
 answers,
 timeTaken,
+idempotencyKey = null,
 noteId = null,
 activityScope = null
 ) {
@@ -1772,6 +1773,7 @@ unit_id: unitId,
 block_number: block,
 answers,
 time_taken: timeTaken,
+idempotency_key: idempotencyKey,
 note_id: noteId,
 activity_scope: activityScope
 }
