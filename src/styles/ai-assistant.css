@@ -6,7 +6,7 @@
 .ai-assistant {
   position: fixed;
   right: var(--page-gutter-x);
-  bottom: var(--space-6);
+  bottom: calc(var(--space-6) + var(--ai-assistant-footer-offset, 0px) + env(safe-area-inset-bottom, 0px));
   z-index: var(--z-modal);
   max-width: calc(100vw - (var(--page-gutter-x) * 2));
 }
@@ -477,7 +477,7 @@
 @media (max-width: 640px) {
   .ai-assistant {
     right: max(var(--page-gutter-x), env(safe-area-inset-right));
-    bottom: max(var(--space-4), env(safe-area-inset-bottom));
+    bottom: calc(max(var(--space-4), env(safe-area-inset-bottom, 0px)) + var(--ai-assistant-footer-offset, 0px));
   }
 
   .ai-assistant-toggle {
