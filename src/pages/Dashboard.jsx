@@ -1,6 +1,7 @@
 import { lazy, Suspense, useState, useEffect, useRef } from 'react';
 import ChartWhenVisible from '../components/charts/ChartWhenVisible';
 const TotalLearningActivity = lazy(() => import('../components/charts/AnalyticsCharts').then((m) => ({ default: m.TotalLearningActivity })));
+const ActivityDistribution = lazy(() => import('../components/charts/AnalyticsCharts').then((m) => ({ default: m.ActivityDistribution })));
 const MasteryDonut = lazy(() => import('../components/charts/AnalyticsCharts').then((m) => ({ default: m.MasteryDonut })));
 const XpBars = lazy(() => import('../components/charts/AnalyticsCharts').then((m) => ({ default: m.XpBars })));
 const DualAreaTrend = lazy(() => import('../components/charts/DualAreaTrend'));
@@ -704,6 +705,8 @@ export default function Dashboard() {
                       value: Math.max(0, Number(item.count) || 0)
                     }))}
                   /></Suspense></ChartWhenVisible>
+                  <p className="dashboard-graph-guide"><strong>Graph type: frequency histogram.</strong> Best for showing how often values occur. Each bar counts the days that fell into a session-count range, helping you distinguish consistent activity from occasional spikes.</p>
+                  <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><ActivityDistribution embedded data={heatmapValues.map((item) => ({ label: new Date(item.activity_date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }), value: Math.max(0, Number(item.count) || 0) }))} /></Suspense></ChartWhenVisible>
                 </div>
               </section>
             )}
@@ -722,7 +725,6 @@ export default function Dashboard() {
                   {assessedMastery.length > 0 ? (
                     <>
                       <p className="mastery-chart-explainer">Graph type: horizontal bar chart. Best for comparing mastery across curriculum units. Each bar represents one unit; longer bars indicate a higher assessed mastery percentage. Use this comparison to identify a strong topic and the next topic to revise.</p>
-                      <p className="dashboard-graph-guide"><strong>Graph type: horizontal bar chart.</strong> Best for comparing values across categories. Each bar represents a curriculum unit, and its length shows the assessed mastery percentage.</p>
                       <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><MasteryDonut
                         embedded
                         data={assessedMastery.map((item) => ({
