@@ -120,6 +120,8 @@ export default function Quiz() {
   const isQuizCardsPage = location.pathname === '/quiz/blocks';
   const [searchParams] = useSearchParams();
   const curriculumUnitId = searchParams.get('unit_id') || null;
+  const sourceNoteId = searchParams.get('note_id') || null;
+  const activityScope = searchParams.get('activity_scope') || (sourceNoteId ? 'note' : null);
   const { isReady } = useRequireOnboarding();
   const access = useContentAccess();
   const { locked, reason } = useSecurityUiLock();
@@ -184,7 +186,7 @@ export default function Quiz() {
     setAnswerSubmitting(false);
     setIntegrityMonitoringStarted(false);
     setSessionId(null);
-  }, [activeGroupId, curriculumUnitId]);
+  }, [activeGroupId, curriculumUnitId, sourceNoteId, activityScope]);
 
   useEffect(() => {
     if (!isReady || !access.canAccess || access.isPending) return;
@@ -205,7 +207,7 @@ export default function Quiz() {
         setLoading(false);
       }
     })();
-  }, [isReady, access.canAccess, access.isPending, user]);
+  }, [isReady, access.canAccess, access.isPending, user, curriculumUnitId, sourceNoteId, activityScope]);
 
   useEffect(() => {
     if (!isReady || !access.canAccess || access.isPending || !user) return;
@@ -214,7 +216,7 @@ export default function Quiz() {
 
     (async () => {
       try {
-        const status = await getQuizSessionStatus();
+        const status = await getQuizSessionStatus(curriculumUnitId, null, sourceNoteId, activityScope);
         const session = status?.session;
         if (cancelled || !status?.exists || !session || session.auto_submitted) return;
 
@@ -223,7 +225,7 @@ export default function Quiz() {
 
         if (!sessionUnitId || !Number.isInteger(sessionBlock)) return;
 
-        const data = await getQuizBlock(sessionUnitId, sessionBlock);
+        const data = await getQuizBlock(sessionUnitId, sessionBlock, sourceNoteId, activityScope);
         if (cancelled || !data?.questions?.length) return;
 
         const priorAnswers = (data.prior_answers || []).map((answer) =>
@@ -270,7 +272,7 @@ export default function Quiz() {
     setTopicsLoading(true);
 
     const request = curriculumUnitId
-      ? getQuizTopics(curriculumUnitId).then((topic) => ({
+      ? getQuizTopics(curriculumUnitId, sourceNoteId, activityScope).then((topic) => ({
           topics: topic?.unit_id ? [
             {
               unit_id: topic.unit_id,
@@ -298,7 +300,7 @@ export default function Quiz() {
       })
       .catch(() => setAllTopics([]))
       .finally(() => setTopicsLoading(false));
-  }, [isReady, access.canAccess, access.isPending, activeGroupId, curriculumUnitId, isQuizCardsPage]);
+  }, [isReady, access.canAccess, access.isPending, activeGroupId, curriculumUnitId, sourceNoteId, activityScope, isQuizCardsPage]);
 
   useEffect(() => {
     if (!answerSubmitting) {
@@ -371,7 +373,7 @@ export default function Quiz() {
       if (document.visibilityState !== 'hidden') return;
 
       try {
-        const result = await trackTabSwitch(activeUnitId, currentBlock, createIdempotencyKey('tab'));
+        const result = await trackTabSwitch(activeUnitId, currentBlock, createIdempotencyKey('tab'), sourceNoteId, activityScope);
 
         setTabSwitchCount(result.tab_switches ?? tabSwitchCount + 1);
         setMaxTabSwitches(result.max_allowed ?? maxTabSwitches);
@@ -439,7 +441,9 @@ export default function Quiz() {
         block_number: currentBlock,
         question_id: question.id,
         selected_option: optionLetter,
-        idempotency_key: createIdempotencyKey('answer')
+        idempotency_key: createIdempotencyKey('answer'),
+        note_id: sourceNoteId,
+        activity_scope: activityScope
       });
 
       if (result.auto_submitted) {
@@ -501,7 +505,9 @@ export default function Quiz() {
         currentBlock,
         answersPayload,
         null,
-        createIdempotencyKey('submit')
+        createIdempotencyKey('submit'),
+        sourceNoteId,
+        activityScope
       );
 
       setTimeLeft(null);
@@ -509,7 +515,7 @@ export default function Quiz() {
       setSessionId(null);
 
       const topicsRes = curriculumUnitId
-        ? await getQuizTopics(curriculumUnitId)
+        ? await getQuizTopics(curriculumUnitId, sourceNoteId, activityScope)
         : await listQuizTopics(activeGroupId);
 
       setAllTopics(curriculumUnitId
@@ -567,7 +573,9 @@ export default function Quiz() {
     try {
       const session = await startQuizSession(activeUnitId, blockNum, {
         mode: quizMode,
-        idempotency_key: createIdempotencyKey('start')
+        idempotency_key: createIdempotencyKey('start'),
+        note_id: sourceNoteId,
+        activity_scope: activityScope
       });
 
       setSessionId(session.session_id || null);
@@ -576,7 +584,7 @@ export default function Quiz() {
       setTabSwitchCount(session.tab_switches || 0);
       setMaxTabSwitches(session.max_allowed || 3);
 
-      const data = await getQuizBlock(activeUnitId, blockNum);
+      const data = await getQuizBlock(activeUnitId, blockNum, sourceNoteId, activityScope);
 
       if (!data?.questions?.length) {
         addToast('This question set is not ready yet. Try another set later.', 'error');
