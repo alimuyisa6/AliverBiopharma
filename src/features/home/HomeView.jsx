@@ -59,7 +59,7 @@ function LearningJourneySection({ sections, navigate }) {
             <svg viewBox="0 0 72 72" focusable="false"><path d="m20 20 30 32M50 20 20 52" stroke="var(--primary)" strokeWidth="3" strokeLinecap="round" opacity=".65"/><circle cx="20" cy="20" r="8" fill="var(--primary)"/><circle cx="50" cy="20" r="8" fill="var(--secondary)"/><circle cx="20" cy="52" r="8" fill="var(--accent)"/><circle cx="50" cy="52" r="8" fill="var(--primary)"/><circle cx="35" cy="36" r="7" fill="var(--surface-card)" stroke="var(--secondary)" strokeWidth="2.5"/></svg>
           </div>
         </div>
-        <ThreeDButton type="button" variant="solid" iconRight="arrow-right" className="home-learning-journey-cta" onClick={() => navigate('/resources')}>Explore learning resources</ThreeDButton>
+        <ThreeDButton type="button" variant="solid" iconRight="arrow-right" className="home-learning-journey-cta" onClick={() => navigate('/resources')}>Browse learning resources</ThreeDButton>
       </div>
     </section>
   );
@@ -196,8 +196,7 @@ function ChallengeTreasureCard({ challenge, onOpen }) {
 function DailyRecallCard({ recall, onReveal, onStart }) {
   if (!recall) return null;
   const { question_text, meta, score } = recall;
-  const progress = score?.total ? (score.completed / score.total) * 100 : 0;
-  return (
+  const progress = score?.total ? (score.completed / score.total) * 100 : 0;  return (
     <section className="section section-emerald home-daily-recall-section card-glass">
       <div className="section-head"><div className="section-head-left"><span className="eyebrow">Daily active recall</span><h2>{question_text}</h2><p className="section-description home-daily-recall-description">{meta}</p></div></div>
       <div className="card card-lifted card-surface-solid card-elevation-soft card-density-comfortable row home-daily-recall-card">
@@ -229,7 +228,7 @@ export default function HomeView(props) {
       <HowItWorksSection />
       <EducationalShowcase />
       <StudyQuoteCard />
-      {user && <div className="home-student-sections-wrap"><CurriculumSnapshot nodes={curriculumUnits} activeLevelName={activeLevelName} activeGroupName={activeGroupName} sections={sections} /><LearningJourneySection sections={sections} navigate={navigate} /></div>}
+      {user && <div className="home-student-sections-wrap"><LearningJourneySection sections={sections} navigate={navigate} /></div>}
       {!user && <LearningJourneySection sections={sections} navigate={navigate} />}
       {user && <ChallengeTreasureCard challenge={dailyChallenge} onOpen={onOpenChallenge} />}
       {user && <DailyRecallCard recall={dailyRecall} onReveal={onRevealRecall} onStart={onStartRecall} />}
