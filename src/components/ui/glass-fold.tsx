@@ -231,22 +231,62 @@ export function GlassFold({
       gl.drawArrays(gl.TRIANGLES, 0, 6)
     }
 
-    const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    const loop = (now: number) => {
-      draw(now)
-      if (!still) frame = requestAnimationFrame(loop)
-    }
-    frame = requestAnimationFrame(loop)
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
+    const coarsePointer = window.matchMedia("(pointer: coarse)")
+    let still = reducedMotion.matches || coarsePointer.matches
+    let isInView = true
 
-    // with motion off there is no loop, so repaint the still frame on resize
-    const observer = new ResizeObserver(() => {
+    const stop = () => {
+      cancelAnimationFrame(frame)
+      frame = 0
+    }
+    const loop = (now: number) => {
+      if (still || !isInView) {
+        frame = 0
+        return
+      }
+      draw(now)
+      frame = requestAnimationFrame(loop)
+    }
+    const start = () => {
+      if (still || !isInView || frame) return
+      frame = requestAnimationFrame(loop)
+    }
+    const syncMotion = () => {
+      still = reducedMotion.matches || coarsePointer.matches
+      stop()
+      if (still) draw(performance.now())
+      else start()
+    }
+
+    // Static frame on touch-first phones; pause GPU work whenever the hero
+    // leaves view, including when a phone browser requests desktop-site mode.
+    if (still) draw(performance.now())
+    else start()
+
+    const resizeObserver = new ResizeObserver(() => {
       if (still) draw(performance.now())
     })
-    observer.observe(canvas)
+    resizeObserver.observe(canvas)
+    const visibilityObserver = new IntersectionObserver(([entry]) => {
+      isInView = entry.isIntersecting
+      if (isInView) {
+        if (still) draw(performance.now())
+        else start()
+      } else {
+        stop()
+      }
+    }, { rootMargin: "80px 0px" })
+    visibilityObserver.observe(canvas)
+    reducedMotion.addEventListener?.("change", syncMotion)
+    coarsePointer.addEventListener?.("change", syncMotion)
 
     return () => {
-      cancelAnimationFrame(frame)
-      observer.disconnect()
+      stop()
+      resizeObserver.disconnect()
+      visibilityObserver.disconnect()
+      reducedMotion.removeEventListener?.("change", syncMotion)
+      coarsePointer.removeEventListener?.("change", syncMotion)
       gl.deleteBuffer(buffer)
       gl.deleteProgram(program)
     }
