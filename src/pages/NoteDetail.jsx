@@ -75,7 +75,7 @@ export default function NoteDetail() {
   const [trialAnswers, setTrialAnswers] = useState({});
   const [trialFeedback, setTrialFeedback] = useState({});
   const [trialLoading, setTrialLoading] = useState(false);
-  const [internalLinks, setInternalLinks] = useState({ inline_links: [], related_links: [], activities: { quiz: { question_count: 0 }, flashcards: [], recall: { question_count: 0 } }, related_articles: [] });
+  const [internalLinks, setInternalLinks] = useState({ inline_links: [], related_links: [], activities: { quiz: { question_count: 0 }, flashcards: [], recall: { question_count: 0 } }, related_articles: [], theme_activities: { theme_id: null, quiz: { question_count: 0 }, flashcards: { deck_count: 0 }, recall: { question_count: 0 } } });
   const [linkPreview, setLinkPreview] = useState(null);
   const [linkPreviewPosition, setLinkPreviewPosition] = useState({ x: 0, y: 0 });
   const [loading, setLoading] = useState(true);
@@ -156,7 +156,8 @@ export default function NoteDetail() {
           inline_links: linksData?.inline_links || [],
           related_links: linksData?.related_links || [],
           activities: linksData?.activities || { quiz: { question_count: 0 }, flashcards: [], recall: { question_count: 0 } },
-          related_articles: linksData?.related_articles || []
+          related_articles: linksData?.related_articles || [],
+          theme_activities: linksData?.theme_activities || { theme_id: null, quiz: { question_count: 0 }, flashcards: { deck_count: 0 }, recall: { question_count: 0 } }
         });
 
         if (user) {
@@ -695,44 +696,79 @@ export default function NoteDetail() {
 
         {(Number(internalLinks.activities?.quiz?.question_count) > 0 ||
           (internalLinks.activities?.flashcards || []).length > 0 ||
-          Number(internalLinks.activities?.recall?.question_count) > 0) && (
+          Number(internalLinks.activities?.recall?.question_count) > 0 ||
+          Number(internalLinks.theme_activities?.quiz?.question_count) > 0 ||
+          Number(internalLinks.theme_activities?.flashcards?.deck_count) > 0 ||
+          Number(internalLinks.theme_activities?.recall?.question_count) > 0) && (
           <section className="note-related-section" aria-labelledby="note-activities-title">
-            <h2 id="note-activities-title" className="note-related-title font-poppins">Practice this note</h2>
-            <p>These activities are linked to this exact note, so your revision stays focused.</p>
+            <h2 id="note-activities-title" className="note-related-title font-poppins">Practice this note or its theme</h2>
+            <p>Exact note-linked activities appear first. Where none are linked, theme-wide practice is clearly labelled.</p>
             <div className="note-related-grid">
-              {Number(internalLinks.activities?.quiz?.question_count) > 0 && (
+              {Number(internalLinks.activities?.quiz?.question_count) > 0 ? (
                 <Card
                   key="note-quiz"
                   variant="blue-strong"
                   className="card-mixed"
-                  title="Quiz"
+                  title="Note-specific quiz"
                   description={`${internalLinks.activities.quiz.question_count} linked questions`}
                   footer={<span>Test your understanding →</span>}
                   onClick={() => navigate(`/quiz/blocks?unit_id=${encodeURIComponent(note.unit_id)}&note_id=${encodeURIComponent(note.id)}&activity_scope=note`)}
                 />
-              )}
-              {(internalLinks.activities?.flashcards || []).map((deck) => (
+              ) : Number(internalLinks.theme_activities?.quiz?.question_count) > 0 && internalLinks.theme_activities?.theme_id ? (
                 <Card
-                  key={deck.id}
+                  key="theme-quiz"
                   variant="blue-strong"
                   className="card-mixed"
-                  title={deck.title}
-                  description={deck.description || `${deck.card_count} flashcards`}
-                  footer={<span>{deck.card_count} cards · Review →</span>}
-                  onClick={() => navigate(`/flashcards?unit_id=${encodeURIComponent(note.unit_id)}&note_id=${encodeURIComponent(note.id)}&deck_id=${encodeURIComponent(deck.id)}&activity_scope=note`)}
+                  title="Theme-wide quiz"
+                  description={`${internalLinks.theme_activities.quiz.question_count} questions across this theme`}
+                  footer={<span>Practise the whole theme →</span>}
+                  onClick={() => navigate(`/quiz/blocks?unit_id=${encodeURIComponent(internalLinks.theme_activities.theme_id)}&activity_scope=theme`)}
                 />
-              ))}
-              {Number(internalLinks.activities?.recall?.question_count) > 0 && (
+              ) : null}
+              {(internalLinks.activities?.flashcards || []).length > 0 ? (
+                (internalLinks.activities.flashcards || []).map((deck) => (
+                  <Card
+                    key={deck.id}
+                    variant="blue-strong"
+                    className="card-mixed"
+                    title={deck.title}
+                    description={deck.description || `${deck.card_count} flashcards`}
+                    footer={<span>{deck.card_count} cards · Review →</span>}
+                    onClick={() => navigate(`/flashcards?unit_id=${encodeURIComponent(note.unit_id)}&note_id=${encodeURIComponent(note.id)}&deck_id=${encodeURIComponent(deck.id)}&activity_scope=note`)}
+                  />
+                ))
+              ) : Number(internalLinks.theme_activities?.flashcards?.deck_count) > 0 && internalLinks.theme_activities?.theme_id ? (
+                <Card
+                  key="theme-flashcards"
+                  variant="blue-strong"
+                  className="card-mixed"
+                  title="Theme-wide flashcards"
+                  description={`${internalLinks.theme_activities.flashcards.deck_count} available decks`}
+                  footer={<span>Review across the theme →</span>}
+                  onClick={() => navigate(`/flashcards?unit_id=${encodeURIComponent(internalLinks.theme_activities.theme_id)}&activity_scope=theme`)}
+                />
+              ) : null}
+              {Number(internalLinks.activities?.recall?.question_count) > 0 ? (
                 <Card
                   key="note-recall"
                   variant="blue-strong"
                   className="card-mixed"
-                  title="BioRecall"
+                  title="Note-specific recall"
                   description={`${internalLinks.activities.recall.question_count} linked recall prompts`}
                   footer={<span>Practise active recall →</span>}
                   onClick={() => navigate(`/recall?unit_id=${encodeURIComponent(note.unit_id)}&note_id=${encodeURIComponent(note.id)}&activity_scope=note&resume=1`)}
                 />
-              )}
+              ) : Number(internalLinks.theme_activities?.recall?.question_count) > 0 && internalLinks.theme_activities?.theme_id ? (
+                <Card
+                  key="theme-recall"
+                  variant="blue-strong"
+                  className="card-mixed"
+                  title="Theme-wide recall"
+                  description={`${internalLinks.theme_activities.recall.question_count} prompts across this theme`}
+                  footer={<span>Practise the whole theme →</span>}
+                  onClick={() => navigate(`/recall?unit_id=${encodeURIComponent(internalLinks.theme_activities.theme_id)}&activity_scope=theme&resume=1`)}
+                />
+              ) : null}
             </div>
           </section>
         )}
