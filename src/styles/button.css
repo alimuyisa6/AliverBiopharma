@@ -406,6 +406,17 @@ html[data-ui-button-width="full"] .btn:not(.btn-icon) > span {
   white-space: normal;
 }
 
+/* The 3D button's visible face is an inner span, so it must expand too. */
+html[data-ui-button-width="full"] .btn-3d:not(.btn-icon) > .btn-3d__top {
+  width: 100%;
+  box-sizing: border-box;
+}
+html[data-ui-button-width="auto"] .btn-3d:not(.btn-icon) > .btn-3d__top {
+  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
 
 .btn-status-success { color: var(--success); border-color: var(--success); }
 .btn-status-error { color: var(--danger); border-color: var(--danger); }
