@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function FlashcardProgress({ result, onRestart, onHome }) {
   const navigate = useNavigate();
-  const { total = 0, correct = 0, incorrect = 0, score = 0, activity_outcome = 'unscored', deck_complete = false, recommendation = null } = result || {};
+  const { correct = 0, incorrect = 0, score = 0, activity_outcome = 'unscored', deck_complete = false, recommendation = null } = result || {};
 
   function scoreClass() {
     if (activity_outcome === 'mastered') return 'is-high';
