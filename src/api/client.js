@@ -977,13 +977,12 @@ export async function getRecallDashboard() {
 return getRequest('recall', 'dashboard');
 }
 
-export async function getRecallTopics(groupId) {
+export async function getRecallTopics(filters = {}) {
+const params = typeof filters === 'string' ? { group_id: filters } : (filters || {});
 return getRequest(
 'recall',
 'topics',
-{
-group_id: groupId
-}
+params
 );
 }
 
@@ -3294,13 +3293,15 @@ confidence
 );
 }
 
-export async function startRecallSession(unitId, challengeId = null) {
+export async function startRecallSession(unitId, challengeId = null, sourceNoteId = null, activityScope = null) {
 return apiCall(
 'recall',
 'start',
 {
 unit_id: unitId,
-challenge_id: challengeId
+challenge_id: challengeId,
+note_id: sourceNoteId,
+activity_scope: activityScope
 }
 );
 }
