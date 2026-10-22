@@ -366,11 +366,11 @@ withCache(
 )();
 
 export const getRecallTopics = (
-groupId
+filters = {}
 ) =>
 withCache(
-`recall_topics_${groupId || 'all'}`,
-() => api.getRecallTopics(groupId),
+`recall_topics_${stableSerialize(filters)}`,
+() => api.getRecallTopics(filters),
 false
 )();
 
@@ -403,9 +403,11 @@ false
 
 export const startRecallSession = (
 unitId,
-challengeId = null
+challengeId = null,
+sourceNoteId = null,
+activityScope = null
 ) =>
-api.startRecallSession(unitId, challengeId);
+api.startRecallSession(unitId, challengeId, sourceNoteId, activityScope);
 
 export const getRecallAchievements = () =>
 withCache(
