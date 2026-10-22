@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Icon from '../../components/Icon/Icon';
 import ClassSwitcher from '../../components/ClassSwitcher/ClassSwitcher';
@@ -209,6 +209,14 @@ function DailyRecallCard({ recall, onReveal, onStart }) {
 }
 
 export default function HomeView(props) {
+  const [isDesktopViewport, setIsDesktopViewport] = useState(() => typeof window !== 'undefined' && window.matchMedia('(min-width: 769px)').matches);
+  useEffect(() => {
+    const media = window.matchMedia('(min-width: 769px)');
+    const updateViewport = (event) => setIsDesktopViewport(event.matches);
+    setIsDesktopViewport(media.matches);
+    media.addEventListener('change', updateViewport);
+    return () => media.removeEventListener('change', updateViewport);
+  }, []);
   const { sections, user, navigate, activeLevelName, activeGroupName, publicStats, chatOpen, chatMessages, chatInput, adminOnline, newsletterEmail, newsletterStatus, newsletterLoading, chatRequestLoading, chatSending, chatDeletingId, handleNewsletterSubmit, sendChat, deleteChatMsg, setChatOpen, setChatInput, setNewsletterEmail, chatBodyRef, continueLearning, curriculumUnits, dailyRecall, onRevealRecall, onStartRecall, dailyChallenge, onOpenChallenge } = props;
 
   return (
@@ -216,7 +224,7 @@ export default function HomeView(props) {
       <section className="home-hero-section"><div className="hero-block"><Hero /></div></section>
       <DynamicActions pageId="home" className="home-dynamic-actions" />
       <section className="home-stats-section"><StatsGrid stats={{ resources_count: publicStats?.resources_count || 0, users_count: publicStats?.users_count || 0, downloads_count: publicStats?.downloads_count || 0, quiz_attempts: publicStats?.quiz_attempts || 0 }} /></section>
-      {user && <section className="home-student-section"><ClassSwitcher className="home-scope-switcher" /><HomeDashboardCard /><ContinueLearningRail items={continueLearning} navigate={navigate} /></section>}
+      {user && <section className="home-student-section">{!isDesktopViewport && <ClassSwitcher className="home-scope-switcher" />}<HomeDashboardCard /><ContinueLearningRail items={continueLearning} navigate={navigate} /></section>}
       <WhyChooseSection />
       <HowItWorksSection />
       <EducationalShowcase />
