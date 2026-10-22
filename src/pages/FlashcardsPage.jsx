@@ -162,7 +162,10 @@ export default function FlashcardsPage() {
       total,
       correct: 0,
       incorrect: 0,
-      score: 0
+      score: 0,
+      activity_outcome: 'incomplete',
+      deck_complete: false,
+      recommendation: null
     };
 
     if (sessionId) {
@@ -173,7 +176,10 @@ export default function FlashcardsPage() {
           total: data.card_count ?? total,
           correct: data.correct ?? 0,
           incorrect: data.incorrect ?? 0,
-          score: data.score ?? 0
+          score: data.score ?? 0,
+          activity_outcome: data.activity_outcome || 'incomplete',
+          deck_complete: data.deck_complete === true,
+          recommendation: data.recommendation || null
         };
       } catch {}
     }
