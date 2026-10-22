@@ -263,8 +263,21 @@ export default function CurriculumNodePage() {
     pdfs: 'pdf_resources',
     'past-papers': 'past_papers'
   };
+  const RESOURCE_LINK_TYPES = {
+    notes: 'note',
+    quiz: 'quiz_question',
+    flashcards: 'flashcard_deck',
+    recall: 'recall_question',
+    pdfs: 'pdf_resource',
+    'past-papers': 'past_paper'
+  };
+  // Use canonical content links as well as legacy unit_id counts. A resource
+  // may be linked to this lesson while its stored unit_id points to a parent.
   const availableResources = (isLeaf ? Object.entries(RESOURCE_LABELS) : [])
-    .filter(([key]) => Number(counts[RESOURCE_COUNT_KEYS[key] || key] || 0) > 0)
+    .filter(([key]) => (
+      Number(counts[RESOURCE_COUNT_KEYS[key] || key] || 0) > 0 ||
+      (linkedContentGroups[RESOURCE_LINK_TYPES[key]] || []).length > 0
+    ))
     .sort(([a], [b]) => (a === normalizedResourceFocus ? -1 : b === normalizedResourceFocus ? 1 : 0));
   const returnToLesson = `/curriculum/${encodeURIComponent(groupId)}/${nodePath}${resourceFocus ? `?resource=${encodeURIComponent(resourceFocus)}` : ''}`;
 
