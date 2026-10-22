@@ -6,3 +6,46 @@
 .edu-showcase-polaroid .edu-pathway-art { width: 100%; max-width: 20rem; }
 .edu-showcase-polaroid .sticky-polaroid-caption-copy { padding-right: 40%; }
 .edu-showcase-polaroid .sticky-polaroid-paper-note { width: 43%; }
+
+/* Keep the showcase-to-toolkit scroll stable on touch devices. The orbit and
+   floating-art animations repaint continuously while users scroll on phones;
+   fixed visual sizing also prevents content changes from moving the next section. */
+.edu-showcase-content {
+  align-items: stretch;
+}
+.edu-showcase-visual {
+  align-self: stretch;
+  min-height: 410px;
+}
+.edu-showcase-copy {
+  min-width: 0;
+}
+@media (max-width: 800px) {
+  .edu-showcase-visual {
+    min-height: 320px;
+    contain: layout paint;
+  }
+  .edu-showcase-copy {
+    contain: layout;
+  }
+}
+@media (pointer: coarse) {
+  .edu-pathway-art,
+  .edu-book-art,
+  .edu-progress-art,
+  .edu-quiz-art,
+  .edu-orbit-one,
+  .edu-orbit-two,
+  .edu-progress-orbit,
+  .edu-osmosis-water.is-active i {
+    animation: none;
+  }
+  .edu-osmosis-cell,
+  .edu-osmosis-vacuole {
+    transition: none;
+  }
+  .edu-showcase-visual {
+    overflow-anchor: none;
+  }
+}
+
