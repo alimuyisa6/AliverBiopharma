@@ -68,15 +68,14 @@ export default function Layout({ children, showFooter = true }) {
   useEffect(() => { if ('scrollRestoration' in window.history) window.history.scrollRestoration = 'manual'; }, []);
   useEffect(() => { const handler = () => { if (scrollFrame.current !== null) return; scrollFrame.current = requestAnimationFrame(() => { scrollFrame.current = null; const scrollY = window.scrollY; setScrolled(scrollY > 10); scrollPositions.current.set(routeKey, scrollY); clearTimeout(persistTimeout.current); persistTimeout.current = setTimeout(() => persistScrollMap(scrollPositions.current), 200); }); }; window.addEventListener('scroll', handler, { passive: true }); return () => { window.removeEventListener('scroll', handler); if (scrollFrame.current !== null) { cancelAnimationFrame(scrollFrame.current); scrollFrame.current = null; } clearTimeout(persistTimeout.current); }; }, [routeKey]);
   useLayoutEffect(() => {
-    const restore = () => {
+    // Restore once after the new route has committed. A second restore can
+    // override the user's first scroll gesture immediately after navigation.
+    const raf = requestAnimationFrame(() => {
       const top = navigationType === 'POP' && scrollPositions.current.has(routeKey)
         ? scrollPositions.current.get(routeKey)
         : 0;
-      // Route restoration must be immediate even if the page uses smooth scrolling.
       window.scrollTo({ left: 0, top, behavior: 'instant' });
-    };
-    restore();
-    const raf = requestAnimationFrame(restore);
+    });
     return () => cancelAnimationFrame(raf);
   }, [routeKey, navigationType]);
   useEffect(() => { setMobileOpen(false); setSearchOpen(false); }, [location.pathname]);
