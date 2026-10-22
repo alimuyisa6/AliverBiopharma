@@ -1935,11 +1935,19 @@ extra
 
 export const startFlashcardSession = (
 deckId,
-mode
+mode,
+challengeId = null,
+sourceNoteId = null,
+activityScope = null,
+unitId = null
 ) =>
 api.startFlashcardSession(
 deckId,
-mode
+mode,
+challengeId,
+sourceNoteId,
+activityScope,
+unitId
 );
 
 export const submitMood = (
