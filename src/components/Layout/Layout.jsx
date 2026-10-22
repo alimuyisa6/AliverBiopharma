@@ -69,6 +69,15 @@ export default function Layout({ children, showFooter = true }) {
   useEffect(() => { const handler = () => { if (scrollFrame.current !== null) return; scrollFrame.current = requestAnimationFrame(() => { scrollFrame.current = null; const scrollY = window.scrollY; setScrolled(scrollY > 10); scrollPositions.current.set(routeKey, scrollY); clearTimeout(persistTimeout.current); persistTimeout.current = setTimeout(() => persistScrollMap(scrollPositions.current), 200); }); }; window.addEventListener('scroll', handler, { passive: true }); return () => { window.removeEventListener('scroll', handler); if (scrollFrame.current !== null) { cancelAnimationFrame(scrollFrame.current); scrollFrame.current = null; } clearTimeout(persistTimeout.current); }; }, [routeKey]);
   useLayoutEffect(() => { const restore = () => { if (navigationType === 'POP' && scrollPositions.current.has(routeKey)) window.scrollTo(0, scrollPositions.current.get(routeKey)); else window.scrollTo(0, 0); }; restore(); const raf = requestAnimationFrame(restore); return () => cancelAnimationFrame(raf); }, [routeKey, navigationType]);
   useEffect(() => { setMobileOpen(false); setSearchOpen(false); }, [location.pathname]);
+  useEffect(() => {
+    const desktopQuery = window.matchMedia('(min-width: 769px)');
+    const closeMenuOnDesktop = (event) => {
+      if (event.matches) setMobileOpen(false);
+    };
+    closeMenuOnDesktop(desktopQuery);
+    desktopQuery.addEventListener('change', closeMenuOnDesktop);
+    return () => desktopQuery.removeEventListener('change', closeMenuOnDesktop);
+  }, []);
   const handleSignout = async () => { setSigningOut(true); try { await signout(); await refreshUser(); navigate('/'); } catch { navigate('/'); } finally { setSigningOut(false); } };
   const blockedHeaderPaths = ['/about', '/classroom', '/blog', '/contact', '/notes', '/quiz', '/flashcards', '/past-papers', '/recall', '/pdfs', '/glossary'];
   const filteredNavigation = navigation.filter((link) => { if (blockedHeaderPaths.includes(link.href)) return false; if (link.href === '/quiz' && features.quizzes === false) return false; if (link.href === '/flashcards' && features.flashcards === false) return false; if (link.href === '/past-papers' && features.past_papers === false) return false; if (link.href === '/recall' && features.recall === false) return false; if (link.href === '/classroom' && features.classrooms === false) return false; return true; });
