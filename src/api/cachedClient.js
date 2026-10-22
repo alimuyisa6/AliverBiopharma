@@ -222,11 +222,13 @@ withCache(
 )();
 
 export const getQuizTopics = (
-unitId
+unitId,
+noteId = null,
+activityScope = null
 ) =>
 withCache(
-`quiz_topics_${unitId}`,
-() => api.getQuizTopics(unitId)
+`quiz_topics_${unitId}_${noteId || 'no-note'}_${activityScope || 'default'}`,
+() => api.getQuizTopics(unitId, noteId, activityScope)
 )();
 
 export const listQuizTopics = (
@@ -558,24 +560,34 @@ state
 
 export const trackTabSwitch = (
 unitId,
-blockNumber
+blockNumber,
+idempotencyKey = null,
+noteId = null,
+activityScope = null
 ) =>
 api.trackTabSwitch(
 unitId,
-blockNumber
+blockNumber,
+idempotencyKey,
+noteId,
+activityScope
 );
 
 export const submitQuizWithSession = (
 unitId,
 blockNumber,
 answers,
-timeTaken
+timeTaken,
+noteId = null,
+activityScope = null
 ) =>
 api.submitQuizWithSession(
 unitId,
 blockNumber,
 answers,
-timeTaken
+timeTaken,
+noteId,
+activityScope
 );
 
 export const checkQuizAnswer = (
@@ -585,9 +597,11 @@ api.checkQuizAnswer(payload);
 
 export const getQuizSessionStatus = (
 unitId = null,
-blockNumber = null
+blockNumber = null,
+noteId = null,
+activityScope = null
 ) =>
-api.getQuizSessionStatus(unitId, blockNumber);
+api.getQuizSessionStatus(unitId, blockNumber, noteId, activityScope);
 
 export const getUnits = (
 filters = {}
@@ -903,9 +917,11 @@ api.getUnitBreadcrumb(unitId);
 export const getQuizBlock = (
 unitId,
 block,
+noteId = null,
+activityScope = null,
 challengeId = null
 ) =>
-api.getQuizBlock(unitId, block, challengeId);
+api.getQuizBlock(unitId, block, noteId, activityScope, challengeId);
 
 export const addQuizQuestionsBatch = (
 unitId,
