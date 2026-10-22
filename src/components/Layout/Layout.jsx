@@ -90,7 +90,7 @@ export default function Layout({ children, showFooter = true }) {
     <NetworkStatus />
     {!hideHeader && <header className={`site-header${scrolled ? ' scrolled' : ''}`}><div className="header-container">
       <Link to="/" className="header-logo">{logo ? <img src={logo} alt="" aria-hidden="true" /> : siteName}</Link>
-      <nav className="main-nav">{filteredNavigation.map((link) => <Link key={link.href} to={link.href} className={`main-nav-link${location.pathname === link.href ? ' active' : ''}`}>{link.icon && <Icon name={link.icon} />}{link.label}</Link>)}</nav>
+      <nav className="main-nav">{menuLinks.map((link) => <Link key={link.href} to={link.href} className={`main-nav-link${location.pathname === link.href ? ' active' : ''}`}>{link.icon && <Icon name={link.icon} />}{link.label}</Link>)}</nav>
       <div className="nav-actions">
         {isAuthenticated && <ClassSwitcher />}
         <button className="btn btn-ghost btn-sm btn-icon header-action-button" onClick={() => setSearchOpen(true)} aria-label={t('common.search')} type="button"><SearchGlyph /></button>
