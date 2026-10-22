@@ -160,6 +160,19 @@ export default function ResourcesView({ navigate, user, sections }) {
           </span>
         </div>
 
+        {user && activeGroupId && (
+          <section className="resources-curriculum-entry" aria-labelledby="resources-curriculum-heading">
+            <div className="resources-curriculum-entry-copy">
+              <span className="resources-section-kicker">Start with your syllabus</span>
+              <h2 id="resources-curriculum-heading">Browse the curriculum</h2>
+              <p>Open your programme’s topic map, read lesson content, and follow links to notes, PDFs, flashcards, quizzes, and revision practice for each topic.</p>
+            </div>
+            <Button size="sm" variant="primary" onClick={() => navigate(`/curriculum/${encodeURIComponent(activeGroupId)}`)}>
+              Browse curriculum <Icon name="arrow-right" />
+            </Button>
+          </section>
+        )}
+
         <div className="resources-toolbar">
           <div className="resources-filter-chips" role="group" aria-label="Filter resources">
             {FILTERS.map((item) => (
