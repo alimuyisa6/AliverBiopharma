@@ -5,57 +5,6 @@ html, body, #root { max-width: 100%; min-width: 0; }
 html, body { overflow-x: clip; }
 *, *::before, *::after { box-sizing: border-box; }
 
-/* Shared responsive foundations: prevent intrinsic media, controls, and grid
-   children from forcing pages wider than the available viewport. */
-img, video, canvas, svg, iframe {
-  max-width: 100%;
-}
-
-img, video, canvas {
-  height: auto;
-}
-
-button, input, select, textarea {
-  max-width: 100%;
-}
-
-.page-container,
-.site-container,
-.main-content,
-.section,
-[class*="-content"],
-[class*="-grid"],
-[class*="-row"] {
-  min-width: 0;
-}
-
-@media (max-width: 768px) {
-  .site-container,
-  .page-container {
-    width: min(calc(100% - (var(--page-gutter-x) * 2)), var(--max-width));
-  }
-
-  .main-content {
-    min-width: 0;
-  }
-
-  table {
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .section {
-    min-width: 0;
-  }
-
-  input,
-  select,
-  textarea {
-    font-size: max(16px, 1em);
-  }
-}
-
 .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: var(--z-sticky); height: var(--header-height); background: var(--grey-100); border-bottom: 1px solid var(--grey-200); }
 .site-header.scrolled { background: var(--grey-100); box-shadow: var(--shadow-sm); border-bottom-color: var(--grey-200); }
 body.dark-mode .site-header, body.dark-mode .site-header.scrolled { background: var(--grey-900); border-bottom-color: var(--grey-800); }
