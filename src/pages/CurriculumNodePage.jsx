@@ -14,6 +14,15 @@ function slugify(value) {
     .replace(/^-+|-+$/g, '');
 }
 
+function safeExternalHref(value) {
+  try {
+    const url = new URL(String(value || ''));
+    return url.protocol === 'https:' || url.protocol === 'http:' ? url.href : null;
+  } catch {
+    return null;
+  }
+}
+
 function curriculumLevelLabel(depth, isPharmacy) {
   if (depth <= 0) return isPharmacy ? 'Course Unit' : 'Topic';
   if (depth === 1) return isPharmacy ? 'Sub-course Unit' : 'Subtopic';
@@ -414,8 +423,8 @@ export default function CurriculumNodePage() {
             {Object.entries(linkedContentGroups).map(([type, items]) => {
               const resourceKeys = {
                 note: 'notes',
-                article: 'articles',
-                video: 'videos',
+                article: null,
+                video: null,
                 flashcard_deck: 'flashcards',
                 quiz_question: 'quiz',
                 recall_question: 'recall',
@@ -452,13 +461,31 @@ export default function CurriculumNodePage() {
                     </span>
                   </div>
                   <ul className="curriculum-node-linked-preview">
-                    {items.slice(0, 3).map((item) => (
-                      <li key={item.id}>
-                        {type === 'glossary_term' && item.slug
-                          ? <Link to={`/glossary/${encodeURIComponent(item.slug)}`}>{item.title}</Link>
-                          : item.title}
-                      </li>
-                    ))}
+                    {items.slice(0, 3).map((item) => {
+                      const articleHref = type === 'article' && item.slug
+                        ? `/blog/${encodeURIComponent(item.slug)}`
+                        : null;
+                      const videoHref = type === 'video'
+                        ? safeExternalHref(item.video_url || item.embed_url)
+                        : null;
+                      const glossaryHref = type === 'glossary_term' && item.slug
+                        ? `/glossary/${encodeURIComponent(item.slug)}`
+                        : null;
+
+                      return (
+                        <li key={item.id}>
+                          {articleHref ? (
+                            <Link to={articleHref}>{item.title}</Link>
+                          ) : videoHref ? (
+                            <a href={videoHref} target="_blank" rel="noopener noreferrer">{item.title} ↗</a>
+                          ) : glossaryHref ? (
+                            <Link to={glossaryHref}>{item.title}</Link>
+                          ) : (
+                            item.title
+                          )}
+                        </li>
+                      );
+                    })}
                     {items.length > 3 && <li>And {items.length - 3} more</li>}
                   </ul>
                   {destination && (
