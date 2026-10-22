@@ -849,6 +849,37 @@
 }
 
 
+/* Dashboard graph interpretation copy: readable, fluid and consistent with the page spacing tokens. */
+.dashboard-content .dashboard-graph-guide {
+  margin: var(--space-3) 0 var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-inline-start: 3px solid var(--primary);
+  border-radius: var(--radius-sm);
+  background: var(--surface-muted);
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  overflow-wrap: anywhere;
+}
+.dashboard-content .dashboard-graph-guide strong {
+  color: var(--text-main);
+  font-weight: var(--weight-semibold);
+}
+.dashboard-content .mastery-chart-explainer {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  overflow-wrap: anywhere;
+}
+.dashboard-content .ch-chart-frame {
+  width: 100%;
+  min-width: 0;
+}
+.dashboard-content .recharts-responsive-container {
+  min-width: 0;
+  max-width: 100%;
+}
+
 /* Dashboard insight charts: responsive, token-driven, and safe in the narrow sidebar. */
 .dashboard-insight-chart {
   width: 100%;
