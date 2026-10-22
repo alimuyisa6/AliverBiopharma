@@ -34,14 +34,18 @@ body.dark-mode .site-header, body.dark-mode .site-header.scrolled { background: 
 }
 
 .nav-actions .class-switcher-trigger {
+  display: flex;
+  align-items: center;
   min-width: var(--space-32);
   max-width: 12rem;
-  min-height: var(--space-10);
-  padding: var(--space-2) var(--space-3);
+  min-height: var(--space-8);
+  margin-block: var(--space-1);
+  padding: var(--space-1) var(--space-2);
+  gap: var(--space-2);
   border-color: var(--border-default);
   background: var(--bg-card);
   color: var(--text-main);
-  box-shadow: var(--shadow-sm);
+  box-shadow: none;
 }
 
 .nav-actions .class-switcher-trigger:hover:not(:disabled) {
@@ -664,4 +668,43 @@ body.dark-mode .site-header, body.dark-mode .site-header.scrolled { background: 
 }
 @media (prefers-reduced-motion: reduce) {
   .footer-social-link { transition: none; }
+}
+
+/* Header class switcher: compact vertical spacing and a chevron-only control. */
+.nav-actions .class-switcher-chevron {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-6);
+  height: var(--space-6);
+  margin-inline-start: var(--space-1);
+  padding: 0;
+  color: var(--text-muted);
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+}
+.nav-actions .class-switcher-chevron:hover:not(:disabled) {
+  color: var(--primary);
+  background: var(--bg-card-hover);
+}
+.nav-actions .class-switcher-chevron:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+.nav-actions .class-switcher-chevron:disabled {
+  cursor: wait;
+}
+.nav-actions .class-switcher-trigger > span {
+  flex: 1 1 auto;
+  text-align: left;
+}
+.nav-actions .class-switcher-menu {
+  top: 0;
+  right: auto;
+  left: 0;
+  margin-top: 0;
+  transform: translateY(0);
 }
