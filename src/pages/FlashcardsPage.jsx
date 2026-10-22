@@ -54,7 +54,9 @@ export default function FlashcardsPage() {
   const [error, setError] = useState(null);
 
   const curriculumUnitId = searchParams.get('unit_id') || null;
-  const cacheKey = `${user?.id || 'anonymous'}:${level || ''}:${class_name || ''}:${curriculumUnitId || 'all'}`;
+  const sourceNoteId = searchParams.get('note_id') || null;
+  const activityScope = searchParams.get('activity_scope') || (sourceNoteId ? 'note' : null);
+  const cacheKey = `${user?.id || 'anonymous'}:${level || ''}:${class_name || ''}:${curriculumUnitId || 'all'}:${sourceNoteId || 'no-note'}:${activityScope || 'default-scope'}`;
   const challengeId = searchParams.get('challenge_id') || null;
   const deckId = searchParams.get('deck_id') || null;
   const levelName = displayName || level || '';
@@ -66,7 +68,7 @@ export default function FlashcardsPage() {
     let active = true;
     init({ active: () => active });
     return () => { active = false; };
-  }, [user?.id, isReady, access.canAccess, level, class_name, curriculumUnitId, deckId]);
+  }, [user?.id, isReady, access.canAccess, level, class_name, curriculumUnitId, sourceNoteId, activityScope, deckId]);
 
   async function init(lifecycle = { active: () => true }) {
     const cached = flashcardPageCache.get(cacheKey);
@@ -112,7 +114,7 @@ export default function FlashcardsPage() {
     if (!request) {
       request = Promise.all([
         getKnownFlashcards(),
-        getFlashcardDecks(curriculumUnitId ? { unit_id: curriculumUnitId } : {})
+        getFlashcardDecks({ ...(curriculumUnitId ? { unit_id: curriculumUnitId } : {}), ...(sourceNoteId ? { note_id: sourceNoteId } : {}) })
       ]).then(([knownData, decksData]) => {
         const data = {
           knownIds: Array.isArray(knownData) ? knownData : [],
@@ -286,6 +288,9 @@ export default function FlashcardsPage() {
         knownIds={knownIds}
         mode="flip"
         onComplete={handleStudyComplete}
+        sourceNoteId={sourceNoteId}
+        activityScope={activityScope}
+        unitId={curriculumUnitId}
       />
     );
   }
