@@ -62,6 +62,8 @@ export default function BioRecall() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const curriculumUnitId = searchParams.get('unit_id') || null;
+  const sourceNoteId = searchParams.get('note_id') || null;
+  const activityScope = searchParams.get('activity_scope') || (sourceNoteId ? 'note' : null);
   const challengeId = searchParams.get('challenge_id') || null;
   const resumeRequested = searchParams.get('resume') === '1';
   const { isReady } = useRequireOnboarding();
@@ -135,7 +137,7 @@ export default function BioRecall() {
 
     loadUserProgress();
     loadDueQueue();
-  }, [isReady, access.canAccess, access.isPending, curriculumUnitId]);
+  }, [isReady, access.canAccess, access.isPending, curriculumUnitId, sourceNoteId, activityScope]);
 
   useEffect(() => {
     if (
@@ -159,7 +161,7 @@ export default function BioRecall() {
     setSelectedTopic(topic);
     setLoading(true);
 
-    startRecallSession(topic.unit_id, challengeId)
+    startRecallSession(topic.unit_id, challengeId, sourceNoteId, activityScope)
       .then((started) => {
         if (!started?.session_id || !started?.current_question) {
           addToast('No active questions available for this topic', 'warning');
@@ -192,6 +194,8 @@ export default function BioRecall() {
     access.isPending,
     locked,
     curriculumUnitId,
+    sourceNoteId,
+    activityScope,
     challengeId,
     topicList,
     addToast
@@ -206,7 +210,7 @@ export default function BioRecall() {
         getRecallDashboard().catch(() => null),
         getRecallStats().catch(() => null),
         getRecallAchievements().catch(() => []),
-        getRecallTopics().catch(() => ({ level: null, units: [] })),
+        getRecallTopics({ ...(curriculumUnitId ? { unit_id: curriculumUnitId } : {}), ...(sourceNoteId ? { note_id: sourceNoteId } : {}) }).catch(() => ({ level: null, units: [] })),
         getLeaderboard(displayName || level || null, 10).catch(() => [])
       ]);
 
@@ -304,7 +308,9 @@ export default function BioRecall() {
     try {
       const started = await startRecallSession(
         topic.unit_id,
-        challengeId
+        challengeId,
+        sourceNoteId,
+        activityScope
       );
 
       if (
