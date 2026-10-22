@@ -59,6 +59,39 @@ export default function AIAssistant() {
   const [error, setError] = useState('');
   const bodyRef = useRef(null);
   const abortRef = useRef(null);
+  const [footerOffset, setFooterOffset] = useState(0);
+
+  useEffect(() => {
+    let frame = 0;
+    const updateFooterOffset = () => {
+      if (frame) cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        const footer = document.querySelector('.footer');
+        if (!footer) {
+          setFooterOffset(0);
+          return;
+        }
+        const footerTop = footer.getBoundingClientRect().top;
+        const visibleFooter = window.innerHeight - footerTop;
+        const nextOffset = visibleFooter > 0 ? Math.ceil(visibleFooter + 16) : 0;
+        setFooterOffset((current) => current === nextOffset ? current : nextOffset);
+      });
+    };
+
+    updateFooterOffset();
+    window.addEventListener('scroll', updateFooterOffset, { passive: true });
+    window.addEventListener('resize', updateFooterOffset);
+    const observer = new MutationObserver(updateFooterOffset);
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', updateFooterOffset);
+      window.removeEventListener('resize', updateFooterOffset);
+      observer.disconnect();
+    };
+  }, []);
 
   const levelName = useMemo(() => levelLabel(level), [level]);
   const pageContext = location.pathname || '/';
@@ -165,7 +198,7 @@ export default function AIAssistant() {
   };
 
   return (
-    <div className="ai-assistant">
+    <div className="ai-assistant" style={{ "--ai-assistant-footer-offset": `${footerOffset}px` }}>
       {open && (
         <section className="ai-assistant-panel" aria-label="AliverBiopharm AI Tutor">
           <header className="ai-assistant-header">
