@@ -402,8 +402,8 @@ export default function CurriculumNodePage() {
         <section className="curriculum-node-section">
           <div className="curriculum-node-section-heading">
             <div>
-              <span className="curriculum-node-kicker">Resources for this lesson</span>
-              <h2>Practise what you’ve learned</h2>
+              <span className="curriculum-node-kicker">{isThemeActivityNode ? 'Theme-wide activities' : 'Resources for this lesson'}</span>
+              <h2>{isThemeActivityNode ? `Practise across ${node.name}` : 'Practise what you’ve learned'}</h2>
             </div>
           </div>
 
