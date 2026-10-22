@@ -525,9 +525,16 @@ export default function HeroScienceCanvas() {
     sceneStartRef.current = startTime;
     if (reducedRef.current) renderStill();
     else frameId = window.requestAnimationFrame(renderFrame);
+    let resizeFrame = 0;
     const resizeObserver = new ResizeObserver(() => {
-      resize();
-      if (reducedRef.current) renderStill();
+      // Defer canvas backing-store writes until after ResizeObserver delivery.
+      // This prevents resize feedback loops on narrow/mobile desktop-mode layouts.
+      if (resizeFrame) cancelAnimationFrame(resizeFrame);
+      resizeFrame = requestAnimationFrame(() => {
+        resizeFrame = 0;
+        resize();
+        if (reducedRef.current) renderStill();
+      });
     });
     resizeObserver.observe(hero);
     const visibilityObserver = new IntersectionObserver(([entry]) => {
@@ -548,6 +555,7 @@ export default function HeroScienceCanvas() {
 
     return () => {
       window.cancelAnimationFrame(frameId);
+      window.cancelAnimationFrame(resizeFrame);
       resizeObserver.disconnect();
       visibilityObserver.disconnect();
       hero.removeEventListener('pointermove', onPointerMove);
