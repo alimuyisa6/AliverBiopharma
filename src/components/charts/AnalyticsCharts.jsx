@@ -33,6 +33,35 @@ export function TotalLearningActivity({ data = [], embedded = false }) {
   </ChartCard>;
 }
 
+export function ActivityDistribution({ data = [], embedded = false }) {
+  const theme = useChartTheme();
+  const buckets = [
+    { label: '0 sessions', min: 0, max: 0, days: 0 },
+    { label: '1 session', min: 1, max: 1, days: 0 },
+    { label: '2 sessions', min: 2, max: 2, days: 0 },
+    { label: '3+ sessions', min: 3, max: Infinity, days: 0 }
+  ];
+  data.forEach((item) => {
+    const count = Math.max(0, Number(item.value) || 0);
+    const bucket = buckets.find((entry) => count >= entry.min && count <= entry.max);
+    if (bucket) bucket.days += 1;
+  });
+  return <ChartCard embedded={embedded} title="Daily activity distribution" subtitle="How often different session counts occurred during this period." action={<ChartExportButton data={buckets.map(({ label, days }) => ({ label, days }))} filename="daily-activity-distribution" />}>
+    <Frame summary="Histogram-style frequency chart grouping days by their recorded learning-session counts.">
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart data={buckets} margin={{ top: 8, right: 8, bottom: 8, left: 0 }}>
+          <CartesianGrid vertical={false} stroke={theme.subtleBorder} strokeDasharray="3 3" />
+          <XAxis dataKey="label" tickLine={false} axisLine={false} stroke={theme.muted} />
+          <YAxis allowDecimals={false} tickLine={false} axisLine={false} stroke={theme.muted} label={{ value: 'Days', angle: -90, position: 'insideLeft', fill: theme.muted }} />
+          <Tooltip content={<ChartTooltip />} />
+          <Bar dataKey="days" name="Days" fill={theme.series[0]} radius={[7, 7, 2, 2]} />
+        </BarChart>
+      </ResponsiveContainer>
+    </Frame>
+    <p className="dashboard-graph-guide">This frequency chart groups days by the number of sessions recorded. Taller bars mean more days had that activity level. Use it to see whether your routine is consistent or mostly made up of low-activity days.</p>
+  </ChartCard>;
+}
+
 export function LearningTrend({ data = [] }) {
   const theme = useChartTheme();
   return <ChartCard title="Learning trend" subtitle="How your recent study activity is moving.">
