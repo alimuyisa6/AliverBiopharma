@@ -388,12 +388,19 @@
 }
 
 
-/* The width preference is applied through the same runtime token as other UI settings. */
-.btn:not(.btn-icon) {
-  width: var(--ui-button-width, fit-content);
+/* User-selected button width is a global layout preference. Keep this
+   selector more specific than component-level button sizing rules. */
+html[data-ui-button-width="full"] .btn:not(.btn-icon) {
+  width: 100%;
   min-width: 0;
+  max-width: 100%;
 }
-.btn:not(.btn-icon) > span {
+html[data-ui-button-width="auto"] .btn:not(.btn-icon) {
+  width: fit-content;
+  min-width: 0;
+  max-width: 100%;
+}
+html[data-ui-button-width="full"] .btn:not(.btn-icon) > span {
   min-width: 0;
   overflow-wrap: anywhere;
   white-space: normal;
