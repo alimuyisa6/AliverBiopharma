@@ -264,7 +264,7 @@ export default function Quiz() {
     })();
 
     return () => { cancelled = true; };
-  }, [isReady, access.canAccess, access.isPending, user]);
+  }, [isReady, access.canAccess, access.isPending, user, curriculumUnitId, sourceNoteId, activityScope]);
 
   useEffect(() => {
     if (!isReady || !access.canAccess || access.isPending) return;
