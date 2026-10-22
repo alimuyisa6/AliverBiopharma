@@ -1225,8 +1225,8 @@ export default function Dashboard() {
                   <div className="sidebar-list dashboard-activity-timeline" id="recent-activity-list">
                     {recentActivity.map((activity, index) => {
                       const progress = Math.max(0, Math.min(100, Math.round(Number(activity.progress_percentage) || 0)));
-                      const contentLabel = activity.type === 'recall' ? 'Recall' : activity.type === 'quiz' ? 'Quiz' : 'Reading';
-                      const iconName = activity.type === 'recall' ? 'brain' : activity.type === 'quiz' ? 'graduation-cap' : 'book-open';
+                      const contentLabel = activity.type === 'recall' ? 'Recall' : activity.type === 'quiz' ? 'Quiz' : activity.type === 'flashcards' ? 'Flashcards' : 'Reading';
+                      const iconName = activity.type === 'recall' ? 'brain' : activity.type === 'quiz' ? 'graduation-cap' : activity.type === 'flashcards' ? 'layers' : 'book-open';
 
                       const activityLink = activity.type === 'reading' && activity.note_id
                         ? `/notes/read?id=${encodeURIComponent(activity.note_id)}`
@@ -1234,7 +1234,9 @@ export default function Dashboard() {
                           ? `/quiz?unit_id=${encodeURIComponent(activity.unit_id)}`
                           : activity.type === 'recall' && activity.unit_id
                             ? `/recall?unit_id=${encodeURIComponent(activity.unit_id)}`
-                            : null;
+                            : activity.type === 'flashcards'
+                              ? '/flashcards'
+                              : null;
 
                       const activityContent = (
                         <>
