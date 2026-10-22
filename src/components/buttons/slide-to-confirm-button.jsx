@@ -33,15 +33,31 @@ export default function SlideToConfirmButton({
   useEffect(() => {
     if (!trackRef.current) return undefined;
     const element = trackRef.current;
-    const measure = () => setTrackWidth(element.getBoundingClientRect().width);
+    let measureFrame = 0;
+    const measure = () => {
+      if (measureFrame) cancelAnimationFrame(measureFrame);
+      // Defer React state updates until after ResizeObserver delivery and
+      // avoid rerenders when the measured width has not actually changed.
+      measureFrame = requestAnimationFrame(() => {
+        measureFrame = 0;
+        const nextWidth = element.getBoundingClientRect().width;
+        setTrackWidth((current) => Math.abs(current - nextWidth) < 0.5 ? current : nextWidth);
+      });
+    };
     measure();
     if (typeof ResizeObserver === 'undefined') {
       window.addEventListener('resize', measure);
-      return () => window.removeEventListener('resize', measure);
+      return () => {
+        cancelAnimationFrame(measureFrame);
+        window.removeEventListener('resize', measure);
+      };
     }
     const observer = new ResizeObserver(measure);
     observer.observe(element);
-    return () => observer.disconnect();
+    return () => {
+      cancelAnimationFrame(measureFrame);
+      observer.disconnect();
+    };
   }, []);
 
   const maxOffset = Math.max(0, trackWidth - (knobRef.current?.offsetWidth || 48) - 8);
