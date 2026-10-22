@@ -578,6 +578,7 @@ unitId,
 blockNumber,
 answers,
 timeTaken,
+idempotencyKey = null,
 noteId = null,
 activityScope = null
 ) =>
@@ -586,6 +587,7 @@ unitId,
 blockNumber,
 answers,
 timeTaken,
+idempotencyKey,
 noteId,
 activityScope
 );
