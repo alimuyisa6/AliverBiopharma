@@ -342,7 +342,8 @@ export default function Dashboard() {
   const recentActivityMix = [
     { label: 'Quizzes', value: recentActivity.filter((item) => item.type === 'quiz').length },
     { label: 'Recall', value: recentActivity.filter((item) => item.type === 'recall').length },
-    { label: 'Reading', value: recentActivity.filter((item) => item.type === 'reading').length }
+    { label: 'Reading', value: recentActivity.filter((item) => item.type === 'reading').length },
+    { label: 'Flashcards', value: recentActivity.filter((item) => item.type === 'flashcards').length }
   ];
 
   const masteryMap = analytics?.mastery_map || [];
@@ -694,13 +695,13 @@ export default function Dashboard() {
                 <div className="panel-body">
                 <p className="dashboard-section-intro">See how regularly you’ve been studying and spot the habits that help you make progress.</p>
                 <DashboardSectionAside>Aim for a steady study routine. A short, focused session today is a useful start.</DashboardSectionAside>
-                  <p className="dashboard-graph-guide"><strong>Graph type: area trend.</strong> Best for tracking changes over time. The horizontal axis shows dates; the vertical axis shows recorded sessions. Compare quiz and BioRecall activity to spot changes in your study routine.</p>
+                  <p className="dashboard-graph-guide"><strong>Graph type: area trend.</strong> This chart compares daily quiz and recall activity recorded in the recent activity feed. It is useful for spotting short-term changes; it does not include every activity type or represent your full account history.</p>
                   <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><DualAreaTrend
                     embedded
                     activities={recentActivity}
                     days={activityDays}
                   /></Suspense></ChartWhenVisible>
-                  <p className="dashboard-graph-guide"><strong>Graph type: bar chart.</strong> Best for comparing activity between days. Each bar represents recorded learning activity for a date; taller bars indicate more activity.</p>
+                  <p className="dashboard-graph-guide"><strong>Graph type: daily activity bars.</strong> Each bar represents the activity count saved for one date. Compare heights to identify more active days; these values depend on what the activity tracker records.</p>
                   <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><TotalLearningActivity
                     embedded
                     data={heatmapValues.map((item) => ({
@@ -708,8 +709,6 @@ export default function Dashboard() {
                       value: Math.max(0, Number(item.count) || 0)
                     }))}
                   /></Suspense></ChartWhenVisible>
-                  <p className="dashboard-graph-guide"><strong>Graph type: frequency histogram.</strong> Best for showing how often values occur. Each bar counts the days that fell into a session-count range, helping you distinguish consistent activity from occasional spikes.</p>
-                  <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><ActivityDistribution embedded data={heatmapValues.map((item) => ({ label: new Date(item.activity_date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }), value: Math.max(0, Number(item.count) || 0) }))} /></Suspense></ChartWhenVisible>
                 </div>
               </section>
             )}
