@@ -1,21 +1,24 @@
 /* components/Flashcardprogress.jsx */
 import Icon from './Icon/Icon';
 import Button from './Button/Button';
+import { useNavigate } from 'react-router-dom';
 
 export default function FlashcardProgress({ result, onRestart, onHome }) {
-  const { total = 0, correct = 0, incorrect = 0, score = 0 } = result || {};
+  const navigate = useNavigate();
+  const { total = 0, correct = 0, incorrect = 0, score = 0, activity_outcome = 'unscored', deck_complete = false, recommendation = null } = result || {};
 
   function scoreClass() {
-    if (score >= 80) return 'is-high';
-    if (score >= 50) return '';
-    return 'is-low';
+    if (activity_outcome === 'mastered') return 'is-high';
+    if (activity_outcome === 'low') return 'is-low';
+    return '';
   }
 
   function message() {
-    if (score >= 80) return 'Outstanding work!';
-    if (score >= 60) return 'Good effort! Keep it up.';
-    if (score >= 40) return 'Keep practising — you\'re getting there.';
-    return 'Review the material and try again.';
+    if (!deck_complete || activity_outcome === 'incomplete') return 'You ended this session before reviewing the full deck. Continue when you are ready.';
+    if (activity_outcome === 'mastered') return 'You met the configured mastery threshold.';
+    if (activity_outcome === 'low') return 'Your result suggests reviewing the learning material before another attempt.';
+    if (activity_outcome === 'developing') return 'You are making progress. A short review and another practice attempt can help.';
+    return 'Session saved. Continue with another learning activity.';
   }
 
   return (
@@ -25,6 +28,16 @@ export default function FlashcardProgress({ result, onRestart, onHome }) {
           <Icon name="trophy" className="fcp-trophy" />
           <h2>Session Complete</h2>
           <p className="fcp-message">{message()}</p>
+
+          {recommendation && (
+            <div className="fcp-recommendation" aria-live="polite">
+              <h3>{recommendation.title}</h3>
+              <p>{recommendation.message}</p>
+              <Button variant="secondary" onClick={() => navigate(recommendation.route || '/resources')}>
+                {recommendation.label || 'Continue learning'}
+              </Button>
+            </div>
+          )}
 
           <div className="fcp-stats-row">
             <div>
