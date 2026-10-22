@@ -75,7 +75,7 @@ export default function NoteDetail() {
   const [trialAnswers, setTrialAnswers] = useState({});
   const [trialFeedback, setTrialFeedback] = useState({});
   const [trialLoading, setTrialLoading] = useState(false);
-  const [internalLinks, setInternalLinks] = useState({ inline_links: [], related_links: [] });
+  const [internalLinks, setInternalLinks] = useState({ inline_links: [], related_links: [], activities: { quiz: { question_count: 0 }, flashcards: [], recall: { question_count: 0 } }, related_articles: [] });
   const [linkPreview, setLinkPreview] = useState(null);
   const [linkPreviewPosition, setLinkPreviewPosition] = useState({ x: 0, y: 0 });
   const [loading, setLoading] = useState(true);
@@ -114,7 +114,7 @@ export default function NoteDetail() {
       setFetchError(null);
       if (!cachedNote) {
         setNote(null);
-        setInternalLinks({ inline_links: [], related_links: [] });
+        setInternalLinks({ inline_links: [], related_links: [], activities: { quiz: { question_count: 0 }, flashcards: [], recall: { question_count: 0 } }, related_articles: [] });
         setComments([]);
         setReactions({ counts: {}, user: [] });
         setReadProgress(0);
@@ -148,13 +148,15 @@ export default function NoteDetail() {
 
         const reactionData = reactionResult.status === 'fulfilled' ? reactionResult.value : { counts: {}, user_reactions: [] };
         const commentData = commentResult.status === 'fulfilled' ? commentResult.value : { comments: [] };
-        const linksData = linksResult.status === 'fulfilled' ? linksResult.value : { inline_links: [], related_links: [] };
+        const linksData = linksResult.status === 'fulfilled' ? linksResult.value : { inline_links: [], related_links: [], activities: { quiz: { question_count: 0 }, flashcards: [], recall: { question_count: 0 } }, related_articles: [] };
 
         setReactions(normalizeReactions(reactionData));
         setComments(commentData?.comments || []);
         setInternalLinks({
           inline_links: linksData?.inline_links || [],
-          related_links: linksData?.related_links || []
+          related_links: linksData?.related_links || [],
+          activities: linksData?.activities || { quiz: { question_count: 0 }, flashcards: [], recall: { question_count: 0 } },
+          related_articles: linksData?.related_articles || []
         });
 
         if (user) {
@@ -688,6 +690,70 @@ export default function NoteDetail() {
                 })}
               </div>
             )}
+          </section>
+        )}
+
+        {(Number(internalLinks.activities?.quiz?.question_count) > 0 ||
+          (internalLinks.activities?.flashcards || []).length > 0 ||
+          Number(internalLinks.activities?.recall?.question_count) > 0) && (
+          <section className="note-related-section" aria-labelledby="note-activities-title">
+            <h2 id="note-activities-title" className="note-related-title font-poppins">Practice this note</h2>
+            <p>These activities are linked to this exact note, so your revision stays focused.</p>
+            <div className="note-related-grid">
+              {Number(internalLinks.activities?.quiz?.question_count) > 0 && (
+                <Card
+                  key="note-quiz"
+                  variant="blue-strong"
+                  className="card-mixed"
+                  title="Quiz"
+                  description={`${internalLinks.activities.quiz.question_count} linked questions`}
+                  footer={<span>Test your understanding →</span>}
+                  onClick={() => navigate(`/quiz/blocks?unit_id=${encodeURIComponent(note.unit_id)}&note_id=${encodeURIComponent(note.id)}&activity_scope=note`)}
+                />
+              )}
+              {(internalLinks.activities?.flashcards || []).map((deck) => (
+                <Card
+                  key={deck.id}
+                  variant="blue-strong"
+                  className="card-mixed"
+                  title={deck.title}
+                  description={deck.description || `${deck.card_count} flashcards`}
+                  footer={<span>{deck.card_count} cards · Review →</span>}
+                  onClick={() => navigate(`/flashcards?unit_id=${encodeURIComponent(note.unit_id)}&note_id=${encodeURIComponent(note.id)}&deck_id=${encodeURIComponent(deck.id)}&activity_scope=note`)}
+                />
+              ))}
+              {Number(internalLinks.activities?.recall?.question_count) > 0 && (
+                <Card
+                  key="note-recall"
+                  variant="blue-strong"
+                  className="card-mixed"
+                  title="BioRecall"
+                  description={`${internalLinks.activities.recall.question_count} linked recall prompts`}
+                  footer={<span>Practise active recall →</span>}
+                  onClick={() => navigate(`/recall?unit_id=${encodeURIComponent(note.unit_id)}&note_id=${encodeURIComponent(note.id)}&activity_scope=note&resume=1`)}
+                />
+              )}
+            </div>
+          </section>
+        )}
+
+        {internalLinks.related_articles?.length > 0 && (
+          <section className="note-related-section" aria-labelledby="note-related-articles-title">
+            <h2 id="note-related-articles-title" className="note-related-title font-poppins">Related reading</h2>
+            <p>Continue with articles selected for this note.</p>
+            <div className="note-related-grid">
+              {internalLinks.related_articles.map((article) => (
+                <Card
+                  key={article.id}
+                  variant="blue-strong"
+                  className="card-mixed"
+                  title={article.title}
+                  description={article.excerpt || article.reason || 'Read this related article'}
+                  footer={<span>{article.read_time_minutes ? `${article.read_time_minutes} min read · ` : ''}Read article →</span>}
+                  onClick={() => article.slug && navigate(`/blog/${encodeURIComponent(article.slug)}`)}
+                />
+              ))}
+            </div>
           </section>
         )}
 
