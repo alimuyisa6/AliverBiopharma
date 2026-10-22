@@ -30,7 +30,7 @@ function curriculumLevelLabel(depth, isPharmacy) {
   return 'Lesson';
 }
 
-function resourcePath(resource, unitId) {
+function resourcePath(resource, unitId, nodeType = null) {
   const routes = {
     notes: '/notes',
     quiz: '/quiz',
@@ -41,7 +41,11 @@ function resourcePath(resource, unitId) {
   };
 
   const route = routes[resource] || '/resources';
-  return `${route}?unit_id=${encodeURIComponent(unitId)}`;
+  const isTheme = ['theme', 'subtopic'].includes(String(nodeType || '').toLowerCase());
+  const scope = ['quiz', 'flashcards', 'recall'].includes(resource)
+    ? (isTheme ? 'theme' : 'lesson')
+    : null;
+  return `${route}?unit_id=${encodeURIComponent(unitId)}${scope ? `&activity_scope=${scope}` : ''}`;
 }
 
 const curriculumNodeCache = new Map();
@@ -282,7 +286,12 @@ export default function CurriculumNodePage() {
   };
   // Use canonical content links as well as legacy unit_id counts. A resource
   // may be linked to this lesson while its stored unit_id points to a parent.
-  const availableResources = (isLeaf ? Object.entries(RESOURCE_LABELS) : [])
+  const isThemeActivityNode = ['theme', 'subtopic'].includes(nodeType);
+  const availableResources = (isLeaf
+    ? Object.entries(RESOURCE_LABELS)
+    : isThemeActivityNode
+      ? Object.entries(RESOURCE_LABELS).filter(([key]) => ['quiz', 'flashcards', 'recall'].includes(key))
+      : [])
     .filter(([key]) => (
       Number(counts[RESOURCE_COUNT_KEYS[key] || key] || 0) > 0 ||
       (linkedContentGroups[RESOURCE_LINK_TYPES[key]] || []).length > 0
@@ -400,7 +409,7 @@ export default function CurriculumNodePage() {
 
           <div className="curriculum-node-resources">
             {availableResources.map(([key, label]) => (
-              <Link key={key} to={resourcePath(key, node.id)} className="curriculum-node-resource">
+              <Link key={key} to={resourcePath(key, node.id, node.node_type)} className="curriculum-node-resource">
                 <span>{label}</span>
                 <Icon name="arrow-right" />
               </Link>
@@ -447,7 +456,7 @@ export default function CurriculumNodePage() {
                 glossary_term: 'Glossary terms'
               }[type] || type.replaceAll('_', ' ');
               const destination = resourceKey
-                ? resourcePath(resourceKey, node.id)
+                ? resourcePath(resourceKey, node.id, node.node_type)
                 : type === 'glossary_term'
                   ? '/glossary'
                   : null;
