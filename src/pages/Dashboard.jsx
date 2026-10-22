@@ -283,6 +283,7 @@ export default function Dashboard() {
     weak_areas,
     recent_activity,
     unit_xp,
+    flashcards = {},
     analytics,
     level_user_counts: levelUserCounts = {}
   } = summary;
@@ -1185,10 +1186,21 @@ export default function Dashboard() {
                 <div className="panel-body">
                 <p className="dashboard-section-intro">Review your recent learning and choose what you'd like to do next.</p>
                 <DashboardSectionAside>Use this recap to return to a recent activity or pick one small task to do next.</DashboardSectionAside>
+                  {Array.isArray(flashcards.recent_sessions) && flashcards.recent_sessions.length > 0 && (
+                    <div className="dashboard-insight-chart dashboard-insight-chart-compact">
+                      <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><BarChart data={flashcards.recent_sessions.map((item) => Math.max(0, Number(item.cards_seen) || 0))} labels={flashcards.recent_sessions.map((item) => item.date ? new Date(item.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) : 'Session')} label="Cards seen" title="Flashcard practice" subtitle="Cards seen in each of your latest completed flashcard sessions." height={Math.max(220, flashcards.recent_sessions.length * 28)} /></Suspense></ChartWhenVisible>
+                      <p className="dashboard-graph-guide"><strong>Graph type: bar chart.</strong> Each bar represents one completed flashcard session; taller bars mean you reviewed more cards in that session. Compare sessions to track practice volume, then use accuracy and incorrect answers to decide what needs another review.</p>
+                      <div className="dashboard-activity-summary" role="group" aria-label="Flashcard practice summary">
+                        <div><span>Completed sessions</span><strong>{Number(flashcards.session_count) || 0}</strong></div>
+                        <div><span>Cards seen</span><strong>{Number(flashcards.cards_seen) || 0}</strong></div>
+                        <div><span>Accuracy</span><strong>{Number(flashcards.accuracy) || 0}%</strong></div>
+                      </div>
+                    </div>
+                  )}
                   {recentActivityMix.some((item) => item.value > 0) && (
                     <div className="dashboard-insight-chart dashboard-insight-chart-compact">
-                      <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><DonutChart data={recentActivityMix.map((item) => item.value)} labels={recentActivityMix.map((item) => item.label)} title="Recent learning mix" subtitle="The types of activity in your latest recorded learning history." height={220} /></Suspense></ChartWhenVisible>
-                      <p className="dashboard-graph-guide"><strong>Graph type: donut chart.</strong> Best for comparing parts of a whole. Each slice shows the share of recent reading, quiz, or recall activity; use the relative slice sizes to see which activity dominates your recent history.</p>
+                      <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><DonutChart data={recentActivityMix.map((item) => item.value)} labels={recentActivityMix.map((item) => item.label)} title="Latest 10 recorded activities" subtitle="A snapshot of the dashboard's latest activity feed, not a full-history breakdown." height={220} /></Suspense></ChartWhenVisible>
+                      <p className="dashboard-graph-guide"><strong>Graph type: donut chart.</strong> Slices compare the reading, quiz, and recall items in the latest activity feed. Because this feed is limited to recent records, use it as a quick snapshot rather than a measure of your overall study habits.</p>
                     </div>
                   )}
                   <div className="sidebar-list dashboard-activity-timeline" id="recent-activity-list">
