@@ -85,6 +85,7 @@ export default function BioRecall() {
   const [accuracy, setAccuracy] = useState(0);
   const [showReport, setShowReport] = useState(false);
   const [sessionReport, setSessionReport] = useState(null);
+  const [sessionRecommendation, setSessionRecommendation] = useState(null);
   const [newlyAwarded, setNewlyAwarded] = useState([]);
   const [achievementsList, setAchievementsList] = useState([]);
   const [topicModalOpen, setTopicModalOpen] = useState(false);
@@ -540,6 +541,7 @@ export default function BioRecall() {
         setSessionReport(
           result?.report || null
         );
+        setSessionRecommendation(result?.recommendation || null);
 
         setNewlyAwarded(
           Array.isArray(result?.newly_awarded)
@@ -1272,6 +1274,16 @@ export default function BioRecall() {
                 per question
               </p>
 
+              {sessionRecommendation && (
+                <div className="recall-report-recommendation" aria-live="polite">
+                  <h3>{sessionRecommendation.title || 'Recommended next step'}</h3>
+                  <p>{sessionRecommendation.message}</p>
+                  <Button variant="secondary" onClick={() => navigate(sessionRecommendation.route || '/resources')}>
+                    {sessionRecommendation.label || 'Continue learning'}
+                  </Button>
+                </div>
+              )}
+
               {newlyAwarded.length > 0 && (
                 <div className="recall-report-achievements">
                   <h4 className="font-poppins">
@@ -1311,6 +1323,7 @@ export default function BioRecall() {
                   onClick={() => {
                     setShowReport(false);
                     setSessionActive(false);
+                    setSessionRecommendation(null);
                     setNewlyAwarded([]);
                     loadUserProgress();
                     setTopicModalOpen(true);
