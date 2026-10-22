@@ -406,12 +406,38 @@ html[data-ui-button-width="full"] .btn:not(.btn-icon) > span {
   white-space: normal;
 }
 
-/* The 3D button's visible face is an inner span, so it must expand too. */
+/* 3D buttons are not .btn elements, so they need their own width rule. */
+html[data-ui-button-width="full"] .btn-3d:not(.btn-icon) {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
 html[data-ui-button-width="full"] .btn-3d:not(.btn-icon) > .btn-3d__top {
   width: 100%;
   box-sizing: border-box;
 }
+html[data-ui-button-width="auto"] .btn-3d:not(.btn-icon) {
+  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
+}
 html[data-ui-button-width="auto"] .btn-3d:not(.btn-icon) > .btn-3d__top {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Custom action buttons use their own classes instead of .btn. */
+html[data-ui-button-width="full"] .buttonDownload,
+html[data-ui-button-width="full"] .premium-access-button,
+html[data-ui-button-width="full"] .animated-join-button {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+html[data-ui-button-width="auto"] .buttonDownload,
+html[data-ui-button-width="auto"] .premium-access-button,
+html[data-ui-button-width="auto"] .animated-join-button {
   width: fit-content;
   max-width: 100%;
   box-sizing: border-box;
