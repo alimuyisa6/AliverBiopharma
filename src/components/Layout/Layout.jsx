@@ -96,6 +96,15 @@ export default function Layout({ children, showFooter = true }) {
   const addMenuLink = (href, label, icon) => { const existing = menuLinks.find((link) => link.href === href); if (existing) { if (!existing.icon && icon) existing.icon = icon; return; } menuLinks.push({ href, label, icon }); };
   addMenuLink('/', t('common.home'), 'home');
   if (isAuthenticated) { addMenuLink('/dashboard', t('common.dashboard'), 'gauge-high'); addMenuLink('/profile', t('common.profile'), 'gear'); } else { addMenuLink('/login', loginButton.label, loginButton.icon); addMenuLink('/register', signupButton.label, signupButton.icon); }
+  // Keep essential destinations at the start of the desktop navigation so
+  // they remain discoverable when configured links and utility controls share
+  // the available header width.
+  const primaryMenuOrder = isAuthenticated ? ['/', '/dashboard', '/profile'] : ['/', '/login', '/register'];
+  menuLinks.sort((a, b) => {
+    const aIndex = primaryMenuOrder.indexOf(a.href);
+    const bIndex = primaryMenuOrder.indexOf(b.href);
+    return (aIndex < 0 ? primaryMenuOrder.length : aIndex) - (bIndex < 0 ? primaryMenuOrder.length : bIndex);
+  });
   return <div className="app-layout">
     <NetworkStatus />
     {!hideHeader && <header className={`site-header${scrolled ? ' scrolled' : ''}`}><div className="header-container">
