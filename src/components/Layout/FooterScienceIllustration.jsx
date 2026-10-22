@@ -1,9 +1,44 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 /** Centered, animated overview of pulmonary and systemic blood circulation. */
 export default function FooterScienceIllustration() {
+  const svgRef = useRef(null);
+
+  useEffect(() => {
+    const svg = svgRef.current;
+    if (!svg) return undefined;
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let isInView = false;
+
+    const syncAnimationState = () => {
+      const shouldPause = reducedMotion.matches || !isInView;
+      svg.classList.toggle('is-visible', !shouldPause);
+      if (shouldPause) svg.pauseAnimations?.();
+      else svg.unpauseAnimations?.();
+    };
+
+    const observer = typeof IntersectionObserver !== 'undefined'
+      ? new IntersectionObserver(([entry]) => {
+          isInView = entry.isIntersecting;
+          syncAnimationState();
+        }, { rootMargin: '120px 0px' })
+      : null;
+
+    observer?.observe(svg);
+    reducedMotion.addEventListener?.('change', syncAnimationState);
+    syncAnimationState();
+
+    return () => {
+      observer?.disconnect();
+      reducedMotion.removeEventListener?.('change', syncAnimationState);
+      svg.pauseAnimations?.();
+    };
+  }, []);
+
   return (
     <svg
+      ref={svgRef}
       className="footer-science-art footer-circulation-art"
       viewBox="0 0 1000 300"
       preserveAspectRatio="xMidYMid meet"
@@ -31,6 +66,11 @@ export default function FooterScienceIllustration() {
         .circ-vessel { fill:none; stroke-linecap:round; stroke-linejoin:round; }
         .circ-flow { fill:none; stroke:#fff; stroke-width:3; stroke-linecap:round; stroke-dasharray:2 13; animation:circ-dash 1.1s linear infinite; }
         .circ-rbc { filter:url(#circ-soft-glow); }
+        .footer-circulation-art:not(.is-visible) .circ-flow,
+        .footer-circulation-art:not(.is-visible) .circ-heart { animation-play-state:paused; }
+        @media (prefers-reduced-motion:reduce) {
+          .circ-flow,.circ-heart { animation:none!important; }
+        }
         .circ-heart { transform-box:fill-box; transform-origin:center; animation:circ-beat 1.05s ease-in-out infinite; }
         @keyframes circ-dash { to { stroke-dashoffset:-30; } }
         @keyframes circ-beat { 0%,100% { transform:scale(1); } 13% { transform:scale(1.045); } 25% { transform:scale(1); } 39% { transform:scale(1.02); } 52% { transform:scale(1); } }
