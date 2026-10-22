@@ -67,6 +67,7 @@ svg{--tm-bg:transparent;--tm-fg:currentColor;--tm-bl:#2563eb}
 @keyframes aS{0%,41%{transform:rotate(0)}47%,67%{transform:rotate(-130deg)}72%,74%{transform:rotate(0)}79%,93%{transform:rotate(-80deg)}98%,100%{transform:rotate(0)}}
 @keyframes fS{0%,41%{transform:rotate(0)}47%,67%{transform:rotate(-139deg)}72%,74%{transform:rotate(0)}79%,93%{transform:rotate(171deg)}98%,100%{transform:rotate(0)}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}.opT,.opS,.bgT,.bgS,.bA,.bB,.sp,.hfS,.ck{opacity:0}.rg{stroke-dashoffset:0}.ra{transform:translateX(-14px)}.rb{transform:translateX(14px)}.rl{transform:none}}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 <defs>
 <radialGradient id="g-glow"><stop offset="0" class="sb" stop-opacity=".25"/><stop offset="1" class="sb" stop-opacity="0"/></radialGradient>
