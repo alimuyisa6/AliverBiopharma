@@ -451,10 +451,14 @@ export default function HeroScienceCanvas() {
     let driftY = 0;
     const periods = [18, 15];
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    reducedRef.current = reducedMotion.matches;
+    const coarsePointer = window.matchMedia('(pointer: coarse)');
+    // Desktop-site mode can report a wide viewport on a phone. Keep the hero
+    // artwork static and at device-pixel-ratio 1 on touch-first hardware.
+    reducedRef.current = reducedMotion.matches || coarsePointer.matches;
+    let isInView = true;
 
     const resize = () => {
-      pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+      pixelRatio = Math.min(window.devicePixelRatio || 1, coarsePointer.matches ? 1 : 1.5);
       width = Math.max(1, hero.clientWidth);
       height = Math.max(1, hero.clientHeight);
       canvas.width = Math.round(width * pixelRatio);
@@ -477,6 +481,7 @@ export default function HeroScienceCanvas() {
     };
 
     const renderFrame = (now) => {
+      if (!isInView || reducedRef.current) return;
       const absoluteTime = (now - startTime) / 1000;
       let sceneElapsed = (now - sceneStartRef.current) / 1000;
       if (autoRotateRef.current && sceneElapsed >= periods[sceneRef.current]) {
@@ -503,11 +508,12 @@ export default function HeroScienceCanvas() {
       pointerY = ((event.clientY - rect.top) / rect.height) * 2 - 1;
     };
 
-    const onMotionChange = (event) => {
-      reducedRef.current = event.matches;
+    const syncMotion = () => {
+      reducedRef.current = reducedMotion.matches || coarsePointer.matches;
       window.cancelAnimationFrame(frameId);
-      if (event.matches) renderStill();
-      else {
+      if (reducedRef.current) {
+        renderStill();
+      } else if (isInView) {
         startTime = performance.now();
         sceneStartRef.current = startTime;
         frameId = window.requestAnimationFrame(renderFrame);
@@ -519,19 +525,34 @@ export default function HeroScienceCanvas() {
     sceneStartRef.current = startTime;
     if (reducedRef.current) renderStill();
     else frameId = window.requestAnimationFrame(renderFrame);
-    const observer = new ResizeObserver(() => {
+    const resizeObserver = new ResizeObserver(() => {
       resize();
       if (reducedRef.current) renderStill();
     });
-    observer.observe(hero);
+    resizeObserver.observe(hero);
+    const visibilityObserver = new IntersectionObserver(([entry]) => {
+      isInView = entry.isIntersecting;
+      if (!isInView) {
+        window.cancelAnimationFrame(frameId);
+      } else if (!reducedRef.current) {
+        startTime = performance.now();
+        sceneStartRef.current = startTime;
+        window.cancelAnimationFrame(frameId);
+        frameId = window.requestAnimationFrame(renderFrame);
+      }
+    }, { rootMargin: '80px 0px' });
+    visibilityObserver.observe(hero);
     hero.addEventListener('pointermove', onPointerMove, { passive: true });
-    reducedMotion.addEventListener?.('change', onMotionChange);
+    reducedMotion.addEventListener?.('change', syncMotion);
+    coarsePointer.addEventListener?.('change', syncMotion);
 
     return () => {
       window.cancelAnimationFrame(frameId);
-      observer.disconnect();
+      resizeObserver.disconnect();
+      visibilityObserver.disconnect();
       hero.removeEventListener('pointermove', onPointerMove);
-      reducedMotion.removeEventListener?.('change', onMotionChange);
+      reducedMotion.removeEventListener?.('change', syncMotion);
+      coarsePointer.removeEventListener?.('change', syncMotion);
     };
   }, []);
 
