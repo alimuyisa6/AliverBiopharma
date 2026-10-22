@@ -17,7 +17,7 @@ body.dark-mode .site-header, body.dark-mode .site-header.scrolled { background: 
 .header-logo:hover { color: var(--primary); }
 .header-logo img { display: block; width: auto; height: var(--space-10); }
 .main-nav { display: flex; align-items: stretch; justify-content: space-evenly; gap: var(--stack-gap-tight); min-width: 0; flex: 1; }
-.main-nav-link { position: relative; display: inline-flex; flex: 1 1 0; align-items: center; justify-content: center; min-width: 0; padding-inline: var(--space-2); padding-block: var(--space-2); color: var(--text-secondary); font-family: var(--font-primary); font-size: var(--text-sm); font-weight: var(--weight-medium); line-height: var(--leading-normal); text-decoration: none; white-space: nowrap; }
+.main-nav-link { position: relative; display: inline-flex; flex: 1 1 0; align-items: center; justify-content: center; min-width: 0; padding-inline: var(--space-2); padding-block: var(--space-2); color: var(--text-secondary); font-family: var(--font-primary); font-size: var(--text-sm); font-weight: var(--weight-medium); line-height: var(--leading-normal); text-align: center; text-decoration: none; white-space: normal; overflow-wrap: anywhere; }
 .main-nav-link::after { content: ""; position: absolute; right: 100%; bottom: -1px; left: 0; height: 2px; background: var(--primary); border-radius: var(--radius-xs); transition: right var(--ease-fast); }
 .main-nav-link:hover, .main-nav-link.active { color: var(--primary); }
 .main-nav-link:hover::after, .main-nav-link.active::after { right: 0; }
