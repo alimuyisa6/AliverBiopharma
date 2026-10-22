@@ -840,7 +840,15 @@ export default function Quiz() {
                 {resultData.percentage}%
               </div>
               <p>{resultData.score}/{resultData.total} correct</p>
-
+              {resultData.recommendation && (
+                <div className="quiz-result-recommendation" aria-live="polite">
+                  <h3>{resultData.recommendation.title || 'Recommended next step'}</h3>
+                  <p>{resultData.recommendation.message}</p>
+                  <Link className="btn btn-primary" to={resultData.recommendation.route || '/resources'}>
+                    {resultData.recommendation.label || 'Continue learning'}
+                  </Link>
+                </div>
+              )}
             </Card>
 
             <div className="quiz-review-section">
