@@ -44,6 +44,10 @@ const UI_PREFERENCE_MAPS = {
     medium: '1',
     large: '1.12'
   },
+  button_width: {
+    auto: 'fit-content',
+    full: '100%'
+  },
   content_width: {
     readable: '48rem',
     wide: '64rem',
@@ -96,7 +100,7 @@ function applyUIPreferences(preferences) {
   root.setAttribute('data-ui-surface', next.surface_style);
   root.setAttribute('data-ui-density', next.density);
   root.setAttribute('data-ui-button-size', next.button_size);
-  root.style.setProperty('--ui-button-width', next.button_width === 'full' ? '100%' : 'fit-content');
+  root.style.setProperty('--ui-button-width', UI_PREFERENCE_MAPS.button_width[next.button_width]);
   root.setAttribute('data-ui-button-width', next.button_width);
   root.setAttribute('data-ui-content-width', next.content_width);
   root.setAttribute('data-ui-section-spacing', next.section_spacing);
