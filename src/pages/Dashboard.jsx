@@ -840,6 +840,26 @@ export default function Dashboard() {
               </div>
             </section>
 
+            {Array.isArray(notes.reading_analytics?.recent_progress) && notes.reading_analytics.recent_progress.length > 0 && (
+              <section className="panel dashboard-card dashboard-card-primary" id="notes-reading-analytics">
+                <div className="panel-header">
+                  <h3 className="panel-title">Notes Reading Progress</h3>
+                </div>
+                <div className="panel-body">
+                  <p className="dashboard-section-intro">Track how far you've progressed through notes in your active curriculum.</p>
+                  <div className="dashboard-recall-grid" aria-label="Notes reading summary">
+                    <div><strong>{Number(notes.reading_analytics.notes_started) || 0}</strong><span>Notes started</span></div>
+                    <div><strong>{Number(notes.reading_analytics.notes_completed) || 0}</strong><span>Notes completed</span></div>
+                    <div><strong>{Number(notes.reading_analytics.average_progress) || 0}%</strong><span>Average progress</span></div>
+                  </div>
+                  <div className="dashboard-insight-chart dashboard-insight-chart-compact">
+                    <ChartWhenVisible><Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}><BarChart data={notes.reading_analytics.recent_progress.map((item) => Math.max(0, Math.min(100, Number(item.progress_percentage) || 0)))} labels={notes.reading_analytics.recent_progress.map((item) => item.title || 'Study note')} label="Reading progress (%)" title="Progress by note" subtitle="Latest saved reading progress for notes you've opened." horizontal height={Math.max(220, notes.reading_analytics.recent_progress.length * 42)} /></Suspense></ChartWhenVisible>
+                    <p className="dashboard-graph-guide"><strong>Graph type: horizontal bar chart.</strong> Each bar shows the latest saved reading progress for one note, from 0% to 100%. Longer bars indicate notes closer to completion; resume shorter bars first if you want to finish work already started.</p>
+                  </div>
+                </div>
+              </section>
+            )}
+
             {continueReading.length > 0 && (
               <div className="panel dashboard-card dashboard-card-primary" id="continue-reading-section">
                 <div className="panel-header">
