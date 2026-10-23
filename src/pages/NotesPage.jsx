@@ -281,7 +281,7 @@ export default function NotesPage() {
             {!loading && <span className="notes-result-count font-mono">{filteredNotes.length} {filteredNotes.length === 1 ? 'note' : 'notes'} found</span>}
           </div>
           <label className="notes-search">
-            <Icon name="search" />
+            <Icon name="search" plain className="notes-search-icon" />
             <input
               type="search"
               value={searchTerm}
