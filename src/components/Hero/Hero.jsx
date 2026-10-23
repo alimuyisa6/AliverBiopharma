@@ -34,16 +34,22 @@ function resumeHref(resume) {
   const payload = resume?.payload || {};
   const params = new URLSearchParams();
 
-  if (module === 'quiz' && payload.unit_id) {
-    params.set('unit_id', payload.unit_id);
+  if (module === 'quiz') {
+    if (payload.unit_id) params.set('unit_id', payload.unit_id);
+    if (payload.session_id) params.set('session_id', payload.session_id);
+    if (payload.block_number !== undefined && payload.block_number !== null) {
+      params.set('block_number', String(payload.block_number));
+    }
   }
 
-  if (module === 'flashcards' && payload.deck_id) {
-    params.set('deck_id', payload.deck_id);
+  if (module === 'flashcards') {
+    if (payload.deck_id) params.set('deck_id', payload.deck_id);
+    if (payload.unit_id) params.set('unit_id', payload.unit_id);
   }
 
   if (module === 'recall') {
     if (payload.unit_id) params.set('unit_id', payload.unit_id);
+    if (payload.session_id) params.set('session_id', payload.session_id);
     params.set('resume', '1');
   }
 
