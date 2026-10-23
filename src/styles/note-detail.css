@@ -2003,3 +2003,17 @@ body.dark-mode .note-related-section .note-related-card {
 body.dark-mode .note-hero {
   background: linear-gradient(120deg, var(--night-700), var(--night-850) 66%, var(--night-800));
 }
+
+
+/* Long-form resource pages: restrained heading panel and readable content width. */
+.note-detail-container { width: min(780px, calc(100% - (var(--page-gutter-x) * 2))); max-width: 780px; }
+.note-hero { padding: clamp(1rem, 2.5vw, 1.5rem); margin-bottom: var(--space-5); border-color: var(--blue-200); border-radius: var(--radius-md); background: var(--white); }
+.note-title { font-size: clamp(2rem, 4vw, 3rem); line-height: var(--leading-tight); overflow-wrap: anywhere; }
+.notes-content-container { font-size: var(--text-base); line-height: var(--leading-relaxed); }
+.notes-content-container h2 { margin-top: var(--space-6); font-size: var(--text-xl); line-height: var(--leading-tight); }
+.notes-content-container h3 { margin-top: var(--space-5); font-size: var(--text-lg); line-height: var(--leading-tight); }
+.note-related-section { margin-top: var(--space-5); }
+.note-related-grid { gap: var(--space-3); }
+.note-related-grid > .card-mixed { border: 1px solid var(--blue-200); border-radius: var(--radius-md); background: var(--white); box-shadow: 0 0.25rem 0.75rem rgb(35 55 120 / 5%); }
+body.dark-mode .note-hero, body.dark-mode .note-related-grid > .card-mixed { border-color: var(--night-500); background: var(--night-800); }
+@media (max-width: 640px) { .note-detail-container { width: calc(100% - (var(--page-gutter-x) * 2)); } .note-title { font-size: clamp(1.75rem, 7vw, 2.25rem); } }
