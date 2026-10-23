@@ -13,7 +13,6 @@ import EmptyState from '../components/EmptyState/EmptyState';
 import Button from '../components/Button/Button';
 import Container from '../components/Container/Container';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
-import StickyNotePolaroidFrame from '../components/StickyNotePolaroidFrame/StickyNotePolaroidFrame';
 
 const notesPageCache = new Map();
 const notesContextCache = new Map();
@@ -179,7 +178,9 @@ export default function NotesPage() {
           }),
         });
       });
-      items.push({ label: contextTitle });
+      if (items[items.length - 1]?.label !== contextTitle) {
+        items.push({ label: contextTitle });
+      }
     } else if (unitId) {
       items.push({ label: 'Selected curriculum' });
     }
@@ -213,7 +214,7 @@ export default function NotesPage() {
               Study notes
             </h1>
             <p className="notes-page-description">
-              Build your understanding step by step. Search your notes, follow your learning path, and revisit ideas that need more practice.
+              Clear explanations and key ideas to review whenever you need them.
             </p>
           </div>
 
@@ -226,11 +227,11 @@ export default function NotesPage() {
             <div className="notes-context-main">
               <div className="notes-context-kicker font-mono">Your learning pathway</div>
               <p className="notes-context-description">
-                These notes cover <strong>{contextTitle}</strong>. Explore related learning areas when you’re ready to continue.
+                Topic: <strong>{contextTitle}</strong>.
               </p>
               {contextPath && (
                 <Link className="notes-context-link" to={contextPath}>
-                  <span>Open learning hub</span>
+                  <span>View topic</span>
                   <Icon name="arrow-right" />
                 </Link>
               )}
@@ -247,10 +248,10 @@ export default function NotesPage() {
           <section className="notes-pathway" aria-labelledby="notes-pathway-title">
             <div className="notes-section-heading">
               <div>
-                <span className="sec-label font-mono">Explore related learning areas</span>
-                <h2 id="notes-pathway-title">Related learning areas</h2>
+                <span className="sec-label font-mono">Continue studying</span>
+                <h2 id="notes-pathway-title">Next topics</h2>
               </div>
-              <span className="notes-section-count font-mono">{contextChildren.length} learning areas</span>
+              <span className="notes-section-count font-mono">{contextChildren.length} topics</span>
             </div>
 
             <div className="notes-pathway-list">
@@ -276,7 +277,7 @@ export default function NotesPage() {
 
         <div className="notes-toolbar" role="search">
           <div className="notes-toolbar-label">
-            <span className="sec-label font-mono">Your notes</span>
+            <span className="sec-label font-mono">Study notes</span>
             {!loading && <span className="notes-result-count font-mono">{filteredNotes.length} {filteredNotes.length === 1 ? 'note' : 'notes'} found</span>}
           </div>
           <label className="notes-search">
@@ -285,8 +286,8 @@ export default function NotesPage() {
               type="search"
               value={searchTerm}
               onChange={(event) => setSearchTerm(event.target.value)}
-              placeholder="Search your notes"
-              aria-label="Search your notes"
+              placeholder="Search notes"
+              aria-label="Search notes"
             />
             {searchTerm && (
               <button type="button" className="notes-search-clear" onClick={() => setSearchTerm('')} aria-label="Clear note search">
@@ -327,20 +328,8 @@ export default function NotesPage() {
             {filteredNotes.map((note) => (
               <Card
                 key={note.id}
-                variant="blue-strong"
-                className="card-round notes-card folded-card folded-card-blue"
-                media={
-                  <StickyNotePolaroidFrame
-                    noteTitle={note.title}
-                    noteText={note.content_preview || 'Review the key ideas in this note.'}
-                    noteFooter={note.read_time ? note.read_time + ' min read' : 'Read note'}
-                    noteColor={note.is_premium ? 'gold' : 'teal'}
-                    rotation={0}
-                    className="notes-card-polaroid"
-                  >
-                    {note.topic_image_url ? <img src={note.topic_image_url} alt={note.title || 'Topic illustration'} loading="lazy" /> : null}
-                  </StickyNotePolaroidFrame>
-                }
+                variant="white"
+                className="card-round notes-card"
                 title={note.title}
                 description={note.content_preview}
                 footer={
@@ -354,7 +343,6 @@ export default function NotesPage() {
                     </Button>
                   </div>
                 }
-                onClick={() => navigate(`/notes/read?id=${note.id}`)}
               />
             ))}
           </div>
