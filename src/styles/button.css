@@ -46,6 +46,10 @@
   cursor: not-allowed;
 }
 
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
 .btn-primary {
   background: var(--primary);
   border-color: var(--primary);
