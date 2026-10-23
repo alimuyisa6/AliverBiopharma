@@ -1,14 +1,21 @@
 :root {
   --band-white: var(--white);
-  --band-tint-a: var(--blue-50);
-  --band-tint-b: var(--emerald-50);
-  --band-tint-c: var(--blue-100);
-  --band-tint-d: var(--emerald-100);
+  --band-tint-a: var(--blue-400);
+  --band-tint-b: var(--emerald-200);
+  --band-tint-c: var(--blue-300);
+  --band-tint-d: var(--emerald-200);
   --band-dark: var(--palette-ink);
   --band-card-radius: 1.125rem;
   --band-button-radius: 0.875rem;
   --band-section-space: clamp(2.75rem, 6vw, 5.75rem);
   --band-section-space-mobile: clamp(2.25rem, 9vw, 3.25rem);
+}
+
+body.dark-mode {
+  --band-tint-a: var(--night-800);
+  --band-tint-b: var(--night-850);
+  --band-tint-c: var(--night-700);
+  --band-tint-d: var(--emerald-900);
 }
 
 .home-page {
