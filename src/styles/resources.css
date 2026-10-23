@@ -810,3 +810,11 @@ body.dark-mode .resources-page { background: var(--night-900); }
 body.dark-mode .resources-intro { background: var(--night-800); }
 body.dark-mode .resource-card { background: var(--night-800); border-color: var(--night-600); }
 body.dark-mode .resource-card-artwork { background: var(--night-700); color: var(--teal-300); }
+
+
+/* Final flat-surface overrides: no gradients on resource pages. */
+.resources-hero { background: var(--primary-dark); }
+.resources-page { background: var(--blue-50); }
+.resources-intro { background: var(--blue-100); }
+body.dark-mode .resources-page { background: var(--night-900); }
+body.dark-mode .resources-intro { background: var(--night-800); }
