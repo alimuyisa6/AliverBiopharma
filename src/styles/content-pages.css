@@ -700,3 +700,12 @@ body.dark-mode .flashcards-page { background: var(--bg-page); }
 .flashcard-deck-card { background: var(--white); }
 body.dark-mode .flashcards-page { background: var(--night-900); }
 body.dark-mode .flashcard-deck-card { background: var(--night-800); }
+
+
+/* Aliver palette: solid faint brand surfaces, no gradient washes. */
+.flashcards-page { width: 100%; background: var(--blue-50); }
+.flashcard-deck-card { background: var(--white); box-shadow: none; }
+.notes-page-shell { width: 100%; background: var(--emerald-50); }
+.notes-page-heading { background: var(--emerald-100); }
+.notes-curriculum-context, .notes-pathway-item, .notes-card { background: var(--white); box-shadow: none; }
+.notes-pathway-item, .notes-card { border-color: var(--blue-200); }
