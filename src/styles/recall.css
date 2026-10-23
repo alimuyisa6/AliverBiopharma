@@ -977,3 +977,10 @@ body.dark-mode .recall-page-header, body.dark-mode .recall-intro-card, body.dark
 .recall-intro-icon, .recall-due-banner-icon, .recall-report-icon { display: inline-grid; place-items: center; width: 2.75rem; height: 2.75rem; border-radius: 50%; background: var(--blue-50); color: var(--primary); }
 body.dark-mode .recall-page { background: var(--night-900); }
 body.dark-mode .recall-page-header { background: var(--night-800); }
+
+
+/* Flat recall surfaces with the same light/dark behavior as other resources. */
+.recall-page { background: var(--blue-50); }
+.recall-page-header { background: var(--blue-100); }
+body.dark-mode .recall-page { background: var(--night-900); }
+body.dark-mode .recall-page-header { background: var(--night-800); }
