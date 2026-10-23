@@ -375,3 +375,11 @@
 .pdf-card-footer { padding: var(--space-3); }
 @media (max-width: 640px) { .pdf-grid, .pdf-skeleton-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 body.dark-mode .pdf-library-controls, body.dark-mode .pdf-card { border-color: var(--night-500); background: var(--night-800); }
+
+
+/* Solid surfaces and a consistent document-card scale. */
+.pdf-library-page { background: var(--blue-50); }
+.pdf-library-controls { background: var(--white); box-shadow: none; }
+.pdf-card { background: var(--white); box-shadow: none; }
+.pdf-card-image { display: grid; place-items: center; background: var(--blue-50); }
+body.dark-mode .pdf-library-page { background: var(--night-900); }
