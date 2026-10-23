@@ -59,3 +59,67 @@ li + li { margin-top: var(--text-gap-list); }
   padding: 0 var(--page-gutter-x);
   box-sizing: border-box;
 }
+
+
+/* Reference-aligned typography and color hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-main);
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+}
+
+h1 { font-size: clamp(1.9rem, 4.6vw, 3rem); font-weight: var(--weight-bold); }
+h2 { margin-bottom: var(--space-3); font-size: clamp(1.45rem, 3.2vw, 2.05rem); font-weight: var(--weight-bold); }
+h3 { margin-bottom: var(--space-2); font-size: 1.05rem; font-weight: var(--weight-bold); }
+h4 { font-size: 0.8rem; font-weight: var(--weight-bold); letter-spacing: 0.06em; text-transform: uppercase; }
+h5 { font-size: 0.75rem; font-weight: var(--weight-semibold); letter-spacing: 0.035em; }
+h6 { font-size: 0.7rem; font-weight: var(--weight-semibold); letter-spacing: 0.025em; }
+
+p { color: var(--text-main); }
+.lead, .text-lead { color: var(--text-muted); font-size: 1.02rem; }
+.hl, .text-highlight { color: var(--primary); }
+.text-blue { color: var(--blue-600); }
+.text-mint { color: var(--emerald-700); }
+.eyebrow {
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.section-blue, .section.blue {
+  background: var(--blue-50);
+  color: var(--text-main);
+}
+.section-mint, .section.mint {
+  background: var(--emerald-50);
+  color: var(--text-main);
+}
+.on-dark {
+  background: var(--night-950);
+  color: var(--night-text-primary);
+}
+.on-dark h1, .on-dark h2, .on-dark h3, .on-dark h4, .on-dark h5, .on-dark h6,
+.on-dark p, .on-dark li, .on-dark .lead, .on-dark .text-lead {
+  color: var(--night-text-primary);
+}
+.on-dark .hl, .on-dark .text-highlight, .on-dark .eyebrow {
+  color: var(--emerald-300);
+}
+.on-dark .text-muted, .on-dark small {
+  color: var(--night-text-muted);
+}
+
+.i, .icon-outline {
+  display: inline-block;
+  width: 1.25em;
+  height: 1.25em;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
