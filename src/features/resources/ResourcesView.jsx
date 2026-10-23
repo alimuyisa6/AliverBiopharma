@@ -124,8 +124,8 @@ export default function ResourcesView({ navigate, user, sections }) {
 
   const isPharmacy = /pharmacy/i.test(String(levelName));
   const subtitle = isPharmacy
-    ? 'Explore notes, flashcards, quizzes, past papers, and recall practice for your Pharmacy programme.'
-    : 'Explore Biology notes, diagrams, flashcards, quizzes, and past papers. Choose a resource to study a topic, practise key ideas, and check your understanding.';
+    ? 'Find notes, flashcards, quizzes, past papers, and recall practice for Pharmacy.'
+    : 'Find Biology notes, flashcards, quizzes, and past papers in one place.';
 
   function getBrowseHref(type) {
     if (!user) return '/login';
@@ -161,7 +161,7 @@ export default function ResourcesView({ navigate, user, sections }) {
             <div className="resources-curriculum-entry-copy">
               <span className="resources-section-kicker">Start with your syllabus</span>
               <h2 id="resources-curriculum-heading">Browse the curriculum</h2>
-              <p>Open your programme’s topic map, read lesson content, and follow links to notes, PDFs, flashcards, quizzes, and revision practice for each topic.</p>
+              <p>Browse your syllabus and open the notes, PDFs, flashcards, and practice activities linked to each topic.</p>
             </div>
             <Button size="sm" variant="primary" onClick={() => navigate(`/curriculum/${encodeURIComponent(activeGroupId)}`)}>
               Browse curriculum <Icon name="arrow-right" />
@@ -199,9 +199,9 @@ export default function ResourcesView({ navigate, user, sections }) {
 
         <div className="resources-section-head">
           <div>
-            <span className="resources-section-kicker">Study · Practise · Check your progress</span>
+            <span className="resources-section-kicker">Study and practise</span>
             <h2 className="resources-section-title">
-              Your study resources
+              Browse resources
               <span className="resources-section-count">{filteredTypes.length}</span>
             </h2>
           </div>
@@ -235,7 +235,7 @@ export default function ResourcesView({ navigate, user, sections }) {
                       className="btn btn-secondary"
                       aria-label={user ? `Explore ${type.label} in your learning pathway` : `Sign in to explore ${type.label}`}
                     >
-                      {user ? 'Explore pathway' : 'Sign in to explore'}
+                      {user ? 'Open resource' : 'Sign in'}
                       <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
                         <path d="M4.5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
