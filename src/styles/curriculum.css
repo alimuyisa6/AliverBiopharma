@@ -500,3 +500,9 @@ body.dark-mode .notes-curriculum-context, body.dark-mode .notes-pathway-item, bo
   height: 1.375rem;
   color: inherit;
 }
+
+/* Solid palette section treatment: full-width faint blue band with white learning cards. */
+.curriculum-node-page { width: 100%; max-width: none; background: var(--blue-50); }
+.curriculum-node-child, .curriculum-node-resource { background: var(--white); }
+body.dark-mode .curriculum-node-page { background: var(--night-900); }
+body.dark-mode .curriculum-node-child, body.dark-mode .curriculum-node-resource { background: var(--night-800); }
