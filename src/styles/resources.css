@@ -755,3 +755,20 @@ body.dark-mode .resources-curriculum-entry {
 @media (max-width: 480px) {
   .resources-grid { width: min(100%, 24rem); grid-template-columns: 1fr; }
 }
+
+
+/* Resource cards are informational containers; only their footer action navigates. */
+.resource-card:hover {
+  border-color: var(--blue-200);
+  border-bottom-color: var(--blue-200);
+  box-shadow: 0 0.5rem 1.5rem rgb(35 55 120 / 7%);
+  transform: none;
+}
+.resource-card-teal:hover { border-color: var(--teal-200, var(--blue-200)); }
+.resource-card-grey:hover { border-color: var(--grey-200, var(--blue-200)); }
+.resource-card-amber:hover { border-color: var(--amber-200, var(--blue-200)); }
+.resource-card-emerald:hover { border-color: var(--emerald-200, var(--blue-200)); }
+.resource-card-violet:hover { border-color: var(--violet-200, var(--blue-200)); }
+.resource-card-footer .btn:hover {
+  transform: translateY(-1px);
+}
