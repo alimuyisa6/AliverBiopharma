@@ -383,3 +383,9 @@ body.dark-mode .pdf-library-controls, body.dark-mode .pdf-card { border-color: v
 .pdf-card { background: var(--white); box-shadow: none; }
 .pdf-card-image { display: grid; place-items: center; background: var(--blue-50); }
 body.dark-mode .pdf-library-page { background: var(--night-900); }
+
+
+/* Neutral document-library canvas and subtle neutral file-preview surface. */
+.pdf-library-page { background: var(--bg-page); }
+.pdf-card-image { background: var(--surface-subtle); }
+body.dark-mode .pdf-library-page { background: var(--bg-page); }
