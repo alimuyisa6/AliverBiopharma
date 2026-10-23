@@ -1,9 +1,9 @@
 :root {
   --band-white: var(--white);
-  --band-tint-a: var(--blue-100);
-  --band-tint-b: var(--emerald-100);
-  --band-tint-c: var(--blue-200);
-  --band-tint-d: var(--emerald-100);
+  --band-tint-a: var(--palette-blue);
+  --band-tint-b: var(--emerald-600);
+  --band-tint-c: var(--blue-700);
+  --band-tint-d: var(--emerald-700);
   --band-dark: var(--palette-ink);
   --band-card-radius: 1.125rem;
   --band-button-radius: 0.875rem;
@@ -153,6 +153,48 @@ body.dark-mode {
   color: var(--text-main);
   letter-spacing: -0.025em;
   text-wrap: balance;
+}
+
+.home-page > .why-choose-section .section-head h2,
+.home-page > .home-student-section .section-head h2,
+.home-page > .home-testimonials-section .section-head h2,
+.home-page > .home-advertising-section .section-head h2 {
+  color: var(--white);
+}
+
+.home-page > .educational-showcase .section-head h2,
+.home-page > .home-student-sections-wrap > .home-learning-journey-section .section-head h2,
+.home-page > .home-tutor-section .section-head h2,
+.home-page > .home-newsletter-section .section-head h2 {
+  color: var(--palette-ink);
+}
+
+.home-page > .why-choose-section .eyebrow,
+.home-page > .home-student-section .eyebrow,
+.home-page > .home-testimonials-section .eyebrow,
+.home-page > .home-advertising-section .eyebrow {
+  color: var(--white);
+}
+
+.home-page > .educational-showcase .eyebrow,
+.home-page > .home-student-sections-wrap > .home-learning-journey-section .eyebrow,
+.home-page > .home-tutor-section .eyebrow,
+.home-page > .home-newsletter-section .eyebrow {
+  color: var(--palette-ink);
+}
+
+.home-page > .why-choose-section .section-description,
+.home-page > .home-student-section .section-description,
+.home-page > .home-testimonials-section .section-description,
+.home-page > .home-advertising-section .section-description {
+  color: var(--white);
+}
+
+.home-page > .educational-showcase .section-description,
+.home-page > .home-student-sections-wrap > .home-learning-journey-section .section-description,
+.home-page > .home-tutor-section .section-description,
+.home-page > .home-newsletter-section .section-description {
+  color: var(--palette-ink);
 }
 
 .home-page .home-learning-journey-content {
