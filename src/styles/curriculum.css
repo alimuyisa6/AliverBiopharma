@@ -482,3 +482,21 @@ body.dark-mode .notes-curriculum-context, body.dark-mode .notes-pathway-item, bo
 .notes-page-shell { background: var(--bg-page); }
 .notes-page-heading { background: var(--bg-card); }
 .notes-curriculum-context, .notes-pathway-item, .notes-card { background: var(--bg-card); }
+
+
+/* Curriculum unit/topic rows: uniform icon tile, independent of node type. */
+.curriculum-node-page .curriculum-node-child-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 2.75rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.75rem;
+  background: var(--surface-subtle);
+  color: var(--primary);
+}
+.curriculum-node-page .curriculum-node-child-icon svg {
+  width: 1.375rem;
+  height: 1.375rem;
+  color: inherit;
+}
