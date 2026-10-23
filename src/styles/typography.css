@@ -34,7 +34,7 @@
   /* Compact title scale; body copy is refined separately without changing controls. */
   --text-display: clamp(1.5rem, 3vw, 2rem);
   --text-page-title: clamp(2.25rem, 4.5vw, 3.5rem);
-  --text-section-title: clamp(1.0625rem, 1.7vw, 1.1875rem);
+  --text-section-title: clamp(1.375rem, 2.2vw, 1.875rem);
   --text-subsection-title: 1rem;
   --text-card-title: 0.9375rem;
   --text-body-lead: 1rem;
@@ -168,6 +168,6 @@ h1,h2,h3,h4,h5,h6 { margin: 0 0 var(--text-gap-title); color: var(--heading-colo
   }
 
   #root :is(h2, .section-title, .glossary-title, .curriculum-node-section-title):not(.note-detail-container *) {
-    font-size: clamp(1rem, 4vw, 1.125rem);
+    font-size: clamp(1.25rem, 5vw, 1.5rem);
   }
 }
