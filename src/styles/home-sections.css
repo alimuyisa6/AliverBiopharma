@@ -515,3 +515,86 @@ body.dark-mode .testimonial-flat cite { color: var(--success-hover); }
 .home-curriculum-node-copy .home-curriculum-node-name { overflow-wrap: anywhere; }
 .home-curriculum-node-link > svg { flex: 0 0 auto; color: var(--primary); }
 .home-curriculum-node-link .home-curriculum-node-marker { border-radius: 50%; }
+
+
+/* Premium homepage rhythm: separate section intensities, centered narrow
+   content rails, and white cards over quiet tinted surfaces. */
+.home-learning-journey-section {
+  box-sizing: border-box;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  border: 1px solid var(--teal-100, var(--blue-100));
+  border-bottom: 3px solid var(--teal-300, var(--blue-300));
+  border-radius: var(--radius-lg);
+  background: linear-gradient(125deg, var(--teal-50, var(--blue-50)), var(--white) 78%);
+}
+.home-learning-journey-content {
+  width: min(100%, 46rem);
+}
+.home-continue-learning-section {
+  box-sizing: border-box;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid var(--blue-100);
+  border-radius: var(--radius-lg);
+  background: var(--blue-50);
+}
+.home-continue-learning-row {
+  background: var(--white);
+  border: 1px solid var(--blue-100);
+  border-radius: var(--radius-md);
+}
+.home-curriculum-section {
+  box-sizing: border-box;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid var(--violet-100, var(--blue-100));
+  border-radius: var(--radius-lg);
+  background: var(--violet-50, var(--blue-50));
+}
+.home-curriculum-map {
+  width: min(100%, 58rem);
+  margin-inline: auto;
+  border: 1px solid var(--blue-200);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  overflow: hidden;
+}
+.home-daily-recall-section {
+  box-sizing: border-box;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid var(--amber-100, var(--blue-100));
+  border-radius: var(--radius-lg);
+  background: var(--amber-50, var(--blue-50));
+}
+.home-daily-recall-card {
+  width: min(100%, 48rem);
+  margin-inline: auto;
+  background: var(--white);
+}
+.home-faq-item {
+  background: var(--white);
+}
+.home-learning-journey-cta {
+  align-self: flex-start;
+}
+body.dark-mode .home-learning-journey-section,
+body.dark-mode .home-continue-learning-section,
+body.dark-mode .home-curriculum-section,
+body.dark-mode .home-daily-recall-section {
+  border-color: var(--night-500);
+  background: var(--night-850);
+}
+body.dark-mode .home-continue-learning-row,
+body.dark-mode .home-curriculum-map,
+body.dark-mode .home-daily-recall-card,
+body.dark-mode .home-faq-item {
+  border-color: var(--night-500);
+  background: var(--night-800);
+}
+@media (max-width: 640px) {
+  .home-learning-journey-section,
+  .home-continue-learning-section,
+  .home-curriculum-section,
+  .home-daily-recall-section {
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+  }
+}
