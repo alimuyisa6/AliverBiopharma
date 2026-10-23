@@ -476,3 +476,9 @@ body.dark-mode .notes-curriculum-context, body.dark-mode .notes-pathway-item, bo
 
 
 /* Curriculum and notes pages use solid section surfaces. */
+
+
+/* Notes/curriculum pages should retain the app canvas, not a blue-tinted wash. */
+.notes-page-shell { background: var(--bg-page); }
+.notes-page-heading { background: var(--bg-card); }
+.notes-curriculum-context, .notes-pathway-item, .notes-card { background: var(--bg-card); }
