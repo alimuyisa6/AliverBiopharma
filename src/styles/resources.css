@@ -867,3 +867,15 @@ body.dark-mode .resources-grid .resource-card[class*="resource-card-"] {
 .resource-card, .resources-curriculum-entry, .resources-empty-state { background: var(--white); }
 body.dark-mode .resources-page { background: var(--night-900); }
 body.dark-mode .resources-intro { background: var(--night-800); }
+
+
+/* Aliver palette: solid, faint full-width section surfaces; cards stay white. */
+.resources-page { width: 100%; background: var(--blue-50); }
+.resources-hero { background: var(--blue-700); }
+.resources-hero::before, .resources-hero::after { display: none; }
+.resources-intro { background: var(--blue-100); }
+.resource-card, .resources-curriculum-entry, .resources-empty-state { background: var(--white); }
+.resource-card { box-shadow: none; }
+.resource-card-blue { --resource-icon-bg: var(--blue-50); }
+.resource-card-teal, .resource-card-emerald { --resource-icon-bg: var(--emerald-50); }
+.resource-card-violet { --resource-icon-bg: var(--blue-50); }
