@@ -711,8 +711,7 @@ export default function NoteDetail() {
                   className="card-mixed"
                   title="Note-specific quiz"
                   description={`${internalLinks.activities.quiz.question_count} linked questions`}
-                  footer={<span>Test your understanding →</span>}
-                  onClick={() => navigate(`/quiz/blocks?unit_id=${encodeURIComponent(note.unit_id)}&note_id=${encodeURIComponent(note.id)}&activity_scope=note`)}
+                  footer={<Link className="btn btn-secondary" to={`/quiz/blocks?unit_id=${encodeURIComponent(note.unit_id)}&note_id=${encodeURIComponent(note.id)}&activity_scope=note`}>Test your understanding <span aria-hidden="true">→</span></Link>}
                 />
               ) : Number(internalLinks.theme_activities?.quiz?.question_count) > 0 && internalLinks.theme_activities?.theme_id ? (
                 <Card
@@ -721,8 +720,7 @@ export default function NoteDetail() {
                   className="card-mixed"
                   title="Theme-wide quiz"
                   description={`${internalLinks.theme_activities.quiz.question_count} questions across this theme`}
-                  footer={<span>Practise the whole theme →</span>}
-                  onClick={() => navigate(`/quiz/blocks?unit_id=${encodeURIComponent(internalLinks.theme_activities.theme_id)}&activity_scope=theme`)}
+                  footer={<Link className="btn btn-secondary" to={`/quiz/blocks?unit_id=${encodeURIComponent(internalLinks.theme_activities.theme_id)}&activity_scope=theme`}>Practise the whole theme <span aria-hidden="true">→</span></Link>}
                 />
               ) : null}
               {(internalLinks.activities?.flashcards || []).length > 0 ? (
@@ -733,8 +731,7 @@ export default function NoteDetail() {
                     className="card-mixed"
                     title={deck.title}
                     description={deck.description || `${deck.card_count} flashcards`}
-                    footer={<span>{deck.card_count} cards · Review →</span>}
-                    onClick={() => navigate(`/flashcards?unit_id=${encodeURIComponent(note.unit_id)}&note_id=${encodeURIComponent(note.id)}&deck_id=${encodeURIComponent(deck.id)}&activity_scope=note`)}
+                    footer={<Link className="btn btn-secondary" to={`/flashcards?unit_id=${encodeURIComponent(note.unit_id)}&note_id=${encodeURIComponent(note.id)}&deck_id=${encodeURIComponent(deck.id)}&activity_scope=note`}>{deck.card_count} cards · Review <span aria-hidden="true">→</span></Link>}
                   />
                 ))
               ) : Number(internalLinks.theme_activities?.flashcards?.deck_count) > 0 && internalLinks.theme_activities?.theme_id ? (
@@ -744,8 +741,7 @@ export default function NoteDetail() {
                   className="card-mixed"
                   title="Theme-wide flashcards"
                   description={`${internalLinks.theme_activities.flashcards.deck_count} available decks`}
-                  footer={<span>Review across the theme →</span>}
-                  onClick={() => navigate(`/flashcards?unit_id=${encodeURIComponent(internalLinks.theme_activities.theme_id)}&activity_scope=theme`)}
+                  footer={<Link className="btn btn-secondary" to={`/flashcards?unit_id=${encodeURIComponent(internalLinks.theme_activities.theme_id)}&activity_scope=theme`}>Review across the theme <span aria-hidden="true">→</span></Link>}
                 />
               ) : null}
               {Number(internalLinks.activities?.recall?.question_count) > 0 ? (
@@ -755,8 +751,7 @@ export default function NoteDetail() {
                   className="card-mixed"
                   title="Note-specific recall"
                   description={`${internalLinks.activities.recall.question_count} linked recall prompts`}
-                  footer={<span>Practise active recall →</span>}
-                  onClick={() => navigate(`/recall?unit_id=${encodeURIComponent(note.unit_id)}&note_id=${encodeURIComponent(note.id)}&activity_scope=note&resume=1`)}
+                  footer={<Link className="btn btn-secondary" to={`/recall?unit_id=${encodeURIComponent(note.unit_id)}&note_id=${encodeURIComponent(note.id)}&activity_scope=note&resume=1`}>Practise active recall <span aria-hidden="true">→</span></Link>}
                 />
               ) : Number(internalLinks.theme_activities?.recall?.question_count) > 0 && internalLinks.theme_activities?.theme_id ? (
                 <Card
@@ -765,8 +760,7 @@ export default function NoteDetail() {
                   className="card-mixed"
                   title="Theme-wide recall"
                   description={`${internalLinks.theme_activities.recall.question_count} prompts across this theme`}
-                  footer={<span>Practise the whole theme →</span>}
-                  onClick={() => navigate(`/recall?unit_id=${encodeURIComponent(internalLinks.theme_activities.theme_id)}&activity_scope=theme&resume=1`)}
+                  footer={<Link className="btn btn-secondary" to={`/recall?unit_id=${encodeURIComponent(internalLinks.theme_activities.theme_id)}&activity_scope=theme&resume=1`}>Practise the whole theme <span aria-hidden="true">→</span></Link>}
                 />
               ) : null}
             </div>
@@ -785,8 +779,7 @@ export default function NoteDetail() {
                   className="card-mixed"
                   title={article.title}
                   description={article.excerpt || article.reason || 'Read this related article'}
-                  footer={<span>{article.read_time_minutes ? `${article.read_time_minutes} min read · ` : ''}Read article →</span>}
-                  onClick={() => article.slug && navigate(`/blog/${encodeURIComponent(article.slug)}`)}
+                  footer={article.slug ? <Link className="btn btn-secondary" to={`/blog/${encodeURIComponent(article.slug)}`}>{article.read_time_minutes ? `${article.read_time_minutes} min read · ` : ''}Read article <span aria-hidden="true">→</span></Link> : <span>{article.read_time_minutes ? `${article.read_time_minutes} min read · ' : ''}Article details unavailable</span>}
                 />
               ))}
             </div>
@@ -804,8 +797,7 @@ export default function NoteDetail() {
                   className="card-mixed"
                   title={link.target_title}
                   description={link.target_content_preview}
-                  footer={<span className="note-related-link-readtime font-mono">{link.target_read_time}</span>}
-                  onClick={() => navigate(`/notes/read?id=${link.target_note_id}`)}
+                  footer={<Link className="btn btn-secondary" to={`/notes/read?id=${link.target_note_id}`}>{link.target_read_time ? `${link.target_read_time} · ` : ''}Read note <span aria-hidden="true">→</span></Link>}
                 />
               ))}
             </div>
