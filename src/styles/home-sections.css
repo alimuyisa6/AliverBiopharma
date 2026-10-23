@@ -598,3 +598,23 @@ body.dark-mode .home-faq-item {
     border-radius: var(--radius-md);
   }
 }
+
+
+/* Course and related learning cards use consistent inline icons, not thumbnail placeholders. */
+.home-continue-learning-thumb {
+  display: grid;
+  place-items: center;
+  flex: 0 0 3rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.75rem;
+  background: var(--surface-subtle);
+  color: var(--primary);
+}
+.home-continue-learning-thumb > svg {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: inherit;
+}
+.home-continue-learning-thumb img { display: none; }
