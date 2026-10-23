@@ -992,3 +992,10 @@ body.dark-mode .recall-page-header { background: var(--night-800); }
 .recall-intro-icon, .recall-due-banner-icon, .recall-report-icon { background: var(--surface-subtle); }
 body.dark-mode .recall-page { background: var(--bg-page); }
 body.dark-mode .recall-page-header { background: var(--bg-card); }
+
+/* Solid palette section treatment: faint mint band and white recall cards. */
+.recall-page { width: 100%; max-width: none; background: var(--emerald-50); border-radius: 0; }
+.recall-page-header { background: var(--emerald-100); }
+.recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card { background: var(--white); }
+body.dark-mode .recall-page { background: var(--night-900); }
+body.dark-mode .recall-page-header, body.dark-mode .recall-intro-card, body.dark-mode .recall-question-card, body.dark-mode .recall-feedback-card, body.dark-mode .recall-report-card { background: var(--night-800); }
