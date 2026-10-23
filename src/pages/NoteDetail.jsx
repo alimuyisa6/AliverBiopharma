@@ -779,7 +779,7 @@ export default function NoteDetail() {
                   className="card-mixed"
                   title={article.title}
                   description={article.excerpt || article.reason || 'Read this related article'}
-                  footer={article.slug ? <Link className="btn btn-secondary" to={`/blog/${encodeURIComponent(article.slug)}`}>{article.read_time_minutes ? `${article.read_time_minutes} min read · ` : ''}Read article <span aria-hidden="true">→</span></Link> : <span>{article.read_time_minutes ? `${article.read_time_minutes} min read · ' : ''}Article details unavailable</span>}
+                  footer={article.slug ? <Link className="btn btn-secondary" to={`/blog/${encodeURIComponent(article.slug)}`}>{article.read_time_minutes ? `${article.read_time_minutes} min read · ` : ''}Read article <span aria-hidden="true">→</span></Link> : <span>Article details unavailable</span>}
                 />
               ))}
             </div>
