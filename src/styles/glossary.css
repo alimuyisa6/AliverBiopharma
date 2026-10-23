@@ -888,3 +888,9 @@ body.dark-mode .glossary-page { background: var(--bg-page); }
 body.dark-mode .glossary-page { background: var(--night-900); }
 body.dark-mode .glossary-header { background: var(--night-800); }
 body.dark-mode .glossary-route-card { background: var(--night-800); }
+
+
+/* Aliver palette: solid, faint blue section; retain white content cards. */
+.glossary-page { width: 100%; background: var(--blue-50); }
+.glossary-header { background: var(--blue-100); }
+.glossary-route-card, .glossary-page .card { background: var(--white); box-shadow: none; }
