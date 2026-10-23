@@ -874,3 +874,9 @@ body.dark-mode .glossary-route-card { background: var(--night-800); }
 .glossary-page { background: var(--blue-50); }
 .glossary-header { background: var(--primary-dark); }
 body.dark-mode .glossary-page { background: var(--night-900); }
+
+
+/* Keep the content canvas neutral; brand color is limited to the header and icons. */
+.glossary-page { background: var(--bg-page); }
+.glossary-route-card-icon { background: var(--surface-subtle); }
+body.dark-mode .glossary-page { background: var(--bg-page); }
