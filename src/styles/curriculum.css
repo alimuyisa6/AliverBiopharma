@@ -449,3 +449,27 @@ body.dark-mode .curriculum-node-resource:hover {
 body.dark-mode .notes-page-shell { background: linear-gradient(180deg, var(--night-900), var(--night-850)); }
 body.dark-mode .notes-page-heading { border-color: var(--night-500); background: linear-gradient(120deg, var(--night-700), var(--night-850)); }
 body.dark-mode .notes-curriculum-context, body.dark-mode .notes-pathway-item, body.dark-mode .notes-pathway-item + .notes-pathway-item, body.dark-mode .notes-card { border-color: var(--night-500); background: var(--night-800); }
+
+
+/* Notes page title explicitly follows the shared page-title type token. */
+#root .notes-page .notes-page-title {
+  display: block;
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-page-title);
+  font-weight: var(--weight-page-title);
+  line-height: var(--leading-page-title);
+  color: var(--heading-color);
+}
+#root .notes-page .notes-search-icon {
+  flex: 0 0 auto;
+  background: transparent;
+  color: var(--text-muted);
+}
+#root .notes-page .notes-search-icon .icon-plain-glyph * {
+  stroke: currentColor !important;
+}
+@media (max-width: 640px) {
+  #root .notes-page .notes-page-title {
+    font-size: clamp(2rem, 7.5vw, 2.5rem);
+  }
+}
