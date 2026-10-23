@@ -211,11 +211,9 @@ export default function ResourcesView({ navigate, user, sections }) {
           <div className="resources-grid">
             {filteredTypes.map((type) => {
               return (
-                <Link
+                <article
                   key={type.key}
-                  to={getBrowseHref(type)}
                   className={`resource-card resource-card-${type.color}`}
-                  aria-label={user ? `Explore ${type.label} in your learning pathway` : `Sign in to explore ${type.label}`}
                 >
                   <div className="resource-card-top">
                     <span className="resource-card-badge">
@@ -232,14 +230,18 @@ export default function ResourcesView({ navigate, user, sections }) {
                   </div>
 
                   <div className="resource-card-footer">
-                    <span className="btn btn-secondary">
+                    <Link
+                      to={getBrowseHref(type)}
+                      className="btn btn-secondary"
+                      aria-label={user ? `Explore ${type.label} in your learning pathway` : `Sign in to explore ${type.label}`}
+                    >
                       {user ? 'Explore pathway' : 'Sign in to explore'}
                       <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
                         <path d="M4.5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
-                    </span>
+                    </Link>
                   </div>
-                </Link>
+                </article>
               );
             })}
           </div>
