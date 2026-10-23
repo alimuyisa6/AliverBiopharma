@@ -957,3 +957,14 @@
     padding-inline: var(--page-gutter-x);
   }
 }
+
+
+/* Recall resource page: concise intro and consistent practice surfaces. */
+.recall-page { background: linear-gradient(180deg, var(--blue-50), var(--violet-50, var(--blue-50))); border-radius: var(--radius-lg); }
+.recall-page-header { padding: clamp(1rem, 2.5vw, 1.5rem); margin-bottom: var(--space-4); border: 1px solid var(--blue-200); border-radius: var(--radius-lg); background: linear-gradient(120deg, var(--blue-100), var(--white)); }
+.recall-page-intro { max-width: 58ch; margin-top: var(--space-2); font-size: var(--text-sm); line-height: var(--leading-relaxed); }
+.recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card { border: 1px solid var(--blue-200); border-radius: var(--radius-md); background: var(--white); box-shadow: 0 0.25rem 0.75rem rgb(35 55 120 / 5%); }
+.recall-intro-card { padding: var(--space-5); }
+.recall-cards-grid { gap: var(--space-3); }
+body.dark-mode .recall-page { background: linear-gradient(180deg, var(--night-900), var(--night-850)); }
+body.dark-mode .recall-page-header, body.dark-mode .recall-intro-card, body.dark-mode .recall-question-card, body.dark-mode .recall-feedback-card, body.dark-mode .recall-report-card { border-color: var(--night-500); background: var(--night-800); }
