@@ -123,3 +123,32 @@ p { color: var(--text-main); }
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+
+/* Reference-aligned section and inline emphasis utilities */
+.section {
+  color: var(--text-main);
+}
+.section.blue {
+  background: var(--blue-100);
+  color: var(--text-main);
+}
+.section.mint {
+  background: var(--emerald-100);
+  color: var(--text-main);
+}
+.section.blue :is(h1, h2, h3, h4, h5, h6, p, li),
+.section.mint :is(h1, h2, h3, h4, h5, h6, p, li) {
+  color: inherit;
+}
+.section.blue .hl,
+.section.blue .text-highlight,
+.section.mint .hl,
+.section.mint .text-highlight {
+  color: var(--primary);
+}
+.section.blue .lead,
+.section.blue .text-lead,
+.section.mint .lead,
+.section.mint .text-lead {
+  color: var(--text-muted);
+}
