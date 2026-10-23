@@ -2180,3 +2180,11 @@ body.dark-mode .quiz-hero-card { background: var(--night-800); }
 .quiz-hero-stats .stat-icon { background: var(--surface-subtle); }
 body.dark-mode .quiz-page.quiz-landing-page { background: var(--bg-page); }
 body.dark-mode .quiz-hero-card { background: var(--bg-card); }
+
+/* Solid palette section treatment: faint blue band and white quiz cards. */
+.quiz-page, .quiz-page-shell, .quiz-dashboard-page { width: 100%; max-width: none; background: var(--blue-50); }
+.quiz-page .card, .quiz-page-shell .card, .quiz-dashboard-page .card,
+.quiz-page .quiz-card, .quiz-page-shell .quiz-card { background: var(--white); }
+body.dark-mode .quiz-page, body.dark-mode .quiz-page-shell, body.dark-mode .quiz-dashboard-page { background: var(--night-900); }
+body.dark-mode .quiz-page .card, body.dark-mode .quiz-page-shell .card, body.dark-mode .quiz-dashboard-page .card,
+body.dark-mode .quiz-page .quiz-card, body.dark-mode .quiz-page-shell .quiz-card { background: var(--night-800); }
