@@ -999,3 +999,9 @@ body.dark-mode .recall-page-header { background: var(--bg-card); }
 .recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card { background: var(--white); }
 body.dark-mode .recall-page { background: var(--night-900); }
 body.dark-mode .recall-page-header, body.dark-mode .recall-intro-card, body.dark-mode .recall-question-card, body.dark-mode .recall-feedback-card, body.dark-mode .recall-report-card { background: var(--night-800); }
+
+
+/* Aliver palette: one solid faint mint section with white learning cards. */
+.recall-page { width: 100%; border-radius: 0; background: var(--emerald-50); }
+.recall-page-header { background: var(--emerald-100); }
+.recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card { background: var(--white); box-shadow: none; }
