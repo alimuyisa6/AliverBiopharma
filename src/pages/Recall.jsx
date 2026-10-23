@@ -66,6 +66,7 @@ export default function BioRecall() {
   const activityScope = searchParams.get('activity_scope') || (sourceNoteId ? 'note' : null);
   const challengeId = searchParams.get('challenge_id') || null;
   const resumeRequested = searchParams.get('resume') === '1';
+  const resumeSessionId = searchParams.get('session_id') || null;
   const { isReady } = useRequireOnboarding();
   const access = useContentAccess();
   const { locked, reason } = useSecurityUiLock();
@@ -162,7 +163,9 @@ export default function BioRecall() {
     setSelectedTopic(topic);
     setLoading(true);
 
-    startRecallSession(topic.unit_id, challengeId, sourceNoteId, activityScope)
+    (resumeSessionId
+      ? continueRecallSession(resumeSessionId)
+      : startRecallSession(topic.unit_id, challengeId, sourceNoteId, activityScope))
       .then((started) => {
         if (!started?.session_id || !started?.current_question) {
           addToast('No active questions available for this topic', 'warning');
@@ -198,6 +201,7 @@ export default function BioRecall() {
     sourceNoteId,
     activityScope,
     challengeId,
+    resumeSessionId,
     topicList,
     addToast
   ]);
