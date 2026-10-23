@@ -858,3 +858,12 @@ body.dark-mode .resources-grid .resource-card,
 body.dark-mode .resources-grid .resource-card[class*="resource-card-"] {
   background: var(--night-800);
 }
+
+/* Solid palette section treatment: faint brand color, full-width band, white cards. */
+.resources-page { width: 100%; max-width: none; background: var(--blue-50); }
+.resources-hero { background: var(--palette-blue); }
+.resources-hero::before, .resources-hero::after { display: none; }
+.resources-intro { background: var(--emerald-50); }
+.resource-card, .resources-curriculum-entry, .resources-empty-state { background: var(--white); }
+body.dark-mode .resources-page { background: var(--night-900); }
+body.dark-mode .resources-intro { background: var(--night-800); }
