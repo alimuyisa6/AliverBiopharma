@@ -1,9 +1,9 @@
 :root {
   --band-white: var(--white);
   --band-tint-a: var(--palette-blue);
-  --band-tint-b: var(--emerald-600);
-  --band-tint-c: var(--blue-700);
-  --band-tint-d: var(--emerald-700);
+  --band-tint-b: var(--palette-mint);
+  --band-tint-c: var(--palette-blue);
+  --band-tint-d: var(--palette-mint);
   --band-dark: var(--palette-ink);
   --band-card-radius: 1.125rem;
   --band-button-radius: 0.875rem;
