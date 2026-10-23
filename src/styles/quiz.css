@@ -2188,3 +2188,9 @@ body.dark-mode .quiz-hero-card { background: var(--bg-card); }
 body.dark-mode .quiz-page, body.dark-mode .quiz-page-shell, body.dark-mode .quiz-dashboard-page { background: var(--night-900); }
 body.dark-mode .quiz-page .card, body.dark-mode .quiz-page-shell .card, body.dark-mode .quiz-dashboard-page .card,
 body.dark-mode .quiz-page .quiz-card, body.dark-mode .quiz-page-shell .quiz-card { background: var(--night-800); }
+
+
+/* Aliver palette: solid, faint section surfaces; keep question cards white. */
+.quiz-page, .quiz-page-shell, .quiz-dashboard { background: var(--blue-50); }
+.quiz-hero, .quiz-page-header { background: var(--blue-100); }
+.quiz-question-card, .quiz-card, .quiz-topic-card, .quiz-block-card, .quiz-panel { background: var(--white); }
