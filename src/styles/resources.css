@@ -772,3 +772,25 @@ body.dark-mode .resources-curriculum-entry {
 .resource-card-footer .btn:hover {
   transform: translateY(-1px);
 }
+
+
+/* Resource hub: concise hierarchy, compact illustrations and white action cards. */
+.resources-page { padding-block: var(--space-4) var(--space-8); }
+.resources-intro { gap: var(--space-4); padding: clamp(1rem, 2.5vw, 1.5rem); margin-bottom: var(--space-4); }
+.resources-intro h1 { margin-bottom: var(--space-2); font-size: var(--text-page-title); line-height: var(--leading-page-title); }
+.resources-intro p { max-width: 58ch; margin: 0; font-size: var(--text-sm); line-height: var(--leading-relaxed); }
+.resources-curriculum-entry { margin-block: var(--space-3) var(--space-4); padding: var(--space-4); background: var(--white); }
+.resources-curriculum-entry-copy p { max-width: 58ch; margin-bottom: 0; font-size: var(--text-sm); line-height: var(--leading-relaxed); }
+.resources-toolbar { margin-block: var(--space-4) var(--space-3); }
+.resources-section-head { margin-bottom: var(--space-3); }
+.resources-section-kicker { letter-spacing: var(--tracking-wide); }
+.resources-grid { gap: var(--space-3); }
+.resource-card { gap: var(--space-2); padding: var(--space-3); border-radius: var(--radius-md); background: var(--white); }
+.resource-card-artwork { min-height: 4rem; height: 4rem; margin-bottom: var(--space-2); }
+.resource-card-title { margin-bottom: var(--space-1); font-size: var(--text-lg); line-height: var(--leading-tight); }
+.resource-card-desc { margin: 0; font-size: var(--text-sm); line-height: var(--leading-relaxed); }
+.resource-card-footer { margin-top: var(--space-3); padding-top: var(--space-3); }
+.resource-card-footer .btn { min-height: 2.5rem; }
+@media (max-width: 900px) { .resources-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) { .resources-grid { grid-template-columns: minmax(0, 1fr); } .resource-card { padding: var(--space-4); } }
+body.dark-mode .resources-curriculum-entry { background: var(--night-800); }
