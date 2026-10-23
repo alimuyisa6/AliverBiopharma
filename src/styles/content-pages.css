@@ -694,3 +694,9 @@ body.dark-mode .flashcards-page { background: var(--night-900); }
 .flashcards-page { background: var(--bg-page); }
 .flashcard-deck-card .flashcard-type-row > :first-child { background: var(--surface-subtle); }
 body.dark-mode .flashcards-page { background: var(--bg-page); }
+
+/* Solid palette section treatment: no gradients; full-width faint color bands and white cards. */
+.flashcards-page { width: 100%; max-width: none; background: var(--blue-50); }
+.flashcard-deck-card { background: var(--white); }
+body.dark-mode .flashcards-page { background: var(--night-900); }
+body.dark-mode .flashcard-deck-card { background: var(--night-800); }
