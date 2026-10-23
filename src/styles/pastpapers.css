@@ -1091,3 +1091,8 @@ body.dark-mode .pp-page { background: linear-gradient(180deg, var(--night-900), 
 .pp-card { background: var(--white); box-shadow: none; }
 .pp-search-icon { background: transparent; color: var(--text-muted); }
 body.dark-mode .pp-page { background: var(--night-900); }
+
+
+/* Flat page surface; keep paper cards distinct and white. */
+.pp-page { background: var(--blue-50); }
+body.dark-mode .pp-page { background: var(--night-900); }
