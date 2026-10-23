@@ -1084,3 +1084,10 @@ body.dark-mode .pp-filters {
 .pp-card-body { padding: var(--space-4); }
 .pp-card-title { line-height: var(--leading-tight); }
 body.dark-mode .pp-page { background: linear-gradient(180deg, var(--night-900), var(--night-850)); }
+
+
+/* Past papers use a solid page surface and consistent white paper cards. */
+.pp-page { background: var(--blue-50); }
+.pp-card { background: var(--white); box-shadow: none; }
+.pp-search-icon { background: transparent; color: var(--text-muted); }
+body.dark-mode .pp-page { background: var(--night-900); }
