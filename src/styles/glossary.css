@@ -868,3 +868,9 @@ body.dark-mode .glossary-page { background: linear-gradient(180deg, var(--night-
 .glossary-route-card-icon i { color: inherit; font-size: 1.25rem; }
 body.dark-mode .glossary-page { background: var(--night-900); }
 body.dark-mode .glossary-route-card { background: var(--night-800); }
+
+
+/* Flat glossary surfaces with a solid brand-color header. */
+.glossary-page { background: var(--blue-50); }
+.glossary-header { background: var(--primary-dark); }
+body.dark-mode .glossary-page { background: var(--night-900); }
