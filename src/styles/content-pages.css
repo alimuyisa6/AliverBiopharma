@@ -688,3 +688,9 @@ body.dark-mode .flashcard-deck-card { background: var(--night-800); }
 /* Flat resource surfaces; preserve the established light/dark palette. */
 .flashcards-page { background: var(--blue-50); }
 body.dark-mode .flashcards-page { background: var(--night-900); }
+
+
+/* Neutral canvas; blue is reserved for interactive and brand accents. */
+.flashcards-page { background: var(--bg-page); }
+.flashcard-deck-card .flashcard-type-row > :first-child { background: var(--surface-subtle); }
+body.dark-mode .flashcards-page { background: var(--bg-page); }
