@@ -858,3 +858,13 @@
 .glossary-main-layout { width: min(100% - (var(--page-gutter-x) * 2), 70rem); margin-inline: auto; gap: var(--space-3); }
 .glossary-sidebar-inner, .glossary-term-detail, .glossary-route-card { border-radius: var(--radius-md); }
 body.dark-mode .glossary-page { background: linear-gradient(180deg, var(--night-900), var(--night-850)); }
+
+
+/* Glossary uses solid section colors and consistent circular resource icons. */
+.glossary-page { background: var(--blue-50); }
+.glossary-header { background: var(--primary-dark); }
+.glossary-route-card { background: var(--white); box-shadow: none; }
+.glossary-route-card-icon { display: grid; place-items: center; width: 2.75rem; min-width: 2.75rem; height: 2.75rem; border-radius: 50%; background: var(--blue-50); color: var(--primary); }
+.glossary-route-card-icon i { color: inherit; font-size: 1.25rem; }
+body.dark-mode .glossary-page { background: var(--night-900); }
+body.dark-mode .glossary-route-card { background: var(--night-800); }
