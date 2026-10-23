@@ -2165,3 +2165,10 @@ body.dark-mode .quiz-hero-card { border-color: var(--night-500); background: lin
 body.dark-mode .quiz-page.quiz-landing-page { background: var(--night-900); }
 body.dark-mode .quiz-hero-card { background: var(--night-800); }
 body.dark-mode .quiz-hero-stats .stat-card, body.dark-mode .quiz-topic-cards > .card, body.dark-mode .quiz-blocks-grid > .card { background: var(--night-800); }
+
+
+/* Flat quiz surfaces, matching the shared resource palette. */
+.quiz-page.quiz-landing-page { background: var(--blue-50); }
+.quiz-hero-card { background: var(--blue-100); }
+body.dark-mode .quiz-page.quiz-landing-page { background: var(--night-900); }
+body.dark-mode .quiz-hero-card { background: var(--night-800); }
