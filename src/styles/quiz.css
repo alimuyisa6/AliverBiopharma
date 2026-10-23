@@ -2142,3 +2142,15 @@ body.dark-mode .quiz-result-container .quiz-review-card .quiz-review-explanation
     transition: none;
   }
 }
+
+
+/* Quiz resource landing: clear hierarchy and restrained card scale. */
+.quiz-page.quiz-landing-page { background: linear-gradient(180deg, var(--blue-50), var(--teal-50, var(--blue-50))); border-radius: var(--radius-lg); }
+.quiz-hero-card { padding: clamp(1.25rem, 3vw, 2rem); border-color: var(--blue-200); border-radius: var(--radius-lg); background: linear-gradient(120deg, var(--blue-100), var(--white)); }
+.quiz-hero-subtitle { max-width: 58ch; font-size: var(--text-sm); line-height: var(--leading-relaxed); }
+.quiz-hero-stats { gap: var(--space-2); }
+.quiz-hero-stats .stat-card { border: 1px solid var(--blue-100); border-radius: var(--radius-md); background: var(--white); }
+.quiz-topic-cards { gap: var(--space-3); }
+.quiz-topic-cards > .card, .quiz-blocks-grid > .card { border: 1px solid var(--blue-200); border-radius: var(--radius-md); background: var(--white); }
+body.dark-mode .quiz-page.quiz-landing-page { background: linear-gradient(180deg, var(--night-900), var(--night-850)); }
+body.dark-mode .quiz-hero-card { border-color: var(--night-500); background: linear-gradient(120deg, var(--night-700), var(--night-850)); }
