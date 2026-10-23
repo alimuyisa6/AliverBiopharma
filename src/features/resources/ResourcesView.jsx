@@ -127,20 +127,16 @@ export default function ResourcesView({ navigate, user, sections }) {
     ? 'Explore notes, flashcards, quizzes, past papers, and recall practice for your Pharmacy programme.'
     : 'Explore Biology notes, diagrams, flashcards, quizzes, and past papers. Choose a resource to study a topic, practise key ideas, and check your understanding.';
 
-  function handleBrowse(type) {
-    if (!user) {
-      navigate('/login');
-      return;
-    }
+  function getBrowseHref(type) {
+    if (!user) return '/login';
 
-    // Keep the chosen resource type active while the learner moves through
-    // topic → subtopic → theme → lesson.
+    // The resource card opens the shared curriculum path and carries its
+    // resource focus forward through topic → subtopic → theme → lesson.
     if (activeGroupId) {
-      navigate(`/curriculum/${encodeURIComponent(activeGroupId)}?resource=${encodeURIComponent(type.key)}`);
-      return;
+      return `/curriculum/${encodeURIComponent(activeGroupId)}?resource=${encodeURIComponent(type.key)}`;
     }
 
-    navigate(type.route);
+    return type.route;
   }
 
   return (
@@ -215,9 +211,11 @@ export default function ResourcesView({ navigate, user, sections }) {
           <div className="resources-grid">
             {filteredTypes.map((type) => {
               return (
-                <article
+                <Link
                   key={type.key}
+                  to={getBrowseHref(type)}
                   className={`resource-card resource-card-${type.color}`}
+                  aria-label={user ? `Explore ${type.label} in your learning pathway` : `Sign in to explore ${type.label}`}
                 >
                   <div className="resource-card-top">
                     <span className="resource-card-badge">
@@ -234,16 +232,14 @@ export default function ResourcesView({ navigate, user, sections }) {
                   </div>
 
                   <div className="resource-card-footer">
-                    <Button
-                      size="sm"
-                      variant="secondary"
-                      onClick={() => handleBrowse(type)}
-                      aria-label={`Open ${type.label}`}
-                    >
-                      Explore
-                    </Button>
+                    <span className="btn btn-secondary">
+                      {user ? 'Explore pathway' : 'Sign in to explore'}
+                      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+                        <path d="M4.5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </span>
                   </div>
-                </article>
+                </Link>
               );
             })}
           </div>
