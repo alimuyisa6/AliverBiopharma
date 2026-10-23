@@ -818,3 +818,11 @@ body.dark-mode .resource-card-artwork { background: var(--night-700); color: var
 .resources-intro { background: var(--blue-100); }
 body.dark-mode .resources-page { background: var(--night-900); }
 body.dark-mode .resources-intro { background: var(--night-800); }
+
+
+/* Corrected palette: neutral page canvas; brand color stays on focused accents. */
+.resources-page { background: var(--bg-page); }
+.resources-intro { background: var(--surface-subtle); }
+.resource-card-artwork { background: var(--surface-subtle); }
+body.dark-mode .resources-page { background: var(--bg-page); }
+body.dark-mode .resources-intro { background: var(--bg-card); }
