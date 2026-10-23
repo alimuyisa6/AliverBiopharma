@@ -880,3 +880,11 @@ body.dark-mode .glossary-page { background: var(--night-900); }
 .glossary-page { background: var(--bg-page); }
 .glossary-route-card-icon { background: var(--surface-subtle); }
 body.dark-mode .glossary-page { background: var(--bg-page); }
+
+/* Solid palette section treatment: faint blue band and white glossary cards. */
+.glossary-page { width: 100%; max-width: none; background: var(--blue-50); }
+.glossary-header { background: var(--palette-blue); }
+.glossary-route-card { background: var(--white); }
+body.dark-mode .glossary-page { background: var(--night-900); }
+body.dark-mode .glossary-header { background: var(--night-800); }
+body.dark-mode .glossary-route-card { background: var(--night-800); }
