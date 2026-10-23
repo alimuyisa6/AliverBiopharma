@@ -675,3 +675,11 @@ body.dark-mode .notes-search {
 @media (max-width: 640px) { .flashcards-page { padding-block: var(--space-2); } .flashcard-decks-grid { grid-template-columns: minmax(0, 1fr); } }
 body.dark-mode .flashcards-page { background: linear-gradient(180deg, var(--night-900), var(--night-850)); }
 body.dark-mode .flashcard-deck-card { border-color: var(--night-500); background: var(--night-800); }
+
+
+/* Learning tools use solid page tints and matching icon containers. */
+.flashcards-page { background: var(--blue-50); }
+.flashcard-deck-card { background: var(--white); box-shadow: none; }
+.flashcard-deck-card .flashcard-type-row > :first-child { width: 2.75rem; height: 2.75rem; display: inline-grid; place-items: center; border-radius: 50%; background: var(--blue-50); color: var(--primary); }
+body.dark-mode .flashcards-page { background: var(--night-900); }
+body.dark-mode .flashcard-deck-card { background: var(--night-800); }
