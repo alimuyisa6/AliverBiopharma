@@ -794,3 +794,19 @@ body.dark-mode .resources-curriculum-entry {
 @media (max-width: 900px) { .resources-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 480px) { .resources-grid { grid-template-columns: minmax(0, 1fr); } .resource-card { padding: var(--space-4); } }
 body.dark-mode .resources-curriculum-entry { background: var(--night-800); }
+
+
+/* Alison-inspired resource system: solid surfaces, repeatable icon containers. */
+.resources-hero { background: var(--primary-dark); }
+.resources-page { background: var(--blue-50); }
+.resources-intro { background: var(--blue-100); }
+.resources-curriculum-entry { background: var(--white); }
+.resource-card { background: var(--white); border: 1px solid var(--blue-100); box-shadow: none; }
+.resource-card-artwork { display: grid; place-items: center; width: 3.25rem; min-width: 3.25rem; height: 3.25rem; min-height: 3.25rem; border-radius: 50%; background: var(--blue-50); color: var(--primary); }
+.resource-card-artwork svg, .resource-card-artwork i { width: 1.5rem; height: 1.5rem; font-size: 1.5rem; color: var(--primary); }
+.resource-card-title { color: var(--heading-color); }
+.resource-card-footer { border-top: 1px solid var(--border-subtle); }
+body.dark-mode .resources-page { background: var(--night-900); }
+body.dark-mode .resources-intro { background: var(--night-800); }
+body.dark-mode .resource-card { background: var(--night-800); border-color: var(--night-600); }
+body.dark-mode .resource-card-artwork { background: var(--night-700); color: var(--teal-300); }
