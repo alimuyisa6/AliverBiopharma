@@ -102,10 +102,22 @@ export default function PdfLibraryPage() {
   return (
     <Container className="pdf-library-section">
       <div className="pdf-library-page">
+        <div className="pdf-library-heading">
+          <div>
+            <h1 className="section-title pdf-library-title">PDF library</h1>
+            <p className="pdf-library-description">Course notes and reference documents for your programme.</p>
+          </div>
+          {(levelName || classLabel) && (
+            <p className="pdf-library-class">
+              {levelName}{levelName && classLabel ? ' · ' : ''}{classLabel}
+            </p>
+          )}
+        </div>
+
         <section className="pdf-library-controls" aria-labelledby="pdf-library-controls-title">
           <div className="pdf-library-controls-copy">
-            <h2 id="pdf-library-controls-title">Find study PDFs and reference guides</h2>
-            <p>Sort the library by title, author, or file size to find the right document.</p>
+            <h2 id="pdf-library-controls-title">Find a document</h2>
+            <p>Sort by title, author, or file size.</p>
           </div>
           <div className="toolbar">
             <div className="result-count" aria-live="polite">
@@ -125,16 +137,7 @@ export default function PdfLibraryPage() {
           </div>
         </section>
 
-        <div className="pdf-library-heading">
-          <h1 className="section-title pdf-library-title">Study PDFs</h1>
-          {(levelName || classLabel) && (
-            <p className="pdf-library-class">
-              {levelName}{levelName && classLabel ? ' · ' : ''}{classLabel}
-            </p>
-          )}
-        </div>
-
-        {curriculumUnitId && <p className="pdf-library-class">Showing PDFs for this selected learning area.</p>}
+        {curriculumUnitId && <p className="pdf-library-class">Showing documents for this topic.</p>}
 
         {loading ? (
           <div className="pdf-skeleton-grid">
