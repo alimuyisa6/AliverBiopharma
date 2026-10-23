@@ -473,3 +473,6 @@ body.dark-mode .notes-curriculum-context, body.dark-mode .notes-pathway-item, bo
     font-size: clamp(2rem, 7.5vw, 2.5rem);
   }
 }
+
+
+/* Curriculum and notes pages use solid section surfaces. */
