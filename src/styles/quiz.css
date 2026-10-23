@@ -2172,3 +2172,11 @@ body.dark-mode .quiz-hero-stats .stat-card, body.dark-mode .quiz-topic-cards > .
 .quiz-hero-card { background: var(--blue-100); }
 body.dark-mode .quiz-page.quiz-landing-page { background: var(--night-900); }
 body.dark-mode .quiz-hero-card { background: var(--night-800); }
+
+
+/* Neutral page canvas; reserve the brand tint for the hero and icon accents. */
+.quiz-page.quiz-landing-page { background: var(--bg-page); }
+.quiz-hero-card { background: var(--surface-subtle); }
+.quiz-hero-stats .stat-icon { background: var(--surface-subtle); }
+body.dark-mode .quiz-page.quiz-landing-page { background: var(--bg-page); }
+body.dark-mode .quiz-hero-card { background: var(--bg-card); }
