@@ -2154,3 +2154,14 @@ body.dark-mode .quiz-result-container .quiz-review-card .quiz-review-explanation
 .quiz-topic-cards > .card, .quiz-blocks-grid > .card { border: 1px solid var(--blue-200); border-radius: var(--radius-md); background: var(--white); }
 body.dark-mode .quiz-page.quiz-landing-page { background: linear-gradient(180deg, var(--night-900), var(--night-850)); }
 body.dark-mode .quiz-hero-card { border-color: var(--night-500); background: linear-gradient(120deg, var(--night-700), var(--night-850)); }
+
+
+/* Quiz landing: solid color fields; icon tiles share one size and background. */
+.quiz-page.quiz-landing-page { background: var(--blue-50); }
+.quiz-hero-card { background: var(--blue-100); box-shadow: none; }
+.quiz-hero-stats .stat-card { background: var(--white); box-shadow: none; }
+.quiz-hero-stats .stat-icon { display: inline-grid; place-items: center; width: 2.75rem; height: 2.75rem; border-radius: 50%; background: var(--blue-50); color: var(--primary); }
+.quiz-topic-cards > .card, .quiz-blocks-grid > .card { background: var(--white); box-shadow: none; }
+body.dark-mode .quiz-page.quiz-landing-page { background: var(--night-900); }
+body.dark-mode .quiz-hero-card { background: var(--night-800); }
+body.dark-mode .quiz-hero-stats .stat-card, body.dark-mode .quiz-topic-cards > .card, body.dark-mode .quiz-blocks-grid > .card { background: var(--night-800); }
