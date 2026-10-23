@@ -826,3 +826,35 @@ body.dark-mode .resources-intro { background: var(--night-800); }
 .resource-card-artwork { background: var(--surface-subtle); }
 body.dark-mode .resources-page { background: var(--bg-page); }
 body.dark-mode .resources-intro { background: var(--bg-card); }
+
+
+/* Resource cards: white surfaces and a single, uniform inline-SVG icon system. */
+.resources-grid .resource-card,
+.resources-grid .resource-card[class*="resource-card-"] {
+  background: #fff;
+  border: 1px solid var(--border-subtle);
+  box-shadow: none;
+}
+.resources-grid .resource-card-artwork {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  min-width: 3rem;
+  height: 3rem;
+  min-height: 3rem;
+  margin-bottom: var(--space-3);
+  border-radius: 0.75rem;
+  background: var(--surface-subtle);
+  color: var(--primary);
+}
+.resources-grid .resource-card-artwork .resource-art {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: inherit;
+  stroke: currentColor;
+}
+body.dark-mode .resources-grid .resource-card,
+body.dark-mode .resources-grid .resource-card[class*="resource-card-"] {
+  background: var(--night-800);
+}
