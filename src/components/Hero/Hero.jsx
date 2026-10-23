@@ -47,8 +47,16 @@ function resumeHref(resume) {
     params.set('resume', '1');
   }
 
-  if (module === 'notes' && payload.note_id) {
-    params.set('id', payload.note_id);
+  if (module === 'notes') {
+    const noteId = payload.note_id ?? payload.content_id ?? payload.id;
+    if (noteId) {
+      params.set('id', noteId);
+      if (payload.return_to) params.set('return_to', payload.return_to);
+      return `/notes/read?${params.toString()}`;
+    }
+    // Never send a learner to the note reader without an ID: it cannot
+    // resolve a specific note and falls back to the generic notes listing.
+    return '/notes';
   }
 
   const route = MODULE_ROUTES[module];
