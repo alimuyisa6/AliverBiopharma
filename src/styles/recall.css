@@ -984,3 +984,11 @@ body.dark-mode .recall-page-header { background: var(--night-800); }
 .recall-page-header { background: var(--blue-100); }
 body.dark-mode .recall-page { background: var(--night-900); }
 body.dark-mode .recall-page-header { background: var(--night-800); }
+
+
+/* Neutral recall canvas; use a quiet neutral header surface. */
+.recall-page { background: var(--bg-page); }
+.recall-page-header { background: var(--surface-subtle); }
+.recall-intro-icon, .recall-due-banner-icon, .recall-report-icon { background: var(--surface-subtle); }
+body.dark-mode .recall-page { background: var(--bg-page); }
+body.dark-mode .recall-page-header { background: var(--bg-card); }
