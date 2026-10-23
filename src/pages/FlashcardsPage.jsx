@@ -245,14 +245,14 @@ export default function FlashcardsPage() {
           <AdSlot placement="flashcards" pageContext="flashcards" />
 
           <p className="section-subtitle flashcard-subtitle">
-            Use flashcards to practise recalling what you’ve learned in {levelName || 'your programme'}. 
+            Review key facts and test your recall in {levelName || 'your programme'}. 
           </p>
 
           {decks.length === 0 ? (
             <EmptyState
               image={getEmptyStateImage('flashcards')}
-              title="No flashcard sets are available yet"
-              description={`Flashcards for ${classLabel || levelName || 'your programme'} will appear here when they’re ready.`}
+              title="No flashcards yet"
+              description={`Flashcard sets for ${classLabel || levelName || 'your programme'} haven’t been added yet.`}
             />
           ) : (
             <div className="flashcard-decks-grid">
@@ -261,11 +261,11 @@ export default function FlashcardsPage() {
                   key={deck.id}
                   icon="layer-group"
                   title={deck.title}
-                  description={deck.description || 'Review key ideas and practise recalling them.'}
+                  description={deck.description || 'Test your recall of key ideas.'}
                   className="flashcard-deck-card"
                   footer={
                     <Button variant="3d" size="sm" icon="play" onClick={() => handleDeckSelect(deck)} disabled={locked}>
-                      Review flashcards
+                      Study cards
                     </Button>
                   }
                 >
