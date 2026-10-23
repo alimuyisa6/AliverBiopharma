@@ -1949,3 +1949,57 @@ body.dark-mode .note-trial-options label.is-selected {
     transition: none;
   }
 }
+
+
+/* Note reading: a restrained colour field frames a narrow white reading
+   surface; supplementary cards remain independent of their action links. */
+.main-content:has(.note-detail-container) {
+  background: linear-gradient(180deg, var(--blue-50) 0%, var(--teal-50, var(--blue-50)) 55%, var(--violet-50, var(--blue-50)) 100%);
+}
+.note-detail-container {
+  width: min(100% - (var(--page-gutter-x) * 2), 66rem);
+  margin-inline: auto;
+}
+.note-hero {
+  background: linear-gradient(120deg, var(--blue-100), var(--blue-50) 66%, var(--white));
+}
+.note-article,
+.note-understanding-panel,
+.note-related-section,
+.note-reactions-section,
+.note-comments-section {
+  background: var(--white);
+}
+.note-related-section {
+  width: min(100%, 60rem);
+  margin-inline: auto;
+}
+.note-related-section .note-related-link,
+.note-related-section .note-related-card {
+  background: var(--white);
+}
+.note-related-section .note-related-link {
+  border-color: var(--blue-200);
+}
+.note-related-section .note-related-link:hover {
+  background: var(--blue-50);
+}
+.note-related-section :is(a, button):focus-visible {
+  outline: 3px solid var(--blue-600);
+  outline-offset: 3px;
+}
+body.dark-mode .main-content:has(.note-detail-container) {
+  background: linear-gradient(180deg, var(--night-900), var(--night-850) 55%, var(--night-900));
+}
+body.dark-mode .note-article,
+body.dark-mode .note-understanding-panel,
+body.dark-mode .note-related-section,
+body.dark-mode .note-reactions-section,
+body.dark-mode .note-comments-section,
+body.dark-mode .note-related-section .note-related-link,
+body.dark-mode .note-related-section .note-related-card {
+  background: var(--night-850);
+}
+body.dark-mode .note-hero {
+  background: linear-gradient(120deg, var(--night-700), var(--night-850) 66%, var(--night-800));
+}
