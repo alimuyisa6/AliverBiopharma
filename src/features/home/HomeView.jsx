@@ -219,25 +219,84 @@ export default function HomeView(props) {
   const { sections, user, navigate, activeLevelName, activeGroupName, publicStats, chatOpen, chatMessages, chatInput, adminOnline, newsletterEmail, newsletterStatus, newsletterLoading, chatRequestLoading, chatSending, chatDeletingId, handleNewsletterSubmit, sendChat, deleteChatMsg, setChatOpen, setChatInput, setNewsletterEmail, chatBodyRef, continueLearning, curriculumUnits, dailyRecall, onRevealRecall, onStartRecall, dailyChallenge, onOpenChallenge } = props;
 
   return (
-    <div className="home-page">
-      <section className="home-hero-section"><div className="hero-block"><Hero /></div></section>
+    <div className="home-page home-page-redesign">
+      <section className="home-hero-section" id="top" aria-label="Introduction">
+        <div className="hero-block"><Hero /></div>
+      </section>
+
       <DynamicActions pageId="home" className="home-dynamic-actions" />
-      <section className="home-stats-section"><StatsGrid stats={{ resources_count: publicStats?.resources_count || 0, users_count: publicStats?.users_count || 0, downloads_count: publicStats?.downloads_count || 0, quiz_attempts: publicStats?.quiz_attempts || 0 }} /></section>
-      {user && <section className="home-student-section">{!isDesktopViewport && <ClassSwitcher className="home-scope-switcher" />}<HomeDashboardCard /><ContinueLearningRail items={continueLearning} navigate={navigate} /></section>}
+
+      <section className="home-stats-section" aria-label="Platform statistics">
+        <StatsGrid stats={{ resources_count: publicStats?.resources_count || 0, users_count: publicStats?.users_count || 0, downloads_count: publicStats?.downloads_count || 0, quiz_attempts: publicStats?.quiz_attempts || 0 }} />
+      </section>
+
+      <section className="home-explore-section section" id="explore" aria-labelledby="home-explore-title">
+        <div className="home-redesign-container">
+          <div className="section-head home-redesign-section-head">
+            <span className="eyebrow">Explore and learn</span>
+            <h2 id="home-explore-title">Biology and Pharmacy, all in one place</h2>
+            <p className="section-description">Choose a subject or study tool and continue with resources matched to your learning pathway.</p>
+          </div>
+          <div className="home-subject-grid">
+            <Link to="/resources" className="home-subject-card">
+              <span className="home-subject-icon"><Icon name="microscope" /></span>
+              <strong>Cell Biology</strong><span>Cells, organelles and biological processes</span><span className="home-subject-link">Explore resources <Icon name="arrow-right" /></span>
+            </Link>
+            <Link to="/resources" className="home-subject-card">
+              <span className="home-subject-icon home-subject-icon-mint"><Icon name="dna" /></span>
+              <strong>Genetics and Physiology</strong><span>Inheritance, body systems and homeostasis</span><span className="home-subject-link">Explore resources <Icon name="arrow-right" /></span>
+            </Link>
+            <Link to="/resources" className="home-subject-card">
+              <span className="home-subject-icon home-subject-icon-mint"><Icon name="pill" /></span>
+              <strong>Pharmacology</strong><span>Drug classes, mechanisms and safe use</span><span className="home-subject-link">Explore resources <Icon name="arrow-right" /></span>
+            </Link>
+            <Link to="/resources" className="home-subject-card">
+              <span className="home-subject-icon"><Icon name="flask-conical" /></span>
+              <strong>Pharmaceutics</strong><span>Formulations, dosage forms and calculations</span><span className="home-subject-link">Explore resources <Icon name="arrow-right" /></span>
+            </Link>
+          </div>
+          <div className="home-tool-links" aria-label="Study tools">
+            <span>Study tools</span>
+            <Link to="/past-papers">Past papers</Link>
+            <Link to="/flashcards">Flashcards</Link>
+            <Link to="/quiz">Quizzes</Link>
+            <Link to="/recall">Active recall</Link>
+          </div>
+        </div>
+      </section>
+
+      {user && (
+        <section className="home-student-section" id="dashboard">
+          {!isDesktopViewport && <ClassSwitcher className="home-scope-switcher" />}
+          <HomeDashboardCard />
+          <ContinueLearningRail items={continueLearning} navigate={navigate} />
+        </section>
+      )}
+
       <WhyChooseSection />
       <HowItWorksSection />
       <EducationalShowcase />
       <StudyQuoteCard />
-      {user && <div className="home-student-sections-wrap"><LearningJourneySection sections={sections} navigate={navigate} /></div>}
-      {!user && <LearningJourneySection sections={sections} navigate={navigate} />}
+
+      <section className="home-learning-journey-wrap" id="journey">
+        <LearningJourneySection sections={sections} navigate={navigate} />
+      </section>
+
       {user && <ChallengeTreasureCard challenge={dailyChallenge} onOpen={onOpenChallenge} />}
       {user && <DailyRecallCard recall={dailyRecall} onReveal={onRevealRecall} onStart={onStartRecall} />}
-      <section className="home-testimonials-section"><TestimonialSlider quotes={sections?.testimonials?.quotes || []} /></section>
-      <section className="home-classroom-section"><ClassroomTeaser /></section>
+
+      <section className="home-testimonials-section" id="testimonials">
+        <TestimonialSlider quotes={sections?.testimonials?.quotes || []} />
+      </section>
+      <section className="home-classroom-section" id="classroom"><ClassroomTeaser /></section>
       <section className="home-tutor-section"><TutorMarketplaceTeaser /></section>
-      <section className="home-advertising-section"><AdsHomeSection />
-      <AdSlot placement="homepage" pageContext="home" /></section>
-      <section className="home-newsletter-section"><NewsletterForm email={newsletterEmail} status={newsletterStatus} loading={newsletterLoading} onChange={(event) => setNewsletterEmail(event.target.value)} onSubmit={handleNewsletterSubmit} /></section>
+      <section className="home-advertising-section">
+        <AdsHomeSection />
+        <AdSlot placement="homepage" pageContext="home" />
+      </section>
+      <section className="home-newsletter-section" id="newsletter">
+        <NewsletterForm email={newsletterEmail} status={newsletterStatus} loading={newsletterLoading} onChange={(event) => setNewsletterEmail(event.target.value)} onSubmit={handleNewsletterSubmit} />
+      </section>
       <ChatWidget chatOpen={chatOpen} chatMessages={chatMessages} chatInput={chatInput} adminOnline={adminOnline} onToggle={() => setChatOpen(!chatOpen)} onSend={sendChat} onInputChange={setChatInput} onDeleteMsg={deleteChatMsg} sending={chatSending} deletingId={chatDeletingId} requestLoading={chatRequestLoading} chatBodyRef={chatBodyRef} />
     </div>
   );
