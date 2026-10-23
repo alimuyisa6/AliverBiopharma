@@ -45,7 +45,7 @@ export default function GlossaryView({
             <span className="title-word cyan-word">Glossary</span>
           </h1>
           <p className="glossary-subtitle">
-            Find clear definitions for key terms, then open related quizzes, notes, flashcards, and past papers.
+            Look up key terms and open related study materials.
           </p>
 
           {selectedClass && (
