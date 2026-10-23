@@ -553,7 +553,7 @@ export default function PastPapers() {
             )}
 
             <p className="pp-description">
-              Prepare with past exam papers. Search by subject, year or exam board, save papers for revision, and work through questions at your own pace.
+              Search past exams by subject, year, or exam board. Save papers and practise at your own pace.
             </p>
 
             <Breadcrumb items={[
