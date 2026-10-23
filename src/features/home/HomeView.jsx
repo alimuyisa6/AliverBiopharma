@@ -80,7 +80,7 @@ function ContinueLearningRail({ items, navigate }) {
         {items.map((item) => (
           <div key={item.id} className="row home-continue-learning-row">
             <div className="row-thumb home-continue-learning-thumb">
-              {item.thumbnail_url ? <img src={item.thumbnail_url} alt={item.title} loading="lazy" /> : <Icon name={CONTINUE_ICON[item.type] || 'book-open'} />}
+              <Icon name={CONTINUE_ICON[item.type] || 'book-open'} />
             </div>
             <div className="row-body">
               <div className="row-title">{item.title}</div>
