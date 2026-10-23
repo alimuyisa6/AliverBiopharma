@@ -1101,3 +1101,9 @@ body.dark-mode .pp-page { background: var(--night-900); }
 /* Keep the page canvas neutral rather than tinting the entire resource page. */
 .pp-page { background: var(--bg-page); }
 body.dark-mode .pp-page { background: var(--bg-page); }
+
+/* Solid palette section treatment: faint amber band and white content cards. */
+.pastpapers-page, .past-papers-page { width: 100%; max-width: none; background: var(--amber-50); }
+.pp-card, .pp-paper-card, .pp-filter-panel, .pp-toolbar, .pp-empty-state { background: var(--white); }
+body.dark-mode .pastpapers-page, body.dark-mode .past-papers-page { background: var(--night-900); }
+body.dark-mode .pp-card, body.dark-mode .pp-paper-card, body.dark-mode .pp-filter-panel, body.dark-mode .pp-toolbar, body.dark-mode .pp-empty-state { background: var(--night-800); }
