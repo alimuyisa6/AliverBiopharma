@@ -683,3 +683,8 @@ body.dark-mode .flashcard-deck-card { border-color: var(--night-500); background
 .flashcard-deck-card .flashcard-type-row > :first-child { width: 2.75rem; height: 2.75rem; display: inline-grid; place-items: center; border-radius: 50%; background: var(--blue-50); color: var(--primary); }
 body.dark-mode .flashcards-page { background: var(--night-900); }
 body.dark-mode .flashcard-deck-card { background: var(--night-800); }
+
+
+/* Flat resource surfaces; preserve the established light/dark palette. */
+.flashcards-page { background: var(--blue-50); }
+body.dark-mode .flashcards-page { background: var(--night-900); }
