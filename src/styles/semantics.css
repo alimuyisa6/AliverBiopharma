@@ -7,7 +7,6 @@
   /* --------------------------------------------------------------
      Brand / semantic tones
      -------------------------------------------------------------- */
-  --primary: var(--palette-blue);
   --primary-hover: var(--blue-700);
   --primary-dark: var(--blue-800);
   --primary-soft: var(--blue-50);
@@ -15,12 +14,10 @@
   --primary-border: var(--blue-300);
   --primary-ring: var(--blue-ring);
 
-  --secondary: var(--emerald-600);
   --secondary-hover: var(--emerald-700);
   --secondary-light: var(--emerald-50);
   --secondary-border: var(--emerald-200);
 
-  --accent: var(--palette-mint);
   --accent-hover: var(--emerald-600);
   --accent-light: var(--emerald-50);
   --accent-border: var(--emerald-200);
