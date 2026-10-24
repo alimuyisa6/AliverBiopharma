@@ -6,7 +6,9 @@ export default function GlobalLoader({
   onAnimationComplete
 }) {
   useEffect(() => {
-    onAnimationComplete?.();
+    if (!onAnimationComplete) return undefined;
+    const timer = window.setTimeout(onAnimationComplete, 1300);
+    return () => window.clearTimeout(timer);
   }, [onAnimationComplete]);
 
   return (
