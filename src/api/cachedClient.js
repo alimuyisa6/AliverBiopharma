@@ -352,10 +352,10 @@ api.getFlashcardActiveSession(deckId);
 export const getAdaptiveFlashcardDecks = () =>
 api.getAdaptiveFlashcardDecks();
 
-export const getPublicStats = () =>
+export const getPublicStats = (groupId) =>
 withCache(
-'public_stats',
-api.getPublicStats
+`public_stats_${groupId || 'all'}`,
+() => api.getPublicStats(groupId)
 )();
 
 export const getLeaderboard = (
