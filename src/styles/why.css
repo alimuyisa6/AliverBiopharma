@@ -16,19 +16,9 @@
   max-width: var(--max-width);
 }
 
-.why-choose-illustration {
-  width: min(100%, 34rem);
-  margin-top: var(--content-gap);
-  margin-inline: auto;
-}
 
-.why-choose-science-art {
-  display: block;
-  width: 100%;
-  height: auto;
-  overflow: visible;
-  color: var(--text-secondary);
-}
+
+
 
 .why-choose-section .section-head-left p {
   max-width: var(--max-width);

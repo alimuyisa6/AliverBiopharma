@@ -18,18 +18,15 @@ export function SectionTeaser({
         <div className="section-teaser-content">
           <h2 className="section-teaser-title">{title}</h2>
           {intro && <p className="section-subtitle">{intro}</p>}
-          <div className={`section-teaser-image-wrap${illustrationType ? ' section-teaser-illustration-wrap' : ''}`}>
-            {illustrationType ? (
-              <ResourceIllustration type={illustrationType} />
-            ) : (
-              <img
-                src={imageUrl}
-                alt={imageAlt}
-                className="section-teaser-image"
-                loading="lazy"
-              />
-            )}
-          </div>
+          {illustrationType !== 'tutor' && (illustrationType || imageUrl) && (
+            <div className={`section-teaser-image-wrap${illustrationType ? ' section-teaser-illustration-wrap' : ''}`}>
+              {illustrationType ? (
+                <ResourceIllustration type={illustrationType} />
+              ) : (
+                <img src={imageUrl} alt={imageAlt || ''} className="section-teaser-image" loading="lazy" />
+              )}
+            </div>
+          )}
           <Button variant="primary" onClick={onCtaClick}>{ctaLabel}</Button>
         </div>
       </div>

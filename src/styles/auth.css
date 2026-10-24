@@ -720,18 +720,7 @@ body.dark-mode {
   background: var(--palette-ink);
 }
 
-.auth-science-art {
-  position: absolute;
-  z-index: 0;
-  right: -7%;
-  bottom: 3%;
-  width: min(94%, 32rem);
-  height: auto;
-  opacity: 0.58;
-  pointer-events: none;
-  filter: drop-shadow(0 0 1.5rem color-mix(in srgb, var(--palette-blue) 22%, transparent));
-  animation: auth-art-float 12s ease-in-out infinite alternate;
-}
+
 
 .auth-login-block {
   max-width: 28rem;
@@ -820,17 +809,7 @@ body.dark-mode {
   background: var(--auth-surface);
 }
 
-.auth-form-watermark {
-  position: absolute;
-  z-index: 0;
-  top: 50%;
-  right: -5.5rem;
-  width: min(78%, 37rem);
-  height: min(100%, 48rem);
-  transform: translateY(-50%);
-  opacity: 0.30;
-  pointer-events: none;
-}
+
 
 .auth-form-container {
   position: relative;

@@ -9,7 +9,7 @@ import Button from '../components/Button/Button';
 import Icon from '../components/Icon/Icon';
 import Spinner from '../components/Spinner/Spinner';
 import { useI18n } from '../contexts/I18nContext';
-import { AuthFormWatermark, LoginPage, MolecularBrandIllustration } from '../components/ui/sign-in-page';
+import { LoginPage } from '../components/ui/sign-in-page';
 
 const TURNSTILE_SITE_KEY = '0x4AAAAAADknPpI_XcH1KfPe';
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -410,7 +410,6 @@ export default function Auth() {
   return (
     <div className="auth-page">
       <aside className="auth-brand-panel">
-        <MolecularBrandIllustration />
         <div className="auth-brand-top">
           <div className="auth-brand-logo" aria-label="AliverBiopharm">
             <span className="auth-brand-mark" aria-hidden="true">
@@ -451,7 +450,6 @@ export default function Auth() {
 
       <main className="auth-form-panel">
         <div className="auth-form-container">
-          <AuthFormWatermark />
           {pendingConfirmation ? (
             <div className="auth-state">
               <div className="auth-state-icon-wrap">

@@ -1,5 +1,3 @@
-import WhyChooseIllustration from './WhyChooseIllustration';
-
  /* features/home/WhyChooseSection.jsx */
 
 const REASONS = [
@@ -62,7 +60,6 @@ export function WhyChooseSection() {
             students learn, practise, recall and prepare with the right content
             at the right level.
           </p>
-          <div className="why-choose-illustration"><WhyChooseIllustration /></div>
         </div>
       </div>
 

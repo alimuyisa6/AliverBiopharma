@@ -96,10 +96,6 @@
   min-width: 0;
 }
 
-.ads-home-image-frame {
-  overflow: hidden;
-  background: var(--bg-muted);
-}
 
 .ads-home-image {
   display: block;
@@ -1625,14 +1621,6 @@ html[data-ui-surface="flat"] .advertise-create-form { box-shadow: var(--shadow-n
   --advertising-illustration-drift-duration: 4.6s;
 }
 
-.ads-home-illustration-frame {
-  display: grid;
-  place-items: center;
-  min-height: var(--advertise-home-image-min-height);
-  padding: var(--space-3);
-  border-radius: var(--advertising-illustration-radius);
-  background: var(--bg-muted);
-}
 
 .advertising-reach-illustration {
   display: block;
