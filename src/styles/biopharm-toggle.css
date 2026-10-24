@@ -1,59 +1,45 @@
 .biopharm-toggle__switch {
   position: relative;
   display: inline-flex;
-  width: auto;
-  height: var(--theme-switch-height);
+  width: 3.25rem;
+  height: 1.65rem;
   flex: 0 0 auto;
-  aspect-ratio: 212.4992 / 84.4688;
-  border-radius: var(--theme-switch-radius);
-  background: var(--theme-switch-track);
-  box-shadow: 0 0 0 var(--theme-switch-shadow-size) var(--theme-switch-track);
-  color: var(--theme-switch-stroke);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--secondary) 48%, var(--background));
+  color: var(--text);
   cursor: pointer;
 }
-
 .biopharm-toggle__input {
   position: absolute;
-  inline-size: 1px;
-  block-size: 1px;
+  width: 1px;
+  height: 1px;
   margin: -1px;
   opacity: 0;
   overflow: hidden;
   pointer-events: none;
 }
-
-.biopharm-toggle__switch svg {
-  display: block;
+.biopharm-toggle__track {
+  position: relative;
+  display: flex;
   width: 100%;
-  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: .35rem;
+  border: 1px solid color-mix(in srgb, var(--primary) 38%, transparent);
+  border-radius: inherit;
 }
-
-.biopharm-toggle__switch svg path {
-  color: inherit;
-  stroke-width: var(--theme-switch-stroke-width);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: var(--theme-switch-dasharray);
-  transition: all var(--theme-switch-duration) var(--theme-switch-easing), 0s transform;
-  transform-origin: center;
+.biopharm-toggle__sun,.biopharm-toggle__moon { z-index: 1; font-size: .85rem; line-height: 1; }
+.biopharm-toggle__thumb {
+  position: absolute;
+  top: .17rem;
+  left: .18rem;
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 50%;
+  background: var(--primary);
+  transition: transform 180ms ease;
 }
-
-.biopharm-toggle__input:checked ~ svg path {
-  stroke-dashoffset: var(--theme-switch-dashoffset);
-  transform: scaleY(-1);
-}
-
-.biopharm-toggle__switch:focus-within {
-  outline: var(--border-width-thick) solid var(--border-focus);
-  outline-offset: var(--space-2);
-}
-
-.nav-actions .biopharm-toggle__switch {
-  margin-inline: var(--space-1);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .biopharm-toggle__switch svg path {
-    transition: none;
-  }
-}
+.biopharm-toggle__input:checked + .biopharm-toggle__track .biopharm-toggle__thumb { transform: translateX(1.55rem); }
+.biopharm-toggle__input:focus-visible + .biopharm-toggle__track { outline: 2px solid var(--border-focus); outline-offset: 3px; }
+.nav-actions .biopharm-toggle__switch { margin-inline: var(--space-1); }
+@media (prefers-reduced-motion: reduce) { .biopharm-toggle__thumb { transition: none; } }
