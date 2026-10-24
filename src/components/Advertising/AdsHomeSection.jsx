@@ -1,7 +1,6 @@
 /* src/components/Advertising/AdsHomeSection.jsx */
 import { Link } from 'react-router-dom';
 import Icon from '../Icon/Icon';
-import AdvertisingReachIllustration from './AdvertisingReachIllustration';
 
 export default function AdsHomeSection() {
 
@@ -34,10 +33,6 @@ export default function AdsHomeSection() {
         </div>
 
         <div className="ads-home-visual">
-          <div className="ads-home-image-frame ads-home-illustration-frame">
-            <AdvertisingReachIllustration />
-          </div>
-
           <Link
             to="/advertise"
             className="btn btn-primary ads-home-cta"
