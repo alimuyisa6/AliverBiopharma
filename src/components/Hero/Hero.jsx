@@ -4,8 +4,6 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { useLayout } from '../../contexts/LayoutContext';
-import HeroScienceCanvas from './HeroScienceCanvas';
-import { GlassFold } from '../ui/glass-fold';
 import AnimatedJoinButton from '../ui/AnimatedJoinButton';
 
 const MODULE_LABELS = {
@@ -125,16 +123,13 @@ export default function Hero() {
         aria-labelledby="hero-title"
       >
         <div className="hero-image" aria-hidden="true">
-          <GlassFold
-            color1="#7180FF"
-            color2="#111044"
-            color3="#00FFD4"
-            speed={0.28}
-            scale={0.9}
-            noise={0.025}
-            className="hero-glass-fold"
-          />
-          <HeroScienceCanvas />
+          <span className="hero-orbit hero-orbit-one" />
+          <span className="hero-orbit hero-orbit-two" />
+          <span className="hero-orbit hero-orbit-three" />
+          <span className="hero-molecule hero-molecule-one" />
+          <span className="hero-molecule hero-molecule-two" />
+          <span className="hero-molecule hero-molecule-three" />
+          <span className="hero-molecule hero-molecule-four" />
         </div>
 
         <div className="hero-scrim" aria-hidden="true" />
