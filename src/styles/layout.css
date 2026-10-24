@@ -406,31 +406,6 @@ body.dark-mode .home-scope-switcher {
 }
 
 
-.home-scope-switcher .home-scope-switcher-art {
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-8);
-  width: min(100%, 20rem);
-  height: 3.5rem;
-  color: var(--text-muted);
-  opacity: 0.28;
-  pointer-events: none;
-  transform: translateX(-50%);
-}
-.home-scope-switcher .scope-level-art {
-  display: block;
-  flex: 0 1 3rem;
-  width: 3rem;
-  height: 3rem;
-}
-.home-scope-switcher .scope-level-art--olevel { transform: translateY(.35rem); }
-.home-scope-switcher .scope-level-art--alevel { transform: translateY(-.15rem); }
-.home-scope-switcher .scope-level-art--pharmacy { transform: translateY(.35rem); }
 .home-scope-switcher .class-switcher-label,
 .home-scope-switcher .class-switcher-trigger {
   position: relative;
@@ -441,13 +416,6 @@ body.dark-mode .home-scope-switcher {
 /* Hand-drawn illustrations remain transparent and unframed. */
 .footer-science-art-wrap,
 .footer-science-art,
-.home-scope-switcher .home-scope-switcher-art,
-.home-scope-switcher .scope-level-art {
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-}
 
 
 /* Footer campus scene: full-width background behind the existing footer content. */
