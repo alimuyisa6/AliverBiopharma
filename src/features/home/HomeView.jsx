@@ -230,40 +230,7 @@ export default function HomeView(props) {
         <StatsGrid stats={publicStats || {}} scopeLabel={activeGroupName || activeLevelName || 'All learning levels'} />
       </section>
 
-      <section className="home-explore-section section" id="explore" aria-labelledby="home-explore-title">
-        <div className="home-redesign-container">
-          <div className="section-head home-redesign-section-head">
-            <span className="eyebrow">Explore and learn</span>
-            <h2 id="home-explore-title">Biology and Pharmacy, all in one place</h2>
-            <p className="section-description">Choose a subject or study tool and continue with resources matched to your learning pathway.</p>
-          </div>
-          <div className="home-subject-grid">
-            <Link to="/resources" className="home-subject-card">
-              <span className="home-subject-icon"><Icon name="microscope" /></span>
-              <strong>Cell Biology</strong><span>Cells, organelles and biological processes</span><span className="home-subject-link">Explore resources <Icon name="arrow-right" /></span>
-            </Link>
-            <Link to="/resources" className="home-subject-card">
-              <span className="home-subject-icon home-subject-icon-mint"><Icon name="dna" /></span>
-              <strong>Genetics and Physiology</strong><span>Inheritance, body systems and homeostasis</span><span className="home-subject-link">Explore resources <Icon name="arrow-right" /></span>
-            </Link>
-            <Link to="/resources" className="home-subject-card">
-              <span className="home-subject-icon home-subject-icon-mint"><Icon name="pill" /></span>
-              <strong>Pharmacology</strong><span>Drug classes, mechanisms and safe use</span><span className="home-subject-link">Explore resources <Icon name="arrow-right" /></span>
-            </Link>
-            <Link to="/resources" className="home-subject-card">
-              <span className="home-subject-icon"><Icon name="flask-conical" /></span>
-              <strong>Pharmaceutics</strong><span>Formulations, dosage forms and calculations</span><span className="home-subject-link">Explore resources <Icon name="arrow-right" /></span>
-            </Link>
-          </div>
-          <div className="home-tool-links" aria-label="Study tools">
-            <span>Study tools</span>
-            <Link to="/past-papers">Past papers</Link>
-            <Link to="/flashcards">Flashcards</Link>
-            <Link to="/quiz">Quizzes</Link>
-            <Link to="/recall">Active recall</Link>
-          </div>
-        </div>
-      </section>
+
 
       {user && (
         <section className="home-student-section" id="dashboard">
