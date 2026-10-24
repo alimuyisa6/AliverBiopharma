@@ -152,3 +152,32 @@ p { color: var(--text-main); }
 .section.mint .text-lead {
   color: var(--text-muted);
 }
+
+
+/* Higher-contrast blue surfaces and readable white text on blue backgrounds */
+.section-blue,
+.section.blue {
+  background: var(--blue-700);
+  color: var(--white);
+}
+
+.section-blue :is(h1, h2, h3, h4, h5, h6, p, li, small, strong, em, span, label),
+.section.blue :is(h1, h2, h3, h4, h5, h6, p, li, small, strong, em, span, label) {
+  color: var(--white);
+}
+
+.section-blue .text-muted,
+.section-blue .lead,
+.section-blue .text-lead,
+.section.blue .text-muted,
+.section.blue .lead,
+.section.blue .text-lead {
+  color: #f0f3ff;
+}
+
+.btn-primary,
+.button-primary,
+.button--primary,
+.bg-primary {
+  color: var(--white);
+}
