@@ -966,3 +966,28 @@ body.dark-mode .home-faq-item {
     gap: .15rem;
   }
 }
+
+
+.home-page .stats-grid-section {
+  box-sizing: border-box;
+  width: min(calc(100% - 3rem), 1180px);
+  margin-inline: auto;
+}
+
+.home-page .stats-grid-section .stats-impact-heading h2,
+.home-page .stats-grid-section .stats-impact-group-title,
+.home-page .stats-grid-section .stats-impact-topics h4 {
+  color: #fff !important;
+}
+
+@media (max-width: 640px) {
+  .home-page .stats-grid-section {
+    width: calc(100% - 2rem);
+  }
+}
+
+@media (max-width: 380px) {
+  .home-page .stats-grid-section {
+    width: calc(100% - 1.5rem);
+  }
+}
