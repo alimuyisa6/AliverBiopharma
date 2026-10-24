@@ -370,11 +370,11 @@ li + li {
 }
 
 .text-blue {
-  color: var(--blue-600);
+  color: var(--primary);
 }
 
 .text-mint {
-  color: var(--emerald-700);
+  color: var(--secondary);
 }
 
 .eyebrow {
@@ -392,23 +392,23 @@ li + li {
 
 .section-blue,
 .section.blue {
-  background: var(--blue-700);
-  color: var(--white);
+  background: var(--primary);
+  color: var(--text);
 }
 
 .section-mint {
-  background: var(--emerald-50);
+  background: var(--secondary);
   color: var(--text-main);
 }
 
 .section.mint {
-  background: var(--emerald-100);
+  background: var(--secondary);
   color: var(--text-main);
 }
 
 .section-blue :is(h1, h2, h3, h4, h5, h6, p, li, small, strong, em, span, label),
 .section.blue :is(h1, h2, h3, h4, h5, h6, p, li, small, strong, em, span, label) {
-  color: var(--white);
+  color: var(--text);
 }
 
 .section-blue .text-muted,
@@ -417,7 +417,7 @@ li + li {
 .section.blue .text-muted,
 .section.blue .lead,
 .section.blue .text-lead {
-  color: #f0f3ff;
+  color: var(--text);
 }
 
 .section.mint :is(h1, h2, h3, h4, h5, h6, p, li) {
@@ -435,8 +435,8 @@ li + li {
 }
 
 .on-dark {
-  background: var(--night-950);
-  color: var(--night-text-primary);
+  background: var(--text);
+  color: var(--text);
 }
 
 .on-dark h1,
@@ -449,18 +449,18 @@ li + li {
 .on-dark li,
 .on-dark .lead,
 .on-dark .text-lead {
-  color: var(--night-text-primary);
+  color: var(--text);
 }
 
 .on-dark .hl,
 .on-dark .text-highlight,
 .on-dark .eyebrow {
-  color: var(--emerald-300);
+  color: var(--secondary);
 }
 
 .on-dark .text-muted,
 .on-dark small {
-  color: var(--night-text-muted);
+  color: var(--text);
 }
 
 .i,
@@ -480,7 +480,7 @@ li + li {
 .button-primary,
 .button--primary,
 .bg-primary {
-  color: var(--white);
+  color: var(--background);
 }
 
 @media (max-width: 640px) {
