@@ -1,71 +1,86 @@
- /* components/StatsGrid/StatsGrid.jsx */
-import { useState, useEffect, useRef } from 'react';
 import Icon from '../../components/Icon/Icon';
 
-const ITEMS = [
-  { key: 'resources_count', label: 'Resources', icon: 'book-open' },
-  { key: 'users_count', label: 'Learners', icon: 'users' },
-  { key: 'downloads_count', label: 'Downloads', icon: 'download' },
-  { key: 'quiz_attempts', label: 'Quiz Attempts', icon: 'pen-to-square' },
+const GROUPS = [
+  {
+    title: 'Learning library',
+    icon: 'book-open',
+    metrics: [
+      { key: 'resources_count', label: 'Total resources', icon: 'library' },
+      { key: 'downloadable_count', label: 'Available to download', icon: 'download' },
+      { key: 'downloads_count', label: 'Total downloads', icon: 'download-cloud' }
+    ]
+  },
+  {
+    title: 'Active recall',
+    icon: 'brain',
+    metrics: [
+      { key: 'recall_questions', label: 'Recall questions', icon: 'brain' },
+      { key: 'recall_users', label: 'Learners who used Recall', icon: 'users' },
+      { key: 'recall_active_users', label: 'Active Recall learners', icon: 'activity' }
+    ]
+  },
+  {
+    title: 'Quizzes',
+    icon: 'clipboard-check',
+    metrics: [
+      { key: 'quiz_users', label: 'Quiz learners', icon: 'users' },
+      { key: 'quiz_active_users', label: 'Active quiz learners', icon: 'activity' },
+      { key: 'quiz_passes', label: 'Passed attempts', icon: 'check-circle' },
+      { key: 'quiz_failures', label: 'Failed attempts', icon: 'x-circle' }
+    ]
+  }
 ];
 
-function AnimatedNumber({ target, label, icon }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef(null);
-  const started = useRef(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started.current) {
-          started.current = true;
-          const duration = 2000;
-          const startTime = performance.now();
-          const animate = (currentTime) => {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            setCount(Math.floor(eased * target));
-            if (progress < 1) requestAnimationFrame(animate);
-          };
-          requestAnimationFrame(animate);
-        }
-      },
-      { threshold: 0.3 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [target]);
-
-  const format = (num) => (num >= 1000 ? (num / 1000).toFixed(1).replace(/\.0$/, '') + 'k+' : num);
-
+function MetricCard({ metric, stats }) {
+  const value = Number(stats[metric.key] || 0);
   return (
-    <div className="curriculum-card card-surface-solid card-elevation-soft card-density-comfortable stats-grid-card" ref={ref}>
-      <div className="curriculum-card-top">
-        <div className="curriculum-card-badge">
-          <Icon name={icon} />
-        </div>
-      </div>
-      <div className="curriculum-card-body">
-        <span className="curriculum-card-title">{format(count)}</span>
-        <span className="curriculum-card-meta">{label}</span>
-      </div>
-    </div>
+    <article className="stats-impact-card">
+      <span className="stats-impact-icon" aria-hidden="true"><Icon name={metric.icon} /></span>
+      <span className="stats-impact-value">{value.toLocaleString()}</span>
+      <span className="stats-impact-label">{metric.label}</span>
+    </article>
   );
 }
 
-export function StatsGrid({ stats = {} }) {
+export function StatsGrid({ stats = {}, scopeLabel = 'All learning levels' }) {
+  const failedTopics = Array.isArray(stats.most_failed_topics) ? stats.most_failed_topics : [];
+
   return (
-    <section className="section stats-grid-section">
-      <div className="section-head">
+    <section className="section stats-grid-section" aria-labelledby="platform-impact-title">
+      <div className="section-head stats-impact-heading">
         <div className="section-head-left">
-          <span className="eyebrow">Our Impact</span>
-          <h2>Trusted by learners across levels</h2>
+          <h2 id="platform-impact-title">See our impact in numbers</h2>
+          <p className="stats-impact-scope">Statistics for {scopeLabel}</p>
         </div>
       </div>
-      <div className="curriculum-rail">
-        {ITEMS.map((item) => (
-          <AnimatedNumber key={item.key} target={stats[item.key] || 0} label={item.label} icon={item.icon} />
+
+      <div className="stats-impact-groups">
+        {GROUPS.map((group) => (
+          <section className="stats-impact-group" key={group.title} aria-label={group.title}>
+            <h3 className="stats-impact-group-title"><Icon name={group.icon} />{group.title}</h3>
+            <div className="stats-impact-grid">
+              {group.metrics.map((metric) => (
+                <MetricCard key={metric.key} metric={metric} stats={stats} />
+              ))}
+            </div>
+            {group.title === 'Quizzes' && (
+              <div className="stats-impact-topics">
+                <h4>Most failed topics or course units</h4>
+                {failedTopics.length ? (
+                  <ol>
+                    {failedTopics.slice(0, 3).map((topic) => (
+                      <li key={topic.unit_id || topic.name}>
+                        <span>{topic.name}</span>
+                        <strong>{Number(topic.failures || 0).toLocaleString()} failed</strong>
+                      </li>
+                    ))}
+                  </ol>
+                ) : (
+                  <p>No failed-topic data is available for this level yet.</p>
+                )}
+              </div>
+            )}
+          </section>
         ))}
       </div>
     </section>
