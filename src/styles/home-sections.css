@@ -805,6 +805,7 @@ body.dark-mode .home-faq-item {
   width: min(calc(100% - (var(--page-gutter-x) * 2)), var(--max-width));
   margin-inline: auto;
   padding-block: var(--section-space-y);
+  background: var(--surface-subtle);
 }
 
 .home-page .stats-impact-heading .section-head-left {
