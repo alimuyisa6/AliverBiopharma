@@ -74,7 +74,7 @@ function resumeHref(resume) {
 
 export default function Hero() {
   const { isAuthenticated } = useAuth();
-  const { level, groups, bootstrap, features } = useLayout();
+  const { level, groups, features } = useLayout();
   const [resume, setResume] = useState(null);
 
   const levelName = level?.display_name || '';
@@ -89,19 +89,6 @@ export default function Hero() {
     !resumeFeatureKey ||
     (features?.[resumeFeatureKey] ?? true);
 
-  const uiComponents = bootstrap?.ui_components || [];
-
-  const heroGallery = uiComponents.find(
-    (item) => item.component_key === 'hero_gallery'
-  )?.properties;
-
-  const galleryImages = heroGallery?.images || [];
-
-  const galleryTitle =
-    heroGallery?.title || 'Major Learning Materials Tailored For You';
-
-  const galleryRowOne = galleryImages.slice(0, 3);
-  const galleryRowTwo = galleryImages.slice(3, 6);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -212,53 +199,6 @@ export default function Hero() {
 
       </section>
 
-      {galleryImages.length > 0 && (
-        <section
-          className="hero-gallery-section"
-          aria-labelledby="hero-gallery-title"
-        >
-          <h2
-            id="hero-gallery-title"
-            className="hero-gallery-title"
-          >
-            {galleryTitle}
-          </h2>
-
-          {galleryRowOne.length > 0 && (
-            <div className="hero-gallery-row">
-              {galleryRowOne.map((image, index) => (
-                <div
-                  className="hero-gallery-item"
-                  key={image.url || `gallery-one-${index}`}
-                >
-                  <img
-                    src={image.url}
-                    alt={image.alt || galleryTitle}
-                    loading="lazy"
-                  />
-                </div>
-              ))}
-            </div>
-          )}
-
-          {galleryRowTwo.length > 0 && (
-            <div className="hero-gallery-row">
-              {galleryRowTwo.map((image, index) => (
-                <div
-                  className="hero-gallery-item"
-                  key={image.url || `gallery-two-${index}`}
-                >
-                  <img
-                    src={image.url}
-                    alt={image.alt || galleryTitle}
-                    loading="lazy"
-                  />
-                </div>
-              ))}
-            </div>
-          )}
-        </section>
-      )}
     </>
   );
 }
