@@ -77,10 +77,9 @@
 }
 
 .spinner-conic {
+  border: 3px solid color-mix(in srgb, currentColor 28%, transparent);
+  border-top-color: currentColor;
   border-radius: var(--radius-full);
-  background: conic-gradient(from 0deg, currentColor 0 25%, transparent 25% 100%);
-  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), var(--black) 0);
-  mask: radial-gradient(farthest-side, transparent calc(100% - 2px), var(--black) 0);
 }
 
 .spinner-equalizer,
@@ -114,14 +113,7 @@
   display: block;
   min-height: var(--space-4);
   border-radius: var(--radius-sm);
-  background: linear-gradient(
-    90deg,
-    var(--surface-subtle) 25%,
-    var(--bg-card-hover) 50%,
-    var(--surface-subtle) 75%
-  );
-  background-size: 200% 100%;
-  animation: shimmer var(--duration-slow) linear infinite;
+  background: var(--surface-subtle);
 }
 
 .skeleton-card,
