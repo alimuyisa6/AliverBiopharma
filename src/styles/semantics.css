@@ -1,6 +1,9 @@
 /* src/styles/semantics.css */
 
 :root {
+  --palette-blue: var(--primary);
+  --palette-mint: var(--accent);
+  --palette-ink: var(--text);
   /* --------------------------------------------------------------
      Brand / semantic tones
      -------------------------------------------------------------- */
@@ -106,7 +109,7 @@
   /* --------------------------------------------------------------
      Surfaces
      -------------------------------------------------------------- */
-  --surface-page: var(--white);
+  --surface-page: var(--background);
   --surface-card: var(--white);
   --surface-raised: var(--white);
   --surface-muted: var(--grey-50);
@@ -117,7 +120,7 @@
   --surface-disabled: var(--grey-100);
 
   /* Backward-compatible background contracts */
-  --bg-page: var(--surface-page);
+  --bg-page: var(--background);
   --bg-card: var(--surface-card);
   --bg-card-hover: var(--grey-50);
   --bg-card-tinted: var(--surface-tinted);
@@ -130,7 +133,7 @@
   /* --------------------------------------------------------------
      Text
      -------------------------------------------------------------- */
-  --text-main: var(--palette-ink);
+  --text-main: var(--text);
   --text-secondary: var(--grey-600);
   --text-muted: var(--grey-500);
   --text-placeholder: var(--grey-500);
