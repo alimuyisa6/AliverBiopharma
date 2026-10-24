@@ -296,12 +296,12 @@ body.dark-mode {
   --primary-ring: rgb(129 144 255 / 30%);
 
   --secondary: var(--secondary);
-  --secondary-hover: #7dffeb;
+  --secondary-hover: color-mix(in srgb, var(--secondary) 72%, var(--text));
   --secondary-light: var(--secondary);
   --secondary-border: var(--secondary);
 
   --accent: var(--secondary);
-  --accent-hover: #7dffeb;
+  --accent-hover: color-mix(in srgb, var(--accent) 72%, var(--text));
   --accent-light: var(--secondary);
   --accent-border: var(--secondary);
 
@@ -320,8 +320,8 @@ body.dark-mode {
   --warning-light: var(--accent);
   --warning-border: var(--accent);
 
-  --info: #6dffe2;
-  --info-hover: #9effeb;
+  --info: var(--secondary);
+  --info-hover: color-mix(in srgb, var(--secondary) 72%, var(--text));
   --info-light: var(--secondary);
   --info-border: var(--secondary);
 
@@ -405,7 +405,7 @@ body.dark-mode {
   --text-muted: var(--text);
   --text-placeholder: var(--text);
   --text-inverse: var(--text);
-  --text-link: #aab8ff;
+  --text-link: color-mix(in srgb, var(--primary) 72%, var(--text));
   --text-link-hover: var(--secondary);
   --text-on-primary: var(--text);
   --text-on-dark: var(--text);
@@ -691,14 +691,14 @@ body.accessibility-dyslexia-font * {
 :root {
   --overlay-backdrop: rgb(0 0 0 / 28%);
   --social-default-bg: var(--text);
-  --social-facebook: #1877f2;
-  --social-instagram: #e4405f;
-  --social-youtube: #ff0000;
-  --social-x: #000000;
-  --social-whatsapp: #25d366;
-  --social-telegram: #229ed9;
-  --social-linkedin: #0a66c2;
-  --social-github: #24292f;
+  --social-facebook: var(--primary);
+  --social-instagram: var(--accent);
+  --social-youtube: var(--primary);
+  --social-x: var(--text);
+  --social-whatsapp: var(--secondary);
+  --social-telegram: var(--accent);
+  --social-linkedin: var(--primary);
+  --social-github: var(--text);
 }
 
 :root {
