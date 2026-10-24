@@ -811,10 +811,11 @@ return getRequest(
 );
 }
 
-export async function getPublicStats() {
+export async function getPublicStats(groupId) {
 return getRequest(
 'interactions',
-'get_public_stats'
+'get_public_stats',
+{ group_id: groupId }
 );
 }
 
