@@ -798,3 +798,171 @@ body.dark-mode .home-faq-item {
 @media (max-width: 360px) {
   .home-page-redesign .home-subject-grid { grid-template-columns: 1fr; }
 }
+
+
+.home-page .stats-grid-section {
+  width: min(calc(100% - (var(--page-gutter-x) * 2)), var(--max-width));
+  margin-inline: auto;
+  padding-block: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.home-page .stats-impact-heading .section-head-left {
+  gap: var(--space-2);
+  padding-inline-start: 0;
+}
+
+.home-page .stats-impact-heading h2 {
+  margin: 0;
+  font-size: clamp(1.45rem, 2.7vw, 2rem);
+  font-weight: var(--weight-bold);
+}
+
+.home-page .stats-impact-scope {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+}
+
+.home-page .stats-impact-groups {
+  display: grid;
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.home-page .stats-impact-group {
+  min-width: 0;
+}
+
+.home-page .stats-impact-group-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-3);
+  color: var(--text-main);
+  font-size: var(--text-md);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.home-page .stats-impact-group-title svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  color: var(--primary);
+}
+
+.home-page .stats-impact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-2);
+}
+
+.home-page .stats-impact-card {
+  display: flex;
+  min-width: 0;
+  min-height: 6.2rem;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: .3rem;
+  padding: .85rem 1rem;
+  border: 0;
+  border-radius: .65rem;
+  background: var(--surface-card);
+  box-shadow: 0 3px 12px rgb(5 2 8 / 7%);
+}
+
+.home-page .stats-impact-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  color: var(--primary);
+  font-size: 1rem;
+}
+
+.home-page .stats-impact-icon svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.home-page .stats-impact-value {
+  color: var(--text-main);
+  font-family: var(--font-mono);
+  font-size: clamp(1.15rem, 2vw, 1.55rem);
+  font-weight: var(--weight-bold);
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.home-page .stats-impact-label {
+  color: var(--text-secondary);
+  font-size: var(--text-xs);
+  line-height: 1.35;
+}
+
+.home-page .stats-impact-topics {
+  margin-top: var(--space-3);
+  padding: .9rem 1rem;
+  border: 0;
+  border-radius: .65rem;
+  background: var(--surface-card);
+  box-shadow: 0 3px 12px rgb(5 2 8 / 7%);
+}
+
+.home-page .stats-impact-topics h4 {
+  margin: 0 0 var(--space-2);
+  color: var(--text-main);
+  font-size: var(--text-sm);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.home-page .stats-impact-topics ol {
+  display: grid;
+  gap: .55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.home-page .stats-impact-topics li {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+}
+
+.home-page .stats-impact-topics li strong {
+  flex: 0 0 auto;
+  color: var(--text-main);
+  font-size: var(--text-xs);
+}
+
+.home-page .stats-impact-topics p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+}
+
+@media (max-width: 760px) {
+  .home-page .stats-impact-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .home-page .stats-impact-card {
+    min-height: 5.8rem;
+    padding: .75rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .home-page .stats-impact-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .home-page .stats-impact-topics li {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: .15rem;
+  }
+}
