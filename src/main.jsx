@@ -5,7 +5,6 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import { AuthProvider } from './contexts/AuthContext';
 import { I18nProvider } from './contexts/I18nContext';
- import './styles/colors.css';
 import './styles/semantics.css';
 import './styles/spacing.css';
 import './styles/animation.css';
