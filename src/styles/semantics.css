@@ -7,20 +7,20 @@
   /* --------------------------------------------------------------
      Brand / semantic tones
      -------------------------------------------------------------- */
-  --primary-hover: var(--blue-700);
-  --primary-dark: var(--blue-800);
-  --primary-soft: var(--blue-50);
-  --primary-light: var(--blue-100);
-  --primary-border: var(--blue-300);
-  --primary-ring: var(--blue-ring);
+  --primary-hover: color-mix(in srgb, var(--primary) 76%, var(--text));
+  --primary-dark: color-mix(in srgb, var(--primary) 62%, var(--text));
+  --primary-soft: color-mix(in srgb, var(--primary) 10%, var(--background));
+  --primary-light: color-mix(in srgb, var(--primary) 16%, var(--background));
+  --primary-border: color-mix(in srgb, var(--primary) 42%, var(--background));
+  --primary-ring: color-mix(in srgb, var(--primary) 34%, transparent);
 
-  --secondary-hover: var(--emerald-700);
-  --secondary-light: var(--emerald-50);
-  --secondary-border: var(--emerald-200);
+  --secondary-hover: color-mix(in srgb, var(--secondary) 70%, var(--text));
+  --secondary-light: color-mix(in srgb, var(--secondary) 20%, var(--background));
+  --secondary-border: color-mix(in srgb, var(--secondary) 48%, var(--background));
 
-  --accent-hover: var(--emerald-600);
-  --accent-light: var(--emerald-50);
-  --accent-border: var(--emerald-200);
+  --accent-hover: color-mix(in srgb, var(--accent) 72%, var(--text));
+  --accent-light: color-mix(in srgb, var(--accent) 16%, var(--background));
+  --accent-border: color-mix(in srgb, var(--accent) 48%, var(--background));
 
   --success: var(--green-600);
   --color-success: var(--success);
@@ -110,8 +110,8 @@
   --surface-card: var(--white);
   --surface-raised: var(--white);
   --surface-muted: var(--grey-50);
-  --surface-subtle: var(--blue-50);
-  --surface-tinted: var(--blue-100);
+  --surface-subtle: color-mix(in srgb, var(--primary) 7%, var(--background));
+  --surface-tinted: color-mix(in srgb, var(--primary) 13%, var(--background));
   --surface-inverse: var(--palette-ink);
   --surface-overlay: rgba(15, 23, 42, 0.55);
   --surface-disabled: var(--grey-100);
@@ -135,8 +135,8 @@
   --text-muted: var(--grey-500);
   --text-placeholder: var(--grey-500);
   --text-inverse: var(--white);
-  --text-link: var(--blue-600);
-  --text-link-hover: var(--blue-700);
+  --text-link: color-mix(in srgb, var(--primary) 72%, var(--text));
+  --text-link-hover: var(--primary-hover);
   --text-on-primary: var(--white);
   --text-on-dark: var(--grey-100);
   --text-dim: var(--text-secondary);
@@ -146,7 +146,7 @@
      -------------------------------------------------------------- */
   --border-transparent: transparent;
   --border-subtle: var(--grey-200);
-  --border-light: var(--blue-200);
+  --border-light: color-mix(in srgb, var(--primary) 30%, var(--background));
   --border-default: var(--grey-300);
   --border-strong: var(--grey-400);
   --border-focus: var(--primary);
@@ -182,7 +182,7 @@
 
 
   /* Profile surface tokens */
-  --profile-page-bg: var(--blue-50);
+  --profile-page-bg: var(--background);
   --profile-page-bottom-space: var(--page-space-bottom);
   --profile-header-top-space: var(--page-space-top);
   --profile-header-top-space-mobile: var(--page-space-top);
