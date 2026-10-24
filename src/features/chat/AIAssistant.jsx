@@ -360,13 +360,7 @@ export default function AIAssistant() {
         aria-label={open ? 'Close AliverBiopharm AI Tutor' : 'Open AliverBiopharm AI Tutor'}
         aria-expanded={open}
       >
-        <img
-          className="ai-assistant-mascot"
-          src="/ai-tutor-mascot.svg"
-          alt=""
-          aria-hidden="true"
-          draggable="false"
-        />
+        <span className="ai-assistant-mascot" aria-hidden="true"><Icon name="brain" /></span>
         <span>{open ? 'Close' : 'AI Tutor'}</span>
       </button>
     </div>
