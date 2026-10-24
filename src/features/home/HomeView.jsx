@@ -227,7 +227,7 @@ export default function HomeView(props) {
       <DynamicActions pageId="home" className="home-dynamic-actions" />
 
       <section className="home-stats-section" aria-label="Platform statistics">
-        <StatsGrid stats={{ resources_count: publicStats?.resources_count || 0, users_count: publicStats?.users_count || 0, downloads_count: publicStats?.downloads_count || 0, quiz_attempts: publicStats?.quiz_attempts || 0 }} />
+        <StatsGrid stats={publicStats || {}} scopeLabel={activeGroupName || activeLevelName || 'All learning levels'} />
       </section>
 
       <section className="home-explore-section section" id="explore" aria-labelledby="home-explore-title">
