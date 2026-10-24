@@ -1,9 +1,9 @@
 :root {
-  --u3d-top-start: var(--palette-blue);
-  --u3d-top-end: var(--blue-700);
-  --u3d-bottom-start: var(--blue-700);
-  --u3d-bottom-end: var(--palette-blue);
-  --u3d-text: #ffffff;
+  --u3d-top-start: var(--primary);
+  --u3d-top-end: var(--primary);
+  --u3d-bottom-start: var(--primary);
+  --u3d-bottom-end: var(--primary);
+  --u3d-text: var(--background);
   --u3d-text-shadow: 0 -1px rgb(0 0 0 / 25%);
   --u3d-inset-shadow: inset 0 2px 2px rgb(0 0 0 / 25%);
   --u3d-button-min-height: 4em;
@@ -19,21 +19,21 @@
   --switcher-width-fluid: 90%;
   --switcher-padding: 20px;
   --switcher-radius: 35px;
-  --switcher-bg: var(--palette-ink);
-  --switcher-text: #ffffff;
-  --switcher-muted: #888888;
-  --switcher-control-bg: var(--grey-800);
+  --switcher-bg: var(--text);
+  --switcher-text: var(--background);
+  --switcher-muted: var(--secondary);
+  --switcher-control-bg: var(--text);
   --switcher-control-radius: 20px;
   --switcher-control-padding: 4px;
   --switcher-option-gap: 8px;
   --switcher-option-radius: 16px;
-  --switcher-option-text: #cccccc;
+  --switcher-option-text: var(--secondary);
   --switcher-slider-bg: rgba(255, 255, 255, 0.4);
   --switcher-slider-border: rgba(255, 255, 255, 0.2);
   --switcher-slider-shadow:
     0 4px 8px rgba(0, 0, 0, 0.4),
     inset 0 -2px 4px rgba(255, 255, 255, 0.2);
-  --switcher-chart-bg: var(--grey-800);
+  --switcher-chart-bg: var(--text);
   --switcher-chart-radius: 12px;
   --switcher-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   --switcher-transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -63,12 +63,12 @@
   --action-purple-path-short-width: 0.875rem;
   --action-purple-path-dot-size: 1px;
   --action-purple-outline-duration: var(--duration-fast);
-  --action-purple-white: var(--blue-50);
-  --action-purple-100: var(--blue-200);
-  --action-purple-200: var(--blue-300);
-  --action-purple-300: var(--blue-400);
-  --action-purple-400: var(--blue-600);
-  --action-purple-500: var(--blue-800);
+  --action-purple-white: var(--primary);
+  --action-purple-100: var(--primary);
+  --action-purple-200: var(--primary);
+  --action-purple-300: var(--primary);
+  --action-purple-400: var(--primary);
+  --action-purple-500: var(--primary);
   --action-purple-shadow: rgb(84 101 255 / 40%);
   --action-purple-shadow-30: color-mix(in srgb, var(--action-purple-shadow) 75%, transparent);
   --action-purple-shadow-25: color-mix(in srgb, var(--action-purple-shadow) 62.5%, transparent);
@@ -88,12 +88,11 @@
   --action-purple-focus: 1.6s;
   --action-purple-splash: 0.8s;
 
-
   --hero-pattern-tile: 60px;
-  --hero-pattern-base: var(--blue-600);
-  --hero-pattern-accent: var(--palette-mint);
-  --hero-pattern-light: var(--palette-periwinkle);
-  --hero-pattern-strong: var(--blue-700);
+  --hero-pattern-base: var(--primary);
+  --hero-pattern-accent: var(--secondary);
+  --hero-pattern-light: var(--secondary);
+  --hero-pattern-strong: var(--primary);
 
   --theme-switch-height: 0.9em;
   --theme-switch-radius: 0.9em;
