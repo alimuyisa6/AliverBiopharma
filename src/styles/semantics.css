@@ -263,12 +263,12 @@
   --hero-bg: var(--blue-50);
   --hero-border: var(--blue-200);
 
-  --header-bg: var(--white);
-  --header-border: var(--blue-100);
+  --header-bg: var(--background);
+  --header-border: var(--secondary);
 
-  --footer-bg: var(--palette-ink);
-  --footer-text: var(--blue-100);
-  --footer-border: var(--grey-800);
+  --footer-bg: var(--text);
+  --footer-text: var(--secondary);
+  --footer-border: var(--primary);
 
   --level-o: var(--blue-600);
   --level-o-light: var(--blue-50);
@@ -474,12 +474,6 @@ body.dark-mode {
   --hero-bg: var(--night-850);
   --hero-border: var(--night-450);
 
-  --header-bg: var(--night-850);
-  --header-border: var(--night-600);
-
-  --footer-bg: var(--grey-950);
-  --footer-text: var(--night-text-secondary);
-  --footer-border: var(--night-600);
 
   --level-o: var(--blue-400);
   --level-o-light: var(--blue-900);
