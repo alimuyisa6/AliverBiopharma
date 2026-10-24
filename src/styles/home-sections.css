@@ -991,3 +991,38 @@ body.dark-mode .home-faq-item {
     width: calc(100% - 1.5rem);
   }
 }
+
+
+.stats-grid-section {
+  display: block;
+  box-sizing: border-box;
+  width: 100% !important;
+  max-width: none !important;
+  margin-inline: 0 !important;
+  padding-inline: clamp(1.25rem, 5vw, 4.5rem) !important;
+}
+
+.stats-grid-section > .section-head,
+.stats-grid-section > .stats-impact-groups {
+  width: 100%;
+  max-width: 1240px;
+  margin-inline: auto;
+}
+
+.stats-grid-section .stats-impact-heading h2,
+.stats-grid-section .stats-impact-group-title,
+.stats-grid-section .stats-impact-topics h4 {
+  color: #ffffff !important;
+}
+
+@media (max-width: 640px) {
+  .stats-grid-section {
+    padding-inline: 1rem !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .stats-grid-section {
+    padding-inline: .75rem !important;
+  }
+}
