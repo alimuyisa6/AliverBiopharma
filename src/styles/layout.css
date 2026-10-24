@@ -1,11 +1,7 @@
-/* src/styles/layout.css */
-
-/* Document and application shell: one continuous viewport-height layout. */
 html, body, #root { width: 100%; max-width: 100%; min-width: 0; }
 html, body { overflow-x: clip; }
 #root { display: flex; flex-direction: column; min-height: 100vh; min-height: 100dvh; }
 .app-layout { display: flex; flex: 1 0 auto; flex-direction: column; min-height: 100vh; min-height: 100dvh; }
-*, *::before, *::after { box-sizing: border-box; }
 
 .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: var(--z-sticky); height: var(--header-height); background: var(--white); border-bottom: 1px solid var(--grey-200); }
 .site-header.scrolled { background: var(--white); box-shadow: var(--shadow-sm); border-bottom-color: var(--grey-200); }
@@ -307,7 +303,6 @@ body.dark-mode .home-scope-switcher {
 .footer-bottom-link:hover { color: var(--primary); opacity: 1; }
 @media (max-width: 1024px) { .header-container { gap: var(--content-gap-compact); } .footer-inner { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .footer-right-groups { grid-column: 1 / -1; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); } }
 
-/* Desktop header: navigation links and utility controls share one row. */
 @media (min-width: 769px) {
   .header-container {
     justify-content: initial;
@@ -375,7 +370,6 @@ body.dark-mode .home-scope-switcher {
 @media (max-width: 768px) { .main-nav { display: none; } .hamburger-btn { display: inline-flex; } .header-container { width: min(calc(100% - (var(--page-gutter-x) * 2)), var(--max-width)); } .footer-inner { grid-template-columns: minmax(0, 1fr); gap: var(--content-gap); } .footer-right-groups { grid-column: auto; grid-template-columns: minmax(0, 1fr); gap: var(--content-gap); } .footer-quick-groups { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--content-gap-compact); } .footer-bottom { align-items: flex-start; flex-direction: column; } .footer-bottom-nav { gap: var(--content-gap-compact); } }
 @media (max-width: 480px) { .mobile-menu-panel { width: calc(100vw - (var(--page-gutter-x) * 2)); max-height: 82vh; } .mobile-menu-nav { max-height: 82vh; } .footer-social { gap: var(--stack-gap-tight); } }
 
-/* Responsive, theme-aware scientific illustration in the footer */
 .footer-science-art-wrap {
   width: 100%;
   max-width: var(--content-max-width, 72rem);
@@ -390,9 +384,9 @@ body.dark-mode .home-scope-switcher {
   height: auto;
   margin-inline: auto;
   color: var(--footer-text);
-  --footer-art-blue: var(--color-primary, #3978d4);
-  --footer-art-teal: var(--color-accent, #0e8b79);
-  --footer-art-gold: var(--color-brand-gold, #b8873a);
+  --footer-art-blue: var(--primary);
+  --footer-art-teal: var(--secondary);
+  --footer-art-gold: var(--accent);
   --footer-art-soft: color-mix(in srgb, var(--footer-bg, #ffffff) 82%, var(--footer-text, #243447) 18%);
 }
 
@@ -405,20 +399,12 @@ body.dark-mode .home-scope-switcher {
   .footer-science-art { max-width: 100%; }
 }
 
-
 .home-scope-switcher .class-switcher-label,
 .home-scope-switcher .class-switcher-trigger {
   position: relative;
   z-index: 1;
 }
 
-
-/* Hand-drawn illustrations remain transparent and unframed. */
-.footer-science-art-wrap,
-.footer-science-art,
-
-
-/* Footer campus scene: full-width background behind the existing footer content. */
 .footer { isolation: isolate; overflow: hidden; }
 .footer-science-art-wrap {
   position: absolute;
@@ -444,19 +430,19 @@ body.dark-mode .home-scope-switcher {
   height: 100%;
   margin: 0;
   color: var(--footer-text);
-  --footer-art-ink: var(--text-primary, var(--footer-text));
+  --footer-art-ink: var(--text-main);
   --footer-art-blue: var(--primary);
-  --footer-art-mint: var(--accent, var(--primary));
+  --footer-art-mint: var(--secondary);
   --footer-art-periwinkle: var(--surface-muted, var(--footer-bg));
   --footer-art-white: var(--surface-card, var(--footer-bg));
   --footer-art-glass: var(--surface-muted, var(--footer-bg));
-  --footer-art-gold: var(--color-amber-500, var(--primary));
-  --footer-art-wood: var(--color-amber-700, var(--footer-text));
-  --footer-art-skin-light: var(--color-amber-300, var(--footer-text));
-  --footer-art-skin-medium: var(--color-amber-400, var(--footer-text));
-  --footer-art-skin-deep: var(--color-amber-700, var(--footer-text));
-  --footer-art-hair-dark: var(--text-primary, var(--footer-text));
-  --footer-art-hair-curly: var(--text-primary, var(--footer-text));
+  --footer-art-gold: var(--accent);
+  --footer-art-wood: var(--text-main);
+  --footer-art-skin-light: var(--secondary);
+  --footer-art-skin-medium: var(--primary);
+  --footer-art-skin-deep: var(--text-main);
+  --footer-art-hair-dark: var(--text-main);
+  --footer-art-hair-curly: var(--text-main);
 }
 .footer-inner,
 .footer-bottom {
@@ -468,22 +454,16 @@ body.dark-mode .home-scope-switcher {
   .footer-science-art { max-width: none; }
 }
 
-
-/* Visibility pass for the campus scene: keep it legible behind, never over, footer links. */
 .footer-science-art-wrap { opacity: 0.42; }
 .footer-science-art { overflow: visible; }
 @media (max-width: 768px) {
   .footer-science-art-wrap { opacity: 0.30; }
 }
 
-/* The profile route hides the fixed site header, so it must not retain the
-   global header-height spacer used by pages that display that header. */
 .main-content.main-content-profile {
   padding-top: 0;
 }
 
-
-/* Workspace-style class/programme switcher, adapted to AliverBiopharm scopes. */
 .class-switcher-menu {
   width: min(var(--dropdown-menu-min-width), calc(100vw - (var(--page-gutter-x) * 2)));
   gap: var(--space-1);
@@ -564,7 +544,7 @@ body.dark-mode .home-scope-switcher {
   text-underline-offset: var(--space-1);
 }
 .class-switcher-approval-note a:hover { color: var(--primary-hover, var(--primary)); }
-/* Keep the class/programme picker centred and accessible on small screens. */
+
 .class-switcher-menu {
   position: fixed;
   top: 50%;
@@ -584,8 +564,6 @@ body.dark-mode .home-scope-switcher {
   z-index: calc(var(--z-modal) - 1);
 }
 
-
-/* Social icon dock: raised, tactile tiles while preserving configured destinations. */
 .footer-social {
   display: flex;
   flex-wrap: wrap;
@@ -642,7 +620,6 @@ body.dark-mode .home-scope-switcher {
   .footer-social-link { transition: none; }
 }
 
-/* Header class switcher: compact vertical spacing and a chevron-only control. */
 .nav-actions .class-switcher-chevron {
   display: inline-flex;
   flex: 0 0 auto;
@@ -680,7 +657,6 @@ body.dark-mode .home-scope-switcher {
   margin-top: 0;
   transform: translateY(0);
 }
-
 
 .header-glyph-menu { position: relative; display: inline-flex; width: 1.25rem; height: 1.25rem; flex-direction: column; justify-content: center; gap: .25rem; }
 .header-glyph-menu i { display: block; width: 100%; height: 2px; border-radius: 2px; background: currentColor; transition: transform 160ms ease, opacity 160ms ease; }
