@@ -11,14 +11,11 @@ export default function GlobalLoader({
 
   return (
     <div className="aliver-global-loader" role="status" aria-live="polite" aria-label="Loading AliverBiopharm">
-      <div className="aliver-loader-card">
-        <div className="aliver-loader-orbit" aria-hidden="true">
-          <span className="aliver-loader-orbit-dot" />
-          <span className="aliver-loader-orbit-core">AB</span>
-        </div>
-        <div className="aliver-loader-capsule" aria-hidden="true"><span /><span /></div>
+      <div className="aliver-loader-content">
+        <p className="aliver-loader-brand">AliverBiopharm</p>
         <p className="aliver-loader-tagline">{tagline}</p>
         <div className="aliver-loader-progress" aria-hidden="true"><span /></div>
+        <span className="aliver-loader-status">Loading your learning space…</span>
       </div>
     </div>
   );
