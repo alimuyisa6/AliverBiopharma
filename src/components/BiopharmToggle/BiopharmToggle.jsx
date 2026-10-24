@@ -18,14 +18,11 @@ export default function BiopharmToggle({
         onChange={(event) => onChange?.(event.target.checked)}
         aria-label={ariaLabel || 'Toggle theme'}
       />
-      <svg viewBox="0 0 212.4992 84.4688" overflow="visible" aria-hidden="true" focusable="false">
-        <path
-          pathLength="360"
-          fill="none"
-          stroke="currentColor"
-          d="M 42.2496 0 A 42.24 42.24 90 0 0 0 42.2496 A 42.24 42.24 90 0 0 42.2496 84.4688 A 42.24 42.24 90 0 0 84.4992 42.2496 A 42.24 42.24 90 0 0 42.2496 0 A 42.24 42.24 90 0 0 0 42.2496 A 42.24 42.24 90 0 0 42.2496 84.4688 L 170.2496 84.4688 A 42.24 42.24 90 0 0 212.4992 42.2496 A 42.24 42.24 90 0 0 170.2496 0 A 42.24 42.24 90 0 0 128 42.2496 A 42.24 42.24 90 0 0 170.2496 84.4688 A 42.24 42.24 90 0 0 212.4992 42.2496 A 42.24 42.24 90 0 0 170.2496 0 L 42.2496 0"
-        />
-      </svg>
+      <span className="biopharm-toggle__track" aria-hidden="true">
+        <span className="biopharm-toggle__sun">☼</span>
+        <span className="biopharm-toggle__moon">☾</span>
+        <span className="biopharm-toggle__thumb" />
+      </span>
     </label>
   );
 }
