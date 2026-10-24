@@ -160,8 +160,14 @@ export default function Home() {
   }, [activeGroupId, groups]);
 
   useEffect(() => {
-    getPublicStats().then(setPublicStats).catch(() => {});
-  }, []);
+    let cancelled = false;
+    getPublicStats(activeGroupId).then((stats) => {
+      if (!cancelled) setPublicStats(stats);
+    }).catch(() => {
+      if (!cancelled) setPublicStats(null);
+    });
+    return () => { cancelled = true; };
+  }, [activeGroupId]);
 
   useEffect(() => {
     if (level?.id) getSections(level.id).then(setSections).catch(() => {});
