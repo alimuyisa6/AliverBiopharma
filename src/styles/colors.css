@@ -4,21 +4,21 @@
 
 :root {
   --palette-mint: #00ffd4;
-  --palette-blue: #5465ff;
+  --palette-blue: #3049e8;
   --palette-periwinkle: #d2ddff;
   --palette-ink: #050208;
 
   /* Blue/periwinkle scale */
-  --blue-50: #f5f6ff;
-  --blue-100: #eef1ff;
-  --blue-200: #d2ddff;
-  --blue-300: #aab8ff;
-  --blue-400: #8190ff;
-  --blue-500: #6878ff;
+  --blue-50: #edf0ff;
+  --blue-100: #dfe5ff;
+  --blue-200: #c0ceff;
+  --blue-300: #91a5ff;
+  --blue-400: #6379ff;
+  --blue-500: #3d56f0;
   --blue-600: var(--palette-blue);
-  --blue-700: #4353e8;
-  --blue-800: #303dc0;
-  --blue-900: #202879;
+  --blue-700: #2439c4;
+  --blue-800: #1c2c96;
+  --blue-900: #111d66;
 
   /* Mint scale */
   --emerald-50: #eafffb;
