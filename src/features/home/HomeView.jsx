@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Icon from '../../components/Icon/Icon';
 import ClassSwitcher from '../../components/ClassSwitcher/ClassSwitcher';
-import { WhyChooseSection } from './WhyChooseSection';
 import { HowItWorksSection } from './HowItWorksSection';
 import { StatsGrid } from './StatsGrid';
 import { TestimonialSlider } from './TestimonialSlider';
@@ -272,7 +271,6 @@ export default function HomeView(props) {
         </section>
       )}
 
-      <WhyChooseSection />
       <HowItWorksSection />
       <StudyQuoteCard />
 
