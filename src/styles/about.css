@@ -1,5 +1,3 @@
- /* src/styles/about.css */
-
 :root {
   --about-hero-content-max-width: 43.75rem;
   --about-hero-copy-max-width: 35rem;
@@ -10,7 +8,7 @@
   --about-contributor-avatar-size: 3.25rem;
   --about-contributor-grid-min-width: 13.75rem;
   --about-contact-page-max-width: 58rem;
-  --about-contact-form-max-width: var(--about-contact-form-max-width);
+  --about-contact-form-max-width: var(--about-content-max-width);
 }
 
 .about-hero {
@@ -420,8 +418,6 @@ a.about-contact-item:hover {
   }
 }
 
-
-/* Contact page layout */
 .contact-page {
   width: min(100%, var(--about-contact-page-max-width));
   margin-inline: auto;
