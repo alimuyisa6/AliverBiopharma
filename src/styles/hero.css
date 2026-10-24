@@ -1,43 +1,32 @@
- /* src/styles/hero.css */
-
 .hero {
   --hero-min-height: 90vh;
   --hero-mobile-min-height: 80vh;
   --hero-small-min-height: 78vh;
-
   --hero-title-max-width: 760px;
   --hero-tagline-max-width: 540px;
-
   --hero-title-size-min: 3rem;
   --hero-title-size-fluid: 6.2vw;
   --hero-title-size-max: 5rem;
   --hero-title-line-height: 0.98;
   --hero-title-letter-spacing: -0.045em;
-
   --hero-mobile-title-size-min: 2.5rem;
   --hero-mobile-title-size-fluid: 11vw;
   --hero-mobile-title-size-max: 3.75rem;
   --hero-mobile-title-line-height: 1;
   --hero-mobile-title-letter-spacing: -0.035em;
-
-  --hero-scrim-opacity: 0.42;
-  --hero-mobile-scrim-opacity: 0.5;
-
   --hero-eyebrow-letter-spacing: var(--tracking-eyebrow);
   --hero-mobile-eyebrow-letter-spacing: 0.05em;
   --hero-eyebrow-gap: var(--space-2);
-
   position: relative;
-  min-height: var(--hero-min-height);
   display: flex;
+  min-height: var(--hero-min-height);
   align-items: center;
   overflow: hidden;
-  border-radius: var(--radius-none);
+  background: var(--text);
 }
 
 .hero-enhanced {
   min-height: var(--hero-min-height);
-  border-radius: var(--radius-none);
 }
 
 .hero-image {
@@ -45,59 +34,26 @@
   inset: 0;
   z-index: 0;
   overflow: hidden;
-  background: var(--palette-ink);
-}
-
-/* Brand-specific atmospheric light over the custom molecular-glass shader. */
-.hero-image::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 2;
-  background:
-    radial-gradient(ellipse at 73% 35%, color-mix(in srgb, var(--palette-blue) 36%, transparent) 0%, transparent 57%),
-    radial-gradient(ellipse at 84% 72%, color-mix(in srgb, var(--palette-mint) 22%, transparent) 0%, transparent 45%),
-    linear-gradient(135deg, color-mix(in srgb, var(--palette-periwinkle) 8%, transparent), transparent 58%);
+  isolation: isolate;
+  background: var(--text);
 }
 
 .hero-image img,
 .hero-image video,
 .hero-image canvas {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
-}
-
-.hero-image-placeholder {
-  width: 100%;
-  height: 100%;
-  background-color: var(--hero-pattern-base);
-  background-image:
-    conic-gradient(at 50% 25%, transparent 75%, var(--hero-pattern-accent) 0),
-    conic-gradient(at 50% 25%, transparent 75%, var(--hero-pattern-accent) 0) var(--hero-pattern-tile) var(--hero-pattern-tile),
-    conic-gradient(at 50% 25%, transparent 75%, var(--hero-pattern-accent) 0) calc(2 * var(--hero-pattern-tile)) calc(2 * var(--hero-pattern-tile)),
-    conic-gradient(at 50% 25%, transparent 75%, var(--hero-pattern-accent) 0) calc(3 * var(--hero-pattern-tile)) calc(3 * var(--hero-pattern-tile)),
-    repeating-linear-gradient(135deg, var(--hero-pattern-light) 0 12.5%, var(--hero-pattern-strong) 0 25%);
-  background-size: calc(4 * var(--hero-pattern-tile)) calc(4 * var(--hero-pattern-tile));
 }
 
 .hero-scrim {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background:
-    linear-gradient(90deg,
-      color-mix(in srgb, var(--palette-ink) 76%, transparent) 0%,
-      color-mix(in srgb, var(--palette-ink) 54%, transparent) 34%,
-      color-mix(in srgb, var(--palette-ink) 16%, transparent) 66%,
-      color-mix(in srgb, var(--palette-ink) 5%, transparent) 100%),
-    linear-gradient(0deg,
-      color-mix(in srgb, var(--palette-ink) 20%, transparent) 0%,
-      transparent 48%,
-      color-mix(in srgb, var(--palette-ink) 8%, transparent) 100%);
-  opacity: 1;
+  background: var(--text);
+  opacity: 0.22;
+  pointer-events: none;
 }
 
 .hero-content {
@@ -105,8 +61,7 @@
   z-index: 2;
   width: min(100%, var(--max-width));
   margin-inline: auto;
-  padding-block: var(--space-12);
-  padding-inline: var(--page-gutter-x);
+  padding: var(--space-12) var(--page-gutter-x);
 }
 
 .hero-eyebrow {
@@ -115,7 +70,7 @@
   flex-wrap: wrap;
   gap: var(--hero-eyebrow-gap);
   margin-bottom: var(--text-gap-title);
-  color: color-mix(in srgb, var(--text-inverse) 92%, transparent);
+  color: var(--secondary);
   font-family: var(--font-mono);
   font-size: var(--text-eyebrow);
   font-weight: var(--weight-eyebrow);
@@ -124,29 +79,22 @@
   text-transform: uppercase;
 }
 
-.hero-eyebrow-accent {
-  color: var(--palette-mint);
+.hero-eyebrow-accent,
+.hero-eyebrow-dot {
+  color: var(--accent);
   font-weight: var(--weight-semibold);
 }
 
-.hero-eyebrow-dot {
-  color: var(--palette-mint);
-}
-
 .hero-eyebrow-context {
-  color: color-mix(in srgb, var(--text-inverse) 72%, transparent);
+  color: var(--secondary);
 }
 
 .hero-title {
   max-width: var(--hero-title-max-width);
   margin: 0 0 var(--text-gap-description);
-  color: var(--text-inverse);
+  color: var(--background);
   font-family: var(--font-heading);
-  font-size: clamp(
-    var(--hero-title-size-min),
-    var(--hero-title-size-fluid),
-    var(--hero-title-size-max)
-  );
+  font-size: clamp(var(--hero-title-size-min), var(--hero-title-size-fluid), var(--hero-title-size-max));
   font-weight: var(--weight-display);
   line-height: var(--hero-title-line-height);
   letter-spacing: var(--hero-title-letter-spacing);
@@ -161,7 +109,7 @@
 .hero-tagline {
   max-width: var(--hero-tagline-max-width);
   margin-bottom: var(--text-gap-action);
-  color: color-mix(in srgb, var(--text-inverse) 88%, transparent);
+  color: var(--secondary);
   font-family: var(--font-reading);
   font-size: var(--text-body);
   font-weight: var(--weight-normal);
@@ -174,12 +122,80 @@
   gap: var(--content-gap-compact);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .hero-image img,
-  .hero-image video,
-  .hero-image canvas {
-    transition: none;
-  }
+.hero-orbit {
+  position: absolute;
+  top: 50%;
+  left: 72%;
+  display: block;
+  aspect-ratio: 1;
+  border: 1px solid var(--primary);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.hero-orbit-one {
+  width: min(66vw, 46rem);
+  opacity: 0.6;
+}
+
+.hero-orbit-two {
+  width: min(48vw, 34rem);
+  border-color: var(--secondary);
+  opacity: 0.65;
+}
+
+.hero-orbit-three {
+  width: min(30vw, 21rem);
+  border: 2px solid var(--accent);
+  opacity: 0.75;
+}
+
+.hero-molecule {
+  position: absolute;
+  display: block;
+  width: clamp(0.75rem, 1.5vw, 1.25rem);
+  aspect-ratio: 1;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  background: var(--text);
+  box-shadow: 0 0 0 0.4rem var(--primary);
+}
+
+.hero-molecule-one {
+  top: 22%;
+  left: 67%;
+}
+
+.hero-molecule-two {
+  top: 65%;
+  left: 85%;
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 0.4rem var(--primary);
+}
+
+.hero-molecule-three {
+  top: 36%;
+  left: 91%;
+  width: 0.75rem;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.3rem var(--secondary);
+}
+
+.hero-molecule-four {
+  top: 76%;
+  left: 62%;
+  width: 0.7rem;
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 0.3rem var(--primary);
+}
+
+.hero .hero-title {
+  color: var(--background);
+  font-size: clamp(var(--hero-title-size-min), var(--hero-title-size-fluid), var(--hero-title-size-max));
+  font-weight: var(--weight-display);
+  line-height: var(--hero-title-line-height);
+  letter-spacing: var(--hero-title-letter-spacing);
 }
 
 @media (max-width: 768px) {
@@ -192,25 +208,34 @@
     padding-block: var(--space-8);
   }
 
-  .hero-scrim {
-    opacity: var(--hero-mobile-scrim-opacity);
-  }
-
-  .hero-title {
+  .hero-title,
+  .hero .hero-title {
     max-width: 100%;
-    font-size: clamp(
-      var(--hero-mobile-title-size-min),
-      var(--hero-mobile-title-size-fluid),
-      var(--hero-mobile-title-size-max)
-    );
+    font-size: clamp(var(--hero-mobile-title-size-min), var(--hero-mobile-title-size-fluid), var(--hero-mobile-title-size-max));
     line-height: var(--hero-mobile-title-line-height);
     letter-spacing: var(--hero-mobile-title-letter-spacing);
   }
 
   .hero-tagline {
     max-width: 100%;
-    margin-bottom: var(--text-gap-action);
     font-size: var(--text-base);
+  }
+
+  .hero-orbit {
+    left: 78%;
+    opacity: 0.4;
+  }
+
+  .hero-orbit-one {
+    width: 90vw;
+  }
+
+  .hero-orbit-two {
+    width: 65vw;
+  }
+
+  .hero-orbit-three {
+    width: 40vw;
   }
 }
 
@@ -238,197 +263,29 @@
     width: 100%;
     justify-content: center;
   }
-}
 
-
-/* Animated biology + pharmacy hero scene */
-.hero-image {
-  isolation: isolate;
-}
-
-.hero-image::after {
-  z-index: 1;
-  background:
-    linear-gradient(90deg,
-      color-mix(in srgb, var(--palette-ink) 94%, transparent) 0%,
-      color-mix(in srgb, var(--palette-ink) 78%, transparent) 34%,
-      color-mix(in srgb, var(--palette-ink) 26%, transparent) 70%,
-      color-mix(in srgb, var(--palette-ink) 14%, transparent) 100%),
-    linear-gradient(0deg,
-      color-mix(in srgb, var(--palette-ink) 42%, transparent) 0%,
-      transparent 44%,
-      color-mix(in srgb, var(--palette-ink) 18%, transparent) 100%);
-}
-
-.hero-science-canvas {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.hero-science-controls {
-  position: absolute;
-  z-index: 3;
-  left: 50%;
-  bottom: calc(var(--space-5) + env(safe-area-inset-bottom, 0px));
-  display: flex;
-  gap: var(--space-1);
-  padding: var(--space-1);
-  transform: translateX(-50%);
-  border: 1px solid color-mix(in srgb, var(--palette-blue) 72%, transparent);
-  border-radius: var(--radius-sm);
-  background: color-mix(in srgb, var(--palette-ink) 84%, transparent);
-  box-shadow: var(--shadow-md);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-.hero-science-control {
-  display: grid;
-  width: 2.9rem;
-  height: 2.9rem;
-  min-width: 44px;
-  min-height: 44px;
-  place-items: center;
-  padding: 0;
-  border: 0;
-  border-radius: var(--radius-xs);
-  background: transparent;
-  color: var(--palette-periwinkle);
-  cursor: pointer;
-  transition: background-color 180ms ease, color 180ms ease;
-}
-
-.hero-science-control[aria-pressed="true"] {
-  background: var(--palette-blue);
-  color: var(--palette-ink);
-}
-
-.hero-science-control svg,
-.hero-science-cta svg {
-  width: 1.55rem;
-  height: 1.55rem;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.hero-science-control:focus-visible,
-.hero-science-cta:focus-visible {
-  outline: 3px solid var(--palette-mint);
-  outline-offset: 3px;
-}
-
-.hero-science-cta {
-  position: absolute;
-  z-index: 3;
-  right: var(--page-gutter-x);
-  bottom: calc(var(--space-5) + env(safe-area-inset-bottom, 0px));
-  display: grid;
-  width: 3.25rem;
-  height: 3.25rem;
-  min-width: 44px;
-  min-height: 44px;
-  place-items: center;
-  border-radius: var(--radius-sm);
-  background: var(--palette-mint);
-  color: var(--palette-ink);
-  text-decoration: none;
-  transition: transform 180ms ease, filter 180ms ease;
-}
-
-.hero-science-cta:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.04);
-}
-
-@media (max-width: 480px) {
-  .hero-science-controls {
-    left: var(--page-gutter-x);
-    bottom: calc(var(--space-4) + env(safe-area-inset-bottom, 0px));
-    transform: none;
+  .hero-orbit {
+    left: 88%;
+    opacity: 0.28;
   }
 
-  .hero-science-cta {
-    right: var(--page-gutter-x);
-    bottom: calc(var(--space-4) + env(safe-area-inset-bottom, 0px));
+  .hero-molecule-one {
+    left: 72%;
   }
 
-  .hero-content {
-    padding-bottom: calc(var(--space-12) + 3.5rem);
+  .hero-molecule-two {
+    left: 88%;
+  }
+
+  .hero-molecule-three {
+    left: 94%;
+  }
+
+  .hero-molecule-four {
+    left: 69%;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .hero-science-control,
-  .hero-science-cta {
-    transition: none;
-  }
-}
-
-
-/* Keep the subject selector above the hero scrim while text remains above the artwork. */
-.hero-image {
-  z-index: 2;
-}
-
-
-/* Real WebGL glass-fold layer, blended into the brighter scientific scene. */
-.hero-glass-fold {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.88;
-  mix-blend-mode: screen;
-  pointer-events: none;
-}
-
-.hero-science-canvas {
-  z-index: 1;
-  opacity: 1;
-}
-
-@media (max-width: 768px) {
-  .hero-glass-fold {
-    opacity: 0.78;
-  }
-}
-
-/* The global compact heading scale uses !important. Explicitly exempt the
-   homepage display heading so the hero retains its intended responsive scale. */
-.hero .hero-title {
-  color: var(--text-inverse) !important;
-  font-size: clamp(
-    var(--hero-title-size-min),
-    var(--hero-title-size-fluid),
-    var(--hero-title-size-max)
-  ) !important;
-  font-weight: var(--weight-display) !important;
-  line-height: var(--hero-title-line-height) !important;
-  letter-spacing: var(--hero-title-letter-spacing) !important;
-}
-
-@media (max-width: 768px) {
-  .hero .hero-title {
-    font-size: clamp(
-      var(--hero-mobile-title-size-min),
-      var(--hero-mobile-title-size-fluid),
-      var(--hero-mobile-title-size-max)
-    ) !important;
-    line-height: var(--hero-mobile-title-line-height) !important;
-    letter-spacing: var(--hero-mobile-title-letter-spacing) !important;
-  }
-}
-
-/* Touch-first devices may request desktop-site mode, which widens the CSS
-   viewport and bypasses width-based mobile rules. Keep the hero proportionate. */
 @media (pointer: coarse) and (max-height: 950px) {
   .hero,
   .hero-enhanced {
@@ -440,9 +297,9 @@
   }
 
   .hero .hero-title {
-    font-size: clamp(2.5rem, 6vw, 4rem) !important;
-    line-height: 1 !important;
-    letter-spacing: -0.035em !important;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    line-height: 1;
+    letter-spacing: -0.035em;
   }
 
   .hero-tagline {
@@ -455,10 +312,10 @@
   }
 }
 
-@media (pointer: coarse) and (prefers-reduced-motion: reduce) {
-  .hero-glass-fold,
-  .hero-science-canvas {
-    animation: none;
+@media (prefers-reduced-motion: reduce) {
+  .hero-image img,
+  .hero-image video,
+  .hero-image canvas {
+    transition: none;
   }
 }
-
