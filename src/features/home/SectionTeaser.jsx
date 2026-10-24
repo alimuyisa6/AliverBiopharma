@@ -18,20 +18,15 @@ export function SectionTeaser({
         <div className="section-teaser-content">
           <h2 className="section-teaser-title">{title}</h2>
           {intro && <p className="section-subtitle">{intro}</p>}
-          <div className={`section-teaser-image-wrap${illustrationType ? ' section-teaser-illustration-wrap' : ''}`}>
-            {illustrationType === 'tutor' ? (
-              <div className="section-teaser-css-art section-teaser-css-art--tutor" role="img" aria-label={imageAlt || 'Tutor and student learning together'}>
-                <span className="teaser-art-person teaser-art-person--tutor"><i /><b /></span>
-                <span className="teaser-art-person teaser-art-person--student"><i /><b /></span>
-                <span className="teaser-art-book" aria-hidden="true" />
-                <span className="teaser-art-chat" aria-hidden="true">+</span>
-              </div>
-            ) : illustrationType ? (
-              <ResourceIllustration type={illustrationType} />
-            ) : imageUrl ? (
-              <img src={imageUrl} alt={imageAlt || ''} className="section-teaser-image" loading="lazy" />
-            ) : null}
-          </div>
+          {illustrationType !== 'tutor' && (illustrationType || imageUrl) && (
+            <div className={`section-teaser-image-wrap${illustrationType ? ' section-teaser-illustration-wrap' : ''}`}>
+              {illustrationType ? (
+                <ResourceIllustration type={illustrationType} />
+              ) : (
+                <img src={imageUrl} alt={imageAlt || ''} className="section-teaser-image" loading="lazy" />
+              )}
+            </div>
+          )}
           <Button variant="primary" onClick={onCtaClick}>{ctaLabel}</Button>
         </div>
       </div>
