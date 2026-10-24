@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Icon from '../../components/Icon/Icon';
 import ClassSwitcher from '../../components/ClassSwitcher/ClassSwitcher';
+import { WhyChooseSection } from './WhyChooseSection';
 import { HowItWorksSection } from './HowItWorksSection';
+import EducationalShowcase from './EducationalShowcase';
 import { StatsGrid } from './StatsGrid';
 import { TestimonialSlider } from './TestimonialSlider';
 import { ChatWidget } from '../chat/ChatWidget';
@@ -271,7 +273,9 @@ export default function HomeView(props) {
         </section>
       )}
 
+      <WhyChooseSection />
       <HowItWorksSection />
+      <EducationalShowcase />
       <StudyQuoteCard />
 
       <section className="home-learning-journey-wrap" id="journey">
