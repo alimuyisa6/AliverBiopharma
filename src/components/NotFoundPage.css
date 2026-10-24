@@ -11,14 +11,14 @@
 .ab-not-found__content { width: min(32rem, 100%); text-align: center; }
 .ab-not-found__code {
   margin: 0 0 .5rem;
-  color: var(--primary);
+  color: var(--text);
   font-size: clamp(4rem, 18vw, 7rem);
   font-weight: 900;
   letter-spacing: -.08em;
   line-height: 1;
 }
 .ab-not-found h1 { margin: .35rem 0 .5rem; color: var(--text); font-size: clamp(1.4rem, 4vw, 1.8rem); }
-.ab-not-found p:not(.ab-not-found__code) { margin: 0 0 1.1rem; color: var(--text-secondary, var(--text)); }
+.ab-not-found p:not(.ab-not-found__code) { margin: 0 0 1.1rem; color: var(--text); }
 .ab-not-found__button {
   display: inline-flex;
   min-height: 44px;
