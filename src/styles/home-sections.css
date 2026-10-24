@@ -815,14 +815,14 @@ body.dark-mode .home-faq-item {
 
 .home-page .stats-impact-heading h2 {
   margin: 0;
-  color: var(--white);
+  color: var(--text-main);
   font-size: clamp(var(--text-xl), 2.7vw, var(--text-2xl));
   font-weight: var(--weight-bold);
 }
 
 .home-page .stats-impact-scope {
   margin: 0;
-  color: var(--white);
+  color: var(--text-secondary);
   font-size: var(--text-sm);
 }
 
@@ -840,7 +840,7 @@ body.dark-mode .home-faq-item {
   align-items: center;
   gap: var(--space-2);
   margin: 0 0 var(--space-3);
-  color: var(--white);
+  color: var(--text-main);
   font-size: var(--text-md);
   font-weight: var(--weight-semibold);
   letter-spacing: 0;
@@ -850,7 +850,7 @@ body.dark-mode .home-faq-item {
 .home-page .stats-impact-group-title svg {
   width: var(--space-5);
   height: var(--space-5);
-  color: var(--white);
+  color: var(--primary);
   flex-shrink: 0;
 }
 
