@@ -24,35 +24,15 @@ function loadScrollMap() { try { return new Map(JSON.parse(sessionStorage.getIte
 function persistScrollMap(map) { try { sessionStorage.setItem(SCROLL_STORAGE_KEY, JSON.stringify([...map.entries()])); } catch {} }
 
 function MenuGlyph({ isOpen }) {
-  return (
-    <svg className="header-glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path className="menu-line menu-line-top" d={isOpen ? "M6 7l6 10" : "M6 7h14"} />
-      <path className="menu-line menu-line-middle" d={isOpen ? "M12 17V7" : "M10 12h10"} />
-      <path className="menu-line menu-line-bottom" d={isOpen ? "M12 17l6-10" : "M6 17h14"} />
-    </svg>
-  );
+  return <span className={`header-glyph header-glyph-menu${isOpen ? ' is-open' : ''}`} aria-hidden="true"><i /><i /><i /></span>;
 }
 
 function SearchGlyph() {
-  return (
-    <svg className="header-glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <circle cx="10.8" cy="10.8" r="5.8" />
-      <path d="m15.2 15.2 4.4 4.4" />
-    </svg>
-  );
+  return <span className="header-glyph header-glyph-search" aria-hidden="true">⌕</span>;
 }
 
 function ThemeGlyph({ isDark }) {
-  return isDark ? (
-    <svg className="header-glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path d="M20 15.4A8.2 8.2 0 0 1 8.6 4a8.2 8.2 0 1 0 11.4 11.4Z" />
-    </svg>
-  ) : (
-    <svg className="header-glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <circle cx="12" cy="12" r="3.5" />
-      <path d="M12 2.5v2M12 19.5v2M21.5 12h-2M4.5 12h-2M18.72 5.28l-1.42 1.42M6.7 17.3l-1.42 1.42M18.72 18.72l-1.42-1.42M6.7 6.7 5.28 5.28" />
-    </svg>
-  );
+  return <span className="header-glyph header-glyph-theme" aria-hidden="true">{isDark ? '☾' : '☼'}</span>;
 }
 
 export default function Layout({ children, showFooter = true }) {
