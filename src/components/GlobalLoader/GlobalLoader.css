@@ -25,7 +25,7 @@
 }
 .aliver-loader-tagline {
   margin: .5rem 0 1.25rem;
-  color: var(--text-secondary, var(--text));
+  color: var(--text);
   font-size: .95rem;
 }
 .aliver-loader-progress {
@@ -33,20 +33,20 @@
   height: .3rem;
   overflow: hidden;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--primary) 18%, var(--background));
+  background: var(--primary);
 }
 .aliver-loader-progress span {
   display: block;
   width: 36%;
   height: 100%;
   border-radius: inherit;
-  background: var(--primary);
+  background: var(--text);
   animation: aliver-loader-progress 1.3s ease-in-out infinite;
 }
 .aliver-loader-status {
   display: block;
   margin-top: .85rem;
-  color: var(--text-secondary, var(--text));
+  color: var(--text);
   font-size: .8rem;
 }
 @keyframes aliver-loader-progress {
