@@ -843,7 +843,7 @@
     padding: var(--space-4);
   }
 }
-.glossary-page { background: linear-gradient(180deg, var(--blue-50), var(--teal-50, var(--blue-50))); padding-bottom: var(--page-space-bottom); }
+.glossary-page { background: var(--bg-page); padding-bottom: var(--page-space-bottom); }
 .glossary-header { padding: clamp(1.25rem, 3vw, 2rem) var(--page-gutter-x); background: var(--primary); text-align: left; }
 .glossary-header-inner { width: min(100%, 70rem); }
 .glossary-main-title { margin-bottom: var(--space-2); font-size: var(--text-page-title); line-height: var(--leading-page-title); }
