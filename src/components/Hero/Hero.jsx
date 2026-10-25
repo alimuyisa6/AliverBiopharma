@@ -148,7 +148,7 @@ export default function Hero() {
               <>
                 <span>Master</span>
 
-                <span className="hero-eyebrow-accent">
+                <span>
                   {levelName}
                 </span>
               </>
