@@ -1,5 +1,3 @@
-/* src/styles/profile.css */
-
 .profile-loading-skeleton { display: flex; justify-content: center; margin-bottom: var(--content-gap); }
 .profile-skeleton-grid { gap: var(--content-gap); }
 .profile-toolbar { display: flex; align-items: center; justify-content: space-between; gap: var(--content-gap); margin-bottom: var(--content-gap); padding-bottom: var(--content-gap); border-bottom: 1px solid var(--border-light); }
@@ -127,7 +125,7 @@
 }
 
 .toggle-switch.active::after {
-  background: var(--text-on-primary);
+  background: var(--text);
   transform: translateX(var(--space-5));
 }
 
@@ -135,8 +133,6 @@
 @media (max-width: 768px) { .profile-toolbar { align-items: flex-start; } .profile-toolbar-current { max-width: 65vw; } .profile-sidebar-toggle { display: inline-flex; } .profile-layout { display: block; } .profile-sidebar { position: fixed; top: var(--header-height); left: 0; bottom: 0; z-index: var(--z-modal); width: min(86vw, 320px); max-width: 320px; padding: var(--space-4); overflow-x: hidden; overflow-y: auto; visibility: hidden; background: var(--bg-page); box-shadow: var(--shadow-md); transform: translate3d(-105%, 0, 0); transition: transform 0.18s ease, visibility 0s linear 0.18s; } .profile-layout.sidebar-open .profile-sidebar { visibility: visible; transform: translate3d(0, 0, 0); transition-delay: 0s; } .profile-sidebar-backdrop { position: fixed; inset: var(--header-height) 0 0; z-index: calc(var(--z-modal) - 1); display: block; width: 100%; padding: 0; border: 0; background: var(--bg-overlay); opacity: 0; pointer-events: none; transition: opacity 0.18s ease; } .profile-layout.sidebar-open .profile-sidebar-backdrop { opacity: 1; pointer-events: auto; } .profile-content { width: 100%; } .profile-avatar-wrapper { justify-content: center; } }
 @media (max-width: 480px) { .profile-toolbar { flex-direction: column; align-items: stretch; } .profile-toolbar-current { max-width: 100%; } .profile-sidebar-toggle { width: 100%; } .profile-section-title { font-size: var(--text-section-title); } .profile-section-subtitle, .profile-reading-text { font-size: var(--text-sm); } .profile-webhook-input-row { align-items: stretch; } .profile-webhook-input { flex-basis: 100%; } .profile-webhook-input-row .btn { width: 100%; } .profile-flex-wrap { align-items: stretch; flex-direction: column; } .profile-flex-wrap .btn { width: 100%; } .profile-toggle-group { gap: var(--space-1); } .profile-pw-strength-wrap { align-items: flex-start; flex-direction: column; } .profile-pw-strength-track { width: 100%; } .profile-pw-strength-label { text-align: left; } }
 
-
-/* User preference controls */
 .profile-preferences-title {
   display: flex;
   align-items: center;
@@ -191,7 +187,6 @@
   .profile-preference-grid { grid-template-columns: 1fr; }
 }
 
-/* Mobile profile section switcher — follows the central surface architecture. */
 @media (max-width: 768px) {
   .profile-sidebar-toggle {
     display: inline-flex;
@@ -221,7 +216,6 @@
   }
 }
 
-/* Profile redesign */
 .profile-page {
   min-height: 100vh;
   background: var(--profile-page-bg);
@@ -267,7 +261,7 @@
   border: var(--border-width-thin) solid var(--profile-switcher-border);
   border-radius: var(--radius-pill);
   background: var(--profile-switcher-bg);
-  color: var(--text-on-primary);
+  color: var(--text);
   font-family: var(--font-heading);
   font-size: var(--text-lg);
   font-weight: var(--weight-bold);
@@ -768,7 +762,6 @@
   }
 }
 
-
 .profile-tabs {
   width: calc(100% - (var(--profile-panel-side-space) * 2));
   margin: 0 auto var(--profile-switcher-gap);
@@ -828,7 +821,7 @@
 }
 
 .profile-tab-radio:checked + .profile-tab-label {
-  color: var(--text-on-primary);
+  color: var(--text);
 }
 
 .profile-tab-radio:focus-visible + .profile-tab-label {
@@ -885,8 +878,6 @@
   }
 }
 
-
-/* Profile claymorphism: match the dashboard's soft raised surfaces. */
 .profile-page {
   background: var(--profile-page-bg);
 }
@@ -961,7 +952,7 @@
 .profile-page .profile-section-switcher-button {
   box-shadow:
     var(--profile-switcher-shadow),
-    inset 1px 1px 0 color-mix(in srgb, var(--text-on-primary) 22%, transparent);
+    inset 1px 1px 0 color-mix(in srgb, var(--text) 22%, transparent);
 }
 
 .profile-page .profile-tabs-wrap {
@@ -993,7 +984,6 @@
   }
 }
 
-/* Combo 05 profile polish: tighter page start and a contained section-filter tray. */
 .profile-page {
   background: var(--profile-page-bg, var(--surface-page));
   color: var(--text-main);
@@ -1045,19 +1035,19 @@
 }
 
 .profile-page .profile-tab-label:hover {
-  background: color-mix(in srgb, var(--palette-blue) 8%, var(--surface-card));
+  background: color-mix(in srgb, var(--primary) 8%, var(--surface-card));
   color: var(--text-main);
 }
 
 .profile-page .profile-tab-radio:checked + .profile-tab-label {
-  border-color: color-mix(in srgb, var(--palette-blue) 38%, var(--border-default));
+  border-color: color-mix(in srgb, var(--primary) 38%, var(--border-default));
   background: var(--primary);
-  color: var(--text-on-primary);
-  box-shadow: 0 2px 5px color-mix(in srgb, var(--palette-blue) 22%, transparent);
+  color: var(--text);
+  box-shadow: 0 2px 5px color-mix(in srgb, var(--primary) 22%, transparent);
 }
 
 .profile-page .profile-tab-radio:focus-visible + .profile-tab-label {
-  outline: 2px solid var(--palette-mint);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
@@ -1092,8 +1082,6 @@
   }
 }
 
-/* Follow-up: remove the page's remaining top offset and give every section tab
-   its own raised-edge / recessed-card treatment without compressing labels. */
 .profile-page > .page-container {
   margin-top: 0 !important;
   padding-top: 0 !important;
@@ -1147,14 +1135,14 @@
 }
 
 .profile-page .profile-tab-label:hover {
-  border-color: color-mix(in srgb, var(--palette-blue, var(--primary)) 35%, var(--border-default));
-  background: color-mix(in srgb, var(--palette-blue, var(--primary)) 7%, var(--surface-card));
+  border-color: color-mix(in srgb, var(--primary, var(--primary)) 35%, var(--border-default));
+  background: color-mix(in srgb, var(--primary, var(--primary)) 7%, var(--surface-card));
 }
 
 .profile-page .profile-tab-radio:checked + .profile-tab-label {
-  border-color: color-mix(in srgb, var(--palette-blue, var(--primary)) 48%, var(--border-default));
+  border-color: color-mix(in srgb, var(--primary, var(--primary)) 48%, var(--border-default));
   background: var(--primary);
-  color: var(--text-on-primary);
+  color: var(--text);
   box-shadow:
     inset 1px 1px 2px color-mix(in srgb, var(--text-main) 14%, transparent),
     0 2px 4px color-mix(in srgb, var(--primary) 20%, transparent);
@@ -1187,7 +1175,6 @@
   }
 }
 
-/* Keep the profile overview as the first visible page section. */
 .profile-page > .page-container {
   padding-block-start: 0 !important;
 }
@@ -1204,8 +1191,6 @@
   margin-block-start: var(--space-3);
 }
 
-/* Profile uses the shared Container, which renders a generic .section wrapper.
-   Remove that wrapper's default top spacing as well as the main header spacer. */
 .main-content.main-content-profile > .profile-page > .section {
   margin-block-start: 0 !important;
   padding-block-start: 0 !important;
@@ -1215,7 +1200,6 @@
   margin-block-start: 0 !important;
 }
 
-/* Profile overview metadata: short, weighty separators and custom-drawn symbols. */
 .profile-page .profile-summary-detail {
   position: relative;
   min-height: var(--control-height-md);
@@ -1234,7 +1218,7 @@
   width: 50%;
   height: 2px;
   border-radius: var(--radius-round);
-  background: color-mix(in srgb, var(--palette-blue, var(--primary)) 48%, var(--border-default));
+  background: color-mix(in srgb, var(--primary, var(--primary)) 48%, var(--border-default));
 }
 
 .profile-page .profile-detail-symbol {
@@ -1242,7 +1226,7 @@
   width: var(--profile-detail-icon-size);
   height: var(--profile-detail-icon-size);
   overflow: visible;
-  color: var(--palette-blue, var(--primary));
+  color: var(--primary, var(--primary));
 }
 
 .profile-page .profile-summary-detail strong {
@@ -1277,4 +1261,3 @@
     width: 50%;
   }
 }
-
