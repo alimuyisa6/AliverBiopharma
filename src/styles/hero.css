@@ -95,7 +95,7 @@
   color: var(--background);
   font-family: var(--font-heading);
   font-size: clamp(var(--hero-title-size-min), var(--hero-title-size-fluid), var(--hero-title-size-max));
-  font-weight: var(--weight-display);
+  font-weight: 800;
   line-height: var(--hero-title-line-height);
   letter-spacing: var(--hero-title-letter-spacing);
   word-spacing: normal;
@@ -193,7 +193,7 @@
 .hero .hero-title {
   color: var(--background);
   font-size: clamp(var(--hero-title-size-min), var(--hero-title-size-fluid), var(--hero-title-size-max));
-  font-weight: var(--weight-display);
+  font-weight: 800;
   line-height: var(--hero-title-line-height);
   letter-spacing: var(--hero-title-letter-spacing);
 }
