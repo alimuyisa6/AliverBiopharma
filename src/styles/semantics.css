@@ -1,7 +1,4 @@
 :root {
-  --palette-blue: var(--primary);
-  --palette-mint: var(--accent);
-  --palette-ink: var(--text);
 
   --primary-hover: color-mix(in srgb, var(--primary) 76%, var(--text));
   --primary-dark: color-mix(in srgb, var(--primary) 62%, var(--text));
