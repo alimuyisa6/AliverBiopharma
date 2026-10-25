@@ -4,4 +4,9 @@
   --primary: #42afc7;
   --secondary: #83d5e7;
   --accent: #56d2ed;
+  --palette-blue: var(--primary);
+  --palette-mint: var(--accent);
+  --palette-ink: var(--text);
+  --palette-periwinkle: var(--secondary);
+  --text-on-primary: var(--text);
 }
