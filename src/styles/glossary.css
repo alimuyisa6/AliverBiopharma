@@ -3,9 +3,6 @@
   --glossary-header-max-width: var(--modal-content-max-width, 32.5rem);
   --glossary-search-max-width: 26.25rem;
 }
-
- /* src/styles/glossary.css */
-
 .glossary-page {
   width: 100%;
   min-width: 0;
@@ -846,21 +843,15 @@
     padding: var(--space-4);
   }
 }
-
-
-/* Glossary resource page: tighter hero, direct copy and compact white term surfaces. */
 .glossary-page { background: linear-gradient(180deg, var(--blue-50), var(--teal-50, var(--blue-50))); padding-bottom: var(--page-space-bottom); }
-.glossary-header { padding: clamp(1.25rem, 3vw, 2rem) var(--page-gutter-x); background: linear-gradient(120deg, var(--blue-700), var(--teal-700, var(--blue-700))); text-align: left; }
+.glossary-header { padding: clamp(1.25rem, 3vw, 2rem) var(--page-gutter-x); background: var(--primary); text-align: left; }
 .glossary-header-inner { width: min(100%, 70rem); }
 .glossary-main-title { margin-bottom: var(--space-2); font-size: var(--text-page-title); line-height: var(--leading-page-title); }
 .glossary-subtitle { max-width: 58ch; margin: 0; font-size: var(--text-sm); line-height: var(--leading-relaxed); }
 .glossary-page > .breadcrumb { width: min(100% - (var(--page-gutter-x) * 2), 70rem); margin: var(--space-3) auto var(--space-4); }
 .glossary-main-layout { width: min(100% - (var(--page-gutter-x) * 2), 70rem); margin-inline: auto; gap: var(--space-3); }
 .glossary-sidebar-inner, .glossary-term-detail, .glossary-route-card { border-radius: var(--radius-md); }
-body.dark-mode .glossary-page { background: linear-gradient(180deg, var(--night-900), var(--night-850)); }
-
-
-/* Glossary uses solid section colors and consistent circular resource icons. */
+body.dark-mode .glossary-page { background: var(--bg-page); }
 .glossary-page { background: var(--blue-50); }
 .glossary-header { background: var(--primary-dark); }
 .glossary-route-card { background: var(--white); box-shadow: none; }
@@ -868,29 +859,18 @@ body.dark-mode .glossary-page { background: linear-gradient(180deg, var(--night-
 .glossary-route-card-icon i { color: inherit; font-size: 1.25rem; }
 body.dark-mode .glossary-page { background: var(--night-900); }
 body.dark-mode .glossary-route-card { background: var(--night-800); }
-
-
-/* Flat glossary surfaces with a solid brand-color header. */
 .glossary-page { background: var(--blue-50); }
 .glossary-header { background: var(--primary-dark); }
 body.dark-mode .glossary-page { background: var(--night-900); }
-
-
-/* Keep the content canvas neutral; brand color is limited to the header and icons. */
 .glossary-page { background: var(--bg-page); }
 .glossary-route-card-icon { background: var(--surface-subtle); }
 body.dark-mode .glossary-page { background: var(--bg-page); }
-
-/* Solid palette section treatment: faint blue band and white glossary cards. */
 .glossary-page { width: 100%; max-width: none; background: var(--blue-50); }
 .glossary-header { background: var(--palette-blue); }
 .glossary-route-card { background: var(--white); }
 body.dark-mode .glossary-page { background: var(--night-900); }
 body.dark-mode .glossary-header { background: var(--night-800); }
 body.dark-mode .glossary-route-card { background: var(--night-800); }
-
-
-/* Aliver palette: solid, faint blue section; retain white content cards. */
 .glossary-page { width: 100%; background: var(--blue-50); }
 .glossary-header { background: var(--blue-100); }
 .glossary-route-card, .glossary-page .card { background: var(--white); box-shadow: none; }
