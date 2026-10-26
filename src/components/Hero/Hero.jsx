@@ -1,10 +1,9 @@
- /* src/components/Hero/Hero.jsx */
-
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { ArrowUpRight } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useLayout } from '../../contexts/LayoutContext';
-import AnimatedJoinButton from '../ui/AnimatedJoinButton';
+import './Hero.css';
 
 const MODULE_LABELS = {
   quiz: 'Quiz',
@@ -58,8 +57,6 @@ function resumeHref(resume) {
       if (payload.return_to) params.set('return_to', payload.return_to);
       return `/notes/read?${params.toString()}`;
     }
-    // Never send a learner to the note reader without an ID: it cannot
-    // resolve a specific note and falls back to the generic notes listing.
     return '/notes';
   }
 
@@ -77,16 +74,11 @@ export default function Hero() {
 
   const levelName = level?.display_name || '';
   const groupName = groups?.length > 0 ? groups[0].name : '';
-
-  const resumeFeatureKey = resume
-    ? MODULE_FEATURE_KEYS[resume.module]
-    : null;
-
+  const resumeFeatureKey = resume ? MODULE_FEATURE_KEYS[resume.module] : null;
   const resumeAllowed =
     !resume ||
     !resumeFeatureKey ||
     (features?.[resumeFeatureKey] ?? true);
-
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -101,14 +93,10 @@ export default function Hero() {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (!cancelled) {
-          setResume(data?.resume || null);
-        }
+        if (!cancelled) setResume(data?.resume || null);
       })
       .catch(() => {
-        if (!cancelled) {
-          setResume(null);
-        }
+        if (!cancelled) setResume(null);
       });
 
     return () => {
@@ -117,83 +105,64 @@ export default function Hero() {
   }, [isAuthenticated]);
 
   return (
-    <>
-      <section
-        className="hero hero-enhanced"
-        aria-labelledby="hero-title"
-      >
-        <div className="hero-image" aria-hidden="true">
-          <span className="hero-orbit hero-orbit-one" />
-          <span className="hero-orbit hero-orbit-two" />
-          <span className="hero-orbit hero-orbit-three" />
-          <span className="hero-molecule hero-molecule-one" />
-          <span className="hero-molecule hero-molecule-two" />
-          <span className="hero-molecule hero-molecule-three" />
-          <span className="hero-molecule hero-molecule-four" />
-        </div>
+    <section className="hero hero-aero" aria-labelledby="hero-title">
+      <div className="hero-aero-image" aria-hidden="true" />
+      <div className="hero-aero-shade" aria-hidden="true" />
+      <div className="hero-aero-grid" aria-hidden="true">
+        {Array.from({ length: 12 }, (_, index) => (
+          <span key={index} />
+        ))}
+      </div>
 
-        <div className="hero-scrim" aria-hidden="true" />
+      <div className="hero-aero-content">
+        <p className="hero-aero-eyebrow">
+          <span>Welcome to</span>
+          <span className="hero-aero-brand">AliverBiopharm</span>
+        </p>
 
-        <div className="hero-content">
-          <div className="hero-eyebrow">
-            <span>Welcome to</span>
+        <h1 id="hero-title" className="hero-aero-title">
+          {isAuthenticated && levelName ? (
+            <>
+              <span>Master</span>
+              <span>{levelName}</span>
+            </>
+          ) : (
+            <>
+              <span>Master Biology</span>
+              <span>and Pharmacy</span>
+            </>
+          )}
+        </h1>
 
-            <span className="hero-eyebrow-accent">
-              AliverBiopharm
-            </span>
+        <p className="hero-aero-description">
+          {isAuthenticated && groupName
+            ? `Your ${groupName} journey continues. Notes, quizzes, flashcards, and live classrooms, all matched to your level.`
+            : 'Structured notes, adaptive quizzes, and spaced repetition flashcards, built for every level you study.'}
+        </p>
+
+        {!isAuthenticated && (
+          <div className="hero-aero-actions">
+            <Link to="/register" className="hero-aero-button">
+              <span>Start Learning</span>
+              <span className="hero-aero-button-icon" aria-hidden="true">
+                <ArrowUpRight size={21} strokeWidth={1.8} />
+              </span>
+            </Link>
+            <Link to="/login" className="hero-aero-signin">Sign In</Link>
           </div>
+        )}
 
-          <h1 id="hero-title" className="hero-title">
-            {isAuthenticated && levelName ? (
-              <>
-                <span>Master</span>
-
-                <span>
-                  {levelName}
-                </span>
-              </>
-            ) : (
-              <>
-                <span>Master Biology</span>
-
-                <span>and Pharmacy</span>
-              </>
-            )}
-          </h1>
-
-          <p className="hero-tagline">
-            {isAuthenticated && groupName
-              ? `Your ${groupName} journey continues. Notes, quizzes, flashcards, and live classrooms, all matched to your level.`
-              : 'Structured notes, adaptive quizzes, and spaced repetition flashcards, built for every level you study.'}
-          </p>
-
-          {!isAuthenticated && (
-            <div className="hero-actions">
-              <AnimatedJoinButton />
-
-              <Link
-                to="/login"
-                className="btn btn-secondary"
-              >
-                Sign In
-              </Link>
-            </div>
-          )}
-
-          {isAuthenticated && resume && resumeAllowed && (
-            <div className="hero-actions">
-              <Link
-                to={resumeHref(resume)}
-                className="btn btn-primary"
-              >
-                Continue to {MODULE_LABELS[resume.module] || 'Learning'}
-              </Link>
-            </div>
-          )}
-        </div>
-
-      </section>
-
-    </>
+        {isAuthenticated && resume && resumeAllowed && (
+          <div className="hero-aero-actions">
+            <Link to={resumeHref(resume)} className="hero-aero-button">
+              <span>Continue to {MODULE_LABELS[resume.module] || 'Learning'}</span>
+              <span className="hero-aero-button-icon" aria-hidden="true">
+                <ArrowUpRight size={21} strokeWidth={1.8} />
+              </span>
+            </Link>
+          </div>
+        )}
+      </div>
+    </section>
   );
 }
