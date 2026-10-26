@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useLayout } from '../../contexts/LayoutContext';
-import './Hero.css';
 
 const MODULE_LABELS = {
   quiz: 'Quiz',
