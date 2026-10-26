@@ -122,8 +122,8 @@ export default function Hero() {
         <h1 id="hero-title" className="hero-aero-title">
           {isAuthenticated && levelName ? (
             <>
-              <span>Master</span>
-              <span>{levelName}</span>
+              <span className="hero-aero-title-highlight">Master</span>
+              <span className="hero-aero-title-highlight">{levelName}</span>
             </>
           ) : (
             <>
