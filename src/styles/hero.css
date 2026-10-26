@@ -87,6 +87,10 @@
   display: block;
 }
 
+.hero-aero-title .hero-aero-title-highlight {
+  color: var(--primary);
+}
+
 .hero-aero-description {
   max-width: 40rem;
   margin: 0 0 2.25rem;
