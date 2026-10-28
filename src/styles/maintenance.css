@@ -141,3 +141,8 @@
     width: 100%;
   }
 }
+
+body.dark-mode .maintenance-page { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .maintenance-page :is(.maintenance-card, .maintenance-panel, .maintenance-alert) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .maintenance-page :is(h1, h2, h3, h4, h5, h6, p, label, small, time) { color: var(--dark-text); }
+body.dark-mode .maintenance-page :is(.text-muted, .maintenance-description) { color: var(--dark-text-secondary); }
