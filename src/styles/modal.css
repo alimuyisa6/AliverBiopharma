@@ -185,3 +185,7 @@
     overflow-y: auto;
   }
 }
+
+body.dark-mode :is(.modal, .modal-dialog, .modal-content, .modal-card, .modal-body, .modal-footer) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode :is(.modal, .modal-dialog, .modal-content) :is(h1, h2, h3, h4, h5, h6, p, label, small) { color: var(--dark-text); }
+body.dark-mode :is(.modal, .modal-dialog, .modal-content) :is(input, select, textarea) { background: var(--dark-background); color: var(--dark-text); border-color: var(--dark-border); }
