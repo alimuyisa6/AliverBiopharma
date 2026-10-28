@@ -118,3 +118,9 @@
     animation: none;
   }
 }
+
+body.dark-mode .challenge-runner-page { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .challenge-runner-page :is(.challenge-runner-card, .challenge-runner-panel, .challenge-runner-error, .challenge-runner-question) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .challenge-runner-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small) { color: var(--dark-text); }
+body.dark-mode .challenge-runner-page :is(.text-muted, .challenge-runner-description) { color: var(--dark-text-secondary); }
+body.dark-mode .challenge-runner-page :is(input, select, textarea) { background: var(--dark-background); color: var(--dark-text); border-color: var(--dark-border); }
