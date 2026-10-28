@@ -1133,3 +1133,9 @@
     transition: none;
   }
 }
+
+body.dark-mode .faq-page,
+body.dark-mode .team-page { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode :is(.faq-category, .faq-featured-item, .faq-resource, .faq-search, .faq-question-text, .team-card) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode :is(.faq-page, .team-page) :is(h1, h2, h3, h4, h5, h6, p, li, label, small) { color: var(--dark-text); }
+body.dark-mode :is(.faq-page, .team-page) :is(.text-muted, .section-description) { color: var(--dark-text-secondary); }
