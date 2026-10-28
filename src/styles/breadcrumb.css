@@ -141,3 +141,7 @@
     scroll-behavior: auto;
   }
 }
+
+body.dark-mode :is(.breadcrumb, .breadcrumbs, .breadcrumb-item) { color: var(--dark-text-secondary); }
+body.dark-mode :is(.breadcrumb, .breadcrumbs) a { color: var(--dark-primary); }
+body.dark-mode .breadcrumb-item.active { color: var(--dark-text); }
