@@ -56,3 +56,7 @@
 @media (prefers-reduced-motion: reduce) {
   .aliver-loader-progress span { animation: none; width: 100%; }
 }
+
+body.dark-mode .aliver-loader { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .aliver-loader :is(.aliver-loader-title, .aliver-loader-label, .aliver-loader-message) { color: var(--dark-text); }
+body.dark-mode .aliver-loader :is(.aliver-loader-track, .aliver-loader-progress) { background-color: var(--dark-surface-raised); }
