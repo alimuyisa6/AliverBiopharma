@@ -363,3 +363,8 @@
     display: none;
   }
 }
+
+body.dark-mode .testimonials-section { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .testimonials-section :is(.testimonial-card, .testimonial, .ab-marquee__group) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .testimonials-section :is(h1, h2, h3, h4, p, small) { color: var(--dark-text); }
+body.dark-mode .testimonials-section :is(.text-muted, .testimonial-role) { color: var(--dark-text-secondary); }
