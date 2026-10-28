@@ -137,3 +137,9 @@ body.dark-mode .skeleton {
 @media (prefers-reduced-motion: reduce) {
   .progress-fill { transition: none; }
 }
+
+body.dark-mode .progress-card,
+body.dark-mode .progress-panel,
+body.dark-mode .progress-summary { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .progress-card :is(h1, h2, h3, h4, p, label, small) { color: var(--dark-text); }
+body.dark-mode .progress-card :is(.description, .text-muted) { color: var(--dark-text-secondary); }
