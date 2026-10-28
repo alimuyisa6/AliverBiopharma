@@ -698,3 +698,42 @@ body.dark-mode {
   --auth-glass-white-88: rgb(255 255 255 / 88%);
   --auth-glass-white-55: rgb(255 255 255 / 55%);
 }
+
+body.dark-mode :is(.page-shell, .page-container, .page-content, .content-shell, .content-container, .settings-page, .settings-content, .library-page, .resources-page, .glossary-page, .profile-page, .dashboard-page, .classroom-page, .quiz-page, .flashcard-page, .recall-page, .search-page, .legal-page, .about-page, .contact-page, .donate-page, .maintenance-page) {
+  background-color: var(--dark-background);
+  color: var(--dark-text);
+}
+
+body.dark-mode :is(.card, .panel, .surface-card, .content-card, .content-panel, .section-card, .settings-card, .filter-panel, .results-panel, .modal-card, .dropdown-menu, .popover, .table-container) {
+  background-color: var(--dark-surface);
+  color: var(--dark-text);
+  border-color: var(--dark-border);
+}
+
+body.dark-mode :is(input, select, textarea, .form-control, .form-input) {
+  background-color: var(--dark-surface-raised);
+  color: var(--dark-text);
+  border-color: var(--dark-border);
+}
+
+body.dark-mode :is(input, textarea, .form-control, .form-input)::placeholder {
+  color: var(--dark-text-secondary);
+  opacity: 1;
+}
+
+body.dark-mode :is(.text-muted, .text-secondary, .muted, .field-hint, .form-hint, .helper-text, .page-description, .section-description) {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode :is(.page-shell, .page-container, .page-content, .content-shell, .content-container) :is(h1, h2, h3, h4, h5, h6, p, li, label, small, strong) {
+  color: var(--dark-text);
+}
+
+body.dark-mode :is(.page-shell, .page-container, .page-content, .content-shell, .content-container) a:not(.btn):not(.button) {
+  color: var(--dark-primary);
+}
+
+body.dark-mode :is(.page-shell, .page-container, .page-content, .content-shell, .content-container) :is(button, input, select, textarea, a):focus-visible {
+  outline-color: var(--dark-primary);
+}
+
