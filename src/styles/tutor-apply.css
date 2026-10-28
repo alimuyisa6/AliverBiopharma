@@ -79,3 +79,10 @@
     gap: var(--stack-gap-tight) var(--content-gap-compact);
   }
 }
+
+body.dark-mode .tutor-apply-page { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .tutor-apply-page :is(.card, .application-card, .step-panel, .status-card, .step-indicator) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .tutor-apply-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small) { color: var(--dark-text); }
+body.dark-mode .tutor-apply-page :is(.text-muted, .page-intro, .status-description) { color: var(--dark-text-secondary); }
+body.dark-mode .tutor-apply-page :is(input, select, textarea) { background: var(--dark-surface-raised); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .tutor-apply-page :is(input, textarea)::placeholder { color: var(--dark-text-secondary); }
