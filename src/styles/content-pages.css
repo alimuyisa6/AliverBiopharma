@@ -709,3 +709,13 @@ body.dark-mode .flashcard-deck-card { background: var(--night-800); }
 .notes-page-heading { background: var(--emerald-100); }
 .notes-curriculum-context, .notes-pathway-item, .notes-card { background: var(--white); box-shadow: none; }
 .notes-pathway-item, .notes-card { border-color: var(--blue-200); }
+
+body.dark-mode .notes-page,
+body.dark-mode .content-page { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .notes-page :is(.notes-context, .notes-pathway-item, .notes-card, .content-card, .content-panel) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .notes-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small),
+body.dark-mode .content-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small) { color: var(--dark-text); }
+body.dark-mode .notes-page :is(.text-muted, .notes-description, .section-description),
+body.dark-mode .content-page :is(.text-muted, .section-description) { color: var(--dark-text-secondary); }
+body.dark-mode .notes-page :is(input, select, textarea),
+body.dark-mode .content-page :is(input, select, textarea) { background: var(--dark-surface-raised); color: var(--dark-text); border-color: var(--dark-border); }
