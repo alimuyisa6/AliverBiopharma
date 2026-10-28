@@ -1,9 +1,7 @@
-  /* src/styles/button.css */
-
 :root {
-  --u3d-press-layer-offset: 10px;
-  --u3d-press-padding: 6px;
-  --u3d-press-duration: 0.2s;
+  --u3d-press-layer-offset: var(--space-2);
+  --u3d-press-padding: var(--space-1);
+  --u3d-press-duration: var(--duration-fast);
 }
 
 
@@ -53,7 +51,7 @@
 .btn-primary {
   background: var(--primary);
   border-color: var(--primary);
-  color: var(--text-inverse);
+  color: var(--text-on-primary);
 }
 
 .btn-primary:hover:not(:disabled) {
@@ -84,15 +82,15 @@
 }
 
 .btn-warm {
-  background: var(--accent-light);
-  border-color: var(--amber-200);
-  color: var(--accent);
+  background: var(--palette-cream);
+  border-color: var(--palette-cream);
+  color: var(--text);
 }
 
 .btn-warm:hover:not(:disabled) {
-  background: var(--amber-100);
-  border-color: var(--amber-300);
-  color: var(--accent-hover);
+  background: var(--palette-sage);
+  border-color: var(--palette-sage);
+  color: var(--text);
 }
 
 .btn-success {
