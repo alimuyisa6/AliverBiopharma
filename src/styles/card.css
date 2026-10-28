@@ -751,3 +751,6 @@ html[data-ui-density="compact"] .card:not(.card-density-spacious) {
 html[data-ui-density="spacious"] .card:not(.card-density-compact) {
   padding: var(--card-padding-y-spacious) var(--card-padding-x-spacious);
 }
+
+body.dark-mode :is(.card, .card-body, .card-soft, .card-panel, .content-card, .feature-card, .info-card, .stat-card) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode :is(.card, .card-body, .card-soft, .card-panel, .content-card, .feature-card, .info-card, .stat-card) :is(h1, h2, h3, h4, h5, h6, p, li, label, small) { color: var(--dark-text); }
