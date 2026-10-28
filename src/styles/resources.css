@@ -885,3 +885,13 @@ body.dark-mode .resources-intro { background: var(--night-800); }
 .resource-card-blue { --resource-icon-bg: var(--blue-50); }
 .resource-card-teal, .resource-card-emerald { --resource-icon-bg: var(--emerald-50); }
 .resource-card-violet { --resource-icon-bg: var(--blue-50); }
+
+body.dark-mode .resources-page { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .resources-intro { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .resource-card,
+body.dark-mode .resources-curriculum-entry,
+body.dark-mode .resources-empty-state { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .resources-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small) { color: var(--dark-text); }
+body.dark-mode .resources-page :is(.text-muted, .section-description, .resource-description) { color: var(--dark-text-secondary); }
+body.dark-mode .resources-search input { background: var(--dark-surface-raised); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .resources-search input::placeholder { color: var(--dark-text-secondary); }
