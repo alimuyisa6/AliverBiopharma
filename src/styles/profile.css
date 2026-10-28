@@ -1261,3 +1261,10 @@
     width: 50%;
   }
 }
+
+body.dark-mode .profile-page { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .profile-page :is(.profile-card, .profile-panel, .profile-summary, .profile-summary-detail, .profile-section, .profile-stat-card) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .profile-page :is(h1, h2, h3, h4, h5, h6, p, label, small, strong) { color: var(--dark-text); }
+body.dark-mode .profile-page :is(.text-muted, .profile-description, .profile-summary-detail span) { color: var(--dark-text-secondary); }
+body.dark-mode .profile-page :is(input, select, textarea) { background: var(--dark-surface-raised); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .profile-page :is(input, textarea)::placeholder { color: var(--dark-text-secondary); }
