@@ -1113,3 +1113,12 @@ body.dark-mode .pp-card, body.dark-mode .pp-paper-card, body.dark-mode .pp-filte
 .pastpapers-page { background: var(--amber-50); }
 .pp-page-header, .pp-header, .pp-hero { background: var(--amber-100); }
 .pp-card, .pp-panel, .pp-filter-panel, .pp-results-panel { background: var(--white); }
+
+body.dark-mode .pp-page,
+body.dark-mode .past-papers-page { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .pp-page :is(.pp-page-header, .pp-header, .pp-hero) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .pp-page :is(.pp-card, .pp-panel, .pp-filter-panel, .pp-results-panel) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .pp-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small) { color: var(--dark-text); }
+body.dark-mode .pp-page :is(.text-muted, .pp-description, .section-description) { color: var(--dark-text-secondary); }
+body.dark-mode .pp-page :is(input, select, textarea) { background: var(--dark-surface-raised); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .pp-page :is(input, textarea)::placeholder { color: var(--dark-text-secondary); }
