@@ -594,3 +594,7 @@
   }
 }
 
+body.dark-mode .flashcard-page { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .flashcard-page :is(.flashcard, .flashcard-card, .fcd-question-card, .fcd-question-card-static, .flashcard-panel, .flashcard-deck-card) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .flashcard-page :is(h1, h2, h3, h4, h5, h6, p, label, small) { color: var(--dark-text); }
+body.dark-mode .flashcard-page :is(.text-muted, .flashcard-description) { color: var(--dark-text-secondary); }
