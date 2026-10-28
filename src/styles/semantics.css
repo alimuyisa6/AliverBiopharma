@@ -87,10 +87,10 @@
   --tone-pink-bg: var(--accent);
   --tone-pink-border: var(--accent);
 
-  --tone-yellow: var(--accent);
-  --tone-yellow-hover: var(--accent);
-  --tone-yellow-bg: var(--accent);
-  --tone-yellow-border: var(--accent);
+  --tone-yellow: var(--warning-color);
+  --tone-yellow-hover: var(--warning-color);
+  --tone-yellow-bg: var(--warning-background);
+  --tone-yellow-border: var(--warning-color);
 
   --surface-page: var(--background);
   --surface-card: var(--white);
