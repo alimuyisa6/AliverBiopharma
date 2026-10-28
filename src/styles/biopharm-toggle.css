@@ -57,3 +57,7 @@
     transition: none;
   }
 }
+
+body.dark-mode .biopharm-toggle { background: var(--dark-surface); border-color: var(--dark-border); }
+body.dark-mode .biopharm-toggle :is(button, label, span) { color: var(--dark-text); }
+body.dark-mode .biopharm-toggle [aria-pressed="true"] { background: var(--dark-primary); color: #0f172a; }
