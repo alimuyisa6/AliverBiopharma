@@ -502,3 +502,8 @@
   }
 }
 
+body.dark-mode .ai-assistant-page { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .ai-assistant-page :is(.ai-assistant-panel, .ai-assistant-card, .ai-assistant-message, .ai-assistant-starters button) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .ai-assistant-page :is(h1, h2, h3, h4, h5, h6, p, label, small) { color: var(--dark-text); }
+body.dark-mode .ai-assistant-page :is(.text-muted, .ai-assistant-description) { color: var(--dark-text-secondary); }
+body.dark-mode .ai-assistant-page :is(input, select, textarea) { background: var(--dark-background); color: var(--dark-text); border-color: var(--dark-border); }
