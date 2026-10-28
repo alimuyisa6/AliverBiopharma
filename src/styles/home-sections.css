@@ -805,7 +805,7 @@ body.dark-mode .home-faq-item {
   width: min(calc(100% - (var(--page-gutter-x) * 2)), var(--max-width));
   margin-inline: auto;
   padding-block: var(--section-space-y);
-  background: var(--surface-subtle);
+  background: var(--grey-50);
 }
 
 .home-page .stats-impact-heading .section-head-left {
@@ -815,14 +815,14 @@ body.dark-mode .home-faq-item {
 
 .home-page .stats-impact-heading h2 {
   margin: 0;
-  color: var(--text-main);
+  color: var(--text);
   font-size: clamp(var(--text-xl), 2.7vw, var(--text-2xl));
   font-weight: var(--weight-bold);
 }
 
 .home-page .stats-impact-scope {
   margin: 0;
-  color: var(--text-secondary);
+  color: var(--grey-700);
   font-size: var(--text-sm);
 }
 
@@ -840,7 +840,7 @@ body.dark-mode .home-faq-item {
   align-items: center;
   gap: var(--space-2);
   margin: 0 0 var(--space-3);
-  color: var(--text-main);
+  color: var(--text);
   font-size: var(--text-md);
   font-weight: var(--weight-semibold);
   letter-spacing: 0;
@@ -880,7 +880,7 @@ body.dark-mode .home-faq-item {
   padding: var(--space-3) var(--space-4);
   border: 0;
   border-radius: var(--radius-md);
-  background: var(--surface-card);
+  background: var(--white);
   box-shadow: var(--shadow-sm);
 }
 
@@ -899,7 +899,7 @@ body.dark-mode .home-faq-item {
 }
 
 .home-page .stats-impact-value {
-  color: var(--text-main);
+  color: var(--text);
   font-family: var(--font-mono);
   font-size: clamp(var(--text-lg), 2vw, var(--text-2xl));
   font-weight: var(--weight-bold);
@@ -908,7 +908,7 @@ body.dark-mode .home-faq-item {
 }
 
 .home-page .stats-impact-label {
-  color: var(--text-secondary);
+  color: var(--grey-700);
   font-size: var(--text-xs);
   line-height: var(--leading-normal);
 }
@@ -918,13 +918,13 @@ body.dark-mode .home-faq-item {
   padding: var(--space-4);
   border: 0;
   border-radius: var(--radius-md);
-  background: var(--surface-card);
+  background: var(--white);
   box-shadow: var(--shadow-sm);
 }
 
 .home-page .stats-impact-topics-title {
   margin: 0 0 var(--space-2);
-  color: var(--text-main);
+  color: var(--text);
   font-size: var(--text-sm);
   font-weight: var(--weight-semibold);
   letter-spacing: 0;
@@ -944,7 +944,7 @@ body.dark-mode .home-faq-item {
   justify-content: space-between;
   gap: var(--space-3);
   margin: 0;
-  color: var(--text-secondary);
+  color: var(--grey-700);
   font-size: var(--text-sm);
 }
 
@@ -955,13 +955,13 @@ body.dark-mode .home-faq-item {
 
 .home-page .stats-impact-topic-count {
   flex: 0 0 auto;
-  color: var(--text-main);
+  color: var(--text);
   font-size: var(--text-xs);
 }
 
 .home-page .stats-impact-empty {
   margin: 0;
-  color: var(--text-secondary);
+  color: var(--grey-700);
   font-size: var(--text-sm);
 }
 
