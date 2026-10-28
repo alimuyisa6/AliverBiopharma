@@ -427,3 +427,8 @@
     height: 560px;
   }
 }
+
+body.dark-mode .donate-page { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .donate-page :is(.donate-card, .donate-panel, .donate-widget, .donate-option, .donate-impact-card) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .donate-page :is(h1, h2, h3, h4, h5, h6, p, label, small) { color: var(--dark-text); }
+body.dark-mode .donate-page :is(.text-muted, .donate-description) { color: var(--dark-text-secondary); }
