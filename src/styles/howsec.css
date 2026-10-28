@@ -235,3 +235,8 @@
     height: var(--space-10);
   }
 }
+
+body.dark-mode .how-it-works-section { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .how-it-works-section .how-step { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .how-it-works-section :is(h1, h2, h3, h4, h5, h6, p, small) { color: var(--dark-text); }
+body.dark-mode .how-it-works-section :is(.text-muted, .section-description) { color: var(--dark-text-secondary); }
