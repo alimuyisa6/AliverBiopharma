@@ -131,3 +131,12 @@
   color: var(--text-muted);
   font-size: var(--text-sm);
 }
+
+body.dark-mode .search-page,
+body.dark-mode .search-results-page { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .search-page :is(.search-panel, .search-result, .search-result-card, .search-empty-state),
+body.dark-mode .search-results-page :is(.search-panel, .search-result, .search-result-card, .search-empty-state) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .search-page :is(h1, h2, h3, h4, h5, h6, p, label, small),
+body.dark-mode .search-results-page :is(h1, h2, h3, h4, h5, h6, p, label, small) { color: var(--dark-text); }
+body.dark-mode .search-page :is(input, select, textarea),
+body.dark-mode .search-results-page :is(input, select, textarea) { background: var(--dark-surface-raised); color: var(--dark-text); border-color: var(--dark-border); }
