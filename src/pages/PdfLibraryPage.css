@@ -389,3 +389,9 @@ body.dark-mode .pdf-library-page { background: var(--night-900); }
 .pdf-library-page { background: var(--bg-page); }
 .pdf-card-image { background: var(--surface-subtle); }
 body.dark-mode .pdf-library-page { background: var(--bg-page); }
+
+body.dark-mode .pdf-library-page { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .pdf-library-page :is(.pdf-card, .pdf-library-card, .pdf-filter-panel, .pdf-search-panel, .pdf-card-image) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .pdf-library-page :is(h1, h2, h3, h4, h5, h6, p, label, small) { color: var(--dark-text); }
+body.dark-mode .pdf-library-page :is(.text-muted, .pdf-description, .section-description) { color: var(--dark-text-secondary); }
+body.dark-mode .pdf-library-page :is(input, select, textarea) { background: var(--dark-surface-raised); color: var(--dark-text); border-color: var(--dark-border); }
