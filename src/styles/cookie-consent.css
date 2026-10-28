@@ -77,3 +77,6 @@
 .cookie-consent-close:hover { background: var(--surface-subtle); color: var(--text-main); }
 .cookie-consent-close:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) { .cookie-consent { transition: opacity var(--duration-fast) var(--ease-standard); transform: none; } .cookie-consent:not(.cookie-consent-visible) { opacity: 0; } }
+
+body.dark-mode :is(.cookie-consent, .cookie-consent-banner, .cookie-consent-panel, .cookie-preferences, .cookie-settings) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode :is(.cookie-consent, .cookie-consent-banner, .cookie-consent-panel, .cookie-preferences, .cookie-settings) :is(h1, h2, h3, p, label, small) { color: var(--dark-text); }
