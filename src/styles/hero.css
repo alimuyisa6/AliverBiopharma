@@ -1,224 +1,258 @@
 .hero.hero-aero {
   position: relative;
   display: flex;
-  min-height: min(88svh, 54rem);
+  min-height: 100svh;
   align-items: center;
   overflow: hidden;
   isolation: isolate;
-  background: var(--text);
+  background:
+    radial-gradient(60vmax 60vmax at 0% 0%, color-mix(in srgb, var(--accent) 40%, transparent), transparent 60%),
+    radial-gradient(50vmax 50vmax at 100% 0%, color-mix(in srgb, var(--secondary) 48%, transparent), transparent 60%),
+    radial-gradient(45vmax 45vmax at 55% 55%, color-mix(in srgb, var(--primary) 42%, transparent), transparent 60%),
+    linear-gradient(120deg, var(--text), var(--grey-900) 54%, var(--grey-800));
 }
 
-.hero-aero-image,
-.hero-aero-shade,
-.hero-aero-grid {
+.hero-wave-art,
+.hero-aero-shade {
   position: absolute;
   inset: 0;
   pointer-events: none;
 }
 
-.hero-aero-image {
-  z-index: -3;
-  background-image: url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=2400&q=85');
-  background-position: center;
-  background-size: cover;
-  transform: scale(1.015);
+.hero-wave-art {
+  z-index: 0;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+
+.hero-wave-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .hero-aero-shade {
-  z-index: -2;
-  background: color-mix(in srgb, var(--text) 72%, transparent);
-}
-
-.hero-aero-grid {
-  z-index: -1;
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  width: 100%;
-}
-
-.hero-aero-grid span {
-  min-width: 0;
-  border-right: 1px solid color-mix(in srgb, var(--background) 20%, transparent);
-}
-
-.hero-aero-grid span:first-child {
-  border-left: 1px solid color-mix(in srgb, var(--background) 20%, transparent);
+  z-index: 1;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--text) 82%, transparent) 0%, color-mix(in srgb, var(--text) 55%, transparent) 42%, transparent 78%);
 }
 
 .hero-aero-content {
-  width: min(100%, var(--max-width, 80rem));
+  position: relative;
+  z-index: 2;
+  width: min(1200px, 90%);
   margin-inline: auto;
-  padding: clamp(4rem, 10vh, 8rem) var(--page-gutter-x, clamp(1.25rem, 5vw, 5rem));
+  padding: 120px 0 96px;
   color: var(--white);
 }
 
-.hero-aero-eyebrow {
-  display: flex;
-  flex-wrap: wrap;
+.hero-aero-inner {
+  max-width: 640px;
+}
+
+.hero-aero-badge {
+  display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
-  margin: 0 0 1.5rem;
+  gap: 10px;
+  padding: 8px 16px;
+  border: 1px solid color-mix(in srgb, var(--accent) 65%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--white) 10%, transparent);
+  box-shadow: 0 0 22px color-mix(in srgb, var(--accent) 22%, transparent), inset 0 0 18px color-mix(in srgb, var(--accent) 10%, transparent);
   color: var(--white);
-  font-size: 0.78rem;
+  font-size: 13px;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.08em;
   line-height: 1.5;
   text-transform: uppercase;
 }
 
-.hero-aero-brand {
-  color: var(--white);
-  font-weight: 700;
+.hero-aero-badge-dot {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
+  animation: hero-aero-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes hero-aero-pulse {
+  50% {
+    transform: scale(1.6);
+    opacity: 0.5;
+  }
 }
 
 .hero-aero-title {
-  max-width: 58rem;
-  margin: 0 0 1.5rem;
+  margin: 26px 0 0;
   color: var(--white);
-  font-family: var(--font-heading, inherit);
-  font-size: clamp(3.1rem, 7.2vw, 6.75rem);
+  font-family: 'Space Grotesk', var(--font-heading, system-ui, sans-serif);
+  font-size: clamp(38px, 6.4vw, 76px);
   font-weight: 800;
-  letter-spacing: -0.055em;
-  line-height: 0.98;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
   text-wrap: balance;
 }
 
 .hero-aero-title span {
-  display: block;
-}
-
-.hero-aero-title .hero-aero-title-highlight {
   color: var(--primary);
 }
 
 .hero-aero-description {
   max-width: 40rem;
-  margin: 0 0 2.25rem;
-  color: var(--white);
-  font-size: clamp(1rem, 1.45vw, 1.25rem);
+  margin: 24px 0 0;
+  color: var(--white-80);
+  font-size: clamp(16px, 2vw, 19px);
   font-weight: 700;
-  line-height: 1.75;
+  line-height: 1.65;
   text-wrap: pretty;
 }
 
 .hero-aero-actions {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: 1rem;
+  gap: 16px;
+  margin-top: 38px;
 }
 
 .hero-aero-button {
   display: inline-flex;
+  min-height: 3.5rem;
   align-items: center;
-  gap: 0.35rem;
-  min-height: 3.75rem;
-  padding: 0.4rem 0.45rem 0.4rem 1.45rem;
-  border: 1px solid var(--accent);
-  border-radius: 999px;
-  background: var(--text);
-  color: var(--white);
-  font-size: 0.98rem;
-  font-weight: 800;
-  line-height: 1.2;
-  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.8rem 1.35rem;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  font-family: 'Space Grotesk', var(--font-heading, system-ui, sans-serif);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-decoration: none;
+  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, border-color 180ms ease;
 }
 
 .hero-aero-button:hover {
-  border-color: var(--secondary);
-  background: var(--grey-800);
-  color: var(--white);
+  transform: translateY(-3px);
+}
+
+.hero-aero-button-primary {
+  background: var(--primary);
+  color: var(--text);
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--primary) 28%, transparent);
+}
+
+.hero-aero-button-primary:hover {
+  background: var(--accent);
+  color: var(--text);
 }
 
 .hero-aero-button-icon {
   display: grid;
-  width: 2.8rem;
-  height: 2.8rem;
+  width: 2rem;
+  height: 2rem;
   flex: 0 0 auto;
   place-items: center;
   border-radius: 50%;
-  background: var(--primary);
-  color: var(--white);
-  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+  background: color-mix(in srgb, var(--white) 22%, transparent);
+  color: var(--text);
+  transition: transform 180ms ease;
 }
 
 .hero-aero-button:hover .hero-aero-button-icon {
-  background: var(--grey-700);
-  color: var(--white);
   transform: translate(2px, -2px);
 }
 
-.hero-aero-signin {
-  display: inline-flex;
-  min-height: 3.5rem;
-  align-items: center;
-  justify-content: center;
-  padding: 0.75rem 1.1rem;
-  border: 1px solid color-mix(in srgb, var(--white) 65%, transparent);
-  border-radius: 999px;
+.hero-aero-button-ghost {
+  border-color: color-mix(in srgb, var(--secondary) 72%, transparent);
+  background: color-mix(in srgb, var(--white) 8%, transparent);
   color: var(--white);
-  font-size: 0.95rem;
-  font-weight: 800;
-  transition: border-color 180ms ease, background-color 180ms ease;
 }
 
-.hero-aero-signin:hover {
+.hero-aero-button-ghost:hover {
   border-color: var(--accent);
-  background: var(--grey-800);
+  background: color-mix(in srgb, var(--white) 14%, transparent);
+  color: var(--white);
 }
 
-.hero-aero-button:focus-visible,
-.hero-aero-signin:focus-visible {
+.hero-aero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(24px, 5vw, 56px);
+  margin-top: 56px;
+}
+
+.hero-aero-stats div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hero-aero-stats strong {
+  color: var(--white);
+  font-family: 'Space Grotesk', var(--font-heading, system-ui, sans-serif);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.hero-aero-stats span {
+  color: var(--white-80);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+
+.hero-aero-button:focus-visible {
   outline: 3px solid var(--secondary);
   outline-offset: 4px;
 }
 
 @media (max-width: 768px) {
   .hero.hero-aero {
-    min-height: min(82svh, 48rem);
+    min-height: 92svh;
+  }
+
+  .hero-aero-content {
+    width: 90%;
+    padding-block: 100px 72px;
   }
 
   .hero-aero-shade {
-    background: color-mix(in srgb, var(--text) 78%, transparent);
-  }
-
-  .hero-aero-grid {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-  }
-
-  .hero-aero-grid span:nth-child(n + 7) {
-    display: none;
+    background: linear-gradient(90deg, color-mix(in srgb, var(--text) 86%, transparent) 0%, color-mix(in srgb, var(--text) 62%, transparent) 58%, color-mix(in srgb, var(--text) 22%, transparent) 100%);
   }
 
   .hero-aero-title {
-    font-size: clamp(2.8rem, 11vw, 5rem);
-    letter-spacing: -0.045em;
+    font-size: clamp(38px, 8.5vw, 64px);
   }
 
-  .hero-aero-description {
-    max-width: 34rem;
-    font-size: 1rem;
-    line-height: 1.7;
+  .hero-aero-stats {
+    gap: 24px 32px;
   }
 }
 
 @media (max-width: 480px) {
   .hero.hero-aero {
-    min-height: 78svh;
+    min-height: 100svh;
   }
 
   .hero-aero-content {
-    padding-block: 4rem;
+    padding-block: 92px 56px;
   }
 
-  .hero-aero-eyebrow {
-    gap: 0.45rem;
-    font-size: 0.68rem;
-    letter-spacing: 0.1em;
+  .hero-aero-badge {
+    gap: 8px;
+    padding: 8px 12px;
+    font-size: 10px;
+    letter-spacing: 0.06em;
   }
 
   .hero-aero-title {
-    font-size: clamp(2.65rem, 12vw, 3.6rem);
+    font-size: clamp(36px, 10.5vw, 50px);
+    letter-spacing: -0.035em;
+  }
+
+  .hero-aero-description {
+    font-size: 16px;
   }
 
   .hero-aero-actions {
@@ -226,17 +260,27 @@
     flex-direction: column;
   }
 
-  .hero-aero-button,
-  .hero-aero-signin {
+  .hero-aero-button {
     width: 100%;
-    justify-content: center;
+  }
+
+  .hero-aero-stats {
+    gap: 20px 26px;
+    margin-top: 42px;
+  }
+
+  .hero-aero-stats strong {
+    font-size: 23px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero-aero-badge-dot {
+    animation: none;
+  }
+
   .hero-aero-button,
-  .hero-aero-button-icon,
-  .hero-aero-signin {
+  .hero-aero-button-icon {
     transition: none;
   }
 }
