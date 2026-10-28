@@ -81,3 +81,9 @@
     font-size: var(--text-3xl);
   }
 }
+
+body.dark-mode .legal-page,
+body.dark-mode .legal-content { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .legal-page :is(.legal-card, .legal-panel, .legal-content section) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .legal-page :is(h1, h2, h3, h4, h5, h6, p, li, strong, small) { color: var(--dark-text); }
+body.dark-mode .legal-page :is(.text-muted, .legal-intro, .legal-meta) { color: var(--dark-text-secondary); }
