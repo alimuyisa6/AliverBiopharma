@@ -108,3 +108,7 @@
   background: var(--level-pharmacy);
   color: var(--text-inverse);
 }
+
+body.dark-mode .badge { border-color: var(--dark-border); }
+body.dark-mode .badge-neutral,
+body.dark-mode .badge-muted { background: var(--dark-surface-raised); color: var(--dark-text); }
