@@ -35,3 +35,7 @@
 }
 .ab-not-found__button:hover { filter: brightness(.94); }
 .ab-not-found__button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+body.dark-mode .ab-not-found { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .ab-not-found :is(h1, h2, h3, p, small) { color: var(--dark-text); }
+body.dark-mode .ab-not-found :is(.description, .text-muted) { color: var(--dark-text-secondary); }
