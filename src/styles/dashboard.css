@@ -1509,3 +1509,11 @@ body.dark-mode .dashboard-content .dashboard-section-aside {
     transition: none;
   }
 }
+
+body.dark-mode .dashboard-page,
+body.dark-mode .dashboard-content { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .dashboard-content :is(.dashboard-card, .dashboard-curriculum-card, .reading-item, .rec-card, .panel, .stat-card, .dashboard-widget) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .dashboard-content :is(h1, h2, h3, h4, h5, h6, p, label, small) { color: var(--dark-text); }
+body.dark-mode .dashboard-content :is(.text-muted, .dashboard-description, .card-description) { color: var(--dark-text-secondary); }
+body.dark-mode .dashboard-content :is(input, select, textarea) { background: var(--dark-surface-raised); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .dashboard-content :is(input, textarea)::placeholder { color: var(--dark-text-secondary); }
