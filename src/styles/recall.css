@@ -1005,3 +1005,8 @@ body.dark-mode .recall-page-header, body.dark-mode .recall-intro-card, body.dark
 .recall-page { width: 100%; border-radius: 0; background: var(--emerald-50); }
 .recall-page-header { background: var(--emerald-100); }
 .recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card { background: var(--white); box-shadow: none; }
+
+body.dark-mode .recall-page { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .recall-page :is(.recall-page-header, .recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .recall-session-card) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .recall-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small) { color: var(--dark-text); }
+body.dark-mode .recall-page :is(.text-muted, .recall-description) { color: var(--dark-text-secondary); }
