@@ -95,7 +95,7 @@
 }
 
 .hero-aero-title span {
-  color: var(--primary);
+  color: var(--secondary);
 }
 
 .hero-aero-description {
@@ -138,13 +138,13 @@
 
 .hero-aero-button-primary {
   background: var(--primary);
-  color: var(--text);
-  box-shadow: 0 10px 30px color-mix(in srgb, var(--primary) 28%, transparent);
+  color: var(--white);
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--primary) 34%, transparent);
 }
 
 .hero-aero-button-primary:hover {
   background: var(--accent);
-  color: var(--text);
+  color: var(--white);
 }
 
 .hero-aero-button-icon {
@@ -203,7 +203,7 @@
 }
 
 .hero-aero-button:focus-visible {
-  outline: 3px solid var(--secondary);
+  outline: 3px solid var(--accent);
   outline-offset: 4px;
 }
 
