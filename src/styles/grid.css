@@ -39,3 +39,6 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+body.dark-mode .grid-card,
+body.dark-mode .grid-panel { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
