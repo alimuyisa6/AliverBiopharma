@@ -99,3 +99,7 @@
   cursor: pointer;
   padding: var(--space-1);
 }
+
+body.dark-mode :is(.input, .form-input, .form-control, .select, .textarea) { background: var(--dark-surface-raised); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode :is(.input, .form-input, .form-control, .textarea)::placeholder { color: var(--dark-text-secondary); opacity: 1; }
+body.dark-mode :is(.input, .form-input, .form-control, .select, .textarea):disabled { background: var(--dark-surface); color: var(--dark-text-secondary); }
