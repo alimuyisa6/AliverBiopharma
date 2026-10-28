@@ -2017,3 +2017,8 @@ body.dark-mode .note-hero {
 .note-related-grid > .card-mixed { border: 1px solid var(--blue-200); border-radius: var(--radius-md); background: var(--white); box-shadow: 0 0.25rem 0.75rem rgb(35 55 120 / 5%); }
 body.dark-mode .note-hero, body.dark-mode .note-related-grid > .card-mixed { border-color: var(--night-500); background: var(--night-800); }
 @media (max-width: 640px) { .note-detail-container { width: calc(100% - (var(--page-gutter-x) * 2)); } .note-title { font-size: clamp(1.75rem, 7vw, 2.25rem); } }
+
+body.dark-mode .note-detail-page { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .note-detail-page :is(.note-detail-card, .note-detail-panel, .note-content, .note-sidebar, .note-meta-card) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .note-detail-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small) { color: var(--dark-text); }
+body.dark-mode .note-detail-page :is(.text-muted, .note-description, .note-meta) { color: var(--dark-text-secondary); }
