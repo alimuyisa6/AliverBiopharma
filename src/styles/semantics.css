@@ -15,42 +15,42 @@
   --accent-light: color-mix(in srgb, var(--accent) 16%, var(--background));
   --accent-border: color-mix(in srgb, var(--accent) 48%, var(--background));
 
-  --success: var(--secondary);
-  --color-success: var(--success);
-  --color-success-strong: var(--success-hover);
-  --success-hover: var(--secondary);
-  --success-light: var(--secondary);
-  --success-border: var(--secondary);
+  --success: var(--success-color);
+  --color-success: var(--success-color);
+  --color-success-strong: var(--success-color);
+  --success-hover: var(--success-color);
+  --success-light: var(--success-background);
+  --success-border: color-mix(in srgb, var(--success-color) 30%, var(--background));
 
-  --danger: var(--primary);
-  --danger-hover: var(--primary);
-  --danger-light: var(--primary);
-  --danger-border: var(--primary);
+  --danger: var(--danger-color);
+  --danger-hover: var(--danger-color);
+  --danger-light: var(--danger-background);
+  --danger-border: color-mix(in srgb, var(--danger-color) 30%, var(--background));
 
-  --warning: var(--accent);
-  --warning-hover: var(--accent);
-  --warning-light: var(--accent);
-  --warning-border: var(--accent);
+  --warning: var(--warning-color);
+  --warning-hover: var(--warning-color);
+  --warning-light: var(--warning-background);
+  --warning-border: color-mix(in srgb, var(--warning-color) 30%, var(--background));
 
-  --info: var(--secondary);
-  --info-hover: var(--secondary);
-  --info-light: var(--secondary);
-  --info-border: var(--secondary);
+  --info: var(--info-color);
+  --info-hover: var(--info-color);
+  --info-light: var(--info-background);
+  --info-border: color-mix(in srgb, var(--info-color) 30%, var(--background));
 
   --violet: var(--primary);
-  --violet-hover: var(--primary);
-  --violet-light: var(--primary);
-  --violet-border: var(--primary);
+  --violet-hover: var(--primary-hover);
+  --violet-light: var(--primary-light);
+  --violet-border: var(--primary-border);
 
   --pink: var(--accent);
-  --pink-hover: var(--accent);
-  --pink-light: var(--accent);
-  --pink-border: var(--accent);
+  --pink-hover: var(--accent-hover);
+  --pink-light: var(--accent-light);
+  --pink-border: var(--accent-border);
 
-  --yellow: var(--accent);
-  --yellow-hover: var(--accent);
-  --yellow-light: var(--accent);
-  --yellow-border: var(--accent);
+  --yellow: var(--warning-color);
+  --yellow-hover: var(--warning-color);
+  --yellow-light: var(--warning-background);
+  --yellow-border: var(--warning-color);
 
   --tone-primary: var(--primary);
   --tone-primary-hover: var(--primary-hover);
@@ -93,41 +93,41 @@
   --tone-yellow-border: var(--accent);
 
   --surface-page: var(--background);
-  --surface-card: var(--background);
-  --surface-raised: var(--background);
-  --surface-muted: var(--text);
-  --surface-subtle: color-mix(in srgb, var(--primary) 7%, var(--background));
-  --surface-tinted: color-mix(in srgb, var(--primary) 13%, var(--background));
-  --surface-inverse: var(--text);
-  --surface-overlay: rgba(15, 23, 42, 0.55);
-  --surface-disabled: var(--text);
+  --surface-card: var(--white);
+  --surface-raised: var(--white);
+  --surface-muted: var(--grey-100);
+  --surface-subtle: var(--grey-50);
+  --surface-tinted: color-mix(in srgb, var(--primary) 7%, var(--white));
+  --surface-inverse: var(--secondary);
+  --surface-overlay: var(--overlay-color);
+  --surface-disabled: var(--grey-100);
 
   --bg-page: var(--background);
-  --bg-card: var(--surface-card);
-  --bg-card-hover: var(--text);
+  --bg-card: var(--white);
+  --bg-card-hover: var(--grey-50);
   --bg-card-tinted: var(--surface-tinted);
-  --bg-muted: var(--surface-muted);
-  --bg-input: var(--background);
-  --bg-input-disabled: var(--surface-disabled);
-  --bg-disabled: var(--surface-disabled);
-  --bg-overlay: var(--surface-overlay);
+  --bg-muted: var(--grey-100);
+  --bg-input: var(--white);
+  --bg-input-disabled: var(--grey-100);
+  --bg-disabled: var(--grey-100);
+  --bg-overlay: var(--overlay-color);
 
   --text-main: var(--text);
-  --text-secondary: var(--text);
-  --text-muted: var(--text);
-  --text-placeholder: var(--text);
-  --text-inverse: var(--background);
-  --text-link: color-mix(in srgb, var(--primary) 72%, var(--text));
-  --text-link-hover: var(--primary-hover);
-  --text-on-primary: var(--text);
-  --text-on-dark: var(--text);
-  --text-dim: var(--text-secondary);
+  --text-secondary: var(--grey-600);
+  --text-muted: var(--grey-500);
+  --text-placeholder: var(--grey-500);
+  --text-inverse: var(--white);
+  --text-link: var(--primary);
+  --text-link-hover: var(--secondary);
+  --text-on-primary: var(--white);
+  --text-on-dark: var(--white);
+  --text-dim: var(--grey-600);
 
   --border-transparent: transparent;
-  --border-subtle: var(--text);
-  --border-light: color-mix(in srgb, var(--primary) 30%, var(--background));
-  --border-default: var(--text);
-  --border-strong: var(--text);
+  --border-subtle: var(--grey-200);
+  --border-light: var(--grey-200);
+  --border-default: var(--grey-200);
+  --border-strong: var(--grey-300);
   --border-focus: var(--primary);
 
   --border-width-thin: 1px;
@@ -151,7 +151,7 @@
   --warm-light: var(--accent-light);
 
   --level-olevel: var(--primary);
-  --level-alevel: var(--secondary);
+  --level-alevel: var(--accent);
 
   --profile-page-bg: var(--background);
   --profile-page-bottom-space: var(--page-space-bottom);
@@ -228,47 +228,47 @@
   --profile-sidebar-width: var(--space-56);
   --profile-sidebar-offset: var(--space-8);
 
-  --hero-bg: var(--primary);
-  --hero-border: var(--primary);
+  --hero-bg: var(--secondary);
+  --hero-border: var(--secondary);
 
-  --header-bg: var(--background);
-  --header-border: var(--secondary);
+  --header-bg: var(--white);
+  --header-border: var(--grey-200);
 
-  --footer-bg: var(--text);
-  --footer-text: var(--secondary);
+  --footer-bg: var(--secondary);
+  --footer-text: var(--white);
   --footer-border: var(--primary);
 
   --level-o: var(--primary);
-  --level-o-light: var(--primary);
+  --level-o-light: var(--primary-light);
 
-  --level-a: var(--secondary);
-  --level-a-light: var(--secondary);
+  --level-a: var(--accent);
+  --level-a-light: var(--accent-light);
 
   --level-pharmacy: var(--secondary);
-  --level-pharmacy-light: var(--secondary);
+  --level-pharmacy-light: var(--grey-100);
 
-  --section-tint: var(--text);
+  --section-tint: var(--grey-50);
 
-  --auth-bg: var(--primary);
-  --auth-surface: var(--background);
-  --auth-surface-alt: var(--text);
-  --auth-border: var(--primary);
-  --auth-border-strong: var(--primary);
+  --auth-bg: var(--secondary);
+  --auth-surface: var(--white);
+  --auth-surface-alt: var(--grey-50);
+  --auth-border: var(--grey-200);
+  --auth-border-strong: var(--grey-300);
   --auth-text: var(--text);
-  --auth-text-muted: var(--text-secondary);
-  --auth-text-faint: var(--text-muted);
+  --auth-text-muted: var(--grey-600);
+  --auth-text-faint: var(--grey-500);
   --auth-brand: var(--primary);
-  --auth-brand-hover: var(--primary);
-  --auth-brand-soft: var(--primary);
+  --auth-brand-hover: var(--secondary);
+  --auth-brand-soft: var(--primary-light);
   --auth-brand-ring: var(--primary-ring);
-  --auth-accent: var(--secondary);
-  --auth-accent-soft: var(--secondary);
-  --auth-danger: var(--primary);
-  --auth-danger-soft: var(--primary);
-  --auth-success: var(--secondary);
-  --auth-success-soft: var(--secondary);
-  --auth-warning: var(--accent);
-  --auth-warning-soft: var(--accent);
+  --auth-accent: var(--accent);
+  --auth-accent-soft: var(--surface-tinted);
+  --auth-danger: var(--danger-color);
+  --auth-danger-soft: var(--danger-background);
+  --auth-success: var(--success-color);
+  --auth-success-soft: var(--success-background);
+  --auth-warning: var(--warning-color);
+  --auth-warning-soft: var(--warning-background);
   --auth-shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.05);
   --auth-shadow-sm: 0 2px 6px rgba(15, 23, 42, 0.06);
   --auth-shadow: 0 8px 20px -6px rgba(15, 23, 42, 0.10), 0 2px 6px rgba(15, 23, 42, 0.05);
