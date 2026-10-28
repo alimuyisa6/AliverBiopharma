@@ -184,3 +184,11 @@
 @media (prefers-reduced-motion: reduce) {
   .chat-toggle-btn, .chat-welcome-face, .chat-panel { animation: none; }
 }
+
+body.dark-mode .chat-panel { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .chat-panel :is(.chat-panel-body, .chat-messages, .chat-message-list) { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .chat-panel :is(.chat-message-bubble, .chat-empty-state, .chat-suggestion) { background: var(--dark-surface-raised); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .chat-panel :is(h1, h2, h3, h4, h5, h6, p, label, small) { color: var(--dark-text); }
+body.dark-mode .chat-panel :is(.text-muted, .chat-subtitle, .chat-description) { color: var(--dark-text-secondary); }
+body.dark-mode .chat-panel :is(input, select, textarea) { background: var(--dark-background); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .chat-panel :is(input, textarea)::placeholder { color: var(--dark-text-secondary); }
