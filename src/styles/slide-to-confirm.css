@@ -130,3 +130,7 @@
   font-size: var(--text-sm);
   line-height: var(--leading-relaxed);
 }
+
+body.dark-mode .slide-to-confirm { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .slide-to-confirm-track { background: var(--dark-surface-raised); }
+body.dark-mode .slide-to-confirm :is(.slide-to-confirm-label, .slide-to-confirm-hint) { color: var(--dark-text-secondary); }
