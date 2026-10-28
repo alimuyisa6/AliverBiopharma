@@ -33,3 +33,6 @@
   to { transform: rotate(8deg); }
 }
 .premium-access-button-lock .premium-lock-keyhole { stroke-width: 2.4; }
+
+body.dark-mode .premium-access-button { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .premium-access-button:hover { background: var(--dark-surface-raised); color: var(--dark-text); }
