@@ -1802,3 +1802,14 @@ html[data-ui-surface="flat"] .advertise-create-form { box-shadow: var(--shadow-n
     animation: none;
   }
 }
+
+body.dark-mode .advertise-page,
+body.dark-mode .ads-home-section { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .advertise-page :is(.advertise-card, .advertise-programme, .advertise-benefit, .advertise-process-card, .advertise-form-card, .ads-home-panel, .advertise-slot-card) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .advertise-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small),
+body.dark-mode .ads-home-section :is(h1, h2, h3, h4, h5, h6, p, li, label, small) { color: var(--dark-text); }
+body.dark-mode .advertise-page :is(.text-muted, .section-description, .advertise-description),
+body.dark-mode .ads-home-section :is(.text-muted, .section-description) { color: var(--dark-text-secondary); }
+body.dark-mode .advertise-page :is(input, select, textarea),
+body.dark-mode .ads-home-section :is(input, select, textarea) { background: var(--dark-background); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .advertise-page :is(input, textarea)::placeholder { color: var(--dark-text-secondary); }
