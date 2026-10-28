@@ -547,3 +547,10 @@ html[data-ui-button-width="auto"] .animated-join-button {
     max-width: 100%;
   }
 }
+
+body.dark-mode .btn-secondary,
+body.dark-mode .button-secondary,
+body.dark-mode .btn-outline { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .btn-secondary:hover,
+body.dark-mode .button-secondary:hover,
+body.dark-mode .btn-outline:hover { background: var(--dark-surface-raised); color: var(--dark-text); }
