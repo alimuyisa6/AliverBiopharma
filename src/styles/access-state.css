@@ -62,3 +62,9 @@
   font-size: var(--text-sm);
   color: var(--text-secondary);
 }
+
+body.dark-mode .access-state,
+body.dark-mode .access-state-card,
+body.dark-mode .access-state-panel { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .access-state :is(h1, h2, h3, h4, p, small) { color: var(--dark-text); }
+body.dark-mode .access-state :is(.description, .text-muted) { color: var(--dark-text-secondary); }
