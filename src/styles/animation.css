@@ -169,3 +169,6 @@
     scroll-behavior: auto !important;
   }
 }
+
+body.dark-mode .animation-card,
+body.dark-mode .animated-panel { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
