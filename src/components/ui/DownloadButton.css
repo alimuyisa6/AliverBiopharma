@@ -76,3 +76,6 @@
   .buttonDownload { transition: none; }
   .buttonDownload::after { animation: none !important; }
 }
+
+body.dark-mode .buttonDownload { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .buttonDownload:hover { background: var(--dark-surface-raised); color: var(--dark-text); }
