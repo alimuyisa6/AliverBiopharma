@@ -53,3 +53,9 @@
   font-size: var(--text-xs);
   color: var(--text-muted);
 }
+
+body.dark-mode .file-upload,
+body.dark-mode .file-upload-dropzone,
+body.dark-mode .file-upload-preview { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .file-upload :is(h1, h2, h3, p, label, small) { color: var(--dark-text); }
+body.dark-mode .file-upload :is(.description, .text-muted) { color: var(--dark-text-secondary); }
