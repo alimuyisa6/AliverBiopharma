@@ -2194,3 +2194,9 @@ body.dark-mode .quiz-page .quiz-card, body.dark-mode .quiz-page-shell .quiz-card
 .quiz-page, .quiz-page-shell, .quiz-dashboard { background: var(--blue-50); }
 .quiz-hero, .quiz-page-header { background: var(--blue-100); }
 .quiz-question-card, .quiz-card, .quiz-topic-card, .quiz-block-card, .quiz-panel { background: var(--white); }
+
+body.dark-mode .quiz-page { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .quiz-page :is(.quiz-intro-card, .quiz-question-card, .quiz-card, .quiz-topic-card, .quiz-block-card, .quiz-panel, .quiz-option) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .quiz-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small) { color: var(--dark-text); }
+body.dark-mode .quiz-page :is(.text-muted, .quiz-description) { color: var(--dark-text-secondary); }
+body.dark-mode .quiz-page :is(input, select, textarea) { background: var(--dark-background); color: var(--dark-text); border-color: var(--dark-border); }
