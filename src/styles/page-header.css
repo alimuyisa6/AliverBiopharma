@@ -102,3 +102,8 @@
     font-size: var(--text-sm);
   }
 }
+
+body.dark-mode .page-header,
+body.dark-mode .page-header-inner { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .page-header :is(h1, h2, h3, p, small) { color: var(--dark-text); }
+body.dark-mode .page-header :is(.page-description, .text-muted) { color: var(--dark-text-secondary); }
