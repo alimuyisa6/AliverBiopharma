@@ -25,3 +25,16 @@
 html[data-ui-surface="flat"] .classroom-page .classroom-room-card,
 html[data-ui-surface="flat"] .classroom-room-page .classroom-participants-panel,
 html[data-ui-surface="flat"] .classroom-room-page .classroom-room-info-panel { box-shadow: var(--shadow-none); }
+
+body.dark-mode .classroom-page,
+body.dark-mode .classroom-room-page { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .classroom-page .classroom-room-card,
+body.dark-mode .classroom-room-page .classroom-participants-panel,
+body.dark-mode .classroom-room-page .classroom-room-info-panel,
+body.dark-mode .classroom-room-page .classroom-chat-panel { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .classroom-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small),
+body.dark-mode .classroom-room-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small) { color: var(--dark-text); }
+body.dark-mode .classroom-page :is(.text-muted, .section-description),
+body.dark-mode .classroom-room-page :is(.text-muted, .section-description) { color: var(--dark-text-secondary); }
+body.dark-mode .classroom-room-page :is(input, select, textarea) { background: var(--dark-background); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .classroom-room-page :is(input, textarea)::placeholder { color: var(--dark-text-secondary); }
