@@ -1,5 +1,5 @@
 :root {
-  --text: #182125;
+  --text: #20394b;
   --background: #f7fbfc;
   --primary: #2878b5;
   --secondary: #a6efe7;
@@ -20,7 +20,7 @@
   --grey-600: #5d6b70;
   --grey-700: #465257;
   --grey-800: #2b3539;
-  --grey-900: #182125;
+  --grey-900: #20394b;
   --palette-blue: var(--primary);
   --palette-mint: var(--secondary);
   --palette-ink: var(--text);
