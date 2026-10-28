@@ -251,3 +251,8 @@ body.dark-mode .quiz-challenge-page .quiz-challenge-option.is-selected {
   .quiz-challenge-page .quiz-challenge-progress-bar span,
   .quiz-challenge-page .quiz-challenge-option { transition: none; }
 }
+
+body.dark-mode .quiz-challenge-page { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .quiz-challenge-page :is(.quiz-challenge-card, .quiz-challenge-panel, .quiz-challenge-question, .quiz-challenge-option, .quiz-challenge-feedback) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .quiz-challenge-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small) { color: var(--dark-text); }
+body.dark-mode .quiz-challenge-page :is(.text-muted, .quiz-challenge-description) { color: var(--dark-text-secondary); }
