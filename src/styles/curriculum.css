@@ -513,3 +513,8 @@ body.dark-mode .curriculum-node-child, body.dark-mode .curriculum-node-resource 
 .curriculum-node-child, .curriculum-node-resource { background: var(--white); }
 .curriculum-node-child:hover, .curriculum-node-resource:hover { background: var(--white); border-color: var(--blue-400); }
 .curriculum-node-child-icon { background: var(--blue-50); color: var(--blue-700); }
+
+body.dark-mode .curriculum-page { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .curriculum-page :is(.curriculum-card, .curriculum-node, .curriculum-panel, .curriculum-level-card, .curriculum-node-child) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .curriculum-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small) { color: var(--dark-text); }
+body.dark-mode .curriculum-page :is(.text-muted, .curriculum-description) { color: var(--dark-text-secondary); }
