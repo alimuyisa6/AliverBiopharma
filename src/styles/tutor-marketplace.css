@@ -111,3 +111,14 @@
 .tutor-marketplace-page .tutor-actions-spaced { gap: var(--ui-content-gap-compact, var(--content-gap-compact)); }
 .tutor-marketplace-page .tutor-marketplace-intro-action { margin-block: var(--ui-content-gap, var(--content-gap)); }
 html[data-ui-surface="flat"] .tutor-marketplace-page .tutor-card { box-shadow: var(--shadow-none); background: transparent; }
+
+body.dark-mode .tutor-marketplace-page,
+body.dark-mode .tutor-profile-page { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .tutor-marketplace-page :is(.tutor-card, .tutor-profile-card, .tutor-profile-state, .tutor-filter-panel, .tutor-marketplace-intro) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .tutor-marketplace-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small),
+body.dark-mode .tutor-profile-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small) { color: var(--dark-text); }
+body.dark-mode .tutor-marketplace-page :is(.text-muted, .section-description, .tutor-bio),
+body.dark-mode .tutor-profile-page :is(.text-muted, .section-description, .tutor-bio) { color: var(--dark-text-secondary); }
+body.dark-mode .tutor-marketplace-page :is(input, select, textarea),
+body.dark-mode .tutor-profile-page :is(input, select, textarea) { background: var(--dark-surface-raised); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .tutor-marketplace-page :is(input, textarea)::placeholder { color: var(--dark-text-secondary); }
