@@ -66,6 +66,52 @@ body.dark-mode {
 .home-page > .home-advertising-section { --section-band: var(--band-tint-c); }
 .home-page > .home-newsletter-section { --section-band: var(--band-tint-d); }
 
+body.dark-mode .home-page > .home-newsletter-section {
+  --section-band: var(--dark-background);
+  background: var(--dark-background);
+}
+
+body.dark-mode .home-page > .home-newsletter-section::before {
+  background: var(--dark-background);
+  border-color: var(--dark-border);
+}
+
+body.dark-mode .home-page > .home-newsletter-section .newsletter-card {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text);
+}
+
+body.dark-mode .home-page > .home-newsletter-section .newsletter-title,
+body.dark-mode .home-page > .home-newsletter-section .newsletter-description {
+  color: var(--dark-text);
+}
+
+body.dark-mode .home-page > .home-newsletter-section .newsletter-description {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .home-page > .home-newsletter-section .newsletter-icon {
+  background: var(--dark-surface-raised);
+  color: var(--dark-primary);
+}
+
+body.dark-mode .home-page > .home-newsletter-section .form-input {
+  border-color: var(--dark-border);
+  background: var(--dark-background);
+  color: var(--dark-text);
+}
+
+body.dark-mode .home-page > .home-newsletter-section .form-input::placeholder {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .home-page > .home-newsletter-section .section-head h2,
+body.dark-mode .home-page > .home-newsletter-section .eyebrow {
+  color: var(--dark-text);
+}
+
+
 .home-page > .home-stats-section {
   position: relative;
   z-index: 3;
