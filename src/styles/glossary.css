@@ -874,3 +874,14 @@ body.dark-mode .glossary-route-card { background: var(--night-800); }
 .glossary-page { width: 100%; background: var(--blue-50); }
 .glossary-header { background: var(--blue-100); }
 .glossary-route-card, .glossary-page .card { background: var(--white); box-shadow: none; }
+
+body.dark-mode .glossary-page { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .glossary-header { background: var(--dark-surface); color: var(--dark-text); }
+body.dark-mode .glossary-route-card,
+body.dark-mode .glossary-page .card,
+body.dark-mode .glossary-sidebar,
+body.dark-mode .glossary-term-content { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .glossary-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small, span) { color: var(--dark-text); }
+body.dark-mode .glossary-page :is(.text-muted, .glossary-subtitle, .glossary-description) { color: var(--dark-text-secondary); }
+body.dark-mode .glossary-page :is(input, select, textarea) { background: var(--dark-surface-raised); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .glossary-page :is(input, textarea)::placeholder { color: var(--dark-text-secondary); }
