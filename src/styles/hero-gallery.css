@@ -83,3 +83,7 @@
     margin-bottom: var(--space-1);
   }
 }
+
+body.dark-mode .hero-gallery { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .hero-gallery :is(.hero-gallery-card, .hero-gallery-item, .hero-gallery-panel) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .hero-gallery :is(h1, h2, h3, h4, p, small) { color: var(--dark-text); }
