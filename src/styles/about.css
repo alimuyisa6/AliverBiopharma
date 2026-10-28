@@ -462,3 +462,14 @@ a.about-contact-item:hover {
     padding: var(--space-5);
   }
 }
+
+body.dark-mode .about-page,
+body.dark-mode .contact-page { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .about-page :is(.about-card, .about-panel, .team-card, .mission-card, .value-card),
+body.dark-mode .contact-page :is(.contact-card, .contact-panel, .form-card) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .about-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small),
+body.dark-mode .contact-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small) { color: var(--dark-text); }
+body.dark-mode .about-page :is(.text-muted, .about-description, .section-description),
+body.dark-mode .contact-page :is(.text-muted, .contact-description) { color: var(--dark-text-secondary); }
+body.dark-mode .contact-page :is(input, select, textarea) { background: var(--dark-background); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .contact-page :is(input, textarea)::placeholder { color: var(--dark-text-secondary); }
