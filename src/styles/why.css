@@ -322,3 +322,8 @@
   background: transparent;
   box-shadow: none;
 }
+
+body.dark-mode .why-choose-section { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .why-choose-section .why-choose-card { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .why-choose-section :is(h1, h2, h3, h4, h5, h6, p, small) { color: var(--dark-text); }
+body.dark-mode .why-choose-section :is(.text-muted, .section-description) { color: var(--dark-text-secondary); }
