@@ -1,9 +1,12 @@
 :root {
-  --text: #0a1011;
+  --text: #182125;
   --background: #f7fbfc;
-  --primary: #42afc7;
-  --secondary: #83d5e7;
-  --accent: #56d2ed;
+  --primary: #2878b5;
+  --secondary: #a6efe7;
+  --accent: #76b8ce;
+  --palette-pink: #ffa69f;
+  --palette-sage: #dbeec6;
+  --palette-cream: #ffe9b9;
   --white: #ffffff;
   --white-95: #f2f5f6;
   --white-90: #e6ebed;
@@ -19,8 +22,8 @@
   --grey-800: #2b3539;
   --grey-900: #182125;
   --palette-blue: var(--primary);
-  --palette-mint: var(--accent);
+  --palette-mint: var(--secondary);
   --palette-ink: var(--text);
-  --palette-periwinkle: var(--secondary);
-  --text-on-primary: var(--text);
+  --palette-periwinkle: var(--accent);
+  --text-on-primary: var(--white);
 }
