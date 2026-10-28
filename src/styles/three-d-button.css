@@ -102,3 +102,8 @@
     transition-duration: 0.01ms;
   }
 }
+
+body.dark-mode .button-3d,
+body.dark-mode .three-d-button { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .button-3d:hover,
+body.dark-mode .three-d-button:hover { background: var(--dark-surface-raised); color: var(--dark-text); }
