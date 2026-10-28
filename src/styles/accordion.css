@@ -87,3 +87,10 @@
     padding: 0 var(--space-5) var(--space-5);
   }
 }
+
+body.dark-mode .accordion,
+body.dark-mode .accordion-item,
+body.dark-mode .accordion-trigger,
+body.dark-mode .accordion-content { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .accordion-trigger:hover { background: var(--dark-surface-raised); }
+body.dark-mode .accordion :is(h1, h2, h3, h4, h5, h6, p, span, small) { color: inherit; }
