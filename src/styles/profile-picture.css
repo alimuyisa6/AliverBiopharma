@@ -55,3 +55,7 @@
   font-size: var(--text-xs);
   margin-top: var(--space-2);
 }
+
+body.dark-mode .profile-picture-frame,
+body.dark-mode .profile-picture-upload,
+body.dark-mode .profile-picture-placeholder { background: var(--dark-surface-raised); color: var(--dark-text); border-color: var(--dark-border); }
