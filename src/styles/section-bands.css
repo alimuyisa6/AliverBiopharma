@@ -530,6 +530,26 @@ body.dark-mode .home-page > .home-newsletter-section {
   color: var(--text-main);
 }
 
+body.dark-mode .home-page .home-classroom-section .section-teaser-inner,
+body.dark-mode .home-page .home-tutor-section .section-teaser-inner,
+body.dark-mode .home-page .home-advertising-section .ads-home-panel {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text);
+}
+
+body.dark-mode .home-page .home-classroom-section .section-teaser-inner :is(h1, h2, h3, h4, h5, h6, p, span, li, small, label),
+body.dark-mode .home-page .home-tutor-section .section-teaser-inner :is(h1, h2, h3, h4, h5, h6, p, span, li, small, label),
+body.dark-mode .home-page .home-advertising-section .ads-home-panel :is(h1, h2, h3, h4, h5, h6, p, span, li, small, label) {
+  color: var(--dark-text);
+}
+
+body.dark-mode .home-page .home-classroom-section .section-teaser-inner :is(.text-muted, .section-description),
+body.dark-mode .home-page .home-tutor-section .section-teaser-inner :is(.text-muted, .section-description),
+body.dark-mode .home-page .home-advertising-section .ads-home-panel :is(.text-muted, .section-description) {
+  color: var(--dark-text-secondary);
+}
+
 body.dark-mode .home-page .home-learning-journey-content,
 body.dark-mode .home-page .home-curriculum-map,
 body.dark-mode .home-page .home-curriculum-node-link,
@@ -541,6 +561,20 @@ body.dark-mode .home-page .stats-grid-card,
 body.dark-mode .home-page .edu-showcase-shell,
 body.dark-mode .home-page .edu-knowledge-spotlight,
 body.dark-mode .home-page .team-card,
+body.dark-mode .home-page > .home-classroom-section,
+body.dark-mode .home-page > .home-tutor-section,
+body.dark-mode .home-page > .home-advertising-section {
+  --section-band: var(--dark-background);
+  background: var(--dark-background);
+}
+
+body.dark-mode .home-page > .home-classroom-section::before,
+body.dark-mode .home-page > .home-tutor-section::before,
+body.dark-mode .home-page > .home-advertising-section::before {
+  background: var(--dark-background);
+  border-color: var(--dark-border);
+}
+
 body.dark-mode .home-page .section-teaser-inner,
 body.dark-mode .home-page .ads-home-panel,
 body.dark-mode .home-page .newsletter-card,
