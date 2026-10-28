@@ -960,4 +960,9 @@ body.dark-mode {
   display: none !important;
 }
 
-
+body.dark-mode .auth-page { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .auth-page :is(.auth-card, .auth-panel, .auth-form-card, .auth-side-panel) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .auth-page :is(h1, h2, h3, h4, h5, h6, p, label, small) { color: var(--dark-text); }
+body.dark-mode .auth-page :is(.auth-subtitle, .auth-description, .text-muted) { color: var(--dark-text-secondary); }
+body.dark-mode .auth-page :is(input, select, textarea) { background: var(--dark-background); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .auth-page :is(input, textarea)::placeholder { color: var(--dark-text-secondary); }
