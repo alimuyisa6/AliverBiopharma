@@ -172,3 +172,10 @@
     align-items: stretch;
   }
 }
+
+body.dark-mode .tutor-page-section { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .tutor-page-section :is(.tutor-card, .tutor-empty-state, .tutor-filter-panel, .tutor-search-panel) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .tutor-page-section :is(h1, h2, h3, h4, h5, h6, p, li, label, small) { color: var(--dark-text); }
+body.dark-mode .tutor-page-section :is(.text-muted, .tutor-description, .section-description) { color: var(--dark-text-secondary); }
+body.dark-mode .tutor-page-section :is(input, select, textarea) { background: var(--dark-surface-raised); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .tutor-page-section :is(input, textarea)::placeholder { color: var(--dark-text-secondary); }
