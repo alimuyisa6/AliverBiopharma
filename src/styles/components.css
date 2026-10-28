@@ -152,3 +152,6 @@
     animation-iteration-count: infinite !important;
   }
 }
+
+body.dark-mode :is(.component-panel, .component-card, .component-surface, .component-preview) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode :is(.component-panel, .component-card, .component-surface, .component-preview) :is(h1, h2, h3, h4, h5, h6, p, label, small) { color: var(--dark-text); }
