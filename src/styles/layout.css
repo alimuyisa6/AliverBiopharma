@@ -10,13 +10,13 @@ html, body { overflow-x: clip; }
   right: 0;
   z-index: var(--z-sticky);
   height: var(--header-height);
-  background: var(--background);
-  border-bottom: 1px solid var(--secondary);
+  background: var(--white);
+  border-bottom: 1px solid var(--grey-200);
 }
 .site-header.scrolled {
-  background: var(--background);
+  background: var(--white);
   box-shadow: var(--shadow-sm);
-  border-bottom-color: var(--secondary);
+  border-bottom-color: var(--grey-200);
 }
 .site-container, .page-container, .header-container, .footer-inner, .footer-bottom { width: min(calc(100% - (var(--page-gutter-x) * 2)), var(--max-width)); margin-inline: auto; }
 .site-container { min-width: 0; }
