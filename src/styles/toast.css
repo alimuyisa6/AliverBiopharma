@@ -44,3 +44,8 @@
 .toast-info {
   background: var(--info);
 }
+
+body.dark-mode .toast,
+body.dark-mode .toast-message,
+body.dark-mode .toast-container .toast { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .toast :is(h1, h2, h3, p, small) { color: var(--dark-text); }
