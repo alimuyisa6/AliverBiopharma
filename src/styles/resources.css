@@ -664,10 +664,10 @@ body.dark-mode .resources-empty-state {
   gap: 1.5rem;
   margin: 1.25rem 0 1.5rem;
   padding: clamp(1rem, 3vw, 1.5rem);
-  border: 1px solid var(--border, rgba(100, 116, 139, 0.24));
+  border: 1px solid var(--border);
   border-radius: 1rem;
-  background: var(--surface-card, var(--surface, #fff));
-  box-shadow: var(--shadow-sm, 0 4px 18px rgba(15, 23, 42, 0.05));
+  background: var(--surface-card, var(--white));
+  box-shadow: var(--shadow-sm, 0 4px 18px rgb(16 28 43 / 5%));
 }
 
 .resources-curriculum-entry-copy {
@@ -681,7 +681,7 @@ body.dark-mode .resources-empty-state {
 
 .resources-curriculum-entry p {
   margin: 0;
-  color: var(--text-muted, #64748b);
+  color: var(--text-muted);
   line-height: 1.6;
 }
 
