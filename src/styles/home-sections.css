@@ -987,3 +987,32 @@ body.dark-mode .home-faq-item {
     gap: var(--space-1);
   }
 }
+
+body.dark-mode .home-page {
+  background-color: var(--dark-background);
+  color: var(--dark-text);
+}
+
+body.dark-mode .home-page :is(.stats-impact-card, .stats-impact-topics, .home-card, .home-panel, .home-section-card) {
+  background-color: var(--dark-surface);
+  color: var(--dark-text);
+  border-color: var(--dark-border);
+}
+
+body.dark-mode .home-page :is(.stats-impact-value, .stats-impact-topics-title, .stats-impact-topic-count, .home-section-title, .home-card-title) {
+  color: var(--dark-text);
+}
+
+body.dark-mode .home-page :is(.stats-impact-label, .stats-impact-topic, .stats-impact-empty, .home-section-description, .home-card-description) {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .home-page :is(a, button).stats-impact-card,
+body.dark-mode .home-page a.stats-impact-card :is(span, strong, small) {
+  color: var(--dark-text);
+  border-color: var(--dark-border);
+}
+
+body.dark-mode .home-page a.stats-impact-card:hover {
+  border-color: var(--dark-primary);
+}
