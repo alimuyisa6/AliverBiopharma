@@ -136,8 +136,8 @@ html, body { overflow-x: clip; }
   box-shadow: var(--shadow-md);
 }
 body.dark-mode .home-scope-switcher {
-  background: var(--night-800);
-  border-color: var(--night-500);
+  background: var(--dark-surface);
+  border-color: var(--dark-border);
 }
 .home-scope-switcher::after {
   content: "";
@@ -407,7 +407,7 @@ body.dark-mode .home-scope-switcher {
   --footer-art-blue: var(--primary);
   --footer-art-teal: var(--secondary);
   --footer-art-gold: var(--accent);
-  --footer-art-soft: color-mix(in srgb, var(--footer-bg, #ffffff) 82%, var(--footer-text, #243447) 18%);
+  --footer-art-soft: color-mix(in srgb, var(--footer-bg, var(--white)) 82%, var(--footer-text, var(--dark-surface)) 18%);
 }
 
 @supports not (color: color-mix(in srgb, white, black)) {
