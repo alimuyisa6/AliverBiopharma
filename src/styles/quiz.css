@@ -2099,7 +2099,7 @@ body.dark-mode .quiz-page .quiz-options-list .quiz-option-btn.correct {
 }
 body.dark-mode .quiz-page .quiz-options-list .quiz-option-btn.incorrect {
   border-color: var(--danger);
-  background: #3c1e2a;
+  background: var(--danger-background);
 }
 body.dark-mode .quiz-result-container .quiz-review-card {
   border-color: var(--night-500);
