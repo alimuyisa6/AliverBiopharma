@@ -567,7 +567,7 @@
 }
 .notes-search:focus-within {
   border-color: var(--blue-500);
-  box-shadow: 0 0 0 3px rgb(84 101 255 / 15%);
+  box-shadow: 0 0 0 3px var(--primary-ring);
 }
 .notes-search input {
   min-width: 0;
@@ -600,9 +600,9 @@
   outline-offset: 3px;
 }
 body.dark-mode .notes-page-intro {
-  border-color: #45405f;
-  border-bottom-color: #454b80;
-  background: linear-gradient(120deg, #20203c, #100d1a 68%, #123a35);
+  border-color: var(--dark-border);
+  border-bottom-color: var(--dark-border);
+  background: var(--dark-background);
 }
 body.dark-mode .notes-page-kicker,
 body.dark-mode .notes-context-kicker,
@@ -611,24 +611,24 @@ body.dark-mode .notes-section-heading .sec-label {
 }
 body.dark-mode .notes-curriculum-context,
 body.dark-mode .notes-pathway {
-  border-color: #45405f;
-  background: #100d1a;
+  border-color: var(--dark-border);
+  background: var(--dark-background);
 }
 body.dark-mode .notes-pathway-item {
-  border-color: #302c4a;
-  background: #17152a;
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
 }
 body.dark-mode .notes-pathway-item:hover {
-  border-color: #454b80;
-  background: #20203c;
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
 }
 body.dark-mode .notes-toolbar {
-  border-color: #45405f;
-  background: #100d1a;
+  border-color: var(--dark-border);
+  background: var(--dark-background);
 }
 body.dark-mode .notes-search {
-  border-color: #45405f;
-  background: #17152a;
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
 }
 @media (max-width: 640px) {
   .notes-page-intro {
