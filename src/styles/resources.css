@@ -834,10 +834,10 @@ body.dark-mode .resources-page { background: var(--bg-page); }
 body.dark-mode .resources-intro { background: var(--bg-card); }
 
 
-/* Resource cards: white surfaces and a single, uniform inline-SVG icon system. */
+/* Resource cards use the shared surface tokens. */
 .resources-grid .resource-card,
 .resources-grid .resource-card[class*="resource-card-"] {
-  background: #fff;
+  background: var(--surface-card, var(--white));
   border: 1px solid var(--border-subtle);
   box-shadow: none;
 }
