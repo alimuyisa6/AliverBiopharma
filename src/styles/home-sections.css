@@ -67,7 +67,7 @@
   line-height: var(--line-height-normal);
   border: 1px solid var(--primary);
   border-radius: var(--radius-button);
-  background: var(--primary);
+  background: var(--blue-true);
   color: var(--text-inverse);
   box-shadow: var(--shadow-sm);
   font-weight: var(--weight-semibold);
