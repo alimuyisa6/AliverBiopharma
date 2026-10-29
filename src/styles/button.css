@@ -554,3 +554,73 @@ body.dark-mode .btn-outline { background: var(--dark-surface); color: var(--dark
 body.dark-mode .btn-secondary:hover,
 body.dark-mode .button-secondary:hover,
 body.dark-mode .btn-outline:hover { background: var(--dark-surface-raised); color: var(--dark-text); }
+
+body.dark-mode .btn-primary,
+body.dark-mode .button-primary,
+body.dark-mode .button--primary {
+  background: var(--dark-primary);
+  border-color: var(--dark-primary);
+  color: #0b1220;
+}
+
+body.dark-mode .btn-primary:hover:not(:disabled),
+body.dark-mode .button-primary:hover:not(:disabled),
+body.dark-mode .button--primary:hover:not(:disabled) {
+  background: #93c5fd;
+  border-color: #93c5fd;
+  color: #0b1220;
+}
+
+body.dark-mode .btn-secondary,
+body.dark-mode .button-secondary,
+body.dark-mode .btn-outline,
+body.dark-mode .button-outline {
+  background: var(--dark-surface);
+  border-color: var(--dark-border);
+  color: var(--dark-text);
+}
+
+body.dark-mode .btn-secondary:hover:not(:disabled),
+body.dark-mode .button-secondary:hover:not(:disabled),
+body.dark-mode .btn-outline:hover:not(:disabled),
+body.dark-mode .button-outline:hover:not(:disabled) {
+  background: var(--dark-surface-raised);
+  border-color: var(--dark-primary);
+  color: var(--dark-primary);
+}
+
+body.dark-mode .btn-ghost,
+body.dark-mode .button-ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .btn-ghost:hover:not(:disabled),
+body.dark-mode .button-ghost:hover:not(:disabled) {
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+
+body.dark-mode .btn-success {
+  background: var(--success-light);
+  border-color: var(--success-border);
+  color: var(--success);
+}
+
+body.dark-mode .btn-danger {
+  background: var(--danger-light);
+  border-color: var(--danger-border);
+  color: var(--danger);
+}
+
+body.dark-mode .btn-info {
+  background: var(--info-light);
+  border-color: var(--info-border);
+  color: var(--dark-primary);
+}
+
+body.dark-mode .btn:disabled,
+body.dark-mode .button:disabled {
+  opacity: 0.58;
+}
