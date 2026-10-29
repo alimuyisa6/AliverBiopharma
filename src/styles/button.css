@@ -769,16 +769,16 @@ body:not(.dark-mode) .btn-3d:disabled {
   opacity: 0.58;
 }
 
-body:not(.dark-mode) :is(.btn-primary, .button-primary, .button--primary, .btn-primary-link, .primary-button) {
+:is(.btn-primary, .button-primary, .button--primary, .btn-primary-link, .primary-button) {
   background-color: var(--primary);
   border-color: var(--primary);
-  color: var(--text-on-primary, #ffffff);
+  color: var(--text-on-primary);
 }
 
-body:not(.dark-mode) :is(.btn-primary, .button-primary, .button--primary, .btn-primary-link, .primary-button):hover:not(:disabled) {
+:is(.btn-primary, .button-primary, .button--primary, .btn-primary-link, .primary-button):hover:not(:disabled) {
   background-color: var(--primary-hover);
   border-color: var(--primary-hover);
-  color: var(--text-on-primary, #ffffff);
+  color: var(--text-on-primary);
 }
 
 body:not(.dark-mode) :is(.btn-card-primary, .btn-soft, .btn-warm, .btn-violet, .btn-pink, .btn-yellow) {
@@ -811,15 +811,15 @@ body:not(.dark-mode) .btn-soft:hover:not(:disabled) {
 }
 
 body.dark-mode :is(.btn-primary, .button-primary, .button--primary, .btn-primary-link, .primary-button) {
-  background-color: var(--dark-primary);
-  border-color: var(--dark-primary);
-  color: #0b1220;
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: var(--text-on-primary);
 }
 
 body.dark-mode :is(.btn-primary, .button-primary, .button--primary, .btn-primary-link, .primary-button):hover:not(:disabled) {
-  background-color: #93c5fd;
-  border-color: #93c5fd;
-  color: #0b1220;
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+  color: var(--text-on-primary);
 }
 
 body.dark-mode .btn-card-primary,
