@@ -1,5 +1,3 @@
- /* src/styles/why.css */
-
 .why-choose-section {
   width: min(100%, var(--max-width));
   margin-inline: auto;
@@ -15,10 +13,6 @@
   width: 100%;
   max-width: var(--max-width);
 }
-
-
-
-
 
 .why-choose-section .section-head-left p {
   max-width: var(--max-width);
@@ -314,7 +308,6 @@
   .why-choose-card::after { right: 2.75rem; }
 }
 
-/* The learning-cycle SVG blends into the section surface without a frame. */
 .why-choose-illustration,
 .why-choose-science-art {
   border: 0;

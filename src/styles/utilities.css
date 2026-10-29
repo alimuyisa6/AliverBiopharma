@@ -1,13 +1,9 @@
- :root {
+:root {
   --card-padding: var(--space-4);
 }
 
 .emerald-card {
-  /* fixed: was background: var(--secondary-light); color: var(--secondary-hover);
-     which aliased to whatever --secondary points to (and read dark/muddy in
-     dark mode since --secondary-light there is a translucent overlay on a
-     near-black page background). Now pinned to the raw emerald scale so it's
-     always a genuinely light green card regardless of --secondary. */
+  
   background: var(--emerald-50);
   color: var(--emerald-700);
   padding: var(--card-padding);
