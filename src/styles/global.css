@@ -4,6 +4,7 @@
 
 html {
   min-height: 100%;
+  background: var(--bg-page);
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
 }
@@ -476,11 +477,36 @@ li + li {
   stroke-linejoin: round;
 }
 
-.btn-primary,
+ .btn-primary,
 .button-primary,
 .button--primary,
 .bg-primary {
-  color: var(--background);
+  color: var(--text-on-primary);
+}
+
+body.dark-mode,
+body.dark-mode #root,
+body.dark-mode .app-layout,
+body.dark-mode .main-content {
+  background-color: var(--dark-background);
+  color: var(--dark-text);
+}
+
+html:has(body.dark-mode) {
+  background-color: var(--dark-background);
+  color-scheme: dark;
+}
+
+body.dark-mode :is(.btn-primary, .button-primary, .button--primary, .bg-primary) {
+  background-color: var(--dark-primary);
+  border-color: var(--dark-primary);
+  color: #0b1220;
+}
+
+body.dark-mode :is(.btn-primary, .button-primary, .button--primary, .bg-primary):hover:not(:disabled) {
+  background-color: #93c5fd;
+  border-color: #93c5fd;
+  color: #0b1220;
 }
 
 @media (max-width: 640px) {
