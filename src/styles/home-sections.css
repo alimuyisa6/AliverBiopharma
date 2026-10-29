@@ -75,7 +75,7 @@
 }
 .home-learning-snapshot-dashboard-link:hover {
   border-color: var(--primary-hover);
-  background: var(--primary-hover);
+  background: var(--blue-true);
   color: var(--text-inverse);
 }
 
