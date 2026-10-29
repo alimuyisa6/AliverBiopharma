@@ -10,10 +10,7 @@ import './styles/semantics.css';
 import './styles/spacing.css';
 import './styles/animation.css';
 import './styles/global.css';
-import './styles/button.css';
 import './styles/layout.css';
-import './styles/content-pages.css';
-import './styles/dashboard.css';
 import './styles/components.css';
 import './styles/uiverse-tokens.css';
 import './styles/content-switcher.css';
@@ -21,8 +18,6 @@ import './styles/biopharm-toggle.css';
 import './styles/slide-to-confirm.css';
 import './styles/three-d-button.css';
 import './styles/section-bands.css';
-import './styles/about.css';
-import './styles/newsletter.css';
 
 
 function showFatalError(title, message, stack) {
