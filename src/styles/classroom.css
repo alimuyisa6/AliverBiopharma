@@ -1,40 +1,389 @@
-/* Central UI preference integration for classroom and live-room layouts. */
 .classroom-page {
   width: min(calc(100% - (var(--page-gutter-x) * 2)), var(--ui-content-max-width, var(--page-shell-max-width)));
   min-width: 0;
   margin-inline: auto;
-  padding: var(--page-space-top) 0 var(--page-space-bottom);
+  padding: clamp(2rem, 5vw, 4.5rem) 0 clamp(3rem, 7vw, 5.5rem);
   box-sizing: border-box;
 }
-.classroom-list-section { margin-block: 0; padding-block: 0 var(--ui-section-space-y, var(--section-space-y)); }
-.classroom-page .grid { gap: var(--ui-content-gap, var(--content-gap)); }
-.classroom-page .classroom-room-card { padding: var(--ui-card-padding-y, var(--card-padding-y)) var(--ui-card-padding-x, var(--card-padding-x)); }
-.classroom-page .classroom-list-table-wrap { margin-block-start: var(--ui-content-gap, var(--content-gap)); }
+
+.classroom-list-section {
+  margin: 0;
+  padding: 0;
+}
+
+.classroom-page .sec-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-block-end: var(--space-3);
+  color: var(--primary);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.classroom-page-title {
+  max-width: 16ch;
+  margin: 0;
+  color: var(--text-main);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: var(--weight-bold);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.classroom-class-label {
+  margin: var(--space-3) 0 0;
+  color: var(--text-secondary);
+  font-size: var(--text-lg);
+  line-height: var(--leading-body);
+}
+
+.classroom-level-chips,
+.classroom-teacher-badge-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-block-start: var(--space-5);
+}
+
+.classroom-page .classroom-chip-level,
+.classroom-page .classroom-chip-class {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--primary-border);
+  border-radius: var(--radius-full);
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+}
+
+.classroom-page .classroom-chip-class {
+  border-color: var(--border-default);
+  background: var(--surface-card);
+  color: var(--text-secondary);
+}
+
+.classroom-view-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-block: var(--space-7) var(--space-5);
+  padding: var(--space-1);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  background: var(--surface-card);
+  box-shadow: var(--shadow-subtle);
+}
+
+.classroom-view-toggle .view-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 2.75rem;
+  padding: var(--space-2) var(--space-4);
+  border: 0;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  cursor: pointer;
+  transition: background-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
+}
+
+.classroom-view-toggle .view-toggle-btn.active {
+  background: var(--primary);
+  color: var(--white);
+  box-shadow: var(--shadow-subtle);
+}
+
+.classroom-view-toggle .view-toggle-btn:focus-visible {
+  outline: 3px solid var(--primary-ring);
+  outline-offset: 2px;
+}
+
+.classroom-page .empty-state {
+  min-height: 21rem;
+  margin-block-start: var(--space-2);
+  padding: clamp(2rem, 5vw, 3.5rem) var(--space-5);
+  gap: var(--space-4);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  background: var(--surface-card);
+  box-shadow: var(--shadow-card);
+}
+
+.classroom-page .empty-state-icon {
+  display: grid;
+  width: 4.5rem;
+  height: 4.5rem;
+  place-items: center;
+  margin-block-end: var(--space-2);
+  border: 1px solid var(--primary-border);
+  border-radius: var(--radius-lg);
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: var(--text-3xl);
+  opacity: 1;
+}
+
+.classroom-page .empty-state-image {
+  width: min(100%, 9rem);
+  max-height: 8rem;
+  margin: 0 0 var(--space-2);
+  object-fit: contain;
+}
+
+.classroom-page .empty-state-title {
+  margin: 0;
+  color: var(--text-main);
+  font-size: clamp(1.25rem, 3vw, 1.65rem);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-card-title);
+}
+
+.classroom-page .empty-state-text {
+  max-width: 34rem;
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--text-base);
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+
+.classroom-page .empty-state-action {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-block-start: var(--space-2);
+}
+
+.classroom-page .empty-state-action .btn,
+.classroom-page .empty-state-action button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 3.25rem;
+  max-width: 100%;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-md);
+  background: var(--blue-true);
+  color: var(--white);
+  font-weight: var(--weight-semibold);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.classroom-page .empty-state-action .btn:hover,
+.classroom-page .empty-state-action button:hover {
+  filter: brightness(0.92);
+}
+
+.classroom-page .grid {
+  gap: var(--ui-content-gap, var(--content-gap));
+}
+
+.classroom-page .classroom-room-card {
+  overflow: hidden;
+  padding: 0;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  background: var(--surface-card);
+  box-shadow: var(--shadow-card);
+}
+
+.classroom-page .classroom-list-table-wrap {
+  overflow-x: auto;
+  margin-block-start: var(--ui-content-gap, var(--content-gap));
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  background: var(--surface-card);
+  box-shadow: var(--shadow-subtle);
+}
+
+.classroom-page .classroom-list-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.classroom-page .classroom-list-table th {
+  padding: var(--space-4);
+  background: var(--surface-subtle);
+  color: var(--text-secondary);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  text-align: start;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.classroom-page .classroom-list-table td {
+  padding: var(--space-4);
+  border-top: 1px solid var(--border-default);
+  color: var(--text-main);
+  vertical-align: middle;
+}
+
+.classroom-page .classroom-error-alert {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-block: var(--space-4);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+}
+
 .classroom-room-page {
   width: 100%;
   padding-inline: var(--ui-page-gutter-x, var(--page-gutter-x));
   padding-block: var(--ui-section-space-y-compact, var(--section-space-y-compact));
 }
-.classroom-room-page .classroom-room-layout { gap: var(--ui-content-gap, var(--content-gap)); }
-.classroom-room-page .classroom-video-grid { gap: var(--ui-content-gap-compact, var(--content-gap-compact)); }
+
+.classroom-room-page .classroom-room-layout,
+.classroom-room-page .classroom-video-grid,
 .classroom-room-page .classroom-video-controls,
 .classroom-room-page .classroom-chat-input-row,
-.classroom-room-page .classroom-room-footer { gap: var(--ui-content-gap-compact, var(--content-gap-compact)); }
+.classroom-room-page .classroom-room-footer {
+  gap: var(--ui-content-gap, var(--content-gap));
+}
+
+.classroom-room-page .classroom-video-grid,
+.classroom-room-page .classroom-video-controls,
+.classroom-room-page .classroom-chat-input-row,
+.classroom-room-page .classroom-room-footer {
+  gap: var(--ui-content-gap-compact, var(--content-gap-compact));
+}
+
 .classroom-room-page .classroom-participants-panel,
-.classroom-room-page .classroom-room-info-panel { padding: var(--ui-card-padding-y, var(--card-padding-y)) var(--ui-card-padding-x, var(--card-padding-x)); }
+.classroom-room-page .classroom-room-info-panel {
+  padding: var(--ui-card-padding-y, var(--card-padding-y)) var(--ui-card-padding-x, var(--card-padding-x));
+}
+
 html[data-ui-surface="flat"] .classroom-page .classroom-room-card,
 html[data-ui-surface="flat"] .classroom-room-page .classroom-participants-panel,
-html[data-ui-surface="flat"] .classroom-room-page .classroom-room-info-panel { box-shadow: var(--shadow-none); }
+html[data-ui-surface="flat"] .classroom-room-page .classroom-room-info-panel {
+  box-shadow: var(--shadow-none);
+}
 
 body.dark-mode .classroom-page,
-body.dark-mode .classroom-room-page { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .classroom-room-page {
+  background: var(--dark-background);
+  color: var(--dark-text);
+}
+
 body.dark-mode .classroom-page .classroom-room-card,
+body.dark-mode .classroom-page .empty-state,
+body.dark-mode .classroom-page .classroom-list-table-wrap,
 body.dark-mode .classroom-room-page .classroom-participants-panel,
 body.dark-mode .classroom-room-page .classroom-room-info-panel,
-body.dark-mode .classroom-room-page .classroom-chat-panel { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .classroom-room-page .classroom-chat-panel {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text);
+}
+
 body.dark-mode .classroom-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small),
-body.dark-mode .classroom-room-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small) { color: var(--dark-text); }
-body.dark-mode .classroom-page :is(.text-muted, .section-description),
-body.dark-mode .classroom-room-page :is(.text-muted, .section-description) { color: var(--dark-text-secondary); }
-body.dark-mode .classroom-room-page :is(input, select, textarea) { background: var(--dark-background); color: var(--dark-text); border-color: var(--dark-border); }
-body.dark-mode .classroom-room-page :is(input, textarea)::placeholder { color: var(--dark-text-secondary); }
+body.dark-mode .classroom-room-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small) {
+  color: var(--dark-text);
+}
+
+body.dark-mode .classroom-page :is(.text-muted, .section-description, .empty-state-text),
+body.dark-mode .classroom-room-page :is(.text-muted, .section-description) {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .classroom-page .classroom-view-toggle {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+}
+
+body.dark-mode .classroom-page .classroom-view-toggle .view-toggle-btn.active {
+  background: var(--dark-primary);
+  color: var(--dark-background);
+}
+
+body.dark-mode .classroom-page .classroom-chip-level {
+  border-color: var(--dark-border);
+  background: var(--dark-surface-raised);
+  color: var(--dark-primary);
+}
+
+body.dark-mode .classroom-page .classroom-chip-class {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .classroom-page .classroom-list-table th {
+  background: var(--dark-surface-raised);
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .classroom-page .classroom-list-table td {
+  border-color: var(--dark-border);
+  color: var(--dark-text);
+}
+
+body.dark-mode .classroom-room-page :is(input, select, textarea) {
+  border-color: var(--dark-border);
+  background: var(--dark-background);
+  color: var(--dark-text);
+}
+
+body.dark-mode .classroom-room-page :is(input, textarea)::placeholder {
+  color: var(--dark-text-secondary);
+}
+
+@media (max-width: 640px) {
+  .classroom-page {
+    width: min(calc(100% - (var(--space-4) * 2)), var(--ui-content-max-width, var(--page-shell-max-width)));
+    padding-block: var(--space-8) var(--space-10);
+  }
+
+  .classroom-page-title {
+    max-width: 100%;
+    font-size: clamp(2rem, 9vw, 2.75rem);
+  }
+
+  .classroom-view-toggle {
+    display: flex;
+    width: fit-content;
+    max-width: 100%;
+    margin-block: var(--space-6) var(--space-4);
+  }
+
+  .classroom-view-toggle .view-toggle-btn {
+    min-height: 2.65rem;
+    padding-inline: var(--space-3);
+    font-size: var(--text-sm);
+  }
+
+  .classroom-page .empty-state {
+    min-height: 0;
+    padding: var(--space-6) var(--space-4);
+    border-radius: var(--radius-lg);
+  }
+
+  .classroom-page .empty-state-action .btn,
+  .classroom-page .empty-state-action button {
+    width: 100%;
+    min-height: 3.5rem;
+    white-space: normal;
+  }
+
+  .classroom-page .classroom-list-table th,
+  .classroom-page .classroom-list-table td {
+    padding: var(--space-3);
+  }
+}
