@@ -107,3 +107,24 @@ body.dark-mode .button-3d,
 body.dark-mode .three-d-button { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
 body.dark-mode .button-3d:hover,
 body.dark-mode .three-d-button:hover { background: var(--dark-surface-raised); color: var(--dark-text); }
+
+body:not(.dark-mode) .btn-3d.three-d-button--soft {
+  --u3d-text: var(--primary-dark);
+  --u3d-top-start: var(--primary-light);
+  --u3d-top-end: var(--primary-soft);
+  --u3d-bottom-start: var(--primary-border);
+  --u3d-bottom-end: var(--primary-border);
+}
+
+body:not(.dark-mode) .btn-3d.three-d-button--muted {
+  --u3d-text: var(--text-main);
+  --u3d-top-start: var(--grey-100);
+  --u3d-top-end: var(--grey-50);
+  --u3d-bottom-start: var(--grey-300);
+  --u3d-bottom-end: var(--grey-200);
+}
+
+body:not(.dark-mode) .btn-3d.three-d-button--soft .btn-3d__top,
+body:not(.dark-mode) .btn-3d.three-d-button--muted .btn-3d__top {
+  color: var(--u3d-text);
+}
