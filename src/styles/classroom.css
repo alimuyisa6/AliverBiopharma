@@ -122,6 +122,20 @@
   box-shadow: var(--shadow-card);
 }
 
+.classroom-page .empty-state-icon {
+  display: grid;
+  width: 4.5rem;
+  height: 4.5rem;
+  place-items: center;
+  margin-block-end: var(--space-2);
+  border: 1px solid var(--primary-border);
+  border-radius: var(--radius-lg);
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: var(--text-3xl);
+  opacity: 1;
+}
+
 .classroom-page .empty-state-image {
   width: min(100%, 9rem);
   max-height: 8rem;
