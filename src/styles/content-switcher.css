@@ -92,4 +92,4 @@
 }
 
 body.dark-mode :is(.content-switcher, .content-switcher-option, .content-switcher-tab) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
-body.dark-mode :is(.content-switcher-option.active, .content-switcher-tab.active) { background: var(--dark-primary); color: #0f172a; border-color: var(--dark-primary); }
+body.dark-mode :is(.content-switcher-option.active, .content-switcher-tab.active) { background: var(--dark-primary); color: var(--text-on-primary); border-color: var(--dark-primary); }
