@@ -225,7 +225,7 @@
   border: 1px solid color-mix(in srgb, var(--palette-blue) 36%, var(--border-default));
   border-radius: var(--radius-card, 1.25rem);
   background: color-mix(in srgb, var(--palette-blue) 12%, var(--surface-card));
-  box-shadow: var(--shadow-floating, 0 12px 32px rgb(5 2 8 / 14%));
+  box-shadow: var(--shadow-floating);
 }
 
 .ab-liquid-card {

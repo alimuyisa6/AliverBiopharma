@@ -141,7 +141,7 @@
   bottom: calc(var(--advertise-orbit-size) * -0.484);
   width: var(--advertise-orbit-size);
   height: var(--advertise-orbit-size);
-  border: 1px solid var(--amber-200);
+  border: 1px solid var(--warning-border);
   border-radius: 50%;
   pointer-events: none;
 }

@@ -311,19 +311,19 @@ body.dark-mode .newsletter-input-group .form-input::placeholder {
 body.dark-mode .newsletter-section .newsletter-submit {
   background-color: var(--dark-primary);
   border-color: var(--dark-primary);
-  color: #0b1220;
+  color: var(--dark-background);
 }
 
 body.dark-mode .newsletter-section .newsletter-submit:hover:not(:disabled) {
-  background-color: #93c5fd;
-  border-color: #93c5fd;
-  color: #0b1220;
+  background-color: var(--dark-primary);
+  border-color: var(--dark-primary);
+  color: var(--dark-background);
 }
 
 body.dark-mode .newsletter-section .form-status.success {
-  color: #4ade80;
+  color: var(--success-color);
 }
 
 body.dark-mode .newsletter-section .form-status.error {
-  color: #fca5a5;
+  color: var(--danger-border);
 }

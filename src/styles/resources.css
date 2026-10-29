@@ -667,7 +667,7 @@ body.dark-mode .resources-empty-state {
   border: 1px solid var(--border);
   border-radius: 1rem;
   background: var(--surface-card, var(--white));
-  box-shadow: var(--shadow-sm, 0 4px 18px rgb(16 28 43 / 5%));
+  box-shadow: var(--shadow-sm);
 }
 
 .resources-curriculum-entry-copy {
