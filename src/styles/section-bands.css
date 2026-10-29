@@ -161,7 +161,7 @@ body.dark-mode .home-page > .home-newsletter-section .eyebrow {
   border: 1px solid var(--blue-200);
   border-radius: var(--band-card-radius);
   background: var(--white);
-  box-shadow: 0 0.5rem 1.75rem rgb(48 61 192 / 8%);
+  box-shadow: 0 0.5rem 1.75rem var(--primary-ring);
 }
 
 .home-page .section-head {
@@ -271,7 +271,7 @@ body.dark-mode .home-page > .home-newsletter-section .eyebrow {
   border-bottom-width: 3px;
   border-radius: var(--band-card-radius);
   background: var(--white);
-  box-shadow: 0 0.75rem 2rem rgb(48 61 192 / 6%);
+  box-shadow: 0 0.75rem 2rem var(--primary-ring);
 }
 
 .home-page .home-curriculum-node-link {
@@ -303,7 +303,7 @@ body.dark-mode .home-page > .home-newsletter-section .eyebrow {
   border-bottom-width: 3px;
   border-radius: var(--band-card-radius);
   background: var(--white);
-  box-shadow: 0 0.5rem 1.5rem rgb(48 61 192 / 6%);
+  box-shadow: 0 0.5rem 1.5rem var(--primary-ring);
 }
 
 .home-page .home-continue-learning-row {
@@ -329,7 +329,7 @@ body.dark-mode .home-page > .home-newsletter-section .eyebrow {
   border-bottom-width: 3px;
   border-radius: 1.5rem;
   background: linear-gradient(135deg, var(--blue-50), var(--white) 62%, var(--emerald-50));
-  box-shadow: 0 1rem 2.5rem rgb(48 61 192 / 8%);
+  box-shadow: 0 1rem 2.5rem var(--primary-ring);
 }
 
 .home-page .why-choose-card,
@@ -341,7 +341,7 @@ body.dark-mode .home-page > .home-newsletter-section .eyebrow {
   border-color: var(--blue-200);
   border-radius: var(--band-card-radius);
   background: var(--white);
-  box-shadow: 0 0.5rem 1.75rem rgb(48 61 192 / 6%);
+  box-shadow: 0 0.5rem 1.75rem var(--primary-ring);
 }
 
 .home-page .why-choose-card,
@@ -355,7 +355,7 @@ body.dark-mode .home-page > .home-newsletter-section .eyebrow {
 .home-page .how-step:hover,
 .home-page .team-card:hover {
   border-color: var(--blue-300);
-  box-shadow: 0 1rem 2rem rgb(48 61 192 / 10%);
+  box-shadow: 0 1rem 2rem var(--primary-ring);
 }
 
 .home-page .stats-grid-section {
@@ -479,7 +479,7 @@ body.dark-mode .home-page > .home-newsletter-section .eyebrow {
   border-bottom-width: 3px;
   border-radius: 1.5rem;
   background: var(--white);
-  box-shadow: 0 0.75rem 2.25rem rgb(48 61 192 / 7%);
+  box-shadow: 0 0.75rem 2.25rem var(--primary-ring);
 }
 
 .home-page .section-teaser-inner {
@@ -719,7 +719,7 @@ body.dark-mode .home-page .study-quote-card {
   border-radius: var(--band-card-radius);
   background: var(--white);
   color: var(--text-main);
-  box-shadow: 0 0.5rem 1.75rem rgb(48 61 192 / 6%);
+  box-shadow: 0 0.5rem 1.75rem var(--primary-ring);
 }
 .card-soft--blue { border-color: var(--blue-200); background: var(--blue-50); }
 .card-soft--mint { border-color: var(--emerald-200); background: var(--emerald-50); }
