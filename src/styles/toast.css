@@ -2,7 +2,6 @@
   --toast-max-width: 25rem;
 }
 
- /* src/styles/toast.css */
 .toast-container {
   position: fixed;
   bottom: var(--space-6);
