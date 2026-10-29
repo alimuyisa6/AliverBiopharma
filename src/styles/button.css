@@ -768,3 +768,82 @@ body:not(.dark-mode) .button:disabled,
 body:not(.dark-mode) .btn-3d:disabled {
   opacity: 0.58;
 }
+
+body:not(.dark-mode) :is(.btn-primary, .button-primary, .button--primary, .btn-primary-link, .primary-button) {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: var(--text-on-primary, #ffffff);
+}
+
+body:not(.dark-mode) :is(.btn-primary, .button-primary, .button--primary, .btn-primary-link, .primary-button):hover:not(:disabled) {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+  color: var(--text-on-primary, #ffffff);
+}
+
+body:not(.dark-mode) :is(.btn-card-primary, .btn-soft, .btn-warm, .btn-violet, .btn-pink, .btn-yellow) {
+  border-style: solid;
+  border-width: var(--border-width-thin, 1px);
+}
+
+body:not(.dark-mode) .btn-card-primary {
+  background-color: var(--primary-light);
+  border-color: var(--primary-border);
+  color: var(--primary-dark);
+}
+
+body:not(.dark-mode) .btn-card-primary:hover:not(:disabled) {
+  background-color: var(--primary-soft);
+  border-color: var(--primary);
+  color: var(--primary-dark);
+}
+
+body:not(.dark-mode) .btn-soft {
+  background-color: var(--grey-50);
+  border-color: var(--grey-300);
+  color: var(--text-main);
+}
+
+body:not(.dark-mode) .btn-soft:hover:not(:disabled) {
+  background-color: var(--grey-100);
+  border-color: var(--grey-500);
+  color: var(--text-main);
+}
+
+body.dark-mode :is(.btn-primary, .button-primary, .button--primary, .btn-primary-link, .primary-button) {
+  background-color: var(--dark-primary);
+  border-color: var(--dark-primary);
+  color: #0b1220;
+}
+
+body.dark-mode :is(.btn-primary, .button-primary, .button--primary, .btn-primary-link, .primary-button):hover:not(:disabled) {
+  background-color: #93c5fd;
+  border-color: #93c5fd;
+  color: #0b1220;
+}
+
+body.dark-mode .btn-card-primary,
+body.dark-mode .btn-soft {
+  background-color: var(--dark-surface-raised);
+  border-color: var(--dark-border);
+  color: var(--dark-text);
+}
+
+body.dark-mode .btn-card-primary:hover:not(:disabled),
+body.dark-mode .btn-soft:hover:not(:disabled) {
+  background-color: var(--dark-surface);
+  border-color: var(--dark-primary);
+  color: var(--dark-text);
+}
+
+body.dark-mode :is(.btn-warm, .btn-violet, .btn-pink, .btn-yellow) {
+  background-color: var(--dark-surface-raised);
+  border-color: var(--dark-border);
+  color: var(--dark-text);
+}
+
+body.dark-mode :is(.btn-warm, .btn-violet, .btn-pink, .btn-yellow):hover:not(:disabled) {
+  background-color: var(--dark-surface);
+  border-color: var(--dark-primary);
+  color: var(--dark-text);
+}
