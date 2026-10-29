@@ -675,12 +675,12 @@ body.dark-mode .home-faq-item {
   background: var(--white);
   color: var(--text);
   text-decoration: none;
-  box-shadow: 0 6px 18px rgb(16 28 43 / 6%);
+  box-shadow: 0 6px 18px var(--shadow-sm);
   transition: border-color .15s, box-shadow .15s, transform .15s;
 }
 .home-page-redesign .home-subject-card:hover {
   border-color: var(--home-vivid-blue);
-  box-shadow: 0 10px 26px rgb(16 28 43 / 10%);
+  box-shadow: 0 10px 26px var(--shadow-md);
   transform: translateY(-2px);
 }
 .home-page-redesign .home-subject-icon {
