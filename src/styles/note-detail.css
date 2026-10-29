@@ -1141,7 +1141,7 @@
   color: var(--text-main);
 }
 .note-reactions-buttons .note-reaction-btn-like.active .note-like-heart {
-  fill: var(--danger, #e05263);
+  fill: var(--danger-color);
   animation: note-like-pop 220ms ease-out;
 }
 .note-reactions-buttons .note-reaction-btn-like.active .note-reaction-count {
@@ -1246,7 +1246,7 @@
 }
 .note-learning-error {
   margin: 0;
-  color: var(--danger, #b42336);
+  color: var(--danger-color);
   font-size: var(--text-sm);
 }
 .note-trial-questions {
@@ -1306,7 +1306,7 @@
   border-left: 3px solid var(--success);
 }
 .note-trial-feedback.is-incorrect {
-  border-left: 3px solid var(--danger, #b42336);
+  border-left: 3px solid var(--danger-color);
 }
 .note-trial-feedback p {
   margin: var(--space-2) 0 0;
@@ -2014,7 +2014,7 @@ body.dark-mode .note-hero {
 .notes-content-container h3 { margin-top: var(--space-5); font-size: var(--text-lg); line-height: var(--leading-tight); }
 .note-related-section { margin-top: var(--space-5); }
 .note-related-grid { gap: var(--space-3); }
-.note-related-grid > .card-mixed { border: 1px solid var(--blue-200); border-radius: var(--radius-md); background: var(--white); box-shadow: 0 0.25rem 0.75rem rgb(35 55 120 / 5%); }
+.note-related-grid > .card-mixed { border: 1px solid var(--blue-200); border-radius: var(--radius-md); background: var(--white); box-shadow: 0 0.25rem 0.75rem var(--shadow-subtle); }
 body.dark-mode .note-hero, body.dark-mode .note-related-grid > .card-mixed { border-color: var(--night-500); background: var(--night-800); }
 @media (max-width: 640px) { .note-detail-container { width: calc(100% - (var(--page-gutter-x) * 2)); } .note-title { font-size: clamp(1.75rem, 7vw, 2.25rem); } }
 
