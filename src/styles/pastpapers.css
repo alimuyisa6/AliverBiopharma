@@ -151,11 +151,15 @@
 }
 
 .pp-tabs .btn-primary {
-  background: var(--amber-500);
-  color: var(--text-inverse);
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--text-on-primary);
 }
 
-.pp-tabs .btn-primary:hover { background: var(--amber-600); }
+.pp-tabs .btn-primary:hover {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
 
 .pp-tabs .btn-ghost:hover {
   background: var(--grey-100);
@@ -491,12 +495,14 @@
 }
 
 .pp-card-footer .btn-primary {
-  background: var(--amber-500);
-  color: var(--text-inverse);
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--text-on-primary);
 }
 
 .pp-card-footer .btn-primary:hover {
-  background: var(--amber-600);
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
 }
@@ -562,11 +568,15 @@
 }
 
 .pp-pagination .btn-primary {
-  background: var(--amber-500);
-  color: var(--text-inverse);
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--text-on-primary);
 }
 
-.pp-pagination .btn-primary:hover { background: var(--amber-600); }
+.pp-pagination .btn-primary:hover {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
 
 .pp-pagination .btn-ghost:hover { background: var(--grey-100); }
 
@@ -688,11 +698,15 @@
 }
 
 .pp-modal-actions .btn-primary {
-  background: var(--amber-500);
-  color: var(--text-inverse);
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--text-on-primary);
 }
 
-.pp-modal-actions .btn-primary:hover { background: var(--amber-600); }
+.pp-modal-actions .btn-primary:hover {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
 
 .pp-modal-actions .btn-secondary {
   background: var(--grey-200);
