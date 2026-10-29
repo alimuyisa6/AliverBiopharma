@@ -92,7 +92,6 @@
   --text-inverse: var(--white);
   --text-link: var(--primary);
   --text-link-hover: var(--secondary);
-  --text-on-primary: var(--white);
   --text-on-dark: var(--white);
   --text-dim: var(--grey-600);
 
