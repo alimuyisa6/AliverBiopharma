@@ -1,10 +1,10 @@
 .animated-join-button {
-  --join-white: var(--text-on-primary, #fff);
-  --join-purple-100: var(--primary-light, #d2ddff);
-  --join-purple-200: var(--primary-border, #aab8ff);
-  --join-purple-300: var(--primary, #5465ff);
-  --join-purple-400: var(--primary-hover, #4050df);
-  --join-purple-500: var(--primary-dark, #27338c);
+  --join-white: var(--text-on-primary);
+  --join-purple-100: var(--primary-light);
+  --join-purple-200: var(--primary-border);
+  --join-purple-300: var(--primary);
+  --join-purple-400: var(--primary-hover);
+  --join-purple-500: var(--primary-dark);
   --join-radius: var(--radius-lg, 1rem);
   position: relative;
   display: inline-block;

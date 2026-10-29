@@ -371,13 +371,13 @@
   border-color: var(--blue-200);
   border-radius: var(--radius-md);
   background: var(--white);
-  box-shadow: 0 0.35rem 1rem rgb(35 55 120 / 5%);
+  box-shadow: 0 0.35rem 1rem var(--primary-ring);
 }
 .curriculum-node-child:hover,
 .curriculum-node-resource:hover {
   background: var(--white);
   border-color: var(--blue-400, var(--primary));
-  box-shadow: 0 0.6rem 1.25rem rgb(35 55 120 / 9%);
+  box-shadow: 0 0.6rem 1.25rem var(--primary-ring);
 }
 .curriculum-node-linked-group:nth-child(3n + 2) { border-top: 3px solid var(--teal-300, var(--blue-300)); }
 .curriculum-node-linked-group:nth-child(3n) { border-top: 3px solid var(--violet-300, var(--blue-300)); }
@@ -433,7 +433,7 @@ body.dark-mode .curriculum-node-resource:hover {
 .notes-pathway-item strong { white-space: normal; }
 .notes-toolbar { margin-top: var(--space-4); margin-bottom: var(--space-3); }
 .notes-grid { width: min(100%, 66rem); margin-inline: auto; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: var(--space-3); }
-.notes-card { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-4); border: 1px solid var(--blue-200); border-radius: var(--radius-md); background: var(--white); box-shadow: 0 0.25rem 0.75rem rgb(35 55 120 / 5%); }
+.notes-card { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-4); border: 1px solid var(--blue-200); border-radius: var(--radius-md); background: var(--white); box-shadow: 0 0.25rem 0.75rem var(--primary-ring); }
 .notes-card .card-body { padding: 0; }
 .notes-card .card-title { margin: 0; font-size: var(--text-lg); line-height: var(--leading-tight); }
 .notes-card .card-text { display: -webkit-box; overflow: hidden; margin: 0; color: var(--text-secondary); font-size: var(--text-sm); line-height: var(--leading-relaxed); -webkit-box-orient: vertical; -webkit-line-clamp: 3; }

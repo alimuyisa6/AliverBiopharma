@@ -521,7 +521,7 @@
   border-bottom-width: 3px;
   border-radius: 1.25rem;
   background: var(--white);
-  box-shadow: 0 0.5rem 1.5rem rgb(48 61 192 / 5%);
+  box-shadow: 0 0.5rem 1.5rem var(--primary-ring);
 }
 .notes-curriculum-context {
   padding: clamp(1.125rem, 3vw, 1.75rem);
@@ -567,7 +567,7 @@
 }
 .notes-search:focus-within {
   border-color: var(--blue-500);
-  box-shadow: 0 0 0 3px rgb(84 101 255 / 15%);
+  box-shadow: 0 0 0 3px var(--primary-ring);
 }
 .notes-search input {
   min-width: 0;
@@ -583,7 +583,7 @@
 .notes-grid > * {
   border-color: var(--blue-200);
   border-radius: 1.25rem;
-  box-shadow: 0 0.5rem 1.5rem rgb(48 61 192 / 5%);
+  box-shadow: 0 0.5rem 1.5rem var(--primary-ring);
 }
 .notes-card-footer {
   display: flex;
@@ -600,9 +600,9 @@
   outline-offset: 3px;
 }
 body.dark-mode .notes-page-intro {
-  border-color: #45405f;
-  border-bottom-color: #454b80;
-  background: linear-gradient(120deg, #20203c, #100d1a 68%, #123a35);
+  border-color: var(--dark-border);
+  border-bottom-color: var(--dark-border);
+  background: var(--dark-background);
 }
 body.dark-mode .notes-page-kicker,
 body.dark-mode .notes-context-kicker,
@@ -611,24 +611,24 @@ body.dark-mode .notes-section-heading .sec-label {
 }
 body.dark-mode .notes-curriculum-context,
 body.dark-mode .notes-pathway {
-  border-color: #45405f;
-  background: #100d1a;
+  border-color: var(--dark-border);
+  background: var(--dark-background);
 }
 body.dark-mode .notes-pathway-item {
-  border-color: #302c4a;
-  background: #17152a;
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
 }
 body.dark-mode .notes-pathway-item:hover {
-  border-color: #454b80;
-  background: #20203c;
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
 }
 body.dark-mode .notes-toolbar {
-  border-color: #45405f;
-  background: #100d1a;
+  border-color: var(--dark-border);
+  background: var(--dark-background);
 }
 body.dark-mode .notes-search {
-  border-color: #45405f;
-  background: #17152a;
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
 }
 @media (max-width: 640px) {
   .notes-page-intro {
@@ -668,7 +668,7 @@ body.dark-mode .notes-search {
 .flashcards-page { background: linear-gradient(180deg, var(--blue-50), var(--teal-50, var(--blue-50))); padding-block: var(--space-3); }
 .flashcard-subtitle, .quiz-intro-description, .recall-page-intro { max-width: 58ch; font-size: var(--text-sm); line-height: var(--leading-relaxed); }
 .flashcard-decks-grid { gap: var(--space-3); }
-.flashcard-deck-card { padding: var(--space-4); border: 1px solid var(--blue-200); border-radius: var(--radius-md); background: var(--white); box-shadow: 0 0.25rem 0.75rem rgb(35 55 120 / 5%); }
+.flashcard-deck-card { padding: var(--space-4); border: 1px solid var(--blue-200); border-radius: var(--radius-md); background: var(--white); box-shadow: 0 0.25rem 0.75rem var(--primary-ring); }
 .flashcard-deck-card .card-title { font-size: var(--text-lg); line-height: var(--leading-tight); }
 .flashcard-deck-card .card-text { font-size: var(--text-sm); line-height: var(--leading-relaxed); }
 .flashcard-deck-card .card-footer { margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px solid var(--border-subtle); }

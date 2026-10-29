@@ -500,13 +500,13 @@ html:has(body.dark-mode) {
 body.dark-mode :is(.btn-primary, .button-primary, .button--primary, .bg-primary) {
   background-color: var(--dark-primary);
   border-color: var(--dark-primary);
-  color: #0b1220;
+  color: var(--text);
 }
 
 body.dark-mode :is(.btn-primary, .button-primary, .button--primary, .bg-primary):hover:not(:disabled) {
-  background-color: #93c5fd;
-  border-color: #93c5fd;
-  color: #0b1220;
+  background-color: var(--dark-primary);
+  border-color: var(--dark-primary);
+  color: var(--text);
 }
 
 @media (max-width: 640px) {

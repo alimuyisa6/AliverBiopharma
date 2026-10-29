@@ -1,41 +1,14 @@
 :root {
 
-  --primary-hover: color-mix(in srgb, var(--primary) 76%, var(--text));
-  --primary-dark: color-mix(in srgb, var(--primary) 62%, var(--text));
-  --primary-soft: color-mix(in srgb, var(--primary) 10%, var(--background));
-  --primary-light: color-mix(in srgb, var(--primary) 16%, var(--background));
-  --primary-border: color-mix(in srgb, var(--primary) 42%, var(--background));
-  --primary-ring: color-mix(in srgb, var(--primary) 34%, transparent);
-
-  --secondary-hover: color-mix(in srgb, var(--secondary) 70%, var(--text));
-  --secondary-light: color-mix(in srgb, var(--secondary) 20%, var(--background));
-  --secondary-border: color-mix(in srgb, var(--secondary) 48%, var(--background));
-
-  --accent-hover: color-mix(in srgb, var(--accent) 72%, var(--text));
-  --accent-light: color-mix(in srgb, var(--accent) 16%, var(--background));
-  --accent-border: color-mix(in srgb, var(--accent) 48%, var(--background));
-
   --success: var(--success-color);
   --color-success: var(--success-color);
   --color-success-strong: var(--success-color);
-  --success-hover: var(--success-color);
-  --success-light: var(--success-background);
-  --success-border: color-mix(in srgb, var(--success-color) 30%, var(--background));
 
   --danger: var(--danger-color);
-  --danger-hover: var(--danger-color);
-  --danger-light: var(--danger-background);
-  --danger-border: color-mix(in srgb, var(--danger-color) 30%, var(--background));
 
   --warning: var(--warning-color);
-  --warning-hover: var(--warning-color);
-  --warning-light: var(--warning-background);
-  --warning-border: color-mix(in srgb, var(--warning-color) 30%, var(--background));
 
   --info: var(--info-color);
-  --info-hover: var(--info-color);
-  --info-light: var(--info-background);
-  --info-border: color-mix(in srgb, var(--info-color) 30%, var(--background));
 
   --violet: var(--primary);
   --violet-hover: var(--primary-hover);
@@ -79,12 +52,12 @@
 
   --tone-violet: var(--primary);
   --tone-violet-hover: var(--primary);
-  --tone-violet-bg: var(--primary);
+  --tone-violet-bg: var(--primary-light);
   --tone-violet-border: var(--primary);
 
   --tone-pink: var(--accent);
   --tone-pink-hover: var(--accent);
-  --tone-pink-bg: var(--accent);
+  --tone-pink-bg: var(--accent-light);
   --tone-pink-border: var(--accent);
 
   --tone-yellow: var(--warning-color);
@@ -119,7 +92,6 @@
   --text-inverse: var(--white);
   --text-link: var(--primary);
   --text-link-hover: var(--secondary);
-  --text-on-primary: var(--white);
   --text-on-dark: var(--white);
   --text-dim: var(--grey-600);
 
@@ -284,8 +256,8 @@
 
 body.dark-mode {
   --primary: var(--dark-primary);
-  --primary-hover: #93c5fd;
-  --primary-dark: #bfdbfe;
+  --primary-hover: #b4ccff;
+  --primary-dark: #d4e1ff;
   --primary-soft: color-mix(in srgb, var(--dark-primary) 16%, var(--dark-background));
   --primary-light: color-mix(in srgb, var(--dark-primary) 20%, var(--dark-surface));
   --primary-border: color-mix(in srgb, var(--dark-primary) 48%, var(--dark-surface));
@@ -295,7 +267,7 @@ body.dark-mode {
   --secondary-light: var(--dark-surface);
   --secondary-border: var(--dark-border);
   --accent: var(--dark-accent);
-  --accent-hover: #99f6e4;
+  --accent-hover: #8be2dc;
   --accent-light: color-mix(in srgb, var(--dark-accent) 16%, var(--dark-surface));
   --accent-border: color-mix(in srgb, var(--dark-accent) 45%, var(--dark-surface));
   --success: #4ade80;
@@ -383,7 +355,7 @@ body.dark-mode {
   --text-inverse: #0f172a;
   --text-link: var(--dark-primary);
   --text-link-hover: #93c5fd;
-  --text-on-primary: #0b1220;
+  --text-on-primary: #10243a;
   --text-on-dark: var(--dark-text);
   --text-dim: var(--dark-text-secondary);
   --border-transparent: transparent;
@@ -450,57 +422,57 @@ body.dark-mode {
 }
 
 html[data-theme-color="blue"] {
-  --primary: var(--primary);
-  --primary-hover: var(--primary);
-  --primary-light: var(--primary);
-  --primary-border: var(--primary);
-  --primary-ring: var(--primary);
+  --primary: #2457c5;
+  --primary-hover: #1b439a;
+  --primary-light: #e8efff;
+  --primary-border: #b9caf7;
+  --primary-ring: rgb(36 87 197 / 28%);
   --text-link: var(--primary);
-  --text-link-hover: var(--primary);
+  --text-link-hover: var(--primary-hover);
   --border-focus: var(--primary);
 }
 
 html[data-theme-color="teal"] {
-  --primary: var(--primary);
-  --primary-hover: var(--primary);
-  --primary-light: var(--primary);
-  --primary-border: var(--primary);
-  --primary-ring: var(--secondary);
+  --primary: #0f8b8d;
+  --primary-hover: var(--accent-hover);
+  --primary-light: #e2f5f4;
+  --primary-border: #a7dcda;
+  --primary-ring: rgb(15 139 141 / 28%);
   --text-link: var(--primary);
-  --text-link-hover: var(--primary);
+  --text-link-hover: var(--primary-hover);
   --border-focus: var(--primary);
 }
 
 html[data-theme-color="emerald"] {
-  --primary: var(--secondary);
-  --primary-hover: var(--secondary);
-  --primary-light: var(--secondary);
-  --primary-border: var(--secondary);
-  --primary-ring: var(--secondary);
-  --text-link: var(--secondary);
-  --text-link-hover: var(--secondary);
+  --primary: #16794b;
+  --primary-hover: #105f3a;
+  --primary-light: #e7f6ed;
+  --primary-border: #a9dec0;
+  --primary-ring: rgb(22 121 75 / 28%);
+  --text-link: var(--primary);
+  --text-link-hover: var(--primary-hover);
   --border-focus: var(--primary);
 }
 
 html[data-theme-color="amber"] {
-  --primary: var(--accent);
-  --primary-hover: var(--accent);
-  --primary-light: var(--accent);
-  --primary-border: var(--accent);
-  --primary-ring: var(--accent);
-  --text-link: var(--accent);
-  --text-link-hover: var(--accent);
+  --primary: #946200;
+  --primary-hover: #744c00;
+  --primary-light: #fff5d9;
+  --primary-border: #ead08a;
+  --primary-ring: rgb(148 98 0 / 28%);
+  --text-link: var(--primary);
+  --text-link-hover: var(--primary-hover);
   --border-focus: var(--primary);
 }
 
 html[data-theme-color="grey"] {
-  --primary: var(--text);
-  --primary-hover: var(--text);
-  --primary-light: var(--text);
-  --primary-border: var(--text);
-  --primary-ring: var(--neutral-ring);
-  --text-link: var(--text);
-  --text-link-hover: var(--text);
+  --primary: #34475b;
+  --primary-hover: #223548;
+  --primary-light: #f0f4f8;
+  --primary-border: #c5d0dc;
+  --primary-ring: rgb(52 71 91 / 28%);
+  --text-link: var(--primary);
+  --text-link-hover: var(--primary-hover);
   --border-focus: var(--primary);
 }
 

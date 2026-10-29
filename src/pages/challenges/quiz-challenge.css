@@ -16,7 +16,7 @@
   border-bottom: 3px solid var(--blue-300, var(--border-default));
   border-radius: 1.25rem;
   background: var(--bg-card, var(--white));
-  box-shadow: 0 0.75rem 2rem rgb(48 61 192 / 5%);
+  box-shadow: 0 0.75rem 2rem rgb(36 87 197 / 5%);
 }
 .quiz-challenge-page .quiz-challenge-state,
 .quiz-challenge-page .quiz-challenge-result {
@@ -106,7 +106,7 @@
   border-bottom: 3px solid var(--blue-300, var(--border-default));
   border-radius: 1rem;
   background: var(--bg-card, var(--white));
-  box-shadow: 0 .5rem 1.5rem rgb(48 61 192 / 4%);
+  box-shadow: 0 .5rem 1.5rem rgb(36 87 197 / 4%);
 }
 .quiz-challenge-page .quiz-challenge-question-meta {
   display: flex;

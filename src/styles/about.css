@@ -475,13 +475,13 @@ body.dark-mode .contact-page :is(input, select, textarea) { background: var(--da
 body.dark-mode .contact-page :is(input, textarea)::placeholder { color: var(--dark-text-secondary); }
 
 .about-hero {
-  background-color: var(--primary, #1769aa);
-  color: var(--white, #ffffff);
+  background-color: var(--primary);
+  color: var(--white);
 }
 
 .about-hero-title,
 .about-hero-subtext {
-  color: var(--white, #ffffff);
+  color: var(--white);
 }
 
 .about-section {
@@ -518,5 +518,5 @@ body.dark-mode .about-section :is(.inline-link, .team-card-role, .faq-question::
 
 body.dark-mode .about-section .about-cta-button {
   background-color: var(--dark-primary);
-  color: #0b1220;
+  color: var(--text);
 }

@@ -621,7 +621,7 @@ body.dark-mode .home-faq-item {
 
 
 .home-page-redesign {
-  --home-vivid-blue: #5465ff;
+  --home-vivid-blue: var(--primary);
   --home-vivid-mint: #00bfa0;
   --home-vivid-mint-bright: #00ffd4;
   --home-pale-blue: #f5f6ff;
@@ -689,7 +689,7 @@ body.dark-mode .home-faq-item {
   display: grid;
   place-items: center;
   border-radius: 12px;
-  background: #5465ff;
+  background: var(--primary);
   color: #fff;
 }
 .home-page-redesign .home-subject-icon svg {
@@ -715,7 +715,7 @@ body.dark-mode .home-faq-item {
   gap: .35rem;
   margin-top: auto;
   padding-top: .3rem;
-  color: #5465ff;
+  color: var(--primary);
   font-size: .9rem;
   font-weight: 700;
 }
@@ -754,8 +754,8 @@ body.dark-mode .home-faq-item {
   font-weight: 600;
 }
 .home-page-redesign .home-tool-links a:hover {
-  border-color: #5465ff;
-  color: #5465ff;
+  border-color: var(--primary);
+  color: var(--primary);
 }
 .home-page-redesign .home-learning-journey-wrap {
   width: 100%;

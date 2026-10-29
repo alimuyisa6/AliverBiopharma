@@ -388,7 +388,7 @@
   border-bottom: 3px solid var(--blue-300);
   border-radius: 1.5rem;
   background: linear-gradient(120deg, var(--blue-50), var(--white) 66%, var(--emerald-50));
-  box-shadow: 0 0.75rem 2.25rem rgb(48 61 192 / 6%);
+  box-shadow: 0 0.75rem 2.25rem var(--primary-ring);
 }
 .resources-intro > div {
   min-width: 0;
@@ -459,12 +459,12 @@
   border-color: var(--blue-200);
   border-bottom: 3px solid var(--blue-200);
   border-radius: var(--resources-card-radius);
-  box-shadow: 0 0.5rem 1.5rem rgb(48 61 192 / 5%);
+  box-shadow: 0 0.5rem 1.5rem var(--primary-ring);
 }
 .resource-card:hover {
   border-color: var(--blue-300);
   border-bottom-color: var(--blue-500, var(--primary));
-  box-shadow: 0 1rem 2rem rgb(48 61 192 / 9%);
+  box-shadow: 0 1rem 2rem var(--primary-ring);
   transform: translateY(-2px);
 }
 .resource-card::before {
@@ -721,7 +721,7 @@ body.dark-mode .resources-empty-state {
 .resource-card {
   background: var(--white);
   border-color: var(--blue-200);
-  box-shadow: 0 0.5rem 1.5rem rgb(35 55 120 / 7%);
+  box-shadow: 0 0.5rem 1.5rem var(--primary-ring);
 }
 .resource-card-teal { border-color: var(--teal-200, var(--blue-200)); }
 .resource-card-grey { border-color: var(--grey-200, var(--blue-200)); }
@@ -730,7 +730,7 @@ body.dark-mode .resources-empty-state {
 .resource-card-violet { border-color: var(--violet-200, var(--blue-200)); }
 .resource-card:hover {
   background: var(--white);
-  box-shadow: 0 0.8rem 1.8rem rgb(35 55 120 / 11%);
+  box-shadow: 0 0.8rem 1.8rem var(--primary-ring);
 }
 .resource-card-footer {
   background: var(--white);
@@ -767,7 +767,7 @@ body.dark-mode .resources-curriculum-entry {
 .resource-card:hover {
   border-color: var(--blue-200);
   border-bottom-color: var(--blue-200);
-  box-shadow: 0 0.5rem 1.5rem rgb(35 55 120 / 7%);
+  box-shadow: 0 0.5rem 1.5rem var(--primary-ring);
   transform: none;
 }
 .resource-card-teal:hover { border-color: var(--teal-200, var(--blue-200)); }

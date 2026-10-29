@@ -17,7 +17,7 @@
   border: 1px solid var(--primary);
   border-radius: var(--radius-button);
   background: var(--primary);
-  color: var(--text-on-primary, #ffffff);
+  color: var(--text-on-primary);
   font-family: var(--font-primary);
   font-size: var(--text-base);
   font-weight: var(--weight-semibold);
