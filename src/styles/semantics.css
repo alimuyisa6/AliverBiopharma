@@ -504,55 +504,10 @@ html[data-theme-color="grey"] {
   --border-focus: var(--primary);
 }
 
-html[data-theme-color="blue"] body.dark-mode {
-  --primary: var(--primary);
-  --primary-hover: var(--primary);
-  --primary-light: var(--primary);
-  --primary-border: var(--primary);
-  --primary-ring: var(--primary);
-  --text-link: var(--primary);
-  --text-link-hover: var(--primary);
-}
 
-html[data-theme-color="teal"] body.dark-mode {
-  --primary: var(--primary);
-  --primary-hover: var(--primary);
-  --primary-light: var(--primary);
-  --primary-border: var(--primary);
-  --primary-ring: var(--secondary);
-  --text-link: var(--primary);
-  --text-link-hover: var(--primary);
-}
 
-html[data-theme-color="emerald"] body.dark-mode {
-  --primary: var(--secondary);
-  --primary-hover: var(--secondary);
-  --primary-light: var(--secondary);
-  --primary-border: var(--secondary);
-  --primary-ring: var(--secondary);
-  --text-link: var(--secondary);
-  --text-link-hover: var(--secondary);
-}
 
-html[data-theme-color="amber"] body.dark-mode {
-  --primary: var(--accent);
-  --primary-hover: var(--accent);
-  --primary-light: var(--accent);
-  --primary-border: var(--accent);
-  --primary-ring: var(--accent);
-  --text-link: var(--accent);
-  --text-link-hover: var(--accent);
-}
 
-html[data-theme-color="grey"] body.dark-mode {
-  --primary: var(--text);
-  --primary-hover: var(--text);
-  --primary-light: var(--text);
-  --primary-border: var(--text);
-  --primary-ring: var(--neutral-ring-dark);
-  --text-link: var(--text);
-  --text-link-hover: var(--text);
-}
 
 body.accessibility-large-text {
   --text-xs: 0.8125rem;
