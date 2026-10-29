@@ -624,3 +624,147 @@ body.dark-mode .btn:disabled,
 body.dark-mode .button:disabled {
   opacity: 0.58;
 }
+
+body:not(.dark-mode) .btn-warm {
+  background-color: var(--primary-light);
+  border-color: var(--primary-border);
+  color: var(--primary-dark);
+}
+
+body:not(.dark-mode) .btn-warm:hover:not(:disabled) {
+  background-color: var(--primary-soft);
+  border-color: var(--primary);
+  color: var(--primary-dark);
+}
+
+body:not(.dark-mode) .btn-success {
+  background-color: var(--success-light);
+  border-color: var(--success-border);
+  color: var(--success);
+}
+
+body:not(.dark-mode) .btn-success:hover:not(:disabled) {
+  background-color: var(--success-light);
+  border-color: var(--success);
+  color: var(--success);
+}
+
+body:not(.dark-mode) .btn-danger {
+  background-color: var(--danger-light);
+  border-color: var(--danger-border);
+  color: var(--danger);
+}
+
+body:not(.dark-mode) .btn-danger:hover:not(:disabled) {
+  background-color: var(--danger-light);
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+body:not(.dark-mode) .btn-info {
+  background-color: var(--info-light);
+  border-color: var(--info-border);
+  color: var(--info);
+}
+
+body:not(.dark-mode) .btn-info:hover:not(:disabled) {
+  background-color: var(--info-light);
+  border-color: var(--info);
+  color: var(--info);
+}
+
+body:not(.dark-mode) .btn-violet {
+  background-color: var(--primary-light);
+  border-color: var(--primary-border);
+  color: var(--primary-dark);
+}
+
+body:not(.dark-mode) .btn-violet:hover:not(:disabled) {
+  background-color: var(--primary-soft);
+  border-color: var(--primary);
+  color: var(--primary-dark);
+}
+
+body:not(.dark-mode) .btn-pink {
+  background-color: var(--accent-light);
+  border-color: var(--accent-border);
+  color: var(--text-main);
+}
+
+body:not(.dark-mode) .btn-pink:hover:not(:disabled) {
+  background-color: var(--accent-light);
+  border-color: var(--accent);
+  color: var(--text-main);
+}
+
+body:not(.dark-mode) .btn-yellow {
+  background-color: var(--warning-light);
+  border-color: var(--warning-border);
+  color: var(--text-main);
+}
+
+body:not(.dark-mode) .btn-yellow:hover:not(:disabled) {
+  background-color: var(--warning-light);
+  border-color: var(--warning);
+  color: var(--text-main);
+}
+
+body:not(.dark-mode) .btn-card-primary {
+  background-color: var(--primary-light);
+  border-color: var(--primary-border);
+  color: var(--primary-dark);
+}
+
+body:not(.dark-mode) .btn-card-primary:hover:not(:disabled) {
+  background-color: var(--primary-soft);
+  border-color: var(--primary);
+  color: var(--primary-dark);
+}
+
+body:not(.dark-mode) .btn-secondary {
+  background-color: var(--white);
+  border-color: var(--border-strong);
+  color: var(--text-main);
+}
+
+body:not(.dark-mode) .btn-secondary:hover:not(:disabled) {
+  background-color: var(--primary-soft);
+  border-color: var(--primary);
+  color: var(--primary-dark);
+}
+
+body:not(.dark-mode) .btn-ghost {
+  color: var(--grey-700);
+}
+
+body:not(.dark-mode) .btn-ghost:hover:not(:disabled) {
+  background-color: var(--grey-100);
+  color: var(--text-main);
+}
+
+body:not(.dark-mode) .btn-icon {
+  color: var(--grey-700);
+}
+
+body:not(.dark-mode) .btn-icon:hover:not(:disabled) {
+  background-color: var(--grey-100);
+  color: var(--primary-dark);
+}
+
+body:not(.dark-mode) .btn-status-success {
+  background-color: var(--success-light);
+  border-color: var(--success-border);
+  color: var(--success);
+}
+
+body:not(.dark-mode) .btn-status-error {
+  background-color: var(--danger-light);
+  border-color: var(--danger-border);
+  color: var(--danger);
+}
+
+body:not(.dark-mode) .btn:disabled,
+body:not(.dark-mode) .button:disabled,
+body:not(.dark-mode) .btn-3d:disabled {
+  opacity: 0.58;
+}
