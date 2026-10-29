@@ -143,7 +143,7 @@ export default function Classroom() {
 
         {!loading && !error && rooms.length === 0 && (
           <EmptyState
-            image={getEmptyStateImage('classrooms')}
+            icon="users"
             title="No classrooms available yet"
             description={`There are no active classrooms for ${classLabel || levelName || 'your selected level'} right now. Check back later for new sessions.`}
             action={
