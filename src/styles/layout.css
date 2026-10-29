@@ -686,3 +686,33 @@ body.dark-mode .home-scope-switcher {
 .header-glyph-search { display: inline-grid; width: 1.25rem; height: 1.25rem; place-items: center; font-size: 1.55rem; line-height: 1; }
 .header-glyph-theme { display: inline-grid; width: 1.25rem; height: 1.25rem; place-items: center; font-size: 1.25rem; line-height: 1; }
 @media (prefers-reduced-motion: reduce) { .header-glyph-menu i { transition: none; } }
+
+body.dark-mode .site-header,
+body.dark-mode .site-header.scrolled {
+  background: var(--dark-surface);
+  border-bottom-color: var(--dark-border);
+}
+
+body.dark-mode .site-header :is(.header-logo, .main-nav-link, .nav-actions button, .header-action) {
+  color: var(--dark-text);
+}
+
+body.dark-mode .site-header :is(.main-nav-link:hover, .main-nav-link.active, .header-logo:hover) {
+  color: var(--dark-primary);
+}
+
+body.dark-mode .site-header :is(.class-switcher-trigger, .class-switcher-menu, .dropdown-menu, .mobile-nav, .mobile-nav-panel, .mobile-menu-panel, .nav-dropdown) {
+  background: var(--dark-surface);
+  color: var(--dark-text);
+  border-color: var(--dark-border);
+}
+
+body.dark-mode .site-header :is(.class-switcher-menu, .dropdown-menu, .mobile-nav, .mobile-nav-panel, .mobile-menu-panel, .nav-dropdown) :is(a, button, span, p, small, strong) {
+  color: var(--dark-text);
+}
+
+body.dark-mode .footer {
+  background: var(--dark-background);
+  border-top-color: var(--dark-border);
+  --footer-wave-fill: var(--dark-background);
+}
