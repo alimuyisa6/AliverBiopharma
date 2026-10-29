@@ -966,7 +966,7 @@
 }
 .pp-search-input:focus {
   border-color: var(--blue-600);
-  box-shadow: 0 0 0 3px rgb(84 101 255 / 15%);
+  box-shadow: 0 0 0 3px var(--primary-ring);
 }
 .pp-count {
   color: var(--text-secondary);
