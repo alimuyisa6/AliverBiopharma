@@ -473,3 +473,50 @@ body.dark-mode .about-page :is(.text-muted, .about-description, .section-descrip
 body.dark-mode .contact-page :is(.text-muted, .contact-description) { color: var(--dark-text-secondary); }
 body.dark-mode .contact-page :is(input, select, textarea) { background: var(--dark-background); color: var(--dark-text); border-color: var(--dark-border); }
 body.dark-mode .contact-page :is(input, textarea)::placeholder { color: var(--dark-text-secondary); }
+
+.about-hero {
+  background-color: var(--primary, #1769aa);
+  color: var(--white, #ffffff);
+}
+
+.about-hero-title,
+.about-hero-subtext {
+  color: var(--white, #ffffff);
+}
+
+.about-section {
+  background-color: var(--bg-page, var(--background));
+}
+
+body.dark-mode .about-hero {
+  background-color: var(--dark-surface);
+  color: var(--dark-text);
+}
+
+body.dark-mode .about-hero-title,
+body.dark-mode .about-hero-subtext {
+  color: var(--dark-text);
+}
+
+body.dark-mode .about-section {
+  background-color: var(--dark-background);
+  color: var(--dark-text);
+}
+
+body.dark-mode .about-section :is(.about-title, .about-block-heading, .about-block p, .about-contact-item, .faq-question, .faq-answer, .team-card-body h3, .team-card-bio, .contributor-card strong, .contributor-card span, .about-contact-subtext, .about-cta-text) {
+  color: var(--dark-text);
+}
+
+body.dark-mode .about-section :is(.team-card, .contributor-card, .faq-item, .about-contact, .about-cta) {
+  background-color: var(--dark-surface);
+  border-color: var(--dark-border);
+}
+
+body.dark-mode .about-section :is(.inline-link, .team-card-role, .faq-question::after, .about-contact-item:hover, .team-social-link:hover, .about-social-link:hover) {
+  color: var(--dark-primary);
+}
+
+body.dark-mode .about-section .about-cta-button {
+  background-color: var(--dark-primary);
+  color: #0b1220;
+}
