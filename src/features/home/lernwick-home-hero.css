@@ -11,7 +11,7 @@
 .hero__ctas{display:flex;flex-wrap:wrap;align-items:center;gap:1rem 1.4rem}
 .hero .btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;min-height:3.1rem;padding:.8rem 1.6rem;border-radius:var(--r-pill);font:600 var(--t-base)/1 var(--f-display);transition:transform var(--dur) var(--ease),background-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
 .hero .btn svg{width:1.1em;height:1.1em}
-.hero .btn--orange{background:var(--orange);color:var(--ink);box-shadow:0 10px 22px -12px rgb(27 43 58 / 45%)}
+.hero .btn--orange{background:var(--orange);color:var(--ink);box-shadow:var(--shadow-card)}
 .hero .btn--orange:hover{background:var(--primary-hover);color:var(--white);transform:translateY(-2px)}
 .hero__how{display:inline-flex;align-items:center;gap:.7rem;font:600 var(--t-base)/1 var(--f-display)}
 .hero__play{width:3.1rem;height:3.1rem;border-radius:50%;border:1.5px solid var(--ink);display:grid;place-items:center;transition:background-color var(--dur) var(--ease)}
