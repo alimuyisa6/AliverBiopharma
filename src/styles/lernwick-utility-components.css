@@ -260,3 +260,203 @@
     transition: none !important;
   }
 }
+
+.pdf-library-page {
+  color: var(--ink);
+  font-family: var(--f-body);
+}
+
+.pdf-library-heading,
+.pdf-library-controls {
+  border-color: var(--line);
+  border-radius: var(--r-lg);
+  background: var(--soft);
+  box-shadow: none;
+}
+
+.pdf-library-heading {
+  padding: clamp(1.25rem, 1rem + 2vw, 2.25rem);
+}
+
+.pdf-library-title {
+  color: var(--ink);
+  font-family: var(--f-display);
+  font-size: var(--t-2xl);
+  font-weight: 700;
+  letter-spacing: -.04em;
+}
+
+.pdf-library-class,
+.pdf-library-description,
+.pdf-library-controls-copy p {
+  color: var(--ink-2);
+  font-family: var(--f-body);
+}
+
+.pdf-library-controls {
+  padding: clamp(1rem, .75rem + 1vw, 1.5rem);
+}
+
+.pdf-library-controls-copy h2 {
+  color: var(--ink);
+  font-family: var(--f-display);
+}
+
+.pdf-card {
+  overflow: hidden;
+  border-color: var(--line);
+  border-radius: var(--r-md);
+  background: var(--paper);
+  box-shadow: var(--shadow-card);
+}
+
+.pdf-card-image,
+.pdf-card-body,
+.pdf-card-footer {
+  background: var(--paper);
+}
+
+.pdf-card-image {
+  min-height: 7rem;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-2);
+}
+
+.pdf-card-title {
+  color: var(--ink);
+  font-family: var(--f-display);
+  font-size: var(--t-sm);
+}
+
+.pdf-card-author,
+.pdf-card-size {
+  color: var(--ink-2);
+}
+
+.pdf-card-footer {
+  border-top-color: var(--line);
+}
+
+.pdf-card-footer .pdf-download {
+  border-color: var(--orange);
+  border-radius: var(--r-pill);
+  background: var(--orange);
+  color: var(--ink);
+  font-family: var(--f-display);
+  font-weight: 700;
+}
+
+.pdf-card-footer .pdf-download:hover {
+  border-color: var(--orange-hover);
+  background: var(--orange-hover);
+}
+
+.challenge-runner-page,
+.challenges-page,
+.quiz-challenge-page {
+  color: var(--ink);
+  font-family: var(--f-body);
+}
+
+.challenge-runner-hero,
+.challenge-runner-loading,
+.challenge-runner-error,
+.challenges-hero,
+.quiz-challenge-page .quiz-challenge-shell,
+.quiz-challenge-page .quiz-challenge-state,
+.quiz-challenge-page .quiz-challenge-result {
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: var(--shadow-card);
+}
+
+.challenge-runner-visual {
+  border-color: var(--line);
+  background: var(--peach);
+}
+
+.challenge-runner-copy h1,
+.challenge-runner-copy h2,
+.challenges-heading :where(h1, h2),
+.quiz-challenge-page :where(h1, h2, h3) {
+  color: var(--ink);
+  font-family: var(--f-display);
+  letter-spacing: -.035em;
+}
+
+.challenge-runner-copy p,
+.challenge-runner-facts,
+.challenge-runner-note,
+.challenges-page :where(p, small),
+.quiz-challenge-page :where(p, small) {
+  color: var(--ink-2);
+}
+
+.challenge-runner-facts span,
+.challenge-runner-note,
+.quiz-challenge-page .quiz-challenge-question {
+  border-color: var(--line);
+  border-radius: var(--r-md);
+  background: var(--soft);
+}
+
+.quiz-challenge-page .quiz-challenge-option {
+  border-color: var(--line-2);
+  border-radius: var(--r-md);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.quiz-challenge-page .quiz-challenge-option:hover:not(:disabled),
+.quiz-challenge-page .quiz-challenge-option.is-selected {
+  border-color: var(--orange);
+  background: var(--peach);
+  color: var(--ink);
+  box-shadow: none;
+}
+
+.quiz-challenge-page .quiz-challenge-progress-bar {
+  background: var(--line);
+}
+
+.quiz-challenge-page .quiz-challenge-progress-bar span {
+  background: var(--orange);
+}
+
+.quiz-challenge-page .quiz-challenge-score,
+.quiz-challenge-page .quiz-challenge-result-icon {
+  color: var(--orange-deep);
+}
+
+.challenge-runner-actions .btn-primary,
+.challenges-page .btn-primary,
+.quiz-challenge-page .btn-primary {
+  border-color: var(--orange);
+  border-radius: var(--r-pill);
+  background: var(--orange);
+  color: var(--ink);
+  font-family: var(--f-display);
+  font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .pdf-library-heading,
+  .pdf-library-controls {
+    border-radius: var(--r-md);
+  }
+
+  .challenge-runner-hero,
+  .challenges-hero,
+  .quiz-challenge-page .quiz-challenge-shell {
+    border-radius: var(--r-lg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .challenge-runner-cartoon,
+  .runner-star {
+    animation: none;
+  }
+}
