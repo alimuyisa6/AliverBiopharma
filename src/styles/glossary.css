@@ -871,8 +871,8 @@ body.dark-mode .glossary-page { background: var(--bg-page); }
 body.dark-mode .glossary-page { background: var(--dark-background); }
 body.dark-mode .glossary-header { background: var(--dark-surface); }
 body.dark-mode .glossary-route-card { background: var(--dark-surface); }
-.glossary-page { width: 100%; background: var(--primary-light); }
-.glossary-header { background: var(--primary-light); }
+.glossary-page { width: 100%; background: var(--soft); }
+.glossary-header { background: var(--ink); }
 .glossary-route-card, .glossary-page .card { background: var(--white); box-shadow: none; }
 
 body.dark-mode .glossary-page { background: var(--dark-background); color: var(--dark-text); }
