@@ -429,15 +429,15 @@ export default function Auth() {
 
           <ul className="auth-feature-list">
             <li>
-              <Icon name="circle-check" />
+              <Icon name="circle" />
               Learning resources for Biology and Pharmacy
             </li>
             <li>
-              <Icon name="circle-check" />
+              <Icon name="circle" />
               Notes, flashcards, quizzes, and revision practice
             </li>
             <li>
-              <Icon name="circle-check" />
+              <Icon name="circle" />
               Track your progress as you learn
             </li>
           </ul>
@@ -453,7 +453,7 @@ export default function Auth() {
           {pendingConfirmation ? (
             <div className="auth-state">
               <div className="auth-state-icon-wrap">
-                <Icon name="envelope-circle-check" className="auth-state-icon" />
+                <Icon name="envelope-circle" className="auth-state-icon" />
               </div>
               <h2 className="auth-state-title">
                 Check your inbox
@@ -469,7 +469,7 @@ export default function Auth() {
           ) : success ? (
             <div className="auth-state">
               <div className="auth-state-icon-wrap auth-state-icon-wrap-success">
-                <Icon name="circle-check" className="auth-state-icon" />
+                <Icon name="circle" className="auth-state-icon" />
               </div>
               <h2 className="auth-state-title">
                 {t('auth.accountCreated')}
