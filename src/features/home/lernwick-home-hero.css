@@ -63,3 +63,28 @@
 @media(max-width:1024px){.hero__grid{grid-template-columns:minmax(0,1fr)}.hero__media{justify-self:center;width:min(100%,30rem)}.hero__row{grid-template-columns:repeat(2,minmax(0,1fr))}.hero .stats{grid-column:1/-1;padding-left:0}}
 @media(max-width:640px){.hero__copy{padding-left:0}.hero .vlabel,.hero .vscroll{display:none}.hero__row{grid-template-columns:minmax(0,1fr)}.hero .fchip small{display:none}.hero .badge{width:5.2rem;height:5.8rem;font-size:var(--t-xs)}}
 @media(prefers-reduced-motion:reduce){.hero .btn,.hero__play,.hero .process,.hero .process__go svg{transition:none}}
+
+
+body.dark-mode .hero,body.dark-mode .lernwick-home-sections{background:var(--dark-background);color:var(--dark-text)}
+body.dark-mode .hero h1,body.dark-mode .hero .happy strong,body.dark-mode .hero .stats__list dd,body.dark-mode .lernwick-section-heading h2,body.dark-mode .lernwick-about-copy h2{color:var(--dark-text)}
+body.dark-mode .hero__lede,body.dark-mode .hero__path,body.dark-mode .hero .happy,body.dark-mode .lernwick-section-heading p:not(.lernwick-note),body.dark-mode .lernwick-pathway-body p,body.dark-mode .lernwick-about-copy>p:not(.lernwick-note),body.dark-mode .lernwick-about-copy li{color:var(--dark-text-secondary)}
+body.dark-mode .hero .blob,body.dark-mode .hero .process,body.dark-mode .lernwick-pathway-card{background:var(--dark-surface);border-color:var(--dark-border)}
+body.dark-mode .hero .fcard,body.dark-mode .lernwick-about-sticker{background:var(--dark-surface-raised);color:var(--dark-text)}
+body.dark-mode .hero .fchip,body.dark-mode .hero .collage{background:var(--dark-surface-raised)}
+body.dark-mode .hero .process:hover{background:var(--dark-surface-raised)}
+body.dark-mode .hero .badge,body.dark-mode .hero .process__ic{background:var(--dark-surface-raised);color:var(--dark-text)}
+body.dark-mode .hero .pill{background:var(--dark-surface);border-color:var(--dark-border);color:var(--dark-text)}
+body.dark-mode .lernwick-home-sections .section--soft{background:var(--dark-surface)}
+body.dark-mode .lernwick-step-card,body.dark-mode .lernwick-step-card:nth-child(even){background:var(--dark-surface-raised);color:var(--dark-text)}
+body.dark-mode .lernwick-step-card p{color:var(--dark-text-secondary)}
+body.dark-mode .lernwick-pathway-image{background:var(--dark-surface-raised)}
+body.dark-mode .lernwick-pathway-image>span{background:var(--dark-surface);color:var(--dark-text)}
+body.dark-mode .lernwick-outline-button{border-color:var(--dark-border);color:var(--dark-text)}
+body.dark-mode .lernwick-outline-button:hover{background:var(--dark-surface-raised)}
+body.dark-mode .site-header{background:var(--dark-background);border-bottom-color:var(--dark-border)}
+body.dark-mode .site-header.scrolled{background:var(--dark-background);border-bottom-color:var(--dark-border)}
+body.dark-mode .header-logo,body.dark-mode .main-nav-link,body.dark-mode .nav-actions .class-switcher-trigger{color:var(--dark-text)}
+body.dark-mode .main-nav-link:hover,body.dark-mode .main-nav-link.active{background:var(--dark-surface);color:var(--dark-text)}
+body.dark-mode .nav-actions .class-switcher-trigger{background:var(--dark-surface);border-color:var(--dark-border)}
+body.dark-mode .header-action-button:not(.hamburger-btn),body.dark-mode .hamburger-btn{color:var(--dark-text)}
+body.dark-mode .mobile-menu-panel{background:var(--dark-surface);border-color:var(--dark-border)}
