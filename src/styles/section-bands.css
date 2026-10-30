@@ -1,9 +1,9 @@
 :root {
   --band-white: var(--white);
-  --band-tint-a: var(--palette-blue);
-  --band-tint-b: var(--palette-mint);
-  --band-tint-c: var(--palette-blue);
-  --band-tint-d: var(--palette-mint);
+  --band-tint-a: var(--soft);
+  --band-tint-b: var(--sage);
+  --band-tint-c: var(--peach);
+  --band-tint-d: var(--soft);
   --band-dark: var(--palette-ink);
   --band-card-radius: 1.125rem;
   --band-button-radius: 0.875rem;
@@ -12,10 +12,10 @@
 }
 
 body.dark-mode {
-  --band-tint-a: var(--night-800);
-  --band-tint-b: var(--night-850);
-  --band-tint-c: var(--night-700);
-  --band-tint-d: var(--emerald-900);
+  --band-tint-a: var(--dark-surface);
+  --band-tint-b: var(--dark-surface-raised);
+  --band-tint-c: var(--dark-surface);
+  --band-tint-d: var(--dark-surface-raised);
 }
 
 .home-page {
@@ -158,10 +158,10 @@ body.dark-mode .home-page > .home-newsletter-section .eyebrow {
 }
 
 .home-page > .home-student-section > .home-scope-switcher {
-  border: 1px solid var(--blue-200);
+  border: 1px solid var(--line);
   border-radius: var(--band-card-radius);
   background: var(--white);
-  box-shadow: 0 0.5rem 1.75rem var(--primary-ring);
+  box-shadow: var(--shadow-card);
 }
 
 .home-page .section-head {
@@ -178,7 +178,7 @@ body.dark-mode .home-page > .home-newsletter-section .eyebrow {
 }
 
 .home-page .eyebrow {
-  color: var(--blue-800);
+  color: var(--orange-deep);
   font-size: var(--text-xs);
   font-weight: var(--weight-bold);
   letter-spacing: 0.09em;
@@ -205,7 +205,7 @@ body.dark-mode .home-page > .home-newsletter-section .eyebrow {
 .home-page > .home-student-section .section-head h2,
 .home-page > .home-testimonials-section .section-head h2,
 .home-page > .home-advertising-section .section-head h2 {
-  color: var(--white);
+  color: var(--ink);
 }
 
 .home-page > .educational-showcase .section-head h2,
@@ -219,7 +219,7 @@ body.dark-mode .home-page > .home-newsletter-section .eyebrow {
 .home-page > .home-student-section .eyebrow,
 .home-page > .home-testimonials-section .eyebrow,
 .home-page > .home-advertising-section .eyebrow {
-  color: var(--white);
+  color: var(--orange-deep);
 }
 
 .home-page > .educational-showcase .eyebrow,
@@ -233,7 +233,7 @@ body.dark-mode .home-page > .home-newsletter-section .eyebrow {
 .home-page > .home-student-section .section-description,
 .home-page > .home-testimonials-section .section-description,
 .home-page > .home-advertising-section .section-description {
-  color: var(--white);
+  color: var(--ink-2);
 }
 
 .home-page > .educational-showcase .section-description,
@@ -249,7 +249,7 @@ body.dark-mode .home-page > .home-newsletter-section .eyebrow {
   border: 1px solid var(--emerald-200);
   border-bottom-width: 3px;
   border-radius: var(--band-card-radius);
-  background: color-mix(in srgb, var(--white) 88%, var(--emerald-50));
+  background: var(--sage);
   box-shadow: 0 1rem 2.5rem rgb(15 139 141 / 7%);
 }
 
@@ -267,24 +267,24 @@ body.dark-mode .home-page > .home-newsletter-section .eyebrow {
 
 .home-page .home-curriculum-map {
   overflow: hidden;
-  border: 1px solid var(--blue-200);
+  border: 1px solid var(--line);
   border-bottom-width: 3px;
   border-radius: var(--band-card-radius);
   background: var(--white);
-  box-shadow: 0 0.75rem 2rem var(--primary-ring);
+  box-shadow: var(--shadow-card);
 }
 
 .home-page .home-curriculum-node-link {
   min-height: 4.25rem;
   padding: var(--space-3) var(--space-4);
-  border-color: var(--blue-100);
+  border-color: var(--line);
   background: var(--white);
   transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
 }
 
 .home-page .home-curriculum-node-link:hover,
 .home-page .home-curriculum-node-link:focus-visible {
-  background: var(--blue-50);
+  background: var(--soft);
 }
 
 .home-page .home-curriculum-node-marker {
@@ -299,11 +299,11 @@ body.dark-mode .home-page > .home-newsletter-section .eyebrow {
 
 .home-page .home-continue-learning-row,
 .home-page .home-daily-recall-card {
-  border: 1px solid var(--blue-200);
+  border: 1px solid var(--line);
   border-bottom-width: 3px;
   border-radius: var(--band-card-radius);
   background: var(--white);
-  box-shadow: 0 0.5rem 1.5rem var(--primary-ring);
+  box-shadow: var(--shadow-card);
 }
 
 .home-page .home-continue-learning-row {
@@ -312,7 +312,7 @@ body.dark-mode .home-page > .home-newsletter-section .eyebrow {
 
 .home-page .home-continue-learning-thumb {
   border-radius: 0.875rem;
-  background: var(--blue-50);
+  background: var(--soft);
 }
 
 .home-page .home-daily-recall-section {
@@ -320,16 +320,16 @@ body.dark-mode .home-page > .home-newsletter-section .eyebrow {
   border: 1px solid var(--emerald-200);
   border-bottom-width: 3px;
   border-radius: var(--band-card-radius);
-  background: var(--emerald-50);
+  background: var(--sage);
 }
 
 .home-page .home-challenge-treasure {
   overflow: hidden;
-  border: 1px solid var(--blue-200);
+  border: 1px solid var(--line);
   border-bottom-width: 3px;
   border-radius: 1.5rem;
-  background: linear-gradient(135deg, var(--blue-50), var(--white) 62%, var(--emerald-50));
-  box-shadow: 0 1rem 2.5rem var(--primary-ring);
+  background: var(--peach);
+  box-shadow: var(--shadow-card);
 }
 
 .home-page .why-choose-card,
@@ -338,7 +338,7 @@ body.dark-mode .home-page > .home-newsletter-section .eyebrow {
 .home-page .edu-showcase-shell,
 .home-page .edu-knowledge-spotlight,
 .home-page .team-card {
-  border-color: var(--blue-200);
+  border-color: var(--line);
   border-radius: var(--band-card-radius);
   background: var(--white);
   box-shadow: 0 0.5rem 1.75rem var(--primary-ring);
@@ -380,12 +380,12 @@ body.dark-mode .home-page > .home-newsletter-section .eyebrow {
 .home-page .home-challenge-meta > span,
 .home-page .edu-knowledge-label {
   border-radius: var(--radius-pill);
-  background: var(--blue-100);
-  color: var(--blue-800);
+  background: var(--peach);
+  color: var(--orange-deep);
 }
 
 .home-page .text-link {
-  color: var(--blue-800);
+  color: var(--orange-deep);
   text-decoration-thickness: 0.08em;
   text-underline-offset: 0.2em;
 }
@@ -475,7 +475,7 @@ body.dark-mode .home-page > .home-newsletter-section .eyebrow {
 .home-page .ads-home-panel,
 .home-page .newsletter-card {
   overflow: hidden;
-  border: 1px solid var(--blue-200);
+  border: 1px solid var(--line);
   border-bottom-width: 3px;
   border-radius: 1.5rem;
   background: var(--white);
@@ -491,8 +491,8 @@ body.dark-mode .home-page > .home-newsletter-section .eyebrow {
 }
 
 .home-page .newsletter-card {
-  border-color: var(--emerald-200);
-  background: linear-gradient(135deg, var(--white), var(--emerald-50));
+  border-color: var(--sage-2);
+  background: var(--sage);
 }
 
 .home-page .btn,
@@ -714,16 +714,16 @@ body.dark-mode .home-page .study-quote-card {
 
 .card-soft {
   min-width: 0;
-  border: 1px solid var(--blue-200);
+  border: 1px solid var(--line);
   border-bottom-width: 3px;
   border-radius: var(--band-card-radius);
   background: var(--white);
   color: var(--text-main);
   box-shadow: 0 0.5rem 1.75rem var(--primary-ring);
 }
-.card-soft--blue { border-color: var(--blue-200); background: var(--blue-50); }
-.card-soft--mint { border-color: var(--emerald-200); background: var(--emerald-50); }
-.card-soft--paper { border-color: var(--blue-100); background: var(--white); }
+.card-soft--blue { border-color: var(--line); background: var(--soft); }
+.card-soft--mint { border-color: var(--sage-2); background: var(--sage); }
+.card-soft--paper { border-color: var(--line); background: var(--white); }
 .card-soft--dark { border-color: var(--night-500); background: var(--night-850); color: var(--night-text-primary); }
 
 .stat {
@@ -732,13 +732,13 @@ body.dark-mode .home-page .study-quote-card {
   flex-direction: column;
   gap: var(--space-2);
   padding: clamp(1rem, 2.5vw, 1.5rem);
-  border: 1px solid var(--blue-200);
+  border: 1px solid var(--line);
   border-bottom-width: 3px;
   border-radius: var(--band-card-radius);
   background: var(--white);
 }
 .stat-value {
-  color: var(--blue-800);
+  color: var(--orange-deep);
   font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: var(--weight-bold);
   line-height: 1.1;
@@ -754,17 +754,17 @@ body.dark-mode .home-page .study-quote-card {
   max-width: 100%;
   min-height: 2.25rem;
   padding: 0.45rem 0.875rem;
-  border: 1px solid var(--blue-200);
+  border: 1px solid var(--line);
   border-radius: var(--radius-pill);
-  background: var(--blue-50);
-  color: var(--blue-800);
+  background: var(--soft);
+  color: var(--orange-deep);
   font-size: var(--text-sm);
   font-weight: var(--weight-semibold);
   line-height: 1.35;
   text-decoration: none;
   transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
 }
-.pill-link:hover { border-color: var(--blue-400); background: var(--blue-100); color: var(--blue-900); }
+.pill-link:hover { border-color: var(--blue-400); background: var(--peach); color: var(--blue-900); }
 .pill-link:focus-visible { outline: 3px solid var(--blue-600); outline-offset: 3px; }
 
 .icon-chip {
@@ -773,16 +773,16 @@ body.dark-mode .home-page .study-quote-card {
   width: 2.75rem;
   height: 2.75rem;
   place-items: center;
-  border: 1px solid var(--blue-200);
+  border: 1px solid var(--line);
   border-radius: 0.875rem;
-  background: var(--blue-100);
-  color: var(--blue-800);
+  background: var(--peach);
+  color: var(--orange-deep);
 }
-.icon-chip--mint { border-color: var(--emerald-200); background: var(--emerald-50); color: var(--emerald-800); }
+.icon-chip--mint { border-color: var(--sage-2); background: var(--sage); color: var(--emerald-800); }
 .icon-chip--dark { border-color: rgb(36 87 197 / 24%); background: rgb(36 87 197 / 10%); color: var(--palette-periwinkle); }
 
 .heading-accent {
-  color: var(--blue-800);
+  color: var(--orange-deep);
   text-decoration-color: var(--palette-mint);
   text-decoration-line: underline;
   text-decoration-thickness: 0.12em;
@@ -797,7 +797,7 @@ body.dark-mode .home-page .study-quote-card {
   overflow: hidden;
   place-items: center;
   isolation: isolate;
-  border: 1px solid var(--blue-200);
+  border: 1px solid var(--line);
   border-radius: 1.5rem;
   background: linear-gradient(145deg, var(--blue-50), var(--white) 60%, var(--emerald-50));
 }
