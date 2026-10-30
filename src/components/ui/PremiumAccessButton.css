@@ -1,38 +1,85 @@
 .premium-access-button {
   display: inline-flex;
+  min-height: 2.5rem;
   align-items: center;
   justify-content: center;
-  gap: var(--space-2);
-  min-height: var(--space-10);
-  padding: var(--space-2) var(--space-3);
-  border: 1px solid color-mix(in srgb, var(--warning, var(--secondary)) 42%, var(--border-default));
-  border-radius: var(--radius-button);
-  background: var(--surface-card);
-  color: var(--text-main);
-  font: inherit;
-  font-size: var(--text-sm);
-  font-weight: var(--weight-semibold);
-  line-height: var(--leading-normal);
+  gap: .5rem;
+  padding: .5rem .75rem;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-pill);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-display);
+  font-size: var(--t-sm);
+  font-weight: 700;
+  line-height: 1.4;
   cursor: pointer;
-  transition: border-color var(--ease-fast), background var(--ease-fast), transform var(--ease-fast);
+  transition: border-color var(--dur) var(--ease), background-color var(--dur) var(--ease), transform var(--dur) var(--ease);
 }
+
 .premium-access-button:hover:not(:disabled) {
-  border-color: var(--secondary);
-  background: var(--surface-subtle);
+  border-color: var(--orange);
+  background: var(--peach);
   transform: translateY(-1px);
 }
-.premium-access-button:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
-.premium-access-button:disabled { opacity: .65; cursor: wait; }
-.premium-access-button-lock { display: inline-flex; width: var(--space-5); height: var(--space-5); color: var(--secondary); }
-.premium-access-button-lock svg { width: 100%; height: 100%; overflow: visible; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.premium-access-button-lock .premium-lock-shackle { transform-origin: 12px 10px; transition: transform var(--ease-fast); }
-.premium-access-button:hover:not(:disabled):not(.is-loading) .premium-lock-shackle { transform: translateY(-1px) rotate(-9deg); }
-.premium-access-button.is-loading .premium-lock-shackle { animation: premiumLockCheck 900ms ease-in-out infinite alternate; }
+
+.premium-access-button:focus-visible {
+  outline: 2px solid var(--orange-deep);
+  outline-offset: 3px;
+}
+
+.premium-access-button:disabled {
+  opacity: .65;
+  cursor: wait;
+}
+
+.premium-access-button-lock {
+  display: inline-flex;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--orange-deep);
+}
+
+.premium-access-button-lock svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.premium-access-button-lock .premium-lock-shackle {
+  transform-origin: 12px 10px;
+  transition: transform var(--dur) var(--ease);
+}
+
+.premium-access-button:hover:not(:disabled):not(.is-loading) .premium-lock-shackle {
+  transform: translateY(-1px) rotate(-9deg);
+}
+
+.premium-access-button.is-loading .premium-lock-shackle {
+  animation: premiumLockCheck 900ms ease-in-out infinite alternate;
+}
+
 @keyframes premiumLockCheck {
   from { transform: rotate(-8deg); }
   to { transform: rotate(8deg); }
 }
-.premium-access-button-lock .premium-lock-keyhole { stroke-width: 2.4; }
 
-body.dark-mode .premium-access-button { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
-body.dark-mode .premium-access-button:hover { background: var(--dark-surface-raised); color: var(--dark-text); }
+.premium-access-button-lock .premium-lock-keyhole {
+  stroke-width: 2.4;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .premium-access-button,
+  .premium-access-button-lock .premium-lock-shackle {
+    transition: none;
+  }
+
+  .premium-access-button.is-loading .premium-lock-shackle {
+    animation: none;
+  }
+}
