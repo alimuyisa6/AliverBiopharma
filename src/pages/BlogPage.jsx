@@ -90,6 +90,18 @@ export default function BlogPage() {
     ? featured.sections.filter(Boolean)
     : [];
 
+  const getArticleImage = (item) => {
+    if (item?.image_url) return item.image_url;
+    const category = String(item?.category || '').toLowerCase();
+    if (/pharmacy|medicine|medication|drug/.test(category)) {
+      return 'https://images.pexels.com/photos/3683074/pexels-photo-3683074.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop';
+    }
+    if (/biology|cell|science|anatomy/.test(category)) {
+      return 'https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop';
+    }
+    return 'https://images.pexels.com/photos/8199770/pexels-photo-8199770.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop';
+  };
+
   const formatDate = (value) => {
     if (!value) return '';
     const date = new Date(value);
@@ -537,9 +549,7 @@ export default function BlogPage() {
                     </div>
                   )}
                 </header>
-                {featured.image_url && (
-                  <img src={featured.image_url} alt={featured.image_alt || featured.title} className="blog-featured-image" />
-                )}
+                <img src={getArticleImage(featured)} alt={featured.image_alt || featured.title} className="blog-featured-image" loading="lazy" />
                 {(bodyParagraphs.length > 0 || bodySections.length > 0) && (
                   <div className="blog-article-body">
                     {bodyParagraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
@@ -567,9 +577,7 @@ export default function BlogPage() {
                 <div className="blog-posts-grid">
                   {posts.slice(0, 3).map((post) => (
                     <article className="blog-post-card" key={post.id || post.slug || post.title}>
-                      {post.image_url && (
-                        <img src={post.image_url} alt={post.image_alt || post.title} className="blog-post-image" loading="lazy" />
-                      )}
+                      <img src={getArticleImage(post)} alt={post.image_alt || post.title} className="blog-post-image" loading="lazy" />
                       <div className="blog-post-content">
                         {post.category && <span className="blog-post-category">{post.category}</span>}
                         <h3 className="blog-post-title">{post.title}</h3>
