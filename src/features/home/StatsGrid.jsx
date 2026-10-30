@@ -118,12 +118,12 @@ export function StatsGrid({
 
   return (
     <section
-      className="section stats-grid-section"
+      className="section stats-grid-section lernwick-stats"
       aria-labelledby="platform-impact-title"
     >
       <header className="section-head stats-impact-heading">
         <div className="section-head-left">
-          <h2 id="platform-impact-title">See our impact in numbers</h2>
+          <h2 id="platform-impact-title">See Our Impact in Numbers</h2>
           <p className="stats-impact-scope">Statistics for {scopeLabel}</p>
         </div>
       </header>
