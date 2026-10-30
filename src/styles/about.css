@@ -17,7 +17,7 @@
   justify-content: center;
   min-height: 46vh;
   padding: var(--space-12) var(--space-5);
-  background: var(--primary);
+  background: var(--sage);
   text-align: center;
 }
 
@@ -95,7 +95,7 @@
   bottom: calc(-1 * var(--about-heading-border-width));
   width: var(--about-heading-accent-width);
   height: var(--about-heading-border-width);
-  background: var(--primary);
+  background: var(--sage);
 }
 
 .about-block p {
@@ -377,7 +377,7 @@ a.about-contact-item:hover {
   align-items: center;
   justify-content: center;
   padding: var(--space-3) var(--space-6);
-  background: var(--primary);
+  background: var(--sage);
   color: var(--text-inverse);
   border-radius: var(--radius-full);
   font-family: var(--font-button);
@@ -475,13 +475,13 @@ body.dark-mode .contact-page :is(input, select, textarea) { background: var(--da
 body.dark-mode .contact-page :is(input, textarea)::placeholder { color: var(--dark-text-secondary); }
 
 .about-hero {
-  background-color: var(--primary);
+  background-color: var(--sage);
   color: var(--white);
 }
 
 .about-hero-title,
 .about-hero-subtext {
-  color: var(--white);
+  color: var(--ink);
 }
 
 .about-section {
