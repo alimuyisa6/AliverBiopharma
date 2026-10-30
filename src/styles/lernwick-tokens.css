@@ -1,0 +1,23 @@
+:root{
+--f-display:"Poppins",ui-sans-serif,system-ui,sans-serif;
+--f-body:"Mulish",ui-sans-serif,system-ui,sans-serif;
+--f-hand:"Caveat","Segoe Print",cursive;
+--t-xs:.78rem;
+--t-sm:.9rem;
+--t-base:1rem;
+--t-md:1.125rem;
+--t-lg:clamp(1.2rem,1.05rem + .6vw,1.45rem);
+--t-xl:clamp(1.5rem,1.2rem + 1.3vw,2.1rem);
+--t-2xl:clamp(1.9rem,1.3rem + 2.6vw,3.1rem);
+--t-hero:clamp(2.5rem,1.4rem + 4.2vw,4.4rem);
+--r-sm:12px;
+--r-md:18px;
+--r-lg:28px;
+--r-xl:40px;
+--r-pill:999px;
+--container:1220px;
+--gutter:clamp(1rem,.5rem + 2.2vw,2.5rem);
+--section:clamp(4rem,2.8rem + 5vw,7.5rem);
+--ease:cubic-bezier(.2,.7,.2,1);
+--dur:220ms;
+}
