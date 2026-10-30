@@ -1,3 +1,4 @@
+.home-page .home-stats-section{z-index:auto;margin-block-start:0}
 .lernwick-stats{margin:0 clamp(.5rem,.3rem + .6vw,.9rem);padding:clamp(2.5rem,2rem + 3vw,4.5rem) 0;border-radius:var(--r-xl);background:var(--soft)}
 .lernwick-stats .container{width:100%;max-width:calc(var(--container) + 2 * var(--gutter));margin-inline:auto;padding-inline:var(--gutter)}
 .lernwick-stats .stats-impact-heading{margin:0 0 clamp(2rem,1.5rem + 2vw,3rem)}
