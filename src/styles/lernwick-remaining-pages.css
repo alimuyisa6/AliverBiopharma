@@ -1,0 +1,449 @@
+.app-layout .auth-page {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(24rem, .9fr);
+  min-height: min(48rem, calc(100vh - 5.5rem));
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  background: var(--paper);
+  box-shadow: var(--shadow-card);
+}
+
+.app-layout .auth-brand-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: clamp(2rem, 1.3rem + 3vw, 4.5rem);
+  background: var(--peach);
+  color: var(--ink);
+}
+
+.app-layout .auth-brand-panel :where(h1, h2, h3, p, li, a) {
+  color: var(--ink);
+}
+
+.app-layout .auth-brand-logo,
+.app-layout .auth-brand-mark {
+  color: var(--ink);
+  font-family: var(--f-display);
+  font-weight: 700;
+}
+
+.app-layout .auth-form-panel {
+  display: grid;
+  align-items: center;
+  padding: clamp(1.5rem, 1rem + 2vw, 3rem);
+  background: var(--paper);
+}
+
+.app-layout .auth-form-container {
+  width: min(100%, 28rem);
+  margin-inline: auto;
+}
+
+.app-layout .auth-heading {
+  color: var(--ink);
+  font-family: var(--f-display);
+  font-size: clamp(1.8rem, 1.3rem + 1.8vw, 2.7rem);
+  font-weight: 700;
+  letter-spacing: -.045em;
+}
+
+.app-layout .auth-subheading,
+.app-layout .auth-switch {
+  color: var(--ink-2);
+  line-height: 1.7;
+}
+
+.app-layout .auth-field {
+  margin-block: 1rem;
+}
+
+.app-layout .auth-field :where(label) {
+  color: var(--ink);
+  font-family: var(--f-display);
+  font-weight: 600;
+}
+
+.app-layout .auth-field :where(input, select) {
+  width: 100%;
+  min-height: 3rem;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-md);
+  background: var(--soft);
+  color: var(--ink);
+}
+
+.app-layout .auth-submit {
+  width: 100%;
+  min-height: 3.1rem;
+  border: 1px solid var(--orange);
+  border-radius: var(--r-pill);
+  background: var(--orange);
+  color: var(--ink);
+  font-family: var(--f-display);
+  font-weight: 700;
+}
+
+.app-layout .auth-submit:hover:not(:disabled) {
+  border-color: var(--orange-hover);
+  background: var(--orange-hover);
+}
+
+.app-layout .auth-state,
+.app-layout .auth-alert {
+  border-radius: var(--r-md);
+}
+
+.app-layout .advertise-page,
+.app-layout .advertise-create-page,
+.app-layout .advertise-payment-page,
+.app-layout .donate-page,
+.app-layout .challenges-page,
+.app-layout .challenge-runner-page,
+.app-layout .tutor-marketplace-page,
+.app-layout .tutor-profile-page,
+.app-layout .tutor-apply-page,
+.app-layout .tutor-dashboard-page,
+.app-layout .classroom-room-page,
+.app-layout .curriculum-node-page,
+.app-layout .note-learning-page,
+.app-layout .pdf-library-page,
+.app-layout .legal-section,
+.app-layout .info-page {
+  color: var(--ink);
+  font-family: var(--f-body);
+}
+
+.app-layout :where(.advertise-page, .advertise-create-page, .advertise-payment-page, .donate-page, .challenges-page, .challenge-runner-page, .tutor-marketplace-page, .tutor-profile-page, .tutor-apply-page, .tutor-dashboard-page, .classroom-room-page, .curriculum-node-page, .note-learning-page, .pdf-library-page, .legal-section, .info-page) :where(h1, h2, h3, h4) {
+  color: var(--ink);
+  font-family: var(--f-display);
+  letter-spacing: -.035em;
+}
+
+.app-layout :where(.advertise-create-page, .advertise-payment-page, .donate-content, .challenges-page, .challenge-runner-page, .tutor-marketplace-page, .tutor-profile-page, .tutor-apply-page, .tutor-dashboard-page, .curriculum-node-page, .note-learning-page, .pdf-library-page, .legal-content-wrap, .info-page-section) {
+  width: min(100%, calc(var(--container) + 2 * var(--gutter)));
+  margin-inline: auto;
+  padding: clamp(1.5rem, 1rem + 2vw, 3rem) var(--gutter);
+}
+
+.app-layout .advertise-hero,
+.app-layout .donate-hero,
+.app-layout .challenges-hero,
+.app-layout .challenge-runner-hero,
+.app-layout .pdf-library-heading,
+.app-layout .note-learning-header {
+  border-radius: var(--r-xl);
+  background: var(--peach);
+  color: var(--ink);
+  box-shadow: none;
+}
+
+.app-layout :where(.advertise-hero, .donate-hero, .challenges-hero, .challenge-runner-hero) :where(h1, h2, h3, p, span) {
+  color: var(--ink);
+}
+
+.app-layout .advertise-create-layout,
+.app-layout .advertise-payment-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(16rem, .8fr);
+  gap: 1.5rem;
+}
+
+.app-layout :where(.advertise-create-form, .advertise-create-aside, .advertise-payment-main, .advertise-payment-aside, .donate-card, .donate-widget, .donate-form, .donate-momo-card, .challenge-empty-card, .challenge-showcase-content, .challenge-runner-copy, .tutor-profile-card, .tutor-profile-state, .tutor-card, .tutor-apply-page .card, .tutor-dashboard-page .card, .curriculum-node-section, .note-learning-card, .pdf-card, .legal-block, .info-content) {
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--paper);
+  box-shadow: var(--shadow-card);
+}
+
+.app-layout :where(.advertise-create-form, .advertise-create-aside, .advertise-payment-main, .advertise-payment-aside, .donate-card, .donate-widget, .donate-form, .challenge-empty-card, .challenge-showcase-content, .challenge-runner-copy, .tutor-profile-card, .tutor-profile-state, .tutor-apply-page .card, .tutor-dashboard-page .card, .curriculum-node-section, .note-learning-card, .legal-block, .info-content) {
+  padding: clamp(1rem, .75rem + 1vw, 1.6rem);
+}
+
+.app-layout :where(.advertise-create-progress, .advertise-payment-status, .advertise-create-price, .donate-goal, .donate-tabs, .challenge-progress, .challenge-runner-facts, .pdf-library-controls, .pdf-library-controls-copy) {
+  border-radius: var(--r-md);
+  background: var(--soft);
+}
+
+.app-layout :where(.advertise-create-page, .advertise-payment-page, .donate-page, .tutor-marketplace-page, .pdf-library-page, .info-page) :where(input:not([type="checkbox"]):not([type="radio"]), select, textarea) {
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-md);
+  background: var(--soft);
+  color: var(--ink);
+}
+
+.app-layout .donate-content {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.app-layout .donate-goal-track,
+.app-layout .challenge-progress-track {
+  overflow: hidden;
+  border-radius: var(--r-pill);
+  background: var(--line);
+}
+
+.app-layout .donate-goal-fill,
+.app-layout .challenge-progress-fill {
+  border-radius: inherit;
+  background: var(--orange);
+}
+
+.app-layout .donate-momo-grid,
+.app-layout .donor-list,
+.app-layout .tutor-grid-flat,
+.app-layout .pdf-grid,
+.app-layout .note-related-grid {
+  gap: 1rem;
+}
+
+.app-layout .donate-momo-card,
+.app-layout .donor-row,
+.app-layout .pdf-card,
+.app-layout .note-related-grid > * {
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  background: var(--paper);
+}
+
+.app-layout .legal-section,
+.app-layout .info-page {
+  min-height: 60vh;
+  padding-block: 2rem var(--section);
+}
+
+.app-layout .legal-title,
+.app-layout .info-page-title {
+  max-width: 52rem;
+  margin-bottom: 1.5rem;
+  color: var(--ink);
+  font-family: var(--f-display);
+  font-size: clamp(2rem, 1.3rem + 2.5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -.05em;
+  line-height: 1.1;
+}
+
+.app-layout .legal-body,
+.app-layout .info-content {
+  max-width: 54rem;
+  color: var(--ink-2);
+  font-size: var(--t-base);
+  line-height: 1.8;
+}
+
+.app-layout .legal-block + .legal-block {
+  margin-top: 1.5rem;
+}
+
+.app-layout .legal-block h2,
+.app-layout .info-content-heading,
+.app-layout .info-text-heading {
+  color: var(--ink);
+  font-family: var(--f-display);
+  font-size: var(--t-lg);
+  font-weight: 700;
+}
+
+.app-layout .legal-link,
+.app-layout .info-back-link,
+.app-layout .info-bottom-nav a {
+  color: var(--orange-deep);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.app-layout .curriculum-node-header,
+.app-layout .note-learning-header,
+.app-layout .pdf-library-heading {
+  padding: clamp(1.5rem, 1rem + 2.5vw, 3rem);
+}
+
+.app-layout .curriculum-node-section {
+  margin-block: 1.25rem;
+}
+
+.app-layout .curriculum-node-child,
+.app-layout .curriculum-node-resource,
+.app-layout .curriculum-node-linked-group,
+.app-layout .note-learning-message-content,
+.app-layout .pdf-library-controls,
+.app-layout .pdf-card-body {
+  border-color: var(--line);
+  background: var(--soft);
+  color: var(--ink);
+}
+
+.app-layout .note-detail-container {
+  width: min(100%, 80rem);
+  margin-inline: auto;
+  padding: 1.5rem var(--gutter) var(--section);
+}
+
+.app-layout .note-article {
+  min-width: 0;
+  border-radius: var(--r-lg);
+  background: var(--paper);
+}
+
+.app-layout .note-hero {
+  padding: clamp(1.5rem, 1rem + 2vw, 3rem);
+  border-radius: var(--r-xl);
+  background: var(--peach);
+}
+
+.app-layout .note-title {
+  color: var(--ink);
+  font-family: var(--f-display);
+  font-size: clamp(2rem, 1.35rem + 2.5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -.05em;
+  line-height: 1.1;
+}
+
+.app-layout .notes-content-container {
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: var(--t-base);
+  line-height: 1.85;
+}
+
+.app-layout .note-toc-sidebar,
+.app-layout .note-toc-mobile-panel,
+.app-layout .note-understanding-panel,
+.app-layout .note-comments-section,
+.app-layout .note-reactions-section {
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--paper);
+  box-shadow: var(--shadow-card);
+}
+
+.app-layout .note-learning-page {
+  min-height: 60vh;
+}
+
+.app-layout .classroom-room-page {
+  width: min(100%, 90rem);
+  margin-inline: auto;
+  padding: 1.5rem var(--gutter) var(--section);
+}
+
+.app-layout .classroom-room-header,
+.app-layout .classroom-chat-panel,
+.app-layout .classroom-participants-panel,
+.app-layout .classroom-room-info-panel,
+.app-layout .classroom-whiteboard {
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: var(--shadow-card);
+}
+
+.app-layout .classroom-room-header {
+  padding: 1.25rem;
+}
+
+.app-layout .classroom-room-header-title,
+.app-layout .classroom-room-header-sub,
+.app-layout .classroom-chat-panel :where(h2, h3),
+.app-layout .classroom-participants-panel :where(h2, h3) {
+  color: var(--ink);
+}
+
+.app-layout .classroom-chat-body,
+.app-layout .classroom-participants-list {
+  background: var(--soft);
+}
+
+.app-layout .classroom-message-bubble,
+.app-layout .classroom-message-resource {
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.app-layout .classroom-chat-textarea {
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-md);
+  background: var(--soft);
+  color: var(--ink);
+}
+
+.app-layout .home-page .section,
+.app-layout .home-page .section.reveal {
+  width: min(100%, calc(var(--container) + 2 * var(--gutter)));
+  margin-inline: auto;
+  padding: clamp(1.5rem, 1rem + 2vw, 3rem) var(--gutter);
+}
+
+.app-layout .ai-assistant-panel,
+.app-layout .chat-panel {
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: var(--shadow-float);
+}
+
+.app-layout :where(.ai-assistant-header, .chat-panel-header) {
+  border-bottom: 1px solid var(--line);
+  background: var(--soft);
+  color: var(--ink);
+}
+
+.app-layout :where(.ai-assistant-heading, .chat-panel-title) {
+  color: var(--ink);
+  font-family: var(--f-display);
+  font-weight: 700;
+}
+
+.app-layout :where(.ai-assistant-input, .chat-textarea) {
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-md);
+  background: var(--soft);
+  color: var(--ink);
+}
+
+@media (max-width: 850px) {
+  .app-layout .auth-page {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .app-layout .auth-brand-panel {
+    min-height: 16rem;
+  }
+
+  .app-layout .advertise-create-layout,
+  .app-layout .advertise-payment-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .app-layout .classroom-room-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .app-layout :where(.advertise-create-page, .advertise-payment-page, .donate-content, .challenges-page, .challenge-runner-page, .tutor-marketplace-page, .tutor-profile-page, .tutor-apply-page, .tutor-dashboard-page, .curriculum-node-page, .note-learning-page, .pdf-library-page, .legal-content-wrap, .info-page-section, .classroom-room-page) {
+    padding-inline: 1rem;
+  }
+
+  .app-layout :where(.advertise-hero, .donate-hero, .challenges-hero, .challenge-runner-hero, .note-hero, .pdf-library-heading) {
+    border-radius: var(--r-lg);
+  }
+
+  .app-layout .auth-page {
+    border-radius: var(--r-lg);
+  }
+
+  .app-layout .auth-brand-panel,
+  .app-layout .auth-form-panel {
+    padding: 1.5rem;
+  }
+}
