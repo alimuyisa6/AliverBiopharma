@@ -476,7 +476,7 @@ body.dark-mode .contact-page :is(input, textarea)::placeholder { color: var(--da
 
 .about-hero {
   background-color: var(--sage);
-  color: var(--white);
+  color: var(--ink);
 }
 
 .about-hero-title,
