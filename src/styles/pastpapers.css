@@ -118,7 +118,7 @@
 }
 
 .pp-alert-info {
-  background: var(--blue-50);
+  background: var(--soft);
   color: var(--blue-700);
   border: 1px solid var(--blue-200);
 }
@@ -459,12 +459,12 @@
 }
 
 .pp-chip-primary {
-  background: var(--blue-100);
+  background: var(--peach);
   color: var(--blue-800);
 }
 
 .pp-chip-emerald {
-  background: var(--emerald-100);
+  background: var(--sage);
   color: var(--emerald-800);
 }
 
@@ -905,7 +905,7 @@
   position: relative;
   overflow: hidden;
   border-bottom: 1px solid var(--blue-200);
-  background: linear-gradient(120deg, var(--blue-50), var(--white) 65%, var(--emerald-50));
+  background: var(--soft);
   padding-block: clamp(2rem, 5vw, 4rem);
 }
 .pp-hero-content {
@@ -948,7 +948,7 @@
 .pp-alert-info {
   border-color: var(--blue-200);
   border-radius: 0.875rem;
-  background: var(--blue-50);
+  background: var(--soft);
   color: var(--blue-900);
 }
 .pp-toolbar {
@@ -957,7 +957,7 @@
   padding: var(--space-4);
   border-color: var(--blue-200);
   border-radius: 1rem;
-  background: var(--blue-50);
+  background: var(--soft);
 }
 .pp-search-input {
   min-height: 3rem;
@@ -972,7 +972,7 @@
   color: var(--text-secondary);
 }
 .pp-badge {
-  background: var(--blue-100);
+  background: var(--peach);
   color: var(--blue-900);
 }
 .pp-presets,
@@ -1021,7 +1021,7 @@
   background: var(--blue-700);
 }
 .pp-tabs .btn-ghost:hover {
-  background: var(--blue-50);
+  background: var(--soft);
   color: var(--blue-900);
 }
 .pp-search-input:focus-visible,
@@ -1031,11 +1031,11 @@
 }
 body.dark-mode .pp-page {
   border-color: var(--night-550);
-  background: var(--night-850);
+  background: var(--dark-surface);
 }
 body.dark-mode .pp-hero {
   border-bottom-color: var(--night-500);
-  background: linear-gradient(120deg, var(--night-700), var(--night-850) 65%, var(--emerald-900));
+  background: var(--dark-surface-raised);
 }
 body.dark-mode .pp-eyebrow,
 body.dark-mode .pp-meta-item strong {
@@ -1047,7 +1047,7 @@ body.dark-mode .pp-toolbar {
 }
 body.dark-mode .pp-search-input {
   border-color: var(--night-500);
-  background: var(--night-850);
+  background: var(--dark-surface);
   color: var(--night-text-primary);
 }
 body.dark-mode .pp-alert-info {
@@ -1058,7 +1058,7 @@ body.dark-mode .pp-alert-info {
 body.dark-mode .pp-card {
   border-color: var(--night-500);
   border-bottom-color: var(--night-450);
-  background: var(--night-850);
+  background: var(--dark-surface);
 }
 body.dark-mode .pp-card-footer {
   border-top-color: var(--night-550);
@@ -1066,7 +1066,7 @@ body.dark-mode .pp-card-footer {
 body.dark-mode .pp-presets,
 body.dark-mode .pp-filters {
   border-color: var(--night-500);
-  background: var(--night-850);
+  background: var(--dark-surface);
 }
 @media (max-width: 640px) {
   .pp-page {
@@ -1090,25 +1090,25 @@ body.dark-mode .pp-filters {
 
 
 /* Past papers: concise intro and compact white paper cards. */
-.pp-page { background: linear-gradient(180deg, var(--blue-50), var(--teal-50, var(--blue-50))); }
+.pp-page { background: var(--soft); }
 .pp-hero { margin-bottom: var(--space-4); }
 .pp-description { max-width: 58ch; font-size: var(--text-sm); line-height: var(--leading-relaxed); }
 .pp-grid { gap: var(--space-3); }
 .pp-card { border-radius: var(--radius-md); background: var(--white); box-shadow: 0 0.25rem 0.75rem var(--primary-ring); }
 .pp-card-body { padding: var(--space-4); }
 .pp-card-title { line-height: var(--leading-tight); }
-body.dark-mode .pp-page { background: linear-gradient(180deg, var(--night-900), var(--night-850)); }
+body.dark-mode .pp-page { background: var(--dark-background); }
 
 
 /* Past papers use a solid page surface and consistent white paper cards. */
-.pp-page { background: var(--blue-50); }
+.pp-page { background: var(--soft); }
 .pp-card { background: var(--white); box-shadow: none; }
 .pp-search-icon { background: transparent; color: var(--text-muted); }
 body.dark-mode .pp-page { background: var(--night-900); }
 
 
 /* Flat page surface; keep paper cards distinct and white. */
-.pp-page { background: var(--blue-50); }
+.pp-page { background: var(--soft); }
 body.dark-mode .pp-page { background: var(--night-900); }
 
 
