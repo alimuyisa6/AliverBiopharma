@@ -330,6 +330,7 @@ export default function NotesPage() {
                 key={note.id}
                 variant="white"
                 className="card-round notes-card"
+                image={note.cover_image_url || note.thumbnail_url || note.topic_image_url || 'https://images.pexels.com/photos/7972949/pexels-photo-7972949.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop'}
                 title={note.title}
                 description={note.content_preview}
                 footer={
