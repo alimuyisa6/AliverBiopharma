@@ -295,7 +295,7 @@ function ContentBlocks({ blocks }) {
 
       case 'callout': {
         const variant = block.variant || 'info';
-        const iconMap = { tip: 'fa-lightbulb', warning: 'fa-triangle-exclamation', info: 'fa-circle-info', danger: 'fa-skull', success: 'fa-circle-check' };
+        const iconMap = { tip: 'fa-lightbulb', warning: 'fa-triangle-exclamation', info: 'fa-circle-info', danger: 'fa-skull', success: 'fa-circle-info' };
         return (
           <div key={i} className={`info-callout info-callout-${variant}`}>
             <i className={`fa-solid ${iconMap[variant] || 'fa-circle-info'}`} aria-hidden="true" />
@@ -312,7 +312,7 @@ function ContentBlocks({ blocks }) {
           <ul key={i} className="info-list">
             {(block.items || []).map((item, j) => (
               <li key={j}>
-                <i className="fa-solid fa-circle-check" aria-hidden="true" />
+                <i className="fa-solid fa-circle" aria-hidden="true" />
                 <span>{escapeHtml(item)}</span>
               </li>
             ))}
