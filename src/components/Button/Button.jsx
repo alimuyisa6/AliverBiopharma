@@ -54,7 +54,7 @@ const Button = forwardRef(function Button(
       >
         <span className="btn-3d__top">
           {loading && <Spinner size="sm" context={loadingContext} variant="3d" />}
-          {status === 'success' && <Icon name="circle-check" />}
+          {status === 'success' && <Icon name="circle" />}
           {status === 'error' && <Icon name="circle-xmark" />}
           {safeIcon && !loading && !status && <Icon name={safeIcon} />}
           {children && <span>{loading && loadingLabel ? loadingLabel : children}</span>}
@@ -76,7 +76,7 @@ const Button = forwardRef(function Button(
       {...props}
     >
       {loading && <Spinner size="sm" context={loadingContext} variant={variant} />}
-      {status === 'success' && <Icon name="circle-check" />}
+      {status === 'success' && <Icon name="circle" />}
       {status === 'error' && <Icon name="circle-xmark" />}
       {safeIcon && !loading && !status && <Icon name={safeIcon} />}
       {children && <span>{loading && loadingLabel ? loadingLabel : children}</span>}
