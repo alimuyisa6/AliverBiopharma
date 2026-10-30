@@ -2001,7 +2001,7 @@ body.dark-mode .note-related-section .note-related-card {
   background: var(--dark-surface);
 }
 body.dark-mode .note-hero {
-  background: linear-gradient(120deg, var(--night-700), var(--night-850) 66%, var(--night-800));
+  background: var(--dark-surface-raised);
 }
 
 
