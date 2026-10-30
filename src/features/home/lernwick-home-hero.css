@@ -1,371 +1,53 @@
-.lernwick-hero {
-  position: relative;
-  overflow: hidden;
-  padding: clamp(3.5rem, 7vw, 7rem) 0 clamp(3rem, 5vw, 5rem);
-  background: var(--background);
-  color: var(--text);
-}
-
-.lernwick-hero::before,
-.lernwick-hero::after {
-  position: absolute;
-  content: "";
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.lernwick-hero::before {
-  width: min(42rem, 70vw);
-  aspect-ratio: 1;
-  top: -23rem;
-  right: -12rem;
-  background: color-mix(in srgb, var(--secondary) 24%, var(--background));
-}
-
-.lernwick-hero::after {
-  width: min(28rem, 55vw);
-  aspect-ratio: 1;
-  bottom: -20rem;
-  left: -12rem;
-  background: color-mix(in srgb, var(--accent) 12%, var(--background));
-}
-
-.lernwick-hero__inner {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(21rem, .95fr);
-  align-items: center;
-  gap: clamp(2rem, 5vw, 5rem);
-  width: min(100% - 2 * var(--gutter, 1.5rem), 1220px);
-  margin-inline: auto;
-}
-
-.lernwick-hero__copy {
-  min-width: 0;
-}
-
-.lernwick-hero__eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: .6rem;
-  padding: .55rem .9rem;
-  border: 1px solid color-mix(in srgb, var(--primary) 28%, transparent);
-  border-radius: 999px;
-  color: var(--primary);
-  font-size: .72rem;
-  font-weight: 800;
-  letter-spacing: .12em;
-}
-
-.lernwick-hero__eyebrow-dot {
-  width: .5rem;
-  height: .5rem;
-  border-radius: 50%;
-  background: var(--accent);
-}
-
-.lernwick-hero__note {
-  margin: 1.5rem 0 .8rem;
-  color: var(--primary);
-  font-size: .95rem;
-  font-weight: 700;
-}
-
-.lernwick-hero h1 {
-  max-width: 46rem;
-  margin: 0;
-  color: var(--text);
-  font-size: clamp(2.7rem, 5.2vw, 5.1rem);
-  font-weight: 800;
-  line-height: 1.04;
-  letter-spacing: -.055em;
-}
-
-.lernwick-hero h1 span {
-  color: var(--primary);
-}
-
-.lernwick-hero__description {
-  max-width: 39rem;
-  margin-top: 1.5rem;
-  color: var(--text);
-  opacity: .78;
-  font-size: clamp(1rem, 1.2vw, 1.15rem);
-  line-height: 1.8;
-}
-
-.lernwick-hero__path {
-  display: flex;
-  align-items: center;
-  gap: .65rem;
-  margin-top: 1.2rem;
-  color: var(--text);
-  font-size: .9rem;
-}
-
-.lernwick-hero__path svg {
-  flex: 0 0 auto;
-  color: var(--primary);
-}
-
-.lernwick-hero__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .85rem;
-  margin-top: 2rem;
-}
-
-.lernwick-hero__button {
-  display: inline-flex;
-  min-height: 3.35rem;
-  align-items: center;
-  justify-content: center;
-  gap: .7rem;
-  padding: .85rem 1.35rem;
-  border: 1px solid transparent;
-  border-radius: 999px;
-  font-size: .92rem;
-  font-weight: 750;
-  text-decoration: none;
-  transition: transform .2s ease, background-color .2s ease, border-color .2s ease;
-}
-
-.lernwick-hero__button:hover {
-  transform: translateY(-2px);
-}
-
-.lernwick-hero__button--primary {
-  background: var(--primary);
-  color: var(--white);
-}
-
-.lernwick-hero__button--primary:hover {
-  background: var(--primary-dark);
-}
-
-.lernwick-hero__button--secondary {
-  border-color: color-mix(in srgb, var(--text) 22%, transparent);
-  color: var(--text);
-}
-
-.lernwick-hero__button--secondary:hover {
-  border-color: var(--primary);
-  color: var(--primary);
-}
-
-.lernwick-hero__trust {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .75rem 1.3rem;
-  margin-top: 2rem;
-}
-
-.lernwick-hero__trust span {
-  display: inline-flex;
-  align-items: center;
-  gap: .45rem;
-  color: var(--text);
-  opacity: .76;
-  font-size: .82rem;
-  font-weight: 650;
-}
-
-.lernwick-hero__trust svg {
-  color: var(--primary);
-}
-
-.lernwick-hero__visual {
-  position: relative;
-  display: grid;
-  min-height: 31rem;
-  place-items: center;
-  isolation: isolate;
-}
-
-.lernwick-hero__orbit {
-  position: absolute;
-  z-index: -1;
-  width: min(27rem, 80%);
-  aspect-ratio: 1;
-  border: 1px solid color-mix(in srgb, var(--primary) 22%, transparent);
-  border-radius: 50%;
-}
-
-.lernwick-hero__orbit--two {
-  width: min(21rem, 63%);
-  border-style: dashed;
-  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
-}
-
-.lernwick-hero__core {
-  display: grid;
-  width: 14rem;
-  aspect-ratio: 1;
-  align-content: center;
-  justify-items: center;
-  gap: .65rem;
-  border: 1px solid color-mix(in srgb, var(--primary) 25%, transparent);
-  border-radius: 50%;
-  background: var(--white);
-  text-align: center;
-  box-shadow: 0 1.5rem 4rem color-mix(in srgb, var(--primary) 13%, transparent);
-}
-
-.lernwick-hero__core-mark {
-  display: grid;
-  width: 3.1rem;
-  aspect-ratio: 1;
-  place-items: center;
-  border-radius: 1rem;
-  background: var(--primary);
-  color: var(--white);
-  font-size: 1.5rem;
-  font-weight: 850;
-}
-
-.lernwick-hero__core strong {
-  font-size: 1.1rem;
-  line-height: 1.3;
-}
-
-.lernwick-hero__core small {
-  color: var(--primary);
-  font-size: .58rem;
-  font-weight: 850;
-  letter-spacing: .15em;
-}
-
-.lernwick-hero__float {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  gap: .8rem;
-  min-width: 13.5rem;
-  padding: .85rem 1rem;
-  border: 1px solid color-mix(in srgb, var(--primary) 15%, transparent);
-  border-radius: 1.1rem;
-  background: var(--white);
-  box-shadow: 0 1rem 2.5rem color-mix(in srgb, var(--text) 9%, transparent);
-}
-
-.lernwick-hero__float strong,
-.lernwick-hero__float small {
-  display: block;
-}
-
-.lernwick-hero__float strong {
-  font-size: .9rem;
-}
-
-.lernwick-hero__float small {
-  margin-top: .15rem;
-  color: var(--text);
-  opacity: .65;
-  font-size: .72rem;
-}
-
-.lernwick-hero__float-icon {
-  display: grid;
-  width: 2.6rem;
-  aspect-ratio: 1;
-  flex: 0 0 auto;
-  place-items: center;
-  border-radius: .85rem;
-  background: color-mix(in srgb, var(--secondary) 32%, var(--background));
-  color: var(--primary);
-  font-size: 1.2rem;
-}
-
-.lernwick-hero__float--biology {
-  top: 12%;
-  left: 0;
-}
-
-.lernwick-hero__float--pharmacy {
-  top: 42%;
-  right: -2%;
-}
-
-.lernwick-hero__float--recall {
-  bottom: 10%;
-  left: 4%;
-}
-
-.lernwick-hero__visual-label {
-  position: absolute;
-  right: 0;
-  bottom: 1%;
-  color: var(--primary);
-  font-size: .62rem;
-  font-weight: 850;
-  letter-spacing: .18em;
-}
-
-@media (max-width: 900px) {
-  .lernwick-hero__inner {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .lernwick-hero__visual {
-    min-height: 27rem;
-  }
-
-  .lernwick-hero__copy {
-    max-width: 48rem;
-  }
-}
-
-@media (max-width: 560px) {
-  .lernwick-hero {
-    padding-top: 3rem;
-  }
-
-  .lernwick-hero__visual {
-    min-height: 23rem;
-  }
-
-  .lernwick-hero__core {
-    width: 10.5rem;
-  }
-
-  .lernwick-hero__float {
-    min-width: 11rem;
-    padding: .65rem;
-  }
-
-  .lernwick-hero__float--biology {
-    top: 8%;
-    left: -1%;
-  }
-
-  .lernwick-hero__float--pharmacy {
-    top: 42%;
-    right: -1%;
-  }
-
-  .lernwick-hero__float--recall {
-    bottom: 7%;
-    left: -1%;
-  }
-
-  .lernwick-hero__visual-label {
-    right: .2rem;
-    bottom: 0;
-    font-size: .52rem;
-  }
-
-  .lernwick-hero__trust {
-    gap: .7rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .lernwick-hero__button {
-    transition: none;
-  }
-
-  .lernwick-hero__button:hover {
-    transform: none;
-  }
-}
+.lernwick-hero{padding-top:clamp(.5rem,2vw,2rem);padding-bottom:clamp(3rem,5vw,5rem);overflow:hidden;background:var(--background);color:var(--text)}
+.lernwick-hero__grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(2rem,5vw,4rem);align-items:center}
+.lernwick-hero__copy{position:relative;display:grid;gap:1.3rem;justify-items:start;padding-left:2.4rem}
+.lernwick-hero__vlabel{position:absolute;left:0;bottom:.5rem;writing-mode:vertical-rl;transform:rotate(180deg);color:var(--grey-700);font-size:.78rem;font-weight:600;letter-spacing:.12em}
+.lernwick-hero__note{color:var(--primary);font-size:.95rem;font-weight:750}
+.lernwick-hero h1{max-width:46rem;color:var(--text);font-size:clamp(2.7rem,5.2vw,5.1rem);font-weight:800;line-height:1.04;letter-spacing:-.055em}
+.lernwick-hero__highlight{color:var(--primary)}
+.lernwick-hero__lede{max-width:34rem;color:var(--grey-700);font-size:clamp(1rem,1.2vw,1.15rem);line-height:1.8}
+.lernwick-hero__path{display:flex;align-items:center;gap:.65rem;color:var(--text);font-size:.9rem}
+.lernwick-hero__path svg{flex:0 0 auto;color:var(--primary)}
+.lernwick-hero__ctas{display:flex;flex-wrap:wrap;align-items:center;gap:1rem 1.4rem}
+.lernwick-hero__button{display:inline-flex;min-height:3.1rem;align-items:center;justify-content:center;gap:.55rem;padding:.8rem 1.6rem;border-radius:999px;font-size:.95rem;font-weight:750;transition:transform .2s ease,background-color .2s ease}
+.lernwick-hero__button:hover{transform:translateY(-2px)}
+.lernwick-hero__button--primary{background:var(--primary);color:var(--white)}
+.lernwick-hero__button--primary:hover{background:var(--primary-dark)}
+.lernwick-hero__how{display:inline-flex;align-items:center;gap:.7rem;color:var(--text);font-weight:700}
+.lernwick-hero__play{display:grid;width:3.1rem;height:3.1rem;place-items:center;border:1.5px solid var(--text);border-radius:50%;transition:background-color .2s ease}
+.lernwick-hero__play svg{width:1.2rem;height:1.2rem}
+.lernwick-hero__how:hover .lernwick-hero__play{background:var(--secondary-light)}
+.lernwick-hero__media{position:relative;justify-self:end;width:min(100%,33rem);aspect-ratio:9/10}
+.lernwick-hero__blob{position:absolute;inset:6% 4% 4% 8%;overflow:hidden;margin:0;border-radius:58% 42% 48% 52%/42% 46% 54% 58%;background:var(--grey-50)}
+.lernwick-hero__blob img{width:100%;height:100%;object-fit:cover}
+.lernwick-hero__badge{position:absolute;z-index:2;top:0;right:2%;display:grid;width:6.6rem;height:7.4rem;align-content:center;justify-items:center;gap:.35rem;border-radius:3rem;background:var(--text);color:var(--white);font-size:.9rem;font-weight:700;transform:rotate(10deg)}
+.lernwick-hero__badge svg{width:1.8rem;height:1.8rem}
+.lernwick-hero__feature-card{position:absolute;z-index:2;bottom:6%;left:0;width:min(16rem,58%);padding:1.1rem 1.2rem;border-radius:1.75rem;background:var(--secondary-light);box-shadow:0 1rem 2.5rem rgb(23 43 58 / 16%);transform:rotate(-5deg)}
+.lernwick-hero__feature-title{font-size:1rem;font-weight:750;line-height:1.3}
+.lernwick-hero__feature-detail{display:flex;align-items:center;gap:.6rem;margin-top:.8rem}
+.lernwick-hero__feature-icon,.lernwick-hero__chip-icon{display:grid;width:2.4rem;height:2.4rem;flex:0 0 auto;place-items:center;border-radius:50%;background:var(--white);color:var(--primary)}
+.lernwick-hero__feature-detail strong,.lernwick-hero__feature-detail small,.lernwick-hero__feature-chip strong,.lernwick-hero__feature-chip small{display:block}
+.lernwick-hero__feature-detail strong,.lernwick-hero__feature-chip strong{font-size:.82rem}
+.lernwick-hero__feature-detail small,.lernwick-hero__feature-chip small{margin-top:.12rem;color:var(--grey-700);font-size:.68rem}
+.lernwick-hero__feature-chip{position:absolute;z-index:2;right:0;bottom:14%;display:flex;align-items:center;gap:.6rem;padding:.5rem 1rem .5rem .5rem;border-radius:999px;background:var(--accent-light);box-shadow:0 1rem 2.5rem rgb(23 43 58 / 16%);transform:rotate(-4deg)}
+.lernwick-hero__vscroll{position:absolute;top:34%;right:0;writing-mode:vertical-rl;color:var(--grey-700);font-size:.78rem;letter-spacing:.06em}
+.lernwick-hero__vscroll:after{display:block;width:2px;height:3rem;margin:.7rem auto 0;border-radius:2px;background:var(--text);content:""}
+.lernwick-hero__lower{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr) minmax(0,1.5fr);gap:1.25rem;margin-top:clamp(2rem,1rem + 3vw,3.5rem)}
+.lernwick-hero__collage{display:grid;min-height:12.5rem;grid-template-columns:1.1fr 1fr;grid-template-rows:1fr 1fr;gap:.5rem;padding:.7rem;border-radius:1.75rem;background:var(--accent-light)}
+.lernwick-hero__collage img{width:100%;height:100%;min-height:0;border-radius:.9rem;object-fit:cover}
+.lernwick-hero__collage img:first-child{grid-row:1/3}
+.lernwick-hero__process{position:relative;display:grid;grid-template-rows:auto 1fr auto;gap:1rem;padding:1.3rem;border-radius:1.75rem;background:var(--grey-50);transition:background-color .2s ease}
+.lernwick-hero__process:hover{background:var(--secondary-light)}
+.lernwick-hero__process-icon{display:grid;width:2.7rem;height:2.7rem;place-items:center;border-radius:50%;background:var(--text);color:var(--white)}
+.lernwick-hero__process-label{position:absolute;top:1.1rem;right:1.1rem;color:var(--grey-700);font-size:.68rem;font-weight:800;letter-spacing:.08em}
+.lernwick-hero__process strong{align-self:end;padding-right:2.5rem;font-size:clamp(1.15rem,1rem + .6vw,1.45rem);line-height:1.25}
+.lernwick-hero__process-go{position:absolute;right:1rem;bottom:1rem;display:grid;width:2.6rem;height:2.6rem;place-items:center;border-radius:50%;background:var(--primary);color:var(--white)}
+.lernwick-hero__metrics{display:grid;align-content:center;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.4rem 1rem;padding:.5rem 0 .5rem 1rem}
+.lernwick-hero__metrics>div{display:flex;flex-direction:column-reverse;justify-content:flex-end}
+.lernwick-hero__metrics dd{color:var(--text);font-size:clamp(1.4rem,1.2rem + 1.3vw,2.1rem);font-weight:800;line-height:1}
+.lernwick-hero__metrics sup{color:var(--primary);font-size:.55em}
+.lernwick-hero__metrics dt{margin-top:.35rem;color:var(--grey-600);font-size:.78rem}
+.lernwick-hero__metrics .lernwick-hero__scope dd{font-size:1rem;line-height:1.25}
+@media(max-width:1000px){.lernwick-hero__grid{grid-template-columns:minmax(0,1fr)}.lernwick-hero__media{justify-self:center;width:min(100%,30rem)}.lernwick-hero__lower{grid-template-columns:repeat(2,minmax(0,1fr))}.lernwick-hero__metrics{grid-column:1/-1;padding-left:0}.lernwick-hero__copy{padding-left:0}.lernwick-hero__vlabel,.lernwick-hero__vscroll{display:none}}
+@media(max-width:620px){.lernwick-hero__lower{grid-template-columns:minmax(0,1fr)}.lernwick-hero__metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.lernwick-hero__feature-chip small{display:none}.lernwick-hero__badge{width:5.2rem;height:5.8rem;font-size:.78rem}.lernwick-hero__feature-card{width:min(15rem,58%)}}
+@media(prefers-reduced-motion:reduce){.lernwick-hero__button,.lernwick-hero__how,.lernwick-hero__process{transition:none}.lernwick-hero__button:hover{transform:none}}
