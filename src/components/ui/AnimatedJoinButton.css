@@ -1,78 +1,221 @@
 .animated-join-button {
-  --join-white: var(--text-on-primary);
-  --join-purple-100: var(--primary-light);
-  --join-purple-200: var(--primary-border);
-  --join-purple-300: var(--primary);
-  --join-purple-400: var(--primary-hover);
-  --join-purple-500: var(--primary-dark);
-  --join-radius: var(--radius-lg, 1rem);
   position: relative;
   display: inline-block;
   isolation: isolate;
   width: min(100%, 14rem);
   min-height: 3.25rem;
   border: 0;
-  border-radius: var(--join-radius);
+  border-radius: var(--r-pill);
   background: transparent;
-  color: var(--join-white);
+  color: var(--ink);
+  font-family: var(--f-display);
+  font-size: var(--t-base);
+  font-weight: 700;
+  letter-spacing: -.025em;
   text-decoration: none;
   cursor: pointer;
-  font-size: var(--text-base, 1rem);
-  font-weight: var(--weight-bold, 700);
-  letter-spacing: -0.025em;
-  transform: rotate(-2deg) skewX(2deg);
   -webkit-tap-highlight-color: transparent;
 }
+
 .animated-join-button__shadow,
 .animated-join-button__wrap,
-.animated-join-button__face { position: absolute; inset: 0; border-radius: inherit; }
-.animated-join-button__shadow { z-index: -1; background: var(--join-purple-500); filter: blur(1px); }
-.animated-join-button__shadow::before { content: ""; position: absolute; inset: 0; border-radius: inherit; filter: blur(5px); box-shadow: -5px 5px 0 rgb(0 0 0 / 16%), -10px 10px 0 rgb(0 0 0 / 10%), -16px 15px 8px rgb(0 0 0 / 7%); transition: box-shadow .3s ease, opacity .3s ease; }
-.animated-join-button__wrap { overflow: hidden; padding: 3px; background: linear-gradient(to bottom, var(--join-purple-100), var(--join-purple-400)); transform: translate(5px, -5px); transition: transform .25s ease; }
-.animated-join-button__face { display: flex; align-items: center; justify-content: center; overflow: hidden; background: linear-gradient(to bottom, var(--join-purple-300), var(--join-purple-400)); box-shadow: inset -2px 8px 10px -5px var(--join-purple-200), inset 1px -3px 10px rgb(0 0 0 / 28%); }
-.animated-join-button__face::after { content: ""; position: absolute; inset: 45% 10% 25%; background: linear-gradient(to bottom, transparent, var(--join-purple-400)); filter: brightness(1.3) blur(5px); opacity: .7; pointer-events: none; }
-.animated-join-button__text { display: flex; align-items: center; justify-content: center; gap: .75rem; position: relative; z-index: 2; width: 100%; padding: .75rem 1rem; }
-.animated-join-button__letters { display: flex; align-items: center; justify-content: center; white-space: pre; }
-.animated-join-button__letters > span { position: relative; display: block; color: transparent; }
+.animated-join-button__face {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.animated-join-button__shadow {
+  z-index: -1;
+  background: var(--ink);
+}
+
+.animated-join-button__shadow::before {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 8px 20px rgb(27 27 31 / 12%);
+  content: "";
+}
+
+.animated-join-button__wrap {
+  overflow: hidden;
+  padding: 1px;
+  background: var(--ink);
+  transition: transform var(--dur) var(--ease);
+}
+
+.animated-join-button__face {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--orange);
+}
+
+.animated-join-button__face::after,
+.animated-join-button__outline,
+.animated-join-button__path,
+.animated-join-button__splash {
+  display: none;
+}
+
+.animated-join-button__text {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: .75rem;
+  padding: .75rem 1rem;
+}
+
+.animated-join-button__letters {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: pre;
+}
+
+.animated-join-button__letters > span {
+  position: relative;
+  display: block;
+  color: transparent;
+}
+
 .animated-join-button__letters > span::before,
-.animated-join-button__letters > span::after { content: attr(data-label); position: absolute; inset: 0; color: var(--join-white); text-shadow: -1px 1px 2px var(--join-purple-500); }
-.animated-join-button__letters > span::before { opacity: 0; transform: translateY(-100%); }
-.animated-join-button__letters.state-1 > span:nth-child(6) { margin-left: .12em; }
-.animated-join-button__letters.state-2 { position: absolute; left: 50%; transform: translateX(-50%); }
-.animated-join-button__letters.state-2 > span::after { opacity: 0; }
-.animated-join-button__arrow { z-index: 2; display: inline-flex; align-items: center; width: 1.4rem; flex: 0 0 1.4rem; }
-.animated-join-button__arrow > span { position: relative; display: block; width: 1.35rem; height: 3px; border-radius: 2px; background: linear-gradient(to bottom, var(--join-white), var(--join-purple-100)); box-shadow: -2px 2px 5px var(--join-purple-400); animation: join-arrow-sway 1s ease-in-out infinite paused; }
+.animated-join-button__letters > span::after {
+  position: absolute;
+  inset: 0;
+  color: var(--ink);
+  content: attr(data-label);
+  text-shadow: none;
+}
+
+.animated-join-button__letters > span::before {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.animated-join-button__letters.state-1 > span:nth-child(6) {
+  margin-left: .12em;
+}
+
+.animated-join-button__letters.state-2 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.animated-join-button__letters.state-2 > span::after {
+  opacity: 0;
+}
+
+.animated-join-button__arrow {
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  width: 1.4rem;
+  flex: 0 0 1.4rem;
+}
+
+.animated-join-button__arrow > span {
+  position: relative;
+  display: block;
+  width: 1.35rem;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--ink);
+  animation: join-arrow-sway 1s ease-in-out infinite paused;
+}
+
 .animated-join-button__arrow > span::before,
-.animated-join-button__arrow > span::after { content: ""; position: absolute; right: 0; width: .75rem; height: 3px; border-radius: 8px; background: var(--join-white); transform-origin: center right; }
-.animated-join-button__arrow > span::before { top: 0; transform: rotate(42deg); }
-.animated-join-button__arrow > span::after { bottom: 0; transform: rotate(-42deg); }
-.animated-join-button__outline { position: absolute; inset: 0; z-index: 3; overflow: hidden; border-radius: inherit; opacity: 0; pointer-events: none; transition: opacity .25s ease; }
-.animated-join-button__outline::before { content: ""; position: absolute; inset: -70% 30%; background: linear-gradient(to right, transparent, rgb(255 255 255 / 85%), transparent); transform: rotate(20deg); animation: join-shine 2.5s linear infinite paused; }
-.animated-join-button__path { position: absolute; z-index: 4; inset: auto 0 0; width: 100%; height: 1.8rem; color: white; stroke-dasharray: 150 480; stroke-dashoffset: 150; opacity: 0; pointer-events: none; }
-.animated-join-button__splash { position: absolute; z-index: 4; top: -2.1rem; left: -1.8rem; width: calc(100% + 3.6rem); height: auto; color: var(--join-purple-200); opacity: 0; pointer-events: none; }
+.animated-join-button__arrow > span::after {
+  position: absolute;
+  right: 0;
+  width: .75rem;
+  height: 3px;
+  border-radius: 8px;
+  background: var(--ink);
+  content: "";
+  transform-origin: center right;
+}
+
+.animated-join-button__arrow > span::before {
+  top: 0;
+  transform: rotate(42deg);
+}
+
+.animated-join-button__arrow > span::after {
+  bottom: 0;
+  transform: rotate(-42deg);
+}
+
 .animated-join-button:hover .animated-join-button__wrap,
-.animated-join-button:focus-visible .animated-join-button__wrap { transform: translate(7px, -7px); }
-.animated-join-button:hover .animated-join-button__outline,
-.animated-join-button:focus-visible .animated-join-button__outline { opacity: 1; }
-.animated-join-button:hover .animated-join-button__outline::before,
-.animated-join-button:focus-visible .animated-join-button__outline::before,
-.animated-join-button:hover .animated-join-button__arrow > span { animation-play-state: running; }
+.animated-join-button:focus-visible .animated-join-button__wrap {
+  transform: translateY(-2px);
+}
+
+.animated-join-button:hover .animated-join-button__arrow > span,
+.animated-join-button:focus-visible .animated-join-button__arrow > span {
+  animation-play-state: running;
+}
+
 .animated-join-button:hover .animated-join-button__letters.state-1 > span::before,
-.animated-join-button:focus-visible .animated-join-button__letters.state-1 > span::before { animation: join-letter-in .65s ease calc(var(--i) * .025s) both; }
+.animated-join-button:focus-visible .animated-join-button__letters.state-1 > span::before {
+  animation: join-letter-in .65s ease calc(var(--i) * .025s) both;
+}
+
 .animated-join-button:hover .animated-join-button__letters.state-1 > span::after,
-.animated-join-button:focus-visible .animated-join-button__letters.state-1 > span::after { animation: join-letter-out .55s ease calc(var(--i) * .025s) both; }
+.animated-join-button:focus-visible .animated-join-button__letters.state-1 > span::after {
+  animation: join-letter-out .55s ease calc(var(--i) * .025s) both;
+}
+
 .animated-join-button:hover .animated-join-button__letters.state-2 > span::after,
-.animated-join-button:focus-visible .animated-join-button__letters.state-2 > span::after { animation: join-letter-in .6s ease calc(var(--i) * .035s) both; }
-.animated-join-button:focus-visible { outline: 3px solid var(--border-focus, var(--primary)); outline-offset: 6px; }
-.animated-join-button:focus-visible .animated-join-button__path { animation: join-path 1.2s ease forwards; opacity: 1; }
-.animated-join-button:active .animated-join-button__wrap { transform: translate(2px, -2px); }
-.animated-join-button:active .animated-join-button__shadow::before { opacity: .5; }
-.animated-join-button:active .animated-join-button__splash { animation: join-splash .7s ease forwards; opacity: 1; }
-@keyframes join-shine { to { transform: translateX(180%) rotate(20deg); } }
-@keyframes join-letter-in { 0% { transform: translateY(45%); opacity: 0; filter: blur(8px); } 55% { transform: translateY(-10%); opacity: 1; filter: blur(0); } 100% { transform: translateY(0); opacity: 1; filter: blur(0); } }
-@keyframes join-letter-out { to { transform: translateY(-70%); opacity: 0; filter: blur(3px); } }
-@keyframes join-arrow-sway { 50% { transform: translateX(4px); } }
-@keyframes join-path { to { stroke-dashoffset: -480; } }
-@keyframes join-splash { to { stroke-dasharray: 2 60; stroke-dashoffset: -60; opacity: 0; } }
-@media (max-width: 480px) { .animated-join-button { width: min(100%, 13rem); } }
-@media (prefers-reduced-motion: reduce) { .animated-join-button, .animated-join-button *, .animated-join-button *::before, .animated-join-button *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } .animated-join-button__letters.state-2 { display: none; } }
+.animated-join-button:focus-visible .animated-join-button__letters.state-2 > span::after {
+  animation: join-letter-in .6s ease calc(var(--i) * .035s) both;
+}
+
+.animated-join-button:focus-visible {
+  outline: 3px solid var(--orange-deep);
+  outline-offset: 4px;
+}
+
+.animated-join-button:active .animated-join-button__wrap {
+  transform: translateY(1px);
+}
+
+@keyframes join-letter-in {
+  0% { transform: translateY(45%); opacity: 0; filter: blur(8px); }
+  55% { transform: translateY(-10%); opacity: 1; filter: blur(0); }
+  100% { transform: translateY(0); opacity: 1; filter: blur(0); }
+}
+
+@keyframes join-letter-out {
+  to { transform: translateY(-70%); opacity: 0; filter: blur(3px); }
+}
+
+@keyframes join-arrow-sway {
+  50% { transform: translateX(4px); }
+}
+
+@media (max-width: 480px) {
+  .animated-join-button {
+    width: min(100%, 13rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animated-join-button,
+  .animated-join-button *,
+  .animated-join-button *::before,
+  .animated-join-button *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .animated-join-button__letters.state-2 {
+    display: none;
+  }
+}
