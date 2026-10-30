@@ -163,7 +163,7 @@ export default function TutorApply() {
         </h2>
 
         <Card style={{ padding: 'var(--space-8)', textAlign: 'center', maxWidth: 500, margin: '0 auto' }}>
-          <Icon name="circle-check" style={{ fontSize: '3rem', color: status.color, marginBottom: 'var(--space-4)' }} />
+          <Icon name="circle" style={{ fontSize: '3rem', color: status.color, marginBottom: 'var(--space-4)' }} />
           <h2 style={{ color: status.color, marginBottom: 'var(--space-4)' }}>{status.label}</h2>
 
           <div style={{ marginBottom: 'var(--space-6)' }}>
@@ -185,7 +185,7 @@ export default function TutorApply() {
   if (submitted) {
     return (
       <div className="section" style={{ paddingTop: 'var(--space-6)', textAlign: 'center' }}>
-        <Icon name="circle-check" style={{ fontSize: '3rem', color: 'var(--success)', marginBottom: 'var(--space-4)' }} />
+        <Icon name="circle" style={{ fontSize: '3rem', color: 'var(--success)', marginBottom: 'var(--space-4)' }} />
         <h1 className="section-title">
           Application<br />submitted
         </h1>
