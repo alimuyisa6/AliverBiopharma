@@ -28,7 +28,7 @@ export default function LernwickHomeHero({ user, activeLevelName, activeGroupNam
         <div className="hero__copy">
           <span className="vlabel" aria-hidden="true">Biology · Pharmacy</span>
           <p className="note">{name ? `Welcome back, ${name}` : 'A focused place to learn life sciences'}</p>
-          <h1 id="hero-title">Learn <span className="hl">Biology</span><br />and Pharmacy</h1>
+          <h1 id="hero-title">Learn <svg className="squiggle" viewBox="0 0 120 48" fill="none" stroke="currentColor" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 34c18 4 34-2 38-12 3-8-7-12-11-5-5 9 8 17 24 16 20-1 36-12 52-22" /><path d="m100 6 15 5-9 13" /></svg> <span className="hl">Biology</span><br />and Pharmacy</h1>
           <p className="hero__lede">Build scientific understanding with structured learning resources, clear explanations, quizzes, flashcards and active recall for your level or programme.</p>
           <div className="hero__ctas">
             <Link className="btn btn--orange" to="/resources">Explore resources <Icon name="arrow-right" /></Link>
