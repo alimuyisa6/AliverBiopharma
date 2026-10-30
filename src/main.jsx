@@ -6,6 +6,7 @@ import App from './App';
 import { AuthProvider } from './contexts/AuthContext';
 import { I18nProvider } from './contexts/I18nContext';
 import './styles/colors.css';
+import './styles/lernwick-tokens.css';
 import './styles/semantics.css';
 import './styles/spacing.css';
 import './styles/animation.css';
