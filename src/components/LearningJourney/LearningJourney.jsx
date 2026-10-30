@@ -26,7 +26,7 @@ const STAGE_META = {
   flashcards: {
     title: 'Reinforce key ideas',
     description: 'Strengthen definitions, facts and important relationships.',
-    icon: 'layers'
+    icon: 'layer-group'
   },
   quiz: {
     title: 'Check your understanding',
@@ -36,7 +36,7 @@ const STAGE_META = {
   papers: {
     title: 'Apply it in examinations',
     description: 'Practise with examination papers connected to this learning area.',
-    icon: 'file-text'
+    icon: 'file-lines'
   }
 };
 
@@ -142,7 +142,9 @@ export default function LearningJourney({
     const noteDecks = Array.isArray(internalLinks?.activities?.flashcards)
       ? internalLinks.activities.flashcards
       : [];
-    const decks = normalizeItems(noteId && noteDecks.length ? noteDecks : byType('flashcard_deck'));
+    const unitDecks = byType('flashcard_deck');
+    const decks = normalizeItems(noteId && noteDecks.length ? noteDecks : unitDecks);
+    const themeDecksAvailable = Boolean(internalLinks?.theme_activities?.theme_id && themeFlashcardCount > 0);
     const noteQuizCount = Number(internalLinks?.activities?.quiz?.question_count || 0);
     const themeQuizCount = Number(internalLinks?.theme_activities?.quiz?.question_count || 0);
     const linkedQuizCount = byType('quiz_question').length;
@@ -150,21 +152,23 @@ export default function LearningJourney({
     const themeRecallCount = Number(internalLinks?.theme_activities?.recall?.question_count || 0);
     const linkedRecallCount = byType('recall_question').length;
     const themeId = internalLinks?.theme_activities?.theme_id || null;
-    const themeScope = Boolean(themeId && (themeQuizCount || themeRecallCount));
+    const themeFlashcardCount = Number(internalLinks?.theme_activities?.flashcards?.deck_count || 0);
+    const themeQuizAvailable = Boolean(themeId && themeQuizCount > 0);
+    const themeRecallAvailable = Boolean(themeId && themeRecallCount > 0);
     const scope = ['theme', 'subtopic'].includes(String(nodeType).toLowerCase()) ? 'theme' : 'lesson';
 
-    const quizCount = noteQuizCount || (themeScope ? themeQuizCount : linkedQuizCount);
-    const quizUnitId = noteQuizCount ? unitId : (themeScope ? themeId : unitId);
-    const quizScope = noteQuizCount ? 'note' : (themeScope ? 'theme' : scope);
+    const quizCount = noteQuizCount || (themeQuizAvailable ? themeQuizCount : linkedQuizCount);
+    const quizUnitId = noteQuizCount ? unitId : (themeQuizAvailable ? themeId : unitId);
+    const quizScope = noteQuizCount ? 'note' : (themeQuizAvailable ? 'theme' : scope);
     const quizQuery = createQuery({
       unit_id: quizUnitId,
       note_id: noteQuizCount ? noteId : null,
       activity_scope: quizScope
     });
 
-    const recallCount = noteRecallCount || (themeScope ? themeRecallCount : linkedRecallCount);
-    const recallUnitId = noteRecallCount ? unitId : (themeScope ? themeId : unitId);
-    const recallScope = noteRecallCount ? 'note' : (themeScope ? 'theme' : scope);
+    const recallCount = noteRecallCount || (themeRecallAvailable ? themeRecallCount : linkedRecallCount);
+    const recallUnitId = noteRecallCount ? unitId : (themeRecallAvailable ? themeId : unitId);
+    const recallScope = noteRecallCount ? 'note' : (themeRecallAvailable ? 'theme' : scope);
     const recallQuery = createQuery({
       unit_id: recallUnitId,
       note_id: noteRecallCount ? noteId : null,
@@ -199,11 +203,11 @@ export default function LearningJourney({
       },
       {
         key: 'flashcards',
-        items: decks.map((deck) => ({
+        items: decks.length ? decks.map((deck) => ({
           ...deck,
           detail: deck.description || ((Number(deck.card_count) || 0) + ' flashcards'),
           to: '/flashcards?' + flashcardQuery(deck.id, Boolean(noteId && noteDecks.length))
-        }))
+        })) : themeDecksAvailable ? [{ id: 'theme-flashcards-' + internalLinks.theme_activities.theme_id, title: 'Theme-wide flashcards', detail: themeFlashcardCount + ' available decks', to: '/flashcards?' + createQuery({ unit_id: internalLinks.theme_activities.theme_id, activity_scope: 'theme' }) }] : []
       },
       {
         key: 'quiz',
