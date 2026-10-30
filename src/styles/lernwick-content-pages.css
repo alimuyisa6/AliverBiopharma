@@ -1,0 +1,309 @@
+.app-layout .resources-page,
+.app-layout .notes-page-shell,
+.app-layout .blog-page,
+.app-layout .contact-page,
+.app-layout .faq-page,
+.app-layout .about-section {
+  color: var(--ink);
+}
+
+.app-layout .resources-main,
+.app-layout .notes-page,
+.app-layout .blog-page,
+.app-layout .contact-page,
+.app-layout .faq-page,
+.app-layout .about-content-wrap {
+  width: min(100%, calc(var(--container) + 2 * var(--gutter)));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.app-layout .resources-main,
+.app-layout .notes-page,
+.app-layout .blog-page,
+.app-layout .contact-page,
+.app-layout .faq-page {
+  padding-top: clamp(2rem, 1.2rem + 2vw, 3.25rem);
+  padding-bottom: var(--section);
+}
+
+.app-layout .resources-intro,
+.app-layout .notes-page-heading,
+.app-layout .blog-article-header,
+.app-layout .about-hero-content {
+  max-width: 52rem;
+  margin-bottom: clamp(1.75rem, 1rem + 2vw, 3rem);
+}
+
+.app-layout .resources-section-kicker,
+.app-layout .notes-page-kicker,
+.app-layout .sec-label {
+  color: var(--orange-deep);
+  font-family: var(--f-display);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.app-layout .resources-intro h1,
+.app-layout .notes-page-title,
+.app-layout .about-title,
+.app-layout .about-hero-title,
+.app-layout .blog-article-header h1,
+.app-layout .contact-page > h1,
+.app-layout .faq-page h1 {
+  color: var(--ink);
+  font-family: var(--f-display);
+  font-size: clamp(2.15rem, 1.45rem + 3vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -.055em;
+  line-height: 1.08;
+}
+
+.app-layout .resources-section-context,
+.app-layout .notes-page-description,
+.app-layout .about-hero-subtext,
+.app-layout .contact-page > p,
+.app-layout .blog-article-header p {
+  max-width: 46rem;
+  color: var(--ink-2);
+  font-family: var(--f-body);
+  font-size: var(--t-md);
+  line-height: 1.75;
+}
+
+.app-layout .resources-toolbar,
+.app-layout .notes-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-block: 1.5rem 2rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--soft);
+}
+
+.app-layout .resources-search,
+.app-layout .notes-search {
+  min-width: min(100%, 18rem);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-pill);
+  background: var(--paper);
+}
+
+.app-layout .resources-filter-chips,
+.app-layout .notes-pathway-list,
+.app-layout .blog-topic-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem;
+}
+
+.app-layout .resources-grid,
+.app-layout .notes-grid,
+.app-layout .blog-posts-grid,
+.app-layout .team-grid,
+.app-layout .contributors-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, .65rem + 1vw, 1.5rem);
+}
+
+.app-layout .resource-card,
+.app-layout .notes-card,
+.app-layout .blog-post-card,
+.app-layout .team-card,
+.app-layout .contributor-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--paper);
+  box-shadow: var(--shadow-card);
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.app-layout .resource-card:hover,
+.app-layout .notes-card:hover,
+.app-layout .blog-post-card:hover,
+.app-layout .team-card:hover {
+  border-color: var(--peach-2);
+  box-shadow: var(--shadow-float);
+  transform: translateY(-3px);
+}
+
+.app-layout .resource-card-body,
+.app-layout .blog-post-content,
+.app-layout .team-card-body {
+  padding: 1.25rem;
+}
+
+.app-layout .resource-card-title,
+.app-layout .blog-post-title,
+.app-layout .team-card-body h3,
+.app-layout .about-block-heading {
+  color: var(--ink);
+  font-family: var(--f-display);
+  font-size: var(--t-lg);
+  font-weight: 700;
+  letter-spacing: -.025em;
+  line-height: 1.25;
+}
+
+.app-layout .resource-card-desc,
+.app-layout .blog-post-excerpt,
+.app-layout .team-card-bio,
+.app-layout .about-block p {
+  color: var(--ink-2);
+  font-family: var(--f-body);
+  font-size: var(--t-sm);
+  line-height: 1.75;
+}
+
+.app-layout .resource-card-artwork,
+.app-layout .blog-post-image,
+.app-layout .team-card-image {
+  overflow: hidden;
+  background: var(--soft);
+}
+
+.app-layout .resource-card-artwork img,
+.app-layout .blog-post-image img,
+.app-layout .team-card-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.app-layout .notes-curriculum-context,
+.app-layout .notes-pathway,
+.app-layout .about-block,
+.app-layout .blog-latest,
+.app-layout .contact-form-wrap {
+  margin-block: 1.5rem;
+  padding: clamp(1.2rem, .8rem + 1.2vw, 2rem);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--paper);
+  box-shadow: var(--shadow-card);
+}
+
+.app-layout .notes-context-kicker,
+.app-layout .notes-section-count,
+.app-layout .notes-result-count,
+.app-layout .blog-article-meta,
+.app-layout .blog-post-date {
+  color: var(--ink-3);
+  font-size: var(--t-xs);
+}
+
+.app-layout .notes-section-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  margin-block: 2rem 1rem;
+}
+
+.app-layout .about-hero {
+  margin: clamp(1rem, .5rem + 1vw, 1.5rem) auto 2.5rem;
+  width: min(calc(100% - 2 * var(--gutter)), calc(var(--container) + 2 * var(--gutter)));
+  padding: clamp(2rem, 1.2rem + 4vw, 5rem);
+  border-radius: var(--r-xl);
+  background: var(--peach);
+}
+
+.app-layout .about-block {
+  max-width: 60rem;
+}
+
+.app-layout .about-block-heading {
+  margin-bottom: .8rem;
+}
+
+.app-layout .faq-item {
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.app-layout .faq-question {
+  color: var(--ink);
+  font-family: var(--f-display);
+  font-weight: 700;
+}
+
+.app-layout .faq-answer {
+  color: var(--ink-2);
+  line-height: 1.75;
+}
+
+.app-layout .contact-form {
+  border-color: var(--line);
+  border-radius: var(--r-lg);
+  background: var(--paper);
+  box-shadow: var(--shadow-card);
+}
+
+.app-layout .blog-topic-button,
+.app-layout .notes-pathway-item {
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  background: var(--soft);
+  color: var(--ink-2);
+}
+
+.app-layout .blog-topic-button:hover,
+.app-layout .blog-topic-button.active,
+.app-layout .notes-pathway-item:hover,
+.app-layout .notes-pathway-item.active {
+  border-color: var(--orange);
+  background: var(--peach);
+  color: var(--ink);
+}
+
+@media (max-width: 900px) {
+  .app-layout .resources-grid,
+  .app-layout .notes-grid,
+  .app-layout .blog-posts-grid,
+  .app-layout .team-grid,
+  .app-layout .contributors-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .app-layout .resources-main,
+  .app-layout .notes-page,
+  .app-layout .blog-page,
+  .app-layout .contact-page,
+  .app-layout .faq-page,
+  .app-layout .about-content-wrap {
+    padding-inline: 1rem;
+  }
+
+  .app-layout .resources-grid,
+  .app-layout .notes-grid,
+  .app-layout .blog-posts-grid,
+  .app-layout .team-grid,
+  .app-layout .contributors-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .app-layout .resources-toolbar,
+  .app-layout .notes-toolbar {
+    align-items: stretch;
+    border-radius: var(--r-md);
+  }
+
+  .app-layout .about-hero {
+    width: calc(100% - 2rem);
+    padding: 2rem 1.25rem;
+    border-radius: var(--r-lg);
+  }
+}
