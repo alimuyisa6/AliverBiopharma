@@ -190,8 +190,8 @@ export default function TutorDashboard() {
   const statusLabels = {
     pending: { label: 'Under review', color: 'var(--warning)', icon: 'clock' },
     scheduled: { label: 'Interview scheduled', color: 'var(--primary)', icon: 'calendar' },
-    interviewed: { label: 'Interview completed', color: 'var(--accent)', icon: 'check-double' },
-    approved: { label: 'Approved tutor', color: 'var(--success)', icon: 'circle-check' },
+    interviewed: { label: 'Interview completed', color: 'var(--accent)', icon: 'circle' },
+    approved: { label: 'Approved tutor', color: 'var(--success)', icon: 'circle' },
     rejected: { label: 'Application rejected', color: 'var(--error)', icon: 'circle-xmark' }
   };
 
@@ -243,7 +243,7 @@ export default function TutorDashboard() {
           <div>
             <div className="alert alert-success" style={{ marginBottom: 'var(--space-6)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div>
-                <Icon name="circle-check" style={{ marginRight: 'var(--space-3)' }} />
+                <Icon name="circle" style={{ marginRight: 'var(--space-3)' }} />
                 Approved tutor — {application.display_name || 'Tutor'}
               </div>
               <Button
