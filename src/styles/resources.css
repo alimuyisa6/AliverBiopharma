@@ -913,9 +913,9 @@ body.dark-mode .resources-search input::placeholder { color: var(--dark-text-sec
 .resources-page .resource-card-body {
   display: grid;
   align-content: start;
-  gap: .85rem;
+  gap: .7rem;
   min-height: 0;
-  padding: .7rem .7rem 1.1rem;
+  padding: 1rem 1.2rem 1.2rem;
   overflow: visible;
 }
 
@@ -924,11 +924,11 @@ body.dark-mode .resources-search input::placeholder { color: var(--dark-text-sec
   height: auto;
   min-height: 0;
   inset: auto;
-  width: 100%;
+  width: calc(100% - 1.2rem);
   aspect-ratio: 3 / 2;
-  margin: 0;
+  margin: .6rem .6rem 0;
   overflow: hidden;
-  border-radius: calc(var(--r-xl) - .45rem);
+  border-radius: calc(var(--r-lg) - .5rem);
   background: var(--soft);
   opacity: 1;
   transform: none;
@@ -949,8 +949,8 @@ body.dark-mode .resources-search input::placeholder { color: var(--dark-text-sec
 
 .resources-page .resource-card-image-label {
   position: absolute;
-  left: .85rem;
-  bottom: .85rem;
+  left: .7rem;
+  top: .7rem;
   max-width: calc(100% - 1.7rem);
   padding: .4rem .85rem;
   border-radius: var(--r-pill);
