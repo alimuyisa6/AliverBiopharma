@@ -862,7 +862,7 @@ export default function PastPapers() {
                     {paper.class_name && <span className="pp-chip pp-chip-emerald">{paper.class_name}</span>}
                     {downloadedIds.has(paper.id) && (
                       <span className="pp-chip pp-chip-success">
-                        <Icon name="check" /> Downloaded
+                        <Icon name="circle" /> Downloaded
                       </span>
                     )}
                   </div>
