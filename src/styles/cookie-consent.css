@@ -80,3 +80,36 @@
 
 body.dark-mode :is(.cookie-consent, .cookie-consent-banner, .cookie-consent-panel, .cookie-preferences, .cookie-settings) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
 body.dark-mode :is(.cookie-consent, .cookie-consent-banner, .cookie-consent-panel, .cookie-preferences, .cookie-settings) :is(h1, h2, h3, p, label, small) { color: var(--dark-text); }
+
+
+.cookie-consent-card,
+.cookie-consent-banner,
+.cookie-consent-panel,
+.cookie-preferences,
+.cookie-settings {
+  border-color: var(--line);
+  border-radius: var(--r-lg);
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: var(--shadow-float);
+  font-family: var(--f-body);
+}
+
+.cookie-consent :is(h1, h2, h3, p, label, small),
+.cookie-consent-banner :is(h1, h2, h3, p, label, small),
+.cookie-preferences :is(h1, h2, h3, p, label, small) {
+  color: var(--ink);
+}
+
+.cookie-consent-close {
+  color: var(--ink-2);
+}
+
+.cookie-consent-close:hover {
+  background: var(--soft);
+  color: var(--ink);
+}
+
+.cookie-consent-close:focus-visible {
+  outline-color: var(--orange-deep);
+}
