@@ -1021,7 +1021,7 @@ export default function PastPapers() {
 
                     {downloadedIds.has(paper.id) && (
                       <span className="chip chip-success">
-                        <Icon name="check" /> Downloaded
+                        <Icon name="circle" /> Downloaded
                       </span>
                     )}
                   </div>
