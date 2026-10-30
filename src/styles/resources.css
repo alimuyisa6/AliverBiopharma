@@ -921,6 +921,8 @@ body.dark-mode .resources-search input::placeholder { color: var(--dark-text-sec
 
 .resources-page .resource-card-artwork {
   position: relative;
+  height: auto;
+  min-height: 0;
   inset: auto;
   width: 100%;
   aspect-ratio: 3 / 2;
