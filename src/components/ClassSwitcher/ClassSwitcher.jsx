@@ -101,13 +101,13 @@ export default function ClassSwitcher({ className = '' }) {
                 aria-current={group.id === activeGroupId ? 'true' : undefined}
               >
                 <span>{group.name}</span>
-                {group.id === activeGroupId && <Icon name="check" />}
+                {group.id === activeGroupId && <Icon name="circle" />}
               </button>
             ))}
             <div className="dropdown-divider" />
             <div className="class-switcher-approval-note">
               <span className="class-switcher-approval-mark" aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false"><path d="M12 3.5 19 6v5.3c0 4.2-2.8 7.4-7 9.2-4.2-1.8-7-5-7-9.2V6l7-2.5Z" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round"/><path d="m9 12 2 2 4-4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                <svg viewBox="0 0 24 24" focusable="false"><path d="M12 3.5 19 6v5.3c0 4.2-2.8 7.4-7 9.2-4.2-1.8-7-5-7-9.2V6l7-2.5Z" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg>
               </span>
               <span><strong>Changing learning level?</strong><small>Level changes require admin approval.</small><a href="/profile" onClick={() => setOpen(false)}>Request a level change</a></span>
             </div>
