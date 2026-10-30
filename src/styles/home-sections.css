@@ -67,7 +67,7 @@
   line-height: var(--line-height-normal);
   border: 1px solid var(--primary);
   border-radius: var(--radius-button);
-  background: var(--blue-true);
+  background: var(--ink);
   color: var(--text-inverse);
   box-shadow: var(--shadow-sm);
   font-weight: var(--weight-semibold);
@@ -75,7 +75,7 @@
 }
 .home-learning-snapshot-dashboard-link:hover {
   border-color: var(--primary-hover);
-  background: var(--blue-true);
+  background: var(--ink);
   color: var(--text-inverse);
 }
 
@@ -525,7 +525,7 @@ body.dark-mode .testimonial-flat cite { color: var(--success-hover); }
   border: 1px solid var(--accent-light, var(--primary-light));
   border-bottom: 3px solid var(--accent-border, var(--primary-border));
   border-radius: var(--radius-lg);
-  background: linear-gradient(125deg, var(--accent-light, var(--primary-light)), var(--white) 78%);
+  background: var(--sage);
 }
 .home-learning-journey-content {
   width: min(100%, 46rem);
@@ -547,7 +547,7 @@ body.dark-mode .testimonial-flat cite { color: var(--success-hover); }
   padding: clamp(1.25rem, 3vw, 2rem);
   border: 1px solid var(--violet-100, var(--primary-light));
   border-radius: var(--radius-lg);
-  background: var(--violet-50, var(--primary-light));
+  background: var(--soft);
 }
 .home-curriculum-map {
   width: min(100%, 58rem);
@@ -562,7 +562,7 @@ body.dark-mode .testimonial-flat cite { color: var(--success-hover); }
   padding: clamp(1.25rem, 3vw, 2rem);
   border: 1px solid var(--warning-light, var(--primary-light));
   border-radius: var(--radius-lg);
-  background: var(--warning-light, var(--primary-light));
+  background: var(--peach);
 }
 .home-daily-recall-card {
   width: min(100%, 48rem);
