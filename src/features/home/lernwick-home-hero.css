@@ -3,6 +3,7 @@
 .hero__copy{position:relative;display:grid;grid-template-columns:minmax(0,1fr);gap:1.3rem;justify-items:start;padding-left:2.4rem}
 .hero .note{font:700 1.35rem/1.1 var(--f-hand);color:var(--orange-deep);transform:rotate(-3deg);display:inline-block}
 .hero h1{max-width:47rem;font-family:var(--f-display);font-size:var(--t-hero);font-weight:800;line-height:1.12;letter-spacing:-.04em;color:var(--ink)}
+.hero h1 .squiggle{display:inline-block;width:1.35em;height:auto;margin-inline:.08em;color:var(--orange);vertical-align:middle}
 .hero .hl{position:relative;z-index:0;display:inline-block}
 .hero .hl:before{content:"";position:absolute;z-index:-1;left:-.12em;top:.08em;width:1.05em;height:1.05em;border-radius:50% 50% 50% 8%;background:var(--orange);transform:rotate(-12deg)}
 .hero__lede{max-width:33rem;color:var(--ink-2);font-size:var(--t-md);line-height:1.75}
