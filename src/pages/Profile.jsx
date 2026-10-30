@@ -1168,7 +1168,7 @@ export default function Profile() {
                     />
                     <Input label={t('profile.email')} value={profileMeta?.email || user?.email || ''} disabled />
 
-                    <Button type="submit" loading={savingProfile} status={saveStatus.profile} loadingContext="brand" variant="outline" icon="check">
+                    <Button type="submit" loading={savingProfile} status={saveStatus.profile} loadingContext="brand" variant="outline" icon="circle">
                       Save Changes
                     </Button>
                   </Card>
@@ -1193,7 +1193,7 @@ export default function Profile() {
                       maxLength={500}
                     />
 
-                    <Button type="submit" loading={savingBio} status={saveStatus.bio} loadingContext="brand" variant="outline" icon="check">
+                    <Button type="submit" loading={savingBio} status={saveStatus.bio} loadingContext="brand" variant="outline" icon="circle">
                       Save Biography
                     </Button>
                   </Card>
@@ -1790,7 +1790,7 @@ export default function Profile() {
                     </select>
                   </div>
 
-                  <Button type="submit" loading={savingGuardian} status={saveStatus.guardian} loadingContext="brand" variant="outline" icon="check">
+                  <Button type="submit" loading={savingGuardian} status={saveStatus.guardian} loadingContext="brand" variant="outline" icon="circle">
                     {t('profile.saveGuardianInfo')}
                   </Button>
                 </Card>
