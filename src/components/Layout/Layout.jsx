@@ -14,6 +14,7 @@ import NetworkStatus from '../NetworkStatus/NetworkStatus';
 import NotificationCenter from '../NotificationCenter/NotificationCenter';
 import ClassSwitcher from '../ClassSwitcher/ClassSwitcher';
 import BiopharmToggle from '../BiopharmToggle/BiopharmToggle';
+import './lernwick-chrome.css';
 
 const EXCLUDED_PATHS = ['/login', '/register'];
 const SCROLL_STORAGE_KEY = 'scroll-positions';
