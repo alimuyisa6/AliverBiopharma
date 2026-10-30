@@ -22,6 +22,7 @@ import EmptyState from '../components/EmptyState/EmptyState';
 import Spinner from '../components/Spinner/Spinner';
 import Button from '../components/Button/Button';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
+import LearningJourney from '../components/LearningJourney/LearningJourney';
 
 const noteDetailContentCache = new Map();
 
@@ -694,78 +695,12 @@ export default function NoteDetail() {
           </section>
         )}
 
-        {(Number(internalLinks.activities?.quiz?.question_count) > 0 ||
-          (internalLinks.activities?.flashcards || []).length > 0 ||
-          Number(internalLinks.activities?.recall?.question_count) > 0 ||
-          Number(internalLinks.theme_activities?.quiz?.question_count) > 0 ||
-          Number(internalLinks.theme_activities?.flashcards?.deck_count) > 0 ||
-          Number(internalLinks.theme_activities?.recall?.question_count) > 0) && (
-          <section className="note-related-section" aria-labelledby="note-activities-title">
-            <h2 id="note-activities-title" className="note-related-title font-poppins">Practice this note or its theme</h2>
-            <p>Exact note-linked activities appear first. Where none are linked, theme-wide practice is clearly labelled.</p>
-            <div className="note-related-grid">
-              {Number(internalLinks.activities?.quiz?.question_count) > 0 ? (
-                <Card
-                  key="note-quiz"
-                  variant="blue-strong"
-                  className="card-mixed"
-                  title="Note-specific quiz"
-                  description={`${internalLinks.activities.quiz.question_count} linked questions`}
-                  footer={<Link className="btn btn-secondary" to={`/quiz/blocks?unit_id=${encodeURIComponent(note.unit_id)}&note_id=${encodeURIComponent(note.id)}&activity_scope=note`}>Test your understanding <span aria-hidden="true">→</span></Link>}
-                />
-              ) : Number(internalLinks.theme_activities?.quiz?.question_count) > 0 && internalLinks.theme_activities?.theme_id ? (
-                <Card
-                  key="theme-quiz"
-                  variant="blue-strong"
-                  className="card-mixed"
-                  title="Theme-wide quiz"
-                  description={`${internalLinks.theme_activities.quiz.question_count} questions across this theme`}
-                  footer={<Link className="btn btn-secondary" to={`/quiz/blocks?unit_id=${encodeURIComponent(internalLinks.theme_activities.theme_id)}&activity_scope=theme`}>Practise the whole theme <span aria-hidden="true">→</span></Link>}
-                />
-              ) : null}
-              {(internalLinks.activities?.flashcards || []).length > 0 ? (
-                (internalLinks.activities.flashcards || []).map((deck) => (
-                  <Card
-                    key={deck.id}
-                    variant="blue-strong"
-                    className="card-mixed"
-                    title={deck.title}
-                    description={deck.description || `${deck.card_count} flashcards`}
-                    footer={<Link className="btn btn-secondary" to={`/flashcards?unit_id=${encodeURIComponent(note.unit_id)}&note_id=${encodeURIComponent(note.id)}&deck_id=${encodeURIComponent(deck.id)}&activity_scope=note`}>{deck.card_count} cards · Review <span aria-hidden="true">→</span></Link>}
-                  />
-                ))
-              ) : Number(internalLinks.theme_activities?.flashcards?.deck_count) > 0 && internalLinks.theme_activities?.theme_id ? (
-                <Card
-                  key="theme-flashcards"
-                  variant="blue-strong"
-                  className="card-mixed"
-                  title="Theme-wide flashcards"
-                  description={`${internalLinks.theme_activities.flashcards.deck_count} available decks`}
-                  footer={<Link className="btn btn-secondary" to={`/flashcards?unit_id=${encodeURIComponent(internalLinks.theme_activities.theme_id)}&activity_scope=theme`}>Review across the theme <span aria-hidden="true">→</span></Link>}
-                />
-              ) : null}
-              {Number(internalLinks.activities?.recall?.question_count) > 0 ? (
-                <Card
-                  key="note-recall"
-                  variant="blue-strong"
-                  className="card-mixed"
-                  title="Note-specific recall"
-                  description={`${internalLinks.activities.recall.question_count} linked recall prompts`}
-                  footer={<Link className="btn btn-secondary" to={`/recall?unit_id=${encodeURIComponent(note.unit_id)}&note_id=${encodeURIComponent(note.id)}&activity_scope=note&resume=1`}>Practise active recall <span aria-hidden="true">→</span></Link>}
-                />
-              ) : Number(internalLinks.theme_activities?.recall?.question_count) > 0 && internalLinks.theme_activities?.theme_id ? (
-                <Card
-                  key="theme-recall"
-                  variant="blue-strong"
-                  className="card-mixed"
-                  title="Theme-wide recall"
-                  description={`${internalLinks.theme_activities.recall.question_count} prompts across this theme`}
-                  footer={<Link className="btn btn-secondary" to={`/recall?unit_id=${encodeURIComponent(internalLinks.theme_activities.theme_id)}&activity_scope=theme&resume=1`}>Practise the whole theme <span aria-hidden="true">→</span></Link>}
-                />
-              ) : null}
-            </div>
-          </section>
-        )}
+        <LearningJourney
+          unitId={note.unit_id}
+          noteId={note.id}
+          internalLinks={internalLinks}
+          returnTo={returnToLesson || (note.unit_id ? '/notes?unit_id=' + encodeURIComponent(note.unit_id) : '/notes')}
+        />
 
         {internalLinks.related_articles?.length > 0 && (
           <section className="note-related-section" aria-labelledby="note-related-articles-title">
@@ -784,24 +719,6 @@ export default function NoteDetail() {
               ))}
             </div>
           </section>
-        )}
-
-        {internalLinks.related_links.length > 0 && (
-          <div className="note-related-section">
-            <h3 className="note-related-title font-poppins"><i className="fa-solid fa-link"></i> Related notes</h3>
-            <div className="note-related-grid">
-              {internalLinks.related_links.map((link) => (
-                <Card
-                  key={link.link_id}
-                  variant="blue-strong"
-                  className="card-mixed"
-                  title={link.target_title}
-                  description={link.target_content_preview}
-                  footer={<Link className="btn btn-secondary" to={`/notes/read?id=${link.target_note_id}`}>{link.target_read_time ? `${link.target_read_time} · ` : ''}Read note <span aria-hidden="true">→</span></Link>}
-                />
-              ))}
-            </div>
-          </div>
         )}
 
         <div className="note-reactions-section">
