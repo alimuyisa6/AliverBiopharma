@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Icon from '../../components/Icon/Icon';
 import ClassSwitcher from '../../components/ClassSwitcher/ClassSwitcher';
-import { WhyChooseSection } from './WhyChooseSection';
-import { HowItWorksSection } from './HowItWorksSection';
 import { StatsGrid } from './StatsGrid';
 import { TestimonialSlider } from './TestimonialSlider';
 import { ChatWidget } from '../chat/ChatWidget';
@@ -13,11 +11,11 @@ import TutorMarketplaceTeaser from '../tutor-marketplace/TutorMarketplaceTeaser'
 import AdsHomeSection from '../../components/Advertising/AdsHomeSection';
 import AdSlot from '../../components/Advertising/AdSlot';
 import LernwickHomeHero from './LernwickHomeHero';
+import LernwickHomeSections from './LernwickHomeSections';
 import HomeDashboardCard from '../../components/dashboard/HomeDashboardCard';
 import DynamicActions from '../../components/DynamicActions';
 import { useLayout } from '../../contexts/LayoutContext';
 import ThreeDButton from '../../components/buttons/ThreeDButton';
-import StudyQuoteCard from './StudyQuoteCard';
 
 const CONTINUE_ICON = { note: 'book-open', video: 'play', quiz: 'clipboard-check' };
 
@@ -239,9 +237,7 @@ export default function HomeView(props) {
         </section>
       )}
 
-      <WhyChooseSection />
-      <HowItWorksSection />
-      <StudyQuoteCard />
+      <LernwickHomeSections />
 
       <section className="home-learning-journey-wrap" id="journey">
         <LearningJourneySection sections={sections} navigate={navigate} />
