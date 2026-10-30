@@ -1,0 +1,239 @@
+.app-layout .quiz-page,
+.app-layout .flashcards-page,
+.app-layout .recall-page,
+.app-layout .classroom-page,
+.app-layout .dashboard-wrapper,
+.app-layout .profile-page,
+.app-layout .pp-page,
+.app-layout .glossary-page {
+  color: var(--ink);
+  font-family: var(--f-body);
+}
+
+.app-layout :where(.quiz-page, .flashcards-page, .recall-page, .classroom-page, .dashboard-wrapper, .profile-page, .pp-page, .glossary-page) :where(h1, h2, h3, h4) {
+  color: var(--ink);
+  font-family: var(--f-display);
+  letter-spacing: -.035em;
+}
+
+.app-layout :where(.quiz-page, .flashcards-page, .recall-page, .classroom-page, .dashboard-wrapper, .profile-page, .pp-page, .glossary-page) :where(p, .description, .subtitle) {
+  color: var(--ink-2);
+  line-height: 1.7;
+}
+
+.app-layout .quiz-page-section,
+.app-layout .flashcard-subject-section,
+.app-layout .recall-page-section,
+.app-layout .classroom-list-section {
+  width: min(100%, calc(var(--container) + 2 * var(--gutter)));
+  margin-inline: auto;
+  padding: clamp(1.5rem, 1rem + 2vw, 3rem) var(--gutter);
+}
+
+.app-layout .quiz-page-title,
+.app-layout .flashcard-title,
+.app-layout .recall-page-title,
+.app-layout .classroom-page-title,
+.app-layout .glossary-main-title {
+  font-size: clamp(2rem, 1.35rem + 2.7vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.app-layout .quiz-blocks-grid,
+.app-layout .quiz-topic-cards,
+.app-layout .flashcard-decks-grid,
+.app-layout .classroom-page .grid,
+.app-layout .dashboard-curriculum-grid,
+.app-layout .dashboard-grid,
+.app-layout .profile-category-grid,
+.app-layout .pp-grid,
+.app-layout .glossary-route-grid {
+  gap: clamp(.85rem, .6rem + .8vw, 1.35rem);
+}
+
+.app-layout :where(.quiz-question-card, .quiz-result-card, .quiz-review-card, .flashcard-deck-card, .recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .classroom-page .card, .dashboard-card, .dashboard-curriculum-card, .profile-overview-panel, .profile-category-card, .profile-card, .profile-card-main, .pp-card, .glossary-term-detail, .glossary-route-card) {
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--paper);
+  box-shadow: var(--shadow-card);
+}
+
+.app-layout :where(.quiz-question-card, .quiz-result-card, .quiz-review-card, .flashcard-deck-card, .recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .classroom-page .card, .dashboard-card, .dashboard-curriculum-card, .profile-overview-panel, .profile-category-card, .profile-card, .profile-card-main, .pp-card, .glossary-term-detail, .glossary-route-card) :where(h2, h3, h4) {
+  color: var(--ink);
+}
+
+.app-layout :where(.quiz-nav-pills, .quiz-nav-button-card, .flashcard-type-row .chip, .recall-chips-row .chip, .classroom-level-chips .chip, .pp-chip, .glossary-class-badge, .glossary-term-category-badge) {
+  border-radius: var(--r-pill);
+}
+
+.app-layout :where(.quiz-nav-pills, .quiz-nav-button-card, .flashcard-type-row .chip, .recall-chips-row .chip, .classroom-level-chips .chip, .pp-chip, .glossary-class-badge) {
+  border-color: var(--line);
+  background: var(--soft);
+  color: var(--ink-2);
+}
+
+.app-layout .quiz-question-card,
+.app-layout .recall-question-card {
+  padding: clamp(1.25rem, .8rem + 1.2vw, 2rem);
+}
+
+.app-layout :where(.quiz-option, .quiz-answer-option, .recall-confidence-buttons button) {
+  border-radius: var(--r-md);
+}
+
+.app-layout .quiz-option:not(.is-correct):not(.is-incorrect):not([aria-checked="true"]) {
+  border-color: var(--line);
+  background: var(--paper);
+}
+
+.app-layout .quiz-option:not(.is-correct):not(.is-incorrect):hover,
+.app-layout .recall-confidence-buttons button:hover {
+  border-color: var(--orange);
+  background: var(--peach);
+  color: var(--ink);
+}
+
+.app-layout .recall-due-banner,
+.app-layout .dashboard-welcome-card {
+  border: 1px solid var(--peach-2);
+  border-radius: var(--r-lg);
+  background: var(--peach);
+  color: var(--ink);
+  box-shadow: none;
+}
+
+.app-layout .recall-due-banner :where(h2, h3, p),
+.app-layout .dashboard-welcome-card :where(h1, h2, h3, p) {
+  color: var(--ink);
+}
+
+.app-layout .dashboard-wrapper {
+  width: min(100%, calc(var(--container) + 2 * var(--gutter)));
+  margin-inline: auto;
+  padding: clamp(1.5rem, 1rem + 2vw, 3rem) var(--gutter);
+}
+
+.app-layout .dashboard-card,
+.app-layout .dashboard-curriculum-section {
+  padding: clamp(1rem, .75rem + 1vw, 1.5rem);
+}
+
+.app-layout .dashboard-wrapper .panel-header,
+.app-layout .dashboard-wrapper .panel-body {
+  color: var(--ink);
+}
+
+.app-layout .dashboard-wrapper .panel-title {
+  font-size: var(--t-lg);
+}
+
+.app-layout .dashboard-wrapper .stat-box {
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--soft);
+}
+
+.app-layout .profile-page {
+  width: min(100%, calc(var(--container) + 2 * var(--gutter)));
+  margin-inline: auto;
+  padding: clamp(1.5rem, 1rem + 2vw, 3rem) var(--gutter);
+}
+
+.app-layout .profile-tabs {
+  border-bottom: 1px solid var(--line);
+}
+
+.app-layout .profile-tab-item[aria-selected="true"],
+.app-layout .profile-tab-item.active {
+  color: var(--orange-deep);
+}
+
+.app-layout .pp-hero {
+  border-radius: var(--r-xl);
+  background: var(--peach);
+  color: var(--ink);
+  box-shadow: none;
+}
+
+.app-layout .pp-title,
+.app-layout .pp-subtitle,
+.app-layout .pp-description,
+.app-layout .pp-eyebrow {
+  color: var(--ink);
+}
+
+.app-layout .pp-main {
+  width: min(100%, calc(var(--container) + 2 * var(--gutter)));
+  margin-inline: auto;
+  padding: 1.5rem var(--gutter) var(--section);
+}
+
+.app-layout .pp-toolbar,
+.app-layout .pp-filters,
+.app-layout .glossary-search-area {
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--soft);
+}
+
+.app-layout .pp-search-input,
+.app-layout .glossary-search-input {
+  border-radius: var(--r-pill);
+  background: var(--paper);
+}
+
+.app-layout .glossary-header {
+  background: var(--peach);
+  color: var(--ink);
+}
+
+.app-layout .glossary-header :where(h1, p, span) {
+  color: var(--ink);
+}
+
+.app-layout .glossary-main-layout {
+  width: min(100%, calc(var(--container) + 2 * var(--gutter)));
+  margin-inline: auto;
+  padding: 1.5rem var(--gutter) var(--section);
+}
+
+.app-layout .glossary-sidebar-inner {
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--paper);
+}
+
+.app-layout .glossary-term-btn-text,
+.app-layout .glossary-term-title {
+  color: var(--ink);
+  font-family: var(--f-display);
+}
+
+.app-layout .glossary-term-btn:hover,
+.app-layout .glossary-related-term-btn:hover,
+.app-layout .glossary-route-card:hover {
+  border-color: var(--peach-2);
+  background: var(--soft);
+}
+
+@media (max-width: 700px) {
+  .app-layout .quiz-page-section,
+  .app-layout .flashcard-subject-section,
+  .app-layout .recall-page-section,
+  .app-layout .classroom-list-section,
+  .app-layout .dashboard-wrapper,
+  .app-layout .profile-page,
+  .app-layout .pp-main,
+  .app-layout .glossary-main-layout {
+    padding-inline: 1rem;
+  }
+
+  .app-layout :where(.quiz-question-card, .recall-question-card, .dashboard-card, .profile-card, .pp-card) {
+    border-radius: var(--r-md);
+  }
+
+  .app-layout .pp-hero {
+    border-radius: var(--r-lg);
+  }
+}
