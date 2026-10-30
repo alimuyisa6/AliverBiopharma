@@ -3,9 +3,9 @@
 .lernwick-testimonial-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.2rem}
 .lernwick-testimonial-card{position:relative;display:grid;align-content:start;gap:1rem;min-width:0;padding:1.7rem;border-radius:var(--r-lg);background:var(--peach)}
 .lernwick-testimonial-card--sage{background:var(--sage)}
-.lernwick-testimonial-mark{position:absolute;top:.8rem;right:1.25rem;color:var(--primary-dark);font-family:Georgia,serif;font-size:4.5rem;line-height:1}
+.lernwick-testimonial-mark{position:absolute;top:.8rem;right:1.25rem;color:var(--orange-deep);font-family:Georgia,serif;font-size:4.5rem;line-height:1}
 .lernwick-testimonial-card blockquote{position:relative;z-index:1;padding-top:1.3rem;color:var(--ink);font-family:var(--f-display);font-size:var(--t-md);font-weight:500;line-height:1.65}
-.lernwick-testimonial-rating{display:flex;gap:.2rem;color:var(--primary-dark)}
+.lernwick-testimonial-rating{display:flex;gap:.2rem;color:var(--orange-deep)}
 .lernwick-testimonial-rating svg{width:1rem;height:1rem;fill:currentColor}
 .lernwick-testimonial-card figcaption{display:flex;align-items:center;gap:.7rem;margin-top:.3rem}
 .lernwick-testimonial-card figcaption img,.lernwick-testimonial-initials{display:grid;width:2.8rem;height:2.8rem;flex:0 0 auto;place-items:center;border-radius:50%;object-fit:cover}
