@@ -19,6 +19,7 @@ import './styles/biopharm-toggle.css';
 import './styles/slide-to-confirm.css';
 import './styles/three-d-button.css';
 import './styles/section-bands.css';
+import './styles/lernwick-app-pages.css';
 
 
 function showFatalError(title, message, stack) {
