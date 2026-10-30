@@ -30,7 +30,7 @@ const GROUPS = [
     metrics: [
       { key: 'quiz_users', label: 'Quiz learners', icon: 'users' },
       { key: 'quiz_active_users', label: 'Active quiz learners', icon: 'chart-line' },
-      { key: 'quiz_passes', label: 'Passed attempts', icon: 'circle-check' },
+      { key: 'quiz_passes', label: 'Passed attempts', icon: 'circle' },
       { key: 'quiz_failures', label: 'Failed attempts', icon: 'circle-xmark' }
     ]
   }
