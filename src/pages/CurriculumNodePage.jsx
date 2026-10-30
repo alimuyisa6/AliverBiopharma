@@ -142,7 +142,6 @@ export default function CurriculumNodePage() {
   const ancestors = data?.ancestors || [];
   const children = data?.children || [];
   const relationships = data?.relationships || [];
-  const counts = data?.resource_counts || {};
   const blocks = data?.blocks || [];
   const linkedContent = data?.linked_content || [];
   const curriculumContext = `${ancestors.map((item) => item.name || '').join(' ')} ${node?.name || ''}`.toLowerCase();
