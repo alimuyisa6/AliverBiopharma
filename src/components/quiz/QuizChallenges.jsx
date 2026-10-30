@@ -53,7 +53,7 @@ export default function QuizChallenges({ user, level, class_name }) {
 
       <div className="quiz-challenge-status">
         {challenge.completed ? (
-          <Icon name="circle-check" className="icon-complete" />
+          <Icon name="circle" className="icon-complete" />
         ) : (
           <>
             <span className="progress-label font-mono">{challenge.progress}/{challenge.target}</span>
