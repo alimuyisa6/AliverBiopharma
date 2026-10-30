@@ -20,7 +20,7 @@ const STATUS_ICONS = {
   live: 'circle',
   upcoming: 'clock',
   open_floor: 'users',
-  ended: 'circle-check',
+  ended: 'circle',
   offline: 'circle'
 };
 
