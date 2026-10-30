@@ -145,3 +145,37 @@
 body.dark-mode :is(.breadcrumb, .breadcrumbs, .breadcrumb-item) { color: var(--dark-text-secondary); }
 body.dark-mode :is(.breadcrumb, .breadcrumbs) a { color: var(--dark-primary); }
 body.dark-mode .breadcrumb-item.active { color: var(--dark-text); }
+
+
+.breadcrumb {
+  color: var(--ink-3);
+  font-family: var(--f-body);
+}
+
+.breadcrumb-link,
+.breadcrumb-current,
+.breadcrumb-item > span {
+  color: var(--orange-deep);
+}
+
+.breadcrumb-link.is-inactive,
+.breadcrumb-current.is-inactive {
+  color: var(--ink-3);
+}
+
+.breadcrumb-link.is-active,
+.breadcrumb-current.is-active,
+.breadcrumb [aria-current="page"] {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.breadcrumb-link.is-inactive:hover,
+.breadcrumb > a:hover {
+  color: var(--orange-deep);
+}
+
+.breadcrumb-link:focus-visible,
+.breadcrumb > a:focus-visible {
+  outline-color: var(--orange-deep);
+}
