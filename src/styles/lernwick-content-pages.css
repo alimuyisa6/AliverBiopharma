@@ -307,3 +307,77 @@
     border-radius: var(--r-lg);
   }
 }
+
+
+.app-layout .resource-card,
+.app-layout .notes-card,
+.app-layout .blog-post-card,
+.app-layout .flashcard-deck-card,
+.app-layout .quiz-topic-cards .card {
+  overflow: hidden;
+  border-radius: var(--r-lg);
+}
+
+.app-layout .resource-card-body,
+.app-layout .notes-card .card-body,
+.app-layout .blog-post-content {
+  padding: 1rem 1.2rem 1.2rem;
+}
+
+.app-layout .resource-card-artwork {
+  width: calc(100% - 1.2rem);
+  aspect-ratio: 3 / 2;
+  margin: .6rem .6rem 0;
+  border-radius: calc(var(--r-lg) - .5rem);
+}
+
+.app-layout .resource-card-image-label {
+  top: .7rem;
+  bottom: auto;
+  left: .7rem;
+}
+
+.app-layout .notes-card {
+  padding: 0;
+}
+
+.app-layout .notes-card .card-image,
+.app-layout .flashcard-deck-card .card-image,
+.app-layout .quiz-topic-cards .card-image {
+  display: block;
+  width: calc(100% - 1.2rem);
+  height: auto;
+  aspect-ratio: 3 / 2;
+  margin: .6rem .6rem 0;
+  border-radius: calc(var(--r-lg) - .5rem);
+  object-fit: cover;
+}
+
+.app-layout .notes-card .card-body,
+.app-layout .flashcard-deck-card .card-body,
+.app-layout .quiz-topic-cards .card-body {
+  padding: 1rem 1.2rem 1.2rem;
+}
+
+.app-layout .blog-post-image {
+  display: block;
+  width: calc(100% - 1.2rem);
+  height: auto;
+  aspect-ratio: 3 / 2;
+  margin: .6rem .6rem 0;
+  border-radius: calc(var(--r-lg) - .5rem);
+  object-fit: cover;
+}
+
+.app-layout .flashcard-deck-card .card-footer,
+.app-layout .quiz-topic-cards .card-footer {
+  padding: 0 1.2rem 1.2rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-layout .resource-card,
+  .app-layout .notes-card,
+  .app-layout .blog-post-card {
+    transition: none;
+  }
+}
