@@ -1,4 +1,5 @@
 import Icon from '../../components/Icon/Icon';
+import './lernwick-stats.css';
 
 const GROUPS = [
   {
