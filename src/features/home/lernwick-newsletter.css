@@ -2,7 +2,7 @@
 .lernwick-newsletter .container{width:100%;max-width:calc(var(--container) + 2 * var(--gutter));margin-inline:auto;padding-inline:var(--gutter)}
 .lernwick-newsletter-card{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);align-items:end;gap:2rem 4rem;padding:clamp(2rem,1.5rem + 2vw,3.5rem);border-radius:var(--r-xl);background:var(--ink);color:var(--grey-300)}
 .lernwick-newsletter-copy{display:grid;justify-items:start;gap:.9rem}
-.lernwick-newsletter-copy .lernwick-note{color:var(--secondary)}
+.lernwick-newsletter-copy .lernwick-note{color:var(--orange)}
 .lernwick-newsletter-copy h2{color:var(--white);font-family:var(--f-display);font-size:var(--t-2xl);font-weight:700;line-height:1.15;letter-spacing:-.03em}
 .lernwick-newsletter-copy>p:last-child{max-width:36rem;color:var(--grey-300);font-size:var(--t-sm);line-height:1.7}
 .lernwick-newsletter-form{display:grid;gap:.65rem}
@@ -11,9 +11,9 @@
 .lernwick-newsletter-input{min-width:0}
 .lernwick-newsletter-input input{min-height:3.1rem;padding:.75rem 1.2rem;border:1.5px solid var(--grey-700);border-radius:var(--r-pill);background:var(--dark-surface);color:var(--white)}
 .lernwick-newsletter-input input::placeholder{color:var(--grey-400)}
-.lernwick-newsletter-input input:focus{border-color:var(--secondary);outline:2px solid var(--secondary);outline-offset:2px}
-.lernwick-newsletter-submit{min-height:3.1rem;padding:.75rem 1.35rem;border-radius:var(--r-pill);background:var(--primary);color:var(--white);font-family:var(--f-display);font-weight:700}
-.lernwick-newsletter-submit:hover:not(:disabled){background:var(--primary-dark);color:var(--white)}
+.lernwick-newsletter-input input:focus{border-color:var(--orange);outline:2px solid var(--secondary);outline-offset:2px}
+.lernwick-newsletter-submit{min-height:3.1rem;padding:.75rem 1.35rem;border-radius:var(--r-pill);background:var(--orange);color:var(--ink);font-family:var(--f-display);font-weight:700}
+.lernwick-newsletter-submit:hover:not(:disabled){background:var(--orange-hover);color:var(--ink)}
 .lernwick-newsletter-status{grid-column:1/-1;margin-top:.3rem;font-size:var(--t-sm)}
 .lernwick-newsletter-status.success{color:var(--green-200)}
 .lernwick-newsletter-status.error{color:var(--red-200)}
