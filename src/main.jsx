@@ -20,6 +20,7 @@ import './styles/slide-to-confirm.css';
 import './styles/three-d-button.css';
 import './styles/section-bands.css';
 import './styles/lernwick-app-pages.css';
+import './styles/lernwick-content-pages.css';
 
 
 function showFatalError(title, message, stack) {
