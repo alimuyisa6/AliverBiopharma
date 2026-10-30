@@ -134,3 +134,57 @@
 body.dark-mode .slide-to-confirm { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
 body.dark-mode .slide-to-confirm-track { background: var(--dark-surface-raised); }
 body.dark-mode .slide-to-confirm :is(.slide-to-confirm-label, .slide-to-confirm-hint) { color: var(--dark-text-secondary); }
+
+
+.slide-confirm {
+  border-color: var(--line-2);
+  background: var(--soft);
+  color: var(--ink);
+}
+
+.slide-confirm::before {
+  background: var(--peach);
+}
+
+.slide-confirm-label {
+  color: var(--ink);
+  font-family: var(--f-display);
+}
+
+.slide-confirm-hint,
+.profile-account-delete-confirm > p {
+  color: var(--ink-2);
+}
+
+.slide-confirm-knob {
+  border-color: var(--line);
+  background: var(--paper);
+  color: var(--orange-deep);
+  box-shadow: var(--shadow-card);
+}
+
+.slide-confirm-knob:focus-visible {
+  outline-color: var(--orange-deep);
+}
+
+.slide-confirm--danger {
+  border-color: var(--orange-deep);
+}
+
+.slide-confirm--danger::before {
+  background: var(--peach);
+}
+
+.slide-confirm--danger .slide-confirm-knob,
+.slide-confirm-error {
+  color: var(--orange-deep);
+}
+
+.slide-confirm.is-confirmed {
+  border-color: var(--sage);
+  background: var(--sage);
+}
+
+.slide-confirm.is-confirmed .slide-confirm-knob {
+  color: var(--ink);
+}
