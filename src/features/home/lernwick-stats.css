@@ -1,11 +1,11 @@
 .home-page .home-stats-section{z-index:auto;margin-block-start:0}
 .lernwick-stats{margin:0 clamp(.5rem,.3rem + .6vw,.9rem);padding:clamp(2.5rem,2rem + 3vw,4.5rem) 0;border-radius:var(--r-xl);background:var(--soft)}
 .lernwick-stats .container{width:100%;max-width:calc(var(--container) + 2 * var(--gutter));margin-inline:auto;padding-inline:var(--gutter)}
-.lernwick-stats .stats-impact-heading{margin:0 0 clamp(2rem,1.5rem + 2vw,3rem)}
+.lernwick-stats .stats-impact-heading{width:min(calc(100% - (var(--gutter) * 2)),calc(var(--container) + 2 * var(--gutter)));margin:0 auto clamp(2rem,1.5rem + 2vw,3rem)}
 .lernwick-stats .stats-impact-heading .section-head-left{display:grid;gap:.65rem;padding:0}
 .lernwick-stats .stats-impact-heading h2{color:var(--ink);font-family:var(--f-display);font-size:var(--t-2xl);font-weight:700;line-height:1.15;letter-spacing:-.03em}
 .lernwick-stats .stats-impact-scope{color:var(--ink-2);font-size:var(--t-sm);line-height:1.5}
-.lernwick-stats .stats-impact-groups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.2rem}
+.lernwick-stats .stats-impact-groups{display:grid;width:min(calc(100% - (var(--gutter) * 2)),calc(var(--container) + 2 * var(--gutter)));grid-template-columns:repeat(3,minmax(0,1fr));gap:1.2rem;margin-inline:auto}
 .lernwick-stats .stats-impact-group{min-width:0;padding:1.2rem;border-radius:var(--r-lg);background:var(--paper)}
 .lernwick-stats .stats-impact-group-title{display:flex;align-items:center;gap:.6rem;margin:0 0 1rem;color:var(--ink);font:600 var(--t-md)/1.3 var(--f-display)}
 .lernwick-stats .stats-impact-group-title svg{width:1.2rem;height:1.2rem;flex:0 0 auto;color:var(--orange-deep)}
