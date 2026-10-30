@@ -49,7 +49,7 @@ export function CommunitySection({
                 }}
               >
                 <p style={{ fontWeight: 600, color: weeklyChallengeAnswer.correct ? 'var(--success)' : 'var(--error)' }}>
-                  <Icon name={weeklyChallengeAnswer.correct ? 'circle-check' : 'circle-xmark'} />
+                  <Icon name={weeklyChallengeAnswer.correct ? 'circle' : 'circle-xmark'} />
                   {weeklyChallengeAnswer.correct ? ' Correct!' : ' Incorrect'}
                 </p>
                 <p style={{ fontSize: 'var(--text-sm)', marginTop: 'var(--space-2)' }}>
