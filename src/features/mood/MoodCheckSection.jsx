@@ -6,7 +6,7 @@ const MOODS = [
   { key: 'struggling', icon: 'circle-xmark', label: 'Struggling' },
   { key: 'confused', icon: 'circle-info', label: 'Confused' },
   { key: 'okay', icon: 'circle', label: 'Okay' },
-  { key: 'good', icon: 'circle-check', label: 'Good' },
+  { key: 'good', icon: 'circle', label: 'Good' },
   { key: 'great', icon: 'star', label: 'Great' }
 ];
 
@@ -58,7 +58,7 @@ export function MoodCheckSection({
 
         {moodSubmitted && (
           <p className="mood-success">
-            <Icon name="circle-check" /> Thanks for sharing!
+            <Icon name="circle" /> Thanks for sharing!
           </p>
         )}
       </div>
