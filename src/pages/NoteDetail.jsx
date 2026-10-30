@@ -721,24 +721,6 @@ export default function NoteDetail() {
           </section>
         )}
 
-        {internalLinks.related_links.length > 0 && (
-          <div className="note-related-section">
-            <h3 className="note-related-title font-poppins"><i className="fa-solid fa-link"></i> Related notes</h3>
-            <div className="note-related-grid">
-              {internalLinks.related_links.map((link) => (
-                <Card
-                  key={link.link_id}
-                  variant="blue-strong"
-                  className="card-mixed"
-                  title={link.target_title}
-                  description={link.target_content_preview}
-                  footer={<Link className="btn btn-secondary" to={`/notes/read?id=${link.target_note_id}`}>{link.target_read_time ? `${link.target_read_time} · ` : ''}Read note <span aria-hidden="true">→</span></Link>}
-                />
-              ))}
-            </div>
-          </div>
-        )}
-
         <div className="note-reactions-section">
           <p className="note-reactions-label font-source-sans">Was this helpful?</p>
           <div className="note-reactions-buttons">
