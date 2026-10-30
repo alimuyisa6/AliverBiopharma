@@ -514,7 +514,7 @@ export default function NoteDetail() {
 
       {user && (
         <div className="note-progress-indicator font-mono">
-          <i className={`fa-solid fa-circle-check ${progressSaved ? 'progress-saved' : 'progress-unsaved'}`}></i>
+          <i className={`fa-solid fa-circle ${progressSaved ? 'progress-saved' : 'progress-unsaved'}`}></i>
           {readProgress}% read {progressSaved && '· saved'}
         </div>
       )}
