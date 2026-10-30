@@ -282,7 +282,7 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
                 disabled={!!feedback || locked}
               />
               {!feedback && (
-                <Button onClick={() => handleCheckTyped()} disabled={!typedAnswer.trim() || locked} icon="check">
+                <Button onClick={() => handleCheckTyped()} disabled={!typedAnswer.trim() || locked} icon="circle">
                   Check
                 </Button>
               )}
@@ -379,7 +379,7 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
                 disabled={!!feedback || locked}
               />
               {!feedback && (
-                <Button onClick={() => handleCheckTyped(structureTab)} disabled={!typedAnswer.trim() || locked} icon="check">
+                <Button onClick={() => handleCheckTyped(structureTab)} disabled={!typedAnswer.trim() || locked} icon="circle">
                   Check
                 </Button>
               )}
@@ -407,7 +407,7 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
           </div>
 
           <div className="fcd-actions-row">
-            <Button variant={isKnown ? 'primary' : 'ghost'} size="sm" onClick={handleToggleKnown} icon={isKnown ? 'circle-check' : 'circle'} disabled={locked}>
+            <Button variant={isKnown ? 'primary' : 'ghost'} size="sm" onClick={handleToggleKnown} icon={'circle'} disabled={locked}>
               {isKnown ? 'Known' : 'Mark Known'}
             </Button>
             <Button variant={isBookmarked ? 'warm' : 'ghost'} size="sm" onClick={handleToggleBookmark} icon="bookmark" disabled={locked}>
