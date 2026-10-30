@@ -8,11 +8,11 @@ import Button from '../../components/Button/Button';
 import { useLayout } from '../../contexts/LayoutContext';
 import '../../styles/resources.css';
 import DynamicActions from '../../components/DynamicActions';
-import ResourceIllustration from './ResourceIllustration';
 
 const CONTENT_TYPES = [
   {
     key: 'notes',
+    image: 'https://images.pexels.com/photos/7972949/pexels-photo-7972949.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop',
     label: 'Notes',
     description: 'Learn with clear explanations, diagrams, and concise summaries.',
     icon: 'book-open',
@@ -22,6 +22,7 @@ const CONTENT_TYPES = [
   },
   {
     key: 'flashcards',
+    image: 'https://images.pexels.com/photos/16420473/pexels-photo-16420473.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop',
     label: 'Flashcards',
     description: 'Recall key facts with quick question-and-answer cards.',
     icon: 'layer-group',
@@ -31,6 +32,7 @@ const CONTENT_TYPES = [
   },
   {
     key: 'pdfs',
+    image: 'https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop',
     label: 'PDF Library',
     description: 'Find study guides, reference sheets, and course documents.',
     icon: 'file-pdf',
@@ -40,6 +42,7 @@ const CONTENT_TYPES = [
   },
   {
     key: 'quizzes',
+    image: 'https://images.pexels.com/photos/3825586/pexels-photo-3825586.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop',
     label: 'Quizzes',
     description: 'Check your understanding with questions matched to your selected programme.',
     icon: 'clipboard-check',
@@ -49,6 +52,7 @@ const CONTENT_TYPES = [
   },
   {
     key: 'past_papers',
+    image: 'https://images.pexels.com/photos/8199759/pexels-photo-8199759.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop',
     label: 'Past Papers',
     description: 'Build exam confidence with questions from previous exam papers.',
     icon: 'file-lines',
@@ -58,6 +62,7 @@ const CONTENT_TYPES = [
   },
   {
     key: 'recall',
+    image: 'https://images.pexels.com/photos/8199770/pexels-photo-8199770.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop',
     label: 'Recall',
     description: 'Revisit key ideas at spaced intervals to strengthen long-term recall.',
     icon: 'brain',
@@ -222,8 +227,9 @@ export default function ResourcesView({ navigate, user, sections }) {
                   </div>
 
                   <div className="resource-card-body">
-                    <div className="resource-card-artwork" aria-hidden="true">
-                      <ResourceIllustration type={type.key} />
+                    <div className="resource-card-artwork">
+                      <img src={getImage(type.key) || type.image} alt={`${type.label} learning materials`} loading="lazy" width="900" height="600" />
+                      <span className="resource-card-image-label">{type.label}</span>
                     </div>
                     <h3 className="resource-card-title">{type.label}</h3>
                     <p className="resource-card-desc">{type.description}</p>
