@@ -10,8 +10,8 @@
 .main-nav-link:hover,.main-nav-link.active{background:var(--soft);color:var(--ink)}
 .main-nav-link:hover:after,.main-nav-link.active:after{transform:scaleX(1)}
 .main-nav-link svg{width:1rem;height:1rem}
-.main-nav-link[href="/register"]{background:var(--primary);color:var(--white)}
-.main-nav-link[href="/register"]:hover{background:var(--primary-dark);color:var(--white)}
+.main-nav-link[href="/register"]{background:var(--orange);color:var(--ink)}
+.main-nav-link[href="/register"]:hover{background:var(--orange-hover);color:var(--ink)}
 .main-nav-link[href="/register"]:after{display:none}
 .nav-actions{display:flex;flex:0 0 auto;align-items:center;justify-content:flex-end;gap:.55rem;min-width:0}
 .nav-actions .class-switcher-wrap{max-width:11rem}
