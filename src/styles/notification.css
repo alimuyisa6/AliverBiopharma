@@ -222,3 +222,49 @@ body.dark-mode .notification-page :is(.notification-card, .notification-item, .n
 body.dark-mode .notification-center :is(.notification-card, .notification-item, .notification-panel, .notification-empty-state) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
 body.dark-mode .notification-page :is(h1, h2, h3, p, small),
 body.dark-mode .notification-center :is(h1, h2, h3, p, small) { color: var(--dark-text); }
+
+
+.notification-bell {
+  color: var(--ink-2);
+}
+
+.notification-bell:hover,
+.notification-bell:focus-visible,
+.notification-bell--unread {
+  color: var(--orange-deep);
+}
+
+.notification-dropdown {
+  border-color: var(--line);
+  border-radius: var(--r-lg);
+  background: var(--paper);
+  box-shadow: var(--shadow-float);
+}
+
+.notification-dropdown-header,
+.notification-item {
+  border-color: var(--line);
+  background: var(--paper);
+}
+
+.notification-dropdown-title,
+.notification-item-title {
+  color: var(--ink);
+  font-family: var(--f-display);
+}
+
+.notification-item-body,
+.notification-item-time,
+.notification-empty {
+  color: var(--ink-2);
+}
+
+.notification-item:hover,
+.notification-item.unread,
+.notification-item.notification-unread {
+  background: var(--soft);
+}
+
+.notification-dismiss:hover {
+  color: var(--orange-deep);
+}
