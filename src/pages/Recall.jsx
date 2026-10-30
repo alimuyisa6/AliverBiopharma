@@ -1045,7 +1045,7 @@ export default function BioRecall() {
                           ? 'star'
                           : feedbackResult.strength ===
                             'strong'
-                          ? 'circle-check'
+                          ? 'circle'
                           : 'rotate'
                       }
                       className={`recall-feedback-icon ${
