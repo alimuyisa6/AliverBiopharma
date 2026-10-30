@@ -895,3 +895,93 @@ body.dark-mode .resources-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small) 
 body.dark-mode .resources-page :is(.text-muted, .section-description, .resource-description) { color: var(--dark-text-secondary); }
 body.dark-mode .resources-search input { background: var(--dark-surface-raised); color: var(--dark-text); border-color: var(--dark-border); }
 body.dark-mode .resources-search input::placeholder { color: var(--dark-text-secondary); }
+
+
+.resources-page .resource-card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  background: var(--paper);
+  box-shadow: var(--shadow-card);
+}
+
+.resources-page .resource-card::before,
+.resources-page .resource-card-top {
+  display: none;
+}
+
+.resources-page .resource-card-body {
+  display: grid;
+  align-content: start;
+  gap: .85rem;
+  min-height: 0;
+  padding: .7rem .7rem 1.1rem;
+  overflow: visible;
+}
+
+.resources-page .resource-card-artwork {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  margin: 0;
+  overflow: hidden;
+  border-radius: calc(var(--r-xl) - .45rem);
+  background: var(--soft);
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.resources-page .resource-card-artwork img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 500ms var(--ease);
+}
+
+.resources-page .resource-card:hover .resource-card-artwork img {
+  transform: scale(1.04);
+}
+
+.resources-page .resource-card-image-label {
+  position: absolute;
+  left: .85rem;
+  bottom: .85rem;
+  max-width: calc(100% - 1.7rem);
+  padding: .4rem .85rem;
+  border-radius: var(--r-pill);
+  background: var(--paper);
+  color: var(--ink);
+  font: 600 var(--t-xs)/1.3 var(--f-display);
+}
+
+.resources-page .resource-card-title,
+.resources-page .resource-card-desc {
+  max-width: 100%;
+  margin-inline: .45rem;
+}
+
+.resources-page .resource-card-title {
+  margin-bottom: 0;
+  color: var(--ink);
+  font: 700 var(--t-lg)/1.25 var(--f-display);
+}
+
+.resources-page .resource-card-desc {
+  color: var(--ink-2);
+  font: 400 var(--t-sm)/1.7 var(--f-body);
+}
+
+.resources-page .resource-card-footer {
+  margin-inline: .7rem;
+  padding: .9rem .45rem .45rem;
+  border-top: 1px solid var(--line);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .resources-page .resource-card-artwork img {
+    transition: none;
+  }
+}
