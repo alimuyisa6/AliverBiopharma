@@ -1,6 +1,6 @@
 .home-classroom-section>.lernwick-feature,.home-tutor-section>.lernwick-feature{width:min(calc(100% - (var(--gutter) * 2)),calc(var(--container) + 2 * var(--gutter)));margin-inline:auto;padding-block:clamp(2rem,1rem + 3vw,4rem)}
 .lernwick-feature .container{width:100%;max-width:none;margin:0;padding:0}
-.lernwick-feature .section-teaser-inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);align-items:stretch;overflow:hidden;border-radius:var(--r-xl);background:var(--peach)}
+.lernwick-feature .section-teaser-inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);align-items:stretch;overflow:hidden;padding:0;border:0;border-radius:var(--r-xl);background:var(--peach);box-shadow:none}
 .lernwick-feature.teaser-image-left .section-teaser-inner{grid-template-columns:minmax(0,.9fr) minmax(0,1fr)}
 .lernwick-feature.teaser-image-left .section-teaser-image-wrap{order:-1}
 .lernwick-feature--tutor .section-teaser-inner{background:var(--sage)}
