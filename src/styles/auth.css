@@ -508,7 +508,7 @@
 .auth-progress-fill {
   height: 100%;
   border-radius: var(--radius-pill);
-  background: linear-gradient(90deg, var(--auth-brand) 0%, var(--auth-accent) 100%);
+  background: var(--orange);
   transition: width 400ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
