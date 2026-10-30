@@ -38,7 +38,7 @@ export default function FlashcardWelcome({ user, level, discipline, cls, onDone 
             </div>
 
             <div className="card card-teal card-surface-solid card-tone-primary card-elevation-soft fcw-flip-face is-back">
-              <span className="fcw-icon" aria-hidden="true"><Icon name="circle-check" plain /></span>
+              <span className="fcw-icon" aria-hidden="true"><Icon name="circle" plain /></span>
               <h3 className="fcd-card-heading">Please have a seat.</h3>
               <p className="quiz-challenge-reward">
                 Loading your personalised study session…
