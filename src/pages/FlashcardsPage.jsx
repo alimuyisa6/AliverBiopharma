@@ -259,7 +259,7 @@ export default function FlashcardsPage() {
               {decks.map((deck) => (
                 <Card
                   key={deck.id}
-                  icon="layer-group"
+                  image={deck.cover_image_url || deck.image_url || deck.thumbnail_url || 'https://images.pexels.com/photos/16420473/pexels-photo-16420473.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop'}
                   title={deck.title}
                   description={deck.description || 'Test your recall of key ideas.'}
                   className="flashcard-deck-card"
