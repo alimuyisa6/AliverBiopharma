@@ -1,17 +1,9 @@
 :root {
-  --ch-1: var(--grey-900);
-  --ch-2: var(--grey-700);
-  --ch-3: var(--grey-500);
-  --ch-4: var(--grey-300);
-  --ch-5: var(--grey-100);
-}
-
-body.dark-mode {
-  --ch-1: var(--grey-100);
-  --ch-2: var(--grey-300);
-  --ch-3: var(--grey-400);
-  --ch-4: var(--grey-600);
-  --ch-5: var(--grey-800);
+  --ch-1: var(--orange);
+  --ch-2: var(--ink);
+  --ch-3: var(--peach-2);
+  --ch-4: var(--sage);
+  --ch-5: var(--line);
 }
 
 .ch-shell {
