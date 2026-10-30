@@ -6,7 +6,7 @@ import Icon from '../Icon/Icon';
 const ToastContext = createContext(null);
 
 const TOAST_ICONS = {
-  success: 'circle-check',
+  success: 'circle',
   error: 'circle-xmark',
   warning: 'exclamation-triangle',
   info: 'circle-info'
