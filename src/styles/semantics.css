@@ -65,24 +65,24 @@
   --tone-yellow-bg: var(--warning-background);
   --tone-yellow-border: var(--warning-color);
 
-  --surface-page: var(--background);
-  --surface-card: var(--white);
-  --surface-raised: var(--white);
-  --surface-muted: var(--grey-100);
-  --surface-subtle: var(--grey-50);
-  --surface-tinted: color-mix(in srgb, var(--primary) 7%, var(--white));
-  --surface-inverse: var(--secondary);
+  --surface-page: var(--paper);
+  --surface-card: var(--paper);
+  --surface-raised: var(--paper);
+  --surface-muted: var(--soft);
+  --surface-subtle: var(--soft);
+  --surface-tinted: color-mix(in srgb, var(--peach) 34%, var(--paper));
+  --surface-inverse: var(--ink);
   --surface-overlay: var(--overlay-color);
   --surface-disabled: var(--grey-100);
 
-  --bg-page: var(--background);
-  --bg-card: var(--white);
-  --bg-card-hover: var(--grey-50);
+  --bg-page: var(--paper);
+  --bg-card: var(--paper);
+  --bg-card-hover: var(--soft);
   --bg-card-tinted: var(--surface-tinted);
-  --bg-muted: var(--grey-100);
-  --bg-input: var(--white);
-  --bg-input-disabled: var(--grey-100);
-  --bg-disabled: var(--grey-100);
+  --bg-muted: var(--soft);
+  --bg-input: var(--soft);
+  --bg-input-disabled: var(--soft);
+  --bg-disabled: var(--soft);
   --bg-overlay: var(--overlay-color);
 
   --text-main: var(--text);
@@ -125,7 +125,7 @@
   --level-olevel: var(--primary);
   --level-alevel: var(--accent);
 
-  --profile-page-bg: var(--background);
+  --profile-page-bg: var(--paper);
   --profile-page-bottom-space: var(--page-space-bottom);
   --profile-header-top-space: var(--page-space-top);
   --profile-header-top-space-mobile: var(--page-space-top);
@@ -200,13 +200,13 @@
   --profile-sidebar-width: var(--space-56);
   --profile-sidebar-offset: var(--space-8);
 
-  --hero-bg: var(--secondary);
+  --hero-bg: var(--paper);
   --hero-border: var(--secondary);
 
   --header-bg: var(--white);
   --header-border: var(--grey-200);
 
-  --footer-bg: var(--secondary);
+  --footer-bg: var(--ink);
   --footer-text: var(--white);
   --footer-border: var(--primary);
 
@@ -219,11 +219,11 @@
   --level-pharmacy: var(--secondary);
   --level-pharmacy-light: var(--grey-100);
 
-  --section-tint: var(--grey-50);
+  --section-tint: var(--soft);
 
-  --auth-bg: var(--secondary);
-  --auth-surface: var(--white);
-  --auth-surface-alt: var(--grey-50);
+  --auth-bg: var(--soft);
+  --auth-surface: var(--paper);
+  --auth-surface-alt: var(--soft);
   --auth-border: var(--grey-200);
   --auth-border-strong: var(--grey-300);
   --auth-text: var(--text);
