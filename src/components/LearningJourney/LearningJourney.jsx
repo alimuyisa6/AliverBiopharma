@@ -139,6 +139,7 @@ export default function LearningJourney({
       items.findIndex((candidate) => String(candidate.id) === String(item.id)) === index
     ));
 
+    const themeFlashcardCount = Number(internalLinks?.theme_activities?.flashcards?.deck_count || 0);
     const noteDecks = Array.isArray(internalLinks?.activities?.flashcards)
       ? internalLinks.activities.flashcards
       : [];
@@ -148,7 +149,6 @@ export default function LearningJourney({
     const noteQuizCount = Number(internalLinks?.activities?.quiz?.question_count || 0);
     const themeQuizCount = Number(internalLinks?.theme_activities?.quiz?.question_count || 0);
     const linkedQuizCount = byType('quiz_question').length;
-    const themeFlashcardCount = Number(internalLinks?.theme_activities?.flashcards?.deck_count || 0);
     const noteRecallCount = Number(internalLinks?.activities?.recall?.question_count || 0);
     const themeRecallCount = Number(internalLinks?.theme_activities?.recall?.question_count || 0);
     const linkedRecallCount = byType('recall_question').length;
