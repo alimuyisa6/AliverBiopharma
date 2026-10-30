@@ -1,0 +1,33 @@
+.lernwick-stats{margin:0 clamp(.5rem,.3rem + .6vw,.9rem);padding:clamp(2.5rem,2rem + 3vw,4.5rem) 0;border-radius:var(--r-xl);background:var(--soft)}
+.lernwick-stats .container{width:100%;max-width:calc(var(--container) + 2 * var(--gutter));margin-inline:auto;padding-inline:var(--gutter)}
+.lernwick-stats .stats-impact-heading{margin:0 0 clamp(2rem,1.5rem + 2vw,3rem)}
+.lernwick-stats .stats-impact-heading .section-head-left{display:grid;gap:.65rem;padding:0}
+.lernwick-stats .stats-impact-heading h2{color:var(--ink);font-family:var(--f-display);font-size:var(--t-2xl);font-weight:700;line-height:1.15;letter-spacing:-.03em}
+.lernwick-stats .stats-impact-scope{color:var(--ink-2);font-size:var(--t-sm);line-height:1.5}
+.lernwick-stats .stats-impact-groups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.2rem}
+.lernwick-stats .stats-impact-group{min-width:0;padding:1.2rem;border-radius:var(--r-lg);background:var(--paper)}
+.lernwick-stats .stats-impact-group-title{display:flex;align-items:center;gap:.6rem;margin:0 0 1rem;color:var(--ink);font:600 var(--t-md)/1.3 var(--f-display)}
+.lernwick-stats .stats-impact-group-title svg{width:1.2rem;height:1.2rem;flex:0 0 auto;color:var(--orange-deep)}
+.lernwick-stats .stats-impact-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem;margin:0;padding:0;list-style:none}
+.lernwick-stats .stats-impact-item{min-width:0;margin:0;padding:0}
+.lernwick-stats .stats-impact-card{display:flex;min-width:0;min-height:7.2rem;flex-direction:column;align-items:flex-start;justify-content:center;gap:.35rem;padding:.85rem;border:0;border-radius:var(--r-md);background:var(--soft);box-shadow:none}
+.lernwick-stats .stats-impact-icon{display:inline-flex;width:1.6rem;height:1.6rem;align-items:center;justify-content:center;color:var(--sage-ink)}
+.lernwick-stats .stats-impact-icon svg{width:1.1rem;height:1.1rem}
+.lernwick-stats .stats-impact-value{color:var(--ink);font:700 var(--t-xl)/1 var(--f-display);font-variant-numeric:tabular-nums}
+.lernwick-stats .stats-impact-label{color:var(--ink-2);font-size:var(--t-xs);line-height:1.45}
+.lernwick-stats .stats-impact-topics{margin-top:.8rem;padding:1rem;border-radius:var(--r-md);background:var(--peach)}
+.lernwick-stats .stats-impact-topics-title{margin:0 0 .65rem;color:var(--ink);font:600 var(--t-sm)/1.35 var(--f-display)}
+.lernwick-stats .stats-impact-topics-list{display:grid;gap:.6rem;margin:0;padding:0;list-style:none}
+.lernwick-stats .stats-impact-topic{display:flex;justify-content:space-between;gap:.8rem;margin:0;color:var(--ink-2);font-size:var(--t-xs)}
+.lernwick-stats .stats-impact-topic-name{min-width:0;overflow-wrap:anywhere}
+.lernwick-stats .stats-impact-topic-count{flex:0 0 auto;color:var(--ink);font-size:var(--t-xs)}
+.lernwick-stats .stats-impact-empty{margin:0;color:var(--ink-2);font-size:var(--t-xs);line-height:1.5}
+body.dark-mode .lernwick-stats{background:var(--dark-surface)}
+body.dark-mode .lernwick-stats .stats-impact-heading h2,body.dark-mode .lernwick-stats .stats-impact-group-title,body.dark-mode .lernwick-stats .stats-impact-value,body.dark-mode .lernwick-stats .stats-impact-topics-title,body.dark-mode .lernwick-stats .stats-impact-topic-count{color:var(--dark-text)}
+body.dark-mode .lernwick-stats .stats-impact-scope,body.dark-mode .lernwick-stats .stats-impact-label,body.dark-mode .lernwick-stats .stats-impact-topic,body.dark-mode .lernwick-stats .stats-impact-empty{color:var(--dark-text-secondary)}
+body.dark-mode .lernwick-stats .stats-impact-group{background:var(--dark-surface-raised)}
+body.dark-mode .lernwick-stats .stats-impact-card{background:var(--dark-surface)}
+body.dark-mode .lernwick-stats .stats-impact-topics{background:var(--dark-surface)}
+@media(max-width:1024px){.lernwick-stats .stats-impact-groups{grid-template-columns:repeat(2,minmax(0,1fr))}.lernwick-stats .stats-impact-group:last-child{grid-column:1/-1}}
+@media(max-width:640px){.lernwick-stats{border-radius:var(--r-lg)}.lernwick-stats .stats-impact-groups{grid-template-columns:minmax(0,1fr)}.lernwick-stats .stats-impact-group:last-child{grid-column:auto}.lernwick-stats .stats-impact-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(prefers-reduced-motion:reduce){.lernwick-stats *{scroll-behavior:auto}}
