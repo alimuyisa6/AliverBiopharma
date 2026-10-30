@@ -122,9 +122,9 @@ export default function LernwickHomeSections() {
             <h2 id="lernwick-about-title">A focused space for Biology and Pharmacy learning</h2>
             <p>AliverBiopharm brings learning resources and study tools together, helping students move beyond reading and take an active role in understanding their subjects.</p>
             <ul>
-              <li><Icon name="circle-check" /><span>Learning resources organised around your level or programme.</span></li>
-              <li><Icon name="circle-check" /><span>Quizzes and flashcards for testing what you know.</span></li>
-              <li><Icon name="circle-check" /><span>Active recall to help strengthen long-term memory.</span></li>
+              <li><Icon name="circle" /><span>Learning resources organised around your level or programme.</span></li>
+              <li><Icon name="circle" /><span>Quizzes and flashcards for testing what you know.</span></li>
+              <li><Icon name="circle" /><span>Active recall to help strengthen long-term memory.</span></li>
             </ul>
             <Link className="lernwick-dark-button" to="/resources">Start exploring <Icon name="arrow-right" /></Link>
           </div>
