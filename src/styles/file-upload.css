@@ -59,3 +59,31 @@ body.dark-mode .file-upload-dropzone,
 body.dark-mode .file-upload-preview { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
 body.dark-mode .file-upload :is(h1, h2, h3, p, label, small) { color: var(--dark-text); }
 body.dark-mode .file-upload :is(.description, .text-muted) { color: var(--dark-text-secondary); }
+
+
+.file-upload {
+  color: var(--ink);
+  font-family: var(--f-body);
+}
+
+.file-upload-card {
+  border-color: var(--line);
+  border-radius: var(--r-md);
+  background: var(--paper);
+}
+
+.file-upload-icon {
+  color: var(--orange-deep);
+}
+
+.file-upload-name {
+  color: var(--ink);
+}
+
+.file-upload-size {
+  color: var(--ink-3);
+}
+
+.file-upload-icon.pdf {
+  color: var(--orange-deep);
+}
