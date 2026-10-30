@@ -485,10 +485,10 @@
 .notes-page-intro {
   position: relative;
   padding: clamp(1.5rem, 4vw, 2.75rem);
-  border: 1px solid var(--blue-200);
+  border: 1px solid var(--line);
   border-bottom: 3px solid var(--blue-300);
   border-radius: 1.5rem;
-  background: linear-gradient(120deg, var(--blue-50), var(--white) 68%, var(--emerald-50));
+  background: var(--sage);
   text-align: left;
 }
 .notes-page-kicker {
@@ -517,7 +517,7 @@
 }
 .notes-curriculum-context,
 .notes-pathway {
-  border: 1px solid var(--blue-200);
+  border: 1px solid var(--line);
   border-bottom-width: 3px;
   border-radius: 1.25rem;
   background: var(--white);
@@ -540,7 +540,7 @@
 }
 .notes-pathway-item {
   border: 1px solid var(--blue-100);
-  background: var(--blue-50);
+  background: var(--soft);
 }
 .notes-pathway-item:hover {
   border-color: var(--blue-300);
@@ -554,14 +554,14 @@
   justify-content: space-between;
   gap: var(--space-3);
   padding: var(--space-4);
-  border: 1px solid var(--blue-200);
+  border: 1px solid var(--line);
   border-radius: 1rem;
-  background: var(--blue-50);
+  background: var(--soft);
 }
 .notes-search {
   width: min(100%, 34rem);
   min-height: 3rem;
-  border: 1px solid var(--blue-200);
+  border: 1px solid var(--line);
   border-radius: 0.875rem;
   background: var(--white);
 }
@@ -665,28 +665,28 @@ body.dark-mode .notes-search {
 .quiz-page,
 .recall-page,
 .pp-page { border-radius: var(--radius-lg); }
-.flashcards-page { background: linear-gradient(180deg, var(--blue-50), var(--teal-50, var(--blue-50))); padding-block: var(--space-3); }
+.flashcards-page { background: var(--soft); padding-block: var(--space-3); }
 .flashcard-subtitle, .quiz-intro-description, .recall-page-intro { max-width: 58ch; font-size: var(--text-sm); line-height: var(--leading-relaxed); }
 .flashcard-decks-grid { gap: var(--space-3); }
-.flashcard-deck-card { padding: var(--space-4); border: 1px solid var(--blue-200); border-radius: var(--radius-md); background: var(--white); box-shadow: 0 0.25rem 0.75rem var(--primary-ring); }
+.flashcard-deck-card { padding: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--white); box-shadow: var(--shadow-card); }
 .flashcard-deck-card .card-title { font-size: var(--text-lg); line-height: var(--leading-tight); }
 .flashcard-deck-card .card-text { font-size: var(--text-sm); line-height: var(--leading-relaxed); }
 .flashcard-deck-card .card-footer { margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px solid var(--border-subtle); }
 @media (max-width: 640px) { .flashcards-page { padding-block: var(--space-2); } .flashcard-decks-grid { grid-template-columns: minmax(0, 1fr); } }
-body.dark-mode .flashcards-page { background: linear-gradient(180deg, var(--night-900), var(--night-850)); }
+body.dark-mode .flashcards-page { background: var(--dark-background); }
 body.dark-mode .flashcard-deck-card { border-color: var(--night-500); background: var(--night-800); }
 
 
 /* Learning tools use solid page tints and matching icon containers. */
-.flashcards-page { background: var(--blue-50); }
+.flashcards-page { background: var(--soft); }
 .flashcard-deck-card { background: var(--white); box-shadow: none; }
-.flashcard-deck-card .flashcard-type-row > :first-child { width: 2.75rem; height: 2.75rem; display: inline-grid; place-items: center; border-radius: 50%; background: var(--blue-50); color: var(--primary); }
+.flashcard-deck-card .flashcard-type-row > :first-child { width: 2.75rem; height: 2.75rem; display: inline-grid; place-items: center; border-radius: 50%; background: var(--soft); color: var(--primary); }
 body.dark-mode .flashcards-page { background: var(--night-900); }
 body.dark-mode .flashcard-deck-card { background: var(--night-800); }
 
 
 /* Flat resource surfaces; preserve the established light/dark palette. */
-.flashcards-page { background: var(--blue-50); }
+.flashcards-page { background: var(--soft); }
 body.dark-mode .flashcards-page { background: var(--night-900); }
 
 
@@ -696,17 +696,17 @@ body.dark-mode .flashcards-page { background: var(--night-900); }
 body.dark-mode .flashcards-page { background: var(--bg-page); }
 
 /* Solid palette section treatment: no gradients; full-width faint color bands and white cards. */
-.flashcards-page { width: 100%; max-width: none; background: var(--blue-50); }
+.flashcards-page { width: 100%; max-width: none; background: var(--soft); }
 .flashcard-deck-card { background: var(--white); }
 body.dark-mode .flashcards-page { background: var(--night-900); }
 body.dark-mode .flashcard-deck-card { background: var(--night-800); }
 
 
 /* Aliver palette: solid faint brand surfaces, no gradient washes. */
-.flashcards-page { width: 100%; background: var(--blue-50); }
+.flashcards-page { width: 100%; background: var(--soft); }
 .flashcard-deck-card { background: var(--white); box-shadow: none; }
-.notes-page-shell { width: 100%; background: var(--emerald-50); }
-.notes-page-heading { background: var(--emerald-100); }
+.notes-page-shell { width: 100%; background: var(--sage); }
+.notes-page-heading { background: var(--sage); }
 .notes-curriculum-context, .notes-pathway-item, .notes-card { background: var(--white); box-shadow: none; }
 .notes-pathway-item, .notes-card { border-color: var(--blue-200); }
 
