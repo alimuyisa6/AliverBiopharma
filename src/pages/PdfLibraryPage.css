@@ -443,3 +443,25 @@ body.dark-mode .pdf-library-page :is(input, select, textarea) { background: var(
     transition: none;
   }
 }
+
+
+.pdf-card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.pdf-card-artwork {
+  width: calc(100% - 1.2rem);
+  margin: .6rem .6rem 0;
+  border-radius: calc(var(--radius-lg) - .5rem);
+}
+
+.pdf-card-image-label {
+  top: .7rem;
+  bottom: auto;
+  left: .7rem;
+}
+
+.pdf-card-body {
+  padding: 1rem 1.2rem 1.2rem;
+}
