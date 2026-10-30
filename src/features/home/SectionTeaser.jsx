@@ -2,8 +2,8 @@ import Button from '../../components/Button/Button';
 import './lernwick-feature.css';
 
 const teaserImages = {
-  'live-room': 'https://images.pexels.com/photos/4145190/pexels-photo-4145190.jpeg?auto=compress&cs=tinysrgb&w=900&h=900&fit=crop',
-  tutor: 'https://images.pexels.com/photos/5212700/pexels-photo-5212700.jpeg?auto=compress&cs=tinysrgb&w=900&h=900&fit=crop'
+  'live-room': 'https://images.pexels.com/photos/8199770/pexels-photo-4145190.jpeg?auto=compress&cs=tinysrgb&w=900&h=900&fit=crop',
+  tutor: 'https://images.pexels.com/photos/1181742/pexels-photo-5212700.jpeg?auto=compress&cs=tinysrgb&w=900&h=900&fit=crop'
 };
 
 export function SectionTeaser({
