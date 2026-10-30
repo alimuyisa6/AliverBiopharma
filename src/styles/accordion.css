@@ -94,3 +94,37 @@ body.dark-mode .accordion-trigger,
 body.dark-mode .accordion-content { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
 body.dark-mode .accordion-trigger:hover { background: var(--dark-surface-raised); }
 body.dark-mode .accordion :is(h1, h2, h3, h4, h5, h6, p, span, small) { color: inherit; }
+
+
+.accordion-item {
+  border-color: var(--line);
+  border-radius: var(--r-md);
+  background: var(--paper);
+}
+
+.accordion-item.active {
+  border-color: var(--orange);
+}
+
+.accordion-trigger {
+  color: var(--ink);
+  font-family: var(--f-display);
+}
+
+.accordion-trigger:hover {
+  background: var(--soft);
+  color: var(--orange-deep);
+}
+
+.accordion-trigger:focus-visible {
+  outline-color: var(--orange-deep);
+}
+
+.accordion-icon,
+.accordion-body {
+  color: var(--ink-2);
+}
+
+.accordion-item.active .accordion-icon {
+  color: var(--orange-deep);
+}
