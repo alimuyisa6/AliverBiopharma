@@ -115,7 +115,7 @@ export default function Layout({ children, showFooter = true }) {
         <button className="btn btn-ghost btn-sm btn-icon header-action-button" onClick={() => setSearchOpen(true)} aria-label={t('common.search')} type="button"><SearchGlyph /></button>
         <NotificationCenter />
         <BiopharmToggle checked={isDarkTheme} onChange={toggleTheme} ariaLabel={t('common.toggleTheme')} />
-        <button className="hamburger-btn header-action-button" style={{ color: 'var(--text-muted)', width: 'var(--space-12)', height: 'var(--space-12)' }} onClick={() => setMobileOpen((prev) => !prev)} aria-label={mobileOpen ? t('common.closeMenu') : t('common.menu')} aria-expanded={mobileOpen} type="button"><MenuGlyph isOpen={mobileOpen} /></button>
+        <button className="hamburger-btn header-action-button"  onClick={() => setMobileOpen((prev) => !prev)} aria-label={mobileOpen ? t('common.closeMenu') : t('common.menu')} aria-expanded={mobileOpen} type="button"><MenuGlyph isOpen={mobileOpen} /></button>
       </div>
     </div></header>}
     {!hideHeader && <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />}<AdminLauncher />
@@ -131,7 +131,7 @@ export default function Layout({ children, showFooter = true }) {
       </div>
     </>}
     <motion.main id="main-content" className={`main-content${location.pathname.startsWith('/profile') ? ' main-content-profile' : ''}`} key={routeKey} initial={navigationType === 'POP' ? false : { opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>{children}</motion.main>
-    {!hideFooter && showFooter && <footer className="footer"><div className="footer-wave" aria-hidden="true"><svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,64 C240,120 480,0 720,32 C960,64 1200,112 1440,48 L1440,120 L0,120 Z" className="footer-wave-path" /></svg></div><div className="footer-inner">
+    {!hideFooter && showFooter && <footer className="footer"><div className="footer-inner">
       <div className="footer-brand"><Link to="/" className="header-logo">{logo ? <img src={logo} alt="" aria-hidden="true" className="footer-logo" /> : siteName}</Link><p className="footer-tagline">{t('common.footerTagline')}</p>{footer.social_links && Object.keys(footer.social_links).length > 0 && <div className="footer-social">{Object.entries(footer.social_links).map(([platform, url]) => <a key={platform} href={url} target="_blank" rel="noopener noreferrer" className="footer-social-link" data-platform={platform} aria-label={platform}><Icon name={platform} /></a>)}</div>}</div>
       <div className="footer-right-groups">
         <div className="footer-community-group">
