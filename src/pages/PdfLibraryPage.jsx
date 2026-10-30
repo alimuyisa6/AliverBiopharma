@@ -165,6 +165,16 @@ export default function PdfLibraryPage() {
                   className={`pdf-premium-ribbon ${pdf.is_premium ? 'pdf-premium-ribbon--premium' : 'pdf-premium-ribbon--free'}`}
                   aria-label={pdf.is_premium ? 'Premium PDF' : 'Free PDF'}
                 />
+                <div className="pdf-card-artwork">
+                  <img
+                    src={pdf.cover_image_url || pdf.thumbnail_url || pdf.image_url || 'https://images.pexels.com/photos/7972795/pexels-photo-7972795.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop'}
+                    alt={pdf.title}
+                    loading="lazy"
+                    width="900"
+                    height="600"
+                  />
+                  <span className="pdf-card-image-label">PDF resource</span>
+                </div>
                 <div className="pdf-card-body">
                   <h3 className="pdf-card-title">{pdf.title}</h3>
                   {pdf.author && !/^(aliverbiopharm|aliver biopharm|aliver-biopharma|aliverbiopharm\.com|aliver-biopharma\.vercel\.app)$/i.test(String(pdf.author).trim()) && <p className="pdf-card-author">{pdf.author}</p>}
