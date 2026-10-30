@@ -333,12 +333,12 @@ body.dark-mode {
   --surface-page: var(--dark-background);
   --surface-card: var(--dark-surface);
   --surface-raised: var(--dark-surface-raised);
-  --surface-muted: #182438;
-  --surface-subtle: #172235;
-  --surface-tinted: #172d47;
+  --surface-muted: var(--dark-surface-raised);
+  --surface-subtle: var(--dark-surface);
+  --surface-tinted: var(--dark-surface-raised);
   --surface-inverse: var(--dark-text);
   --surface-overlay: rgb(2 6 23 / 78%);
-  --surface-disabled: #263449;
+  --surface-disabled: var(--dark-surface-raised);
   --bg-page: var(--surface-page);
   --bg-card: var(--surface-card);
   --bg-card-hover: var(--surface-raised);
