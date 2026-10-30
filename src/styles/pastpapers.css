@@ -1188,3 +1188,16 @@ body.dark-mode .pp-page :is(input, textarea)::placeholder { color: var(--dark-te
     transition: none;
   }
 }
+
+
+.pp-card-artwork {
+  width: calc(100% - 1.2rem);
+  margin: .6rem .6rem 0;
+  border-radius: calc(var(--radius-md) - .35rem);
+}
+
+.pp-card-image-label {
+  top: .7rem;
+  bottom: auto;
+  left: .7rem;
+}
