@@ -14,53 +14,9 @@ import LernwickHomeHero from './LernwickHomeHero';
 import LernwickHomeSections from './LernwickHomeSections';
 import HomeDashboardCard from '../../components/dashboard/HomeDashboardCard';
 import DynamicActions from '../../components/DynamicActions';
-import { useLayout } from '../../contexts/LayoutContext';
 import ThreeDButton from '../../components/buttons/ThreeDButton';
 
 const CONTINUE_ICON = { note: 'book-open', video: 'play', quiz: 'clipboard-check' };
-
-function LearningJourneySection({ sections, navigate }) {
-  const { bootstrap, level } = useLayout();
-  const uiComponents = bootstrap?.ui_components || [];
-  const component = uiComponents.find((item) => item.component_key === 'learning_journey_section');
-  const levelName = `${level?.display_name || level?.name || level?.title || ''}`.toLowerCase();
-  const isPharmacy = levelName.includes('pharmacy');
-  const isALevel = /a[- ]?level/.test(levelName);
-  const isOLevel = /o[- ]?level/.test(levelName);
-  const defaultSubtitle = isPharmacy
-    ? 'Course-unit notes, medicine-focused flashcards, clinical cases, and quizzes for your Pharmacy programme.'
-    : isALevel
-      ? 'Build deeper Biology understanding with topic notes, diagrams, past papers, and active-recall practice.'
-      : isOLevel
-        ? 'Build strong Biology foundations with clear topic notes, flashcards, quizzes, and exam practice.'
-        : 'Find Biology notes, flashcards, quizzes, and recall practice matched to your learning pathway.';
-  const subtitle = sections?.section_headings?.content_types_subtitle || defaultSubtitle;
-
-  return (
-    <section className="section home-learning-journey-section">
-      <div className="home-learning-journey-content">
-        <span className="eyebrow">YOUR STUDY TOOLKIT</span>
-        <h2 className="home-learning-journey-title">Find what you need for your next study session</h2>
-        <p className="section-description home-learning-journey-description">{subtitle}</p>
-        <div className="home-learning-journey-images">
-          <div className="home-get-started-art home-get-started-art--notes" aria-hidden="true">
-            <svg viewBox="0 0 72 72" focusable="false"><rect x="14" y="12" width="42" height="50" rx="5" fill="var(--primary)" opacity=".13"/><path d="M20 9h31a5 5 0 0 1 5 5v43H25a5 5 0 0 1-5-5V9Z" fill="var(--surface-card)" stroke="var(--primary)" strokeWidth="2"/><path d="M29 23h18M29 31h18M29 39h13M29 47h16" stroke="var(--primary)" strokeWidth="2" strokeLinecap="round"/><path d="M20 9v43a5 5 0 0 0 5 5" fill="none" stroke="var(--primary)" strokeWidth="2"/></svg>
-          </div>
-          <div className="home-get-started-art home-get-started-art--flask" aria-hidden="true">
-            <svg viewBox="0 0 72 72" focusable="false"><path d="M27 9h18M31 9v20L17 52a7 7 0 0 0 6 11h26a7 7 0 0 0 6-11L41 29V9" fill="var(--surface-card)" stroke="var(--secondary)" strokeWidth="2.5" strokeLinejoin="round" strokeLinecap="round"/><path d="M22 48h28l5 8a5 5 0 0 1-5 5H22a5 5 0 0 1-5-5l5-8Z" fill="var(--secondary)" opacity=".3"/><circle cx="32" cy="51" r="2.5" fill="var(--secondary)"/><circle cx="42" cy="56" r="2" fill="var(--secondary)"/><circle cx="37" cy="46" r="1.8" fill="var(--secondary)"/></svg>
-          </div>
-          <div className="home-get-started-art home-get-started-art--cards" aria-hidden="true">
-            <svg viewBox="0 0 72 72" focusable="false"><rect x="11" y="16" width="38" height="43" rx="5" transform="rotate(-9 11 16)" fill="var(--accent)" opacity=".18"/><rect x="22" y="13" width="38" height="46" rx="5" fill="var(--surface-card)" stroke="var(--accent)" strokeWidth="2.5"/><path d="M30 25h21M30 33h21M30 41h14" stroke="var(--accent)" strokeWidth="2.5" strokeLinecap="round"/><path d="m43 49 4 4 7-8" fill="none" stroke="var(--accent)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-          </div>
-          <div className="home-get-started-art home-get-started-art--molecule" aria-hidden="true">
-            <svg viewBox="0 0 72 72" focusable="false"><path d="m20 20 30 32M50 20 20 52" stroke="var(--primary)" strokeWidth="3" strokeLinecap="round" opacity=".65"/><circle cx="20" cy="20" r="8" fill="var(--primary)"/><circle cx="50" cy="20" r="8" fill="var(--secondary)"/><circle cx="20" cy="52" r="8" fill="var(--accent)"/><circle cx="50" cy="52" r="8" fill="var(--primary)"/><circle cx="35" cy="36" r="7" fill="var(--surface-card)" stroke="var(--secondary)" strokeWidth="2.5"/></svg>
-          </div>
-        </div>
-        <ThreeDButton type="button" variant="solid" iconRight="arrow-right" className="home-learning-journey-cta" onClick={() => navigate('/resources')}>Browse learning resources</ThreeDButton>
-      </div>
-    </section>
-  );
-}
 
 function ContinueLearningRail({ items, navigate }) {
   if (!items?.length) return null;
@@ -238,10 +194,6 @@ export default function HomeView(props) {
       )}
 
       <LernwickHomeSections />
-
-      <section className="home-learning-journey-wrap" id="journey">
-        <LearningJourneySection sections={sections} navigate={navigate} />
-      </section>
 
       {user && <ChallengeTreasureCard challenge={dailyChallenge} onOpen={onOpenChallenge} />}
       {user && <DailyRecallCard recall={dailyRecall} onReveal={onRevealRecall} onStart={onStartRecall} />}
