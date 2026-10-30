@@ -161,11 +161,12 @@ export default function Classroom() {
               return (
                 <div key={room.id} className={`card classroom-room-card status-${statusKey}`}>
                   <div className="card-image-placeholder">
-                    {room.cover_image_url ? (
-                      <img src={room.cover_image_url} alt={room.title} className="card-image" />
-                    ) : (
-                      <Icon name="users" className="classroom-room-status-icon" />
-                    )}
+                    <img
+                      src={room.cover_image_url || room.topic_image_url || 'https://images.pexels.com/photos/8197525/pexels-photo-8197525.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop'}
+                      alt={room.title}
+                      className="card-image"
+                      loading="lazy"
+                    />
                   </div>
                   <div className="classroom-room-status-bar">
                     <Icon name={STATUS_ICONS[room.status] || 'circle'} />
