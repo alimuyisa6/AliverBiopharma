@@ -12,7 +12,7 @@ import ClassroomTeaser from '../classroom/ClassroomTeaser';
 import TutorMarketplaceTeaser from '../tutor-marketplace/TutorMarketplaceTeaser';
 import AdsHomeSection from '../../components/Advertising/AdsHomeSection';
 import AdSlot from '../../components/Advertising/AdSlot';
-import Hero from '../../components/Hero/Hero';
+import LernwickHomeHero from './LernwickHomeHero';
 import HomeDashboardCard from '../../components/dashboard/HomeDashboardCard';
 import DynamicActions from '../../components/DynamicActions';
 import { useLayout } from '../../contexts/LayoutContext';
@@ -220,7 +220,7 @@ export default function HomeView(props) {
   return (
     <div className="home-page home-page-redesign">
       <section className="home-hero-section" id="top" aria-label="Introduction">
-        <div className="hero-block"><Hero /></div>
+        <LernwickHomeHero user={user} activeLevelName={activeLevelName} activeGroupName={activeGroupName} />
       </section>
 
       <DynamicActions pageId="home" className="home-dynamic-actions" />
