@@ -8,7 +8,7 @@
 .hero .hl:before{content:"";position:absolute;z-index:-1;left:-.12em;top:.08em;width:1.05em;height:1.05em;border-radius:50% 50% 50% 8%;background:var(--orange);transform:rotate(-12deg)}
 .hero__lede{max-width:33rem;color:var(--ink-2);font-size:var(--t-md);line-height:1.75}
 .hero__path{display:flex;align-items:center;gap:.6rem;color:var(--ink-2);font-size:var(--t-sm)}
-.hero__path svg{width:1.2rem;height:1.2rem;color:var(--primary)}
+.hero__path svg{width:1.2rem;height:1.2rem;color:var(--orange-deep)}
 .hero__ctas{display:flex;flex-wrap:wrap;align-items:center;gap:1rem 1.4rem}
 .hero .btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;min-height:3.1rem;padding:.8rem 1.6rem;border-radius:var(--r-pill);font:600 var(--t-base)/1 var(--f-display);transition:transform var(--dur) var(--ease),background-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
 .hero .btn svg{width:1.1em;height:1.1em}
