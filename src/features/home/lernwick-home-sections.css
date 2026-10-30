@@ -32,19 +32,19 @@
 .lernwick-step-card:nth-child(even){background:var(--sage)}
 .lernwick-step-card:hover{transform:translateY(-4px)}
 .lernwick-step-number{display:grid;width:2.8rem;height:2.8rem;place-items:center;border:1.5px solid currentColor;border-radius:50%;font:700 var(--t-sm)/1 var(--f-display)}
-.lernwick-step-mark{width:2.4rem;height:3px;border-radius:4px;background:var(--primary)}
+.lernwick-step-mark{width:2.4rem;height:3px;border-radius:4px;background:var(--orange)}
 .lernwick-step-card h3{font:600 var(--t-md)/1.3 var(--f-display)}
 .lernwick-step-card p{color:var(--ink-2);font-size:var(--t-sm);line-height:1.7}
 .lernwick-about-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:clamp(2.5rem,5vw,5rem)}
 .lernwick-about-media{position:relative;min-height:28rem}
 .lernwick-about-media>img{width:100%;height:100%;min-height:28rem;object-fit:cover;border-radius:var(--r-lg) var(--r-lg) var(--r-lg) 6px}
 .lernwick-about-sticker{position:absolute;right:-1rem;bottom:1.5rem;display:grid;gap:.1rem;padding:1.1rem 1.4rem;border-radius:var(--r-md);background:var(--peach);box-shadow:var(--shadow-float);transform:rotate(4deg);font:600 var(--t-sm)/1.35 var(--f-display)}
-.lernwick-about-sticker span{color:var(--primary-dark)}
+.lernwick-about-sticker span{color:var(--sage-ink)}
 .lernwick-about-copy{display:grid;justify-items:start;gap:1.1rem}
 .lernwick-about-copy>p:not(.lernwick-note){color:var(--ink-2);font-size:var(--t-md);line-height:1.8}
 .lernwick-about-copy ul{display:grid;gap:.9rem;margin:.4rem 0 .6rem}
 .lernwick-about-copy li{display:flex;align-items:flex-start;gap:.65rem;color:var(--ink-2);font-size:var(--t-sm);line-height:1.6}
-.lernwick-about-copy li svg{width:1.2rem;height:1.2rem;flex:0 0 auto;margin-top:.1rem;color:var(--primary)}
+.lernwick-about-copy li svg{width:1.2rem;height:1.2rem;flex:0 0 auto;margin-top:.1rem;color:var(--orange-deep)}
 .lernwick-dark-button{border-color:var(--ink);background:var(--ink);color:var(--paper)}
 .lernwick-dark-button:hover{transform:translateY(-2px);background:var(--secondary-dark);color:var(--white)}
 @media(max-width:1024px){.lernwick-pathway-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.lernwick-pathway-card:last-child{grid-column:1/-1}.lernwick-step-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.lernwick-about-grid{gap:2rem}}
