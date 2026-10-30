@@ -148,11 +148,11 @@ export default function LearningJourney({
     const noteQuizCount = Number(internalLinks?.activities?.quiz?.question_count || 0);
     const themeQuizCount = Number(internalLinks?.theme_activities?.quiz?.question_count || 0);
     const linkedQuizCount = byType('quiz_question').length;
+    const themeFlashcardCount = Number(internalLinks?.theme_activities?.flashcards?.deck_count || 0);
     const noteRecallCount = Number(internalLinks?.activities?.recall?.question_count || 0);
     const themeRecallCount = Number(internalLinks?.theme_activities?.recall?.question_count || 0);
     const linkedRecallCount = byType('recall_question').length;
     const themeId = internalLinks?.theme_activities?.theme_id || null;
-    const themeFlashcardCount = Number(internalLinks?.theme_activities?.flashcards?.deck_count || 0);
     const themeQuizAvailable = Boolean(themeId && themeQuizCount > 0);
     const themeRecallAvailable = Boolean(themeId && themeRecallCount > 0);
     const scope = ['theme', 'subtopic'].includes(String(nodeType).toLowerCase()) ? 'theme' : 'lesson';
