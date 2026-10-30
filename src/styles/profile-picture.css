@@ -59,3 +59,22 @@
 body.dark-mode .profile-picture-frame,
 body.dark-mode .profile-picture-upload,
 body.dark-mode .profile-picture-placeholder { background: var(--dark-surface-raised); color: var(--dark-text); border-color: var(--dark-border); }
+
+
+.profile-picture-wrapper {
+  border-color: var(--line-2);
+  background: var(--soft);
+}
+
+.profile-picture-placeholder {
+  background: var(--soft);
+  color: var(--ink-3);
+}
+
+.profile-picture-overlay {
+  background: rgb(27 27 31 / 45%);
+}
+
+.profile-picture-error {
+  color: var(--orange-deep);
+}
