@@ -822,6 +822,16 @@ export default function PastPapers() {
                 >
                   <span aria-hidden="true" />
                 </span>
+                <div className="pp-card-artwork">
+                  <img
+                    src={paper.cover_image_url || paper.thumbnail_url || paper.image_url || 'https://images.pexels.com/photos/5428836/pexels-photo-5428836.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop'}
+                    alt={paper.subject ? `${paper.subject} past paper` : paper.title}
+                    loading="lazy"
+                    width="900"
+                    height="600"
+                  />
+                  <span className="pp-card-image-label">{paper.subject || 'Exam paper'}</span>
+                </div>
                 <div className="pp-card-body">
                   <div className="pp-card-title-row">
                     <h3 className="pp-card-title">{paper.title}</h3>
