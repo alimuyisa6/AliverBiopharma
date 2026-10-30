@@ -737,7 +737,7 @@ export default function Quiz() {
                       </span>
                     )}
                     <Card
-                      image={topic.topic_image_url}
+                      image={topic.topic_image_url || 'https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop'}
                       title={topic.topic_name}
                       description={questionCount > 0 ? questionCount + ' questions · ' + blockCount + ' blocks' : 'Questions are being prepared for this learning area.'}
                       footer={
@@ -815,7 +815,7 @@ export default function Quiz() {
                 return (
                   <Card
                     key={topic.unit_id}
-                    image={topic.topic_image_url}
+                    image={topic.topic_image_url || 'https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop'}
                     title={topic.topic_name}
                     description={questionCount > 0 ? questionCount + ' questions · ' + blockCount + ' blocks' : 'Questions are being prepared for this learning area.'}
                     footer={
