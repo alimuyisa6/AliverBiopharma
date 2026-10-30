@@ -1,5 +1,6 @@
 .home-page .home-stats-section{z-index:auto;margin-block-start:0}
 .lernwick-stats{margin:0 clamp(.5rem,.3rem + .6vw,.9rem);padding:clamp(2.5rem,2rem + 3vw,4.5rem) 0;border-radius:var(--r-xl);background:var(--soft)}
+.home-page .stats-grid-section.lernwick-stats{margin:0 clamp(.5rem,.3rem + .6vw,.9rem);padding:clamp(2.5rem,2rem + 3vw,4.5rem) 0}
 .lernwick-stats .container{width:100%;max-width:calc(var(--container) + 2 * var(--gutter));margin-inline:auto;padding-inline:var(--gutter)}
 .lernwick-stats .stats-impact-heading{width:min(calc(100% - (var(--gutter) * 2)),calc(var(--container) + 2 * var(--gutter)));margin:0 auto clamp(2rem,1.5rem + 2vw,3rem)}
 .lernwick-stats .stats-impact-heading .section-head-left{display:grid;gap:.65rem;padding:0}
