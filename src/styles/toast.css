@@ -49,3 +49,46 @@ body.dark-mode .toast,
 body.dark-mode .toast-message,
 body.dark-mode .toast-container .toast { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
 body.dark-mode .toast :is(h1, h2, h3, p, small) { color: var(--dark-text); }
+
+
+.toast-container {
+  max-width: min(var(--toast-max-width), calc(100vw - 2rem));
+}
+
+.toast {
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--ink);
+  color: var(--paper);
+  box-shadow: var(--shadow-float);
+  font-family: var(--f-body);
+}
+
+.toast-success {
+  background: var(--sage);
+  color: var(--ink);
+}
+
+.toast-error {
+  background: var(--orange-deep);
+  color: var(--paper);
+}
+
+.toast-warning {
+  background: var(--peach);
+  color: var(--ink);
+}
+
+.toast-info {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+@media (max-width: 600px) {
+  .toast-container {
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    max-width: none;
+  }
+}
