@@ -151,3 +151,39 @@ body.dark-mode .empty-state-card,
 body.dark-mode .empty-state-panel { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
 body.dark-mode .empty-state :is(h1, h2, h3, h4, p, small) { color: var(--dark-text); }
 body.dark-mode .empty-state :is(.description, .text-muted) { color: var(--dark-text-secondary); }
+
+
+.empty-state,
+.error-state,
+.ab-empty {
+  color: var(--ink);
+  font-family: var(--f-body);
+}
+
+.empty-state-title,
+.error-state-title,
+.ab-empty-title {
+  color: var(--ink);
+  font-family: var(--f-display);
+}
+
+.empty-state-text,
+.error-state-text,
+.ab-empty-description {
+  color: var(--ink-2);
+}
+
+.empty-state-icon,
+.ab-empty-media--icon {
+  color: var(--orange-deep);
+}
+
+.ab-empty-media--icon {
+  border-color: var(--line);
+  border-radius: var(--r-md);
+  background: var(--soft);
+}
+
+.empty-state-retry {
+  border-radius: var(--r-pill);
+}
