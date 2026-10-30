@@ -2,13 +2,13 @@ import Icon from '../../components/Icon/Icon';
 
 const GROUPS = [
   {
-    id: 'library',
+    id: 'book-open',
     title: 'Learning library',
     icon: 'book-open',
     metrics: [
-      { key: 'resources_count', label: 'Total resources', icon: 'library' },
+      { key: 'resources_count', label: 'Total resources', icon: 'book-open' },
       { key: 'downloadable_count', label: 'Available to download', icon: 'download' },
-      { key: 'downloads_count', label: 'Total downloads', icon: 'download-cloud' }
+      { key: 'downloads_count', label: 'Total downloads', icon: 'download' }
     ]
   },
   {
@@ -18,7 +18,7 @@ const GROUPS = [
     metrics: [
       { key: 'recall_questions', label: 'Recall questions', icon: 'brain' },
       { key: 'recall_users', label: 'Learners who used Recall', icon: 'users' },
-      { key: 'recall_active_users', label: 'Active Recall learners', icon: 'activity' }
+      { key: 'recall_active_users', label: 'Active Recall learners', icon: 'chart-line' }
     ]
   },
   {
@@ -28,9 +28,9 @@ const GROUPS = [
     hasFailedTopics: true,
     metrics: [
       { key: 'quiz_users', label: 'Quiz learners', icon: 'users' },
-      { key: 'quiz_active_users', label: 'Active quiz learners', icon: 'activity' },
-      { key: 'quiz_passes', label: 'Passed attempts', icon: 'check-circle' },
-      { key: 'quiz_failures', label: 'Failed attempts', icon: 'x-circle' }
+      { key: 'quiz_active_users', label: 'Active quiz learners', icon: 'chart-line' },
+      { key: 'quiz_passes', label: 'Passed attempts', icon: 'circle-check' },
+      { key: 'quiz_failures', label: 'Failed attempts', icon: 'circle-xmark' }
     ]
   }
 ];
