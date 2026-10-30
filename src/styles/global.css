@@ -393,23 +393,23 @@ li + li {
 
 .section-blue,
 .section.blue {
-  background: var(--primary);
-  color: var(--text-on-primary);
+  background: var(--sage);
+  color: var(--ink);
 }
 
 .section-mint {
-  background: var(--secondary);
+  background: var(--soft);
   color: var(--text-main);
 }
 
 .section.mint {
-  background: var(--secondary);
+  background: var(--soft);
   color: var(--text-main);
 }
 
 .section-blue :is(h1, h2, h3, h4, h5, h6, p, li, small, strong, em, span, label),
 .section.blue :is(h1, h2, h3, h4, h5, h6, p, li, small, strong, em, span, label) {
-  color: var(--text-on-primary);
+  color: var(--ink);
 }
 
 .section-blue .text-muted,
@@ -418,7 +418,7 @@ li + li {
 .section.blue .text-muted,
 .section.blue .lead,
 .section.blue .text-lead {
-  color: var(--text-on-primary);
+  color: var(--ink-2);
 }
 
 .section.mint :is(h1, h2, h3, h4, h5, h6, p, li) {
@@ -436,7 +436,7 @@ li + li {
 }
 
 .on-dark {
-  background: var(--secondary);
+  background: var(--ink);
   color: var(--white);
 }
 
