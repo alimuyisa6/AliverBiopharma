@@ -74,7 +74,7 @@ export default function LearningJourney({
   returnTo = ''
 }) {
   const [fetchedLinkedContent, setFetchedLinkedContent] = useState(() => (
-    unitId ? journeyCache.get(String(unitId)) ?? null : []
+    unitId ? journeyCache.get(String(unitId)) ?? [] : []
   ));
   const [loading, setLoading] = useState(Boolean(unitId) && !Array.isArray(suppliedLinkedContent) && !journeyCache.has(String(unitId)));
   const [downloadId, setDownloadId] = useState(null);
