@@ -146,3 +146,40 @@ body.dark-mode .maintenance-page { background: var(--dark-background); color: va
 body.dark-mode .maintenance-page :is(.maintenance-card, .maintenance-panel, .maintenance-alert) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
 body.dark-mode .maintenance-page :is(h1, h2, h3, h4, h5, h6, p, label, small, time) { color: var(--dark-text); }
 body.dark-mode .maintenance-page :is(.text-muted, .maintenance-description) { color: var(--dark-text-secondary); }
+
+
+.maintenance-screen {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-body);
+}
+
+.maintenance-card,
+.maintenance-alert {
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  background: var(--soft);
+  color: var(--ink);
+  box-shadow: var(--shadow-card);
+}
+
+.maintenance-card h1,
+.maintenance-alert strong {
+  color: var(--ink);
+  font-family: var(--f-display);
+}
+
+.maintenance-card p,
+.maintenance-card time,
+.maintenance-note,
+.maintenance-alert span,
+.maintenance-alert time {
+  color: var(--ink-2);
+}
+
+.maintenance-unsaved-warning {
+  border: 1px solid var(--peach-2);
+  border-radius: var(--r-md);
+  background: var(--peach);
+  color: var(--ink) !important;
+}
