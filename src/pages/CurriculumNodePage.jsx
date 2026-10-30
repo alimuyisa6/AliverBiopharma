@@ -4,6 +4,7 @@ import Container from '../components/Container/Container';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 import Spinner from '../components/Spinner/Spinner';
 import Icon from '../components/Icon/Icon';
+import LearningJourney from '../components/LearningJourney/LearningJourney';
 import { getCurriculumNodeByPath, getCurriculumTree } from '../api/curriculumNavigation';
 
 function slugify(value) {
@@ -14,38 +15,11 @@ function slugify(value) {
     .replace(/^-+|-+$/g, '');
 }
 
-function safeExternalHref(value) {
-  try {
-    const url = new URL(String(value || ''));
-    return url.protocol === 'https:' || url.protocol === 'http:' ? url.href : null;
-  } catch {
-    return null;
-  }
-}
-
 function curriculumLevelLabel(depth, isPharmacy) {
   if (depth <= 0) return isPharmacy ? 'Course Unit' : 'Topic';
   if (depth === 1) return isPharmacy ? 'Sub-course Unit' : 'Subtopic';
   if (depth === 2) return 'Theme';
   return 'Lesson';
-}
-
-function resourcePath(resource, unitId, nodeType = null) {
-  const routes = {
-    notes: '/notes',
-    quiz: '/quiz/blocks',
-    flashcards: '/flashcards',
-    recall: '/recall',
-    pdfs: '/pdfs',
-    'past-papers': '/past-papers'
-  };
-
-  const route = routes[resource] || '/resources';
-  const isTheme = ['theme', 'subtopic'].includes(String(nodeType || '').toLowerCase());
-  const scope = ['quiz', 'flashcards', 'recall'].includes(resource)
-    ? (isTheme ? 'theme' : 'lesson')
-    : null;
-  return `${route}?unit_id=${encodeURIComponent(unitId)}${scope ? `&activity_scope=${scope}` : ''}`;
 }
 
 const curriculumNodeCache = new Map();
@@ -176,16 +150,8 @@ export default function CurriculumNodePage() {
   const curriculumDepth = Math.max(0, ancestors.filter((item) => item.group_id === groupId).length - 1);
   const nodeType = String(node?.node_type || '').toLowerCase();
   const nodeLabel = curriculumLevelLabel(curriculumDepth, isPharmacy);
-  const linkedNotes = linkedContent.filter((item) => item.content_type === 'note' && item.content_id);
   const normalizedResourceFocus = ({ quizzes: 'quiz', past_papers: 'past-papers' })[resourceFocus] || resourceFocus;
   const focusedResourceLabel = RESOURCE_LABELS[normalizedResourceFocus] || '';
-  const linkedContentGroups = linkedContent.reduce((groups, item) => {
-    const key = item.content_type;
-    if (!groups[key]) groups[key] = [];
-    groups[key].push(item);
-    return groups;
-  }, {});
-
   const breadcrumbItems = useMemo(() => {
     const items = [{ label: 'Home', href: '/' }];
     const group = data?.curriculum_group;
@@ -268,35 +234,6 @@ export default function CurriculumNodePage() {
   }
 
   const isLeaf = children.length === 0;
-  const RESOURCE_COUNT_KEYS = {
-    notes: 'notes',
-    quiz: 'quiz_questions',
-    flashcards: 'flashcard_decks',
-    recall: 'recall_questions_bank',
-    pdfs: 'pdf_resources',
-    'past-papers': 'past_papers'
-  };
-  const RESOURCE_LINK_TYPES = {
-    notes: 'note',
-    quiz: 'quiz_question',
-    flashcards: 'flashcard_deck',
-    recall: 'recall_question',
-    pdfs: 'pdf_resource',
-    'past-papers': 'past_paper'
-  };
-  // Use canonical content links as well as legacy unit_id counts. A resource
-  // may be linked to this lesson while its stored unit_id points to a parent.
-  const isThemeActivityNode = ['theme', 'subtopic'].includes(nodeType);
-  const availableResources = (isLeaf
-    ? Object.entries(RESOURCE_LABELS)
-    : isThemeActivityNode
-      ? Object.entries(RESOURCE_LABELS).filter(([key]) => ['quiz', 'flashcards', 'recall'].includes(key))
-      : [])
-    .filter(([key]) => (
-      Number(counts[RESOURCE_COUNT_KEYS[key] || key] || 0) > 0 ||
-      (linkedContentGroups[RESOURCE_LINK_TYPES[key]] || []).length > 0
-    ))
-    .sort(([a], [b]) => (a === normalizedResourceFocus ? -1 : b === normalizedResourceFocus ? 1 : 0));
   const returnToLesson = `/curriculum/${encodeURIComponent(groupId)}/${nodePath}${resourceFocus ? `?resource=${encodeURIComponent(resourceFocus)}` : ''}`;
 
   return (
@@ -311,31 +248,6 @@ export default function CurriculumNodePage() {
           : `You’ve reached the lesson. Start with the key ideas, then use the linked questions and revision materials to check your understanding.`}</p>
         {focusedResourceLabel && <p className="curriculum-node-focus-note"><span>Your selected resource:</span> <strong>{focusedResourceLabel}</strong><span> — we’ll keep it in focus as you move through this pathway.</span></p>}
       </header>
-
-      {isLeaf && linkedNotes.length > 0 && (
-        <section className="curriculum-node-section curriculum-node-core-reading" aria-labelledby="curriculum-core-reading-title">
-          <div className="curriculum-node-section-heading">
-            <div>
-              <span className="curriculum-node-kicker">Start with the key ideas</span>
-              <h2 id="curriculum-core-reading-title">Understand {node.name}</h2>
-            </div>
-            <span className="curriculum-node-count">{linkedNotes.length} {linkedNotes.length === 1 ? 'reading' : 'readings'}</span>
-          </div>
-          <p className="curriculum-node-reading-intro">Read the explanation first, then return for questions, flashcards and revision materials.</p>
-          <div className="curriculum-node-core-reading-list">
-            {linkedNotes.map((item) => (
-              <Link key={item.id} to={`/notes/read?id=${encodeURIComponent(item.content_id)}&return_to=${encodeURIComponent(returnToLesson)}`} className="curriculum-node-core-reading-link">
-                <span className="curriculum-node-child-icon"><Icon name="book-open" /></span>
-                <span className="curriculum-node-child-body">
-                  <strong>{item.title || 'Read core concepts'}</strong>
-                  <small>Read the full explanation</small>
-                </span>
-                <span className="curriculum-node-reading-cta">Read lesson <Icon name="arrow-right" /></span>
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
 
       {isLeaf && blocks.length > 0 && (
         <section className="curriculum-node-section curriculum-node-learning">
@@ -398,115 +310,14 @@ export default function CurriculumNodePage() {
         </section>
       )}
 
-      {availableResources.length > 0 && (
-        <section className="curriculum-node-section">
-          <div className="curriculum-node-section-heading">
-            <div>
-              <span className="curriculum-node-kicker">{isThemeActivityNode ? 'Theme-wide activities' : 'Resources for this lesson'}</span>
-              <h2>{isThemeActivityNode ? `Practise across ${node.name}` : 'Practise what you’ve learned'}</h2>
-            </div>
-          </div>
-
-          <div className="curriculum-node-resources">
-            {availableResources.map(([key, label]) => (
-              <Link key={key} to={resourcePath(key, node.id, node.node_type)} className="curriculum-node-resource">
-                <span>{label}</span>
-                <Icon name="arrow-right" />
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
-
-
-      {isLeaf && Object.keys(linkedContentGroups).length > 0 && (
-        <section className="curriculum-node-section">
-          <div className="curriculum-node-section-heading">
-            <div>
-              <span className="curriculum-node-kicker">More ways to study</span>
-              <h2>Explore resources for {node.name}</h2>
-            </div>
-          </div>
-
-          <div className="curriculum-node-linked-groups">
-            {Object.entries(linkedContentGroups).map(([type, items]) => {
-              const resourceKeys = {
-                note: 'notes',
-                article: null,
-                video: null,
-                flashcard_deck: 'flashcards',
-                quiz_question: 'quiz',
-                recall_question: 'recall',
-                past_paper: 'past-papers',
-                pdf_resource: 'pdfs',
-                curriculum_unit_block: null,
-                glossary_term: null
-              };
-              const resourceKey = resourceKeys[type];
-              const label = {
-                note: 'Notes',
-                article: 'Articles',
-                video: 'Videos',
-                flashcard_deck: 'Flashcards',
-                quiz_question: 'Quiz questions',
-                recall_question: 'BioRecall questions',
-                past_paper: 'Past papers',
-                pdf_resource: 'PDF resources',
-                curriculum_unit_block: 'Lesson content',
-                glossary_term: 'Glossary terms'
-              }[type] || type.replaceAll('_', ' ');
-              const destination = resourceKey
-                ? resourcePath(resourceKey, node.id, node.node_type)
-                : type === 'glossary_term'
-                  ? '/glossary'
-                  : null;
-
-              return (
-                <article key={type} className="curriculum-node-linked-group">
-                  <div className="curriculum-node-linked-group-heading">
-                    <strong>{label}</strong>
-                    <span className="curriculum-node-count">
-                      {items.length} {items.length === 1 ? 'item' : 'items'}
-                    </span>
-                  </div>
-                  <ul className="curriculum-node-linked-preview">
-                    {items.slice(0, 3).map((item) => {
-                      const articleHref = type === 'article' && item.slug
-                        ? `/blog/${encodeURIComponent(item.slug)}`
-                        : null;
-                      const videoHref = type === 'video'
-                        ? safeExternalHref(item.video_url || item.embed_url)
-                        : null;
-                      const glossaryHref = type === 'glossary_term' && item.slug
-                        ? `/glossary/${encodeURIComponent(item.slug)}`
-                        : null;
-
-                      return (
-                        <li key={item.id}>
-                          {articleHref ? (
-                            <Link to={articleHref}>{item.title}</Link>
-                          ) : videoHref ? (
-                            <a href={videoHref} target="_blank" rel="noopener noreferrer">{item.title} ↗</a>
-                          ) : glossaryHref ? (
-                            <Link to={glossaryHref}>{item.title}</Link>
-                          ) : (
-                            item.title
-                          )}
-                        </li>
-                      );
-                    })}
-                    {items.length > 3 && <li>And {items.length - 3} more</li>}
-                  </ul>
-                  {destination && (
-                    <Link to={destination} className="curriculum-node-resource-action">
-                      Open {label.toLowerCase()} <Icon name="arrow-right" />
-                    </Link>
-                  )}
-                </article>
-              );
-            })}
-          </div>
-        </section>
+      {isLeaf && (
+        <LearningJourney
+          unitId={node.id}
+          nodeName={node.name}
+          nodeType={node.node_type}
+          linkedContent={linkedContent}
+          returnTo={returnToLesson}
+        />
       )}
 
       {relationships.length > 0 && (
