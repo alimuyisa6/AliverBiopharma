@@ -15,7 +15,7 @@
 .lernwick-newsletter-submit{min-height:3.1rem;padding:.75rem 1.35rem;border-radius:var(--r-pill);background:var(--primary);color:var(--white);font-family:var(--f-display);font-weight:700}
 .lernwick-newsletter-submit:hover:not(:disabled){background:var(--primary-dark);color:var(--white)}
 .lernwick-newsletter-status{grid-column:1/-1;margin-top:.3rem;font-size:var(--t-sm)}
-.lernwick-newsletter-status.success{color:#a9e4bf}
-.lernwick-newsletter-status.error{color:#ffc2c8}
+.lernwick-newsletter-status.success{color:var(--green-200)}
+.lernwick-newsletter-status.error{color:var(--red-200)}
 @media(max-width:760px){.lernwick-newsletter-card{grid-template-columns:minmax(0,1fr);gap:1.5rem;border-radius:var(--r-lg)}}
 @media(max-width:480px){.lernwick-newsletter-row{grid-template-columns:minmax(0,1fr)}.lernwick-newsletter-submit{width:100%}}
