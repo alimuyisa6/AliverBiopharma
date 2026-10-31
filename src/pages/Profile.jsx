@@ -1,4 +1,5 @@
  import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useLayout } from '../contexts/LayoutContext';
 import { useI18n } from '../contexts/I18nContext';
@@ -269,12 +270,13 @@ function ProfileError({ error, title = "We couldn't load this section", onRetry,
 }
 
 export default function Profile() {
+  const [searchParams] = useSearchParams();
   const { user, refresh, logout } = useAuth();
   const { theme, toggleTheme, uiPreferences } = useLayout();
   const { locale, setLocale, t } = useI18n();
   const addToast = useToast();
 
-  const [activeSection, setActiveSection] = useState('overview');
+  const [activeSection, setActiveSection] = useState(() => searchParams.get('section') || 'overview');
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const [fullName, setFullName] = useState('');
