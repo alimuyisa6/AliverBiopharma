@@ -65,7 +65,23 @@ export default async function handler(req, res) {
   const importFn = moduleName ? MODULE_MAP[moduleName] : null;
 
   if (!importFn) {
-    const ctx = await passGate(req, res, moduleName, path);
+    if (moduleName === 'subscriptions' && path === 'nowpayments_ipn' && req.method === 'POST') {
+    try {
+      const mod = await importFn();
+      const handlerResult = await mod.handler(req, res, path, null);
+      if (!res.writableEnded && handlerResult !== true) {
+        res.status(405).json({ error: 'Method not allowed' });
+      }
+    } catch (err) {
+      console.error('[NOWPAYMENTS_IPN_ERROR]', err?.message || 'Webhook processing failed');
+      if (!res.writableEnded) {
+        res.status(err?.statusCode || 500).json({ error: 'Payment notification processing failed.' });
+      }
+    }
+    return;
+  }
+
+  const ctx = await passGate(req, res, moduleName, path);
     if (!ctx) return;
     return res.status(404).json({ error: getVagueErrorMessage() });
   }
