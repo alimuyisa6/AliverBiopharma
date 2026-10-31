@@ -1,5 +1,8 @@
  /* features/home/PricingCards.jsx */
+import { useNavigate } from 'react-router-dom';
+
 export function PricingCards({ plans }) {
+  const navigate = useNavigate();
   if (!plans || !Array.isArray(plans)) return null;
 
   return (
@@ -19,7 +22,7 @@ export function PricingCards({ plans }) {
             <ul>
               {(plan.features || []).filter(Boolean).map(f => <li key={f}>{f}</li>)}
             </ul>
-            <button className="btn btn-primary pricing-cta-btn">{plan.cta_text || 'Subscribe'}</button>
+            <button type="button" className="btn btn-primary pricing-cta-btn" onClick={() => navigate('/profile?section=billing', { state: { activeSection: 'billing' } })}>{plan.cta_text || 'Subscribe'}</button>
           </div>
         ))}
       </div>
