@@ -56,7 +56,7 @@ export default function Donate() {
   const raised = Number(config?.raised_amount) || 0;
   const percentage = Math.min(Math.round((raised / goal) * 100), 100);
   const momo = config?.momo || {};
-  const cryptoKey = config?.nowpayments_api_key || '';
+  const cryptoAvailable = Boolean(config?.crypto_available);
 
   const updateField = (field, value) => {
     setForm((current) => ({ ...current, [field]: value }));
@@ -182,31 +182,16 @@ export default function Donate() {
             </div>
             <p className="donate-muted donate-center">Choose a donation method.</p>
 
-            {cryptoKey ? (
-              <>
-                <div className="donate-widget">
-                  <iframe
-                    title="Cryptocurrency donation widget"
-                    src={`https://nowpayments.io/embeds/donation-widget?api_key=${encodeURIComponent(cryptoKey)}`}
-                    loading="lazy"
-                    scrolling="no"
-                  />
-                </div>
-                <div className="donate-button-wrap">
-                  <a
-                    href={`https://nowpayments.io/donation?api_key=${encodeURIComponent(cryptoKey)}`}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="donate-external-button"
-                  >
-                    Donate with crypto
-                  </a>
-                </div>
-              </>
+            {cryptoAvailable ? (
+              <div className="donate-unavailable">
+                <Icon name="circle-info" />
+                <p>Cryptocurrency checkout is available for premium subscriptions from your Profile Billing section.</p>
+                <Link to="/profile?section=billing" className="donate-external-button">View subscription plans</Link>
+              </div>
             ) : (
               <div className="donate-unavailable">
                 <Icon name="circle-info" />
-                <p>Crypto donations are not available yet. You can donate through Mobile Money.</p>
+                <p>Cryptocurrency payments are being configured. You can currently support AliverBiopharm through Mobile Money.</p>
               </div>
             )}
           </section>
