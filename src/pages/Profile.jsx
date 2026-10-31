@@ -1,5 +1,5 @@
  import { useState, useEffect, useMemo, useCallback } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useLayout } from '../contexts/LayoutContext';
 import { useI18n } from '../contexts/I18nContext';
@@ -18,6 +18,7 @@ import {
   updateDeviceMetadata,
   revokeDevice,
   getBillingSummary,
+  createSubscriptionCryptoInvoice,
   getReferralStats,
   getCertificates,
   getApiKeys,
@@ -271,6 +272,7 @@ function ProfileError({ error, title = "We couldn't load this section", onRetry,
 
 export default function Profile() {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const { user, refresh, logout } = useAuth();
   const { theme, toggleTheme, uiPreferences } = useLayout();
   const { locale, setLocale, t } = useI18n();
@@ -312,6 +314,8 @@ export default function Profile() {
   const [notifPrefs, setNotifPrefs] = useState([]);
   const [devices, setDevices] = useState([]);
   const [billing, setBilling] = useState(null);
+  const [creatingCryptoPlanId, setCreatingCryptoPlanId] = useState(null);
+  const [billingPaymentMessage, setBillingPaymentMessage] = useState('');
   const [referral, setReferral] = useState(null);
   const [certificates, setCertificates] = useState([]);
   const [apiKeys, setApiKeys] = useState([]);
@@ -506,6 +510,27 @@ export default function Profile() {
     if (sidebarOpen) document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
   }, [sidebarOpen]);
+
+  const handleCryptoSubscription = async (plan) => {
+    if (!plan?.id || creatingCryptoPlanId) return;
+
+    setCreatingCryptoPlanId(plan.id);
+    setBillingPaymentMessage('');
+
+    try {
+      const result = await createSubscriptionCryptoInvoice(plan.id);
+      if (!result?.invoice_url) {
+        throw new Error('The payment provider did not return a checkout link.');
+      }
+
+      window.location.assign(result.invoice_url);
+    } catch (error) {
+      const message = getExactErrorMessage(error, 'Unable to start cryptocurrency checkout.');
+      setBillingPaymentMessage(message);
+      addToast(message, 'error');
+      setCreatingCryptoPlanId(null);
+    }
+  };
 
   const selectSection = (id) => {
     setActiveSection(id);
@@ -1806,8 +1831,13 @@ export default function Profile() {
                   {t('profile.billingPayments')}
                 </h3>
                 <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
-                  View your current plan and compare the available plans.
+                  Choose a plan and pay securely with cryptocurrency. Premium access activates automatically after the payment provider confirms your payment.
                 </p>
+                {billingPaymentMessage && (
+                  <p role="alert" style={{ color: THEME.error, fontFamily: THEME.font, fontSize: 14, marginBottom: 16 }}>
+                    {billingPaymentMessage}
+                  </p>
+                )}
 
                 {sectionLoading ? (
                   <Spinner context="data" size="sm" />
@@ -1821,11 +1851,22 @@ export default function Profile() {
                     <div className="profile-plan-list">
                       <h4 style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 16, fontWeight: 600 }}>{t('profile.availablePlans')}</h4>
                       {(billing?.available_plans || []).map((plan) => (
-                        <div key={plan.id} className="chart-bar-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                          <span style={{ color: THEME.textMain, fontFamily: THEME.font }}>{plan.name}</span>
-                          <span style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15 }}>
-                            {plan.currency} {plan.price_amount} / {plan.duration_days} days
-                          </span>
+                        <div key={plan.id} className="chart-bar-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
+                          <div>
+                            <strong style={{ display: 'block', color: THEME.textMain, fontFamily: THEME.font }}>{plan.name}</strong>
+                            <span style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 14 }}>
+                              {plan.currency} {plan.price_amount} / {plan.duration_days} days
+                            </span>
+                          </div>
+                          <Button
+                            type="button"
+                            variant="primary"
+                            loading={creatingCryptoPlanId === plan.id}
+                            disabled={Boolean(creatingCryptoPlanId) || Boolean(billing?.subscription && ['active', 'awaiting_verification', 'pending'].includes(billing.subscription.status))}
+                            onClick={() => handleCryptoSubscription(plan)}
+                          >
+                            {creatingCryptoPlanId === plan.id ? 'Preparing checkout…' : 'Pay with crypto'}
+                          </Button>
                         </div>
                       ))}
                     </div>
