@@ -1,6 +1,6 @@
 /* pages/PastPapers.jsx */
 import { useState, useEffect, useRef } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 import { useLevelFilter } from '../hooks/useLevelFilter';
@@ -39,6 +39,7 @@ const TABS = [
 
 export default function PastPapers() {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const curriculumUnitId = searchParams.get('unit_id') || null;
   const { level, class_name, showAll, displayName } = useLevelFilter();
@@ -290,7 +291,7 @@ export default function PastPapers() {
 
     if (paper.locked) {
       recordDownloadAttempt(paper, 'premium_blocked', paper.reason || 'Premium access required');
-      addToast('Premium access is required to download this paper.', 'warning');
+      navigate('/profile?section=billing');
       return;
     }
 
@@ -376,6 +377,11 @@ export default function PastPapers() {
   };
 
   const handlePaperOpen = async (paper) => {
+    if (paper.is_premium && paper.locked) {
+      navigate('/profile?section=billing');
+      return;
+    }
+
     setSelectedPaper(paper);
 
     setReviewRating(0);
