@@ -314,7 +314,12 @@ export default function Profile() {
   const [devices, setDevices] = useState([]);
   const [billing, setBilling] = useState(null);
   const [creatingCryptoPlanId, setCreatingCryptoPlanId] = useState(null);
-  const [billingPaymentMessage, setBillingPaymentMessage] = useState('');
+  const [billingPaymentMessage, setBillingPaymentMessage] = useState(() => {
+    const paymentState = searchParams.get('payment');
+    if (paymentState === 'success') return 'Payment submitted. Your premium access will activate after NOWPayments confirms the transaction. Refresh this page if your plan does not update shortly.';
+    if (paymentState === 'cancelled') return 'Checkout was cancelled. You can choose a plan and try again whenever you are ready.';
+    return '';
+  });
   const [referral, setReferral] = useState(null);
   const [certificates, setCertificates] = useState([]);
   const [apiKeys, setApiKeys] = useState([]);
