@@ -3568,6 +3568,10 @@ export async function streamAIAssistant(
   return fullText;
 }
 
+export async function createSubscriptionCryptoInvoice(plan_id) {
+  return apiCall('subscriptions', 'create_crypto_invoice', { plan_id }, 'POST');
+}
+
 export async function getDonateConfig() {
   return getRequest('donations', 'config');
 }
