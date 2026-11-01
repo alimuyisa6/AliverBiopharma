@@ -28,8 +28,8 @@
 .lernwick-section-heading--center{justify-content:center;text-align:center}
 .lernwick-section-heading--center>div{justify-items:center}
 .lernwick-step-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.2rem}
-.lernwick-step-card{position:relative;display:grid;align-content:start;gap:.9rem;min-height:15rem;padding:1.6rem;border-radius:var(--r-lg);background:var(--peach);transition:transform var(--dur) var(--ease)}
-.lernwick-step-card:nth-child(even){background:var(--sage)}
+.lernwick-step-card{position:relative;display:grid;align-content:start;gap:.9rem;min-height:15rem;padding:1.6rem;border-radius:var(--r-lg);background:var(--primary-light));transition:transform var(--dur) var(--ease)}
+.lernwick-step-card:nth-child(even){background:var(--primary-light))}
 .lernwick-step-card:hover{transform:translateY(-4px)}
 .lernwick-step-number{display:grid;width:2.8rem;height:2.8rem;place-items:center;border:1.5px solid currentColor;border-radius:50%;font:700 var(--t-sm)/1 var(--f-display)}
 .lernwick-step-mark{width:2.4rem;height:3px;border-radius:4px;background:var(--orange)}
@@ -38,8 +38,8 @@
 .lernwick-about-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:clamp(2.5rem,5vw,5rem)}
 .lernwick-about-media{position:relative;min-height:28rem}
 .lernwick-about-media>img{width:100%;height:100%;min-height:28rem;object-fit:cover;border-radius:var(--r-lg) var(--r-lg) var(--r-lg) 6px}
-.lernwick-about-sticker{position:absolute;right:-1rem;bottom:1.5rem;display:grid;gap:.1rem;padding:1.1rem 1.4rem;border-radius:var(--r-md);background:var(--peach);box-shadow:var(--shadow-float);transform:rotate(4deg);font:600 var(--t-sm)/1.35 var(--f-display)}
-.lernwick-about-sticker span{color:var(--sage-ink)}
+.lernwick-about-sticker{position:absolute;right:-1rem;bottom:1.5rem;display:grid;gap:.1rem;padding:1.1rem 1.4rem;border-radius:var(--r-md);background:var(--primary-light));box-shadow:var(--shadow-float);transform:rotate(4deg);font:600 var(--t-sm)/1.35 var(--f-display)}
+.lernwick-about-sticker span{color:var(--secondary))}
 .lernwick-about-copy{display:grid;justify-items:start;gap:1.1rem}
 .lernwick-about-copy>p:not(.lernwick-note){color:var(--ink-2);font-size:var(--t-md);line-height:1.8}
 .lernwick-about-copy ul{display:grid;gap:.9rem;margin:.4rem 0 .6rem}
@@ -63,14 +63,14 @@
 .home-page .home-snapshot-stack{padding:0;background:transparent}
 .home-page .home-snapshot-stack .card-stack-back{display:none}
 .home-page .home-snapshot-stack .dash-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.8rem;padding:0;background:transparent;box-shadow:none}
-.home-page .home-snapshot-stack .dash-cell{display:grid;align-content:center;gap:.4rem;min-height:7.5rem;padding:1rem;border-radius:var(--r-md);background:var(--peach)}
-.home-page .home-snapshot-stack .dash-cell:nth-child(even){background:var(--sage)}
+.home-page .home-snapshot-stack .dash-cell{display:grid;align-content:center;gap:.4rem;min-height:7.5rem;padding:1rem;border-radius:var(--r-md);background:var(--primary-light))}
+.home-page .home-snapshot-stack .dash-cell:nth-child(even){background:var(--primary-light))}
 .home-page .home-snapshot-stack .dc-label{color:var(--ink-2);font:600 var(--t-xs)/1.3 var(--f-display)}
 .home-page .home-snapshot-stack .dc-value{color:var(--ink);font:700 var(--t-xl)/1 var(--f-display)}
 .home-page .home-snapshot-stack .dc-sub{color:var(--ink-2);font-size:var(--t-xs)}
 .home-page .home-continue-learning-list{display:grid;gap:.7rem}
 .home-page .home-continue-learning-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:1rem;padding:1rem;border:0;border-radius:var(--r-md);background:var(--soft)}
-.home-page .home-continue-learning-thumb{width:3rem;height:3rem;min-width:3rem;border:0;border-radius:var(--r-md);background:var(--peach);color:var(--ink)}
+.home-page .home-continue-learning-thumb{width:3rem;height:3rem;min-width:3rem;border:0;border-radius:var(--r-md);background:var(--primary-light));color:var(--ink)}
 .home-page .home-continue-learning-row .row-title{color:var(--ink);font:600 var(--t-sm)/1.35 var(--f-display)}
 .home-page .home-continue-learning-row .row-meta{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;color:var(--ink-2);font-size:var(--t-xs)}
 .home-page .home-continue-learning-progress{overflow:hidden;height:.35rem;border-radius:var(--r-pill);background:var(--line)}
@@ -79,13 +79,13 @@
 .home-page .home-curriculum-map{border:0;background:transparent}
 .home-page .home-curriculum-node-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem}
 .home-page .home-curriculum-node{display:flex;min-width:0;align-items:center;gap:.8rem;padding:1rem;border:0;border-radius:var(--r-md);background:var(--soft);transition:background-color var(--dur) var(--ease),transform var(--dur) var(--ease)}
-.home-page .home-curriculum-node:hover{background:var(--peach);transform:translateY(-2px)}
+.home-page .home-curriculum-node:hover{background:var(--primary-light));transform:translateY(-2px)}
 .home-page .home-curriculum-node-marker{width:.55rem;height:.55rem;flex:0 0 .55rem;border:0;border-radius:50%;background:var(--orange)}
 .home-page .home-curriculum-node-copy{display:grid;min-width:0;gap:.25rem}
 .home-page .home-curriculum-node-name{color:var(--ink);font:600 var(--t-sm)/1.35 var(--f-display)}
 .home-page .home-curriculum-node-type{color:var(--ink-2);font:500 var(--t-xs)/1.3 var(--f-body)}
 .home-page .home-curriculum-node>svg{width:1rem;height:1rem;flex:0 0 auto;margin-left:auto;color:var(--ink-2)}
-.home-page .home-challenge-treasure{display:grid;grid-template-columns:minmax(0,1fr);gap:1.2rem;padding:clamp(1.5rem,1rem + 2vw,2.5rem);border:0;border-radius:var(--r-xl);background:var(--peach);box-shadow:none}
+.home-page .home-challenge-treasure{display:grid;grid-template-columns:minmax(0,1fr);gap:1.2rem;padding:clamp(1.5rem,1rem + 2vw,2.5rem);border:0;border-radius:var(--r-xl);background:var(--primary-light));box-shadow:none}
 .home-page .home-challenge-treasure-copy{display:grid;justify-items:start;gap:.8rem}
 .home-page .home-challenge-treasure-copy .eyebrow{color:var(--orange-deep);font:700 1.2rem/1.1 var(--f-hand)}
 .home-page .home-challenge-treasure-copy h2{color:var(--ink);font:700 var(--t-xl)/1.2 var(--f-display)}
@@ -93,7 +93,7 @@
 .home-page .home-challenge-meta{display:flex;flex-wrap:wrap;gap:.6rem}
 .home-page .home-challenge-meta>span{display:inline-flex;align-items:center;gap:.4rem;padding:.4rem .8rem;border-radius:var(--r-pill);background:var(--paper);color:var(--ink);font:600 var(--t-xs)/1.2 var(--f-display)}
 .home-page .home-challenge-meta svg{width:1rem;height:1rem}
-.home-page .home-daily-recall-section{border:0;border-radius:var(--r-xl);background:var(--sage)}
+.home-page .home-daily-recall-section{border:0;border-radius:var(--r-xl);background:var(--primary-light))}
 .home-page .home-daily-recall-section .home-daily-recall-description{color:var(--ink-2);font-size:var(--t-sm);line-height:1.6}
 .home-page .home-daily-recall-card{display:flex;align-items:center;gap:1.5rem;padding:1.2rem;border:0;border-radius:var(--r-lg);background:var(--paper);box-shadow:none}
 .home-page .home-daily-recall-score{color:var(--ink-2);font-size:var(--t-xs)}
@@ -110,7 +110,7 @@ body.dark-mode .home-page .home-learning-snapshot-dashboard-link{border-color:va
 
 
 .home-page .home-challenge-treasure .three-d-button--solid,.home-page .home-daily-recall-section .three-d-button--solid{--u3d-text:var(--ink);--u3d-top-start:var(--orange);--u3d-top-end:var(--orange-hover);--u3d-bottom-start:var(--orange-deep);--u3d-bottom-end:var(--orange);--u3d-base:var(--orange-deep)}
-.home-page .home-continue-learning-row .three-d-button--soft,.home-page .home-daily-recall-section .three-d-button--soft{--u3d-text:var(--ink);--u3d-top-start:var(--peach);--u3d-top-end:var(--paper);--u3d-bottom-start:var(--peach-2);--u3d-bottom-end:var(--peach);--u3d-base:var(--ink-2)}
+.home-page .home-continue-learning-row .three-d-button--soft,.home-page .home-daily-recall-section .three-d-button--soft{--u3d-text:var(--ink);--u3d-top-start:var(--primary-light));--u3d-top-end:var(--paper);--u3d-bottom-start:var(--primary-border));--u3d-bottom-end:var(--primary-light));--u3d-base:var(--ink-2)}
 body.dark-mode .home-page .home-challenge-treasure .three-d-button--solid,body.dark-mode .home-page .home-daily-recall-section .three-d-button--solid,body.dark-mode .home-page .home-continue-learning-row .three-d-button--soft,body.dark-mode .home-page .home-daily-recall-section .three-d-button--soft{--u3d-text:var(--dark-text);--u3d-top-start:var(--dark-surface);--u3d-top-end:var(--dark-surface-raised);--u3d-bottom-start:var(--dark-border);--u3d-bottom-end:var(--dark-surface);--u3d-base:var(--dark-background)}
 
 .lernwick-pathway-card {
@@ -159,15 +159,15 @@ body.dark-mode .home-page .home-challenge-treasure .three-d-button--solid,body.d
 }
 
 .lernwick-home-sections .lernwick-step-card {
-  background: var(--peach);
+  background: var(--primary-light));
 }
 
 .lernwick-home-sections .lernwick-step-card:nth-child(even) {
-  background: var(--sage);
+  background: var(--primary-light));
 }
 
 .lernwick-home-sections .lernwick-about-sticker {
-  background: var(--peach);
+  background: var(--primary-light));
 }
 
 .lernwick-home-sections .home-continue-learning-row,
