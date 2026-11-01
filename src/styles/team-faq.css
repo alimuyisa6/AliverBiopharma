@@ -382,7 +382,7 @@
   height: 300px;
   inset-inline-start: -130px;
   inset-block-end: -150px;
-  background: var(--teal-100);
+  background: var(--primary-light));
   opacity: 0.55;
 }
 
@@ -391,7 +391,7 @@
   height: 220px;
   inset-inline-end: 8%;
   inset-block-start: -100px;
-  background: var(--amber-100);
+  background: var(--primary-light));
   opacity: 0.5;
 }
 
@@ -404,7 +404,7 @@
 .faq-eyebrow,
 .faq-section-eyebrow {
   display: inline-block;
-  color: var(--teal-700);
+  color: var(--primary-dark));
   font-family: var(--font-primary);
   font-size: var(--text-eyebrow);
   font-weight: var(--weight-eyebrow);
@@ -511,8 +511,8 @@
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-full);
-  background: var(--teal-100);
-  color: var(--teal-700);
+  background: var(--primary-light));
+  color: var(--primary-dark));
   font-size: var(--icon-size-hero);
   box-shadow: var(--shadow-lg);
 }
@@ -526,14 +526,14 @@
 .faq-illustration-orb-one {
   width: 280px;
   height: 280px;
-  background: var(--peach);
+  background: var(--primary-light));
   transform: translate(-80px, 35px);
 }
 
 .faq-illustration-orb-two {
   width: 210px;
   height: 210px;
-  background: var(--sage);
+  background: var(--primary-light));
   transform: translate(110px, -65px);
 }
 
@@ -618,12 +618,12 @@
   font-size: var(--text-lg);
 }
 
-.faq-tone-blue { background: var(--peach); color: var(--blue-700); }
-.faq-tone-emerald { background: var(--sage); color: var(--emerald-700); }
-.faq-tone-violet { background: var(--violet-100); color: var(--violet-700); }
-.faq-tone-amber { background: var(--amber-100); color: var(--amber-700); }
-.faq-tone-teal { background: var(--teal-100); color: var(--teal-700); }
-.faq-tone-pink { background: var(--pink-100); color: var(--pink-700); }
+.faq-tone-blue { background: var(--primary-light)); color: var(--blue-700); }
+.faq-tone-emerald { background: var(--primary-light)); color: var(--primary-dark)); }
+.faq-tone-violet { background: var(--primary-light)); color: var(--primary-dark)); }
+.faq-tone-amber { background: var(--primary-light)); color: var(--primary-dark)); }
+.faq-tone-teal { background: var(--primary-light)); color: var(--primary-dark)); }
+.faq-tone-pink { background: var(--primary-light)); color: var(--primary-dark)); }
 
 .faq-category strong,
 .faq-resource strong {
@@ -655,7 +655,7 @@
   inset: var(--space-4) 0 0;
   z-index: -1;
   border-radius: var(--radius-lg);
-  background: var(--sage);
+  background: var(--primary-light));
 }
 
 .faq-featured-grid {
@@ -700,7 +700,7 @@
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-full);
-  background: var(--peach);
+  background: var(--primary-light));
   color: var(--blue-700);
 }
 
@@ -928,8 +928,8 @@
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-sm);
-  background: var(--teal-100);
-  color: var(--teal-700);
+  background: var(--primary-light));
+  color: var(--primary-dark));
 }
 
 .faq-resource-arrow {
@@ -945,9 +945,9 @@
   margin: 0 auto var(--space-12);
   padding: clamp(var(--space-8), 5vw, var(--space-12));
   overflow: hidden;
-  border: 1px solid var(--amber-200);
+  border: 1px solid var(--primary-light));
   border-radius: var(--radius-lg);
-  background: var(--peach);
+  background: var(--primary-light));
 }
 
 .faq-support-content {
@@ -966,13 +966,13 @@
 }
 
 .faq-support-button {
-  background: var(--amber-600);
-  border-color: var(--amber-600);
+  background: var(--primary-dark));
+  border-color: var(--primary-dark));
 }
 
 .faq-support-button:hover {
-  background: var(--amber-700);
-  border-color: var(--amber-700);
+  background: var(--primary-dark));
+  border-color: var(--primary-dark));
 }
 
 .faq-illustration-support {
@@ -984,8 +984,8 @@
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-full);
-  background: var(--amber-100);
-  color: var(--amber-700);
+  background: var(--primary-light));
+  color: var(--primary-dark));
   font-size: var(--icon-size-display);
   opacity: 0.8;
 }
@@ -999,8 +999,8 @@
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-full);
-  background: var(--sage);
-  color: var(--teal-500);
+  background: var(--primary-light));
+  color: var(--primary-dark));
   font-size: var(--icon-size-large);
   opacity: 0.7;
 }
