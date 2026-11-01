@@ -1060,7 +1060,7 @@ export default function PastPapers() {
                                   style={{
                                     color:
                                       star <= review.rating
-                                        ? 'var(--amber-400)'
+                                        ? 'var(--primary-dark))'
                                         : 'var(--grey-300)'
                                   }}
                                 >
