@@ -226,3 +226,21 @@
     transition: none;
   }
 }
+
+#root .app-layout {
+  background: var(--background);
+  color: var(--ink);
+}
+
+#root .app-layout :where(main, .page-content, .page-container, .content-container) {
+  background-color: transparent;
+}
+
+#root .app-layout :where(.section--soft, .dashboard-panel, .profile-section, .notes-section, .resources-section, .quiz-section, .flashcards-section, .recall-page-section, .classroom-list-section) {
+  background: var(--soft);
+}
+
+#root .app-layout :where(.card, .content-card, .resource-card, .note-card, .paper-card, .feature-card, .dashboard-card, .stat-card, .quiz-card, .flashcard-card, .recall-card, .classroom-card, .tutor-card, .faq-item, .about-block, .contact-form, .profile-card, .settings-card) {
+  color: var(--ink);
+}
+
