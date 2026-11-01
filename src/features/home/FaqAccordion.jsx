@@ -158,7 +158,7 @@ export function FaqAccordion({ items, data, standalone = false }) {
             <img style={FAQ_ILLUSTRATION_STYLE} src={faqBrowseIllustration.imageUrl} alt={faqBrowseIllustration.alt || 'Student exploring learning topics'} />
           </div>
         </div>
-        <div className="faq-illustration faq-illustration-hero" style={{ width: '150px', height: '150px', borderRadius: '50%', background: 'var(--teal-100)', overflow: 'hidden' }}>
+        <div className="faq-illustration faq-illustration-hero" style={{ width: '150px', height: '150px', borderRadius: '50%', background: 'var(--primary-light)', overflow: 'hidden' }}>
           <img style={FAQ_ILLUSTRATION_STYLE} src={faqHeroIllustration.imageUrl} alt={faqHeroIllustration.alt || faq.hero.title} />
         </div>
       </section>
