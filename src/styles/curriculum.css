@@ -352,12 +352,12 @@
   background: color-mix(in srgb, var(--white) 76%, var(--blue-50));
 }
 .curriculum-node-section:nth-of-type(3n + 2) {
-  border-color: var(--primary-light), var(--blue-100);
-  background: color-mix(in srgb, var(--white) 78%, var(--primary-light), var(--blue-50)));
+  border-color: var(--primary-border);
+  background: color-mix(in srgb, var(--white) 78%, var(--primary-light));
 }
 .curriculum-node-section:nth-of-type(3n) {
-  border-color: var(--primary-light), var(--blue-100);
-  background: color-mix(in srgb, var(--white) 80%, var(--primary-light), var(--blue-50)));
+  border-color: var(--primary-border);
+  background: color-mix(in srgb, var(--white) 80%, var(--primary-light));
 }
 .curriculum-node-children,
 .curriculum-node-resources,
@@ -379,8 +379,8 @@
   border-color: var(--blue-400, var(--primary));
   box-shadow: 0 0.6rem 1.25rem var(--primary-ring);
 }
-.curriculum-node-linked-group:nth-child(3n + 2) { border-top: 3px solid var(--primary-light), var(--blue-300); }
-.curriculum-node-linked-group:nth-child(3n) { border-top: 3px solid var(--primary-light), var(--blue-300); }
+.curriculum-node-linked-group:nth-child(3n + 2) { border-top: 3px solid var(--primary); }
+.curriculum-node-linked-group:nth-child(3n) { border-top: 3px solid var(--primary); }
 .curriculum-node-child:focus-visible,
 .curriculum-node-resource:focus-visible,
 .curriculum-node-resource-action:focus-visible,
