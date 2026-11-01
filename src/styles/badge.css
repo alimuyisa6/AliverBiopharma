@@ -57,7 +57,7 @@
 
 .badge-yellow {
   background: var(--yellow-light);
-  color: var(--yellow-800);
+  color: var(--primary-dark));
 }
 
 .chip {
