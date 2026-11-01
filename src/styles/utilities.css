@@ -8,8 +8,8 @@
      dark mode since --secondary-light there is a translucent overlay on a
      near-black page background). Now pinned to the raw emerald scale so it's
      always a genuinely light green card regardless of --secondary. */
-  background: var(--primary-light));
-  color: var(--primary-dark));
+  background: var(--primary-light);
+  color: var(--primary-dark);
   padding: var(--card-padding);
   border-radius: 0;
   box-shadow: var(--shadow-md);
@@ -17,7 +17,7 @@
 
 body.dark-mode .emerald-card {
   background: var(--success-light);
-  color: var(--primary-light));
+  color: var(--primary-light);
 }
 
 .card-shadow-sm { box-shadow: var(--shadow-sm) !important; }
