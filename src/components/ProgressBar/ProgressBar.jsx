@@ -1,7 +1,7 @@
 /* components/ProgressBar/ProgressBar.jsx */
 const PROGRESS_RING_PALETTE = [
-  'var(--blue-600)', 'var(--primary-dark))', 'var(--primary-dark))',
-  'var(--primary-dark))', 'var(--primary-dark))', 'var(--primary-dark))', 'var(--green-600)',
+  'var(--blue-600)', 'var(--primary-dark)', 'var(--primary-dark)',
+  'var(--primary-dark)', 'var(--primary-dark)', 'var(--primary-dark)', 'var(--green-600)',
 ];
 
 function hashProgressKey(value) {
