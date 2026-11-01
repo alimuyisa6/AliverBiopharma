@@ -70,7 +70,7 @@ body.dark-mode .toast :is(h1, h2, h3, p, small) { color: var(--dark-text); }
 }
 
 .toast-error {
-  background: var(--orange-deep);
+  background: var(--primary-dark);
   color: var(--paper);
 }
 
