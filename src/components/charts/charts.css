@@ -1,7 +1,7 @@
 :root {
   --ch-1: var(--primary);
   --ch-2: var(--ink);
-  --ch-3: var(--primary-light)-2);
+  --ch-3: var(--primary-border);
   --ch-4: var(--primary-light);
   --ch-5: var(--line);
 }
