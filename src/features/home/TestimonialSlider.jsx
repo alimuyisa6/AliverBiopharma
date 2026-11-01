@@ -27,7 +27,7 @@ export function TestimonialSlider({ quotes = [] }) {
             if (!content) return null;
 
             return (
-              <figure className={`lernwick-testimonial-card lernwick-testimonial-card--${index % 2 ? 'sage' : 'peach'}`} key={quote.id || `${name}-${index}`}>
+              <figure className={`lernwick-testimonial-card lernwick-testimonial-card--${index % 2 ? 'primary' : 'primary'}`} key={quote.id || `${name}-${index}`}>
                 <span className="lernwick-testimonial-mark" aria-hidden="true">“</span>
                 <blockquote>{content}</blockquote>
                 {rating > 0 && <div className="lernwick-testimonial-rating" aria-label={`Rated ${rating} out of 5`}>{Array.from({ length: rating }, (_, star) => <Star key={star} aria-hidden="true" />)}</div>}
