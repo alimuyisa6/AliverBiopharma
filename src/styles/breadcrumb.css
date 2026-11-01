@@ -155,7 +155,7 @@ body.dark-mode .breadcrumb-item.active { color: var(--dark-text); }
 .breadcrumb-link,
 .breadcrumb-current,
 .breadcrumb-item > span {
-  color: var(--orange-deep);
+  color: var(--primary)-deep);
 }
 
 .breadcrumb-link.is-inactive,
@@ -172,10 +172,10 @@ body.dark-mode .breadcrumb-item.active { color: var(--dark-text); }
 
 .breadcrumb-link.is-inactive:hover,
 .breadcrumb > a:hover {
-  color: var(--orange-deep);
+  color: var(--primary)-deep);
 }
 
 .breadcrumb-link:focus-visible,
 .breadcrumb > a:focus-visible {
-  outline-color: var(--orange-deep);
+  outline-color: var(--primary)-deep);
 }
