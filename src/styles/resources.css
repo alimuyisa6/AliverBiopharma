@@ -524,7 +524,7 @@ body.dark-mode .resources-intro {
 body.dark-mode .resources-section-context {
   border-color: var(--night-450);
   background: var(--dark-surface);
-  color: var(--palette-periwinkle);
+  color: var(--primary);
 }
 body.dark-mode .resources-search input {
   background: var(--dark-surface);
