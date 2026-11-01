@@ -542,7 +542,7 @@
 
 .tag-blue {
   background: var(--primary-light);
-  color: var(--blue-700);
+  color: var(--primary-dark));
 }
 
 .progress-track {
@@ -568,7 +568,7 @@
 }
 
 .progress-fill.blue {
-  background: var(--blue-500);
+  background: var(--primary));
 }
 
 .topic-card {
