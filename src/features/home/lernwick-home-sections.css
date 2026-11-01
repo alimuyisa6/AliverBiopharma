@@ -1,4 +1,4 @@
-.lernwick-home-sections{color:var(--ink);background:var(--paper)}
+.lernwick-home-sections{color:var(--ink);background:var(--background)}
 .lernwick-home-sections .section{padding-block:var(--section)}
 .lernwick-home-sections .section--soft{margin-inline:clamp(.5rem,.3rem + .6vw,.9rem);border-radius:var(--r-xl);background:var(--soft)}
 .lernwick-home-sections .container{width:100%;max-width:calc(var(--container) + 2 * var(--gutter));margin-inline:auto;padding-inline:var(--gutter)}
