@@ -256,14 +256,14 @@
 
 body.dark-mode {
   --primary: var(--dark-primary);
-  --primary-hover: #b4ccff;
-  --primary-dark: #d4e1ff;
+  --primary-hover: #a6e8f3;
+  --primary-dark: #c7f2f8;
   --primary-soft: color-mix(in srgb, var(--dark-primary) 16%, var(--dark-background));
   --primary-light: color-mix(in srgb, var(--dark-primary) 20%, var(--dark-surface));
   --primary-border: color-mix(in srgb, var(--dark-primary) 48%, var(--dark-surface));
-  --primary-ring: rgb(96 165 250 / 42%);
-  --secondary: var(--dark-surface);
-  --secondary-hover: var(--dark-surface-raised);
+  --primary-ring: rgb(131 213 231 / 34%);
+  --secondary: #a7c4cc;
+  --secondary-hover: #c5dce1;
   --secondary-light: var(--dark-surface);
   --secondary-border: var(--dark-border);
   --accent: var(--dark-accent);
