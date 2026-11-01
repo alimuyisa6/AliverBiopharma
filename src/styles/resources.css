@@ -66,11 +66,11 @@
 .resource-card-meta .icon{color:var(--primary)}
 .resource-card-footer .btn{width:fit-content;max-width:100%;flex:0 0 auto}
 .resource-card-blue{--resource-accent:var(--primary);--resource-icon-bg:var(--primary-soft)}
-.resource-card-teal{--resource-accent:var(--primary),var(--primary));--resource-icon-bg:var(--primary),var(--primary-soft))}
+.resource-card-teal{--resource-accent:var(--primary),var(--primary);--resource-icon-bg:var(--primary),var(--primary-soft)}
 .resource-card-grey{--resource-accent:var(--text-muted);--resource-icon-bg:var(--surface-subtle)}
-.resource-card-amber{--resource-accent:var(--primary));--resource-icon-bg:var(--primary))}
-.resource-card-emerald{--resource-accent:var(--primary));--resource-icon-bg:var(--primary))}
-.resource-card-violet{--resource-accent:var(--primary));--resource-icon-bg:var(--primary))}
+.resource-card-amber{--resource-accent:var(--primary);--resource-icon-bg:var(--primary)}
+.resource-card-emerald{--resource-accent:var(--primary);--resource-icon-bg:var(--primary)}
+.resource-card-violet{--resource-accent:var(--primary);--resource-icon-bg:var(--primary)}
 .resources-empty-state{padding:var(--space-12) var(--space-6);border:1px dashed var(--border-strong);border-radius:var(--radius-card);background:var(--surface-card);text-align:center}
 .resources-empty-icon{display:grid;width:var(--resources-empty-icon-size);height:var(--resources-empty-icon-size);margin:0 auto var(--space-4);place-items:center;border-radius:50%;background:var(--surface-subtle);color:var(--text-muted)}
 .resources-empty-state h3{margin:0 0 var(--space-2);color:var(--text-main);font-family:var(--font-heading);font-size:var(--text-card-title)}
@@ -387,7 +387,7 @@
   border: 1px solid var(--blue-200);
   border-bottom: 3px solid var(--blue-300);
   border-radius: 1.5rem;
-  background: var(--primary-light));
+  background: var(--primary-light);
   box-shadow: 0 0.75rem 2.25rem var(--primary-ring);
 }
 .resources-intro > div {
@@ -711,7 +711,7 @@ body.dark-mode .resources-empty-state {
   margin-inline: auto;
 }
 .resources-intro {
-  background: var(--primary-light));
+  background: var(--primary-light);
 }
 .resources-grid {
   width: min(100%, 70rem);
@@ -723,11 +723,11 @@ body.dark-mode .resources-empty-state {
   border-color: var(--blue-200);
   box-shadow: 0 0.5rem 1.5rem var(--primary-ring);
 }
-.resource-card-teal { border-color: var(--primary), var(--blue-200)); }
+.resource-card-teal { border-color: var(--primary), var(--blue-200); }
 .resource-card-grey { border-color: var(--grey-200, var(--blue-200)); }
-.resource-card-amber { border-color: var(--primary), var(--blue-200)); }
-.resource-card-emerald { border-color: var(--primary), var(--blue-200)); }
-.resource-card-violet { border-color: var(--primary), var(--blue-200)); }
+.resource-card-amber { border-color: var(--primary), var(--blue-200); }
+.resource-card-emerald { border-color: var(--primary), var(--blue-200); }
+.resource-card-violet { border-color: var(--primary), var(--blue-200); }
 .resource-card:hover {
   background: var(--white);
   box-shadow: 0 0.8rem 1.8rem var(--primary-ring);
@@ -770,11 +770,11 @@ body.dark-mode .resources-curriculum-entry {
   box-shadow: 0 0.5rem 1.5rem var(--primary-ring);
   transform: none;
 }
-.resource-card-teal:hover { border-color: var(--primary), var(--blue-200)); }
+.resource-card-teal:hover { border-color: var(--primary), var(--blue-200); }
 .resource-card-grey:hover { border-color: var(--grey-200, var(--blue-200)); }
-.resource-card-amber:hover { border-color: var(--primary), var(--blue-200)); }
-.resource-card-emerald:hover { border-color: var(--primary), var(--blue-200)); }
-.resource-card-violet:hover { border-color: var(--primary), var(--blue-200)); }
+.resource-card-amber:hover { border-color: var(--primary), var(--blue-200); }
+.resource-card-emerald:hover { border-color: var(--primary), var(--blue-200); }
+.resource-card-violet:hover { border-color: var(--primary), var(--blue-200); }
 .resource-card-footer .btn:hover {
   transform: translateY(-1px);
 }
@@ -805,7 +805,7 @@ body.dark-mode .resources-curriculum-entry { background: var(--night-800); }
 /* Alison-inspired resource system: solid surfaces, repeatable icon containers. */
 .resources-hero { background: var(--primary-dark); }
 .resources-page { background: var(--soft); }
-.resources-intro { background: var(--primary-light)); }
+.resources-intro { background: var(--primary-light); }
 .resources-curriculum-entry { background: var(--white); }
 .resource-card { background: var(--white); border: 1px solid var(--blue-100); box-shadow: none; }
 .resource-card-artwork { display: grid; place-items: center; width: 3.25rem; min-width: 3.25rem; height: 3.25rem; min-height: 3.25rem; border-radius: 50%; background: var(--soft); color: var(--primary); }
@@ -815,13 +815,13 @@ body.dark-mode .resources-curriculum-entry { background: var(--night-800); }
 body.dark-mode .resources-page { background: var(--night-900); }
 body.dark-mode .resources-intro { background: var(--night-800); }
 body.dark-mode .resource-card { background: var(--night-800); border-color: var(--night-600); }
-body.dark-mode .resource-card-artwork { background: var(--night-700); color: var(--primary)); }
+body.dark-mode .resource-card-artwork { background: var(--night-700); color: var(--primary); }
 
 
 /* Final flat-surface overrides: no gradients on resource pages. */
 .resources-hero { background: var(--primary-dark); }
 .resources-page { background: var(--soft); }
-.resources-intro { background: var(--primary-light)); }
+.resources-intro { background: var(--primary-light); }
 body.dark-mode .resources-page { background: var(--night-900); }
 body.dark-mode .resources-intro { background: var(--night-800); }
 
@@ -867,9 +867,9 @@ body.dark-mode .resources-grid .resource-card[class*="resource-card-"] {
 
 /* Solid palette section treatment: faint brand color, full-width band, white cards. */
 .resources-page { width: 100%; max-width: none; background: var(--soft); }
-.resources-hero { background: var(--primary)); }
+.resources-hero { background: var(--primary); }
 .resources-hero::before, .resources-hero::after { display: none; }
-.resources-intro { background: var(--primary-light)); }
+.resources-intro { background: var(--primary-light); }
 .resource-card, .resources-curriculum-entry, .resources-empty-state { background: var(--white); }
 body.dark-mode .resources-page { background: var(--night-900); }
 body.dark-mode .resources-intro { background: var(--night-800); }
@@ -879,11 +879,11 @@ body.dark-mode .resources-intro { background: var(--night-800); }
 .resources-page { width: 100%; background: var(--soft); }
 .resources-hero { background: var(--blue-700); }
 .resources-hero::before, .resources-hero::after { display: none; }
-.resources-intro { background: var(--primary-light)); }
+.resources-intro { background: var(--primary-light); }
 .resource-card, .resources-curriculum-entry, .resources-empty-state { background: var(--white); }
 .resource-card { box-shadow: none; }
 .resource-card-blue { --resource-icon-bg: var(--blue-50); }
-.resource-card-teal, .resource-card-emerald { --resource-icon-bg: var(--primary)); }
+.resource-card-teal, .resource-card-emerald { --resource-icon-bg: var(--primary); }
 .resource-card-violet { --resource-icon-bg: var(--blue-50); }
 
 body.dark-mode .resources-page { background: var(--dark-background); color: var(--dark-text); }
