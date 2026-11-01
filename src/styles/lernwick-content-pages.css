@@ -387,3 +387,36 @@
     transition: none;
   }
 }
+
+.app-layout .resource-card,
+.app-layout .notes-card,
+.app-layout .blog-post-card,
+.app-layout .team-card,
+.app-layout .contributor-card {
+  border-radius: 30px 30px 30px 7px;
+}
+
+.app-layout .resource-card:nth-child(4n + 2),
+.app-layout .notes-card:nth-child(4n + 2),
+.app-layout .blog-post-card:nth-child(4n + 2),
+.app-layout .team-card:nth-child(4n + 2),
+.app-layout .contributor-card:nth-child(4n + 2) {
+  border-radius: 7px 30px 30px 30px;
+}
+
+.app-layout .resource-card:nth-child(4n + 3),
+.app-layout .notes-card:nth-child(4n + 3),
+.app-layout .blog-post-card:nth-child(4n + 3),
+.app-layout .team-card:nth-child(4n + 3),
+.app-layout .contributor-card:nth-child(4n + 3) {
+  border-radius: 30px 7px 30px 30px;
+}
+
+.app-layout .resource-card:nth-child(4n),
+.app-layout .notes-card:nth-child(4n),
+.app-layout .blog-post-card:nth-child(4n),
+.app-layout .team-card:nth-child(4n),
+.app-layout .contributor-card:nth-child(4n) {
+  border-radius: 30px 30px 7px 30px;
+}
+
