@@ -137,3 +137,16 @@ body.dark-mode .home-page .home-challenge-treasure .three-d-button--solid,body.d
   border-radius: 7px 30px 30px 30px;
 }
 
+.lernwick-pathway-card:nth-child(3n + 1)::after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  right: 0;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-bottom-left-radius: 2.8rem;
+  background: var(--paper);
+  pointer-events: none;
+}
+
