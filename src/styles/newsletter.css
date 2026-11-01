@@ -5,7 +5,7 @@
   --newsletter-card-border-width: var(--border-width-thin);
   --newsletter-icon-size: 4.25rem;
   --newsletter-icon-radius: var(--radius-md);
-  --newsletter-icon-bg: var(--blue-50, color-mix(in srgb, var(--primary) 8%, var(--surface-card)));
+  --newsletter-icon-bg: var(--primary-light), color-mix(in srgb, var(--primary) 8%, var(--surface-card)));
   --newsletter-copy-max-width: 100%;
   --newsletter-heading-max-width: 100%;
   --newsletter-form-max-width: 100%;
@@ -49,7 +49,7 @@
   overflow: hidden;
   border-radius: var(--newsletter-icon-radius);
   background: var(--newsletter-icon-bg);
-  color: var(--blue-600, var(--primary));
+  color: var(--primary), var(--primary));
 }
 
 .newsletter-envelope {
