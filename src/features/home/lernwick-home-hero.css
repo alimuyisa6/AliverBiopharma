@@ -5,7 +5,7 @@
 .hero h1{max-width:47rem;font-family:var(--f-display);font-size:var(--t-hero);font-weight:800;line-height:1.12;letter-spacing:-.04em;color:var(--ink)}
 .hero h1 .squiggle{display:inline-block;width:1.35em;height:auto;margin-inline:.08em;color:var(--orange);vertical-align:middle}
 .hero .hl{position:relative;z-index:0;display:inline-block}
-.hero .hl:before{content:"";position:absolute;z-index:-1;left:-.12em;top:.08em;width:1.05em;height:1.05em;border-radius:50% 50% 50% 8%;background:var(--orange);transform:rotate(-12deg)}
+.hero .hl:before{content:"";position:absolute;z-index:-1;left:-.12em;top:.08em;width:1.08em;height:1.02em;border-radius:39% 61% 28% 72%/56% 34% 66% 44%;background:var(--orange);transform:rotate(-9deg) skewX(-7deg)}
 .hero__lede{max-width:33rem;color:var(--ink-2);font-size:var(--t-md);line-height:1.75}
 .hero__path{display:flex;align-items:center;gap:.6rem;color:var(--ink-2);font-size:var(--t-sm)}
 .hero__path svg{width:1.2rem;height:1.2rem;color:var(--orange-deep)}
@@ -19,11 +19,11 @@
 .hero__play svg{width:1.2rem;height:1.2rem}
 .hero__how:hover .hero__play{background:var(--peach)}
 .hero__media{position:relative;justify-self:end;width:min(100%,33rem);aspect-ratio:9/10}
-.hero .blob{position:absolute;inset:6% 4% 4% 8%;margin:0;overflow:hidden;background:var(--soft);border-radius:58% 42% 48% 52%/42% 46% 54% 58%}
+.hero .blob{position:absolute;inset:6% 4% 4% 8%;margin:0;overflow:hidden;background:var(--soft);border-radius:64% 36% 55% 45%/35% 55% 45% 65%}
 .hero .blob img{width:100%;height:100%;object-fit:cover}
 .hero__burst{position:absolute;z-index:2;left:0;top:4%;width:clamp(3.5rem,2.5rem + 3vw,5.5rem);color:var(--ink)}
 .hero__burst path{stroke:currentColor;stroke-width:2;stroke-linecap:round;fill:none}
-.hero .badge{position:absolute;z-index:2;right:2%;top:0;display:grid;place-items:center;align-content:center;gap:.35rem;width:6.6rem;height:7.4rem;border-radius:3rem;background:var(--ink);color:var(--paper);font:600 var(--t-sm)/1 var(--f-display);transform:rotate(10deg)}
+.hero .badge{position:absolute;z-index:2;right:2%;top:0;display:grid;place-items:center;align-content:center;gap:.35rem;width:6.6rem;height:7.4rem;border-radius:38% 62% 52% 48%/48% 38% 62% 52%;background:var(--ink);color:var(--paper);font:600 var(--t-sm)/1 var(--f-display);transform:rotate(10deg)}
 .hero .badge svg{width:1.8rem;height:1.8rem}
 .hero .fcard{position:absolute;z-index:2;left:0;bottom:6%;width:min(16rem,58%);padding:1.1rem 1.2rem;border-radius:var(--r-lg);background:var(--peach);box-shadow:var(--shadow-float);transform:rotate(-5deg)}
 .hero .fcard__t{font:600 var(--t-md)/1.25 var(--f-display)}
