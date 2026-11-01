@@ -143,7 +143,7 @@ body.dark-mode .slide-to-confirm :is(.slide-to-confirm-label, .slide-to-confirm-
 }
 
 .slide-confirm::before {
-  background: var(--peach);
+  background: var(--primary-light));
 }
 
 .slide-confirm-label {
@@ -172,7 +172,7 @@ body.dark-mode .slide-to-confirm :is(.slide-to-confirm-label, .slide-to-confirm-
 }
 
 .slide-confirm--danger::before {
-  background: var(--peach);
+  background: var(--primary-light));
 }
 
 .slide-confirm--danger .slide-confirm-knob,
@@ -181,8 +181,8 @@ body.dark-mode .slide-to-confirm :is(.slide-to-confirm-label, .slide-to-confirm-
 }
 
 .slide-confirm.is-confirmed {
-  border-color: var(--sage);
-  background: var(--sage);
+  border-color: var(--primary-light));
+  background: var(--primary-light));
 }
 
 .slide-confirm.is-confirmed .slide-confirm-knob {
