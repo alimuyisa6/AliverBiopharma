@@ -17,7 +17,7 @@
   justify-content: center;
   min-height: 46vh;
   padding: var(--space-12) var(--space-5);
-  background: var(--sage);
+  background: var(--primary-light));
   text-align: center;
 }
 
@@ -95,7 +95,7 @@
   bottom: calc(-1 * var(--about-heading-border-width));
   width: var(--about-heading-accent-width);
   height: var(--about-heading-border-width);
-  background: var(--sage);
+  background: var(--primary-light));
 }
 
 .about-block p {
@@ -475,7 +475,7 @@ body.dark-mode .contact-page :is(input, select, textarea) { background: var(--da
 body.dark-mode .contact-page :is(input, textarea)::placeholder { color: var(--dark-text-secondary); }
 
 .about-hero {
-  background-color: var(--sage);
+  background-color: var(--primary-light));
   color: var(--ink);
 }
 
