@@ -488,7 +488,7 @@
   border: 1px solid var(--line);
   border-bottom: 3px solid var(--blue-300);
   border-radius: 1.5rem;
-  background: var(--primary-light));
+  background: var(--primary-light);
   text-align: left;
 }
 .notes-page-kicker {
@@ -607,7 +607,7 @@ body.dark-mode .notes-page-intro {
 body.dark-mode .notes-page-kicker,
 body.dark-mode .notes-context-kicker,
 body.dark-mode .notes-section-heading .sec-label {
-  color: var(--primary));
+  color: var(--primary);
 }
 body.dark-mode .notes-curriculum-context,
 body.dark-mode .notes-pathway {
@@ -705,8 +705,8 @@ body.dark-mode .flashcard-deck-card { background: var(--night-800); }
 /* Aliver palette: solid faint brand surfaces, no gradient washes. */
 .flashcards-page { width: 100%; background: var(--soft); }
 .flashcard-deck-card { background: var(--white); box-shadow: none; }
-.notes-page-shell { width: 100%; background: var(--primary-light)); }
-.notes-page-heading { background: var(--primary-light)); }
+.notes-page-shell { width: 100%; background: var(--primary-light); }
+.notes-page-heading { background: var(--primary-light); }
 .notes-curriculum-context, .notes-pathway-item, .notes-card { background: var(--white); box-shadow: none; }
 .notes-pathway-item, .notes-card { border-color: var(--blue-200); }
 
