@@ -231,7 +231,7 @@ body.dark-mode .notification-center :is(h1, h2, h3, p, small) { color: var(--dar
 .notification-bell:hover,
 .notification-bell:focus-visible,
 .notification-bell--unread {
-  color: var(--orange-deep);
+  color: var(--primary)-deep);
 }
 
 .notification-dropdown {
@@ -266,5 +266,5 @@ body.dark-mode .notification-center :is(h1, h2, h3, p, small) { color: var(--dar
 }
 
 .notification-dismiss:hover {
-  color: var(--orange-deep);
+  color: var(--primary)-deep);
 }
