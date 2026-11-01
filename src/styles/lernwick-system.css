@@ -4,7 +4,7 @@
   --surface-raised: var(--white);
   --surface-muted: var(--soft);
   --surface-subtle: var(--soft);
-  --surface-tinted: var(--peach);
+  --surface-tinted: var(--primary-light));
   --bg-page: var(--background);
   --bg-card: var(--white);
   --bg-card-hover: var(--soft);
