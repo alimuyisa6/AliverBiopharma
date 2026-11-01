@@ -1347,7 +1347,7 @@
   --quiz-loader-dot-shadow: var(--shadow-sm);
   --quiz-loader-surface: var(--bg-card);
   --quiz-loader-primary: var(--primary);
-  --quiz-loader-secondary: var(--violet);
+  --quiz-loader-secondary: var(--primary);
   --quiz-loader-animation-step: calc(var(--quiz-loader-animation-duration) / 12);
   --quiz-loader-animation-duration: 2s;
   --quiz-loader-clip-low: 75%;
@@ -2102,7 +2102,7 @@ body.dark-mode .quiz-result-container .quiz-review-card {
   background: var(--night-800);
 }
 body.dark-mode .quiz-result-container .quiz-review-card .quiz-review-explanation {
-  border-inline-start-color: var(--palette-mint);
+  border-inline-start-color: var(--accent);
   background: var(--night-850);
 }
 @media (max-width: 640px) {
