@@ -603,7 +603,7 @@
 }
 
 .faq-category.is-active {
-  outline: 2px solid var(--blue-200);
+  outline: 2px solid var(--primary-light));
   outline-offset: 1px;
 }
 
@@ -618,7 +618,7 @@
   font-size: var(--text-lg);
 }
 
-.faq-tone-blue { background: var(--primary-light); color: var(--blue-700); }
+.faq-tone-blue { background: var(--primary-light); color: var(--primary-dark)); }
 .faq-tone-emerald { background: var(--primary-light); color: var(--primary-dark); }
 .faq-tone-violet { background: var(--primary-light); color: var(--primary-dark); }
 .faq-tone-amber { background: var(--primary-light); color: var(--primary-dark); }
@@ -680,7 +680,7 @@
 }
 
 .faq-featured-item:hover {
-  border-color: var(--blue-300);
+  border-color: var(--primary-light));
   box-shadow: var(--shadow-card);
 }
 
@@ -701,7 +701,7 @@
   justify-content: center;
   border-radius: var(--radius-full);
   background: var(--primary-light);
-  color: var(--blue-700);
+  color: var(--primary-dark));
 }
 
 .faq-questions-section {
@@ -753,7 +753,7 @@
 }
 
 .faq-question-trigger:hover .faq-question-text {
-  color: var(--blue-700);
+  color: var(--primary-dark));
 }
 
 .faq-question-number {
@@ -783,8 +783,8 @@
 }
 
 .faq-question-item.is-open .faq-question-icon {
-  border-color: var(--blue-600);
-  background: var(--blue-600);
+  border-color: var(--primary));
+  background: var(--primary));
   color: var(--text-on-primary);
 }
 
@@ -825,14 +825,14 @@
   padding: 0;
   border: 0;
   background: transparent;
-  color: var(--blue-700);
+  color: var(--primary-dark));
   font-family: var(--font-primary);
   font-size: var(--text-caption);
   cursor: pointer;
 }
 
 .faq-share-link:hover {
-  color: var(--blue-800);
+  color: var(--primary-dark));
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -845,7 +845,7 @@
 }
 
 .faq-no-results > i {
-  color: var(--blue-500);
+  color: var(--primary));
   font-size: var(--text-2xl);
 }
 
@@ -872,9 +872,9 @@
   width: fit-content;
   margin-block-start: var(--space-5);
   padding: var(--space-3) var(--space-5);
-  border: 1px solid var(--blue-600);
+  border: 1px solid var(--primary));
   border-radius: var(--radius-button);
-  background: var(--blue-600);
+  background: var(--primary));
   color: var(--text-on-primary);
   font-family: var(--font-primary);
   font-size: var(--text-body-sm);
@@ -885,8 +885,8 @@
 
 .faq-reset:hover,
 .faq-support-button:hover {
-  background: var(--blue-700);
-  border-color: var(--blue-700);
+  background: var(--primary-dark));
+  border-color: var(--primary-dark));
 }
 
 .faq-resources-section {
