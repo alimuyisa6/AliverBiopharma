@@ -25,7 +25,9 @@
 .app-layout .flashcard-subject-section,
 .app-layout .recall-page-section,
 .app-layout .classroom-list-section {
-  width: min(100%, calc(var(--container) + 2 * var(--gutter)));
+  width: 100%;
+  max-width: calc(var(--container) + 2 * var(--gutter));
+  box-sizing: border-box;
   margin-inline: auto;
   padding: clamp(1.5rem, 1rem + 2vw, 3rem) var(--gutter);
 }
@@ -109,7 +111,9 @@
 }
 
 .app-layout .dashboard-wrapper {
-  width: min(100%, calc(var(--container) + 2 * var(--gutter)));
+  width: 100%;
+  max-width: calc(var(--container) + 2 * var(--gutter));
+  box-sizing: border-box;
   margin-inline: auto;
   padding: clamp(1.5rem, 1rem + 2vw, 3rem) var(--gutter);
 }
@@ -135,7 +139,9 @@
 }
 
 .app-layout .profile-page {
-  width: min(100%, calc(var(--container) + 2 * var(--gutter)));
+  width: 100%;
+  max-width: calc(var(--container) + 2 * var(--gutter));
+  box-sizing: border-box;
   margin-inline: auto;
   padding: clamp(1.5rem, 1rem + 2vw, 3rem) var(--gutter);
 }
@@ -164,7 +170,9 @@
 }
 
 .app-layout .pp-main {
-  width: min(100%, calc(var(--container) + 2 * var(--gutter)));
+  width: 100%;
+  max-width: calc(var(--container) + 2 * var(--gutter));
+  box-sizing: border-box;
   margin-inline: auto;
   padding: 1.5rem var(--gutter) var(--section);
 }
@@ -193,7 +201,9 @@
 }
 
 .app-layout .glossary-main-layout {
-  width: min(100%, calc(var(--container) + 2 * var(--gutter)));
+  width: 100%;
+  max-width: calc(var(--container) + 2 * var(--gutter));
+  box-sizing: border-box;
   margin-inline: auto;
   padding: 1.5rem var(--gutter) var(--section);
 }
