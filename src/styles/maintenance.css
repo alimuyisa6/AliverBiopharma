@@ -178,8 +178,8 @@ body.dark-mode .maintenance-page :is(.text-muted, .maintenance-description) { co
 }
 
 .maintenance-unsaved-warning {
-  border: 1px solid var(--peach-2);
+  border: 1px solid var(--primary-border));
   border-radius: var(--r-md);
-  background: var(--peach);
+  background: var(--primary-light));
   color: var(--ink) !important;
 }
