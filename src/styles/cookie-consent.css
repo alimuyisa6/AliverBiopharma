@@ -111,5 +111,5 @@ body.dark-mode :is(.cookie-consent, .cookie-consent-banner, .cookie-consent-pane
 }
 
 .cookie-consent-close:focus-visible {
-  outline-color: var(--orange-deep);
+  outline-color: var(--primary)-deep);
 }
