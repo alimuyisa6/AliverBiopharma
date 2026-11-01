@@ -19,8 +19,8 @@
 }
 
 .buttonDownload:hover:not(:disabled) {
-  border-color: var(--orange-deep);
-  background: var(--orange-deep);
+  border-color: var(--primary)-deep);
+  background: var(--primary)-deep);
   color: var(--paper);
 }
 
@@ -29,7 +29,7 @@
 }
 
 .buttonDownload:focus-visible {
-  outline: 2px solid var(--orange-deep);
+  outline: 2px solid var(--primary)-deep);
   outline-offset: 3px;
 }
 
