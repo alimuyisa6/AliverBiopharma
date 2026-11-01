@@ -64,18 +64,18 @@
 }
 
 .card-tone-violet {
-  background: var(--tone-violet-bg);
-  border-color: var(--tone-violet-border);
+  background: var(--primary-light);
+  border-color: var(--primary-border);
 }
 
 .card-tone-pink {
-  background: var(--tone-pink-bg);
-  border-color: var(--tone-pink-border);
+  background: var(--accent-light);
+  border-color: var(--accent-border);
 }
 
 .card-tone-yellow {
-  background: var(--tone-yellow-bg);
-  border-color: var(--tone-yellow-border);
+  background: var(--secondary-light);
+  border-color: var(--secondary-border);
 }
 
 .card-elevation-none {
