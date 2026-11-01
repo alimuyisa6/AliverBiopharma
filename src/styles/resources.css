@@ -66,7 +66,7 @@
 .resource-card-meta .icon{color:var(--primary)}
 .resource-card-footer .btn{width:fit-content;max-width:100%;flex:0 0 auto}
 .resource-card-blue{--resource-accent:var(--primary);--resource-icon-bg:var(--primary-soft)}
-.resource-card-teal{--resource-accent:var(--primary),var(--primary);--resource-icon-bg:var(--primary),var(--primary-soft)}
+.resource-card-teal{--resource-accent:var(--primary);--resource-icon-bg:var(--primary-light)}
 .resource-card-grey{--resource-accent:var(--text-muted);--resource-icon-bg:var(--surface-subtle)}
 .resource-card-amber{--resource-accent:var(--primary);--resource-icon-bg:var(--primary)}
 .resource-card-emerald{--resource-accent:var(--primary);--resource-icon-bg:var(--primary)}
@@ -723,11 +723,11 @@ body.dark-mode .resources-empty-state {
   border-color: var(--blue-200);
   box-shadow: 0 0.5rem 1.5rem var(--primary-ring);
 }
-.resource-card-teal { border-color: var(--primary), var(--blue-200); }
+.resource-card-teal { border-color: var(--primary-border); }
 .resource-card-grey { border-color: var(--grey-200, var(--blue-200)); }
-.resource-card-amber { border-color: var(--primary), var(--blue-200); }
-.resource-card-emerald { border-color: var(--primary), var(--blue-200); }
-.resource-card-violet { border-color: var(--primary), var(--blue-200); }
+.resource-card-amber { border-color: var(--primary-border); }
+.resource-card-emerald { border-color: var(--primary-border); }
+.resource-card-violet { border-color: var(--primary-border); }
 .resource-card:hover {
   background: var(--white);
   box-shadow: 0 0.8rem 1.8rem var(--primary-ring);
@@ -770,11 +770,11 @@ body.dark-mode .resources-curriculum-entry {
   box-shadow: 0 0.5rem 1.5rem var(--primary-ring);
   transform: none;
 }
-.resource-card-teal:hover { border-color: var(--primary), var(--blue-200); }
+.resource-card-teal:hover { border-color: var(--primary-border); }
 .resource-card-grey:hover { border-color: var(--grey-200, var(--blue-200)); }
-.resource-card-amber:hover { border-color: var(--primary), var(--blue-200); }
-.resource-card-emerald:hover { border-color: var(--primary), var(--blue-200); }
-.resource-card-violet:hover { border-color: var(--primary), var(--blue-200); }
+.resource-card-amber:hover { border-color: var(--primary-border); }
+.resource-card-emerald:hover { border-color: var(--primary-border); }
+.resource-card-violet:hover { border-color: var(--primary-border); }
 .resource-card-footer .btn:hover {
   transform: translateY(-1px);
 }
