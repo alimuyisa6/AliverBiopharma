@@ -15,7 +15,7 @@
   justify-content: space-between;
   gap: 2rem;
   padding: clamp(2rem, 1.3rem + 3vw, 4.5rem);
-  background: var(--peach);
+  background: var(--primary-light));
   color: var(--ink);
 }
 
@@ -137,7 +137,7 @@
 .app-layout .pdf-library-heading,
 .app-layout .note-learning-header {
   border-radius: var(--r-xl);
-  background: var(--peach);
+  background: var(--primary-light));
   color: var(--ink);
   box-shadow: none;
 }
@@ -294,7 +294,7 @@
 .app-layout .note-hero {
   padding: clamp(1.5rem, 1rem + 2vw, 3rem);
   border-radius: var(--r-xl);
-  background: var(--peach);
+  background: var(--primary-light));
 }
 
 .app-layout .note-title {
