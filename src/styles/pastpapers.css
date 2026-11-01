@@ -915,7 +915,7 @@
   color: var(--blue-800);
 }
 .pp-eyebrow-line {
-  background: var(--palette-mint);
+  background: var(--accent));
 }
 .pp-title {
   max-width: 20ch;
