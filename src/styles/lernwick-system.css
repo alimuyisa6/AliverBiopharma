@@ -1,0 +1,126 @@
+:root {
+  --surface-page: var(--background);
+  --surface-card: var(--white);
+  --surface-raised: var(--white);
+  --surface-muted: var(--soft);
+  --surface-subtle: var(--soft);
+  --surface-tinted: var(--peach);
+  --bg-page: var(--background);
+  --bg-card: var(--white);
+  --bg-card-hover: var(--soft);
+  --bg-muted: var(--soft);
+  --bg-input: var(--white);
+  --border-subtle: var(--line);
+  --border-light: var(--line);
+  --border-default: var(--line);
+  --border-strong: var(--line-2);
+}
+
+body.dark-mode {
+  --surface-page: var(--dark-background);
+  --surface-card: var(--dark-surface);
+  --surface-raised: var(--dark-surface-raised);
+  --surface-muted: var(--dark-surface);
+  --surface-subtle: var(--dark-surface);
+  --surface-tinted: var(--dark-surface-raised);
+  --bg-page: var(--dark-background);
+  --bg-card: var(--dark-surface);
+  --bg-card-hover: var(--dark-surface-raised);
+  --bg-muted: var(--dark-surface);
+  --bg-input: var(--dark-surface-raised);
+  --border-subtle: var(--dark-border);
+  --border-light: var(--dark-border);
+  --border-default: var(--dark-border);
+  --border-strong: #58747c;
+}
+
+#root .app-layout {
+  width: 100%;
+  min-width: 0;
+  background: var(--surface-page);
+  color: var(--text-main);
+  font-family: var(--f-body);
+}
+
+#root .app-layout :where(main, .page-content, .page-container, .content-container, .resources-main, .notes-page, .blog-page, .contact-page, .faq-page, .about-content-wrap) {
+  width: 100%;
+  max-width: min(100%, calc(var(--container) + 2 * var(--gutter)));
+  box-sizing: border-box;
+}
+
+#root .app-layout :where(.main-content, .page-shell, .page-content, .content-shell, .content-container) {
+  background: transparent;
+  color: var(--text-main);
+}
+
+#root .app-layout :where(h1, h2, h3, h4, h5, h6, .page-title, .page-heading, .section-title, .content-title) {
+  color: var(--text-main);
+  font-family: var(--f-display);
+}
+
+#root .app-layout :where(p, li, label, small, .description, .subtitle, .supporting-text) {
+  color: inherit;
+  font-family: var(--f-body);
+}
+
+#root .app-layout :where(.resource-card, .notes-card, .blog-post-card, .team-card, .contributor-card, .flashcard-deck-card, .dashboard-curriculum-card, .profile-category-card, .pp-card, .glossary-route-card, .quiz-topic-cards > .card, .quiz-blocks-grid > .card, .recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .pdf-card, .tutor-card, .faq-item, .about-block, .contact-form, .donate-card, .donate-widget, .donate-momo-card, .note-learning-card) {
+  background: var(--surface-card);
+  color: var(--text-main);
+  border-color: var(--border-default);
+  box-shadow: var(--shadow-subtle);
+}
+
+#root .app-layout :where(.section--soft, .dashboard-panel, .profile-section, .notes-section, .resources-section, .quiz-section, .flashcards-section, .recall-page-section, .classroom-list-section) {
+  background: var(--surface-muted);
+  color: var(--text-main);
+}
+
+#root .app-layout :where(input, select, textarea, .form-control, .form-input) {
+  background-color: var(--bg-input);
+  color: var(--text-main);
+  border-color: var(--border-default);
+}
+
+#root .app-layout :where(input, textarea, .form-control, .form-input)::placeholder {
+  color: var(--text-muted);
+  opacity: 1;
+}
+
+#root .app-layout :where(button, a, input, select, textarea):focus-visible {
+  outline-color: var(--primary);
+}
+
+body.dark-mode #root .app-layout {
+  background: var(--dark-background);
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout :where(main, .page-content, .page-container, .content-container, .resources-main, .notes-page, .blog-page, .contact-page, .faq-page, .about-content-wrap, .main-content, .page-shell, .content-shell) {
+  background-color: transparent;
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout :where(h1, h2, h3, h4, h5, h6, .page-title, .page-heading, .section-title, .content-title) {
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout :where(.resource-card, .notes-card, .blog-post-card, .team-card, .contributor-card, .flashcard-deck-card, .dashboard-curriculum-card, .profile-category-card, .pp-card, .glossary-route-card, .quiz-topic-cards > .card, .quiz-blocks-grid > .card, .recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .pdf-card, .tutor-card, .faq-item, .about-block, .contact-form, .donate-card, .donate-widget, .donate-momo-card, .note-learning-card) {
+  background: var(--dark-surface);
+  color: var(--dark-text);
+  border-color: var(--dark-border);
+}
+
+body.dark-mode #root .app-layout :where(.section--soft, .dashboard-panel, .profile-section, .notes-section, .resources-section, .quiz-section, .flashcards-section, .recall-page-section, .classroom-list-section) {
+  background: var(--dark-surface);
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout :where(input, select, textarea, .form-control, .form-input) {
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+  border-color: var(--dark-border);
+}
+
+body.dark-mode #root .app-layout :where(input, textarea, .form-control, .form-input)::placeholder {
+  color: var(--dark-text-secondary);
+}
