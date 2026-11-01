@@ -451,3 +451,24 @@
     padding: 1.5rem;
   }
 }
+
+.app-layout .donate-card,
+.app-layout .donate-widget,
+.app-layout .donate-momo-card,
+.app-layout .challenge-empty-card,
+.app-layout .challenge-showcase-content,
+.app-layout .tutor-profile-card,
+.app-layout .tutor-card,
+.app-layout .pdf-card,
+.app-layout .note-learning-card,
+.app-layout .curriculum-node-section {
+  border-radius: 30px 30px 30px 7px;
+}
+
+.app-layout .donate-momo-card:nth-child(even),
+.app-layout .tutor-card:nth-child(even),
+.app-layout .pdf-card:nth-child(even),
+.app-layout .note-related-grid > *:nth-child(even) {
+  border-radius: 7px 30px 30px 30px;
+}
+
