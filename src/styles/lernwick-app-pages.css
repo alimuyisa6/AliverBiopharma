@@ -67,17 +67,17 @@
 }
 
 #root .app-layout :where(.btn-primary, .button-primary, button.primary, input[type="submit"]) {
-  border-color: var(--orange);
+  border-color: var(--primary);
   border-radius: var(--r-pill);
-  background: var(--orange);
+  background: var(--primary);
   color: var(--ink);
   font-family: var(--f-display);
   font-weight: 700;
 }
 
 #root .app-layout :where(.btn-primary, .button-primary, button.primary, input[type="submit"]):hover:not(:disabled) {
-  border-color: var(--orange-hover);
-  background: var(--orange-hover);
+  border-color: var(--accent);
+  background: var(--accent);
   color: var(--ink);
   transform: translateY(-1px);
 }
@@ -202,7 +202,7 @@
 }
 
 #root .app-layout :where(a):not(.btn):not(.main-nav-link):not(.footer-link):hover {
-  color: var(--orange-deep);
+  color: var(--primary-dark);
 }
 
 @media (max-width: 768px) {
