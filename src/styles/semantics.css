@@ -35,20 +35,8 @@
   --tone-info-bg: var(--info-light);
   --tone-info-border: var(--info-border);
 
-  --tone-violet: var(--primary);
-  --tone-violet-hover: var(--primary);
-  --tone-violet-bg: var(--primary-light);
-  --tone-violet-border: var(--primary);
 
-  --tone-pink: var(--accent);
-  --tone-pink-hover: var(--accent);
-  --tone-pink-bg: var(--accent-light);
-  --tone-pink-border: var(--accent);
 
-  --tone-yellow: var(--warning-color);
-  --tone-yellow-hover: var(--warning-color);
-  --tone-yellow-bg: var(--warning-background);
-  --tone-yellow-border: var(--warning-color);
 
   --surface-page: var(--background);
   --surface-card: var(--paper);
