@@ -1735,7 +1735,7 @@
   border-color: var(--blue-200);
   border-bottom: 3px solid var(--blue-300);
   border-radius: 1.5rem;
-  background: var(--sage);
+  background: var(--primary-light);
 }
 .note-title {
   max-width: 24ch;
@@ -1812,7 +1812,7 @@
   outline-offset: 3px;
 }
 .note-progress-bar {
-  background: var(--peach);
+  background: var(--primary-light);
 }
 .note-progress-bar > *,
 .note-progress-bar::after {
@@ -1878,7 +1878,7 @@ body.dark-mode .notes-content-container h2 {
   border-bottom-color: var(--night-500);
 }
 body.dark-mode .notes-content-container blockquote {
-  border-inline-start-color: var(--palette-mint);
+  border-inline-start-color: var(--accent);
   background: var(--night-700);
   color: var(--night-text-primary);
 }
@@ -1961,7 +1961,7 @@ body.dark-mode .note-trial-options label.is-selected {
   margin-inline: auto;
 }
 .note-hero {
-  background: var(--peach);
+  background: var(--primary-light);
 }
 .note-article,
 .note-understanding-panel,
