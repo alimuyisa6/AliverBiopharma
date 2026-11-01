@@ -269,7 +269,7 @@
   right: 0;
   width: var(--space-10);
   height: var(--space-10);
-  background: var(--peach);
+  background: var(--primary-light));
   clip-path: polygon(0 0, 100% 0, 100% 100%);
   transform-origin: top right;
   transform: rotate(45deg) translate(var(--space-2), calc(var(--space-2) * -1));
@@ -283,11 +283,11 @@
 }
 
 .folded-card-emerald::after {
-  background: var(--sage);
+  background: var(--primary-light));
 }
 
 .folded-card-blue::after {
-  background: var(--peach);
+  background: var(--primary-light));
 }
 
 .folded-card-green::after {
@@ -295,7 +295,7 @@
 }
 
 .folded-card-amber::after {
-  background: var(--amber-100);
+  background: var(--primary-light));
 }
 
 .folded-card-grey::after {
@@ -516,13 +516,13 @@
 }
 
 .tag-emerald {
-  background: var(--sage);
-  color: var(--emerald-700);
+  background: var(--primary-light));
+  color: var(--primary-dark));
 }
 
 .tag-amber {
-  background: var(--amber-100);
-  color: var(--amber-700);
+  background: var(--primary-light));
+  color: var(--primary-dark));
 }
 
 .tag-green {
@@ -541,7 +541,7 @@
 }
 
 .tag-blue {
-  background: var(--peach);
+  background: var(--primary-light));
   color: var(--blue-700);
 }
 
@@ -560,11 +560,11 @@
 }
 
 .progress-fill.emerald {
-  background: var(--emerald-500);
+  background: var(--primary-dark));
 }
 
 .progress-fill.amber {
-  background: var(--amber-500);
+  background: var(--primary-dark));
 }
 
 .progress-fill.blue {
