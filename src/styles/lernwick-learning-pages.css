@@ -92,15 +92,15 @@
 .app-layout .quiz-option:not(.is-correct):not(.is-incorrect):hover,
 .app-layout .recall-confidence-buttons button:hover {
   border-color: var(--orange);
-  background: var(--peach);
+  background: var(--primary-light));
   color: var(--ink);
 }
 
 .app-layout .recall-due-banner,
 .app-layout .dashboard-welcome-card {
-  border: 1px solid var(--peach-2);
+  border: 1px solid var(--primary-border));
   border-radius: var(--r-lg);
-  background: var(--peach);
+  background: var(--primary-light));
   color: var(--ink);
   box-shadow: none;
 }
@@ -157,7 +157,7 @@
 
 .app-layout .pp-hero {
   border-radius: var(--r-xl);
-  background: var(--peach);
+  background: var(--primary-light));
   color: var(--ink);
   box-shadow: none;
 }
@@ -192,7 +192,7 @@
 }
 
 .app-layout .glossary-header {
-  background: var(--peach);
+  background: var(--primary-light));
   color: var(--ink);
 }
 
@@ -223,7 +223,7 @@
 .app-layout .glossary-term-btn:hover,
 .app-layout .glossary-related-term-btn:hover,
 .app-layout .glossary-route-card:hover {
-  border-color: var(--peach-2);
+  border-color: var(--primary-border));
   background: var(--soft);
 }
 
