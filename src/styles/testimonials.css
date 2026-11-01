@@ -289,7 +289,7 @@
 }
 
 .ab-testimonial-card__avatar--initials {
-  color: var(--palette-periwinkle);
+  color: var(--primary));
   font-size: var(--text-sm, 0.875rem);
   font-weight: var(--weight-semibold, 600);
 }
