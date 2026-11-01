@@ -65,7 +65,7 @@
   --tone-yellow-bg: var(--warning-background);
   --tone-yellow-border: var(--warning-color);
 
-  --surface-page: var(--paper);
+  --surface-page: var(--background);
   --surface-card: var(--paper);
   --surface-raised: var(--paper);
   --surface-muted: var(--soft);
@@ -75,7 +75,7 @@
   --surface-overlay: var(--overlay-color);
   --surface-disabled: var(--grey-100);
 
-  --bg-page: var(--paper);
+  --bg-page: var(--background);
   --bg-card: var(--paper);
   --bg-card-hover: var(--soft);
   --bg-card-tinted: var(--surface-tinted);
@@ -125,7 +125,7 @@
   --level-olevel: var(--primary);
   --level-alevel: var(--accent);
 
-  --profile-page-bg: var(--paper);
+  --profile-page-bg: var(--background);
   --profile-page-bottom-space: var(--page-space-bottom);
   --profile-header-top-space: var(--page-space-top);
   --profile-header-top-space-mobile: var(--page-space-top);
@@ -200,7 +200,7 @@
   --profile-sidebar-width: var(--space-56);
   --profile-sidebar-offset: var(--space-8);
 
-  --hero-bg: var(--paper);
+  --hero-bg: var(--background);
   --hero-border: var(--secondary);
 
   --header-bg: var(--white);
