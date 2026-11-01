@@ -15,7 +15,7 @@
 --r-lg:28px;
 --r-xl:40px;
 --r-pill:999px;
---container:1220px;
+--container:1400px;
 --gutter:clamp(1rem,.5rem + 2.2vw,2.5rem);
 --section:clamp(4rem,2.8rem + 5vw,7.5rem);
 --ease:cubic-bezier(.2,.7,.2,1);
