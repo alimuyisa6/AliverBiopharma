@@ -123,7 +123,9 @@
 }
 
 .app-layout :where(.advertise-create-page, .advertise-payment-page, .donate-content, .challenges-page, .challenge-runner-page, .tutor-marketplace-page, .tutor-profile-page, .tutor-apply-page, .tutor-dashboard-page, .curriculum-node-page, .note-learning-page, .pdf-library-page, .legal-content-wrap, .info-page-section) {
-  width: min(100%, calc(var(--container) + 2 * var(--gutter)));
+  width: 100%;
+  max-width: calc(var(--container) + 2 * var(--gutter));
+  box-sizing: border-box;
   margin-inline: auto;
   padding: clamp(1.5rem, 1rem + 2vw, 3rem) var(--gutter);
 }
@@ -377,7 +379,9 @@
 
 .app-layout .home-page .section,
 .app-layout .home-page .section.reveal {
-  width: min(100%, calc(var(--container) + 2 * var(--gutter)));
+  width: 100%;
+  max-width: calc(var(--container) + 2 * var(--gutter));
+  box-sizing: border-box;
   margin-inline: auto;
   padding: clamp(1.5rem, 1rem + 2vw, 3rem) var(--gutter);
 }
