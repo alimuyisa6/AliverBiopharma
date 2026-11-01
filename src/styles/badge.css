@@ -46,18 +46,18 @@
 }
 
 .badge-violet {
-  background: var(--primary-light));
-  color: var(--primary));
+  background: var(--primary-light);
+  color: var(--primary);
 }
 
 .badge-pink {
-  background: var(--accent-light));
-  color: var(--accent));
+  background: var(--accent-light);
+  color: var(--accent);
 }
 
 .badge-yellow {
-  background: var(--warning-light));
-  color: var(--primary-dark));
+  background: var(--warning-light);
+  color: var(--primary-dark);
 }
 
 .chip {
