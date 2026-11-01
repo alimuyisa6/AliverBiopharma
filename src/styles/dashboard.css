@@ -1382,7 +1382,7 @@ body.dark-mode .dashboard-content .dashboard-activity-summary > div {
   box-shadow: 0 0.75rem 1.5rem var(--primary-ring);
 }
  .dashboard-content .dashboard-curriculum-card-type {
-  background: var(--peach);
+  background: var(--primary-light);
   color: var(--ink);
 }
 .dashboard-content .dashboard-curriculum-card-title {
@@ -1408,8 +1408,8 @@ body.dark-mode .dashboard-content .dashboard-activity-summary > div {
   text-decoration: none;
 }
  .dashboard-content .dashboard-section-link:hover {
-  border-color: var(--peach-2);
-  background: var(--peach);
+  border-color: var(--primary-border);
+  background: var(--primary-light);
   color: var(--ink);
 }
 .dashboard-content .dashboard-card-secondary {
@@ -1439,8 +1439,8 @@ body.dark-mode .dashboard-content .dashboard-activity-summary > div {
   background: var(--soft);
 }
  .dashboard-content .dashboard-section-aside {
-  border-left-color: var(--orange);
-  background: var(--sage);
+  border-left-color: var(--primary);
+  background: var(--primary-light);
   box-shadow: none;
 }
 .dashboard-content :is(a, button, input, select):focus-visible {
