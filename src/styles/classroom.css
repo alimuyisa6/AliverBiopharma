@@ -177,7 +177,7 @@
   max-width: 100%;
   padding: var(--space-3) var(--space-5);
   border-radius: var(--radius-md);
-  background: var(--primary));
+  background: var(--primary);
   color: var(--white);
   font-weight: var(--weight-semibold);
   text-align: center;
