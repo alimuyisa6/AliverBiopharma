@@ -257,7 +257,7 @@
   font-weight: var(--weight-bold);
 }
 
-.donate-mtn { color: var(--yellow-500); }
+.donate-mtn { color: var(--primary-dark)); }
 .donate-airtel { color: var(--red-500); }
 
 .donate-copy {
