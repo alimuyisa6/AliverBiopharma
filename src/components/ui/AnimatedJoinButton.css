@@ -50,7 +50,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: var(--primary));
+  background: var(--primary);
 }
 
 .animated-join-button__face::after,
