@@ -13,7 +13,9 @@
 .app-layout .contact-page,
 .app-layout .faq-page,
 .app-layout .about-content-wrap {
-  width: min(100%, calc(var(--container) + 2 * var(--gutter)));
+  width: 100%;
+  max-width: calc(var(--container) + 2 * var(--gutter));
+  box-sizing: border-box;
   margin-inline: auto;
   padding-inline: var(--gutter);
 }
@@ -213,14 +215,18 @@
 
 .app-layout .about-hero {
   margin: clamp(1rem, .5rem + 1vw, 1.5rem) auto 2.5rem;
-  width: min(calc(100% - 2 * var(--gutter)), calc(var(--container) + 2 * var(--gutter)));
+  width: calc(100% - 2 * var(--gutter));
+  max-width: calc(var(--container) + 2 * var(--gutter));
+  box-sizing: border-box;
   padding: clamp(2rem, 1.2rem + 4vw, 5rem);
   border-radius: var(--r-xl);
   background: var(--peach);
 }
 
 .app-layout .about-block {
-  max-width: 60rem;
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
 }
 
 .app-layout .about-block-heading {
