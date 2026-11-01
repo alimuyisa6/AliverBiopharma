@@ -9,7 +9,7 @@ const pathways = [
     title: 'Build strong Biology foundations',
     description: 'Work through school Biology topics with notes, revision materials, questions and exam practice.',
     image: 'https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg?auto=compress&cs=tinysrgb&w=720&h=480&fit=crop',
-    tone: 'peach'
+    tone: 'primary'
   },
   {
     id: 'a-level',
@@ -17,7 +17,7 @@ const pathways = [
     title: 'Explore Biology in greater depth',
     description: 'Strengthen your understanding with detailed topic resources, diagrams, past papers and active recall.',
     image: 'https://images.pexels.com/photos/3825586/pexels-photo-3825586.jpeg?auto=compress&cs=tinysrgb&w=720&h=480&fit=crop',
-    tone: 'sage'
+    tone: 'primary'
   },
   {
     id: 'pharmacy',
@@ -25,7 +25,7 @@ const pathways = [
     title: 'Connect science with medicines',
     description: 'Study Pharmacy Certificate, Diploma and Degree course units with focused learning resources.',
     image: 'https://images.pexels.com/photos/3683074/pexels-photo-3683074.jpeg?auto=compress&cs=tinysrgb&w=720&h=480&fit=crop',
-    tone: 'peach'
+    tone: 'primary'
   }
 ];
 
