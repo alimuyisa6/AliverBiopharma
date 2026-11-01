@@ -126,7 +126,6 @@ export function LayoutProvider({ children }) {
 
   const [switching, setSwitching] = useState(false);
   const [theme, setTheme] = useState('light');
-  const themeColor = user?.profile?.theme_color || 'blue';
   const accessibility = user?.profile?.accessibility || {};
   const uiPreferences = normalizeUIPreferences(user?.profile?.preferences?.ui || {});
   const [sections, setSections] = useState(() => getCachedStale('site_sections') || {});
@@ -148,13 +147,12 @@ export function LayoutProvider({ children }) {
   useEffect(() => {
     document.body.classList.toggle('dark-mode', theme === 'dark');
     document.documentElement.setAttribute('data-theme', theme);
-    document.documentElement.setAttribute('data-theme-color', themeColor);
 
     document.body.classList.toggle('accessibility-large-text', !!accessibility.large_text);
     document.body.classList.toggle('accessibility-high-contrast', !!accessibility.high_contrast);
     document.body.classList.toggle('accessibility-reduce-motion', !!accessibility.reduce_motion);
     document.body.classList.toggle('accessibility-dyslexia-font', !!accessibility.dyslexia_font);
-  }, [theme, themeColor, accessibility]);
+  }, [theme, accessibility]);
 
   useEffect(() => {
     if (!effectiveLevel) {
