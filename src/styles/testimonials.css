@@ -222,9 +222,9 @@
 .ab-liquid-card-wrap {
   position: relative;
   padding: 1px;
-  border: 1px solid color-mix(in srgb, var(--palette-blue) 36%, var(--border-default));
+  border: 1px solid color-mix(in srgb, var(--primary)) 36%, var(--border-default));
   border-radius: var(--radius-card, 1.25rem);
-  background: color-mix(in srgb, var(--palette-blue) 12%, var(--surface-card));
+  background: color-mix(in srgb, var(--primary)) 12%, var(--surface-card));
   box-shadow: var(--shadow-floating);
 }
 
@@ -234,7 +234,7 @@
   min-height: inherit;
   overflow: hidden;
   border-radius: inherit;
-  background: color-mix(in srgb, var(--palette-blue) 8%, var(--surface-card));
+  background: color-mix(in srgb, var(--primary)) 8%, var(--surface-card));
   color: var(--text-main);
   -webkit-backdrop-filter: blur(18px) saturate(135%);
   backdrop-filter: blur(18px) saturate(135%);
@@ -246,7 +246,7 @@
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  background: color-mix(in srgb, var(--palette-mint) 8%, transparent);
+  background: color-mix(in srgb, var(--accent)) 8%, transparent);
 }
 
 .ab-liquid-card__filter-defs {
@@ -282,10 +282,10 @@
   width: 2.75rem;
   height: 2.75rem;
   place-items: center;
-  border: 1px solid color-mix(in srgb, var(--palette-mint) 50%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent)) 50%, transparent);
   border-radius: 50%;
   object-fit: cover;
-  background: color-mix(in srgb, var(--palette-blue) 30%, var(--surface-card));
+  background: color-mix(in srgb, var(--primary)) 30%, var(--surface-card));
 }
 
 .ab-testimonial-card__avatar--initials {
