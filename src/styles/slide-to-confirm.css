@@ -159,16 +159,16 @@ body.dark-mode .slide-to-confirm :is(.slide-to-confirm-label, .slide-to-confirm-
 .slide-confirm-knob {
   border-color: var(--line);
   background: var(--paper);
-  color: var(--orange-deep);
+  color: var(--primary-dark);
   box-shadow: var(--shadow-card);
 }
 
 .slide-confirm-knob:focus-visible {
-  outline-color: var(--orange-deep);
+  outline-color: var(--primary-dark);
 }
 
 .slide-confirm--danger {
-  border-color: var(--orange-deep);
+  border-color: var(--primary-dark);
 }
 
 .slide-confirm--danger::before {
@@ -177,7 +177,7 @@ body.dark-mode .slide-to-confirm :is(.slide-to-confirm-label, .slide-to-confirm-
 
 .slide-confirm--danger .slide-confirm-knob,
 .slide-confirm-error {
-  color: var(--orange-deep);
+  color: var(--primary-dark);
 }
 
 .slide-confirm.is-confirmed {
