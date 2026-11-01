@@ -76,5 +76,5 @@ body.dark-mode .profile-picture-placeholder { background: var(--dark-surface-rai
 }
 
 .profile-picture-error {
-  color: var(--orange-deep);
+  color: var(--primary)-deep);
 }
