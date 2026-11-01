@@ -45,14 +45,14 @@
   font-weight: var(--weight-semibold);
   text-transform: uppercase;
   letter-spacing: var(--tracking-eyebrow);
-  color: var(--amber-600);
+  color: var(--primary-dark));
   margin-bottom: var(--space-2);
 }
 
 .pp-eyebrow-line {
   width: var(--space-6);
   height: 2px;
-  background: var(--amber-400);
+  background: var(--primary-dark));
   display: inline-block;
 }
 
@@ -176,8 +176,8 @@
   border-radius: var(--radius-full);
   font-size: var(--text-2xs);
   font-weight: var(--weight-semibold);
-  background: var(--amber-100);
-  color: var(--amber-800);
+  background: var(--primary-light));
+  color: var(--primary-dark));
 }
 
 .pp-tabs .btn-primary .pp-badge {
@@ -217,7 +217,7 @@
 
 .pp-search-input:focus {
   outline: none;
-  border-color: var(--amber-400);
+  border-color: var(--primary-dark));
   box-shadow: var(--shadow-focus);
 }
 
@@ -271,7 +271,7 @@
   font-family: var(--font-primary);
 }
 
-.pp-preset-apply i { color: var(--amber-500); font-size: var(--text-sm); }
+.pp-preset-apply i { color: var(--primary-dark)); font-size: var(--text-sm); }
 
 .pp-preset-delete {
   background: none;
@@ -365,7 +365,7 @@
   position: absolute;
   top: var(--space-2);
   right: var(--space-2);
-  background: var(--amber-500);
+  background: var(--primary-dark));
   color: var(--text-inverse);
   font-size: var(--text-2xs);
   font-weight: var(--weight-bold);
@@ -410,8 +410,8 @@
   margin-top: -2px;
 }
 
-.pp-bookmark-btn:hover { color: var(--amber-500); }
-.pp-bookmark-btn.active { color: var(--amber-500); }
+.pp-bookmark-btn:hover { color: var(--primary-dark)); }
+.pp-bookmark-btn.active { color: var(--primary-dark)); }
 
 .pp-card-subject {
   font-size: var(--text-xs);
@@ -425,7 +425,7 @@
   margin-top: var(--space-1);
 }
 
-.pp-star-filled { color: var(--amber-400); }
+.pp-star-filled { color: var(--primary-dark)); }
 .pp-star-empty { color: var(--grey-300); }
 
 .pp-rating-count {
@@ -454,18 +454,18 @@
 }
 
 .pp-chip-accent {
-  background: var(--amber-100);
-  color: var(--amber-800);
+  background: var(--primary-light));
+  color: var(--primary-dark));
 }
 
 .pp-chip-primary {
-  background: var(--peach);
+  background: var(--primary-light));
   color: var(--blue-800);
 }
 
 .pp-chip-emerald {
-  background: var(--sage);
-  color: var(--emerald-800);
+  background: var(--primary-light));
+  color: var(--primary-dark));
 }
 
 .pp-chip-success {
@@ -508,11 +508,11 @@
 }
 
 .pp-card-footer .btn-warm {
-  background: var(--amber-100);
-  color: var(--amber-800);
+  background: var(--primary-light));
+  color: var(--primary-dark));
 }
 
-.pp-card-footer .btn-warm:hover { background: var(--amber-200); }
+.pp-card-footer .btn-warm:hover { background: var(--primary-light)); }
 
 .pp-skeleton-grid {
   display: flex;
@@ -886,7 +886,7 @@
 }
 .pp-premium-ribbon--free::before {
   content: 'Free';
-  background: var(--success, var(--teal-600, var(--secondary)));
+  background: var(--success, var(--primary-dark), var(--secondary)));
   border-top-color: color-mix(in srgb, white 34%, var(--success, var(--secondary)));
   border-bottom-color: color-mix(in srgb, black 20%, var(--success, var(--secondary)));
 }
@@ -972,7 +972,7 @@
   color: var(--text-secondary);
 }
 .pp-badge {
-  background: var(--peach);
+  background: var(--primary-light));
   color: var(--blue-900);
 }
 .pp-presets,
@@ -1039,7 +1039,7 @@ body.dark-mode .pp-hero {
 }
 body.dark-mode .pp-eyebrow,
 body.dark-mode .pp-meta-item strong {
-  color: var(--palette-periwinkle);
+  color: var(--primary));
 }
 body.dark-mode .pp-toolbar {
   border-color: var(--night-500);
@@ -1117,15 +1117,15 @@ body.dark-mode .pp-page { background: var(--night-900); }
 body.dark-mode .pp-page { background: var(--bg-page); }
 
 /* Solid palette section treatment: faint amber band and white content cards. */
-.pastpapers-page, .past-papers-page { width: 100%; max-width: none; background: var(--amber-50); }
+.pastpapers-page, .past-papers-page { width: 100%; max-width: none; background: var(--primary-light)); }
 .pp-card, .pp-paper-card, .pp-filter-panel, .pp-toolbar, .pp-empty-state { background: var(--white); }
 body.dark-mode .pastpapers-page, body.dark-mode .past-papers-page { background: var(--night-900); }
 body.dark-mode .pp-card, body.dark-mode .pp-paper-card, body.dark-mode .pp-filter-panel, body.dark-mode .pp-toolbar, body.dark-mode .pp-empty-state { background: var(--night-800); }
 
 
 /* Aliver palette: use a single pale brand tone per section and white cards. */
-.pastpapers-page { background: var(--amber-50); }
-.pp-page-header, .pp-header, .pp-hero { background: var(--amber-100); }
+.pastpapers-page { background: var(--primary-light)); }
+.pp-page-header, .pp-header, .pp-hero { background: var(--primary-light)); }
 .pp-card, .pp-panel, .pp-filter-panel, .pp-results-panel { background: var(--white); }
 
 body.dark-mode .pp-page,
