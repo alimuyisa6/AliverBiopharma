@@ -427,11 +427,11 @@ body.dark-mode .home-page > .home-newsletter-section .eyebrow {
 }
 
 .home-page .study-quote-card .eyebrow {
-  color: var(--palette-periwinkle);
+  color: var(--primary);
 }
 
 .home-page .study-quote-card-orbit {
-  color: var(--palette-periwinkle);
+  color: var(--primary);
 }
 
 .home-page .home-testimonials-section,
@@ -603,7 +603,7 @@ body.dark-mode .home-page .home-curriculum-node-name {
 }
 
 body.dark-mode .home-page .eyebrow {
-  color: var(--palette-periwinkle);
+  color: var(--primary);
 }
 
 body.dark-mode .home-page .study-quote-card {
@@ -710,7 +710,7 @@ body.dark-mode .home-page .study-quote-card {
   color: var(--night-text-primary);
 }
 .band--dark :is(h1, h2, h3, h4, h5, h6, p, li, .eyebrow) { color: inherit; }
-.band--dark .eyebrow { color: var(--palette-periwinkle); }
+.band--dark .eyebrow { color: var(--primary); }
 
 .card-soft {
   min-width: 0;
@@ -779,7 +779,7 @@ body.dark-mode .home-page .study-quote-card {
   color: var(--orange-deep);
 }
 .icon-chip--mint { border-color: var(--sage-2); background: var(--sage); color: var(--sage-ink); }
-.icon-chip--dark { border-color: rgb(36 87 197 / 24%); background: rgb(36 87 197 / 10%); color: var(--palette-periwinkle); }
+.icon-chip--dark { border-color: rgb(36 87 197 / 24%); background: rgb(36 87 197 / 10%); color: var(--primary); }
 
 .heading-accent {
   color: var(--orange-deep);
@@ -861,12 +861,12 @@ body.dark-mode .stat {
 }
 body.dark-mode .card-soft--mint { border-color: var(--sage-ink); background: var(--dark-surface-raised); }
 body.dark-mode .card-soft--blue { border-color: var(--night-450); background: var(--night-700); }
-body.dark-mode .stat-value { color: var(--palette-periwinkle); }
+body.dark-mode .stat-value { color: var(--primary); }
 body.dark-mode .stat-label { color: var(--text-secondary); }
-body.dark-mode .pill-link { border-color: var(--night-450); background: var(--night-700); color: var(--palette-periwinkle); }
-body.dark-mode .icon-chip { border-color: var(--night-450); background: var(--night-700); color: var(--palette-periwinkle); }
+body.dark-mode .pill-link { border-color: var(--night-450); background: var(--night-700); color: var(--primary); }
+body.dark-mode .icon-chip { border-color: var(--night-450); background: var(--night-700); color: var(--primary); }
 body.dark-mode .icon-chip--mint { border-color: var(--sage-ink); background: var(--dark-surface-raised); color: var(--dark-accent); }
-body.dark-mode .heading-accent { color: var(--palette-periwinkle); text-decoration-color: var(--palette-mint); }
+body.dark-mode .heading-accent { color: var(--primary); text-decoration-color: var(--palette-mint); }
 body.dark-mode .illustration-slot { border-color: var(--dark-border); background: var(--dark-surface-raised); }
 
 @media (max-width: 768px) {
