@@ -150,3 +150,29 @@ body.dark-mode .home-page .home-challenge-treasure .three-d-button--solid,body.d
   pointer-events: none;
 }
 
+.lernwick-home-sections {
+  background: var(--background);
+}
+
+.lernwick-home-sections .section--soft {
+  background: var(--soft);
+}
+
+.lernwick-home-sections .lernwick-step-card {
+  background: var(--peach);
+}
+
+.lernwick-home-sections .lernwick-step-card:nth-child(even) {
+  background: var(--sage);
+}
+
+.lernwick-home-sections .lernwick-about-sticker {
+  background: var(--peach);
+}
+
+.lernwick-home-sections .home-continue-learning-row,
+.lernwick-home-sections .home-curriculum-node,
+.lernwick-home-sections .home-process-card {
+  background: var(--soft);
+}
+
