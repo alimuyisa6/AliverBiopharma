@@ -755,18 +755,6 @@ export default function Profile() {
     }
   };
 
-  const handleThemeChange = async (color) => {
-    try {
-      const updated = await updatePreferences({ theme_color: color });
-      setBundle((prev) => (prev ? { ...prev, profile: { ...prev.profile, ...updated.profile } } : prev));
-      await refresh();
-    } catch (err) {
-      const message = getExactErrorMessage(err, 'Failed to update theme');
-      logProfileError('handleThemeChange failed', err);
-      addToast(message, 'error');
-    }
-  };
-
   const handleUIPreferenceChange = async (key, value) => {
     const previous = uiPreferences?.[key];
     const nextUI = { ...(bundle?.profile?.preferences?.ui || uiPreferences || {}), [key]: value };
@@ -1696,30 +1684,6 @@ export default function Profile() {
                       <option value="full">{t('profile.fullWidth')}</option>
                     </select>
                   </label>
-                </div>
-
-                <hr className="divider profile-divider-lg" style={{ borderColor: THEME.border }} />
-
-                <h4 className="profile-preferences-subtitle">{t('profile.accentColor')}</h4>
-                <div className="theme-swatch-group">
-                  {[
-                    { key: 'blue', color: 'var(--blue-600)' },
-                    { key: 'teal', color: 'var(--teal-600)' },
-                    { key: 'emerald', color: 'var(--emerald-600)' },
-                    { key: 'amber', color: 'var(--amber-600)' },
-                    { key: 'grey', color: 'var(--grey-700)' }
-                  ].map((option) => (
-                    <button
-                      type="button"
-                      key={option.key}
-                      className={`theme-swatch-option${bundle?.profile?.theme_color === option.key ? ' active' : ''}`}
-                      onClick={() => handleThemeChange(option.key)}
-                      aria-pressed={bundle?.profile?.theme_color === option.key}
-                    >
-                      <span className="theme-swatch" style={{ background: option.color }} />
-                      <span>{option.key}</span>
-                    </button>
-                  ))}
                 </div>
 
                 <hr className="divider profile-divider-lg" />
