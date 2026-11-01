@@ -91,7 +91,7 @@
 
 .app-layout .quiz-option:not(.is-correct):not(.is-incorrect):hover,
 .app-layout .recall-confidence-buttons button:hover {
-  border-color: var(--orange);
+  border-color: var(--primary);
   background: var(--primary-light));
   color: var(--ink);
 }
@@ -152,7 +152,7 @@
 
 .app-layout .profile-tab-item[aria-selected="true"],
 .app-layout .profile-tab-item.active {
-  color: var(--orange-deep);
+  color: var(--primary-dark);
 }
 
 .app-layout .pp-hero {
