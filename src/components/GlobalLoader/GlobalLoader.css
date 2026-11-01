@@ -40,7 +40,7 @@
   height: .3rem;
   overflow: hidden;
   border-radius: var(--r-pill);
-  background: var(--peach);
+  background: var(--primary-light));
 }
 
 .aliver-loader-progress span {
