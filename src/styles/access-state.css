@@ -93,5 +93,5 @@ body.dark-mode .access-state :is(.description, .text-muted) { color: var(--dark-
 
 .pending-approval-icon,
 .access-denied-icon {
-  color: var(--orange-deep);
+  color: var(--primary)-deep);
 }
