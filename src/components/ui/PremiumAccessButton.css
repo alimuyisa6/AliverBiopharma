@@ -19,7 +19,7 @@
 
 .premium-access-button:hover:not(:disabled) {
   border-color: var(--primary);
-  background: var(--primary-light));
+  background: var(--primary-light);
   transform: translateY(-1px);
 }
 
