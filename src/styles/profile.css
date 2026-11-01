@@ -626,11 +626,13 @@
   height: var(--profile-category-icon-glyph);
 }
 
-.profile-category-icon-primary { background: var(--palette-blue); }
-.profile-category-icon-success { background: var(--success); }
-.profile-category-icon-warning { background: var(--warning); }
-.profile-category-icon-violet { background: var(--violet); }
-.profile-category-icon-info { background: var(--info); }
+.profile-category-icon-primary,
+.profile-category-icon-success,
+.profile-category-icon-warning,
+.profile-category-icon-violet,
+.profile-category-icon-info {
+  background: var(--primary);
+}
 
 .profile-category-arrow {
   color: var(--text-muted);
