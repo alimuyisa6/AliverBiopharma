@@ -93,7 +93,7 @@
 
 #root .app-layout :where(input:not([type="checkbox"]):not([type="radio"]), select, textarea):focus {
   border-color: var(--ink);
-  outline: 2px solid var(--primary-light));
+  outline: 2px solid var(--primary-light);
   outline-offset: 1px;
   background: var(--paper);
 }
@@ -157,7 +157,7 @@
 
 #root .app-layout :where(.page-hero, .content-hero, .about-hero, .contact-hero) {
   border-radius: var(--r-xl);
-  background-color: var(--primary-light));
+  background-color: var(--primary-light);
   color: var(--ink);
 }
 
