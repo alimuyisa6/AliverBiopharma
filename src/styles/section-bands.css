@@ -1,7 +1,7 @@
 :root {
   --band-white: var(--white);
   --band-tint-a: var(--soft);
-  --band-tint-b: var(--sage);
+  --band-tint-b: var(--paper);
   --band-tint-c: var(--peach);
   --band-tint-d: var(--soft);
   --band-dark: var(--palette-ink);
