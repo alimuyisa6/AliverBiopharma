@@ -886,7 +886,7 @@
 }
 .pp-premium-ribbon--free::before {
   content: 'Free';
-  background: var(--success, var(--primary-dark), var(--secondary)));
+  background: var(--success, var(--primary)));
   border-top-color: color-mix(in srgb, white 34%, var(--success, var(--secondary)));
   border-bottom-color: color-mix(in srgb, black 20%, var(--success, var(--secondary)));
 }
