@@ -50,7 +50,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: var(--orange);
+  background: var(--primary));
 }
 
 .animated-join-button__face::after,
@@ -178,7 +178,7 @@
 }
 
 .animated-join-button:focus-visible {
-  outline: 3px solid var(--orange-deep);
+  outline: 3px solid var(--primary)-deep);
   outline-offset: 4px;
 }
 
