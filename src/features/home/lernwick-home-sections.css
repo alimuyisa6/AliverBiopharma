@@ -112,3 +112,28 @@ body.dark-mode .home-page .home-learning-snapshot-dashboard-link{border-color:va
 .home-page .home-challenge-treasure .three-d-button--solid,.home-page .home-daily-recall-section .three-d-button--solid{--u3d-text:var(--ink);--u3d-top-start:var(--orange);--u3d-top-end:var(--orange-hover);--u3d-bottom-start:var(--orange-deep);--u3d-bottom-end:var(--orange);--u3d-base:var(--orange-deep)}
 .home-page .home-continue-learning-row .three-d-button--soft,.home-page .home-daily-recall-section .three-d-button--soft{--u3d-text:var(--ink);--u3d-top-start:var(--peach);--u3d-top-end:var(--paper);--u3d-bottom-start:var(--peach-2);--u3d-bottom-end:var(--peach);--u3d-base:var(--ink-2)}
 body.dark-mode .home-page .home-challenge-treasure .three-d-button--solid,body.dark-mode .home-page .home-daily-recall-section .three-d-button--solid,body.dark-mode .home-page .home-continue-learning-row .three-d-button--soft,body.dark-mode .home-page .home-daily-recall-section .three-d-button--soft{--u3d-text:var(--dark-text);--u3d-top-start:var(--dark-surface);--u3d-top-end:var(--dark-surface-raised);--u3d-bottom-start:var(--dark-border);--u3d-bottom-end:var(--dark-surface);--u3d-base:var(--dark-background)}
+
+.lernwick-pathway-card {
+  border-radius: 30px 30px 30px 7px;
+}
+
+.lernwick-pathway-card:nth-child(4n + 2) {
+  border-radius: 7px 30px 30px 30px;
+}
+
+.lernwick-pathway-card:nth-child(4n + 3) {
+  border-radius: 30px 7px 30px 30px;
+}
+
+.lernwick-pathway-card:nth-child(4n) {
+  border-radius: 30px 30px 7px 30px;
+}
+
+.lernwick-step-card {
+  border-radius: 30px 30px 30px 7px;
+}
+
+.lernwick-step-card:nth-child(even) {
+  border-radius: 7px 30px 30px 30px;
+}
+
