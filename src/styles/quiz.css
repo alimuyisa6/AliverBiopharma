@@ -1379,7 +1379,7 @@
   width: var(--quiz-loader-size);
   height: var(--quiz-loader-size);
   border-radius: var(--radius-round);
-  transform: rotateX(var(--quiz-loader-depth-angle)) rotateZ(var(--quiz-loader-orbit-angle));
+  transform: rotateX(var(--quiz-loader-depth-angle) rotateZ(var(--quiz-loader-orbit-angle));
   color: var(--text-inverse);
 }
 
@@ -1444,7 +1444,7 @@
 }
 
 .quiz-answer-loader-dot {
-  transform: rotate(var(--quiz-loader-angle)) translateX(var(--quiz-loader-orbit-radius)) rotate(calc(var(--quiz-loader-angle) * -1));
+  transform: rotate(var(--quiz-loader-angle) translateX(var(--quiz-loader-orbit-radius) rotate(calc(var(--quiz-loader-angle) * -1));
   z-index: var(--quiz-loader-z);
 }
 
