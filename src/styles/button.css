@@ -82,14 +82,14 @@
 }
 
 .btn-warm {
-  background: var(--palette-cream);
-  border-color: var(--palette-cream);
+  background: var(--primary-light));
+  border-color: var(--primary-light));
   color: var(--text);
 }
 
 .btn-warm:hover:not(:disabled) {
-  background: var(--palette-sage);
-  border-color: var(--palette-sage);
+  background: var(--primary-light));
+  border-color: var(--primary-light));
   color: var(--text);
 }
 
@@ -134,7 +134,7 @@
 }
 
 .btn-violet:hover:not(:disabled) {
-  background: var(--violet-100);
+  background: var(--primary-light));
   border-color: var(--tone-violet-hover);
   color: var(--tone-violet-hover);
 }
@@ -146,7 +146,7 @@
 }
 
 .btn-pink:hover:not(:disabled) {
-  background: var(--pink-100);
+  background: var(--primary-light));
   border-color: var(--tone-pink-hover);
   color: var(--tone-pink-hover);
 }
@@ -158,7 +158,7 @@
 }
 
 .btn-yellow:hover:not(:disabled) {
-  background: var(--yellow-100);
+  background: var(--primary-light));
   border-color: var(--tone-yellow-hover);
   color: var(--tone-yellow-hover);
 }
