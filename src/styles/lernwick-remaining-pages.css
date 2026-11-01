@@ -78,17 +78,17 @@
 .app-layout .auth-submit {
   width: 100%;
   min-height: 3.1rem;
-  border: 1px solid var(--orange);
+  border: 1px solid var(--primary);
   border-radius: var(--r-pill);
-  background: var(--orange);
+  background: var(--primary);
   color: var(--ink);
   font-family: var(--f-display);
   font-weight: 700;
 }
 
 .app-layout .auth-submit:hover:not(:disabled) {
-  border-color: var(--orange-hover);
-  background: var(--orange-hover);
+  border-color: var(--accent);
+  background: var(--accent);
 }
 
 .app-layout .auth-state,
@@ -191,7 +191,7 @@
 .app-layout .donate-goal-fill,
 .app-layout .challenge-progress-fill {
   border-radius: inherit;
-  background: var(--orange);
+  background: var(--primary);
 }
 
 .app-layout .donate-momo-grid,
@@ -253,7 +253,7 @@
 .app-layout .legal-link,
 .app-layout .info-back-link,
 .app-layout .info-bottom-nav a {
-  color: var(--orange-deep);
+  color: var(--primary-dark);
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
