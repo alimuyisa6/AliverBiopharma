@@ -472,3 +472,16 @@
   border-radius: 7px 30px 30px 30px;
 }
 
+.app-layout .pdf-card:nth-child(5n + 3)::after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  right: 0;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-bottom-left-radius: 2.8rem;
+  background: var(--background, var(--paper));
+  pointer-events: none;
+}
+
