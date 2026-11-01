@@ -141,9 +141,9 @@
   flex-direction: column;
   gap: .25rem;
   padding: .75rem .5rem .5rem;
-  border: 1px solid var(--primary-border));
+  border: 1px solid var(--primary-border);
   border-radius: var(--r-sm);
-  background: var(--primary-light));
+  background: var(--primary-light);
   color: var(--ink);
   box-shadow: var(--shadow-card);
   transform: rotate(4deg);
@@ -178,19 +178,19 @@
 }
 
 .sticky-polaroid-blue {
-  --sticky-note-paper: var(--primary-light));
+  --sticky-note-paper: var(--primary-light);
 }
 
 .sticky-polaroid-gold {
-  --sticky-note-paper: var(--primary-light));
+  --sticky-note-paper: var(--primary-light);
 }
 
 .sticky-polaroid-teal {
-  --sticky-note-paper: var(--primary-light));
+  --sticky-note-paper: var(--primary-light);
 }
 
 .sticky-polaroid-rose {
-  --sticky-note-paper: var(--primary-light));
+  --sticky-note-paper: var(--primary-light);
 }
 
 .sticky-polaroid-frame .sticky-polaroid-caption-copy {
