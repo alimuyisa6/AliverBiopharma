@@ -28,7 +28,7 @@ export default function useChartTheme() {
     const htmlObserver = new MutationObserver(update);
     htmlObserver.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ['data-theme', 'data-theme-color']
+      attributeFilter: ['data-theme']
     });
 
     const bodyObserver = new MutationObserver(update);
