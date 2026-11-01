@@ -176,3 +176,149 @@ body.dark-mode .home-page .home-challenge-treasure .three-d-button--solid,body.d
   background: var(--soft);
 }
 
+
+
+.lernwick-pathways {
+  background: var(--white);
+}
+
+.lernwick-how {
+  margin-inline: clamp(.5rem, .3rem + .6vw, .9rem);
+  border-radius: 3rem .75rem 3rem .75rem;
+  background: var(--soft);
+}
+
+.lernwick-about {
+  margin-inline: clamp(.5rem, .3rem + .6vw, .9rem);
+  border-radius: .75rem 3rem .75rem 3rem;
+  background: var(--primary-light);
+}
+
+.lernwick-pathway-card {
+  border: 0;
+  box-shadow: var(--shadow-card);
+}
+
+.lernwick-pathway-card:nth-child(3n + 1) {
+  background: var(--white);
+}
+
+.lernwick-pathway-card:nth-child(3n + 2) {
+  background: var(--accent-light);
+}
+
+.lernwick-pathway-card:nth-child(3n) {
+  background: var(--secondary-light);
+}
+
+.lernwick-pathway-card:nth-child(3n + 1)::after {
+  background: var(--white);
+}
+
+.lernwick-pathway-card:nth-child(3n + 2)::after {
+  background: var(--accent-light);
+}
+
+.lernwick-pathway-card:nth-child(3n)::after {
+  background: var(--secondary-light);
+}
+
+.lernwick-step-card {
+  background: var(--primary-light);
+  border-radius: 2rem 2rem 2rem .45rem;
+}
+
+.lernwick-step-card:nth-child(4n + 2) {
+  background: var(--accent-light);
+  border-radius: .45rem 2rem 2rem 2rem;
+}
+
+.lernwick-step-card:nth-child(4n + 3) {
+  background: var(--secondary-light);
+  border-radius: 2rem .45rem 2rem 2rem;
+}
+
+.lernwick-step-card:nth-child(4n) {
+  background: var(--soft);
+  border-radius: 2rem 2rem .45rem 2rem;
+}
+
+.lernwick-about-sticker {
+  background: var(--accent-light);
+  border-radius: 1.5rem .4rem 1.5rem 1.5rem;
+}
+
+.lernwick-pathways .lernwick-section-heading h2::first-letter {
+  padding-inline: .12em;
+  border-radius: 38% 62% 28% 72% / 56% 34% 66% 44%;
+  background: var(--primary);
+  color: var(--white);
+}
+
+.lernwick-how .lernwick-section-heading h2::first-letter {
+  padding-inline: .12em;
+  border-radius: 64% 36% 58% 42% / 42% 60% 40% 58%;
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.lernwick-about-copy h2::first-letter {
+  padding-inline: .12em;
+  border-radius: 52% 48% 24% 76% / 58% 34% 66% 42%;
+  background: var(--secondary);
+  color: var(--white);
+}
+
+body.dark-mode .lernwick-pathways {
+  background: var(--dark-background);
+}
+
+body.dark-mode .lernwick-how {
+  background: var(--dark-surface);
+}
+
+body.dark-mode .lernwick-about {
+  background: var(--dark-surface);
+}
+
+body.dark-mode .lernwick-pathway-card,
+body.dark-mode .lernwick-pathway-card:nth-child(3n + 1),
+body.dark-mode .lernwick-pathway-card:nth-child(3n + 2),
+body.dark-mode .lernwick-pathway-card:nth-child(3n) {
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+
+body.dark-mode .lernwick-pathway-card:nth-child(3n + 1)::after,
+body.dark-mode .lernwick-pathway-card:nth-child(3n + 2)::after,
+body.dark-mode .lernwick-pathway-card:nth-child(3n)::after {
+  background: var(--dark-surface);
+}
+
+body.dark-mode .lernwick-step-card,
+body.dark-mode .lernwick-step-card:nth-child(4n + 2),
+body.dark-mode .lernwick-step-card:nth-child(4n + 3),
+body.dark-mode .lernwick-step-card:nth-child(4n) {
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+
+body.dark-mode .lernwick-about-sticker {
+  background: var(--dark-background);
+  color: var(--dark-text);
+}
+
+body.dark-mode .lernwick-pathways .lernwick-section-heading h2::first-letter,
+body.dark-mode .lernwick-how .lernwick-section-heading h2::first-letter,
+body.dark-mode .lernwick-about-copy h2::first-letter {
+  background: var(--dark-primary);
+  color: var(--dark-background);
+}
+
+@media (max-width: 700px) {
+  .lernwick-how,
+  .lernwick-about {
+    margin-inline: .5rem;
+    border-radius: 1.5rem .5rem 1.5rem .5rem;
+  }
+}
