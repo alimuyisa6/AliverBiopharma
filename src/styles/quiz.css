@@ -2070,7 +2070,7 @@ body.dark-mode .quiz-hero-card {
 body.dark-mode .quiz-hero-classlabel,
 body.dark-mode .quiz-hero-stats .stat-value,
 body.dark-mode .quiz-dashboard .stat-value {
-  color: var(--palette-periwinkle);
+  color: var(--primary));
 }
 body.dark-mode .quiz-hero-stats .stat-card,
 body.dark-mode .quiz-dashboard .stat-card,
@@ -2091,7 +2091,7 @@ body.dark-mode .quiz-page .quiz-options-list .quiz-option-btn.selected {
 }
 body.dark-mode .quiz-page .quiz-options-list .quiz-option-btn.correct {
   border-color: var(--success);
-  background: var(--emerald-900);
+  background: var(--primary-dark));
 }
 body.dark-mode .quiz-page .quiz-options-list .quiz-option-btn.incorrect {
   border-color: var(--danger);
