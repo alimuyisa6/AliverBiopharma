@@ -40,7 +40,7 @@
 .app-layout .resources-section-kicker,
 .app-layout .notes-page-kicker,
 .app-layout .sec-label {
-  color: var(--orange-deep);
+  color: var(--primary-dark);
   font-family: var(--f-display);
   font-size: var(--t-xs);
   font-weight: 700;
@@ -268,7 +268,7 @@
 .app-layout .blog-topic-button.active,
 .app-layout .notes-pathway-item:hover,
 .app-layout .notes-pathway-item.active {
-  border-color: var(--orange);
+  border-color: var(--primary);
   background: var(--primary-light));
   color: var(--ink);
 }
