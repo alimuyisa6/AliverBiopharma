@@ -103,7 +103,7 @@ body.dark-mode .accordion :is(h1, h2, h3, h4, h5, h6, p, span, small) { color: i
 }
 
 .accordion-item.active {
-  border-color: var(--orange);
+  border-color: var(--primary));
 }
 
 .accordion-trigger {
@@ -113,11 +113,11 @@ body.dark-mode .accordion :is(h1, h2, h3, h4, h5, h6, p, span, small) { color: i
 
 .accordion-trigger:hover {
   background: var(--soft);
-  color: var(--orange-deep);
+  color: var(--primary)-deep);
 }
 
 .accordion-trigger:focus-visible {
-  outline-color: var(--orange-deep);
+  outline-color: var(--primary)-deep);
 }
 
 .accordion-icon,
@@ -126,5 +126,5 @@ body.dark-mode .accordion :is(h1, h2, h3, h4, h5, h6, p, span, small) { color: i
 }
 
 .accordion-item.active .accordion-icon {
-  color: var(--orange-deep);
+  color: var(--primary)-deep);
 }
