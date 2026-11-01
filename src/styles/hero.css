@@ -133,7 +133,7 @@
 }
 
 .hero-aero-button-primary {
-  background: var(--blue-true);
+  background: var(--primary));
   color: var(--white);
   box-shadow: 0 10px 30px color-mix(in srgb, var(--primary) 34%, transparent);
 }
