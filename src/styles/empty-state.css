@@ -175,7 +175,7 @@ body.dark-mode .empty-state :is(.description, .text-muted) { color: var(--dark-t
 
 .empty-state-icon,
 .ab-empty-media--icon {
-  color: var(--orange-deep);
+  color: var(--primary)-deep);
 }
 
 .ab-empty-media--icon {
