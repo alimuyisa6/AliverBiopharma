@@ -5,11 +5,7 @@
   align-items: center;
   overflow: hidden;
   isolation: isolate;
-  background:
-    radial-gradient(60vmax 60vmax at 0% 0%, color-mix(in srgb, var(--accent) 40%, transparent), transparent 60%),
-    radial-gradient(50vmax 50vmax at 100% 0%, color-mix(in srgb, var(--secondary) 48%, transparent), transparent 60%),
-    radial-gradient(45vmax 45vmax at 55% 55%, color-mix(in srgb, var(--primary) 42%, transparent), transparent 60%),
-    linear-gradient(120deg, var(--text), var(--grey-900) 54%, var(--grey-800));
+  background: var(--dark-background);
 }
 
 .hero-wave-art,
