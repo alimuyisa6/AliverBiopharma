@@ -54,7 +54,7 @@
 }
 
 .aliver-loader-progress {
-  background: var(--primary-light));
+  background: var(--primary-light);
 }
 
 .aliver-loader-progress span {
@@ -97,7 +97,7 @@
 .ch-control:hover,
 .ch-export-button:hover,
 .ch-export-item:hover {
-  border-color: var(--primary-border));
+  border-color: var(--primary-border);
   background: var(--soft);
 }
 
@@ -108,15 +108,15 @@
 }
 
 .ch-segment.is-active {
-  background: var(--primary-light));
+  background: var(--primary-light);
   color: var(--ink);
   box-shadow: none;
 }
 
 .ch-badge--positive {
-  background: var(--primary-light));
-  border-color: var(--primary-border));
-  color: var(--secondary));
+  background: var(--primary-light);
+  border-color: var(--primary-border);
+  color: var(--secondary);
 }
 
 .ch-badge--negative {
@@ -177,7 +177,7 @@
 
 .premium-access-button:hover:not(:disabled) {
   border-color: var(--primary);
-  background: var(--primary-light));
+  background: var(--primary-light);
   color: var(--ink);
 }
 
@@ -374,7 +374,7 @@
 
 .challenge-runner-visual {
   border-color: var(--line);
-  background: var(--primary-light));
+  background: var(--primary-light);
 }
 
 .challenge-runner-copy h1,
@@ -412,7 +412,7 @@
 .quiz-challenge-page .quiz-challenge-option:hover:not(:disabled),
 .quiz-challenge-page .quiz-challenge-option.is-selected {
   border-color: var(--primary);
-  background: var(--primary-light));
+  background: var(--primary-light);
   color: var(--ink);
   box-shadow: none;
 }
