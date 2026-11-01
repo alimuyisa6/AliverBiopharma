@@ -73,7 +73,7 @@ body.dark-mode .file-upload :is(.description, .text-muted) { color: var(--dark-t
 }
 
 .file-upload-icon {
-  color: var(--orange-deep);
+  color: var(--primary)-deep);
 }
 
 .file-upload-name {
@@ -85,5 +85,5 @@ body.dark-mode .file-upload :is(.description, .text-muted) { color: var(--dark-t
 }
 
 .file-upload-icon.pdf {
-  color: var(--orange-deep);
+  color: var(--primary)-deep);
 }
