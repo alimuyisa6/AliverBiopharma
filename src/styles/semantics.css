@@ -10,21 +10,6 @@
 
   --info: var(--info-color);
 
-  --violet: var(--primary);
-  --violet-hover: var(--primary-hover);
-  --violet-light: var(--primary-light);
-  --violet-border: var(--primary-border);
-
-  --pink: var(--accent);
-  --pink-hover: var(--accent-hover);
-  --pink-light: var(--accent-light);
-  --pink-border: var(--accent-border);
-
-  --yellow: var(--warning-color);
-  --yellow-hover: var(--warning-color);
-  --yellow-light: var(--warning-background);
-  --yellow-border: var(--warning-color);
-
   --tone-primary: var(--primary);
   --tone-primary-hover: var(--primary-hover);
   --tone-primary-bg: var(--primary-light);
@@ -70,7 +55,7 @@
   --surface-raised: var(--paper);
   --surface-muted: var(--soft);
   --surface-subtle: var(--soft);
-  --surface-tinted: color-mix(in srgb, var(--peach) 34%, var(--paper));
+  --surface-tinted: var(--primary-light);
   --surface-inverse: var(--ink);
   --surface-overlay: var(--overlay-color);
   --surface-disabled: var(--grey-100);
@@ -310,18 +295,6 @@ body.dark-mode {
   --tone-info-hover: var(--info-hover);
   --tone-info-bg: var(--info-light);
   --tone-info-border: var(--info-border);
-  --tone-violet: var(--violet);
-  --tone-violet-hover: var(--violet-hover);
-  --tone-violet-bg: var(--violet-light);
-  --tone-violet-border: var(--violet-border);
-  --tone-pink: var(--pink);
-  --tone-pink-hover: var(--pink-hover);
-  --tone-pink-bg: var(--pink-light);
-  --tone-pink-border: var(--pink-border);
-  --tone-yellow: var(--yellow);
-  --tone-yellow-hover: var(--yellow-hover);
-  --tone-yellow-bg: var(--yellow-light);
-  --tone-yellow-border: var(--yellow-border);
   --surface-page: var(--dark-background);
   --surface-card: var(--dark-surface);
   --surface-raised: var(--dark-surface-raised);
