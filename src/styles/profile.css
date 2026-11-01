@@ -629,8 +629,7 @@
 .profile-category-icon-primary,
 .profile-category-icon-success,
 .profile-category-icon-warning,
-.profile-category-icon-violet,
-.profile-category-icon-info {
+..profile-category-icon-info {
   background: var(--primary);
 }
 
