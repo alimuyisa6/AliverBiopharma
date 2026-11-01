@@ -133,7 +133,7 @@
 .app-layout .notes-card:hover,
 .app-layout .blog-post-card:hover,
 .app-layout .team-card:hover {
-  border-color: var(--primary-border));
+  border-color: var(--primary-border);
   box-shadow: var(--shadow-float);
   transform: translateY(-3px);
 }
@@ -220,7 +220,7 @@
   box-sizing: border-box;
   padding: clamp(2rem, 1.2rem + 4vw, 5rem);
   border-radius: var(--r-xl);
-  background: var(--primary-light));
+  background: var(--primary-light);
 }
 
 .app-layout .about-block {
@@ -269,7 +269,7 @@
 .app-layout .notes-pathway-item:hover,
 .app-layout .notes-pathway-item.active {
   border-color: var(--primary);
-  background: var(--primary-light));
+  background: var(--primary-light);
   color: var(--ink);
 }
 
