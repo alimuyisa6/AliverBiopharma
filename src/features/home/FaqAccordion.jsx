@@ -154,7 +154,7 @@ export function FaqAccordion({ items, data, standalone = false }) {
             <input type="search" value={search} onChange={event => { setSearch(event.target.value); setActiveIndex(null); }} placeholder={faq.hero.search_placeholder} aria-label="Search frequently asked questions" />
             {search && <button type="button" className="faq-search-clear" onClick={() => setSearch('')} aria-label="Clear FAQ search"><i className="fa-solid fa-xmark" aria-hidden="true"></i></button>}
           </label>
-          <div className="faq-illustration faq-illustration-browse-topic" style={{ position: 'relative', inset: 'auto', width: '150px', height: '150px', marginTop: 'var(--space-5)', borderRadius: '50%', background: 'var(--blue-100)', overflow: 'hidden' }}>
+          <div className="faq-illustration faq-illustration-browse-topic" style={{ position: 'relative', inset: 'auto', width: '150px', height: '150px', marginTop: 'var(--space-5)', borderRadius: '50%', background: 'var(--primary-light))', overflow: 'hidden' }}>
             <img style={FAQ_ILLUSTRATION_STYLE} src={faqBrowseIllustration.imageUrl} alt={faqBrowseIllustration.alt || 'Student exploring learning topics'} />
           </div>
         </div>
