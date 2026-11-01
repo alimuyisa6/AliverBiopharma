@@ -65,7 +65,7 @@ body.dark-mode .toast :is(h1, h2, h3, p, small) { color: var(--dark-text); }
 }
 
 .toast-success {
-  background: var(--sage);
+  background: var(--primary-light));
   color: var(--ink);
 }
 
@@ -75,7 +75,7 @@ body.dark-mode .toast :is(h1, h2, h3, p, small) { color: var(--dark-text); }
 }
 
 .toast-warning {
-  background: var(--peach);
+  background: var(--primary-light));
   color: var(--ink);
 }
 
