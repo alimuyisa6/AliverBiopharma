@@ -377,7 +377,7 @@ a.about-contact-item:hover {
   align-items: center;
   justify-content: center;
   padding: var(--space-3) var(--space-6);
-  background: var(--orange);
+  background: var(--primary);
   color: var(--ink);
   border-radius: var(--radius-full);
   font-family: var(--font-button);
@@ -389,7 +389,7 @@ a.about-contact-item:hover {
 }
 
 .about-cta-button:hover {
-  background: var(--orange-hover);
+  background: var(--accent);
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
 }
