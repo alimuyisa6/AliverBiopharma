@@ -294,7 +294,7 @@ body.dark-mode .home-page > .home-newsletter-section .eyebrow {
   border: 0;
   border-radius: 50%;
   background: var(--primary);
-  box-shadow: 0 0 0 0.25rem var(--primary-light));
+  box-shadow: 0 0 0 0.25rem var(--primary-light);
 }
 
 .home-page .home-continue-learning-row,
@@ -354,7 +354,7 @@ body.dark-mode .home-page > .home-newsletter-section .eyebrow {
 .home-page .why-choose-card:hover,
 .home-page .how-step:hover,
 .home-page .team-card:hover {
-  border-color: var(--primary-light));
+  border-color: var(--primary-light);
   box-shadow: 0 1rem 2rem var(--primary-ring);
 }
 
@@ -391,7 +391,7 @@ body.dark-mode .home-page > .home-newsletter-section .eyebrow {
 }
 
 .home-page .text-link:hover {
-  color: var(--primary-dark));
+  color: var(--primary-dark);
 }
 
 .home-page .study-quote-card {
@@ -402,7 +402,7 @@ body.dark-mode .home-page > .home-newsletter-section .eyebrow {
   padding: clamp(2rem, 5vw, 4rem);
   overflow: hidden;
   border: 1px solid rgb(36 87 197 / 22%);
-  border-bottom: 4px solid var(--primary));
+  border-bottom: 4px solid var(--primary);
   border-radius: 1.5rem;
   background: var(--band-dark);
   color: var(--night-text-primary);
@@ -504,7 +504,7 @@ body.dark-mode .home-page > .home-newsletter-section .eyebrow {
 
 .home-page a:focus-visible,
 .home-page button:focus-visible {
-  outline: 3px solid var(--primary));
+  outline: 3px solid var(--primary);
   outline-offset: 3px;
 }
 
@@ -765,7 +765,7 @@ body.dark-mode .home-page .study-quote-card {
   transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
 }
 .pill-link:hover { border-color: var(--primary-border); background: var(--primary-light); color: var(--ink); }
-.pill-link:focus-visible { outline: 3px solid var(--primary)); outline-offset: 3px; }
+.pill-link:focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
 
 .icon-chip {
   display: inline-grid;
@@ -819,11 +819,11 @@ body.dark-mode .home-page .study-quote-card {
 :root {
   --ill-ink: var(--text-main);
   --ill-ink-soft: var(--grey-700);
-  --ill-tint-50: var(--primary-light));
-  --ill-tint-100: var(--primary-light));
-  --ill-tint-200: var(--primary-light));
+  --ill-tint-50: var(--primary-light);
+  --ill-tint-100: var(--primary-light);
+  --ill-tint-200: var(--primary-light);
   --ill-accent: var(--primary);
-  --ill-accent-soft: var(--primary-light));
+  --ill-accent-soft: var(--primary-light);
   --ill-skin-1: #f2c6a5;
   --ill-skin-2: #bd805d;
   --ill-skin-3: #744833;
@@ -832,10 +832,10 @@ body.dark-mode .home-page .study-quote-card {
 }
 body.level-olevel {
   --ill-accent: var(--primary);
-  --ill-accent-soft: var(--primary-light));
-  --ill-tint-50: var(--primary-light));
-  --ill-tint-100: var(--primary-light));
-  --ill-tint-200: var(--primary-light));
+  --ill-accent-soft: var(--primary-light);
+  --ill-tint-50: var(--primary-light);
+  --ill-tint-100: var(--primary-light);
+  --ill-tint-200: var(--primary-light);
 }
 body.level-alevel {
   --ill-accent: var(--primary-dark);
