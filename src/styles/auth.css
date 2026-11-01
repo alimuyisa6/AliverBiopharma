@@ -20,7 +20,7 @@
   grid-template-columns: 0.95fr 1.05fr;
   width: min(calc(100% - (var(--page-gutter-x) * 2)), var(--auth-shell-max-width));
   min-height: var(--auth-shell-min-height);
-  margin: calc(-1 * var(--header-height)) auto 0;
+  margin: calc(-1 * var(--header-height) auto 0;
   overflow: hidden;
   border: 1px solid var(--auth-glass-white-72);
   border-radius: var(--auth-radius-xl);
@@ -717,7 +717,7 @@ body.dark-mode {
 /* AliverBiopharm sign-in refinement — palette-token driven. */
 .auth-brand-panel {
   isolation: isolate;
-  background: var(--text-main));
+  background: var(--text-main);
 }
 
 
@@ -755,7 +755,7 @@ body.dark-mode {
 .auth-login-submit {
   min-height: var(--control-height-lg);
   border-radius: var(--auth-radius-sm);
-  box-shadow: 0 0.5rem 1.25rem color-mix(in srgb, var(--primary)) 22%, transparent);
+  box-shadow: 0 0.5rem 1.25rem color-mix(in srgb, var(--primary) 22%, transparent);
 }
 
 .auth-login-block .auth-passkey {
@@ -846,7 +846,7 @@ body.dark-mode {
   .auth-page {
     width: min(calc(100% - (var(--space-4) * 2)), var(--auth-shell-max-width));
     min-height: auto;
-    margin: calc(-1 * var(--header-height) + var(--space-5)) auto var(--space-5);
+    margin: calc(-1 * var(--header-height) + var(--space-5) auto var(--space-5);
     overflow: hidden;
     border: 1px solid var(--auth-glass-white-72);
     border-radius: var(--auth-radius-xl);
@@ -867,7 +867,7 @@ body.dark-mode {
   .auth-page {
     width: calc(100% - (var(--space-4) * 2));
     min-height: auto;
-    margin: calc(-1 * var(--header-height) + var(--space-4)) auto var(--space-4);
+    margin: calc(-1 * var(--header-height) + var(--space-4) auto var(--space-4);
     border: 1px solid var(--auth-glass-white-72);
     border-radius: var(--auth-radius-lg);
     box-shadow: var(--auth-shadow-lg);
