@@ -135,6 +135,12 @@
   transition: box-shadow var(--duration-fast) var(--ease-standard);
 }
 
+ .fcd-flip-control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+}
 .fcd-question-card.is-flip {
   display: block;
   position: relative;
@@ -147,12 +153,10 @@
   box-shadow: var(--shadow-subtle);
   color: inherit;
   text-align: center;
-  cursor: pointer;
+  cursor: default;
   perspective: 1200px;
   overflow: visible;
   overflow-wrap: anywhere;
-  appearance: none;
-  -webkit-appearance: none;
 }
 
 .fcd-question-card.is-flip:hover {
@@ -208,8 +212,11 @@
   flex: 0 0 auto;
 }
 
-.fcd-question-card.is-flip:focus-visible {
-  outline: 2px solid var(--primary);
+.fcd-flip-trigger {
+  min-width: 9rem;
+}
+.fcd-flip-trigger:focus-visible {
+  outline: 3px solid var(--primary);
   outline-offset: 3px;
 }
 
