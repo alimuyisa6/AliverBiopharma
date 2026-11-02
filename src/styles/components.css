@@ -110,10 +110,31 @@
 .spinner-chart span:nth-child(7) { animation-delay: -600ms; }
 
 .skeleton {
+  position: relative;
   display: block;
   min-height: var(--space-4);
+  overflow: hidden;
   border-radius: var(--radius-sm);
-  background: var(--surface-subtle);
+  background: color-mix(in srgb, var(--primary) 13%, var(--surface-subtle));
+  isolation: isolate;
+}
+
+.skeleton::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 20%, color-mix(in srgb, var(--white) 76%, transparent) 48%, transparent 76%);
+  content: "";
+  transform: translateX(-110%);
+  animation: shimmer 1.55s ease-in-out infinite;
+  pointer-events: none;
+}
+
+body.dark-mode .skeleton {
+  background: color-mix(in srgb, var(--dark-primary) 22%, var(--dark-surface));
+}
+
+body.dark-mode .skeleton::after {
+  background: linear-gradient(105deg, transparent 20%, rgb(255 255 255 / 17%) 48%, transparent 76%);
 }
 
 .skeleton-card,
@@ -145,12 +166,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-
-  .spinner,
-  .skeleton {
-    animation-duration: revert !important;
-    animation-iteration-count: infinite !important;
-  }
+  .spinner { animation: none !important; }
+  .skeleton::after { animation: none; transform: none; opacity: .3; }
 }
 
 body.dark-mode :is(.component-panel, .component-card, .component-surface, .component-preview) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
