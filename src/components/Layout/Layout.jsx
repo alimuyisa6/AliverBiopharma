@@ -80,6 +80,32 @@ export default function Layout({ children, showFooter = true }) {
   }, [routeKey, navigationType]);
   useEffect(() => { setMobileOpen(false); setSearchOpen(false); }, [location.pathname]);
   useEffect(() => {
+    if (!('IntersectionObserver' in window)) return undefined;
+
+    const targets = document.querySelectorAll(
+      '#main-content [data-scroll-reveal], #main-content .section > .card, #main-content .section > .grid > *, #main-content .section > .section-grid > *'
+    );
+
+    if (!targets.length) return undefined;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -7% 0px', threshold: 0.08 });
+
+    targets.forEach((target, index) => {
+      target.classList.add('scroll-reveal');
+      target.style.setProperty('--reveal-delay', `${Math.min(index % 5, 4) * 55}ms`);
+      observer.observe(target);
+    });
+
+    return () => observer.disconnect();
+  }, [location.pathname, location.search]);
+
+  useEffect(() => {
     const desktopQuery = window.matchMedia('(min-width: 769px)');
     const closeMenuOnDesktop = (event) => {
       if (event.matches) setMobileOpen(false);
