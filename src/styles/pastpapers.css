@@ -346,7 +346,6 @@
   transition: all var(--ease-smooth);
   display: flex;
   flex-direction: column;
-  cursor: pointer;
   box-shadow: var(--shadow-sm);
 }
 
