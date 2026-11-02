@@ -133,7 +133,12 @@
   will-change: auto;
 }
 
-body.accessibility-reduce-motion .scroll-reveal,
+body.accessibility-reduce-motion .scroll-reveal {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .scroll-reveal {
     opacity: 1;
