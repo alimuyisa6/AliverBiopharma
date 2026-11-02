@@ -241,27 +241,30 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
         </div>
 
         {mode === 'flip' && (
-          <button
-            type="button"
-            className={`card ${cardColor} fcd-question-card is-flip`}
-            onClick={() => setFlipped((current) => !current)}
-            aria-label={flipped ? 'Show question side' : 'Flip card to reveal answer'}
-            aria-pressed={flipped}
-          >
-            <span className={`fcd-flip-inner${flipped ? ' is-flipped' : ''}`}>
-              <span className="fcd-flip-face is-front">
-                <span className="chip fcd-answer-chip">Question</span>
-                <span className="fcd-card-heading">{card.front_text}</span>
-                {card.image_url && <img src={card.image_url} alt="" className="fcd-card-image" />}
-                <span className="fcd-tap-hint"><Icon name="hand" /> Tap to flip</span>
+          <div className="fcd-flip-control">
+            <div className={`card ${cardColor} fcd-question-card is-flip`} aria-live="polite">
+              <span className={`fcd-flip-inner${flipped ? ' is-flipped' : ''}`}>
+                <span className="fcd-flip-face is-front">
+                  <span className="chip fcd-answer-chip">Question</span>
+                  <span className="fcd-card-heading">{card.front_text}</span>
+                  {card.image_url && <img src={card.image_url} alt="" className="fcd-card-image" />}
+                </span>
+                <span className="fcd-flip-face is-back">
+                  <span className="chip fcd-answer-chip is-correct">Answer</span>
+                  <span className="fcd-card-heading">{card.back_text}</span>
+                </span>
               </span>
-              <span className="fcd-flip-face is-back">
-                <span className="chip fcd-answer-chip is-correct">Answer</span>
-                <span className="fcd-card-heading">{card.back_text}</span>
-                <span className="fcd-tap-hint">Tap to see question</span>
-              </span>
-            </span>
-          </button>
+            </div>
+            <Button
+              type="button"
+              variant="secondary"
+              className="fcd-flip-trigger"
+              onClick={() => setFlipped((current) => !current)}
+              aria-pressed={flipped}
+            >
+              <Icon name="rotate" /> {flipped ? 'Show question' : 'Reveal answer'}
+            </Button>
+          </div>
         )}
 
         {mode === 'typed' && (
