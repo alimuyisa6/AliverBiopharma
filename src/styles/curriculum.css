@@ -119,7 +119,7 @@
 .curriculum-node-resources { display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--curriculum-resource-min-width), 1fr)); gap: var(--content-gap-compact); }
 .curriculum-node-resource { justify-content: space-between; font-weight: var(--weight-medium); }
 .curriculum-node-links { display: flex; flex-direction: column; border-top: 1px solid var(--border-subtle); }
-.curriculum-node-link { display: grid; grid-template-columns: minmax(var(--curriculum-link-label-min-width), var(--curriculum-link-label-max-width) 1fr; gap: var(--space-4); padding: var(--space-3) 0; border-bottom: 1px solid var(--border-subtle); }
+.curriculum-node-link { display: grid; grid-template-columns: minmax(var(--curriculum-link-label-min-width), var(--curriculum-link-label-max-width)) 1fr; gap: var(--space-4); padding: var(--space-3) 0; border-bottom: 1px solid var(--border-subtle); }
 .curriculum-node-link-type { color: var(--text-muted); font-family: var(--font-mono); font-size: var(--text-xs); text-transform: capitalize; }
 
 
