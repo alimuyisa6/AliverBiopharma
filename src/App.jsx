@@ -8,6 +8,7 @@ import { ChatProvider } from './contexts/ChatContext';
 import { ToastProvider } from './components/Toast/Toast';
 import { NotificationProvider } from './contexts/NotificationContext';
 import Layout from './components/Layout/Layout';
+import PageSkeleton from './components/Loading/PageSkeleton';
 import Seo from './components/Seo/Seo';
 const Home = lazy(() => import('./pages/Home'));
 const AIAssistant = lazy(() => import('./features/chat/AIAssistant'));
@@ -121,7 +122,7 @@ function AppRoutes() {
     <>
       <Seo />
       <Layout>
-        <Suspense fallback={<div className="route-loading" role="status">Loading page…</div>}>
+        <Suspense fallback={<PageSkeleton />}>
           <Routes location={location}>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Auth />} />
