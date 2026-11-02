@@ -465,3 +465,38 @@ body.dark-mode .pdf-library-page :is(input, select, textarea) { background: var(
 .pdf-card-body {
   padding: 1rem 1.2rem 1.2rem;
 }
+
+
+.pdf-card-open {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  width: fit-content;
+  min-height: var(--control-height-sm);
+  margin: auto var(--space-3) var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--primary);
+  border-radius: var(--radius-button);
+  background: var(--surface-card);
+  color: var(--primary-dark);
+  font: inherit;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  cursor: pointer;
+}
+.pdf-card-open:hover {
+  background: var(--primary);
+  color: var(--white);
+}
+.pdf-card-open:focus-visible,
+.pp-card-open:focus-visible,
+.recall-analytics-card-btn:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+}
+body.dark-mode .pdf-card-open {
+  border-color: var(--dark-primary);
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
