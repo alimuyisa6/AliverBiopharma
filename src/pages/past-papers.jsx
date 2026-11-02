@@ -873,7 +873,7 @@ export default function PastPapers() {
                     borderRadius="var(--radius-sm)"
                   />
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         ) : papers.length === 0 ? (
@@ -911,14 +911,13 @@ export default function PastPapers() {
         ) : (
           <div className="past-papers-grid">
             {papers.map((paper) => (
-              <div
+              <article
                 key={paper.id}
                 className={`card paper-card${
                   paper.is_premium
                     ? ' paper-card-premium'
                     : ''
                 }`}
-                onClick={() => handlePaperOpen(paper)}
               >
                 <div className="card-image-placeholder paper-card-icon">
                   <Icon
@@ -948,10 +947,7 @@ export default function PastPapers() {
                           ? ' active'
                           : ''
                       }`}
-                      onClick={(event) => {
-                        event.stopPropagation();
-                        handleBookmark(paper.id);
-                      }}
+                      onClick={() => handleBookmark(paper.id)}
                       aria-label={
                         bookmarkedIds.has(paper.id)
                           ? 'Remove bookmark'
@@ -1028,15 +1024,15 @@ export default function PastPapers() {
                 </div>
 
                 <div className="card-footer">
+                  <Button size="sm" variant="secondary" onClick={() => handlePaperOpen(paper)}>
+                    View details
+                  </Button>
                   <Button
                     size="sm"
                     loading={
                       downloadingId === paper.id
                     }
-                    onClick={(event) => {
-                      event.stopPropagation();
-                      handleDownload(paper);
-                    }}
+                    onClick={() => handleDownload(paper)}
                     variant={
                       paper.is_premium
                         ? 'warm'
