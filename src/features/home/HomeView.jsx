@@ -87,19 +87,16 @@ function CurriculumNodeList({ nodes, parentId = null, isPharmacy = false }) {
                     : 'Learning area';
 
         return (
-          <Link
-            key={node.id}
-            to={`/curriculum/${node.group_id}/${nodeSlug}`}
-            className="home-curriculum-node home-curriculum-node-link"
-            aria-label={`Open ${label.toLowerCase()} ${node.name}`}
-          >
+          <article key={node.id} className="home-curriculum-node home-curriculum-node-item">
             <span className="home-curriculum-node-marker" aria-hidden="true" />
             <span className="home-curriculum-node-copy">
               <strong className="home-curriculum-node-name">{node.name}</strong>
               <small className="home-curriculum-node-type">{label}</small>
             </span>
-            <Icon name="chevron-right" />
-          </Link>
+            <Link to={`/curriculum/${node.group_id}/${nodeSlug}`} className="home-curriculum-node-action">
+              Open {label.toLowerCase()} <Icon name="chevron-right" />
+            </Link>
+          </article>
         );
       })}
     </div>
