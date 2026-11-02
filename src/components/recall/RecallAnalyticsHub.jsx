@@ -198,12 +198,12 @@ export default function RecallAnalyticsHub() {
 
       <div className="recall-analytics-grid">
         {GRAPH_TYPES.map((graph) => (
-          <Card key={graph.key} className="recall-analytics-card" onClick={() => setActiveGraph(graph.key)}>
+          <Card key={graph.key} className="recall-analytics-card">
             <div className="recall-analytics-card-body">
               <Icon name={graph.icon} className="recall-analytics-card-icon" style={{ color: graph.color }} />
               <h4 className="recall-analytics-card-title">{graph.title}</h4>
               <p className="recall-analytics-card-desc">{graph.description}</p>
-              <Button variant="ghost" size="sm" className="recall-analytics-card-btn">
+              <Button variant="ghost" size="sm" className="recall-analytics-card-btn" onClick={() => setActiveGraph(graph.key)}>
                 View Graph <Icon name="arrow-right" />
               </Button>
             </div>
