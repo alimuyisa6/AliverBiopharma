@@ -12,7 +12,15 @@
 .lernwick-outline-button svg,.lernwick-dark-button svg{width:1.1rem;height:1.1rem;transition:transform var(--dur) var(--ease)}
 .lernwick-outline-button:hover svg,.lernwick-dark-button:hover svg{transform:translateX(3px)}
 .lernwick-pathway-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.4rem}
-.lernwick-pathway-card{position:relative;overflow:hidden;border:1.5px solid var(--line);border-radius:var(--r-lg);background:var(--paper);transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),border-color var(--dur) var(--ease)}
+.lernwick-pathway-card{position:relative;overflow:hidden;border:1px solid var(--line-2);border-radius:30px 30px 30px 7px;background:var(--paper);box-shadow:var(--shadow-card);transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),border-color var(--dur) var(--ease)}
+.lernwick-pathway-card:nth-child(3n + 2){background:var(--accent-light)}
+.lernwick-pathway-card:nth-child(3n){background:var(--secondary-light)}
+.lernwick-pathway-card:nth-child(4n + 2){border-radius:7px 30px 30px 30px}
+.lernwick-pathway-card:nth-child(4n + 3){border-radius:30px 7px 30px 30px}
+.lernwick-pathway-card:nth-child(4n){border-radius:30px 30px 7px 30px}
+.lernwick-pathway-card::after{content:"";position:absolute;z-index:3;top:0;right:0;width:2.8rem;height:2.8rem;border-bottom-left-radius:2.8rem;background:var(--paper);pointer-events:none}
+.lernwick-pathway-card:nth-child(3n + 2)::after{background:var(--accent-light)}
+.lernwick-pathway-card:nth-child(3n)::after{background:var(--secondary-light)}
 .lernwick-pathway-card:hover{transform:translateY(-4px);border-color:transparent;box-shadow:var(--shadow-float)}
 .lernwick-pathway-link{display:flex;height:100%;flex-direction:column;color:inherit}
 .lernwick-pathway-image{position:relative;aspect-ratio:3/2;overflow:hidden;margin:.6rem .6rem 0;border-radius:calc(var(--r-lg) - .5rem);background:var(--soft)}
@@ -28,8 +36,10 @@
 .lernwick-section-heading--center{justify-content:center;text-align:center}
 .lernwick-section-heading--center>div{justify-items:center}
 .lernwick-step-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.2rem}
-.lernwick-step-card{position:relative;display:grid;align-content:start;gap:.9rem;min-height:15rem;padding:1.6rem;border-radius:var(--r-lg);background:var(--primary-light);transition:transform var(--dur) var(--ease)}
-.lernwick-step-card:nth-child(even){background:var(--primary-light)}
+.lernwick-step-card{position:relative;display:grid;align-content:start;gap:.9rem;min-height:15rem;padding:1.6rem;border:1px solid var(--line-2);border-radius:2rem 2rem 2rem .45rem;background:var(--primary-light);box-shadow:var(--shadow-card);transition:transform var(--dur) var(--ease)}
+.lernwick-step-card:nth-child(4n + 2){border-radius:.45rem 2rem 2rem 2rem;background:var(--accent-light)}
+.lernwick-step-card:nth-child(4n + 3){border-radius:2rem .45rem 2rem 2rem;background:var(--secondary-light)}
+.lernwick-step-card:nth-child(4n){border-radius:2rem 2rem .45rem 2rem;background:var(--soft)}
 .lernwick-step-card:hover{transform:translateY(-4px)}
 .lernwick-step-number{display:grid;width:2.8rem;height:2.8rem;place-items:center;border:1.5px solid currentColor;border-radius:50%;font:700 var(--t-sm)/1 var(--f-display)}
 .lernwick-step-mark{width:2.4rem;height:3px;border-radius:4px;background:var(--primary)}
@@ -38,7 +48,7 @@
 .lernwick-about-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:clamp(2.5rem,5vw,5rem)}
 .lernwick-about-media{position:relative;min-height:28rem}
 .lernwick-about-media>img{width:100%;height:100%;min-height:28rem;object-fit:cover;border-radius:var(--r-lg) var(--r-lg) var(--r-lg) 6px}
-.lernwick-about-sticker{position:absolute;right:-1rem;bottom:1.5rem;display:grid;gap:.1rem;padding:1.1rem 1.4rem;border-radius:var(--r-md);background:var(--primary-light);box-shadow:var(--shadow-float);transform:rotate(4deg);font:600 var(--t-sm)/1.35 var(--f-display)}
+.lernwick-about-sticker{position:absolute;right:-1rem;bottom:1.5rem;display:grid;gap:.1rem;padding:1.1rem 1.4rem;border:1px solid var(--line-2);border-radius:1.5rem .4rem 1.5rem 1.5rem;background:var(--accent-light);box-shadow:var(--shadow-float);transform:rotate(4deg);font:600 var(--t-sm)/1.35 var(--f-display)}
 .lernwick-about-sticker span{color:var(--secondary)}
 .lernwick-about-copy{display:grid;justify-items:start;gap:1.1rem}
 .lernwick-about-copy>p:not(.lernwick-note){color:var(--ink-2);font-size:var(--t-md);line-height:1.8}
@@ -112,141 +122,6 @@ body.dark-mode .home-page .home-learning-snapshot-dashboard-link{border-color:va
 .home-page .home-challenge-treasure .three-d-button--solid,.home-page .home-daily-recall-section .three-d-button--solid{--u3d-text:var(--ink);--u3d-top-start:var(--primary);--u3d-top-end:var(--accent);--u3d-bottom-start:var(--primary-dark);--u3d-bottom-end:var(--primary);--u3d-base:var(--primary-dark)}
 .home-page .home-continue-learning-row .three-d-button--soft,.home-page .home-daily-recall-section .three-d-button--soft{--u3d-text:var(--ink);--u3d-top-start:var(--primary-light);--u3d-top-end:var(--paper);--u3d-bottom-start:var(--primary-border);--u3d-bottom-end:var(--primary-light);--u3d-base:var(--ink-2)}
 body.dark-mode .home-page .home-challenge-treasure .three-d-button--solid,body.dark-mode .home-page .home-daily-recall-section .three-d-button--solid,body.dark-mode .home-page .home-continue-learning-row .three-d-button--soft,body.dark-mode .home-page .home-daily-recall-section .three-d-button--soft{--u3d-text:var(--dark-text);--u3d-top-start:var(--dark-surface);--u3d-top-end:var(--dark-surface-raised);--u3d-bottom-start:var(--dark-border);--u3d-bottom-end:var(--dark-surface);--u3d-base:var(--dark-background)}
-
-.lernwick-pathway-card {
-  border-radius: 30px 30px 30px 7px;
-}
-
-.lernwick-pathway-card:nth-child(4n + 2) {
-  border-radius: 7px 30px 30px 30px;
-}
-
-.lernwick-pathway-card:nth-child(4n + 3) {
-  border-radius: 30px 7px 30px 30px;
-}
-
-.lernwick-pathway-card:nth-child(4n) {
-  border-radius: 30px 30px 7px 30px;
-}
-
-.lernwick-step-card {
-  border-radius: 30px 30px 30px 7px;
-}
-
-.lernwick-step-card:nth-child(even) {
-  border-radius: 7px 30px 30px 30px;
-}
-
-.lernwick-pathway-card:nth-child(3n + 1)::after {
-  content: "";
-  position: absolute;
-  z-index: 3;
-  top: 0;
-  right: 0;
-  width: 2.8rem;
-  height: 2.8rem;
-  border-bottom-left-radius: 2.8rem;
-  background: var(--paper);
-  pointer-events: none;
-}
-
-.lernwick-home-sections {
-  background: var(--background);
-}
-
-.lernwick-home-sections .section--soft {
-  background: var(--soft);
-}
-
-.lernwick-home-sections .lernwick-step-card {
-  background: var(--primary-light);
-}
-
-.lernwick-home-sections .lernwick-step-card:nth-child(even) {
-  background: var(--primary-light);
-}
-
-.lernwick-home-sections .lernwick-about-sticker {
-  background: var(--primary-light);
-}
-
-.lernwick-home-sections .home-continue-learning-row,
-.lernwick-home-sections .home-curriculum-node,
-.lernwick-home-sections .home-process-card {
-  background: var(--soft);
-}
-
-
-
-.lernwick-pathways {
-  background: var(--white);
-}
-
-.lernwick-how {
-  margin-inline: clamp(.5rem, .3rem + .6vw, .9rem);
-  border-radius: 3rem .75rem 3rem .75rem;
-  background: var(--soft);
-}
-
-.lernwick-about {
-  margin-inline: clamp(.5rem, .3rem + .6vw, .9rem);
-  border-radius: .75rem 3rem .75rem 3rem;
-  background: var(--primary-light);
-}
-
-.lernwick-pathway-card {
-  border: 0;
-  box-shadow: var(--shadow-card);
-}
-
-.lernwick-pathway-card:nth-child(3n + 1) {
-  background: var(--white);
-}
-
-.lernwick-pathway-card:nth-child(3n + 2) {
-  background: var(--accent-light);
-}
-
-.lernwick-pathway-card:nth-child(3n) {
-  background: var(--secondary-light);
-}
-
-.lernwick-pathway-card:nth-child(3n + 1)::after {
-  background: var(--white);
-}
-
-.lernwick-pathway-card:nth-child(3n + 2)::after {
-  background: var(--accent-light);
-}
-
-.lernwick-pathway-card:nth-child(3n)::after {
-  background: var(--secondary-light);
-}
-
-.lernwick-step-card {
-  background: var(--primary-light);
-  border-radius: 2rem 2rem 2rem .45rem;
-}
-
-.lernwick-step-card:nth-child(4n + 2) {
-  background: var(--accent-light);
-  border-radius: .45rem 2rem 2rem 2rem;
-}
-
-.lernwick-step-card:nth-child(4n + 3) {
-  background: var(--secondary-light);
-  border-radius: 2rem .45rem 2rem 2rem;
-}
-
-.lernwick-step-card:nth-child(4n) {
-  background: var(--soft);
-  border-radius: 2rem 2rem .45rem 2rem;
-}
-
-.lernwick-about-sticker {
-  background: var(--accent-light);
-  border-radius: 1.5rem .4rem 1.5rem 1.5rem;
-}
 
 .organic-letter {
   display: inline-grid;
