@@ -60,7 +60,7 @@ export default function LernwickHomeSections() {
           <div className="lernwick-section-heading">
             <div>
               <p className="lernwick-note">Find your starting point</p>
-              <h2 id="lernwick-pathways-title">Learning pathways for every stage</h2>
+              <h2 id="lernwick-pathways-title"><span className="organic-letter organic-letter--primary">L</span>earning pathways for every stage</h2>
               <p>Explore the Biology and Pharmacy learning areas available on AliverBiopharm.</p>
             </div>
             <Link className="lernwick-outline-button" to="/resources">Browse resources <Icon name="arrow-right" /></Link>
@@ -90,7 +90,7 @@ export default function LernwickHomeSections() {
           <div className="lernwick-section-heading lernwick-section-heading--center">
             <div>
               <p className="lernwick-note">No timetable, no pressure</p>
-              <h2 id="lernwick-how-title">A simple way to keep learning</h2>
+              <h2 id="lernwick-how-title"><span className="organic-letter organic-letter--accent">A</span> simple way to keep learning</h2>
               <p>Move from choosing a topic to understanding it, practising it and remembering it.</p>
             </div>
           </div>
@@ -119,7 +119,7 @@ export default function LernwickHomeSections() {
           </div>
           <div className="lernwick-about-copy">
             <p className="lernwick-note">About the platform</p>
-            <h2 id="lernwick-about-title">A focused space for Biology and Pharmacy learning</h2>
+            <h2 id="lernwick-about-title"><span className="organic-letter organic-letter--secondary">A</span> focused space for Biology and Pharmacy learning</h2>
             <p>AliverBiopharm brings learning resources and study tools together, helping students move beyond reading and take an active role in understanding their subjects.</p>
             <ul>
               <li><Icon name="circle" /><span>Learning resources organised around your level or programme.</span></li>
