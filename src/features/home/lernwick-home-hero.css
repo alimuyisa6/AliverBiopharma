@@ -70,13 +70,18 @@ body.dark-mode .hero,body.dark-mode .lernwick-home-sections{background:var(--dar
 body.dark-mode .hero h1,body.dark-mode .hero .happy strong,body.dark-mode .hero .stats__list dd,body.dark-mode .lernwick-section-heading h2,body.dark-mode .lernwick-about-copy h2{color:var(--dark-text)}
 body.dark-mode .hero__lede,body.dark-mode .hero__path,body.dark-mode .hero .happy,body.dark-mode .lernwick-section-heading p:not(.lernwick-note),body.dark-mode .lernwick-pathway-body p,body.dark-mode .lernwick-about-copy>p:not(.lernwick-note),body.dark-mode .lernwick-about-copy li{color:var(--dark-text-secondary)}
 body.dark-mode .hero .blob,body.dark-mode .hero .process,body.dark-mode .lernwick-pathway-card{background:var(--dark-surface);border-color:var(--dark-border)}
+body.dark-mode .lernwick-pathway-card:nth-child(3n + 2){background:var(--dark-surface-raised)}
+body.dark-mode .lernwick-pathway-card:nth-child(3n){background:color-mix(in srgb,var(--dark-primary) 12%,var(--dark-surface))}
 body.dark-mode .hero .fcard,body.dark-mode .lernwick-about-sticker{background:var(--dark-surface-raised);color:var(--dark-text)}
 body.dark-mode .hero .fchip,body.dark-mode .hero .collage{background:var(--dark-surface-raised)}
 body.dark-mode .hero .process:hover{background:var(--dark-surface-raised)}
 body.dark-mode .hero .badge,body.dark-mode .hero .process__ic{background:var(--dark-surface-raised);color:var(--dark-text)}
 body.dark-mode .hero .pill{background:var(--dark-surface);border-color:var(--dark-border);color:var(--dark-text)}
 body.dark-mode .lernwick-home-sections .section--soft{background:var(--dark-surface)}
-body.dark-mode .lernwick-step-card,body.dark-mode .lernwick-step-card:nth-child(even){background:var(--dark-surface-raised);color:var(--dark-text)}
+body.dark-mode .lernwick-step-card{background:var(--dark-surface);color:var(--dark-text)}
+body.dark-mode .lernwick-step-card:nth-child(4n + 2){background:var(--dark-surface-raised)}
+body.dark-mode .lernwick-step-card:nth-child(4n + 3){background:color-mix(in srgb,var(--dark-primary) 12%,var(--dark-surface))}
+body.dark-mode .lernwick-step-card:nth-child(4n){background:var(--dark-background)}
 body.dark-mode .lernwick-step-card p{color:var(--dark-text-secondary)}
 body.dark-mode .lernwick-pathway-image{background:var(--dark-surface-raised)}
 body.dark-mode .lernwick-pathway-image>span{background:var(--dark-surface);color:var(--dark-text)}
