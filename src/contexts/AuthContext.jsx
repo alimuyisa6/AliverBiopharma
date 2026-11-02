@@ -22,7 +22,7 @@ import {
 
 import { getUser } from '../api/cachedClient';
 
-import GlobalLoader from '../components/GlobalLoader/GlobalLoader';
+import PageSkeleton from '../components/Loading/PageSkeleton';
 
 export const AuthContext = createContext(null);
 
@@ -328,7 +328,7 @@ export function AuthProvider({ children }) {
         refresh
       }}
     >
-      {loading ? <GlobalLoader /> : children}
+      {children}
     </AuthContext.Provider>
   );
 }
