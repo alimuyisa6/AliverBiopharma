@@ -1444,7 +1444,7 @@
 }
 
 .quiz-answer-loader-dot {
-  transform: rotate(var(--quiz-loader-angle) translateX(var(--quiz-loader-orbit-radius) rotate(calc(var(--quiz-loader-angle) * -1));
+  transform: rotate(var(--quiz-loader-angle)) translateX(var(--quiz-loader-orbit-radius)) rotate(calc(var(--quiz-loader-angle) * -1));
   z-index: var(--quiz-loader-z);
 }
 
