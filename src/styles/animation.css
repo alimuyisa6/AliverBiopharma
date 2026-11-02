@@ -198,5 +198,49 @@ body.accessibility-reduce-motion .scroll-reveal {
   }
 }
 
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 16px, 0);
+  transition: opacity 460ms var(--ease-standard), transform 460ms var(--ease-standard);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translate3d(0, 16px, 0);
+  transition: opacity 460ms var(--ease-standard), transform 460ms var(--ease-standard);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+body.accessibility-reduce-motion .reveal,
+body.accessibility-reduce-motion .scroll-reveal {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 body.dark-mode .animation-card,
-body.dark-mode .animated-panel { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .animated-panel {
+  background: var(--dark-surface);
+  color: var(--dark-text);
+  border-color: var(--dark-border);
+}
