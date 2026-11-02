@@ -846,7 +846,7 @@ body.dark-mode {
   .auth-page {
     width: min(calc(100% - (var(--space-4) * 2)), var(--auth-shell-max-width));
     min-height: auto;
-    margin: calc(-1 * var(--header-height) + var(--space-5) auto var(--space-5);
+    margin: calc(-1 * var(--header-height) + var(--space-5)) auto var(--space-5);
     overflow: hidden;
     border: 1px solid var(--auth-glass-white-72);
     border-radius: var(--auth-radius-xl);
