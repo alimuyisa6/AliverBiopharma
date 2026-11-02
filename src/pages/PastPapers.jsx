@@ -786,7 +786,7 @@ export default function PastPapers() {
                   <Skeleton width="100%" height={14} borderRadius="var(--radius-sm)" />
                   <Skeleton width="60%" height={14} borderRadius="var(--radius-sm)" />
                 </div>
-              </article>
+              </div>
             ))}
           </div>
         ) : papers.length === 0 ? (
@@ -893,16 +893,13 @@ export default function PastPapers() {
                   ) : (
                     <DownloadButton
                       loading={downloadingId === paper.id}
-                      onClick={(event) => {
-                        event.stopPropagation();
-                        handleDownload(paper);
-                      }}
+                      onClick={() => handleDownload(paper)}
                     >
                       {user ? 'Download paper' : 'Sign in to download'}
                     </DownloadButton>
                   )}
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         )}
