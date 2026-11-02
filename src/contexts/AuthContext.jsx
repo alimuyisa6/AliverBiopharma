@@ -373,9 +373,7 @@ export function ProtectedRoute({ children }) {
   ]);
 
   if (loading) {
-    return (
-      <GlobalLoader />
-    );
+    return <PageSkeleton variant="compact" />;
   }
 
   if (!user) {
