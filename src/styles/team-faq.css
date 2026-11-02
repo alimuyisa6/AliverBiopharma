@@ -363,7 +363,7 @@
   grid-template-columns: minmax(0, 1fr) minmax(300px, 0.9fr);
   align-items: center;
   gap: var(--space-10);
-  padding: clamp(var(--space-12), 7vw, var(--space-20) max(var(--space-5), calc((100vw - var(--content-max-width)) / 2));
+  padding: clamp(var(--space-12), 7vw, var(--space-20)) max(var(--space-5), calc((100vw - var(--content-max-width)) / 2));
   background: var(--soft);
   border-block-end: 1px solid var(--border-subtle);
 }
