@@ -88,13 +88,7 @@ export default function AdSlot({
         <span>{label}</span>
       </div>
 
-      <a
-        href={ad.landing_url}
-        className="ad-slot-card"
-        onClick={handleClick}
-        target="_blank"
-        rel="noopener noreferrer sponsored"
-      >
+      <article className="ad-slot-card">
         {ad.image_url && (
           <div className="ad-slot-media">
             <img
@@ -113,12 +107,18 @@ export default function AdSlot({
           {ad.body_text && (
             <p className="ad-slot-body">{ad.body_text}</p>
           )}
-          <span className="ad-slot-cta">
+          <a
+            href={ad.landing_url}
+            className="ad-slot-cta"
+            onClick={handleClick}
+            target="_blank"
+            rel="noopener noreferrer sponsored"
+          >
             {ad.cta_text || 'Learn more'}
             <Icon name="arrow-right" aria-hidden="true" />
-          </span>
+          </a>
         </div>
-      </a>
+      </article>
     </aside>
   );
 }
