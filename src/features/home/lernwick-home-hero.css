@@ -4,8 +4,25 @@
 .hero .note{font:700 1.35rem/1.1 var(--f-hand);color:var(--primary-dark);transform:rotate(-3deg);display:inline-block}
 .hero h1{max-width:47rem;font-family:var(--f-display);font-size:var(--t-hero);font-weight:800;line-height:1.12;letter-spacing:-.04em;color:var(--ink)}
 .hero h1 .squiggle{display:inline-block;width:1.35em;height:auto;margin-inline:.08em;color:var(--primary);vertical-align:middle}
-.hero .hl{position:relative;z-index:0;display:inline-block}
-.hero .hl:before{content:"";position:absolute;z-index:-1;left:-.12em;top:.08em;width:1.08em;height:1.02em;border-radius:39% 61% 28% 72%/56% 34% 66% 44%;background:var(--primary);transform:rotate(-9deg) skewX(-7deg)}
+.hero .hl {
+  position: relative;
+  z-index: 0;
+  display: inline-block;
+  color: var(--white);
+  isolation: isolate;
+}
+
+.hero .hl::before {
+  position: absolute;
+  z-index: -1;
+  inset: .02em -.12em -.04em;
+  border: 2px solid var(--ink);
+  border-radius: 39% 61% 28% 72% / 56% 34% 66% 44%;
+  background: var(--primary-dark);
+  box-shadow: 0 0 0 3px var(--background);
+  content: "";
+  transform: rotate(-9deg) skewX(-7deg);
+}
 .hero__lede{max-width:33rem;color:var(--ink-2);font-size:var(--t-md);line-height:1.75}
 .hero__path{display:flex;align-items:center;gap:.6rem;color:var(--ink-2);font-size:var(--t-sm)}
 .hero__path svg{width:1.2rem;height:1.2rem;color:var(--primary-dark)}
