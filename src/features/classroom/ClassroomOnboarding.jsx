@@ -1,6 +1,7 @@
  // pages/ClassroomOnboarding.jsx
 import React, { useState, useEffect } from 'react';
 import { getClassroomLevels, getClassroomTopics } from '../../api/cachedClient';
+import '../../styles/classroom-onboarding.css';
 
 
 const CARD_COLOR_CLASS = [
@@ -93,10 +94,9 @@ export function ClassroomOnboarding({ onComplete }) {
           <h3>Select Your Level</h3>
           <div className="onboarding-grid">
             {levels.map((lvl, i) => (
-              <button
+              <article
                 key={lvl.key}
                 className={`onboarding-card ${CARD_COLOR_CLASS[i % CARD_COLOR_CLASS.length]} ${selectedLevel?.key === lvl.key ? 'selected' : ''}`}
-                onClick={() => handleLevelSelect(lvl)}
               >
                 {lvl.image_url && (
                   <div className="onboarding-card-media">
@@ -107,7 +107,8 @@ export function ClassroomOnboarding({ onComplete }) {
                   <i className={`fa-solid ${lvl.icon}`}></i>
                   <span>{lvl.key}</span>
                 </div>
-              </button>
+                <button type="button" className="onboarding-card-select" onClick={() => handleLevelSelect(lvl)}>Select level</button>
+              </article>
             ))}
           </div>
         </div>
@@ -126,10 +127,9 @@ export function ClassroomOnboarding({ onComplete }) {
               const label = isObj ? cls.name : cls;
               const imageUrl = isObj ? cls.image_url : null;
               return (
-                <button
+                <article
                   key={key}
                   className={`onboarding-card ${CARD_COLOR_CLASS[i % CARD_COLOR_CLASS.length]} ${selectedClass === cls ? 'selected' : ''}`}
-                  onClick={() => handleClassSelect(cls)}
                 >
                   {imageUrl && (
                     <div className="onboarding-card-media">
@@ -140,7 +140,8 @@ export function ClassroomOnboarding({ onComplete }) {
                     <i className={`fa-solid ${isObj ? cls.icon || 'fa-mortar-pestle' : selectedLevel.icon}`}></i>
                     <span>{label}</span>
                   </div>
-                </button>
+                  <button type="button" className="onboarding-card-select" onClick={() => handleClassSelect(cls)}>Select class</button>
+                </article>
               );
             })}
           </div>
@@ -160,10 +161,9 @@ export function ClassroomOnboarding({ onComplete }) {
           ) : (
             <div className="onboarding-topic-list">
               {topics.map((topic) => (
-                <button
+                <article
                   key={topic.id}
                   className={`onboarding-topic-card ${selectedTopic?.id === topic.id ? 'selected' : ''}`}
-                  onClick={() => setSelectedTopic(topic)}
                 >
                   <div className="topic-card-content">
                     {topic.is_hard_topic ? (
@@ -174,7 +174,10 @@ export function ClassroomOnboarding({ onComplete }) {
                     <span className="topic-name">{topic.topic_name}</span>
                     {topic.is_hard_topic && <span className="topic-badge hard">Hard Topic</span>}
                   </div>
-                </button>
+                  <button type="button" className="onboarding-topic-select" onClick={() => setSelectedTopic(topic)}>
+                    {selectedTopic?.id === topic.id ? 'Selected' : 'Select topic'}
+                  </button>
+                </article>
               ))}
             </div>
           )}
