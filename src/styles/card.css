@@ -131,7 +131,7 @@
 }
 
 .card-interactive {
-  cursor: pointer;
+  cursor: default;
   transition:
     border-color var(--duration-fast) var(--ease-standard),
     box-shadow var(--duration-fast) var(--ease-standard),
