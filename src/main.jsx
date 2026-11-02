@@ -136,65 +136,82 @@ class ErrorBoundary extends React.Component {
 }
 
 function initRevealObserver() {
-  if (!('IntersectionObserver' in window)) {
-    document.querySelectorAll('.reveal, .scroll-reveal').forEach((element) => {
-      element.classList.add('in', 'is-visible');
-    });
-    return () => {};
-  }
+  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const revealSelector = [
+    '#main-content [data-scroll-reveal]',
+    '#main-content .section',
+    '#main-content .section > .card',
+    '#main-content .section > .grid > *',
+    '#main-content .section > .section-grid > *',
+    '#main-content .reveal',
+    '#main-content .scroll-reveal'
+  ].join(', ');
 
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reducedMotion) {
-    document.querySelectorAll('.reveal, .scroll-reveal').forEach((element) => {
-      element.classList.add('in', 'is-visible');
+  const revealImmediately = () => {
+    document.querySelectorAll(revealSelector).forEach((element) => {
+      element.classList.add('scroll-reveal', 'is-visible');
+      element.classList.add('in');
     });
+  };
+
+  if (!('IntersectionObserver' in window) || motionQuery.matches) {
+    revealImmediately();
     return () => {};
   }
 
   const observer = new IntersectionObserver((entries, activeObserver) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
-      entry.target.classList.add('in', 'is-visible');
+      entry.target.classList.add('is-visible', 'in');
       activeObserver.unobserve(entry.target);
     });
   }, {
-    threshold: 0.08,
-    rootMargin: '0px 0px -48px 0px'
+    threshold: 0.04,
+    rootMargin: '0px 0px -32px 0px'
   });
 
-  const observeElements = (root = document) => {
-    root.querySelectorAll?.('.reveal:not(.in), .scroll-reveal:not(.is-visible)').forEach((element) => {
-      observer.observe(element);
+  const prepare = (root = document) => {
+    if (root.nodeType === Node.ELEMENT_NODE && root.matches?.(revealSelector)) {
+      root.classList.add('scroll-reveal');
+      if (!root.classList.contains('is-visible')) observer.observe(root);
+    }
+
+    root.querySelectorAll?.(revealSelector).forEach((element) => {
+      element.classList.add('scroll-reveal');
+      if (!element.classList.contains('is-visible')) observer.observe(element);
     });
   };
 
-  observeElements();
+  prepare();
 
-  let observeFrame = 0;
-  const mutationObserver = new MutationObserver((mutations) => {
-    if (!mutations.some((mutation) => mutation.addedNodes.length)) return;
-    if (observeFrame) return;
-    observeFrame = requestAnimationFrame(() => {
-      observeFrame = 0;
-      mutations.forEach((mutation) => {
-        mutation.addedNodes.forEach((node) => {
-          if (node.nodeType === Node.ELEMENT_NODE) {
-            if (node.matches?.('.reveal, .scroll-reveal')) {
-              observer.observe(node);
-            }
-            observeElements(node);
-          }
+  let frame = 0;
+  const mutations = new MutationObserver((records) => {
+    if (!records.some((record) => record.addedNodes.length)) return;
+    if (frame) return;
+    frame = requestAnimationFrame(() => {
+      frame = 0;
+      records.forEach((record) => {
+        record.addedNodes.forEach((node) => {
+          if (node.nodeType === Node.ELEMENT_NODE) prepare(node);
         });
       });
     });
   });
 
-  mutationObserver.observe(document.body, { childList: true, subtree: true });
+  mutations.observe(document.body, { childList: true, subtree: true });
+
+  const handleMotionChange = (event) => {
+    if (!event.matches) return;
+    revealImmediately();
+    observer.disconnect();
+  };
+  motionQuery.addEventListener?.('change', handleMotionChange);
 
   return () => {
     observer.disconnect();
-    mutationObserver.disconnect();
-    if (observeFrame) cancelAnimationFrame(observeFrame);
+    mutations.disconnect();
+    motionQuery.removeEventListener?.('change', handleMotionChange);
+    if (frame) cancelAnimationFrame(frame);
   };
 }
 let cleanupReveal;
