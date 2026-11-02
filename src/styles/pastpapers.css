@@ -1201,3 +1201,7 @@ body.dark-mode .pp-page :is(input, textarea)::placeholder { color: var(--dark-te
   bottom: auto;
   left: .7rem;
 }
+
+
+.pp-card { cursor: default; }
+.pp-card-open { margin-right: auto; }
