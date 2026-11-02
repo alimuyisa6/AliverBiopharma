@@ -21,8 +21,6 @@ const Card = forwardRef(function Card(
   },
   ref
 ) {
-  const isClickable = !!onClick && !loading;
-  const Wrapper = isClickable ? 'button' : 'div';
 
   let imageClassName = 'card-image';
   if (scoop) imageClassName += ` card-image-scoop-${scoop}`;
@@ -30,7 +28,6 @@ const Card = forwardRef(function Card(
 
   let cardClass = 'card';
   if (variant) cardClass += ` card-${variant}`;
-  if (isClickable) cardClass += ' card-clickable';
   if (className) cardClass += ` ${className}`;
 
   const hasMedia = !!image;
@@ -51,12 +48,7 @@ const Card = forwardRef(function Card(
   }
 
   return (
-    <Wrapper
-      ref={ref}
-      className={cardClass}
-      onClick={onClick}
-      {...props}
-    >
+    <div ref={ref} className={cardClass} {...props}>
       {media && <div className="card-media-slot">{media}</div>}
 
       {hasMedia && (
@@ -73,7 +65,7 @@ const Card = forwardRef(function Card(
       {children}
 
       {footer && <div className="card-footer">{footer}</div>}
-    </Wrapper>
+    </div>
   );
 });
 
