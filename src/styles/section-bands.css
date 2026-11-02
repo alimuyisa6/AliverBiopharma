@@ -274,17 +274,29 @@ body.dark-mode .home-page > .home-newsletter-section .eyebrow {
   box-shadow: var(--shadow-card);
 }
 
-.home-page .home-curriculum-node-link {
+.home-page .home-curriculum-node-item {
   min-height: 4.25rem;
   padding: var(--space-3) var(--space-4);
   border-color: var(--line);
   background: var(--white);
-  transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
 }
-
-.home-page .home-curriculum-node-link:hover,
-.home-page .home-curriculum-node-link:focus-visible {
+.home-page .home-curriculum-node-action {
+  border-color: var(--primary);
+  background: var(--white);
+  color: var(--primary-dark);
+}
+.home-page .home-curriculum-node-action:hover,
+.home-page .home-curriculum-node-action:focus-visible {
   background: var(--soft);
+}
+body.dark-mode .home-page .home-curriculum-node-item {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+}
+body.dark-mode .home-page .home-curriculum-node-action {
+  border-color: var(--dark-primary);
+  background: var(--dark-surface-raised);
+  color: var(--dark-primary);
 }
 
 .home-page .home-curriculum-node-marker {
