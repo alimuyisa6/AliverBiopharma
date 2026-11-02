@@ -52,11 +52,7 @@ export function PdfLibrarySection({ pdfs, onPreview, onDownload }) {
                     {safePdfs
                       .filter(p => (p.topic || 'General') === topic)
                       .map(pdf => (
-                        <div
-                          key={pdf.id}
-                          className="pdf-card"
-                          onClick={() => onPreview(pdf)}
-                        >
+                        <article key={pdf.id} className="pdf-card">
                           <div className="pdf-card-icon">
                             <i className="fa-solid fa-file-pdf"></i>
                           </div>
@@ -68,7 +64,10 @@ export function PdfLibrarySection({ pdfs, onPreview, onDownload }) {
                           <div className="pdf-card-author">
                             {pdf.author || 'Unknown'}
                           </div>
-                        </div>
+                          <button type="button" className="pdf-card-open" onClick={() => onPreview(pdf)}>
+                            Preview PDF <i className="fa-solid fa-arrow-right" aria-hidden="true" />
+                          </button>
+                        </article>
                       ))}
                   </div>
                 </div>
