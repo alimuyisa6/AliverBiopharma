@@ -136,58 +136,67 @@ class ErrorBoundary extends React.Component {
 }
 
 function initRevealObserver() {
-  try {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in');
-        }
-      });
-    }, { threshold: 0.25, rootMargin: '0px 0px -50px 0px' });
-
-    const observeElements = () => {
-      document.querySelectorAll('.reveal:not(.in)').forEach(el => {
-        observer.observe(el);
-      });
-    };
-
-    // Initial observation after a short delay (so React has rendered)
-    setTimeout(observeElements, 100);
-
-    // Re-observe DOM changes at most once per animation frame.
-    // React can produce several mutations during one render; batching
-    // prevents repeated full-document queries from competing with rendering.
-    let observeFrame = null;
-    const mutationObserver = new MutationObserver(() => {
-      if (observeFrame !== null) return;
-      observeFrame = requestAnimationFrame(() => {
-        observeFrame = null;
-        observeElements();
-      });
+  if (!('IntersectionObserver' in window)) {
+    document.querySelectorAll('.reveal, .scroll-reveal').forEach((element) => {
+      element.classList.add('in', 'is-visible');
     });
-    mutationObserver.observe(document.body, { childList: true, subtree: true });
-
-    // Fallback: after 2 seconds, force‑reveal any still‑hidden elements
-    setTimeout(() => {
-      document.querySelectorAll('.reveal:not(.in)').forEach(el => {
-        el.classList.add('in');
-      });
-    }, 2000);
-
-    return () => {
-      observer.disconnect();
-      mutationObserver.disconnect();
-      if (observeFrame !== null) {
-        cancelAnimationFrame(observeFrame);
-        observeFrame = null;
-      }
-    };
-  } catch (e) {
-    console.warn('Reveal observer init failed', e);
     return () => {};
   }
-}
 
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reducedMotion) {
+    document.querySelectorAll('.reveal, .scroll-reveal').forEach((element) => {
+      element.classList.add('in', 'is-visible');
+    });
+    return () => {};
+  }
+
+  const observer = new IntersectionObserver((entries, activeObserver) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('in', 'is-visible');
+      activeObserver.unobserve(entry.target);
+    });
+  }, {
+    threshold: 0.08,
+    rootMargin: '0px 0px -48px 0px'
+  });
+
+  const observeElements = (root = document) => {
+    root.querySelectorAll?.('.reveal:not(.in), .scroll-reveal:not(.is-visible)').forEach((element) => {
+      observer.observe(element);
+    });
+  };
+
+  observeElements();
+
+  let observeFrame = 0;
+  const mutationObserver = new MutationObserver((mutations) => {
+    if (!mutations.some((mutation) => mutation.addedNodes.length)) return;
+    if (observeFrame) return;
+    observeFrame = requestAnimationFrame(() => {
+      observeFrame = 0;
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+          if (node.nodeType === Node.ELEMENT_NODE) {
+            if (node.matches?.('.reveal, .scroll-reveal')) {
+              observer.observe(node);
+            }
+            observeElements(node);
+          }
+        });
+      });
+    });
+  });
+
+  mutationObserver.observe(document.body, { childList: true, subtree: true });
+
+  return () => {
+    observer.disconnect();
+    mutationObserver.disconnect();
+    if (observeFrame) cancelAnimationFrame(observeFrame);
+  };
+}
 let cleanupReveal;
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
