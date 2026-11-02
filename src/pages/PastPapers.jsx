@@ -786,7 +786,7 @@ export default function PastPapers() {
                   <Skeleton width="100%" height={14} borderRadius="var(--radius-sm)" />
                   <Skeleton width="60%" height={14} borderRadius="var(--radius-sm)" />
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         ) : papers.length === 0 ? (
@@ -817,10 +817,9 @@ export default function PastPapers() {
         ) : (
           <div className="pp-grid">
             {papers.map((paper) => (
-              <div
+              <article
                 key={paper.id}
                 className={`pp-card ${paper.is_premium ? 'pp-card-premium' : ''}`}
-                onClick={() => handlePaperOpen(paper)}
               >
                 <span
                   className={`pp-premium-ribbon ${paper.is_premium ? 'pp-premium-ribbon--premium' : 'pp-premium-ribbon--free'}`}
@@ -843,10 +842,7 @@ export default function PastPapers() {
                     <h3 className="pp-card-title">{paper.title}</h3>
                     <button
                       className={`pp-bookmark-btn ${bookmarkedIds.has(paper.id) ? 'active' : ''}`}
-                      onClick={(event) => {
-                        event.stopPropagation();
-                        handleBookmark(paper.id);
-                      }}
+                      onClick={() => handleBookmark(paper.id)}
                       aria-label={bookmarkedIds.has(paper.id) ? 'Remove bookmark' : 'Bookmark paper'}
                       disabled={bookmarkingId === paper.id}
                     >
@@ -884,13 +880,13 @@ export default function PastPapers() {
                   </div>
                 </div>
                 <div className="pp-card-footer">
+                  <Button variant="secondary" size="sm" className="pp-card-open" onClick={() => handlePaperOpen(paper)}>
+                    View details
+                  </Button>
                   {paper.is_premium ? (
                     <PremiumAccessButton
                       loading={downloadingId === paper.id}
-                      onClick={(event) => {
-                        event.stopPropagation();
-                        handleDownload(paper);
-                      }}
+                      onClick={() => handleDownload(paper)}
                     >
                       Download premium paper
                     </PremiumAccessButton>
