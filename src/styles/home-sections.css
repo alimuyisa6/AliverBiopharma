@@ -496,25 +496,39 @@ body.dark-mode .testimonial-flat cite { color: var(--success-hover); }
 }
 
 
-/* Clickable curriculum entry points: learners advance one level at a time. */
-.home-curriculum-node-link {
+/* Curriculum cards use a dedicated action link rather than a full-card click target. */
+.home-curriculum-node-item {
   display: flex;
-  min-height: 3.5rem;
+  min-height: 4.25rem;
   align-items: center;
   gap: var(--stack-gap-tight);
   padding: var(--space-3) var(--card-padding-x-compact);
-  color: var(--text-main);
-  text-decoration: none;
   border-block-start: 1px solid var(--border-default);
-  transition: background-color var(--duration-fast) var(--ease-standard);
+  color: var(--text-main);
 }
-.home-curriculum-node-link:first-child { border-block-start: 0; }
-.home-curriculum-node-link:hover,
-.home-curriculum-node-link:focus-visible { background: var(--bg-card-hover); }
+.home-curriculum-node-item:first-child { border-block-start: 0; }
 .home-curriculum-node-copy { display: flex; flex: 1; min-width: 0; flex-direction: column; gap: var(--space-1); }
 .home-curriculum-node-copy .home-curriculum-node-name { overflow-wrap: anywhere; }
-.home-curriculum-node-link > svg { flex: 0 0 auto; color: var(--primary); }
-.home-curriculum-node-link .home-curriculum-node-marker { border-radius: 50%; }
+.home-curriculum-node-item .home-curriculum-node-marker { border-radius: 50%; }
+.home-curriculum-node-action {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 2.5rem;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--primary);
+  border-radius: var(--radius-button);
+  color: var(--primary-dark);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  text-decoration: none;
+}
+.home-curriculum-node-action:hover,
+.home-curriculum-node-action:focus-visible { background: var(--bg-card-hover); }
+.home-curriculum-node-action:focus-visible { outline: 3px solid var(--primary-ring); outline-offset: 3px; }
+.home-curriculum-node-action > svg { flex: 0 0 auto; color: currentColor; }
 
 
 /* Premium homepage rhythm: separate section intensities, centered narrow
