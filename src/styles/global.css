@@ -550,8 +550,6 @@ body.dark-mode :is(.btn-primary, .button-primary, .button--primary, .bg-primary)
     transition-duration: 0.01ms !important;
   }
 
-  .spinner,
-  .spinner *,
   .skeleton {
     animation-duration: revert !important;
     animation-iteration-count: infinite !important;
