@@ -1,4 +1,4 @@
-.hero{padding-top:clamp(.5rem,0rem + 2vw,2rem);padding-bottom:clamp(2.5rem,2rem + 3vw,4rem);background:var(--background);color:var(--ink)}
+.hero{padding-top:clamp(3rem,2rem + 2.5vw,4.5rem);padding-bottom:clamp(2.5rem,2rem + 3vw,4rem);background:var(--background);color:var(--ink)}
 .hero__grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(2rem,1rem + 3vw,4rem);align-items:center}
 .hero__copy{position:relative;display:grid;grid-template-columns:minmax(0,1fr);gap:1.3rem;justify-items:start;padding-left:2.4rem}
 .hero .note{font:700 1.35rem/1.1 var(--f-hand);color:var(--primary-dark);transform:rotate(-3deg);display:inline-block}
