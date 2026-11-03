@@ -520,12 +520,14 @@ export default function Profile() {
     if (paymentStatus !== 'success') return undefined;
 
     let active = true;
+    let activated = false;
     let attempts = 0;
     let timer;
 
     setBillingPaymentMessage('Payment received. Waiting for the payment provider to confirm your subscription…');
 
     const verifyActivation = async () => {
+      if (activated) return;
       attempts += 1;
       try {
         const latest = await getBillingSummary();
@@ -533,11 +535,10 @@ export default function Profile() {
         setBilling(latest);
         const expiry = latest?.subscription?.expires_at ? new Date(latest.subscription.expires_at).getTime() : 0;
         if (latest?.subscription?.status === 'active' && expiry > Date.now()) {
+          activated = true;
+          if (timer) clearInterval(timer);
           setBillingPaymentMessage('Your premium subscription is active.');
-          if (returnToAfterPayment) {
-            navigate(returnToAfterPayment, { replace: true });
-            return;
-          }
+          if (returnToAfterPayment) navigate(returnToAfterPayment, { replace: true });
           return;
         }
       } catch {}
@@ -547,14 +548,14 @@ export default function Profile() {
       }
     };
 
-    verifyActivation();
     timer = setInterval(() => {
-      if (attempts >= 24) {
+      if (activated || attempts >= 24) {
         clearInterval(timer);
         return;
       }
       verifyActivation();
     }, 5000);
+    verifyActivation();
 
     return () => {
       active = false;
