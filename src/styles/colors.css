@@ -62,6 +62,8 @@
   --shadow-black-40: rgb(0 0 0 / 40%);
   --shadow-black-35: rgb(0 0 0 / 35%);
   --shadow-black-18: rgb(0 0 0 / 18%);
+  --shadow-black-20: rgb(0 0 0 / 20%);
+  --shadow-black-24: rgb(0 0 0 / 24%);
   --shadow-black-05: rgb(0 0 0 / 5%);
   --shadow-black-17: rgb(0 0 0 / 17%);
   --shadow-ink-12: rgb(16 36 27 / 12%);
@@ -72,7 +74,6 @@
   --glass-white-10: rgb(255 255 255 / 10%);
   --glass-white-78: rgb(255 255 255 / 78%);
   --glass-white-07: rgb(255 255 255 / 7%);
-  --glass-white-17: rgb(255 255 255 / 17%);
   --dark-overlay-45: rgb(27 27 31 / 45%);
   --dark-overlay-12: rgb(27 27 31 / 12%);
   --skeleton-text: var(--text);
