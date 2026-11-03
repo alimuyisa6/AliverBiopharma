@@ -120,9 +120,9 @@
 }
 
 .ch-badge--negative {
-  background: #fcebed;
-  border-color: #f0b8bf;
-  color: #8f1d29;
+  background: var(--danger-background);
+  border-color: var(--danger-border);
+  color: var(--danger-hover);
 }
 
 .ch-stat-box,

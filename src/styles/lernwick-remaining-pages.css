@@ -81,7 +81,7 @@
   border: 1px solid var(--primary);
   border-radius: var(--r-pill);
   background: var(--primary);
-  color: var(--ink);
+  color: var(--text-on-primary);
   font-family: var(--f-display);
   font-weight: 700;
 }

@@ -34,7 +34,7 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  box-shadow: 0 8px 20px rgb(27 27 31 / 12%);
+  box-shadow: 0 8px 20px var(--dark-overlay-12);
   content: "";
 }
 
