@@ -1,8 +1,8 @@
 :root {
-  --primary: #4cbf74;
+  --primary: #19693a;
   --primary-light: #effbf2;
   --primary-dark: #13452a;
-  --primary-hover: #2aa257;
+  --primary-hover: #175431;
   --primary-border: #b3eac3;
   --primary-ring: rgb(29 132 70 / 24%);
   --secondary: #175431;
@@ -44,12 +44,9 @@
   --glass-white-25: rgb(255 255 255 / 25%);
   --glass-white-38: rgb(255 255 255 / 38%);
   --glass-white-22: rgb(255 255 255 / 22%);
-  --glass-white-07: rgb(255 255 255 / 7%);
-  --glass-white-10: rgb(255 255 255 / 10%);
   --glass-white-13: rgb(255 255 255 / 13%);
   --glass-white-24: rgb(255 255 255 / 24%);
   --glass-white-16: rgb(255 255 255 / 16%);
-  --glass-white-78: rgb(255 255 255 / 78%);
   --glass-white-92: rgb(255 255 255 / 92%);
   --glass-white-88: rgb(255 255 255 / 88%);
   --glass-white-55: rgb(255 255 255 / 55%);
@@ -71,9 +68,6 @@
   --shadow-ink-18: rgb(16 36 27 / 18%);
   --shadow-ink-45: rgb(16 36 27 / 45%);
   --glass-white-17: rgb(255 255 255 / 17%);
-  --glass-white-10: rgb(255 255 255 / 10%);
-  --glass-white-78: rgb(255 255 255 / 78%);
-  --glass-white-07: rgb(255 255 255 / 7%);
   --dark-overlay-45: rgb(27 27 31 / 45%);
   --dark-overlay-12: rgb(27 27 31 / 12%);
   --skeleton-text: var(--text);
@@ -125,11 +119,11 @@
   --grey-100: #effbf2;
   --grey-200: #d9f5e0;
   --grey-300: #b3eac3;
-  --grey-400: #7fd89d;
-  --grey-500: #4cbf74;
-  --grey-600: #1d8446;
-  --grey-700: #19693a;
-  --grey-800: #175431;
+  --grey-400: #a2b9a8;
+  --grey-500: #607568;
+  --grey-600: #385447;
+  --grey-700: #2d4739;
+  --grey-800: #203b2d;
   --grey-900: #10241b;
   --success-color: #1d8446;
   --success-background: #effbf2;
