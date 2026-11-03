@@ -191,7 +191,7 @@ export default function HomeView(props) {
       )}
 
       <LernwickHomeSections />
-      <PricingCards plans={subscriptionPlans} />
+      <PricingCards plans={subscriptionPlans} user={user} />
       {user && <CurriculumSnapshot nodes={curriculumUnits} activeLevelName={activeLevelName} activeGroupName={activeGroupName} sections={sections} />}
 
       {user && <ChallengeTreasureCard challenge={dailyChallenge} onOpen={onOpenChallenge} />}
