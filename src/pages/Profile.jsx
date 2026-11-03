@@ -1,5 +1,6 @@
  import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
+import { getSafeReturnPath } from '../utils/subscriptionNavigation';
 import { useAuth } from '../contexts/AuthContext';
 import { useLayout } from '../contexts/LayoutContext';
 import { useI18n } from '../contexts/I18nContext';
@@ -279,6 +280,8 @@ export default function Profile() {
   const addToast = useToast();
 
   const [activeSection, setActiveSection] = useState(() => searchParams.get('section') || 'overview');
+  const returnToAfterPayment = getSafeReturnPath(searchParams.get('return_to'));
+  const paymentStatus = searchParams.get('payment');
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const [fullName, setFullName] = useState('');
@@ -507,6 +510,57 @@ export default function Profile() {
   useEffect(() => {
     loadSection(activeSection);
   }, [activeSection, loadSection]);
+
+  useEffect(() => {
+    if (paymentStatus === 'cancelled') {
+      setBillingPaymentMessage('Payment was cancelled. You can choose a subscription plan whenever you are ready.');
+      return undefined;
+    }
+
+    if (paymentStatus !== 'success') return undefined;
+
+    let active = true;
+    let attempts = 0;
+    let timer;
+
+    setBillingPaymentMessage('Payment received. Waiting for the payment provider to confirm your subscription…');
+
+    const verifyActivation = async () => {
+      attempts += 1;
+      try {
+        const latest = await getBillingSummary();
+        if (!active) return;
+        setBilling(latest);
+        const expiry = latest?.subscription?.expires_at ? new Date(latest.subscription.expires_at).getTime() : 0;
+        if (latest?.subscription?.status === 'active' && expiry > Date.now()) {
+          setBillingPaymentMessage('Your premium subscription is active.');
+          if (returnToAfterPayment) {
+            navigate(returnToAfterPayment, { replace: true });
+            return;
+          }
+          return;
+        }
+      } catch {}
+
+      if (attempts >= 24) {
+        setBillingPaymentMessage('Your payment is still being verified. Your access will update automatically after confirmation. You can refresh this page to check again.');
+      }
+    };
+
+    verifyActivation();
+    timer = setInterval(() => {
+      if (attempts >= 24) {
+        clearInterval(timer);
+        return;
+      }
+      verifyActivation();
+    }, 5000);
+
+    return () => {
+      active = false;
+      if (timer) clearInterval(timer);
+    };
+  }, [paymentStatus, returnToAfterPayment, navigate]);
 
   useEffect(() => {
     const handleEscape = (event) => {
