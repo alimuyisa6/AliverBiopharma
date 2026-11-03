@@ -2,7 +2,7 @@
   width: min(100% - 2rem, 76rem);
   min-height: 24rem;
   margin: clamp(1.5rem, 4vw, 3.5rem) auto;
-  color: var(--text-main, var(--text-main));
+  color: var(--text-main);
 }
 
 .page-skeleton__sr-only {
@@ -19,10 +19,10 @@
 .page-skeleton__card {
   position: relative;
   overflow: hidden;
-  border: 1px solid color-mix(in srgb, var(--primary, var(--primary)) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary) 18%, transparent);
   border-radius: 1.15rem;
-  background: color-mix(in srgb, var(--bg-card, var(--white)) 86%, var(--primary, var(--primary)) 14%);
-  box-shadow: 0 12px 34px color-mix(in srgb, var(--text-main, var(--text-main)) 5%, transparent), inset 0 1px 0 color-mix(in srgb, var(--white) 75%, transparent);
+  background: color-mix(in srgb, var(--bg-card) 86%, var(--primary) 14%);
+  box-shadow: 0 12px 34px color-mix(in srgb, var(--text-main) 5%, transparent), inset 0 1px 0 color-mix(in srgb, var(--white) 75%, transparent);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 }
@@ -41,7 +41,7 @@
   display: block;
   overflow: hidden;
   border-radius: .65rem;
-  background: color-mix(in srgb, var(--primary, var(--primary)) 20%, var(--bg-card, var(--white)));
+  background: color-mix(in srgb, var(--primary) 20%, var(--bg-card));
 }
 
 .page-skeleton__bar::after,
@@ -75,7 +75,7 @@
 .page-skeleton__pill {
   width: 7.5rem;
   height: 2.25rem;
-  border: 1px solid color-mix(in srgb, var(--primary, var(--primary)) 20%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary) 20%, transparent);
   border-radius: 999px;
 }
 
@@ -102,15 +102,15 @@
 
 body.dark-mode .page-skeleton__heading,
 body.dark-mode .page-skeleton__card {
-  border-color: color-mix(in srgb, var(--dark-primary, var(--dark-primary)) 28%, transparent);
-  background: color-mix(in srgb, var(--dark-surface, var(--dark-surface)) 88%, var(--dark-primary, var(--dark-primary)) 12%);
+  border-color: color-mix(in srgb, var(--dark-primary) 28%, transparent);
+  background: color-mix(in srgb, var(--dark-surface) 88%, var(--dark-primary) 12%);
   box-shadow: 0 14px 36px var(--shadow-black-20), inset 0 1px 0 var(--glass-white-07);
 }
 
 body.dark-mode .page-skeleton__bar,
 body.dark-mode .page-skeleton__pill,
 body.dark-mode .page-skeleton__block {
-  background: color-mix(in srgb, var(--dark-primary, var(--dark-primary)) 24%, var(--dark-surface, var(--dark-surface)));
+  background: color-mix(in srgb, var(--dark-primary) 24%, var(--dark-surface));
 }
 
 body.dark-mode .page-skeleton__bar::after,
