@@ -79,10 +79,10 @@
   --border-width-thick: 2px;
 
   --shadow-none: none;
-  --shadow-subtle: 0 1px 3px rgb(16 36 27 / 8%);
-  --shadow-card: 0 2px 5px rgb(16 36 27 / 7%), 0 12px 26px -16px rgb(16 36 27 / 24%);
-  --shadow-raised: 0 8px 20px rgb(16 36 27 / 10%), 0 18px 34px -20px rgb(16 36 27 / 28%);
-  --shadow-floating: 0 18px 45px rgb(16 36 27 / 14%);
+  --shadow-subtle: 0 1px 3px var(--shadow-ink-08);
+  --shadow-card: 0 2px 5px var(--shadow-ink-07), 0 12px 26px -16px var(--shadow-ink-24);
+  --shadow-raised: 0 8px 20px var(--shadow-ink-10), 0 18px 34px -20px var(--shadow-ink-28);
+  --shadow-floating: 0 18px 45px var(--shadow-ink-14);
   --shadow-focus: 0 0 0 3px var(--primary-ring);
   --shadow-sm: var(--shadow-subtle);
   --shadow-md: var(--shadow-card);
@@ -214,10 +214,10 @@
   --auth-success-soft: var(--success-background);
   --auth-warning: var(--warning-color);
   --auth-warning-soft: var(--warning-background);
-  --auth-shadow-xs: 0 1px 2px rgb(16 36 27 / 5%);
-  --auth-shadow-sm: 0 2px 6px rgb(16 36 27 / 6%);
-  --auth-shadow: 0 8px 20px -6px rgb(16 36 27 / 10%), 0 2px 6px rgb(16 36 27 / 5%);
-  --auth-shadow-lg: 0 30px 60px -20px rgb(16 36 27 / 20%);
+  --auth-shadow-xs: 0 1px 2px var(--shadow-ink-05);
+  --auth-shadow-sm: 0 2px 6px var(--shadow-ink-06);
+  --auth-shadow: 0 8px 20px -6px var(--shadow-ink-10), 0 2px 6px var(--shadow-ink-05);
+  --auth-shadow-lg: 0 30px 60px -20px var(--shadow-ink-20);
   --auth-radius-xs: 6px;
   --auth-radius-sm: 10px;
   --auth-radius: 14px;
@@ -282,10 +282,10 @@ body.dark-mode {
   --border-default: var(--dark-border);
   --border-strong: var(--dark-border);
   --border-focus: var(--dark-primary);
-  --shadow-subtle: 0 1px 2px rgb(0 0 0 / 30%);
-  --shadow-card: 0 4px 14px rgb(0 0 0 / 28%);
-  --shadow-raised: 0 10px 28px rgb(0 0 0 / 36%);
-  --shadow-floating: 0 18px 45px rgb(0 0 0 / 44%);
+  --shadow-subtle: 0 1px 2px var(--shadow-black-30);
+  --shadow-card: 0 4px 14px var(--shadow-black-28);
+  --shadow-raised: 0 10px 28px var(--shadow-black-36);
+  --shadow-floating: 0 18px 45px var(--shadow-black-44);
   --shadow-focus: 0 0 0 3px var(--primary-ring);
   --shadow-sm: var(--shadow-subtle);
   --shadow-md: var(--shadow-card);
@@ -443,7 +443,7 @@ body.accessibility-dyslexia-font * {
 }
 
 :root {
-  --overlay-backdrop: rgb(0 0 0 / 28%);
+  --overlay-backdrop: var(--shadow-black-28);
   --social-default-bg: var(--text);
   --social-facebook: var(--primary);
   --social-instagram: var(--accent);
@@ -457,7 +457,7 @@ body.accessibility-dyslexia-font * {
 
 :root {
   --skeleton-shimmer-base: color-mix(in srgb, var(--grey-500) 8%, transparent);
-  --skeleton-shimmer-highlight: rgb(255 255 255 / 35%);
+  --skeleton-shimmer-highlight: var(--glass-white-35);
 }
 
 body.dark-mode {
@@ -466,26 +466,26 @@ body.dark-mode {
 }
 
 :root {
-  --auth-glass-white-72: rgb(255 255 255 / 72%);
-  --auth-glass-white-52: rgb(255 255 255 / 52%);
-  --auth-glass-white-34: rgb(255 255 255 / 34%);
-  --auth-glass-white-12: rgb(255 255 255 / 12%);
-  --auth-glass-white-44: rgb(255 255 255 / 44%);
-  --auth-glass-white-27: rgb(255 255 255 / 27%);
-  --auth-glass-white-8: rgb(255 255 255 / 8%);
-  --auth-glass-white-43: rgb(255 255 255 / 43%);
-  --auth-glass-white-25: rgb(255 255 255 / 25%);
-  --auth-glass-white-38: rgb(255 255 255 / 38%);
-  --auth-glass-white-22: rgb(255 255 255 / 22%);
-  --auth-glass-white-7: rgb(255 255 255 / 7%);
-  --auth-glass-white-10: rgb(255 255 255 / 10%);
-  --auth-glass-white-13: rgb(255 255 255 / 13%);
-  --auth-glass-white-24: rgb(255 255 255 / 24%);
-  --auth-glass-white-16: rgb(255 255 255 / 16%);
-  --auth-glass-white-78: rgb(255 255 255 / 78%);
-  --auth-glass-white-92: rgb(255 255 255 / 92%);
-  --auth-glass-white-88: rgb(255 255 255 / 88%);
-  --auth-glass-white-55: rgb(255 255 255 / 55%);
+  --auth-glass-white-72: var(--glass-white-72);
+  --auth-glass-white-52: var(--glass-white-52);
+  --auth-glass-white-34: var(--glass-white-34);
+  --auth-glass-white-12: var(--glass-white-12);
+  --auth-glass-white-44: var(--glass-white-44);
+  --auth-glass-white-27: var(--glass-white-27);
+  --auth-glass-white-8: var(--glass-white-08);
+  --auth-glass-white-43: var(--glass-white-43);
+  --auth-glass-white-25: var(--glass-white-25);
+  --auth-glass-white-38: var(--glass-white-38);
+  --auth-glass-white-22: var(--glass-white-22);
+  --auth-glass-white-7: var(--glass-white-07);
+  --auth-glass-white-10: var(--glass-white-10);
+  --auth-glass-white-13: var(--glass-white-13);
+  --auth-glass-white-24: var(--glass-white-24);
+  --auth-glass-white-16: var(--glass-white-16);
+  --auth-glass-white-78: var(--glass-white-78);
+  --auth-glass-white-92: var(--glass-white-92);
+  --auth-glass-white-88: var(--glass-white-88);
+  --auth-glass-white-55: var(--glass-white-55);
 }
 
 body.dark-mode :is(.page-shell, .page-container, .page-content, .content-shell, .content-container, .settings-page, .settings-content, .library-page, .resources-page, .glossary-page, .profile-page, .dashboard-page, .classroom-page, .quiz-page, .flashcard-page, .recall-page, .search-page, .legal-page, .about-page, .contact-page, .donate-page, .maintenance-page) {
