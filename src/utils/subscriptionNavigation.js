@@ -23,7 +23,9 @@ export function redirectToSubscription(navigate, location, options = {}) {
 
 export function isPremiumAccessError(error) {
   const message = String(error?.message || error || '').toLowerCase();
-  return error?.code === 'premium_locked'
+  return error?.authorization?.reason === 'premium_required'
+    || error?.authorization?.reason === 'premium_locked'
+    || error?.code === 'premium_locked'
     || error?.reason === 'premium_locked'
     || /premium required|premium content|premium_locked|subscription required/.test(message);
 }
