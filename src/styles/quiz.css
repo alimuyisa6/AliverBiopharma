@@ -2065,7 +2065,7 @@ body.dark-mode .quiz-hero-card {
   border-color: var(--night-500);
   border-bottom-color: var(--night-450);
   background: var(--night-800);
-  box-shadow: 0 0.75rem 2.25rem rgb(0 0 0 / 18%);
+  box-shadow: 0 0.75rem 2.25rem var(--shadow-black-18);
 }
 body.dark-mode .quiz-hero-classlabel,
 body.dark-mode .quiz-hero-stats .stat-value,
