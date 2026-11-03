@@ -600,7 +600,7 @@ export default function NoteDetail() {
         <Breadcrumb items={breadcrumb} className="note-breadcrumb" />
 
         <article ref={contentRef} className="note-article">
-          <div className="note-hero">
+          <header className="note-hero">
             <div
               ref={progressBarRef}
               className="note-progress-bar"
@@ -612,7 +612,7 @@ export default function NoteDetail() {
             />
 
             <h1 className="note-title font-fraunces">{note.title}</h1>
-          </div>
+          </header>
 
           <div
             className="notes-content-container font-open-sans"
