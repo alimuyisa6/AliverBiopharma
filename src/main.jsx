@@ -30,11 +30,11 @@ import './styles/lernwick-system.css';
 function showFatalError(title, message, stack) {
   const root = document.getElementById('root') || document.body;
   root.innerHTML = `
-    <div style="padding:20px;font-family:monospace;color:#111;background:#fff;">
-      <h2 style="color:#c0392b;margin:0 0 8px;">${title}</h2>
+    <div style="padding:20px;font-family:monospace;color:var(--text);background:var(--white);">
+      <h2 style="color:var(--danger-color);margin:0 0 8px;">${title}</h2>
       <div style="margin-bottom:10px;">${message || 'Unknown error'}</div>
-      ${stack ? `<pre style="white-space:pre-wrap;background:#f5f5f5;padding:10px;border-radius:6px;font-size:12px;max-height:240px;overflow:auto;">${stack}</pre>` : ''}
-      <button onclick="window.location.reload()" style="margin-top:12px;padding:8px 16px;background:#c0392b;color:#fff;border:none;border-radius:6px;cursor:pointer;">Reload</button>
+      ${stack ? `<pre style="white-space:pre-wrap;background:var(--soft);padding:10px;border-radius:6px;font-size:12px;max-height:240px;overflow:auto;">${stack}</pre>` : ''}
+      <button onclick="window.location.reload()" style="margin-top:12px;padding:8px 16px;background:var(--danger-color);color:var(--white);border:none;border-radius:6px;cursor:pointer;">Reload</button>
     </div>
   `;
 }
