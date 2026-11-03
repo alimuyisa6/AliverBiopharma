@@ -71,7 +71,8 @@ export default function LearningJourney({
   linkedContent: suppliedLinkedContent,
   nodeName = '',
   nodeType = '',
-  returnTo = ''
+  returnTo = '',
+  excludeStages = []
 }) {
   const [fetchedLinkedContent, setFetchedLinkedContent] = useState(() => (
     unitId ? journeyCache.get(String(unitId)) ?? [] : []
@@ -221,10 +222,15 @@ export default function LearningJourney({
       }
     ];
 
+    const stageOrder = ['notes', 'flashcards', 'recall', 'quiz', 'papers', 'pdfs'];
+    const excluded = new Set(excludeStages);
+
     return result
+      .filter((stage) => !excluded.has(stage.key))
+      .sort((a, b) => stageOrder.indexOf(a.key) - stageOrder.indexOf(b.key))
       .map((stage) => ({ ...stage, meta: STAGE_META[stage.key] }))
       .filter((stage) => stage.items.length > 0);
-  }, [suppliedLinkedContent, fetchedLinkedContent, noteId, internalLinks, unitId, nodeType, returnTo]);
+  }, [suppliedLinkedContent, fetchedLinkedContent, noteId, internalLinks, unitId, nodeType, returnTo, excludeStages]);
 
   async function openDownload(item, type) {
     const key = type + '-' + item.id;
