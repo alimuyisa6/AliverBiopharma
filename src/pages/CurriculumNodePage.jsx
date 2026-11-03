@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Link, useParams, useSearchParams, useLocation } from 'react-router-dom';
+import { Link, useParams, useSearchParams, useLocation, useNavigate } from 'react-router-dom';
 import Container from '../components/Container/Container';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 import Spinner from '../components/Spinner/Spinner';
 import Icon from '../components/Icon/Icon';
 import LearningJourney from '../components/LearningJourney/LearningJourney';
-import { getSubscriptionPath } from '../utils/subscriptionNavigation';
+import { getSubscriptionPath, isPremiumAccessError, redirectToSubscription } from '../utils/subscriptionNavigation';
 import { getCurriculumNodeByPath, getCurriculumTree } from '../api/curriculumNavigation';
 
 function slugify(value) {
@@ -82,6 +82,7 @@ function renderBlockContent(block) {
 export default function CurriculumNodePage() {
   const { groupId, '*': nodePath = '' } = useParams();
   const location = useLocation();
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const resourceFocus = searchParams.get('resource') || '';
   const [rootNodes, setRootNodes] = useState(null);
@@ -107,7 +108,12 @@ export default function CurriculumNodePage() {
             .sort((a, b) => (a.display_order ?? 0) - (b.display_order ?? 0) || a.name.localeCompare(b.name)));
         })
         .catch((err) => {
-          if (mounted) setError(err?.message || 'We couldn’t load this curriculum. Please try again.');
+          if (!mounted) return;
+          if (isPremiumAccessError(err)) {
+            redirectToSubscription(navigate, location, { preserveCurrent: true, reason: 'premium' });
+            return;
+          }
+          setError(err?.message || 'We couldn’t load this curriculum. Please try again.');
         })
         .finally(() => { if (mounted) setLoading(false); });
       return () => { mounted = false; };
@@ -129,7 +135,12 @@ export default function CurriculumNodePage() {
         if (mounted) setData(result);
       })
       .catch((err) => {
-        if (mounted && !cached) setError(err?.message || 'We couldn’t load this learning item. Please try again.');
+        if (!mounted) return;
+        if (isPremiumAccessError(err)) {
+          redirectToSubscription(navigate, location, { preserveCurrent: true, reason: 'premium' });
+          return;
+        }
+        if (!cached) setError(err?.message || 'We couldn’t load this learning item. Please try again.');
       })
       .finally(() => {
         if (mounted) setLoading(false);
@@ -138,7 +149,7 @@ export default function CurriculumNodePage() {
     return () => {
       mounted = false;
     };
-  }, [groupId, nodePath]);
+  }, [groupId, nodePath, navigate, location]);
 
   const node = data?.node;
   const ancestors = data?.ancestors || [];
