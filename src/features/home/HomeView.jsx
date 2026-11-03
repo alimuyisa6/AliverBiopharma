@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Icon from '../../components/Icon/Icon';
 import ClassSwitcher from '../../components/ClassSwitcher/ClassSwitcher';
 import { StatsGrid } from './StatsGrid';
+import { PricingCards } from './PricingCards';
 import { TestimonialSlider } from './TestimonialSlider';
 import { ChatWidget } from '../chat/ChatWidget';
 import { NewsletterForm } from './NewsletterForm';
@@ -165,7 +166,7 @@ export default function HomeView(props) {
     media.addEventListener('change', updateViewport);
     return () => media.removeEventListener('change', updateViewport);
   }, []);
-  const { sections, user, navigate, activeLevelName, activeGroupName, publicStats, chatOpen, chatMessages, chatInput, adminOnline, newsletterEmail, newsletterStatus, newsletterLoading, chatRequestLoading, chatSending, chatDeletingId, handleNewsletterSubmit, sendChat, deleteChatMsg, setChatOpen, setChatInput, setNewsletterEmail, chatBodyRef, continueLearning, curriculumUnits, dailyRecall, onRevealRecall, onStartRecall, dailyChallenge, onOpenChallenge } = props;
+  const { sections, user, navigate, activeLevelName, activeGroupName, publicStats, subscriptionPlans, chatOpen, chatMessages, chatInput, adminOnline, newsletterEmail, newsletterStatus, newsletterLoading, chatRequestLoading, chatSending, chatDeletingId, handleNewsletterSubmit, sendChat, deleteChatMsg, setChatOpen, setChatInput, setNewsletterEmail, chatBodyRef, continueLearning, curriculumUnits, dailyRecall, onRevealRecall, onStartRecall, dailyChallenge, onOpenChallenge } = props;
 
   return (
     <div className="home-page home-page-redesign">
@@ -190,6 +191,7 @@ export default function HomeView(props) {
       )}
 
       <LernwickHomeSections />
+      <PricingCards plans={subscriptionPlans} user={user} />
       {user && <CurriculumSnapshot nodes={curriculumUnits} activeLevelName={activeLevelName} activeGroupName={activeGroupName} sections={sections} />}
 
       {user && <ChallengeTreasureCard challenge={dailyChallenge} onOpen={onOpenChallenge} />}
