@@ -25,13 +25,20 @@ function planFeatures(features) {
   return [];
 }
 
-export function PricingCards({ plans = [] }) {
+export function PricingCards({ plans = [], user = null }) {
   const navigate = useNavigate();
   const availablePlans = Array.isArray(plans) ? plans.filter((plan) => plan?.id) : [];
 
   const choosePlan = (plan) => {
-    navigate(`/profile?section=billing&plan_id=${encodeURIComponent(plan.id)}`, {
-      state: { activeSection: 'billing' }
+    const search = `?section=billing&plan_id=${encodeURIComponent(plan.id)}`;
+    if (user) {
+      navigate(`/profile${search}`, { state: { activeSection: 'billing' } });
+      return;
+    }
+    navigate('/login', {
+      state: {
+        from: { pathname: '/profile', search }
+      }
     });
   };
 
