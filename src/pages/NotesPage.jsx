@@ -13,6 +13,7 @@ import EmptyState from '../components/EmptyState/EmptyState';
 import Button from '../components/Button/Button';
 import Container from '../components/Container/Container';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
+import LearningJourney from '../components/LearningJourney/LearningJourney';
 
 const notesPageCache = new Map();
 const notesContextCache = new Map();
@@ -347,6 +348,13 @@ export default function NotesPage() {
               />
             ))}
           </div>
+        )}
+        {unitId && (
+          <LearningJourney
+            unitId={unitId}
+            excludeStages={['notes']}
+            returnTo={'/notes?unit_id=' + encodeURIComponent(unitId)}
+          />
         )}
       </div>
     </Container>
