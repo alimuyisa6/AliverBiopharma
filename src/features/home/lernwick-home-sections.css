@@ -147,7 +147,7 @@ body.dark-mode .home-page .home-challenge-treasure .three-d-button--solid,body.d
   border-radius: 64% 36% 58% 42% / 42% 60% 40% 58%;
   background: var(--accent);
   color: var(--ink);
-  box-shadow: 0 2px 0 rgb(10 31 36 / 16%), 0 4px 10px var(--shadow-ink-12);
+  box-shadow: 0 2px 0 var(--shadow-ink-16), 0 4px 10px var(--shadow-ink-12);
   transform: rotate(6deg);
 }
 
@@ -155,7 +155,7 @@ body.dark-mode .home-page .home-challenge-treasure .three-d-button--solid,body.d
   border-radius: 52% 48% 24% 76% / 58% 34% 66% 42%;
   background: var(--secondary);
   color: var(--white);
-  box-shadow: 0 2px 0 rgb(10 31 36 / 18%), 0 4px 10px rgb(10 31 36 / 16%);
+  box-shadow: 0 2px 0 var(--shadow-ink-18), 0 4px 10px var(--shadow-ink-16);
   transform: rotate(-4deg);
 }
 
@@ -207,13 +207,13 @@ body.dark-mode .organic-letter--primary {
 body.dark-mode .organic-letter--accent {
   background: var(--dark-accent);
   color: var(--dark-background);
-  box-shadow: 0 2px 0 rgb(0 0 0 / 30%), 0 4px 12px var(--shadow-black-24);
+  box-shadow: 0 2px 0 var(--shadow-black-30), 0 4px 12px var(--shadow-black-24);
 }
 
 body.dark-mode .organic-letter--secondary {
   background: var(--dark-text-secondary);
   color: var(--dark-background);
-  box-shadow: 0 2px 0 rgb(0 0 0 / 35%), 0 4px 12px rgb(0 0 0 / 30%);
+  box-shadow: 0 2px 0 var(--shadow-black-35), 0 4px 12px var(--shadow-black-30);
 }
 
 @media (max-width: 700px) {
