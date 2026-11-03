@@ -2,7 +2,7 @@
   width: min(100% - 2rem, 76rem);
   min-height: 24rem;
   margin: clamp(1.5rem, 4vw, 3.5rem) auto;
-  color: var(--text-main, #0a1011);
+  color: var(--text-main, var(--text-main));
 }
 
 .page-skeleton__sr-only {
@@ -19,10 +19,10 @@
 .page-skeleton__card {
   position: relative;
   overflow: hidden;
-  border: 1px solid color-mix(in srgb, var(--primary, #42afc7) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary, var(--primary)) 18%, transparent);
   border-radius: 1.15rem;
-  background: color-mix(in srgb, var(--bg-card, #ffffff) 86%, var(--primary, #42afc7) 14%);
-  box-shadow: 0 12px 34px color-mix(in srgb, var(--text-main, #0a1011) 5%, transparent), inset 0 1px 0 color-mix(in srgb, #ffffff 75%, transparent);
+  background: color-mix(in srgb, var(--bg-card, var(--white)) 86%, var(--primary, var(--primary)) 14%);
+  box-shadow: 0 12px 34px color-mix(in srgb, var(--text-main, var(--text-main)) 5%, transparent), inset 0 1px 0 color-mix(in srgb, var(--white) 75%, transparent);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 }
@@ -41,7 +41,7 @@
   display: block;
   overflow: hidden;
   border-radius: .65rem;
-  background: color-mix(in srgb, var(--primary, #42afc7) 20%, var(--bg-card, #ffffff));
+  background: color-mix(in srgb, var(--primary, var(--primary)) 20%, var(--bg-card, var(--white)));
 }
 
 .page-skeleton__bar::after,
@@ -51,7 +51,7 @@
 .page-skeleton__heading::after {
   position: absolute;
   inset: 0;
-  background: linear-gradient(105deg, transparent 20%, color-mix(in srgb, #ffffff 76%, transparent) 48%, transparent 76%);
+  background: linear-gradient(105deg, transparent 20%, color-mix(in srgb, var(--white) 76%, transparent) 48%, transparent 76%);
   content: "";
   transform: translateX(-110%);
   animation: page-skeleton-shimmer 1.55s ease-in-out infinite;
@@ -75,7 +75,7 @@
 .page-skeleton__pill {
   width: 7.5rem;
   height: 2.25rem;
-  border: 1px solid color-mix(in srgb, var(--primary, #42afc7) 20%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary, var(--primary)) 20%, transparent);
   border-radius: 999px;
 }
 
@@ -102,15 +102,15 @@
 
 body.dark-mode .page-skeleton__heading,
 body.dark-mode .page-skeleton__card {
-  border-color: color-mix(in srgb, var(--dark-primary, #56d2ed) 28%, transparent);
-  background: color-mix(in srgb, var(--dark-surface, #102b30) 88%, var(--dark-primary, #56d2ed) 12%);
-  box-shadow: 0 14px 36px rgb(0 0 0 / 20%), inset 0 1px 0 rgb(255 255 255 / 7%);
+  border-color: color-mix(in srgb, var(--dark-primary, var(--dark-primary)) 28%, transparent);
+  background: color-mix(in srgb, var(--dark-surface, var(--dark-surface)) 88%, var(--dark-primary, var(--dark-primary)) 12%);
+  box-shadow: 0 14px 36px var(--shadow-black-20), inset 0 1px 0 var(--glass-white-07);
 }
 
 body.dark-mode .page-skeleton__bar,
 body.dark-mode .page-skeleton__pill,
 body.dark-mode .page-skeleton__block {
-  background: color-mix(in srgb, var(--dark-primary, #56d2ed) 24%, var(--dark-surface, #102b30));
+  background: color-mix(in srgb, var(--dark-primary, var(--dark-primary)) 24%, var(--dark-surface, var(--dark-surface)));
 }
 
 body.dark-mode .page-skeleton__bar::after,
@@ -118,7 +118,7 @@ body.dark-mode .page-skeleton__pill::after,
 body.dark-mode .page-skeleton__block::after,
 body.dark-mode .page-skeleton__card::after,
 body.dark-mode .page-skeleton__heading::after {
-  background: linear-gradient(105deg, transparent 20%, rgb(255 255 255 / 17%) 48%, transparent 76%);
+  background: linear-gradient(105deg, transparent 20%, var(--glass-white-17) 48%, transparent 76%);
 }
 
 .page-skeleton--compact { width: 100%; min-height: 8rem; margin: 0; }
