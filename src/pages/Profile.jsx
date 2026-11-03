@@ -1867,12 +1867,6 @@ export default function Profile() {
                     {billingPaymentMessage}
                   </p>
                 )}
-                {paymentStatus === 'success' && billing?.subscription?.status === 'active' && returnToAfterPayment && (
-                  <Button type="button" variant="primary" onClick={() => navigate(returnToAfterPayment)}>
-                    Continue to your learning material
-                  </Button>
-                )}
-
                 {sectionLoading ? (
                   <Spinner context="data" size="sm" />
                 ) : (
