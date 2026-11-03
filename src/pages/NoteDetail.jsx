@@ -134,6 +134,10 @@ export default function NoteDetail() {
       try {
         const data = cachedNote || await getNoteDetail(noteId);
         if (!mounted) return;
+        if (data?.locked && data.reason === 'premium_locked') {
+          redirectToSubscription(navigate, location, { preserveCurrent: true, reason: 'premium' });
+          return;
+        }
         noteDetailContentCache.set(noteId, data);
 
         setNote(data);
