@@ -43,13 +43,11 @@ function formatNumber(value) {
 function MetricCard({ metric, value }) {
   return (
     <li className="stats-impact-item">
-      <article className="stats-impact-card">
-        <span className="stats-impact-icon" aria-hidden="true">
-          <Icon name={metric.icon} />
-        </span>
-        <span className="stats-impact-value">{formatNumber(value)}</span>
-        <span className="stats-impact-label">{metric.label}</span>
-      </article>
+      <span className="stats-impact-icon" aria-hidden="true">
+        <Icon name={metric.icon} />
+      </span>
+      <span className="stats-impact-value">{formatNumber(value)}</span>
+      <span className="stats-impact-label">{metric.label}</span>
     </li>
   );
 }
@@ -118,27 +116,26 @@ export function StatsGrid({
     : [];
 
   return (
-    <section
-      className="section stats-grid-section lernwick-stats"
-      aria-labelledby="platform-impact-title"
-    >
-      <header className="section-head stats-impact-heading">
+    <section className="section stats-grid-section lernwick-stats" aria-labelledby="platform-impact-title">
+      <article className="stats-impact-panel">
+        <header className="section-head stats-impact-heading">
         <div className="section-head-left">
           <h2 id="platform-impact-title">See Our Impact in Numbers</h2>
           <p className="stats-impact-scope">Statistics for {scopeLabel}</p>
         </div>
       </header>
 
-      <div className="stats-impact-groups">
-        {GROUPS.map((group) => (
-          <StatsGroup
-            key={group.id}
-            group={group}
-            stats={stats}
-            failedTopics={failedTopics}
-          />
-        ))}
-      </div>
+        <div className="stats-impact-groups">
+          {GROUPS.map((group) => (
+            <StatsGroup
+              key={group.id}
+              group={group}
+              stats={stats}
+              failedTopics={failedTopics}
+            />
+          ))}
+        </div>
+      </article>
     </section>
   );
 }
