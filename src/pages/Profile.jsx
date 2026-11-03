@@ -1860,7 +1860,7 @@ export default function Profile() {
                   {t('profile.billingPayments')}
                 </h3>
                 <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
-                  Choose a plan and pay securely with cryptocurrency. Premium access activates automatically after the payment provider confirms your payment.
+                  Choose a plan and pay with USDT on the TRON network (TRC20). Premium access activates automatically after the payment provider confirms your payment. Plans do not renew automatically.
                 </p>
                 {billingPaymentMessage && (
                   <p role="status" style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 14, marginBottom: 16 }}>
@@ -1886,7 +1886,7 @@ export default function Profile() {
                           <div className={searchParams.get('plan_id') === String(plan.id) ? 'profile-plan-option is-selected' : 'profile-plan-option'}>
                             <strong style={{ display: 'block', color: THEME.textMain, fontFamily: THEME.font }}>{plan.name}</strong>
                             <span style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 14 }}>
-                              {plan.currency} {plan.price_amount} / {plan.duration_days} days
+                              {plan.currency} {plan.price_amount} / {plan.duration_days} days · USDT TRC20
                             </span>
                           </div>
                           <Button
@@ -1896,7 +1896,7 @@ export default function Profile() {
                             disabled={Boolean(creatingCryptoPlanId) || Boolean(billing?.subscription && ['active', 'awaiting_verification', 'pending'].includes(billing.subscription.status))}
                             onClick={() => handleCryptoSubscription(plan)}
                           >
-                            {creatingCryptoPlanId === plan.id ? 'Preparing checkout…' : 'Pay with crypto'}
+                            {creatingCryptoPlanId === plan.id ? 'Preparing checkout…' : 'Pay with USDT'}
                           </Button>
                         </div>
                       ))}
