@@ -31,7 +31,7 @@ body.dark-mode {
   --border-subtle: var(--dark-border);
   --border-light: var(--dark-border);
   --border-default: var(--dark-border);
-  --border-strong: #58747c;
+  --border-strong: var(--dark-border);
 }
 
 #root .app-layout {
