@@ -48,7 +48,7 @@ export function PricingCards({ plans = [], user = null }) {
         <div className="section-head-left">
           <span className="eyebrow">Membership</span>
           <h2 id="pricing-title">Choose your premium access</h2>
-          <p>Unlock premium learning materials across your programme.</p>
+          <p>Unlock premium learning materials across your programme. Pay securely in USDT on the TRON network.</p>
         </div>
       </div>
       {availablePlans.length ? (
@@ -57,7 +57,7 @@ export function PricingCards({ plans = [], user = null }) {
             <article key={plan.id} className="pricing-card card card-surface-solid card-elevation-soft card-density-comfortable">
               <div className="pricing-card-heading">
                 <h3>{plan.name}</h3>
-                {plan.is_popular && <span className="pricing-card-badge">Popular</span>}
+                {(plan.is_popular || plan.slug === 'quarterly-access') && <span className="pricing-card-badge">Best balance</span>}
               </div>
               {plan.description && <p>{plan.description}</p>}
               <div className="price">
@@ -70,7 +70,7 @@ export function PricingCards({ plans = [], user = null }) {
                 ))}
               </ul>
               <button type="button" className="btn btn-primary pricing-cta-btn" onClick={() => choosePlan(plan)}>
-                Choose plan <Icon name="arrow-right" />
+                Continue with USDT <Icon name="arrow-right" />
               </button>
             </article>
           ))}
