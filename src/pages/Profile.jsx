@@ -1863,9 +1863,14 @@ export default function Profile() {
                   Choose a plan and pay securely with cryptocurrency. Premium access activates automatically after the payment provider confirms your payment.
                 </p>
                 {billingPaymentMessage && (
-                  <p role="alert" style={{ color: THEME.error, fontFamily: THEME.font, fontSize: 14, marginBottom: 16 }}>
+                  <p role="status" style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 14, marginBottom: 16 }}>
                     {billingPaymentMessage}
                   </p>
+                )}
+                {paymentStatus === 'success' && billing?.subscription?.status === 'active' && returnToAfterPayment && (
+                  <Button type="button" variant="primary" onClick={() => navigate(returnToAfterPayment)}>
+                    Continue to your learning material
+                  </Button>
                 )}
 
                 {sectionLoading ? (
