@@ -105,7 +105,7 @@ export default function PdfLibraryPage() {
     <Container className="pdf-library-section">
       <div className="pdf-library-page">
         <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'PDF library' }]} />
-        <div className="pdf-library-heading">
+        <header className="pdf-library-heading">
           <div>
             <h1 className="section-title pdf-library-title">PDF library</h1>
             <p className="pdf-library-description">Course notes and reference documents for your programme.</p>
@@ -115,7 +115,7 @@ export default function PdfLibraryPage() {
               {levelName}{levelName && classLabel ? ' · ' : ''}{classLabel}
             </p>
           )}
-        </div>
+        </header>
 
         <section className="pdf-library-controls" aria-labelledby="pdf-library-controls-title">
           <div className="pdf-library-controls-copy">
