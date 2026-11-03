@@ -1,5 +1,6 @@
  /* components/FlashcardDeckView.jsx */
 import { useState, useEffect } from 'react';
+import { isPremiumAccessError } from '../utils/subscriptionNavigation';
 import {
   getFlashcardDeck,
   toggleFlashcardKnown,
@@ -30,7 +31,7 @@ const MODE_CARD_COLOR = {
   structure_identification: 'card-amber'
 };
 
-export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode: initialMode = 'flip', onComplete, challengeId = null, sourceNoteId = null, activityScope = null, unitId = null }) {
+export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode: initialMode = 'flip', onComplete, onPremiumRequired, challengeId = null, sourceNoteId = null, activityScope = null, unitId = null }) {
   const [deck, setDeck] = useState(null);
   const [cards, setCards] = useState([]);
   const [index, setIndex] = useState(0);
@@ -80,8 +81,12 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
       const session = await startFlashcardSession(deckMeta.id, mode, challengeId, sourceNoteId, activityScope, unitId);
 
       setSessionId(session?.session_id || null);
-    } catch {
-      addToast('Failed to load deck', 'error');
+    } catch (error) {
+      if (isPremiumAccessError(error)) {
+        onPremiumRequired?.();
+      } else {
+        addToast('Failed to load deck', 'error');
+      }
     } finally {
       setLoading(false);
     }
