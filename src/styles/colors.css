@@ -15,6 +15,11 @@
   --accent-dark: #f5a70b;
   --accent-hover: #ffd84d;
   --accent-border: #ffe88a;
+  --primary-soft: #effbf2;
+  --orange: var(--accent);
+  --orange-hover: var(--accent-hover);
+  --orange-deep: var(--accent-dark);
+  --peach: var(--accent-light);
   --background: #fbfaf4;
   --text: #10241b;
   --white: #ffffff;
