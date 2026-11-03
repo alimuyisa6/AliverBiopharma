@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Icon from '../Icon/Icon';
 import { getPdfDownloadUrl, getPastPaperDownloadUrl } from '../../api/client';
 import { getCurriculumNode } from '../../api/curriculumNavigation';
+import { isPremiumAccessError, redirectToSubscription } from '../../utils/subscriptionNavigation';
 import './LearningJourney.css';
 
 const journeyCache = new Map();
@@ -74,6 +75,8 @@ export default function LearningJourney({
   returnTo = '',
   excludeStages = []
 }) {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [fetchedLinkedContent, setFetchedLinkedContent] = useState(() => (
     unitId ? journeyCache.get(String(unitId)) ?? [] : []
   ));
@@ -262,6 +265,10 @@ export default function LearningJourney({
       }
     } catch (error) {
       if (popup) popup.close();
+      if (isPremiumAccessError(error)) {
+        redirectToSubscription(navigate, location, { preserveCurrent: true, reason: 'premium' });
+        return;
+      }
       setActionError(error?.message || 'This resource could not be opened. Please try again.');
     } finally {
       setDownloadId(null);
