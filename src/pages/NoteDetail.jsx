@@ -794,20 +794,20 @@ export default function NoteDetail() {
 
           <div className="note-discussion-art" aria-hidden="true">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 150" role="presentation" focusable="false" width="320" height="150">
-              <ellipse cx="160" cy="130" rx="91" ry="7" fill="#0d9488" opacity=".10" />
+              <ellipse cx="160" cy="130" rx="91" ry="7" fill="var(--primary)" opacity=".10" />
               <g strokeLinejoin="round" strokeLinecap="round">
-                <rect x="42" y="28" width="136" height="82" rx="18" fill="#d9f7f0" stroke="#0d9488" strokeWidth="2.5" />
-                <path d="M70 110 61 124 91 110" fill="#d9f7f0" stroke="#0d9488" strokeWidth="2.5" />
-                <path d="M69 54h80M69 69h57" fill="none" stroke="#0d9488" strokeWidth="5" />
-                <rect x="142" y="55" width="136" height="70" rx="17" fill="#fff1c9" stroke="#b8873a" strokeWidth="2.5" />
-                <path d="M244 125 257 138 257 125" fill="#fff1c9" stroke="#b8873a" strokeWidth="2.5" />
-                <path d="M166 78h83M166 93h60" fill="none" stroke="#b8873a" strokeWidth="5" />
+                <rect x="42" y="28" width="136" height="82" rx="18" fill="var(--primary-light)" stroke="var(--primary)" strokeWidth="2.5" />
+                <path d="M70 110 61 124 91 110" fill="var(--primary-light)" stroke="var(--primary)" strokeWidth="2.5" />
+                <path d="M69 54h80M69 69h57" fill="none" stroke="var(--primary)" strokeWidth="5" />
+                <rect x="142" y="55" width="136" height="70" rx="17" fill="var(--accent-light)" stroke="var(--accent-dark)" strokeWidth="2.5" />
+                <path d="M244 125 257 138 257 125" fill="var(--accent-light)" stroke="var(--accent-dark)" strokeWidth="2.5" />
+                <path d="M166 78h83M166 93h60" fill="none" stroke="var(--accent-dark)" strokeWidth="5" />
               </g>
-              <path d="m222 17 4 9 10 2-8 6 1 10-7-6-9 4 4-9-6-8 10 1Z" fill="#e2c06a" stroke="#b8873a" strokeWidth="1.5" strokeLinejoin="round" />
-              <path d="m85 15 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z" fill="#8ad8cb" />
-              <circle cx="292" cy="40" r="4" fill="#7c3aed" opacity=".65" />
-              <circle cx="28" cy="86" r="4" fill="#e2c06a" />
-              <path d="M285 75c8-12 17-11 22-5-2 10-10 15-22 5Zm0 0c-1-9-7-13-14-11 0 8 5 12 14 11Z" fill="#0d9488" opacity=".8" />
+              <path d="m222 17 4 9 10 2-8 6 1 10-7-6-9 4 4-9-6-8 10 1Z" fill="var(--accent)" stroke="var(--accent-dark)" strokeWidth="1.5" strokeLinejoin="round" />
+              <path d="m85 15 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z" fill="var(--dark-primary)" />
+              <circle cx="292" cy="40" r="4" fill="var(--primary-dark)" opacity=".65" />
+              <circle cx="28" cy="86" r="4" fill="var(--accent)" />
+              <path d="M285 75c8-12 17-11 22-5-2 10-10 15-22 5Zm0 0c-1-9-7-13-14-11 0 8 5 12 14 11Z" fill="var(--primary)" opacity=".8" />
             </svg>
             <p className="note-discussion-art-caption">Every thoughtful question helps us grow.</p>
           </div>
