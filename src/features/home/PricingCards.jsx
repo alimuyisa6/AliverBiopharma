@@ -64,6 +64,7 @@ export function PricingCards({ plans = [], user = null }) {
                 {formatPrice(plan)}
                 <span className="price-period"> / {Number(plan.duration_days) || 0} days</span>
               </div>
+              {plan.slug === 'annual-access' && <p className="pricing-card-value-note">Just ${(Number(plan.price_amount) / 12).toFixed(2)} per month, billed annually.</p>}
               <ul>
                 {planFeatures(plan.features).map((feature, index) => (
                   <li key={`${plan.id}-feature-${index}`}><Icon name="check" />{String(feature)}</li>
