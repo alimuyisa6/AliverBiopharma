@@ -171,7 +171,7 @@ export default function HomeView(props) {
   return (
     <div className="home-page home-page-redesign">
       <section className="home-hero-section" id="top" aria-label="Introduction">
-        <LernwickHomeHero user={user} activeLevelName={activeLevelName} activeGroupName={activeGroupName} stats={publicStats || {}} />
+        <LernwickHomeHero user={user} activeLevelName={activeLevelName} activeGroupName={activeGroupName} />
       </section>
 
       <DynamicActions pageId="home" className="home-dynamic-actions" />
