@@ -22,15 +22,14 @@ export function redirectToSubscription(navigate, location, options = {}) {
 }
 
 export function isPremiumAccessError(error) {
-  const message = String(error?.message || error || '').toLowerCase();
+  const message = String(error?.message || error?.data?.error || error?.data?.message || error || '').toLowerCase();
   return error?.authorization?.reason === 'premium_required'
+    || error?.authorization?.reason === 'premium_locked'
     || error?.data?.authorization?.reason === 'premium_required'
     || error?.data?.authorization?.reason === 'premium_locked'
-    || error?.data?.authorization?.reason === 'premium_required'
-    || error?.authorization?.reason === 'premium_locked'
     || error?.code === 'premium_locked'
     || error?.reason === 'premium_locked'
-    || /premium[ _]required|requires premium access|premium content|premium_locked|subscription required/.test(message);
+    || /premium[ _]required|requires premium access|premium access required|premium content|premium_locked|subscription required/.test(message);
 }
 
 export function getSafeReturnPath(value) {
