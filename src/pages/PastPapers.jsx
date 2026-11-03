@@ -30,6 +30,7 @@ import EmptyState from '../components/EmptyState/EmptyState';
 import { useToast } from '../components/Toast/Toast';
 import { useLayout } from '../contexts/LayoutContext';
 import ContentSwitcher from '../components/ContentSwitcher/ContentSwitcher';
+import LearningJourney from '../components/LearningJourney/LearningJourney';
 
 const TABS = [
   { key: 'all', label: 'All papers' },
@@ -945,6 +946,14 @@ export default function PastPapers() {
         )}
       </div>
 
+      {curriculumUnitId && (
+        <LearningJourney
+          unitId={curriculumUnitId}
+          excludeStages={['papers']}
+          returnTo={'/past-papers?unit_id=' + encodeURIComponent(curriculumUnitId)}
+        />
+      )}
+
       {selectedPaper && (
         <div className="pp-modal-overlay" onClick={handleCloseModal}>
           <div className="pp-modal" onClick={(event) => event.stopPropagation()}>
@@ -1053,7 +1062,7 @@ export default function PastPapers() {
                                   style={{
                                     color:
                                       star <= review.rating
-                                        ? 'var(--primary-dark))'
+                                        ? 'var(--primary-dark)'
                                         : 'var(--grey-300)'
                                   }}
                                 >

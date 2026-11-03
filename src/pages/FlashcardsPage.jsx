@@ -11,6 +11,7 @@ import { PendingApprovalScreen } from '../components/access/PendingApprovalScree
 import { AccessDenied } from '../components/access/AccessDenied';
 import FlashcardDeckView from '../components/FlashcardDeckView';
 import FlashcardProgress from '../components/Flashcardprogress';
+import LearningJourney from '../components/LearningJourney/LearningJourney';
 import {
   completeFlashcardSession,
   getKnownFlashcards,
@@ -22,6 +23,7 @@ import Skeleton from '../components/Skeleton/Skeleton';
 import Button from '../components/Button/Button';
 import Card from '../components/Card/Card';
 import EmptyState from '../components/EmptyState/EmptyState';
+import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 import { useLayout } from '../contexts/LayoutContext';
 import { useToast } from '../components/Toast/Toast';
 
@@ -234,6 +236,11 @@ export default function FlashcardsPage() {
     return (
       <>
      <div className="flashcards-page">
+        <Breadcrumb items={[
+          { label: 'Home', href: '/' },
+          { label: 'Flashcards' },
+          ...(curriculumUnitId ? [{ label: 'Selected learning area' }] : [])
+        ]} />
         <div className="section flashcard-subject-section">
           <span className="sec-label">FLASHCARD PRACTICE</span>
           <h1 className="section-title flashcard-title">
@@ -280,6 +287,13 @@ export default function FlashcardsPage() {
               ))}
             </div>
           )}
+          {curriculumUnitId && (
+            <LearningJourney
+              unitId={curriculumUnitId}
+              excludeStages={['flashcards']}
+              returnTo={'/flashcards?unit_id=' + encodeURIComponent(curriculumUnitId)}
+            />
+          )}
         </div>
       </div>
       </>
@@ -303,11 +317,20 @@ export default function FlashcardsPage() {
 
   if (stage === STAGE.COMPLETE) {
     return (
-      <FlashcardProgress
-        result={sessionResult}
-        onRestart={handleRestart}
-        onHome={() => navigate('/')}
-      />
+      <>
+        <FlashcardProgress
+          result={sessionResult}
+          onRestart={handleRestart}
+          onHome={() => navigate('/')}
+        />
+        {curriculumUnitId && (
+          <LearningJourney
+            unitId={curriculumUnitId}
+            excludeStages={['flashcards']}
+            returnTo={'/flashcards?unit_id=' + encodeURIComponent(curriculumUnitId)}
+          />
+        )}
+      </>
     );
   }
   return null;

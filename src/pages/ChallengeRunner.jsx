@@ -37,13 +37,13 @@ export default function ChallengeRunner({ forcedType }) {
     }).catch((e) => setError(e.message || "We couldn't load this challenge. Please try again.")).finally(() => setLoading(false));
   }, [challengeId, type]);
 
-  if (loading) return <main className="challenge-runner-page"><div className="challenge-runner-loading"><Spinner size="lg" /></div></main>;
-  if (error) return <main className="challenge-runner-page"><section className="challenge-runner-error"><Cartoon type={type} /><span className="eyebrow">Challenge unavailable</span><h1>We couldn’t open this challenge</h1><p>{error}</p><button className="btn btn-secondary" onClick={() => navigate('/challenges')}>Back to challenges</button></section></main>;
+  if (loading) return <div className="challenge-runner-page"><div className="challenge-runner-loading"><Spinner size="lg" /></div></div>;
+  if (error) return <div className="challenge-runner-page"><section className="challenge-runner-error"><Cartoon type={type} /><span className="eyebrow">Challenge unavailable</span><h1>We couldn’t open this challenge</h1><p>{error}</p><button className="btn btn-secondary" onClick={() => navigate('/challenges')}>Back to challenges</button></section></div>;
 
-  return <main className={"challenge-runner-page challenge-runner-" + meta.color}>
+  return <div className={"challenge-runner-page challenge-runner-" + meta.color}>
     <section className="challenge-runner-hero">
       <div className="challenge-runner-visual"><Cartoon type={type} /><span className="challenge-type-badge"><Icon name={meta.icon} /> {meta.title}</span></div>
       <div className="challenge-runner-copy"><span className="eyebrow">{meta.eyebrow}</span><h1>{data.challenge.title}</h1><p>{data.challenge.description}</p><div className="challenge-runner-facts"><span>{data.scope?.level_name || 'Selected level'}</span><span>{data.scope?.group_name || 'Selected curriculum'}</span><span>+{data.challenge.reward_xp} XP</span></div><div className="challenge-runner-note"><strong>How it works</strong><span>Complete this activity in {type} practice. Your result is checked before your XP reward is added.</span></div><div className="challenge-runner-actions"><ThreeDButton variant="solid" iconRight="arrow-right" onClick={() => navigate(meta.route + '?unit_id=' + encodeURIComponent(data.challenge.unit_id) + '&challenge_id=' + encodeURIComponent(data.challenge.id))}>Start challenge</ThreeDButton><button className="btn btn-secondary" onClick={() => navigate('/challenges')}>Back to challenges</button></div></div>
     </section>
-  </main>;
+  </div>;
 }

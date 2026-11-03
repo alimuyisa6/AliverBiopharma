@@ -13,6 +13,7 @@ import EmptyState from '../components/EmptyState/EmptyState';
 import Button from '../components/Button/Button';
 import Container from '../components/Container/Container';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
+import LearningJourney from '../components/LearningJourney/LearningJourney';
 
 const notesPageCache = new Map();
 const notesContextCache = new Map();
@@ -207,7 +208,7 @@ export default function NotesPage() {
   return (
     <Container className="notes-page-shell">
       <div className="notes-page">
-        <div className="notes-page-heading">
+        <header className="notes-page-heading">
           <div className="notes-page-intro">
             <span className="notes-page-kicker">STUDY AT YOUR PACE</span>
             <h1 className="section-title notes-page-title font-fraunces">
@@ -219,7 +220,7 @@ export default function NotesPage() {
           </div>
 
           <Breadcrumb items={breadcrumbItems} />
-        </div>
+        </header>
 
         <AdSlot placement="notes" pageContext="notes" />
         {contextTitle && (
@@ -347,6 +348,13 @@ export default function NotesPage() {
               />
             ))}
           </div>
+        )}
+        {unitId && (
+          <LearningJourney
+            unitId={unitId}
+            excludeStages={['notes']}
+            returnTo={'/notes?unit_id=' + encodeURIComponent(unitId)}
+          />
         )}
       </div>
     </Container>
