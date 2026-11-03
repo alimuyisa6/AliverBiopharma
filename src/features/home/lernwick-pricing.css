@@ -22,3 +22,8 @@ body.dark-mode .pricing-card,body.dark-mode .pricing-empty{border-color:var(--da
 body.dark-mode .pricing-card h3,body.dark-mode .pricing-card .price,body.dark-mode .pricing-empty h3{color:var(--dark-text)}
 body.dark-mode .pricing-card>p,body.dark-mode .pricing-card li,body.dark-mode .pricing-card .price-period,body.dark-mode .pricing-empty p{color:var(--dark-text-secondary)}
 @media(max-width:640px){.pricing-section{padding-block:2rem}.pricing-grid{grid-template-columns:minmax(0,1fr)}}
+
+.pricing-card-value-note{margin:-.45rem 0 0;color:var(--primary-dark);font-size:var(--t-sm);font-weight:600}
+.pricing-payment-method{margin:0;color:var(--ink-2);font-size:var(--t-xs);line-height:1.45}
+body.dark-mode .pricing-card-value-note{color:var(--dark-text)}
+body.dark-mode .pricing-payment-method{color:var(--dark-text-secondary)}
