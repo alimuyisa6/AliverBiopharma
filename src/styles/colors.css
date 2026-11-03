@@ -78,6 +78,9 @@
   --dark-overlay-12: rgb(27 27 31 / 12%);
   --skeleton-text: var(--text);
   --skeleton-surface: var(--paper);
+  --illustration-skin-1: #f2c6a5;
+  --illustration-skin-2: #bd805d;
+  --illustration-skin-3: #744833;
   --toggle-track: hsl(142deg 20% 80%);
   --toggle-track-highlight: hsl(142deg 20% 93%);
   --toggle-thumb-shadow: hsl(142deg 18% 50% / 80%);
