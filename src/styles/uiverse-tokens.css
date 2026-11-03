@@ -41,17 +41,17 @@
   --tactile-toggle-width: 15rem;
   --tactile-toggle-duration: 0.6s;
   --tactile-toggle-easing: cubic-bezier(1, 0, 1, 1);
-  --tactile-toggle-hue: 220deg;
-  --tactile-toggle-accent-hue: 183deg;
+  --tactile-toggle-hue: 142deg;
+  --tactile-toggle-accent-hue: 45deg
   --tactile-toggle-track-radius: 999px;
   --tactile-toggle-shadow:
-    inset 10px 10px 10px hsl(220deg 20% 80%),
-    inset -10px -10px 10px hsl(220deg 20% 93%);
+    inset 10px 10px 10px hsl(142deg 20% 80%),
+    inset -10px -10px 10px hsl(142deg 20% 93%);
   --tactile-toggle-thumb-shadow:
-    2px 2px 3px hsl(220deg 18% 50% / 80%),
-    2px 2px 6px hsl(220deg 18% 50% / 40%),
-    10px 20px 10px hsl(220deg 18% 50% / 40%),
-    20px 30px 30px hsl(220deg 18% 50% / 60%);
+    2px 2px 3px hsl(142deg 18% 50% / 80%),
+    2px 2px 6px hsl(142deg 18% 50% / 40%),
+    10px 20px 10px hsl(142deg 18% 50% / 40%),
+    20px 30px 30px hsl(142deg 18% 50% / 60%);
 
   --action-purple-outline-width: 7.5rem;
   --action-purple-outline-height: 18.75rem;
