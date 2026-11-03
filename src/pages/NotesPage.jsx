@@ -342,7 +342,7 @@ export default function NotesPage() {
                       {note.read_time ? `${note.read_time} min read` : 'Read note'}
                       {note.is_premium ? ' · Premium' : ''}
                     </span>
-                    <Button variant="primary" size="sm" onClick={() => note.is_premium ? redirectToSubscription(navigate, location, { returnTo: `/notes/read?id=${encodeURIComponent(note.id)}`, reason: 'premium' }) : navigate(`/notes/read?id=${note.id}`)}>
+                    <Button variant="primary" size="sm" onClick={() => navigate(`/notes/read?id=${encodeURIComponent(note.id)}`)}>
                       Read note
                     </Button>
                   </div>
