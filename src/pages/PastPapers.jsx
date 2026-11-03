@@ -336,7 +336,7 @@ export default function PastPapers() {
           : 'request_failed';
       recordDownloadAttempt(paper, status, error?.message || 'Download request failed');
 
-      if (isPremiumAccessError(error)) {
+      if (isPremiumAccessError(error) || error?.status === 403 && /premium/i.test(error?.message || '')) {
         redirectToSubscription(navigate, location, { preserveCurrent: true, reason: 'premium' });
       } else if (status === 'network_error') {
         addToast('Connection problem. Check your internet and try again.', 'error');
@@ -384,7 +384,7 @@ export default function PastPapers() {
     if (paper.is_premium) {
       try {
         const access = await getPastPaper(paper.id);
-        if (access?.locked && access.reason === 'premium_locked') {
+        if (access?.locked && ['premium_locked', 'premium_required'].includes(access.reason)) {
           redirectToSubscription(navigate, location, { preserveCurrent: true, reason: 'premium' });
           return;
         }
