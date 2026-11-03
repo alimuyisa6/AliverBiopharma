@@ -153,17 +153,17 @@ export default function QuizChallengePage() {
 
   if (loading) {
     return (
-      <main className="quiz-page quiz-challenge-page">
+      <div className="quiz-page quiz-challenge-page">
         <div className="fcd-loading-wrap">
           <Spinner context="brand" size="lg" />
         </div>
-      </main>
+      </div>
     );
   }
 
   if (error) {
     return (
-      <main className="quiz-page quiz-challenge-page">
+      <div className="quiz-page quiz-challenge-page">
         <section className="section quiz-challenge-state">
           <Icon name="alert-circle" />
           <span className="eyebrow">Quiz practice</span>
@@ -173,13 +173,13 @@ export default function QuizChallengePage() {
             Back to challenges
           </button>
         </section>
-      </main>
+      </div>
     );
   }
 
   if (!currentQuestion && !result) {
     return (
-      <main className="quiz-page quiz-challenge-page">
+      <div className="quiz-page quiz-challenge-page">
         <section className="section quiz-challenge-state">
           <span className="eyebrow">Quiz practice</span>
           <h1>Your quiz challenge isn’t ready yet</h1>
@@ -188,13 +188,13 @@ export default function QuizChallengePage() {
             Back to challenges
           </button>
         </section>
-      </main>
+      </div>
     );
   }
 
   if (isComplete) {
     return (
-      <main className="quiz-page quiz-challenge-page">
+      <div className="quiz-page quiz-challenge-page">
         <section className="section quiz-challenge-result">
           <span className="challenge-type-badge">
             <Icon name="clipboard-check" /> Quiz Challenge
@@ -217,12 +217,12 @@ export default function QuizChallengePage() {
             Back to challenges
           </button>
         </section>
-      </main>
+      </div>
     );
   }
 
   return (
-    <main className="quiz-page quiz-challenge-page">
+    <div className="quiz-page quiz-challenge-page">
       <section className="section quiz-challenge-shell">
         <div className="quiz-challenge-header">
           <div>
@@ -298,6 +298,6 @@ export default function QuizChallengePage() {
           </button>
         </div>
       </section>
-    </main>
+    </div>
   );
 }
