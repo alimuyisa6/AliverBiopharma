@@ -208,7 +208,7 @@ export default function NotesPage() {
   return (
     <Container className="notes-page-shell">
       <div className="notes-page">
-        <div className="notes-page-heading">
+        <header className="notes-page-heading">
           <div className="notes-page-intro">
             <span className="notes-page-kicker">STUDY AT YOUR PACE</span>
             <h1 className="section-title notes-page-title font-fraunces">
@@ -220,7 +220,7 @@ export default function NotesPage() {
           </div>
 
           <Breadcrumb items={breadcrumbItems} />
-        </div>
+        </header>
 
         <AdSlot placement="notes" pageContext="notes" />
         {contextTitle && (
