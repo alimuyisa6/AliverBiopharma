@@ -1,6 +1,6 @@
 import AdSlot from '../components/Advertising/AdSlot';
 import { useState, useEffect, useMemo } from 'react';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams, useLocation } from 'react-router-dom';
 import { useContentAccess } from '../hooks/useContentAccess';
 import { useLevelFilter } from '../hooks/useLevelFilter';
 import { useLayout } from '../contexts/LayoutContext';
@@ -14,6 +14,7 @@ import Button from '../components/Button/Button';
 import Container from '../components/Container/Container';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 import LearningJourney from '../components/LearningJourney/LearningJourney';
+import { redirectToSubscription } from '../utils/subscriptionNavigation';
 
 const notesPageCache = new Map();
 const notesContextCache = new Map();
@@ -46,6 +47,7 @@ function formatResourceCount(value) {
 
 export default function NotesPage() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [searchParams] = useSearchParams();
   const access = useContentAccess();
   const { level, class_name, displayName } = useLevelFilter();
@@ -340,7 +342,7 @@ export default function NotesPage() {
                       {note.read_time ? `${note.read_time} min read` : 'Read note'}
                       {note.is_premium ? ' · Premium' : ''}
                     </span>
-                    <Button variant="primary" size="sm" onClick={() => navigate(`/notes/read?id=${note.id}`)}>
+                    <Button variant="primary" size="sm" onClick={() => navigate(`/notes/read?id=${encodeURIComponent(note.id)}`)}>
                       Read note
                     </Button>
                   </div>

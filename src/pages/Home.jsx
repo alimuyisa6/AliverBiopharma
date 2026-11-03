@@ -5,6 +5,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { useLayout } from '../contexts/LayoutContext';
 import {
   getPublicStats,
+  getSubscriptionPlans,
   subscribeNewsletter,
   requestChat,
   getChatMessages,
@@ -133,6 +134,7 @@ export default function Home() {
 
   const [sections, setSections] = useState({});
   const [publicStats, setPublicStats] = useState(null);
+  const [subscriptionPlans, setSubscriptionPlans] = useState([]);
   const [chatRoomId, setChatRoomId] = useState(null);
   const [chatMessages, setChatMessages] = useState([]);
   const [chatOpen, setChatOpen] = useState(false);
@@ -168,6 +170,16 @@ export default function Home() {
     });
     return () => { cancelled = true; };
   }, [activeGroupId]);
+
+  useEffect(() => {
+    let cancelled = false;
+    getSubscriptionPlans().then((plans) => {
+      if (!cancelled) setSubscriptionPlans(Array.isArray(plans) ? plans : []);
+    }).catch(() => {
+      if (!cancelled) setSubscriptionPlans([]);
+    });
+    return () => { cancelled = true; };
+  }, []);
 
   useEffect(() => {
     if (level?.id) getSections(level.id).then(setSections).catch(() => {});
@@ -307,6 +319,7 @@ export default function Home() {
       activeLevelName={level?.display_name || user?.profile?.track || ''}
       activeGroupName={activeGroupName}
       publicStats={publicStats}
+      subscriptionPlans={subscriptionPlans}
       chatRoomId={chatRoomId}
       chatMessages={chatMessages}
       chatOpen={chatOpen}

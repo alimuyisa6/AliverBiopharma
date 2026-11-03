@@ -64,8 +64,7 @@ export default async function handler(req, res) {
 
   const importFn = moduleName ? MODULE_MAP[moduleName] : null;
 
-  if (!importFn) {
-    if (moduleName === 'subscriptions' && path === 'nowpayments_ipn' && req.method === 'POST') {
+  if (moduleName === 'subscriptions' && path === 'nowpayments_ipn' && req.method === 'POST') {
     try {
       const mod = await importFn();
       const handlerResult = await mod.handler(req, res, path, null);
@@ -81,7 +80,8 @@ export default async function handler(req, res) {
     return;
   }
 
-  const ctx = await passGate(req, res, moduleName, path);
+  if (!importFn) {
+    const ctx = await passGate(req, res, moduleName, path);
     if (!ctx) return;
     return res.status(404).json({ error: getVagueErrorMessage() });
   }

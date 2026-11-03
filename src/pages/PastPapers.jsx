@@ -1,11 +1,12 @@
 /* pages/PastPapers.jsx */
 import { useState, useEffect, useRef } from 'react';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 import { useLevelFilter } from '../hooks/useLevelFilter';
 import {
   getPastPapers,
+  getPastPaper,
   getPastPaperFilterOptions,
   getPastPaperDownloadUrl,
   togglePaperBookmark,
@@ -31,6 +32,7 @@ import { useToast } from '../components/Toast/Toast';
 import { useLayout } from '../contexts/LayoutContext';
 import ContentSwitcher from '../components/ContentSwitcher/ContentSwitcher';
 import LearningJourney from '../components/LearningJourney/LearningJourney';
+import { isPremiumAccessError, redirectToSubscription } from '../utils/subscriptionNavigation';
 
 const TABS = [
   { key: 'all', label: 'All papers' },
@@ -41,6 +43,7 @@ const TABS = [
 export default function PastPapers() {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const [searchParams] = useSearchParams();
   const curriculumUnitId = searchParams.get('unit_id') || null;
   const { level, class_name, showAll, displayName } = useLevelFilter();
@@ -292,7 +295,7 @@ export default function PastPapers() {
 
     if (paper.locked) {
       recordDownloadAttempt(paper, 'premium_blocked', paper.reason || 'Premium access required');
-      navigate('/profile?section=billing');
+      redirectToSubscription(navigate, location, { preserveCurrent: true, reason: 'premium' });
       return;
     }
 
@@ -333,8 +336,8 @@ export default function PastPapers() {
           : 'request_failed';
       recordDownloadAttempt(paper, status, error?.message || 'Download request failed');
 
-      if (error?.status === 403) {
-        addToast('Premium access is required to download this paper.', 'warning');
+      if (isPremiumAccessError(error) || error?.status === 403 && /premium/i.test(error?.message || '')) {
+        redirectToSubscription(navigate, location, { preserveCurrent: true, reason: 'premium' });
       } else if (status === 'network_error') {
         addToast('Connection problem. Check your internet and try again.', 'error');
       } else {
@@ -378,9 +381,25 @@ export default function PastPapers() {
   };
 
   const handlePaperOpen = async (paper) => {
-    if (paper.is_premium && paper.locked) {
-      navigate('/profile?section=billing');
-      return;
+    if (paper.is_premium) {
+      try {
+        const access = await getPastPaper(paper.id);
+        if (access?.locked && ['premium_locked', 'premium_required'].includes(access.reason)) {
+          redirectToSubscription(navigate, location, { preserveCurrent: true, reason: 'premium' });
+          return;
+        }
+        if (access?.locked) {
+          addToast('This paper is restricted for your account.', 'warning');
+          return;
+        }
+      } catch (error) {
+        if (isPremiumAccessError(error)) {
+          redirectToSubscription(navigate, location, { preserveCurrent: true, reason: 'premium' });
+          return;
+        }
+        addToast(error?.message || "We couldn't open this paper. Please try again.", 'error');
+        return;
+      }
     }
 
     setSelectedPaper(paper);

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
-import { useNavigate, useSearchParams, Link } from 'react-router-dom';
+import { useNavigate, useSearchParams, Link, useLocation } from 'react-router-dom';
 import DOMPurify from 'dompurify';
 import { useAuth } from '../contexts/AuthContext';
 import { useLayout } from '../contexts/LayoutContext';
@@ -23,6 +23,7 @@ import Spinner from '../components/Spinner/Spinner';
 import Button from '../components/Button/Button';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 import LearningJourney from '../components/LearningJourney/LearningJourney';
+import { isPremiumAccessError, redirectToSubscription } from '../utils/subscriptionNavigation';
 
 const noteDetailContentCache = new Map();
 
@@ -55,6 +56,7 @@ export default function NoteDetail() {
   const { user } = useAuth();
   const { bootstrap } = useLayout();
   const navigate = useNavigate();
+  const location = useLocation();
   const [searchParams] = useSearchParams();
   const noteId = searchParams.get('id');
   const requestedReturnTo = searchParams.get('return_to') || '';
@@ -132,6 +134,10 @@ export default function NoteDetail() {
       try {
         const data = cachedNote || await getNoteDetail(noteId);
         if (!mounted) return;
+        if (data?.locked && data.reason === 'premium_locked') {
+          redirectToSubscription(navigate, location, { preserveCurrent: true, reason: 'premium' });
+          return;
+        }
         noteDetailContentCache.set(noteId, data);
 
         setNote(data);
@@ -178,6 +184,10 @@ export default function NoteDetail() {
           }
         }
       } catch (error) {
+        if (isPremiumAccessError(error)) {
+          if (mounted) redirectToSubscription(navigate, location, { preserveCurrent: true, reason: 'premium' });
+          return;
+        }
         console.error('[NOTE_DETAIL_LOAD_ERROR]', error);
         if (mounted) setFetchError("We couldn't load this note. Please try again.");
       } finally {
@@ -192,7 +202,7 @@ export default function NoteDetail() {
       if (progressTimer.current) clearTimeout(progressTimer.current);
       if (previewTimer.current) clearTimeout(previewTimer.current);
     };
-  }, [noteId, navigate, user]);
+  }, [noteId, navigate, location, user]);
 
   useEffect(() => {
     if (!user || !note) return;

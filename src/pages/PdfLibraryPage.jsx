@@ -1,11 +1,11 @@
 /* pages/PdfLibraryPage.jsx */
 import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate, useLocation } from 'react-router-dom';
 import { useContentAccess } from '../hooks/useContentAccess';
 import { useAuth } from '../contexts/AuthContext';
 import { useLevelFilter } from '../hooks/useLevelFilter';
 import { useLayout } from '../contexts/LayoutContext';
-import { getPdfsByLevel } from '../api/client';
+import { getPdfsByLevel, getPdfDownloadUrl } from '../api/client';
 import Icon from '../components/Icon/Icon';
 import Skeleton from '../components/Skeleton/Skeleton';
 import EmptyState from '../components/EmptyState/EmptyState';
@@ -15,11 +15,16 @@ import DynamicActions from '../components/DynamicActions';
 import Container from '../components/Container/Container';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 import LearningJourney from '../components/LearningJourney/LearningJourney';
+import { isPremiumAccessError, redirectToSubscription } from '../utils/subscriptionNavigation';
+import { useToast } from '../components/Toast/Toast';
 import './PdfLibraryPage.css';
 
 export default function PdfLibraryPage() {
   const access = useContentAccess();
   const { user } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const addToast = useToast();
   const { level, class_name, displayName } = useLevelFilter();
   const activeGroupId = user?.profile?.active_group_id || null;
   const { bootstrap } = useLayout();
@@ -65,6 +70,20 @@ export default function PdfLibraryPage() {
     const uiComponents = bootstrap?.ui_components || [];
     const component = uiComponents.find((item) => item.component_key === `empty_state_${key}`);
     return component?.properties?.image_url || null;
+  }
+
+  async function handlePremiumPdfDownload(pdf) {
+    try {
+      const result = await getPdfDownloadUrl(pdf.id);
+      if (!result?.url) throw new Error('A download link was not returned.');
+      window.open(result.url, '_blank', 'noopener,noreferrer');
+    } catch (downloadError) {
+      if (isPremiumAccessError(downloadError)) {
+        redirectToSubscription(navigate, location, { preserveCurrent: true, reason: 'premium' });
+        return;
+      }
+      addToast(downloadError?.message || "We couldn't download this PDF. Please try again.", 'error');
+    }
   }
 
   function sortPdfs(items) {
@@ -184,7 +203,13 @@ export default function PdfLibraryPage() {
                   {pdf.file_size && <span className="pdf-card-size">{pdf.file_size}</span>}
                 </div>
                 <div className="pdf-card-footer">
-                  <DynamicActions pageId="pdf-library" contentType="pdf" contentId={pdf.id} className="pdf-download-actions" />
+                  {pdf.is_premium ? (
+                    <Button type="button" variant="primary" onClick={() => handlePremiumPdfDownload(pdf)}>
+                      <Icon name="lock" /> Access premium PDF
+                    </Button>
+                  ) : (
+                    <DynamicActions pageId="pdf-library" contentType="pdf" contentId={pdf.id} className="pdf-download-actions" />
+                  )}
                 </div>
               </article>
             ))}

@@ -1,7 +1,7 @@
  /* pages/FlashcardsPage.jsx */
 import AdSlot from '../components/Advertising/AdSlot';
 import { useState, useEffect } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useRequireOnboarding } from '../hooks/useRequireOnboarding';
 import { useLevelFilter } from '../hooks/useLevelFilter';
@@ -24,6 +24,7 @@ import Button from '../components/Button/Button';
 import Card from '../components/Card/Card';
 import EmptyState from '../components/EmptyState/EmptyState';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
+import { redirectToSubscription } from '../utils/subscriptionNavigation';
 import { useLayout } from '../contexts/LayoutContext';
 import { useToast } from '../components/Toast/Toast';
 
@@ -40,6 +41,7 @@ const STAGE = {
 export default function FlashcardsPage() {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const { isReady } = useRequireOnboarding();
   const access = useContentAccess();
@@ -304,6 +306,7 @@ export default function FlashcardsPage() {
     return (
       <FlashcardDeckView
         deck={selectedDeck}
+        onPremiumRequired={() => redirectToSubscription(navigate, location, { preserveCurrent: true, reason: 'premium' })}
         challengeId={challengeId}
         knownIds={knownIds}
         mode="flip"

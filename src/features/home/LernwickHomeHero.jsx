@@ -10,18 +10,8 @@ const images = {
   student: 'https://images.pexels.com/photos/1181742/pexels-photo-1181742.jpeg?auto=compress&cs=tinysrgb&w=96&h=96&fit=crop'
 };
 
-function number(value) {
-  return Number(value || 0).toLocaleString();
-}
-
-export default function LernwickHomeHero({ user, activeLevelName, activeGroupName, stats = {} }) {
+export default function LernwickHomeHero({ user, activeLevelName, activeGroupName }) {
   const name = user?.user_metadata?.full_name || user?.profile?.full_name || user?.email?.split('@')[0];
-  const metrics = [
-    { label: 'Learning resources', value: stats.resources_count },
-    { label: 'Recall questions', value: stats.recall_questions },
-    { label: 'Platform learners', value: stats.users_count }
-  ];
-
   return (
     <section className="hero" aria-labelledby="hero-title">
       <div className="container hero__grid">
@@ -51,7 +41,7 @@ export default function LernwickHomeHero({ user, activeLevelName, activeGroupNam
       <div className="container hero__row">
         <div className="collage" aria-hidden="true"><img src={images.sketch} alt="" width="500" height="560" /><img src={images.notes} alt="" width="500" height="360" /><img src={images.study} alt="" width="500" height="360" /></div>
         <Link className="process" to="/classroom"><span className="process__ic"><Icon name="play" /></span><span className="pill">Learn at your pace</span><span className="process__t">Move from learning to confident understanding</span><span className="process__go"><Icon name="arrow-right" /></span></Link>
-        <div className="stats"><dl className="stats__list">{metrics.map(metric => <div key={metric.label}><dt>{metric.label}</dt><dd>{number(metric.value)}{Number(metric.value) > 0 && <sup>+</sup>}</dd></div>)}</dl><p className="happy"><span className="avatars"><img src={images.student} alt="" width="96" height="96" /><img src={images.portrait} alt="" width="96" height="96" /><img src={images.notes} alt="" width="96" height="96" /></span><span><strong>{activeLevelName || 'O-Level · A-Level · Pharmacy'}</strong><br />Learning pathways</span></p></div>
+        
       </div>
     </section>
   );

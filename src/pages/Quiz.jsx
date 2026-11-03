@@ -25,6 +25,7 @@ import { apiCall } from '../api/client';
 import { PendingApprovalScreen } from '../components/access/PendingApprovalScreen';
 import { AccessDenied } from '../components/access/AccessDenied';
 import LearningJourney from '../components/LearningJourney/LearningJourney';
+import { isPremiumAccessError, redirectToSubscription } from '../utils/subscriptionNavigation';
 import QuizHero from '../components/quiz/QuizHero';
 import QuizLearningPath from '../components/quiz/QuizLearningPath';
 import QuizWeakAreas from '../components/quiz/QuizWeakAreas';
@@ -614,6 +615,10 @@ export default function Quiz() {
       setResultData(null);
       setTimeLeft(data.time_left ?? 600);
     } catch (error) {
+      if (isPremiumAccessError(error)) {
+        redirectToSubscription(navigate, location, { preserveCurrent: true, reason: 'premium' });
+        return;
+      }
       addToast(error?.message || "We couldn't load this question block. Please try again.", 'error');
     } finally {
       setLoading(false);

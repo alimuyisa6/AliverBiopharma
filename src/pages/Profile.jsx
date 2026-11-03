@@ -1,5 +1,6 @@
  import { useState, useEffect, useMemo, useCallback } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
+import { getSafeReturnPath } from '../utils/subscriptionNavigation';
 import { useAuth } from '../contexts/AuthContext';
 import { useLayout } from '../contexts/LayoutContext';
 import { useI18n } from '../contexts/I18nContext';
@@ -272,12 +273,20 @@ function ProfileError({ error, title = "We couldn't load this section", onRetry,
 
 export default function Profile() {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const { user, refresh, logout } = useAuth();
   const { theme, toggleTheme, uiPreferences } = useLayout();
   const { locale, setLocale, t } = useI18n();
   const addToast = useToast();
 
   const [activeSection, setActiveSection] = useState(() => searchParams.get('section') || 'overview');
+  const returnToAfterPayment = getSafeReturnPath(searchParams.get('return_to'));
+  const requestedPlanId = searchParams.get('plan_id');
+  const paymentStatus = searchParams.get('payment');
+
+  useEffect(() => {
+    if (requestedPlanId) setActiveSection('billing');
+  }, [requestedPlanId]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const [fullName, setFullName] = useState('');
@@ -508,6 +517,58 @@ export default function Profile() {
   }, [activeSection, loadSection]);
 
   useEffect(() => {
+    if (paymentStatus === 'cancelled') {
+      setBillingPaymentMessage('Payment was cancelled. You can choose a subscription plan whenever you are ready.');
+      return undefined;
+    }
+
+    if (paymentStatus !== 'success') return undefined;
+
+    let active = true;
+    let activated = false;
+    let attempts = 0;
+    let timer;
+
+    setBillingPaymentMessage('Payment received. Waiting for the payment provider to confirm your subscription…');
+
+    const verifyActivation = async () => {
+      if (activated) return;
+      attempts += 1;
+      try {
+        const latest = await getBillingSummary();
+        if (!active) return;
+        setBilling(latest);
+        const expiry = latest?.subscription?.expires_at ? new Date(latest.subscription.expires_at).getTime() : 0;
+        if (latest?.subscription?.status === 'active' && expiry > Date.now()) {
+          activated = true;
+          if (timer) clearInterval(timer);
+          setBillingPaymentMessage('Your premium subscription is active.');
+          if (returnToAfterPayment) navigate(returnToAfterPayment, { replace: true });
+          return;
+        }
+      } catch {}
+
+      if (attempts >= 24) {
+        setBillingPaymentMessage('Your payment is still being verified. Your access will update automatically after confirmation. You can refresh this page to check again.');
+      }
+    };
+
+    timer = setInterval(() => {
+      if (activated || attempts >= 24) {
+        clearInterval(timer);
+        return;
+      }
+      verifyActivation();
+    }, 5000);
+    verifyActivation();
+
+    return () => {
+      active = false;
+      if (timer) clearInterval(timer);
+    };
+  }, [paymentStatus, returnToAfterPayment, navigate]);
+
+  useEffect(() => {
     const handleEscape = (event) => {
       if (event.key === 'Escape') setSidebarOpen(false);
     };
@@ -522,7 +583,7 @@ export default function Profile() {
     setBillingPaymentMessage('');
 
     try {
-      const result = await createSubscriptionCryptoInvoice(plan.id);
+      const result = await createSubscriptionCryptoInvoice(plan.id, searchParams.get('return_to') || '');
       if (!result?.invoice_url) {
         throw new Error('The payment provider did not return a checkout link.');
       }
@@ -1799,14 +1860,13 @@ export default function Profile() {
                   {t('profile.billingPayments')}
                 </h3>
                 <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
-                  Choose a plan and pay securely with cryptocurrency. Premium access activates automatically after the payment provider confirms your payment.
+                  Choose a plan and pay with USDT on the TRON network (TRC20). Premium access activates automatically after the payment provider confirms your payment. Plans do not renew automatically.
                 </p>
                 {billingPaymentMessage && (
-                  <p role="alert" style={{ color: THEME.error, fontFamily: THEME.font, fontSize: 14, marginBottom: 16 }}>
+                  <p role="status" style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 14, marginBottom: 16 }}>
                     {billingPaymentMessage}
                   </p>
                 )}
-
                 {sectionLoading ? (
                   <Spinner context="data" size="sm" />
                 ) : (
@@ -1818,12 +1878,15 @@ export default function Profile() {
 
                     <div className="profile-plan-list">
                       <h4 style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 16, fontWeight: 600 }}>{t('profile.availablePlans')}</h4>
+                      {(billing?.available_plans || []).length === 0 && (
+                        <p className="profile-detail-description">No subscription plans have been published yet. Please check back soon.</p>
+                      )}
                       {(billing?.available_plans || []).map((plan) => (
                         <div key={plan.id} className="chart-bar-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
-                          <div>
+                          <div className={searchParams.get('plan_id') === String(plan.id) ? 'profile-plan-option is-selected' : 'profile-plan-option'}>
                             <strong style={{ display: 'block', color: THEME.textMain, fontFamily: THEME.font }}>{plan.name}</strong>
                             <span style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 14 }}>
-                              {plan.currency} {plan.price_amount} / {plan.duration_days} days
+                              {plan.currency} {plan.price_amount} / {plan.duration_days} days · USDT TRC20
                             </span>
                           </div>
                           <Button
@@ -1833,7 +1896,7 @@ export default function Profile() {
                             disabled={Boolean(creatingCryptoPlanId) || Boolean(billing?.subscription && ['active', 'awaiting_verification', 'pending'].includes(billing.subscription.status))}
                             onClick={() => handleCryptoSubscription(plan)}
                           >
-                            {creatingCryptoPlanId === plan.id ? 'Preparing checkout…' : 'Pay with crypto'}
+                            {creatingCryptoPlanId === plan.id ? 'Preparing checkout…' : 'Pay with USDT'}
                           </Button>
                         </div>
                       ))}
