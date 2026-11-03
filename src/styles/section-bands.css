@@ -836,9 +836,9 @@ body.dark-mode .home-page .study-quote-card {
   --ill-tint-200: var(--primary-light);
   --ill-accent: var(--primary);
   --ill-accent-soft: var(--primary-light);
-  --ill-skin-1: #f2c6a5;
-  --ill-skin-2: #bd805d;
-  --ill-skin-3: #744833;
+  --ill-skin-1: var(--illustration-skin-1);
+  --ill-skin-2: var(--illustration-skin-2);
+  --ill-skin-3: var(--illustration-skin-3);
   --ill-paper: var(--white);
   --ill-deep: var(--text-main);
 }
