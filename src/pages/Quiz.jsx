@@ -24,6 +24,7 @@ import {
 import { apiCall } from '../api/client';
 import { PendingApprovalScreen } from '../components/access/PendingApprovalScreen';
 import { AccessDenied } from '../components/access/AccessDenied';
+import LearningJourney from '../components/LearningJourney/LearningJourney';
 import QuizHero from '../components/quiz/QuizHero';
 import QuizLearningPath from '../components/quiz/QuizLearningPath';
 import QuizWeakAreas from '../components/quiz/QuizWeakAreas';
@@ -1106,6 +1107,15 @@ export default function Quiz() {
             </div>
 
           </div>       )}
+
+        {resultData && curriculumUnitId && (
+          <LearningJourney
+            unitId={curriculumUnitId}
+            nodeName={currentTopic}
+            excludeStages={['quiz']}
+            returnTo={'/quiz/blocks?unit_id=' + encodeURIComponent(curriculumUnitId)}
+          />
+        )}
 
         {!isQuizCardsPage && !currentTopic && !curriculumUnitId && <QuizLearningPath level={level} class_name={class_name} groupId={activeGroupId} />}
         {!isQuizCardsPage && !currentTopic && !curriculumUnitId && <QuizWeakAreas user={user} level={level} class_name={class_name} groupId={activeGroupId} />}
