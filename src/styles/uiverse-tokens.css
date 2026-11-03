@@ -42,7 +42,7 @@
   --tactile-toggle-duration: 0.6s;
   --tactile-toggle-easing: cubic-bezier(1, 0, 1, 1);
   --tactile-toggle-hue: 142deg;
-  --tactile-toggle-accent-hue: 45deg
+  --tactile-toggle-accent-hue: 45deg;
   --tactile-toggle-track-radius: 999px;
   --tactile-toggle-shadow:
     inset 10px 10px 10px hsl(142deg 20% 80%),
