@@ -15,8 +15,8 @@ const GRAPH_TYPES = [
     key: 'weekly_xp',
     title: 'Weekly XP Progress',
     icon: 'chart-line',
-    color: '#2563EB',
-    gradientTo: '#7C3AED',
+    color: 'var(--primary)',
+    gradientTo: 'var(--accent-dark)',
     description: 'Track your XP earnings over the last 7 days. This shows your learning momentum and consistency.',
     insight: 'Consistent daily practice leads to steady XP growth. Aim for at least 20 XP per day to maintain your streak.'
   },
@@ -24,7 +24,7 @@ const GRAPH_TYPES = [
     key: 'confidence',
     title: 'Confidence Distribution',
     icon: 'chart-pie',
-    color: '#059669',
+    color: 'var(--success-color)',
     description: 'See how well you recall concepts. Excellent means perfect recall, Strong means close, Developing means needs review.',
     insight: 'A healthy mix shows you are challenging yourself. Too many "Easy" ratings may mean the questions are too simple.'
   },
@@ -32,7 +32,7 @@ const GRAPH_TYPES = [
     key: 'topic_mastery',
     title: 'Topic Mastery Radar',
     icon: 'bullseye',
-    color: '#7C3AED',
+    color: 'var(--accent-dark)',
     description: 'Compare your mastery across all biology topics. Each axis represents a topic, and the shape shows your strengths.',
     insight: 'A balanced shape means well-rounded knowledge. If one side is flat, focus more on that topic.'
   },
@@ -40,7 +40,7 @@ const GRAPH_TYPES = [
     key: 'questions_per_topic',
     title: 'Questions per Topic',
     icon: 'chart-bar',
-    color: '#0D9488',
+    color: 'var(--secondary)',
     description: 'See how many questions you have answered in each topic. This shows where you spend your study time.',
     insight: 'Make sure your study time is distributed. Over-focusing on one topic may leave gaps elsewhere.'
   }
@@ -107,8 +107,8 @@ export default function RecallAnalyticsHub() {
             data={weeklyXp}
             labels={dayLabels}
             label="XP"
-            color="#2563EB"
-            gradientTo="#7C3AED"
+            color="var(--primary)"
+            gradientTo="var(--accent-dark)"
             height={380}
           />
         );
@@ -117,7 +117,7 @@ export default function RecallAnalyticsHub() {
           <DonutChart
             data={confidenceData}
             labels={['Excellent', 'Strong', 'Developing']}
-            colors={['#059669', '#2563EB', '#D97706']}
+            colors={['var(--success-color)', 'var(--primary)', 'var(--warning-color)']}
             centerValue={`${stats.accuracy || 0}%`}
             centerLabel="Accuracy"
             height={380}
@@ -129,7 +129,7 @@ export default function RecallAnalyticsHub() {
             data={topicMastery.length ? topicMastery : [0, 0, 0, 0, 0, 0]}
             labels={topicNames.length ? topicNames : ['Biology', 'Cells', 'Plants', 'Insects', 'Kingdoms', 'Classification']}
             label="Mastery"
-            color="#7C3AED"
+            color="var(--accent-dark)"
             height={400}
           />
         );
@@ -139,7 +139,7 @@ export default function RecallAnalyticsHub() {
             data={topicMastery.length ? topicMastery : [0, 0, 0, 0, 0, 0]}
             labels={topicNames.length ? topicNames : ['Biology', 'Cells', 'Plants', 'Insects', 'Kingdoms', 'Classification']}
             label="Questions"
-            color="#0D9488"
+            color="var(--secondary)"
             height={400}
             horizontal={true}
           />
