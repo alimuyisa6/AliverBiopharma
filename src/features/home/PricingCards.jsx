@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import Icon from '../../components/Icon/Icon';
+import './lernwick-pricing.css';
 
 function formatPrice(plan) {
   const amount = Number(plan.price_amount);
@@ -29,19 +30,8 @@ export function PricingCards({ plans = [], user = null }) {
   const availablePlans = Array.isArray(plans) ? plans.filter((plan) => plan?.id) : [];
 
   const choosePlan = (plan) => {
-    const destination = `/profile?section=billing&plan_id=${encodeURIComponent(plan.id)}`;
-    if (user) {
-      navigate(destination, { state: { activeSection: 'billing' } });
-      return;
-    }
-
-    navigate('/login', {
-      state: {
-        from: {
-          pathname: '/profile',
-          search: `?section=billing&plan_id=${encodeURIComponent(plan.id)}`
-        }
-      }
+    navigate(`/profile?section=billing&plan_id=${encodeURIComponent(plan.id)}`, {
+      state: { activeSection: 'billing' }
     });
   };
 
