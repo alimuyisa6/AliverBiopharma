@@ -1,5 +1,5 @@
  import { useState, useEffect, useMemo, useCallback } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useLayout } from '../contexts/LayoutContext';
 import { useI18n } from '../contexts/I18nContext';
@@ -272,6 +272,7 @@ function ProfileError({ error, title = "We couldn't load this section", onRetry,
 
 export default function Profile() {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const { user, refresh, logout } = useAuth();
   const { theme, toggleTheme, uiPreferences } = useLayout();
   const { locale, setLocale, t } = useI18n();
@@ -522,7 +523,7 @@ export default function Profile() {
     setBillingPaymentMessage('');
 
     try {
-      const result = await createSubscriptionCryptoInvoice(plan.id);
+      const result = await createSubscriptionCryptoInvoice(plan.id, searchParams.get('return_to') || '');
       if (!result?.invoice_url) {
         throw new Error('The payment provider did not return a checkout link.');
       }
@@ -1818,9 +1819,12 @@ export default function Profile() {
 
                     <div className="profile-plan-list">
                       <h4 style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 16, fontWeight: 600 }}>{t('profile.availablePlans')}</h4>
+                      {(billing?.available_plans || []).length === 0 && (
+                        <p className="profile-detail-description">No subscription plans have been published yet. Please check back soon.</p>
+                      )}
                       {(billing?.available_plans || []).map((plan) => (
                         <div key={plan.id} className="chart-bar-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
-                          <div>
+                          <div className={searchParams.get('plan_id') === String(plan.id) ? 'profile-plan-option is-selected' : 'profile-plan-option'}>
                             <strong style={{ display: 'block', color: THEME.textMain, fontFamily: THEME.font }}>{plan.name}</strong>
                             <span style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 14 }}>
                               {plan.currency} {plan.price_amount} / {plan.duration_days} days
