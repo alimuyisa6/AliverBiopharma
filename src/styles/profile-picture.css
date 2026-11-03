@@ -72,7 +72,7 @@ body.dark-mode .profile-picture-placeholder { background: var(--dark-surface-rai
 }
 
 .profile-picture-overlay {
-  background: rgb(27 27 31 / 45%);
+  background: var(--dark-overlay-45);
 }
 
 .profile-picture-error {
