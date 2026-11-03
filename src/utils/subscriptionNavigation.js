@@ -26,6 +26,7 @@ export function isPremiumAccessError(error) {
   return error?.authorization?.reason === 'premium_required'
     || error?.data?.authorization?.reason === 'premium_required'
     || error?.data?.authorization?.reason === 'premium_locked'
+    || error?.data?.authorization?.reason === 'premium_required'
     || error?.authorization?.reason === 'premium_locked'
     || error?.code === 'premium_locked'
     || error?.reason === 'premium_locked'
