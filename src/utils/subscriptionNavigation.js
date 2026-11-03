@@ -27,7 +27,7 @@ export function isPremiumAccessError(error) {
     || error?.authorization?.reason === 'premium_locked'
     || error?.code === 'premium_locked'
     || error?.reason === 'premium_locked'
-    || /premium required|premium content|premium_locked|subscription required/.test(message);
+    || /premium[ _]required|premium content|premium_locked|subscription required/.test(message);
 }
 
 export function getSafeReturnPath(value) {
