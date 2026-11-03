@@ -1559,6 +1559,14 @@ return getRequest(
 );
 }
 
+export async function getSubscriptionPlans() {
+return getRequest('subscriptions', 'plans');
+}
+
+export async function checkPremiumStatus() {
+return getRequest('subscriptions', 'check_premium');
+}
+
 export async function getApiKeys() {
 return getRequest(
 'profile',
@@ -3568,8 +3576,8 @@ export async function streamAIAssistant(
   return fullText;
 }
 
-export async function createSubscriptionCryptoInvoice(plan_id) {
-  return apiCall('subscriptions', 'create_crypto_invoice', { plan_id }, 'POST');
+export async function createSubscriptionCryptoInvoice(plan_id, return_to = '') {
+  return apiCall('subscriptions', 'create_crypto_invoice', { plan_id, return_to }, 'POST');
 }
 
 export async function getDonateConfig() {
