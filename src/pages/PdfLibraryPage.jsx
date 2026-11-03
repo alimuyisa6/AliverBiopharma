@@ -13,6 +13,8 @@ import EmptyComponent from '../components/ui/empty8';
 import Button from '../components/Button/Button';
 import DynamicActions from '../components/DynamicActions';
 import Container from '../components/Container/Container';
+import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
+import LearningJourney from '../components/LearningJourney/LearningJourney';
 import './PdfLibraryPage.css';
 
 export default function PdfLibraryPage() {
@@ -102,6 +104,7 @@ export default function PdfLibraryPage() {
   return (
     <Container className="pdf-library-section">
       <div className="pdf-library-page">
+        <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'PDF library' }]} />
         <div className="pdf-library-heading">
           <div>
             <h1 className="section-title pdf-library-title">PDF library</h1>
@@ -186,6 +189,13 @@ export default function PdfLibraryPage() {
               </article>
             ))}
           </div>
+        )}
+        {curriculumUnitId && (
+          <LearningJourney
+            unitId={curriculumUnitId}
+            excludeStages={['pdfs']}
+            returnTo={'/pdfs?unit_id=' + encodeURIComponent(curriculumUnitId)}
+          />
         )}
       </div>
     </Container>
