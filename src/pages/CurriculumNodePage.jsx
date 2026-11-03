@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Link, useParams, useSearchParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams, useLocation } from 'react-router-dom';
 import Container from '../components/Container/Container';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 import Spinner from '../components/Spinner/Spinner';
 import Icon from '../components/Icon/Icon';
 import LearningJourney from '../components/LearningJourney/LearningJourney';
+import { getSubscriptionPath } from '../utils/subscriptionNavigation';
 import { getCurriculumNodeByPath, getCurriculumTree } from '../api/curriculumNavigation';
 
 function slugify(value) {
@@ -80,6 +81,7 @@ function renderBlockContent(block) {
 
 export default function CurriculumNodePage() {
   const { groupId, '*': nodePath = '' } = useParams();
+  const location = useLocation();
   const [searchParams] = useSearchParams();
   const resourceFocus = searchParams.get('resource') || '';
   const [rootNodes, setRootNodes] = useState(null);
@@ -264,7 +266,12 @@ export default function CurriculumNodePage() {
                 className={`curriculum-node-block curriculum-node-block-${block.content_type || 'text'}`}
               >
                 {block.title && <h3>{block.title}</h3>}
-                {renderBlockContent(block)}
+                {block.locked ? (
+                  <div className="curriculum-node-premium-locked">
+                    <p>This lesson is part of premium access.</p>
+                    <Link to={getSubscriptionPath(location, { preserveCurrent: true, reason: 'premium' })} className="btn btn-primary">Unlock this lesson</Link>
+                  </div>
+                ) : renderBlockContent(block)}
                 {block.is_premium && <span className="curriculum-node-premium">Premium</span>}
               </article>
             ))}
