@@ -25,7 +25,7 @@ function planFeatures(features) {
   return [];
 }
 
-export function PricingCards({ plans = [], user = null }) {
+export function PricingCards({ plans = [] }) {
   const navigate = useNavigate();
   const availablePlans = Array.isArray(plans) ? plans.filter((plan) => plan?.id) : [];
 
