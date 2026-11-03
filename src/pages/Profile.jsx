@@ -281,7 +281,12 @@ export default function Profile() {
 
   const [activeSection, setActiveSection] = useState(() => searchParams.get('section') || 'overview');
   const returnToAfterPayment = getSafeReturnPath(searchParams.get('return_to'));
+  const requestedPlanId = searchParams.get('plan_id');
   const paymentStatus = searchParams.get('payment');
+
+  useEffect(() => {
+    if (requestedPlanId) setActiveSection('billing');
+  }, [requestedPlanId]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const [fullName, setFullName] = useState('');
