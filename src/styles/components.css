@@ -94,7 +94,7 @@ body.dark-mode .loading-placeholder__line {
   background: color-mix(in srgb, var(--dark-primary) 24%, var(--dark-surface));
 }
 body.dark-mode .loading-placeholder__line::after {
-  background: linear-gradient(105deg, transparent 20%, rgb(255 255 255 / 17%) 48%, transparent 76%);
+  background: linear-gradient(105deg, transparent 20%, var(--glass-white-17) 48%, transparent 76%);
 }
 @media (prefers-reduced-motion: reduce) {
   .loading-placeholder__line::after { animation: none; transform: none; opacity: .35; }
