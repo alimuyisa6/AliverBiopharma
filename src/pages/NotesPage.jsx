@@ -14,6 +14,7 @@ import Button from '../components/Button/Button';
 import Container from '../components/Container/Container';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 import LearningJourney from '../components/LearningJourney/LearningJourney';
+import { redirectToSubscription } from '../utils/subscriptionNavigation';
 
 const notesPageCache = new Map();
 const notesContextCache = new Map();
@@ -46,6 +47,7 @@ function formatResourceCount(value) {
 
 export default function NotesPage() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [searchParams] = useSearchParams();
   const access = useContentAccess();
   const { level, class_name, displayName } = useLevelFilter();
@@ -340,7 +342,7 @@ export default function NotesPage() {
                       {note.read_time ? `${note.read_time} min read` : 'Read note'}
                       {note.is_premium ? ' · Premium' : ''}
                     </span>
-                    <Button variant="primary" size="sm" onClick={() => navigate(`/notes/read?id=${note.id}`)}>
+                    <Button variant="primary" size="sm" onClick={() => note.is_premium ? redirectToSubscription(navigate, location, { returnTo: `/notes/read?id=${encodeURIComponent(note.id)}`, reason: 'premium' }) : navigate(`/notes/read?id=${note.id}`)}>
                       Read note
                     </Button>
                   </div>
