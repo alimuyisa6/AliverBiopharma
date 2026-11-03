@@ -358,6 +358,12 @@ withCache(
 () => api.getPublicStats(groupId)
 )();
 
+export const getSubscriptionPlans = () =>
+withCache(
+'subscription_plans',
+api.getSubscriptionPlans
+)();
+
 export const getLeaderboard = (
 level,
 limit = 20
