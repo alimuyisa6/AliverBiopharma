@@ -411,7 +411,7 @@
   padding: var(--space-2) var(--space-3);
   border: 1px solid var(--primary-light);
   border-radius: var(--radius-pill);
-  background: rgb(255 255 255 / 78%);
+  background: var(--glass-white-78);
   color: var(--primary-dark);
   font-size: var(--text-sm);
   font-weight: var(--weight-semibold);
@@ -519,7 +519,7 @@ body.dark-mode .resources-intro {
   border-color: var(--night-500);
   border-bottom-color: var(--night-450);
   background: var(--dark-surface-raised);
-  box-shadow: 0 0.75rem 2.25rem rgb(0 0 0 / 18%);
+  box-shadow: 0 0.75rem 2.25rem var(--shadow-black-18);
 }
 body.dark-mode .resources-section-context {
   border-color: var(--night-450);
