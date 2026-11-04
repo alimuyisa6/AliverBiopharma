@@ -72,8 +72,8 @@ function CurriculumNodeList({ nodes, parentId = null, isPharmacy = false }) {
           .replace(/[^a-z0-9]+/g, '-')
           .replace(/^-+|-+$/g, '');
         const nodeType = String(node.node_type || '').toLowerCase();
-        const label = nodeType === 'unit' && isPharmacy
-          ? 'Course Unit'
+        const label = nodeType === 'unit'
+          ? (isPharmacy ? 'Course Unit' : 'Topic')
           : nodeType === 'sub_course_unit' && isPharmacy
             ? 'Sub-course Unit'
             : nodeType === 'topic'
