@@ -160,7 +160,10 @@ function StatsGroup({ group, stats }) {
 }
 
 export function StatsGrid({ stats = {}, scopeLabel = 'All learning levels' }) {
-  const failedItems = Array.isArray(stats.most_failed) ? stats.most_failed : [];\n  const passedItems = Array.isArray(stats.most_passed) ? stats.most_passed : [];\n\n  return (
+  const failedItems = Array.isArray(stats.most_failed) ? stats.most_failed : [];
+  const passedItems = Array.isArray(stats.most_passed) ? stats.most_passed : [];
+
+  return (
     <section className="section stats-grid-section lernwick-stats" aria-labelledby="platform-impact-title">
       <div className="stats-impact-panel">
         <header className="stats-impact-heading">
