@@ -292,3 +292,58 @@ body.dark-mode .lernwick-stats .stats-impact-topic-rank {
     transition-duration: .01ms !important;
   }
 }
+
+.lernwick-stats .stats-impact-rankings {
+  display: grid;
+  gap: clamp(1.75rem, 3vw, 2.5rem);
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.lernwick-stats .stats-impact-rankings .stats-impact-topics {
+  margin-top: 0;
+}
+
+.lernwick-stats .stats-impact-topic-detail {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .45rem .65rem;
+  min-width: 0;
+}
+
+.lernwick-stats .stats-impact-category {
+  display: inline-flex;
+  align-items: center;
+  min-height: 21px;
+  padding: .15rem .45rem;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  color: #555555;
+  font-size: .68rem;
+  font-weight: 650;
+  line-height: 1.2;
+}
+
+.lernwick-stats .stats-impact-category-quiz {
+  border-color: #F2C58E;
+  background: #FFF4E5;
+  color: #8A4B08;
+}
+
+.lernwick-stats .stats-impact-category-flashcards {
+  border-color: #B9D5AA;
+  background: #EEF5E9;
+  color: #315D2B;
+}
+
+body.dark-mode .lernwick-stats .stats-impact-category {
+  border-color: var(--dark-border);
+  background: var(--dark-surface-raised);
+  color: var(--dark-text-secondary);
+}
+
+@media (max-width: 600px) {
+  .lernwick-stats .stats-impact-topic-detail {
+    gap: .35rem .5rem;
+  }
+}
