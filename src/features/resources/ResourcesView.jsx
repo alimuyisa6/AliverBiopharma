@@ -136,7 +136,7 @@ export default function ResourcesView({ navigate, user, sections }) {
     if (!user) return '/login';
 
     // The resource card opens the shared curriculum path and carries its
-    // resource focus forward through topic → subtopic → theme → lesson.
+    // resource focus through the level-specific four-stage learning sequence.
     if (activeGroupId) {
       return `/curriculum/${encodeURIComponent(activeGroupId)}?resource=${encodeURIComponent(type.key)}`;
     }
