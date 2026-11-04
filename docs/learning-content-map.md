@@ -98,3 +98,17 @@ The four curriculum stages are separate from resource types. Notes, PDFs, past p
 ## Audit limitations
 
 This is a point-in-time database inventory. It confirms active records and curriculum assignments, not the academic accuracy, completeness, file integrity, premium configuration, or playback quality of each individual item. Resource-level QA and a separate audit of video administration are still required before claiming the library is complete.
+
+
+## Authored curriculum introductions progress
+
+The following Form 1 course-unit branches now have individual descriptions at every active child level (sub-course unit, theme and lesson):
+
+- Cells
+- Introduction to Biology
+- Classification of Living Organisms
+- The Five Kingdoms
+- Insects
+- Flowering Plants
+
+The descriptions are stored in `curriculum_units.description` in the Supabase curriculum data. They are written to connect parent and child explanations, with progressively narrower focus at each level. Continue this editorial work through the remaining Form 1 units before moving to later forms and pharmacy programmes.
