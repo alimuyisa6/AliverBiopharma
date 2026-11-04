@@ -16,9 +16,14 @@ function slugify(value) {
     .replace(/^-+|-+$/g, '');
 }
 
-function curriculumLevelLabel(depth) {
-  if (depth <= 0) return 'Course Unit';
-  if (depth === 1) return 'Sub-course Unit';
+function isPharmacyCurriculum(node, ancestors = [], roots = []) {
+  const rootType = ancestors[0]?.node_type || node?.node_type || roots[0]?.node_type;
+  return rootType === 'unit' || rootType === 'sub_course_unit';
+}
+
+function curriculumLevelLabel(depth, isPharmacy) {
+  if (depth <= 0) return isPharmacy ? 'Course Unit' : 'Topic';
+  if (depth === 1) return isPharmacy ? 'Sub-course Unit' : 'Subtopic';
   if (depth === 2) return 'Theme';
   return 'Lesson';
 }
@@ -158,7 +163,8 @@ export default function CurriculumNodePage() {
   const blocks = data?.blocks || [];
   const linkedContent = data?.linked_content || [];
   const curriculumDepth = Math.max(0, ancestors.filter((item) => item.group_id === groupId).length - 1);
-  const nodeLabel = curriculumLevelLabel(curriculumDepth);
+  const isPharmacy = isPharmacyCurriculum(node, ancestors, rootNodes || []);
+  const nodeLabel = curriculumLevelLabel(curriculumDepth, isPharmacy);
   const normalizedResourceFocus = ({ quizzes: 'quiz', past_papers: 'past-papers' })[resourceFocus] || resourceFocus;
   const focusedResourceLabel = RESOURCE_LABELS[normalizedResourceFocus] || '';
   const breadcrumbItems = useMemo(() => {
@@ -202,17 +208,20 @@ export default function CurriculumNodePage() {
   }
 
   if (!node && Array.isArray(rootNodes)) {
-    const rootLabel = 'course unit';
+    const isPharmacy = isPharmacyCurriculum(null, [], rootNodes);
+    const rootLabel = isPharmacy ? 'course unit' : 'topic';
+    const rootLabelPlural = isPharmacy ? 'Course units' : 'Topics';
+    const childLabel = isPharmacy ? 'course units' : 'topics';
     return (
       <Container className="curriculum-node-page">
-        <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Resources', href: '/resources' }, { label: 'Course units', href: null }]} />
+        <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Resources', href: '/resources' }, { label: rootLabelPlural, href: null }]} />
         <header className="curriculum-node-header">
           <span className="curriculum-node-type">Your learning pathway</span>
           <h1>Choose a {rootLabel}</h1>
-          <p>Begin with a course unit, then follow its connected subdivisions, themes and lessons.</p>
+          <p>{isPharmacy ? 'Begin with a course unit, then follow its sub-course units, themes and lessons.' : 'Begin with a topic, then follow its subtopics, themes and lessons.'}</p>
         </header>
         <section className="curriculum-node-section">
-          <div className="curriculum-node-section-heading"><div><span className="curriculum-node-kicker">Step 1 of 4</span><h2>Course units</h2></div><span className="curriculum-node-count">{rootNodes.length} available</span></div>
+          <div className="curriculum-node-section-heading"><div><span className="curriculum-node-kicker">Step 1 of 4</span><h2>{rootLabelPlural}</h2></div><span className="curriculum-node-count">{rootNodes.length} available</span></div>
           <div className="curriculum-node-children">
             {rootNodes.map((item) => (
               <Link key={item.id} to={`/curriculum/${encodeURIComponent(groupId)}/${slugify(item.slug || item.name)}${resourceFocus ? `?resource=${encodeURIComponent(resourceFocus)}` : ''}`} className="curriculum-node-child">
