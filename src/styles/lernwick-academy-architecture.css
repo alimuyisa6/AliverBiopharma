@@ -189,3 +189,51 @@ body.dark-mode .app-layout .curriculum-node-linked-group {
     border-radius: var(--r-md);
   }
 }
+
+:root {
+  --radius-control: 8px;
+  --radius-control-small: 6px;
+  --radius-control-large: 10px;
+  --radius-icon-control: 9px;
+  --radius-pill-control: 999px;
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-xl: 18px;
+}
+
+#root .app-layout :where(button, input[type="button"], input[type="submit"], input[type="reset"], .btn, .button, [role="button"], a.btn, a.button) {
+  border-radius: var(--radius-control);
+}
+
+#root .app-layout :where(.btn-primary, .button-primary, .btn-secondary, .button-secondary, .btn-outline, button.primary, button.secondary, input[type="submit"], input[type="button"], input[type="reset"]) {
+  border-radius: 7px;
+}
+
+#root .app-layout :where(.icon-button, .btn-icon, .button-icon, button[aria-label], [role="button"].icon-only) {
+  border-radius: var(--radius-icon-control);
+}
+
+#root .app-layout :where(.btn-sm, .button-sm, .btn-small, .button-small) {
+  border-radius: var(--radius-control-small);
+}
+
+#root .app-layout :where(.btn-lg, .button-lg, .btn-large, .button-large) {
+  border-radius: var(--radius-control-large);
+}
+
+#root .app-layout :where(.chip-button, .filter-chip, .tab-pill, .segmented-control button, .pagination-pill) {
+  border-radius: var(--radius-pill-control);
+}
+
+#root .app-layout :where(.btn, .button, button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"]) {
+  min-height: 38px;
+}
+
+#root .app-layout :where(.btn-sm, .button-sm, .btn-small, .button-small) {
+  min-height: 32px;
+}
+
+#root .app-layout :where(.btn-lg, .button-lg, .btn-large, .button-large) {
+  min-height: 44px;
+}
