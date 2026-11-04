@@ -29,6 +29,12 @@ export function PricingCards({ plans = [], user = null }) {
   const navigate = useNavigate();
   const availablePlans = Array.isArray(plans) ? plans.filter((plan) => plan?.id) : [];
 
+  const planBadges = {
+    'monthly-access': 'Flexible access',
+    'quarterly-access': 'Best balance',
+    'annual-access': 'Best value'
+  };
+
   const choosePlan = (plan) => {
     const search = `?section=billing&plan_id=${encodeURIComponent(plan.id)}`;
     if (user) {
@@ -57,7 +63,7 @@ export function PricingCards({ plans = [], user = null }) {
             <article key={plan.id} className="pricing-card card card-surface-solid card-elevation-soft card-density-comfortable">
               <div className="pricing-card-heading">
                 <h3>{plan.name}</h3>
-                {(plan.is_popular || plan.slug === 'quarterly-access') && <span className="pricing-card-badge">Best balance</span>}
+                {planBadges[plan.slug] && <span className="pricing-card-badge">{planBadges[plan.slug]}</span>}
               </div>
               {plan.description && <p>{plan.description}</p>}
               <div className="price">
