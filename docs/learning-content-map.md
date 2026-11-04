@@ -72,17 +72,16 @@ Counts include resources assigned anywhere below each course-unit root. A zero m
 
 ## Recommended learning progression
 
-The journey should be built around the content that actually exists for the selected course unit. It should not show empty stages or imply that a resource exists when it does not.
+The learner's Resources journey has four curriculum stages. The learner's level is inherited from their account, and the active class or programme is inherited from the homepage class switcher. Neither is selected again inside Resources.
 
-1. **Learn:** show the selected note or lesson content. If no note exists, offer the available resource types without presenting an empty reading stage.
-2. **Reference:** offer relevant PDFs when available. Open the selected PDF directly in its preview/download experience.
-3. **Reinforce:** offer the selected flashcard deck when available. Open the exact deck, not the generic flashcard landing page.
-4. **Retrieve:** offer Active Recall when questions exist. Start a session scoped to the unit or selected note.
-5. **Apply:** offer a unit-scoped quiz when questions exist. Start the quiz directly.
-6. **Examination practice:** offer linked past papers when available. Open the selected paper/download directly.
-7. **Watch:** when video records are added, open the selected video player. Videos should appear where pedagogically relevant rather than being forced to the end.
+1. **Course Unit:** introduce the subject in enough detail to explain what it covers, why it matters, what the learner will study and what they should understand by the end.
+2. **Sub-course Unit:** continue from the course-unit introduction and explain the next area of study, showing how it develops the ideas already introduced.
+3. **Theme:** narrow the explanation to the specific theme, connecting it naturally to its parent subdivision and preparing the learner for the lesson.
+4. **Lesson:** introduce the precise concept or skill being studied. Show only resources directly associated with that lesson, and open the exact selected resource or activity.
 
-This is a flexible sequence, not a mandatory seven-step checklist. The interface should omit unavailable stages and preserve the learner's course-unit context when moving between resource types.
+Descriptions must read as one connected explanation written by the same knowledgeable teacher. Each stage should build on the previous stage without repeating it. The course-unit introduction can be substantial; descriptions become progressively more focused at each level. Use natural, professional language, concise navigation labels and no generic filler.
+
+The four curriculum stages are separate from resource types. Notes, PDFs, past papers, flashcards, quizzes, Active Recall and videos are lesson resources, not additional navigation stages. Show only resource types that actually exist for the selected lesson. Do not substitute course-unit totals for lesson-specific counts or imply that a parent-level resource is attached to every descendant lesson.
 
 ## Implementation requirements
 
