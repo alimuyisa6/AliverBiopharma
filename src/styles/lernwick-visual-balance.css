@@ -1,0 +1,86 @@
+:root {
+  --surface-page: #FFFFFF;
+  --surface-card: #FFFFFF;
+  --surface-raised: #FFFFFF;
+  --surface-muted: #F5F5F3;
+  --surface-subtle: #F8F8F6;
+  --surface-tinted: #FFF4E5;
+  --surface-sage: #EEF5EA;
+  --surface-strong: #ECEDE9;
+  --bg-page: var(--surface-page);
+  --bg-card: var(--surface-card);
+  --bg-card-hover: #F8F8F6;
+  --bg-muted: var(--surface-muted);
+  --bg-input: #FFFFFF;
+  --border-subtle: #E7E6E2;
+  --border-light: #E7E6E2;
+  --border-default: #E7E6E2;
+  --border-strong: #D4D2CC;
+}
+body.dark-mode {
+  --surface-page: #1B1B1F;
+  --surface-card: #26262C;
+  --surface-raised: #33333A;
+  --surface-muted: #222228;
+  --surface-subtle: #29282E;
+  --surface-tinted: #3B2B1B;
+  --surface-sage: #263326;
+  --surface-strong: #33333A;
+  --bg-page: var(--surface-page);
+  --bg-card: var(--surface-card);
+  --bg-card-hover: var(--surface-raised);
+  --bg-muted: var(--surface-muted);
+  --bg-input: var(--surface-raised);
+  --border-subtle: #3B3A42;
+  --border-light: #3B3A42;
+  --border-default: #4D4C55;
+  --border-strong: #6E6D76;
+}
+html, body, #root, #root .app-layout { background-color: var(--surface-page); }
+#root .app-layout { color: var(--text-main); }
+#root .app-layout :where(.section--soft,.dashboard-panel,.profile-section,.notes-section,.resources-section,.quiz-section,.flashcards-section,.recall-page-section,.classroom-list-section,.content-panel-muted,.settings-section) {
+  background-color: var(--surface-muted);
+  color: var(--text-main);
+}
+#root .app-layout :where(.section--subtle,.content-panel-subtle,.filter-panel,.toolbar-panel,.table-toolbar) {
+  background-color: var(--surface-subtle);
+  color: var(--text-main);
+}
+#root .app-layout :where(.section--tinted,.content-panel-tinted,.learning-highlight,.recall-prompt-panel) {
+  background-color: var(--surface-tinted);
+  color: var(--text-main);
+}
+#root .app-layout :where(.section--sage,.success-panel,.learning-complete-panel) {
+  background-color: var(--surface-sage);
+  color: var(--text-main);
+}
+#root .app-layout :where(.resource-card,.notes-card,.blog-post-card,.team-card,.contributor-card,.flashcard-deck-card,.dashboard-curriculum-card,.profile-category-card,.pp-card,.glossary-route-card,.quiz-topic-cards > .card,.quiz-blocks-grid > .card,.recall-intro-card,.recall-question-card,.recall-feedback-card,.recall-report-card,.pdf-card,.tutor-card,.faq-item,.about-block,.contact-form,.donate-card,.donate-widget,.donate-momo-card,.note-learning-card) {
+  background-color: var(--surface-card);
+  border-color: var(--border-default);
+}
+#root .app-layout :where(.resource-card,.notes-card,.blog-post-card,.team-card,.contributor-card,.flashcard-deck-card,.dashboard-curriculum-card,.profile-category-card,.pp-card,.glossary-route-card,.quiz-topic-cards > .card,.quiz-blocks-grid > .card,.recall-intro-card,.recall-question-card,.recall-feedback-card,.recall-report-card,.pdf-card,.tutor-card,.faq-item,.about-block,.contact-form,.donate-card,.donate-widget,.donate-momo-card,.note-learning-card):hover {
+  border-color: var(--border-strong);
+}
+#root .app-layout :where(.resource-card-icon,.pdf-card-icon,.paper-card-icon,.glossary-route-card-icon) {
+  background: transparent;
+  box-shadow: none;
+}
+#root .app-layout :where(.pdf-card-icon,.paper-card-icon,.glossary-route-card-icon) { display: none; }
+#root .app-layout .resource-card-icon {
+  width: 2rem;
+  height: 2rem;
+  flex-basis: 2rem;
+  color: var(--text-muted);
+}
+#root .app-layout :where(.resource-card-icon,.pdf-card-icon,.paper-card-icon,.glossary-route-card-icon) :is(svg,i) {
+  color: currentColor;
+  filter: none;
+}
+body.dark-mode #root .app-layout :where(.section--soft,.dashboard-panel,.profile-section,.notes-section,.resources-section,.quiz-section,.flashcards-section,.recall-page-section,.classroom-list-section,.content-panel-muted,.settings-section,.section--tinted,.content-panel-tinted,.learning-highlight,.recall-prompt-panel,.section--sage,.success-panel,.learning-complete-panel) {
+  color: var(--dark-text);
+}
+@media (prefers-reduced-motion: no-preference) {
+  #root .app-layout :where(.resource-card,.notes-card,.blog-post-card,.flashcard-deck-card,.pdf-card,.pp-card) {
+    transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  }
+}
