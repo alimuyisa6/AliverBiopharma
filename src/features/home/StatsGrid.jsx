@@ -98,37 +98,52 @@ function MetricCard({ metric, value }) {
   );
 }
 
-function FailedTopics({ topics }) {
-  return (
-    <section className="stats-impact-topics" aria-labelledby="stats-failed-topics-title">
-      <div className="stats-impact-topics-heading">
-        <h3 className="stats-impact-topics-title" id="stats-failed-topics-title">
-          Most failed topics or course units
-        </h3>
-        <p className="stats-impact-topics-description">
-          Learning areas where learners may need additional support.
-        </p>
-      </div>
+function PerformanceRankings({ failed, passed }) {
+  const renderRanking = (items, metric) => (
+    items.length ? (
+      <ol className="stats-impact-topics-list">
+        {items.map((item, index) => (
+          <li className="stats-impact-topic" key={item.key}>
+            <span className="stats-impact-topic-rank">{String(index + 1).padStart(2, '0')}</span>
+            <span className="stats-impact-topic-detail">
+              <span className="stats-impact-topic-name">{item.name}</span>
+              <span className={`stats-impact-category stats-impact-category-${String(item.type || '').toLowerCase()}`}>{item.type}</span>
+            </span>
+            <strong className="stats-impact-topic-count">
+              {formatNumber(item.count)} {metric}
+            </strong>
+          </li>
+        ))}
+      </ol>
+    ) : (
+      <p className="stats-impact-empty">There is not enough recorded activity to show a ranking yet.</p>
+    )
+  );
 
-      {topics.length ? (
-        <ol className="stats-impact-topics-list">
-          {topics.slice(0, 3).map((topic, index) => (
-            <li className="stats-impact-topic" key={topic.unit_id || topic.name}>
-              <span className="stats-impact-topic-rank">{String(index + 1).padStart(2, '0')}</span>
-              <span className="stats-impact-topic-name">{topic.name}</span>
-              <strong className="stats-impact-topic-count">{formatNumber(topic.failures)} failed</strong>
-            </li>
-          ))}
-        </ol>
-      ) : (
-        <p className="stats-impact-empty">
-          No failed-topic data is available for this level yet.
-        </p>
-      )}
-    </section>
+  return (
+    <div className="stats-impact-rankings">
+      <section className="stats-impact-topics" aria-labelledby="stats-most-failed-title">
+        <div className="stats-impact-topics-heading">
+          <h3 className="stats-impact-topics-title" id="stats-most-failed-title">Most failed</h3>
+          <p className="stats-impact-topics-description">
+            Globally ranked quiz content with the highest number of failed attempts.
+          </p>
+        </div>
+        {renderRanking(failed, 'failed')}
+      </section>
+
+      <section className="stats-impact-topics stats-impact-most-passed" aria-labelledby="stats-most-passed-title">
+        <div className="stats-impact-topics-heading">
+          <h3 className="stats-impact-topics-title" id="stats-most-passed-title">Most passed</h3>
+          <p className="stats-impact-topics-description">
+            Highest-performing content across quizzes and flashcard practice.
+          </p>
+        </div>
+        {renderRanking(passed, 'passed')}
+      </section>
+    </div>
   );
 }
-
 function StatsGroup({ group, stats }) {
   const headingId = `stats-group-${group.id}`;
 
@@ -145,11 +160,7 @@ function StatsGroup({ group, stats }) {
 }
 
 export function StatsGrid({ stats = {}, scopeLabel = 'All learning levels' }) {
-  const failedTopics = Array.isArray(stats.most_failed_topics)
-    ? stats.most_failed_topics
-    : [];
-
-  return (
+  const failedItems = Array.isArray(stats.most_failed) ? stats.most_failed : [];\n  const passedItems = Array.isArray(stats.most_passed) ? stats.most_passed : [];\n\n  return (
     <section className="section stats-grid-section lernwick-stats" aria-labelledby="platform-impact-title">
       <div className="stats-impact-panel">
         <header className="stats-impact-heading">
@@ -165,7 +176,7 @@ export function StatsGrid({ stats = {}, scopeLabel = 'All learning levels' }) {
           ))}
         </div>
 
-        <FailedTopics topics={failedTopics} />
+        <PerformanceRankings failed={failedItems} passed={passedItems} />
       </div>
     </section>
   );
