@@ -216,9 +216,7 @@ export default function CurriculumNodePage() {
           <div className="curriculum-node-children">
             {rootNodes.map((item) => (
               <Link key={item.id} to={`/curriculum/${encodeURIComponent(groupId)}/${slugify(item.slug || item.name)}${resourceFocus ? `?resource=${encodeURIComponent(resourceFocus)}` : ''}`} className="curriculum-node-child">
-                <span className="curriculum-node-child-icon"><Icon name={item.icon || 'book-open'} /></span>
                 <span className="curriculum-node-child-body"><strong>{item.name}</strong></span>
-                <Icon name="arrow-right" />
               </Link>
             ))}
           </div>
@@ -305,14 +303,9 @@ export default function CurriculumNodePage() {
 
               return (
                 <Link key={child.id} to={childHref} className="curriculum-node-child">
-                  <span className="curriculum-node-child-icon">
-                    {child.icon ? <Icon name={child.icon} /> : <Icon name="book-open" />}
-                  </span>
                   <span className="curriculum-node-child-body">
                     <strong>{child.name}</strong>
-                    <small>{curriculumLevelLabel(curriculumDepth + 1, isPharmacy)}</small>
                   </span>
-                  <Icon name="chevron-right" />
                 </Link>
               );
             })}
