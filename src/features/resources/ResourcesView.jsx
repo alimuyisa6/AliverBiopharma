@@ -136,7 +136,7 @@ export default function ResourcesView({ navigate, user, sections }) {
     if (!user) return '/login';
 
     // The resource card opens the shared curriculum path and carries its
-    // resource focus forward through topic → subtopic → theme → lesson.
+    // resource focus through the level-specific four-stage learning sequence.
     if (activeGroupId) {
       return `/curriculum/${encodeURIComponent(activeGroupId)}?resource=${encodeURIComponent(type.key)}`;
     }
@@ -166,7 +166,7 @@ export default function ResourcesView({ navigate, user, sections }) {
             <div className="resources-curriculum-entry-copy">
               <span className="resources-section-kicker">Start with your syllabus</span>
               <h2 id="resources-curriculum-heading">Browse the curriculum</h2>
-              <p>Browse your syllabus and open the notes, PDFs, flashcards, and practice activities linked to each topic.</p>
+              <p>{isPharmacy ? 'Browse your programme and open the learning materials linked to each course unit and lesson.' : 'Browse your syllabus and open the learning materials linked to each topic and lesson.'}</p>
             </div>
             <Button size="sm" variant="primary" onClick={() => navigate(`/curriculum/${encodeURIComponent(activeGroupId)}`)}>
               Browse curriculum <Icon name="arrow-right" />
