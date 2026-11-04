@@ -26,6 +26,7 @@ import './styles/lernwick-remaining-pages.css';
 import './styles/lernwick-utility-components.css';
 import './styles/lernwick-system.css';
 import './styles/lernwick-academy-architecture.css';
+import './styles/lernwick-visual-balance.css';
 
 
 function showFatalError(title, message, stack) {
