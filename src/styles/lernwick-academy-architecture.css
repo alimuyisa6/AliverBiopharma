@@ -1,0 +1,191 @@
+.app-layout .home-curriculum-map,
+.app-layout .home-curriculum-node-list,
+.app-layout .home-curriculum-grid {
+  display: grid;
+  gap: .9rem;
+}
+
+.app-layout .home-curriculum-node-item,
+.app-layout .curriculum-node-child,
+.app-layout .curriculum-node-resource,
+.app-layout .curriculum-node-linked-group {
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: var(--shadow-card);
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.app-layout .home-curriculum-node-item:hover,
+.app-layout .curriculum-node-child:hover,
+.app-layout .curriculum-node-resource:hover {
+  border-color: var(--primary-border);
+  box-shadow: var(--shadow-float);
+  transform: translateY(-2px);
+}
+
+.app-layout .home-curriculum-node-marker {
+  background: var(--secondary);
+  box-shadow: 0 0 0 5px var(--secondary-light);
+}
+
+.app-layout .home-curriculum-node-action,
+.app-layout .curriculum-node-action,
+.app-layout .note-related-link,
+.app-layout .pdf-card-action {
+  color: var(--primary-dark);
+  font-family: var(--f-display);
+  font-weight: 700;
+}
+
+.app-layout .home-curriculum-node-action:hover,
+.app-layout .curriculum-node-action:hover,
+.app-layout .note-related-link:hover,
+.app-layout .pdf-card-action:hover {
+  color: var(--ink);
+}
+
+.app-layout .note-hero,
+.app-layout .curriculum-node-header,
+.app-layout .note-learning-header,
+.app-layout .pdf-library-heading,
+.app-layout .resources-intro {
+  border-radius: var(--r-xl);
+  background: var(--soft);
+}
+
+.app-layout .note-hero::before,
+.app-layout .curriculum-node-header::before {
+  background: var(--secondary);
+}
+
+.app-layout .note-toc-sidebar,
+.app-layout .note-toc-mobile-panel,
+.app-layout .pdf-library-controls,
+.app-layout .curriculum-node-linked-group {
+  border-color: var(--line);
+  border-radius: var(--r-lg);
+  background: var(--soft);
+}
+
+.app-layout .note-article,
+.app-layout .notes-content-container,
+.app-layout .curriculum-node-content {
+  color: var(--ink);
+  line-height: 1.8;
+}
+
+.app-layout .note-article :where(h2, h3, h4),
+.app-layout .curriculum-node-content :where(h2, h3, h4) {
+  color: var(--ink);
+  font-family: var(--f-display);
+  letter-spacing: -.025em;
+}
+
+.app-layout .note-article :where(a),
+.app-layout .curriculum-node-content :where(a) {
+  color: var(--primary-dark);
+  text-decoration: underline;
+  text-decoration-color: var(--primary-border);
+  text-underline-offset: 3px;
+}
+
+.app-layout :where(.resource-grid, .notes-grid, .pdf-grid, .quiz-topic-cards, .quiz-blocks-grid, .note-related-grid, .tutor-grid, .course-grid) {
+  align-items: stretch;
+  gap: clamp(.8rem, 1.5vw, 1.25rem);
+}
+
+.app-layout :where(.resource-card, .notes-card, .pdf-card, .quiz-topic-cards > .card, .quiz-blocks-grid > .card, .note-related-grid > *, .tutor-card) {
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--paper);
+  box-shadow: var(--shadow-card);
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.app-layout :where(.resource-card, .notes-card, .pdf-card, .quiz-topic-cards > .card, .quiz-blocks-grid > .card, .note-related-grid > *, .tutor-card):hover {
+  border-color: var(--primary-border);
+  box-shadow: var(--shadow-float);
+  transform: translateY(-3px);
+}
+
+.app-layout :where(.resource-card, .notes-card, .pdf-card, .quiz-topic-cards > .card, .quiz-blocks-grid > .card, .tutor-card) :where(h2, h3, h4) {
+  color: var(--ink);
+  font-family: var(--f-display);
+}
+
+.app-layout :where(.resource-card, .notes-card, .pdf-card, .quiz-topic-cards > .card, .quiz-blocks-grid > .card, .tutor-card) :where(p, small) {
+  color: var(--ink-2);
+}
+
+.app-layout :where(.eyebrow, .section-kicker, .page-kicker, .resources-section-kicker, .notes-page-kicker) {
+  color: var(--primary-dark);
+  font-family: var(--f-display);
+}
+
+.app-layout :where(.btn-primary, .button-primary, button.primary, input[type="submit"]) {
+  background: var(--primary);
+  color: var(--ink);
+  border-color: var(--primary);
+}
+
+.app-layout :where(.btn-primary, .button-primary, button.primary, input[type="submit"]):hover:not(:disabled) {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+  color: var(--ink);
+}
+
+.app-layout :where(.btn-secondary, .button-secondary, .btn-outline) {
+  border-color: var(--line-2);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.app-layout :where(.btn-secondary, .button-secondary, .btn-outline):hover:not(:disabled) {
+  border-color: var(--primary);
+  background: var(--primary-light);
+  color: var(--ink);
+}
+
+.app-layout :where(.tag-free, .badge-free, .status-free) {
+  background: var(--secondary-light);
+  color: var(--secondary-dark);
+}
+
+.app-layout :where(.tag-premium, .badge-premium, .status-premium) {
+  background: var(--peach);
+  color: var(--ink);
+}
+
+body.dark-mode .app-layout .home-curriculum-node-item,
+body.dark-mode .app-layout .curriculum-node-child,
+body.dark-mode .app-layout .curriculum-node-resource,
+body.dark-mode .app-layout :where(.resource-card, .notes-card, .pdf-card, .quiz-topic-cards > .card, .quiz-blocks-grid > .card, .note-related-grid > *, .tutor-card) {
+  background: var(--dark-surface);
+  border-color: var(--dark-border);
+  color: var(--dark-text);
+}
+
+body.dark-mode .app-layout .note-hero,
+body.dark-mode .app-layout .curriculum-node-header,
+body.dark-mode .app-layout .note-learning-header,
+body.dark-mode .app-layout .pdf-library-heading,
+body.dark-mode .app-layout .resources-intro,
+body.dark-mode .app-layout .note-toc-sidebar,
+body.dark-mode .app-layout .note-toc-mobile-panel,
+body.dark-mode .app-layout .pdf-library-controls,
+body.dark-mode .app-layout .curriculum-node-linked-group {
+  background: var(--dark-surface-raised);
+  border-color: var(--dark-border);
+}
+
+@media (max-width: 700px) {
+  .app-layout :where(.resource-grid, .notes-grid, .pdf-grid, .quiz-topic-cards, .quiz-blocks-grid, .note-related-grid, .tutor-grid, .course-grid) {
+    gap: .75rem;
+  }
+
+  .app-layout :where(.resource-card, .notes-card, .pdf-card, .quiz-topic-cards > .card, .quiz-blocks-grid > .card, .note-related-grid > *, .tutor-card) {
+    border-radius: var(--r-md);
+  }
+}
