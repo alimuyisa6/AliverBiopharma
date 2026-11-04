@@ -476,7 +476,7 @@ export default function Dashboard() {
                               ))}
                             </span>
                           )}
-                          <span className="dashboard-curriculum-card-action">Explore topic <Icon name="arrow-right" /></span>
+                          <span className="dashboard-curriculum-card-action">Explore {curriculumRootLabel.toLowerCase()} <Icon name="arrow-right" /></span>
                         </Link>
                       );
                     })}
