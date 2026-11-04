@@ -157,10 +157,7 @@ export default function CurriculumNodePage() {
   const relationships = data?.relationships || [];
   const blocks = data?.blocks || [];
   const linkedContent = data?.linked_content || [];
-  const curriculumContext = `${ancestors.map((item) => item.name || '').join(' ')} ${node?.name || ''}`.toLowerCase();
-  const isPharmacy = String(data?.curriculum_group?.level_id || '').toLowerCase().includes('pharmacy') || curriculumContext.includes('pharmacy') || String(node?.node_type || '').toLowerCase() === 'sub_course_unit';
   const curriculumDepth = Math.max(0, ancestors.filter((item) => item.group_id === groupId).length - 1);
-  const nodeType = String(node?.node_type || '').toLowerCase();
   const nodeLabel = curriculumLevelLabel(curriculumDepth);
   const normalizedResourceFocus = ({ quizzes: 'quiz', past_papers: 'past-papers' })[resourceFocus] || resourceFocus;
   const focusedResourceLabel = RESOURCE_LABELS[normalizedResourceFocus] || '';
