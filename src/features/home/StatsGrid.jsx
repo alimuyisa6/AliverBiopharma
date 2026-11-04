@@ -1,52 +1,98 @@
-import Icon from '../../components/Icon/Icon';
+import { useEffect, useRef, useState } from 'react';
 import './lernwick-stats.css';
 
 const GROUPS = [
   {
     id: 'book-open',
     title: 'Learning library',
-    icon: 'book-open',
     metrics: [
-      { key: 'resources_count', label: 'Total resources', icon: 'book-open' },
-      { key: 'downloadable_count', label: 'Available to download', icon: 'download' },
-      { key: 'downloads_count', label: 'Total downloads', icon: 'download' }
+      { key: 'resources_count', label: 'Total resources' },
+      { key: 'downloadable_count', label: 'Available to download' },
+      { key: 'downloads_count', label: 'Total downloads' }
     ]
   },
   {
     id: 'recall',
     title: 'Active recall',
-    icon: 'brain',
     metrics: [
-      { key: 'recall_questions', label: 'Recall questions', icon: 'brain' },
-      { key: 'recall_users', label: 'Learners who used Recall', icon: 'users' },
-      { key: 'recall_active_users', label: 'Active Recall learners', icon: 'chart-line' }
+      { key: 'recall_questions', label: 'Recall questions' },
+      { key: 'recall_users', label: 'Learners who used Recall' },
+      { key: 'recall_active_users', label: 'Active Recall learners' }
     ]
   },
   {
     id: 'quizzes',
     title: 'Quizzes',
-    icon: 'clipboard-check',
-    hasFailedTopics: true,
     metrics: [
-      { key: 'quiz_users', label: 'Quiz learners', icon: 'users' },
-      { key: 'quiz_active_users', label: 'Active quiz learners', icon: 'chart-line' },
-      { key: 'quiz_passes', label: 'Passed attempts', icon: 'circle' },
-      { key: 'quiz_failures', label: 'Failed attempts', icon: 'circle-xmark' }
+      { key: 'quiz_users', label: 'Quiz learners' },
+      { key: 'quiz_active_users', label: 'Active quiz learners' },
+      { key: 'quiz_passes', label: 'Passed attempts' },
+      { key: 'quiz_failures', label: 'Failed attempts' }
     ]
   }
 ];
 
 function formatNumber(value) {
-  return Number(value || 0).toLocaleString();
+  return Math.round(value).toLocaleString();
+}
+
+function AnimatedNumber({ value }) {
+  const target = Number(value) || 0;
+  const [displayValue, setDisplayValue] = useState(0);
+  const numberRef = useRef(null);
+
+  useEffect(() => {
+    const element = numberRef.current;
+    if (!element) return undefined;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion || typeof IntersectionObserver === 'undefined') {
+      setDisplayValue(target);
+      return undefined;
+    }
+
+    let frameId;
+    let observer;
+    let started = false;
+
+    const animate = () => {
+      if (started) return;
+      started = true;
+      const startTime = performance.now();
+      const duration = 1100;
+
+      const tick = (now) => {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 4);
+        setDisplayValue(target * eased);
+        if (progress < 1) frameId = requestAnimationFrame(tick);
+      };
+
+      frameId = requestAnimationFrame(tick);
+    };
+
+    observer = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        animate();
+        observer.disconnect();
+      }
+    }, { threshold: 0.35 });
+
+    observer.observe(element);
+
+    return () => {
+      observer?.disconnect();
+      if (frameId) cancelAnimationFrame(frameId);
+    };
+  }, [target]);
+
+  return <span ref={numberRef} className="stats-impact-value">{formatNumber(displayValue)}</span>;
 }
 
 function MetricCard({ metric, value }) {
   return (
     <li className="stats-impact-item">
-      <span className="stats-impact-icon" aria-hidden="true">
-        <Icon name={metric.icon} />
-      </span>
-      <span className="stats-impact-value">{formatNumber(value)}</span>
+      <AnimatedNumber value={value} />
       <span className="stats-impact-label">{metric.label}</span>
     </li>
   );
@@ -54,22 +100,23 @@ function MetricCard({ metric, value }) {
 
 function FailedTopics({ topics }) {
   return (
-    <div className="stats-impact-topics">
-      <h4 className="stats-impact-topics-title">
-        Most failed topics or course units
-      </h4>
+    <section className="stats-impact-topics" aria-labelledby="stats-failed-topics-title">
+      <div className="stats-impact-topics-heading">
+        <h3 className="stats-impact-topics-title" id="stats-failed-topics-title">
+          Most failed topics or course units
+        </h3>
+        <p className="stats-impact-topics-description">
+          Learning areas where learners may need additional support.
+        </p>
+      </div>
 
       {topics.length ? (
         <ol className="stats-impact-topics-list">
-          {topics.slice(0, 3).map((topic) => (
-            <li
-              className="stats-impact-topic"
-              key={topic.unit_id || topic.name}
-            >
+          {topics.slice(0, 3).map((topic, index) => (
+            <li className="stats-impact-topic" key={topic.unit_id || topic.name}>
+              <span className="stats-impact-topic-rank">{String(index + 1).padStart(2, '0')}</span>
               <span className="stats-impact-topic-name">{topic.name}</span>
-              <strong className="stats-impact-topic-count">
-                {formatNumber(topic.failures)} failed
-              </strong>
+              <strong className="stats-impact-topic-count">{formatNumber(topic.failures)} failed</strong>
             </li>
           ))}
         </ol>
@@ -78,64 +125,48 @@ function FailedTopics({ topics }) {
           No failed-topic data is available for this level yet.
         </p>
       )}
-    </div>
-  );
-}
-
-function StatsGroup({ group, stats, failedTopics }) {
-  const headingId = `stats-group-${group.id}`;
-
-  return (
-    <section className="stats-impact-group" aria-labelledby={headingId}>
-      <h3 className="stats-impact-group-title" id={headingId}>
-        <Icon name={group.icon} />
-        {group.title}
-      </h3>
-
-      <ul className="stats-impact-grid">
-        {group.metrics.map((metric) => (
-          <MetricCard
-            key={metric.key}
-            metric={metric}
-            value={stats[metric.key]}
-          />
-        ))}
-      </ul>
-
-      {group.hasFailedTopics && <FailedTopics topics={failedTopics} />}
     </section>
   );
 }
 
-export function StatsGrid({
-  stats = {},
-  scopeLabel = 'All learning levels'
-}) {
+function StatsGroup({ group, stats }) {
+  const headingId = `stats-group-${group.id}`;
+
+  return (
+    <section className="stats-impact-group" aria-labelledby={headingId}>
+      <h3 className="stats-impact-group-title" id={headingId}>{group.title}</h3>
+      <ul className="stats-impact-grid">
+        {group.metrics.map((metric) => (
+          <MetricCard key={metric.key} metric={metric} value={stats[metric.key]} />
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+export function StatsGrid({ stats = {}, scopeLabel = 'All learning levels' }) {
   const failedTopics = Array.isArray(stats.most_failed_topics)
     ? stats.most_failed_topics
     : [];
 
   return (
     <section className="section stats-grid-section lernwick-stats" aria-labelledby="platform-impact-title">
-      <article className="stats-impact-panel">
-        <header className="section-head stats-impact-heading">
-        <div className="section-head-left">
-          <h2 id="platform-impact-title">See Our Impact in Numbers</h2>
-          <p className="stats-impact-scope">Statistics for {scopeLabel}</p>
-        </div>
-      </header>
+      <div className="stats-impact-panel">
+        <header className="stats-impact-heading">
+          <div className="stats-impact-heading-copy">
+            <h2 id="platform-impact-title">Our impact in numbers</h2>
+            <p className="stats-impact-scope">A snapshot of learning activity across {scopeLabel}.</p>
+          </div>
+        </header>
 
         <div className="stats-impact-groups">
           {GROUPS.map((group) => (
-            <StatsGroup
-              key={group.id}
-              group={group}
-              stats={stats}
-              failedTopics={failedTopics}
-            />
+            <StatsGroup key={group.id} group={group} stats={stats} />
           ))}
         </div>
-      </article>
+
+        <FailedTopics topics={failedTopics} />
+      </div>
     </section>
   );
 }
