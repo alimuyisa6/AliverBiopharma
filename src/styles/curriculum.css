@@ -518,3 +518,5 @@ body.dark-mode .curriculum-page { background: var(--dark-background); color: var
 body.dark-mode .curriculum-page :is(.curriculum-card, .curriculum-node, .curriculum-panel, .curriculum-level-card, .curriculum-node-child) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
 body.dark-mode .curriculum-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small) { color: var(--dark-text); }
 body.dark-mode .curriculum-page :is(.text-muted, .curriculum-description) { color: var(--dark-text-secondary); }
+
+.curriculum-node-page .curriculum-node-description { max-width: 72ch; margin: var(--space-3) 0 0; color: var(--text-secondary); font-size: var(--text-body); line-height: var(--leading-relaxed); }

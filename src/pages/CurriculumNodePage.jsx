@@ -16,9 +16,9 @@ function slugify(value) {
     .replace(/^-+|-+$/g, '');
 }
 
-function curriculumLevelLabel(depth, isPharmacy) {
-  if (depth <= 0) return isPharmacy ? 'Course Unit' : 'Topic';
-  if (depth === 1) return isPharmacy ? 'Sub-course Unit' : 'Subtopic';
+function curriculumLevelLabel(depth) {
+  if (depth <= 0) return 'Course Unit';
+  if (depth === 1) return 'Sub-course Unit';
   if (depth === 2) return 'Theme';
   return 'Lesson';
 }
@@ -157,11 +157,8 @@ export default function CurriculumNodePage() {
   const relationships = data?.relationships || [];
   const blocks = data?.blocks || [];
   const linkedContent = data?.linked_content || [];
-  const curriculumContext = `${ancestors.map((item) => item.name || '').join(' ')} ${node?.name || ''}`.toLowerCase();
-  const isPharmacy = String(data?.curriculum_group?.level_id || '').toLowerCase().includes('pharmacy') || curriculumContext.includes('pharmacy') || String(node?.node_type || '').toLowerCase() === 'sub_course_unit';
   const curriculumDepth = Math.max(0, ancestors.filter((item) => item.group_id === groupId).length - 1);
-  const nodeType = String(node?.node_type || '').toLowerCase();
-  const nodeLabel = curriculumLevelLabel(curriculumDepth, isPharmacy);
+  const nodeLabel = curriculumLevelLabel(curriculumDepth);
   const normalizedResourceFocus = ({ quizzes: 'quiz', past_papers: 'past-papers' })[resourceFocus] || resourceFocus;
   const focusedResourceLabel = RESOURCE_LABELS[normalizedResourceFocus] || '';
   const breadcrumbItems = useMemo(() => {
@@ -205,24 +202,22 @@ export default function CurriculumNodePage() {
   }
 
   if (!node && Array.isArray(rootNodes)) {
-    const groupName = rootNodes[0]?.group_name || '';
-    const isPharmacyRoot = /pharmacy/i.test(String(groupId)) || /pharmacy/i.test(String(groupName)) || rootNodes.some((item) => /pharmacy/i.test(String(item.level_id || '')));
-    const rootLabel = isPharmacyRoot ? 'course unit' : 'topic';
+    const rootLabel = 'course unit';
     return (
       <Container className="curriculum-node-page">
-        <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Resources', href: '/resources' }, { label: isPharmacyRoot ? 'Course units' : 'Topics', href: null }]} />
+        <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Resources', href: '/resources' }, { label: 'Course units', href: null }]} />
         <header className="curriculum-node-header">
           <span className="curriculum-node-type">Your learning pathway</span>
           <h1>Choose a {rootLabel}</h1>
-          <p>Start here, then explore the connected {isPharmacyRoot ? 'sub-course units' : 'subtopics'}, themes and lessons. Your selected curriculum determines what you see.{focusedResourceLabel ? ` You chose ${focusedResourceLabel}; we’ll keep that resource in focus as you move through the curriculum.` : ''}</p>
+          <p>Begin with a course unit, then follow its connected subdivisions, themes and lessons.</p>
         </header>
         <section className="curriculum-node-section">
-          <div className="curriculum-node-section-heading"><div><span className="curriculum-node-kicker">Step 1 of 4</span><h2>{isPharmacyRoot ? 'Course units' : 'Topics'}</h2></div><span className="curriculum-node-count">{rootNodes.length} available</span></div>
+          <div className="curriculum-node-section-heading"><div><span className="curriculum-node-kicker">Step 1 of 4</span><h2>Course units</h2></div><span className="curriculum-node-count">{rootNodes.length} available</span></div>
           <div className="curriculum-node-children">
             {rootNodes.map((item) => (
               <Link key={item.id} to={`/curriculum/${encodeURIComponent(groupId)}/${slugify(item.slug || item.name)}${resourceFocus ? `?resource=${encodeURIComponent(resourceFocus)}` : ''}`} className="curriculum-node-child">
                 <span className="curriculum-node-child-icon"><Icon name={item.icon || 'book-open'} /></span>
-                <span className="curriculum-node-child-body"><strong>{item.name}</strong><small>{isPharmacyRoot ? 'Course Unit' : 'Topic'}</small></span>
+                <span className="curriculum-node-child-body"><strong>{item.name}</strong></span>
                 <Icon name="arrow-right" />
               </Link>
             ))}
@@ -255,9 +250,7 @@ export default function CurriculumNodePage() {
       <header className="curriculum-node-header">
         <span className="curriculum-node-type">{nodeLabel}{curriculumDepth >= 0 ? ` · Step ${Math.min(curriculumDepth + 1, 4)} of 4` : ''}</span>
         <h1>{node.name}</h1>
-        <p>{children.length > 0
-          ? `Choose a ${curriculumLevelLabel(curriculumDepth + 1, isPharmacy).toLowerCase()} to continue. Your selected curriculum stays in place throughout the journey.`
-          : `You’ve reached the lesson. Start with the key ideas, then use the linked questions and revision materials to check your understanding.`}</p>
+        {node.description && <p className="curriculum-node-description">{node.description}</p>}
         {focusedResourceLabel && <p className="curriculum-node-focus-note"><span>Your selected resource:</span> <strong>{focusedResourceLabel}</strong><span> — we’ll keep it in focus as you move through this pathway.</span></p>}
       </header>
 
