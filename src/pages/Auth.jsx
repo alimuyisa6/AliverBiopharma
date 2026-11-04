@@ -208,7 +208,13 @@ export default function Auth() {
     try {
       const result = await login(email, password, token);
 
-      if (result?.mfa_required || result?.passkey_required) {
+      if (result?.passkey_required) {
+        setError('This administrator account requires passkey verification. Choose passkey sign-in to continue.');
+        resetTurnstile();
+        return;
+      }
+
+      if (result?.mfa_required) {
         setMfaStep(true);
         resetTurnstile();
         return;
