@@ -1,33 +1,349 @@
-.home-page .home-stats-section{z-index:auto;margin-block-start:0}
-.lernwick-stats{margin:0 clamp(.5rem,.3rem + .6vw,.9rem);padding:clamp(2rem,1.5rem + 2vw,3.25rem) 0;border-radius:var(--r-xl);background:transparent}
-.home-page .stats-grid-section.lernwick-stats{margin:0 clamp(.5rem,.3rem + .6vw,.9rem);padding:clamp(2rem,1.5rem + 2vw,3.25rem) 0}
-.lernwick-stats .stats-impact-panel{width:min(calc(100% - (var(--gutter) * 2)),calc(var(--container) + 2 * var(--gutter)));margin-inline:auto;padding:clamp(1.25rem,1rem + 1.6vw,2.25rem);border:1px solid var(--line);border-radius:var(--r-xl);background:var(--paper);box-shadow:var(--shadow-card)}
-.lernwick-stats .stats-impact-heading{margin:0 0 clamp(1.5rem,1.1rem + 1.4vw,2.25rem)}
-.lernwick-stats .stats-impact-heading .section-head-left{display:grid;gap:.65rem;padding:0}
-.lernwick-stats .stats-impact-heading h2{color:var(--ink);font-family:var(--f-display);font-size:var(--t-2xl);font-weight:700;line-height:1.15;letter-spacing:-.03em}
-.lernwick-stats .stats-impact-scope{color:var(--ink-2);font-size:var(--t-sm);line-height:1.5}
-.lernwick-stats .stats-impact-groups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(1rem,1rem + 1vw,1.75rem)}
-.lernwick-stats .stats-impact-group{min-width:0;padding:0;background:transparent}
-.lernwick-stats .stats-impact-group-title{display:flex;align-items:center;gap:.6rem;margin:0 0 1rem;padding-bottom:.75rem;border-bottom:1px solid var(--line);color:var(--ink);font:600 var(--t-md)/1.3 var(--f-display)}
-.lernwick-stats .stats-impact-group-title svg{width:1.2rem;height:1.2rem;flex:0 0 auto;color:var(--primary)}
-.lernwick-stats .stats-impact-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:0;padding:0;list-style:none}
-.lernwick-stats .stats-impact-item{display:grid;min-width:0;grid-template-columns:1.6rem minmax(0,1fr);grid-template-rows:auto auto;align-content:start;column-gap:.55rem;row-gap:.25rem;margin:0;padding:.4rem 0}
-.lernwick-stats .stats-impact-icon{display:inline-flex;width:1.6rem;height:1.6rem;grid-row:1/3;align-items:center;justify-content:center;color:var(--primary)}
-.lernwick-stats .stats-impact-icon svg{width:1.05rem;height:1.05rem}
-.lernwick-stats .stats-impact-value{color:var(--ink);font:700 var(--t-xl)/1 var(--f-display);font-variant-numeric:tabular-nums}
-.lernwick-stats .stats-impact-label{color:var(--ink-2);font-size:var(--t-xs);line-height:1.45}
-.lernwick-stats .stats-impact-topics{margin-top:1rem;padding:1rem;border:1px solid var(--accent-border);border-radius:var(--r-md);background:var(--accent-light)}
-.lernwick-stats .stats-impact-topics-title{margin:0 0 .65rem;color:var(--ink);font:600 var(--t-sm)/1.35 var(--f-display)}
-.lernwick-stats .stats-impact-topics-list{display:grid;gap:.6rem;margin:0;padding:0;list-style:none}
-.lernwick-stats .stats-impact-topic{display:flex;justify-content:space-between;gap:.8rem;margin:0;color:var(--ink-2);font-size:var(--t-xs)}
-.lernwick-stats .stats-impact-topic-name{min-width:0;overflow-wrap:anywhere}
-.lernwick-stats .stats-impact-topic-count{flex:0 0 auto;color:var(--ink);font-size:var(--t-xs)}
-.lernwick-stats .stats-impact-empty{margin:0;color:var(--ink-2);font-size:var(--t-xs);line-height:1.5}
-body.dark-mode .lernwick-stats .stats-impact-panel{border-color:var(--dark-border);background:var(--dark-surface);box-shadow:none}
-body.dark-mode .lernwick-stats .stats-impact-heading h2,body.dark-mode .lernwick-stats .stats-impact-group-title,body.dark-mode .lernwick-stats .stats-impact-value,body.dark-mode .lernwick-stats .stats-impact-topics-title,body.dark-mode .lernwick-stats .stats-impact-topic-count{color:var(--dark-text)}
-body.dark-mode .lernwick-stats .stats-impact-scope,body.dark-mode .lernwick-stats .stats-impact-label,body.dark-mode .lernwick-stats .stats-impact-topic,body.dark-mode .lernwick-stats .stats-impact-empty{color:var(--dark-text-secondary)}
-body.dark-mode .lernwick-stats .stats-impact-group-title{border-color:var(--dark-border)}
-body.dark-mode .lernwick-stats .stats-impact-topics{border-color:var(--dark-border);background:var(--dark-surface-raised)}
-@media(max-width:1024px){.lernwick-stats .stats-impact-groups{grid-template-columns:repeat(2,minmax(0,1fr))}.lernwick-stats .stats-impact-group:last-child{grid-column:1/-1}}
-@media(max-width:640px){.lernwick-stats{border-radius:var(--r-lg)}.lernwick-stats .stats-impact-panel{padding:1.1rem}.lernwick-stats .stats-impact-groups{grid-template-columns:minmax(0,1fr);gap:1.4rem}.lernwick-stats .stats-impact-group:last-child{grid-column:auto}.lernwick-stats .stats-impact-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(prefers-reduced-motion:reduce){.lernwick-stats *{scroll-behavior:auto}}
+.home-page .home-stats-section {
+  z-index: auto;
+  margin-block-start: 0;
+}
+
+.home-page .stats-grid-section.lernwick-stats {
+  margin: 0;
+  padding: clamp(2.5rem, 5vw, 4.5rem) 0;
+  background: transparent;
+}
+
+.lernwick-stats .stats-impact-panel {
+  width: min(calc(100% - (var(--gutter) * 2)), calc(var(--container) + 2 * var(--gutter)));
+  margin-inline: auto;
+  padding: clamp(1.25rem, 2.5vw, 2.25rem) 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.lernwick-stats .stats-impact-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin: 0 0 clamp(2rem, 4vw, 3rem);
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.lernwick-stats .stats-impact-heading-copy {
+  display: grid;
+  gap: .55rem;
+}
+
+.lernwick-stats .stats-impact-heading h2 {
+  margin: 0;
+  color: #111111;
+  font-family: var(--f-display);
+  font-size: clamp(1.75rem, 3vw, 2.65rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -.045em;
+}
+
+.lernwick-stats .stats-impact-scope {
+  margin: 0;
+  color: #666666;
+  font-size: var(--t-sm);
+  line-height: 1.5;
+}
+
+.lernwick-stats .stats-impact-groups {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 3rem);
+}
+
+.lernwick-stats .stats-impact-group {
+  min-width: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.lernwick-stats .stats-impact-group-title {
+  margin: 0 0 1.25rem;
+  padding: 0 0 .8rem;
+  border-bottom: 1px solid var(--line);
+  color: #111111;
+  font-family: var(--f-display);
+  font-size: 1rem;
+  font-weight: 650;
+  line-height: 1.3;
+}
+
+.lernwick-stats .stats-impact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lernwick-stats .stats-impact-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: .35rem;
+  min-width: 0;
+  margin: 0;
+  padding: 1rem 0 1.1rem;
+  border-bottom: 1px solid #E9E9E9;
+}
+
+.lernwick-stats .stats-impact-value {
+  display: block;
+  color: #111111;
+  font-family: var(--f-display);
+  font-size: clamp(2.35rem, 3.8vw, 3.75rem);
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.065em;
+  line-height: .98;
+}
+
+.lernwick-stats .stats-impact-label {
+  color: #666666;
+  font-size: .875rem;
+  font-weight: 450;
+  line-height: 1.45;
+}
+
+.lernwick-stats .stats-impact-topics {
+  display: grid;
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  align-items: start;
+  gap: clamp(1.25rem, 3vw, 3rem);
+  margin-top: clamp(2rem, 4vw, 3rem);
+  padding: clamp(1.25rem, 2.5vw, 2rem) 0 0;
+  border: 0;
+  border-top: 2px solid #222222;
+  border-radius: 0;
+  background: transparent;
+}
+
+.lernwick-stats .stats-impact-topics-heading {
+  display: grid;
+  gap: .5rem;
+}
+
+.lernwick-stats .stats-impact-topics-title {
+  margin: 0;
+  color: #111111;
+  font-family: var(--f-display);
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -.025em;
+}
+
+.lernwick-stats .stats-impact-topics-description {
+  margin: 0;
+  color: #666666;
+  font-size: .875rem;
+  line-height: 1.55;
+}
+
+.lernwick-stats .stats-impact-topics-list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lernwick-stats .stats-impact-topic {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: .75rem;
+  min-width: 0;
+  margin: 0;
+  padding: .85rem 0;
+  border-bottom: 1px solid #E9E9E9;
+  color: #222222;
+  font-size: .875rem;
+}
+
+.lernwick-stats .stats-impact-topic-rank {
+  color: #999999;
+  font-size: .75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.lernwick-stats .stats-impact-topic-name {
+  min-width: 0;
+  color: #222222;
+  font-weight: 550;
+  overflow-wrap: anywhere;
+}
+
+.lernwick-stats .stats-impact-topic-count {
+  color: #111111;
+  font-size: .8rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.lernwick-stats .stats-impact-empty {
+  margin: 0;
+  color: #666666;
+  font-size: .875rem;
+  line-height: 1.55;
+}
+
+body.dark-mode .lernwick-stats .stats-impact-heading {
+  border-color: var(--dark-border);
+}
+
+body.dark-mode .lernwick-stats .stats-impact-heading h2,
+body.dark-mode .lernwick-stats .stats-impact-group-title,
+body.dark-mode .lernwick-stats .stats-impact-value,
+body.dark-mode .lernwick-stats .stats-impact-topics-title,
+body.dark-mode .lernwick-stats .stats-impact-topic-name,
+body.dark-mode .lernwick-stats .stats-impact-topic-count {
+  color: var(--dark-text);
+}
+
+body.dark-mode .lernwick-stats .stats-impact-scope,
+body.dark-mode .lernwick-stats .stats-impact-label,
+body.dark-mode .lernwick-stats .stats-impact-topics-description,
+body.dark-mode .lernwick-stats .stats-impact-empty {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .lernwick-stats .stats-impact-group-title,
+body.dark-mode .lernwick-stats .stats-impact-item,
+body.dark-mode .lernwick-stats .stats-impact-topic {
+  border-color: var(--dark-border);
+}
+
+body.dark-mode .lernwick-stats .stats-impact-topics {
+  border-top-color: var(--dark-text);
+}
+
+body.dark-mode .lernwick-stats .stats-impact-topic-rank {
+  color: var(--dark-text-secondary);
+}
+
+@media (max-width: 900px) {
+  .lernwick-stats .stats-impact-groups {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+  }
+
+  .lernwick-stats .stats-impact-group:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .lernwick-stats .stats-impact-group:last-child .stats-impact-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-page .stats-grid-section.lernwick-stats {
+    padding: 2rem 0;
+  }
+
+  .lernwick-stats .stats-impact-panel {
+    padding: 1rem 0;
+  }
+
+  .lernwick-stats .stats-impact-heading {
+    margin-bottom: 1.5rem;
+  }
+
+  .lernwick-stats .stats-impact-groups {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.75rem;
+  }
+
+  .lernwick-stats .stats-impact-group:last-child {
+    grid-column: auto;
+  }
+
+  .lernwick-stats .stats-impact-group:last-child .stats-impact-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lernwick-stats .stats-impact-value {
+    font-size: clamp(2.5rem, 12vw, 3.25rem);
+  }
+
+  .lernwick-stats .stats-impact-topics {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .lernwick-stats .stats-impact-topic {
+    grid-template-columns: 1.75rem minmax(0, 1fr) auto;
+    gap: .55rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lernwick-stats * {
+    scroll-behavior: auto;
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+.lernwick-stats .stats-impact-rankings {
+  display: grid;
+  gap: clamp(1.75rem, 3vw, 2.5rem);
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.lernwick-stats .stats-impact-rankings .stats-impact-topics {
+  margin-top: 0;
+}
+
+.lernwick-stats .stats-impact-topic-detail {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .45rem .65rem;
+  min-width: 0;
+}
+
+.lernwick-stats .stats-impact-category {
+  display: inline-flex;
+  align-items: center;
+  min-height: 21px;
+  padding: .15rem .45rem;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  color: #555555;
+  font-size: .68rem;
+  font-weight: 650;
+  line-height: 1.2;
+}
+
+.lernwick-stats .stats-impact-category-quiz {
+  border-color: #F2C58E;
+  background: #FFF4E5;
+  color: #8A4B08;
+}
+
+.lernwick-stats .stats-impact-category-flashcards {
+  border-color: #B9D5AA;
+  background: #EEF5E9;
+  color: #315D2B;
+}
+
+body.dark-mode .lernwick-stats .stats-impact-category {
+  border-color: var(--dark-border);
+  background: var(--dark-surface-raised);
+  color: var(--dark-text-secondary);
+}
+
+@media (max-width: 600px) {
+  .lernwick-stats .stats-impact-topic-detail {
+    gap: .35rem .5rem;
+  }
+}
