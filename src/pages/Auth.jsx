@@ -475,7 +475,7 @@ export default function Auth() {
                 {t('auth.accountCreated')}
               </h2>
               <p className="auth-state-text">
-                {t('auth.welcomeRedirecting')}
+                Your account is ready. Your selected study level and class will become available after an administrator approves your curriculum request.
               </p>
               <Spinner context="brand" />
             </div>
