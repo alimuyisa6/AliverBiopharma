@@ -221,7 +221,7 @@ export function AuthProvider({ children }) {
         password,
         turnstileToken,
         mfaCode,
-      deviceApprovalCode
+        deviceApprovalCode
       );
 
       /*
@@ -259,7 +259,7 @@ export function AuthProvider({ children }) {
    * AliverBiopharm session used by password login.
    */
   const loginWithPasskey = useCallback(
-    async (existingAccessToken = null, mfaCode = null, captchaToken = null) => {
+    async (existingAccessToken = null, mfaCode = null, captchaToken = null, deviceApprovalCode = null) => {
       let accessToken = existingAccessToken;
 
       if (!accessToken) {
