@@ -225,7 +225,6 @@ export default function Auth() {
       }
 
       if (result?.device_approval_required) {
-        setMfaRequired(false);
         setDeviceApprovalRequired(true);
         setMfaStep(true);
         setMfaCode('');
