@@ -213,13 +213,15 @@ export function AuthProvider({ children }) {
       email,
       password,
       turnstileToken,
-      mfaCode
+      mfaCode,
+      deviceApprovalCode
     ) => {
       const result = await signin(
         email,
         password,
         turnstileToken,
-        mfaCode
+        mfaCode,
+      deviceApprovalCode
       );
 
       /*
@@ -228,7 +230,8 @@ export function AuthProvider({ children }) {
        */
       if (
         result?.mfa_required ||
-        result?.passkey_required
+        result?.passkey_required ||
+        result?.device_approval_required
       ) {
         return result;
       }
@@ -274,10 +277,11 @@ export function AuthProvider({ children }) {
 
       const result = await signinWithPasskey(
         accessToken,
-        mfaCode
+        mfaCode,
+        deviceApprovalCode
       );
 
-      if (result?.mfa_required) {
+      if (result?.mfa_required || result?.device_approval_required) {
         return {
           ...result,
           passkey_access_token: accessToken
