@@ -65,6 +65,7 @@ export default function Auth() {
   const [mfaError, setMfaError] = useState('');
   const [deviceApprovalCode, setDeviceApprovalCode] = useState('');
   const [deviceApprovalRequired, setDeviceApprovalRequired] = useState(false);
+  const [mfaRequired, setMfaRequired] = useState(false);
   const [passkeyMfaToken, setPasskeyMfaToken] = useState('');
   const [passkeySubmitting, setPasskeySubmitting] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
@@ -217,12 +218,14 @@ export default function Auth() {
       }
 
       if (result?.mfa_required) {
+        setMfaRequired(true);
         setMfaStep(true);
         resetTurnstile();
         return;
       }
 
       if (result?.device_approval_required) {
+        setMfaRequired(false);
         setDeviceApprovalRequired(true);
         setMfaStep(true);
         setMfaCode('');
@@ -262,6 +265,7 @@ export default function Auth() {
 
       if (result?.mfa_required || result?.device_approval_required) {
         setPasskeyMfaToken(result.passkey_access_token || '');
+        setMfaRequired(!!result.mfa_required);
         setDeviceApprovalRequired(!!result.device_approval_required);
         setMfaStep(true);
         setMfaCode('');
@@ -282,7 +286,7 @@ export default function Auth() {
     event.preventDefault();
     setMfaError('');
 
-    if (!deviceApprovalRequired && !/^\d{6}$/.test(mfaCode.trim())) {
+    if (mfaRequired && !/^\d{6}$/.test(mfaCode.trim())) {
       setMfaError('Enter the 6-digit code from your authenticator app.');
       return;
     }
@@ -320,6 +324,7 @@ export default function Auth() {
           );
 
       if (result?.mfa_required) {
+        setMfaRequired(true);
         setMfaError("That code doesn't look right. Try again.");
         if (!passkeyMfaToken) resetTurnstile();
         return;
@@ -534,7 +539,7 @@ export default function Auth() {
               )}
 
               <form onSubmit={handleMfaSubmit}>
-                {!deviceApprovalRequired && (
+                {mfaRequired && (
                   <Input
                     type="text"
                     inputMode="numeric"
@@ -591,6 +596,7 @@ export default function Auth() {
                     setPasskeyMfaToken('');
                     setDeviceApprovalCode('');
                     setDeviceApprovalRequired(false);
+                    setMfaRequired(false);
                   }}
                 >
                   Back to sign in
