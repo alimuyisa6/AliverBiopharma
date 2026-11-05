@@ -309,13 +309,15 @@ export async function signin(
 email,
 password,
 turnstile_token,
-mfa_code
+mfa_code,
+device_approval_code
 ) {
 return apiCall('auth', 'signin', {
 email,
 password,
 turnstile_token,
-mfa_code
+mfa_code,
+device_approval_code
 });
 }
 
