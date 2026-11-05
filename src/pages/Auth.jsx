@@ -63,6 +63,8 @@ export default function Auth() {
   const [mfaStep, setMfaStep] = useState(false);
   const [mfaCode, setMfaCode] = useState('');
   const [mfaError, setMfaError] = useState('');
+  const [deviceApprovalCode, setDeviceApprovalCode] = useState('');
+  const [deviceApprovalRequired, setDeviceApprovalRequired] = useState(false);
   const [passkeyMfaToken, setPasskeyMfaToken] = useState('');
   const [passkeySubmitting, setPasskeySubmitting] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
@@ -220,6 +222,15 @@ export default function Auth() {
         return;
       }
 
+      if (result?.device_approval_required) {
+        setDeviceApprovalRequired(true);
+        setMfaStep(true);
+        setMfaCode('');
+        setMfaError(result.error || 'Approve this device to continue.');
+        resetTurnstile();
+        return;
+      }
+
       navigate(redirectTo, { replace: true });
     } catch (err) {
       setError(err.message || 'We couldn’t sign you in. Check your details and try again.');
@@ -249,11 +260,12 @@ export default function Auth() {
     try {
       const result = await loginWithPasskey(null, null, captchaToken);
 
-      if (result?.mfa_required) {
+      if (result?.mfa_required || result?.device_approval_required) {
         setPasskeyMfaToken(result.passkey_access_token || '');
+        setDeviceApprovalRequired(!!result.device_approval_required);
         setMfaStep(true);
         setMfaCode('');
-        setMfaError('');
+        setMfaError(result.error || '');
         return;
       }
 
@@ -270,8 +282,13 @@ export default function Auth() {
     event.preventDefault();
     setMfaError('');
 
-    if (!/^\d{6}$/.test(mfaCode.trim())) {
+    if (!deviceApprovalRequired && !/^\d{6}$/.test(mfaCode.trim())) {
       setMfaError('Enter the 6-digit code from your authenticator app.');
+      return;
+    }
+
+    if (deviceApprovalRequired && !deviceApprovalCode.trim()) {
+      setMfaError('Enter the device approval code provided for your administrator email.');
       return;
     }
 
@@ -290,17 +307,28 @@ export default function Auth() {
       const result = passkeyMfaToken
         ? await loginWithPasskey(
             passkeyMfaToken,
-            mfaCode.trim()
+            mfaCode.trim() || null,
+            null,
+            deviceApprovalCode.trim() || null
           )
         : await login(
             email,
             password,
             getTurnstileToken(),
-            mfaCode.trim()
+            mfaCode.trim() || null,
+            deviceApprovalCode.trim() || null
           );
 
       if (result?.mfa_required) {
         setMfaError("That code doesn't look right. Try again.");
+        if (!passkeyMfaToken) resetTurnstile();
+        return;
+      }
+
+      if (result?.device_approval_required) {
+        setDeviceApprovalRequired(true);
+        setMfaError(result.error || 'This device requires administrator approval.');
+        setDeviceApprovalCode('');
         if (!passkeyMfaToken) resetTurnstile();
         return;
       }
@@ -506,21 +534,36 @@ export default function Auth() {
               )}
 
               <form onSubmit={handleMfaSubmit}>
-                <Input
-                  type="text"
-                  inputMode="numeric"
-                  autoComplete="one-time-code"
-                  maxLength={6}
-                  placeholder={t('auth.enterMfaCode')}
-                  value={mfaCode}
-                  onChange={(event) =>
-                    setMfaCode(
-                      event.target.value.replace(/\D/g, '').slice(0, 6)
-                    )
-                  }
-                  disabled={submitting}
-                  className="auth-field auth-mfa-field"
-                />
+                {!deviceApprovalRequired && (
+                  <Input
+                    type="text"
+                    inputMode="numeric"
+                    autoComplete="one-time-code"
+                    maxLength={6}
+                    placeholder={t('auth.enterMfaCode')}
+                    value={mfaCode}
+                    onChange={(event) =>
+                      setMfaCode(
+                        event.target.value.replace(/\D/g, '').slice(0, 6)
+                      )
+                    }
+                    disabled={submitting}
+                    className="auth-field auth-mfa-field"
+                  />
+                )}
+
+                {deviceApprovalRequired && (
+                  <Input
+                    type="password"
+                    autoComplete="off"
+                    maxLength={256}
+                    placeholder="Administrator device approval code"
+                    value={deviceApprovalCode}
+                    onChange={(event) => setDeviceApprovalCode(event.target.value)}
+                    disabled={submitting}
+                    className="auth-field auth-mfa-field"
+                  />
+                )}
 
                 {!passkeyMfaToken && (
                   <div ref={setCaptchaSlot} className="auth-captcha" />
@@ -546,6 +589,8 @@ export default function Auth() {
                     setMfaCode('');
                     setMfaError('');
                     setPasskeyMfaToken('');
+                    setDeviceApprovalCode('');
+                    setDeviceApprovalRequired(false);
                   }}
                 >
                   Back to sign in
