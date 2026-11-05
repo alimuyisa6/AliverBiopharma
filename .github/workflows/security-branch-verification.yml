@@ -1,0 +1,35 @@
+name: Security branch verification
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - security/level-approval-workflow
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Build frontend
+        run: npm run build
+      - name: Check backend JavaScript syntax
+        run: |
+          node --check lib/auth.js
+          node --check lib/admin.js
+          node --check lib/admin-trusted-devices.js
+          node --check lib/admin-session-reference.js
+          node --check lib/security-middleware.js
