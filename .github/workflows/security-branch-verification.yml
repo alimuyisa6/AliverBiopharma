@@ -24,6 +24,8 @@ jobs:
           node-version: 22
       - name: Install dependencies
         run: npm install --no-audit --no-fund
+      - name: Test administrator reference binding
+        run: npm run test:security
       - name: Build frontend
         run: npm run build
       - name: Check backend JavaScript syntax
