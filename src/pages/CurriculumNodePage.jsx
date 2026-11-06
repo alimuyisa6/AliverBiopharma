@@ -216,12 +216,11 @@ export default function CurriculumNodePage() {
       <Container className="curriculum-node-page">
         <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Resources', href: '/resources' }, { label: rootLabelPlural, href: null }]} />
         <header className="curriculum-node-header">
-          <span className="curriculum-node-type">Your learning pathway</span>
           <h1>Choose a {rootLabel}</h1>
           <p>{isPharmacy ? 'Begin with a course unit, then follow its sub-course units, themes and lessons.' : 'Begin with a topic, then follow its subtopics, themes and lessons.'}</p>
         </header>
         <section className="curriculum-node-section">
-          <div className="curriculum-node-section-heading"><div><span className="curriculum-node-kicker">Step 1 of 4</span><h2>{rootLabelPlural}</h2></div><span className="curriculum-node-count">{rootNodes.length} available</span></div>
+          <div className="curriculum-node-section-heading"><div><h2>{rootLabelPlural}</h2></div><span className="curriculum-node-count">{rootNodes.length} available</span></div>
           <div className="curriculum-node-children">
             {rootNodes.map((item) => (
               <Link key={item.id} to={`/curriculum/${encodeURIComponent(groupId)}/${slugify(item.slug || item.name)}${resourceFocus ? `?resource=${encodeURIComponent(resourceFocus)}` : ''}`} className="curriculum-node-child">
@@ -255,17 +254,14 @@ export default function CurriculumNodePage() {
       <Breadcrumb items={breadcrumbItems} />
 
       <header className="curriculum-node-header">
-        <span className="curriculum-node-type">{nodeLabel}{curriculumDepth >= 0 ? ` · Step ${Math.min(curriculumDepth + 1, 4)} of 4` : ''}</span>
         <h1>{node.name}</h1>
         {node.description && <p className="curriculum-node-description">{node.description}</p>}
-        {focusedResourceLabel && <p className="curriculum-node-focus-note"><span>Your selected resource:</span> <strong>{focusedResourceLabel}</strong><span> — we’ll keep it in focus as you move through this pathway.</span></p>}
       </header>
 
       {isLeaf && blocks.length > 0 && (
         <section className="curriculum-node-section curriculum-node-learning">
           <div className="curriculum-node-section-heading">
             <div>
-              <span className="curriculum-node-kicker">Learning content</span>
               <h2>Study {node.name}</h2>
             </div>
           </div>
@@ -294,7 +290,6 @@ export default function CurriculumNodePage() {
         <section className="curriculum-node-section">
           <div className="curriculum-node-section-heading">
             <div>
-              <span className="curriculum-node-kicker">Next step</span>
               <h2>Explore {node.name}</h2>
             </div>
             <span className="curriculum-node-count">{children.length} {children.length === 1 ? 'item' : 'items'}</span>
@@ -336,7 +331,6 @@ export default function CurriculumNodePage() {
         <section className="curriculum-node-section">
           <div className="curriculum-node-section-heading">
             <div>
-              <span className="curriculum-node-kicker">Knowledge graph</span>
               <h2>Connected learning</h2>
             </div>
           </div>
