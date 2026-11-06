@@ -50,6 +50,16 @@ test('admin reference hash rejects a different user, session, or device', () => 
   }
 });
 
+test('admin reference hash accepts the configured single 48-digit code and binds it to email', () => {
+  process.env.ADMIN_DEVICE_APPROVAL_CODES = approvalCode;
+  const hash = createAdminSessionReferenceHash(binding);
+  assert.equal(verifyAdminSessionReferenceHash(hash, binding), true);
+  assert.equal(verifyAdminSessionReferenceHash(hash, { ...binding, email: 'another@example.com' }), false);
+  process.env.ADMIN_DEVICE_APPROVAL_CODES = JSON.stringify({
+    'admin@aliverbiopharm.com': approvalCode
+  });
+});
+
 test('admin reference hash rejects a changed email-bound 48-digit approval code', () => {
   const hash = createAdminSessionReferenceHash(binding);
   process.env.ADMIN_DEVICE_APPROVAL_CODES = JSON.stringify({
