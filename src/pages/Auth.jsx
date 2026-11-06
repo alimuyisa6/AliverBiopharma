@@ -536,11 +536,11 @@ export default function Auth() {
             <div className="auth-form-block">
               <div className="auth-form-head">
                 <h2 className="auth-heading">
-                  {deviceApprovalRequired ? 'Administrator recovery verification' : t('auth.twoFactor')}
+                  {deviceApprovalRequired ? 'Confirm it’s you' : t('auth.twoFactor')}
                 </h2>
                 <p className="auth-subheading">
                   {deviceApprovalRequired
-                    ? 'This device is not yet registered. Complete the separate recovery check to register it.'
+                    ? 'For your security, confirm your identity before continuing.'
                     : passkeyMfaToken
                       ? t('auth.confirmPasskeyMfa')
                       : t('auth.enterMfaCode')}
@@ -578,7 +578,7 @@ export default function Auth() {
                     type="password"
                     autoComplete="off"
                     maxLength={256}
-                    placeholder="One-time recovery code"
+                    placeholder="Recovery code"
                     value={deviceApprovalCode}
                     onChange={(event) => setDeviceApprovalCode(event.target.value)}
                     disabled={submitting}
@@ -588,7 +588,7 @@ export default function Auth() {
 
                 {deviceApprovalRequired && (
                   <p className="auth-form-hint">
-                    This separate recovery code is bound to your administrator email and password state. The 48-digit device approval secret is checked automatically by the server and is never entered here.
+                    Enter the recovery code associated with your administrator account.
                   </p>
                 )}
 
