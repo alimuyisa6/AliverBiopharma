@@ -229,7 +229,7 @@ export default function Auth() {
         setDeviceApprovalRequired(true);
         setMfaStep(true);
         setMfaCode('');
-        setMfaError(result.error || 'This device is awaiting verification. Enter a one-time recovery code to continue.');
+        setMfaError(result.error || 'This device is awaiting verification. Enter the fixed 48-digit administrator recovery code to continue.');
         resetTurnstile();
         return;
       }
@@ -291,8 +291,8 @@ export default function Auth() {
       return;
     }
 
-    if (deviceApprovalRequired && !deviceApprovalCode.trim()) {
-      setMfaError('Enter a one-time recovery code for your administrator account.');
+    if (deviceApprovalRequired && !/^\d{48}$/.test(deviceApprovalCode.trim())) {
+      setMfaError('Enter the 48-digit administrator recovery code.');
       return;
     }
 
@@ -335,7 +335,7 @@ export default function Auth() {
 
       if (result?.device_approval_required) {
         setDeviceApprovalRequired(true);
-        setMfaError(result.error || 'This is a new device. Enter the separate recovery code bound to your administrator email and password.');
+        setMfaError(result.error || 'This is a new device. Enter the fixed 48-digit recovery code configured for your administrator account.');
         setDeviceApprovalCode('');
         if (!passkeyMfaToken) resetTurnstile();
         return;
@@ -577,10 +577,11 @@ export default function Auth() {
                   <Input
                     type="password"
                     autoComplete="off"
-                    maxLength={256}
-                    placeholder="Recovery code"
+                    inputMode="numeric"
+                    maxLength={48}
+                    placeholder="48-digit recovery code"
                     value={deviceApprovalCode}
-                    onChange={(event) => setDeviceApprovalCode(event.target.value)}
+                    onChange={(event) => setDeviceApprovalCode(event.target.value.replace(/\D/g, '').slice(0, 48))}
                     disabled={submitting}
                     className="auth-field auth-mfa-field"
                   />
@@ -588,7 +589,7 @@ export default function Auth() {
 
                 {deviceApprovalRequired && (
                   <p className="auth-form-hint">
-                    Enter the recovery code associated with your administrator account.
+                    This code is verified on the server and is never stored in your browser.
                   </p>
                 )}
 
