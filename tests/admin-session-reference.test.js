@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import {
   createAdminSessionReferenceHash,
   verifyAdminSessionReferenceHash,
-  verifyAdminDeviceRecoveryCode
+  verifyAdminDeviceRecoveryCode,
+  isAdminDeviceBindingCurrent
 } from '../lib/admin-session-reference.js';
 
 process.env.ADMIN_SESSION_REFERENCE_SECRET = 'security-test-secret-'.repeat(4);
@@ -98,18 +99,32 @@ test('admin reference hash rejects malformed or absent stored hashes', () => {
 });
 
 
-test('fixed recovery code is bound to administrator email, user, and password state', () => {
-  const code = approvalCode;
+test('fixed recovery code is checked against the configured server secret', () => {
   const binding = {
     email: 'admin@aliverbiopharm.com',
     userId: 'user-123',
     passwordUpdatedAt: '2026-11-06T10:00:00.000Z'
   };
 
-  assert.equal(verifyAdminDeviceRecoveryCode({ ...binding, code }), true);
+  assert.equal(verifyAdminDeviceRecoveryCode({ ...binding, code: approvalCode }), true);
   assert.equal(verifyAdminDeviceRecoveryCode({ ...binding, code: '987654321098765432109876543210987654321098765432' }), false);
-  assert.equal(verifyAdminDeviceRecoveryCode({ ...binding, email: 'another@example.com', code }), false);
-  assert.equal(verifyAdminDeviceRecoveryCode({ ...binding, userId: 'another-user', code }), false);
-  assert.equal(verifyAdminDeviceRecoveryCode({ ...binding, passwordUpdatedAt: '2026-11-07T10:00:00.000Z', code }), false);
+  assert.equal(verifyAdminDeviceRecoveryCode({ ...binding, email: '', code: approvalCode }), false);
+  assert.equal(verifyAdminDeviceRecoveryCode({ ...binding, userId: '', code: approvalCode }), false);
+  assert.equal(verifyAdminDeviceRecoveryCode({ ...binding, passwordUpdatedAt: '', code: approvalCode }), false);
   assert.equal(verifyAdminDeviceRecoveryCode({ ...binding, code: '123456' }), false);
+});
+
+test('trusted-device approval is invalidated by an administrator email or password-state change', () => {
+  const binding = {
+    storedEmail: 'admin@aliverbiopharm.com',
+    storedPasswordUpdatedAt: '2026-11-06T10:00:00.000Z',
+    email: 'ADMIN@ALIVERBIOPHARM.COM',
+    passwordUpdatedAt: '2026-11-06T10:00:00.000Z'
+  };
+
+  assert.equal(isAdminDeviceBindingCurrent(binding), true);
+  assert.equal(isAdminDeviceBindingCurrent({ ...binding, email: 'other@example.com' }), false);
+  assert.equal(isAdminDeviceBindingCurrent({ ...binding, passwordUpdatedAt: '2026-11-07T10:00:00.000Z' }), false);
+  assert.equal(isAdminDeviceBindingCurrent({ ...binding, storedEmail: null }), false);
+  assert.equal(isAdminDeviceBindingCurrent({ ...binding, storedPasswordUpdatedAt: null }), false);
 });
