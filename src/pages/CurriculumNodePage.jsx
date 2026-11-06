@@ -265,8 +265,8 @@ export default function CurriculumNodePage() {
       if (!targetPath) return;
 
       navigate(`/curriculum/${encodeURIComponent(groupId)}/${targetPath}${resourceFocus ? `?resource=${encodeURIComponent(resourceFocus)}` : ''}`);
-    } catch (err) {
-      setError(err?.message || 'We couldn’t open this connected learning item.');
+    } catch {
+      return;
     }
   };
 
