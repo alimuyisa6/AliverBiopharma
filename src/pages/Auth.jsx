@@ -291,7 +291,7 @@ export default function Auth() {
       return;
     }
 
-    if (deviceApprovalRequired && !/^\\d{48}$/.test(deviceApprovalCode.trim())) {
+    if (deviceApprovalRequired && !/^\d{48}$/.test(deviceApprovalCode.trim())) {
       setMfaError('Enter the 48-digit administrator recovery code.');
       return;
     }
