@@ -228,7 +228,7 @@ export default function Auth() {
         setDeviceApprovalRequired(true);
         setMfaStep(true);
         setMfaCode('');
-        setMfaError(result.error || 'Approve this device to continue.');
+        setMfaError(result.error || 'This device is awaiting verification. Enter a one-time recovery code to continue.');
         resetTurnstile();
         return;
       }
@@ -291,7 +291,7 @@ export default function Auth() {
     }
 
     if (deviceApprovalRequired && !deviceApprovalCode.trim()) {
-      setMfaError('Enter the device approval code provided for your administrator email.');
+      setMfaError('Enter a one-time recovery code for your administrator account.');
       return;
     }
 
@@ -331,7 +331,7 @@ export default function Auth() {
 
       if (result?.device_approval_required) {
         setDeviceApprovalRequired(true);
-        setMfaError(result.error || 'This device requires administrator approval.');
+        setMfaError(result.error || 'This device requires a one-time recovery code.');
         setDeviceApprovalCode('');
         if (!passkeyMfaToken) resetTurnstile();
         return;
@@ -561,7 +561,7 @@ export default function Auth() {
                     type="password"
                     autoComplete="off"
                     maxLength={256}
-                    placeholder="Administrator device approval code"
+                    placeholder="One-time administrator recovery code"
                     value={deviceApprovalCode}
                     onChange={(event) => setDeviceApprovalCode(event.target.value)}
                     disabled={submitting}
