@@ -581,7 +581,7 @@ export default function Auth() {
                     maxLength={48}
                     placeholder="48-digit recovery code"
                     value={deviceApprovalCode}
-                    onChange={(event) => setDeviceApprovalCode(event.target.value.replace(/\\D/g, '').slice(0, 48))}
+                    onChange={(event) => setDeviceApprovalCode(event.target.value.replace(/\D/g, '').slice(0, 48))}
                     disabled={submitting}
                     className="auth-field auth-mfa-field"
                   />
