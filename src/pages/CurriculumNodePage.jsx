@@ -6,7 +6,7 @@ import Spinner from '../components/Spinner/Spinner';
 import Icon from '../components/Icon/Icon';
 import LearningJourney from '../components/LearningJourney/LearningJourney';
 import { getSubscriptionPath, isPremiumAccessError, redirectToSubscription } from '../utils/subscriptionNavigation';
-import { getCurriculumNodeByPath, getCurriculumTree } from '../api/curriculumNavigation';
+import { getCurriculumNode, getCurriculumNodeByPath, getCurriculumTree } from '../api/curriculumNavigation';
 
 function slugify(value) {
   return String(value || '')
@@ -249,6 +249,27 @@ export default function CurriculumNodePage() {
   const isLeaf = children.length === 0;
   const returnToLesson = `/curriculum/${encodeURIComponent(groupId)}/${nodePath}${resourceFocus ? `?resource=${encodeURIComponent(resourceFocus)}` : ''}`;
 
+  const openRelatedNode = async (event, relationship) => {
+    event.preventDefault();
+
+    try {
+      const result = await getCurriculumNode(relationship.target_id);
+      const targetNode = result?.node;
+      const targetAncestors = (result?.ancestors || []).filter((item) => item.group_id === groupId);
+      if (!targetNode) return;
+
+      const targetPath = [...targetAncestors, targetNode]
+        .map((item) => slugify(item.slug || item.name))
+        .filter(Boolean)
+        .join('/');
+      if (!targetPath) return;
+
+      navigate(`/curriculum/${encodeURIComponent(groupId)}/${targetPath}${resourceFocus ? `?resource=${encodeURIComponent(resourceFocus)}` : ''}`);
+    } catch (err) {
+      setError(err?.message || 'We couldn’t open this connected learning item.');
+    }
+  };
+
   return (
     <Container className="curriculum-node-page">
       <Breadcrumb items={breadcrumbItems} />
@@ -337,10 +358,14 @@ export default function CurriculumNodePage() {
 
           <div className="curriculum-node-links">
             {relationships.map((relationship, index) => (
-              <div key={`${relationship.relationship_type}-${relationship.target_id}-${index}`} className="curriculum-node-link">
-                <span className="curriculum-node-link-type">{relationship.relationship_type.replaceAll('_', ' ')}</span>
+              <Link
+                key={`${relationship.relationship_type}-${relationship.target_id}-${index}`}
+                to={`/curriculum/${encodeURIComponent(groupId)}/${slugify(relationship.target_slug || relationship.target_name)}`}
+                onClick={(event) => openRelatedNode(event, relationship)}
+                className="curriculum-node-link"
+              >
                 <span>{relationship.target_name}</span>
-              </div>
+              </Link>
             ))}
           </div>
         </section>
