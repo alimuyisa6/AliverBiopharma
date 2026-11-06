@@ -255,8 +255,8 @@ export default function CurriculumNodePage() {
     try {
       const result = await getCurriculumNode(relationship.target_id);
       const targetNode = result?.node;
-      const targetPathNodes = (result?.ancestors || []).filter((item) => item.group_id === groupId);
-      if (!targetNode || targetPathNodes.length === 0) return;
+      const targetPathNodes = [...(result?.ancestors || []), targetNode].filter(Boolean);
+      if (!targetNode) return;
 
       const targetPath = targetPathNodes
         .map((item) => slugify(item.slug || item.name))
