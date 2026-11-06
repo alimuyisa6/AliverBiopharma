@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {
   createAdminSessionReferenceHash,
   verifyAdminSessionReferenceHash,
-  verifyAdminDeviceRecoveryCode,
+  hashAdminDeviceRecoveryCode,
   isAdminDeviceBindingCurrent
 } from '../lib/admin-session-reference.js';
 
@@ -99,19 +99,25 @@ test('admin reference hash rejects malformed or absent stored hashes', () => {
 });
 
 
-test('fixed recovery code is checked against the configured server secret', () => {
-  const binding = {
-    email: 'admin@aliverbiopharm.com',
+test('one-time recovery code hashes are bound to email, user, password state and code', () => {
+  process.env.ADMIN_RECOVERY_CODE_PEPPER = 'recovery-pepper-secret-'.repeat(3);
+  const recoveryBinding = {
+    email: 'ADMIN@ALIVERBIOPHARM.COM',
     userId: 'user-123',
-    passwordUpdatedAt: '2026-11-06T10:00:00.000Z'
+    passwordUpdatedAt: '2026-11-06T10:00:00.000Z',
+    code: approvalCode
   };
-
-  assert.equal(verifyAdminDeviceRecoveryCode({ ...binding, code: approvalCode }), true);
-  assert.equal(verifyAdminDeviceRecoveryCode({ ...binding, code: '987654321098765432109876543210987654321098765432' }), false);
-  assert.equal(verifyAdminDeviceRecoveryCode({ ...binding, email: '', code: approvalCode }), false);
-  assert.equal(verifyAdminDeviceRecoveryCode({ ...binding, userId: '', code: approvalCode }), false);
-  assert.equal(verifyAdminDeviceRecoveryCode({ ...binding, passwordUpdatedAt: '', code: approvalCode }), false);
-  assert.equal(verifyAdminDeviceRecoveryCode({ ...binding, code: '123456' }), false);
+  const hash = hashAdminDeviceRecoveryCode(recoveryBinding);
+  assert.match(hash, /^[a-f0-9]{64}$/);
+  assert.equal(hashAdminDeviceRecoveryCode({ ...recoveryBinding, email: 'admin@aliverbiopharm.com' }), hash);
+  for (const changed of [
+    { ...recoveryBinding, email: 'other@example.com' },
+    { ...recoveryBinding, userId: 'other-user' },
+    { ...recoveryBinding, passwordUpdatedAt: '2026-11-07T10:00:00.000Z' },
+    { ...recoveryBinding, code: '987654321098765432109876543210987654321098765432' }
+  ]) assert.notEqual(hashAdminDeviceRecoveryCode(changed), hash);
+  assert.throws(() => hashAdminDeviceRecoveryCode({ ...recoveryBinding, code: '123456' }));
+  delete process.env.ADMIN_RECOVERY_CODE_PEPPER;
 });
 
 test('trusted-device approval is invalidated by an administrator email or password-state change', () => {
