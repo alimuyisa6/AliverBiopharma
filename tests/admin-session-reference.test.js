@@ -6,6 +6,10 @@ import {
 } from '../lib/admin-session-reference.js';
 
 process.env.ADMIN_SESSION_REFERENCE_SECRET = 'security-test-secret-'.repeat(4);
+const approvalCode = '123456789012345678901234567890123456789012345678';
+process.env.ADMIN_DEVICE_APPROVAL_CODES = JSON.stringify({
+  'admin@aliverbiopharm.com': approvalCode
+});
 
 const binding = {
   email: 'ADMIN@ALIVERBIOPHARM.COM',
@@ -44,6 +48,47 @@ test('admin reference hash rejects a different user, session, or device', () => 
   ]) {
     assert.equal(verifyAdminSessionReferenceHash(hash, changed), false);
   }
+});
+
+test('admin reference hash accepts the configured single 48-digit code and binds it to email', () => {
+  process.env.ADMIN_DEVICE_APPROVAL_CODES = approvalCode;
+  const hash = createAdminSessionReferenceHash(binding);
+  assert.equal(verifyAdminSessionReferenceHash(hash, binding), true);
+  assert.equal(verifyAdminSessionReferenceHash(hash, { ...binding, email: 'another@example.com' }), false);
+  process.env.ADMIN_DEVICE_APPROVAL_CODES = JSON.stringify({
+    'admin@aliverbiopharm.com': approvalCode
+  });
+});
+
+test('admin reference hash rejects a changed email-bound 48-digit approval code', () => {
+  const hash = createAdminSessionReferenceHash(binding);
+  process.env.ADMIN_DEVICE_APPROVAL_CODES = JSON.stringify({
+    'admin@aliverbiopharm.com': '987654321098765432109876543210987654321098765432'
+  });
+
+  assert.equal(verifyAdminSessionReferenceHash(hash, binding), false);
+
+  process.env.ADMIN_DEVICE_APPROVAL_CODES = JSON.stringify({
+    'admin@aliverbiopharm.com': approvalCode
+  });
+});
+
+test('admin reference hash rejects missing, malformed, or wrongly sized approval codes', () => {
+  const original = process.env.ADMIN_DEVICE_APPROVAL_CODES;
+
+  for (const value of [
+    undefined,
+    'not-json',
+    JSON.stringify({ 'admin@aliverbiopharm.com': '123456' }),
+    JSON.stringify({ 'another@example.com': approvalCode })
+  ]) {
+    if (value === undefined) delete process.env.ADMIN_DEVICE_APPROVAL_CODES;
+    else process.env.ADMIN_DEVICE_APPROVAL_CODES = value;
+
+    assert.throws(() => createAdminSessionReferenceHash(binding));
+  }
+
+  process.env.ADMIN_DEVICE_APPROVAL_CODES = original;
 });
 
 test('admin reference hash rejects malformed or absent stored hashes', () => {
