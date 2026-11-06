@@ -65,6 +65,7 @@ export default function Auth() {
   const [mfaError, setMfaError] = useState('');
   const [deviceApprovalCode, setDeviceApprovalCode] = useState('');
   const [deviceApprovalRequired, setDeviceApprovalRequired] = useState(false);
+  const [verificationPending, setVerificationPending] = useState(false);
   const [mfaRequired, setMfaRequired] = useState(false);
   const [passkeyMfaToken, setPasskeyMfaToken] = useState('');
   const [passkeySubmitting, setPasskeySubmitting] = useState(false);
@@ -305,6 +306,7 @@ export default function Auth() {
     }
 
     setSubmitting(true);
+    setVerificationPending(true);
 
     try {
       const result = passkeyMfaToken
@@ -322,6 +324,8 @@ export default function Auth() {
             deviceApprovalCode.trim() || null
           );
 
+      setVerificationPending(false);
+
       if (result?.mfa_required) {
         setMfaRequired(true);
         setMfaError("That code doesn't look right. Try again.");
@@ -331,7 +335,7 @@ export default function Auth() {
 
       if (result?.device_approval_required) {
         setDeviceApprovalRequired(true);
-        setMfaError(result.error || 'This device requires a one-time recovery code.');
+        setMfaError(result.error || 'This is a new device. Enter the separate recovery code bound to your administrator email and password.');
         setDeviceApprovalCode('');
         if (!passkeyMfaToken) resetTurnstile();
         return;
@@ -342,6 +346,7 @@ export default function Auth() {
       setMfaError(err.message || 'We couldn’t verify your code. Please try again.');
       if (!passkeyMfaToken) resetTurnstile();
     } finally {
+      setVerificationPending(false);
       setSubmitting(false);
     }
   }
@@ -517,16 +522,28 @@ export default function Auth() {
               </p>
               <Spinner context="brand" />
             </div>
+          ) : mfaStep && verificationPending ? (
+            <div className="auth-state" role="status" aria-live="polite">
+              <div className="auth-state-icon-wrap">
+                <Spinner context="brand" />
+              </div>
+              <h2 className="auth-state-title">Waiting for further verification. Please wait.</h2>
+              <p className="auth-state-text">
+                The server is verifying your administrator email, registered device, session, and security binding. Sign-in will continue automatically when verification succeeds.
+              </p>
+            </div>
           ) : mfaStep ? (
             <div className="auth-form-block">
               <div className="auth-form-head">
                 <h2 className="auth-heading">
-                  {t('auth.twoFactor')}
+                  {deviceApprovalRequired ? 'Administrator recovery verification' : t('auth.twoFactor')}
                 </h2>
                 <p className="auth-subheading">
-                  {passkeyMfaToken
-                    ? t('auth.confirmPasskeyMfa')
-                    : t('auth.enterMfaCode')}
+                  {deviceApprovalRequired
+                    ? 'This device is not yet registered. Complete the separate recovery check to register it.'
+                    : passkeyMfaToken
+                      ? t('auth.confirmPasskeyMfa')
+                      : t('auth.enterMfaCode')}
                 </p>
               </div>
 
@@ -561,12 +578,18 @@ export default function Auth() {
                     type="password"
                     autoComplete="off"
                     maxLength={256}
-                    placeholder="One-time administrator recovery code"
+                    placeholder="One-time recovery code"
                     value={deviceApprovalCode}
                     onChange={(event) => setDeviceApprovalCode(event.target.value)}
                     disabled={submitting}
                     className="auth-field auth-mfa-field"
                   />
+                )}
+
+                {deviceApprovalRequired && (
+                  <p className="auth-form-hint">
+                    This separate recovery code is bound to your administrator email and password state. The 48-digit device approval secret is checked automatically by the server and is never entered here.
+                  </p>
                 )}
 
                 {!passkeyMfaToken && (
