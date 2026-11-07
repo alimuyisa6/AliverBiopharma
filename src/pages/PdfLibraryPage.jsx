@@ -31,8 +31,11 @@ export default function PdfLibraryPage() {
   const { bootstrap } = useLayout();
   const [searchParams] = useSearchParams();
   const curriculumUnitId = searchParams.get('unit_id') || null;
-  const [pdfs, setPdfs] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const pdfScopeKey = activeGroupId || `${level || ''}:${class_name || ''}`;
+  const pdfCacheKey = `pdfs_page_${user?.id || 'guest'}:${pdfScopeKey}:${curriculumUnitId || 'all'}`;
+  const initialPdfs = getCachedStale(pdfCacheKey);
+  const [pdfs, setPdfs] = useState(() => initialPdfs || []);
+  const [loading, setLoading] = useState(() => !initialPdfs);
   const [error, setError] = useState(null);
   const [sortBy, setSortBy] = useState('title');
   
@@ -40,9 +43,8 @@ export default function PdfLibraryPage() {
     if (access.loading || !access.canAccess) return undefined;
     let mounted = true;
 
-    const scopeKey = activeGroupId || `${level || ''}:${class_name || ''}`;
-    const cacheKey = `pdfs_page_${user?.id || 'guest'}:${scopeKey}:${curriculumUnitId || 'all'}`;
-    const cached = getCachedStale(cacheKey);
+    const cacheKey = pdfCacheKey;
+    const cached = initialPdfs;
     if (cached) {
       setPdfs(cached);
       setLoading(false);
