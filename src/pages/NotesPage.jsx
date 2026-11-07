@@ -2,6 +2,7 @@ import AdSlot from '../components/Advertising/AdSlot';
 import { useState, useEffect, useMemo } from 'react';
 import { Link, useNavigate, useSearchParams, useLocation } from 'react-router-dom';
 import { useContentAccess } from '../hooks/useContentAccess';
+import { useAuth } from '../contexts/AuthContext';
 import { useLevelFilter } from '../hooks/useLevelFilter';
 import { useLayout } from '../contexts/LayoutContext';
 import { getNotesStructure } from '../api/cachedClient';
@@ -50,6 +51,7 @@ export default function NotesPage() {
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const access = useContentAccess();
+  const { user } = useAuth();
   const { level, class_name, displayName } = useLevelFilter();
   const { bootstrap } = useLayout();
   const unitId = searchParams.get('unit_id');
@@ -60,7 +62,7 @@ export default function NotesPage() {
   const [loading, setLoading] = useState(true);
   const [contextLoading, setContextLoading] = useState(false);
   const [error, setError] = useState(null);
-  const cacheKey = `${level || ''}:${class_name || ''}:${unitId || 'all'}`;
+  const cacheKey = `${user?.id || 'guest'}:${level || ''}:${class_name || ''}:${unitId || 'all'}`;
 
   useEffect(() => {
     if (!access.canAccess) {
