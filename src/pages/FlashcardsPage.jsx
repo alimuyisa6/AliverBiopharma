@@ -50,6 +50,9 @@ export default function FlashcardsPage() {
   const { level, class_name, displayName } = useLevelFilter();
   const { bootstrap } = useLayout();
   const addToast = useToast();
+  const curriculumUnitId = searchParams.get('unit_id') || null;
+  const sourceNoteId = searchParams.get('note_id') || null;
+  const activityScope = searchParams.get('activity_scope') || (sourceNoteId ? 'note' : null);
   const cacheKey = `${user?.id || 'anonymous'}:${level || ''}:${class_name || ''}:${curriculumUnitId || 'all'}:${sourceNoteId || 'no-note'}:${activityScope || 'default-scope'}`;
   const initialFlashcards = getCachedStale(`flashcards_page_${cacheKey}`) || flashcardPageCache.get(cacheKey);
   const initialDeckId = searchParams.get('deck_id') || null;
@@ -62,9 +65,6 @@ export default function FlashcardsPage() {
   const [decks, setDecks] = useState(() => initialFlashcards?.decks || []);
   const [error, setError] = useState(null);
 
-  const curriculumUnitId = searchParams.get('unit_id') || null;
-  const sourceNoteId = searchParams.get('note_id') || null;
-  const activityScope = searchParams.get('activity_scope') || (sourceNoteId ? 'note' : null);
   const challengeId = searchParams.get('challenge_id') || null;
   const deckId = searchParams.get('deck_id') || null;
   const levelName = displayName || level || '';
