@@ -50,6 +50,10 @@ export default function PastPapers() {
   const { level, class_name, showAll, displayName } = useLevelFilter();
   const { bootstrap } = useLayout();
   const addToast = useToast();
+  const effectiveLevel = showAll ? null : level;
+  const effectiveClass = showAll ? null : class_name;
+  const initialPapersKey = `papers_page_papers:${user?.id || 'guest'}:${curriculumUnitId || ''}:${effectiveLevel || ''}:${effectiveClass || ''}:all:1::year_desc:{"subject":"","year":"","exam_board":"","paper_type":""}`;
+  const initialPapers = getCachedStale(initialPapersKey);
 
   const [initializing, setInitializing] = useState(true);
   const [papers, setPapers] = useState(() => initialPapers?.papers || []);
@@ -92,10 +96,7 @@ export default function PastPapers() {
 
   const papersRequestId = useRef(0);
 
-  const effectiveLevel = showAll ? null : level;
-  const effectiveClass = showAll ? null : class_name;
-  const initialPapersKey = `papers_page_papers:${user?.id || 'guest'}:${curriculumUnitId || ''}:${effectiveLevel || ''}:${effectiveClass || ''}:all:1::year_desc:{"subject":"","year":"","exam_board":"","paper_type":""}`;
-  const initialPapers = getCachedStale(initialPapersKey);
+
 
   function getEmptyStateImage(key) {
     const uiComponents = bootstrap?.ui_components || [];
