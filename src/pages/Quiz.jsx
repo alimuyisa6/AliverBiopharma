@@ -10,8 +10,6 @@ import { useContentAccess } from '../hooks/useContentAccess';
 import { useSecurityUiLock } from '../hooks/useSecurityUiLock';
 import { useToast } from '../components/Toast/Toast';
 import {
-  listQuizTopics,
-  getQuizTopics,
   getQuizBlock,
   checkQuizAnswer,
   recordDailyVisit,
@@ -21,7 +19,7 @@ import {
   submitQuizWithSession,
   getQuizSessionStatus
 } from '../api/cachedClient';
-import { apiCall } from '../api/client';
+import { apiCall, listQuizTopics, getQuizTopics } from '../api/client';
 import { PendingApprovalScreen } from '../components/access/PendingApprovalScreen';
 import { AccessDenied } from '../components/access/AccessDenied';
 import LearningJourney from '../components/LearningJourney/LearningJourney';
