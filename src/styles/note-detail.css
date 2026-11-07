@@ -2022,3 +2022,22 @@ body.dark-mode .note-detail-page { background: var(--dark-background); color: va
 body.dark-mode .note-detail-page :is(.note-detail-card, .note-detail-panel, .note-content, .note-sidebar, .note-meta-card) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
 body.dark-mode .note-detail-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small) { color: var(--dark-text); }
 body.dark-mode .note-detail-page :is(.text-muted, .note-description, .note-meta) { color: var(--dark-text-secondary); }
+
+
+.notes-content-container .term-bubble {
+  display: inline;
+  padding: 0.08em 0.48em 0.12em;
+  border: 1px solid var(--primary-light);
+  border-radius: 0.7em 0.55em 0.75em 0.5em;
+  background: color-mix(in srgb, var(--accent) 18%, var(--white));
+  color: var(--text-main);
+  font-weight: var(--weight-semibold);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+body.dark-mode .notes-content-container .term-bubble {
+  border-color: var(--night-500);
+  background: color-mix(in srgb, var(--accent) 20%, var(--dark-surface));
+  color: var(--night-text-primary);
+}
