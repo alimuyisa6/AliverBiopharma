@@ -87,7 +87,7 @@ export default function NotesPage() {
     return () => {
       mounted = false;
     };
-  }, [access.canAccess, level, class_name, unitId]);
+  }, [access.canAccess, user?.id, level, class_name, unitId]);
 
   useEffect(() => {
     if (!access.canAccess || !unitId) {
