@@ -161,7 +161,8 @@ export default function PastPapers() {
     filters.year,
     filters.exam_board,
     filters.paper_type,
-    curriculumUnitId
+    curriculumUnitId,
+    user?.id
   ]);
 
   const loadUserInteractions = async () => {
