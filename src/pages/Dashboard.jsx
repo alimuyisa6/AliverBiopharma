@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useLayout } from '../contexts/LayoutContext';
 import { getUserDashboard } from '../api/cachedClient';
+import { getCachedStale, setCache } from '../utils/cache';
 import { listClassrooms as fetchClassrooms } from '../api/client';
 import { getDownloadHistory, getDownloadAttemptSummary } from '../api/client';
 import { getCurriculumTree } from '../api/curriculumNavigation';
@@ -38,8 +39,10 @@ export default function Dashboard() {
   const access = useContentAccess();
   const { locked, reason } = useSecurityUiLock();
 
-  const [summary, setSummary] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const dashboardCacheKey = `dashboard_${user?.id || 'guest'}`;
+  const initialSummary = user?.id ? getCachedStale(dashboardCacheKey) : null;
+  const [summary, setSummary] = useState(() => initialSummary);
+  const [loading, setLoading] = useState(() => !initialSummary);
   const [error, setError] = useState(null);
   const [activityRange, setActivityRange] = useState('week');
   const [downloadHistory, setDownloadHistory] = useState({ papers: [], total: 0 });
@@ -57,7 +60,15 @@ export default function Dashboard() {
     }
 
     let mounted = true;
-    summaryLoadedRef.current = false;
+    const cachedSummary = user?.id ? getCachedStale(dashboardCacheKey) : null;
+    if (cachedSummary) {
+      summaryLoadedRef.current = true;
+      setSummary(cachedSummary);
+      setLoading(false);
+    } else {
+      summaryLoadedRef.current = false;
+      setLoading(true);
+    }
 
     const refreshDashboard = () => {
       getUserDashboard()
@@ -65,6 +76,7 @@ export default function Dashboard() {
           if (mounted) {
             summaryLoadedRef.current = true;
             setSummary(data);
+            setCache(dashboardCacheKey, data);
             setError(null);
           }
         })
@@ -85,7 +97,7 @@ export default function Dashboard() {
       mounted = false;
       window.clearInterval(refreshTimer);
     };
-  }, [access.canAccess, user?.id]);
+  }, [access.canAccess, user?.id, dashboardCacheKey]);
 
   useEffect(() => {
     let mounted = true;
