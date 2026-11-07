@@ -11,7 +11,7 @@ import { PendingApprovalScreen } from '../components/access/PendingApprovalScree
 import { AccessDenied } from '../components/access/AccessDenied';
 import { listClassrooms, getUnits } from '../api/client';
 import Icon from '../components/Icon/Icon';
-import Spinner from '../components/Spinner/Spinner';
+import PageSkeleton from '../components/Loading/PageSkeleton';
 import Button from '../components/Button/Button';
 import AnimatedActionButton from '../components/AnimatedActionButton/AnimatedActionButton';
 import EmptyState from '../components/EmptyState/EmptyState';
@@ -86,11 +86,7 @@ export default function Classroom() {
   if (!access.canAccess) return <AccessDenied />;
 
   if (loading) {
-    return (
-      <div className="fcd-loading-wrap">
-        <Spinner size="lg" />
-      </div>
-    );
+    return <div className="section"><PageSkeleton variant="compact" /></div>;
   }
 
   const levelName = displayName || level?.id || '';
