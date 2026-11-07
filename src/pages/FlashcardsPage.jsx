@@ -27,6 +27,7 @@ import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 import { redirectToSubscription } from '../utils/subscriptionNavigation';
 import { useLayout } from '../contexts/LayoutContext';
 import { useToast } from '../components/Toast/Toast';
+import { getCachedStale, setCache } from '../utils/cache';
 
 const flashcardPageCache = new Map();
 const flashcardPageRequests = new Map();
@@ -75,7 +76,7 @@ export default function FlashcardsPage() {
   }, [user?.id, isReady, access.canAccess, level, class_name, curriculumUnitId, sourceNoteId, activityScope, deckId]);
 
   async function init(lifecycle = { active: () => true }) {
-    const cached = flashcardPageCache.get(cacheKey);
+    const cached = getCachedStale(`flashcards_page_${cacheKey}`) || flashcardPageCache.get(cacheKey);
 
     if (cached) {
       setKnownIds(cached.knownIds);
@@ -125,6 +126,7 @@ export default function FlashcardsPage() {
           decks: Array.isArray(decksData) ? decksData : []
         };
         flashcardPageCache.set(cacheKey, data);
+        setCache(`flashcards_page_${cacheKey}`, data);
         return data;
       }).finally(() => {
         flashcardPageRequests.delete(cacheKey);
