@@ -33,7 +33,7 @@ import { useLayout } from '../contexts/LayoutContext';
 import ContentSwitcher from '../components/ContentSwitcher/ContentSwitcher';
 import LearningJourney from '../components/LearningJourney/LearningJourney';
 import { isPremiumAccessError, redirectToSubscription } from '../utils/subscriptionNavigation';
-import { getLearningData, setLearningData } from '../utils/learningDataCache';
+import { getCachedStale, setCache } from '../utils/cache';
 
 const TABS = [
   { key: 'all', label: 'All papers' },
@@ -190,7 +190,8 @@ export default function PastPapers() {
   const loadPapers = async () => {
     const requestId = ++papersRequestId.current;
     const cacheKey = `papers:${user?.id || 'guest'}:${curriculumUnitId || ''}:${effectiveLevel || ''}:${effectiveClass || ''}:${activeTab}:${page}:${searchQuery.trim()}:${sortBy}:${JSON.stringify(filters)}`;
-    const cached = getLearningData(cacheKey, { allowStale: true });
+    const persistentCacheKey = `papers_page_${cacheKey}`;
+    const cached = getCachedStale(persistentCacheKey);
 
     if (cached) {
       setPapers(cached.papers);
@@ -262,7 +263,7 @@ export default function PastPapers() {
         totalPages: result?.total_pages || 1,
         total: result?.total || 0
       };
-      setLearningData(cacheKey, nextData, 90000);
+      setCache(persistentCacheKey, nextData);
       setPapers(nextData.papers);
       setTotalPages(nextData.totalPages);
       setTotal(nextData.total);
