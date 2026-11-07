@@ -33,6 +33,7 @@ import { useLayout } from '../contexts/LayoutContext';
 import ContentSwitcher from '../components/ContentSwitcher/ContentSwitcher';
 import LearningJourney from '../components/LearningJourney/LearningJourney';
 import { isPremiumAccessError, redirectToSubscription } from '../utils/subscriptionNavigation';
+import { getLearningData, setLearningData } from '../utils/learningDataCache';
 
 const TABS = [
   { key: 'all', label: 'All papers' },
@@ -188,8 +189,17 @@ export default function PastPapers() {
 
   const loadPapers = async () => {
     const requestId = ++papersRequestId.current;
+    const cacheKey = `papers:${user?.id || 'guest'}:${curriculumUnitId || ''}:${effectiveLevel || ''}:${effectiveClass || ''}:${activeTab}:${page}:${searchQuery.trim()}:${sortBy}:${JSON.stringify(filters)}`;
+    const cached = getLearningData(cacheKey, { allowStale: true });
 
-    setPapersLoading(true);
+    if (cached) {
+      setPapers(cached.papers);
+      setTotalPages(cached.totalPages);
+      setTotal(cached.total);
+      setPapersLoading(false);
+    } else {
+      setPapersLoading(true);
+    }
 
     try {
       let result;
@@ -247,9 +257,15 @@ export default function PastPapers() {
         return;
       }
 
-      setPapers(result?.papers || []);
-      setTotalPages(result?.total_pages || 1);
-      setTotal(result?.total || 0);
+      const nextData = {
+        papers: result?.papers || [],
+        totalPages: result?.total_pages || 1,
+        total: result?.total || 0
+      };
+      setLearningData(cacheKey, nextData, 90000);
+      setPapers(nextData.papers);
+      setTotalPages(nextData.totalPages);
+      setTotal(nextData.total);
     } catch (error) {
       if (requestId !== papersRequestId.current) {
         return;
