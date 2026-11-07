@@ -15,6 +15,8 @@ const PERSIST_PREFIXES = [
   'site_sections',
   'section_headings',
   'platform_sections_',
+  'public_stats_',
+  'subscription_plans',
 ];
 const STORAGE_PREFIX = 'acache:v1:';
 const STORAGE_INDEX_KEY = 'acache:v1:__index';
