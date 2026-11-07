@@ -6,28 +6,34 @@ const _promises = new Map();
 export function getSections(levelId) {
   const key = levelId || 'default';
 
-  if (_cache.has(key)) return Promise.resolve(_cache.get(key));
-  if (_promises.has(key)) return _promises.get(key);
-
-  const promise = getPlatformSections(levelId).then((data) => {
-    _cache.set(key, data);
-    _promises.delete(key);
-
+  if (!_cache.has(key)) {
     try {
-      sessionStorage.setItem(`platformSections:${key}`, JSON.stringify(data));
+      const stored = sessionStorage.getItem(`platformSections:${key}`);
+      if (stored) _cache.set(key, JSON.parse(stored));
     } catch {}
+  }
 
-    return data;
-  }).catch((err) => {
-    _promises.delete(key);
-    throw err;
-  });
+  const cached = _cache.get(key);
 
-  _promises.set(key, promise);
+  if (!_promises.has(key)) {
+    const promise = getPlatformSections(levelId).then((data) => {
+      _cache.set(key, data);
 
-  return promise;
+      try {
+        sessionStorage.setItem(`platformSections:${key}`, JSON.stringify(data));
+      } catch {}
+
+      return data;
+    }).finally(() => {
+      _promises.delete(key);
+    });
+
+    _promises.set(key, promise);
+  }
+
+  if (cached) return Promise.resolve(cached);
+  return _promises.get(key);
 }
-
 export function clearSectionsCache() {
   _cache.clear();
   _promises.clear();
