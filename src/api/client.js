@@ -43,6 +43,7 @@ processingQueue = true;
 
 try {
 while (requestQueue.length > 0 && activeRequests < MAX_CONCURRENT) {
+requestQueue.sort((a, b) => b.priority - a.priority);
 const item = requestQueue.shift();
 
 if (!item) break;  
@@ -99,8 +100,10 @@ isFormData
 return `${normalizedMethod}:${moduleName}:${path}:${bodyKey}`;
 }
 
-function dedupeAndQueue(key, execute) {
+function dedupeAndQueue(key, execute, priority = 0) {
 if (pendingRequests.has(key)) {
+const queued = requestQueue.find((item) => item.key === key);
+if (queued && priority > queued.priority) queued.priority = priority;
 return pendingRequests.get(key);
 }
 
@@ -109,7 +112,8 @@ requestQueue.push({
 key,
 execute,
 resolve,
-reject
+reject,
+priority
 });
 
 processQueue();
@@ -295,6 +299,7 @@ const url =
  // scope in the in-flight request key so a class switch cannot reuse a prior
  // class's still-pending response. This key is client-side only.
 const requestScope = options?.requestScope == null ? '' : String(options.requestScope);
+const priority = options?.priority === 'background' ? -1 : 0;
 const cacheKey = `GET:${moduleName}:${path}:${query}:scope=${requestScope}`;
 
 return dedupeAndQueue(cacheKey, async () => {
@@ -518,11 +523,12 @@ section,
 );
 }
 
-export async function getNotesList(unitId = null) {
+export async function getNotesList(unitId = null, options = {}) {
 return getRequest(
 'notes',
 'list',
-unitId ? { unit_id: unitId } : {}
+unitId ? { unit_id: unitId } : {},
+options
 );
 }
 
@@ -1694,13 +1700,14 @@ activity_scope: activityScope
 );
 }
 
-export async function listQuizTopics(groupId) {
+export async function listQuizTopics(groupId, options = {}) {
 return getRequest(
 'quiz',
 'list_quiz_topics',
 groupId
 ? { group_id: groupId }
-: {}
+: {},
+options
 );
 }
 
@@ -1825,12 +1832,14 @@ questions
 }
 
 export async function getPastPapers(
-filters = {}
+filters = {},
+options = {}
 ) {
 return getRequest(
 'past-papers',
 'get_papers',
-filters
+filters,
+options
 );
 }
 
@@ -1910,12 +1919,14 @@ filters
 }
 
 export async function getFlashcardDecks(
-filters = {}
+filters = {},
+options = {}
 ) {
 return getRequest(
 'flashcards',
 'decks',
-filters
+filters,
+options
 );
 }
 
@@ -2074,10 +2085,12 @@ card_id: cardId
 );
 }
 
-export async function getKnownFlashcards() {
+export async function getKnownFlashcards(options = {}) {
 return getRequest(
 'flashcards',
-'known'
+'known',
+{},
+options
 );
 }
 
@@ -2166,7 +2179,7 @@ level
 );
 }
 
-export async function getPdfsByLevel(unitId, activeGroupId = null, requestScope = activeGroupId) {
+export async function getPdfsByLevel(unitId, activeGroupId = null, requestScope = activeGroupId, options = {}) {
 const params = {};
 if (unitId) params.unit_id = unitId;
 // Only send a real curriculum group ID to the backend. requestScope is a
@@ -2177,7 +2190,7 @@ const data = await getRequest(
 'pdf-resources',
 'list',
 params,
-{ requestScope }
+{ requestScope, ...options }
 );
 return Array.isArray(data) ? data : (Array.isArray(data?.pdfs) ? data.pdfs : []);
 }
