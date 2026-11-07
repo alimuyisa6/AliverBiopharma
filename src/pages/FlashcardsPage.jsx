@@ -16,7 +16,7 @@ import {
   completeFlashcardSession,
   getKnownFlashcards,
   getFlashcardDecks
-} from '../api/cachedClient';
+} from '../api/client';
 import Icon from '../components/Icon/Icon';
 import PageSkeleton from '../components/Loading/PageSkeleton';
 import Skeleton from '../components/Skeleton/Skeleton';
