@@ -16,7 +16,7 @@ import Container from '../components/Container/Container';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 import LearningJourney from '../components/LearningJourney/LearningJourney';
 import { isPremiumAccessError, redirectToSubscription } from '../utils/subscriptionNavigation';
-import { getLearningData, setLearningData } from '../utils/learningDataCache';
+import { getCachedStale, setCache } from '../utils/cache';
 import { useToast } from '../components/Toast/Toast';
 import './PdfLibraryPage.css';
 
@@ -41,8 +41,8 @@ export default function PdfLibraryPage() {
     let mounted = true;
 
     const scopeKey = activeGroupId || `${level || ''}:${class_name || ''}`;
-    const cacheKey = `pdfs:${user?.id || 'guest'}:${scopeKey}:${curriculumUnitId || 'all'}`;
-    const cached = getLearningData(cacheKey, { allowStale: true });
+    const cacheKey = `pdfs_page_${user?.id || 'guest'}:${scopeKey}:${curriculumUnitId || 'all'}`;
+    const cached = getCachedStale(cacheKey);
     if (cached) {
       setPdfs(cached);
       setLoading(false);
@@ -65,8 +65,8 @@ export default function PdfLibraryPage() {
       const requestScope = activeGroupId || `${level || ''}:${class_name || ''}`;
       const data = await getPdfsByLevel(curriculumUnitId, activeGroupId, requestScope);
       const nextPdfs = Array.isArray(data) ? data : [];
-      const cacheKey = `pdfs:${user?.id || 'guest'}:${requestScope}:${curriculumUnitId || 'all'}`;
-      setLearningData(cacheKey, nextPdfs, 90000);
+      const cacheKey = `pdfs_page_${user?.id || 'guest'}:${requestScope}:${curriculumUnitId || 'all'}`;
+      setCache(cacheKey, nextPdfs);
       if (isMounted()) setPdfs(nextPdfs);
     } catch {
       if (isMounted()) setError("We couldn't load the PDF resources. Please try again.");
