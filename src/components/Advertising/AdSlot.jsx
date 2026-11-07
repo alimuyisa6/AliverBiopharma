@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { getAd, recordAdClick } from '../../api/client';
 import { useLevelFilter } from '../../hooks/useLevelFilter';
 import Icon from '../Icon/Icon';
-import Spinner from '../Spinner/Spinner';
 
 const FINGERPRINT_KEY = 'aliverbiopharm_ad_session';
 
@@ -31,8 +30,29 @@ export default function AdSlot({
   const { level, class_name } = useLevelFilter();
   const [ad, setAd] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [shouldLoad, setShouldLoad] = useState(false);
+  const slotRef = useRef(null);
 
   useEffect(() => {
+    const node = slotRef.current;
+    if (!node) return undefined;
+    if (!('IntersectionObserver' in window)) {
+      setShouldLoad(true);
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      setShouldLoad(true);
+      observer.disconnect();
+    }, { rootMargin: '700px 0px' });
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!shouldLoad) return undefined;
     let active = true;
     const fingerprint = getSessionFingerprint();
 
@@ -57,12 +77,12 @@ export default function AdSlot({
     return () => {
       active = false;
     };
-  }, [placement, pageContext, level, class_name]);
+  }, [shouldLoad, placement, pageContext, level, class_name]);
 
-  if (loading) {
+  if (!shouldLoad || loading) {
     return (
-      <div className={`ad-slot ad-slot-loading ${className}`} aria-label={label}>
-        <Spinner size="sm" context="brand" />
+      <div ref={slotRef} className={`ad-slot ad-slot-loading ${className}`} aria-label={label} aria-busy="true">
+        <span className="page-skeleton__bar page-skeleton__bar--medium" />
       </div>
     );
   }
