@@ -193,22 +193,14 @@ export default function Quiz() {
   useEffect(() => {
     if (!isReady || !access.canAccess || access.isPending) return;
 
-    (async () => {
-      try {
-        setLoading(true);
+    setLoading(false);
 
-        if (user) {
-          await recordDailyVisit();
-
-          const streakData = await getUserStreak();
-          setStreak(streakData?.count || 0);
-        }
-      } catch {
-        addToast("We couldn't load your study data. Please try again.", 'error');
-      } finally {
-        setLoading(false);
-      }
-    })();
+    if (user) {
+      recordDailyVisit().catch(() => {});
+      getUserStreak()
+        .then((streakData) => setStreak(streakData?.count || 0))
+        .catch(() => {});
+    }
   }, [isReady, access.canAccess, access.isPending, user, curriculumUnitId, sourceNoteId, activityScope]);
 
   useEffect(() => {
