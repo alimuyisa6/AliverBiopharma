@@ -25,6 +25,7 @@ const PERSIST_PREFIXES = [
   'pdfs_page_',
   'papers_page_',
   'quiz_topics_page_',
+  'dashboard_',
 ];
 const STORAGE_PREFIX = 'acache:v1:';
 const STORAGE_INDEX_KEY = 'acache:v1:__index';
