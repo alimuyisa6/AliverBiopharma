@@ -103,7 +103,7 @@ export function prefetchLearningPages({
 
     if (getCached(quizKey) === null) {
       secondaryJobs.push(
-        listQuizTopics(groupId).then((result) => {
+        listQuizTopics().then((result) => {
           setCache(quizKey, Array.isArray(result?.topics) ? result.topics : []);
         })
       );
