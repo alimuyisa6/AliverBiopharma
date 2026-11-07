@@ -18,7 +18,7 @@ import {
   getFlashcardDecks
 } from '../api/cachedClient';
 import Icon from '../components/Icon/Icon';
-import Spinner from '../components/Spinner/Spinner';
+import PageSkeleton from '../components/Loading/PageSkeleton';
 import Skeleton from '../components/Skeleton/Skeleton';
 import Button from '../components/Button/Button';
 import Card from '../components/Card/Card';
@@ -214,11 +214,7 @@ export default function FlashcardsPage() {
   if (!access.canAccess) return <AccessDenied />;
 
   if (stage === STAGE.LOADING) {
-    return (
-      <div className="fcd-loading-wrap">
-        <Spinner size="lg" />
-      </div>
-    );
+    return <div className="section"><PageSkeleton variant="compact" /></div>;
   }
 
   if (error) {
