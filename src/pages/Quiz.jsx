@@ -139,10 +139,11 @@ export default function Quiz() {
   const topicHeading = isPharmacy ? 'Course Units' : t('common.availableTopics');
   const topicsCacheKey = `quiz_topics_page_${user?.id || 'guest'}:${activeGroupId || 'all'}:${curriculumUnitId || 'all'}:${sourceNoteId || 'no-note'}:${activityScope || 'default'}`;
 
-  const [activeUnitId, setActiveUnitId] = useState(null);
-  const [currentTopic, setCurrentTopic] = useState('');
-  const [allTopics, setAllTopics] = useState([]);
-  const [topicsLoading, setTopicsLoading] = useState(true);
+  const initialTopics = getCachedStale(topicsCacheKey) || [];
+  const [activeUnitId, setActiveUnitId] = useState(() => (location.pathname === '/quiz/blocks' && curriculumUnitId && initialTopics[0]?.unit_id) ? initialTopics[0].unit_id : null);
+  const [currentTopic, setCurrentTopic] = useState(() => (location.pathname === '/quiz/blocks' && curriculumUnitId) ? initialTopics[0]?.topic_name || '' : '');
+  const [allTopics, setAllTopics] = useState(() => initialTopics);
+  const [topicsLoading, setTopicsLoading] = useState(() => !getCachedStale(topicsCacheKey));
   const [quizQuestions, setQuizQuestions] = useState([]);
   const [userAnswers, setUserAnswers] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
