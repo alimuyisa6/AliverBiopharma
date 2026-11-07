@@ -16,6 +16,7 @@ import Container from '../components/Container/Container';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 import LearningJourney from '../components/LearningJourney/LearningJourney';
 import { redirectToSubscription } from '../utils/subscriptionNavigation';
+import { getCachedStale, setCache } from '../utils/cache';
 
 const notesPageCache = new Map();
 const notesContextCache = new Map();
@@ -71,7 +72,7 @@ export default function NotesPage() {
     }
 
     let mounted = true;
-    const cachedNotes = notesPageCache.get(cacheKey);
+    const cachedNotes = getCachedStale(`notes_page_${cacheKey}`) || notesPageCache.get(cacheKey);
 
     if (cachedNotes) {
       setNotes(cachedNotes);
@@ -130,6 +131,7 @@ export default function NotesPage() {
       const data = await getNotesStructure(unitId || null);
       const nextNotes = Array.isArray(data) ? data : [];
       notesPageCache.set(cacheKey, nextNotes);
+      setCache(`notes_page_${cacheKey}`, nextNotes);
       if (isMounted()) setNotes(nextNotes);
     } catch {
       if (isMounted() && !notesPageCache.has(cacheKey)) setError("We couldn't load your notes. Please try again.");
