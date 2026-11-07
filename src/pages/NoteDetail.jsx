@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { useNavigate, useSearchParams, Link, useLocation } from 'react-router-dom';
 import DOMPurify from 'dompurify';
+import { highlightBiologyTerms } from '../utils/highlightBiologyTerms';
 import { useAuth } from '../contexts/AuthContext';
 import { useLayout } from '../contexts/LayoutContext';
 import {
@@ -505,9 +506,9 @@ export default function NoteDetail() {
 
   const enhancedContent = enhanceContentWithLinks(note.content, internalLinks.inline_links);
   const builtContent = buildContentWithMetadata(enhancedContent, metadata);
-  const finalContent = DOMPurify.sanitize(builtContent || '<p>Content not available.</p>', {
+  const finalContent = highlightBiologyTerms(DOMPurify.sanitize(builtContent || '<p>Content not available.</p>', {
     USE_PROFILES: { html: true }
-  });
+  }));
 
   return (
     <>
