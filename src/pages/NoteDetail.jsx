@@ -20,7 +20,7 @@ import {
 } from '../api/client';
 import Card from '../components/Card/Card';
 import EmptyState from '../components/EmptyState/EmptyState';
-import Spinner from '../components/Spinner/Spinner';
+import PageSkeleton from '../components/Loading/PageSkeleton';
 import Button from '../components/Button/Button';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 import LearningJourney from '../components/LearningJourney/LearningJourney';
@@ -508,7 +508,7 @@ export default function NoteDetail() {
   }
 
   if (loading) {
-    return <div className="fcd-loading-wrap"><Spinner size="lg" /></div>;
+    return <div className="section" style={{ paddingTop: 'var(--space-8)' }}><PageSkeleton variant="compact" /></div>;
   }
 
   if (fetchError || !note) {
