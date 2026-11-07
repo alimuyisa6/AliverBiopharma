@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
 import Icon from '../Icon/Icon';
 import { useAuth } from '../../contexts/AuthContext';
 import useNetworkStatus from '../../hooks/useNetworkStatus';
@@ -85,33 +84,27 @@ export default function NetworkStatus() {
 
   return (
     <>
-      <AnimatePresence>
-        {visible && message && (
-          <motion.div
-            className={`network-status-banner network-status-${message.tone}`}
-            initial={{ y: -40, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -40, opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            role="status"
-            aria-live="polite"
+      {visible && message && (
+        <div
+          className={`network-status-banner network-status-${message.tone}`}
+          role="status"
+          aria-live="polite"
+        >
+          <div className="network-status-icon" aria-hidden="true">
+            <Icon name={message.icon} />
+          </div>
+          <span className="network-status-message">{message.text}</span>
+          <button
+            type="button"
+            className="network-status-close"
+            onClick={() => setVisible(false)}
+            aria-label="Close network status"
+            title="Close"
           >
-            <div className="network-status-icon" aria-hidden="true">
-              <Icon name={message.icon} />
-            </div>
-            <span className="network-status-message">{message.text}</span>
-            <button
-              type="button"
-              className="network-status-close"
-              onClick={() => setVisible(false)}
-              aria-label="Close network status"
-              title="Close"
-            >
-              <Icon name="xmark" />
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <Icon name="xmark" />
+          </button>
+        </div>
+      )}
 
       {showDebug && (
         <div className="network-status-debug">
