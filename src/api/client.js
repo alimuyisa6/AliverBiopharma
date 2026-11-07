@@ -5,7 +5,7 @@ let csrfToken = null;
 const API_BASE = '/api/server';
 const pendingRequests = new Map();
 const requestQueue = [];
-const MAX_CONCURRENT = 3;
+const MAX_CONCURRENT = 6;
 const REQUEST_TIMEOUT_MS = 30000;
 
 let activeRequests = 0;
