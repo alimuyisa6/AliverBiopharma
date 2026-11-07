@@ -1,13 +1,13 @@
 /* src/components/Layout/Layout.jsx */
 
-import { useState, useEffect, useLayoutEffect, useRef } from 'react';
+import { lazy, Suspense, useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate, useNavigationType } from 'react-router-dom';
 import Icon from '../Icon/Icon';
 import { useLayout } from '../../contexts/LayoutContext';
 import { useAuth } from '../../contexts/AuthContext';
 import { useI18n } from '../../contexts/I18nContext';
 import { signout } from '../../api/client';
-import SearchOverlay from '../SearchOverlay/SearchOverlay';
+const SearchOverlay = lazy(() => import('../SearchOverlay/SearchOverlay'));
 import AdminLauncher from '../AdminLauncher';
 import NetworkStatus from '../NetworkStatus/NetworkStatus';
 import NotificationCenter from '../NotificationCenter/NotificationCenter';
@@ -118,7 +118,7 @@ export default function Layout({ children, showFooter = true }) {
         <button className="hamburger-btn header-action-button"  onClick={() => setMobileOpen((prev) => !prev)} aria-label={mobileOpen ? t('common.closeMenu') : t('common.menu')} aria-expanded={mobileOpen} type="button"><MenuGlyph isOpen={mobileOpen} /></button>
       </div>
     </div></header>}
-    {!hideHeader && <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />}<AdminLauncher />
+    {!hideHeader && <Suspense fallback={null}>{searchOpen && <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />}</Suspense>}<AdminLauncher />
     {!hideHeader && <>
       <button className={`mobile-menu-backdrop${mobileOpen ? ' open' : ''}`} onClick={() => setMobileOpen(false)} aria-label={t('common.closeMenu')} tabIndex={mobileOpen ? 0 : -1} type="button" />
       <div className={`mobile-menu-panel${mobileOpen ? ' open' : ''}`} aria-hidden={!mobileOpen}>
