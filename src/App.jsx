@@ -90,6 +90,29 @@ function FeatureRoute({ feature, children }) {
 
 function AppRoutes() {
   const location = useLocation();
+  const [assistantReady, setAssistantReady] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    let idleId;
+    const activate = () => {
+      if (!cancelled) setAssistantReady(true);
+    };
+
+    if ('requestIdleCallback' in window) {
+      idleId = window.requestIdleCallback(activate, { timeout: 5000 });
+    }
+
+    const timeoutId = window.setTimeout(activate, 4000);
+
+    return () => {
+      cancelled = true;
+      if (idleId !== undefined && 'cancelIdleCallback' in window) {
+        window.cancelIdleCallback(idleId);
+      }
+      window.clearTimeout(timeoutId);
+    };
+  }, []);
   const { level, loading: layoutLoading } = useLayout();
 
   const publicPaths = [
@@ -191,7 +214,7 @@ function AppRoutes() {
         <CookieConsent />
         <MaintenanceGate />
       </Layout>
-      <Suspense fallback={null}><AIAssistant /></Suspense>
+      {assistantReady && <Suspense fallback={null}><AIAssistant /></Suspense>}
     </>
   );
 }
