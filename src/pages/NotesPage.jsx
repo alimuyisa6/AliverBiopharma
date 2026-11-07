@@ -57,10 +57,10 @@ export default function NotesPage() {
   const { bootstrap } = useLayout();
   const unitId = searchParams.get('unit_id');
 
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState(() => getCachedStale(`notes_page_${user?.id || 'guest'}:${level || ''}:${class_name || ''}:${unitId || 'all'}`) || notesPageCache.get(`${user?.id || 'guest'}:${level || ''}:${class_name || ''}:${unitId || 'all'}`) || []);
   const [curriculumContext, setCurriculumContext] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(() => !getCachedStale(`notes_page_${user?.id || 'guest'}:${level || ''}:${class_name || ''}:${unitId || 'all'}`) && !notesPageCache.has(`${user?.id || 'guest'}:${level || ''}:${class_name || ''}:${unitId || 'all'}`));
   const [contextLoading, setContextLoading] = useState(false);
   const [error, setError] = useState(null);
   const cacheKey = `${user?.id || 'guest'}:${level || ''}:${class_name || ''}:${unitId || 'all'}`;
