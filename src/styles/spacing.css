@@ -32,7 +32,7 @@
   /* One source of truth for page-level spacing. Individual components may
      control their internal padding, but page shells consume these tokens. */
   /* Compact, consistent outer spacing across page shells. */
-  --page-gutter-x: clamp(0.625rem, 1.5vw, 0.875rem);
+  --page-gutter-x: clamp(1rem, 2vw, 1.5rem);
   --page-gutter-y: var(--space-2);
   --page-space-top: var(--space-2);
   --page-space-bottom: var(--space-3);
@@ -188,7 +188,7 @@
   --breakpoint-lg: 1024px;
   --breakpoint-xl: 1280px;
 
-  --max-width: 1200px;
+  --max-width: 1360px;
   --header-height: 64px;
 
   /* --------------------------------------------------------------
@@ -203,7 +203,7 @@
   /* User-controlled UI rhythm. Values are applied through LayoutContext. */
   --ui-density-scale: 1;
   --ui-section-scale: 1;
-  --ui-content-max-width: 64rem;
+  --ui-content-max-width: 76rem;
   --content-max-width: var(--ui-content-max-width, var(--max-width));
   --section-space-compact: var(--section-space-y-compact);
   --focus-ring-width: 2px;
