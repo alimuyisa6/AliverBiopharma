@@ -132,57 +132,76 @@ export default function NoteDetail() {
         setMetadata(cachedNote.metadata || {});
       }
 
+      let data;
+
       try {
-        const data = cachedNote || await getNoteDetail(noteId);
+        data = cachedNote || await getNoteDetail(noteId);
         if (!mounted) return;
+
         if (data?.locked && data.reason === 'premium_locked') {
           redirectToSubscription(navigate, location, { preserveCurrent: true, reason: 'premium' });
           return;
         }
-        noteDetailContentCache.set(noteId, data);
 
+        if (!data) throw new Error('Note response was empty');
+
+        noteDetailContentCache.set(noteId, data);
         setNote(data);
         setBreadcrumb(data.breadcrumb || []);
         setToc(data.toc || []);
         setMetadata(data.metadata || {});
+        setLoading(false);
 
-        const [reactionResult, commentResult, linksResult] = await Promise.allSettled([
-          getReactions('note', data.id),
-          getComments('note', data.id),
-          getNoteInternalLinks(data.id)
-        ]);
+        const fallbackLinks = {
+          inline_links: [],
+          related_links: [],
+          activities: { quiz: { question_count: 0 }, flashcards: [], recall: { question_count: 0 } },
+          related_articles: [],
+          theme_activities: { theme_id: null, quiz: { question_count: 0 }, flashcards: { deck_count: 0 }, recall: { question_count: 0 } }
+        };
 
-        if (!mounted) return;
+        getReactions('note', data.id)
+          .then(result => {
+            if (mounted) setReactions(normalizeReactions(result));
+          })
+          .catch(() => {});
 
-        const reactionData = reactionResult.status === 'fulfilled' ? reactionResult.value : { counts: {}, user_reactions: [] };
-        const commentData = commentResult.status === 'fulfilled' ? commentResult.value : { comments: [] };
-        const linksData = linksResult.status === 'fulfilled' ? linksResult.value : { inline_links: [], related_links: [], activities: { quiz: { question_count: 0 }, flashcards: [], recall: { question_count: 0 } }, related_articles: [] };
+        getComments('note', data.id)
+          .then(result => {
+            if (mounted) setComments(result?.comments || []);
+          })
+          .catch(() => {});
 
-        setReactions(normalizeReactions(reactionData));
-        setComments(commentData?.comments || []);
-        setInternalLinks({
-          inline_links: linksData?.inline_links || [],
-          related_links: linksData?.related_links || [],
-          activities: linksData?.activities || { quiz: { question_count: 0 }, flashcards: [], recall: { question_count: 0 } },
-          related_articles: linksData?.related_articles || [],
-          theme_activities: linksData?.theme_activities || { theme_id: null, quiz: { question_count: 0 }, flashcards: { deck_count: 0 }, recall: { question_count: 0 } }
-        });
+        getNoteInternalLinks(data.id)
+          .then(result => {
+            if (!mounted) return;
+            setInternalLinks({
+              inline_links: result?.inline_links || [],
+              related_links: result?.related_links || [],
+              activities: result?.activities || fallbackLinks.activities,
+              related_articles: result?.related_articles || [],
+              theme_activities: result?.theme_activities || fallbackLinks.theme_activities
+            });
+          })
+          .catch(() => {});
 
         if (user) {
-          const progress = await getReadingProgress(noteId);
-          if (mounted && progress) {
-            setReadProgress(Number(progress.scroll_percentage) || 0);
-            setReadingComplete(
-              progress.completed === true
-              && Number(progress.scroll_percentage) >= 90
-              && Number(progress.time_spent) >= 30
-            );
-            if (progress.scroll_position) {
-              setTimeout(() => {
-                window.scrollTo({ top: progress.scroll_position, behavior: 'smooth' });
-              }, 500);
-            }
-          }
+          getReadingProgress(noteId)
+            .then(progress => {
+              if (!mounted || !progress) return;
+              setReadProgress(Number(progress.scroll_percentage) || 0);
+              setReadingComplete(
+                progress.completed === true
+                && Number(progress.scroll_percentage) >= 90
+                && Number(progress.time_spent) >= 30
+              );
+              if (progress.scroll_position) {
+                window.requestAnimationFrame(() => {
+                  if (mounted) window.scrollTo({ top: progress.scroll_position, behavior: 'auto' });
+                });
+              }
+            })
+            .catch(() => {});
         }
       } catch (error) {
         if (isPremiumAccessError(error)) {
@@ -190,9 +209,10 @@ export default function NoteDetail() {
           return;
         }
         console.error('[NOTE_DETAIL_LOAD_ERROR]', error);
-        if (mounted) setFetchError("We couldn't load this note. Please try again.");
-      } finally {
-        if (mounted) setLoading(false);
+        if (mounted) {
+          setFetchError("We couldn't load this note. Please try again.");
+          setLoading(false);
+        }
       }
     };
 
