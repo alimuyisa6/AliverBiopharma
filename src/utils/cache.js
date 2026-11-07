@@ -4,6 +4,9 @@
   flashcards: 30 * 60 * 1000,
   notes: 15 * 60 * 1000,
   stats: 5 * 60 * 1000,
+  papers: 5 * 60 * 1000,
+  quizzes: 5 * 60 * 1000,
+  pdfs: 15 * 60 * 1000,
   bootstrap: 60 * 60 * 1000,
   default: 30 * 60 * 1000,
 };
@@ -17,6 +20,11 @@ const PERSIST_PREFIXES = [
   'platform_sections_',
   'public_stats_',
   'subscription_plans',
+  'notes_page_',
+  'flashcards_page_',
+  'pdfs_page_',
+  'papers_page_',
+  'quiz_topics_page_',
 ];
 const STORAGE_PREFIX = 'acache:v1:';
 const STORAGE_INDEX_KEY = 'acache:v1:__index';
@@ -43,6 +51,9 @@ function getTypeFromKey(key) {
   if (key.includes('flashcard')) return 'flashcards';
   if (key.includes('note')) return 'notes';
   if (key.includes('stats') || key.includes('activity') || key.includes('dashboard')) return 'stats';
+  if (key.includes('paper')) return 'papers';
+  if (key.includes('quiz')) return 'quizzes';
+  if (key.includes('pdf')) return 'pdfs';
   return 'default';
 }
 
