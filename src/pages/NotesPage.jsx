@@ -5,7 +5,7 @@ import { useContentAccess } from '../hooks/useContentAccess';
 import { useAuth } from '../contexts/AuthContext';
 import { useLevelFilter } from '../hooks/useLevelFilter';
 import { useLayout } from '../contexts/LayoutContext';
-import { getNotesStructure } from '../api/cachedClient';
+import { getNotesList as getNotesStructure } from '../api/client';
 import { getCurriculumNode } from '../api/curriculumNavigation';
 import Card from '../components/Card/Card';
 import Icon from '../components/Icon/Icon';
