@@ -52,7 +52,7 @@ export default function PastPapers() {
   const addToast = useToast();
 
   const [initializing, setInitializing] = useState(true);
-  const [papers, setPapers] = useState([]);
+  const [papers, setPapers] = useState(() => initialPapers?.papers || []);
   const [filterOptions, setFilterOptions] = useState({
     subjects: [],
     years: [],
@@ -66,9 +66,9 @@ export default function PastPapers() {
     paper_type: ''
   });
   const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [total, setTotal] = useState(0);
-  const [papersLoading, setPapersLoading] = useState(true);
+  const [totalPages, setTotalPages] = useState(() => initialPapers?.totalPages || 1);
+  const [total, setTotal] = useState(() => initialPapers?.total || 0);
+  const [papersLoading, setPapersLoading] = useState(() => !initialPapers);
   const [downloadingId, setDownloadingId] = useState(null);
   const [bookmarkingId, setBookmarkingId] = useState(null);
   const [deletingReview, setDeletingReview] = useState(false);
@@ -94,6 +94,8 @@ export default function PastPapers() {
 
   const effectiveLevel = showAll ? null : level;
   const effectiveClass = showAll ? null : class_name;
+  const initialPapersKey = `papers_page_papers:${user?.id || 'guest'}:${curriculumUnitId || ''}:${effectiveLevel || ''}:${effectiveClass || ''}:all:1::year_desc:{"subject":"","year":"","exam_board":"","paper_type":""}`;
+  const initialPapers = getCachedStale(initialPapersKey);
 
   function getEmptyStateImage(key) {
     const uiComponents = bootstrap?.ui_components || [];
