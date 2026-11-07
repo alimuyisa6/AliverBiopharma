@@ -51,7 +51,7 @@ export function prefetchLearningPages({
 
     if (getCached(notesKey) === null) {
       jobs.push(
-        getNotesList(null).then((data) => {
+        getNotesList(null, { priority: 'background' }).then((data) => {
           setCache(notesKey, Array.isArray(data) ? data : []);
         })
       );
@@ -59,7 +59,7 @@ export function prefetchLearningPages({
 
     if (getCached(pdfsKey) === null) {
       jobs.push(
-        getPdfsByLevel(null, groupId, pdfScope).then((data) => {
+        getPdfsByLevel(null, groupId, pdfScope, { priority: 'background' }).then((data) => {
           setCache(pdfsKey, Array.isArray(data) ? data : []);
         })
       );
@@ -72,8 +72,8 @@ export function prefetchLearningPages({
     if (getCached(flashcardsKey) === null) {
       secondaryJobs.push(
         Promise.all([
-          getKnownFlashcards(),
-          getFlashcardDecks({})
+          getKnownFlashcards({ priority: 'background' }),
+          getFlashcardDecks({}, { priority: 'background' })
         ]).then(([knownData, deckData]) => {
           setCache(flashcardsKey, {
             knownIds: Array.isArray(knownData) ? knownData : [],
@@ -91,7 +91,7 @@ export function prefetchLearningPages({
           ...(level ? { level } : {}),
           ...(className ? { class_name: className } : {}),
           sort: 'year_desc'
-        }).then((result) => {
+        }, { priority: 'background' }).then((result) => {
           setCache(papersKey, {
             papers: result?.papers || [],
             totalPages: result?.total_pages || 1,
@@ -103,7 +103,7 @@ export function prefetchLearningPages({
 
     if (getCached(quizKey) === null) {
       secondaryJobs.push(
-        listQuizTopics().then((result) => {
+        listQuizTopics(undefined, { priority: 'background' }).then((result) => {
           setCache(quizKey, Array.isArray(result?.topics) ? result.topics : []);
         })
       );
