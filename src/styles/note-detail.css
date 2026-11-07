@@ -2027,17 +2027,17 @@ body.dark-mode .note-detail-page :is(.text-muted, .note-description, .note-meta)
 .notes-content-container .term-bubble {
   display: inline;
   padding: 0.08em 0.48em 0.12em;
-  border: 1px solid var(--primary-light);
-  border-radius: 0.7em 0.55em 0.75em 0.5em;
-  background: color-mix(in srgb, var(--accent) 18%, var(--white));
-  color: var(--text-main);
+  border: 1px solid #a9e2ed;
+  border-radius: 0.72em 0.52em 0.78em 0.48em;
+  background: #e4f8fc;
+  color: #12596a;
   font-weight: var(--weight-semibold);
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
 }
 
 body.dark-mode .notes-content-container .term-bubble {
-  border-color: var(--night-500);
-  background: color-mix(in srgb, var(--accent) 20%, var(--dark-surface));
-  color: var(--night-text-primary);
+  border-color: #286879;
+  background: #16404a;
+  color: #c7f0f7;
 }
