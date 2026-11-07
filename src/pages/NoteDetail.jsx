@@ -113,7 +113,8 @@ export default function NoteDetail() {
     let mounted = true;
 
     const init = async () => {
-      const cachedNote = noteDetailContentCache.get(noteId);
+      const noteCacheKey = `${user?.id || 'guest'}:${noteId}`;
+      const cachedNote = noteDetailContentCache.get(noteCacheKey);
       setLoading(!cachedNote);
       setFetchError(null);
       if (!cachedNote) {
@@ -145,7 +146,7 @@ export default function NoteDetail() {
 
         if (!data) throw new Error('Note response was empty');
 
-        noteDetailContentCache.set(noteId, data);
+        noteDetailContentCache.set(noteCacheKey, data);
         setNote(data);
         setBreadcrumb(data.breadcrumb || []);
         setToc(data.toc || []);
