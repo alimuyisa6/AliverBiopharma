@@ -56,7 +56,7 @@ export default function PdfLibraryPage() {
     loadPdfs(() => mounted, !cached);
 
     return () => { mounted = false; };
-  }, [access.loading, access.canAccess, level, class_name, activeGroupId, curriculumUnitId]);
+  }, [access.loading, access.canAccess, user?.id, level, class_name, activeGroupId, curriculumUnitId]);
 
   async function loadPdfs(isMounted = () => true, showLoading = true) {
     if (showLoading) setLoading(true);
