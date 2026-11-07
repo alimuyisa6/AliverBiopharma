@@ -1,4 +1,5 @@
- import React from 'react';
+import React from 'react';
+import { highlightBiologyTerms } from '../../utils/highlightBiologyTerms';
 
 export function NotesSection({
   groupedNotes,
@@ -96,7 +97,7 @@ export function NotesSection({
                   <div
                     className="notes-content"
                     dangerouslySetInnerHTML={{
-                      __html: notesContent.content || '<p>No content available.</p>'
+                      __html: highlightBiologyTerms(notesContent.content || '<p>No content available.</p>')
                     }}
                   />
                   <div className="notes-reaction-bar">
