@@ -12,6 +12,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { useLayout } from '../contexts/LayoutContext';
 import { getUserDashboard } from '../api/cachedClient';
 import { getCachedStale, setCache } from '../utils/cache';
+import { scheduleLearningPagePrefetch } from '../utils/prefetchLearningPages';
 import { listClassrooms as fetchClassrooms } from '../api/client';
 import { getDownloadHistory, getDownloadAttemptSummary } from '../api/client';
 import { getCurriculumTree } from '../api/curriculumNavigation';
@@ -98,6 +99,17 @@ export default function Dashboard() {
       window.clearInterval(refreshTimer);
     };
   }, [access.canAccess, user?.id, dashboardCacheKey]);
+
+  useEffect(() => {
+    if (!access.canAccess || !user?.id || !summary?.group_id) return undefined;
+
+    return scheduleLearningPagePrefetch({
+      userId: user.id,
+      level: user.profile?.track || null,
+      className: user.profile?.class_name || null,
+      groupId: summary.group_id || user.profile?.active_group_id || null
+    });
+  }, [access.canAccess, user?.id, user?.profile?.track, user?.profile?.class_name, user?.profile?.active_group_id, summary?.group_id]);
 
   useEffect(() => {
     let mounted = true;
