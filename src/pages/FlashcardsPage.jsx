@@ -50,18 +50,21 @@ export default function FlashcardsPage() {
   const { level, class_name, displayName } = useLevelFilter();
   const { bootstrap } = useLayout();
   const addToast = useToast();
+  const cacheKey = `${user?.id || 'anonymous'}:${level || ''}:${class_name || ''}:${curriculumUnitId || 'all'}:${sourceNoteId || 'no-note'}:${activityScope || 'default-scope'}`;
+  const initialFlashcards = getCachedStale(`flashcards_page_${cacheKey}`) || flashcardPageCache.get(cacheKey);
+  const initialDeckId = searchParams.get('deck_id') || null;
+  const initialDeck = initialDeckId ? initialFlashcards?.decks?.find((deck) => String(deck.id) === String(initialDeckId)) : null;
 
-  const [stage, setStage] = useState(STAGE.LOADING);
-  const [selectedDeck, setSelectedDeck] = useState(null);
+  const [stage, setStage] = useState(() => initialDeck ? STAGE.STUDY : initialFlashcards ? STAGE.SUBJECT : STAGE.LOADING);
+  const [selectedDeck, setSelectedDeck] = useState(initialDeck || null);
   const [sessionResult, setSessionResult] = useState(null);
-  const [knownIds, setKnownIds] = useState([]);
-  const [decks, setDecks] = useState([]);
+  const [knownIds, setKnownIds] = useState(() => initialFlashcards?.knownIds || []);
+  const [decks, setDecks] = useState(() => initialFlashcards?.decks || []);
   const [error, setError] = useState(null);
 
   const curriculumUnitId = searchParams.get('unit_id') || null;
   const sourceNoteId = searchParams.get('note_id') || null;
   const activityScope = searchParams.get('activity_scope') || (sourceNoteId ? 'note' : null);
-  const cacheKey = `${user?.id || 'anonymous'}:${level || ''}:${class_name || ''}:${curriculumUnitId || 'all'}:${sourceNoteId || 'no-note'}:${activityScope || 'default-scope'}`;
   const challengeId = searchParams.get('challenge_id') || null;
   const deckId = searchParams.get('deck_id') || null;
   const levelName = displayName || level || '';
