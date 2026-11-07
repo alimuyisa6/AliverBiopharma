@@ -43,7 +43,7 @@
   position: relative;
   overflow: hidden;
   padding: var(--space-20) var(--space-6);
-  background: var(--bg-page);
+  background: transparent;
   color: var(--text-main);
 }
 
