@@ -30,7 +30,7 @@ import QuizHero from '../components/quiz/QuizHero';
 import QuizLearningPath from '../components/quiz/QuizLearningPath';
 import QuizWeakAreas from '../components/quiz/QuizWeakAreas';
 import Icon from '../components/Icon/Icon';
-import Spinner from '../components/Spinner/Spinner';
+import PageSkeleton from '../components/Loading/PageSkeleton';
 import QuizAnswerLoader from '../components/quiz/QuizAnswerLoader';
 
 // Browser-native answer sounds. Prepare audio on the learner's tap for mobile autoplay rules.
@@ -619,22 +619,14 @@ export default function Quiz() {
   };
 
   if (!isReady || access.loading) {
-    return (
-      <div className="fcd-loading-wrap">
-        <Spinner context="brand" size="lg" />
-      </div>
-    );
+    return <div className="section"><PageSkeleton variant="compact" /></div>;
   }
 
   if (access.isPending) return <PendingApprovalScreen />;
   if (!access.canAccess) return <AccessDenied />;
 
   if (loading && !quizQuestions.length && !resultData && !currentTopic) {
-    return (
-      <div className="fcd-loading-wrap">
-        <Spinner context="brand" size="lg" />
-      </div>
-    );
+    return <div className="section"><PageSkeleton variant="compact" /></div>;
   }
 
   if (isQuizCardsPage && curriculumUnitId && currentTopic && !quizQuestions.length && !resultData) {
