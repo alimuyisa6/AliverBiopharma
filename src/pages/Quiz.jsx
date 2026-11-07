@@ -31,6 +31,7 @@ import QuizLearningPath from '../components/quiz/QuizLearningPath';
 import QuizWeakAreas from '../components/quiz/QuizWeakAreas';
 import Icon from '../components/Icon/Icon';
 import PageSkeleton from '../components/Loading/PageSkeleton';
+import { getCachedStale, setCache } from '../utils/cache';
 import QuizAnswerLoader from '../components/quiz/QuizAnswerLoader';
 
 // Browser-native answer sounds. Prepare audio on the learner's tap for mobile autoplay rules.
@@ -136,6 +137,7 @@ export default function Quiz() {
     `${level?.display_name || ''} ${level?.id || ''} ${profile?.track || ''} ${displayName || ''}`
   );
   const topicHeading = isPharmacy ? 'Course Units' : t('common.availableTopics');
+  const topicsCacheKey = `quiz_topics_page_${user?.id || 'guest'}:${activeGroupId || 'all'}:${curriculumUnitId || 'all'}:${sourceNoteId || 'no-note'}:${activityScope || 'default'}`;
 
   const [activeUnitId, setActiveUnitId] = useState(null);
   const [currentTopic, setCurrentTopic] = useState('');
@@ -263,7 +265,18 @@ export default function Quiz() {
   useEffect(() => {
     if (!isReady || !access.canAccess || access.isPending) return;
 
-    setTopicsLoading(true);
+    const cachedTopics = getCachedStale(topicsCacheKey);
+    if (cachedTopics) {
+      setAllTopics(cachedTopics);
+      setTopicsLoading(false);
+      if (isQuizCardsPage && curriculumUnitId) {
+        setActiveUnitId(curriculumUnitId);
+        setCurrentTopic(cachedTopics[0]?.topic_name || '');
+        setTotalBlocks(Number(cachedTopics[0]?.total_blocks) || Math.ceil((Number(cachedTopics[0]?.question_count) || 0) / 10));
+      }
+    } else {
+      setTopicsLoading(true);
+    }
 
     const request = curriculumUnitId
       ? getQuizTopics(curriculumUnitId, sourceNoteId, activityScope).then((topic) => ({
@@ -286,6 +299,7 @@ export default function Quiz() {
       .then((res) => {
         const topics = Array.isArray(res?.topics) ? res.topics : [];
         setAllTopics(topics);
+        setCache(topicsCacheKey, topics);
         if (isQuizCardsPage && curriculumUnitId) {
           setActiveUnitId(curriculumUnitId);
           setCurrentTopic(topics[0]?.topic_name || '');
