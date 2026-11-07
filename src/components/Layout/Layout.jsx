@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate, useNavigationType } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
 import Icon from '../Icon/Icon';
 import { useLayout } from '../../contexts/LayoutContext';
 import { useAuth } from '../../contexts/AuthContext';
@@ -131,7 +130,7 @@ export default function Layout({ children, showFooter = true }) {
         </nav>
       </div>
     </>}
-    <motion.main id="main-content" className={`main-content${location.pathname.startsWith('/profile') ? ' main-content-profile' : ''}`} key={routeKey} initial={navigationType === 'POP' ? false : { opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>{children}</motion.main>
+    <main id="main-content" className={`main-content${location.pathname.startsWith('/profile') ? ' main-content-profile' : ''}`} key={routeKey}>{children}</main>
     {!hideFooter && showFooter && <footer className="footer"><div className="footer-inner">
       <div className="footer-brand"><Link to="/" className="header-logo">{logo ? <img src={logo} alt="" aria-hidden="true" className="footer-logo" /> : siteName}</Link><p className="footer-tagline">{t('common.footerTagline')}</p>{footer.social_links && Object.keys(footer.social_links).length > 0 && <div className="footer-social">{Object.entries(footer.social_links).map(([platform, url]) => <a key={platform} href={url} target="_blank" rel="noopener noreferrer" className="footer-social-link" data-platform={platform} aria-label={platform}><Icon name={platform} /></a>)}</div>}</div>
       <div className="footer-right-groups">
