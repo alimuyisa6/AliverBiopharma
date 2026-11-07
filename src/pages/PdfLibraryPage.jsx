@@ -16,6 +16,7 @@ import Container from '../components/Container/Container';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 import LearningJourney from '../components/LearningJourney/LearningJourney';
 import { isPremiumAccessError, redirectToSubscription } from '../utils/subscriptionNavigation';
+import { getLearningData, setLearningData } from '../utils/learningDataCache';
 import { useToast } from '../components/Toast/Toast';
 import './PdfLibraryPage.css';
 
@@ -39,12 +40,18 @@ export default function PdfLibraryPage() {
     if (access.loading || !access.canAccess) return undefined;
     let mounted = true;
 
-    // Never render a previous class's cached PDFs while the active curriculum
-    // scope changes. The server resolves the authorised group from the session.
-    setPdfs([]);
-    setLoading(true);
+    const scopeKey = activeGroupId || `${level || ''}:${class_name || ''}`;
+    const cacheKey = `pdfs:${user?.id || 'guest'}:${scopeKey}:${curriculumUnitId || 'all'}`;
+    const cached = getLearningData(cacheKey, { allowStale: true });
+    if (cached) {
+      setPdfs(cached);
+      setLoading(false);
+    } else {
+      setPdfs([]);
+      setLoading(true);
+    }
     setError(null);
-    loadPdfs(() => mounted, true);
+    loadPdfs(() => mounted, !cached);
 
     return () => { mounted = false; };
   }, [access.loading, access.canAccess, level, class_name, activeGroupId, curriculumUnitId]);
@@ -58,6 +65,8 @@ export default function PdfLibraryPage() {
       const requestScope = activeGroupId || `${level || ''}:${class_name || ''}`;
       const data = await getPdfsByLevel(curriculumUnitId, activeGroupId, requestScope);
       const nextPdfs = Array.isArray(data) ? data : [];
+      const cacheKey = `pdfs:${user?.id || 'guest'}:${requestScope}:${curriculumUnitId || 'all'}`;
+      setLearningData(cacheKey, nextPdfs, 90000);
       if (isMounted()) setPdfs(nextPdfs);
     } catch {
       if (isMounted()) setError("We couldn't load the PDF resources. Please try again.");
