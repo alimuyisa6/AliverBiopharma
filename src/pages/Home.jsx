@@ -22,6 +22,7 @@ import {
 import { getSections } from '../api/sections';
 import HomeView from '../features/home/HomeView';
 import { useChat } from '../contexts/ChatContext';
+import { getCachedStale } from '../utils/cache';
 
 function mapContinueLearning(rawList) {
   if (!Array.isArray(rawList)) return [];
@@ -163,6 +164,8 @@ export default function Home() {
 
   useEffect(() => {
     let cancelled = false;
+    const cachedStats = getCachedStale(`public_stats_${activeGroupId || 'all'}`);
+    if (cachedStats) setPublicStats(cachedStats);
     getPublicStats(activeGroupId).then((stats) => {
       if (!cancelled) setPublicStats(stats);
     }).catch(() => {
@@ -173,6 +176,8 @@ export default function Home() {
 
   useEffect(() => {
     let cancelled = false;
+    const cachedPlans = getCachedStale('subscription_plans');
+    if (Array.isArray(cachedPlans)) setSubscriptionPlans(cachedPlans);
     getSubscriptionPlans().then((plans) => {
       if (!cancelled) setSubscriptionPlans(Array.isArray(plans) ? plans : []);
     }).catch(() => {
