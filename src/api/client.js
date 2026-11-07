@@ -307,7 +307,7 @@ return executeRequest(url, {
 method: 'GET',
 credentials: 'include'
 });
-});
+}, priority);
 }
 
 export async function signin(
