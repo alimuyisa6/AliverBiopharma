@@ -93,9 +93,28 @@ export default function MaintenanceGate() {
       return undefined;
     }
 
-    load();
-    const timer = window.setInterval(load, 30000);
-    return () => window.clearInterval(timer);
+    let interval = null;
+    let idleId;
+    let timeoutId;
+
+    const startMonitoring = () => {
+      load();
+      interval = window.setInterval(load, 30000);
+    };
+
+    if ('requestIdleCallback' in window) {
+      idleId = window.requestIdleCallback(startMonitoring, { timeout: 2500 });
+    } else {
+      timeoutId = window.setTimeout(startMonitoring, 1000);
+    }
+
+    return () => {
+      if (idleId !== undefined && 'cancelIdleCallback' in window) {
+        window.cancelIdleCallback(idleId);
+      }
+      window.clearTimeout(timeoutId);
+      if (interval !== null) window.clearInterval(interval);
+    };
   }, [load, location.pathname]);
 
   if (location.pathname === '/login') return null;
@@ -120,11 +139,29 @@ export function MaintenanceBoundary({ boundaryKey, children }) {
       } catch {}
     };
 
-    load();
-    const timer = window.setInterval(load, 30000);
+    let interval = null;
+    let idleId;
+    let timeoutId;
+
+    const startMonitoring = () => {
+      if (!active) return;
+      load();
+      interval = window.setInterval(load, 30000);
+    };
+
+    if ('requestIdleCallback' in window) {
+      idleId = window.requestIdleCallback(startMonitoring, { timeout: 2500 });
+    } else {
+      timeoutId = window.setTimeout(startMonitoring, 1000);
+    }
+
     return () => {
       active = false;
-      window.clearInterval(timer);
+      if (idleId !== undefined && 'cancelIdleCallback' in window) {
+        window.cancelIdleCallback(idleId);
+      }
+      window.clearTimeout(timeoutId);
+      if (interval !== null) window.clearInterval(interval);
     };
   }, [boundaryKey]);
 
