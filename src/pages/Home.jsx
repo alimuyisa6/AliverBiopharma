@@ -196,37 +196,49 @@ export default function Home() {
     }
 
     let cancelled = false;
+    getRecentViews(3)
+      .then((recentViews) => {
+        if (!cancelled) setContinueLearning(mapContinueLearning(recentViews));
+      })
+      .catch(() => {
+        if (!cancelled) setContinueLearning([]);
+      });
+
     Promise.all([
-      getRecentViews(3),
       getUnits({ group_id: activeGroupId }),
-      getCurriculumTree(activeGroupId),
-      getPersonalizedDailyChallenge()
-    ]).then(([recentViews, units, curriculumTree, challengeData]) => {
+      getCurriculumTree(activeGroupId)
+    ]).then(([units, curriculumTree]) => {
       if (cancelled) return;
       const mappedUnits = mapCurriculumUnits(units);
-      setContinueLearning(mapContinueLearning(recentViews));
       setCurriculumUnits(mapCanonicalCurriculumTree(curriculumTree, mappedUnits));
-      setDailyChallenge(challengeData?.challenge || null);
     }).catch(() => {
-      if (cancelled) return;
-      setContinueLearning([]);
-      setCurriculumUnits([]);
-      setDailyChallenge(null);
+      if (!cancelled) setCurriculumUnits([]);
     });
 
-    const loadSecondaryHomeData = () => {
-      Promise.all([
-        getRecallDashboard(),
-        getPastPapers({ group_id: activeGroupId })
-      ]).then(([recall, papers]) => {
-        if (cancelled) return;
-        setDailyRecall(mapDailyRecall(recall));
-        setPastPapers(mapPastPapers(papers));
-      }).catch(() => {
-        if (cancelled) return;
-        setDailyRecall(null);
-        setPastPapers([]);
+    getPersonalizedDailyChallenge()
+      .then((challengeData) => {
+        if (!cancelled) setDailyChallenge(challengeData?.challenge || null);
+      })
+      .catch(() => {
+        if (!cancelled) setDailyChallenge(null);
       });
+
+    const loadSecondaryHomeData = () => {
+      getRecallDashboard()
+        .then((recall) => {
+          if (!cancelled) setDailyRecall(mapDailyRecall(recall));
+        })
+        .catch(() => {
+          if (!cancelled) setDailyRecall(null);
+        });
+
+      getPastPapers({ group_id: activeGroupId })
+        .then((papers) => {
+          if (!cancelled) setPastPapers(mapPastPapers(papers));
+        })
+        .catch(() => {
+          if (!cancelled) setPastPapers([]);
+        });
     };
 
     let idleId;
