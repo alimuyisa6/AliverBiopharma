@@ -366,7 +366,7 @@ export default function TutorDashboard() {
               <div className="grid grid-cols-3">
                 {activeRooms.map((room) => (
                   <Card key={room.id}>
-                    <div style={{ padding: 'var(--space-3) var(--space-4)', background: room.status === 'live' ? 'var(--success)' : room.status === 'open_floor' ? 'var(--primary)' : 'var(--warning)', color: '#fff', display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
+                    <div style={{ padding: 'var(--space-3) var(--space-4)', background: room.status === 'live' ? 'var(--success)' : room.status === 'open_floor' ? 'var(--primary)' : 'var(--warning)', color: 'var(--text-on-dark)', display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
                       <Icon name={room.status === 'live' ? 'circle' : room.status === 'open_floor' ? 'users' : 'clock'} />
                       <span style={{ fontSize: 'var(--text-xs)', fontWeight: 600 }}>
                         {room.status === 'live' ? 'Live' : room.status === 'open_floor' ? 'Open Floor' : 'Upcoming'}
