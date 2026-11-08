@@ -846,7 +846,7 @@
 }
 
 .search-result-meta mark {
-  background: var(--warm-light);
+  background: var(--accent-light);
   padding: 0 2px;
   border-radius: 2px;
 }
