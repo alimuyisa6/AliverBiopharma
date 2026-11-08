@@ -399,12 +399,12 @@ li + li {
 }
 
 .section-mint {
-  background: var(--soft);
+  background: var(--brand-mint-soft);
   color: var(--text-main);
 }
 
 .section.mint {
-  background: var(--soft);
+  background: var(--brand-mint-soft);
   color: var(--text-main);
 }
 
