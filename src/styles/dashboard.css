@@ -1189,8 +1189,8 @@ body.dark-mode .dashboard-content .dashboard-activity-summary > div {
 }
 
 .dashboard-content .dashboard-curriculum-premium {
-  background: var(--warm-surface, var(--surface-muted));
-  color: var(--warm, var(--text-secondary));
+  background: var(--brand-mint-soft);
+  color: var(--brand-mint-ink);
 }
 
 .dashboard-content .dashboard-curriculum-card-title {
