@@ -20,6 +20,10 @@
   --brand-mint: #b8e8d8;
   --brand-mint-soft: #eaf8f3;
   --brand-mint-ink: var(--accent);
+  --orange: var(--accent);
+  --orange-hover: var(--accent-hover);
+  --orange-deep: var(--accent-dark);
+  --sage: var(--brand-mint-soft);
   --primary-soft: #e4f8fc;
   --shadow-ink-05: rgb(27 27 31 / 5%);
   --shadow-ink-06: rgb(27 27 31 / 6%);
@@ -268,4 +272,8 @@ body.dark-mode {
   --brand-mint: #b8e8d8;
   --brand-mint-soft: #203b34;
   --brand-mint-ink: var(--accent);
+  --orange: var(--accent);
+  --orange-hover: var(--accent-hover);
+  --orange-deep: var(--accent-dark);
+  --sage: var(--brand-mint-soft);
 }
