@@ -41,7 +41,7 @@ function AnimatedNumber({ target, label, icon }) {
 
   return (
     <div className="stat-card" ref={ref}>
-      <Icon name={icon} className="stat-icon" style={{ color: 'var(--primary)' }} />
+      <Icon name={icon} className="stat-icon" />
       <div className="stat-value">{format(count)}</div>
       <div className="stat-label">{label}</div>
     </div>
