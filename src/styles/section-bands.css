@@ -151,7 +151,6 @@ body.dark-mode .home-page > .home-newsletter-section .eyebrow {
 
 .home-page > .home-student-section > .home-scope-switcher,
 .home-page > .home-student-section > .home-continue-learning-section,
-.home-page > .home-student-section > .home-continue-learning-section,
 .home-page > .home-student-section > .home-learning-snapshot-section {
   width: min(calc(100% - (var(--page-gutter-x) * 2)), var(--max-width));
   margin-inline: auto;
