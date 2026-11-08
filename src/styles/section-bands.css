@@ -1,9 +1,15 @@
 :root {
-  --band-white: var(--white);
-  --band-tint-a: var(--brand-navy-soft);
-  --band-tint-b: var(--paper);
-  --band-tint-c: var(--brand-mint-soft);
-  --band-tint-d: var(--primary-light);
+  --band-white: #ffffff;
+  --band-tint-a: #eaf2f8;
+  --band-tint-b: #f8fafc;
+  --band-tint-c: #eaf7f1;
+  --band-tint-d: #e8f7fa;
+  --band-tint-e: #f1effa;
+  --band-tint-f: #f6f2ea;
+  --band-tint-g: #f9f0e9;
+  --band-tint-h: #eff5e8;
+  --band-tint-i: #f8eef1;
+  --band-tint-j: #eaf0f4;
   --band-dark: var(--text-main);
   --band-card-radius: 1.125rem;
   --band-button-radius: 0.875rem;
@@ -12,10 +18,17 @@
 }
 
 body.dark-mode {
-  --band-tint-a: var(--dark-surface);
-  --band-tint-b: var(--dark-surface-raised);
-  --band-tint-c: var(--dark-surface);
-  --band-tint-d: var(--dark-surface-raised);
+  --band-white: var(--dark-background);
+  --band-tint-a: color-mix(in srgb, var(--dark-surface) 88%, #8bbbd2 12%);
+  --band-tint-b: color-mix(in srgb, var(--dark-surface) 90%, #aab9c8 10%);
+  --band-tint-c: color-mix(in srgb, var(--dark-surface) 88%, #8bc9ad 12%);
+  --band-tint-d: color-mix(in srgb, var(--dark-surface) 88%, #72c9dc 12%);
+  --band-tint-e: color-mix(in srgb, var(--dark-surface) 90%, #aaa0d8 10%);
+  --band-tint-f: color-mix(in srgb, var(--dark-surface) 90%, #c9b58e 10%);
+  --band-tint-g: color-mix(in srgb, var(--dark-surface) 90%, #d6a88c 10%);
+  --band-tint-h: color-mix(in srgb, var(--dark-surface) 90%, #a8c58c 10%);
+  --band-tint-i: color-mix(in srgb, var(--dark-surface) 90%, #c99aaa 10%);
+  --band-tint-j: color-mix(in srgb, var(--dark-surface) 90%, #8da9bd 10%);
 }
 
 .home-page {
@@ -55,16 +68,16 @@ body.dark-mode {
 }
 
 .home-page > .why-choose-section { --section-band: var(--band-tint-a); }
-.home-page > .how-it-works-section { --section-band: var(--band-white); }
-.home-page > .educational-showcase { --section-band: var(--band-tint-b); }
-.home-page > .home-student-section { --section-band: var(--band-tint-a); }
-.home-page > .home-student-sections-wrap > .home-curriculum-section { --section-band: var(--band-white); }
-.home-page > .home-student-sections-wrap > .home-learning-journey-section { --section-band: var(--band-tint-b); }
-.home-page > .home-testimonials-section { --section-band: var(--band-tint-a); }
-.home-page > .home-classroom-section { --section-band: var(--band-white); }
-.home-page > .home-tutor-section { --section-band: var(--band-tint-b); }
-.home-page > .home-advertising-section { --section-band: var(--band-tint-c); }
-.home-page > .home-newsletter-section { --section-band: var(--band-tint-d); }
+.home-page > .how-it-works-section { --section-band: var(--band-tint-b); }
+.home-page > .educational-showcase { --section-band: var(--band-tint-c); }
+.home-page > .home-student-section { --section-band: var(--band-tint-d); }
+.home-page > .home-student-sections-wrap > .home-curriculum-section { --section-band: var(--band-tint-e); }
+.home-page > .home-student-sections-wrap > .home-learning-journey-section { --section-band: var(--band-tint-f); }
+.home-page > .home-testimonials-section { --section-band: var(--band-tint-g); }
+.home-page > .home-classroom-section { --section-band: var(--band-tint-h); }
+.home-page > .home-tutor-section { --section-band: var(--band-tint-i); }
+.home-page > .home-advertising-section { --section-band: var(--band-tint-j); }
+.home-page > .home-newsletter-section { --section-band: var(--band-tint-c); }
 
 body.dark-mode .home-page > .home-newsletter-section {
   --section-band: var(--dark-background);
