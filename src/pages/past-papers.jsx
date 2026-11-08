@@ -1323,7 +1323,7 @@ export default function PastPapers() {
                                       color:
                                         star <=
                                         review.rating
-                                          ? 'var(--warm)'
+                                          ? 'var(--accent)'
                                           : 'var(--border-default)'
                                     }}
                                   >
