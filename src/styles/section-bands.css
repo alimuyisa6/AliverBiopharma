@@ -1,9 +1,9 @@
 :root {
   --band-white: var(--white);
-  --band-tint-a: var(--soft);
+  --band-tint-a: var(--brand-navy-soft);
   --band-tint-b: var(--paper);
-  --band-tint-c: var(--primary-light);
-  --band-tint-d: var(--soft);
+  --band-tint-c: var(--brand-mint-soft);
+  --band-tint-d: var(--primary-light);
   --band-dark: var(--text-main);
   --band-card-radius: 1.125rem;
   --band-button-radius: 0.875rem;
