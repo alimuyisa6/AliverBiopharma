@@ -8,7 +8,7 @@ const CARD_COLOR_CLASS = [
   'level-card-blue',
   'level-card-teal',
   'level-card-violet',
-  'level-card-amber',
+  'level-card-mint',
   'level-card-emerald',
 ];
 
