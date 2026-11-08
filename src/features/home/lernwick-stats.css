@@ -35,7 +35,7 @@
 
 .lernwick-stats .stats-impact-heading h2 {
   margin: 0;
-  color: #111111;
+  color: var(--text-main);
   font-family: var(--f-display);
   font-size: clamp(1.75rem, 3vw, 2.65rem);
   font-weight: 700;
@@ -45,7 +45,7 @@
 
 .lernwick-stats .stats-impact-scope {
   margin: 0;
-  color: #666666;
+  color: var(--text-secondary);
   font-size: var(--t-sm);
   line-height: 1.5;
 }
@@ -66,7 +66,7 @@
   margin: 0 0 1.25rem;
   padding: 0 0 .8rem;
   border-bottom: 1px solid var(--line);
-  color: #111111;
+  color: var(--text-main);
   font-family: var(--f-display);
   font-size: 1rem;
   font-weight: 650;
@@ -89,12 +89,12 @@
   min-width: 0;
   margin: 0;
   padding: 1rem 0 1.1rem;
-  border-bottom: 1px solid #E9E9E9;
+  border-bottom: 1px solid var(--border-default);
 }
 
 .lernwick-stats .stats-impact-value {
   display: block;
-  color: #111111;
+  color: var(--text-main);
   font-family: var(--f-display);
   font-size: clamp(2.35rem, 3.8vw, 3.75rem);
   font-weight: 750;
@@ -104,7 +104,7 @@
 }
 
 .lernwick-stats .stats-impact-label {
-  color: #666666;
+  color: var(--text-secondary);
   font-size: .875rem;
   font-weight: 450;
   line-height: 1.45;
@@ -118,7 +118,7 @@
   margin-top: clamp(2rem, 4vw, 3rem);
   padding: clamp(1.25rem, 2.5vw, 2rem) 0 0;
   border: 0;
-  border-top: 2px solid #222222;
+  border-top: 2px solid var(--text-main);
   border-radius: 0;
   background: transparent;
 }
@@ -130,7 +130,7 @@
 
 .lernwick-stats .stats-impact-topics-title {
   margin: 0;
-  color: #111111;
+  color: var(--text-main);
   font-family: var(--f-display);
   font-size: clamp(1.15rem, 1.8vw, 1.45rem);
   font-weight: 700;
@@ -140,7 +140,7 @@
 
 .lernwick-stats .stats-impact-topics-description {
   margin: 0;
-  color: #666666;
+  color: var(--text-secondary);
   font-size: .875rem;
   line-height: 1.55;
 }
@@ -161,26 +161,26 @@
   min-width: 0;
   margin: 0;
   padding: .85rem 0;
-  border-bottom: 1px solid #E9E9E9;
-  color: #222222;
+  border-bottom: 1px solid var(--border-default);
+  color: var(--text-main);
   font-size: .875rem;
 }
 
 .lernwick-stats .stats-impact-topic-rank {
-  color: #999999;
+  color: var(--text-muted);
   font-size: .75rem;
   font-variant-numeric: tabular-nums;
 }
 
 .lernwick-stats .stats-impact-topic-name {
   min-width: 0;
-  color: #222222;
+  color: var(--text-main);
   font-weight: 550;
   overflow-wrap: anywhere;
 }
 
 .lernwick-stats .stats-impact-topic-count {
-  color: #111111;
+  color: var(--text-main);
   font-size: .8rem;
   font-weight: 700;
   white-space: nowrap;
@@ -188,7 +188,7 @@
 
 .lernwick-stats .stats-impact-empty {
   margin: 0;
-  color: #666666;
+  color: var(--text-secondary);
   font-size: .875rem;
   line-height: 1.55;
 }
@@ -318,7 +318,7 @@ body.dark-mode .lernwick-stats .stats-impact-topic-rank {
   padding: .15rem .45rem;
   border: 1px solid var(--line);
   border-radius: 5px;
-  color: #555555;
+  color: var(--text-secondary);
   font-size: .68rem;
   font-weight: 650;
   line-height: 1.2;
