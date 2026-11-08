@@ -28,13 +28,13 @@ export default function QuizDashboard({ user, level, class_name }) {
 
       <div className="grid grid-cols-3">
         <div className="stat-card card-surface-subtle card-elevation-none card-density-comfortable">
-          <Icon name="trophy" className="stat-icon stat-icon-warm" />
+          <Icon name="trophy" className="stat-icon stat-icon-accent" />
           <div className="stat-value font-poppins">{platform.rank_title}</div>
           <div className="stat-label font-source-sans">Rank</div>
         </div>
 
         <div className="stat-card card-surface-subtle card-elevation-none card-density-comfortable">
-          <Icon name="fire" className="stat-icon stat-icon-warm" />
+          <Icon name="fire" className="stat-icon stat-icon-accent" />
           <div className="stat-value font-poppins">{platform.current_streak} days</div>
           <div className="stat-label font-source-sans">Streak</div>
         </div>
