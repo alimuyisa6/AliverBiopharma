@@ -21,7 +21,7 @@ export default function LernwickHomeHero({ user, activeLevelName, activeGroupNam
           <h1 id="hero-title">Learn <svg className="squiggle" viewBox="0 0 120 48" fill="none" stroke="currentColor" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 34c18 4 34-2 38-12 3-8-7-12-11-5-5 9 8 17 24 16 20-1 36-12 52-22" /><path d="m100 6 15 5-9 13" /></svg> <span className="hl">Biology</span><br />and Pharmacy</h1>
           <p className="hero__lede">Build scientific understanding with structured learning resources, clear explanations, quizzes, flashcards and active recall for your level or programme.</p>
           <div className="hero__ctas">
-            <Link className="btn btn--orange" to="/resources">Explore resources <Icon name="arrow-right" /></Link>
+            <Link className="btn btn--primary" to="/resources">Explore resources <Icon name="arrow-right" /></Link>
             <a className="hero__how" href="#how"><span className="hero__play"><Icon name="play" /></span>How it works</a>
           </div>
           {(activeLevelName || activeGroupName) && <p className="hero__path"><Icon name="graduation-cap" /> Your learning path: <strong>{[activeLevelName, activeGroupName].filter(Boolean).join(' · ')}</strong></p>}
