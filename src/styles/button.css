@@ -4,7 +4,6 @@
   --u3d-press-duration: var(--duration-fast);
 }
 
-
 .btn {
   display: inline-flex;
   align-items: center;
@@ -333,9 +332,6 @@
   }
 }
 
-/* --------------------------------------------------------------
-   Segmented controls
-   -------------------------------------------------------------- */
 .segmented {
   display: inline-flex;
   align-items: center;
@@ -389,9 +385,6 @@
   }
 }
 
-
-/* User-selected button width is a global layout preference. Keep this
-   selector more specific than component-level button sizing rules. */
 html[data-ui-button-width="full"] .btn:not(.btn-icon) {
   width: 100%;
   min-width: 0;
@@ -408,7 +401,6 @@ html[data-ui-button-width="full"] .btn:not(.btn-icon) > span {
   white-space: normal;
 }
 
-/* 3D buttons are not .btn elements, so they need their own width rule. */
 html[data-ui-button-width="full"] .btn-3d:not(.btn-icon) {
   width: 100%;
   max-width: 100%;
@@ -429,7 +421,6 @@ html[data-ui-button-width="auto"] .btn-3d:not(.btn-icon) > .btn-3d__top {
   box-sizing: border-box;
 }
 
-/* Custom action buttons use their own classes instead of .btn. */
 html[data-ui-button-width="full"] .buttonDownload,
 html[data-ui-button-width="full"] .premium-access-button,
 html[data-ui-button-width="full"] .animated-join-button {
@@ -444,7 +435,6 @@ html[data-ui-button-width="auto"] .animated-join-button {
   max-width: 100%;
   box-sizing: border-box;
 }
-
 
 .btn-status-success { color: var(--success); border-color: var(--success); }
 .btn-status-error { color: var(--danger); border-color: var(--danger); }
