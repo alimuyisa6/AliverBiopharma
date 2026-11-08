@@ -1,20 +1,20 @@
 .animated-action-button {
   position: relative;
-  width: var(--action-purple-width);
-  height: var(--action-purple-height);
+  width: var(--action-brand-width);
+  height: var(--action-brand-height);
   padding: 0;
   border: 0;
-  border-radius: var(--action-purple-radius);
+  border-radius: var(--action-brand-radius);
   outline: none;
   background: transparent;
-  color: var(--action-purple-white);
+  color: var(--action-brand-white);
   font-family: var(--font-primary);
   font-size: var(--text-lg);
   font-weight: var(--weight-semibold);
   letter-spacing: -0.03em;
   cursor: pointer;
   transform: rotate(-7deg) skewX(4deg);
-  transition: transform var(--action-purple-duration) var(--ease-standard);
+  transition: transform var(--action-brand-duration) var(--ease-standard);
 }
 
 .animated-action-button__bg,
@@ -34,25 +34,25 @@
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: calc(var(--action-purple-radius) * 1.1);
-  background: var(--action-purple-500);
+  border-radius: calc(var(--action-brand-radius) * 1.1);
+  background: var(--action-brand-500);
   filter: blur(5px);
   box-shadow:
-    -7px 6px 0 0 var(--action-purple-shadow),
-    -14px 12px 0 0 var(--action-purple-shadow-30),
-    -21px 18px 4px 0 var(--action-purple-shadow-25),
-    -28px 24px 8px 0 var(--action-purple-shadow-15),
-    -35px 30px 12px 0 var(--action-purple-shadow-12),
-    -42px 36px 16px 0 var(--action-purple-shadow-8),
-    -56px 42px 20px 0 var(--action-purple-shadow-5);
-  transition: all var(--action-purple-duration) var(--ease-standard);
+    -7px 6px 0 0 var(--action-brand-shadow),
+    -14px 12px 0 0 var(--action-brand-shadow-30),
+    -21px 18px 4px 0 var(--action-brand-shadow-25),
+    -28px 24px 8px 0 var(--action-brand-shadow-15),
+    -35px 30px 12px 0 var(--action-brand-shadow-12),
+    -42px 36px 16px 0 var(--action-brand-shadow-8),
+    -56px 42px 20px 0 var(--action-brand-shadow-5);
+  transition: all var(--action-brand-duration) var(--ease-standard);
 }
 
 .animated-action-button__splash {
   position: absolute;
   inset: -45% -30%;
   pointer-events: none;
-  border: var(--action-purple-splash-border-width) solid transparent;
+  border: var(--action-brand-splash-border-width) solid transparent;
   border-radius: 50%;
   opacity: 0;
 }
@@ -60,26 +60,26 @@
 .animated-action-button__wrap {
   overflow: hidden;
   transform: translate(6px, -6px);
-  padding: var(--action-purple-wrap-padding);
+  padding: var(--action-brand-wrap-padding);
   background: var(--primary-dark);
-  transition: all var(--action-purple-duration) var(--ease-standard);
+  transition: all var(--action-brand-duration) var(--ease-standard);
 }
 
 .animated-action-button__outline {
   overflow: hidden;
   opacity: 0;
-  transition: opacity var(--action-purple-outline-duration) var(--ease-standard);
+  transition: opacity var(--action-brand-outline-duration) var(--ease-standard);
 }
 
 .animated-action-button__outline::before {
   content: "";
   position: absolute;
-  inset: var(--action-purple-outline-inset);
-  width: var(--action-purple-outline-width);
-  height: var(--action-purple-outline-height);
+  inset: var(--action-brand-outline-inset);
+  width: var(--action-brand-outline-width);
+  height: var(--action-brand-outline-height);
   margin: auto;
   background: var(--white);
-  animation: animatedActionSpin var(--action-purple-spin) linear infinite paused;
+  animation: animatedActionSpin var(--action-brand-spin) linear infinite paused;
 }
 
 .animated-action-button__path {
@@ -96,9 +96,9 @@
   font-weight: var(--weight-semibold);
   background: var(--primary);
   box-shadow:
-    inset -2px 12px 11px -5px var(--action-purple-200),
-    var(--action-purple-inset-shadow);
-  transition: all var(--action-purple-duration) var(--ease-standard);
+    inset -2px 12px 11px -5px var(--action-brand-200),
+    var(--action-brand-inset-shadow);
+  transition: all var(--action-brand-duration) var(--ease-standard);
 }
 
 .animated-action-button__content::before {
@@ -124,10 +124,10 @@
 
 .animated-action-button__words span {
   display: block;
-  color: var(--action-purple-white);
-  text-shadow: -1px 1px 2px var(--action-purple-500);
-  animation: animatedActionCharIn var(--action-purple-slow) var(--ease-standard) both paused;
-  animation-delay: calc(var(--char-index, 0) * var(--action-purple-char-delay-step));
+  color: var(--action-brand-white);
+  text-shadow: -1px 1px 2px var(--action-brand-500);
+  animation: animatedActionCharIn var(--action-brand-slow) var(--ease-standard) both paused;
+  animation-delay: calc(var(--char-index, 0) * var(--action-brand-char-delay-step));
 }
 
 .animated-action-button__words--secondary {
@@ -137,13 +137,13 @@
 
 .animated-action-button__icon {
   z-index: 4;
-  width: var(--action-purple-path-width);
-  height: var(--action-purple-path-height);
+  width: var(--action-brand-path-width);
+  height: var(--action-brand-path-height);
   position: relative;
   margin-left: auto;
   margin-right: var(--space-6);
   background: var(--brand-mint-soft);
-  box-shadow: -2px 2px 5px var(--action-purple-400);
+  box-shadow: -2px 2px 5px var(--action-brand-400);
   transform: scale(0.9);
 }
 
@@ -152,10 +152,10 @@
   content: "";
   position: absolute;
   right: 0;
-  width: var(--action-purple-path-short-width);
-  height: var(--action-purple-path-height);
+  width: var(--action-brand-path-short-width);
+  height: var(--action-brand-path-height);
   border-radius: 15px;
-  background: var(--action-purple-white);
+  background: var(--action-brand-white);
   transform-origin: center right;
 }
 
@@ -171,8 +171,8 @@
 
 .animated-action-button__label {
   position: absolute;
-  width: var(--action-purple-path-dot-size);
-  height: var(--action-purple-path-dot-size);
+  width: var(--action-brand-path-dot-size);
+  height: var(--action-brand-path-dot-size);
   overflow: hidden;
   clip: rect(0 0 0 0);
   white-space: nowrap;
@@ -202,7 +202,7 @@
 .animated-action-button:hover .animated-action-button__words--secondary {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity var(--action-purple-duration) var(--ease-standard), transform var(--action-purple-duration) var(--ease-standard);
+  transition: opacity var(--action-brand-duration) var(--ease-standard), transform var(--action-brand-duration) var(--ease-standard);
 }
 
 .animated-action-button:active .animated-action-button__bg::before {
@@ -234,6 +234,6 @@
 
 @media (max-width: 480px) {
   .animated-action-button {
-    width: min(var(--action-purple-width), 100%);
+    width: min(var(--action-brand-width), 100%);
   }
 }
