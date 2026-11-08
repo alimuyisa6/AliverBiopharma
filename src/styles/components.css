@@ -79,7 +79,7 @@
 .loading-placeholder__line::after {
   position: absolute;
   inset: 0;
-  background: linear-gradient(105deg, transparent 20%, color-mix(in srgb, var(--white) 76%, transparent) 48%, transparent 76%);
+  background: var(--skeleton-shimmer-band);
   content: "";
   transform: translateX(-110%);
   animation: shimmer 1.55s ease-in-out infinite;
@@ -94,7 +94,7 @@ body.dark-mode .loading-placeholder__line {
   background: color-mix(in srgb, var(--dark-primary) 24%, var(--dark-surface));
 }
 body.dark-mode .loading-placeholder__line::after {
-  background: linear-gradient(105deg, transparent 20%, var(--glass-white-17) 48%, transparent 76%);
+  background: var(--skeleton-shimmer-band);
 }
 @media (prefers-reduced-motion: reduce) {
   .loading-placeholder__line::after { animation: none; transform: none; opacity: .35; }
