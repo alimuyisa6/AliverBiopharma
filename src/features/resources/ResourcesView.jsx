@@ -47,7 +47,7 @@ const CONTENT_TYPES = [
     description: 'Check your understanding with questions matched to your selected programme.',
     icon: 'clipboard-check',
     route: '/quiz',
-    color: 'amber',
+    color: 'mint',
     category: 'assessment'
   },
   {
