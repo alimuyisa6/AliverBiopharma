@@ -8,7 +8,7 @@ import ThreeDButton from '../components/buttons/ThreeDButton';
 
 const META = {
   recall: { title: 'Recall practice', eyebrow: 'Active recall', color: 'cyan', icon: 'brain', route: '/recall' },
-  flashcards: { title: 'Flashcard practice', eyebrow: 'Flashcard practice', color: 'amber', icon: 'layers', route: '/flashcards' },
+  flashcards: { title: 'Flashcard practice', eyebrow: 'Flashcard practice', color: 'mint', icon: 'layers', route: '/flashcards' },
   quiz: { title: 'Quiz practice', eyebrow: 'Knowledge check', color: 'blue', icon: 'clipboard-check', route: '/quiz' }
 };
 
