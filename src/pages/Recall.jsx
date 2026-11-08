@@ -841,7 +841,7 @@ export default function BioRecall() {
                       <div>
                         <Icon
                           name="fire"
-                          className="recall-intro-stat-icon is-warm"
+                          className="recall-intro-stat-icon is-accent"
                         />
 
                         <span className="recall-intro-stat-text font-source-sans">
@@ -1245,7 +1245,7 @@ export default function BioRecall() {
                 </div>
 
                 <div>
-                  <div className="recall-report-value is-warm font-poppins">
+                  <div className="recall-report-value is-accent font-poppins">
                     {sessionReport.developing ||
                       0}
                   </div>
@@ -1411,7 +1411,7 @@ export default function BioRecall() {
                   <span
                     className={`badge font-comfortaa ${
                       item.is_weak_concept
-                        ? 'badge-warm'
+                        ? 'badge-accent'
                         : 'badge-primary'
                     }`}
                   >
