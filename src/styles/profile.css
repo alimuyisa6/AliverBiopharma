@@ -52,10 +52,9 @@
 .profile-align-center { align-items: center; }
 .profile-divider { margin-block: var(--content-gap); }
 .profile-divider-lg { margin-block: var(--section-space-y-compact); }
-.profile-icon-primary, .profile-icon-secondary, .profile-icon-warm, .profile-icon-accent, .profile-icon-success, .profile-icon-error { margin: 0; }
+.profile-icon-primary, .profile-icon-secondary, .profile-icon-accent, .profile-icon-success, .profile-icon-error { margin: 0; }
 .profile-icon-primary { color: var(--primary); }
 .profile-icon-secondary { color: var(--primary); }
-.profile-icon-warm { color: var(--warm); }
 .profile-icon-accent { color: var(--accent); }
 .profile-icon-success { color: var(--success); }
 .profile-icon-error { color: var(--error); }
