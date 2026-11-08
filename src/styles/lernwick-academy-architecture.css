@@ -154,7 +154,7 @@
 }
 
 .app-layout :where(.tag-premium, .badge-premium, .status-premium) {
-  background: var(--peach);
+  background: var(--accent-light);
   color: var(--ink);
 }
 
