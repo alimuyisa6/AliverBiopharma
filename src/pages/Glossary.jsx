@@ -87,7 +87,7 @@ export default function Glossary() {
 
   const getLevelColor = (lvl) => {
     if (lvl === 'O-Level') return 'var(--primary)';
-    if (lvl === 'A-Level') return 'var(--warm)';
+    if (lvl === 'A-Level') return 'var(--accent)';
     if (lvl === 'Pharmacy') return 'var(--success)';
     return 'var(--primary)';
   };
