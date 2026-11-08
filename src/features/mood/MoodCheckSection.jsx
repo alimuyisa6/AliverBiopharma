@@ -28,7 +28,7 @@ export function MoodCheckSection({
         Your feedback helps us improve your learning experience.
       </p>
 
-      <div className="card card-amber mood-card">
+      <div className="card card-tone-primary mood-card">
         <div className="mood-emoji-row">
           {MOODS.map((mood) => (
             <Button
