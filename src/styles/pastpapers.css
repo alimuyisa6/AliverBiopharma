@@ -1070,11 +1070,7 @@ body.dark-mode .pp-filters {
     font-size: 1rem;
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  .pp-card {
-    transition: none;
-  }
-}
+
 
 .pp-page,
 .pastpapers-page,
