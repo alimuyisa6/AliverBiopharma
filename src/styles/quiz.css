@@ -295,11 +295,6 @@
   color: var(--accent);
 }
 
-.stat-icon-warm {
-  background: var(--warning-light);
-  color: var(--warning);
-}
-
 .stat-icon-success {
   background: var(--success-light);
   color: var(--success);
