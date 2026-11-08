@@ -298,6 +298,10 @@
   background: var(--brand-mint-soft);
 }
 
+.folded-card-mint::after {
+  background: var(--brand-mint-soft);
+}
+
 .folded-card-grey::after {
   background: var(--soft);
 }
@@ -418,8 +422,8 @@
   color: var(--success);
 }
 
-.dc-value.amber {
-  color: var(--accent);
+.dc-value.mint {
+  color: var(--brand-mint-ink);
 }
 
 .dc-value.blue {
@@ -525,6 +529,11 @@
   color: var(--brand-mint-ink);
 }
 
+.tag-mint {
+  background: var(--brand-mint-soft);
+  color: var(--brand-mint-ink);
+}
+
 .tag-green {
   background: var(--green-100);
   color: var(--green-700);
@@ -564,6 +573,10 @@
 }
 
 .progress-fill.amber {
+  background: var(--brand-mint-ink);
+}
+
+.progress-fill.mint {
   background: var(--brand-mint-ink);
 }
 
