@@ -128,7 +128,7 @@
   --night-600: #4D4C55;
   --sage: #C4E0B5;
   --sage-ink: #2E5A2B;
-  --warm-surface: #FCE3C0;
+  --warm-surface: var(--brand-mint-soft);
   --bg-primary: var(--paper);
   --bg-secondary: var(--soft);
   --hero-accent: var(--accent);
