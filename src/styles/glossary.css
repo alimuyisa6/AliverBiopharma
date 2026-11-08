@@ -38,8 +38,8 @@
   animation-delay: 0.15s;
 }
 
-.spinner-dot.dot-orange {
-  background: var(--warm);
+.spinner-dot.dot-mint {
+  background: var(--brand-mint-ink);
   animation-delay: 0.3s;
 }
 
