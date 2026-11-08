@@ -5,6 +5,7 @@
   --primary-hover: #329db5;
   --primary-border: #a9e2ed;
   --primary-ring: rgb(66 175 199 / 28%);
+  --skeleton-shimmer-band: linear-gradient(105deg, transparent 20%, color-mix(in srgb, var(--white) 76%, transparent) 48%, transparent 76%);
   --secondary: #83d5e7;
   --secondary-light: #e8f8fb;
   --secondary-dark: #176f82;
@@ -99,6 +100,7 @@
   --dark-text-secondary: #D4D2CC;
   --dark-border: #4D4C55;
   --dark-primary: #56d2ed;
+  --skeleton-shimmer-band: linear-gradient(105deg, transparent 20%, var(--glass-white-17) 48%, transparent 76%);
   --dark-accent: #b8e8d8;
   --green-100: #EAF3E5;
   --green-200: #C4E0B5;
