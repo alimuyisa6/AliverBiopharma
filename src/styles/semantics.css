@@ -92,8 +92,6 @@
   --error: var(--danger);
   --error-light: var(--danger-light);
   --error-hover: var(--danger-hover);
-  --warm: var(--accent);
-  --warm-light: var(--accent-light);
 
   --level-olevel: var(--primary);
   --level-alevel: var(--accent);
@@ -291,8 +289,6 @@ body.dark-mode {
   --error: var(--danger);
   --error-light: var(--danger-light);
   --error-hover: var(--danger-hover);
-  --warm: var(--accent);
-  --warm-light: var(--accent-light);
   --level-olevel: var(--primary);
   --level-alevel: var(--accent);
   --hero-bg: var(--dark-background);
