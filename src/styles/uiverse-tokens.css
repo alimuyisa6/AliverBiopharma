@@ -63,12 +63,12 @@
   --action-purple-path-short-width: 0.875rem;
   --action-purple-path-dot-size: 1px;
   --action-purple-outline-duration: var(--duration-fast);
-  --action-purple-white: var(--primary);
-  --action-purple-100: var(--primary);
-  --action-purple-200: var(--primary);
+  --action-purple-white: var(--text-on-primary);
+  --action-purple-100: var(--primary-light);
+  --action-purple-200: var(--primary-border);
   --action-purple-300: var(--primary);
-  --action-purple-400: var(--primary);
-  --action-purple-500: var(--primary);
+  --action-purple-400: var(--primary-dark);
+  --action-purple-500: var(--brand-navy);
   --action-purple-shadow: var(--primary-ring);
   --action-purple-shadow-30: color-mix(in srgb, var(--action-purple-shadow) 75%, transparent);
   --action-purple-shadow-25: color-mix(in srgb, var(--action-purple-shadow) 62.5%, transparent);
