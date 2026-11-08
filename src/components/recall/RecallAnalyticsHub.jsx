@@ -16,7 +16,7 @@ const GRAPH_TYPES = [
     title: 'Weekly XP Progress',
     icon: 'chart-line',
     color: 'var(--primary)',
-    gradientTo: 'var(--accent-dark)',
+    gradientTo: 'var(--brand-navy)',
     description: 'Track your XP earnings over the last 7 days. This shows your learning momentum and consistency.',
     insight: 'Consistent daily practice leads to steady XP growth. Aim for at least 20 XP per day to maintain your streak.'
   },
@@ -32,7 +32,7 @@ const GRAPH_TYPES = [
     key: 'topic_mastery',
     title: 'Topic Mastery Radar',
     icon: 'bullseye',
-    color: 'var(--accent-dark)',
+    color: 'var(--brand-navy)',
     description: 'Compare your mastery across all biology topics. Each axis represents a topic, and the shape shows your strengths.',
     insight: 'A balanced shape means well-rounded knowledge. If one side is flat, focus more on that topic.'
   },
