@@ -325,15 +325,15 @@ body.dark-mode .lernwick-stats .stats-impact-topic-rank {
 }
 
 .lernwick-stats .stats-impact-category-quiz {
-  border-color: #F2C58E;
-  background: #FFF4E5;
-  color: #8A4B08;
+  border-color: var(--brand-mint);
+  background: var(--brand-mint-soft);
+  color: var(--brand-mint-ink);
 }
 
 .lernwick-stats .stats-impact-category-flashcards {
-  border-color: #B9D5AA;
-  background: #EEF5E9;
-  color: #315D2B;
+  border-color: var(--primary-border);
+  background: var(--primary-light);
+  color: var(--primary-dark);
 }
 
 body.dark-mode .lernwick-stats .stats-impact-category {
