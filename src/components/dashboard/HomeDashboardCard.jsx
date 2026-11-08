@@ -68,7 +68,7 @@ export default function HomeDashboardCard() {
         </div>
         <div className="dash-cell">
           <div className="dc-label">Day streak</div>
-          <div className="dc-value amber">{platform.current_streak}</div>
+          <div className="dc-value mint">{platform.current_streak}</div>
           <div className="dc-sub">Keep going</div>
         </div>
         <div className="dash-cell">
