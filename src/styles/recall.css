@@ -143,10 +143,6 @@
   margin-right: var(--stack-gap-tight);
 }
 
-.recall-intro-stat-icon.is-warm {
-  color: var(--accent);
-}
-
 .recall-intro-stat-icon.is-accent {
   color: var(--accent);
 }
@@ -267,10 +263,6 @@
   font-size: var(--text-2xl);
 }
 
-.recall-stat-card-icon.is-warm {
-  color: var(--accent);
-}
-
 .recall-stat-card-icon.is-primary {
   color: var(--primary);
 }
@@ -313,11 +305,6 @@
 }
 
 .badge-accent {
-  background: var(--accent-light);
-  color: var(--accent);
-}
-
-.badge-warm {
   background: var(--accent-light);
   color: var(--accent);
 }
@@ -668,7 +655,7 @@
   color: var(--primary);
 }
 
-.recall-report-value.is-warm {
+.recall-report-value.is-accent {
   color: var(--accent);
 }
 
