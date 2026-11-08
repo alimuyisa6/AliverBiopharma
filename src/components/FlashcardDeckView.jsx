@@ -28,7 +28,7 @@ const MODE_CARD_COLOR = {
   flip: 'card-blue',
   typed: 'card-teal',
   multiple_choice: 'card-violet',
-  structure_identification: 'card-amber'
+  structure_identification: 'card-mint'
 };
 
 export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode: initialMode = 'flip', onComplete, onPremiumRequired, challengeId = null, sourceNoteId = null, activityScope = null, unitId = null }) {
