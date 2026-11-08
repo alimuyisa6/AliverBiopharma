@@ -5,7 +5,6 @@
   --primary-hover: #329db5;
   --primary-border: #a9e2ed;
   --primary-ring: rgb(66 175 199 / 28%);
-  --skeleton-shimmer-band: linear-gradient(105deg, transparent 20%, color-mix(in srgb, var(--white) 76%, transparent) 48%, transparent 76%);
   --secondary: #83d5e7;
   --secondary-light: #e8f8fb;
   --secondary-dark: #176f82;
