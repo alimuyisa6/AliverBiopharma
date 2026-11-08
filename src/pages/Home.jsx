@@ -44,7 +44,7 @@ function mapContinueLearning(rawList) {
       subject: item.subject,
       thumbnail_url: item.thumbnail_url ?? item.cover_image_url ?? null,
       progress_percent: item.progress_percent ?? item.percent ?? 0,
-      progress_color: (item.progress_percent ?? 0) >= 80 ? 'emerald' : (item.progress_percent ?? 0) >= 40 ? 'blue' : 'amber',
+      progress_color: (item.progress_percent ?? 0) >= 80 ? 'emerald' : (item.progress_percent ?? 0) >= 40 ? 'blue' : 'mint',
       progress_label: item.progress_label ?? (item.progress_percent != null ? `${item.progress_percent}% complete` : 'Recently opened'),
       cta_label: 'Continue reading',
       route
