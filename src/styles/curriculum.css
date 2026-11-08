@@ -52,7 +52,7 @@
 .curriculum-card-grey .curriculum-card-badge { background: var(--grey-100); color: var(--grey-600); }
 .curriculum-card-green .curriculum-card-badge { background: var(--green-100); color: var(--green-700); }
 .curriculum-card-blue .curriculum-card-badge { background: var(--primary-light); color: var(--primary-dark); }
-.curriculum-card-amber .curriculum-card-badge { background: var(--primary-light); color: var(--primary-dark); }
+.curriculum-card-amber .curriculum-card-badge { background: var(--brand-mint-soft); color: var(--brand-mint-ink); }
 .curriculum-card-emerald .curriculum-card-badge { background: var(--primary-light); color: var(--primary-dark); }
 .curriculum-card-lock { display: flex; flex-shrink: 0; align-items: center; justify-content: center; width: var(--space-8); height: var(--space-8); background: var(--bg-card-tinted); color: var(--text-muted); border-radius: 50%; }
 .curriculum-card-body { display: flex; flex-direction: column; gap: var(--stack-gap-tight); min-width: 0; }
