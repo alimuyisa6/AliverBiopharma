@@ -21,9 +21,9 @@ export function CommunitySection({
             Test your knowledge with this week's question.
           </p>
 
-          <div className="card card-surface-solid card-tone-warning card-elevation-soft" style={{ maxWidth: 600, margin: '0 auto', padding: 'var(--space-8)' }}>
+          <div className="card card-surface-solid card-tone-primary card-elevation-soft" style={{ maxWidth: 600, margin: '0 auto', padding: 'var(--space-8)' }}>
             <h3 style={{ marginBottom: 'var(--space-6)' }}>
-              <Icon name="trophy" style={{ color: 'var(--warm)', marginRight: 'var(--space-3)' }} />
+              <Icon name="trophy" style={{ color: 'var(--primary)', marginRight: 'var(--space-3)' }} />
               {weeklyChallenge.question}
             </h3>
 
