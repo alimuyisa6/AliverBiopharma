@@ -298,10 +298,6 @@
   background: var(--brand-mint-soft);
 }
 
-.folded-card-mint::after {
-  background: var(--brand-mint-soft);
-}
-
 .folded-card-grey::after {
   background: var(--soft);
 }
@@ -525,11 +521,6 @@
 }
 
 .tag-amber {
-  background: var(--brand-mint-soft);
-  color: var(--brand-mint-ink);
-}
-
-.tag-mint {
   background: var(--brand-mint-soft);
   color: var(--brand-mint-ink);
 }
