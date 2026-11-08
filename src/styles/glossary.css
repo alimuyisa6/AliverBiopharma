@@ -530,7 +530,7 @@
 }
 
 .glossary-meta-item.meta-mnemonic {
-  background: var(--warm-light);
+  background: var(--accent-light);
 }
 
 .glossary-meta-label {
@@ -600,7 +600,7 @@
 }
 
 .route-pdf .glossary-route-header i {
-  color: var(--warm);
+  color: var(--accent);
 }
 
 .route-notes .glossary-route-header i {
@@ -661,7 +661,7 @@
 }
 
 .glossary-route-card-icon.pdf-icon {
-  background: var(--warm);
+  background: var(--accent);
 }
 
 .glossary-route-card-icon.note-icon {
