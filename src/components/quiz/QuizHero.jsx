@@ -81,7 +81,7 @@ export default function QuizHero({ level, class_name, groupId, isPharmacy = fals
           </div>
 
           <div className="stat-card card-surface-subtle card-elevation-none card-density-comfortable">
-            <Icon name="chart-line" className="stat-icon stat-icon-warm" />
+            <Icon name="chart-line" className="stat-icon stat-icon-accent" />
             <div className="stat-value font-poppins">{stats?.average_pass_rate ?? 0}%</div>
             <div className="stat-label font-source-sans">Pass Rate</div>
           </div>
