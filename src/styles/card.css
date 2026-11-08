@@ -295,7 +295,7 @@
 }
 
 .folded-card-amber::after {
-  background: var(--primary-light);
+  background: var(--brand-mint-soft);
 }
 
 .folded-card-grey::after {
@@ -521,8 +521,8 @@
 }
 
 .tag-amber {
-  background: var(--primary-light);
-  color: var(--primary-dark);
+  background: var(--brand-mint-soft);
+  color: var(--brand-mint-ink);
 }
 
 .tag-green {
@@ -564,7 +564,7 @@
 }
 
 .progress-fill.amber {
-  background: var(--primary-dark);
+  background: var(--brand-mint-ink);
 }
 
 .progress-fill.blue {
