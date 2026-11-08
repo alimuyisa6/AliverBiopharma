@@ -1,16 +1,9 @@
-/* Progress primitives use component tokens for track and spinner dimensions. */
 :root {
   --progress-track-height: 0.375rem;
   --progress-spinner-border: 0.1875rem;
   --progress-spinner-border-sm: 0.125rem;
   --progress-spinner-border-lg: 0.25rem;
 }
-
-/* src/styles/progress.css */
-
-/* =========================================================
-   PROGRESS
-   ========================================================= */
 
 .progress-track {
   width: 100%;
@@ -31,10 +24,6 @@
 .progress-warning .progress-fill { background: var(--warning); }
 .progress-accent .progress-fill { background: var(--accent); }
 
-/* =========================================================
-   SKELETON
-   ========================================================= */
-
 .skeleton {
   border-radius: var(--radius-sm);
   background:
@@ -48,10 +37,6 @@ body.dark-mode .skeleton {
     linear-gradient(90deg, var(--skeleton-shimmer-base) 25%, var(--skeleton-shimmer-highlight) 50%, var(--skeleton-shimmer-base) 75%);
   background-size: 200% 100%;
 }
-
-/* =========================================================
-   RECALL SKELETONS
-   ========================================================= */
 
 .recall-skeleton {
   display: flex;
@@ -71,8 +56,6 @@ body.dark-mode .skeleton {
   }
 }
 
-
-/* Reusable progress ring variants */
 .progress-ring {
   --progress-ring-size: var(--space-10);
   --progress-ring-thickness: var(--space-1);
