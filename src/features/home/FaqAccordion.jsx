@@ -1,7 +1,7 @@
 /* features/home/FaqAccordion.jsx */
 import { useEffect, useMemo, useState } from 'react';
 
-const ACCENTS = ['grey', 'green', 'blue', 'amber', 'emerald'];
+const ACCENTS = ['grey', 'green', 'blue', 'mint', 'emerald'];
 
 const FAQ_ILLUSTRATION_STYLE = {
   display: 'block',
