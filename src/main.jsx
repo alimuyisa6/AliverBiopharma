@@ -31,14 +31,32 @@ import './styles/lernwick-visual-balance.css';
 
 function showFatalError(title, message, stack) {
   const root = document.getElementById('root') || document.body;
-  root.innerHTML = `
-    <div style="padding:20px;font-family:monospace;color:var(--text);background:var(--white);">
-      <h2 style="color:var(--danger-color);margin:0 0 8px;">${title}</h2>
-      <div style="margin-bottom:10px;">${message || 'Unknown error'}</div>
-      ${stack ? `<pre style="white-space:pre-wrap;background:var(--soft);padding:10px;border-radius:6px;font-size:12px;max-height:240px;overflow:auto;">${stack}</pre>` : ''}
-      <button onclick="window.location.reload()" style="margin-top:12px;padding:8px 16px;background:var(--danger-color);color:var(--white);border:none;border-radius:6px;cursor:pointer;">Reload</button>
-    </div>
-  `;
+  const screen = document.createElement('main');
+  const heading = document.createElement('h2');
+  const detail = document.createElement('p');
+  const reload = document.createElement('button');
+
+  screen.className = 'fatal-error-screen';
+  heading.className = 'fatal-error-title';
+  detail.className = 'fatal-error-message';
+  reload.className = 'fatal-error-reload';
+  heading.textContent = title;
+  detail.textContent = message || 'Unknown error';
+  reload.type = 'button';
+  reload.textContent = 'Reload';
+  reload.addEventListener('click', () => window.location.reload());
+
+  screen.append(heading, detail);
+
+  if (stack) {
+    const trace = document.createElement('pre');
+    trace.className = 'fatal-error-stack';
+    trace.textContent = stack;
+    screen.append(trace);
+  }
+
+  screen.append(reload);
+  root.replaceChildren(screen);
 }
 
 function recoverFromStaleChunk(event) {
@@ -113,24 +131,20 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div style={{ padding: 20, fontFamily: 'monospace', background: '#fff' }}>
-          <h2 style={{ color: '#c0392b', margin: '0 0 8px' }}>Something went wrong</h2>
-          <div style={{ marginBottom: 10 }}>{this.state.error?.message || 'Unknown error'}</div>
+        <main className="fatal-error-screen">
+          <h2 className="fatal-error-title">Something went wrong</h2>
+          <p className="fatal-error-message">{this.state.error?.message || 'Unknown error'}</p>
           {this.state.error?.stack && (
-            <pre style={{
-              whiteSpace: 'pre-wrap', background: '#f5f5f5', padding: 10,
-              borderRadius: 6, fontSize: 12, maxHeight: 240, overflow: 'auto'
-            }}>
-              {this.state.error.stack}
-            </pre>
+            <pre className="fatal-error-stack">{this.state.error.stack}</pre>
           )}
           <button
+            type="button"
+            className="fatal-error-reload"
             onClick={() => window.location.reload()}
-            style={{ marginTop: 12, padding: '8px 16px', background: '#c0392b', color: '#fff', border: 'none', borderRadius: 6, cursor: 'pointer' }}
           >
             Reload
           </button>
-        </div>
+        </main>
       );
     }
     return this.props.children;
