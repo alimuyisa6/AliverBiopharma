@@ -31,10 +31,6 @@
 .progress-warning .progress-fill { background: var(--warning); }
 .progress-accent .progress-fill { background: var(--accent); }
 
-.progress-gradient .progress-fill {
-  background: linear-gradient(90deg, var(--primary), var(--accent));
-}
-
 /* =========================================================
    SKELETON
    ========================================================= */
