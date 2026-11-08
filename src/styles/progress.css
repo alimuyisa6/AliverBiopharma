@@ -32,11 +32,6 @@
   animation: shimmer var(--duration-slow) var(--ease-standard) infinite;
 }
 
-body.dark-mode .skeleton {
-  background:
-    linear-gradient(90deg, var(--skeleton-shimmer-base) 25%, var(--skeleton-shimmer-highlight) 50%, var(--skeleton-shimmer-base) 75%);
-  background-size: 200% 100%;
-}
 
 .recall-skeleton {
   display: flex;
