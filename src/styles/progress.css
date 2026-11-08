@@ -82,7 +82,6 @@
 .progress-ring-md { --progress-ring-size: var(--space-10); }
 .progress-ring-lg { --progress-ring-size: var(--space-16); --progress-ring-thickness: var(--space-2); }
 .progress-ring-chunky { --progress-ring-thickness: var(--space-2); }
-.progress-ring-segmented { background: conic-gradient(var(--progress-ring-color) var(--progress-ring-progress), var(--border-subtle) 0); }
 @media (prefers-reduced-motion: reduce) {
   .progress-fill { transition: none; }
 }
