@@ -31,21 +31,21 @@ const SAMPLES = 56;
 const SLOPE = 0.375;
 
 const EDGE_CONFIG = [
-  { base: -0.03, amplitude: 0.05, frequency: 1.25, phase: 0.4, motion: 0.032, motionFrequency: 1.6, motionPhase: 0.2, speed: 0.55, secondaryMotion: 0.014, secondaryFrequency: 3.1, secondarySpeed: -0.8, gradient: 'wave-line-one', fill: 'wave-fill-one', width: 3 },
-  { base: 0.24, amplitude: 0.055, frequency: 1.15, phase: 1.9, motion: 0.036, motionFrequency: 1.45, motionPhase: 1.4, speed: 0.48, secondaryMotion: 0.016, secondaryFrequency: 2.9, secondarySpeed: -0.7, gradient: 'wave-line-two', fill: 'wave-fill-two', width: 3.2 },
-  { base: 0.5, amplitude: 0.058, frequency: 1.05, phase: 3.4, motion: 0.04, motionFrequency: 1.35, motionPhase: 2.6, speed: 0.42, secondaryMotion: 0.018, secondaryFrequency: 2.7, secondarySpeed: -0.65, gradient: 'wave-line-three', fill: 'wave-fill-three', width: 3.4 },
-  { base: 0.76, amplitude: 0.06, frequency: 0.95, phase: 4.8, motion: 0.044, motionFrequency: 1.25, motionPhase: 3.8, speed: 0.36, secondaryMotion: 0.02, secondaryFrequency: 2.5, secondarySpeed: -0.6, gradient: 'wave-line-four', fill: 'wave-fill-four', width: 3.6 }
+  { base: -0.03, amplitude: 0.05, frequency: 1.25, phase: 0.4, motion: 0.032, motionFrequency: 1.6, motionPhase: 0.2, speed: 0.55, secondaryMotion: 0.014, secondaryFrequency: 3.1, secondarySpeed: -0.8, color: 'var(--accent)', fill: 'var(--brand-navy)', fillOpacity: 0.3, width: 3 },
+  { base: 0.24, amplitude: 0.055, frequency: 1.15, phase: 1.9, motion: 0.036, motionFrequency: 1.45, motionPhase: 1.4, speed: 0.48, secondaryMotion: 0.016, secondaryFrequency: 2.9, secondarySpeed: -0.7, color: 'var(--secondary)', fill: 'var(--accent)', fillOpacity: 0.2, width: 3.2 },
+  { base: 0.5, amplitude: 0.058, frequency: 1.05, phase: 3.4, motion: 0.04, motionFrequency: 1.35, motionPhase: 2.6, speed: 0.42, secondaryMotion: 0.018, secondaryFrequency: 2.7, secondarySpeed: -0.65, color: 'var(--primary)', fill: 'var(--primary)', fillOpacity: 0.22, width: 3.4 },
+  { base: 0.76, amplitude: 0.06, frequency: 0.95, phase: 4.8, motion: 0.044, motionFrequency: 1.25, motionPhase: 3.8, speed: 0.36, secondaryMotion: 0.02, secondaryFrequency: 2.5, secondarySpeed: -0.6, color: 'var(--brand-mint)', fill: 'var(--secondary)', fillOpacity: 0.18, width: 3.6 }
 ];
 
 const SMALL_CONFIG = [
-  { base: 0.07, amplitude: 0.035, frequency: 1.9, phase: 0.5, speed: -0.9, width: 1.6, opacity: 0.9 },
-  { base: 0.11, amplitude: 0.03, frequency: 2.4, phase: 2.4, speed: 1.1, width: 1.2, opacity: 0.75 },
-  { base: 0.34, amplitude: 0.04, frequency: 1.8, phase: 1.2, speed: -0.8, width: 1.6, opacity: 0.9 },
-  { base: 0.38, amplitude: 0.032, frequency: 2.3, phase: 3.6, speed: 1, width: 1.2, opacity: 0.75 },
-  { base: 0.6, amplitude: 0.042, frequency: 1.7, phase: 0.2, speed: -0.7, width: 1.6, opacity: 0.9 },
-  { base: 0.64, amplitude: 0.034, frequency: 2.2, phase: 2.9, speed: 0.95, width: 1.2, opacity: 0.75 },
-  { base: 0.18, amplitude: 0.026, frequency: 3, phase: 4.4, speed: 1.25, width: 1, opacity: 0.55 },
-  { base: 0.52, amplitude: 0.028, frequency: 2.8, phase: 5.3, speed: -1.2, width: 1, opacity: 0.55 }
+  { base: 0.07, amplitude: 0.035, frequency: 1.9, phase: 0.5, speed: -0.9, width: 1.6, opacity: 0.9, color: 'var(--secondary)' },
+  { base: 0.11, amplitude: 0.03, frequency: 2.4, phase: 2.4, speed: 1.1, width: 1.2, opacity: 0.75, color: 'var(--primary)' },
+  { base: 0.34, amplitude: 0.04, frequency: 1.8, phase: 1.2, speed: -0.8, width: 1.6, opacity: 0.9, color: 'var(--accent)' },
+  { base: 0.38, amplitude: 0.032, frequency: 2.3, phase: 3.6, speed: 1, width: 1.2, opacity: 0.75, color: 'var(--secondary)' },
+  { base: 0.6, amplitude: 0.042, frequency: 1.7, phase: 0.2, speed: -0.7, width: 1.6, opacity: 0.9, color: 'var(--primary)' },
+  { base: 0.64, amplitude: 0.034, frequency: 2.2, phase: 2.9, speed: 0.95, width: 1.2, opacity: 0.75, color: 'var(--accent)' },
+  { base: 0.18, amplitude: 0.026, frequency: 3, phase: 4.4, speed: 1.25, width: 1, opacity: 0.55, color: 'var(--brand-mint)' },
+  { base: 0.52, amplitude: 0.028, frequency: 2.8, phase: 5.3, speed: -1.2, width: 1, opacity: 0.55, color: 'var(--secondary)' }
 ];
 
 function createSvgElement(name, attributes = {}) {
@@ -150,16 +150,16 @@ function WaveArtwork() {
     };
 
     EDGE_CONFIG.slice().reverse().forEach((edge) => {
-      const fill = createSvgElement('path', { fill: `url(#${edge.fill})`, stroke: 'none' });
+      const fill = createSvgElement('path', { fill: edge.fill, 'fill-opacity': edge.fillOpacity, stroke: 'none' });
       layers.appendChild(fill);
       fillNodes.unshift(fill);
     });
 
     EDGE_CONFIG.forEach((edge) => {
       const band = createSvgElement('path', { fill: 'none', stroke: 'var(--white)', 'stroke-width': 16, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', opacity: 0.07 });
-      const haloWide = createSvgElement('path', { fill: 'none', stroke: `url(#${edge.gradient})`, 'stroke-width': edge.width * 9, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', opacity: 0.1 });
-      const halo = createSvgElement('path', { fill: 'none', stroke: `url(#${edge.gradient})`, 'stroke-width': edge.width * 4.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', opacity: 0.22 });
-      const line = createSvgElement('path', { fill: 'none', stroke: `url(#${edge.gradient})`, 'stroke-width': edge.width, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' });
+      const haloWide = createSvgElement('path', { fill: 'none', stroke: edge.color, 'stroke-width': edge.width * 9, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', opacity: 0.1 });
+      const halo = createSvgElement('path', { fill: 'none', stroke: edge.color, 'stroke-width': edge.width * 4.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', opacity: 0.22 });
+      const line = createSvgElement('path', { fill: 'none', stroke: edge.color, 'stroke-width': edge.width, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' });
       const core = createSvgElement('path', { fill: 'none', stroke: 'var(--white)', 'stroke-width': edge.width * 0.35, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', opacity: 0.85 });
       const shine = createSvgElement('path', { fill: 'none', stroke: 'var(--white)', 'stroke-width': 1.3, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', opacity: 0.3 });
       [band, haloWide, halo, line, core, shine].forEach((node) => borders.appendChild(node));
@@ -167,8 +167,8 @@ function WaveArtwork() {
     });
 
     SMALL_CONFIG.forEach((line) => {
-      const halo = createSvgElement('path', { fill: 'none', stroke: 'url(#wave-small-gradient)', 'stroke-width': line.width * 5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', opacity: 0.12 });
-      const path = createSvgElement('path', { fill: 'none', stroke: 'url(#wave-small-gradient)', 'stroke-width': line.width, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', opacity: line.opacity });
+      const halo = createSvgElement('path', { fill: 'none', stroke: line.color, 'stroke-width': line.width * 5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', opacity: 0.12 });
+      const path = createSvgElement('path', { fill: 'none', stroke: line.color, 'stroke-width': line.width, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', opacity: line.opacity });
       smalls.appendChild(halo);
       smalls.appendChild(path);
       smallNodes.push({ halo, path });
@@ -262,49 +262,7 @@ function WaveArtwork() {
   return (
     <div className="hero-wave-art" ref={heroRef} aria-hidden="true">
       <svg className="hero-wave-svg" ref={svgRef} preserveAspectRatio="none">
-        <defs>
-          <linearGradient id="wave-fill-four" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="var(--secondary)" stopOpacity="0.42" />
-            <stop offset="1" stopColor="var(--primary)" stopOpacity="0.16" />
-          </linearGradient>
-          <linearGradient id="wave-fill-three" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="var(--primary)" stopOpacity="0.45" />
-            <stop offset="1" stopColor="var(--secondary)" stopOpacity="0.16" />
-          </linearGradient>
-          <linearGradient id="wave-fill-two" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="var(--accent)" stopOpacity="0.58" />
-            <stop offset="1" stopColor="var(--primary)" stopOpacity="0.22" />
-          </linearGradient>
-          <linearGradient id="wave-fill-one" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="var(--text)" stopOpacity="0.9" />
-            <stop offset="1" stopColor="var(--text)" stopOpacity="0.5" />
-          </linearGradient>
-          <linearGradient id="wave-line-one" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="var(--accent)" />
-            <stop offset="0.5" stopColor="var(--primary)" />
-            <stop offset="1" stopColor="var(--secondary)" />
-          </linearGradient>
-          <linearGradient id="wave-line-two" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="var(--secondary)" />
-            <stop offset="0.5" stopColor="var(--accent)" />
-            <stop offset="1" stopColor="var(--primary)" />
-          </linearGradient>
-          <linearGradient id="wave-line-three" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="var(--primary)" />
-            <stop offset="0.5" stopColor="var(--secondary)" />
-            <stop offset="1" stopColor="var(--accent)" />
-          </linearGradient>
-          <linearGradient id="wave-line-four" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="var(--secondary)" />
-            <stop offset="0.5" stopColor="var(--primary)" />
-            <stop offset="1" stopColor="var(--accent)" />
-          </linearGradient>
-          <linearGradient id="wave-small-gradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="var(--accent)" />
-            <stop offset="0.5" stopColor="var(--white)" />
-            <stop offset="1" stopColor="var(--secondary)" />
-          </linearGradient>
-        </defs>
+ </defs>
         <g ref={layersRef} />
         <g ref={bordersRef} />
         <g ref={smallsRef} />
