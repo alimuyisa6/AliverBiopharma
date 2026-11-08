@@ -1,5 +1,3 @@
-/* src/styles/auth.css */
-
 :root {
   --auth-decoration-orb-one-width: 16.25rem;
   --auth-decoration-orb-one-height: 10.625rem;
@@ -28,10 +26,6 @@
   box-shadow: var(--auth-shadow-lg);
 }
 
-/* --------------------------------------------------------------
-   Brand panel
-   -------------------------------------------------------------- */
-
 .auth-brand-panel {
   position: relative;
   display: flex;
@@ -40,41 +34,7 @@
   overflow: hidden;
   padding: var(--auth-brand-padding-y) var(--auth-brand-padding-x);
   color: var(--white);
-  background:
-    radial-gradient(
-      ellipse 430px 235px at -4% 8%,
-      var(--auth-glass-white-52) 0%,
-      var(--auth-glass-white-34) 28%,
-      var(--auth-glass-white-12) 55%,
-      transparent 76%
-    ),
-    radial-gradient(
-      ellipse 360px 205px at 101% 18%,
-      var(--auth-glass-white-44) 0%,
-      var(--auth-glass-white-27) 30%,
-      var(--auth-glass-white-8) 57%,
-      transparent 78%
-    ),
-    radial-gradient(
-      ellipse 520px 250px at 14% 103%,
-      var(--auth-glass-white-43) 0%,
-      var(--auth-glass-white-25) 31%,
-      var(--auth-glass-white-8) 58%,
-      transparent 79%
-    ),
-    radial-gradient(
-      ellipse 420px 220px at 103% 92%,
-      var(--auth-glass-white-38) 0%,
-      var(--auth-glass-white-22) 30%,
-      var(--auth-glass-white-7) 58%,
-      transparent 80%
-    ),
-    radial-gradient(
-      ellipse 300px 170px at 50% 48%,
-      var(--auth-glass-white-10) 0%,
-      transparent 72%
-    ),
-    linear-gradient(160deg, var(--auth-brand) 0%, var(--auth-brand-mid) 42%, var(--auth-brand-strong) 100%);
+  background: var(--brand-navy);
 }
 
 .auth-brand-panel::before,
@@ -198,10 +158,6 @@
   font-size: var(--text-xs);
   line-height: var(--leading-caption);
 }
-
-/* --------------------------------------------------------------
-   Form panel
-   -------------------------------------------------------------- */
 
 .auth-form-panel {
   display: flex;
@@ -622,10 +578,6 @@
   }
 }
 
-/* --------------------------------------------------------------
-   Responsive
-   -------------------------------------------------------------- */
-
 @media (max-width: 920px) {
   .auth-page {
     grid-template-columns: 1fr;
@@ -713,14 +665,10 @@ body.dark-mode {
   --auth-text-faint: var(--grey-500);
 }
 
-
-/* AliverBiopharm sign-in refinement — palette-token driven. */
 .auth-brand-panel {
   isolation: isolate;
   background: var(--text-main);
 }
-
-
 
 .auth-login-block {
   max-width: 28rem;
@@ -800,16 +748,12 @@ body.dark-mode {
   }
 }
 
-
-/* Low-contrast scientific watermark behind the auth form, never over controls. */
 .auth-form-panel {
   position: relative;
   isolation: isolate;
   overflow: hidden;
   background: var(--auth-surface);
 }
-
-
 
 .auth-form-container {
   position: relative;
@@ -840,8 +784,6 @@ body.dark-mode {
   }
 }
 
-
-/* Keep the whole authentication experience inside one shared outer card. */
 @media (max-width: 920px) {
   .auth-page {
     width: min(calc(100% - (var(--space-4) * 2)), var(--auth-shell-max-width));
@@ -878,8 +820,6 @@ body.dark-mode {
   }
 }
 
-
-/* The watermark is decorative only: overlay it inside the form card, out of layout flow. */
 .auth-form-container {
   position: relative;
   isolation: isolate;
@@ -919,9 +859,6 @@ body.dark-mode {
   }
 }
 
-
-
-/* Cloudflare Turnstile must retain its full challenge frame and controls. */
 .auth-page .auth-captcha {
   display: flex;
   align-items: center;
@@ -952,8 +889,6 @@ body.dark-mode {
   }
 }
 
-
-/* Final auth icon cleanup: no decorative SVGs inside auth action buttons. */
 .auth-page .auth-submit > svg,
 .auth-page .auth-passkey > svg,
 .auth-page .auth-form button[type="submit"] > svg {
@@ -966,3 +901,7 @@ body.dark-mode .auth-page :is(h1, h2, h3, h4, h5, h6, p, label, small) { color: 
 body.dark-mode .auth-page :is(.auth-subtitle, .auth-description, .text-muted) { color: var(--dark-text-secondary); }
 body.dark-mode .auth-page :is(input, select, textarea) { background: var(--dark-background); color: var(--dark-text); border-color: var(--dark-border); }
 body.dark-mode .auth-page :is(input, textarea)::placeholder { color: var(--dark-text-secondary); }
+
+body.dark-mode .auth-brand-panel {
+  background: var(--brand-navy-soft);
+}
