@@ -69,6 +69,7 @@
 .resource-card-teal{--resource-accent:var(--primary);--resource-icon-bg:var(--primary-light)}
 .resource-card-grey{--resource-accent:var(--text-muted);--resource-icon-bg:var(--surface-subtle)}
 .resource-card-amber{--resource-accent:var(--brand-mint-ink);--resource-icon-bg:var(--brand-mint-soft)}
+.resource-card-mint{--resource-accent:var(--brand-mint-ink);--resource-icon-bg:var(--brand-mint-soft)}
 .resource-card-emerald{--resource-accent:var(--primary);--resource-icon-bg:var(--primary)}
 .resource-card-violet{--resource-accent:var(--primary);--resource-icon-bg:var(--primary)}
 .resources-empty-state{padding:var(--space-12) var(--space-6);border:1px dashed var(--border-strong);border-radius:var(--radius-card);background:var(--surface-card);text-align:center}
