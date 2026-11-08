@@ -4,7 +4,7 @@ import { useRef, useEffect, useCallback } from 'react';
 const AUTO_SCROLL_SPEED = 0.6;
 const RESUME_DELAY_MS = 2500;
 const MANUAL_STEP = 300;
-const ACCENTS = ['blue', 'teal', 'violet', 'mint', 'emerald'];
+const ACCENTS = ['blue', 'navy', 'mint'];
 
 export function TeamScroll({ members }) {
   const trackRef = useRef(null);
