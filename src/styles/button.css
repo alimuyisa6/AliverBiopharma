@@ -82,15 +82,15 @@
 }
 
 .btn-warm {
-  background: var(--primary-light);
-  border-color: var(--primary-light);
-  color: var(--text);
+  background: var(--accent-light);
+  border-color: var(--accent-border);
+  color: var(--accent-dark);
 }
 
 .btn-warm:hover:not(:disabled) {
-  background: var(--primary-light);
-  border-color: var(--primary-light);
-  color: var(--text);
+  background: var(--accent-light);
+  border-color: var(--accent);
+  color: var(--accent-dark);
 }
 
 .btn-success {
@@ -626,15 +626,15 @@ body.dark-mode .button:disabled {
 }
 
 body:not(.dark-mode) .btn-warm {
-  background-color: var(--primary-light);
-  border-color: var(--primary-border);
-  color: var(--primary-dark);
+  background-color: var(--accent-light);
+  border-color: var(--accent-border);
+  color: var(--accent-dark);
 }
 
 body:not(.dark-mode) .btn-warm:hover:not(:disabled) {
-  background-color: var(--primary-soft);
-  border-color: var(--primary);
-  color: var(--primary-dark);
+  background-color: var(--accent-light);
+  border-color: var(--accent);
+  color: var(--accent-dark);
 }
 
 body:not(.dark-mode) .btn-success {
@@ -836,14 +836,26 @@ body.dark-mode .btn-soft:hover:not(:disabled) {
   color: var(--dark-text);
 }
 
-body.dark-mode :is(.btn-warm, .btn-violet, .btn-pink, .btn-yellow) {
+body.dark-mode :is(.btn-violet, .btn-pink, .btn-yellow) {
   background-color: var(--dark-surface-raised);
   border-color: var(--dark-border);
   color: var(--dark-text);
 }
 
-body.dark-mode :is(.btn-warm, .btn-violet, .btn-pink, .btn-yellow):hover:not(:disabled) {
+body.dark-mode :is(.btn-violet, .btn-pink, .btn-yellow):hover:not(:disabled) {
   background-color: var(--dark-surface);
   border-color: var(--dark-primary);
   color: var(--dark-text);
+}
+
+body.dark-mode .btn-warm {
+  background-color: var(--brand-mint-soft);
+  border-color: var(--brand-mint);
+  color: var(--brand-mint);
+}
+
+body.dark-mode .btn-warm:hover:not(:disabled) {
+  background-color: var(--dark-surface-raised);
+  border-color: var(--brand-mint);
+  color: var(--brand-mint);
 }
