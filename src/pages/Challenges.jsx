@@ -8,7 +8,7 @@ import ThreeDButton from '../components/buttons/ThreeDButton';
 
 const challengeMeta = {
   recall: { label: 'Recall practice', route: '/challenges/recall', icon: 'brain', accent: 'cyan', animation: 'recall' },
-  flashcards: { label: 'Flashcard practice', route: '/challenges/flashcards', icon: 'layers', accent: 'amber', animation: 'flashcards' },
+  flashcards: { label: 'Flashcard practice', route: '/challenges/flashcards', icon: 'layers', accent: 'mint', animation: 'flashcards' },
   quiz: { label: 'Quiz practice', route: '/challenges/quiz', icon: 'clipboard-check', accent: 'blue', animation: 'quiz' }
 };
 
