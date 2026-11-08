@@ -51,7 +51,7 @@
 .page-skeleton__heading::after {
   position: absolute;
   inset: 0;
-  background: linear-gradient(105deg, transparent 20%, color-mix(in srgb, var(--white) 76%, transparent) 48%, transparent 76%);
+  background: var(--skeleton-shimmer-band);
   content: "";
   transform: translateX(-110%);
   animation: page-skeleton-shimmer 1.55s ease-in-out infinite;
@@ -118,7 +118,7 @@ body.dark-mode .page-skeleton__pill::after,
 body.dark-mode .page-skeleton__block::after,
 body.dark-mode .page-skeleton__card::after,
 body.dark-mode .page-skeleton__heading::after {
-  background: linear-gradient(105deg, transparent 20%, var(--glass-white-17) 48%, transparent 76%);
+  background: var(--skeleton-shimmer-band);
 }
 
 .page-skeleton--compact { width: 100%; min-height: 8rem; margin: 0; }
