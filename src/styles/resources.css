@@ -780,121 +780,231 @@ body.dark-mode .resources-curriculum-entry {
 }
 
 
-/* Resource hub: concise hierarchy, compact illustrations and white action cards. */
-.resources-page { padding-block: var(--space-4) var(--space-8); }
-.resources-intro { gap: var(--space-4); padding: clamp(1rem, 2.5vw, 1.5rem); margin-bottom: var(--space-4); }
-.resources-intro h1 { margin-bottom: var(--space-2); font-size: var(--text-page-title); line-height: var(--leading-page-title); }
-.resources-intro p { max-width: 58ch; margin: 0; font-size: var(--text-sm); line-height: var(--leading-relaxed); }
-.resources-curriculum-entry { margin-block: var(--space-3) var(--space-4); padding: var(--space-4); background: var(--white); }
-.resources-curriculum-entry-copy p { max-width: 58ch; margin-bottom: 0; font-size: var(--text-sm); line-height: var(--leading-relaxed); }
-.resources-toolbar { margin-block: var(--space-4) var(--space-3); }
-.resources-section-head { margin-bottom: var(--space-3); }
-.resources-section-kicker { letter-spacing: var(--tracking-wide); }
-.resources-grid { gap: var(--space-3); }
-.resource-card { gap: var(--space-2); padding: var(--space-3); border-radius: var(--radius-md); background: var(--white); }
-.resource-card-artwork { min-height: 4rem; height: 4rem; margin-bottom: var(--space-2); }
-.resource-card-title { margin-bottom: var(--space-1); font-size: var(--text-lg); line-height: var(--leading-tight); }
-.resource-card-desc { margin: 0; font-size: var(--text-sm); line-height: var(--leading-relaxed); }
-.resource-card-footer { margin-top: var(--space-3); padding-top: var(--space-3); }
-.resource-card-footer .btn { min-height: 2.5rem; }
-@media (max-width: 900px) { .resources-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 480px) { .resources-grid { grid-template-columns: minmax(0, 1fr); } .resource-card { padding: var(--space-4); } }
-body.dark-mode .resources-curriculum-entry { background: var(--night-800); }
+.resources-page {
+  width: 100%;
+  max-width: none;
+  padding-block: var(--space-4) var(--space-8);
+  background: var(--brand-navy-soft);
+}
 
+.resources-hero {
+  background: var(--brand-navy);
+}
 
-/* Alison-inspired resource system: solid surfaces, repeatable icon containers. */
-.resources-hero { background: var(--primary-dark); }
-.resources-page { background: var(--soft); }
-.resources-intro { background: var(--primary-light); }
-.resources-curriculum-entry { background: var(--white); }
-.resource-card { background: var(--white); border: 1px solid var(--primary-light); box-shadow: none; }
-.resource-card-artwork { display: grid; place-items: center; width: 3.25rem; min-width: 3.25rem; height: 3.25rem; min-height: 3.25rem; border-radius: 50%; background: var(--soft); color: var(--primary); }
-.resource-card-artwork svg, .resource-card-artwork i { width: 1.5rem; height: 1.5rem; font-size: 1.5rem; color: var(--primary); }
-.resource-card-title { color: var(--heading-color); }
-.resource-card-footer { border-top: 1px solid var(--border-subtle); }
-body.dark-mode .resources-page { background: var(--night-900); }
-body.dark-mode .resources-intro { background: var(--night-800); }
-body.dark-mode .resource-card { background: var(--night-800); border-color: var(--night-600); }
-body.dark-mode .resource-card-artwork { background: var(--night-700); color: var(--primary); }
+.resources-hero::before,
+.resources-hero::after {
+  display: none;
+}
 
+.resources-intro {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+  background: var(--brand-mint-soft);
+}
 
-/* Final flat-surface overrides: no gradients on resource pages. */
-.resources-hero { background: var(--primary-dark); }
-.resources-page { background: var(--soft); }
-.resources-intro { background: var(--primary-light); }
-body.dark-mode .resources-page { background: var(--night-900); }
-body.dark-mode .resources-intro { background: var(--night-800); }
+.resources-intro h1 {
+  margin: 0 0 var(--space-2);
+  color: var(--text-main);
+  font-size: var(--text-page-title);
+  line-height: var(--leading-page-title);
+}
 
+.resources-intro p {
+  max-width: 58ch;
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+}
 
-/* Corrected palette: neutral page canvas; brand color stays on focused accents. */
-.resources-page { background: var(--bg-page); }
-.resources-intro { background: var(--surface-subtle); }
-.resource-card-artwork { background: var(--surface-subtle); }
-body.dark-mode .resources-page { background: var(--bg-page); }
-body.dark-mode .resources-intro { background: var(--bg-card); }
+.resources-toolbar {
+  align-items: center;
+  gap: var(--space-3);
+  margin-block: var(--space-4) var(--space-3);
+}
 
+.resources-filter-chips {
+  order: 1;
+  flex: 1 1 auto;
+}
 
-/* Resource cards use the shared surface tokens. */
-.resources-grid .resource-card,
-.resources-grid .resource-card[class*="resource-card-"] {
-  background: var(--surface-card, var(--white));
-  border: 1px solid var(--border-subtle);
+.resources-search {
+  order: 2;
+  flex: 0 1 300px;
+  max-width: 300px;
+}
+
+.resources-section-head {
+  margin-bottom: var(--space-3);
+}
+
+.resources-grid {
+  gap: var(--space-3);
+}
+
+.resources-curriculum-entry {
+  margin-block: var(--space-3) var(--space-4);
+  padding: var(--space-4);
+  background: var(--surface-card);
+}
+
+.resources-curriculum-entry-copy p {
+  max-width: 58ch;
+  margin-bottom: 0;
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+}
+
+.resource-card {
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--surface-card);
   box-shadow: none;
 }
-.resources-grid .resource-card-artwork {
+
+.resource-card-artwork {
   display: grid;
-  place-items: center;
   width: 3rem;
   min-width: 3rem;
   height: 3rem;
   min-height: 3rem;
   margin-bottom: var(--space-3);
-  border-radius: 0.75rem;
+  place-items: center;
+  border-radius: .75rem;
   background: var(--surface-subtle);
   color: var(--primary);
 }
-.resources-grid .resource-card-artwork .resource-art {
+
+.resource-card-artwork svg,
+.resource-card-artwork i {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--primary);
+  font-size: 1.5rem;
+}
+
+.resource-card-artwork .resource-art {
   display: block;
   width: 1.5rem;
   height: 1.5rem;
   color: inherit;
   stroke: currentColor;
 }
-body.dark-mode .resources-grid .resource-card,
-body.dark-mode .resources-grid .resource-card[class*="resource-card-"] {
-  background: var(--night-800);
+
+.resource-card-title {
+  margin-bottom: var(--space-1);
+  color: var(--text-main);
+  font-size: var(--text-lg);
+  line-height: var(--leading-tight);
 }
 
-/* Solid palette section treatment: faint brand color, full-width band, white cards. */
-.resources-page { width: 100%; max-width: none; background: var(--soft); }
-.resources-hero { background: var(--primary); }
-.resources-hero::before, .resources-hero::after { display: none; }
-.resources-intro { background: var(--primary-light); }
-.resource-card, .resources-curriculum-entry, .resources-empty-state { background: var(--white); }
-body.dark-mode .resources-page { background: var(--night-900); }
-body.dark-mode .resources-intro { background: var(--night-800); }
+.resource-card-desc {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+}
 
+.resource-card-footer {
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border-default);
+}
 
-/* Aliver palette: solid, faint full-width section surfaces; cards stay white. */
-.resources-page { width: 100%; background: var(--soft); }
-.resources-hero { background: var(--primary-dark); }
-.resources-hero::before, .resources-hero::after { display: none; }
-.resources-intro { background: var(--primary-light); }
-.resource-card, .resources-curriculum-entry, .resources-empty-state { background: var(--white); }
-.resource-card { box-shadow: none; }
-.resource-card-blue { --resource-icon-bg: var(--primary-light); }
-.resource-card-teal, .resource-card-emerald { --resource-icon-bg: var(--primary); }
-.resource-card-violet { --resource-icon-bg: var(--primary-light); }
+.resource-card-footer .btn {
+  min-height: 2.5rem;
+}
 
-body.dark-mode .resources-page { background: var(--dark-background); color: var(--dark-text); }
-body.dark-mode .resources-intro { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
-body.dark-mode .resource-card,
+.resource-card-blue {
+  --resource-icon-bg: var(--primary-light);
+}
+
+.resource-card-teal,
+.resource-card-emerald {
+  --resource-icon-bg: var(--primary-light);
+}
+
+.resource-card-violet {
+  --resource-icon-bg: var(--primary-light);
+}
+
+.resources-empty-state {
+  background: var(--surface-card);
+}
+
+@media (max-width: 900px) {
+  .resources-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .resources-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .resources-filter-chips,
+  .resources-search {
+    order: initial;
+    width: 100%;
+    max-width: none;
+    flex-basis: 100%;
+  }
+
+  .resources-intro {
+    align-items: start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .resources-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .resource-card {
+    padding: var(--space-4);
+  }
+}
+
+body.dark-mode .resources-page {
+  background: var(--dark-background);
+  color: var(--dark-text);
+}
+
+body.dark-mode .resources-intro,
 body.dark-mode .resources-curriculum-entry,
-body.dark-mode .resources-empty-state { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
-body.dark-mode .resources-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small) { color: var(--dark-text); }
-body.dark-mode .resources-page :is(.text-muted, .section-description, .resource-description) { color: var(--dark-text-secondary); }
-body.dark-mode .resources-search input { background: var(--dark-surface-raised); color: var(--dark-text); border-color: var(--dark-border); }
-body.dark-mode .resources-search input::placeholder { color: var(--dark-text-secondary); }
+body.dark-mode .resource-card,
+body.dark-mode .resources-empty-state {
+  background: var(--dark-surface);
+  color: var(--dark-text);
+  border-color: var(--dark-border);
+}
+
+body.dark-mode .resources-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small) {
+  color: var(--dark-text);
+}
+
+body.dark-mode .resources-page :is(.text-muted, .section-description, .resource-description, .resource-card-desc) {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .resources-search input {
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+  border-color: var(--dark-border);
+}
+
+body.dark-mode .resources-search input::placeholder {
+  color: var(--dark-text-secondary);
+}
 
 
 .resources-page .resource-card {
