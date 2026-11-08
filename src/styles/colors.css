@@ -16,6 +16,7 @@
   --accent-hover: #1d5142;
   --accent-border: #b8e8d8;
   --brand-navy: #123047;
+  --brand-navy-soft: #eaf0f4;
   --brand-mint: #b8e8d8;
   --brand-mint-soft: #eaf8f3;
   --brand-mint-ink: var(--accent);
@@ -263,6 +264,7 @@ body.dark-mode {
   --dark-primary: #56d2ed;
   --dark-accent: #b8e8d8;
   --brand-navy: #dceaf1;
+  --brand-navy-soft: #263b49;
   --brand-mint: #b8e8d8;
   --brand-mint-soft: #203b34;
   --brand-mint-ink: var(--accent);
