@@ -1,6 +1,3 @@
- /* src/pages/PastPapers.css */
-
-/* Past-paper component dimensions, aligned to the shared design tokens. */
 :root {
   --pastpapers-hero-content-max: 75rem;
   --pastpapers-card-min-width: 11rem;
@@ -74,8 +71,6 @@
   color: var(--text-dim);
   margin-top: var(--space-1);
 }
-
-/* Past Papers uses the shared .breadcrumb component. */
 
 .pp-meta {
   display: flex;
@@ -722,8 +717,6 @@
   margin-top: var(--space-1);
 }
 
-
-
 .pp-page {
   width: min(var(--page-shell-max-width), calc(100% - (var(--page-gutter-x) * 2)));
   max-width: var(--page-shell-max-width);
@@ -839,9 +832,6 @@
   }
 }
 
-
-/* Folded corner ribbon: the wrapper clips the diagonal band into the card corner,
-   while the card itself stays overflow-visible so the ribbon sits outside its edge. */
 .pp-card-premium { overflow: visible; }
 .pp-premium-ribbon {
   position: absolute;
@@ -892,7 +882,6 @@
 @media (prefers-reduced-motion: reduce) {
   .pp-card { transition: none; }
 }
-
 
 .pp-page {
   border: 1px solid var(--primary-light);
@@ -1087,55 +1076,98 @@ body.dark-mode .pp-filters {
   }
 }
 
+.pp-page,
+.pastpapers-page,
+.past-papers-page {
+  width: 100%;
+  max-width: none;
+  background: var(--primary-light);
+}
 
-/* Past papers: concise intro and compact white paper cards. */
-.pp-page { background: var(--soft); }
-.pp-hero { margin-bottom: var(--space-4); }
-.pp-description { max-width: 58ch; font-size: var(--text-sm); line-height: var(--leading-relaxed); }
-.pp-grid { gap: var(--space-3); }
-.pp-card { border-radius: var(--radius-md); background: var(--white); box-shadow: 0 0.25rem 0.75rem var(--primary-ring); }
-.pp-card-body { padding: var(--space-4); }
-.pp-card-title { line-height: var(--leading-tight); }
-body.dark-mode .pp-page { background: var(--dark-background); }
+.pp-hero {
+  margin-bottom: var(--space-4);
+  background: var(--primary-light);
+}
 
+.pp-description {
+  max-width: 58ch;
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+}
 
-/* Past papers use a solid page surface and consistent white paper cards. */
-.pp-page { background: var(--soft); }
-.pp-card { background: var(--white); box-shadow: none; }
-.pp-search-icon { background: transparent; color: var(--text-muted); }
-body.dark-mode .pp-page { background: var(--night-900); }
+.pp-grid {
+  gap: var(--space-3);
+}
 
+.pp-card {
+  border-radius: var(--radius-md);
+  background: var(--white);
+  box-shadow: none;
+}
 
-/* Flat page surface; keep paper cards distinct and white. */
-.pp-page { background: var(--soft); }
-body.dark-mode .pp-page { background: var(--night-900); }
+.pp-card-body {
+  padding: var(--space-4);
+}
 
+.pp-card-title {
+  line-height: var(--leading-tight);
+}
 
-/* Keep the page canvas neutral rather than tinting the entire resource page. */
-.pp-page { background: var(--bg-page); }
-body.dark-mode .pp-page { background: var(--bg-page); }
+.pp-search-icon {
+  background: transparent;
+  color: var(--text-muted);
+}
 
-/* Solid palette section treatment: faint amber band and white content cards. */
-.pastpapers-page, .past-papers-page { width: 100%; max-width: none; background: var(--primary-light); }
-.pp-card, .pp-paper-card, .pp-filter-panel, .pp-toolbar, .pp-empty-state { background: var(--white); }
-body.dark-mode .pastpapers-page, body.dark-mode .past-papers-page { background: var(--night-900); }
-body.dark-mode .pp-card, body.dark-mode .pp-paper-card, body.dark-mode .pp-filter-panel, body.dark-mode .pp-toolbar, body.dark-mode .pp-empty-state { background: var(--night-800); }
+.pp-page-header,
+.pp-header {
+  background: var(--primary-light);
+}
 
-
-/* Aliver palette: use a single pale brand tone per section and white cards. */
-.pastpapers-page { background: var(--primary-light); }
-.pp-page-header, .pp-header, .pp-hero { background: var(--primary-light); }
-.pp-card, .pp-panel, .pp-filter-panel, .pp-results-panel { background: var(--white); }
+.pp-panel,
+.pp-filter-panel,
+.pp-results-panel,
+.pp-toolbar,
+.pp-empty-state,
+.pp-paper-card {
+  background: var(--white);
+}
 
 body.dark-mode .pp-page,
-body.dark-mode .past-papers-page { background: var(--dark-background); color: var(--dark-text); }
-body.dark-mode .pp-page :is(.pp-page-header, .pp-header, .pp-hero) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
-body.dark-mode .pp-page :is(.pp-card, .pp-panel, .pp-filter-panel, .pp-results-panel) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
-body.dark-mode .pp-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small) { color: var(--dark-text); }
-body.dark-mode .pp-page :is(.text-muted, .pp-description, .section-description) { color: var(--dark-text-secondary); }
-body.dark-mode .pp-page :is(input, select, textarea) { background: var(--dark-surface-raised); color: var(--dark-text); border-color: var(--dark-border); }
-body.dark-mode .pp-page :is(input, textarea)::placeholder { color: var(--dark-text-secondary); }
+body.dark-mode .pastpapers-page,
+body.dark-mode .past-papers-page {
+  background: var(--dark-background);
+  color: var(--dark-text);
+}
 
+body.dark-mode .pp-page :is(.pp-page-header, .pp-header, .pp-hero) {
+  background: var(--dark-surface);
+  color: var(--dark-text);
+  border-color: var(--dark-border);
+}
+
+body.dark-mode .pp-page :is(.pp-card, .pp-paper-card, .pp-panel, .pp-filter-panel, .pp-results-panel, .pp-toolbar, .pp-empty-state) {
+  background: var(--dark-surface);
+  color: var(--dark-text);
+  border-color: var(--dark-border);
+}
+
+body.dark-mode .pp-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small) {
+  color: var(--dark-text);
+}
+
+body.dark-mode .pp-page :is(.text-muted, .pp-description, .section-description) {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .pp-page :is(input, select, textarea) {
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+  border-color: var(--dark-border);
+}
+
+body.dark-mode .pp-page :is(input, textarea)::placeholder {
+  color: var(--dark-text-secondary);
+}
 
 .pp-card {
   border-radius: var(--radius-card, var(--radius-md));
@@ -1188,7 +1220,6 @@ body.dark-mode .pp-page :is(input, textarea)::placeholder { color: var(--dark-te
   }
 }
 
-
 .pp-card-artwork {
   width: calc(100% - 1.2rem);
   margin: .6rem .6rem 0;
@@ -1200,7 +1231,6 @@ body.dark-mode .pp-page :is(input, textarea)::placeholder { color: var(--dark-te
   bottom: auto;
   left: .7rem;
 }
-
 
 .pp-card { cursor: default; }
 .pp-card-open { margin-right: auto; }
