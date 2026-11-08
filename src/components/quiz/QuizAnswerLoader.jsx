@@ -1,5 +1,3 @@
-import { useId } from 'react';
-
 const RING = [
   [50, 14], [68, 18.82], [81.18, 32], [86, 50], [81.18, 68], [68, 81.18],
   [50, 86], [32, 81.18], [18.82, 68], [14, 50], [18.82, 32], [32, 18.82],
@@ -42,9 +40,6 @@ const DEFAULT_LABELS = {
  * labels: accessible names supplied by the caller/i18n when available.
  */
 export default function QuizAnswerLoader({ status = 'checking', size = 100, labels }) {
-  const uid = useId().replace(/:/g, '');
-  const bubbleId = uid + '-bub';
-  const glowId = uid + '-glow';
   const checking = status === 'checking';
   const points = SHAPE_BY_STATUS[status] ?? RING;
   const scale = checking ? 1 : RESULT_SCALE;
@@ -60,20 +55,6 @@ export default function QuizAnswerLoader({ status = 'checking', size = 100, labe
       aria-label={labels?.[status] || DEFAULT_LABELS[status] || DEFAULT_LABELS.checking}
       focusable="false"
     >
-      <defs>
-        <radialGradient id={bubbleId} cx="40%" cy="35%" r="70%">
-          <stop offset="0%" style={{ stopColor: 'var(--accent, currentColor)' }} />
-          <stop offset="100%" style={{ stopColor: 'var(--primary, currentColor)' }} />
-        </radialGradient>
-        <filter id={glowId} x="-60%" y="-60%" width="220%" height="220%">
-          <feGaussianBlur stdDeviation="1.4" result="b" />
-          <feMerge>
-            <feMergeNode in="b" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-      </defs>
-
       {points.map(([x, y], i) => (
         <g key={i} transform={"translate(" + x + " " + y + ")"}>
           {!checking && (
@@ -103,9 +84,6 @@ export default function QuizAnswerLoader({ status = 'checking', size = 100, labe
             )}
             <circle r="7" fill="currentColor" fillOpacity="0.06" stroke="currentColor" strokeOpacity="0.25" strokeWidth="1" />
             <circle r="4.6" fill="currentColor" fillOpacity="0.14" />
-            <circle r="4.6" fill={"url(#" + bubbleId + ")"} opacity="0" filter={"url(#" + glowId + ")"}>
-              {checking && <animate attributeName="opacity" values="0;1;0.35;0;0" keyTimes={KEY_TIMES} dur="1.2s" begin={BEGINS[i]} repeatCount="indefinite" />}
-            </circle>
             <circle r="7.5" style={{ fill: resultColor, opacity: checking ? 0 : 1, transition: 'opacity 180ms linear ' + (i * 8) + 'ms' }} />
             {checking && (
               <animateTransform attributeName="transform" type="scale" values="1;1.4;0.95;1;1" keyTimes={KEY_TIMES} calcMode="spline" keySplines="0.2 0.7 0.3 1;0.4 0 0.6 1;0.4 0 0.6 1;0 0 1 1" dur="1.2s" begin={BEGINS[i]} repeatCount="indefinite" />
