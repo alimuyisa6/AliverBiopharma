@@ -4,8 +4,7 @@
   --surface-raised: #FFFFFF;
   --surface-muted: #F5F5F3;
   --surface-subtle: #F8F8F6;
-  --surface-tinted: #FFF4E5;
-  --surface-sage: #EEF5EA;
+  --surface-tinted: var(--brand-mint-soft);
   --surface-strong: #ECEDE9;
   --bg-page: var(--surface-page);
   --bg-card: var(--surface-card);
@@ -23,8 +22,7 @@ body.dark-mode {
   --surface-raised: #33333A;
   --surface-muted: #222228;
   --surface-subtle: #29282E;
-  --surface-tinted: #3B2B1B;
-  --surface-sage: #263326;
+  --surface-tinted: var(--brand-mint-soft);
   --surface-strong: #33333A;
   --bg-page: var(--surface-page);
   --bg-card: var(--surface-card);
@@ -50,8 +48,12 @@ html, body, #root, #root .app-layout { background-color: var(--surface-page); }
   background-color: var(--surface-tinted);
   color: var(--text-main);
 }
-#root .app-layout :where(.section--sage,.success-panel,.learning-complete-panel) {
-  background-color: var(--surface-sage);
+#root .app-layout :where(.section--sage) {
+  background-color: var(--brand-mint-soft);
+  color: var(--text-main);
+}
+#root .app-layout :where(.success-panel,.learning-complete-panel) {
+  background-color: var(--success-background);
   color: var(--text-main);
 }
 #root .app-layout :where(.resource-card,.notes-card,.blog-post-card,.team-card,.contributor-card,.flashcard-deck-card,.dashboard-curriculum-card,.profile-category-card,.pp-card,.glossary-route-card,.quiz-topic-cards > .card,.quiz-blocks-grid > .card,.recall-intro-card,.recall-question-card,.recall-feedback-card,.recall-report-card,.pdf-card,.tutor-card,.faq-item,.about-block,.contact-form,.donate-card,.donate-widget,.donate-momo-card,.note-learning-card) {
