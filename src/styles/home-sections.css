@@ -824,10 +824,10 @@ body.dark-mode .home-faq-item {
 
 
 .home-page .stats-grid-section {
-  width: min(calc(100% - (var(--page-gutter-x) * 2)), var(--max-width));
-  margin-inline: auto;
-  padding-block: var(--section-space-y);
-  background: var(--grey-50);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: transparent;
 }
 
 .home-page .stats-impact-heading .section-head-left {
