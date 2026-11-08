@@ -16,7 +16,7 @@ import Card from '../components/Card/Card';
 import Textarea from '../components/Textarea/Textarea';
 import { useToast } from '../components/Toast/Toast';
 
-const CARD_COLORS = ['var(--primary)', 'var(--secondary)', 'var(--accent)'];
+const CARD_COLORS = ['var(--primary)', 'var(--brand-navy)', 'var(--brand-mint-ink)'];
 
 export default function TutorApply() {
   const { user } = useAuth();
@@ -232,7 +232,7 @@ export default function TutorApply() {
             <div className="grid grid-cols-3">
               {levels.map((level, index) => (
                 <Card key={level.key}>
-                  <div className="card-image-placeholder" style={{ background: `${CARD_COLORS[index % 3]}15` }}>
+                  <div className="card-image-placeholder" style={{ background: 'var(--primary-light)' }}>
                     <Icon name={level.icon === 'dna' ? 'microscope' : level.icon || 'graduation-cap'} style={{ fontSize: '2rem', color: CARD_COLORS[index % 3] }} />
                   </div>
                   <div className="card-body" style={{ textAlign: 'center' }}>
@@ -259,7 +259,7 @@ export default function TutorApply() {
 
                 return (
                   <Card key={name}>
-                    <div className="card-image-placeholder" style={{ background: `${CARD_COLORS[index % 3]}15` }}>
+                    <div className="card-image-placeholder" style={{ background: 'var(--primary-light)' }}>
                       <Icon name={icon === 'dna' ? 'microscope' : icon || 'book-open'} style={{ fontSize: '2rem', color: CARD_COLORS[index % 3] }} />
                     </div>
                     <div className="card-body" style={{ textAlign: 'center' }}>
