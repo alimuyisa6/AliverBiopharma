@@ -29,7 +29,7 @@
 
 .hero-aero-shade {
   z-index: 1;
-  background: linear-gradient(90deg, color-mix(in srgb, var(--text) 82%, transparent) 0%, color-mix(in srgb, var(--text) 55%, transparent) 42%, transparent 78%);
+  background: color-mix(in srgb, var(--brand-navy) 68%, transparent);
 }
 
 .hero-aero-content {
@@ -214,7 +214,7 @@
   }
 
   .hero-aero-shade {
-    background: linear-gradient(90deg, color-mix(in srgb, var(--text) 86%, transparent) 0%, color-mix(in srgb, var(--text) 62%, transparent) 58%, color-mix(in srgb, var(--text) 22%, transparent) 100%);
+    background: color-mix(in srgb, var(--brand-navy) 76%, transparent);
   }
 
   .hero-aero-title {
