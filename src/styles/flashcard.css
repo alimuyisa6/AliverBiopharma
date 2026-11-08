@@ -489,7 +489,7 @@
 
 .fcp-trophy {
   font-size: var(--text-3xl);
-  color: var(--warm);
+  color: var(--accent);
   margin-bottom: var(--space-4);
   animation: none;
 }
