@@ -112,7 +112,7 @@
 }
 
 .why-choose-card-amber {
-  --why-color: var(--accent);
+  --why-color: var(--brand-mint-ink);
   --why-line: color-mix(in srgb, var(--why-color) 18%, transparent);
   --why-soft: color-mix(in srgb, var(--why-color) 6%, transparent);
 }
