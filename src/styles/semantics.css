@@ -202,7 +202,6 @@
   --auth-text: var(--text);
   --auth-text-muted: var(--grey-600);
   --auth-text-faint: var(--grey-500);
-  --auth-brand: var(--primary);
   --auth-brand-hover: var(--secondary);
   --auth-brand-soft: var(--primary-light);
   --auth-brand-ring: var(--primary-ring);
@@ -223,8 +222,6 @@
   --auth-radius: 14px;
   --auth-radius-lg: 20px;
   --auth-radius-xl: 28px;
-  --auth-brand-mid: var(--primary);
-  --auth-brand-strong: var(--primary);
 }
 
 body.dark-mode {
@@ -321,7 +318,6 @@ body.dark-mode {
   --auth-text: var(--dark-text);
   --auth-text-muted: var(--dark-text-secondary);
   --auth-text-faint: var(--dark-text-secondary);
-  --auth-brand: var(--dark-primary);
   --auth-brand-hover: var(--primary-hover);
   --auth-brand-soft: var(--primary-light);
   --auth-brand-ring: var(--primary-ring);
