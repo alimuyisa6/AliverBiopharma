@@ -32,7 +32,7 @@ export default function QuizWeakAreas({ user, level, class_name }) {
 
           <div className="quiz-weakareas-tags">
             {weakAreas.map((area, idx) => (
-              <span key={idx} className="badge badge-warm font-comfortaa">
+              <span key={idx} className="badge badge-accent font-comfortaa">
                 {area.topic_name}
               </span>
             ))}
