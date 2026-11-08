@@ -13,7 +13,7 @@ export default function RecallProgressTab({ xpProgress, accuracy, rankTitle, ach
       <div className="grid grid-cols-3 recall-cards-grid">
         <Card>
           <div className="recall-stat-card-inner">
-            <Icon name="trophy" className="recall-stat-card-icon is-warm" />
+            <Icon name="trophy" className="recall-stat-card-icon is-accent" />
             <h3 className="recall-stat-card-heading font-poppins">XP Progress</h3>
             <p className="recall-stat-card-sub font-source-sans">
               Level {xpProgress.level} · {rankTitle}
