@@ -253,7 +253,7 @@
 .team-card-blue .team-avatar { background: var(--primary-light); color: var(--primary); border-color: var(--primary); }
 .team-card-teal .team-avatar { background: var(--secondary-light); color: var(--secondary); border-color: var(--secondary); }
 .team-card-violet .team-avatar { background: var(--accent-light); color: var(--accent); border-color: var(--accent); }
-.team-card-amber .team-avatar { background: var(--warm-light); color: var(--warm); border-color: var(--warm); }
+.team-card-amber .team-avatar { background: var(--brand-mint-soft); color: var(--brand-mint-ink); border-color: var(--brand-mint); }
 .team-card-emerald .team-avatar { background: var(--success-light); color: var(--success); border-color: var(--success); }
 
 .team-avatar img {
@@ -288,7 +288,7 @@
 .team-card-blue .team-title { background: var(--primary-light); color: var(--primary); }
 .team-card-teal .team-title { background: var(--secondary-light); color: var(--secondary); }
 .team-card-violet .team-title { background: var(--accent-light); color: var(--accent); }
-.team-card-amber .team-title { background: var(--warm-light); color: var(--warm); }
+.team-card-amber .team-title { background: var(--brand-mint-soft); color: var(--brand-mint-ink); }
 .team-card-emerald .team-title { background: var(--success-light); color: var(--success); }
 
 .team-card p {
