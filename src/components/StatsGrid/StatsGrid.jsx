@@ -1,4 +1,3 @@
-/* components/StatsGrid/StatsGrid.jsx */
 import { useState, useEffect, useRef } from 'react';
 import Icon from '../Icon/Icon';
 
