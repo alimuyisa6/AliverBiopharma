@@ -28,58 +28,58 @@ body.dark-mode {
   --heading-bubble-muted-ink: #e3f0f8;
 }
 
-#root :is(h1, .page-title, .page-heading, .about-title, .legal-title, .quiz-hero-title, .notes-page-title, .recall-page-title, .quiz-page-title, .flashcard-title, .curriculum-node-title)::first-letter {
+:where(#root, body) :is(h1, .page-title, .page-heading, .page-header-title, .about-title, .legal-title, .quiz-hero-title, .notes-page-title, .recall-page-title, .quiz-page-title, .flashcard-title, .curriculum-node-title, .pdf-library-title, .resources-title, .blog-page-title, .classroom-title, .tutor-page-title, .contact-title, .community-title, [role="heading"][aria-level="1"])::first-letter {
   padding: .09em .25em .12em;
   border: 1px solid var(--heading-bubble-primary-border);
   border-radius: 58% 42% 66% 34% / 43% 58% 42% 57%;
   background: var(--heading-bubble-primary-bg);
   color: var(--heading-bubble-primary-ink);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
-#root :is(h2, .section-title, .glossary-title, .curriculum-node-section-title)::first-letter {
+:where(#root, body) :is(h2, .section-title, .section-heading, .page-section-title, .glossary-title, .curriculum-node-section-title, .subsection-title, [role="heading"][aria-level="2"])::first-letter {
   padding: .07em .23em .1em;
   border: 1px solid var(--heading-bubble-secondary-border);
   border-radius: 38% 62% 44% 56% / 58% 38% 62% 42%;
   background: var(--heading-bubble-secondary-bg);
   color: var(--heading-bubble-secondary-ink);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
-#root h3::first-letter,
-#root [role="heading"][aria-level="3"]::first-letter {
+:where(#root, body) :is(h3, .card-title, .feature-title, .panel-title, .widget-title, .lesson-title, .topic-title, [role="heading"][aria-level="3"])::first-letter {
   padding: .055em .2em .085em;
   border: 1px solid var(--heading-bubble-tertiary-border);
   border-radius: 52% 48% 35% 65% / 42% 61% 39% 58%;
   background: var(--heading-bubble-tertiary-bg);
   color: var(--heading-bubble-tertiary-ink);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
-#root h4::first-letter,
-#root [role="heading"][aria-level="4"]::first-letter {
+:where(#root, body) :is(h4, .card-subtitle, .item-title, .list-title, [role="heading"][aria-level="4"])::first-letter {
   padding: .045em .18em .07em;
   border: 1px solid var(--heading-bubble-muted-border);
   border-radius: 32% 68% 57% 43% / 61% 39% 61% 39%;
   background: var(--heading-bubble-muted-bg);
   color: var(--heading-bubble-muted-ink);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
-#root h5::first-letter,
-#root h6::first-letter,
-#root [role="heading"][aria-level="5"]::first-letter,
-#root [role="heading"][aria-level="6"]::first-letter {
+:where(#root, body) :is(h5, h6, [role="heading"][aria-level="5"], [role="heading"][aria-level="6"])::first-letter {
   padding: .035em .15em .055em;
   border: 1px solid var(--heading-bubble-secondary-border);
   border-radius: 64% 36% 48% 52% / 47% 58% 42% 53%;
   background: var(--heading-bubble-secondary-bg);
   color: var(--heading-bubble-secondary-ink);
-}
-
-#root :is(h1, h2, h3, h4, h5, h6, [role="heading"])::first-letter {
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
 
 @media (max-width: 640px) {
-  #root :is(h1, h2, h3, h4, h5, h6, [role="heading"])::first-letter {
+  :where(#root, body) :is(h1, h2, h3, h4, h5, h6, [role="heading"])::first-letter {
     padding-inline: .18em;
   }
 }
