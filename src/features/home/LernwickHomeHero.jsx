@@ -4,6 +4,8 @@ import './lernwick-home-hero.css';
 
 const images = {
   portrait: 'https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg?auto=compress&cs=tinysrgb&w=900&h=1000&fit=crop',
+  sketch: 'https://images.pexels.com/photos/8199759/pexels-photo-8199759.jpeg?auto=compress&cs=tinysrgb&w=500&h=560&fit=crop',
+  notes: 'https://images.pexels.com/photos/7972949/pexels-photo-7972949.jpeg?auto=compress&cs=tinysrgb&w=500&h=360&fit=crop',
   study: 'https://images.pexels.com/photos/16420473/pexels-photo-16420473.jpeg?auto=compress&cs=tinysrgb&w=500&h=360&fit=crop',
 };
 
@@ -36,6 +38,7 @@ export default function LernwickHomeHero({ user, activeLevelName, activeGroupNam
         </div>
       </div>
       <div className="container hero__row">
+        <div className="collage" aria-label="Students learning and studying"><img src={images.sketch} alt="Student working on a learning activity" width="500" height="560" loading="lazy" /><img src={images.notes} alt="Study notes and learning materials" width="500" height="360" loading="lazy" /><img src={images.study} alt="Student studying" width="500" height="360" loading="lazy" /></div>
         <ul className="hero__highlights" aria-label="Learning platform features">
           <li><span><Icon name="book-open" /></span><strong>Curriculum-led learning</strong><small>Resources organised around your programme.</small></li>
           <li><span><Icon name="brain" /></span><strong>Active practice</strong><small>Build recall and test your understanding.</small></li>
