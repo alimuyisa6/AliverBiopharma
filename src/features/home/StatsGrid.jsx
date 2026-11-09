@@ -89,12 +89,66 @@ function AnimatedNumber({ value }) {
   return <span ref={numberRef} className="stats-impact-value">{formatNumber(displayValue)}</span>;
 }
 
-function MetricCard({ metric, value }) {
+function MetricValue({ value, label, detail }) {
   return (
-    <li className="stats-impact-item">
+    <div className="stats-impact-support-item">
       <AnimatedNumber value={value} />
-      <span className="stats-impact-label">{metric.label}</span>
-    </li>
+      <span className="stats-impact-label">{label}</span>
+      {detail && <small>{detail}</small>}
+    </div>
+  );
+}
+
+function LibraryImpact({ stats }) {
+  return (
+    <section className="stats-impact-feature" aria-labelledby="stats-library-title">
+      <div className="stats-impact-feature-copy">
+        <span className="stats-impact-eyebrow">Learning resources</span>
+        <h3 id="stats-library-title">Knowledge that keeps growing.</h3>
+        <p>Explore a connected library of learning materials designed to support every stage of your programme.</p>
+        <div className="stats-impact-primary">
+          <AnimatedNumber value={stats.resources_count} />
+          <span>learning resources</span>
+        </div>
+      </div>
+      <div className="stats-impact-support-grid">
+        <MetricValue value={stats.downloadable_count} label="Available to download" />
+        <MetricValue value={stats.downloads_count} label="Resource downloads" />
+        <MetricValue value={stats.recall_questions} label="Recall questions" />
+        <MetricValue value={stats.recall_users} label="Learners using Recall" />
+      </div>
+    </section>
+  );
+}
+
+function LearningActivity({ stats }) {
+  return (
+    <section className="stats-impact-activity" aria-labelledby="stats-activity-title">
+      <div className="stats-impact-activity-heading">
+        <div>
+          <span className="stats-impact-eyebrow">Learning in action</span>
+          <h3 id="stats-activity-title">Practice. Test. Improve.</h3>
+        </div>
+        <p>See how learners are engaging with practice and assessment.</p>
+      </div>
+      <div className="stats-impact-activity-groups">
+        <div className="stats-impact-activity-group">
+          <h4>Active recall</h4>
+          <div className="stats-impact-activity-values">
+            <MetricValue value={stats.recall_active_users} label="Active Recall learners" />
+          </div>
+        </div>
+        <div className="stats-impact-activity-group">
+          <h4>Quizzes</h4>
+          <div className="stats-impact-activity-values">
+            <MetricValue value={stats.quiz_users} label="Quiz learners" />
+            <MetricValue value={stats.quiz_active_users} label="Active quiz learners" />
+            <MetricValue value={stats.quiz_passes} label="Passed attempts" />
+            <MetricValue value={stats.quiz_failures} label="Failed attempts" />
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -173,12 +227,8 @@ export function StatsGrid({ stats = {}, scopeLabel = 'All learning levels' }) {
           </div>
         </header>
 
-        <div className="stats-impact-groups">
-          {GROUPS.map((group) => (
-            <StatsGroup key={group.id} group={group} stats={stats} />
-          ))}
-        </div>
-
+        <LibraryImpact stats={stats} />
+        <LearningActivity stats={stats} />
         <PerformanceRankings failed={failedItems} passed={passedItems} />
       </div>
     </section>
