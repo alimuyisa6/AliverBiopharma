@@ -158,6 +158,7 @@
 #root .app-layout :where(.page-hero, .content-hero, .about-hero, .contact-hero) {
   border-radius: var(--r-xl);
   background-color: var(--primary-light);
+  background-image: radial-gradient(ellipse at 10% 12%,color-mix(in srgb,var(--primary) 20%,transparent),transparent 46%),radial-gradient(ellipse at 92% 18%,color-mix(in srgb,var(--secondary) 28%,transparent),transparent 42%),linear-gradient(130deg,var(--background),var(--primary-light) 58%,var(--secondary-light));
   color: var(--ink);
 }
 
