@@ -1,31 +1,31 @@
 :root {
-  --heading-bubble-primary-bg: #dff5f9;
-  --heading-bubble-primary-border: #9edce8;
-  --heading-bubble-primary-ink: #123047;
-  --heading-bubble-secondary-bg: #eaf8f3;
-  --heading-bubble-secondary-border: #b8e8d8;
-  --heading-bubble-secondary-ink: #194c3d;
-  --heading-bubble-tertiary-bg: #f1effa;
-  --heading-bubble-tertiary-border: #d5ccef;
-  --heading-bubble-tertiary-ink: #39315d;
-  --heading-bubble-muted-bg: #edf3f8;
-  --heading-bubble-muted-border: #cbdbe6;
-  --heading-bubble-muted-ink: #29465b;
+  --heading-bubble-primary-bg: #b9eaf3;
+  --heading-bubble-primary-border: #55bfd2;
+  --heading-bubble-primary-ink: #102c40;
+  --heading-bubble-secondary-bg: #c8efdf;
+  --heading-bubble-secondary-border: #70cfae;
+  --heading-bubble-secondary-ink: #123d30;
+  --heading-bubble-tertiary-bg: #d9d0f2;
+  --heading-bubble-tertiary-border: #a99add;
+  --heading-bubble-tertiary-ink: #30264f;
+  --heading-bubble-muted-bg: #d2e2ee;
+  --heading-bubble-muted-border: #8eafc5;
+  --heading-bubble-muted-ink: #1d394e;
 }
 
 body.dark-mode {
-  --heading-bubble-primary-bg: #16404a;
-  --heading-bubble-primary-border: #286879;
-  --heading-bubble-primary-ink: #dff8fc;
-  --heading-bubble-secondary-bg: #203b34;
-  --heading-bubble-secondary-border: #3c7461;
-  --heading-bubble-secondary-ink: #e1f7ee;
-  --heading-bubble-tertiary-bg: #343044;
-  --heading-bubble-tertiary-border: #5b5278;
-  --heading-bubble-tertiary-ink: #eee9ff;
-  --heading-bubble-muted-bg: #293b49;
-  --heading-bubble-muted-border: #435b6d;
-  --heading-bubble-muted-ink: #e3f0f8;
+  --heading-bubble-primary-bg: #236575;
+  --heading-bubble-primary-border: #4a9caf;
+  --heading-bubble-primary-ink: #f0fcff;
+  --heading-bubble-secondary-bg: #285847;
+  --heading-bubble-secondary-border: #63a98e;
+  --heading-bubble-secondary-ink: #effff7;
+  --heading-bubble-tertiary-bg: #4a4164;
+  --heading-bubble-tertiary-border: #8779ad;
+  --heading-bubble-tertiary-ink: #faf7ff;
+  --heading-bubble-muted-bg: #3b566b;
+  --heading-bubble-muted-border: #66869d;
+  --heading-bubble-muted-ink: #f4faff;
 }
 
 :where(#root, body) :is(h1, .page-title, .page-heading, .page-header-title, .about-title, .legal-title, .quiz-hero-title, .notes-page-title, .recall-page-title, .quiz-page-title, .flashcard-title, .curriculum-node-title, .pdf-library-title, .resources-title, .blog-page-title, .classroom-title, .tutor-page-title, .contact-title, .community-title, [role="heading"][aria-level="1"])::first-letter {
