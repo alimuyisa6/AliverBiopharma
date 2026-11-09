@@ -37,7 +37,7 @@ const studios = {
     cards: [
       { icon: 'book-open', label: 'Understand a topic', title: 'Biology notes', description: 'Work through explanations organised around your curriculum.', route: '/notes', action: 'Open notes' },
       { icon: 'microscope', label: 'Build scientific vocabulary', title: 'Biology glossary', description: 'Strengthen your understanding of important biological terms.', route: '/glossary', action: 'Explore terms' },
-      { icon: 'file-text', label: 'Prepare for assessment', title: 'Past examination papers', description: 'Practise with available Biology examination papers.', route: '/past-papers', action: 'View papers' }
+      { icon: 'book-open', label: 'Prepare for assessment', title: 'Past examination papers', description: 'Practise with available Biology examination papers.', route: '/past-papers', action: 'View papers' }
     ]
   },
   alevel: {
@@ -62,7 +62,7 @@ const studios = {
     visualLabel: 'Explore pharmaceutical science',
     cards: [
       { icon: 'book-open', label: 'Study your programme', title: 'Pharmacy course notes', description: 'Explore explanations organised around your course units.', route: '/notes', action: 'Open notes' },
-      { icon: 'layers', label: 'Strengthen recall', title: 'Pharmacy flashcards', description: 'Review key concepts and terminology through active recall.', route: '/flashcards', action: 'Study flashcards' },
+      { icon: 'atom', label: 'Strengthen recall', title: 'Pharmacy flashcards', description: 'Review key concepts and terminology through active recall.', route: '/flashcards', action: 'Study flashcards' },
       { icon: 'clipboard-check', label: 'Check your understanding', title: 'Knowledge practice', description: 'Test your understanding of pharmaceutical concepts.', route: '/quiz', action: 'Start practice' }
     ]
   }
@@ -125,7 +125,7 @@ function ProgrammeStudio({ studio, activeGroupName }) {
             <span className="lernwick-studio-orbit lernwick-studio-orbit--one" />
             <span className="lernwick-studio-orbit lernwick-studio-orbit--two" />
             <span className="lernwick-studio-visual-core">
-              <Icon name={studio.visual === 'pharmacy' ? 'pill' : studio.visual === 'molecule' ? 'dna' : 'microscope'} />
+              <Icon name={studio.visual === 'pharmacy' ? 'capsules' : studio.visual === 'molecule' ? 'atom' : 'microscope'} />
             </span>
             <span className="lernwick-studio-visual-label">{studio.visualLabel}</span>
           </div>
