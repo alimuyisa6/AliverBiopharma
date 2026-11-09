@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import Icon from '../../components/Icon/Icon';
 import './lernwick-home-sections.css';
 
@@ -161,13 +160,28 @@ function ProgrammeStudio({ studio, activeGroupName }) {
             <span className="lernwick-studio-visual-label">{studio.visualLabel}</span>
           </div>
         </div>
->
       </div>
     </section>
   );
 }
 
-export default function LernwickHomeSections({ activeLevelName, activeGroupName }) {
+export function ProgrammeDiscovery({ activeLevelName, activeGroupName }) {
   const studio = resolveStudio(activeLevelName, activeGroupName);
-  return <><>{studio ? <ProgrammeStudio studio={studio} activeGroupName={activeGroupName} /> : <PublicPathways />}</><HowLearningWorks studio={studio} /></>;
+  return studio
+    ? <ProgrammeStudio studio={studio} activeGroupName={activeGroupName} />
+    : <PublicPathways />;
+}
+
+export function LearningProcess({ activeLevelName, activeGroupName }) {
+  const studio = resolveStudio(activeLevelName, activeGroupName);
+  return <HowLearningWorks studio={studio} />;
+}
+
+export default function LernwickHomeSections({ activeLevelName, activeGroupName }) {
+  return (
+    <>
+      <ProgrammeDiscovery activeLevelName={activeLevelName} activeGroupName={activeGroupName} />
+      <LearningProcess activeLevelName={activeLevelName} activeGroupName={activeGroupName} />
+    </>
+  );
 }
