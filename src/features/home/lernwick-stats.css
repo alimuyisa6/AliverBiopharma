@@ -50,64 +50,162 @@
   line-height: 1.5;
 }
 
-.lernwick-stats .stats-impact-groups {
+.lernwick-stats .stats-impact-feature {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1.5rem, 3vw, 3rem);
-}
-
-.lernwick-stats .stats-impact-group {
-  min-width: 0;
-  padding: 0;
-  background: transparent;
-}
-
-.lernwick-stats .stats-impact-group-title {
-  margin: 0 0 1.25rem;
-  padding: 0 0 .8rem;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+  padding: clamp(1.5rem, 4vw, 3.5rem) 0;
   border-bottom: 1px solid var(--line);
+}
+
+.lernwick-stats .stats-impact-feature-copy {
+  display: grid;
+  justify-items: start;
+  gap: 1rem;
+  max-width: 34rem;
+}
+
+.lernwick-stats .stats-impact-eyebrow {
+  color: var(--primary-dark);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.lernwick-stats .stats-impact-feature-copy h3,
+.lernwick-stats .stats-impact-activity-heading h3 {
+  margin: 0;
   color: var(--text-main);
   font-family: var(--f-display);
-  font-size: 1rem;
-  font-weight: 650;
-  line-height: 1.3;
+  font-size: clamp(1.6rem, 2.7vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -.04em;
 }
 
-.lernwick-stats .stats-impact-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 0;
+.lernwick-stats .stats-impact-feature-copy p,
+.lernwick-stats .stats-impact-activity-heading>p {
+  max-width: 31rem;
   margin: 0;
-  padding: 0;
-  list-style: none;
+  color: var(--text-secondary);
+  font-size: var(--t-sm);
+  line-height: 1.7;
 }
 
-.lernwick-stats .stats-impact-item {
+.lernwick-stats .stats-impact-primary {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: .35rem;
-  min-width: 0;
-  margin: 0;
-  padding: 1rem 0 1.1rem;
-  border-bottom: 1px solid var(--border-default);
+  gap: .25rem;
+  margin-top: .5rem;
 }
 
-.lernwick-stats .stats-impact-value {
-  display: block;
+.lernwick-stats .stats-impact-primary .stats-impact-value {
   color: var(--text-main);
   font-family: var(--f-display);
-  font-size: clamp(2.35rem, 3.8vw, 3.75rem);
+  font-size: clamp(3.4rem, 7vw, 6rem);
   font-weight: 750;
   font-variant-numeric: tabular-nums;
-  letter-spacing: -.065em;
-  line-height: .98;
+  letter-spacing: -.075em;
+  line-height: .95;
+}
+
+.lernwick-stats .stats-impact-primary>span:last-child {
+  color: var(--text-secondary);
+  font-size: var(--t-sm);
+}
+
+.lernwick-stats .stats-impact-support-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.lernwick-stats .stats-impact-support-item {
+  display: grid;
+  align-content: start;
+  gap: .45rem;
+  min-width: 0;
+  min-height: 8.5rem;
+  padding: 1.25rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.lernwick-stats .stats-impact-support-item .stats-impact-value {
+  color: var(--text-main);
+  font-family: var(--f-display);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.06em;
+  line-height: 1;
 }
 
 .lernwick-stats .stats-impact-label {
   color: var(--text-secondary);
   font-size: .875rem;
-  font-weight: 450;
   line-height: 1.45;
+}
+
+.lernwick-stats .stats-impact-support-item small {
+  color: var(--text-muted);
+  font-size: .75rem;
+  line-height: 1.4;
+}
+
+.lernwick-stats .stats-impact-activity {
+  display: grid;
+  gap: 1.75rem;
+  padding: clamp(2rem, 4vw, 3rem) 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.lernwick-stats .stats-impact-activity-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.lernwick-stats .stats-impact-activity-heading>div {
+  display: grid;
+  gap: .6rem;
+}
+
+.lernwick-stats .stats-impact-activity-heading>p {
+  max-width: 24rem;
+}
+
+.lernwick-stats .stats-impact-activity-groups {
+  display: grid;
+  grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr);
+  gap: clamp(1.5rem, 3vw, 3rem);
+}
+
+.lernwick-stats .stats-impact-activity-group {
+  min-width: 0;
+}
+
+.lernwick-stats .stats-impact-activity-group h4 {
+  margin: 0 0 1rem;
+  color: var(--text-main);
+  font-family: var(--f-display);
+  font-size: 1rem;
+  font-weight: 650;
+}
+
+.lernwick-stats .stats-impact-activity-values {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.lernwick-stats .stats-impact-activity-values .stats-impact-support-item {
+  min-height: 7rem;
+  padding: 1rem;
 }
 
 .lernwick-stats .stats-impact-topics {
@@ -228,18 +326,23 @@ body.dark-mode .lernwick-stats .stats-impact-topic-rank {
 }
 
 @media (max-width: 900px) {
-  .lernwick-stats .stats-impact-groups {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .lernwick-stats .stats-impact-feature {
+    grid-template-columns: minmax(0, 1fr);
     gap: 2rem;
   }
 
-  .lernwick-stats .stats-impact-group:last-child {
-    grid-column: 1 / -1;
+  .lernwick-stats .stats-impact-feature-copy {
+    max-width: 42rem;
   }
 
-  .lernwick-stats .stats-impact-group:last-child .stats-impact-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 2rem;
+  .lernwick-stats .stats-impact-activity-heading {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .lernwick-stats .stats-impact-activity-groups {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
   }
 }
 
@@ -253,24 +356,28 @@ body.dark-mode .lernwick-stats .stats-impact-topic-rank {
   }
 
   .lernwick-stats .stats-impact-heading {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
   }
 
-  .lernwick-stats .stats-impact-groups {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1.75rem;
+  .lernwick-stats .stats-impact-feature {
+    padding: 1.5rem 0;
   }
 
-  .lernwick-stats .stats-impact-group:last-child {
-    grid-column: auto;
+  .lernwick-stats .stats-impact-support-item {
+    min-height: 7.5rem;
+    padding: .9rem;
   }
 
-  .lernwick-stats .stats-impact-group:last-child .stats-impact-grid {
-    grid-template-columns: minmax(0, 1fr);
+  .lernwick-stats .stats-impact-support-item .stats-impact-value {
+    font-size: clamp(1.8rem, 8vw, 2.5rem);
   }
 
-  .lernwick-stats .stats-impact-value {
-    font-size: clamp(2.5rem, 12vw, 3.25rem);
+  .lernwick-stats .stats-impact-activity {
+    padding: 1.5rem 0;
+  }
+
+  .lernwick-stats .stats-impact-activity-values {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .lernwick-stats .stats-impact-topics {
