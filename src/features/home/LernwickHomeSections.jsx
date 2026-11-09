@@ -151,7 +151,6 @@ function ProgrammeStudio({ studio, activeGroupName }) {
             <p className="lernwick-note">{studio.eyebrow}{activeGroupName ? ` · ${activeGroupName}` : ''}</p>
             <h2 id="programme-studio-title">{studio.title}</h2>
             <p>{studio.description}</p>
-            <Link className="lernwick-dark-button" to="/resources">Explore your curriculum <Icon name="arrow-right" /></Link>
           </div>
           <div className={`lernwick-studio-visual lernwick-studio-visual--${studio.visual}`} aria-label={studio.visualLabel}>
             <span className="lernwick-studio-orbit lernwick-studio-orbit--one" />
