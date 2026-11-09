@@ -4,10 +4,7 @@ import './lernwick-home-hero.css';
 
 const images = {
   portrait: 'https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg?auto=compress&cs=tinysrgb&w=900&h=1000&fit=crop',
-  sketch: 'https://images.pexels.com/photos/8199759/pexels-photo-8199759.jpeg?auto=compress&cs=tinysrgb&w=500&h=560&fit=crop',
-  notes: 'https://images.pexels.com/photos/7972949/pexels-photo-7972949.jpeg?auto=compress&cs=tinysrgb&w=500&h=360&fit=crop',
   study: 'https://images.pexels.com/photos/16420473/pexels-photo-16420473.jpeg?auto=compress&cs=tinysrgb&w=500&h=360&fit=crop',
-  student: 'https://images.pexels.com/photos/1181742/pexels-photo-1181742.jpeg?auto=compress&cs=tinysrgb&w=96&h=96&fit=crop'
 };
 
 export default function LernwickHomeHero({ user, activeLevelName, activeGroupName }) {
@@ -18,8 +15,8 @@ export default function LernwickHomeHero({ user, activeLevelName, activeGroupNam
         <div className="hero__copy">
           <span className="vlabel" aria-hidden="true">Biology · Pharmacy</span>
           <p className="note">{name ? `Welcome back, ${name}` : 'A focused place to learn life sciences'}</p>
-          <h1 id="hero-title">Learn <svg className="squiggle" viewBox="0 0 120 48" fill="none" stroke="currentColor" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 34c18 4 34-2 38-12 3-8-7-12-11-5-5 9 8 17 24 16 20-1 36-12 52-22" /><path d="m100 6 15 5-9 13" /></svg> <span className="hl">Biology</span><br />and Pharmacy</h1>
-          <p className="hero__lede">Build scientific understanding with structured learning resources, clear explanations, quizzes, flashcards and active recall for your level or programme.</p>
+          <h1 id="hero-title">Learn <span className="hl">Biology</span><br />and Pharmacy with purpose</h1>
+          <p className="hero__lede">Follow a clearer learning path with curriculum-based notes, focused practice, flashcards and examination resources for your level or pharmacy programme.</p>
           <div className="hero__ctas">
             <Link className="btn btn--primary" to="/resources">Explore resources <Icon name="arrow-right" /></Link>
             <a className="hero__how" href="#how"><span className="hero__play"><Icon name="play" /></span>How it works</a>
@@ -31,17 +28,20 @@ export default function LernwickHomeHero({ user, activeLevelName, activeGroupNam
           <figure className="blob"><img src={images.portrait} alt="Student studying beside a laptop" width="900" height="1000" fetchPriority="high" /></figure>
           <span className="badge" aria-hidden="true"><Icon name="microscope" /> Biology</span>
           <div className="fcard">
-            <p className="fcard__t">Your learning, organised</p>
-            <p className="fcard__by"><img src={images.student} alt="" width="96" height="96" /><span><strong>Study with purpose</strong><small><Icon name="book-open" /> Notes and resources</small></span></p>
+            <p className="fcard__t">Learning that connects</p>
+            <p className="fcard__by"><span className="hero__mini-icon"><Icon name="book-open" /></span><span><strong>From topic to practice</strong><small><Icon name="check-circle" /> One connected journey</small></span></p>
           </div>
           <div className="fchip"><img src={images.study} alt="" width="96" height="96" /><span><strong>Active recall</strong><small>Practise what you learn</small></span><em>Learn</em></div>
           <span className="vscroll" aria-hidden="true">Explore</span>
         </div>
       </div>
       <div className="container hero__row">
-        <div className="collage" aria-hidden="true"><img src={images.sketch} alt="" width="500" height="560" /><img src={images.notes} alt="" width="500" height="360" /><img src={images.study} alt="" width="500" height="360" /></div>
-        <Link className="process" to="/classroom"><span className="process__ic"><Icon name="play" /></span><span className="pill">Learn at your pace</span><span className="process__t">Move from learning to confident understanding</span><span className="process__go"><Icon name="arrow-right" /></span></Link>
-        
+        <ul className="hero__highlights" aria-label="Learning platform features">
+          <li><span><Icon name="book-open" /></span><strong>Curriculum-led learning</strong><small>Resources organised around your programme.</small></li>
+          <li><span><Icon name="brain" /></span><strong>Active practice</strong><small>Build recall and test your understanding.</small></li>
+          <li><span><Icon name="graduation-cap" /></span><strong>Exam preparation</strong><small>Apply knowledge with assessment resources.</small></li>
+        </ul>
+        <a className="process" href="#pathways"><span className="process__ic"><Icon name="compass" /></span><span className="pill">Start exploring</span><span className="process__t">Find the learning path that matches your goals</span><span className="process__go"><Icon name="arrow-right" /></span></a>
       </div>
     </section>
   );
