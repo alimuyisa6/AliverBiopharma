@@ -110,6 +110,60 @@ function PublicPathways() {
   );
 }
 
+const learningSteps = {
+  olevel: [
+    ['01', 'Observe', 'Explore diagrams and examples of living things.'],
+    ['02', 'Understand', 'Read explanations that build one Biology idea at a time.'],
+    ['03', 'Practise', 'Check your understanding with questions and recall.'],
+    ['04', 'Prepare', 'Apply what you know to examination questions.']
+  ],
+  alevel: [
+    ['01', 'Connect concepts', 'Relate biological structures to their functions.'],
+    ['02', 'Analyse evidence', 'Interpret data, processes and experimental results.'],
+    ['03', 'Apply knowledge', 'Use biological principles to solve unfamiliar problems.'],
+    ['04', 'Evaluate', 'Test your understanding with advanced questions.']
+  ],
+  pharmacy: [
+    ['01', 'Learn the science', 'Study medicines, formulations and the body systems they affect.'],
+    ['02', 'Build accuracy', 'Strengthen terminology, calculations and core concepts.'],
+    ['03', 'Apply knowledge', 'Work through pharmaceutical and patient-care scenarios.'],
+    ['04', 'Review', 'Use recall and assessments to identify what needs revision.']
+  ],
+  general: [
+    ['01', 'Choose a pathway', 'Select the Biology or Pharmacy programme you are studying.'],
+    ['02', 'Understand', 'Learn through structured explanations and supporting resources.'],
+    ['03', 'Practise', 'Use questions and recall to check your understanding.'],
+    ['04', 'Progress', 'Review your knowledge and continue to the next topic.']
+  ]
+};
+
+function HowLearningWorks({ studio }) {
+  const steps = studio ? learningSteps[studio.kind === 'biology-foundations' ? 'olevel' : studio.kind === 'advanced-biology' ? 'alevel' : 'pharmacy'] : learningSteps.general;
+  return (
+    <section className="lernwick-how section section--soft" id="how" aria-labelledby="lernwick-how-title">
+      <div className="container">
+        <div className="lernwick-section-heading lernwick-section-heading--center">
+          <div>
+            <p className="lernwick-note">A clear learning process</p>
+            <h2 id="lernwick-how-title"><span className="organic-letter organic-letter--accent">L</span>earn, practise and progress</h2>
+            <p>Your learning journey moves from understanding concepts to applying and strengthening them.</p>
+          </div>
+        </div>
+        <ol className="lernwick-step-grid">
+          {steps.map(([number, title, description]) => (
+            <li className="lernwick-step-card" key={number}>
+              <span className="lernwick-step-number">{number}</span>
+              <span className="lernwick-step-mark" aria-hidden="true" />
+              <h3>{title}</h3>
+              <p>{description}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  );
+}
+
 function ProgrammeStudio({ studio, activeGroupName }) {
   return (
     <section className={`lernwick-programme-studio section lernwick-programme-studio--${studio.kind}`} aria-labelledby="programme-studio-title">
@@ -148,5 +202,5 @@ function ProgrammeStudio({ studio, activeGroupName }) {
 
 export default function LernwickHomeSections({ activeLevelName, activeGroupName }) {
   const studio = resolveStudio(activeLevelName, activeGroupName);
-  return studio ? <ProgrammeStudio studio={studio} activeGroupName={activeGroupName} /> : <PublicPathways />;
+  return <><>{studio ? <ProgrammeStudio studio={studio} activeGroupName={activeGroupName} /> : <PublicPathways />}</><HowLearningWorks studio={studio} /></>;
 }
