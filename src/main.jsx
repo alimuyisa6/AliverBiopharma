@@ -269,3 +269,4 @@ if (import.meta.hot) {
 }
 
 import './styles/typography.css';
+import './styles/heading-organic-bubbles.css';
