@@ -392,7 +392,8 @@ body.dark-mode .lernwick-studio-orbit { border-color: var(--dark-primary); }
   height: 4.2rem;
   border: 2px solid #55aebd;
   border-radius: 48% 52% 63% 37% / 45% 40% 60% 55%;
-  background: radial-gradient(circle at 52% 50%, #6cabc0 0 10%, transparent 11%), radial-gradient(circle at 27% 32%, #8ccfc2 0 5%, transparent 6%), radial-gradient(circle at 72% 67%, #8ccfc2 0 6%, transparent 7%);
+  background: #d9f1f1;
+  box-shadow: inset 0 0 0 8px #c2e8e8, inset 0 0 0 18px #d9f1f1, 0 0 0 7px #a8d8df;
   transform: translate(5.4rem, -3.6rem) rotate(18deg);
 }
 .lernwick-studio-visual--cell::after {
@@ -400,20 +401,23 @@ body.dark-mode .lernwick-studio-orbit { border-color: var(--dark-primary); }
   height: 2.6rem;
   border: 2px solid #55aebd;
   border-radius: 42% 58% 50% 50%;
-  background: radial-gradient(circle at 50% 50%, #6cabc0 0 13%, transparent 14%);
+  background: #cce9e9;
+  box-shadow: inset 0 0 0 9px #e6f6f4;
   transform: translate(-5.4rem, 3.5rem) rotate(-22deg);
 }
 .lernwick-studio-visual--molecule::before {
   width: 13rem;
   height: 8rem;
-  background: radial-gradient(circle at 12% 50%, #7c79b8 0 .48rem, transparent .52rem), radial-gradient(circle at 37% 17%, #7c79b8 0 .48rem, transparent .52rem), radial-gradient(circle at 62% 83%, #7c79b8 0 .48rem, transparent .52rem), radial-gradient(circle at 88% 50%, #7c79b8 0 .48rem, transparent .52rem), linear-gradient(27deg, transparent 35%, #aaa5d0 35.5% 36.5%, transparent 37%), linear-gradient(-27deg, transparent 47%, #aaa5d0 47.5% 48.5%, transparent 49%);
+  background: transparent;
+  box-shadow: 1.5rem 4rem 0 -.95rem #7c79b8, 4.8rem 1.3rem 0 -.95rem #7c79b8, 8.1rem 6.7rem 0 -.95rem #7c79b8, 11.4rem 4rem 0 -.95rem #7c79b8;
 }
 .lernwick-studio-visual--pharmacy::before {
   width: 9rem;
   height: 3.5rem;
   border: 2px solid #4f9873;
   border-radius: 999px;
-  background: linear-gradient(90deg, #d7f0e2 0 50%, #5ca783 50% 100%);
+  background: #d7f0e2;
+  box-shadow: inset -4.5rem 0 0 -4.35rem #5ca783;
   transform: translate(4.7rem, -3.2rem) rotate(-32deg);
 }
 .lernwick-studio-visual--pharmacy::after {
@@ -421,7 +425,8 @@ body.dark-mode .lernwick-studio-orbit { border-color: var(--dark-primary); }
   height: 4rem;
   border: 2px solid #4f9873;
   border-radius: 50%;
-  background: radial-gradient(circle, #78b797 0 18%, transparent 20%), radial-gradient(circle at 50% 0, #b8dfc8 0 10%, transparent 12%);
+  background: #d7f0e2;
+  box-shadow: inset 0 0 0 9px #b8dfc8, inset 0 0 0 17px #d7f0e2;
   transform: translate(-5.2rem, 3.7rem);
 }
 body.dark-mode .lernwick-studio-visual--cell::before,
