@@ -189,7 +189,7 @@ export default function HomeView(props) {
         </section>
       )}
 
-      <LernwickHomeSections />
+      <LernwickHomeSections activeLevelName={activeLevelName} activeGroupName={activeGroupName} />
       <PricingCards plans={subscriptionPlans} user={user} />
       {user && <CurriculumSnapshot nodes={curriculumUnits} activeLevelName={activeLevelName} activeGroupName={activeGroupName} sections={sections} />}
 
