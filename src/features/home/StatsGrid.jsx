@@ -1,36 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import './lernwick-stats.css';
 
-const GROUPS = [
-  {
-    id: 'book-open',
-    title: 'Learning library',
-    metrics: [
-      { key: 'resources_count', label: 'Total resources' },
-      { key: 'downloadable_count', label: 'Available to download' },
-      { key: 'downloads_count', label: 'Total downloads' }
-    ]
-  },
-  {
-    id: 'recall',
-    title: 'Active recall',
-    metrics: [
-      { key: 'recall_questions', label: 'Recall questions' },
-      { key: 'recall_users', label: 'Learners who used Recall' },
-      { key: 'recall_active_users', label: 'Active Recall learners' }
-    ]
-  },
-  {
-    id: 'quizzes',
-    title: 'Quizzes',
-    metrics: [
-      { key: 'quiz_users', label: 'Quiz learners' },
-      { key: 'quiz_active_users', label: 'Active quiz learners' },
-      { key: 'quiz_passes', label: 'Passed attempts' },
-      { key: 'quiz_failures', label: 'Failed attempts' }
-    ]
-  }
-];
 
 function formatNumber(value) {
   return Math.round(value).toLocaleString();
@@ -196,20 +166,6 @@ function PerformanceRankings({ failed, passed }) {
         {renderRanking(passed, 'passed')}
       </section>
     </div>
-  );
-}
-function StatsGroup({ group, stats }) {
-  const headingId = `stats-group-${group.id}`;
-
-  return (
-    <section className="stats-impact-group" aria-labelledby={headingId}>
-      <h3 className="stats-impact-group-title" id={headingId}>{group.title}</h3>
-      <ul className="stats-impact-grid">
-        {group.metrics.map((metric) => (
-          <MetricCard key={metric.key} metric={metric} value={stats[metric.key]} />
-        ))}
-      </ul>
-    </section>
   );
 }
 
