@@ -3,27 +3,9 @@ import Icon from '../../components/Icon/Icon';
 import './lernwick-home-sections.css';
 
 const pathways = [
-  {
-    id: 'o-level',
-    label: 'O-Level Biology',
-    title: 'Build strong Biology foundations',
-    description: 'Explore school Biology topics, understand key processes and prepare for examinations.',
-    image: 'https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg?auto=compress&cs=tinysrgb&w=720&h=480&fit=crop'
-  },
-  {
-    id: 'a-level',
-    label: 'A-Level Biology',
-    title: 'Understand Biology in greater depth',
-    description: 'Develop advanced biological understanding through structured topics and examination practice.',
-    image: 'https://images.pexels.com/photos/3825586/pexels-photo-3825586.jpeg?auto=compress&cs=tinysrgb&w=720&h=480&fit=crop'
-  },
-  {
-    id: 'pharmacy',
-    label: 'Pharmacy programmes',
-    title: 'Connect science with medicines',
-    description: 'Explore Pharmacy Certificate, Diploma and Degree course units and study materials.',
-    image: 'https://images.pexels.com/photos/3683074/pexels-photo-3683074.jpeg?auto=compress&cs=tinysrgb&w=720&h=480&fit=crop'
-  }
+  { id: 'o-level', label: 'O-Level Biology', title: 'Build strong foundations', description: 'Explore the living world through observation, clear scientific explanations and practical understanding.', image: 'https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg?auto=compress&cs=tinysrgb&w=720&h=480&fit=crop' },
+  { id: 'a-level', label: 'A-Level Biology', title: 'Think across biological systems', description: 'Connect complex processes, analyse evidence and develop deeper scientific reasoning.', image: 'https://images.pexels.com/photos/3825586/pexels-photo-3825586.jpeg?auto=compress&cs=tinysrgb&w=720&h=480&fit=crop' },
+  { id: 'pharmacy', label: 'Pharmacy', title: 'Connect science with medicines', description: 'Explore pharmaceutical science, medicines and their role in patient care.', image: 'https://images.pexels.com/photos/3683074/pexels-photo-3683074.jpeg?auto=compress&cs=tinysrgb&w=720&h=480&fit=crop' }
 ];
 
 const studios = {
@@ -82,26 +64,22 @@ function PublicPathways() {
       <div className="container">
         <div className="lernwick-section-heading">
           <div>
-            <p className="lernwick-note">Find your starting point</p>
-            <h2 id="lernwick-pathways-title"><span className="organic-letter organic-letter--primary">L</span>earning pathways for every stage</h2>
-            <p>Choose the Biology or Pharmacy programme that matches what you are studying.</p>
+            <p className="lernwick-note">One platform. Distinct learning journeys.</p>
+            <h2 id="lernwick-pathways-title">Choose the science you want to explore</h2>
+            <p>Each programme has its own subject focus and learning experience.</p>
           </div>
-          <Link className="lernwick-outline-button" to="/register">Choose your programme <Icon name="arrow-right" /></Link>
         </div>
         <div className="lernwick-pathway-grid">
           {pathways.map((pathway) => (
-            <article className="lernwick-pathway-card" key={pathway.id}>
-              <Link to="/resources" className="lernwick-pathway-link" aria-label={`Explore ${pathway.label}`}>
-                <div className="lernwick-pathway-image">
-                  <img src={pathway.image} alt="" loading="lazy" width="720" height="480" />
-                  <span>{pathway.label}</span>
-                </div>
-                <div className="lernwick-pathway-body">
-                  <h3>{pathway.title}</h3>
-                  <p>{pathway.description}</p>
-                  <span className="lernwick-pathway-action">Explore programme <Icon name="arrow-right" /></span>
-                </div>
-              </Link>
+            <article className={`lernwick-pathway-card lernwick-pathway-card--${pathway.id}`} key={pathway.id}>
+              <div className="lernwick-pathway-image">
+                <img src={pathway.image} alt="" loading="lazy" width="720" height="480" />
+                <span>{pathway.label}</span>
+              </div>
+              <div className="lernwick-pathway-body">
+                <h3>{pathway.title}</h3>
+                <p>{pathway.description}</p>
+              </div>
             </article>
           ))}
         </div>
@@ -184,17 +162,7 @@ function ProgrammeStudio({ studio, activeGroupName }) {
             <span className="lernwick-studio-visual-label">{studio.visualLabel}</span>
           </div>
         </div>
-        <div className="lernwick-studio-card-grid">
-          {studio.cards.map((card, index) => (
-            <article className={`lernwick-studio-card lernwick-studio-card--${index + 1}`} key={card.title}>
-              <span className="lernwick-studio-card-icon"><Icon name={card.icon} /></span>
-              <span className="lernwick-studio-card-label">{card.label}</span>
-              <h3>{card.title}</h3>
-              <p>{card.description}</p>
-              <Link to={card.route}>{card.action}<Icon name="arrow-right" /></Link>
-            </article>
-          ))}
-        </div>
+>
       </div>
     </section>
   );
