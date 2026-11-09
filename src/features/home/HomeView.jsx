@@ -181,10 +181,6 @@ export default function HomeView(props) {
 
       <LearningProcess activeLevelName={activeLevelName} activeGroupName={activeGroupName} />
 
-      <section className="home-stats-section" aria-label="Platform statistics">
-        <StatsGrid stats={publicStats || {}} scopeLabel={activeGroupName || activeLevelName || 'All learning levels'} />
-      </section>
-
       {user && (
         <section className="home-student-section" id="dashboard">
           {!isDesktopViewport && <ClassSwitcher className="home-scope-switcher" />}
@@ -198,11 +194,15 @@ export default function HomeView(props) {
         <DailyRecallCard recall={dailyRecall} onReveal={onRevealRecall} onStart={onStartRecall} />
       </section>}
 
-      <PricingCards plans={subscriptionPlans} user={user} />
+      <section className="home-stats-section" aria-label="Platform statistics">
+        <StatsGrid stats={publicStats || {}} scopeLabel={activeGroupName || activeLevelName || 'All learning levels'} />
+      </section>
 
       <section className="home-testimonials-section" id="testimonials">
         <TestimonialSlider quotes={sections?.testimonials?.quotes || []} />
       </section>
+
+      <PricingCards plans={subscriptionPlans} user={user} />
       <section className="home-classroom-section" id="classroom"><ClassroomTeaser /></section>
       <section className="home-tutor-section"><TutorMarketplaceTeaser /></section>
       <section className="home-advertising-section">
