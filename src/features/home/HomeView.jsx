@@ -12,7 +12,7 @@ import TutorMarketplaceTeaser from '../tutor-marketplace/TutorMarketplaceTeaser'
 import AdsHomeSection from '../../components/Advertising/AdsHomeSection';
 import AdSlot from '../../components/Advertising/AdSlot';
 import LernwickHomeHero from './LernwickHomeHero';
-import LernwickHomeSections from './LernwickHomeSections';
+import { ProgrammeDiscovery, LearningProcess } from './LernwickHomeSections';
 import HomeDashboardCard from '../../components/dashboard/HomeDashboardCard';
 import DynamicActions from '../../components/DynamicActions';
 import ThreeDButton from '../../components/buttons/ThreeDButton';
@@ -175,11 +175,15 @@ export default function HomeView(props) {
 
       <DynamicActions pageId="home" className="home-dynamic-actions" />
 
+      <ProgrammeDiscovery activeLevelName={activeLevelName} activeGroupName={activeGroupName} />
+
+      {user && <CurriculumSnapshot nodes={curriculumUnits} activeLevelName={activeLevelName} activeGroupName={activeGroupName} sections={sections} />}
+
+      <LearningProcess activeLevelName={activeLevelName} activeGroupName={activeGroupName} />
+
       <section className="home-stats-section" aria-label="Platform statistics">
         <StatsGrid stats={publicStats || {}} scopeLabel={activeGroupName || activeLevelName || 'All learning levels'} />
       </section>
-
-
 
       {user && (
         <section className="home-student-section" id="dashboard">
@@ -189,12 +193,12 @@ export default function HomeView(props) {
         </section>
       )}
 
-      <LernwickHomeSections activeLevelName={activeLevelName} activeGroupName={activeGroupName} />
-      <PricingCards plans={subscriptionPlans} user={user} />
-      {user && <CurriculumSnapshot nodes={curriculumUnits} activeLevelName={activeLevelName} activeGroupName={activeGroupName} sections={sections} />}
+      {user && <section className="home-daily-learning-section" aria-label="Daily learning activities">
+        <ChallengeTreasureCard challenge={dailyChallenge} onOpen={onOpenChallenge} />
+        <DailyRecallCard recall={dailyRecall} onReveal={onRevealRecall} onStart={onStartRecall} />
+      </section>}
 
-      {user && <ChallengeTreasureCard challenge={dailyChallenge} onOpen={onOpenChallenge} />}
-      {user && <DailyRecallCard recall={dailyRecall} onReveal={onRevealRecall} onStart={onStartRecall} />}
+      <PricingCards plans={subscriptionPlans} user={user} />
 
       <section className="home-testimonials-section" id="testimonials">
         <TestimonialSlider quotes={sections?.testimonials?.quotes || []} />
