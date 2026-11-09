@@ -1,4 +1,4 @@
-.hero{padding-top:clamp(3rem,2rem + 2.5vw,4.5rem);padding-bottom:clamp(2.5rem,2rem + 3vw,4rem);background:var(--background);color:var(--ink)}
+.hero{padding-top:clamp(3rem,2rem + 2.5vw,4.5rem);padding-bottom:clamp(2.5rem,2rem + 3vw,4rem);background:radial-gradient(ellipse at 12% 8%,color-mix(in srgb,var(--primary) 18%,transparent),transparent 44%),radial-gradient(ellipse at 88% 24%,color-mix(in srgb,var(--secondary) 24%,transparent),transparent 42%),linear-gradient(135deg,var(--background) 8%,var(--primary-light) 58%,var(--secondary-light));color:var(--ink)}
 .hero__grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(2rem,1rem + 3vw,4rem);align-items:center}
 .hero__copy{position:relative;display:grid;grid-template-columns:minmax(0,1fr);gap:1.3rem;justify-items:start;padding-left:2.4rem}
 .hero .note{font:700 1.35rem/1.1 var(--f-hand);color:var(--primary-dark);transform:rotate(-3deg);display:inline-block}
@@ -84,7 +84,7 @@
 @media(prefers-reduced-motion:reduce){.hero .btn,.hero__play,.hero .process,.hero .process__go svg{transition:none}}
 
 
-body.dark-mode .hero,body.dark-mode .lernwick-home-sections{background:var(--dark-background);color:var(--dark-text)}
+body.dark-mode .hero,body.dark-mode .lernwick-home-sections{background:radial-gradient(ellipse at 12% 8%,color-mix(in srgb,var(--dark-primary) 18%,transparent),transparent 44%),radial-gradient(ellipse at 88% 24%,color-mix(in srgb,var(--dark-accent) 13%,transparent),transparent 42%),linear-gradient(135deg,var(--dark-background),var(--dark-surface));color:var(--dark-text)}
 body.dark-mode .hero h1,body.dark-mode .lernwick-section-heading h2,body.dark-mode .lernwick-about-copy h2{color:var(--dark-text)}
 body.dark-mode .hero__lede,body.dark-mode .hero__path,body.dark-mode .lernwick-section-heading p:not(.lernwick-note),body.dark-mode .lernwick-pathway-body p,body.dark-mode .lernwick-about-copy>p:not(.lernwick-note),body.dark-mode .lernwick-about-copy li{color:var(--dark-text-secondary)}
 body.dark-mode .hero .blob,body.dark-mode .hero .process,body.dark-mode .lernwick-pathway-card{background:var(--dark-surface);border-color:var(--dark-border)}
