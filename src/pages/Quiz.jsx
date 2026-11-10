@@ -690,7 +690,24 @@ export default function Quiz() {
           </div>
 
           <Modal open={showRulesModal} onClose={() => setShowRulesModal(false)} title={t('common.quizRules')}>
-            <ul className="quiz-rules-list">
+            <div className="quiz-mode-picker" role="group" aria-label="Choose assessment mode">
+            <button type="button" className={`quiz-mode-option ${quizMode === 'study' ? 'is-active' : ''}`} onClick={() => setQuizMode('study')}>
+              <Icon name="lightbulb" plain />
+              <span><strong>Study mode</strong><small>Get feedback and explanations as you practise.</small></span>
+              {quizMode === 'study' && <Icon name="circle-check" plain />}
+            </button>
+            <button type="button" className={`quiz-mode-option ${quizMode === 'exam' ? 'is-active' : ''}`} onClick={() => setQuizMode('exam')}>
+              <Icon name="graduation-cap" plain />
+              <span><strong>Exam mode</strong><small>Complete the assessment before seeing feedback.</small></span>
+              {quizMode === 'exam' && <Icon name="circle-check" plain />}
+            </button>
+          </div>
+          <div className="quiz-assessment-facts">
+            <span><Icon name="list-check" plain /> 10 questions</span>
+            <span><Icon name="clock" plain /> 10 minutes</span>
+            <span><Icon name="flag" plain /> {t('common.passMark')}</span>
+          </div>
+          <ul className="quiz-rules-list">
               <li><span className="quiz-rules-bullet" aria-hidden="true" /> <span>{t('common.questionsPerBlock')}</span></li>
               <li><span className="quiz-rules-bullet" aria-hidden="true" /> <span>{t('common.passMark')}</span></li>
               <li><span className="quiz-rules-bullet" aria-hidden="true" /> <span>{t('common.immediateFeedback')}</span></li>
@@ -1107,6 +1124,23 @@ export default function Quiz() {
         {!isQuizCardsPage && !currentTopic && !curriculumUnitId && <QuizWeakAreas user={user} level={level} class_name={class_name} groupId={activeGroupId} />}
 
         <Modal open={showRulesModal} onClose={() => setShowRulesModal(false)} title={t('common.quizRules')}>
+          <div className="quiz-mode-picker" role="group" aria-label="Choose assessment mode">
+            <button type="button" className={`quiz-mode-option ${quizMode === 'study' ? 'is-active' : ''}`} onClick={() => setQuizMode('study')}>
+              <Icon name="lightbulb" plain />
+              <span><strong>Study mode</strong><small>Get feedback and explanations as you practise.</small></span>
+              {quizMode === 'study' && <Icon name="circle-check" plain />}
+            </button>
+            <button type="button" className={`quiz-mode-option ${quizMode === 'exam' ? 'is-active' : ''}`} onClick={() => setQuizMode('exam')}>
+              <Icon name="graduation-cap" plain />
+              <span><strong>Exam mode</strong><small>Complete the assessment before seeing feedback.</small></span>
+              {quizMode === 'exam' && <Icon name="circle-check" plain />}
+            </button>
+          </div>
+          <div className="quiz-assessment-facts">
+            <span><Icon name="list-check" plain /> 10 questions</span>
+            <span><Icon name="clock" plain /> 10 minutes</span>
+            <span><Icon name="flag" plain /> {t('common.passMark')}</span>
+          </div>
           <ul className="quiz-rules-list">
             <li><span className="quiz-rules-bullet" aria-hidden="true" /> <span>{t('common.questionsPerBlock')}</span></li>
             <li><span className="quiz-rules-bullet" aria-hidden="true" /> <span>{t('common.passMark')}</span></li>
