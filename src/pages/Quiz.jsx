@@ -475,9 +475,9 @@ export default function Quiz() {
       };
 
       setUserAnswers(newAnswers);
-      if (quizMode !== 'exam') playQuizAnswerSound(Boolean(result.correct));
+      if (quizMode !== 'exam' && question.question_type !== 'essay') playQuizAnswerSound(Boolean(result.correct));
       // Keep the result visible briefly so the SVG can animate before auto-advance.
-      if (quizMode !== 'exam') {
+      if (quizMode !== 'exam' && question.question_type !== 'essay') {
         setAnswerFeedback(result.correct ? 'correct' : 'wrong');
         await new Promise((resolve) => setTimeout(resolve, 520));
       }
@@ -607,6 +607,7 @@ export default function Quiz() {
       }
 
       setQuizQuestions(data.questions);
+      setMarkedQuestions([]);
 
       const priorAnswers = (data.prior_answers || []).map((answer) => (
         answer ? { ...answer, selected: answer.selected } : null
@@ -980,11 +981,11 @@ export default function Quiz() {
               </div>
             </div>
             <div className="quiz-nav-pills">
-              {quizQuestions.map((_, idx) => {
+              {quizQuestions.map((question, idx) => {
                 let cls = 'btn btn-sm btn-ghost';
 
                 if (userAnswers[idx]) {
-                  cls = quizModeIsExam
+                  cls = quizModeIsExam || question.question_type === 'essay'
                     ? 'btn btn-sm btn-primary'
                     : userAnswers[idx].correct
                       ? 'btn btn-sm btn-success'
@@ -1051,6 +1052,10 @@ export default function Quiz() {
                 question={quizQuestions[currentIndex]}
                 answer={userAnswers[currentIndex]}
                 disabled={answerSubmitting || locked}
+                marked={markedQuestions.includes(quizQuestions[currentIndex].id)}
+                onToggleMark={() => setMarkedQuestions((current) => current.includes(quizQuestions[currentIndex].id)
+                  ? current.filter((id) => id !== quizQuestions[currentIndex].id)
+                  : [...current, quizQuestions[currentIndex].id])}
                 onSubmit={selectAnswer}
               />
 
