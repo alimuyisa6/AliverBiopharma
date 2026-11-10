@@ -477,8 +477,10 @@ export default function Quiz() {
       setUserAnswers(newAnswers);
       playQuizAnswerSound(Boolean(result.correct));
       // Keep the result visible briefly so the SVG can animate before auto-advance.
-      setAnswerFeedback(result.correct ? 'correct' : 'wrong');
-      await new Promise((resolve) => setTimeout(resolve, 520));
+      if (quizMode !== 'exam') {
+        setAnswerFeedback(result.correct ? 'correct' : 'wrong');
+        await new Promise((resolve) => setTimeout(resolve, 520));
+      }
 
       // The server activates monitoring when this answer is persisted.
       // Start the client listener only after that successful response.
