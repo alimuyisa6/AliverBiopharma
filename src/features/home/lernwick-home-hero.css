@@ -1,5 +1,9 @@
 .ab-home-hero {
   position: relative;
+  width: 100vw;
+  max-width: 100vw;
+  margin-inline: calc(50% - 50vw);
+  box-sizing: border-box;
   isolation: isolate;
   overflow: hidden;
   padding: clamp(4.5rem, 7vw, 7.25rem) max(5%, calc((100vw - 1240px) / 2)) 1.5rem;
