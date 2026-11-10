@@ -1554,6 +1554,10 @@ return getRequest(
 );
 }
 
+export async function requestReferralPayout(payload) {
+  return apiCall('profile', 'request_referral_payout', payload);
+}
+
 export async function getCertificates() {
 return getRequest(
 'profile',
