@@ -1,11 +1,13 @@
 :root {
-  --surface-page: #FFFFFF;
-  --surface-card: #FFFFFF;
-  --surface-raised: #FFFFFF;
-  --surface-muted: #F5F5F3;
-  --surface-subtle: #F8F8F6;
-  --surface-tinted: var(--brand-mint-soft);
-  --surface-strong: #ECEDE9;
+  --surface-page: #f2f6f8;
+  --surface-card: #ffffff;
+  --surface-raised: #ffffff;
+  --surface-muted: #e7eff3;
+  --surface-subtle: #f8fbfc;
+  --surface-section: #e7eff3;
+  --surface-section-alt: #edf4f6;
+  --surface-tinted: #dff3f7;
+  --surface-strong: #d9e5ea;
   --bg-page: var(--surface-page);
   --bg-card: var(--surface-card);
   --bg-card-hover: #F8F8F6;
@@ -17,13 +19,15 @@
   --border-strong: #D4D2CC;
 }
 body.dark-mode {
-  --surface-page: #1B1B1F;
-  --surface-card: #26262C;
-  --surface-raised: #33333A;
-  --surface-muted: #222228;
-  --surface-subtle: #29282E;
-  --surface-tinted: var(--brand-mint-soft);
-  --surface-strong: #33333A;
+  --surface-page: #171f24;
+  --surface-card: #222d33;
+  --surface-raised: #2b3940;
+  --surface-muted: #202b31;
+  --surface-subtle: #26343b;
+  --surface-section: #202b31;
+  --surface-section-alt: #26343b;
+  --surface-tinted: #203b43;
+  --surface-strong: #34454d;
   --bg-page: var(--surface-page);
   --bg-card: var(--surface-card);
   --bg-card-hover: var(--surface-raised);
@@ -85,4 +89,24 @@ body.dark-mode #root .app-layout :where(.section--soft,.dashboard-panel,.profile
   #root .app-layout :where(.resource-card,.notes-card,.blog-post-card,.flashcard-deck-card,.pdf-card,.pp-card) {
     transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
   }
+}
+#root .app-layout main > :is(.dashboard-section, .dashboard-panel, .profile-section, .notes-section, .resources-section, .quiz-section, .flashcards-section, .recall-page-section, .classroom-list-section, .content-panel-muted, .settings-section) {
+  border: 1px solid var(--border-subtle);
+  border-radius: 1.5rem;
+  background-color: var(--surface-section);
+}
+
+#root .app-layout main > :is(.dashboard-section, .dashboard-panel, .profile-section, .notes-section, .resources-section, .quiz-section, .flashcards-section, .recall-page-section, .classroom-list-section, .content-panel-muted, .settings-section):nth-of-type(even) {
+  background-color: var(--surface-section-alt);
+}
+
+#root .app-layout :where(.section--strong, .content-panel-strong) {
+  background-color: var(--surface-strong);
+  color: var(--text-main);
+}
+
+body.dark-mode #root .app-layout :where(.resource-card, .notes-card, .flashcard-deck-card, .dashboard-card, .quiz-question-card, .quiz-result-card, .quiz-review-card, .recall-question-card, .recall-report-card, .pp-card, .pdf-card) {
+  background-color: var(--surface-card);
+  border-color: var(--border-default);
+  color: var(--text-main);
 }
