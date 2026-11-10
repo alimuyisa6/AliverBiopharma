@@ -158,6 +158,7 @@ export default function Quiz() {
   const [timeLeft, setTimeLeft] = useState(null);
   const [answerSubmitting, setAnswerSubmitting] = useState(false);
   const [draftAnswer, setDraftAnswer] = useState('');
+  const [markedQuestions, setMarkedQuestions] = useState([]);
   const [answerFeedback, setAnswerFeedback] = useState(null);
   const [startingBlock, setStartingBlock] = useState(false);
   const [blockSubmitting, setBlockSubmitting] = useState(false);
@@ -963,7 +964,7 @@ export default function Quiz() {
                 return (
                   <button
                     key={idx}
-                    className={`${cls} ${idx === currentIndex ? 'btn-secondary' : ''} quiz-nav-pill`}
+                    className={`${cls} ${idx === currentIndex ? 'btn-secondary' : ''} ${markedQuestions.includes(quizQuestions[idx].id) ? 'is-flagged' : ''} quiz-nav-pill`}
                     onClick={() => {
                       if (!canNavigateTo(idx, userAnswers)) {
                         addToast('Answer the earlier questions before moving ahead.', 'warning');
