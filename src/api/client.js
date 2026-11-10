@@ -1831,6 +1831,18 @@ questions
 );
 }
 
+export async function getQuizReviewQueue() {
+  return getRequest('quiz', 'quiz_review_queue');
+}
+
+export async function gradeQuizSubmission(answerId, marksAwarded, teacherFeedback = '') {
+  return apiCall('quiz', 'quiz_grade_submission', {
+    answer_id: answerId,
+    marks_awarded: marksAwarded,
+    teacher_feedback: teacherFeedback
+  });
+}
+
 export async function getPastPapers(
 filters = {},
 options = {}
