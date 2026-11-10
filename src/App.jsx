@@ -16,6 +16,7 @@ const Dashboard = lazy(() => import('./pages/Dashboard'));
 const Profile = lazy(() => import('./pages/Profile'));
 const Quiz = lazy(() => import('./pages/Quiz'));
 const QuizReview = lazy(() => import('./pages/QuizReview'));
+const QuizAttemptResult = lazy(() => import('./pages/QuizAttemptResult'));
 const Challenges = lazy(() => import('./pages/Challenges'));
 const ChallengeRunner = lazy(() => import('./pages/ChallengeRunner'));
 const QuizChallengePage = lazy(() => import('./pages/challenges/QuizChallengePage'));
@@ -182,6 +183,7 @@ function AppRoutes() {
             <Route path="/quiz" element={<ProtectedRoute><FeatureRoute feature="quizzes"><Quiz /></FeatureRoute></ProtectedRoute>} />
             <Route path="/quiz/blocks" element={<ProtectedRoute><FeatureRoute feature="quizzes"><Quiz /></FeatureRoute></ProtectedRoute>} />
             <Route path="/quiz/review" element={<ProtectedRoute><QuizReview /></ProtectedRoute>} />
+            <Route path="/quiz/attempt/:attemptId" element={<ProtectedRoute><QuizAttemptResult /></ProtectedRoute>} />
             <Route path="/challenges" element={<ProtectedRoute><Challenges /></ProtectedRoute>} />
             <Route path="/challenges/recall" element={<ProtectedRoute><FeatureRoute feature="recall"><ChallengeRunner forcedType="recall" /></FeatureRoute></ProtectedRoute>} />
             <Route path="/challenges/flashcards" element={<ProtectedRoute><FeatureRoute feature="flashcards"><ChallengeRunner forcedType="flashcards" /></FeatureRoute></ProtectedRoute>} />
