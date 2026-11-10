@@ -26,7 +26,7 @@
 .mobile-menu-heading{font-family:var(--f-display)}
 .mobile-menu-link{border-radius:var(--r-md);font-family:var(--f-body)}
 .mobile-menu-link:hover,.mobile-menu-link:focus-visible,.mobile-menu-link.active{background:var(--soft);color:var(--orange-deep)}
-.footer{position:relative;overflow:hidden;flex-shrink:0;margin:var(--section) clamp(.5rem,.3rem + .6vw,.9rem) .5rem;padding:clamp(3rem,2rem + 4vw,5rem) 0 1.5rem;border-radius:var(--r-xl);background:var(--ink);color:var(--grey-300)}
+.footer{position:relative;overflow:hidden;flex-shrink:0;width:100%;max-width:none;margin:var(--section) 0 0;padding:clamp(3rem,2rem + 4vw,5rem) 0 1.5rem;border-radius:0;background:var(--ink);color:var(--grey-300)}
 .footer-wave{display:none}
 .footer-inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:3rem;width:min(calc(100% - (var(--gutter) * 2)),calc(var(--container) + 2 * var(--gutter)));margin-inline:auto;padding-bottom:2.5rem}
 .footer-brand{display:grid;align-content:start;justify-items:start;gap:1rem}
@@ -50,5 +50,5 @@
 .footer-bottom-link:hover{color:var(--white)}
 @media(max-width:980px){.main-nav{gap:0}.main-nav-link{padding:.6rem .55rem;font-size:var(--t-xs)}.nav-actions{gap:.3rem}.footer-inner{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:768px){.site-header{height:4.5rem}.header-container{gap:.6rem}.main-nav{display:none}.nav-actions{margin-left:auto}.hamburger-btn{display:inline-flex;align-items:center;justify-content:center}.nav-actions .class-switcher-wrap{display:none}.footer-right-groups{grid-template-columns:minmax(0,1fr)}}
-@media(max-width:560px){.footer{border-radius:var(--r-lg)}.footer-inner{gap:2rem}.footer-community-group,.footer-quick-groups{grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem}.footer-bottom{align-items:flex-start;flex-direction:column}.footer-bottom-nav{gap:.8rem}}
+@media(max-width:560px){.footer{border-radius:0}.footer-inner{gap:2rem}.footer-community-group,.footer-quick-groups{grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem}.footer-bottom{align-items:flex-start;flex-direction:column}.footer-bottom-nav{gap:.8rem}}
 @media(prefers-reduced-motion:reduce){.main-nav-link,.footer-social-link,.footer-link{transition:none}}
