@@ -156,6 +156,23 @@ export default function QuizReview() {
                   {selected.question_snapshot?.question_data?.instructions && (
                     <p className="quiz-review-instructions">{selected.question_snapshot.question_data.instructions}</p>
                   )}
+                  {selected.rubric && (
+                    <div className="quiz-review-rubric">
+                      <span className="quiz-review-section-label">Marking guidance</span>
+                      <p>{selected.rubric}</p>
+                    </div>
+                  )}
+                  {Array.isArray(selected.grading_criteria) && selected.grading_criteria.length > 0 && (
+                    <div className="quiz-review-criteria">
+                      <span className="quiz-review-section-label">Assessment criteria</span>
+                      {selected.grading_criteria.map((criterion, index) => (
+                        <div key={index}>
+                          <span>{criterion.criterion}</span>
+                          <strong>{criterion.marks} marks</strong>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                   <div className="quiz-review-section-label quiz-review-response-label">Learner response</div>
                   <div className="quiz-review-response">
                     {typeof selected.selected_answer === 'string'
