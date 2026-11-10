@@ -88,7 +88,7 @@
   --toggle-thumb-shadow: hsl(34deg 10% 42% / 80%);
   --toggle-thumb-shadow-soft: hsl(34deg 10% 42% / 40%);
   --toggle-thumb-shadow-strong: hsl(34deg 10% 42% / 60%);
-  --background: #f7fbfc;
+  --background: #f1f6f8;
   --text: #0a1011;
   --white: #FFFFFF;
   --text-on-primary: #0a1011;
@@ -176,7 +176,7 @@
   --night-850: #222228;
   --night-900: #1B1B1F;
   --night-text-primary: #FFFFFF;
-  --soft: #F5F5F3;
+  --soft: #e8f0f3;
   --line: #E7E6E2;
   --line-2: #D4D2CC;
   --ink-2: #4D4C55;
