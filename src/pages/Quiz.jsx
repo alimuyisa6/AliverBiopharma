@@ -1194,13 +1194,14 @@ export default function Quiz() {
                 return (
                   <button
                     key={index}
-                    className={`btn ${passed ? 'btn-success' : failed ? 'btn-danger' : 'btn-secondary'} quiz-block-status-button`}
+                    className={`btn ${passed ? 'btn-success' : pendingReview ? 'btn-primary' : failed ? 'btn-danger' : 'btn-secondary'} quiz-block-status-button`}
                     disabled={passed || retryLocked || locked}
                     onClick={() => startBlock(index)}
                     title={retryLocked ? retryLabel : undefined}
                   >
                     <span>Question set {index + 1}</span>
                     {passed && <span className="quiz-block-status-label">Passed</span>}
+                    {pendingReview && <span className="quiz-block-status-label">Awaiting marking</span>}
                     {failed && (
                       <span className="quiz-block-status-label">
                         {retryLocked ? retryLabel : 'Try again'}
