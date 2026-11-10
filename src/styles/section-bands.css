@@ -1,38 +1,22 @@
 :root {
-  --band-white: #ffffff;
-  --band-tint-a: #eaf2f8;
-  --band-tint-b: #f8fafc;
-  --band-tint-c: #eaf7f1;
-  --band-tint-d: #e8f7fa;
-  --band-tint-e: #f1effa;
-  --band-tint-f: #f6f2ea;
-  --band-tint-g: #f9f0e9;
-  --band-tint-h: #eff5e8;
-  --band-tint-i: #f8eef1;
-  --band-tint-j: #eaf0f4;
-  --band-tint-k: #f4f1e9;
-  --band-tint-l: #edf3f8;
-  --band-dark: var(--text-main);
+  --band-white: var(--surface-card);
+  --band-tint-a: var(--surface-section);
+  --band-tint-b: var(--surface-section-alt);
+  --band-tint-c: var(--surface-tinted);
+  --band-tint-d: var(--surface-section);
+  --band-tint-e: var(--surface-section-alt);
+  --band-tint-f: var(--surface-muted);
+  --band-tint-g: var(--surface-section);
+  --band-tint-h: var(--surface-section-alt);
+  --band-tint-i: var(--surface-tinted);
+  --band-tint-j: var(--surface-section);
+  --band-tint-k: var(--surface-section-alt);
+  --band-tint-l: var(--surface-muted);
+  --band-dark: var(--surface-inverse);
   --band-card-radius: 1.125rem;
   --band-button-radius: 0.875rem;
   --band-section-space: clamp(2.75rem, 6vw, 5.75rem);
   --band-section-space-mobile: clamp(2.25rem, 9vw, 3.25rem);
-}
-
-body.dark-mode {
-  --band-white: var(--dark-background);
-  --band-tint-a: color-mix(in srgb, var(--dark-surface) 88%, #8bbbd2 12%);
-  --band-tint-b: color-mix(in srgb, var(--dark-surface) 90%, #aab9c8 10%);
-  --band-tint-c: color-mix(in srgb, var(--dark-surface) 88%, #8bc9ad 12%);
-  --band-tint-d: color-mix(in srgb, var(--dark-surface) 88%, #72c9dc 12%);
-  --band-tint-e: color-mix(in srgb, var(--dark-surface) 90%, #aaa0d8 10%);
-  --band-tint-f: color-mix(in srgb, var(--dark-surface) 90%, #c9b58e 10%);
-  --band-tint-g: color-mix(in srgb, var(--dark-surface) 90%, #d6a88c 10%);
-  --band-tint-h: color-mix(in srgb, var(--dark-surface) 90%, #a8c58c 10%);
-  --band-tint-i: color-mix(in srgb, var(--dark-surface) 90%, #c99aaa 10%);
-  --band-tint-j: color-mix(in srgb, var(--dark-surface) 90%, #8da9bd 10%);
-  --band-tint-k: color-mix(in srgb, var(--dark-surface) 90%, #c9b58e 10%);
-  --band-tint-l: color-mix(in srgb, var(--dark-surface) 90%, #9ab4cf 10%);
 }
 
 .home-page {
