@@ -52,7 +52,8 @@ export default function QuizAttemptResult() {
 
   const pending = attempt.status === 'pending_review';
   const essays = (attempt.answers || []).filter((answer) => answer.question_type === 'essay');
-  const maxMarks = (attempt.answers || []).reduce((sum, answer) => sum + (Number(answer.max_marks) || 1), 0);
+  const maxMarks = Number(attempt.max_marks_total) || (attempt.answers || []).reduce((sum, answer) => sum + (Number(answer.max_marks) || 1), 0);
+  const marksAwarded = Number(attempt.marks_awarded_total ?? attempt.score) || 0;
 
   return (
     <main className="quiz-attempt-result-page">
@@ -76,7 +77,7 @@ export default function QuizAttemptResult() {
             <>
               <span className="quiz-attempt-result-status">{attempt.passed ? 'Passed' : 'Assessment complete'}</span>
               <strong className="quiz-attempt-result-percentage">{Number(attempt.percentage || 0).toFixed(1)}%</strong>
-              <span>{attempt.score}/{maxMarks} marks awarded</span>
+              <span>{marksAwarded}/{maxMarks} marks awarded</span>
             </>
           )}
         </Card>
