@@ -31,6 +31,7 @@ import Icon from '../components/Icon/Icon';
 import PageSkeleton from '../components/Loading/PageSkeleton';
 import { getCachedStale, setCache } from '../utils/cache';
 import QuizAnswerLoader from '../components/quiz/QuizAnswerLoader';
+import QuizQuestionRenderer from '../components/quiz/QuizQuestionRenderer';
 
 // Browser-native answer sounds. Prepare audio on the learner's tap for mobile autoplay rules.
 let quizAudioContext = null;
@@ -156,6 +157,8 @@ export default function Quiz() {
   const [streak, setStreak] = useState(0);
   const [timeLeft, setTimeLeft] = useState(null);
   const [answerSubmitting, setAnswerSubmitting] = useState(false);
+  const [draftAnswer, setDraftAnswer] = useState('');
+  const [markedQuestions, setMarkedQuestions] = useState([]);
   const [answerFeedback, setAnswerFeedback] = useState(null);
   const [startingBlock, setStartingBlock] = useState(false);
   const [blockSubmitting, setBlockSubmitting] = useState(false);
@@ -433,7 +436,7 @@ export default function Quiz() {
 
   const navigateTo = (index) => setCurrentIndex(index);
 
-  const selectAnswer = async (optionLetter) => {
+  const selectAnswer = async (selectedValue) => {
     if (locked || userAnswers[currentIndex] !== null || answerSubmitting) return;
 
     prepareQuizAnswerAudio();
@@ -447,7 +450,8 @@ export default function Quiz() {
         unit_id: activeUnitId,
         block_number: currentBlock,
         question_id: question.id,
-        selected_option: optionLetter,
+        selected_answer: selectedValue,
+        ...(typeof selectedValue === 'string' && ['A', 'B', 'C', 'D'].includes(selectedValue) ? { selected_option: selectedValue } : {}),
         idempotency_key: createIdempotencyKey('answer'),
         note_id: sourceNoteId,
         activity_scope: activityScope
@@ -461,18 +465,22 @@ export default function Quiz() {
       const newAnswers = [...userAnswers];
 
       newAnswers[currentIndex] = {
-        selected: optionLetter,
+        selected: selectedValue,
         correct: result.correct,
         correct_option: result.correct_option,
         correct_answer_text: result.correct_answer_text,
-        explanation: result.explanation || null
+        explanation: result.explanation || null,
+        user_answer_text: result.user_answer_text || null,
+        question_type: result.question_type || question.question_type || 'single_choice'
       };
 
       setUserAnswers(newAnswers);
-      playQuizAnswerSound(Boolean(result.correct));
+      if (quizMode !== 'exam') playQuizAnswerSound(Boolean(result.correct));
       // Keep the result visible briefly so the SVG can animate before auto-advance.
-      setAnswerFeedback(result.correct ? 'correct' : 'wrong');
-      await new Promise((resolve) => setTimeout(resolve, 520));
+      if (quizMode !== 'exam') {
+        setAnswerFeedback(result.correct ? 'correct' : 'wrong');
+        await new Promise((resolve) => setTimeout(resolve, 520));
+      }
 
       // The server activates monitoring when this answer is persisted.
       // Start the client listener only after that successful response.
@@ -601,7 +609,7 @@ export default function Quiz() {
       setQuizQuestions(data.questions);
 
       const priorAnswers = (data.prior_answers || []).map((answer) => (
-        answer ? { selected: answer.selected, correct: answer.correct } : null
+        answer ? { ...answer, selected: answer.selected } : null
       ));
 
       const resumedWithAnswer = priorAnswers.some(Boolean);
@@ -685,7 +693,24 @@ export default function Quiz() {
           </div>
 
           <Modal open={showRulesModal} onClose={() => setShowRulesModal(false)} title={t('common.quizRules')}>
-            <ul className="quiz-rules-list">
+            <div className="quiz-mode-picker" role="group" aria-label="Choose assessment mode">
+            <button type="button" className={`quiz-mode-option ${quizMode === 'study' ? 'is-active' : ''}`} onClick={() => setQuizMode('study')}>
+              <Icon name="lightbulb" />
+              <span><strong>Study mode</strong><small>Get feedback and explanations as you practise.</small></span>
+              {quizMode === 'study' && <Icon name="circle-check" />}
+            </button>
+            <button type="button" className={`quiz-mode-option ${quizMode === 'exam' ? 'is-active' : ''}`} onClick={() => setQuizMode('exam')}>
+              <Icon name="graduation-cap" />
+              <span><strong>Exam mode</strong><small>Complete the assessment before seeing feedback.</small></span>
+              {quizMode === 'exam' && <Icon name="circle-check" />}
+            </button>
+          </div>
+          <div className="quiz-assessment-facts">
+            <span><Icon name="list-check" /> 10 questions</span>
+            <span><Icon name="clock" /> 10 minutes</span>
+            <span><Icon name="flag" /> {t('common.passMark')}</span>
+          </div>
+          <ul className="quiz-rules-list">
               <li><span className="quiz-rules-bullet" aria-hidden="true" /> <span>{t('common.questionsPerBlock')}</span></li>
               <li><span className="quiz-rules-bullet" aria-hidden="true" /> <span>{t('common.passMark')}</span></li>
               <li><span className="quiz-rules-bullet" aria-hidden="true" /> <span>{t('common.immediateFeedback')}</span></li>
@@ -930,18 +955,32 @@ export default function Quiz() {
               </div>
             )}
 
+            <div className="quiz-question-navigation-header">
+              <div>
+                <h3>Question navigator</h3>
+                <p>{userAnswers.filter(Boolean).length} of {quizQuestions.length} answered</p>
+              </div>
+              <div className="quiz-question-legend">
+                <span><i className="is-answered" /> Answered</span>
+                <span><i className="is-flagged" /> Review</span>
+              </div>
+            </div>
             <div className="quiz-nav-pills">
               {quizQuestions.map((_, idx) => {
                 let cls = 'btn btn-sm btn-ghost';
 
                 if (userAnswers[idx]) {
-                  cls = userAnswers[idx].correct ? 'btn btn-sm btn-success' : 'btn btn-sm btn-danger';
+                  cls = quizModeIsExam
+                    ? 'btn btn-sm btn-primary'
+                    : userAnswers[idx].correct
+                      ? 'btn btn-sm btn-success'
+                      : 'btn btn-sm btn-danger';
                 }
 
                 return (
                   <button
                     key={idx}
-                    className={`${cls} ${idx === currentIndex ? 'btn-secondary' : ''} quiz-nav-pill`}
+                    className={`${cls} ${idx === currentIndex ? 'btn-secondary' : ''} ${markedQuestions.includes(quizQuestions[idx].id) ? 'is-flagged' : ''} quiz-nav-pill`}
                     onClick={() => {
                       if (!canNavigateTo(idx, userAnswers)) {
                         addToast('Answer the earlier questions before moving ahead.', 'warning');
@@ -960,7 +999,7 @@ export default function Quiz() {
             {timeLeft !== null && (
               <div className="quiz-timer-row">
                 <div className="quiz-timer-header">
-                  <span className="quiz-timer-label">{t('common.timeRemaining')}</span>
+                  <span className="quiz-timer-label"><Icon name="clock" /> {t('common.timeRemaining')}</span>
                   <span className={`quiz-timer-value ${timerClass}`}>
                     {Math.floor(timeLeft / 60)}:{String(timeLeft % 60).padStart(2, '0')}
                   </span>
@@ -993,34 +1032,13 @@ export default function Quiz() {
               image={quizQuestions[currentIndex].image_url}
               className="quiz-question-card card-surface-solid card-elevation-raised"
             >
-              <h3 className="quiz-question-heading">{quizQuestions[currentIndex].question_text}</h3>
-
-              <div className="quiz-options-list">
-                {['A', 'B', 'C', 'D'].map((option) => {
-                  const answered = userAnswers[currentIndex] !== null;
-                  const selected = userAnswers[currentIndex]?.selected;
-                  const correctOption = userAnswers[currentIndex]?.correct_option;
-
-                  let stateClass = '';
-
-                  if (answered) {
-                    if (option === correctOption) stateClass = 'correct';
-                    else if (option === selected) stateClass = 'incorrect';
-                  }
-
-                  return (
-                    <button
-                      key={option}
-                      className={`quiz-option-btn ${stateClass}`}
-                      onClick={() => selectAnswer(option)}
-                      disabled={answered || answerSubmitting || locked}
-                    >
-                      <span className="quiz-option-letter">{option}.</span>
-                      <span className="quiz-option-text">{quizQuestions[currentIndex][`option_${option.toLowerCase()}`]}</span>
-                    </button>
-                  );
-                })}
-              </div>
+              <QuizQuestionRenderer
+                key={quizQuestions[currentIndex].id}
+                question={quizQuestions[currentIndex]}
+                answer={userAnswers[currentIndex]}
+                disabled={answerSubmitting || locked}
+                onSubmit={selectAnswer}
+              />
 
               {quizMode === 'study' && userAnswers[currentIndex]?.explanation && (
                 <div className="quiz-review-explanation">
@@ -1058,6 +1076,14 @@ export default function Quiz() {
                 </Button>
               )}
 
+              {markedQuestions.length > 0 && (
+                <Button variant="secondary" onClick={() => {
+                  const flaggedIndex = quizQuestions.findIndex((question) => markedQuestions.includes(question.id));
+                  if (flaggedIndex >= 0) navigateTo(flaggedIndex);
+                }}>
+                  <Icon name="flag" /> Review flagged ({markedQuestions.length})
+                </Button>
+              )}
               {allAnswered && (
                 <Button
                   variant="primary"
@@ -1071,7 +1097,7 @@ export default function Quiz() {
                     </span>
                   ) : (
                     <>
-                      {t('common.submitBlock')}
+                      <Icon name="clipboard-check" /> {t('common.submitBlock')}
                     </>
                   )}
                 </Button>
@@ -1123,6 +1149,23 @@ export default function Quiz() {
         {!isQuizCardsPage && !currentTopic && !curriculumUnitId && <QuizWeakAreas user={user} level={level} class_name={class_name} groupId={activeGroupId} />}
 
         <Modal open={showRulesModal} onClose={() => setShowRulesModal(false)} title={t('common.quizRules')}>
+          <div className="quiz-mode-picker" role="group" aria-label="Choose assessment mode">
+            <button type="button" className={`quiz-mode-option ${quizMode === 'study' ? 'is-active' : ''}`} onClick={() => setQuizMode('study')}>
+              <Icon name="lightbulb" />
+              <span><strong>Study mode</strong><small>Get feedback and explanations as you practise.</small></span>
+              {quizMode === 'study' && <Icon name="circle-check" />}
+            </button>
+            <button type="button" className={`quiz-mode-option ${quizMode === 'exam' ? 'is-active' : ''}`} onClick={() => setQuizMode('exam')}>
+              <Icon name="graduation-cap" />
+              <span><strong>Exam mode</strong><small>Complete the assessment before seeing feedback.</small></span>
+              {quizMode === 'exam' && <Icon name="circle-check" />}
+            </button>
+          </div>
+          <div className="quiz-assessment-facts">
+            <span><Icon name="list-check" /> 10 questions</span>
+            <span><Icon name="clock" /> 10 minutes</span>
+            <span><Icon name="flag" /> {t('common.passMark')}</span>
+          </div>
           <ul className="quiz-rules-list">
             <li><span className="quiz-rules-bullet" aria-hidden="true" /> <span>{t('common.questionsPerBlock')}</span></li>
             <li><span className="quiz-rules-bullet" aria-hidden="true" /> <span>{t('common.passMark')}</span></li>
