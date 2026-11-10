@@ -863,11 +863,23 @@ export default function Quiz() {
         {resultData ? (
           <div className="quiz-result-container">
             <Card variant="flat" className="quiz-result-card card-surface-solid card-elevation-soft">
-              <h2>{resultData.passed ? `${t('common.congratulations')}, ${user?.full_name || 'Learner'}!` : t('common.blockComplete')}</h2>
-              <div className={`quiz-result-score ${resultData.passed ? 'is-pass' : 'is-fail'}`}>
-                {resultData.percentage}%
-              </div>
-              <p>{resultData.score}/{resultData.total} correct</p>
+              <h2>{resultData.pending_review ? 'Your assessment has been submitted' : resultData.passed ? `${t('common.congratulations')}, ${user?.full_name || 'Learner'}!` : t('common.blockComplete')}</h2>
+              {resultData.pending_review ? (
+                <div className="quiz-pending-review-notice" role="status">
+                  <Icon name="clock" />
+                  <div>
+                    <strong>Awaiting teacher marking</strong>
+                    <p>Your written response has been received. Your final score and pass status will appear after all essay questions are marked.</p>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <div className={`quiz-result-score ${resultData.passed ? 'is-pass' : 'is-fail'}`}>
+                    {resultData.percentage}%
+                  </div>
+                  <p>{resultData.score}/{resultData.total} correct</p>
+                </>
+              )}
               {resultData.recommendation && (
                 <div className="quiz-result-recommendation" aria-live="polite">
                   <h3>{resultData.recommendation.title || 'Recommended next step'}</h3>
@@ -885,16 +897,18 @@ export default function Quiz() {
               {(resultData.answers || []).map((answer, idx) => (
                 <Card key={idx} variant="flat" className="quiz-review-card card-surface-subtle card-elevation-none">
                   <div className="quiz-review-header">
-                    <span className={`quiz-review-status ${answer.isCorrect ? 'is-passed' : 'is-failed'}`}>
-                      {answer.isCorrect ? 'Passed' : 'Failed'}
+                    <span className={`quiz-review-status ${answer.review_status === 'pending_review' ? 'is-pending' : answer.isCorrect ? 'is-passed' : 'is-failed'}`}>
+                      {answer.review_status === 'pending_review' ? 'Awaiting review' : answer.isCorrect ? 'Passed' : 'Failed'}
                     </span>
                     <span className="quiz-review-qnum">Q{idx + 1}</span>
                   </div>
                   <p>{answer.question}</p>
-                  <p className={`quiz-review-answer ${answer.isCorrect ? 'is-correct' : 'is-incorrect'}`}>
+                  <p className={`quiz-review-answer ${answer.review_status === 'pending_review' ? '' : answer.isCorrect ? 'is-correct' : 'is-incorrect'}`}>
                     Your answer: {answer.userAnswerText}
                   </p>
-                  {!answer.isCorrect && <p className="quiz-review-correct-answer">Correct: {answer.correctAnswerText}</p>}
+                  {answer.review_status === 'pending_review' && <p className="quiz-review-explanation">This written response will be marked by an approved reviewer.</p>}
+                  {answer.question_type === 'essay' && answer.max_marks && <p className="quiz-review-explanation">Maximum marks: {answer.max_marks}</p>}
+                  {answer.question_type !== 'essay' && !answer.isCorrect && <p className="quiz-review-correct-answer">Correct: {answer.correctAnswerText}</p>}
                   {answer.explanation && <p className="quiz-review-explanation">{answer.explanation}</p>}
                 </Card>
               ))}
