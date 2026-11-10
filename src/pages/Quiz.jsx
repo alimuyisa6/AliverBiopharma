@@ -31,6 +31,7 @@ import Icon from '../components/Icon/Icon';
 import PageSkeleton from '../components/Loading/PageSkeleton';
 import { getCachedStale, setCache } from '../utils/cache';
 import QuizAnswerLoader from '../components/quiz/QuizAnswerLoader';
+import QuizQuestionRenderer from '../components/quiz/QuizQuestionRenderer';
 
 // Browser-native answer sounds. Prepare audio on the learner's tap for mobile autoplay rules.
 let quizAudioContext = null;
@@ -467,7 +468,9 @@ export default function Quiz() {
         correct: result.correct,
         correct_option: result.correct_option,
         correct_answer_text: result.correct_answer_text,
-        explanation: result.explanation || null
+        explanation: result.explanation || null,
+        user_answer_text: result.user_answer_text || null,
+        question_type: result.question_type || question.question_type || 'single_choice'
       };
 
       setUserAnswers(newAnswers);
@@ -995,34 +998,13 @@ export default function Quiz() {
               image={quizQuestions[currentIndex].image_url}
               className="quiz-question-card card-surface-solid card-elevation-raised"
             >
-              <h3 className="quiz-question-heading">{quizQuestions[currentIndex].question_text}</h3>
-
-              <div className="quiz-options-list">
-                {['A', 'B', 'C', 'D'].map((option) => {
-                  const answered = userAnswers[currentIndex] !== null;
-                  const selected = userAnswers[currentIndex]?.selected;
-                  const correctOption = userAnswers[currentIndex]?.correct_option;
-
-                  let stateClass = '';
-
-                  if (answered) {
-                    if (option === correctOption) stateClass = 'correct';
-                    else if (option === selected) stateClass = 'incorrect';
-                  }
-
-                  return (
-                    <button
-                      key={option}
-                      className={`quiz-option-btn ${stateClass}`}
-                      onClick={() => selectAnswer(option)}
-                      disabled={answered || answerSubmitting || locked}
-                    >
-                      <span className="quiz-option-letter">{option}.</span>
-                      <span className="quiz-option-text">{quizQuestions[currentIndex][`option_${option.toLowerCase()}`]}</span>
-                    </button>
-                  );
-                })}
-              </div>
+              <QuizQuestionRenderer
+                key={quizQuestions[currentIndex].id}
+                question={quizQuestions[currentIndex]}
+                answer={userAnswers[currentIndex]}
+                disabled={answerSubmitting || locked}
+                onSubmit={selectAnswer}
+              />
 
               {quizMode === 'study' && userAnswers[currentIndex]?.explanation && (
                 <div className="quiz-review-explanation">
