@@ -953,6 +953,16 @@ export default function Quiz() {
               </div>
             )}
 
+            <div className="quiz-question-navigation-header">
+              <div>
+                <h3>Question navigator</h3>
+                <p>{userAnswers.filter(Boolean).length} of {quizQuestions.length} answered</p>
+              </div>
+              <div className="quiz-question-legend">
+                <span><i className="is-answered" /> Answered</span>
+                <span><i className="is-flagged" /> Review</span>
+              </div>
+            </div>
             <div className="quiz-nav-pills">
               {quizQuestions.map((_, idx) => {
                 let cls = 'btn btn-sm btn-ghost';
@@ -983,7 +993,7 @@ export default function Quiz() {
             {timeLeft !== null && (
               <div className="quiz-timer-row">
                 <div className="quiz-timer-header">
-                  <span className="quiz-timer-label">{t('common.timeRemaining')}</span>
+                  <span className="quiz-timer-label"><Icon name="clock" plain /> {t('common.timeRemaining')}</span>
                   <span className={`quiz-timer-value ${timerClass}`}>
                     {Math.floor(timeLeft / 60)}:{String(timeLeft % 60).padStart(2, '0')}
                   </span>
@@ -1060,6 +1070,14 @@ export default function Quiz() {
                 </Button>
               )}
 
+              {markedQuestions.length > 0 && (
+                <Button variant="secondary" onClick={() => {
+                  const flaggedIndex = quizQuestions.findIndex((question) => markedQuestions.includes(question.id));
+                  if (flaggedIndex >= 0) navigateTo(flaggedIndex);
+                }}>
+                  <Icon name="flag" plain /> Review flagged ({markedQuestions.length})
+                </Button>
+              )}
               {allAnswered && (
                 <Button
                   variant="primary"
@@ -1073,7 +1091,7 @@ export default function Quiz() {
                     </span>
                   ) : (
                     <>
-                      {t('common.submitBlock')}
+                      <Icon name="clipboard-check" plain /> {t('common.submitBlock')}
                     </>
                   )}
                 </Button>
