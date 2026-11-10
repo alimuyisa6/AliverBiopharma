@@ -42,7 +42,14 @@ body.dark-mode {
   font-family: var(--f-body);
 }
 
-#root .app-layout :where(main, .page-content, .page-container, .content-container, .resources-main, .notes-page, .blog-page, .contact-page, .faq-page, .about-content-wrap) {
+#root .app-layout > .main-content {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+#root .app-layout :where(.page-content, .page-container, .content-container, .resources-main, .notes-page, .blog-page, .contact-page, .faq-page, .about-content-wrap) {
   width: 100%;
   max-width: min(100%, calc(var(--container) + 2 * var(--gutter)));
   box-sizing: border-box;
