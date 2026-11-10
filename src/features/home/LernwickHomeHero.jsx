@@ -25,8 +25,8 @@ export default function LernwickHomeHero({ user, activeLevelName, activeGroupNam
           </p>
 
           <h1 id="ab-home-hero-title">
-            Understand more.
-            <span> Remember longer.</span>
+            Understand <span className="ab-home-hero-emphasis">MORE.</span>
+            <span>Remember <span className="ab-home-hero-emphasis">LONGER.</span></span>
             Learn with purpose.
           </h1>
 
