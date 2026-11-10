@@ -457,9 +457,9 @@ export default function Quiz() {
             status: attempt.status,
             passed: Boolean(attempt.passed),
             percentage: Number(attempt.percentage) || 0,
-            score: Number(attempt.score) || 0,
+            score: Number(attempt.marks_awarded_total ?? attempt.score) || 0,
             total: Number(attempt.total_questions) || answers.length,
-            max_marks: answers.reduce((sum, answer) => sum + (Number(answer.max_marks) || 0), 0),
+            max_marks: Number(attempt.max_marks_total) || answers.reduce((sum, answer) => sum + (Number(answer.max_marks) || 0), 0),
             has_essays: answers.some((answer) => answer.question_type === 'essay'),
             answers
           };
