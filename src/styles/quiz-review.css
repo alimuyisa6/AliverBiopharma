@@ -141,7 +141,7 @@
   flex: 0 0 auto;
   place-items: center;
   border-radius: var(--radius-md);
-  background: var(--bg-subtle);
+  background: var(--bg-card-hover);
   color: var(--primary);
 }
 
@@ -207,7 +207,7 @@
 .quiz-review-instructions {
   padding: var(--space-3) var(--space-4);
   border-left: 3px solid var(--primary);
-  background: var(--bg-subtle);
+  background: var(--bg-card-hover);
   color: var(--text-secondary);
   line-height: var(--leading-relaxed);
 }
@@ -221,7 +221,7 @@
   padding: var(--space-5);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-md);
-  background: var(--bg-subtle);
+  background: var(--bg-card-hover);
   color: var(--text-main);
   line-height: var(--leading-relaxed);
   white-space: pre-wrap;
@@ -332,7 +332,7 @@
   margin: 0;
   padding: var(--space-3) var(--space-4);
   border-left: 3px solid var(--primary);
-  background: var(--bg-subtle);
+  background: var(--bg-card-hover);
   color: var(--text-secondary);
   line-height: var(--leading-relaxed);
 }
