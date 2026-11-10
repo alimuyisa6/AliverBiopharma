@@ -291,6 +291,7 @@ export default function Quiz() {
               total_blocks: topic.total_blocks || 0,
               completed_blocks: topic.completed_blocks || [],
               failed_blocks: topic.failed_blocks || [],
+              pending_review_blocks: topic.pending_review_blocks || [],
               all_done: topic.all_done || false
             }
           ] : []
@@ -594,6 +595,7 @@ export default function Quiz() {
             total_blocks: topicsRes.total_blocks || 0,
             completed_blocks: topicsRes.completed_blocks || [],
             failed_blocks: topicsRes.failed_blocks || [],
+            pending_review_blocks: topicsRes.pending_review_blocks || [],
             locked_blocks: topicsRes.locked_blocks || [],
             retry_after: topicsRes.retry_after || {},
             all_done: topicsRes.all_done || false
@@ -722,19 +724,21 @@ export default function Quiz() {
           <div className="quiz-blocks-grid">
             {Array.from({ length: blockCount }).map((_, index) => {
               const failed = topicData?.failed_blocks?.includes(index);
+              const pendingReview = topicData?.pending_review_blocks?.includes(index);
               const passed = topicData?.completed_blocks?.includes(index);
               const retryLocked = topicData?.locked_blocks?.includes(index);
               const retryLabel = formatQuizRetryTime(topicData?.retry_after?.[index]);
               return (
                 <button
                   key={index}
-                  className={`btn ${passed ? 'btn-success' : failed ? 'btn-danger' : 'btn-secondary'} quiz-block-status-button`}
+                  className={`btn ${passed ? 'btn-success' : pendingReview ? 'btn-primary' : failed ? 'btn-danger' : 'btn-secondary'} quiz-block-status-button`}
                   disabled={passed || retryLocked || locked}
                   onClick={() => startBlock(index)}
                   title={retryLocked ? retryLabel : undefined}
                 >
                   <span>Question set {index + 1}</span>
                   {passed && <span className="quiz-block-status-label">Passed</span>}
+                  {pendingReview && <span className="quiz-block-status-label">Awaiting marking</span>}
                   {failed && (
                     <span className="quiz-block-status-label">
                       {retryLocked ? retryLabel : 'Try again'}
@@ -1182,6 +1186,7 @@ export default function Quiz() {
               {Array.from({ length: totalBlocks }).map((_, index) => {
                 const topicData = allTopics.find((topic) => topic.topic_name === currentTopic);
                 const failed = topicData?.failed_blocks?.includes(index);
+                const pendingReview = topicData?.pending_review_blocks?.includes(index);
                 const passed = topicData?.completed_blocks?.includes(index);
                 const retryLocked = topicData?.locked_blocks?.includes(index);
                 const retryLabel = formatQuizRetryTime(topicData?.retry_after?.[index]);
