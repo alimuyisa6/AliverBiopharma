@@ -1558,6 +1558,14 @@ export async function requestReferralPayout(payload) {
   return apiCall('profile', 'request_referral_payout', payload);
 }
 
+export async function getAdminReferralPayouts(status) {
+  return getRequest('profile', 'admin_referral_payouts', status ? { status } : {});
+}
+
+export async function reviewReferralPayout(payload) {
+  return apiCall('profile', 'review_referral_payout', payload);
+}
+
 export async function getCertificates() {
 return getRequest(
 'profile',
