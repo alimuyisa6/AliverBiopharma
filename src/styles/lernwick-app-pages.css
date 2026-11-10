@@ -179,6 +179,10 @@
   background: var(--surface-section);
 }
 
+#root .app-layout main > :is(.dashboard-section, .dashboard-panel, .profile-section, .notes-section, .resources-section, .quiz-section, .flashcards-section, .recall-page-section, .classroom-list-section):nth-of-type(even) {
+  background: var(--surface-section-alt);
+}
+
 #root .app-layout :where(.dashboard-grid, .stats-grid, .resource-grid, .notes-grid, .cards-grid, .feature-grid, .tutor-grid, .course-grid) {
   gap: 1.1rem;
 }
