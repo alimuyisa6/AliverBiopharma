@@ -609,7 +609,7 @@ export default function Quiz() {
       setQuizQuestions(data.questions);
 
       const priorAnswers = (data.prior_answers || []).map((answer) => (
-        answer ? { selected: answer.selected, correct: answer.correct } : null
+        answer ? { ...answer, selected: answer.selected } : null
       ));
 
       const resumedWithAnswer = priorAnswers.some(Boolean);
