@@ -38,14 +38,6 @@
 
 
 
-  --surface-page: var(--surface-page);
-  --surface-card: var(--surface-card);
-  --surface-raised: var(--surface-raised);
-  --surface-muted: var(--surface-muted);
-  --surface-subtle: var(--surface-subtle);
-  --surface-section: var(--surface-section);
-  --surface-section-alt: var(--surface-section-alt);
-  --surface-tinted: var(--surface-tinted);
   --surface-inverse: var(--ink);
   --surface-overlay: var(--overlay-color);
   --surface-disabled: var(--grey-100);
@@ -245,14 +237,6 @@ body.dark-mode {
   --tone-info-hover: var(--info-hover);
   --tone-info-bg: var(--info-light);
   --tone-info-border: var(--info-border);
-  --surface-page: var(--surface-page);
-  --surface-card: var(--surface-card);
-  --surface-raised: var(--surface-raised);
-  --surface-muted: var(--surface-muted);
-  --surface-subtle: var(--surface-subtle);
-  --surface-section: var(--surface-section);
-  --surface-section-alt: var(--surface-section-alt);
-  --surface-tinted: var(--surface-tinted);
   --surface-inverse: var(--dark-text);
   --surface-overlay: var(--overlay-color);
   --surface-disabled: var(--dark-surface-raised);
