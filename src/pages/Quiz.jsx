@@ -955,8 +955,8 @@ export default function Quiz() {
               {(resultData.answers || []).map((answer, idx) => (
                 <Card key={idx} variant="flat" className="quiz-review-card card-surface-subtle card-elevation-none">
                   <div className="quiz-review-header">
-                    <span className={`quiz-review-status ${answer.review_status === 'pending_review' ? 'is-pending' : answer.isCorrect ? 'is-passed' : 'is-failed'}`}>
-                      {answer.review_status === 'pending_review' ? 'Awaiting review' : answer.isCorrect ? 'Passed' : 'Failed'}
+                    <span className={`quiz-review-status ${answer.review_status === 'pending_review' ? 'is-pending' : answer.question_type === 'essay' ? 'is-passed' : answer.isCorrect ? 'is-passed' : 'is-failed'}`}>
+                      {answer.review_status === 'pending_review' ? 'Awaiting review' : answer.question_type === 'essay' ? 'Marked' : answer.isCorrect ? 'Passed' : 'Failed'}
                     </span>
                     <span className="quiz-review-qnum">Q{idx + 1}</span>
                   </div>
