@@ -49,6 +49,7 @@ export default function Auth() {
   const [password, setPassword] = useState('');
   const [confirm, setConfirm] = useState('');
   const [fullName, setFullName] = useState('');
+  const [referralCode, setReferralCode] = useState(() => new URLSearchParams(location.search).get('ref') || '');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   const [pendingConfirmation, setPendingConfirmation] = useState(false);
@@ -408,7 +409,8 @@ export default function Auth() {
       const result = await signup(email, password, token, {
         full_name: fullName.trim(),
         role: selectedRole,
-        level: selectedLevel
+        level: selectedLevel,
+        referral_code: referralCode.trim().toUpperCase()
       });
 
       if (result?.user) {
@@ -785,6 +787,14 @@ export default function Auth() {
                       value={fullName}
                       onChange={(event) => setFullName(event.target.value)}
                       required
+                      disabled={submitting}
+                      className="auth-field"
+                    />
+                    <Input
+                      label="Referral code (optional)"
+                      placeholder="Enter a referral code"
+                      value={referralCode}
+                      onChange={(event) => setReferralCode(event.target.value.toUpperCase())}
                       disabled={submitting}
                       className="auth-field"
                     />
