@@ -136,7 +136,7 @@ export default function QuizReview() {
                   <span className="quiz-review-inbox-copy">
                     <strong>{item.learner_name}</strong>
                     <small>{item.unit_name}</small>
-                    <small>Question {item.question_id} · {item.max_marks} marks</small>
+                    <small>Essay response · {item.max_marks} marks</small>
                   </span>
                   <Icon name="chevron-right" />
                 </button>
