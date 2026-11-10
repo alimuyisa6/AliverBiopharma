@@ -781,23 +781,25 @@ export default function Auth() {
                   onSubmit={mode === 'login' ? handleLogin : handleRegister}
                 >
                   {mode === 'register' && (
-                    <Input
-                      label={t('auth.fullNameLabel')}
-                      placeholder={t('auth.enterFullName')}
-                      value={fullName}
-                      onChange={(event) => setFullName(event.target.value)}
-                      required
-                      disabled={submitting}
-                      className="auth-field"
-                    />
-                    <Input
-                      label="Referral code (optional)"
-                      placeholder="Enter a referral code"
-                      value={referralCode}
-                      onChange={(event) => setReferralCode(event.target.value.toUpperCase())}
-                      disabled={submitting}
-                      className="auth-field"
-                    />
+                    <>
+                      <Input
+                        label={t('auth.fullNameLabel')}
+                        placeholder={t('auth.enterFullName')}
+                        value={fullName}
+                        onChange={(event) => setFullName(event.target.value)}
+                        required
+                        disabled={submitting}
+                        className="auth-field"
+                      />
+                      <Input
+                        label="Referral code (optional)"
+                        placeholder="Enter a referral code"
+                        value={referralCode}
+                        onChange={(event) => setReferralCode(event.target.value.toUpperCase())}
+                        disabled={submitting}
+                        className="auth-field"
+                      />
+                    </>
                   )}
   
                   <Input
