@@ -927,6 +927,7 @@ export default function Quiz() {
                   <div>
                     <strong>Awaiting teacher marking</strong>
                     <p>Your written response has been received. Your final score and pass status will appear after all essay questions are marked.</p>
+                    {resultData.attempt_id && <Link className="btn btn-secondary" to={`/quiz/attempt/${resultData.attempt_id}`}>View submission status</Link>}
                   </div>
                 </div>
               ) : (
