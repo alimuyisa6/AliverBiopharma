@@ -136,6 +136,70 @@
   color: #83d5e7;
 }
 
+.ab-home-hero h1 .ab-home-hero-emphasis {
+  display: inline;
+  color: #b8f3ff;
+  font-weight: 850;
+  letter-spacing: -.055em;
+  text-shadow: 0 2px 18px rgb(131 213 231 / 22%);
+}
+
+.ab-home-hero-kicker,
+.ab-home-hero-welcome,
+.ab-home-hero-description,
+.ab-home-hero-trust-item strong,
+.ab-home-hero-trust-item small,
+.ab-home-hero-bottom-label,
+.ab-home-hero-programmes span,
+.ab-home-hero-bottom-link,
+.ab-home-hero-path,
+.ab-home-hero-path strong {
+  text-shadow: 0 1px 2px rgb(0 0 0 / 18%);
+}
+
+.ab-home-hero-kicker {
+  border-color: rgb(191 239 248 / 48%);
+  background: rgb(4 25 39 / 42%);
+  color: #f0fcff;
+}
+
+.ab-home-hero-welcome {
+  color: #b8f3ff;
+}
+
+.ab-home-hero-description {
+  color: #edf7fb;
+}
+
+.ab-home-hero-trust {
+  border-top-color: rgb(226 247 252 / 30%);
+}
+
+.ab-home-hero-trust-item strong {
+  color: #ffffff;
+}
+
+.ab-home-hero-trust-item small,
+.ab-home-hero-path {
+  color: #d9edf4;
+}
+
+.ab-home-hero-bottom {
+  border-top-color: rgb(226 247 252 / 30%);
+}
+
+.ab-home-hero-bottom-label {
+  color: #c5e1eb;
+}
+
+.ab-home-hero-programmes span {
+  color: #f2fbfd;
+}
+
+.ab-home-hero-bottom-link {
+  color: #b8f3ff;
+}
+
 .ab-home-hero-description {
   max-width: 37rem;
   margin: 1.5rem 0 0;
