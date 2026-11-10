@@ -2557,3 +2557,13 @@ body.dark-mode .quiz-pending-review-notice,
 body.dark-mode .quiz-essay-submitted {
   background: var(--night-800);
 }
+
+.quiz-page.quiz-cards-route-page,
+.quiz-page.quiz-cards-route-page.scroll-reveal,
+.quiz-page.quiz-cards-route-page .quiz-page-section,
+.quiz-page.quiz-cards-route-page .quiz-page-section.scroll-reveal,
+.quiz-page.quiz-cards-route-page .quiz-topic-cards > * {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+}
