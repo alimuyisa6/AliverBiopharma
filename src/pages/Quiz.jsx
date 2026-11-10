@@ -156,6 +156,7 @@ export default function Quiz() {
   const [streak, setStreak] = useState(0);
   const [timeLeft, setTimeLeft] = useState(null);
   const [answerSubmitting, setAnswerSubmitting] = useState(false);
+  const [draftAnswer, setDraftAnswer] = useState('');
   const [answerFeedback, setAnswerFeedback] = useState(null);
   const [startingBlock, setStartingBlock] = useState(false);
   const [blockSubmitting, setBlockSubmitting] = useState(false);
@@ -433,7 +434,7 @@ export default function Quiz() {
 
   const navigateTo = (index) => setCurrentIndex(index);
 
-  const selectAnswer = async (optionLetter) => {
+  const selectAnswer = async (selectedValue) => {
     if (locked || userAnswers[currentIndex] !== null || answerSubmitting) return;
 
     prepareQuizAnswerAudio();
@@ -447,7 +448,8 @@ export default function Quiz() {
         unit_id: activeUnitId,
         block_number: currentBlock,
         question_id: question.id,
-        selected_option: optionLetter,
+        selected_answer: selectedValue,
+        ...(typeof selectedValue === 'string' && ['A', 'B', 'C', 'D'].includes(selectedValue) ? { selected_option: selectedValue } : {}),
         idempotency_key: createIdempotencyKey('answer'),
         note_id: sourceNoteId,
         activity_scope: activityScope
@@ -461,7 +463,7 @@ export default function Quiz() {
       const newAnswers = [...userAnswers];
 
       newAnswers[currentIndex] = {
-        selected: optionLetter,
+        selected: selectedValue,
         correct: result.correct,
         correct_option: result.correct_option,
         correct_answer_text: result.correct_answer_text,
