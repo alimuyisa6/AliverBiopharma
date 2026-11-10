@@ -1831,6 +1831,10 @@ questions
 );
 }
 
+export async function getQuizAttempt(attemptId) {
+  return getRequest('quiz', 'quiz_attempt', { attempt_id: attemptId });
+}
+
 export async function getQuizReviewQueue() {
   return getRequest('quiz', 'quiz_review_queue');
 }
