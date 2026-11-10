@@ -159,3 +159,100 @@ body.dark-mode #root .app-layout :where(.quiz-question-card, .quiz-result-card, 
   border-color: var(--border-default);
   color: var(--dark-text);
 }
+
+
+:root {
+  --surface-page: #f4f7f9;
+  --surface-section: #dce9ef;
+  --surface-section-alt: #e8f0f4;
+  --surface-muted: #dce9ef;
+  --surface-subtle: #eef3f6;
+  --surface-tinted: #cceaf1;
+  --surface-strong: #c5dce5;
+  --border-subtle: #c7d8e0;
+  --border-default: #b9cdd7;
+  --border-strong: #91afbd;
+}
+
+body.dark-mode {
+  --surface-page: #131d23;
+  --surface-section: #23343d;
+  --surface-section-alt: #1c2b33;
+  --surface-muted: #23343d;
+  --surface-subtle: #1c2b33;
+  --surface-tinted: #1c414b;
+  --surface-strong: #34515d;
+  --border-subtle: #354c57;
+  --border-default: #405b67;
+  --border-strong: #62808d;
+}
+
+#root .app-layout {
+  background: var(--surface-page) !important;
+}
+
+#root .app-layout main {
+  width: 100%;
+  max-width: none;
+  padding-inline: 0;
+  overflow: clip;
+}
+
+#root .app-layout main > :where(section, .section, .dashboard-section, .dashboard-panel, .profile-section, .notes-section, .resources-section, .quiz-section, .flashcards-section, .recall-page-section, .classroom-list-section, .pp-main, .glossary-section) {
+  position: relative;
+  isolation: isolate;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: max(var(--gutter), calc((100vw - var(--container)) / 2));
+  border: 0;
+  border-radius: 0;
+  background: transparent !important;
+}
+
+#root .app-layout main > :where(section, .section, .dashboard-section, .dashboard-panel, .profile-section, .notes-section, .resources-section, .quiz-section, .flashcards-section, .recall-page-section, .classroom-list-section, .pp-main, .glossary-section)::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0 auto 0 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  background: var(--surface-section);
+  pointer-events: none;
+}
+
+#root .app-layout main > :where(section, .section, .dashboard-section, .dashboard-panel, .profile-section, .notes-section, .resources-section, .quiz-section, .flashcards-section, .recall-page-section, .classroom-list-section, .pp-main, .glossary-section):nth-of-type(even)::before {
+  background: var(--surface-section-alt);
+}
+
+#root .app-layout main > :where(section, .section, .dashboard-section, .dashboard-panel, .profile-section, .notes-section, .resources-section, .quiz-section, .flashcards-section, .recall-page-section, .classroom-list-section, .pp-main, .glossary-section) > :where(.container, .section-inner, .section-content, .section-wrapper-inner, .content-inner) {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+}
+
+#root .app-layout :where(.quiz-page-section, .flashcard-subject-section, .recall-page-section, .pp-hero, .resources-intro, .notes-page-heading, .dashboard-curriculum-section) {
+  background: var(--surface-tinted) !important;
+  border: 1px solid var(--border-default);
+  border-radius: 1.25rem;
+}
+
+#root .app-layout :where(.resource-card, .notes-card, .blog-post-card, .team-card, .contributor-card, .flashcard-deck-card, .dashboard-curriculum-card, .profile-category-card, .pp-card, .glossary-route-card, .quiz-topic-cards > .card, .quiz-blocks-grid > .card, .recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .pdf-card, .tutor-card, .faq-item, .about-block, .contact-form, .donate-card, .donate-widget, .donate-momo-card, .note-learning-card, .quiz-question-card, .quiz-result-card, .quiz-review-card) {
+  background: var(--surface-card) !important;
+  border: 1px solid var(--border-default);
+  box-shadow: 0 8px 24px rgb(22 55 70 / 8%);
+}
+
+body.dark-mode #root .app-layout :where(.resource-card, .notes-card, .blog-post-card, .team-card, .contributor-card, .flashcard-deck-card, .dashboard-curriculum-card, .profile-category-card, .pp-card, .glossary-route-card, .quiz-topic-cards > .card, .quiz-blocks-grid > .card, .recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .pdf-card, .tutor-card, .faq-item, .about-block, .contact-form, .donate-card, .donate-widget, .donate-momo-card, .note-learning-card, .quiz-question-card, .quiz-result-card, .quiz-review-card) {
+  background: var(--surface-card) !important;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 22%);
+}
+
+body.dark-mode #root .app-layout main > :where(section, .section, .dashboard-section, .dashboard-panel, .profile-section, .notes-section, .resources-section, .quiz-section, .flashcards-section, .recall-page-section, .classroom-list-section, .pp-main, .glossary-section)::before {
+  background: var(--surface-section);
+}
+
+body.dark-mode #root .app-layout main > :where(section, .section, .dashboard-section, .dashboard-panel, .profile-section, .notes-section, .resources-section, .quiz-section, .flashcards-section, .recall-page-section, .classroom-list-section, .pp-main, .glossary-section):nth-of-type(even)::before {
+  background: var(--surface-section-alt);
+}
