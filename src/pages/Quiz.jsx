@@ -970,7 +970,11 @@ export default function Quiz() {
                 let cls = 'btn btn-sm btn-ghost';
 
                 if (userAnswers[idx]) {
-                  cls = userAnswers[idx].correct ? 'btn btn-sm btn-success' : 'btn btn-sm btn-danger';
+                  cls = quizModeIsExam
+                    ? 'btn btn-sm btn-primary'
+                    : userAnswers[idx].correct
+                      ? 'btn btn-sm btn-success'
+                      : 'btn btn-sm btn-danger';
                 }
 
                 return (
