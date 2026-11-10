@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
 
@@ -6,6 +6,10 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
   const type = question.question_type || 'single_choice';
   const options = Array.isArray(question.question_data?.options) ? question.question_data.options : [];
   const [draft, setDraft] = useState(type === 'multiple_select' ? [] : '');
+
+  useEffect(() => {
+    setDraft(answer?.selected ?? (type === 'multiple_select' ? [] : ''));
+  }, [question.id, answer?.selected, type]);
 
   const submit = () => {
     if (type === 'true_false') {
@@ -15,6 +19,10 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
     }
     onSubmit(draft);
   };
+
+  const wordCount = String(draft || '').trim() ? String(draft).trim().split(/\\s+/).length : 0;
+  const minWords = Math.max(0, Number(question.question_data?.min_words) || 0);
+  const maxWords = Math.max(0, Number(question.question_data?.max_words) || 0);
 
   const optionRows = options.map((option) => ({
     id: String(typeof option === 'object' ? option.id : option),
@@ -29,6 +37,46 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
         <button type="button" className={`quiz-mark-review ${marked ? 'is-marked' : ''}`} onClick={onToggleMark} aria-pressed={Boolean(marked)}><Icon name="flag" /> {marked ? 'Marked for review' : 'Mark for review'}</button>
       </div>
       <h3 className="quiz-question-heading">{question.question_text}</h3>
+
+      {type === 'essay' && (
+        <div className="quiz-essay-response">
+          {question.question_data?.instructions && (
+            <p className="quiz-essay-instructions">{question.question_data.instructions}</p>
+          )}
+          <div className="quiz-essay-meta">
+            <span><Icon name="clipboard-check" /> {Number(question.question_data?.max_marks) || 10} marks</span>
+            {minWords > 0 && <span>Minimum {minWords} words</span>}
+            {maxWords > 0 && <span>Maximum {maxWords} words</span>}
+          </div>
+          <label htmlFor={`quiz-essay-${question.id}`}>Your written response</label>
+          <textarea
+            id={`quiz-essay-${question.id}`}
+            value={draft}
+            disabled={disabled || Boolean(answer)}
+            onChange={(event) => setDraft(event.target.value)}
+            rows={9}
+            maxLength={20000}
+            placeholder="Write your answer clearly, explaining the key points..."
+          />
+          <div className="quiz-essay-footer">
+            <span>{wordCount} words</span>
+            {!answer && (
+              <Button
+                variant="primary"
+                onClick={submit}
+                disabled={disabled || !String(draft).trim() || (minWords > 0 && wordCount < minWords) || (maxWords > 0 && wordCount > maxWords)}
+              >
+                <Icon name="paper-plane" /> Submit response
+              </Button>
+            )}
+          </div>
+          {answer && (
+            <div className="quiz-essay-submitted">
+              <Icon name="clock" /> Submitted for teacher marking. Your result will be available after review.
+            </div>
+          )}
+        </div>
+      )}
 
       {type === 'multiple_select' && (
         <div className="quiz-options-list" role="group" aria-label="Choose all correct answers">
@@ -89,7 +137,7 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
         </div>
       )}
 
-      {answer && answer.user_answer_text && (
+      {answer && answer.user_answer_text && type !== 'essay' && (
         <div className={`quiz-answer-feedback ${answer.correct ? 'is-correct' : 'is-incorrect'}`}>
           <Icon name={answer.correct ? 'circle-check' : 'circle-xmark'} />
           <span>{answer.correct ? 'Correct' : 'Answer recorded'}{answer.user_answer_text ? ` · ${answer.user_answer_text}` : ''}</span>
