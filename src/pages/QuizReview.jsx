@@ -115,7 +115,7 @@ export default function QuizReview() {
               icon="circle-check"
               title="All caught up"
               description="There are no essay responses waiting for your review."
-              action={<Button variant="secondary" onClick={loadQueue}><Icon name="refresh" /> Refresh queue</Button>}
+              action={<Button variant="secondary" onClick={loadQueue}>Refresh queue</Button>}
             />
           </Card>
         ) : (
