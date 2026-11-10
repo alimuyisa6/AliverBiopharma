@@ -41,7 +41,7 @@ export default function QuizAttemptResult() {
     return (
       <main className="quiz-attempt-result-page">
         <Card className="quiz-attempt-result-empty">
-          <Icon name="circle-exclamation" />
+          <Icon name="circle-xmark" />
           <h1>Assessment unavailable</h1>
           <p>{error || 'We could not find this assessment.'}</p>
           <Link to="/quiz"><Button variant="primary">Back to quizzes</Button></Link>
