@@ -24,9 +24,9 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
   return (
     <div className="quiz-question-content">
       <div className="quiz-question-kicker">
-        <span><Icon name="file-lines" plain /> Question</span>
+        <span><Icon name="file-lines" /> Question</span>
         <span className="quiz-question-type">{type.replaceAll('_', ' ')}</span>
-        <button type="button" className={`quiz-mark-review ${marked ? 'is-marked' : ''}`} onClick={onToggleMark} aria-pressed={Boolean(marked)}><Icon name="flag" plain /> {marked ? 'Marked for review' : 'Mark for review'}</button>
+        <button type="button" className={`quiz-mark-review ${marked ? 'is-marked' : ''}`} onClick={onToggleMark} aria-pressed={Boolean(marked)}><Icon name="flag" /> {marked ? 'Marked for review' : 'Mark for review'}</button>
       </div>
       <h3 className="quiz-question-heading">{question.question_text}</h3>
 
@@ -91,7 +91,7 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
 
       {answer && answer.user_answer_text && (
         <div className={`quiz-answer-feedback ${answer.correct ? 'is-correct' : 'is-incorrect'}`}>
-          <Icon name={answer.correct ? 'circle-check' : 'circle-xmark'} plain />
+          <Icon name={answer.correct ? 'circle-check' : 'circle-xmark'} />
           <span>{answer.correct ? 'Correct' : 'Answer recorded'}{answer.user_answer_text ? ` · ${answer.user_answer_text}` : ''}</span>
         </div>
       )}
