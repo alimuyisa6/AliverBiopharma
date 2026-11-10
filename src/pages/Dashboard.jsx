@@ -435,8 +435,13 @@ export default function Dashboard() {
               </h1>
               <p id="welcome-subtitle">
                 {platform.rank_title} · {levelName}
-              <span className="dashboard-welcome-guidance">Ready to learn? Check your progress, practise with a quiz, or continue where you left off.</span>
+                <span className="dashboard-welcome-guidance">Ready to learn? Check your progress, practise with a quiz, or continue where you left off.</span>
               </p>
+              {user?.profile?.role === 'teacher' && user?.profile?.is_approved_teacher && user?.profile?.level_approval_status === 'approved' && (
+                <Link to="/quiz/review" className="dashboard-section-link">
+                  <Icon name="clipboard-check" /> Mark essay submissions
+                </Link>
+              )}
             </div>
           </div>
         </section>
