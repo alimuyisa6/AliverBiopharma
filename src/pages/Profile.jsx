@@ -1774,7 +1774,7 @@ export default function Profile() {
                   {t('profile.referralProgram')}
                 </h3>
                 <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
-                  Share your referral code. When someone signs up with it, you can earn experience points.
+                  Invite friends to Aliver Biopharma. Earn $0.50 when each referred friend completes their first premium subscription. Reach 10 qualifying referrals to request a payout; reach 50 to unlock 10% subscription commission.
                 </p>
 
                 {sectionLoading ? (
@@ -1800,6 +1800,26 @@ export default function Profile() {
                     <p style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 13, marginTop: 8 }}>
                       {referral.referral_count} friends joined · {referral.total_xp_earned} XP earned
                     </p>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: 12, marginTop: 18 }}>
+                      <div><strong>{referral.premium_referral_count || 0}</strong><div style={{ color: THEME.textMuted, fontSize: 12 }}>Premium referrals</div></div>
+                      <div><strong>{referral.withdrawal_threshold || 10}</strong><div style={{ color: THEME.textMuted, fontSize: 12 }}>Referrals for payout access</div></div>
+                      <div><strong>{referral.commission_threshold || 50}</strong><div style={{ color: THEME.textMuted, fontSize: 12 }}>Referrals to unlock commission</div></div>
+                    </div>
+                    <div style={{ marginTop: 16 }}>
+                      <strong style={{ color: THEME.textMain }}>Available earnings</strong>
+                      {(referral.balances || []).length ? referral.balances.map(item => (
+                        <p key={item.currency} style={{ margin: '6px 0', color: THEME.textSecondary }}>{item.currency} {Number(item.available).toFixed(2)}</p>
+                      )) : <p style={{ color: THEME.textMuted, fontSize: 13 }}>No available rewards yet.</p>}
+                    </div>
+                    <div style={{ marginTop: 16 }}>
+                      <strong style={{ color: THEME.textMain }}>Recent referral earnings</strong>
+                      {(referral.ledger || []).slice(0, 5).map(item => (
+                        <p key={item.id} style={{ margin: '6px 0', color: THEME.textSecondary, fontSize: 13 }}>
+                          {item.reward_type === 'premium_referral_reward' ? 'Premium referral reward' : item.reward_type === 'subscription_commission' ? 'Subscription commission' : item.reward_type}
+                          {' · '}{item.currency} {Number(item.amount).toFixed(2)}
+                        </p>
+                      ))}
+                    </div>
                   </>
                 ) : (
                   !sectionError && (
