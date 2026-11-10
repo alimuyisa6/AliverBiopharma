@@ -2369,3 +2369,104 @@ body.dark-mode .quiz-page :is(input, select, textarea) { background: var(--dark-
     margin-left: 0;
   }
 }
+
+.quiz-question-navigation-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+.quiz-question-navigation-header h3 {
+  margin: 0;
+  color: var(--text-main);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+}
+.quiz-question-navigation-header p {
+  margin: var(--space-1) 0 0;
+  color: var(--text-secondary);
+  font-size: var(--text-xs);
+}
+.quiz-question-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.quiz-question-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-secondary);
+  font-size: var(--text-xs);
+}
+.quiz-question-legend i {
+  width: .55rem;
+  height: .55rem;
+  border-radius: 50%;
+  background: var(--border-strong);
+}
+.quiz-question-legend i.is-answered {
+  background: var(--success);
+}
+.quiz-question-legend i.is-flagged {
+  background: var(--accent);
+}
+.quiz-page .quiz-nav-pill.is-flagged {
+  border-color: var(--accent);
+  background: var(--accent-light);
+  color: var(--accent);
+}
+.quiz-page .quiz-nav-pill.btn-success {
+  border-color: var(--success);
+  background: var(--success-light);
+  color: var(--success);
+}
+.quiz-page .quiz-nav-pill.btn-danger {
+  border-color: var(--danger);
+  background: var(--danger-light);
+  color: var(--danger);
+}
+.quiz-question-content {
+  display: grid;
+  gap: var(--space-3);
+}
+.quiz-question-content .quiz-question-heading {
+  margin-bottom: var(--space-2);
+}
+.quiz-question-content .quiz-options-list {
+  display: grid;
+  gap: var(--space-3);
+}
+.quiz-question-content .quiz-options-list > button,
+.quiz-question-content .quiz-options-list > label {
+  margin: 0;
+}
+.quiz-question-content .quiz-options-list > .btn {
+  width: fit-content;
+  min-width: 10rem;
+}
+.quiz-mode-option:focus-visible,
+.quiz-mark-review:focus-visible,
+.quiz-option-selectable:focus-within {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+body.dark-mode .quiz-mode-option.is-active {
+  border-color: var(--dark-primary);
+  background: var(--night-800);
+}
+body.dark-mode .quiz-mark-review.is-marked {
+  border-color: var(--dark-accent);
+  background: var(--night-800);
+  color: var(--dark-accent);
+}
+body.dark-mode .quiz-answer-feedback.is-correct {
+  background: var(--night-800);
+  color: var(--dark-success);
+}
+body.dark-mode .quiz-answer-feedback.is-incorrect {
+  background: var(--night-800);
+  color: var(--dark-danger);
+}
