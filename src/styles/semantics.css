@@ -43,6 +43,8 @@
   --surface-raised: var(--paper);
   --surface-muted: var(--soft);
   --surface-subtle: var(--soft);
+  --surface-section: #e8f0f3;
+  --surface-section-alt: #edf4f6;
   --surface-tinted: var(--primary-light);
   --surface-inverse: var(--ink);
   --surface-overlay: var(--overlay-color);
@@ -248,6 +250,8 @@ body.dark-mode {
   --surface-raised: var(--dark-surface-raised);
   --surface-muted: var(--dark-surface-raised);
   --surface-subtle: var(--dark-surface);
+  --surface-section: #262f35;
+  --surface-section-alt: #202a30;
   --surface-tinted: var(--dark-surface-raised);
   --surface-inverse: var(--dark-text);
   --surface-overlay: var(--overlay-color);
