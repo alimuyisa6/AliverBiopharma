@@ -110,3 +110,52 @@ body.dark-mode #root .app-layout :where(.resource-card, .notes-card, .flashcard-
   border-color: var(--border-default);
   color: var(--text-main);
 }
+
+
+#root .app-layout :where(.notes-page, .resources-main, .pp-main, .dashboard-wrapper, .profile-page, .glossary-main-layout) {
+  background: var(--surface-page);
+}
+
+#root .app-layout :where(.notes-pathway, .notes-curriculum-context, .resources-toolbar, .notes-toolbar, .pp-toolbar, .pp-filters, .dashboard-curriculum-section, .dashboard-card, .profile-overview-panel, .profile-category-card) {
+  border-color: var(--border-default);
+  background: var(--surface-card);
+}
+
+#root .app-layout :where(.notes-pathway, .notes-curriculum-context, .resources-toolbar, .notes-toolbar, .pp-toolbar, .pp-filters, .dashboard-curriculum-section) {
+  box-shadow: var(--shadow-card);
+}
+
+#root .app-layout :where(.quiz-page, .flashcards-page, .recall-page) {
+  background: var(--surface-page);
+}
+
+#root .app-layout :where(.quiz-page-section, .flashcard-subject-section, .recall-page-section, .pp-hero, .resources-intro, .notes-page-heading) {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--r-xl);
+  background: var(--surface-tinted);
+}
+
+#root .app-layout :where(.quiz-question-card, .quiz-result-card, .quiz-review-card, .quiz-topic-cards > .card, .quiz-blocks-grid > .card, .flashcard-deck-card, .recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .resource-card, .notes-card, .pp-card, .pdf-card) {
+  border-color: var(--border-default);
+  background: var(--surface-card);
+  box-shadow: var(--shadow-card);
+}
+
+#root .app-layout :where(.quiz-nav-pills, .quiz-question-navigation-header, .quiz-assessment-facts, .quiz-mode-picker, .flashcard-type-row, .recall-chips-row, .resources-filter-chips, .notes-pathway-list) {
+  border-color: var(--border-subtle);
+}
+
+#root .app-layout :where(.resources-toolbar, .notes-toolbar, .pp-toolbar, .pp-filters, .glossary-search-area) {
+  background: var(--surface-muted);
+}
+
+body.dark-mode #root .app-layout :where(.notes-pathway, .notes-curriculum-context, .resources-toolbar, .notes-toolbar, .pp-toolbar, .pp-filters, .dashboard-curriculum-section, .dashboard-card, .profile-overview-panel, .profile-category-card, .quiz-page-section, .flashcard-subject-section, .recall-page-section, .pp-hero, .resources-intro, .notes-page-heading) {
+  border-color: var(--border-default);
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout :where(.quiz-question-card, .quiz-result-card, .quiz-review-card, .quiz-topic-cards > .card, .quiz-blocks-grid > .card, .flashcard-deck-card, .recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .resource-card, .notes-card, .pp-card, .pdf-card) {
+  background: var(--surface-card);
+  border-color: var(--border-default);
+  color: var(--dark-text);
+}
