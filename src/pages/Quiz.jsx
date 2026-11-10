@@ -475,7 +475,7 @@ export default function Quiz() {
       };
 
       setUserAnswers(newAnswers);
-      playQuizAnswerSound(Boolean(result.correct));
+      if (quizMode !== 'exam') playQuizAnswerSound(Boolean(result.correct));
       // Keep the result visible briefly so the SVG can animate before auto-advance.
       if (quizMode !== 'exam') {
         setAnswerFeedback(result.correct ? 'correct' : 'wrong');
