@@ -241,19 +241,24 @@ export default function TutorDashboard() {
 
         {isApproved && (
           <div>
-            <div className="alert alert-success" style={{ marginBottom: 'var(--space-6)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div className="alert alert-success" style={{ marginBottom: 'var(--space-6)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 'var(--space-3)', flexWrap: 'wrap' }}>
               <div>
                 <Icon name="circle" style={{ marginRight: 'var(--space-3)' }} />
                 Approved tutor — {application.display_name || 'Tutor'}
               </div>
-              <Button
-                variant={showCreateForm ? 'secondary' : 'primary'}
-                size="sm"
-                onClick={() => { setShowCreateForm((value) => !value); setCreateError(null); }}
-                icon={showCreateForm ? 'xmark' : 'plus'}
-              >
-                {showCreateForm ? 'Cancel' : 'Create Classroom'}
-              </Button>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-2)' }}>
+                <Button variant="secondary" size="sm" onClick={() => navigate('/quiz/review')} icon="clipboard-check">
+                  Essay marking
+                </Button>
+                <Button
+                  variant={showCreateForm ? 'secondary' : 'primary'}
+                  size="sm"
+                  onClick={() => { setShowCreateForm((value) => !value); setCreateError(null); }}
+                  icon={showCreateForm ? 'xmark' : 'plus'}
+                >
+                  {showCreateForm ? 'Cancel' : 'Create Classroom'}
+                </Button>
+              </div>
             </div>
 
             {showCreateForm && (
