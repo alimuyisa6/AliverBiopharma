@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
 
-export default function QuizQuestionRenderer({ question, answer, disabled, onSubmit }) {
+export default function QuizQuestionRenderer({ question, answer, disabled, marked, onToggleMark, onSubmit }) {
   const type = question.question_type || 'single_choice';
   const options = Array.isArray(question.question_data?.options) ? question.question_data.options : [];
   const [draft, setDraft] = useState(type === 'multiple_select' ? [] : '');
@@ -26,6 +26,7 @@ export default function QuizQuestionRenderer({ question, answer, disabled, onSub
       <div className="quiz-question-kicker">
         <span><Icon name="file-lines" plain /> Question</span>
         <span className="quiz-question-type">{type.replaceAll('_', ' ')}</span>
+        <button type="button" className={`quiz-mark-review ${marked ? 'is-marked' : ''}`} onClick={onToggleMark} aria-pressed={Boolean(marked)}><Icon name="flag" plain /> {marked ? 'Marked for review' : 'Mark for review'}</button>
       </div>
       <h3 className="quiz-question-heading">{question.question_text}</h3>
 
