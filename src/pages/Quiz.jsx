@@ -19,7 +19,7 @@ import {
   submitQuizWithSession,
   getQuizSessionStatus
 } from '../api/cachedClient';
-import { apiCall, listQuizTopics, getQuizTopics } from '../api/client';
+import { apiCall, listQuizTopics, getQuizTopics, getQuizAttempt } from '../api/client';
 import { PendingApprovalScreen } from '../components/access/PendingApprovalScreen';
 import { AccessDenied } from '../components/access/AccessDenied';
 import LearningJourney from '../components/LearningJourney/LearningJourney';
@@ -423,6 +423,58 @@ export default function Quiz() {
 
     return () => clearTimeout(id);
   }, [integrityOverlay]);
+
+
+  useEffect(() => {
+    const attemptId = resultData?.attempt_id;
+    if (!resultData?.pending_review || !attemptId) return undefined;
+
+    let cancelled = false;
+    const refreshReviewedAttempt = async () => {
+      try {
+        const attempt = await getQuizAttempt(attemptId);
+        if (cancelled || !attempt || attempt.status === 'pending_review') return;
+
+        const answers = (attempt.answers || []).map((answer) => ({
+          question: answer.question_text,
+          question_type: answer.question_type,
+          userAnswerText: answer.user_answer_text,
+          correctAnswerText: answer.correct_answer_text,
+          isCorrect: answer.correct,
+          explanation: answer.explanation,
+          review_status: answer.review_status,
+          marks_awarded: answer.marks_awarded,
+          max_marks: answer.max_marks,
+          teacher_feedback: answer.teacher_feedback
+        }));
+
+        setResultData((current) => {
+          if (!current || current.attempt_id !== attemptId) return current;
+          return {
+            ...current,
+            pending_review: false,
+            status: attempt.status,
+            passed: Boolean(attempt.passed),
+            percentage: Number(attempt.percentage) || 0,
+            score: Number(attempt.score) || 0,
+            total: Number(attempt.total_questions) || answers.length,
+            max_marks: answers.reduce((sum, answer) => sum + (Number(answer.max_marks) || 0), 0),
+            has_essays: answers.some((answer) => answer.question_type === 'essay'),
+            answers
+          };
+        });
+      } catch {
+        // Keep the pending result visible and retry on the next polling interval.
+      }
+    };
+
+    refreshReviewedAttempt();
+    const interval = setInterval(refreshReviewedAttempt, 20000);
+    return () => {
+      cancelled = true;
+      clearInterval(interval);
+    };
+  }, [resultData?.attempt_id, resultData?.pending_review]);
 
   const getFirstUnansweredIndex = useCallback((answers) => {
     return answers.findIndex((answer) => answer === null);
@@ -878,7 +930,7 @@ export default function Quiz() {
                   <div className={`quiz-result-score ${resultData.passed ? 'is-pass' : 'is-fail'}`}>
                     {resultData.percentage}%
                   </div>
-                  <p>{resultData.score}/{resultData.total} correct</p>
+                  <p>{resultData.has_essays ? `${resultData.score}/${resultData.max_marks || resultData.total} marks awarded` : `${resultData.score}/${resultData.total} correct`}</p>
                 </>
               )}
               {resultData.recommendation && (
@@ -908,7 +960,8 @@ export default function Quiz() {
                     Your answer: {answer.userAnswerText}
                   </p>
                   {answer.review_status === 'pending_review' && <p className="quiz-review-explanation">This written response will be marked by an approved reviewer.</p>}
-                  {answer.question_type === 'essay' && answer.max_marks && <p className="quiz-review-explanation">Maximum marks: {answer.max_marks}</p>}
+                  {answer.question_type === 'essay' && answer.max_marks && <p className="quiz-review-explanation">Marks: {answer.marks_awarded ?? 0}/{answer.max_marks}</p>}
+                  {answer.question_type === 'essay' && answer.teacher_feedback && <p className="quiz-review-explanation"><strong>Teacher feedback:</strong> {answer.teacher_feedback}</p>}
                   {answer.question_type !== 'essay' && !answer.isCorrect && <p className="quiz-review-correct-answer">Correct: {answer.correctAnswerText}</p>}
                   {answer.explanation && <p className="quiz-review-explanation">{answer.explanation}</p>}
                 </Card>
