@@ -173,6 +173,10 @@
 
 #root .app-layout :where(.dashboard-section, .dashboard-panel, .profile-section, .notes-section, .resources-section, .quiz-section, .flashcards-section, .recall-section, .classroom-section, .past-papers-section, .glossary-section) {
   margin-block: 1.5rem;
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--surface-section);
 }
 
 #root .app-layout :where(.dashboard-grid, .stats-grid, .resource-grid, .notes-grid, .cards-grid, .feature-grid, .tutor-grid, .course-grid) {
