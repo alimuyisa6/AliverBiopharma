@@ -17,9 +17,9 @@ const studios = {
     visual: 'cell',
     visualLabel: 'Explore living systems',
     cards: [
-      { icon: 'book-open', label: 'Understand a topic', title: 'Biology notes', description: 'Work through explanations organised around your curriculum.', route: '/notes', action: 'Open notes' },
-      { icon: 'microscope', label: 'Build scientific vocabulary', title: 'Biology glossary', description: 'Strengthen your understanding of important biological terms.', route: '/glossary', action: 'Explore terms' },
-      { icon: 'book-open', label: 'Prepare for assessment', title: 'Past examination papers', description: 'Practise with available Biology examination papers.', route: '/past-papers', action: 'View papers' }
+      { icon: 'book-open', label: 'Understand a topic', title: 'Biology notes', description: 'Work through explanations organised around your curriculum.', resource: 'notes', action: 'Open notes' },
+      { icon: 'microscope', label: 'Build scientific vocabulary', title: 'Biology glossary', description: 'Strengthen your understanding of important biological terms.', resource: 'notes', action: 'Explore terms' },
+      { icon: 'book-open', label: 'Prepare for assessment', title: 'Past examination papers', description: 'Practise with available Biology examination papers.', resource: 'past-papers', action: 'View papers' }
     ]
   },
   alevel: {
@@ -31,8 +31,8 @@ const studios = {
     visualLabel: 'Explore biological mechanisms',
     cards: [
       { icon: 'book-open', label: 'Develop deeper understanding', title: 'Advanced topic notes', description: 'Study detailed explanations across your Biology curriculum.', route: '/notes', action: 'Study notes' },
-      { icon: 'brain', label: 'Test your reasoning', title: 'Knowledge checks', description: 'Use focused questions to identify concepts that need more work.', route: '/quiz', action: 'Practise questions' },
-      { icon: 'file-text', label: 'Prepare for examinations', title: 'Past examination papers', description: 'Apply your knowledge to available examination papers.', route: '/past-papers', action: 'View papers' }
+      { icon: 'brain', label: 'Test your reasoning', title: 'Knowledge checks', description: 'Use focused questions to identify concepts that need more work.', resource: 'quiz', action: 'Practise questions' },
+      { icon: 'file-text', label: 'Prepare for examinations', title: 'Past examination papers', description: 'Apply your knowledge to available examination papers.', resource: 'past-papers', action: 'View papers' }
     ]
   },
   pharmacy: {
@@ -43,9 +43,9 @@ const studios = {
     visual: 'pharmacy',
     visualLabel: 'Explore pharmaceutical science',
     cards: [
-      { icon: 'book-open', label: 'Study your programme', title: 'Pharmacy course notes', description: 'Explore explanations organised around your course units.', route: '/notes', action: 'Open notes' },
-      { icon: 'atom', label: 'Strengthen recall', title: 'Pharmacy flashcards', description: 'Review key concepts and terminology through active recall.', route: '/flashcards', action: 'Study flashcards' },
-      { icon: 'clipboard-check', label: 'Check your understanding', title: 'Knowledge practice', description: 'Test your understanding of pharmaceutical concepts.', route: '/quiz', action: 'Start practice' }
+      { icon: 'book-open', label: 'Study your programme', title: 'Pharmacy course notes', description: 'Explore explanations organised around your course units.', resource: 'notes', action: 'Open notes' },
+      { icon: 'atom', label: 'Strengthen recall', title: 'Pharmacy flashcards', description: 'Review key concepts and terminology through active recall.', resource: 'flashcards', action: 'Study flashcards' },
+      { icon: 'clipboard-check', label: 'Check your understanding', title: 'Knowledge practice', description: 'Test your understanding of pharmaceutical concepts.', resource: 'quiz', action: 'Start practice' }
     ]
   }
 };
@@ -81,7 +81,8 @@ function PublicPathways() {
                 <p>{pathway.description}</p>
               </div>
             </article>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
@@ -142,7 +143,7 @@ function HowLearningWorks({ studio }) {
   );
 }
 
-function ProgrammeStudio({ studio, activeGroupName }) {
+function ProgrammeStudio({ studio, activeGroupName, activeGroupId }) {
   return (
     <section className={`lernwick-programme-studio section lernwick-programme-studio--${studio.kind}`} aria-labelledby="programme-studio-title">
       <div className="container">
@@ -162,13 +163,17 @@ function ProgrammeStudio({ studio, activeGroupName }) {
           </div>
         </div>
         <div className="lernwick-studio-card-grid" aria-label="Explore learning resources">
-          {studio.cards.map((card, index) => (
+          {studio.cards.map((card, index) => {
+            const destination = activeGroupId
+              ? `/curriculum/${encodeURIComponent(activeGroupId)}?resource=${encodeURIComponent(card.resource)}`
+              : '/resources';
+            return (
             <article className={`lernwick-studio-card lernwick-studio-card--${index + 1}`} key={card.title}>
               <span className="lernwick-studio-card-icon"><Icon name={card.icon} /></span>
               <span className="lernwick-studio-card-label">{card.label}</span>
               <h3>{card.title}</h3>
               <p>{card.description}</p>
-              <Link to={card.route}>{card.action}<Icon name="arrow-right" /></Link>
+              <Link to={destination}>{card.action}<Icon name="arrow-right" /></Link>
             </article>
           ))}
         </div>
@@ -177,10 +182,10 @@ function ProgrammeStudio({ studio, activeGroupName }) {
   );
 }
 
-export function ProgrammeDiscovery({ activeLevelName, activeGroupName }) {
+export function ProgrammeDiscovery({ activeLevelName, activeGroupName, activeGroupId }) {
   const studio = resolveStudio(activeLevelName, activeGroupName);
   return studio
-    ? <ProgrammeStudio studio={studio} activeGroupName={activeGroupName} />
+    ? <ProgrammeStudio studio={studio} activeGroupName={activeGroupName} activeGroupId={activeGroupId} />
     : <PublicPathways />;
 }
 
