@@ -247,6 +247,7 @@ export default function CurriculumNodePage() {
   }
 
   const isLeaf = children.length === 0;
+  const isLesson = String(node?.node_type || '').toLowerCase() === 'lesson' || curriculumDepth >= 3;
   const returnToLesson = `/curriculum/${encodeURIComponent(groupId)}/${nodePath}${resourceFocus ? `?resource=${encodeURIComponent(resourceFocus)}` : ''}`;
 
   const openRelatedNode = async (event, relationship) => {
@@ -338,13 +339,14 @@ export default function CurriculumNodePage() {
         </section>
       )}
 
-      {isLeaf && (
+      {isLesson && (
         <LearningJourney
           unitId={node.id}
           nodeName={node.name}
           nodeType={node.node_type}
           linkedContent={linkedContent}
           returnTo={returnToLesson}
+          resourceFocus={normalizedResourceFocus}
         />
       )}
 
