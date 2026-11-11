@@ -175,7 +175,7 @@ export default function HomeView(props) {
 
       <DynamicActions pageId="home" className="home-dynamic-actions" />
 
-      <ProgrammeDiscovery activeLevelName={activeLevelName} activeGroupName={activeGroupName} />
+      <ProgrammeDiscovery activeLevelName={activeLevelName} activeGroupName={activeGroupName} activeGroupId={activeGroupId} />
 
       {user && <CurriculumSnapshot nodes={curriculumUnits} activeLevelName={activeLevelName} activeGroupName={activeGroupName} sections={sections} />}
 
