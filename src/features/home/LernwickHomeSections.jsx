@@ -3,9 +3,9 @@ import Icon from '../../components/Icon/Icon';
 import './lernwick-home-sections.css';
 
 const pathways = [
-  { id: 'o-level', label: 'O-Level Biology', title: 'Build strong foundations', description: 'Explore the living world through observation, clear scientific explanations and practical understanding.', image: 'https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg?auto=compress&cs=tinysrgb&w=720&h=480&fit=crop' },
-  { id: 'a-level', label: 'A-Level Biology', title: 'Think across biological systems', description: 'Connect complex processes, analyse evidence and develop deeper scientific reasoning.', image: 'https://images.pexels.com/photos/3825586/pexels-photo-3825586.jpeg?auto=compress&cs=tinysrgb&w=720&h=480&fit=crop' },
-  { id: 'pharmacy', label: 'Pharmacy', title: 'Connect science with medicines', description: 'Explore pharmaceutical science, medicines and their role in patient care.', image: 'https://images.pexels.com/photos/3683074/pexels-photo-3683074.jpeg?auto=compress&cs=tinysrgb&w=720&h=480&fit=crop' }
+  { id: 'o-level', label: 'O-Level Biology', title: 'Build strong foundations', description: 'Explore the living world through observation, clear scientific explanations and practical understanding.', icon: 'microscope' },
+  { id: 'a-level', label: 'A-Level Biology', title: 'Think across biological systems', description: 'Connect complex processes, analyse evidence and develop deeper scientific reasoning.', icon: 'atom' },
+  { id: 'pharmacy', label: 'Pharmacy', title: 'Connect science with medicines', description: 'Explore pharmaceutical science, medicines and their role in patient care.', icon: 'capsules' }
 ];
 
 const studios = {
@@ -30,9 +30,9 @@ const studios = {
     visual: 'molecule',
     visualLabel: 'Explore biological mechanisms',
     cards: [
-      { icon: 'book-open', label: 'Develop deeper understanding', title: 'Advanced topic notes', description: 'Study detailed explanations across your Biology curriculum.', route: '/notes', action: 'Study notes' },
+      { icon: 'book-open', label: 'Develop deeper understanding', title: 'Advanced topic notes', description: 'Study detailed explanations across your Biology curriculum.', resource: 'notes', action: 'Study notes' },
       { icon: 'brain', label: 'Test your reasoning', title: 'Knowledge checks', description: 'Use focused questions to identify concepts that need more work.', resource: 'quiz', action: 'Practise questions' },
-      { icon: 'file-text', label: 'Prepare for examinations', title: 'Past examination papers', description: 'Apply your knowledge to available examination papers.', resource: 'past-papers', action: 'View papers' }
+      { icon: 'file-lines', label: 'Prepare for examinations', title: 'Past examination papers', description: 'Apply your knowledge to available examination papers.', resource: 'past-papers', action: 'View papers' }
     ]
   },
   pharmacy: {
@@ -72,13 +72,14 @@ function PublicPathways() {
         <div className="lernwick-pathway-grid">
           {pathways.map((pathway) => (
             <article className={`lernwick-pathway-card lernwick-pathway-card--${pathway.id}`} key={pathway.id}>
-              <div className="lernwick-pathway-image">
-                <img src={pathway.image} alt="" loading="lazy" width="720" height="480" />
+              <div className="lernwick-pathway-image" aria-hidden="true">
+                <Icon name={pathway.icon} />
                 <span>{pathway.label}</span>
               </div>
               <div className="lernwick-pathway-body">
                 <h3>{pathway.title}</h3>
                 <p>{pathway.description}</p>
+                <Link className="lernwick-pathway-action" to="/resources">Explore learning resources <Icon name="arrow-right" /></Link>
               </div>
             </article>
           ))}
@@ -163,9 +164,9 @@ function ProgrammeStudio({ studio, activeGroupName, activeGroupId }) {
         </div>
         <div className="lernwick-studio-card-grid" aria-label="Explore learning resources">
           {studio.cards.map((card, index) => {
-            const destination = activeGroupId
+            const destination = activeGroupId && card.resource
               ? `/curriculum/${encodeURIComponent(activeGroupId)}?resource=${encodeURIComponent(card.resource)}`
-              : '/resources';
+              : (card.route || (activeGroupId ? `/curriculum/${encodeURIComponent(activeGroupId)}` : '/resources'));
 
             return (
               <article className={`lernwick-studio-card lernwick-studio-card--${index + 1}`} key={card.title}>
