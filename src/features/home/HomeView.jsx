@@ -165,12 +165,12 @@ export default function HomeView(props) {
     media.addEventListener('change', updateViewport);
     return () => media.removeEventListener('change', updateViewport);
   }, []);
-  const { sections, user, navigate, activeLevelName, activeGroupName, publicStats, subscriptionPlans, chatOpen, chatMessages, chatInput, adminOnline, newsletterEmail, newsletterStatus, newsletterLoading, chatRequestLoading, chatSending, chatDeletingId, handleNewsletterSubmit, sendChat, deleteChatMsg, setChatOpen, setChatInput, setNewsletterEmail, chatBodyRef, continueLearning, curriculumUnits, dailyRecall, onRevealRecall, onStartRecall, dailyChallenge, onOpenChallenge } = props;
+  const { sections, user, navigate, activeLevelName, activeGroupName, activeGroupId, publicStats, subscriptionPlans, chatOpen, chatMessages, chatInput, adminOnline, newsletterEmail, newsletterStatus, newsletterLoading, chatRequestLoading, chatSending, chatDeletingId, handleNewsletterSubmit, sendChat, deleteChatMsg, setChatOpen, setChatInput, setNewsletterEmail, chatBodyRef, continueLearning, curriculumUnits, dailyRecall, onRevealRecall, onStartRecall, dailyChallenge, onOpenChallenge } = props;
 
   return (
     <div className="home-page home-page-redesign">
       <section className="home-hero-section" id="top" aria-label="Introduction">
-        <LernwickHomeHero user={user} activeLevelName={activeLevelName} activeGroupName={activeGroupName} />
+        <LernwickHomeHero user={user} activeLevelName={activeLevelName} activeGroupName={activeGroupName} activeGroupId={activeGroupId} />
       </section>
 
       <DynamicActions pageId="home" className="home-dynamic-actions" />
