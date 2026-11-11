@@ -2,7 +2,7 @@
 (function () {
   'use strict';
 
-  var isDebug = /^(localhost|127\\.0\\.0\\.1)$/.test(window.location.hostname)
+  var isDebug = /^(localhost|127\.0\.0\.1)$/.test(window.location.hostname)
     || new URLSearchParams(window.location.search).get('debug') === '1';
 
   function reportError(kind, detail) {
@@ -51,10 +51,10 @@
 
   window.onerror = function (message, source, line, column, error) {
     var detail = 'MSG: ' + message
-      + '\\nSRC: ' + source
-      + '\\nLINE: ' + line
-      + '\\nCOLUMN: ' + column
-      + '\\nSTACK: ' + (error && error.stack || 'n/a');
+      + '\nSRC: ' + source
+      + '\nLINE: ' + line
+      + '\nCOLUMN: ' + column
+      + '\nSTACK: ' + (error && error.stack || 'n/a');
 
     reportError('window.onerror', detail);
     if (isDebug) showDebugOverlay(detail);
