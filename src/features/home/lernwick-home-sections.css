@@ -13,14 +13,14 @@
 .lernwick-outline-button:hover svg,.lernwick-dark-button:hover svg{transform:translateX(3px)}
 .lernwick-pathway-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.4rem}
 .lernwick-pathway-card{position:relative;overflow:hidden;border:1px solid var(--line-2);border-radius:30px 30px 30px 7px;background:var(--paper);box-shadow:var(--shadow-card);transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),border-color var(--dur) var(--ease)}
-.lernwick-pathway-card:nth-child(3n + 2){background:var(--accent-light)}
-.lernwick-pathway-card:nth-child(3n){background:var(--secondary-light)}
+.lernwick-pathway-card:nth-child(3n + 2){background:var(--paper)}
+.lernwick-pathway-card:nth-child(3n){background:var(--paper)}
 .lernwick-pathway-card:nth-child(4n + 2){border-radius:7px 30px 30px 30px}
 .lernwick-pathway-card:nth-child(4n + 3){border-radius:30px 7px 30px 30px}
 .lernwick-pathway-card:nth-child(4n){border-radius:30px 30px 7px 30px}
 .lernwick-pathway-card::after{content:"";position:absolute;z-index:3;top:0;right:0;width:2.8rem;height:2.8rem;border-bottom-left-radius:2.8rem;background:var(--paper);pointer-events:none}
-.lernwick-pathway-card:nth-child(3n + 2)::after{background:var(--accent-light)}
-.lernwick-pathway-card:nth-child(3n)::after{background:var(--secondary-light)}
+.lernwick-pathway-card:nth-child(3n + 2)::after{background:var(--paper)}
+.lernwick-pathway-card:nth-child(3n)::after{background:var(--paper)}
 .lernwick-pathway-card:hover{transform:translateY(-4px);border-color:transparent;box-shadow:var(--shadow-float)}
 .lernwick-pathway-link{display:flex;height:100%;flex-direction:column;color:inherit}
 .lernwick-pathway-image{position:relative;aspect-ratio:3/2;overflow:hidden;margin:.6rem .6rem 0;border-radius:calc(var(--r-lg) - .5rem);background:var(--soft)}
@@ -36,10 +36,10 @@
 .lernwick-section-heading--center{justify-content:center;text-align:center}
 .lernwick-section-heading--center>div{justify-items:center}
 .lernwick-step-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.2rem}
-.lernwick-step-card{position:relative;display:grid;align-content:start;gap:.9rem;min-height:15rem;padding:1.6rem;border:1px solid var(--line-2);border-radius:2rem 2rem 2rem .45rem;background:var(--primary-light);box-shadow:var(--shadow-card);transition:transform var(--dur) var(--ease)}
-.lernwick-step-card:nth-child(4n + 2){border-radius:.45rem 2rem 2rem 2rem;background:var(--accent-light)}
-.lernwick-step-card:nth-child(4n + 3){border-radius:2rem .45rem 2rem 2rem;background:var(--secondary-light)}
-.lernwick-step-card:nth-child(4n){border-radius:2rem 2rem .45rem 2rem;background:var(--soft)}
+.lernwick-step-card{position:relative;display:grid;align-content:start;gap:.9rem;min-height:15rem;padding:1.6rem;border:1px solid var(--line-2);border-radius:2rem 2rem 2rem .45rem;background:var(--paper);box-shadow:var(--shadow-card);transition:transform var(--dur) var(--ease)}
+.lernwick-step-card:nth-child(4n + 2){border-radius:.45rem 2rem 2rem 2rem;background:var(--paper)}
+.lernwick-step-card:nth-child(4n + 3){border-radius:2rem .45rem 2rem 2rem;background:var(--paper)}
+.lernwick-step-card:nth-child(4n){border-radius:2rem 2rem .45rem 2rem;background:var(--paper)}
 .lernwick-step-card:hover{transform:translateY(-4px)}
 .lernwick-step-number{display:grid;width:2.8rem;height:2.8rem;place-items:center;border:1.5px solid currentColor;border-radius:50%;font:700 var(--t-sm)/1 var(--f-display)}
 .lernwick-step-mark{width:2.4rem;height:3px;border-radius:4px;background:var(--primary)}
@@ -299,9 +299,9 @@ body.dark-mode .organic-letter--secondary {
   font: 600 var(--t-xs)/1.3 var(--f-display);
   box-shadow: var(--shadow-card);
 }
-.lernwick-programme-studio--biology-foundations { background: #e8f7fa; }
-.lernwick-programme-studio--advanced-biology { background: #eef0fa; }
-.lernwick-programme-studio--pharmacy-science { background: #eaf6ef; }
+.lernwick-programme-studio--biology-foundations { background: var(--primary-light); }
+.lernwick-programme-studio--advanced-biology { background: var(--accent-light); }
+.lernwick-programme-studio--pharmacy-science { background: var(--secondary-light); }
 .lernwick-programme-studio--biology-foundations .lernwick-studio-visual-core { color: #12677b; }
 .lernwick-programme-studio--advanced-biology .lernwick-studio-visual-core { color: #514a91; }
 .lernwick-programme-studio--pharmacy-science .lernwick-studio-visual-core { color: #246c50; }
@@ -434,3 +434,29 @@ body.dark-mode .lernwick-studio-visual--cell::after { border-color: #73c7d6; }
 body.dark-mode .lernwick-studio-visual--molecule::before { filter: brightness(1.35); }
 body.dark-mode .lernwick-studio-visual--pharmacy::before,
 body.dark-mode .lernwick-studio-visual--pharmacy::after { border-color: #83c7a2; }
+
+
+/* Programme discovery uses Aliver palette and simple inline scientific marks. */
+.lernwick-pathways { background: var(--primary-light); }
+.lernwick-pathway-card,
+.lernwick-pathway-card:nth-child(3n + 1),
+.lernwick-pathway-card:nth-child(3n + 2),
+.lernwick-pathway-card:nth-child(3n) { background: var(--paper); }
+.lernwick-pathway-card::after,
+.lernwick-pathway-card:nth-child(3n + 2)::after,
+.lernwick-pathway-card:nth-child(3n)::after { background: var(--paper); }
+.lernwick-pathway-image { display: grid; aspect-ratio: 2.6 / 1; place-items: center; background: var(--primary-light); }
+.lernwick-pathway-card--a-level .lernwick-pathway-image { background: var(--accent-light); }
+.lernwick-pathway-card--pharmacy .lernwick-pathway-image { background: var(--secondary-light); }
+.lernwick-pathway-image > svg { width: 3.25rem; height: 3.25rem; color: var(--primary-dark); }
+.lernwick-pathway-card--a-level .lernwick-pathway-image > svg { color: var(--accent-dark); }
+.lernwick-pathway-card--pharmacy .lernwick-pathway-image > svg { color: var(--secondary-dark); }
+.lernwick-pathway-image > span { bottom: .65rem; }
+.lernwick-pathway-body { background: var(--paper); }
+.lernwick-step-card,
+.lernwick-step-card:nth-child(4n + 2),
+.lernwick-step-card:nth-child(4n + 3),
+.lernwick-step-card:nth-child(4n) { background: var(--paper); }
+body.dark-mode .lernwick-pathway-image,
+body.dark-mode .lernwick-pathway-card--a-level .lernwick-pathway-image,
+body.dark-mode .lernwick-pathway-card--pharmacy .lernwick-pathway-image { background: var(--dark-surface); }
