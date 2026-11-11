@@ -5,15 +5,10 @@ import Spinner from '../components/Spinner/Spinner';
 import { getPersonalizedDailyChallenge } from '../api/client';
 import './challenges.css';
 import ThreeDButton from '../components/buttons/ThreeDButton';
-
-const challengeMeta = {
-  recall: { label: 'Recall practice', route: '/challenges/recall', icon: 'brain', accent: 'cyan', animation: 'recall' },
-  flashcards: { label: 'Flashcard practice', route: '/challenges/flashcards', icon: 'layers', accent: 'mint', animation: 'flashcards' },
-  quiz: { label: 'Quiz practice', route: '/challenges/quiz', icon: 'clipboard-check', accent: 'blue', animation: 'quiz' }
-};
+import { getChallengeMeta, getChallengeProgress, isChallengeCompleted } from '../utils/challengeConfig';
 
 function ChallengeCharacter({ type }) {
-  const meta = challengeMeta[type] || challengeMeta.quiz;
+  const meta = getChallengeMeta(type);
   return <div className={"challenge-character challenge-character-" + meta.animation} aria-hidden="true">
     <div className="challenge-character-orbit" />
     <div className="challenge-character-body"><div className="challenge-character-face"><span /><span /></div><div className="challenge-character-smile" /></div>
@@ -26,9 +21,9 @@ function ChallengeCharacter({ type }) {
 function ChallengeCard({ challenge, onOpen }) {
   const type = challenge.challenge_type || challenge.type;
   const targetCount = Number(challenge.target_count ?? challenge.target ?? 0);
-  const meta = challengeMeta[type] || challengeMeta.quiz;
-  const progress = targetCount ? Math.min(100, (challenge.progress / targetCount) * 100) : 0;
-  const completed = challenge.passed === true || challenge.status === 'completed';
+  const meta = getChallengeMeta(type);
+  const progress = getChallengeProgress(challenge);
+  const completed = isChallengeCompleted(challenge);
   return <article className={"challenge-showcase-card challenge-accent-" + meta.accent}>
     <div className="challenge-showcase-visual"><ChallengeCharacter type={type} /><span className="challenge-showcase-badge"><Icon name={meta.icon} /> {meta.label}</span></div>
     <div className="challenge-showcase-content">
