@@ -1097,3 +1097,31 @@ body.dark-mode .resources-search input::placeholder {
     transition: none;
   }
 }
+
+
+/* Resource cards use native icon artwork rather than generic stock-photo tiles. */
+.resources-page .resource-card-artwork {
+  display: grid;
+  width: 3.25rem;
+  min-width: 3.25rem;
+  height: 3.25rem;
+  min-height: 3.25rem;
+  aspect-ratio: 1;
+  margin: .35rem .45rem 0;
+  place-items: center;
+  border-radius: .85rem;
+  background: var(--primary-light);
+  color: var(--primary-dark);
+}
+.resources-page .resource-card-artwork svg {
+  width: 1.55rem;
+  height: 1.55rem;
+  color: var(--primary-dark);
+}
+body.dark-mode .resources-page .resource-card-artwork {
+  background: var(--dark-surface-raised);
+  color: var(--primary);
+}
+body.dark-mode .resources-page .resource-card-artwork svg {
+  color: var(--primary);
+}
