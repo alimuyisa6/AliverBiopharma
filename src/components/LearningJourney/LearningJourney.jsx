@@ -17,7 +17,8 @@ export default function LearningJourney({
   nodeName = '',
   nodeType = '',
   returnTo = '',
-  excludeStages = []
+  excludeStages = [],
+  resourceFocus = null
 }) {
   const navigate = useNavigate();
   const location = useLocation();
@@ -79,8 +80,9 @@ export default function LearningJourney({
     unitId,
     nodeType,
     returnTo,
-    excludeStages
-  }), [source, noteId, internalLinks, unitId, nodeType, returnTo, excludeStages]);
+    excludeStages,
+    focusStage: resourceFocus
+  }), [source, noteId, internalLinks, unitId, nodeType, returnTo, excludeStages, resourceFocus]);
 
   async function openDownload(item, type) {
     const key = type + '-' + item.id;
@@ -147,7 +149,7 @@ export default function LearningJourney({
 
       <div className="learning-journey-flow">
         {stages.map((stage, index) => (
-          <section className="learning-journey-stage" key={stage.key} aria-labelledby={'learning-journey-' + stage.key}>
+          <section className={'learning-journey-stage' + (stage.key === (({ quizzes: 'quiz', past_papers: 'papers', 'past-papers': 'papers' })[resourceFocus] || resourceFocus) ? ' is-focused' : '')} key={stage.key} aria-labelledby={'learning-journey-' + stage.key}>
             <div className="learning-journey-stage-marker" aria-hidden="true">
               <span>{String(index + 1).padStart(2, '0')}</span>
             </div>

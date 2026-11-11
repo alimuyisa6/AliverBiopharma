@@ -64,6 +64,17 @@
   gap: 1rem;
 }
 
+.learning-journey-stage.is-focused .learning-journey-stage-content {
+  border-color: var(--primary-border);
+  background: var(--primary-light);
+}
+
+.learning-journey-stage.is-focused .learning-journey-stage-step::after {
+  content: ' · selected from resources';
+  letter-spacing: 0;
+  text-transform: none;
+}
+
 .learning-journey-stage-marker {
   z-index: 1;
   display: grid;

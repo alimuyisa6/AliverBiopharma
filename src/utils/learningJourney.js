@@ -62,7 +62,8 @@ export function buildLearningStages({
   unitId = null,
   nodeType = '',
   returnTo = '',
-  excludeStages = []
+  excludeStages = [],
+  focusStage = null
 }) {
   const items = Array.isArray(source) ? source : [];
   const byType = (type) => normalizeItems(items.filter((item) => item.content_type === type));
@@ -172,9 +173,15 @@ export function buildLearningStages({
   const stageOrder = ['notes', 'flashcards', 'recall', 'quiz', 'papers', 'pdfs'];
   const excluded = new Set(excludeStages);
 
+  const focusAliases = { quizzes: 'quiz', past_papers: 'papers', 'past-papers': 'papers' };
+  const focusedStage = focusAliases[focusStage] || focusStage;
   return result
     .filter((stage) => !excluded.has(stage.key))
-    .sort((a, b) => stageOrder.indexOf(a.key) - stageOrder.indexOf(b.key))
+    .sort((a, b) => {
+      if (a.key === focusedStage) return -1;
+      if (b.key === focusedStage) return 1;
+      return stageOrder.indexOf(a.key) - stageOrder.indexOf(b.key);
+    })
     .map((stage) => ({ ...stage, meta: STAGE_META[stage.key] }))
     .filter((stage) => stage.items.length > 0);
 }
