@@ -167,15 +167,17 @@ function ProgrammeStudio({ studio, activeGroupName, activeGroupId }) {
             const destination = activeGroupId
               ? `/curriculum/${encodeURIComponent(activeGroupId)}?resource=${encodeURIComponent(card.resource)}`
               : '/resources';
+
             return (
-            <article className={`lernwick-studio-card lernwick-studio-card--${index + 1}`} key={card.title}>
-              <span className="lernwick-studio-card-icon"><Icon name={card.icon} /></span>
-              <span className="lernwick-studio-card-label">{card.label}</span>
-              <h3>{card.title}</h3>
-              <p>{card.description}</p>
-              <Link to={destination}>{card.action}<Icon name="arrow-right" /></Link>
-            </article>
-          ))}
+              <article className={`lernwick-studio-card lernwick-studio-card--${index + 1}`} key={card.title}>
+                <span className="lernwick-studio-card-icon"><Icon name={card.icon} /></span>
+                <span className="lernwick-studio-card-label">{card.label}</span>
+                <h3>{card.title}</h3>
+                <p>{card.description}</p>
+                <Link to={destination}>{card.action}<Icon name="arrow-right" /></Link>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
