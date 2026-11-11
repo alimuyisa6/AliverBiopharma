@@ -345,6 +345,7 @@ export default function CurriculumNodePage() {
           nodeType={node.node_type}
           linkedContent={linkedContent}
           returnTo={returnToLesson}
+          resourceFocus={normalizedResourceFocus}
         />
       )}
 
