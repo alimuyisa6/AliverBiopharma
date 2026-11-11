@@ -3,14 +3,8 @@ import { Link } from 'react-router-dom';
 import Icon from '../components/Icon/Icon';
 import Spinner from '../components/Spinner/Spinner';
 import { getDonateConfig, getDonors, submitMomoDonation } from '../api/client';
+import { DEFAULT_DONATION_GOAL, formatDonationAmount, calculateDonationPercentage } from '../utils/donationFormatting';
 import '../styles/donate.css';
-
-const DEFAULT_GOAL = 500000;
-
-function formatAmount(value) {
-  const amount = Number(value);
-  return Number.isFinite(amount) ? amount.toLocaleString() : '0';
-}
 
 export default function Donate() {
   const [tab, setTab] = useState('crypto');
@@ -52,9 +46,9 @@ export default function Donate() {
     return () => { mounted = false; };
   }, [loadDonors]);
 
-  const goal = Number(config?.goal_amount) || DEFAULT_GOAL;
+  const goal = Number(config?.goal_amount) || DEFAULT_DONATION_GOAL;
   const raised = Number(config?.raised_amount) || 0;
-  const percentage = Math.min(Math.round((raised / goal) * 100), 100);
+  const percentage = calculateDonationPercentage(raised, goal);
   const momo = config?.momo || {};
   const cryptoAvailable = Boolean(config?.crypto_available);
 
@@ -146,8 +140,8 @@ export default function Donate() {
             <div className="donate-goal-fill" style={{ width: `${percentage}%` }} />
           </div>
           <div className="donate-goal-label donate-goal-values">
-            <span>UGX {formatAmount(raised)}</span>
-            <span>UGX {formatAmount(goal)}</span>
+            <span>UGX {formatDonationAmount(raised)}</span>
+            <span>UGX {formatDonationAmount(goal)}</span>
           </div>
         </section>
 
@@ -280,7 +274,7 @@ export default function Donate() {
                   <strong>{donor.name || 'Anonymous'}</strong>
                   <small>{donor.date || ''}</small>
                 </span>
-                <strong className="donor-amount">UGX {formatAmount(donor.amount)}</strong>
+                <strong className="donor-amount">UGX {formatDonationAmount(donor.amount)}</strong>
               </div>
             ))}
           </div>
