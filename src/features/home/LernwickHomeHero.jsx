@@ -4,17 +4,17 @@ import './lernwick-home-hero.css';
 
 const learningStages = [
   { number: '01', title: 'Topic / Course Unit', detail: 'Choose your curriculum starting point', icon: 'book-open' },
-  { number: '02', title: 'Sub-unit', detail: 'Narrow the area you are studying', icon: 'layers' },
-  { number: '03', title: 'Theme', detail: 'Focus on a connected concept', icon: 'network' },
+  { number: '02', title: 'Sub-unit', detail: 'Narrow the area you are studying', icon: 'layer-group' },
+  { number: '03', title: 'Theme', detail: 'Focus on a connected concept', icon: 'atom' },
   { number: '04', title: 'Lesson', detail: 'Open the lesson and its resources', icon: 'graduation-cap', current: true }
 ];
 
 const lessonResources = [
-  { label: 'Notes', icon: 'notebook-text' },
+  { label: 'Notes', icon: 'book-open' },
   { label: 'Flashcards', icon: 'layers' },
   { label: 'Quizzes', icon: 'clipboard-check' },
   { label: 'Recall', icon: 'brain' },
-  { label: 'Past papers', icon: 'file-text' }
+  { label: 'Past papers', icon: 'file-lines' }
 ];
 
 export default function LernwickHomeHero({ user, activeLevelName, activeGroupName, activeGroupId }) {
@@ -53,7 +53,7 @@ export default function LernwickHomeHero({ user, activeLevelName, activeGroupNam
               <span><Icon name="arrow-right" /></span>
             </Link>
             <a className="ab-home-hero-secondary" href="#how">
-              How learning works <Icon name="arrow-down" />
+              How learning works <Icon name="chevron-down" />
             </a>
           </div>
 
@@ -94,7 +94,7 @@ export default function LernwickHomeHero({ user, activeLevelName, activeGroupNam
 
           <div className="ab-home-hero-resource-panel">
             <div className="ab-home-hero-resource-heading">
-              <span><Icon name="bookmark-check" /></span>
+              <span><Icon name="bookmark" /></span>
               <div><strong>At the lesson</strong><small>Choose the way you want to study</small></div>
             </div>
             <div className="ab-home-hero-resource-list">
@@ -103,16 +103,16 @@ export default function LernwickHomeHero({ user, activeLevelName, activeGroupNam
               ))}
             </div>
           </div>
-          <p className="ab-home-hero-visual-note"><Icon name="check-circle" /> Your resources stay connected to the lesson you open.</p>
+          <p className="ab-home-hero-visual-note"><Icon name="circle-check" /> Your resources stay connected to the lesson you open.</p>
         </div>
       </div>
 
       <div className="ab-home-hero-bottom">
         <span className="ab-home-hero-bottom-label">Explore your programme</span>
         <div className="ab-home-hero-programmes">
-          <span><Icon name="flask-conical" /> O-Level Biology</span>
-          <span><Icon name="dna" /> A-Level Biology</span>
-          <span><Icon name="pill" /> Pharmacy programmes</span>
+          <span><Icon name="microscope" /> O-Level Biology</span>
+          <span><Icon name="atom" /> A-Level Biology</span>
+          <span><Icon name="capsules" /> Pharmacy programmes</span>
         </div>
         <Link to={curriculumHref} className="ab-home-hero-bottom-link">
           {activeGroupId ? 'Open your curriculum' : 'Browse resources'} <Icon name="arrow-up-right" />
