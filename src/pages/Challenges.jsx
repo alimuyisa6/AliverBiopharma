@@ -21,7 +21,7 @@ function ChallengeCharacter({ type }) {
 function ChallengeCard({ challenge, onOpen }) {
   const type = challenge.challenge_type || challenge.type;
   const targetCount = Number(challenge.target_count ?? challenge.target ?? 0);
-  const meta = challengeMeta[type] || challengeMeta.quiz;
+  const meta = getChallengeMeta(type);
   const progress = getChallengeProgress(challenge);
   const completed = isChallengeCompleted(challenge);
   return <article className={"challenge-showcase-card challenge-accent-" + meta.accent}>
