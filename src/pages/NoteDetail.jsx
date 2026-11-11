@@ -25,6 +25,7 @@ import Button from '../components/Button/Button';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 import LearningJourney from '../components/LearningJourney/LearningJourney';
 import { isPremiumAccessError, redirectToSubscription } from '../utils/subscriptionNavigation';
+import { normalizeNoteReactions, calculateReadingPercentage, isReadingProgressComplete } from '../utils/noteReading';
 
 const noteDetailContentCache = new Map();
 
@@ -44,13 +45,6 @@ function loadMermaid() {
     });
   }
   return mermaidPromise;
-}
-
-function normalizeReactions(data) {
-  return {
-    counts: data?.counts || {},
-    user: Array.isArray(data?.user_reactions) ? data.user_reactions : []
-  };
 }
 
 export default function NoteDetail() {
@@ -163,7 +157,7 @@ export default function NoteDetail() {
 
         getReactions('note', data.id)
           .then(result => {
-            if (mounted) setReactions(normalizeReactions(result));
+            if (mounted) setReactions(normalizeNoteReactions(result));
           })
           .catch(() => {});
 
@@ -193,8 +187,7 @@ export default function NoteDetail() {
               setReadProgress(Number(progress.scroll_percentage) || 0);
               setReadingComplete(
                 progress.completed === true
-                && Number(progress.scroll_percentage) >= 90
-                && Number(progress.time_spent) >= 30
+                && isReadingProgressComplete(progress)
               );
               if (progress.scroll_position) {
                 window.requestAnimationFrame(() => {
@@ -232,7 +225,7 @@ export default function NoteDetail() {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const percentage = docHeight > 0 ? Math.round((scrollTop / docHeight) * 100) : 0;
+      const percentage = calculateReadingPercentage(scrollTop, docHeight);
 
       setReadProgress(percentage);
 
@@ -471,7 +464,7 @@ export default function NoteDetail() {
     try {
       await toggleReaction('note', noteId, reactionType);
       const updated = await getReactions('note', noteId);
-      setReactions(normalizeReactions(updated));
+      setReactions(normalizeNoteReactions(updated));
     } catch {}
   }
 

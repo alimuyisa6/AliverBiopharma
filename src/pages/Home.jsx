@@ -335,6 +335,7 @@ export default function Home() {
       navigate={navigate}
       activeLevelName={level?.display_name || user?.profile?.track || ''}
       activeGroupName={activeGroupName}
+      activeGroupId={activeGroupId}
       publicStats={publicStats}
       subscriptionPlans={subscriptionPlans}
       chatRoomId={chatRoomId}

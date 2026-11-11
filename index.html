@@ -88,48 +88,7 @@
 </head>
 <body>
   <div id="root"></div>
-  <script>
-    (function () {
-      var isDebug = /^(localhost|127\.0\.0\.1)$/.test(window.location.hostname) || window.location.search.indexOf('debug=1') !== -1;
-
-      function reportError(kind, detail) {
-        try {
-          console.error('[' + kind + ']', detail);
-        } catch (e) {}
-      }
-
-      function showDebugOverlay(text) {
-        var pre = document.createElement('pre');
-        pre.style.cssText = 'white-space:pre-wrap;padding:16px;font-size:14px;background:#fbfaf4;color:#10241b;position:fixed;inset:0;overflow:auto;z-index:999999;margin:0;';
-        pre.textContent = text;
-        document.body.appendChild(pre);
-      }
-
-      function showFallback() {
-        if (document.getElementById('root').childElementCount > 0) return;
-        document.body.innerHTML =
-          '<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;font-family:sans-serif;text-align:center;">' +
-          '<div><h1 style="font-size:18px;margin-bottom:8px;">Something went wrong</h1>' +
-          '<p style="font-size:14px;color:#385447;margin-bottom:16px;">Please refresh the page. If the problem continues, try again shortly.</p>' +
-          '<button onclick="window.location.reload()" style="padding:10px 20px;border:none;border-radius:6px;background:#19693a;color:#fff;font-size:14px;">Reload</button>' +
-          '</div></div>';
-      }
-
-      window.onerror = function (msg, src, line, col, err) {
-        var detail = 'MSG: ' + msg + '\nSRC: ' + src + '\nLINE: ' + line + '\nSTACK: ' + (err && err.stack || 'n/a');
-        reportError('window.onerror', detail);
-        if (isDebug) showDebugOverlay(detail);
-        else setTimeout(showFallback, 0);
-      };
-
-      window.addEventListener('unhandledrejection', function (e) {
-        var detail = (e.reason && e.reason.stack) || e.reason;
-        reportError('unhandledrejection', detail);
-        e.preventDefault();
-        if (isDebug) showDebugOverlay(String(detail));
-      });
-    })();
-  </script>
+  <script src="/js/bootstrap.js"></script>
   <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>

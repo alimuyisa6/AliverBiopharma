@@ -4,9 +4,12 @@ import './lernwick-home-hero.css';
 
 const heroImage = 'https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1300&fit=crop';
 
-export default function LernwickHomeHero({ user, activeLevelName, activeGroupName }) {
+export default function LernwickHomeHero({ user, activeLevelName, activeGroupName, activeGroupId }) {
   const name = user?.user_metadata?.full_name || user?.profile?.full_name || user?.email?.split('@')[0];
   const learningPath = [activeLevelName, activeGroupName].filter(Boolean).join(' · ');
+  const curriculumHref = activeGroupId
+    ? `/curriculum/${encodeURIComponent(activeGroupId)}`
+    : '/resources';
 
   return (
     <section className="ab-home-hero" aria-labelledby="ab-home-hero-title">
@@ -17,7 +20,7 @@ export default function LernwickHomeHero({ user, activeLevelName, activeGroupNam
         <div className="ab-home-hero-copy">
           <div className="ab-home-hero-kicker">
             <span className="ab-home-hero-kicker-mark"><Icon name="microscope" /></span>
-            <span>Biology and pharmacy, connected</span>
+            <span>Biology and pharmaceutical science</span>
           </div>
 
           <p className="ab-home-hero-welcome">
@@ -25,18 +28,18 @@ export default function LernwickHomeHero({ user, activeLevelName, activeGroupNam
           </p>
 
           <h1 id="ab-home-hero-title">
-            Understand <span className="ab-home-hero-emphasis">MORE.</span>
-            <span>Remember <span className="ab-home-hero-emphasis">LONGER.</span></span>
-            Learn with purpose.
+            Understand deeply.
+            <span>Remember confidently.</span>
+            Apply knowledge.
           </h1>
 
           <p className="ab-home-hero-description">
-            Build real understanding with curriculum-led notes, active recall, adaptive quizzes and examination resources, all connected to your learning programme.
+            Move from understanding a concept to using it with confidence. Study through curriculum-linked lessons, notes, active recall and focused question practice, all connected to your learning programme.
           </p>
 
           <div className="ab-home-hero-actions">
-            <Link className="ab-home-hero-primary" to="/resources">
-              Explore learning resources
+            <Link className="ab-home-hero-primary" to={activeGroupId ? curriculumHref : "/resources"}>
+              {activeGroupId ? 'Continue to your curriculum' : 'Explore learning resources'}
               <span><Icon name="arrow-right" /></span>
             </Link>
             <a className="ab-home-hero-secondary" href="#how">
@@ -48,7 +51,7 @@ export default function LernwickHomeHero({ user, activeLevelName, activeGroupNam
           {learningPath && (
             <div className="ab-home-hero-path">
               <span className="ab-home-hero-path-icon"><Icon name="graduation-cap" /></span>
-              <span>Your learning path</span>
+              <span>Your selected programme</span>
               <strong>{learningPath}</strong>
             </div>
           )}
@@ -105,7 +108,7 @@ export default function LernwickHomeHero({ user, activeLevelName, activeGroupNam
           <span><Icon name="dna" /> A-Level Biology</span>
           <span><Icon name="pill" /> Pharmacy programmes</span>
         </div>
-        <Link to="/resources" className="ab-home-hero-bottom-link">Find your starting point <Icon name="arrow-up-right" /></Link>
+        <Link to={curriculumHref} className="ab-home-hero-bottom-link">{activeGroupId ? 'Open your curriculum' : 'Find your starting point'} <Icon name="arrow-up-right" /></Link>
       </div>
     </section>
   );
