@@ -52,7 +52,7 @@ export const UI_PREFERENCE_MAPS = {
   }
 };
 
-function normalizeUIPreferences(value) {
+export function normalizeUIPreferences(value) {
   const input = value && typeof value === 'object' && !Array.isArray(value) ? value : {};
   return Object.fromEntries(
     Object.entries(UI_PREFERENCE_DEFAULTS).map(([key, fallback]) => [
