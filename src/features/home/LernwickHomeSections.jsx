@@ -81,8 +81,7 @@ function PublicPathways() {
                 <p>{pathway.description}</p>
               </div>
             </article>
-            );
-          })}
+          ))}
         </div>
       </div>
     </section>
