@@ -115,7 +115,7 @@ export default function LernwickHomeHero({ user, activeLevelName, activeGroupNam
           <span><Icon name="capsules" /> Pharmacy programmes</span>
         </div>
         <Link to={curriculumHref} className="ab-home-hero-bottom-link">
-          {activeGroupId ? 'Open your curriculum' : 'Browse resources'} <Icon name="arrow-up-right" />
+          {activeGroupId ? 'Open your curriculum' : 'Browse resources'} <Icon name="arrow-right" />
         </Link>
       </div>
     </section>
