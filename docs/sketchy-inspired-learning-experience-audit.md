@@ -51,20 +51,14 @@ Empty tables are not proof that a feature is impossible; they indicate that the 
 
 ## 4. Homepage work started
 
-The homepage hero has been updated on the feature branch to use the reference's high-level communication pattern:
+The homepage work deliberately preserves Aliver's existing hero composition, image treatment, floating learning cards, typography system and stylesheet. The changes refine the learning promise and supporting copy, and connect the primary action to the learner's selected curriculum when one is available. The programme-specific resource cards now preserve their resource intent as the learner enters the curriculum.
 
-1. A concise, prominent learning promise.
-2. Supporting copy explaining Aliver's learning method.
-3. A clear primary action into learning resources.
-4. A secondary route into the learner's selected curriculum when available.
-5. Aliver-specific learning proof points and a visual Learn → Remember → Assess → Progress flow.
-
-The hero uses Aliver's navy, cyan and pale-blue palette, solid colour surfaces, white learning cards and the existing hero stylesheet. No new CSS file, backend endpoint, database migration, or external Sketchy asset was introduced.
+The existing programme discovery, learning-process, testimonial, pricing, dashboard and resource components remain the foundation. This is an integration and refinement pass, not a replacement homepage or a transplanted Sketchy page. No new CSS file, backend endpoint, database migration, or external Sketchy asset was introduced.
 
 ## 5. Recommended implementation order
 
-1. **Complete the homepage and resource-discovery flow.** Make the curriculum the primary entry point and ensure each visible resource action opens the correct destination.
-2. **Upgrade question practice.** Add a dedicated question-bank discovery flow and a custom test builder while preserving existing quiz session integrity, answer explanations and review behaviour.
+1. **Complete the homepage and resource-discovery flow.** Make the curriculum the primary entry point and ensure each visible resource action opens the correct destination. Resource focus is now carried into the lesson's connected-learning sequence and the selected resource stage is prioritised.
+2. **Upgrade question practice.** The existing Quizzes entry is now presented as Question Bank, accurately reflecting its curriculum-linked question practice, study/exam modes and answer explanations. Add a dedicated global question-bank discovery flow and a custom test builder while preserving existing quiz session integrity, answer explanations and review behaviour.
 3. **Connect lesson media.** Add the video lesson experience after content is available; keep video resources linked to curriculum nodes.
 4. **Build clinical application.** Implement case listings, case sessions, virtual-patient interaction and differential practice only with authored cases and server-side grading.
 5. **Add interactive visual learning.** Build a reusable symbol/diagram explorer tied to the relevant curriculum topics.
