@@ -2,73 +2,29 @@ import { Link } from 'react-router-dom';
 import Icon from '../../components/Icon/Icon';
 import './lernwick-home-hero.css';
 
-const learningStages = [
-  {
-    number: '01',
-    label: 'LEARN',
-    title: 'Build understanding',
-    description: 'Curriculum-linked lessons and study notes.',
-    icon: 'book-open',
-    tone: 'learn'
-  },
-  {
-    number: '02',
-    label: 'REMEMBER',
-    title: 'Strengthen recall',
-    description: 'Flashcards and focused recall practice.',
-    icon: 'brain',
-    tone: 'remember'
-  },
-  {
-    number: '03',
-    label: 'ASSESS',
-    title: 'Check your knowledge',
-    description: 'Topic questions and examination practice.',
-    icon: 'clipboard-check',
-    tone: 'assess'
-  },
-  {
-    number: '04',
-    label: 'PROGRESS',
-    title: 'Know what comes next',
-    description: 'Review your progress and revisit weak areas.',
-    icon: 'chart-line',
-    tone: 'progress'
-  }
-];
+const heroImage = 'https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1300&fit=crop';
 
-export default function LernwickHomeHero({
-  user,
-  activeLevelName,
-  activeGroupName,
-  activeGroupId
-}) {
-  const name =
-    user?.user_metadata?.full_name ||
-    user?.profile?.full_name ||
-    user?.email?.split('@')[0];
-
-  const learningPath = [activeLevelName, activeGroupName]
-    .filter(Boolean)
-    .join(' · ');
-
+export default function LernwickHomeHero({ user, activeLevelName, activeGroupName, activeGroupId }) {
+  const name = user?.user_metadata?.full_name || user?.profile?.full_name || user?.email?.split('@')[0];
+  const learningPath = [activeLevelName, activeGroupName].filter(Boolean).join(' · ');
   const curriculumHref = activeGroupId
     ? `/curriculum/${encodeURIComponent(activeGroupId)}`
     : '/resources';
 
   return (
     <section className="ab-home-hero" aria-labelledby="ab-home-hero-title">
+      <div className="ab-home-hero-glow ab-home-hero-glow-one" aria-hidden="true" />
+      <div className="ab-home-hero-glow ab-home-hero-glow-two" aria-hidden="true" />
+
       <div className="ab-home-hero-main">
         <div className="ab-home-hero-copy">
           <div className="ab-home-hero-kicker">
-            <span className="ab-home-hero-kicker-mark">
-              <Icon name="microscope" />
-            </span>
-            <span>ALIVER BIOPHARMA · LEARN WITH PURPOSE</span>
+            <span className="ab-home-hero-kicker-mark"><Icon name="microscope" /></span>
+            <span>Biology and pharmaceutical science</span>
           </div>
 
           <p className="ab-home-hero-welcome">
-            {name ? `Welcome back, ${name}` : 'A clearer way to learn Biology and Pharmacy'}
+            {name ? `Welcome back, ${name}` : 'A smarter way to study life sciences'}
           </p>
 
           <h1 id="ab-home-hero-title">
@@ -78,97 +34,81 @@ export default function LernwickHomeHero({
           </h1>
 
           <p className="ab-home-hero-description">
-            Learn through curriculum-linked lessons, clear study notes, active
-            recall and focused assessments. Move from understanding a concept
-            to using it with confidence.
+            Move from understanding a concept to using it with confidence. Study through curriculum-linked lessons, notes, active recall and focused question practice, all connected to your learning programme.
           </p>
 
           <div className="ab-home-hero-actions">
-            <Link className="ab-home-hero-primary" to="/resources">
-              Explore learning resources
+            <Link className="ab-home-hero-primary" to={activeGroupId ? curriculumHref : "/resources"}>
+              {activeGroupId ? 'Continue to your curriculum' : 'Explore learning resources'}
               <span><Icon name="arrow-right" /></span>
             </Link>
-            <Link className="ab-home-hero-secondary" to={curriculumHref}>
-              <span className="ab-home-hero-secondary-icon">
-                <Icon name="book-open" />
-              </span>
-              {activeGroupId ? 'Continue to your curriculum' : 'Browse the curriculum'}
-            </Link>
+            <a className="ab-home-hero-secondary" href="#how">
+              <span className="ab-home-hero-play"><Icon name="play" /></span>
+              See how it works
+            </a>
           </div>
 
           {learningPath && (
             <div className="ab-home-hero-path">
-              <span className="ab-home-hero-path-icon">
-                <Icon name="graduation-cap" />
-              </span>
-              <span>Your learning programme</span>
+              <span className="ab-home-hero-path-icon"><Icon name="graduation-cap" /></span>
+              <span>Your selected programme</span>
               <strong>{learningPath}</strong>
             </div>
           )}
 
-          <ul className="ab-home-hero-trust" aria-label="Aliver learning features">
-            <li><Icon name="circle-check" /><span>Curriculum aligned</span></li>
-            <li><Icon name="circle-check" /><span>Active recall</span></li>
-            <li><Icon name="circle-check" /><span>Progress focused</span></li>
-          </ul>
+          <div className="ab-home-hero-trust">
+            <div className="ab-home-hero-trust-item">
+              <span className="ab-home-hero-trust-icon"><Icon name="book-open" /></span>
+              <span><strong>Curriculum-led</strong><small>Study by topic and unit</small></span>
+            </div>
+            <div className="ab-home-hero-trust-divider" aria-hidden="true" />
+            <div className="ab-home-hero-trust-item">
+              <span className="ab-home-hero-trust-icon"><Icon name="brain" /></span>
+              <span><strong>Active recall</strong><small>Make knowledge stick</small></span>
+            </div>
+            <div className="ab-home-hero-trust-divider" aria-hidden="true" />
+            <div className="ab-home-hero-trust-item">
+              <span className="ab-home-hero-trust-icon"><Icon name="clipboard-check" /></span>
+              <span><strong>Exam practice</strong><small>Build confidence</small></span>
+            </div>
+          </div>
         </div>
 
-        <div className="ab-home-hero-visual" aria-label="The Aliver learning process">
-          <div className="ab-home-hero-visual-panel">
-            <div className="ab-home-hero-visual-heading">
-              <span>THE ALIVER LEARNING PATH</span>
-              <span>01 — 04</span>
-            </div>
-
-            <div className="ab-home-hero-flow">
-              {learningStages.map((stage) => (
-                <div
-                  className={`ab-home-hero-flow-card ab-home-hero-flow-card--${stage.tone}`}
-                  key={stage.number}
-                >
-                  <span className="ab-home-hero-flow-number">{stage.number}</span>
-                  <span className="ab-home-hero-flow-icon">
-                    <Icon name={stage.icon} />
-                  </span>
-                  <span className="ab-home-hero-flow-copy">
-                    <small>{stage.label}</small>
-                    <strong>{stage.title}</strong>
-                    <span>{stage.description}</span>
-                  </span>
-                  <Icon name="arrow-right" />
-                </div>
-              ))}
-            </div>
-
-            <div className="ab-home-hero-visual-footer">
-              <span className="ab-home-hero-visual-footer-mark">
-                <Icon name="check" />
-              </span>
-              <span>
-                <strong>One connected learning experience</strong>
-                <small>Learn · Practise · Review · Progress</small>
-              </span>
+        <div className="ab-home-hero-visual" aria-label="A student studying with digital learning resources">
+          <div className="ab-home-hero-visual-orbit ab-home-hero-visual-orbit-one" aria-hidden="true" />
+          <div className="ab-home-hero-visual-orbit ab-home-hero-visual-orbit-two" aria-hidden="true" />
+          <div className="ab-home-hero-image-frame">
+            <img src={heroImage} alt="Student focused on studying at a desk" width="1200" height="1300" fetchPriority="high" />
+            <div className="ab-home-hero-image-shade" />
+            <div className="ab-home-hero-image-caption">
+              <span className="ab-home-hero-caption-icon"><Icon name="atom" /></span>
+              <span><strong>Learn beyond memorising</strong><small>Connect concepts to understanding</small></span>
             </div>
           </div>
 
-          <span className="ab-home-hero-orbit-label">
-            <Icon name="atom" />
-            Biology & pharmaceutical science
-          </span>
+          <div className="ab-home-hero-floating-card ab-home-hero-progress-card">
+            <span className="ab-home-hero-card-icon"><Icon name="chart-no-axes-combined" /></span>
+            <span className="ab-home-hero-card-copy"><strong>Progress with purpose</strong><small>One step at a time</small></span>
+            <span className="ab-home-hero-card-check"><Icon name="check" /></span>
+          </div>
+
+          <div className="ab-home-hero-floating-card ab-home-hero-recall-card">
+            <span className="ab-home-hero-recall-symbol"><Icon name="brain" /></span>
+            <span className="ab-home-hero-card-copy"><strong>BioRecall</strong><small>Review. Remember. Improve.</small></span>
+          </div>
+
+          <div className="ab-home-hero-orbit-label"><Icon name="dna" /> Life sciences</div>
         </div>
       </div>
 
       <div className="ab-home-hero-bottom">
-        <span className="ab-home-hero-bottom-label">Explore your programme</span>
+        <span className="ab-home-hero-bottom-label">Learning pathways</span>
         <div className="ab-home-hero-programmes">
-          <span><Icon name="microscope" /> O-Level Biology</span>
-          <span><Icon name="atom" /> A-Level Biology</span>
-          <span><Icon name="capsules" /> Pharmacy programmes</span>
+          <span><Icon name="flask-conical" /> O-Level Biology</span>
+          <span><Icon name="dna" /> A-Level Biology</span>
+          <span><Icon name="pill" /> Pharmacy programmes</span>
         </div>
-        <Link to={curriculumHref} className="ab-home-hero-bottom-link">
-          {activeGroupId ? 'Open your learning path' : 'Find your starting point'}
-          <Icon name="arrow-right" />
-        </Link>
+        <Link to={curriculumHref} className="ab-home-hero-bottom-link">{activeGroupId ? 'Open your curriculum' : 'Find your starting point'} <Icon name="arrow-up-right" /></Link>
       </div>
     </section>
   );
