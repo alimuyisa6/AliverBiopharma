@@ -76,9 +76,6 @@ export default function LernwickHomeHero({
         </div>
 
         <div className="ab-home-hero-visual" aria-label="Student portrait">
-          <span className="ab-home-hero-shape ab-home-hero-shape-grey" aria-hidden="true" />
-          <span className="ab-home-hero-shape ab-home-hero-shape-yellow" aria-hidden="true" />
-          <span className="ab-home-hero-shape ab-home-hero-shape-blue" aria-hidden="true" />
           <div className="ab-home-hero-photo-frame">
             <img
               className="ab-home-hero-student"
