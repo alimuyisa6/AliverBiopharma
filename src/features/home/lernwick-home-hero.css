@@ -174,70 +174,80 @@
   isolation: isolate;
 }
 
-/* The portrait stays a clean asset; all framing and colour layers are CSS. */
+/* One smooth water-drop frame. The portrait has no embedded decoration. */
+.ab-home-hero-visual {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  min-height: clamp(25rem, 43vw, 40rem);
+  place-items: center;
+  isolation: isolate;
+}
+
 .ab-home-hero-photo-frame {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   display: grid;
   width: min(88%, 34rem);
   aspect-ratio: 1 / 1.08;
   place-items: end center;
   overflow: hidden;
-  padding: .55rem;
+  padding: .45rem;
   box-sizing: border-box;
   background: #fff;
-  clip-path: polygon(50% 0%, 61% 8%, 77% 17%, 90% 31%, 98% 47%, 98% 63%, 91% 79%, 78% 92%, 62% 98%, 50% 100%, 37% 97%, 21% 89%, 9% 76%, 2% 60%, 3% 43%, 11% 27%, 25% 14%, 39% 6%);
-  filter: drop-shadow(0 1.25rem 1.8rem rgb(9 38 78 / 13%));
+  border-radius: 52% 48% 50% 50% / 12% 34% 66% 88%;
+  box-shadow: 0 1.25rem 2.5rem rgb(9 38 78 / 14%);
+}
+
+.ab-home-hero-photo-frame::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: .45rem;
+  border-radius: inherit;
+  background: #eaf2fc;
 }
 
 .ab-home-hero-student {
   display: block;
-  width: 112%;
-  height: 112%;
+  width: 100%;
+  height: 100%;
   max-width: none;
-  object-fit: contain;
-  object-position: center bottom;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: inherit;
 }
 
 .ab-home-hero-photo-frame.is-image-missing {
   visibility: hidden;
 }
 
-.ab-home-hero-shape {
+.ab-home-hero-visual::before,
+.ab-home-hero-visual::after {
+  content: "";
   position: absolute;
-  display: block;
   pointer-events: none;
   border-radius: 50%;
 }
 
-.ab-home-hero-shape-grey {
+.ab-home-hero-visual::before {
   z-index: 0;
-  width: 88%;
-  aspect-ratio: 1;
-  right: 0;
-  top: 7%;
-  background: #dfe7f1;
-  transform: rotate(-13deg) scaleX(.9);
-}
-
-.ab-home-hero-shape-yellow {
-  z-index: 1;
   width: 78%;
-  aspect-ratio: 1;
-  right: 8%;
-  bottom: 4%;
+  height: 78%;
+  right: 2%;
+  bottom: 3%;
   background: #f8c928;
-  transform: rotate(18deg) scaleX(.92);
+  transform: rotate(-12deg) scaleX(.88);
 }
 
-.ab-home-hero-shape-blue {
-  z-index: 1;
-  width: 72%;
-  aspect-ratio: 1;
+.ab-home-hero-visual::after {
+  z-index: 0;
+  width: 70%;
+  height: 70%;
   right: 0;
   bottom: 0;
   background: #0754bd;
-  transform: rotate(-16deg) scaleX(.9);
+  transform: rotate(12deg) scaleX(.88);
 }
 
 .ab-home-hero a:focus-visible {
