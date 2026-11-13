@@ -34,8 +34,8 @@ export default function LernwickHomeHero({
   const secondaryLabel = heroContent.secondaryLabel || 'Explore Resources';
   const primaryHref = heroContent.primaryHref || curriculumHref;
   const secondaryHref = heroContent.secondaryHref || '/resources';
-  const imageSrc = heroContent.imageSrc || '/images/aliver-hero-student.jpg';
-  const imageAlt = heroContent.imageAlt || 'A smiling female biopharma student';
+  const imageSrc = heroContent.imageSrc || 'https://images.pexels.com/photos/19596247/pexels-photo-19596247.jpeg?auto=compress&cs=tinysrgb&w=900';
+  const imageAlt = heroContent.imageAlt || 'A smiling Black female healthcare student in a white coat';
 
   return (
     <section className="ab-home-hero" aria-labelledby="ab-home-hero-title">
@@ -92,6 +92,11 @@ export default function LernwickHomeHero({
               }}
             />
           </div>
+          {!heroContent.imageSrc && (
+            <a className="ab-home-hero-photo-credit" href="https://www.pexels.com/photo/portrait-of-smiling-black-woman-doctor-in-medical-robe-19596247/" target="_blank" rel="noreferrer">
+              Photo by Martins John on Pexels
+            </a>
+          )}
         </div>
       </div>
     </section>
