@@ -194,18 +194,9 @@
   overflow: hidden;
   padding: .45rem;
   box-sizing: border-box;
-  background: #fff;
+  background: #0754bd;
   border-radius: 52% 48% 50% 50% / 12% 34% 66% 88%;
   box-shadow: 0 1.25rem 2.5rem rgb(9 38 78 / 14%);
-}
-
-.ab-home-hero-photo-frame::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset: .45rem;
-  border-radius: inherit;
-  background: #eaf2fc;
 }
 
 .ab-home-hero-student {
@@ -238,16 +229,6 @@
   bottom: 3%;
   background: #f8c928;
   transform: rotate(-12deg) scaleX(.88);
-}
-
-.ab-home-hero-visual::after {
-  z-index: 0;
-  width: 70%;
-  height: 70%;
-  right: 0;
-  bottom: 0;
-  background: #0754bd;
-  transform: rotate(12deg) scaleX(.88);
 }
 
 .ab-home-hero a:focus-visible {
