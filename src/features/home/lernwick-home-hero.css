@@ -174,7 +174,7 @@
   isolation: isolate;
 }
 
-/* A single pointed water-drop portrait, with small accents kept outside its edge. */
+/* A smooth Bézier water-drop boundary keeps the tip sharp and the sides flowing. */
 .ab-home-hero-visual {
   position: relative;
   display: grid;
@@ -182,6 +182,13 @@
   min-height: clamp(25rem, 43vw, 40rem);
   place-items: center;
   isolation: isolate;
+}
+
+.ab-home-hero-clip-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
 }
 
 .ab-home-hero-photo-frame {
@@ -195,24 +202,7 @@
   padding: .5rem;
   box-sizing: border-box;
   background: #fff;
-  clip-path: polygon(
-    50% 0%,
-    62% 12%,
-    77% 25%,
-    90% 41%,
-    97% 57%,
-    96% 70%,
-    87% 84%,
-    72% 94%,
-    50% 100%,
-    28% 94%,
-    13% 84%,
-    4% 70%,
-    3% 57%,
-    10% 41%,
-    23% 25%,
-    38% 12%
-  );
+  clip-path: url(#ab-home-hero-drop-clip);
   filter: drop-shadow(0 1.1rem 1.8rem rgb(9 38 78 / 14%));
 }
 
