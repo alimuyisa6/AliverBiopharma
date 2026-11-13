@@ -174,25 +174,29 @@
   isolation: isolate;
 }
 
+/* The portrait stays a clean asset; all framing and colour layers are CSS. */
 .ab-home-hero-photo-frame {
   position: relative;
   z-index: 2;
+  display: grid;
   width: min(88%, 34rem);
   aspect-ratio: 1 / 1.08;
+  place-items: end center;
   overflow: hidden;
-  border: .7rem solid #fff;
-  border-radius: 49% 49% 48% 48% / 42% 42% 58% 58%;
-  background: #dce7f2;
-  box-shadow: 0 1.25rem 3.5rem rgb(9 38 78 / 13%);
-  clip-path: polygon(50% 0%, 61% 9%, 76% 17%, 89% 30%, 97% 46%, 98% 62%, 91% 78%, 78% 91%, 61% 98%, 50% 100%, 37% 97%, 21% 89%, 9% 76%, 2% 60%, 3% 43%, 11% 27%, 25% 14%, 39% 6%);
+  padding: .55rem;
+  box-sizing: border-box;
+  background: #fff;
+  clip-path: polygon(50% 0%, 61% 8%, 77% 17%, 90% 31%, 98% 47%, 98% 63%, 91% 79%, 78% 92%, 62% 98%, 50% 100%, 37% 97%, 21% 89%, 9% 76%, 2% 60%, 3% 43%, 11% 27%, 25% 14%, 39% 6%);
+  filter: drop-shadow(0 1.25rem 1.8rem rgb(9 38 78 / 13%));
 }
 
 .ab-home-hero-student {
   display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 35%;
+  width: 112%;
+  height: 112%;
+  max-width: none;
+  object-fit: contain;
+  object-position: center bottom;
 }
 
 .ab-home-hero-photo-frame.is-image-missing {
@@ -212,7 +216,7 @@
   aspect-ratio: 1;
   right: 0;
   top: 7%;
-  background: #e1e7ed;
+  background: #dfe7f1;
   transform: rotate(-13deg) scaleX(.9);
 }
 
@@ -220,19 +224,19 @@
   z-index: 1;
   width: 78%;
   aspect-ratio: 1;
-  right: 5%;
-  bottom: 1%;
+  right: 8%;
+  bottom: 4%;
   background: #f8c928;
   transform: rotate(18deg) scaleX(.92);
 }
 
 .ab-home-hero-shape-blue {
   z-index: 1;
-  width: 70%;
+  width: 72%;
   aspect-ratio: 1;
-  left: 0;
-  bottom: 4%;
-  background: #1762bd;
+  right: 0;
+  bottom: 0;
+  background: #0754bd;
   transform: rotate(-16deg) scaleX(.9);
 }
 
@@ -257,7 +261,7 @@
   .ab-home-hero-copy { max-width: 48rem; }
   .ab-home-hero h1 { max-width: 13ch; }
   .ab-home-hero-visual { width: min(100%, 35rem); margin-inline: auto; }
-  .ab-home-hero-student { width: 100%; }
+  .ab-home-hero-photo-frame { width: min(88%, 31rem); }
 }
 
 @media (max-width: 520px) {
