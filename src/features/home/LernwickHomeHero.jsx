@@ -1,40 +1,59 @@
 import { Link } from 'react-router-dom';
 import './lernwick-home-hero.css';
 
-const learningBenefits = [
+const defaultBenefits = [
   { title: 'Learn', detail: 'Step-by-Step' },
   { title: 'Test', detail: 'Your Knowledge' },
   { title: 'Track', detail: 'Your Progress' },
   { title: 'Reach', detail: 'Your Goals' }
 ];
 
-export default function LernwickHomeHero({ user, activeLevelName, activeGroupName, activeGroupId }) {
+export default function LernwickHomeHero({
+  user,
+  activeLevelName,
+  activeGroupName,
+  activeGroupId,
+  heroContent = {}
+}) {
   const name = user?.user_metadata?.full_name || user?.profile?.full_name || user?.email?.split('@')[0];
   const learningPath = [activeLevelName, activeGroupName].filter(Boolean).join(' · ');
   const curriculumHref = activeGroupId
     ? `/curriculum/${encodeURIComponent(activeGroupId)}`
     : '/resources';
 
+  // Content can be supplied by the homepage/CMS without changing this component.
+  const eyebrow = heroContent.eyebrow || 'Aliver Biopharma';
+  const headingLead = heroContent.headingLead || 'Study Smarter.';
+  const headingAccent = heroContent.headingAccent || 'Achieve More.';
+  const description = heroContent.description
+    || 'Expert learning resources, structured curriculum and powerful tools to help you master biopharma and beyond.';
+  const benefits = Array.isArray(heroContent.benefits) && heroContent.benefits.length
+    ? heroContent.benefits
+    : defaultBenefits;
+  const primaryLabel = heroContent.primaryLabel || 'Browse Curriculum';
+  const secondaryLabel = heroContent.secondaryLabel || 'Explore Resources';
+  const primaryHref = heroContent.primaryHref || curriculumHref;
+  const secondaryHref = heroContent.secondaryHref || '/resources';
+  const imageSrc = heroContent.imageSrc || '/images/aliver-hero-student.jpg';
+  const imageAlt = heroContent.imageAlt || 'A smiling female biopharma student';
+
   return (
     <section className="ab-home-hero" aria-labelledby="ab-home-hero-title">
       <div className="ab-home-hero-main">
         <div className="ab-home-hero-copy">
-          <p className="ab-home-hero-brand">Aliver Biopharma</p>
-
+          <p className="ab-home-hero-brand">{eyebrow}</p>
           {name && <p className="ab-home-hero-welcome">Welcome back, {name}</p>}
 
           <h1 id="ab-home-hero-title">
-            Study Smarter.
-            <span>Achieve More.</span>
+            {headingLead}
+            <span>{headingAccent}</span>
           </h1>
 
-          <p className="ab-home-hero-description">
-            Expert learning resources, structured curriculum and powerful tools to help you master biopharma and beyond.
-          </p>
+          <p className="ab-home-hero-description">{description}</p>
 
           <div className="ab-home-hero-benefits" aria-label="Learning benefits">
-            {learningBenefits.map((benefit) => (
-              <div className="ab-home-hero-benefit" key={benefit.title}>
+            {benefits.map((benefit, index) => (
+              <div className="ab-home-hero-benefit" key={benefit.id || benefit.title || index}>
                 <strong>{benefit.title}</strong>
                 <span>{benefit.detail}</span>
               </div>
@@ -42,11 +61,11 @@ export default function LernwickHomeHero({ user, activeLevelName, activeGroupNam
           </div>
 
           <div className="ab-home-hero-actions">
-            <Link className="ab-home-hero-primary" to={curriculumHref}>
-              Browse Curriculum
+            <Link className="ab-home-hero-primary" to={primaryHref}>
+              {primaryLabel}
             </Link>
-            <Link className="ab-home-hero-secondary" to="/resources">
-              Explore Resources
+            <Link className="ab-home-hero-secondary" to={secondaryHref}>
+              {secondaryLabel}
             </Link>
           </div>
 
@@ -57,13 +76,22 @@ export default function LernwickHomeHero({ user, activeLevelName, activeGroupNam
           )}
         </div>
 
-        <div className="ab-home-hero-visual">
-          <img
-            className="ab-home-hero-student"
-            src="/images/aliver-hero-student.jpg"
-            alt="A smiling female biopharma student studying in a library"
-            fetchPriority="high"
-          />
+        <div className="ab-home-hero-visual" aria-label="Student portrait">
+          <span className="ab-home-hero-shape ab-home-hero-shape-grey" aria-hidden="true" />
+          <span className="ab-home-hero-shape ab-home-hero-shape-yellow" aria-hidden="true" />
+          <span className="ab-home-hero-shape ab-home-hero-shape-blue" aria-hidden="true" />
+          <div className="ab-home-hero-photo-frame">
+            <img
+              className="ab-home-hero-student"
+              src={imageSrc}
+              alt={imageAlt}
+              fetchPriority="high"
+              onError={(event) => {
+                event.currentTarget.hidden = true;
+                event.currentTarget.closest('.ab-home-hero-photo-frame')?.classList.add('is-image-missing');
+              }}
+            />
+          </div>
         </div>
       </div>
     </section>
