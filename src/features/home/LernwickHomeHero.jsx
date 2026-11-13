@@ -21,7 +21,6 @@ export default function LernwickHomeHero({
     ? `/curriculum/${encodeURIComponent(activeGroupId)}`
     : '/resources';
 
-  // Content can be supplied by the homepage/CMS without changing this component.
   const eyebrow = heroContent.eyebrow || 'Aliver Biopharma';
   const headingLead = heroContent.headingLead || 'Study Smarter.';
   const headingAccent = heroContent.headingAccent || 'Achieve More.';
@@ -34,7 +33,7 @@ export default function LernwickHomeHero({
   const secondaryLabel = heroContent.secondaryLabel || 'Explore Resources';
   const primaryHref = heroContent.primaryHref || curriculumHref;
   const secondaryHref = heroContent.secondaryHref || '/resources';
-  const imageSrc = heroContent.imageSrc || 'https://images.pexels.com/photos/19596247/pexels-photo-19596247.jpeg?auto=compress&cs=tinysrgb&w=900';
+  const imageSrc = heroContent.imageSrc || '/images/aliver-hero-student.webp';
   const imageAlt = heroContent.imageAlt || 'A smiling Black female healthcare student in a white coat';
 
   return (
@@ -92,11 +91,6 @@ export default function LernwickHomeHero({
               }}
             />
           </div>
-          {!heroContent.imageSrc && (
-            <a className="ab-home-hero-photo-credit" href="https://www.pexels.com/photo/portrait-of-smiling-black-woman-doctor-in-medical-robe-19596247/" target="_blank" rel="noreferrer">
-              Photo by Martins John on Pexels
-            </a>
-          )}
         </div>
       </div>
     </section>
