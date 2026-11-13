@@ -166,17 +166,74 @@
 .ab-home-hero-path strong { color: #102b52; }
 
 .ab-home-hero-visual {
-  display: flex;
+  position: relative;
+  display: grid;
   min-width: 0;
-  align-items: center;
-  justify-content: center;
+  min-height: clamp(25rem, 43vw, 40rem);
+  place-items: center;
+  isolation: isolate;
+}
+
+.ab-home-hero-photo-frame {
+  position: relative;
+  z-index: 2;
+  width: min(88%, 34rem);
+  aspect-ratio: 1 / 1.08;
+  overflow: hidden;
+  border: .7rem solid #fff;
+  border-radius: 49% 49% 48% 48% / 42% 42% 58% 58%;
+  background: #dce7f2;
+  box-shadow: 0 1.25rem 3.5rem rgb(9 38 78 / 13%);
+  clip-path: polygon(50% 0%, 61% 9%, 76% 17%, 89% 30%, 97% 46%, 98% 62%, 91% 78%, 78% 91%, 61% 98%, 50% 100%, 37% 97%, 21% 89%, 9% 76%, 2% 60%, 3% 43%, 11% 27%, 25% 14%, 39% 6%);
 }
 
 .ab-home-hero-student {
   display: block;
-  width: min(100%, 46rem);
-  height: auto;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+}
+
+.ab-home-hero-photo-frame.is-image-missing {
+  visibility: hidden;
+}
+
+.ab-home-hero-shape {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+.ab-home-hero-shape-grey {
+  z-index: 0;
+  width: 88%;
+  aspect-ratio: 1;
+  right: 0;
+  top: 7%;
+  background: #e1e7ed;
+  transform: rotate(-13deg) scaleX(.9);
+}
+
+.ab-home-hero-shape-yellow {
+  z-index: 1;
+  width: 78%;
+  aspect-ratio: 1;
+  right: 5%;
+  bottom: 1%;
+  background: #f8c928;
+  transform: rotate(18deg) scaleX(.92);
+}
+
+.ab-home-hero-shape-blue {
+  z-index: 1;
+  width: 70%;
+  aspect-ratio: 1;
+  left: 0;
+  bottom: 4%;
+  background: #1762bd;
+  transform: rotate(-16deg) scaleX(.9);
 }
 
 .ab-home-hero a:focus-visible {
