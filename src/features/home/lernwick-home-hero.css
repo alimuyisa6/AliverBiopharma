@@ -174,77 +174,23 @@
   isolation: isolate;
 }
 
-/* A smooth Bézier water-drop boundary keeps the tip sharp and the sides flowing. */
-.ab-home-hero-visual {
-  position: relative;
-  display: grid;
-  min-width: 0;
-  min-height: clamp(25rem, 43vw, 40rem);
-  place-items: center;
-  isolation: isolate;
-}
-
-.ab-home-hero-clip-defs {
-  position: absolute;
-  width: 0;
-  height: 0;
-  overflow: hidden;
-}
-
 .ab-home-hero-photo-frame {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  width: min(88%, 34rem);
-  aspect-ratio: 1 / 1.08;
-  place-items: end center;
-  overflow: hidden;
-  padding: .5rem;
-  box-sizing: border-box;
-  background: #fff;
-  clip-path: url(#ab-home-hero-drop-clip);
-  filter: drop-shadow(0 1.1rem 1.8rem rgb(9 38 78 / 14%));
+  display: block;
+  width: min(100%, 34rem);
+  margin-inline: auto;
+  overflow: visible;
 }
 
 .ab-home-hero-student {
   display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
   max-width: none;
-  object-fit: cover;
-  object-position: center top;
+  object-fit: contain;
 }
 
 .ab-home-hero-photo-frame.is-image-missing {
   visibility: hidden;
-}
-
-.ab-home-hero-visual::before,
-.ab-home-hero-visual::after {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  display: block;
-  pointer-events: none;
-  border-radius: 50%;
-}
-
-.ab-home-hero-visual::before {
-  width: 39%;
-  height: 27%;
-  left: 5%;
-  bottom: 8%;
-  background: #f8c928;
-  transform: rotate(-24deg);
-}
-
-.ab-home-hero-visual::after {
-  width: 34%;
-  height: 23%;
-  right: 4%;
-  bottom: 5%;
-  background: #0754bd;
-  transform: rotate(22deg);
 }
 
 .ab-home-hero a:focus-visible {
@@ -268,7 +214,6 @@
   .ab-home-hero-copy { max-width: 48rem; }
   .ab-home-hero h1 { max-width: 13ch; }
   .ab-home-hero-visual { width: min(100%, 35rem); margin-inline: auto; }
-  .ab-home-hero-photo-frame { width: min(88%, 31rem); }
 }
 
 @media (max-width: 520px) {
