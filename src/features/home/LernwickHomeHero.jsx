@@ -33,7 +33,7 @@ export default function LernwickHomeHero({
   const secondaryLabel = heroContent.secondaryLabel || 'Explore Resources';
   const primaryHref = heroContent.primaryHref || curriculumHref;
   const secondaryHref = heroContent.secondaryHref || '/resources';
-  const imageSrc = heroContent.imageSrc || '/images/aliver-hero-student.webp';
+  const imageSrc = heroContent.imageSrc || '/images/aliver-hero-student-drop.webp';
   const imageAlt = heroContent.imageAlt || 'A smiling Black female healthcare student in a white coat';
 
   return (
@@ -76,13 +76,6 @@ export default function LernwickHomeHero({
         </div>
 
         <div className="ab-home-hero-visual" aria-label="Student portrait">
-          <svg className="ab-home-hero-clip-defs" aria-hidden="true" focusable="false">
-            <defs>
-              <clipPath id="ab-home-hero-drop-clip" clipPathUnits="objectBoundingBox">
-                <path d="M .5 0 C .62 .12 .98 .36 .98 .62 C .98 .83 .77 .98 .5 1 C .23 .98 .02 .83 .02 .62 C .02 .36 .38 .12 .5 0 Z" />
-              </clipPath>
-            </defs>
-          </svg>
           <div className="ab-home-hero-photo-frame">
             <img
               className="ab-home-hero-student"
