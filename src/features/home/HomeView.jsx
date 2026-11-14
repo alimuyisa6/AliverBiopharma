@@ -175,15 +175,15 @@ export default function HomeView(props) {
 
       <DynamicActions pageId="home" className="home-dynamic-actions" />
 
+      <section className="home-stats-section" aria-label="Platform statistics">
+        <StatsGrid stats={publicStats || {}} scopeLabel={activeGroupName || activeLevelName || 'All learning levels'} />
+      </section>
+
       <ProgrammeDiscovery activeLevelName={activeLevelName} activeGroupName={activeGroupName} activeGroupId={activeGroupId} />
 
       {user && <CurriculumSnapshot nodes={curriculumUnits} activeLevelName={activeLevelName} activeGroupName={activeGroupName} sections={sections} />}
 
       <LearningProcess activeLevelName={activeLevelName} activeGroupName={activeGroupName} />
-
-      <section className="home-stats-section" aria-label="Platform statistics">
-        <StatsGrid stats={publicStats || {}} scopeLabel={activeGroupName || activeLevelName || 'All learning levels'} />
-      </section>
 
       {user && (
         <section className="home-student-section" id="dashboard">
