@@ -163,7 +163,7 @@ const connectedLearningStages = [
     description: 'Strengthen understanding through active retrieval and question practice.',
     links: [
       { label: 'Question practice', detail: 'Answer curriculum questions', to: '/quiz', icon: 'clipboard-check' },
-      { label: 'Flashcards', detail: 'Recall important concepts', to: '/flashcards', icon: 'layers' },
+      { label: 'Flashcards', detail: 'Recall important concepts', to: '/flashcards', icon: 'layer-group' },
       { label: 'Spaced recall', detail: 'Revisit what you have learned', to: '/recall', icon: 'brain' }
     ]
   },
