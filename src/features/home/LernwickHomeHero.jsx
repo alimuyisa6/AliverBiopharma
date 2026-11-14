@@ -33,7 +33,7 @@ export default function LernwickHomeHero({
   const secondaryLabel = heroContent.secondaryLabel || 'Explore Resources';
   const primaryHref = heroContent.primaryHref || curriculumHref;
   const secondaryHref = heroContent.secondaryHref || '/resources';
-  const imageSrc = heroContent.imageSrc || '/images/aliver-hero-student-drop.png';
+  const imageSrc = heroContent.imageSrc || '/images/aliver-hero-student-drop.webp';
   const imageAlt = heroContent.imageAlt || 'A smiling Black female healthcare student in a white coat';
 
   return (
