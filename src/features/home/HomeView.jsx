@@ -12,7 +12,7 @@ import TutorMarketplaceTeaser from '../tutor-marketplace/TutorMarketplaceTeaser'
 import AdsHomeSection from '../../components/Advertising/AdsHomeSection';
 import AdSlot from '../../components/Advertising/AdSlot';
 import LernwickHomeHero from './LernwickHomeHero';
-import { ProgrammeDiscovery, LearningProcess, ConnectedLearning } from './LernwickHomeSections';
+import { ProgrammeDiscovery, LearningProcess } from './LernwickHomeSections';
 import HomeDashboardCard from '../../components/dashboard/HomeDashboardCard';
 import DynamicActions from '../../components/DynamicActions';
 import ThreeDButton from '../../components/buttons/ThreeDButton';
@@ -28,7 +28,7 @@ function ContinueLearningRail({ items, navigate }) {
           <span className="eyebrow">Pick up where you left off</span>
           <h2>Continue learning</h2>
         </div>
-        <Link to="/dashboard" className="text-link">View all learning activity →</Link>
+        <Link to="/activity" className="text-link">View all learning activity →</Link>
       </div>
       <div className="row-list home-continue-learning-list">
         {items.map((item) => (
@@ -184,8 +184,6 @@ export default function HomeView(props) {
       {user && <CurriculumSnapshot nodes={curriculumUnits} activeLevelName={activeLevelName} activeGroupName={activeGroupName} sections={sections} />}
 
       <LearningProcess activeLevelName={activeLevelName} activeGroupName={activeGroupName} />
-
-      <ConnectedLearning />
 
       {user && (
         <section className="home-student-section" id="dashboard">

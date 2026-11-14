@@ -153,7 +153,7 @@ const connectedLearningStages = [
     links: [
       { label: 'Study notes', detail: 'Read topic explanations', to: '/notes', icon: 'book-open' },
       { label: 'PDF library', detail: 'Open study documents', to: '/pdfs', icon: 'file-pdf' },
-      { label: 'Glossary', detail: 'Clarify key terminology', to: '/glossary', icon: 'book' }
+      { label: 'Glossary', detail: 'Clarify key terminology', to: '/glossary', icon: 'book-open' }
     ]
   },
   {
@@ -174,7 +174,7 @@ const connectedLearningStages = [
     description: 'Use your knowledge in assessment and collaborative learning contexts.',
     links: [
       { label: 'Past papers', detail: 'Work through exam papers', to: '/past-papers', icon: 'file-lines' },
-      { label: 'Daily challenges', detail: 'Take a focused knowledge challenge', to: '/challenges', icon: 'target' },
+      { label: 'Daily challenges', detail: 'Take a focused knowledge challenge', to: '/challenges', icon: 'flag' },
       { label: 'Classroom', detail: 'Continue learning with your class', to: '/classroom', icon: 'users' }
     ]
   },
@@ -185,7 +185,7 @@ const connectedLearningStages = [
     description: 'Use feedback and progress signals to decide what to strengthen next.',
     links: [
       { label: 'Learning dashboard', detail: 'Review your learning progress', to: '/dashboard', icon: 'chart-line' },
-      { label: 'Quiz review', detail: 'Revisit completed quiz attempts', to: '/quiz/review', icon: 'clipboard-list' },
+      { label: 'Quiz review', detail: 'Revisit completed quiz attempts', to: '/quiz/review', icon: 'list-check' },
       { label: 'Continue learning', detail: 'Return to your curriculum', to: '/resources', icon: 'arrow-right' }
     ]
   }
@@ -216,7 +216,7 @@ export function ConnectedLearning() {
                   <Link className="lernwick-connected-link" to={item.to} key={item.label}>
                     <span className="lernwick-connected-link-icon"><Icon name={item.icon} /></span>
                     <span className="lernwick-connected-link-copy"><strong>{item.label}</strong><small>{item.detail}</small></span>
-                    <Icon name="arrow-up-right" />
+                    <Icon name="arrow-right" />
                   </Link>
                 ))}
               </div>
