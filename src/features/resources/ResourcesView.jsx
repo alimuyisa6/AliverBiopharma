@@ -39,12 +39,12 @@ const CONTENT_TYPES = [
   },
   {
     key: 'quizzes',
-    label: 'Quizzes',
+    label: 'Question practice',
     description: 'Check your understanding with questions matched to your selected programme.',
     icon: 'clipboard-check',
     route: '/quiz',
     color: 'mint',
-    category: 'apply'
+    category: 'practise'
   },
   {
     key: 'past_papers',
@@ -62,7 +62,7 @@ const CONTENT_TYPES = [
     icon: 'brain',
     route: '/recall',
     color: 'violet',
-    category: 'practise'
+    category: 'review'
   }
 ];
 
