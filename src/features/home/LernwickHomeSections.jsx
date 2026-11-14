@@ -143,6 +143,91 @@ function HowLearningWorks({ studio }) {
   );
 }
 
+
+const connectedLearningStages = [
+  {
+    key: 'learn',
+    number: '01',
+    title: 'Learn',
+    description: 'Build understanding with structured explanations and supporting references.',
+    links: [
+      { label: 'Study notes', detail: 'Read topic explanations', to: '/notes', icon: 'book-open' },
+      { label: 'PDF library', detail: 'Open study documents', to: '/pdfs', icon: 'file-pdf' },
+      { label: 'Glossary', detail: 'Clarify key terminology', to: '/glossary', icon: 'book' }
+    ]
+  },
+  {
+    key: 'practise',
+    number: '02',
+    title: 'Practise',
+    description: 'Strengthen understanding through active retrieval and question practice.',
+    links: [
+      { label: 'Question practice', detail: 'Answer curriculum questions', to: '/quiz', icon: 'clipboard-check' },
+      { label: 'Flashcards', detail: 'Recall important concepts', to: '/flashcards', icon: 'layers' },
+      { label: 'Spaced recall', detail: 'Revisit what you have learned', to: '/recall', icon: 'brain' }
+    ]
+  },
+  {
+    key: 'apply',
+    number: '03',
+    title: 'Apply',
+    description: 'Use your knowledge in assessment and collaborative learning contexts.',
+    links: [
+      { label: 'Past papers', detail: 'Work through exam papers', to: '/past-papers', icon: 'file-lines' },
+      { label: 'Daily challenges', detail: 'Take a focused knowledge challenge', to: '/challenges', icon: 'target' },
+      { label: 'Classroom', detail: 'Continue learning with your class', to: '/classroom', icon: 'users' }
+    ]
+  },
+  {
+    key: 'review',
+    number: '04',
+    title: 'Review',
+    description: 'Use feedback and progress signals to decide what to strengthen next.',
+    links: [
+      { label: 'Learning dashboard', detail: 'Review your learning progress', to: '/dashboard', icon: 'chart-line' },
+      { label: 'Quiz review', detail: 'Revisit completed quiz attempts', to: '/quiz/review', icon: 'clipboard-list' },
+      { label: 'Continue learning', detail: 'Return to your curriculum', to: '/resources', icon: 'arrow-right' }
+    ]
+  }
+];
+
+export function ConnectedLearning() {
+  return (
+    <section className="lernwick-connected section" id="connected-learning" aria-labelledby="lernwick-connected-title">
+      <div className="container">
+        <div className="lernwick-section-heading">
+          <div>
+            <p className="lernwick-note">One connected learning experience</p>
+            <h2 id="lernwick-connected-title">Move from understanding to confident application</h2>
+            <p>Each stage builds on the previous one. Choose a tool when you need it, then return to your learning pathway.</p>
+          </div>
+          <Link className="lernwick-outline-button" to="/resources">Explore all resources <Icon name="arrow-right" /></Link>
+        </div>
+        <div className="lernwick-connected-grid">
+          {connectedLearningStages.map((stage) => (
+            <article className={`lernwick-connected-card lernwick-connected-card--${stage.key}`} key={stage.key}>
+              <div className="lernwick-connected-card-heading">
+                <span className="lernwick-connected-number">{stage.number}</span>
+                <h3>{stage.title}</h3>
+              </div>
+              <p className="lernwick-connected-description">{stage.description}</p>
+              <div className="lernwick-connected-links">
+                {stage.links.map((item) => (
+                  <Link className="lernwick-connected-link" to={item.to} key={item.label}>
+                    <span className="lernwick-connected-link-icon"><Icon name={item.icon} /></span>
+                    <span className="lernwick-connected-link-copy"><strong>{item.label}</strong><small>{item.detail}</small></span>
+                    <Icon name="arrow-up-right" />
+                  </Link>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function ProgrammeStudio({ studio, activeGroupName, activeGroupId }) {
   return (
     <section className={`lernwick-programme-studio section lernwick-programme-studio--${studio.kind}`} aria-labelledby="programme-studio-title">
