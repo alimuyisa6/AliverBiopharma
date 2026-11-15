@@ -2155,44 +2155,7 @@ body.dark-mode .progress-panel,
 body.dark-mode .progress-summary { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
 body.dark-mode .progress-card :is(h1, h2, h3, h4, p, label, small) { color: var(--dark-text); }
 body.dark-mode .progress-card :is(.description, .text-muted) { color: var(--dark-text-secondary); }
-@import './dashboard.css';
-@import './hero.css';
-@import './hero-gallery.css';
-@import './accordion.css';
-@import './search.css';
-@import './empty-state.css';
-@import './breadcrumb.css';
-@import './page-header.css';
-@import './grid.css';
-@import './toast.css';
-@import './notification.css';
-@import './chat.css';
-@import './ai-assistant.css';
-@import './flashcard.css';
-@import './content-pages.css';
-@import './recall.css';
-@import './legal.css';
-@import './glossary.css';
-@import './note-detail.css';
-@import './team-faq.css';
-@import './home-sections.css';
-@import './resources.css';
-@import './about.css';
-@import './pastpapers.css';
-@import './quiz.css';
-@import './tutor-apply.css';
-@import './tutor-dashboard.css';
-@import './tutor-marketplace.css';
-@import './profile.css';
-@import './profile-picture.css';
-@import './curriculum.css';
-@import './why.css';
-@import './advertising.css';
-@import './howsec.css';
-@import './auth.css';
-@import './file-upload.css';
-@import './access-state.css';
-@import './newsletter.css';
+
 
 .loading-placeholder {
   display: flex;
