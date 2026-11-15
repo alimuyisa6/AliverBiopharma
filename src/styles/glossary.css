@@ -5,8 +5,11 @@
 }
 .glossary-page {
   width: 100%;
+  max-width: none;
   min-width: 0;
   padding-top: var(--page-space-top);
+  padding-bottom: var(--page-space-bottom);
+  background: var(--soft);
 }
 
 .glossary-loading-wrap {
@@ -60,30 +63,30 @@
 .glossary-header {
   position: relative;
   overflow: hidden;
-  padding: var(--space-12) var(--page-gutter-x) var(--space-16);
-  background: var(--primary);
-  text-align: center;
+  padding: clamp(1.25rem, 3vw, 2rem) var(--page-gutter-x);
+  background: var(--ink);
+  text-align: left;
   color: var(--text-inverse);
 }
 
 .glossary-header-inner {
   position: relative;
   z-index: 1;
-  width: min(100%, 640px);
+  width: min(100%, 70rem);
   margin-inline: auto;
 }
 
 .glossary-main-title {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
   gap: var(--space-2);
-  margin: 0 0 var(--text-gap-title);
+  margin: 0 0 var(--space-2);
   color: var(--text-inverse);
   font-family: var(--font-heading);
-  font-size: var(--text-4xl);
+  font-size: var(--text-page-title);
   font-weight: var(--weight-bold);
-  line-height: var(--leading-tight);
+  line-height: var(--leading-page-title);
   letter-spacing: var(--tracking-tight);
 }
 
@@ -98,12 +101,12 @@
 }
 
 .glossary-subtitle {
-  max-width: var(--glossary-header-max-width);
-  margin: 0 auto var(--text-gap-description);
+  max-width: 58ch;
+  margin: 0;
   color: var(--text-inverse);
   opacity: 0.9;
   font-family: var(--font-reading);
-  font-size: var(--text-md);
+  font-size: var(--text-sm);
   line-height: var(--leading-relaxed);
 }
 
@@ -130,8 +133,8 @@
   position: relative;
   display: flex;
   align-items: flex-start;
-  gap: var(--content-gap);
-  width: min(var(--page-shell-max-width), calc(100% - (var(--page-gutter-x) * 2)));
+  gap: var(--space-3);
+  width: min(100% - (var(--page-gutter-x) * 2), 70rem);
   min-width: 0;
   margin: 0 auto var(--page-space-bottom);
   padding: 0;
@@ -644,17 +647,6 @@
   border-color: var(--primary);
 }
 
-.glossary-route-card-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--space-10);
-  height: var(--space-10);
-  flex-shrink: 0;
-  border-radius: var(--radius-sm);
-  color: var(--text-inverse);
-  font-size: var(--text-base);
-}
 
 .glossary-route-card-icon.quiz-icon {
   background: var(--primary);
@@ -843,39 +835,9 @@
     padding: var(--space-4);
   }
 }
-.glossary-page {
-  width: 100%;
-  max-width: none;
-  background: var(--soft);
-  padding-bottom: var(--page-space-bottom);
-}
-.glossary-header {
-  padding: clamp(1.25rem, 3vw, 2rem) var(--page-gutter-x);
-  background: var(--ink);
-  text-align: left;
-}
-.glossary-header-inner {
-  width: min(100%, 70rem);
-}
-.glossary-main-title {
-  margin-bottom: var(--space-2);
-  font-size: var(--text-page-title);
-  line-height: var(--leading-page-title);
-}
-.glossary-subtitle {
-  max-width: 58ch;
-  margin: 0;
-  font-size: var(--text-sm);
-  line-height: var(--leading-relaxed);
-}
 .glossary-page > .breadcrumb {
   width: min(100% - (var(--page-gutter-x) * 2), 70rem);
   margin: var(--space-3) auto var(--space-4);
-}
-.glossary-main-layout {
-  width: min(100% - (var(--page-gutter-x) * 2), 70rem);
-  margin-inline: auto;
-  gap: var(--space-3);
 }
 .glossary-sidebar-inner,
 .glossary-term-detail,
