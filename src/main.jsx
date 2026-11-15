@@ -9,7 +9,6 @@ import { showFatalError, installRuntimeErrorHandlers } from './utils/runtimeErro
 import { initRevealObserver } from './utils/scrollReveal';
 import './styles/colors.css';
 import './styles/lernwick-tokens.css';
-import './styles/semantics.css';
 import './styles/spacing.css';
 import './styles/animation.css';
 import './styles/global.css';
@@ -26,7 +25,7 @@ import './styles/lernwick-content-pages.css';
 import './styles/lernwick-learning-pages.css';
 import './styles/lernwick-remaining-pages.css';
 import './styles/lernwick-utility-components.css';
-import './styles/lernwick-system.css';
+import './styles/semantics.css';
 import './styles/lernwick-academy-architecture.css';
 import './styles/lernwick-visual-balance.css';
 import './styles/typography.css';
