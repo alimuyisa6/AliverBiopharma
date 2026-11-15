@@ -554,9 +554,6 @@ body.dark-mode .testimonial-flat cite { color: var(--success-hover); }
   box-sizing: border-box;
   padding: clamp(1.25rem, 3vw, 2rem);
 }
-.home-continue-learning-row {
-  border-radius: var(--radius-md);
-}
 .home-curriculum-section {
   box-sizing: border-box;
   padding: clamp(1.25rem, 3vw, 2rem);
