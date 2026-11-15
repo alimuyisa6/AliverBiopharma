@@ -553,41 +553,26 @@ body.dark-mode .testimonial-flat cite { color: var(--success-hover); }
 .home-continue-learning-section {
   box-sizing: border-box;
   padding: clamp(1.25rem, 3vw, 2rem);
-  border: 1px solid var(--primary-light);
-  border-radius: var(--radius-lg);
-  background: var(--primary-light);
 }
 .home-continue-learning-row {
-  background: var(--white);
-  border: 1px solid var(--primary-light);
   border-radius: var(--radius-md);
 }
 .home-curriculum-section {
   box-sizing: border-box;
   padding: clamp(1.25rem, 3vw, 2rem);
-  border: 1px solid var(--primary-light), var(--primary-light);
-  border-radius: var(--radius-lg);
-  background: var(--soft);
 }
 .home-curriculum-map {
   width: min(100%, 58rem);
   margin-inline: auto;
-  border: 1px solid var(--primary-border);
-  border-radius: var(--radius-md);
-  background: var(--white);
   overflow: hidden;
 }
 .home-daily-recall-section {
   box-sizing: border-box;
   padding: clamp(1.25rem, 3vw, 2rem);
-  border: 1px solid var(--warning-light, var(--primary-light));
-  border-radius: var(--radius-lg);
-  background: var(--primary-light);
 }
 .home-daily-recall-card {
   width: min(100%, 48rem);
   margin-inline: auto;
-  background: var(--white);
 }
 .home-faq-item {
   background: var(--white);
@@ -595,16 +580,10 @@ body.dark-mode .testimonial-flat cite { color: var(--success-hover); }
 .home-learning-journey-cta {
   align-self: flex-start;
 }
-body.dark-mode .home-learning-journey-section,
-body.dark-mode .home-continue-learning-section,
-body.dark-mode .home-curriculum-section,
-body.dark-mode .home-daily-recall-section {
+body.dark-mode .home-learning-journey-section {
   border-color: var(--dark-border);
   background: var(--dark-surface);
 }
-body.dark-mode .home-continue-learning-row,
-body.dark-mode .home-curriculum-map,
-body.dark-mode .home-daily-recall-card,
 body.dark-mode .home-faq-item {
   border-color: var(--dark-border);
   background: var(--dark-surface);
