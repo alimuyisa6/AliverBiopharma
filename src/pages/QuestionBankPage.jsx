@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 import Container from '../components/Container/Container';
 import Icon from '../components/Icon/Icon';
@@ -41,8 +41,10 @@ function questionOptions(question) {
 
 export default function QuestionBankPage() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const initialUnitId = searchParams.get('unit_id') || '';
   const toast = useToast();
-  const [filters, setFilters] = useState({ search: '', difficulty: '', question_type: '', page: 0 });
+  const [filters, setFilters] = useState({ search: '', difficulty: '', question_type: '', unit_id: initialUnitId, page: 0 });
   const [questions, setQuestions] = useState([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -181,7 +183,7 @@ export default function QuestionBankPage() {
 
       <div className="qbank-layout">
         <section className="qbank-results" aria-labelledby="qbank-results-title">
-          <div className="qbank-section-heading"><div><h2 id="qbank-results-title">Curriculum questions</h2><p>{total} published questions available in your active programme</p></div><span>{selected.length}/40 selected</span></div>
+          <div className="qbank-section-heading"><div><h2 id="qbank-results-title">Curriculum questions</h2><p>{total} published questions available {filters.unit_id ? 'in this lesson' : 'in your active programme'}</p></div><span>{selected.length}/40 selected</span></div>
           {loading ? <div className="qbank-empty">Searching your curriculum…</div> : questions.length === 0 ? (
             <div className="qbank-empty"><Icon name="search" /><h3>No matching questions</h3><p>Try a different search phrase or remove one of the filters.</p></div>
           ) : (
