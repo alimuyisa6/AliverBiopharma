@@ -340,6 +340,19 @@ export default function CurriculumNodePage() {
       )}
 
       {isLesson && (
+        <section className="curriculum-node-question-bank">
+          <div>
+            <span className="curriculum-node-question-bank-eyebrow">Targeted practice</span>
+            <h2>Build a test from this lesson</h2>
+            <p>Search the questions linked to this lesson, select the concepts you want to practise and save a custom assessment.</p>
+          </div>
+          <Link to={`/question-bank?unit_id=${encodeURIComponent(node.id)}`} className="curriculum-node-question-bank-action">
+            Open lesson question bank <Icon name="arrow-right" />
+          </Link>
+        </section>
+      )}
+
+      {isLesson && (
         <LearningJourney
           unitId={node.id}
           nodeName={node.name}
