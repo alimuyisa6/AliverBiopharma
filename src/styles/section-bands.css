@@ -449,7 +449,9 @@ body.dark-mode .home-page > .lernwick-programme-studio :is(.lernwick-studio-visu
 }
 
 
-.home-page > :is(.home-curriculum-section,.home-testimonials-section,.home-newsletter-section) :is(h1,h2,h3,h4,h5,h6,p,.eyebrow,.lernwick-note,.section-description,.section-head-left,.lernwick-section-heading) {
+.home-page > .home-curriculum-section > .section-head :is(h1,h2,h3,h4,h5,h6,p,.eyebrow),
+.home-page > .home-testimonials-section .lernwick-section-heading :is(h1,h2,h3,h4,h5,h6,p,.lernwick-note),
+.home-page > .home-newsletter-section > :is(.section-head,.newsletter-heading) :is(h1,h2,h3,h4,h5,h6,p,.eyebrow) {
   color: var(--white) !important;
 }
 
