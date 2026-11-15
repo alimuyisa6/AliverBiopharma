@@ -30,10 +30,11 @@
   border-radius: 0 !important;
   box-shadow: none !important;
   background-image: none !important;
+  background: var(--section-bg) !important;
   color: var(--section-ink, var(--brand-navy)) !important;
 }
 
-.home-page > .home-stats-section { --section-bg: var(--brand-navy); --section-ink: var(--white); }
+.home-page > .home-stats-section { --section-bg: var(--brand-navy); --section-ink: var(--white); margin-block-start: 0 !important; }
 .home-page > .lernwick-pathways { --section-bg: var(--info-color); --section-ink: var(--white); }
 .home-page > .home-curriculum-section { --section-bg: var(--white); --section-ink: var(--brand-navy); }
 .home-page > .lernwick-how { --section-bg: var(--dark-background); --section-ink: var(--white); }
@@ -81,25 +82,6 @@
   display: none !important;
 }
 
-.home-page > :is(
-  .home-stats-section,
-  .lernwick-pathways,
-  .home-curriculum-section,
-  .lernwick-how,
-  .lernwick-connected,
-  .home-student-section,
-  .home-daily-learning-section,
-  .home-testimonials-section,
-  .pricing-section,
-  .home-classroom-section,
-  .home-tutor-section,
-  .home-advertising-section,
-  .home-newsletter-section
-) {
-  background: var(--section-bg) !important;
-}
-
-.home-page > .home-stats-section { margin-block-start: 0 !important; }
 .home-page > .home-stats-section > .stats-grid-section,
 .home-page > .home-stats-section .stats-impact-panel,
 .home-page > .home-stats-section .stats-impact-topics,
