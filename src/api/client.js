@@ -3676,3 +3676,24 @@ export async function completeQuizChallenge(session_id, idempotency_key) {
     idempotency_key
   });
 }
+
+
+export async function searchQuestionBank(filters = {}) {
+  return getRequest('quiz', 'question_bank_search', filters);
+}
+
+export async function getTestBlueprints() {
+  return getRequest('quiz', 'test_blueprints');
+}
+
+export async function saveTestBlueprint(payload) {
+  return apiCall('quiz', 'save_test_blueprint', payload);
+}
+
+export async function archiveTestBlueprint(blueprint_id) {
+  return apiCall('quiz', 'archive_test_blueprint', { blueprint_id });
+}
+
+export async function startCustomTest(blueprint_id) {
+  return apiCall('quiz', 'start_custom_test', { blueprint_id });
+}
