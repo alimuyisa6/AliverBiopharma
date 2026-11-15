@@ -23,8 +23,6 @@ import './styles/section-bands.css';
 import './styles/lernwick-app-pages.css';
 import './styles/lernwick-utility-components.css';
 import './styles/semantics.css';
-import './styles/lernwick-academy-architecture.css';
-import './styles/lernwick-visual-balance.css';
 import './styles/typography.css';
 import './styles/heading-organic-bubbles.css';
 
