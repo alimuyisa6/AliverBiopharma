@@ -520,3 +520,12 @@ body.dark-mode .curriculum-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small)
 body.dark-mode .curriculum-page :is(.text-muted, .curriculum-description) { color: var(--dark-text-secondary); }
 
 .curriculum-node-page .curriculum-node-description { max-width: 72ch; margin: var(--space-3) 0 0; color: var(--text-secondary); font-size: var(--text-body); line-height: var(--leading-relaxed); }
+
+
+.curriculum-node-question-bank{display:flex;justify-content:space-between;align-items:center;gap:1.25rem;margin:1.5rem 0;padding:1.2rem 1.35rem;border-radius:16px;background:var(--surface-section);color:var(--text)}
+.curriculum-node-question-bank h2{margin:.2rem 0 .35rem;font-size:1.15rem}
+.curriculum-node-question-bank p{margin:0;color:var(--ink-2);font-size:.88rem;line-height:1.55}
+.curriculum-node-question-bank-eyebrow{color:var(--primary-dark);font-size:.72rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase}
+.curriculum-node-question-bank-action{display:inline-flex;flex:0 0 auto;align-items:center;gap:.55rem;padding:.75rem 1rem;border-radius:10px;background:var(--primary);color:var(--text-on-primary);font-weight:800;text-decoration:none}
+.curriculum-node-question-bank-action:focus-visible{outline:3px solid var(--primary-ring);outline-offset:3px}
+@media(max-width:640px){.curriculum-node-question-bank{align-items:flex-start;flex-direction:column}.curriculum-node-question-bank-action{width:100%;justify-content:center}}
