@@ -176,10 +176,10 @@
 
 .home-page :is(
   .lernwick-pathway-card,.lernwick-step-card,.lernwick-connected-card,
-  .home-curriculum-map,.home-curriculum-node,.home-challenge-treasure,
+  .home-curriculum-map,.home-curriculum-node,.home-challenge-treasure,.dash-cell,
   .home-daily-recall-card,.home-continue-learning-row,.lernwick-testimonial-card,
   .pricing-card,.pricing-empty,.section-teaser-inner,.ads-home-panel,
-  .newsletter-card,.home-snapshot-stack,.dash-strip,.stats-impact-card
+  .newsletter-card,.stats-impact-card
 ) :is(h1,h2,h3,h4,h5,h6,p,span,strong,small,li,label,blockquote,figcaption) {
   color: var(--brand-navy) !important;
 }
