@@ -1,8 +1,9 @@
 .lernwick-testimonials {
-  margin-inline: clamp(.5rem, .3rem + .6vw, .9rem);
-  border: 1px solid var(--border-default);
-  border-radius: var(--r-xl);
-  background: var(--surface-muted);
+  width: 100%;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 .lernwick-testimonials .container {
@@ -112,8 +113,8 @@
 }
 
 body.dark-mode .lernwick-testimonials {
-  border-color: var(--dark-border);
-  background: var(--dark-background);
+  border: 0;
+  background: transparent;
 }
 
 body.dark-mode .lernwick-testimonial-card,
