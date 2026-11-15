@@ -4,6 +4,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
+  color: var(--ink);
+  font-family: var(--f-body);
 }
 
 .file-upload-actions {
@@ -28,30 +30,31 @@
   align-items: center;
   gap: var(--space-3);
   padding: var(--space-3) var(--space-4);
-  background: var(--surface-card);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-panel);
+  border-color: var(--line);
+  border-radius: var(--r-md);
+  background: var(--paper);
 }
 
 .file-upload-icon {
-  color: var(--primary);
   font-size: var(--text-xl);
+  color: var(--primary)-deep);
 }
 
 .file-upload-icon.pdf {
-  color: var(--danger);
+  color: var(--primary)-deep);
 }
 
 .file-upload-name {
   flex: 1;
   min-width: 0;
   font-size: var(--text-sm);
-  color: var(--text-main);
+  color: var(--ink);
 }
 
 .file-upload-size {
   font-size: var(--text-xs);
-  color: var(--text-muted);
+  color: var(--ink-3);
 }
 
 body.dark-mode .file-upload,
@@ -61,29 +64,14 @@ body.dark-mode .file-upload :is(h1, h2, h3, p, label, small) { color: var(--dark
 body.dark-mode .file-upload :is(.description, .text-muted) { color: var(--dark-text-secondary); }
 
 
-.file-upload {
-  color: var(--ink);
-  font-family: var(--f-body);
-}
 
-.file-upload-card {
-  border-color: var(--line);
-  border-radius: var(--r-md);
-  background: var(--paper);
-}
 
-.file-upload-icon {
-  color: var(--primary)-deep);
-}
 
-.file-upload-name {
-  color: var(--ink);
-}
 
-.file-upload-size {
-  color: var(--ink-3);
-}
 
-.file-upload-icon.pdf {
-  color: var(--primary)-deep);
-}
+
+
+
+
+
+

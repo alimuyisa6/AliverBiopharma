@@ -11,7 +11,7 @@
   display: flex;
   flex-direction: column-reverse;
   gap: var(--space-3);
-  max-width: var(--toast-max-width);
+  max-width: min(var(--toast-max-width), calc(100vw - 2rem));
 }
 
 .toast {
@@ -19,43 +19,10 @@
   align-items: center;
   gap: var(--space-3);
   padding: var(--space-4) var(--space-6);
-  border-radius: var(--radius-button);
   font-size: var(--text-sm);
   font-weight: var(--weight-medium);
-  color: var(--text-inverse);
-  box-shadow: var(--shadow-raised);
   cursor: pointer;
   animation: slideUp var(--ease-smooth) forwards;
-}
-
-.toast-success {
-  background: var(--success);
-}
-
-.toast-error {
-  background: var(--danger);
-}
-
-.toast-warning {
-  background: var(--warning);
-  color: var(--text-main);
-}
-
-.toast-info {
-  background: var(--info);
-}
-
-body.dark-mode .toast,
-body.dark-mode .toast-message,
-body.dark-mode .toast-container .toast { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
-body.dark-mode .toast :is(h1, h2, h3, p, small) { color: var(--dark-text); }
-
-
-.toast-container {
-  max-width: min(var(--toast-max-width), calc(100vw - 2rem));
-}
-
-.toast {
   border: 1px solid var(--line);
   border-radius: var(--r-md);
   background: var(--ink);
@@ -83,6 +50,24 @@ body.dark-mode .toast :is(h1, h2, h3, p, small) { color: var(--dark-text); }
   background: var(--ink);
   color: var(--paper);
 }
+
+body.dark-mode .toast,
+body.dark-mode .toast-message,
+body.dark-mode .toast-container .toast { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .toast :is(h1, h2, h3, p, small) { color: var(--dark-text); }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media (max-width: 600px) {
   .toast-container {
