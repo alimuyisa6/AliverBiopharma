@@ -96,6 +96,14 @@ Question rows have explanations and curriculum unit references. The existing bac
 - Prevents drafts and in-review case stages from being read through the public Data API.
 - Adds a case/order index.
 
+### Migration `20261115102848_index_clinical_case_reviewers`
+- Adds covering indexes for the new case author and reviewer foreign keys.
+
+### Migration `20261115102914_freeze_test_run_provenance_and_validate_case_stages`
+- Makes custom-test run provenance and question snapshots immutable after creation.
+- Requires a reviewer and review timestamp before a clinical case can be published.
+- Enforces that a simulation turn's stage belongs to the case used by its session.
+
 ## 5. Security model
 
 - `learning_test_runs`: authenticated users can read only their own rows. Writes are service-role/backend-only.
