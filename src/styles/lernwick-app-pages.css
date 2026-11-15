@@ -2122,3 +2122,124 @@ body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.
 body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.team-card, .contributor-card, .legal-card, .legal-panel, .classroom-card, .classroom-room-card, .tutor-card, .tutor-profile-card, .profile-card, .profile-overview-panel, .profile-category-card, .faq-item, .faq-featured-card, .donate-card, .donate-momo-card, .ads-home-panel, .ad-slot-card, .advertise-card, .contact-card, .info-card, .search-panel, .search-result, .search-result-card, .search-empty-state) :where(p, small, .description, .subtitle, .team-card-bio, .faq-answer) {
   color: var(--dark-text-secondary);
 }
+
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-result-page, .quiz-review-page) {
+  width: 100%;
+  max-width: none;
+  padding: clamp(1.5rem, 4vw, 3.5rem) var(--gutter) clamp(3rem, 6vw, 5rem);
+  background: var(--surface-page);
+  color: var(--ink);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-result-shell, .quiz-review-shell) {
+  width: min(100%, 1180px);
+  margin-inline: auto;
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-result-header, .quiz-review-hero) {
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  padding: clamp(1.5rem, 4vw, 2.75rem);
+  border: 0;
+  border-radius: var(--app-card-radius);
+  background: var(--brand-navy);
+  color: var(--white);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-result-header, .quiz-review-hero) :where(h1, h2, h3, p, span, strong, .quiz-review-eyebrow, .quiz-attempt-result-eyebrow) {
+  color: var(--white);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-result-header h1, .quiz-review-hero h1) {
+  font-size: clamp(2.15rem, 4.2vw, 3.35rem);
+  font-weight: 750;
+  letter-spacing: -.045em;
+  line-height: 1.08;
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-result-summary, .quiz-attempt-answer-card, .quiz-attempt-result-empty, .quiz-review-inbox, .quiz-review-question-card, .quiz-review-marking-form, .quiz-review-access-error, .quiz-review-empty) {
+  border: 1px solid var(--border-default);
+  border-radius: var(--app-card-radius);
+  background: var(--surface-card);
+  color: var(--ink);
+  box-shadow: var(--shadow-card);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-answer-card, .quiz-review-question-card, .quiz-review-marking-form) {
+  padding: clamp(1.1rem, 2vw, 1.75rem);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-answer-card, .quiz-review-question-card, .quiz-review-marking-form) :where(h2, h3, strong, label) {
+  color: var(--ink);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-answer-card, .quiz-review-question-card, .quiz-review-marking-form) :where(p, small, span, .quiz-attempt-answer-label, .quiz-review-section-label) {
+  color: var(--ink-2);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-answer-text, .quiz-attempt-teacher-feedback, .quiz-attempt-correct-answer, .quiz-review-response, .quiz-review-rubric, .quiz-review-criteria, .quiz-review-instructions) {
+  border-color: var(--line);
+  background: var(--surface-section);
+  color: var(--ink);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) .quiz-review-inbox-item {
+  color: var(--ink);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) .quiz-review-inbox-item.is-active {
+  background: var(--surface-section);
+  color: var(--ink);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-review-inbox-heading, .quiz-review-detail-meta, .quiz-review-response-meta, .quiz-review-form-footer) {
+  border-color: var(--line);
+  color: var(--ink-2);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-result-page, .quiz-review-page) {
+  background: var(--surface-page);
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-result-header, .quiz-review-hero) {
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-result-header, .quiz-review-hero) :where(h1, h2, h3, p, span, strong, .quiz-review-eyebrow, .quiz-attempt-result-eyebrow) {
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-result-summary, .quiz-attempt-answer-card, .quiz-attempt-result-empty, .quiz-review-inbox, .quiz-review-question-card, .quiz-review-marking-form, .quiz-review-access-error, .quiz-review-empty) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 18%);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-answer-card, .quiz-review-question-card, .quiz-review-marking-form) :where(h2, h3, strong, label) {
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-answer-card, .quiz-review-question-card, .quiz-review-marking-form) :where(p, small, span, .quiz-attempt-answer-label, .quiz-review-section-label) {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-answer-text, .quiz-attempt-teacher-feedback, .quiz-attempt-correct-answer, .quiz-review-response, .quiz-review-rubric, .quiz-review-criteria, .quiz-review-instructions, .quiz-review-inbox-item.is-active) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+
+@media (max-width: 700px) {
+  #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-result-page, .quiz-review-page) {
+    padding-inline: 1rem;
+  }
+
+  #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-result-header, .quiz-review-hero) {
+    border-radius: 0;
+    margin-inline: -1rem;
+    padding-inline: 1rem;
+  }
+}
