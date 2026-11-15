@@ -1125,3 +1125,24 @@ body.dark-mode .resources-page .resource-card-artwork {
 body.dark-mode .resources-page .resource-card-artwork svg {
   color: var(--primary);
 }
+
+.question-bank-page .resources-main{padding-block:var(--space-8) var(--space-16)}
+.question-bank-toolbar{display:grid;grid-template-columns:minmax(240px,2fr) repeat(3,minmax(140px,1fr));gap:var(--space-3);margin-block:var(--space-6)}
+.question-bank-search{max-width:none}
+.question-bank-filter{display:grid;gap:var(--space-1);color:var(--text-secondary);font-size:var(--text-xs);font-weight:var(--weight-semibold)}
+.question-bank-filter input,.question-bank-filter select{width:100%;min-height:var(--control-height-lg);padding:var(--space-2) var(--space-3);border:1px solid var(--border-default);border-radius:var(--radius-md);background:var(--surface-card);color:var(--text-main);font:inherit}
+.question-bank-list{display:grid;gap:var(--space-4);max-width:58rem;margin-inline:auto}
+.question-bank-card{padding:var(--space-5);border:1px solid var(--border-subtle);border-radius:var(--radius-card);background:var(--surface-card);box-shadow:var(--shadow-subtle)}
+.question-bank-card-meta,.question-bank-card-footer,.question-bank-pagination{display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);flex-wrap:wrap}
+.question-bank-card-meta{justify-content:flex-start;color:var(--text-muted);font-size:var(--text-xs);text-transform:capitalize}
+.question-bank-tag{padding:var(--space-1) var(--space-2);border-radius:var(--radius-pill);background:var(--primary-light);color:var(--primary-dark)}
+.question-bank-card h2{margin-block:var(--space-3);color:var(--text-main);font-size:var(--text-lg);line-height:var(--leading-relaxed)}
+.question-bank-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-2)}
+.question-bank-options>div{display:flex;gap:var(--space-2);padding:var(--space-3);border-radius:var(--radius-md);background:var(--surface-section-alt);color:var(--text-secondary);font-size:var(--text-sm)}
+.question-bank-options strong{color:var(--primary-dark)}
+.question-bank-context{display:flex;gap:var(--space-2);flex-wrap:wrap;color:var(--text-muted);font-size:var(--text-xs)}
+.question-bank-state{display:grid;justify-items:center;gap:var(--space-3);padding:var(--space-12);color:var(--text-secondary);text-align:center}
+.question-bank-error{color:var(--danger-color)}
+.question-bank-pagination{justify-content:center;margin-top:var(--space-6)}
+@media(max-width:760px){.question-bank-toolbar{grid-template-columns:1fr 1fr}.question-bank-search{grid-column:1/-1}.question-bank-options{grid-template-columns:1fr}}
+@media(max-width:420px){.question-bank-toolbar{grid-template-columns:1fr}.question-bank-search{grid-column:auto}.question-bank-card{padding:var(--space-4)}}

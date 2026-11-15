@@ -3676,3 +3676,7 @@ export async function completeQuizChallenge(session_id, idempotency_key) {
     idempotency_key
   });
 }
+
+export async function getQuestionBank(filters = {}) {
+  return getRequest('quiz', 'question_bank', filters);
+}

@@ -38,6 +38,15 @@ const CONTENT_TYPES = [
     category: 'learn'
   },
   {
+    key: 'question_bank',
+    label: 'Question Bank',
+    description: 'Search published questions by concept, topic and difficulty.',
+    icon: 'search',
+    route: '/question-bank',
+    color: 'blue',
+    category: 'practise'
+  },
+  {
     key: 'quizzes',
     label: 'Question practice',
     description: 'Check your understanding with questions matched to your selected programme.',
