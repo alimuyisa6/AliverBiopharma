@@ -38,7 +38,7 @@
 .home-page > .home-curriculum-section { --section-bg: var(--white); --section-ink: var(--brand-navy); }
 .home-page > .lernwick-how { --section-bg: var(--dark-background); --section-ink: var(--white); }
 .home-page > .lernwick-connected { --section-bg: var(--info-color); --section-ink: var(--white); }
-.home-page > .home-student-section { --section-bg: var(--white); --section-ink: var(--brand-navy); }
+.home-page > .home-student-section { --section-bg: var(--info-color); --section-ink: var(--white); }
 .home-page > .home-daily-learning-section { --section-bg: var(--brand-navy); --section-ink: var(--white); }
 .home-page > .home-testimonials-section { --section-bg: var(--white); --section-ink: var(--brand-navy); }
 .home-page > .pricing-section { --section-bg: var(--info-color); --section-ink: var(--white); }
@@ -139,7 +139,7 @@
   margin-inline: auto;
 }
 
-.home-page > :is(.home-curriculum-section,.home-student-section,.home-testimonials-section,.home-newsletter-section) :is(
+.home-page > :is(.home-curriculum-section,.home-testimonials-section,.home-newsletter-section) :is(
   .section-head h1,.section-head h2,.section-head h3,.section-head p,
   .section-head .eyebrow,.lernwick-section-heading h2,.lernwick-section-heading p,
   .lernwick-note,.home-curriculum-heading,.home-learning-journey-title,
@@ -148,7 +148,7 @@
   color: var(--brand-navy) !important;
 }
 
-.home-page > :is(.lernwick-pathways,.lernwick-how,.lernwick-connected,.home-daily-learning-section,.pricing-section,.home-classroom-section,.home-tutor-section,.home-advertising-section) :is(
+.home-page > :is(.lernwick-pathways,.lernwick-how,.lernwick-connected,.home-student-section,.home-daily-learning-section,.pricing-section,.home-classroom-section,.home-tutor-section,.home-advertising-section) :is(
   h1,h2,h3,h4,h5,h6,p,li,.eyebrow,.lernwick-note,
   .section-description,.section-head-left,.lernwick-section-heading,
   .lernwick-section-heading p,.lernwick-section-heading h2
@@ -156,16 +156,16 @@
   color: var(--white) !important;
 }
 
-.home-page > :is(.lernwick-pathways,.lernwick-how,.lernwick-connected,.home-daily-learning-section,.pricing-section,.home-classroom-section,.home-tutor-section,.home-advertising-section) :is(a:not(.btn),.lernwick-outline-button) {
+.home-page > :is(.lernwick-pathways,.lernwick-how,.lernwick-connected,.home-student-section,.home-daily-learning-section,.pricing-section,.home-classroom-section,.home-tutor-section,.home-advertising-section) :is(a:not(.btn),.lernwick-outline-button) {
   color: var(--white);
 }
 
 .home-page :is(
   .lernwick-pathway-card,.lernwick-step-card,.lernwick-connected-card,
-  .home-curriculum-map,.home-curriculum-node,.home-challenge-treasure,
+  .home-curriculum-map,.home-curriculum-node,.home-challenge-treasure,.dash-cell,
   .home-daily-recall-card,.home-continue-learning-row,.lernwick-testimonial-card,
   .pricing-card,.pricing-empty,.section-teaser-inner,.ads-home-panel,
-  .newsletter-card,.home-snapshot-stack,.dash-strip,.stats-impact-card
+  .newsletter-card,.stats-impact-card
 ) {
   border: 1px solid var(--border-default) !important;
   border-radius: var(--r-lg, 1rem) !important;
@@ -186,7 +186,8 @@
 
 .home-page :is(
   .lernwick-pathway-image,.lernwick-pathway-body,.lernwick-connected-link,
-  .home-curriculum-map,.home-continue-learning-thumb,.section-teaser-image-wrap
+  .home-curriculum-map,.home-continue-learning-thumb,.section-teaser-image-wrap,
+  .home-snapshot-stack,.dash-strip
 ) {
   background: transparent !important;
   box-shadow: none !important;
