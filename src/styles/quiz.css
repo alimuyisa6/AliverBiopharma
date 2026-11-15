@@ -334,12 +334,12 @@
 
 .quiz-hero-card {
   border: 1px solid var(--hero-border);
-  border-bottom: 3px solid var(--primary-light));
+  border-bottom: 3px solid var(--primary);
   padding: clamp(1.25rem, 3vw, 2rem);
-  border-color: var(--primary-light);
+  border-color: var(--primary);
   border-radius: var(--radius-lg);
   box-shadow: none;
-  background: var(--surface-subtle);
+  background: var(--white);
 }
 
 .quiz-hero-title {
@@ -358,7 +358,7 @@
   font-size: var(--text-sm);
   font-weight: var(--weight-semibold);
   letter-spacing: var(--tracking-wide);
-  color: var(--primary-dark));
+  color: var(--primary-dark);
 }
 
 .quiz-hero-subtitle {

@@ -37,7 +37,7 @@
   height: 300px;
   inset-inline-start: -130px;
   inset-block-end: -150px;
-  background: var(--primary-light));
+  background: var(--primary-light);
   opacity: 0.55;
 }
 

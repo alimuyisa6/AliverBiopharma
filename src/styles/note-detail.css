@@ -178,14 +178,14 @@
 }
 
 .note-title {
-  font-family: var(--font-heading);
-  margin: 0;
-  font-size: var(--text-xl) !important;
-  font-weight: var(--weight-medium) !important;
-  color: var(--text-secondary) !important;
   max-width: 24ch;
+  margin: 0;
+  color: var(--text-main);
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: var(--weight-extrabold);
+  line-height: 1.12;
   text-wrap: balance;
-  line-height: var(--leading-tight);
   overflow-wrap: anywhere;
 }
 
