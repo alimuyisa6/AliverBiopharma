@@ -589,12 +589,14 @@ body.dark-mode .home-faq-item {
   background: var(--dark-surface);
 }
 @media (max-width: 640px) {
-  .home-learning-journey-section,
+  .home-learning-journey-section {
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+  }
   .home-continue-learning-section,
   .home-curriculum-section,
   .home-daily-recall-section {
     padding: var(--space-4);
-    border-radius: var(--radius-md);
   }
 }
 
