@@ -15,8 +15,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-secondary);
   transition: color var(--ease-fast), transform var(--ease-fast);
+  color: var(--ink-2);
 }
 
 .notification-bell:hover,
@@ -85,10 +85,11 @@
   max-width: calc(100vw - var(--space-6));
   z-index: var(--z-dropdown);
   overflow: hidden;
-  background: var(--bg-card);
   border: 1px solid var(--border-default);
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-raised);
+  border-color: var(--line);
+  border-radius: var(--r-lg);
+  background: var(--paper);
+  box-shadow: var(--shadow-float);
 }
 
 .notification-dropdown-header {
@@ -202,7 +203,7 @@
 }
 
 .notification-dismiss:hover {
-  color: var(--error);
+  color: var(--primary)-deep);
 }
 
 @media (max-width: 36rem) {
@@ -224,9 +225,7 @@ body.dark-mode .notification-page :is(h1, h2, h3, p, small),
 body.dark-mode .notification-center :is(h1, h2, h3, p, small) { color: var(--dark-text); }
 
 
-.notification-bell {
-  color: var(--ink-2);
-}
+
 
 .notification-bell:hover,
 .notification-bell:focus-visible,
@@ -234,12 +233,7 @@ body.dark-mode .notification-center :is(h1, h2, h3, p, small) { color: var(--dar
   color: var(--primary)-deep);
 }
 
-.notification-dropdown {
-  border-color: var(--line);
-  border-radius: var(--r-lg);
-  background: var(--paper);
-  box-shadow: var(--shadow-float);
-}
+
 
 .notification-dropdown-header,
 .notification-item {
@@ -265,6 +259,4 @@ body.dark-mode .notification-center :is(h1, h2, h3, p, small) { color: var(--dar
   background: var(--soft);
 }
 
-.notification-dismiss:hover {
-  color: var(--primary)-deep);
-}
+
