@@ -2,17 +2,6 @@
 
 .home-page { width: 100%; min-width: 0; }
 
-.home-page > section.section,
-.home-page > .home-student-section > .section,
-.home-page > .home-student-sections-wrap > .section {
-  width: min(calc(100% - (var(--page-gutter-x) * 2)), var(--max-width));
-  margin-inline: auto;
-  padding-block: var(--section-space-y);
-}
-
-.home-page > .home-student-section,
-.home-page > .home-student-sections-wrap { width: 100%; }
-
 .home-page > .home-student-section {
   display: flex;
   flex-direction: column;
