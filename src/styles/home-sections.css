@@ -42,7 +42,6 @@
   background: var(--surface-subtle);
   color: var(--text-secondary);
 }
-.home-continue-learning-thumb img { display: none; }
 .home-continue-learning-progress { width: var(--space-20); flex: 0 0 var(--space-20); }
 
 .home-learning-snapshot-section { width: 100%; }
