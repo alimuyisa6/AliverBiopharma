@@ -1959,3 +1959,102 @@ body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(i
     margin-bottom: 1.25rem;
   }
 }
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-page, .pp-page, .curriculum-node-page, .notes-page-shell, .note-detail-container, .dashboard-wrapper, .dashboard-content, .quiz-page-section, .recall-page-section) {
+  color: var(--ink);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-page, .pp-page) {
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  border: 0;
+  border-radius: 0;
+  background: var(--surface-page);
+  box-shadow: none;
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-hero, .pp-hero, .curriculum-node-header, .notes-page-heading, .note-hero, .quiz-hero-section, .recall-due-banner) {
+  border: 0;
+  border-radius: 0;
+  background: var(--brand-navy);
+  color: var(--white);
+  box-shadow: none;
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-hero, .pp-hero, .curriculum-node-header, .notes-page-heading, .note-hero, .quiz-hero-section, .recall-due-banner) :where(h1, h2, h3, h4, p, small, strong, .pp-title, .pp-subtitle, .note-title, .note-class-badge, .curriculum-node-type, .curriculum-node-kicker) {
+  color: var(--white);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-page, .pp-page, .curriculum-node-page, .notes-page-shell, .note-detail-container, .dashboard-content, .quiz-page-section, .recall-page-section) :where(.resource-card, .pp-card, .curriculum-card, .curriculum-node-child, .curriculum-node-resource, .notes-card, .note-related-card, .panel, .stat-card, .quiz-challenge-card, .recall-intro-card, .recall-stat-card, .recall-topic-card) {
+  border: 1px solid var(--border-default);
+  border-radius: var(--app-card-radius);
+  background: var(--surface-card);
+  color: var(--ink);
+  box-shadow: var(--shadow-card);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-page, .pp-page, .curriculum-node-page, .notes-page-shell, .note-detail-container, .dashboard-content, .quiz-page-section, .recall-page-section) :where(.resource-card, .pp-card, .curriculum-card, .curriculum-node-child, .curriculum-node-resource, .notes-card, .note-related-card, .panel, .stat-card, .quiz-challenge-card, .recall-intro-card, .recall-stat-card, .recall-topic-card) :where(h2, h3, h4, strong, .resource-card-title, .pp-card-title, .curriculum-card-title, .note-related-link-title, .panel-title, .stat-value, .quiz-challenge-title, .recall-topic-card-heading) {
+  color: var(--ink);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-page, .pp-page, .curriculum-node-page, .notes-page-shell, .note-detail-container, .dashboard-content, .quiz-page-section, .recall-page-section) :where(.resource-card, .pp-card, .curriculum-card, .curriculum-node-child, .curriculum-node-resource, .notes-card, .note-related-card, .panel, .stat-card, .quiz-challenge-card, .recall-intro-card, .recall-stat-card, .recall-topic-card) :where(p, small, .description, .subtitle, .resource-card-desc, .pp-card-meta, .curriculum-card-meta, .panel-description, .stat-label) {
+  color: var(--ink-2);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-page, .pp-page, .curriculum-node-page, .notes-page-shell, .note-detail-container, .dashboard-content, .quiz-page-section, .recall-page-section) :where(.resource-card, .pp-card, .curriculum-card, .curriculum-node-child, .curriculum-node-resource, .notes-card, .note-related-card, .panel, .quiz-challenge-card, .recall-topic-card):hover {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-float);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-toolbar, .pp-toolbar, .pp-filters, .notes-toolbar, .quiz-tab-bar, .recall-tab-bar) {
+  border: 1px solid var(--border-default);
+  border-radius: var(--app-card-radius);
+  background: var(--surface-section);
+  color: var(--ink);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-page, .pp-page, .curriculum-node-page, .notes-page-shell, .note-detail-container, .dashboard-content, .quiz-page-section, .recall-page-section) {
+  color: var(--dark-text);
+  background-color: var(--surface-page);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-hero, .pp-hero, .curriculum-node-header, .notes-page-heading, .note-hero, .quiz-hero-section, .recall-due-banner) {
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-hero, .pp-hero, .curriculum-node-header, .notes-page-heading, .note-hero, .quiz-hero-section, .recall-due-banner) :where(h1, h2, h3, h4, p, small, strong, .pp-title, .pp-subtitle, .note-title, .note-class-badge, .curriculum-node-type, .curriculum-node-kicker) {
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-page, .pp-page, .curriculum-node-page, .notes-page-shell, .note-detail-container, .dashboard-content, .quiz-page-section, .recall-page-section) :where(.resource-card, .pp-card, .curriculum-card, .curriculum-node-child, .curriculum-node-resource, .notes-card, .note-related-card, .panel, .stat-card, .quiz-challenge-card, .recall-intro-card, .recall-stat-card, .recall-topic-card) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 18%);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-page, .pp-page, .curriculum-node-page, .notes-page-shell, .note-detail-container, .dashboard-content, .quiz-page-section, .recall-page-section) :where(.resource-card, .pp-card, .curriculum-card, .curriculum-node-child, .curriculum-node-resource, .notes-card, .note-related-card, .panel, .stat-card, .quiz-challenge-card, .recall-intro-card, .recall-stat-card, .recall-topic-card) :where(h2, h3, h4, strong, .resource-card-title, .pp-card-title, .curriculum-card-title, .note-related-link-title, .panel-title, .stat-value, .quiz-challenge-title, .recall-topic-card-heading) {
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-page, .pp-page, .curriculum-node-page, .notes-page-shell, .note-detail-container, .dashboard-content, .quiz-page-section, .recall-page-section) :where(.resource-card, .pp-card, .curriculum-card, .curriculum-node-child, .curriculum-node-resource, .notes-card, .note-related-card, .panel, .stat-card, .quiz-challenge-card, .recall-intro-card, .recall-stat-card, .recall-topic-card) :where(p, small, .description, .subtitle, .resource-card-desc, .pp-card-meta, .curriculum-card-meta, .panel-description, .stat-label) {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-toolbar, .pp-toolbar, .pp-filters, .notes-toolbar, .quiz-tab-bar, .recall-tab-bar) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+
+@media (max-width: 700px) {
+  #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-hero-inner, .pp-hero-inner, .curriculum-node-header, .notes-page-heading, .note-hero) {
+    padding-inline: var(--page-gutter-x);
+  }
+
+  #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-page, .pp-page) {
+    border-radius: 0;
+  }
+}
