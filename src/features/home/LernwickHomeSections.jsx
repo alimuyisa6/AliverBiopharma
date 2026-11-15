@@ -163,6 +163,7 @@ const connectedLearningStages = [
     description: 'Strengthen understanding through active retrieval and question practice.',
     links: [
       { label: 'Question practice', detail: 'Answer curriculum questions', to: '/quiz', icon: 'clipboard-check' },
+      { label: 'Question bank', detail: 'Search questions and build custom tests', to: '/question-bank', icon: 'search' },
       { label: 'Flashcards', detail: 'Recall important concepts', to: '/flashcards', icon: 'layer-group' },
       { label: 'Spaced recall', detail: 'Revisit what you have learned', to: '/recall', icon: 'brain' }
     ]
@@ -174,6 +175,7 @@ const connectedLearningStages = [
     description: 'Use your knowledge in assessment and collaborative learning contexts.',
     links: [
       { label: 'Past papers', detail: 'Work through exam papers', to: '/past-papers', icon: 'file-lines' },
+      { label: 'Clinical simulations', detail: 'Apply knowledge to reviewed patient cases', to: '/clinical-simulations', icon: 'capsules' },
       { label: 'Daily challenges', detail: 'Take a focused knowledge challenge', to: '/challenges', icon: 'flag' },
       { label: 'Classroom', detail: 'Continue learning with your class', to: '/classroom', icon: 'users' }
     ]

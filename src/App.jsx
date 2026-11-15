@@ -15,6 +15,8 @@ const AIAssistant = lazy(() => import('./features/chat/AIAssistant'));
 const Dashboard = lazy(() => import('./pages/Dashboard'));
 const Profile = lazy(() => import('./pages/Profile'));
 const Quiz = lazy(() => import('./pages/Quiz'));
+const QuestionBankPage = lazy(() => import('./pages/QuestionBankPage'));
+const ClinicalSimulationsPage = lazy(() => import('./pages/ClinicalSimulationsPage'));
 const QuizReview = lazy(() => import('./pages/QuizReview'));
 const QuizAttemptResult = lazy(() => import('./pages/QuizAttemptResult'));
 const Challenges = lazy(() => import('./pages/Challenges'));
@@ -180,6 +182,9 @@ function AppRoutes() {
             <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/curriculum/:groupId/*" element={<ProtectedRoute><CurriculumNodePage /></ProtectedRoute>} />
+            <Route path="/question-bank" element={<ProtectedRoute><FeatureRoute feature="quizzes"><QuestionBankPage /></FeatureRoute></ProtectedRoute>} />
+            <Route path="/clinical-simulations" element={<ProtectedRoute><ClinicalSimulationsPage /></ProtectedRoute>} />
+            <Route path="/clinical-simulations/:caseId" element={<ProtectedRoute><ClinicalSimulationsPage /></ProtectedRoute>} />
             <Route path="/quiz" element={<ProtectedRoute><FeatureRoute feature="quizzes"><Quiz /></FeatureRoute></ProtectedRoute>} />
             <Route path="/quiz/blocks" element={<ProtectedRoute><FeatureRoute feature="quizzes"><Quiz /></FeatureRoute></ProtectedRoute>} />
             <Route path="/quiz/review" element={<ProtectedRoute><QuizReview /></ProtectedRoute>} />
