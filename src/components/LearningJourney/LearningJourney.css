@@ -95,7 +95,7 @@
   border: 1px solid var(--line);
   border-radius: 1.15rem;
   background: var(--paper);
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-ink-08);
 }
 
 .learning-journey-stage-heading {
@@ -343,4 +343,60 @@
     animation: none;
     transition: none;
   }
+}
+
+
+
+.learning-journey {
+  border: 0;
+  background: var(--surface-section-alt);
+  color: var(--text);
+}
+
+.learning-journey-stage-content {
+  border-color: var(--border-subtle);
+  background: var(--surface-card);
+  box-shadow: var(--shadow-ink-08);
+}
+
+.learning-journey-stage.is-focused .learning-journey-stage-content {
+  border-color: var(--primary-border);
+  background: var(--surface-card);
+}
+
+.learning-journey-stage-marker {
+  border-color: var(--border-default);
+  background: var(--surface-card);
+  color: var(--primary-dark);
+}
+
+.learning-journey-stage-icon {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+.learning-journey-stage-step,
+.learning-journey-eyebrow {
+  color: var(--primary-dark);
+}
+
+.learning-journey-stage-count {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+.learning-journey-item {
+  border-color: var(--border-subtle);
+  background: var(--surface-card);
+  color: var(--text);
+}
+
+.learning-journey-item:hover:not(:disabled),
+.learning-journey-item:focus-visible {
+  border-color: var(--primary-border);
+  background: var(--primary-light);
+}
+
+.learning-journey-item-action {
+  color: var(--primary-dark);
 }
