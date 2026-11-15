@@ -508,9 +508,6 @@ body.dark-mode .curriculum-node-page { background: var(--night-900); }
 body.dark-mode .curriculum-node-child, body.dark-mode .curriculum-node-resource { background: var(--night-800); }
 
 
-/* Aliver palette: solid pale-blue learning section with white destination cards. */
-.curriculum-node-page { width: 100%; background: var(--soft); }
-.curriculum-node-child, .curriculum-node-resource { background: var(--white); }
 .curriculum-node-child:hover, .curriculum-node-resource:hover { background: var(--white); border-color: var(--primary); }
 .curriculum-node-child-icon { background: var(--soft); color: var(--primary-dark); }
 

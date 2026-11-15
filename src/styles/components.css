@@ -816,18 +816,6 @@ body:not(.dark-mode) :is(.btn-card-primary, .btn-soft, .btn-warm, .btn-violet, .
   border-width: var(--border-width-thin, 1px);
 }
 
-body:not(.dark-mode) .btn-card-primary {
-  background-color: var(--primary-light);
-  border-color: var(--primary-border);
-  color: var(--primary-dark);
-}
-
-body:not(.dark-mode) .btn-card-primary:hover:not(:disabled) {
-  background-color: var(--primary-soft);
-  border-color: var(--primary);
-  color: var(--primary-dark);
-}
-
 body:not(.dark-mode) .btn-soft {
   background-color: var(--grey-50);
   border-color: var(--grey-300);

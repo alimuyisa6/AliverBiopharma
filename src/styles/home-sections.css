@@ -964,10 +964,6 @@ body.dark-mode .home-faq-item {
 }
 
 @media (max-width: 380px) {
-  .home-page .stats-impact-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .home-page .stats-impact-topic {
     align-items: flex-start;
     flex-direction: column;
