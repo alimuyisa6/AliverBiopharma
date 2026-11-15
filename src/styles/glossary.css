@@ -843,45 +843,91 @@
     padding: var(--space-4);
   }
 }
-.glossary-page { background: var(--bg-page); padding-bottom: var(--page-space-bottom); }
-.glossary-header { padding: clamp(1.25rem, 3vw, 2rem) var(--page-gutter-x); background: var(--primary); text-align: left; }
-.glossary-header-inner { width: min(100%, 70rem); }
-.glossary-main-title { margin-bottom: var(--space-2); font-size: var(--text-page-title); line-height: var(--leading-page-title); }
-.glossary-subtitle { max-width: 58ch; margin: 0; font-size: var(--text-sm); line-height: var(--leading-relaxed); }
-.glossary-page > .breadcrumb { width: min(100% - (var(--page-gutter-x) * 2), 70rem); margin: var(--space-3) auto var(--space-4); }
-.glossary-main-layout { width: min(100% - (var(--page-gutter-x) * 2), 70rem); margin-inline: auto; gap: var(--space-3); }
-.glossary-sidebar-inner, .glossary-term-detail, .glossary-route-card { border-radius: var(--radius-md); }
-body.dark-mode .glossary-page { background: var(--bg-page); }
-.glossary-page { background: var(--soft); }
-.glossary-header { background: var(--ink); }
-.glossary-route-card { background: var(--white); box-shadow: none; }
-.glossary-route-card-icon { display: grid; place-items: center; width: 2.75rem; min-width: 2.75rem; height: 2.75rem; border-radius: 50%; background: var(--primary-light); color: var(--primary); }
-.glossary-route-card-icon i { color: inherit; font-size: 1.25rem; }
-body.dark-mode .glossary-page { background: var(--dark-background); }
-body.dark-mode .glossary-route-card { background: var(--dark-surface); }
-.glossary-page { background: var(--soft); }
-.glossary-header { background: var(--ink); }
-body.dark-mode .glossary-page { background: var(--dark-background); }
-.glossary-page { background: var(--bg-page); }
-.glossary-route-card-icon { background: var(--surface-subtle); }
-body.dark-mode .glossary-page { background: var(--bg-page); }
-.glossary-page { width: 100%; max-width: none; background: var(--soft); }
-.glossary-header { background: var(--ink); }
-.glossary-route-card { background: var(--white); }
-body.dark-mode .glossary-page { background: var(--dark-background); }
-body.dark-mode .glossary-header { background: var(--dark-surface); }
-body.dark-mode .glossary-route-card { background: var(--dark-surface); }
-.glossary-page { width: 100%; background: var(--soft); }
-.glossary-header { background: var(--ink); }
-.glossary-route-card, .glossary-page .card { background: var(--white); box-shadow: none; }
-
-body.dark-mode .glossary-page { background: var(--dark-background); color: var(--dark-text); }
-body.dark-mode .glossary-header { background: var(--dark-surface); color: var(--dark-text); }
+.glossary-page {
+  width: 100%;
+  max-width: none;
+  background: var(--soft);
+  padding-bottom: var(--page-space-bottom);
+}
+.glossary-header {
+  padding: clamp(1.25rem, 3vw, 2rem) var(--page-gutter-x);
+  background: var(--ink);
+  text-align: left;
+}
+.glossary-header-inner {
+  width: min(100%, 70rem);
+}
+.glossary-main-title {
+  margin-bottom: var(--space-2);
+  font-size: var(--text-page-title);
+  line-height: var(--leading-page-title);
+}
+.glossary-subtitle {
+  max-width: 58ch;
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+}
+.glossary-page > .breadcrumb {
+  width: min(100% - (var(--page-gutter-x) * 2), 70rem);
+  margin: var(--space-3) auto var(--space-4);
+}
+.glossary-main-layout {
+  width: min(100% - (var(--page-gutter-x) * 2), 70rem);
+  margin-inline: auto;
+  gap: var(--space-3);
+}
+.glossary-sidebar-inner,
+.glossary-term-detail,
+.glossary-route-card {
+  border-radius: var(--radius-md);
+}
+.glossary-route-card,
+.glossary-page .card {
+  background: var(--white);
+  box-shadow: none;
+}
+.glossary-route-card-icon {
+  display: grid;
+  width: 2.75rem;
+  min-width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--surface-subtle);
+  color: var(--primary);
+}
+.glossary-route-card-icon i {
+  color: inherit;
+  font-size: 1.25rem;
+}
+body.dark-mode .glossary-page {
+  background: var(--dark-background);
+  color: var(--dark-text);
+}
+body.dark-mode .glossary-header {
+  background: var(--dark-surface);
+  color: var(--dark-text);
+}
 body.dark-mode .glossary-route-card,
 body.dark-mode .glossary-page .card,
 body.dark-mode .glossary-sidebar,
-body.dark-mode .glossary-term-content { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
-body.dark-mode .glossary-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small, span) { color: var(--dark-text); }
-body.dark-mode .glossary-page :is(.text-muted, .glossary-subtitle, .glossary-description) { color: var(--dark-text-secondary); }
-body.dark-mode .glossary-page :is(input, select, textarea) { background: var(--dark-surface-raised); color: var(--dark-text); border-color: var(--dark-border); }
-body.dark-mode .glossary-page :is(input, textarea)::placeholder { color: var(--dark-text-secondary); }
+body.dark-mode .glossary-term-content {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text);
+}
+body.dark-mode .glossary-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small, span) {
+  color: var(--dark-text);
+}
+body.dark-mode .glossary-page :is(.text-muted, .glossary-subtitle, .glossary-description) {
+  color: var(--dark-text-secondary);
+}
+body.dark-mode .glossary-page :is(input, select, textarea) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+body.dark-mode .glossary-page :is(input, textarea)::placeholder {
+  color: var(--dark-text-secondary);
+}
