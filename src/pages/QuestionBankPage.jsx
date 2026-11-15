@@ -145,7 +145,7 @@ export default function QuestionBankPage() {
     setLaunching(blueprint.id);
     try {
       const result = await startCustomTest(blueprint.id);
-      navigate(`/quiz?unit_id=${encodeURIComponent(result.unit_id)}&activity_scope=custom_test&custom_test=1`);
+      navigate(`/quiz?unit_id=${encodeURIComponent(result.unit_id)}&activity_scope=${encodeURIComponent(result.activity_scope)}&custom_test=1`);
     } catch (error) {
       toast(error?.message || 'This custom test could not be started.', 'error');
     } finally {
