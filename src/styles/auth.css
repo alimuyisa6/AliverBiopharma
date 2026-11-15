@@ -35,7 +35,7 @@
   overflow: hidden;
   padding: var(--auth-brand-padding-y) var(--auth-brand-padding-x);
   color: var(--white);
-  background: var(--brand-navy-soft);
+  background: var(--text-main);
 }
 
 .auth-brand-panel::before,
@@ -895,4 +895,6 @@ body.dark-mode .auth-page :is(.auth-subtitle, .auth-description, .text-muted) { 
 body.dark-mode .auth-page :is(input, select, textarea) { background: var(--dark-background); color: var(--dark-text); border-color: var(--dark-border); }
 body.dark-mode .auth-page :is(input, textarea)::placeholder { color: var(--dark-text-secondary); }
 
-body.dark-mode 
+body.dark-mode .auth-brand-panel {
+  background: var(--brand-navy-soft);
+}
