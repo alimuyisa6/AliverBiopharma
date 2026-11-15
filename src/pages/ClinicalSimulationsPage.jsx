@@ -24,8 +24,8 @@ export default function ClinicalSimulationsPage() {
     request.then((result) => {
       if (!active) return;
       setRestricted(false);
-      if (caseId) setActiveCase(result?.data || null);
-      else setCases(Array.isArray(result?.data) ? result.data : []);
+      if (caseId) setActiveCase(result || null);
+      else setCases(Array.isArray(result) ? result : []);
     }).catch((error) => {
       if (!active) return;
       setRestricted(error?.status === 403 || /restricted|pharmacy/i.test(error?.message || ''));
