@@ -57,8 +57,8 @@
 .lernwick-about-copy li svg{width:1.2rem;height:1.2rem;flex:0 0 auto;margin-top:.1rem;color:var(--primary-dark)}
 .lernwick-dark-button{border-color:var(--ink);background:var(--ink);color:var(--paper)}
 .lernwick-dark-button:hover{transform:translateY(-2px);background:var(--secondary-dark);color:var(--white)}
-@media(max-width:1024px){.lernwick-pathway-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.lernwick-pathway-card:last-child{grid-column:1/-1}.lernwick-step-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.lernwick-about-grid{gap:2rem}}
-@media(max-width:700px){.lernwick-section-heading{align-items:start;flex-direction:column}.lernwick-pathway-grid,.lernwick-about-grid{grid-template-columns:minmax(0,1fr)}.lernwick-pathway-card:last-child{grid-column:auto}.lernwick-about-media{min-height:20rem}.lernwick-about-media>img{min-height:20rem}.lernwick-about-sticker{right:.7rem}.lernwick-step-grid{grid-template-columns:minmax(0,1fr)}.lernwick-step-card{min-height:0}}
+@media(max-width:1024px){.lernwick-pathway-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.lernwick-pathway-card:last-child{grid-column:1/-1;width:min(100%,calc((100% - 1.4rem)/2));justify-self:center}.lernwick-step-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.lernwick-about-grid{gap:2rem}}
+@media(max-width:700px){.lernwick-section-heading{align-items:start;flex-direction:column}.lernwick-pathway-grid,.lernwick-about-grid{grid-template-columns:minmax(0,1fr)}.lernwick-pathway-card:last-child{grid-column:auto;width:100%;justify-self:stretch}.lernwick-about-media{min-height:20rem}.lernwick-about-media>img{min-height:20rem}.lernwick-about-sticker{right:.7rem}.lernwick-step-grid{grid-template-columns:minmax(0,1fr)}.lernwick-step-card{min-height:0}}
 @media(prefers-reduced-motion:reduce){.lernwick-pathway-card,.lernwick-pathway-image img,.lernwick-outline-button,.lernwick-dark-button,.lernwick-step-card{transition:none}}
 
 
@@ -216,13 +216,6 @@ body.dark-mode .organic-letter--secondary {
   box-shadow: 0 2px 0 var(--shadow-black-35), 0 4px 12px var(--shadow-black-30);
 }
 
-@media (max-width: 700px) {
-  .lernwick-how,
-  .lernwick-about {
-    margin-inline: .5rem;
-    border-radius: 1.5rem .5rem 1.5rem .5rem;
-  }
-}
 
 
 .lernwick-programme-studio {
