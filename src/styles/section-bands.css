@@ -285,7 +285,7 @@ body.dark-mode .home-page :is(
   .home-curriculum-map,.home-curriculum-node,.home-challenge-treasure,
   .home-daily-recall-card,.home-continue-learning-row,.lernwick-testimonial-card,
   .pricing-card,.pricing-empty,.section-teaser-inner,.ads-home-panel,
-  .newsletter-card,.home-snapshot-stack,.dash-strip,.stats-impact-card
+  .newsletter-card,.dash-cell,.stats-impact-card
 ) {
   border-color: var(--dark-border) !important;
   background: var(--dark-surface-raised) !important;
@@ -296,7 +296,7 @@ body.dark-mode .home-page :is(
   .home-curriculum-map,.home-curriculum-node,.home-challenge-treasure,
   .home-daily-recall-card,.home-continue-learning-row,.lernwick-testimonial-card,
   .pricing-card,.pricing-empty,.section-teaser-inner,.ads-home-panel,
-  .newsletter-card,.home-snapshot-stack,.dash-strip,.stats-impact-card
+  .newsletter-card,.dash-cell,.stats-impact-card
 ) :is(h1,h2,h3,h4,h5,h6,p,span,strong,small,li,label,blockquote,figcaption) {
   color: var(--dark-text) !important;
 }
