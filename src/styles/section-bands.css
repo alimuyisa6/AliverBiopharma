@@ -124,8 +124,7 @@
 .home-page > :is(.home-curriculum-section,.home-testimonials-section,.home-newsletter-section) :is(
   .section-head h1,.section-head h2,.section-head h3,.section-head p,
   .section-head .eyebrow,.lernwick-section-heading h2,.lernwick-section-heading p,
-  .lernwick-note,.home-curriculum-heading,.home-learning-journey-title,
-  .home-learning-journey-description
+  .lernwick-note,.home-curriculum-heading
 ) {
   color: var(--brand-navy) !important;
 }

@@ -168,7 +168,7 @@ export default function HomeView(props) {
   const { sections, user, navigate, activeLevelName, activeGroupName, activeGroupId, publicStats, subscriptionPlans, chatOpen, chatMessages, chatInput, adminOnline, newsletterEmail, newsletterStatus, newsletterLoading, chatRequestLoading, chatSending, chatDeletingId, handleNewsletterSubmit, sendChat, deleteChatMsg, setChatOpen, setChatInput, setNewsletterEmail, chatBodyRef, continueLearning, curriculumUnits, dailyRecall, onRevealRecall, onStartRecall, dailyChallenge, onOpenChallenge } = props;
 
   return (
-    <div className="home-page home-page-redesign">
+    <div className="home-page">
       <section className="home-hero-section" id="top" aria-label="Introduction">
         <LernwickHomeHero user={user} activeLevelName={activeLevelName} activeGroupName={activeGroupName} activeGroupId={activeGroupId} />
       </section>
