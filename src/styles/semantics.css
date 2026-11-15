@@ -1,50 +1,36 @@
 :root {
-
   --success: var(--success-color);
   --color-success: var(--success-color);
   --color-success-strong: var(--success-color);
-
   --danger: var(--danger-color);
-
   --warning: var(--warning-color);
-
   --info: var(--info-color);
-
   --tone-primary: var(--primary);
   --tone-primary-hover: var(--primary-hover);
   --tone-primary-bg: var(--primary-light);
   --tone-primary-border: var(--primary-border);
-
   --tone-success: var(--success);
   --tone-success-hover: var(--success-hover);
   --tone-success-bg: var(--success-light);
   --tone-success-border: var(--success-border);
-
   --tone-warning: var(--warning);
   --tone-warning-hover: var(--warning-hover);
   --tone-warning-bg: var(--warning-light);
   --tone-warning-border: var(--warning-border);
-
   --tone-danger: var(--danger);
   --tone-danger-hover: var(--danger-hover);
   --tone-danger-bg: var(--danger-light);
   --tone-danger-border: var(--danger-border);
-
   --tone-info: var(--info);
   --tone-info-hover: var(--info-hover);
   --tone-info-bg: var(--info-light);
   --tone-info-border: var(--info-border);
-
-
-
-
   --surface-inverse: var(--ink);
   --surface-overlay: var(--overlay-color);
   --surface-disabled: var(--grey-100);
   --bg-input-disabled: var(--soft);
   --bg-disabled: var(--soft);
   --bg-overlay: var(--overlay-color);
-
   --text-main: var(--text);
   --text-secondary: var(--grey-600);
   --text-muted: var(--grey-500);
@@ -54,13 +40,10 @@
   --text-link-hover: var(--secondary);
   --text-on-dark: var(--white);
   --text-dim: var(--grey-600);
-
   --border-transparent: transparent;
   --border-focus: var(--primary);
-
   --border-width-thin: 1px;
   --border-width-thick: 2px;
-
   --shadow-none: none;
   --shadow-subtle: 0 1px 3px var(--shadow-ink-08);
   --shadow-card: 0 2px 5px var(--shadow-ink-07), 0 12px 26px -16px var(--shadow-ink-24);
@@ -71,14 +54,11 @@
   --shadow-md: var(--shadow-card);
   --shadow-lg: var(--shadow-raised);
   --shadow-xl: var(--shadow-floating);
-
   --error: var(--danger);
   --error-light: var(--danger-light);
   --error-hover: var(--danger-hover);
-
   --level-olevel: var(--primary);
   --level-alevel: var(--accent);
-
   --profile-page-bg: var(--background);
   --profile-page-bottom-space: var(--page-space-bottom);
   --profile-header-top-space: var(--page-space-top);
@@ -88,7 +68,6 @@
   --profile-header-gap: var(--space-3);
   --profile-title-gap: var(--space-2);
   --profile-subtitle-max: var(--content-max-readable);
-
   --profile-switcher-gap: var(--space-8);
   --profile-switcher-min-width: var(--space-56);
   --profile-switcher-height: var(--space-14);
@@ -102,7 +81,6 @@
   --profile-switcher-shadow: 0 var(--space-2) var(--primary-hover), var(--shadow-floating);
   --profile-switcher-shadow-hover: 0 var(--space-1) var(--primary-hover), var(--shadow-raised);
   --profile-switcher-shadow-active: var(--shadow-subtle);
-
   --profile-panel-side-space: var(--space-2);
   --profile-panel-side-space-mobile: var(--space-1);
   --profile-panel-padding-x: var(--space-8);
@@ -115,11 +93,9 @@
   --profile-panel-border: var(--primary-border);
   --profile-panel-radius: var(--radius-xl);
   --profile-panel-shadow: var(--shadow-none);
-
   --profile-overview-heading-gap: var(--space-6);
   --profile-overview-icon-size: var(--space-12);
   --profile-overview-icon-glyph: var(--space-6);
-
   --profile-summary-gap: var(--space-8);
   --profile-summary-padding-x: var(--space-5);
   --profile-summary-padding-y: var(--space-5);
@@ -131,11 +107,9 @@
   --profile-summary-divider-space: var(--space-6);
   --profile-summary-divider-space-mobile: var(--space-4);
   --profile-avatar-size: var(--space-24);
-
   --profile-detail-icon-size: var(--space-5);
   --profile-detail-label-width: var(--space-16);
   --profile-detail-label-width-mobile: var(--space-20);
-
   --profile-categories-gap: var(--space-8);
   --profile-category-grid-gap: var(--space-5);
   --profile-category-gap: var(--space-4);
@@ -150,31 +124,22 @@
   --profile-category-icon-size: var(--space-10);
   --profile-category-icon-glyph: var(--space-6);
   --profile-category-arrow-size: var(--space-5);
-
   --profile-sidebar-width: var(--space-56);
   --profile-sidebar-offset: var(--space-8);
-
   --hero-bg: var(--background);
   --hero-border: var(--secondary);
-
   --header-bg: var(--white);
   --header-border: var(--grey-200);
-
   --footer-bg: var(--ink);
   --footer-text: var(--white);
   --footer-border: var(--primary);
-
   --level-o: var(--primary);
   --level-o-light: var(--primary-light);
-
   --level-a: var(--accent);
   --level-a-light: var(--accent-light);
-
   --level-pharmacy: var(--secondary);
   --level-pharmacy-light: var(--grey-100);
-
   --section-tint: var(--soft);
-
   --auth-bg: var(--soft);
   --auth-surface: var(--paper);
   --auth-surface-alt: var(--soft);
@@ -203,6 +168,53 @@
   --auth-radius: 14px;
   --auth-radius-lg: 20px;
   --auth-radius-xl: 28px;
+  --overlay-backdrop: var(--shadow-black-28);
+  --social-default-bg: var(--text);
+  --social-facebook: var(--primary);
+  --social-instagram: var(--accent);
+  --social-youtube: var(--primary);
+  --social-x: var(--text);
+  --social-whatsapp: var(--secondary);
+  --social-telegram: var(--accent);
+  --social-linkedin: var(--primary);
+  --social-github: var(--text);
+  --skeleton-shimmer-base: color-mix(in srgb, var(--grey-500) 8%, transparent);
+  --skeleton-shimmer-highlight: var(--glass-white-35);
+  --auth-glass-white-72: var(--glass-white-72);
+  --auth-glass-white-52: var(--glass-white-52);
+  --auth-glass-white-34: var(--glass-white-34);
+  --auth-glass-white-12: var(--glass-white-12);
+  --auth-glass-white-44: var(--glass-white-44);
+  --auth-glass-white-27: var(--glass-white-27);
+  --auth-glass-white-8: var(--glass-white-08);
+  --auth-glass-white-43: var(--glass-white-43);
+  --auth-glass-white-25: var(--glass-white-25);
+  --auth-glass-white-38: var(--glass-white-38);
+  --auth-glass-white-22: var(--glass-white-22);
+  --auth-glass-white-7: var(--glass-white-07);
+  --auth-glass-white-10: var(--glass-white-10);
+  --auth-glass-white-13: var(--glass-white-13);
+  --auth-glass-white-24: var(--glass-white-24);
+  --auth-glass-white-16: var(--glass-white-16);
+  --auth-glass-white-78: var(--glass-white-78);
+  --auth-glass-white-92: var(--glass-white-92);
+  --auth-glass-white-88: var(--glass-white-88);
+  --auth-glass-white-55: var(--glass-white-55);
+  --surface-page: var(--background);
+  --surface-card: var(--white);
+  --surface-raised: var(--white);
+  --surface-muted: var(--soft);
+  --surface-subtle: var(--soft);
+  --surface-tinted: var(--primary-light);
+  --bg-page: var(--background);
+  --bg-card: var(--white);
+  --bg-card-hover: var(--soft);
+  --bg-muted: var(--soft);
+  --bg-input: var(--white);
+  --border-subtle: var(--line);
+  --border-light: var(--line);
+  --border-default: var(--line);
+  --border-strong: var(--line-2);
 }
 
 body.dark-mode {
@@ -292,6 +304,23 @@ body.dark-mode {
   --auth-success-soft: var(--success-light);
   --auth-warning: var(--warning);
   --auth-warning-soft: var(--warning-light);
+  --skeleton-shimmer-base: color-mix(in srgb, var(--dark-text-secondary) 8%, transparent);
+  --skeleton-shimmer-highlight: color-mix(in srgb, var(--dark-background) 35%, transparent);
+  --surface-page: var(--dark-background);
+  --surface-card: var(--dark-surface);
+  --surface-raised: var(--dark-surface-raised);
+  --surface-muted: var(--dark-surface);
+  --surface-subtle: var(--dark-surface);
+  --surface-tinted: var(--dark-surface-raised);
+  --bg-page: var(--dark-background);
+  --bg-card: var(--dark-surface);
+  --bg-card-hover: var(--dark-surface-raised);
+  --bg-muted: var(--dark-surface);
+  --bg-input: var(--dark-surface-raised);
+  --border-subtle: var(--dark-border);
+  --border-light: var(--dark-border);
+  --border-default: var(--dark-border);
+  --border-strong: var(--dark-border);
 }
 
 .section-tint {
@@ -401,51 +430,13 @@ body.accessibility-dyslexia-font * {
   font-family: Verdana, Arial, sans-serif !important;
 }
 
-:root {
-  --overlay-backdrop: var(--shadow-black-28);
-  --social-default-bg: var(--text);
-  --social-facebook: var(--primary);
-  --social-instagram: var(--accent);
-  --social-youtube: var(--primary);
-  --social-x: var(--text);
-  --social-whatsapp: var(--secondary);
-  --social-telegram: var(--accent);
-  --social-linkedin: var(--primary);
-  --social-github: var(--text);
-}
 
-:root {
-  --skeleton-shimmer-base: color-mix(in srgb, var(--grey-500) 8%, transparent);
-  --skeleton-shimmer-highlight: var(--glass-white-35);
-}
 
-body.dark-mode {
-  --skeleton-shimmer-base: color-mix(in srgb, var(--dark-text-secondary) 8%, transparent);
-  --skeleton-shimmer-highlight: color-mix(in srgb, var(--dark-background) 35%, transparent);
-}
 
-:root {
-  --auth-glass-white-72: var(--glass-white-72);
-  --auth-glass-white-52: var(--glass-white-52);
-  --auth-glass-white-34: var(--glass-white-34);
-  --auth-glass-white-12: var(--glass-white-12);
-  --auth-glass-white-44: var(--glass-white-44);
-  --auth-glass-white-27: var(--glass-white-27);
-  --auth-glass-white-8: var(--glass-white-08);
-  --auth-glass-white-43: var(--glass-white-43);
-  --auth-glass-white-25: var(--glass-white-25);
-  --auth-glass-white-38: var(--glass-white-38);
-  --auth-glass-white-22: var(--glass-white-22);
-  --auth-glass-white-7: var(--glass-white-07);
-  --auth-glass-white-10: var(--glass-white-10);
-  --auth-glass-white-13: var(--glass-white-13);
-  --auth-glass-white-24: var(--glass-white-24);
-  --auth-glass-white-16: var(--glass-white-16);
-  --auth-glass-white-78: var(--glass-white-78);
-  --auth-glass-white-92: var(--glass-white-92);
-  --auth-glass-white-88: var(--glass-white-88);
-  --auth-glass-white-55: var(--glass-white-55);
-}
+
+
+
+
 
 body.dark-mode :is(.page-shell, .page-container, .page-content, .content-shell, .content-container, .settings-page, .settings-content, .library-page, .resources-page, .glossary-page, .profile-page, .dashboard-page, .classroom-page, .quiz-page, .flashcard-page, .recall-page, .search-page, .legal-page, .about-page, .contact-page, .donate-page, .maintenance-page) {
   background-color: var(--dark-background);
@@ -482,41 +473,9 @@ body.dark-mode :is(.page-shell, .page-container, .page-content, .content-shell, 
 }
 
 /* Global application surfaces, contrast and typography system. */
-:root {
-  --surface-page: var(--background);
-  --surface-card: var(--white);
-  --surface-raised: var(--white);
-  --surface-muted: var(--soft);
-  --surface-subtle: var(--soft);
-  --surface-tinted: var(--primary-light);
-  --bg-page: var(--background);
-  --bg-card: var(--white);
-  --bg-card-hover: var(--soft);
-  --bg-muted: var(--soft);
-  --bg-input: var(--white);
-  --border-subtle: var(--line);
-  --border-light: var(--line);
-  --border-default: var(--line);
-  --border-strong: var(--line-2);
-}
 
-body.dark-mode {
-  --surface-page: var(--dark-background);
-  --surface-card: var(--dark-surface);
-  --surface-raised: var(--dark-surface-raised);
-  --surface-muted: var(--dark-surface);
-  --surface-subtle: var(--dark-surface);
-  --surface-tinted: var(--dark-surface-raised);
-  --bg-page: var(--dark-background);
-  --bg-card: var(--dark-surface);
-  --bg-card-hover: var(--dark-surface-raised);
-  --bg-muted: var(--dark-surface);
-  --bg-input: var(--dark-surface-raised);
-  --border-subtle: var(--dark-border);
-  --border-light: var(--dark-border);
-  --border-default: var(--dark-border);
-  --border-strong: var(--dark-border);
-}
+
+
 
 #root .app-layout {
   width: 100%;
@@ -579,6 +538,8 @@ body.dark-mode {
 
 #root .app-layout :where(button, a, input, select, textarea):focus-visible {
   outline-color: var(--primary);
+  outline: 3px solid var(--border-focus);
+  outline-offset: 3px;
 }
 
 body.dark-mode #root .app-layout {
@@ -633,10 +594,7 @@ body.dark-mode #root .app-layout :where(input, textarea, .form-control, .form-in
   color: var(--text-muted);
   opacity: 1;
 }
-#root .app-layout :where(button, a, input, select, textarea):focus-visible {
-  outline: 3px solid var(--border-focus);
-  outline-offset: 3px;
-}
+
 body.dark-mode #root .app-layout a:not(.btn):not(.button):not([class*="btn-"]) {
   color: var(--dark-primary);
 }
