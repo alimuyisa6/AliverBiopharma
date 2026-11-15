@@ -41,13 +41,6 @@
   --surface-inverse: var(--ink);
   --surface-overlay: var(--overlay-color);
   --surface-disabled: var(--grey-100);
-
-  --bg-page: var(--background);
-  --bg-card: var(--paper);
-  --bg-card-hover: var(--soft);
-  --bg-card-tinted: var(--surface-tinted);
-  --bg-muted: var(--soft);
-  --bg-input: var(--soft);
   --bg-input-disabled: var(--soft);
   --bg-disabled: var(--soft);
   --bg-overlay: var(--overlay-color);
@@ -57,16 +50,12 @@
   --text-muted: var(--grey-500);
   --text-placeholder: var(--grey-500);
   --text-inverse: var(--white);
-  --text-link: var(--primary);
+  --text-link: var(--primary-dark);
   --text-link-hover: var(--secondary);
   --text-on-dark: var(--white);
   --text-dim: var(--grey-600);
 
   --border-transparent: transparent;
-  --border-subtle: var(--grey-300);
-  --border-light: var(--grey-300);
-  --border-default: var(--grey-300);
-  --border-strong: var(--grey-300);
   --border-focus: var(--primary);
 
   --border-width-thin: 1px;
@@ -240,12 +229,6 @@ body.dark-mode {
   --surface-inverse: var(--dark-text);
   --surface-overlay: var(--overlay-color);
   --surface-disabled: var(--dark-surface-raised);
-  --bg-page: var(--surface-page);
-  --bg-card: var(--surface-card);
-  --bg-card-hover: var(--surface-raised);
-  --bg-card-tinted: var(--surface-tinted);
-  --bg-muted: var(--surface-muted);
-  --bg-input: var(--surface-raised);
   --bg-input-disabled: var(--surface-disabled);
   --bg-disabled: var(--surface-disabled);
   --bg-overlay: var(--surface-overlay);
@@ -260,10 +243,6 @@ body.dark-mode {
   --text-on-dark: var(--dark-text);
   --text-dim: var(--dark-text-secondary);
   --border-transparent: transparent;
-  --border-subtle: var(--dark-border);
-  --border-light: var(--dark-border);
-  --border-default: var(--dark-border);
-  --border-strong: var(--dark-border);
   --border-focus: var(--dark-primary);
   --shadow-subtle: 0 1px 2px var(--shadow-black-30);
   --shadow-card: 0 4px 14px var(--shadow-black-28);
@@ -502,7 +481,168 @@ body.dark-mode :is(.page-shell, .page-container, .page-content, .content-shell, 
   color: var(--dark-primary);
 }
 
-body.dark-mode :is(.page-shell, .page-container, .page-content, .content-shell, .content-container) :is(button, input, select, textarea, a):focus-visible {
-  outline-color: var(--dark-primary);
+/* Global application surfaces, contrast and typography system. */
+:root {
+  --surface-page: var(--background);
+  --surface-card: var(--white);
+  --surface-raised: var(--white);
+  --surface-muted: var(--soft);
+  --surface-subtle: var(--soft);
+  --surface-tinted: var(--primary-light);
+  --bg-page: var(--background);
+  --bg-card: var(--white);
+  --bg-card-hover: var(--soft);
+  --bg-muted: var(--soft);
+  --bg-input: var(--white);
+  --border-subtle: var(--line);
+  --border-light: var(--line);
+  --border-default: var(--line);
+  --border-strong: var(--line-2);
 }
 
+body.dark-mode {
+  --surface-page: var(--dark-background);
+  --surface-card: var(--dark-surface);
+  --surface-raised: var(--dark-surface-raised);
+  --surface-muted: var(--dark-surface);
+  --surface-subtle: var(--dark-surface);
+  --surface-tinted: var(--dark-surface-raised);
+  --bg-page: var(--dark-background);
+  --bg-card: var(--dark-surface);
+  --bg-card-hover: var(--dark-surface-raised);
+  --bg-muted: var(--dark-surface);
+  --bg-input: var(--dark-surface-raised);
+  --border-subtle: var(--dark-border);
+  --border-light: var(--dark-border);
+  --border-default: var(--dark-border);
+  --border-strong: var(--dark-border);
+}
+
+#root .app-layout {
+  width: 100%;
+  min-width: 0;
+  background: var(--surface-page);
+  color: var(--text-main);
+  font-family: var(--f-body);
+}
+
+#root .app-layout > .main-content {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+#root .app-layout :where(.page-content, .page-container, .content-container, .resources-main, .notes-page, .blog-page, .contact-page, .faq-page, .about-content-wrap) {
+  width: 100%;
+  max-width: min(100%, calc(var(--container) + 2 * var(--gutter)));
+  box-sizing: border-box;
+}
+
+#root .app-layout :where(.main-content, .page-shell, .page-content, .content-shell, .content-container) {
+  background: transparent;
+  color: var(--text-main);
+}
+
+#root .app-layout :where(h1, h2, h3, h4, h5, h6, .page-title, .page-heading, .section-title, .content-title) {
+  color: var(--text-main);
+  font-family: var(--f-display);
+}
+
+#root .app-layout :where(p, li, label, small, .description, .subtitle, .supporting-text) {
+  color: inherit;
+  font-family: var(--f-body);
+}
+
+#root .app-layout :where(.resource-card, .notes-card, .blog-post-card, .team-card, .contributor-card, .flashcard-deck-card, .dashboard-curriculum-card, .profile-category-card, .pp-card, .glossary-route-card, .quiz-topic-cards > .card, .quiz-blocks-grid > .card, .recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .pdf-card, .tutor-card, .faq-item, .about-block, .contact-form, .donate-card, .donate-widget, .donate-momo-card, .note-learning-card) {
+  background: var(--surface-card);
+  color: var(--text-main);
+  border-color: var(--border-default);
+  box-shadow: var(--shadow-subtle);
+}
+
+#root .app-layout :where(.section--soft, .dashboard-panel, .profile-section, .notes-section, .resources-section, .quiz-section, .flashcards-section, .recall-page-section, .classroom-list-section) {
+  background: var(--surface-muted);
+  color: var(--text-main);
+}
+
+#root .app-layout :where(input, select, textarea, .form-control, .form-input) {
+  background-color: var(--bg-input);
+  color: var(--text-main);
+  border-color: var(--border-default);
+}
+
+#root .app-layout :where(input, textarea, .form-control, .form-input)::placeholder {
+  color: var(--text-muted);
+  opacity: 1;
+}
+
+#root .app-layout :where(button, a, input, select, textarea):focus-visible {
+  outline-color: var(--primary);
+}
+
+body.dark-mode #root .app-layout {
+  background: var(--dark-background);
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout :where(main, .page-content, .page-container, .content-container, .resources-main, .notes-page, .blog-page, .contact-page, .faq-page, .about-content-wrap, .main-content, .page-shell, .content-shell) {
+  background-color: transparent;
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout :where(h1, h2, h3, h4, h5, h6, .page-title, .page-heading, .section-title, .content-title) {
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout :where(.resource-card, .notes-card, .blog-post-card, .team-card, .contributor-card, .flashcard-deck-card, .dashboard-curriculum-card, .profile-category-card, .pp-card, .glossary-route-card, .quiz-topic-cards > .card, .quiz-blocks-grid > .card, .recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .pdf-card, .tutor-card, .faq-item, .about-block, .contact-form, .donate-card, .donate-widget, .donate-momo-card, .note-learning-card) {
+  background: var(--dark-surface);
+  color: var(--dark-text);
+  border-color: var(--dark-border);
+}
+
+body.dark-mode #root .app-layout :where(.section--soft, .dashboard-panel, .profile-section, .notes-section, .resources-section, .quiz-section, .flashcards-section, .recall-page-section, .classroom-list-section) {
+  background: var(--dark-surface);
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout :where(input, select, textarea, .form-control, .form-input) {
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+  border-color: var(--dark-border);
+}
+
+body.dark-mode #root .app-layout :where(input, textarea, .form-control, .form-input)::placeholder {
+  color: var(--dark-text-secondary);
+}
+
+
+/* WCAG contrast defaults for links and supporting text across the application. */
+#root .app-layout a:not(.btn):not(.button):not([class*="btn-"]) {
+  color: var(--text-link);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.16em;
+}
+#root .app-layout a:not(.btn):not(.button):not([class*="btn-"]):hover {
+  color: var(--text-link-hover);
+}
+#root .app-layout :where(.text-muted, .text-secondary, .muted, .field-hint, .form-hint, .helper-text, .page-description, .section-description, .supporting-text) {
+  color: var(--text-muted);
+}
+#root .app-layout :where(input, textarea, select, .form-control, .form-input)::placeholder {
+  color: var(--text-muted);
+  opacity: 1;
+}
+#root .app-layout :where(button, a, input, select, textarea):focus-visible {
+  outline: 3px solid var(--border-focus);
+  outline-offset: 3px;
+}
+body.dark-mode #root .app-layout a:not(.btn):not(.button):not([class*="btn-"]) {
+  color: var(--dark-primary);
+}
+body.dark-mode #root .app-layout a:not(.btn):not(.button):not([class*="btn-"]):hover {
+  color: var(--dark-primary);
+}
+body.dark-mode #root .app-layout :where(.text-muted, .text-secondary, .muted, .field-hint, .form-hint, .helper-text, .page-description, .section-description, .supporting-text) {
+  color: var(--dark-text-secondary);
+}
