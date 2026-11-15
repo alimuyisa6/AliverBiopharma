@@ -57,7 +57,7 @@ export default function ClinicalSimulationsPage() {
       ) : cases.length ? (
         <div className="clinical-case-grid">{cases.map((item) => <article className="clinical-case-card" key={item.id}><div className="qbank-question-topline"><span>{item.clinical_domain || 'Clinical case'}</span><span>{item.difficulty || 'Standard'}</span></div><h2>{item.title}</h2><p>{item.description || 'A reviewed clinical learning case.'}</p><Link to={`/clinical-simulations/${item.id}`} className="qbank-select-button">View case <Icon name="arrow-right" /></Link></article>)}</div>
       ) : (
-        <div className="qbank-empty clinical-case-empty"><Icon name="stethoscope" /><h2>Clinical cases are being prepared</h2><p>There are currently no clinician-reviewed cases published for learners. New patient encounters will appear here after clinical review, including their investigation data, expected reasoning and scoring rubrics.</p><Link to="/question-bank" className="qbank-select-button">Practise with the question bank <Icon name="arrow-right" /></Link></div>
+        <div className="qbank-empty clinical-case-empty"><Icon name="capsules" /><h2>Clinical cases are being prepared</h2><p>There are currently no clinician-reviewed cases published for learners. New patient encounters will appear here after clinical review, including their investigation data, expected reasoning and scoring rubrics.</p><Link to="/question-bank" className="qbank-select-button">Practise with the question bank <Icon name="arrow-right" /></Link></div>
       )}
     </Container>
   );
