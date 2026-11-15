@@ -16,8 +16,9 @@
   place-items: center;
   padding: var(--space-6);
   overflow: auto;
-  background: var(--bg-page);
-  color: var(--text-main);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-body);
 }
 
 .maintenance-card {
@@ -105,10 +106,11 @@
 .maintenance-unsaved-warning {
   width: 100%;
   padding: var(--space-2) var(--space-3);
-  border-radius: var(--radius-md);
-  background: color-mix(in srgb, var(--text-inverse) 14%, transparent);
-  color: var(--text-inverse) !important;
   font-weight: var(--weight-bold);
+  border: 1px solid var(--primary-border);
+  border-radius: var(--r-md);
+  background: var(--primary-light);
+  color: var(--ink) !important;
 }
 
 .maintenance-boundary {
@@ -148,11 +150,7 @@ body.dark-mode .maintenance-page :is(h1, h2, h3, h4, h5, h6, p, label, small, ti
 body.dark-mode .maintenance-page :is(.text-muted, .maintenance-description) { color: var(--dark-text-secondary); }
 
 
-.maintenance-screen {
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--f-body);
-}
+
 
 .maintenance-card,
 .maintenance-alert {
@@ -177,9 +175,4 @@ body.dark-mode .maintenance-page :is(.text-muted, .maintenance-description) { co
   color: var(--ink-2);
 }
 
-.maintenance-unsaved-warning {
-  border: 1px solid var(--primary-border);
-  border-radius: var(--r-md);
-  background: var(--primary-light);
-  color: var(--ink) !important;
-}
+

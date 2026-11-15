@@ -2,9 +2,9 @@
   width: 100%;
   margin: 3rem auto;
   padding: clamp(1.25rem, 3vw, 2.5rem);
-  border: 1px solid var(--line);
   border-radius: 1.5rem;
-  background: var(--soft);
+  border: 0;
+  background: var(--surface-section-alt);
   color: var(--text);
 }
 
@@ -66,7 +66,7 @@
 
 .learning-journey-stage.is-focused .learning-journey-stage-content {
   border-color: var(--primary-border);
-  background: var(--primary-light);
+  background: var(--surface-card);
 }
 
 .learning-journey-stage.is-focused .learning-journey-stage-step::after {
@@ -83,10 +83,11 @@
   place-items: center;
   border: 1px solid var(--primary-border);
   border-radius: 50%;
-  background: var(--paper);
-  color: var(--primary-dark);
   font-size: 0.7rem;
   font-weight: 800;
+  border-color: var(--border-default);
+  background: var(--surface-card);
+  color: var(--primary-dark);
 }
 
 .learning-journey-stage-content {
@@ -94,7 +95,8 @@
   padding: 1.15rem;
   border: 1px solid var(--line);
   border-radius: 1.15rem;
-  background: var(--paper);
+  border-color: var(--border-subtle);
+  background: var(--surface-card);
   box-shadow: var(--shadow-ink-08);
 }
 
@@ -112,9 +114,9 @@
   height: 2.65rem;
   place-items: center;
   border-radius: 0.85rem;
+  font-size: 1.1rem;
   background: var(--primary-light);
   color: var(--primary-dark);
-  font-size: 1.1rem;
 }
 
 .learning-journey-stage-heading > div {
@@ -150,10 +152,10 @@
   flex: 0 0 auto;
   padding: 0.35rem 0.6rem;
   border-radius: 999px;
-  background: var(--secondary-light);
-  color: var(--secondary-dark);
   font-size: 0.72rem;
   font-weight: 700;
+  background: var(--primary-light);
+  color: var(--primary-dark);
 }
 
 .learning-journey-items {
@@ -171,20 +173,21 @@
   padding: 0.9rem 1rem;
   border: 1px solid var(--line);
   border-radius: 0.85rem;
-  background: var(--background);
-  color: var(--text);
   font: inherit;
   text-align: left;
   text-decoration: none;
   cursor: pointer;
   transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
+  border-color: var(--border-subtle);
+  background: var(--surface-card);
+  color: var(--text);
 }
 
 .learning-journey-item:hover:not(:disabled),
 .learning-journey-item:focus-visible {
+  outline: none;
   border-color: var(--primary-border);
   background: var(--primary-light);
-  outline: none;
 }
 
 .learning-journey-item:hover:not(:disabled) {
@@ -222,10 +225,10 @@
   flex: 0 0 auto;
   align-items: center;
   gap: 0.45rem;
-  color: var(--primary-dark);
   font-size: 0.78rem;
   font-weight: 800;
   white-space: nowrap;
+  color: var(--primary-dark);
 }
 
 .learning-journey-item-action svg {
@@ -347,56 +350,25 @@
 
 
 
-.learning-journey {
-  border: 0;
-  background: var(--surface-section-alt);
-  color: var(--text);
-}
 
-.learning-journey-stage-content {
-  border-color: var(--border-subtle);
-  background: var(--surface-card);
-  box-shadow: var(--shadow-ink-08);
-}
 
-.learning-journey-stage.is-focused .learning-journey-stage-content {
-  border-color: var(--primary-border);
-  background: var(--surface-card);
-}
 
-.learning-journey-stage-marker {
-  border-color: var(--border-default);
-  background: var(--surface-card);
-  color: var(--primary-dark);
-}
 
-.learning-journey-stage-icon {
-  background: var(--primary-light);
-  color: var(--primary-dark);
-}
+
+
+
+
+
 
 .learning-journey-stage-step,
 .learning-journey-eyebrow {
   color: var(--primary-dark);
 }
 
-.learning-journey-stage-count {
-  background: var(--primary-light);
-  color: var(--primary-dark);
-}
 
-.learning-journey-item {
-  border-color: var(--border-subtle);
-  background: var(--surface-card);
-  color: var(--text);
-}
 
-.learning-journey-item:hover:not(:disabled),
-.learning-journey-item:focus-visible {
-  border-color: var(--primary-border);
-  background: var(--primary-light);
-}
 
-.learning-journey-item-action {
-  color: var(--primary-dark);
-}
+
+
+
+
