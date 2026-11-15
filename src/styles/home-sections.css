@@ -42,7 +42,7 @@
   background: var(--surface-subtle);
   color: var(--text-secondary);
 }
-.home-continue-learning-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.home-continue-learning-thumb img { display: none; }
 .home-continue-learning-progress { width: var(--space-20); flex: 0 0 var(--space-20); }
 
 .home-learning-snapshot-section { width: 100%; }
@@ -68,7 +68,7 @@
   color: var(--text-inverse);
 }
 
-.home-curriculum-section { width: 100%; }
+.home-curriculum-section { box-sizing: border-box; width: 100%; padding: clamp(1.25rem, 3vw, 2rem); }
 .home-curriculum-description { max-width: var(--content-max-readable); }
 .home-curriculum-heading {
   margin-block-end: var(--text-gap-description);
@@ -78,7 +78,7 @@
   line-height: var(--leading-section-title);
   letter-spacing: var(--tracking-tight);
 }
-.home-curriculum-map { width: 100%; border-block: 1px solid var(--border-default); background: var(--surface-card); }
+.home-curriculum-map { width: min(100%, 58rem); margin-inline: auto; overflow: hidden; }
 .home-curriculum-node-list { width: 100%; }
 .home-curriculum-node { border-block-start: 1px solid var(--border-default); }
 .home-curriculum-node:first-child { border-block-start: 0; }
@@ -131,9 +131,9 @@
 .home-curriculum-depth-3 .home-curriculum-node-marker { border-color: var(--accent); background: var(--accent-light); }
 .home-curriculum-node-line:hover { background: var(--bg-card-hover); }
 
-.home-daily-recall-section { width: 100%; }
+.home-daily-recall-section { box-sizing: border-box; width: 100%; padding: clamp(1.25rem, 3vw, 2rem); }
 .home-daily-recall-description { max-width: var(--content-max-readable); }
-.home-daily-recall-card { width: 100%; }
+.home-daily-recall-card { width: min(100%, 48rem); margin-inline: auto; }
 .home-daily-recall-progress { display: flex; flex-direction: column; gap: var(--stack-gap-tight); width: 100%; }
 .home-daily-recall-score {
   display: flex;
@@ -154,7 +154,7 @@
 .home-daily-recall-actions { align-items: center; }
 
 .home-faq-list { display: flex; flex-direction: column; gap: var(--stack-gap); width: min(100%, var(--content-max-readable)); margin-inline: auto; }
-.home-faq-item { overflow: hidden; border: 1px solid var(--border-default); border-inline-start: 3px solid var(--border-strong); border-radius: var(--radius-card); background: var(--surface-card); }
+.home-faq-item { overflow: hidden; border: 1px solid var(--border-default); border-inline-start: 3px solid var(--border-strong); border-radius: var(--radius-card); background: var(--white); }
 .home-faq-item:hover { border-color: var(--border-strong); }
 .home-faq-blue,.home-faq-mint { border-inline-start-color: var(--border-strong); }
 .home-faq-blue .home-faq-icon,.home-faq-mint .home-faq-icon { background: var(--surface-subtle); color: var(--grey-700); }
@@ -330,6 +330,7 @@ body.dark-mode .team-social a { background: var(--surface-card); }
   width: min(100%, 30rem);
   height: auto;
   overflow: visible;
+  background: transparent;
 }
 .home-classroom-section .live-room-art-float {
   transform-box: fill-box;
@@ -368,9 +369,6 @@ body.dark-mode .team-social a { background: var(--surface-card); }
   border-radius: 0;
   background: transparent;
   box-shadow: none;
-}
-.home-classroom-section .resource-art-live-room {
-  background: transparent;
 }
 .home-learning-snapshot-dashboard-link .home-dashboard-link-arrow {
   width: var(--space-6);
@@ -424,26 +422,6 @@ body.dark-mode .team-social a { background: var(--surface-card); }
 .home-continue-learning-section {
   box-sizing: border-box;
   padding: clamp(1.25rem, 3vw, 2rem);
-}
-.home-curriculum-section {
-  box-sizing: border-box;
-  padding: clamp(1.25rem, 3vw, 2rem);
-}
-.home-curriculum-map {
-  width: min(100%, 58rem);
-  margin-inline: auto;
-  overflow: hidden;
-}
-.home-daily-recall-section {
-  box-sizing: border-box;
-  padding: clamp(1.25rem, 3vw, 2rem);
-}
-.home-daily-recall-card {
-  width: min(100%, 48rem);
-  margin-inline: auto;
-}
-.home-faq-item {
-  background: var(--white);
 }
 body.dark-mode .home-faq-item {
   border-color: var(--dark-border);
