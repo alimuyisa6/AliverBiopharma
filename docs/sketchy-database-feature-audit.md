@@ -85,10 +85,13 @@ Question rows have explanations and curriculum unit references. The existing bac
 - Requires a case to be published before it can be active.
 - Makes case stages ordered and adds a separate service-only evaluation/rubric table so expected answers are not exposed through learner-facing stage data.
 - Enforces that a simulation's selected stage belongs to the same case as the session.
+- Enforces that each persisted turn's stage belongs to the case attached to its session.
+- Requires a reviewer identity and review timestamp before a case can be published.
+- Freezes custom-test question snapshots, filters, owner, attempt link and timing after run creation.
 - Adds authoritative score and feedback fields to clinical simulation sessions.
 - Removes learner direct write access to clinical session lifecycle and scores; session creation, lifecycle transitions and score writes must be performed by the trusted backend. Learners can read their own sessions and append learner turns.
 
-### Migration `20261115104100_restrict_clinical_case_stage_visibility`
+### Migration `20261115102755_restrict_clinical_case_stage_visibility`
 - Restricts learner-visible stage reads to stages belonging to active, published cases.
 - Prevents drafts and in-review case stages from being read through the public Data API.
 - Adds a case/order index.
@@ -122,6 +125,8 @@ Question rows have explanations and curriculum unit references. The existing bac
 - Confirmed authenticated role cannot INSERT scores.
 - Confirmed authenticated role cannot INSERT test-run records, but can SELECT its own run records through RLS.
 - Re-ran Supabase security advisors. Existing project-wide warnings remain, including 15 RLS-enabled tables with no policies, two authenticated-callable SECURITY DEFINER advertising functions, and disabled leaked-password protection. These are pre-existing broader platform findings and need a separate targeted remediation review; this feature work does not silently modify unrelated advertising/authentication policies.
+
+- Migration `20261115102914_freeze_test_run_provenance_and_validate_case_stages` adds immutable custom-test provenance, requires reviewer metadata for published clinical cases, and verifies simulation turn stages belong to the session's case.
 
 ## 8. Integration contract for backend
 
