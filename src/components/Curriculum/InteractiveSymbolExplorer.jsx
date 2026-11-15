@@ -17,7 +17,7 @@ export default function InteractiveSymbolExplorer({ config }) {
   if (!symbols.length) {
     return (
       <div className="curriculum-interactive-empty">
-        <Icon name="diagram-project" />
+        <Icon name="atom" />
         <div>
           <strong>Interactive explorer is being prepared</strong>
           <p>This lesson will show its labelled visual explorer here once the learning diagram and symbol descriptions have been reviewed and published.</p>
