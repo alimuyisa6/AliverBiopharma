@@ -34,10 +34,6 @@
   color: var(--text-main);
 }
 
-.lernwick-testimonial-card--sage {
-  background: var(--surface-card);
-}
-
 .lernwick-testimonial-mark {
   position: absolute;
   top: .8rem;
@@ -112,13 +108,7 @@
   font-size: var(--t-xs);
 }
 
-body.dark-mode .lernwick-testimonials {
-  border: 0;
-  background: transparent;
-}
-
-body.dark-mode .lernwick-testimonial-card,
-body.dark-mode .lernwick-testimonial-card--sage {
+body.dark-mode .lernwick-testimonial-card {
   border-color: var(--dark-border);
   border-bottom-color: var(--dark-primary);
   background: var(--dark-surface-raised);
