@@ -1108,3 +1108,201 @@ body.dark-mode .home-page :is(.lernwick-step-card,.lernwick-studio-card,.lernwic
 body.dark-mode .home-page :is(.lernwick-step-card,.lernwick-studio-card,.lernwick-connected-card,.home-challenge-treasure,.home-daily-recall-card,.section-teaser-inner,.ads-home-panel,.newsletter-card) :is(h1,h2,h3,h4,p,span,small,strong,li,label) {
   color: var(--white);
 }
+
+
+/* Enforce one colour plane per section; content wrappers stay transparent. */
+.home-page > .section,
+.home-page > section.section,
+.home-page > .home-student-section,
+.home-page > .home-daily-learning-section,
+.home-page > .home-testimonials-section,
+.home-page > .home-classroom-section,
+.home-page > .home-tutor-section,
+.home-page > .home-advertising-section,
+.home-page > .home-newsletter-section,
+.home-page > .lernwick-programme-studio,
+.home-page > .lernwick-pathways,
+.home-page > .lernwick-how,
+.home-page > .lernwick-connected,
+.home-page .home-student-sections-wrap > .section {
+  width: 100% !important;
+  max-width: none !important;
+  margin-inline: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: var(--section-band, var(--white)) !important;
+  color: var(--section-ink, var(--brand-navy)) !important;
+}
+
+.home-page > .section::before,
+.home-page > section.section::before,
+.home-page > .home-student-section::before,
+.home-page > .home-daily-learning-section::before,
+.home-page .home-student-sections-wrap > .section::before {
+  display: none !important;
+}
+
+/* Do not allow inset panels or glass wrappers to create a second section surface. */
+.home-page :is(
+  .home-curriculum-map,
+  .home-learning-journey-content,
+  .edu-showcase-shell,
+  .home-student-sections-wrap,
+  .home-student-section-inner,
+  .home-daily-recall-section,
+  .home-continue-learning-section,
+  .home-section-inner,
+  .section-inner,
+  .section-content,
+  .card-glass
+) {
+  border-color: transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* Section typography inherits the single section foreground. */
+.home-page :is(
+  .section-head,
+  .section-head-left,
+  .lernwick-section-heading,
+  .home-studio-intro,
+  .home-student-section-heading
+),
+.home-page :is(
+  .section-head,
+  .section-head-left,
+  .lernwick-section-heading,
+  .home-studio-intro,
+  .home-student-section-heading
+) :is(h1,h2,h3,h4,h5,h6,p,span,.eyebrow),
+.home-page > .section :is(h1,h2,h3,h4,h5,h6,p,li,.eyebrow),
+.home-page > section.section :is(h1,h2,h3,h4,h5,h6,p,li,.eyebrow),
+.home-page .home-student-sections-wrap > .section :is(h1,h2,h3,h4,h5,h6,p,li,.eyebrow) {
+  color: inherit;
+}
+
+/* The only nested surfaces are deliberate, readable white content cards. */
+.home-page :is(
+  .lernwick-step-card,
+  .lernwick-studio-card,
+  .lernwick-connected-card,
+  .home-curriculum-node,
+  .home-challenge-treasure,
+  .home-daily-recall-card,
+  .home-continue-learning-row,
+  .section-teaser-inner,
+  .ads-home-panel,
+  .newsletter-card,
+  .edu-showcase-card,
+  .why-choose-card,
+  .how-step,
+  .team-card
+) {
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--band-card-radius, 1rem) !important;
+  background: var(--white) !important;
+  color: var(--brand-navy) !important;
+  box-shadow: var(--shadow-card) !important;
+}
+
+.home-page :is(
+  .lernwick-step-card,
+  .lernwick-studio-card,
+  .lernwick-connected-card,
+  .home-curriculum-node,
+  .home-challenge-treasure,
+  .home-daily-recall-card,
+  .home-continue-learning-row,
+  .section-teaser-inner,
+  .ads-home-panel,
+  .newsletter-card,
+  .edu-showcase-card,
+  .why-choose-card,
+  .how-step,
+  .team-card
+) :is(h1,h2,h3,h4,h5,h6,p,span,strong,small,li,label,.eyebrow) {
+  color: var(--brand-navy) !important;
+}
+
+.home-page :is(
+  .lernwick-step-card,
+  .lernwick-studio-card,
+  .lernwick-connected-card,
+  .home-curriculum-node,
+  .home-challenge-treasure,
+  .home-daily-recall-card,
+  .home-continue-learning-row,
+  .section-teaser-inner,
+  .ads-home-panel,
+  .newsletter-card,
+  .edu-showcase-card,
+  .why-choose-card,
+  .how-step,
+  .team-card
+) :is(a,button) {
+  color: var(--primary-dark);
+}
+
+.home-page :is(a,button):focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+}
+
+body.dark-mode .home-page :is(
+  .lernwick-step-card,
+  .lernwick-studio-card,
+  .lernwick-connected-card,
+  .home-curriculum-node,
+  .home-challenge-treasure,
+  .home-daily-recall-card,
+  .home-continue-learning-row,
+  .section-teaser-inner,
+  .ads-home-panel,
+  .newsletter-card,
+  .edu-showcase-card,
+  .why-choose-card,
+  .how-step,
+  .team-card
+) {
+  border-color: var(--dark-border) !important;
+  background: var(--dark-surface) !important;
+  color: var(--dark-text) !important;
+}
+
+body.dark-mode .home-page :is(
+  .lernwick-step-card,
+  .lernwick-studio-card,
+  .lernwick-connected-card,
+  .home-curriculum-node,
+  .home-challenge-treasure,
+  .home-daily-recall-card,
+  .home-continue-learning-row,
+  .section-teaser-inner,
+  .ads-home-panel,
+  .newsletter-card,
+  .edu-showcase-card,
+  .why-choose-card,
+  .how-step,
+  .team-card
+) :is(h1,h2,h3,h4,h5,h6,p,span,strong,small,li,label,.eyebrow) {
+  color: var(--dark-text) !important;
+}
+
+@media (max-width: 420px) {
+  .home-page > .section,
+  .home-page > section.section,
+  .home-page > .home-student-section,
+  .home-page > .home-daily-learning-section,
+  .home-page > .home-testimonials-section,
+  .home-page > .home-classroom-section,
+  .home-page > .home-tutor-section,
+  .home-page > .home-advertising-section,
+  .home-page > .home-newsletter-section,
+  .home-page .home-student-sections-wrap > .section {
+    width: 100% !important;
+    max-width: none !important;
+    margin-inline: 0 !important;
+  }
+}
