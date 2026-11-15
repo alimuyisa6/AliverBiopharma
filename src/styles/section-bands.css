@@ -339,3 +339,37 @@ body.dark-mode .home-page .lernwick-feature .section-subtitle {
     padding-inline: 1.1rem !important;
   }
 }
+
+.home-page > .home-student-section > .section {
+  box-sizing: border-box;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding-inline: max(var(--page-gutter-x, 1.25rem), calc((100vw - 1200px) / 2)) !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.home-page > .home-student-section > .home-learning-snapshot-section > :is(.section-head, .home-snapshot-stack),
+.home-page > .home-student-section > .home-continue-learning-section > :is(.section-head, .home-continue-learning-list) {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+.home-page > .home-daily-learning-section > .home-daily-recall-section {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding-inline: max(var(--page-gutter-x, 1.25rem), calc((100vw - 1200px) / 2));
+  border: 0;
+  border-radius: 0;
+  background: transparent !important;
+  box-shadow: none;
+}
+.home-page > .home-daily-learning-section > .home-daily-recall-section > .section-head {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+}
