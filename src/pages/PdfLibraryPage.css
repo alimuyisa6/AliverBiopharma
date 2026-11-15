@@ -42,6 +42,14 @@
   font-size: var(--text-sm);
   line-height: var(--leading-relaxed);
 }
+.pdf-library-description {
+  margin: var(--space-2) 0 0;
+  color: var(--ink-2);
+  font-family: var(--f-body);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+}
+
 .pdf-library-controls {
   margin-bottom: var(--space-4);
   padding: clamp(1rem, .75rem + 1vw, 1.5rem);
@@ -329,12 +337,6 @@
     gap: var(--space-3);
   }
 
-  .pdf-card {
-    width: 100%;
-    min-width: 0;
-    max-width: 100%;
-  }
-
   .pdf-card-body {
     padding: var(--space-4) var(--space-3);
   }
@@ -355,6 +357,11 @@
 
   .sort-select {
     width: 100%;
+  }
+
+  .pdf-library-heading,
+  .pdf-library-controls {
+    border-radius: var(--r-md);
   }
 
   .pdf-library-controls {
