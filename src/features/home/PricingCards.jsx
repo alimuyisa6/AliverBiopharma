@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import Icon from '../../components/Icon/Icon';
-import './lernwick-pricing.css';
 
 function formatPrice(plan) {
   const amount = Number(plan.price_amount);

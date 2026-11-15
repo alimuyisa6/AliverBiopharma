@@ -1,6 +1,5 @@
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
-import './lernwick-newsletter.css';
 
 export function NewsletterForm({ email, status, loading = false, onChange, onSubmit }) {
   return (
