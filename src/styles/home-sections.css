@@ -372,15 +372,6 @@ body.dark-mode .team-social a { background: var(--surface-card); }
 .home-classroom-section .resource-art-live-room {
   background: transparent;
 }
-.home-learning-journey-images,
-.home-get-started-art,
-.home-get-started-art svg {
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-}
-
 .home-learning-snapshot-dashboard-link .home-dashboard-link-arrow {
   width: var(--space-6);
   height: var(--space-6);
