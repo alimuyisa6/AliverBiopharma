@@ -2058,3 +2058,67 @@ body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.
     border-radius: 0;
   }
 }
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.about-page, .contact-page, .legal-page, .info-page, .classroom-page, .classroom-room-page, .tutor-marketplace-page, .tutor-profile-page, .profile-page, .faq-page, .donate-page, .advertise-page, .advertise-payment-page, .search-page, .search-results-page) {
+  color: var(--ink);
+  background-color: var(--surface-page);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.about-hero, .contact-hero, .faq-hero, .donate-hero, .advertise-hero, .classroom-page-header, .tutor-marketplace-hero, .profile-page-header, .legal-page-header) {
+  border: 0;
+  border-radius: 0;
+  background: var(--brand-navy);
+  background-image: none;
+  color: var(--white);
+  box-shadow: none;
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.about-hero, .contact-hero, .faq-hero, .donate-hero, .advertise-hero, .classroom-page-header, .tutor-marketplace-hero, .profile-page-header, .legal-page-header) :where(h1, h2, h3, h4, p, small, strong, .about-hero-title, .about-hero-subtext, .faq-hero-title, .faq-hero-description, .advertise-hero-copy) {
+  color: var(--white);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.team-card, .contributor-card, .legal-card, .legal-panel, .classroom-card, .classroom-room-card, .tutor-card, .tutor-profile-card, .profile-card, .profile-overview-panel, .profile-category-card, .faq-item, .faq-featured-card, .donate-card, .donate-momo-card, .ads-home-panel, .ad-slot-card, .advertise-card, .contact-card, .info-card, .search-panel, .search-result, .search-result-card, .search-empty-state) {
+  border: 1px solid var(--border-default);
+  border-radius: var(--app-card-radius);
+  background: var(--surface-card);
+  color: var(--ink);
+  box-shadow: var(--shadow-card);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.team-card, .contributor-card, .legal-card, .legal-panel, .classroom-card, .classroom-room-card, .tutor-card, .tutor-profile-card, .profile-card, .profile-overview-panel, .profile-category-card, .faq-item, .faq-featured-card, .donate-card, .donate-momo-card, .ads-home-panel, .ad-slot-card, .advertise-card, .contact-card, .info-card, .search-panel, .search-result, .search-result-card, .search-empty-state) :where(h2, h3, h4, strong, .team-card-role, .faq-question, .ad-slot-title) {
+  color: var(--ink);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.team-card, .contributor-card, .legal-card, .legal-panel, .classroom-card, .classroom-room-card, .tutor-card, .tutor-profile-card, .profile-card, .profile-overview-panel, .profile-category-card, .faq-item, .faq-featured-card, .donate-card, .donate-momo-card, .ads-home-panel, .ad-slot-card, .advertise-card, .contact-card, .info-card, .search-panel, .search-result, .search-result-card, .search-empty-state) :where(p, small, .description, .subtitle, .team-card-bio, .faq-answer) {
+  color: var(--ink-2);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.about-page, .contact-page, .legal-page, .info-page, .classroom-page, .classroom-room-page, .tutor-marketplace-page, .tutor-profile-page, .profile-page, .faq-page, .donate-page, .advertise-page, .advertise-payment-page, .search-page, .search-results-page) {
+  color: var(--dark-text);
+  background-color: var(--surface-page);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.about-hero, .contact-hero, .faq-hero, .donate-hero, .advertise-hero, .classroom-page-header, .tutor-marketplace-hero, .profile-page-header, .legal-page-header) {
+  background: var(--dark-surface-raised);
+  background-image: none;
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.about-hero, .contact-hero, .faq-hero, .donate-hero, .advertise-hero, .classroom-page-header, .tutor-marketplace-hero, .profile-page-header, .legal-page-header) :where(h1, h2, h3, h4, p, small, strong, .about-hero-title, .about-hero-subtext, .faq-hero-title, .faq-hero-description, .advertise-hero-copy) {
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.team-card, .contributor-card, .legal-card, .legal-panel, .classroom-card, .classroom-room-card, .tutor-card, .tutor-profile-card, .profile-card, .profile-overview-panel, .profile-category-card, .faq-item, .faq-featured-card, .donate-card, .donate-momo-card, .ads-home-panel, .ad-slot-card, .advertise-card, .contact-card, .info-card, .search-panel, .search-result, .search-result-card, .search-empty-state) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 18%);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.team-card, .contributor-card, .legal-card, .legal-panel, .classroom-card, .classroom-room-card, .tutor-card, .tutor-profile-card, .profile-card, .profile-overview-panel, .profile-category-card, .faq-item, .faq-featured-card, .donate-card, .donate-momo-card, .ads-home-panel, .ad-slot-card, .advertise-card, .contact-card, .info-card, .search-panel, .search-result, .search-result-card, .search-empty-state) :where(h2, h3, h4, strong, .team-card-role, .faq-question, .ad-slot-title) {
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.team-card, .contributor-card, .legal-card, .legal-panel, .classroom-card, .classroom-room-card, .tutor-card, .tutor-profile-card, .profile-card, .profile-overview-panel, .profile-category-card, .faq-item, .faq-featured-card, .donate-card, .donate-momo-card, .ads-home-panel, .ad-slot-card, .advertise-card, .contact-card, .info-card, .search-panel, .search-result, .search-result-card, .search-empty-state) :where(p, small, .description, .subtitle, .team-card-bio, .faq-answer) {
+  color: var(--dark-text-secondary);
+}
