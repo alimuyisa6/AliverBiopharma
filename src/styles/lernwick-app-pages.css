@@ -50,6 +50,7 @@
 
 #root .app-layout :where(.card, .content-card, .resource-card, .note-card, .paper-card, .feature-card, .dashboard-card, .stat-card, .quiz-card, .flashcard-card, .recall-card, .classroom-card, .tutor-card, .faq-item, .about-block, .contact-form, .profile-card, .settings-card) {
   padding: clamp(1rem, .75rem + 1vw, 1.6rem);
+  color: var(--ink);
 }
 
 #root .app-layout :where(.card, .content-card, .resource-card, .note-card, .paper-card, .feature-card, .dashboard-card, .stat-card, .quiz-card, .flashcard-card, .recall-card, .classroom-card, .tutor-card) :where(h2, h3, h4) {
@@ -237,8 +238,8 @@
 }
 
 #root .app-layout {
-  background: var(--background);
   color: var(--ink);
+  background: var(--surface-page);
 }
 
 #root .app-layout :where(main, .page-content, .page-container, .content-container) {
@@ -249,9 +250,7 @@
   background: var(--soft);
 }
 
-#root .app-layout :where(.card, .content-card, .resource-card, .note-card, .paper-card, .feature-card, .dashboard-card, .stat-card, .quiz-card, .flashcard-card, .recall-card, .classroom-card, .tutor-card, .faq-item, .about-block, .contact-form, .profile-card, .settings-card) {
-  color: var(--ink);
-}
+
 
 
 
@@ -381,10 +380,10 @@
   min-width: 0;
   overflow: hidden;
   border: 1px solid var(--line);
-  border-radius: var(--r-lg);
   background: var(--paper);
   box-shadow: var(--shadow-card);
   transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+  border-radius: 30px 30px 30px 7px;
 }
 
 .app-layout .resource-card:hover,
@@ -646,13 +645,7 @@
   }
 }
 
-.app-layout .resource-card,
-.app-layout .notes-card,
-.app-layout .blog-post-card,
-.app-layout .team-card,
-.app-layout .contributor-card {
-  border-radius: 30px 30px 30px 7px;
-}
+
 
 .app-layout .resource-card:nth-child(4n + 2),
 .app-layout .notes-card:nth-child(4n + 2),
@@ -1695,10 +1688,12 @@ body.dark-mode .app-layout .curriculum-node-linked-group {
 
 #root .app-layout :where(.btn-sm, .button-sm, .btn-small, .button-small) {
   border-radius: var(--radius-control-small);
+  min-height: 32px;
 }
 
 #root .app-layout :where(.btn-lg, .button-lg, .btn-large, .button-large) {
   border-radius: var(--radius-control-large);
+  min-height: 44px;
 }
 
 #root .app-layout :where(.chip-button, .filter-chip, .tab-pill, .segmented-control button, .pagination-pill) {
@@ -1709,19 +1704,13 @@ body.dark-mode .app-layout .curriculum-node-linked-group {
   min-height: 38px;
 }
 
-#root .app-layout :where(.btn-sm, .button-sm, .btn-small, .button-small) {
-  min-height: 32px;
-}
 
-#root .app-layout :where(.btn-lg, .button-lg, .btn-large, .button-large) {
-  min-height: 44px;
-}
+
+
 
 
 /* Page spacing and visual rhythm. */
-#root .app-layout {
-  background: var(--surface-page);
-}
+
 
 #root .app-layout main {
   background: var(--surface-page);

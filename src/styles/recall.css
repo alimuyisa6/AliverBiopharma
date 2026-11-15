@@ -1,11 +1,17 @@
 /* src/styles/recall.css */
 
 .recall-page {
-  width: min(var(--page-shell-max-width), calc(100% - (var(--page-gutter-x) * 2)));
-  max-width: var(--page-shell-max-width);
   margin: 0 auto;
   padding: var(--page-space-top) 0 var(--page-space-bottom);
+  min-width: 0;
+  margin-inline: auto;
+  padding-block: var(--page-space-top) var(--page-space-bottom);
+  padding-inline: 0;
   box-sizing: border-box;
+  max-width: none;
+  width: 100%;
+  border-radius: 0;
+  background: var(--primary-light);
 }
 
 .recall-page-section {
@@ -16,7 +22,11 @@
 }
 
 .recall-page-header {
-  margin-bottom: var(--section-space-compact, var(--section-space-y-compact));
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+  margin-bottom: var(--space-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--primary-light);
 }
 
 .recall-page-title {
@@ -31,11 +41,12 @@
 }
 
 .recall-page-intro {
-  max-width: var(--max-width);
   margin: 0;
   color: var(--text-secondary);
   font-family: var(--font-reading);
-  font-size: var(--text-base);
+  max-width: 58ch;
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
   line-height: var(--leading-relaxed);
 }
 
@@ -120,8 +131,8 @@
 
 .recall-intro-card {
   margin-bottom: var(--content-gap);
-  padding: var(--space-8) var(--card-padding-x);
   text-align: center;
+  padding: var(--space-5);
 }
 
 .recall-intro-icon {
@@ -246,8 +257,8 @@
 .recall-cards-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--content-gap-compact);
   margin-bottom: var(--section-space-y-compact);
+  gap: var(--space-3);
 }
 
 .recall-stat-card-inner {
@@ -877,15 +888,7 @@
 
 
 
-.recall-page {
-  width: min(var(--page-shell-max-width), calc(100% - (var(--page-gutter-x) * 2)));
-  max-width: var(--page-shell-max-width);
-  min-width: 0;
-  margin-inline: auto;
-  padding-block: var(--page-space-top) var(--page-space-bottom);
-  padding-inline: 0;
-  box-sizing: border-box;
-}
+
 
 .recall-page-section,
 .recall-tab-fullscreen-content {
@@ -947,53 +950,74 @@
 
 
 /* Recall resource page: concise intro and consistent practice surfaces. */
-.recall-page { background: var(--soft); border-radius: var(--radius-lg); }
-.recall-page-header { padding: clamp(1rem, 2.5vw, 1.5rem); margin-bottom: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--primary-light); }
-.recall-page-intro { max-width: 58ch; margin-top: var(--space-2); font-size: var(--text-sm); line-height: var(--leading-relaxed); }
-.recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card { border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--white); box-shadow: 0 0.25rem 0.75rem var(--shadow-subtle); }
-.recall-intro-card { padding: var(--space-5); }
-.recall-cards-grid { gap: var(--space-3); }
-body.dark-mode .recall-page { background: var(--dark-background); }
-body.dark-mode .recall-page-header, body.dark-mode .recall-intro-card, body.dark-mode .recall-question-card, body.dark-mode .recall-feedback-card, body.dark-mode .recall-report-card { border-color: var(--dark-border); background: var(--dark-surface); }
+
+
+
+.recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  box-shadow: none;
+}
+
+
+body.dark-mode .recall-page {
+  background: var(--dark-background);
+  color: var(--dark-text);
+}
+body.dark-mode .recall-page-header, body.dark-mode .recall-intro-card, body.dark-mode .recall-question-card, body.dark-mode .recall-feedback-card, body.dark-mode .recall-report-card {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+}
 
 
 /* Recall uses solid backgrounds and one shared style for feature icons. */
-.recall-page { background: var(--soft); }
-.recall-page-header { background: var(--primary-light); }
-.recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card { background: var(--white); box-shadow: none; }
-.recall-intro-icon, .recall-due-banner-icon, .recall-report-icon { display: inline-grid; place-items: center; width: 2.75rem; height: 2.75rem; border-radius: 50%; background: var(--soft); color: var(--primary); }
-body.dark-mode .recall-page { background: var(--night-900); }
-body.dark-mode .recall-page-header { background: var(--dark-surface); }
+
+
+
+.recall-intro-icon, .recall-due-banner-icon, .recall-report-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  color: var(--primary);
+  background: var(--surface-subtle);
+}
+
+body.dark-mode .recall-page-header {
+  background: var(--bg-card);
+}
 
 
 /* Flat recall surfaces with the same light/dark behavior as other resources. */
-.recall-page { background: var(--soft); }
-.recall-page-header { background: var(--primary-light); }
-body.dark-mode .recall-page { background: var(--night-900); }
-body.dark-mode .recall-page-header { background: var(--dark-surface); }
+
+
+
+
 
 
 /* Neutral recall canvas; use a quiet neutral header surface. */
-.recall-page { background: var(--bg-page); }
-.recall-page-header { background: var(--surface-subtle); }
-.recall-intro-icon, .recall-due-banner-icon, .recall-report-icon { background: var(--surface-subtle); }
-body.dark-mode .recall-page { background: var(--bg-page); }
-body.dark-mode .recall-page-header { background: var(--bg-card); }
+
+
+
+
+
 
 /* Solid palette section treatment: faint mint band and white recall cards. */
-.recall-page { width: 100%; max-width: none; background: var(--primary-light); border-radius: 0; }
-.recall-page-header { background: var(--primary-light); }
-.recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card { background: var(--white); }
-body.dark-mode .recall-page { background: var(--night-900); }
-body.dark-mode .recall-page-header, body.dark-mode .recall-intro-card, body.dark-mode .recall-question-card, body.dark-mode .recall-feedback-card, body.dark-mode .recall-report-card { background: var(--dark-surface); }
+
+
+
+
+
 
 
 /* Aliver palette: one solid faint mint section with white learning cards. */
-.recall-page { width: 100%; border-radius: 0; background: var(--primary-light); }
-.recall-page-header { background: var(--primary-light); }
-.recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card { background: var(--white); box-shadow: none; }
 
-body.dark-mode .recall-page { background: var(--dark-background); color: var(--dark-text); }
+
+
+
+
 body.dark-mode .recall-page :is(.recall-page-header, .recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .recall-session-card) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
 body.dark-mode .recall-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small) { color: var(--dark-text); }
 body.dark-mode .recall-page :is(.text-muted, .recall-description) { color: var(--dark-text-secondary); }
