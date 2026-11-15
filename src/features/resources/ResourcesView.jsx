@@ -38,6 +38,15 @@ const CONTENT_TYPES = [
     category: 'learn'
   },
   {
+    key: 'question_bank',
+    label: 'Question Bank',
+    description: 'Search questions by lesson, concept and difficulty, then build a custom test.',
+    icon: 'search',
+    route: '/question-bank',
+    color: 'blue',
+    category: 'practise'
+  },
+  {
     key: 'quizzes',
     label: 'Question practice',
     description: 'Check your understanding with questions matched to your selected programme.',
@@ -112,6 +121,7 @@ export default function ResourcesView({ navigate, user, sections }) {
 
   function getBrowseHref(type) {
     if (!user) return '/login';
+    if (type.key === 'question_bank') return '/question-bank';
 
     // The resource card opens the shared curriculum path and carries its
     // resource focus through the level-specific four-stage learning sequence.
