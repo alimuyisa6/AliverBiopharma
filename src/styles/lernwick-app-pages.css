@@ -2243,3 +2243,67 @@ body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.
     padding-inline: 1rem;
   }
 }
+
+
+#root .app-layout :where(.recall-page, .flashcard-page) {
+  width: 100%;
+  max-width: none;
+  color: var(--ink);
+  background: var(--surface-page);
+}
+
+#root .app-layout :where(.recall-page, .flashcard-page) :where(.recall-page-header, .flashcard-page-header) {
+  border: 0;
+  border-radius: 0;
+  background: var(--brand-navy);
+  color: var(--white);
+}
+
+#root .app-layout :where(.recall-page, .flashcard-page) :where(.recall-page-header, .flashcard-page-header) :where(h1, h2, h3, p, small, span) {
+  color: var(--white);
+}
+
+#root .app-layout :where(.recall-page, .flashcard-page) :where(.recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .recall-topic-card, .recall-stat-card, .flashcard, .flashcard-card, .fcd-question-card, .fcd-question-card-static, .flashcard-panel, .flashcard-deck-card) {
+  border: 1px solid var(--border-default);
+  border-radius: var(--app-card-radius);
+  background: var(--surface-card);
+  color: var(--ink);
+  box-shadow: var(--shadow-card);
+}
+
+#root .app-layout :where(.recall-page, .flashcard-page) :where(.recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .recall-topic-card, .recall-stat-card, .flashcard, .flashcard-card, .fcd-question-card, .fcd-question-card-static, .flashcard-panel, .flashcard-deck-card) :where(h2, h3, h4, strong, .fcd-card-heading) {
+  color: var(--ink);
+}
+
+#root .app-layout :where(.recall-page, .flashcard-page) :where(.recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .recall-topic-card, .recall-stat-card, .flashcard, .flashcard-card, .fcd-question-card, .fcd-question-card-static, .flashcard-panel, .flashcard-deck-card) :where(p, small, label, .description) {
+  color: var(--ink-2);
+}
+
+body.dark-mode #root .app-layout :where(.recall-page, .flashcard-page) {
+  background: var(--surface-page);
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout :where(.recall-page, .flashcard-page) :where(.recall-page-header, .flashcard-page-header) {
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout :where(.recall-page, .flashcard-page) :where(.recall-page-header, .flashcard-page-header) :where(h1, h2, h3, p, small, span) {
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout :where(.recall-page, .flashcard-page) :where(.recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .recall-topic-card, .recall-stat-card, .flashcard, .flashcard-card, .fcd-question-card, .fcd-question-card-static, .flashcard-panel, .flashcard-deck-card) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 18%);
+}
+
+body.dark-mode #root .app-layout :where(.recall-page, .flashcard-page) :where(.recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .recall-topic-card, .recall-stat-card, .flashcard, .flashcard-card, .fcd-question-card, .fcd-question-card-static, .flashcard-panel, .flashcard-deck-card) :where(h2, h3, h4, strong, .fcd-card-heading) {
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout :where(.recall-page, .flashcard-page) :where(.recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .recall-topic-card, .recall-stat-card, .flashcard, .flashcard-card, .fcd-question-card, .fcd-question-card-static, .flashcard-panel, .flashcard-deck-card) :where(p, small, label, .description) {
+  color: var(--dark-text-secondary);
+}
