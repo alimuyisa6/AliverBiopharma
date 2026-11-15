@@ -505,3 +505,77 @@ body.dark-mode .home-page .lernwick-newsletter-card .lernwick-newsletter-input i
 body.dark-mode .home-page .lernwick-newsletter-card .lernwick-newsletter-submit {
   color: var(--dark-background) !important;
 }
+
+
+.eduprix-home > .lernwick-pathways {
+  --section-bg: var(--brand-navy);
+  background: var(--section-bg) !important;
+}
+
+.eduprix-home > .lernwick-how {
+  --section-bg: var(--info-color);
+  background: var(--section-bg) !important;
+}
+
+.eduprix-home > .lernwick-connected {
+  --section-bg: var(--dark-background);
+  background: var(--section-bg) !important;
+}
+
+.eduprix-home > :is(.lernwick-pathways,.lernwick-how,.lernwick-connected) .lernwick-section-heading :is(h2,p,.lernwick-note) {
+  color: var(--white) !important;
+}
+
+.eduprix-home :is(.lernwick-pathway-card,.lernwick-step-card,.lernwick-connected-card) {
+  border: 1px solid var(--border-default) !important;
+  border-radius: .9rem !important;
+  background: var(--white) !important;
+  color: var(--brand-navy) !important;
+  box-shadow: var(--shadow-card) !important;
+}
+
+.eduprix-home :is(.lernwick-pathway-card,.lernwick-step-card,.lernwick-connected-card) :is(h3,strong) {
+  color: var(--brand-navy) !important;
+}
+
+.eduprix-home :is(.lernwick-pathway-card,.lernwick-step-card,.lernwick-connected-card) p,
+.eduprix-home .lernwick-connected-link-copy small {
+  color: var(--ink-2) !important;
+}
+
+.eduprix-home .lernwick-pathway-action {
+  background: var(--info-color) !important;
+  color: var(--white) !important;
+}
+
+.eduprix-home .lernwick-connected-link {
+  border: 1px solid var(--border-default) !important;
+  background: var(--surface-subtle) !important;
+  color: var(--brand-navy) !important;
+}
+
+.eduprix-home .lernwick-connected-link-copy strong {
+  color: var(--brand-navy) !important;
+}
+
+body.dark-mode .eduprix-home > :is(.lernwick-pathways,.lernwick-how,.lernwick-connected) {
+  --section-bg: var(--dark-background);
+  background: var(--section-bg) !important;
+}
+
+body.dark-mode .eduprix-home :is(.lernwick-pathway-card,.lernwick-step-card,.lernwick-connected-card) {
+  border-color: var(--dark-border) !important;
+  background: var(--dark-surface-raised) !important;
+  color: var(--dark-text) !important;
+}
+
+body.dark-mode .eduprix-home :is(.lernwick-pathway-card,.lernwick-step-card,.lernwick-connected-card) :is(h3,strong,p),
+body.dark-mode .eduprix-home .lernwick-connected-link-copy :is(strong,small) {
+  color: var(--dark-text) !important;
+}
+
+body.dark-mode .eduprix-home .lernwick-connected-link {
+  border-color: var(--dark-border) !important;
+  background: var(--dark-surface) !important;
+  color: var(--dark-text) !important;
+}
