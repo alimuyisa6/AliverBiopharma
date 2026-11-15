@@ -23,6 +23,10 @@
   --advertise-slot-media-min-width: 18rem;
   --advertise-slot-border-width: 1px;
   --advertise-slot-hover-offset: 2px;
+  --advertising-illustration-radius: var(--radius-lg);
+  --advertising-illustration-float-distance: var(--space-3);
+  --advertising-illustration-float-duration: 3.2s;
+  --advertising-illustration-drift-duration: 4.6s;
 }
 
 
@@ -127,11 +131,12 @@
   overflow: hidden;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(var(--advertise-width-wide), 0.8fr);
-  gap: var(--space-20);
   align-items: center;
-  max-width: var(--max-width);
   margin: 0 auto;
   padding: var(--space-24) var(--space-8);
+  max-width: var(--ui-content-max-width, var(--max-width));
+  gap: var(--ui-content-gap, var(--content-gap));
+  padding-block: var(--ui-section-space-y, var(--section-space-y));
 }
 
 .advertise-hero::after {
@@ -216,6 +221,7 @@
 .advertise-benefits,
 .advertise-process {
   padding: var(--space-20) var(--space-6);
+  padding-block: var(--ui-section-space-y, var(--section-space-y));
 }
 
 .advertise-programmes {
@@ -359,8 +365,8 @@
 }
 
 .advertise-process-heading {
-  max-width: var(--max-width);
   margin: 0 auto;
+  max-width: var(--ui-content-max-width, var(--max-width));
 }
 
 .advertise-process-heading h2 {
@@ -437,6 +443,7 @@
   min-height: 100vh;
   padding: var(--space-12) var(--space-6) var(--space-20);
   background: var(--section-tint);
+  padding-inline: var(--ui-page-gutter-x, var(--page-gutter-x));
 }
 
 .advertise-create-header,
@@ -539,10 +546,10 @@
 .advertise-create-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) var(--advertise-width-wide);
-  gap: var(--space-6);
   max-width: var(--content-max-wide);
   margin: var(--space-8) auto 0;
   align-items: start;
+  gap: var(--ui-content-gap, var(--content-gap));
 }
 
 .advertise-create-form {
@@ -1571,23 +1578,20 @@
 .advertise-programmes,
 .advertise-benefits,
 .advertise-process { padding-inline: var(--ui-page-gutter-x, var(--page-gutter-x)); }
-.advertise-hero { max-width: var(--ui-content-max-width, var(--max-width)); gap: var(--ui-content-gap, var(--content-gap)); padding-block: var(--ui-section-space-y, var(--section-space-y)); }
-.advertise-programmes,
-.advertise-benefits,
-.advertise-process { padding-block: var(--ui-section-space-y, var(--section-space-y)); }
+
+
 .advertise-programme-list,
 .advertise-benefit-list { gap: var(--ui-content-gap, var(--content-gap)); max-width: var(--ui-content-max-width, var(--max-width)); }
 .advertise-programme,
 .advertise-benefit,
 .advertise-process-note { padding: var(--ui-card-padding-y, var(--card-padding-y)) var(--ui-card-padding-x, var(--card-padding-x)); }
-.advertise-process-heading { max-width: var(--ui-content-max-width, var(--max-width)); }
-.advertise-create-page,
-.advertise-payment-page { padding-inline: var(--ui-page-gutter-x, var(--page-gutter-x)); }
+
+
 .advertise-create-layout,
 .advertise-create-header,
 .advertise-payment-header,
 .advertise-create-progress { max-width: var(--ui-content-max-width, var(--content-max-wide)); }
-.advertise-create-layout { gap: var(--ui-content-gap, var(--content-gap)); }
+
 @media (max-width: 768px) {
   .advertise-hero { gap: var(--ui-content-gap-compact, var(--content-gap-compact)); }
 }
@@ -1601,17 +1605,34 @@ html[data-ui-surface="flat"] .advertise-create-form { box-shadow: var(--shadow-n
 .ad-slot { width: 100%; margin: var(--space-8) 0; }
 .ad-slot-loading { min-height: var(--space-20); display: flex; align-items: center; justify-content: center; }
 .ad-slot-label { display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-2); font: var(--weight-semibold) var(--text-xs)/var(--leading-normal) var(--font-mono); text-transform: uppercase; letter-spacing: var(--tracking-eyebrow); color: var(--text-secondary); }
-.ad-slot-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(var(--advertise-slot-media-min-width), 1fr); overflow: hidden; border: var(--advertise-slot-border-width) solid var(--border-default); border-radius: var(--radius-lg); background: var(--bg-card); color: inherit; text-decoration: none; box-shadow: var(--shadow-sm); transition: transform var(--duration-smooth) var(--ease-standard), box-shadow var(--duration-smooth) var(--ease-standard), border-color var(--duration-smooth) var(--ease-standard); }
-.ad-slot-card { cursor: default; }
+.ad-slot-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(var(--advertise-slot-media-min-width), 1fr);
+  overflow: hidden;
+  border: var(--advertise-slot-border-width) solid var(--border-default);
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  color: inherit;
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--duration-smooth) var(--ease-standard), box-shadow var(--duration-smooth) var(--ease-standard), border-color var(--duration-smooth) var(--ease-standard);
+  cursor: default;
+}
+
 .ad-slot-cta {
   min-height: 2.75rem;
   padding: var(--space-2) var(--space-4);
   border: 1px solid var(--primary);
   border-radius: var(--radius-button);
   background: var(--primary);
-  color: var(--white);
   text-decoration: none;
   transition: background-color var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: fit-content;
+  font-weight: var(--weight-bold);
+  color: var(--primary);
 }
 .ad-slot-cta:hover {
   border-color: var(--primary-dark);
@@ -1628,17 +1649,12 @@ html[data-ui-surface="flat"] .advertise-create-form { box-shadow: var(--shadow-n
 .ad-slot-advertiser { font: var(--weight-semibold) var(--text-xs)/var(--leading-normal) var(--font-mono); color: var(--text-secondary); }
 .ad-slot-headline { margin: 0; font-size: clamp(var(--text-lg), 2vw, var(--text-2xl)); line-height: var(--leading-tight); }
 .ad-slot-body { margin: 0; color: var(--text-secondary); line-height: var(--leading-relaxed); }
-.ad-slot-cta { display: inline-flex; align-items: center; gap: var(--space-2); width: fit-content; font-weight: var(--weight-bold); color: var(--primary); }
+
 @media (max-width: 700px) { .ad-slot-card { grid-template-columns: 1fr; } .ad-slot-content { padding: var(--space-5); } }
 
 
 /* Original animated SVG artwork for the homepage advertising section. */
-:root {
-  --advertising-illustration-radius: var(--radius-lg);
-  --advertising-illustration-float-distance: var(--space-3);
-  --advertising-illustration-float-duration: 3.2s;
-  --advertising-illustration-drift-duration: 4.6s;
-}
+
 
 
 .advertising-reach-illustration {
