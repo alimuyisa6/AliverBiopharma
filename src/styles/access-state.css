@@ -17,16 +17,19 @@
   max-width: var(--access-state-card-max-width);
   padding: var(--card-padding-y-spacious) var(--card-padding-x-spacious);
   text-align: center;
-  background: var(--surface-card);
   border: 1px solid var(--border-default);
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-subtle);
+  border-color: var(--line);
+  border-radius: var(--r-xl);
+  background: var(--paper);
+  box-shadow: var(--shadow-card);
+  color: var(--ink);
 }
 
 .pending-approval-icon,
 .access-denied-icon {
   font-size: var(--text-3xl);
   margin-bottom: var(--space-4);
+  color: var(--primary)-deep);
 }
 
 .pending-approval-icon {
@@ -40,6 +43,8 @@
 .pending-approval-title,
 .access-denied-title {
   margin-bottom: var(--text-gap-title);
+  color: var(--ink);
+  font-family: var(--f-display);
 }
 
 .pending-approval-text,
@@ -70,20 +75,9 @@ body.dark-mode .access-state :is(h1, h2, h3, h4, p, small) { color: var(--dark-t
 body.dark-mode .access-state :is(.description, .text-muted) { color: var(--dark-text-secondary); }
 
 
-.pending-approval-card,
-.access-denied-card {
-  border-color: var(--line);
-  border-radius: var(--r-xl);
-  background: var(--paper);
-  box-shadow: var(--shadow-card);
-  color: var(--ink);
-}
 
-.pending-approval-title,
-.access-denied-title {
-  color: var(--ink);
-  font-family: var(--f-display);
-}
+
+
 
 .pending-approval-text,
 .access-denied-text,
@@ -91,7 +85,4 @@ body.dark-mode .access-state :is(.description, .text-muted) { color: var(--dark-
   color: var(--ink-2);
 }
 
-.pending-approval-icon,
-.access-denied-icon {
-  color: var(--primary)-deep);
-}
+

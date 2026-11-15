@@ -12,6 +12,8 @@
   overflow: hidden;
   border: 3px solid var(--border-default);
   position: relative;
+  border-color: var(--line-2);
+  background: var(--soft);
 }
 
 .profile-picture-image {
@@ -26,18 +28,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg-card-hover);
-  color: var(--text-muted);
   font-size: var(--text-2xl);
+  background: var(--soft);
+  color: var(--ink-3);
 }
 
 .profile-picture-overlay {
   position: absolute;
   inset: 0;
-  background: var(--surface-overlay);
   display: flex;
   align-items: center;
   justify-content: center;
+  background: var(--dark-overlay-45);
 }
 
 .profile-picture-actions {
@@ -51,9 +53,9 @@
 }
 
 .profile-picture-error {
-  color: var(--danger);
   font-size: var(--text-xs);
   margin-top: var(--space-2);
+  color: var(--primary)-deep);
 }
 
 body.dark-mode .profile-picture-frame,
@@ -61,20 +63,10 @@ body.dark-mode .profile-picture-upload,
 body.dark-mode .profile-picture-placeholder { background: var(--dark-surface-raised); color: var(--dark-text); border-color: var(--dark-border); }
 
 
-.profile-picture-wrapper {
-  border-color: var(--line-2);
-  background: var(--soft);
-}
 
-.profile-picture-placeholder {
-  background: var(--soft);
-  color: var(--ink-3);
-}
 
-.profile-picture-overlay {
-  background: var(--dark-overlay-45);
-}
 
-.profile-picture-error {
-  color: var(--primary)-deep);
-}
+
+
+
+
