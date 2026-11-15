@@ -37,18 +37,14 @@
   width: 100%;
   margin-inline: auto;
   min-width: 0;
+  padding-top: 0;
 }
 
 .flashcard-subject-section {
   margin-top: 0;
 }
 
-.flashcard-subject-section,
-.notes-page,
-.quiz-page-section,
-.recall-page-section {
-  padding-top: 0;
-}
+
 
 .flashcard-title,
 .notes-page-title,
@@ -64,7 +60,12 @@
 
 .notes-page-title {
   margin-inline: auto;
-  text-align: center;
+  max-width: 20ch;
+  margin: 0;
+  text-align: left;
+  font-size: clamp(2rem, 4.4vw, 3.25rem);
+  line-height: 1.08;
+  text-wrap: balance;
 }
 
 .flashcard-title {
@@ -111,15 +112,32 @@
 
 .notes-toolbar {
   margin-top: var(--content-gap);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--soft);
 }
 
 .notes-grid {
   margin-top: var(--content-gap);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
 }
 
 .notes-curriculum-context,
 .notes-pathway {
   margin-top: var(--content-gap);
+  border: 1px solid var(--line);
+  border-bottom-width: 3px;
+  border-radius: 1.25rem;
+  background: var(--white);
+  box-shadow: 0 0.5rem 1.5rem var(--primary-ring);
 }
 
 .quiz-section-heading {
@@ -142,6 +160,7 @@
   background: var(--bg-card);
   box-shadow: var(--shadow-sm);
   overflow: hidden;
+  width: min(var(--page-shell-max-width), calc(100% - (var(--page-gutter-x) * 2)));
 }
 
 .pp-hero,
@@ -239,12 +258,15 @@
   padding: 0 var(--page-gutter-x);
   margin-inline: 0;
   box-sizing: border-box;
+  margin-top: 0;
+  background: var(--brand-mint-soft);
 }
 
 .notes-page-shell > .notes-page {
+  box-sizing: border-box;
   width: min(var(--page-shell-max-width), 100%);
   margin-inline: auto;
-  box-sizing: border-box;
+  padding-inline: 0;
 }
 .notes-page {
   padding-top: var(--page-space-top);
@@ -255,19 +277,19 @@
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  width: min(100%, var(--content-page-search-max-width));
-  min-height: var(--content-page-search-height);
   padding: 0 var(--space-3);
-  border: 1px solid var(--border-default);
-  border-radius: var(--radius-md);
-  background: var(--bg-card);
   box-shadow: var(--shadow-sm);
   transition: border-color var(--ease-fast), box-shadow var(--ease-fast);
+  width: min(100%, 34rem);
+  min-height: 3rem;
+  border: 1px solid var(--line);
+  border-radius: 0.875rem;
+  background: var(--white);
 }
 
 .notes-search:focus-within {
-  border-color: var(--border-focus);
-  box-shadow: var(--shadow-focus);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-ring);
 }
 
 .notes-search > svg {
@@ -277,14 +299,15 @@
 
 .notes-search input {
   flex: 1;
-  min-width: 0;
   height: var(--content-page-search-input-height);
   padding: 0;
   border: 0;
   outline: 0;
   background: transparent;
-  color: var(--text-main);
   font: inherit;
+  min-width: 0;
+  min-height: 2.875rem;
+  color: var(--text-main);
 }
 
 .notes-search input::placeholder {
@@ -336,15 +359,9 @@
 
 /* Notes use the same fixed-header clearance as the other standard pages. */
 
-.notes-page-shell {
-  margin-top: 0;
-}
 
-.notes-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
-  gap: var(--space-4);
-}
+
+
 
 .notes-card {
   min-height: 0;
@@ -373,21 +390,22 @@
 }
 
 .notes-card-footer {
-  display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  align-items: stretch;
-  gap: var(--space-2);
   min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
 }
 
 .notes-card-meta {
   min-width: 0;
-  color: var(--text-muted);
   font-size: var(--text-2xs);
-  line-height: var(--leading-tight);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: var(--text-secondary);
+  line-height: 1.5;
 }
 
 .notes-card .btn {
@@ -461,9 +479,7 @@
 
 /* The outer Past Papers surface respects the global viewport gutter.
    Hero and main sections keep their own internal padding for content. */
-.pp-page {
-  width: min(var(--page-shell-max-width), calc(100% - (var(--page-gutter-x) * 2)));
-}
+
 
 
 .notes-page-heading {
@@ -472,6 +488,7 @@
   align-items: stretch;
   gap: var(--space-4);
   margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  background: var(--brand-mint-soft);
 }
 .notes-page-intro {
   position: relative;
@@ -491,14 +508,7 @@
   letter-spacing: 0.09em;
   text-transform: uppercase;
 }
-.notes-page-title {
-  max-width: 20ch;
-  margin: 0;
-  text-align: left;
-  font-size: clamp(2rem, 4.4vw, 3.25rem);
-  line-height: 1.08;
-  text-wrap: balance;
-}
+
 .notes-page-description {
   max-width: 66ch;
   margin-top: var(--space-3);
@@ -506,14 +516,7 @@
   font-size: clamp(1rem, 1.4vw, 1.125rem);
   line-height: 1.7;
 }
-.notes-curriculum-context,
-.notes-pathway {
-  border: 1px solid var(--line);
-  border-bottom-width: 3px;
-  border-radius: 1.25rem;
-  background: var(--white);
-  box-shadow: 0 0.5rem 1.5rem var(--primary-ring);
-}
+
 .notes-curriculum-context {
   padding: clamp(1.125rem, 3vw, 1.75rem);
 }
@@ -538,54 +541,21 @@
   background: var(--white);
   transform: translateY(-1px);
 }
-.notes-toolbar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
-  padding: var(--space-4);
-  border: 1px solid var(--line);
-  border-radius: 1rem;
-  background: var(--soft);
-}
-.notes-search {
-  width: min(100%, 34rem);
-  min-height: 3rem;
-  border: 1px solid var(--line);
-  border-radius: 0.875rem;
-  background: var(--white);
-}
-.notes-search:focus-within {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px var(--primary-ring);
-}
-.notes-search input {
-  min-width: 0;
-  min-height: 2.875rem;
-  color: var(--text-main);
-}
+
+
+
+
 .notes-result-count {
   color: var(--text-secondary);
 }
-.notes-grid {
-  gap: clamp(1rem, 2vw, 1.5rem);
-}
+
 .notes-grid > * {
   border-color: var(--primary-light);
   border-radius: 1.25rem;
   box-shadow: 0 0.5rem 1.5rem var(--primary-ring);
 }
-.notes-card-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
-}
-.notes-card-meta {
-  color: var(--text-secondary);
-  line-height: 1.5;
-}
+
+
 .notes-page :is(button, a, input):focus-visible {
   outline: 3px solid var(--primary);
   outline-offset: 3px;
@@ -668,15 +638,9 @@ body.dark-mode .notes-search {
   padding-inline: var(--page-gutter-x);
 }
 
-.notes-page-shell {
-  background: var(--brand-mint-soft);
-}
 
-.notes-page-shell > .notes-page {
-  width: min(var(--page-shell-max-width), 100%);
-  margin-inline: auto;
-  padding-inline: 0;
-}
+
+
 
 .flashcard-deck-card,
 .notes-curriculum-context,
@@ -700,9 +664,7 @@ body.dark-mode .notes-search {
   color: var(--primary);
 }
 
-.notes-page-heading {
-  background: var(--brand-mint-soft);
-}
+
 
 .notes-pathway-item,
 .notes-card {
