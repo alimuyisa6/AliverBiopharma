@@ -1,0 +1,2 @@
+create index if not exists lab_cases_author_id_idx on public.lab_cases(author_id) where author_id is not null;
+create index if not exists lab_cases_reviewer_id_idx on public.lab_cases(reviewer_id) where reviewer_id is not null;
