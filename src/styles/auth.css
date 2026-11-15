@@ -28,13 +28,14 @@
 
 .auth-brand-panel {
   position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
   padding: var(--auth-brand-padding-y) var(--auth-brand-padding-x);
   color: var(--white);
-  background: var(--brand-navy);
+  background: var(--text-main);
 }
 
 .auth-brand-panel::before,
@@ -160,15 +161,22 @@
 }
 
 .auth-form-panel {
+  position: relative;
+  isolation: isolate;
   display: flex;
   align-items: center;
   justify-content: center;
   min-width: 0;
+  overflow: hidden;
   padding: var(--auth-panel-padding-y) var(--auth-panel-padding-x);
   background: var(--auth-surface);
 }
 
 .auth-form-container {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  overflow: hidden;
   width: 100%;
   max-width: var(--auth-form-max-width);
 }
@@ -665,10 +673,7 @@ body.dark-mode {
   --auth-text-faint: var(--grey-500);
 }
 
-.auth-brand-panel {
-  isolation: isolate;
-  background: var(--text-main);
-}
+
 
 .auth-login-block {
   max-width: 28rem;
@@ -748,17 +753,9 @@ body.dark-mode {
   }
 }
 
-.auth-form-panel {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  background: var(--auth-surface);
-}
 
-.auth-form-container {
-  position: relative;
-  z-index: 1;
-}
+
+
 
 .auth-form-container > * {
   position: relative;
@@ -820,11 +817,7 @@ body.dark-mode {
   }
 }
 
-.auth-form-container {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-}
+
 
 .auth-form-container > .auth-form-watermark {
   position: absolute;

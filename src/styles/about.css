@@ -18,6 +18,7 @@
   min-height: 46vh;
   padding: var(--space-12) var(--space-5);
   background: var(--primary-light);
+  color: var(--ink);
   text-align: center;
 }
 
@@ -51,6 +52,7 @@
 
 .about-section {
   padding-block: var(--space-12);
+  background-color: var(--bg-page, var(--background));
 }
 
 .about-content-wrap {
@@ -474,19 +476,14 @@ body.dark-mode .contact-page :is(.text-muted, .contact-description) { color: var
 body.dark-mode .contact-page :is(input, select, textarea) { background: var(--dark-background); color: var(--dark-text); border-color: var(--dark-border); }
 body.dark-mode .contact-page :is(input, textarea)::placeholder { color: var(--dark-text-secondary); }
 
-.about-hero {
-  background-color: var(--primary-light);
-  color: var(--ink);
-}
+
 
 .about-hero-title,
 .about-hero-subtext {
   color: var(--ink);
 }
 
-.about-section {
-  background-color: var(--bg-page, var(--background));
-}
+
 
 body.dark-mode .about-hero {
   background-color: var(--dark-surface);
