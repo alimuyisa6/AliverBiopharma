@@ -5,6 +5,7 @@ import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 import Spinner from '../components/Spinner/Spinner';
 import Icon from '../components/Icon/Icon';
 import LearningJourney from '../components/LearningJourney/LearningJourney';
+import InteractiveSymbolExplorer from '../components/Curriculum/InteractiveSymbolExplorer';
 import { getSubscriptionPath, isPremiumAccessError, redirectToSubscription } from '../utils/subscriptionNavigation';
 import { getCurriculumNode, getCurriculumNodeByPath, getCurriculumTree } from '../api/curriculumNavigation';
 
@@ -39,7 +40,7 @@ const RESOURCE_LABELS = {
   'past-papers': 'Past Papers'
 };
 
-function renderBlockContent(block) {
+function renderBlockContent(block, node) {
   const content = block?.content || '';
 
   if (block.content_type === 'image') {
@@ -68,7 +69,8 @@ function renderBlockContent(block) {
   if (block.content_type === 'interactive') {
     return (
       <div className="curriculum-node-block-interactive">
-        {content ? <p>{content}</p> : <p>Interactive activities will be added here when they are ready.</p>}
+        {content && <p>{content}</p>}
+        <InteractiveSymbolExplorer config={block.interactive_config || {}} />
       </div>
     );
   }
@@ -76,7 +78,8 @@ function renderBlockContent(block) {
   if (block.content_type === 'quiz_ref') {
     return (
       <div className="curriculum-node-block-quiz">
-        {content ? <p>{content}</p> : <p>Answer a few questions to check what you’ve learned.</p>}
+        {content ? <p>{content}</p> : <p>Check your understanding with questions connected to this lesson.</p>}
+        {node?.id && <Link to={`/quiz?unit_id=${encodeURIComponent(node.id)}&activity_scope=lesson`} className="curriculum-node-question-bank-action">Start lesson quiz <Icon name="arrow-right" /></Link>}
       </div>
     );
   }
