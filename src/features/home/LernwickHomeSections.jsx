@@ -175,6 +175,7 @@ const connectedLearningStages = [
     description: 'Use your knowledge in assessment and collaborative learning contexts.',
     links: [
       { label: 'Past papers', detail: 'Work through exam papers', to: '/past-papers', icon: 'file-lines' },
+      { label: 'Clinical simulations', detail: 'Apply knowledge to reviewed patient cases', to: '/clinical-simulations', icon: 'capsules' },
       { label: 'Daily challenges', detail: 'Take a focused knowledge challenge', to: '/challenges', icon: 'flag' },
       { label: 'Classroom', detail: 'Continue learning with your class', to: '/classroom', icon: 'users' }
     ]
