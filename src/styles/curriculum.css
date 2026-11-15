@@ -60,12 +60,14 @@
 .curriculum-card-meta { color: var(--text-muted); font-family: var(--font-mono); font-size: var(--text-xs); line-height: var(--leading-normal); }
 .curriculum-card-tags { display: flex; flex-wrap: wrap; gap: var(--space-1); }
 .curriculum-node-page {
-  width: min(var(--page-shell-max-width), calc(100% - (var(--page-gutter-x) * 2)));
+  width: 100%;
   max-width: none;
   min-width: 0;
   margin-inline: auto;
   padding-block: var(--page-space-top) var(--page-space-bottom);
   box-sizing: border-box;
+  background: var(--soft);
+  border-radius: 0;
 }
 .curriculum-node-page > .breadcrumb {
   width: 100%;
@@ -91,18 +93,48 @@
 .curriculum-node-loading, .curriculum-node-error { min-height: 45vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: var(--stack-gap-tight); }
 .curriculum-node-error h1, .curriculum-node-header h1, .curriculum-node-section-heading h2 { letter-spacing: var(--tracking-tight); }
 .curriculum-node-error p, .curriculum-node-header p { max-width: var(--content-max-compact); }
-.curriculum-node-header { padding: var(--section-space-y-compact) 0 var(--section-space-y-compact); border-bottom: 1px solid var(--border-subtle); }
+.curriculum-node-header {
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid var(--primary-light);
+  border-bottom: 3px solid var(--primary-light);
+  border-radius: var(--radius-lg);
+  background: var(--primary-light);
+}
 .curriculum-node-type, .curriculum-node-kicker { display: block; margin-bottom: var(--space-2); color: var(--primary); font-family: var(--font-mono); font-size: var(--text-xs); font-weight: var(--weight-semibold); line-height: var(--leading-label); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; }
 .curriculum-node-header h1 { margin-bottom: var(--space-3); font-size: var(--text-page-title); font-weight: var(--weight-page-title); line-height: var(--leading-page-title); }
 .curriculum-node-header p { margin-bottom: 0; font-size: var(--text-body-lead); color: var(--text-secondary); }
-.curriculum-node-section { padding-block: var(--section-space-y) ; border-bottom: 1px solid var(--border-subtle); }
 .curriculum-node-section-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-5); }
 .curriculum-node-section-heading h2 { margin: 0; font-size: var(--text-section-title); font-weight: var(--weight-section-title); line-height: var(--leading-section-title); }
 .curriculum-node-count { flex-shrink: 0; color: var(--text-muted); font-size: var(--text-sm); }
 .curriculum-node-children { display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--curriculum-child-min-width), 1fr)); gap: var(--content-gap-compact); }
-.curriculum-node-child, .curriculum-node-resource { display: flex; align-items: center; gap: var(--space-3); min-width: 0; padding: var(--space-4); border: 1px solid var(--border-default); background: var(--bg-card); color: var(--text-main); transition: border-color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard); }
-.curriculum-node-child:hover, .curriculum-node-resource:hover { border-color: var(--border-strong); background: var(--bg-card-hover); }
-.curriculum-node-child-icon { display: grid; place-items: center; width: var(--space-10); height: var(--space-10); flex-shrink: 0; background: var(--soft); color: var(--primary-dark); border-radius: var(--radius-sm); }
+.curriculum-node-child, .curriculum-node-resource {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+  padding: var(--space-4);
+  border: 1px solid var(--primary-light);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  color: var(--text-main);
+  box-shadow: 0 0.35rem 1rem var(--primary-ring);
+  transition: border-color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard);
+}
+.curriculum-node-child:hover, .curriculum-node-resource:hover {
+  border-color: var(--primary);
+  background: var(--white);
+  box-shadow: 0 0.6rem 1.25rem var(--primary-ring);
+}
+.curriculum-node-child-icon {
+  display: grid;
+  place-items: center;
+  width: var(--space-10);
+  height: var(--space-10);
+  flex-shrink: 0;
+  background: var(--soft);
+  color: var(--primary-dark);
+  border-radius: var(--radius-sm);
+}
 .curriculum-node-child-body { display: flex; flex: 1; min-width: 0; flex-direction: column; gap: var(--space-1); }
 .curriculum-node-child-body strong { overflow: hidden; text-overflow: ellipsis; font-size: var(--text-body); line-height: var(--leading-card-title); }
 .curriculum-node-child-body small { color: var(--text-muted); font-size: var(--text-xs); text-transform: capitalize; }
@@ -185,29 +217,53 @@
 .notes-page-title { max-width: 900px; margin-bottom: var(--space-3); letter-spacing: var(--tracking-tight); }
 .notes-page-class { margin-bottom: var(--space-5); color: var(--text-muted); }
 .notes-breadcrumb-segment { display: inline-flex; align-items: center; }
-.notes-curriculum-context { display: flex; align-items: stretch; justify-content: space-between; gap: var(--content-gap); margin-block: var(--section-space-y-compact); padding-block: var(--section-space-y-compact); border-top: 2px solid var(--primary); border-bottom: 1px solid var(--border-subtle); }
+.notes-curriculum-context {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--content-gap);
+  margin-block: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--primary-light);
+  border-left: 3px solid var(--primary);
+  border-radius: var(--radius-md);
+  background: var(--white);
+}
 .notes-context-main { min-width: 0; flex: 1; }
 .notes-context-kicker { margin-bottom: var(--space-2); color: var(--primary); font-size: var(--text-xs); font-weight: var(--weight-semibold); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; }
-.notes-context-description { max-width: var(--content-max-readable); margin: 0 0 var(--space-4); color: var(--text-secondary); line-height: var(--leading-relaxed); }
+.notes-context-description {
+  max-width: var(--content-max-readable);
+  margin: 0 0 var(--space-2);
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+}
 .notes-context-description strong { color: var(--text-main); font-weight: var(--weight-semibold); }
 .notes-context-link { display: inline-flex; align-items: center; gap: var(--space-2); width: fit-content; color: var(--primary); font-size: var(--text-sm); font-weight: var(--weight-semibold); }
 .notes-context-link:hover { color: var(--primary-hover); text-decoration: underline; }
-.notes-context-meta { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; min-width: var(--control-height-lg); padding-left: var(--space-5); border-left: 1px solid var(--border-subtle); }
-.notes-context-meta strong { color: var(--text-main); font-family: var(--font-heading); font-size: var(--text-2xl); line-height: var(--leading-none); }
+.notes-context-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  min-width: 4rem;
+  padding-left: var(--space-4);
+  border-left: 1px solid var(--border-subtle);
+}
+.notes-context-meta strong { color: var(--text-main); font-family: var(--font-heading); font-size: var(--text-xl); line-height: var(--leading-none); }
 .notes-context-meta span { margin-top: var(--space-1); color: var(--text-muted); font-family: var(--font-mono); font-size: var(--text-xs); text-transform: lowercase; }
-.notes-pathway { margin-bottom: var(--section-space-y); }
-.notes-section-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-4); }
+.notes-section-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-2); }
 .notes-section-heading h2 { margin: 0; font-size: var(--text-section-title); letter-spacing: var(--tracking-tight); }
 .notes-section-count { color: var(--text-muted); font-size: var(--text-xs); }
-.notes-pathway-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); border-top: 1px solid var(--border-default); }
+.notes-pathway-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: var(--space-2); border-top: 0; }
 .notes-pathway-item { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); min-width: 0; padding: var(--space-4) 0; border-bottom: 1px solid var(--border-default); color: var(--text-main); }
 .notes-pathway-item + .notes-pathway-item { padding-left: var(--space-5); border-left: 1px solid var(--border-default); }
 .notes-pathway-item span { display: flex; flex-direction: column; min-width: 0; gap: var(--space-1); }
 .notes-pathway-item small { color: var(--text-muted); font-size: var(--text-2xs); text-transform: uppercase; letter-spacing: var(--tracking-wide); }
-.notes-pathway-item strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--text-sm); }
+.notes-pathway-item strong { overflow: hidden; text-overflow: ellipsis; white-space: normal; font-size: var(--text-sm); }
 .notes-pathway-item > svg { flex-shrink: 0; color: var(--primary); }
 .notes-pathway-item:hover strong { color: var(--primary); }
-.notes-toolbar { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--content-gap); margin: var(--section-space-y) 0 var(--section-space-y-compact); padding-bottom: var(--space-3); border-bottom: 1px solid var(--border-default); }
+.notes-toolbar { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--content-gap); margin: var(--space-4) 0 var(--space-3); padding-bottom: var(--space-3); border-bottom: 1px solid var(--border-default); }
 .notes-toolbar-label { display: flex; align-items: baseline; gap: var(--space-3); min-width: 0; }
 .notes-result-count { color: var(--text-muted); font-size: var(--text-2xs); }
 .notes-search { display: flex; align-items: center; gap: var(--space-2); width: min(var(--notes-search-max-width), 100%); min-height: var(--select-control-height); padding: 0 var(--space-3); border: 1px solid var(--border-default); background: var(--bg-card); color: var(--text-muted); }
@@ -216,9 +272,9 @@
 .notes-search input::placeholder { color: var(--text-muted); }
 .notes-search-clear { display: inline-flex; align-items: center; justify-content: center; width: var(--notes-search-clear-size); height: var(--notes-search-clear-size); flex: 0 0 var(--notes-search-clear-size); padding: 0; border: 0; background: transparent; color: var(--text-muted); }
 .notes-search-clear:hover { color: var(--text-main); background: var(--bg-card-hover); }
-.notes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--content-gap); }
-.notes-card { min-width: 0; height: 100%; }
-.notes-card-footer { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); width: 100%; }
+.notes-grid { display: grid; width: min(100%, 66rem); margin-inline: auto; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: var(--space-3); }
+.notes-card { display: flex; min-width: 0; height: 100%; flex-direction: column; gap: var(--space-2); padding: var(--space-4); border: 1px solid var(--primary-light); border-radius: var(--radius-md); background: var(--white); box-shadow: 0 0.25rem 0.75rem var(--primary-ring); }
+.notes-card-footer { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); width: 100%; padding-top: var(--space-3); border-top: 1px solid var(--border-subtle); }
 .notes-card-meta { min-width: 0; overflow: hidden; color: var(--text-muted); font-size: var(--text-2xs); text-overflow: ellipsis; white-space: nowrap; }
 .notes-skeleton-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--content-gap); }
 
@@ -333,17 +389,6 @@
 
 /* Curriculum page hierarchy: alternating low-intensity colour bands and
    pure-white interactive cards. Only the explicit link surface navigates. */
-.curriculum-node-page {
-  background: var(--soft);
-  border-radius: var(--radius-lg);
-}
-.curriculum-node-header {
-  padding: clamp(1.25rem, 3vw, 2rem);
-  border: 1px solid var(--primary-light));
-  border-bottom: 3px solid var(--primary-light);
-  border-radius: var(--radius-lg);
-  background: var(--primary-light);
-}
 .curriculum-node-section {
   margin-block: var(--space-3);
   padding: clamp(1rem, 2.5vw, 1.75rem);
@@ -365,20 +410,6 @@
   width: min(100%, 68rem);
   margin-inline: auto;
 }
-.curriculum-node-child,
-.curriculum-node-resource,
-.curriculum-node-linked-group {
-  border-color: var(--primary-light);
-  border-radius: var(--radius-md);
-  background: var(--white);
-  box-shadow: 0 0.35rem 1rem var(--primary-ring);
-}
-.curriculum-node-child:hover,
-.curriculum-node-resource:hover {
-  background: var(--white);
-  border-color: var(--primary), var(--primary);
-  box-shadow: 0 0.6rem 1.25rem var(--primary-ring);
-}
 .curriculum-node-linked-group:nth-child(3n + 2) { border-top: 3px solid var(--primary); }
 .curriculum-node-linked-group:nth-child(3n) { border-top: 3px solid var(--primary); }
 .curriculum-node-child:focus-visible,
@@ -389,7 +420,7 @@
   outline-offset: 3px;
 }
 body.dark-mode .curriculum-node-page {
-  background: var(--dark-background);
+  background: var(--night-900);
 }
 body.dark-mode .curriculum-node-header {
   border-color: var(--night-500);
@@ -417,28 +448,17 @@ body.dark-mode .curriculum-node-resource:hover {
 
  
 /* Notes index: concise course-style hierarchy and compact white resource cards. */
-.notes-page-shell { background: var(--soft); border-radius: var(--radius-lg); }
-.notes-page-heading { display: grid; gap: var(--space-3); margin-bottom: var(--space-4); padding: clamp(1rem, 2.5vw, 1.5rem); border: 1px solid var(--primary-light); border-radius: var(--radius-lg); background: var(--primary-light); }
+.notes-page-shell { background: var(--bg-page); border-radius: var(--radius-lg); }
+.notes-page-heading { display: grid; gap: var(--space-3); margin-bottom: var(--space-4); padding: clamp(1rem, 2.5vw, 1.5rem); border: 1px solid var(--primary-light); border-radius: var(--radius-lg); background: var(--bg-card); }
 .notes-page-intro { max-width: 48rem; }
 .notes-page-kicker { display: block; margin-bottom: var(--space-2); color: var(--primary); font-family: var(--font-mono); font-size: var(--text-xs); font-weight: var(--weight-semibold); letter-spacing: var(--tracking-eyebrow); }
 .notes-page-description { max-width: 58ch; margin: 0; color: var(--text-secondary); font-size: var(--text-body); line-height: var(--leading-relaxed); }
-.notes-curriculum-context { align-items: center; margin-block: var(--space-3); padding: var(--space-3) var(--space-4); border: 1px solid var(--primary-light); border-left: 3px solid var(--primary); border-radius: var(--radius-md); background: var(--white); }
-.notes-context-description { margin-bottom: var(--space-2); font-size: var(--text-sm); }
-.notes-context-meta { min-width: 4rem; padding-left: var(--space-4); }
-.notes-context-meta strong { font-size: var(--text-xl); }
 .notes-pathway { margin-bottom: var(--space-4); }
-.notes-section-heading { margin-bottom: var(--space-2); }
-.notes-pathway-list { grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: var(--space-2); border-top: 0; }
 .notes-pathway-item, .notes-pathway-item + .notes-pathway-item { min-height: 3.25rem; padding: var(--space-3); border: 1px solid var(--primary-light); border-radius: var(--radius-md); background: var(--white); }
-.notes-pathway-item strong { white-space: normal; }
-.notes-toolbar { margin-top: var(--space-4); margin-bottom: var(--space-3); }
-.notes-grid { width: min(100%, 66rem); margin-inline: auto; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: var(--space-3); }
-.notes-card { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-4); border: 1px solid var(--primary-light); border-radius: var(--radius-md); background: var(--white); box-shadow: 0 0.25rem 0.75rem var(--primary-ring); }
 .notes-card .card-body { padding: 0; }
 .notes-card .card-title { margin: 0; font-size: var(--text-lg); line-height: var(--leading-tight); }
 .notes-card .card-text { display: -webkit-box; overflow: hidden; margin: 0; color: var(--text-secondary); font-size: var(--text-sm); line-height: var(--leading-relaxed); -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
 .notes-card .card-footer { margin-top: auto; padding: 0; }
-.notes-card-footer { padding-top: var(--space-3); border-top: 1px solid var(--border-subtle); }
 .notes-card .btn { min-height: 2.5rem; }
 @media (max-width: 640px) {
   .notes-page-heading { padding: var(--space-4); }
@@ -479,9 +499,6 @@ body.dark-mode .notes-curriculum-context, body.dark-mode .notes-pathway-item, bo
 
 
 /* Notes/curriculum pages should retain the app canvas, not a blue-tinted wash. */
-.notes-page-shell { background: var(--bg-page); }
-.notes-page-heading { background: var(--bg-card); }
-.notes-curriculum-context, .notes-pathway-item, .notes-card { background: var(--bg-card); }
 
 
 /* Curriculum unit/topic rows: uniform icon tile, independent of node type. */
@@ -502,14 +519,9 @@ body.dark-mode .notes-curriculum-context, body.dark-mode .notes-pathway-item, bo
 }
 
 /* Solid palette section treatment: full-width faint blue band with white learning cards. */
-.curriculum-node-page { width: 100%; max-width: none; background: var(--soft); }
-.curriculum-node-child, .curriculum-node-resource { background: var(--white); }
-body.dark-mode .curriculum-node-page { background: var(--night-900); }
 body.dark-mode .curriculum-node-child, body.dark-mode .curriculum-node-resource { background: var(--night-800); }
 
 
-.curriculum-node-child:hover, .curriculum-node-resource:hover { background: var(--white); border-color: var(--primary); }
-.curriculum-node-child-icon { background: var(--soft); color: var(--primary-dark); }
 
 body.dark-mode .curriculum-page { background: var(--dark-background); color: var(--dark-text); }
 body.dark-mode .curriculum-page :is(.curriculum-card, .curriculum-node, .curriculum-panel, .curriculum-level-card, .curriculum-node-child) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
