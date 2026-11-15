@@ -250,15 +250,33 @@
   outline-offset: 3px !important;
 }
 
+body.dark-mode .home-page > .home-stats-section,
+body.dark-mode .home-page > .home-curriculum-section,
+body.dark-mode .home-page > .home-student-section,
+body.dark-mode .home-page > .home-daily-learning-section,
+body.dark-mode .home-page > .home-testimonials-section,
+body.dark-mode .home-page > .home-tutor-section {
+  --section-bg: var(--dark-background);
+}
+body.dark-mode .home-page > .lernwick-pathways,
+body.dark-mode .home-page > .lernwick-how,
+body.dark-mode .home-page > .pricing-section,
+body.dark-mode .home-page > .home-classroom-section,
+body.dark-mode .home-page > .home-newsletter-section {
+  --section-bg: var(--dark-surface);
+}
+body.dark-mode .home-page > .lernwick-connected,
+body.dark-mode .home-page > .home-advertising-section {
+  --section-bg: var(--secondary-light);
+}
 body.dark-mode .home-page > :is(
   .home-stats-section,.lernwick-pathways,.home-curriculum-section,.lernwick-how,
   .lernwick-connected,.home-student-section,.home-daily-learning-section,
   .home-testimonials-section,.pricing-section,.home-classroom-section,
   .home-tutor-section,.home-advertising-section,.home-newsletter-section
 ) {
-  --section-bg: var(--dark-background);
   --section-ink: var(--dark-text);
-  background: var(--dark-background) !important;
+  background: var(--section-bg) !important;
   color: var(--dark-text) !important;
 }
 body.dark-mode .home-page :is(
@@ -269,7 +287,7 @@ body.dark-mode .home-page :is(
   .newsletter-card,.home-snapshot-stack,.dash-strip,.stats-impact-card
 ) {
   border-color: var(--dark-border) !important;
-  background: var(--dark-surface) !important;
+  background: var(--dark-surface-raised) !important;
   color: var(--dark-text) !important;
 }
 body.dark-mode .home-page :is(
@@ -304,7 +322,7 @@ body.dark-mode .home-page .home-continue-learning-row .row-actions {
 }
 body.dark-mode .home-page .lernwick-feature .section-teaser-content,
 body.dark-mode .home-page .lernwick-feature .section-teaser-inner {
-  background: var(--dark-surface) !important;
+  background: var(--dark-surface-raised) !important;
 }
 body.dark-mode .home-page .lernwick-feature .section-teaser-title,
 body.dark-mode .home-page .lernwick-feature .section-subtitle {
