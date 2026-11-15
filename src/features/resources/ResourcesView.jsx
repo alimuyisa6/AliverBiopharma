@@ -17,7 +17,7 @@ const CONTENT_TYPES = [
     icon: 'book-open',
     route: '/notes',
     color: 'blue',
-    category: 'study'
+    category: 'learn'
   },
   {
     key: 'flashcards',
@@ -26,7 +26,7 @@ const CONTENT_TYPES = [
     icon: 'layer-group',
     route: '/flashcards',
     color: 'teal',
-    category: 'study'
+    category: 'practise'
   },
   {
     key: 'pdfs',
@@ -35,16 +35,16 @@ const CONTENT_TYPES = [
     icon: 'file-pdf',
     route: '/pdfs',
     color: 'grey',
-    category: 'reference'
+    category: 'learn'
   },
   {
     key: 'quizzes',
-    label: 'Quizzes',
+    label: 'Question practice',
     description: 'Check your understanding with questions matched to your selected programme.',
     icon: 'clipboard-check',
     route: '/quiz',
     color: 'mint',
-    category: 'assessment'
+    category: 'practise'
   },
   {
     key: 'past_papers',
@@ -53,7 +53,7 @@ const CONTENT_TYPES = [
     icon: 'file-lines',
     route: '/past-papers',
     color: 'emerald',
-    category: 'assessment'
+    category: 'apply'
   },
   {
     key: 'recall',
@@ -62,23 +62,23 @@ const CONTENT_TYPES = [
     icon: 'brain',
     route: '/recall',
     color: 'violet',
-    category: 'practice'
+    category: 'review'
   }
 ];
 
 const FILTERS = [
   { key: 'all', label: 'All' },
-  { key: 'study', label: 'Study materials' },
-  { key: 'practice', label: 'Practice tools' },
-  { key: 'assessment', label: 'Assessments' },
-  { key: 'reference', label: 'Reference materials' }
+  { key: 'learn', label: 'Learn' },
+  { key: 'practise', label: 'Practise' },
+  { key: 'apply', label: 'Apply' },
+  { key: 'review', label: 'Review' }
 ];
 
 const CATEGORY_LABELS = {
-  study: 'Study materials',
-  practice: 'Practice tools',
-  assessment: 'Assessments',
-  reference: 'Reference materials'
+  learn: 'Learn',
+  practise: 'Practise',
+  apply: 'Apply',
+  review: 'Review'
 };
 
 export default function ResourcesView({ navigate, user, sections }) {
@@ -107,8 +107,8 @@ export default function ResourcesView({ navigate, user, sections }) {
 
   const isPharmacy = /pharmacy/i.test(String(levelName));
   const subtitle = isPharmacy
-    ? 'Find notes, flashcards, quizzes, past papers, and recall practice for Pharmacy.'
-    : 'Find Biology notes, flashcards, quizzes, and past papers in one place.';
+    ? 'Learn pharmaceutical science, practise key concepts, apply your knowledge and review what needs strengthening.'
+    : 'Learn core Biology concepts, practise questions, apply your knowledge and review what needs strengthening.';
 
   function getBrowseHref(type) {
     if (!user) return '/login';
@@ -182,7 +182,7 @@ export default function ResourcesView({ navigate, user, sections }) {
 
         <div className="resources-section-head">
           <div>
-            <span className="resources-section-kicker">Study and practise</span>
+            <span className="resources-section-kicker">Learn · Practise · Apply · Review</span>
             <h2 className="resources-section-title">
               Browse resources
               <span className="resources-section-count">{filteredTypes.length}</span>

@@ -460,3 +460,162 @@ body.dark-mode .lernwick-studio-visual--pharmacy::after { border-color: #83c7a2;
 body.dark-mode .lernwick-pathway-image,
 body.dark-mode .lernwick-pathway-card--a-level .lernwick-pathway-image,
 body.dark-mode .lernwick-pathway-card--pharmacy .lernwick-pathway-image { background: var(--dark-surface); }
+
+
+/* Connected learning stages: shared palette tokens only. */
+.lernwick-connected {
+  background: var(--surface-section);
+}
+.lernwick-connected .lernwick-section-heading {
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+.lernwick-connected .lernwick-section-heading > div > p:last-child {
+  max-width: 42rem;
+  color: var(--ink-2);
+  line-height: 1.7;
+}
+.lernwick-connected-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(.75rem, 1.5vw, 1.25rem);
+  align-items: stretch;
+}
+.lernwick-connected-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: clamp(1rem, 1.6vw, 1.4rem);
+  border: 1px solid var(--line);
+  border-top: .25rem solid var(--primary);
+  border-radius: var(--r-lg);
+  background: var(--paper);
+  box-shadow: var(--shadow-card);
+}
+.lernwick-connected-card--practise { border-top-color: var(--secondary-dark); }
+.lernwick-connected-card--apply { border-top-color: var(--accent); }
+.lernwick-connected-card--review { border-top-color: var(--primary-dark); }
+.lernwick-connected-card-heading {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin-bottom: .75rem;
+}
+.lernwick-connected-number {
+  display: grid;
+  width: 2.35rem;
+  height: 2.35rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  font: 700 var(--t-sm)/1 var(--f-display);
+}
+.lernwick-connected-card--practise .lernwick-connected-number {
+  background: var(--secondary-light);
+  color: var(--secondary-dark);
+}
+.lernwick-connected-card--apply .lernwick-connected-number {
+  background: var(--accent-light);
+  color: var(--accent-dark);
+}
+.lernwick-connected-card h3 {
+  color: var(--ink);
+  font: 700 var(--t-lg)/1.2 var(--f-display);
+}
+.lernwick-connected-description {
+  min-height: 4.5rem;
+  margin-bottom: 1rem;
+  color: var(--ink-2);
+  font-size: var(--t-sm);
+  line-height: 1.65;
+}
+.lernwick-connected-links {
+  display: grid;
+  gap: .55rem;
+  margin-top: auto;
+}
+.lernwick-connected-link {
+  display: grid;
+  grid-template-columns: 2.15rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: .6rem;
+  min-width: 0;
+  padding: .7rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--surface-card);
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+.lernwick-connected-link:hover {
+  border-color: var(--primary-border);
+  background: var(--primary-light);
+  transform: translateY(-2px);
+}
+.lernwick-connected-link:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+.lernwick-connected-link-icon {
+  display: grid;
+  width: 2.15rem;
+  height: 2.15rem;
+  place-items: center;
+  border-radius: var(--r-sm);
+  background: var(--primary-light);
+  color: var(--primary-dark);
+}
+.lernwick-connected-link-icon svg,
+.lernwick-connected-link > svg { width: 1rem; height: 1rem; }
+.lernwick-connected-link-copy {
+  display: grid;
+  min-width: 0;
+  gap: .2rem;
+}
+.lernwick-connected-link-copy strong {
+  overflow: hidden;
+  font-size: var(--t-sm);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.lernwick-connected-link-copy small {
+  color: var(--ink-2);
+  font-size: var(--t-xs);
+  line-height: 1.35;
+}
+.lernwick-connected-link > svg {
+  color: var(--primary-dark);
+  transition: transform var(--dur) var(--ease);
+}
+.lernwick-connected-link:hover > svg { transform: translateX(3px); }
+body.dark-mode .lernwick-connected-card {
+  border-color: var(--dark-border);
+  background: var(--dark-surface-raised);
+}
+body.dark-mode .lernwick-connected-card h3,
+body.dark-mode .lernwick-connected-link { color: var(--dark-text); }
+body.dark-mode .lernwick-connected-description,
+body.dark-mode .lernwick-connected .lernwick-section-heading > div > p:last-child,
+body.dark-mode .lernwick-connected-link-copy small { color: var(--dark-text-secondary); }
+body.dark-mode .lernwick-connected-link {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+}
+body.dark-mode .lernwick-connected-link:hover {
+  border-color: var(--dark-primary);
+  background: var(--primary-light);
+}
+@media (max-width: 1100px) {
+  .lernwick-connected-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lernwick-connected-description { min-height: 0; }
+}
+@media (max-width: 620px) {
+  .lernwick-connected-grid { grid-template-columns: minmax(0, 1fr); }
+  .lernwick-connected .lernwick-section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .lernwick-connected-card { padding: 1rem; }
+}
