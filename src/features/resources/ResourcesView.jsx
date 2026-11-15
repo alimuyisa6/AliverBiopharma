@@ -121,6 +121,7 @@ export default function ResourcesView({ navigate, user, sections }) {
 
   function getBrowseHref(type) {
     if (!user) return '/login';
+    if (type.key === 'question_bank') return '/question-bank';
 
     // The resource card opens the shared curriculum path and carries its
     // resource focus through the level-specific four-stage learning sequence.
