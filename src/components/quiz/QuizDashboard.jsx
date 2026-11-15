@@ -1,0 +1,62 @@
+ /* features/quiz/QuizDashboard.jsx */
+import { useEffect, useState } from 'react';
+import { getUserDashboard } from '../../api/cachedClient';
+import Icon from '../../components/Icon/Icon';
+import Skeleton from '../../components/Skeleton/Skeleton';
+
+export default function QuizDashboard({ user, level, class_name }) {
+  const [summary, setSummary] = useState(null);
+
+  useEffect(() => {
+    if (!user) return;
+
+    getUserDashboard().then(setSummary).catch(() => {});
+  }, [user]);
+
+  if (!summary) {
+    return (
+      <div className="quiz-dashboard-loading">
+        <Skeleton height={100} />
+      </div>
+    );
+  }
+
+  const { platform, quiz, achievements } = summary;
+  return (
+    <div className="quiz-dashboard">
+      <h3 className="quiz-section-heading font-poppins">Your learning dashboard</h3>
+
+      <div className="grid grid-cols-3">
+        <div className="stat-card card-surface-subtle card-elevation-none card-density-comfortable">
+          <Icon name="trophy" className="stat-icon stat-icon-accent" />
+          <div className="stat-value font-poppins">{platform.rank_title}</div>
+          <div className="stat-label font-source-sans">Rank</div>
+        </div>
+
+        <div className="stat-card card-surface-subtle card-elevation-none card-density-comfortable">
+          <Icon name="fire" className="stat-icon stat-icon-accent" />
+          <div className="stat-value font-poppins">{platform.current_streak} days</div>
+          <div className="stat-label font-source-sans">Streak</div>
+        </div>
+
+        <div className="stat-card card-surface-subtle card-elevation-none card-density-comfortable">
+          <Icon name="medal" className="stat-icon stat-icon-accent" />
+          <div className="stat-value font-poppins">{achievements?.earned_count || 0}</div>
+          <div className="stat-label font-source-sans">Badges</div>
+        </div>
+
+        <div className="stat-card card-surface-subtle card-elevation-none card-density-comfortable">
+          <Icon name="microscope" className="stat-icon stat-icon-secondary" />
+          <div className="stat-value font-poppins">{quiz.blocks_completed}</div>
+          <div className="stat-label font-source-sans">Question sets completed</div>
+        </div>
+
+        <div className="stat-card card-surface-subtle card-elevation-none card-density-comfortable">
+          <Icon name="bullseye" className="stat-icon stat-icon-accent" />
+          <div className="stat-value font-poppins">{quiz.recent_pass_rate}%</div>
+          <div className="stat-label font-source-sans">Recent pass rate</div>
+        </div>
+      </div>
+    </div>
+  );
+}

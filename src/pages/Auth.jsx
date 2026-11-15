@@ -1,0 +1,936 @@
+ /* pages/Auth.jsx */
+
+import { useState, useEffect, useCallback, useRef } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+import { signup, getCurriculumLevels } from '../api/client';
+import Input from '../components/Input/Input';
+import Button from '../components/Button/Button';
+import Icon from '../components/Icon/Icon';
+import Spinner from '../components/Spinner/Spinner';
+import { useI18n } from '../contexts/I18nContext';
+import { LoginPage } from '../components/ui/sign-in-page';
+
+const TURNSTILE_SITE_KEY = '0x4AAAAAADknPpI_XcH1KfPe';
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+function validatePasswordRules(password) {
+  if (!password || password.length < 10) return 'Use at least 10 characters for your password.';
+  if (password.length > 128) return 'Use no more than 128 characters for your password.';
+
+  const hasUpper = /[A-Z]/.test(password);
+  const hasLower = /[a-z]/.test(password);
+  const hasDigit = /[0-9]/.test(password);
+  const hasSpecial = /[^A-Za-z0-9]/.test(password);
+  const categories = [hasUpper, hasLower, hasDigit, hasSpecial].filter(Boolean).length;
+
+  if (categories < 3) {
+    return 'Use at least 3 of these: uppercase letters, lowercase letters, numbers, or symbols.';
+  }
+
+  return null;
+}
+
+function validateFullNameRules(fullName) {
+  const trimmed = fullName.trim();
+
+  if (trimmed.length < 2 || trimmed.length > 100) return 'Enter a name between 2 and 100 characters.';
+  if (/[<>]/.test(trimmed)) return 'Remove invalid characters from your name.';
+
+  return null;
+}
+
+export default function Auth() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const mode = location.pathname === '/register' ? 'register' : 'login';
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirm, setConfirm] = useState('');
+  const [fullName, setFullName] = useState('');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
+  const [pendingConfirmation, setPendingConfirmation] = useState(false);
+  const [confirmationMessage, setConfirmationMessage] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+  const [onboardingStep, setOnboardingStep] = useState(0);
+  const [role, setRole] = useState(null);
+  const [track, setTrack] = useState(null);
+  const [levels, setLevels] = useState([]);
+  const [levelsLoading, setLevelsLoading] = useState(false);
+  const [levelsError, setLevelsError] = useState('');
+  const [mfaStep, setMfaStep] = useState(false);
+  const [mfaCode, setMfaCode] = useState('');
+  const [mfaError, setMfaError] = useState('');
+  const [deviceApprovalCode, setDeviceApprovalCode] = useState('');
+  const [deviceApprovalRequired, setDeviceApprovalRequired] = useState(false);
+  const [verificationPending, setVerificationPending] = useState(false);
+  const [mfaRequired, setMfaRequired] = useState(false);
+  const [passkeyMfaToken, setPasskeyMfaToken] = useState('');
+  const [passkeySubmitting, setPasskeySubmitting] = useState(false);
+  const [termsAccepted, setTermsAccepted] = useState(false);
+
+  const { login, loginWithPasskey, refresh } = useAuth();
+  const { t } = useI18n();
+  const widgetIdRef = useRef(null);
+  const widgetReadyRef = useRef(false);
+  const [captchaSlot, setCaptchaSlot] = useState(null);
+
+  const redirectTo = location.state?.from
+    ? `${location.state.from.pathname}${location.state.from.search || ''}`
+    : '/dashboard';
+
+  useEffect(() => {
+    if (onboardingStep !== 2 || levels.length || levelsLoading) return;
+
+    setLevelsLoading(true);
+    setLevelsError('');
+
+    getCurriculumLevels()
+      .then((data) => setLevels(data || []))
+      .catch(() => setLevelsError("We couldn't load the available study levels. Please try again."))
+      .finally(() => setLevelsLoading(false));
+  }, [onboardingStep, levels.length, levelsLoading]);
+
+  const renderWidget = useCallback((container) => {
+    if (!window.turnstile || !container || widgetIdRef.current) return;
+
+    try {
+      widgetIdRef.current = window.turnstile.render(container, {
+        sitekey: TURNSTILE_SITE_KEY,
+        callback: () => {
+          widgetReadyRef.current = true;
+        },
+        'expired-callback': () => {
+          widgetReadyRef.current = false;
+
+          if (window.turnstile && widgetIdRef.current) {
+            try {
+              window.turnstile.reset(widgetIdRef.current);
+            } catch {}
+          }
+        },
+        'error-callback': () => {
+          widgetReadyRef.current = false;
+          return false;
+        }
+      });
+
+      widgetReadyRef.current = true;
+    } catch {
+      widgetIdRef.current = null;
+      widgetReadyRef.current = false;
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!document.querySelector('script[src*="turnstile"]')) {
+      const script = document.createElement('script');
+
+      script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+      script.async = true;
+      script.defer = true;
+      script.crossOrigin = 'anonymous';
+
+      document.head.appendChild(script);
+    }
+
+    if (!captchaSlot) return;
+
+    let cancelled = false;
+    let attempts = 0;
+
+    const interval = setInterval(() => {
+      attempts += 1;
+
+      if (cancelled) return;
+
+      if (window.turnstile && captchaSlot && !widgetIdRef.current) {
+        renderWidget(captchaSlot);
+        clearInterval(interval);
+      }
+
+      if (attempts > 50) clearInterval(interval);
+    }, 100);
+
+    return () => {
+      cancelled = true;
+      clearInterval(interval);
+
+      if (window.turnstile && widgetIdRef.current) {
+        try {
+          window.turnstile.remove(widgetIdRef.current);
+        } catch {}
+      }
+
+      widgetIdRef.current = null;
+      widgetReadyRef.current = false;
+    };
+  }, [captchaSlot, renderWidget]);
+
+  function getTurnstileToken() {
+    if (!window.turnstile || !widgetIdRef.current || !widgetReadyRef.current) {
+      return '';
+    }
+
+    try {
+      return window.turnstile.getResponse(widgetIdRef.current) || '';
+    } catch {
+      return '';
+    }
+  }
+
+  function resetTurnstile() {
+    if (!window.turnstile || !widgetIdRef.current) return;
+
+    try {
+      window.turnstile.reset(widgetIdRef.current);
+    } catch {
+      widgetIdRef.current = null;
+      widgetReadyRef.current = false;
+
+      if (captchaSlot) {
+        renderWidget(captchaSlot);
+      }
+    }
+  }
+
+  async function handleLogin(event) {
+    event.preventDefault();
+    setError('');
+
+    const token = getTurnstileToken();
+
+    if (!token) {
+      setError('Please complete the security check.');
+      return;
+    }
+
+    setSubmitting(true);
+
+    try {
+      const result = await login(email, password, token);
+
+      if (result?.passkey_required) {
+        setError('This administrator account requires passkey verification. Choose passkey sign-in to continue.');
+        resetTurnstile();
+        return;
+      }
+
+      if (result?.mfa_required) {
+        setMfaRequired(true);
+        setMfaStep(true);
+        resetTurnstile();
+        return;
+      }
+
+      if (result?.device_approval_required) {
+        setDeviceApprovalRequired(true);
+        setMfaStep(true);
+        setMfaCode('');
+        setMfaError(result.error || 'This device is awaiting verification. Enter the fixed 48-digit administrator recovery code to continue.');
+        resetTurnstile();
+        return;
+      }
+
+      navigate(redirectTo, { replace: true });
+    } catch (err) {
+      setError(err.message || 'We couldn’t sign you in. Check your details and try again.');
+      resetTurnstile();
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  async function handlePasskeyLogin() {
+    setError('');
+
+    if (typeof window === 'undefined' || !window.isSecureContext || !window.PublicKeyCredential) {
+      setError('Passkey sign-in isn’t available in this browser.');
+      return;
+    }
+
+    const captchaToken = getTurnstileToken();
+
+    if (!captchaToken) {
+      setError('Please complete the security check before using your passkey.');
+      return;
+    }
+
+    setPasskeySubmitting(true);
+
+    try {
+      const result = await loginWithPasskey(null, null, captchaToken);
+
+      if (result?.mfa_required || result?.device_approval_required) {
+        setPasskeyMfaToken(result.passkey_access_token || '');
+        setMfaRequired(!!result.mfa_required);
+        setDeviceApprovalRequired(!!result.device_approval_required);
+        setMfaStep(true);
+        setMfaCode('');
+        setMfaError(result.error || '');
+        return;
+      }
+
+      navigate(redirectTo, { replace: true });
+    } catch (err) {
+      setError(err.message || 'We couldn’t sign you in with your passkey. Please try again.');
+      resetTurnstile();
+    } finally {
+      setPasskeySubmitting(false);
+    }
+  }
+
+  async function handleMfaSubmit(event) {
+    event.preventDefault();
+    setMfaError('');
+
+    if (mfaRequired && !/^\d{6}$/.test(mfaCode.trim())) {
+      setMfaError('Enter the 6-digit code from your authenticator app.');
+      return;
+    }
+
+    if (deviceApprovalRequired && !/^\d{48}$/.test(deviceApprovalCode.trim())) {
+      setMfaError('Enter the 48-digit administrator recovery code.');
+      return;
+    }
+
+    if (!passkeyMfaToken) {
+      const token = getTurnstileToken();
+
+      if (!token) {
+        setMfaError('Please complete the security check again.');
+        return;
+      }
+    }
+
+    setSubmitting(true);
+    setVerificationPending(true);
+
+    try {
+      const result = passkeyMfaToken
+        ? await loginWithPasskey(
+            passkeyMfaToken,
+            mfaCode.trim() || null,
+            null,
+            deviceApprovalCode.trim() || null
+          )
+        : await login(
+            email,
+            password,
+            getTurnstileToken(),
+            mfaCode.trim() || null,
+            deviceApprovalCode.trim() || null
+          );
+
+      setVerificationPending(false);
+
+      if (result?.mfa_required) {
+        setMfaRequired(true);
+        setMfaError("That code doesn't look right. Try again.");
+        if (!passkeyMfaToken) resetTurnstile();
+        return;
+      }
+
+      if (result?.device_approval_required) {
+        setDeviceApprovalRequired(true);
+        setMfaError(result.error || 'This is a new device. Enter the fixed 48-digit recovery code configured for your administrator account.');
+        setDeviceApprovalCode('');
+        if (!passkeyMfaToken) resetTurnstile();
+        return;
+      }
+
+      navigate(redirectTo, { replace: true });
+    } catch (err) {
+      setMfaError(err.message || 'We couldn’t verify your code. Please try again.');
+      if (!passkeyMfaToken) resetTurnstile();
+    } finally {
+      setVerificationPending(false);
+      setSubmitting(false);
+    }
+  }
+
+  async function handleRegister(event) {
+    event.preventDefault();
+    setError('');
+
+    const nameError = validateFullNameRules(fullName);
+
+    if (nameError) {
+      setError(nameError);
+      return;
+    }
+
+    if (!EMAIL_PATTERN.test(email.trim())) {
+      setError('Enter a valid email address.');
+      return;
+    }
+
+    if (password !== confirm) {
+      setError('Your passwords don’t match.');
+      return;
+    }
+
+    const passwordError = validatePasswordRules(password);
+
+    if (passwordError) {
+      setError(passwordError);
+      return;
+    }
+
+    if (!termsAccepted) {
+      setError('Please accept the Terms of Service and Privacy Policy to continue.');
+      return;
+    }
+
+    setOnboardingStep(1);
+  }
+
+  async function handleOnboardingFinish(selectedRole, selectedLevel) {
+    setError('');
+
+    if (!selectedRole || !selectedLevel) {
+      setError('Complete each step before continuing.');
+      return;
+    }
+
+    const token = getTurnstileToken();
+
+    if (!token) {
+      setError('Your security check expired. Please complete it again.');
+      return;
+    }
+
+    setSubmitting(true);
+
+    try {
+      const result = await signup(email, password, token, {
+        full_name: fullName.trim(),
+        role: selectedRole,
+        level: selectedLevel
+      });
+
+      if (result?.user) {
+        await refresh();
+        setSuccess(true);
+
+        setTimeout(() => {
+          navigate(redirectTo, { replace: true });
+        }, 1500);
+      } else {
+        setConfirmationMessage(
+          result?.message ||
+          "If an account can be created with this email, we'll send you a message with the next steps."
+        );
+
+        setPendingConfirmation(true);
+      }
+    } catch (err) {
+      setError(err.message || 'We couldn’t create your account. Please try again.');
+      resetTurnstile();
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  function progressPct() {
+    if (onboardingStep === 1) return 50;
+    if (onboardingStep === 2) return 100;
+    return 0;
+  }
+
+  function switchMode(nextMode) {
+    navigate(
+      nextMode === 'register' ? '/register' : '/login',
+      {
+        state: location.state,
+        replace: true
+      }
+    );
+  }
+
+  return (
+    <div className="auth-page">
+      <aside className="auth-brand-panel">
+        <div className="auth-brand-top">
+          <div className="auth-brand-logo" aria-label="AliverBiopharm">
+            <span className="auth-brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </span>
+            <span>AliverBiopharm</span>
+          </div>
+        </div>
+
+        <div className="auth-brand-copy">
+          <h1>Learn with clarity. Build confidence.</h1>
+          <p>
+            Study Biology or Pharmacy with clear resources and practice tools that help you understand and remember what you learn.
+          </p>
+
+          <ul className="auth-feature-list">
+            <li>
+              <Icon name="circle" />
+              Learning resources for Biology and Pharmacy
+            </li>
+            <li>
+              <Icon name="circle" />
+              Notes, flashcards, quizzes, and revision practice
+            </li>
+            <li>
+              <Icon name="circle" />
+              Track your progress as you learn
+            </li>
+          </ul>
+        </div>
+
+        <div className="auth-brand-footer">
+          Helping you learn, practise, and make progress
+        </div>
+      </aside>
+
+      <main className="auth-form-panel">
+        <div className="auth-form-container">
+          {pendingConfirmation ? (
+            <div className="auth-state">
+              <div className="auth-state-icon-wrap">
+                <Icon name="envelope-circle" className="auth-state-icon" />
+              </div>
+              <h2 className="auth-state-title">
+                Check your inbox
+              </h2>
+              <p className="auth-state-text">
+                {confirmationMessage}
+              </p>
+              <Button variant="ghost" onClick={() => switchMode('login')}>
+                <Icon name="arrow-left" />
+                Back to sign in
+              </Button>
+            </div>
+          ) : success ? (
+            <div className="auth-state">
+              <div className="auth-state-icon-wrap auth-state-icon-wrap-success">
+                <Icon name="circle" className="auth-state-icon" />
+              </div>
+              <h2 className="auth-state-title">
+                {t('auth.accountCreated')}
+              </h2>
+              <p className="auth-state-text">
+                Your account is ready. Your selected study level and class will become available after an administrator approves your curriculum request.
+              </p>
+              <Spinner context="brand" />
+            </div>
+          ) : mfaStep && verificationPending ? (
+            <div className="auth-state" role="status" aria-live="polite">
+              <div className="auth-state-icon-wrap">
+                <Spinner context="brand" />
+              </div>
+              <h2 className="auth-state-title">Waiting for further verification. Please wait.</h2>
+              <p className="auth-state-text">
+                The server is verifying your administrator email, registered device, session, and security binding. Sign-in will continue automatically when verification succeeds.
+              </p>
+            </div>
+          ) : mfaStep ? (
+            <div className="auth-form-block">
+              <div className="auth-form-head">
+                <h2 className="auth-heading">
+                  {deviceApprovalRequired ? 'Confirm it’s you' : t('auth.twoFactor')}
+                </h2>
+                <p className="auth-subheading">
+                  {deviceApprovalRequired
+                    ? 'For your security, confirm your identity before continuing.'
+                    : passkeyMfaToken
+                      ? t('auth.confirmPasskeyMfa')
+                      : t('auth.enterMfaCode')}
+                </p>
+              </div>
+
+              {mfaError && (
+                <div className="auth-alert auth-alert-error">
+                  <Icon name="exclamation-triangle" />
+                  <span>{mfaError}</span>
+                </div>
+              )}
+
+              <form onSubmit={handleMfaSubmit}>
+                {mfaRequired && (
+                  <Input
+                    type="text"
+                    inputMode="numeric"
+                    autoComplete="one-time-code"
+                    maxLength={6}
+                    placeholder={t('auth.enterMfaCode')}
+                    value={mfaCode}
+                    onChange={(event) =>
+                      setMfaCode(
+                        event.target.value.replace(/\D/g, '').slice(0, 6)
+                      )
+                    }
+                    disabled={submitting}
+                    className="auth-field auth-mfa-field"
+                  />
+                )}
+
+                {deviceApprovalRequired && (
+                  <Input
+                    type="password"
+                    autoComplete="off"
+                    inputMode="numeric"
+                    maxLength={48}
+                    placeholder="48-digit recovery code"
+                    value={deviceApprovalCode}
+                    onChange={(event) => setDeviceApprovalCode(event.target.value.replace(/\D/g, '').slice(0, 48))}
+                    disabled={submitting}
+                    className="auth-field auth-mfa-field"
+                  />
+                )}
+
+                {deviceApprovalRequired && (
+                  <p className="auth-form-hint">
+                    This code is verified on the server and is never stored in your browser.
+                  </p>
+                )}
+
+                {!passkeyMfaToken && (
+                  <div ref={setCaptchaSlot} className="auth-captcha" />
+                )}
+
+                <Button
+                  type="submit"
+                  loading={submitting}
+                  loadingContext="brand"
+                  className="auth-submit"
+                  variant="primary"
+                >
+                  {t('auth.verifyAndSignIn')}
+                </Button>
+              </form>
+
+              <div className="auth-switch">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    setMfaStep(false);
+                    setMfaCode('');
+                    setMfaError('');
+                    setPasskeyMfaToken('');
+                    setDeviceApprovalCode('');
+                    setDeviceApprovalRequired(false);
+                    setMfaRequired(false);
+                  }}
+                >
+                  Back to sign in
+                </Button>
+              </div>
+            </div>
+          ) : onboardingStep > 0 ? (
+            <div className="auth-form-block">
+              <div className="auth-form-head">
+                <h2 className="auth-heading">
+                  {t('auth.completeProfile')}
+                </h2>
+                <p className="auth-subheading">
+                  {t('auth.personaliseLearning')}
+                </p>
+              </div>
+
+              <div className="auth-progress">
+                <div className="auth-progress-track">
+                  <div
+                    className="auth-progress-fill"
+                    style={{ width: `${progressPct()}%` }}
+                  />
+                </div>
+              </div>
+
+              {error && (
+                <div className="auth-alert auth-alert-error">
+                  <Icon name="exclamation-triangle" />
+                  <span>{error}</span>
+                </div>
+              )}
+
+              {onboardingStep === 1 && (
+                <div className="auth-onboarding-step">
+                  <h3 className="auth-step-title">
+                    {t('auth.iAmA')}
+                  </h3>
+
+                  <div className="auth-options">
+                    <Button
+                      variant={role === 'student' ? 'primary' : 'secondary'}
+                      onClick={() => {
+                        setRole('student');
+                        setOnboardingStep(2);
+                      }}
+                    >
+                          {t('auth.student')}
+                    </Button>
+
+                    <Button
+                      variant={role === 'teacher' ? 'primary' : 'secondary'}
+                      onClick={() => {
+                        setRole('teacher');
+                        setOnboardingStep(2);
+                      }}
+                    >
+                          {t('auth.teacher')}
+                    </Button>
+                  </div>
+                </div>
+              )}
+
+              {onboardingStep === 2 && (
+                <div className="auth-onboarding-step">
+                  <h3 className="auth-step-title">
+                    {t('auth.selectLevel')}
+                  </h3>
+
+                  {levelsLoading && (
+                    <div className="auth-levels-loading">
+                      <Spinner context="data" size="sm" />
+                    </div>
+                  )}
+
+                  {levelsError && (
+                    <p className="auth-form-error">{levelsError}</p>
+                  )}
+
+                  {!levelsLoading && !levelsError && (
+                    <>
+                      <div ref={setCaptchaSlot} className="auth-captcha" />
+                      <div className="auth-options">
+                      {levels.map((lvl) => {
+                        const value = lvl.display_name;
+                        const rowKey = lvl.key || lvl.id || value;
+
+                        return (
+                          <Button
+                            key={rowKey}
+                            variant={track === value ? 'primary' : 'secondary'}
+                            onClick={() => {
+                              setTrack(value);
+                              handleOnboardingFinish(role, value);
+                            }}
+                            loading={submitting && track === value}
+                            loadingContext="conic"
+                            disabled={submitting}
+                          >
+                            <Icon
+                              name={
+                                lvl.icon === 'dna'
+                                  ? 'microscope'
+                                  : lvl.icon || 'graduation-cap'
+                              }
+                            />
+                            {lvl.display_name}
+                          </Button>
+                        );
+                      })}
+                      </div>
+                    </>
+                  )}
+                </div>
+              )}
+            </div>
+          ) : mode === 'login' ? (
+              <LoginPage
+                email={email}
+                setEmail={setEmail}
+                password={password}
+                setPassword={setPassword}
+                error={error}
+                setCaptchaSlot={setCaptchaSlot}
+                handleLogin={handleLogin}
+                handlePasskeyLogin={handlePasskeyLogin}
+                submitting={submitting}
+                passkeySubmitting={passkeySubmitting}
+                onSignUp={() => switchMode('register')}
+                t={t}
+              />
+            ) : (
+              <div className="auth-form-block">
+  
+                <div className="auth-form-head">
+                  <h2 className="auth-heading">
+                    {mode === 'login'
+                      ? t('auth.loginTitle')
+                      : t('auth.registerTitle')}
+                  </h2>
+                  <p className="auth-subheading">
+                    {mode === 'login'
+                      ? t('auth.accessAccount')
+                      : t('auth.joinLearners')}
+                  </p>
+                </div>
+  
+                {error && (
+                  <div className="auth-alert auth-alert-error">
+                    <Icon name="exclamation-triangle" />
+                    <span>{error}</span>
+                  </div>
+                )}
+  
+                <form
+                  className="auth-form"
+                  onSubmit={mode === 'login' ? handleLogin : handleRegister}
+                >
+                  {mode === 'register' && (
+                    <Input
+                      label={t('auth.fullNameLabel')}
+                      placeholder={t('auth.enterFullName')}
+                      value={fullName}
+                      onChange={(event) => setFullName(event.target.value)}
+                      required
+                      disabled={submitting}
+                      className="auth-field"
+                    />
+                  )}
+  
+                  <Input
+                    label={t('auth.emailAddress')}
+                    type="email"
+                    placeholder={t('auth.enterEmail')}
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
+                    required
+                    disabled={submitting}
+                    className="auth-field"
+                  />
+  
+                  <div className="auth-password-field">
+                    <Input
+                      label={t('auth.password')}
+                      type="password"
+                      placeholder={
+                        mode === 'register'
+                          ? t('auth.createPassword')
+                          : t('auth.enterPassword')
+                      }
+                      value={password}
+                      onChange={(event) => setPassword(event.target.value)}
+                      required
+                      disabled={submitting}
+                      hint={
+                        mode === 'register'
+                          ? t('auth.passwordHint')
+                          : undefined
+                      }
+                      className="auth-field"
+                    />
+  
+                    {mode === 'register' && password.length > 0 && (
+                      <div className="auth-password-strength">
+                        <div className="auth-strength-bars">
+                          {[1, 2, 3, 4].map((level) => {
+                            const active =
+                              password.length >= 10
+                                ? [
+                                    password.length >= 10,
+                                    /[A-Z]/.test(password) && /[a-z]/.test(password),
+                                    /[0-9]/.test(password),
+                                    /[^A-Za-z0-9]/.test(password) && password.length >= 12
+                                  ].filter(Boolean).length >= level
+                                : false;
+  
+                            return (
+                              <span
+                                key={level}
+                                className={active ? 'active' : ''}
+                              />
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+  
+                  {mode === 'register' && (
+                    <Input
+                      label={t('auth.confirmPasswordLabel')}
+                      type="password"
+                      placeholder={t('auth.confirmPasswordInput')}
+                      value={confirm}
+                      onChange={(event) => setConfirm(event.target.value)}
+                      required
+                      disabled={submitting}
+                      className="auth-field"
+                    />
+                  )}
+  
+                  {onboardingStep === 0 && (
+                    <div ref={setCaptchaSlot} className="auth-captcha" />
+                  )}
+  
+                  {mode === 'register' && (
+                    <label className="auth-check-row">
+                      <input
+                        type="checkbox"
+                        checked={termsAccepted}
+                        onChange={(event) => setTermsAccepted(event.target.checked)}
+                        disabled={submitting}
+                      />
+                      <span>
+                        I agree to the <a href="/terms">Terms of Service</a> and{' '}
+                        <a href="/privacy">Privacy Policy</a>.
+                      </span>
+                    </label>
+                  )}
+  
+                  <Button
+                    type="submit"
+                    loading={submitting}
+                    loadingContext="brand"
+                    variant="primary"
+                    className="auth-submit"
+                  >
+                    {mode === 'login' ? (
+                      <>
+                        {t('common.signIn')}
+                      </>
+                    ) : (
+                      <>
+                        {t('auth.createAccount')}
+                      </>
+                    )}
+                  </Button>
+                </form>
+  
+                {mode === 'login' && (
+                  <Button
+                    type="button"
+                    variant="secondary"
+                    loading={passkeySubmitting}
+                    loadingContext="brand"
+                    onClick={handlePasskeyLogin}
+                    className="auth-submit auth-passkey"
+                  >
+                    Sign in with a Passkey
+                  </Button>
+                )}
+  
+                <div className="auth-switch">
+                  <span>
+                    {mode === 'login'
+                      ? t('auth.noAccount')
+                      : t('auth.haveAccount')}
+                  </span>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => switchMode(mode === 'login' ? 'register' : 'login')}
+                  >
+                    {mode === 'login' ? 'Sign Up' : t('common.signIn')}
+                  </Button>
+                </div>
+  
+              </div>
+          )}
+        </div>
+      </main>
+    </div>
+  );
+}

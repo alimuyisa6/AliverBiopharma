@@ -1,0 +1,104 @@
+@import './button.css';
+@import './input.css';
+@import './card.css';
+@import './modal.css';
+@import './badge.css';
+@import './progress.css';
+@import './dashboard.css';
+@import './hero.css';
+@import './hero-gallery.css';
+@import './accordion.css';
+@import './search.css';
+@import './empty-state.css';
+@import './breadcrumb.css';
+@import './page-header.css';
+@import './grid.css';
+@import './toast.css';
+@import './notification.css';
+@import './chat.css';
+@import './ai-assistant.css';
+@import './flashcard.css';
+@import './content-pages.css';
+@import './recall.css';
+@import './legal.css';
+@import './glossary.css';
+@import './note-detail.css';
+@import './team-faq.css';
+@import './home-sections.css';
+@import './resources.css';
+@import './about.css';
+@import './pastpapers.css';
+@import './quiz.css';
+@import './tutor-apply.css';
+@import './tutor-dashboard.css';
+@import './tutor-marketplace.css';
+@import './profile.css';
+@import './profile-picture.css';
+@import './curriculum.css';
+@import './why.css';
+@import './advertising.css';
+@import './howsec.css';
+@import './auth.css';
+@import './file-upload.css';
+@import './access-state.css';
+@import './newsletter.css';
+
+.loading-placeholder {
+  display: flex;
+  width: min(100%, 22rem);
+  min-height: 5.5rem;
+  flex-direction: column;
+  justify-content: center;
+  gap: .7rem;
+  margin-inline: auto;
+}
+.loading-placeholder__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.loading-placeholder__line {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: .72rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--primary) 18%, var(--surface-subtle));
+}
+.loading-placeholder__line--title {
+  width: 68%;
+  height: 1.15rem;
+  margin-bottom: .15rem;
+}
+.loading-placeholder__line:last-child:not(:first-child) { width: 54%; }
+.loading-placeholder__line::after {
+  position: absolute;
+  inset: 0;
+  background: var(--skeleton-shimmer-band);
+  content: "";
+  transform: translateX(-110%);
+  animation: shimmer 1.55s ease-in-out infinite;
+}
+.loading-placeholder--compact { width: min(100%, 9rem); min-height: 2rem; gap: .35rem; }
+.loading-placeholder--compact .loading-placeholder__line { height: .45rem; }
+.loading-placeholder--compact .loading-placeholder__line--title { height: .65rem; }
+.loading-placeholder--large { width: min(100%, 28rem); min-height: 8rem; gap: .9rem; }
+.loading-placeholder--large .loading-placeholder__line { height: .9rem; }
+.loading-placeholder--large .loading-placeholder__line--title { height: 1.35rem; }
+body.dark-mode .loading-placeholder__line {
+  background: color-mix(in srgb, var(--dark-primary) 24%, var(--dark-surface));
+}
+body.dark-mode .loading-placeholder__line::after {
+  background: var(--skeleton-shimmer-band);
+}
+@media (prefers-reduced-motion: reduce) {
+  .loading-placeholder__line::after { animation: none; transform: none; opacity: .35; }
+}
+
+body.dark-mode :is(.component-panel, .component-card, .component-surface, .component-preview) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode :is(.component-panel, .component-card, .component-surface, .component-preview) :is(h1, h2, h3, h4, h5, h6, p, label, small) { color: var(--dark-text); }

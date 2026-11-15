@@ -1,0 +1,89 @@
+:root {
+  --legal-content-max-width: 47.5rem;
+}
+
+.legal-section {
+  padding: var(--page-space-top) var(--page-gutter-x) var(--page-space-bottom);
+}
+
+.legal-content-wrap {
+  max-width: var(--legal-content-max-width);
+  margin: 0 auto;
+}
+
+.legal-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-page-title);
+  font-weight: var(--weight-page-title);
+  line-height: var(--leading-page-title);
+  color: var(--text-main);
+  margin-bottom: var(--space-8);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.legal-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+}
+
+.legal-block h2 {
+  font-family: var(--font-heading);
+  font-size: var(--text-section-title);
+  font-weight: var(--weight-section-title);
+  line-height: var(--leading-section-title);
+  color: var(--text-main);
+  margin-bottom: var(--space-3);
+}
+
+.legal-block p {
+  font-size: var(--text-body);
+  line-height: var(--leading-body-lead);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-3);
+}
+
+.legal-block p:last-child {
+  margin-bottom: 0;
+}
+
+.legal-link {
+  color: var(--text-link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color var(--ease-fast);
+}
+
+.legal-link:hover {
+  color: var(--text-link-hover);
+}
+
+.legal-empty {
+  text-align: center;
+  color: var(--text-muted);
+  padding: var(--section-space-y-large) 0;
+  font-size: var(--text-body);
+}
+
+.info-page-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  gap: var(--space-4);
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .legal-title {
+    font-size: var(--text-3xl);
+  }
+}
+
+body.dark-mode .legal-page,
+body.dark-mode .legal-content { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .legal-page :is(.legal-card, .legal-panel, .legal-content section) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .legal-page :is(h1, h2, h3, h4, h5, h6, p, li, strong, small) { color: var(--dark-text); }
+body.dark-mode .legal-page :is(.text-muted, .legal-intro, .legal-meta) { color: var(--dark-text-secondary); }

@@ -1,0 +1,255 @@
+.ab-home-hero {
+  width: 100vw;
+  max-width: 100vw;
+  margin-inline: calc(50% - 50vw);
+  padding: clamp(2.5rem, 5vw, 4.75rem) max(4.5%, calc((100vw - 1320px) / 2));
+  overflow: hidden;
+  box-sizing: border-box;
+  color: #102b52;
+  background: #f2f6fc;
+}
+
+.ab-home-hero-main {
+  display: grid;
+  width: min(100%, 1480px);
+  grid-template-columns: minmax(0, 1.08fr) minmax(20rem, .92fr);
+  align-items: center;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  margin-inline: auto;
+}
+
+.ab-home-hero-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-block: .5rem;
+}
+
+.ab-home-hero-brand {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  padding: .55rem 1.15rem;
+  border: 2px solid #0754bd;
+  border-radius: 999px;
+  color: #0754bd;
+  background: #fff;
+  font-size: .95rem;
+  font-weight: 800;
+  letter-spacing: -.01em;
+}
+
+.ab-home-hero-welcome {
+  margin: 1.35rem 0 .45rem;
+  color: #315276;
+  font-size: .9rem;
+  font-weight: 700;
+}
+
+.ab-home-hero h1 {
+  max-width: 12ch;
+  margin: 1.55rem 0 0;
+  color: #09264e;
+  font-family: var(--f-display, 'Space Grotesk', sans-serif);
+  font-size: clamp(3.5rem, 6.4vw, 6.4rem);
+  font-weight: 800;
+  letter-spacing: -.065em;
+  line-height: .98;
+  text-wrap: balance;
+}
+
+.ab-home-hero-welcome + h1 { margin-top: .35rem; }
+
+.ab-home-hero h1 span {
+  display: block;
+  color: #0754bd;
+}
+
+.ab-home-hero-description {
+  max-width: 43rem;
+  margin: 1.35rem 0 0;
+  color: #304b6d;
+  font-size: clamp(1.05rem, 1.55vw, 1.4rem);
+  line-height: 1.48;
+  text-wrap: pretty;
+}
+
+.ab-home-hero-benefits {
+  display: grid;
+  width: min(100%, 48rem);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 1.8rem;
+}
+
+.ab-home-hero-benefit {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .18rem;
+  padding: .3rem .45rem;
+  text-align: center;
+}
+
+.ab-home-hero-benefit + .ab-home-hero-benefit {
+  border-left: 1px solid #9db2ce;
+}
+
+.ab-home-hero-benefit strong,
+.ab-home-hero-benefit span {
+  color: #17365f;
+  font-size: clamp(.76rem, 1vw, .95rem);
+  line-height: 1.3;
+}
+
+.ab-home-hero-benefit strong { font-weight: 800; }
+.ab-home-hero-benefit span { font-weight: 600; }
+
+.ab-home-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .9rem 1.2rem;
+  margin-top: 2rem;
+}
+
+.ab-home-hero-primary,
+.ab-home-hero-secondary {
+  display: inline-flex;
+  min-height: 3.65rem;
+  align-items: center;
+  justify-content: center;
+  padding: .75rem 1.65rem;
+  border: 2px solid #0754bd;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.ab-home-hero-primary {
+  min-width: 15rem;
+  color: #fff;
+  background: #0754bd;
+}
+
+.ab-home-hero-secondary {
+  min-width: 14rem;
+  color: #0754bd;
+  background: transparent;
+}
+
+.ab-home-hero-primary:hover,
+.ab-home-hero-secondary:hover {
+  transform: translateY(-2px);
+}
+
+.ab-home-hero-primary:hover {
+  border-color: #063f91;
+  background: #063f91;
+}
+
+.ab-home-hero-secondary:hover {
+  color: #fff;
+  background: #0754bd;
+}
+
+.ab-home-hero-path {
+  margin: 1rem 0 0;
+  color: #304b6d;
+  font-size: .8rem;
+}
+
+.ab-home-hero-path strong { color: #102b52; }
+
+.ab-home-hero-visual {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  min-height: clamp(25rem, 43vw, 40rem);
+  place-items: center;
+  isolation: isolate;
+}
+
+.ab-home-hero-photo-frame {
+  display: block;
+  width: min(100%, 34rem);
+  margin-inline: auto;
+  overflow: visible;
+}
+
+.ab-home-hero-student {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  object-fit: contain;
+}
+
+.ab-home-hero-photo-frame.is-image-missing {
+  visibility: hidden;
+}
+
+.ab-home-hero a:focus-visible {
+  outline: 3px solid #f8bd18;
+  outline-offset: 4px;
+}
+
+@media (max-width: 980px) {
+  .ab-home-hero { padding-inline: 5%; }
+  .ab-home-hero-main {
+    grid-template-columns: minmax(0, 1fr) minmax(17rem, .85fr);
+    gap: 1rem;
+  }
+  .ab-home-hero h1 { font-size: clamp(3.2rem, 6.4vw, 5rem); }
+  .ab-home-hero-description { font-size: 1.05rem; }
+}
+
+@media (max-width: 760px) {
+  .ab-home-hero { padding-top: 2.5rem; }
+  .ab-home-hero-main { grid-template-columns: minmax(0, 1fr); gap: .75rem; }
+  .ab-home-hero-copy { max-width: 48rem; }
+  .ab-home-hero h1 { max-width: 13ch; }
+  .ab-home-hero-visual { width: min(100%, 35rem); margin-inline: auto; }
+}
+
+@media (max-width: 520px) {
+  .ab-home-hero { padding: 2rem 5% 1.5rem; }
+  .ab-home-hero-brand { font-size: .85rem; }
+  .ab-home-hero h1 { margin-top: 1.2rem; font-size: clamp(3rem, 13vw, 4.1rem); }
+  .ab-home-hero-description { margin-top: 1rem; font-size: 1rem; }
+  .ab-home-hero-benefits { margin-top: 1.25rem; }
+  .ab-home-hero-benefit { padding-inline: .2rem; }
+  .ab-home-hero-benefit strong,
+  .ab-home-hero-benefit span { font-size: .68rem; }
+  .ab-home-hero-actions { width: 100%; flex-direction: column; align-items: stretch; margin-top: 1.5rem; }
+  .ab-home-hero-primary,
+  .ab-home-hero-secondary { width: 100%; min-width: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ab-home-hero-primary,
+  .ab-home-hero-secondary { transition: none; }
+}
+
+body.dark-mode .ab-home-hero {
+  color: #edf5ff;
+  background: #14283f;
+}
+body.dark-mode .ab-home-hero-brand {
+  border-color: #8db9ff;
+  color: #b8d3ff;
+  background: #1b3552;
+}
+body.dark-mode .ab-home-hero h1 { color: #f0f5ff; }
+body.dark-mode .ab-home-hero h1 span { color: #8db9ff; }
+body.dark-mode .ab-home-hero-description,
+body.dark-mode .ab-home-hero-benefit strong,
+body.dark-mode .ab-home-hero-benefit span,
+body.dark-mode .ab-home-hero-path { color: #d0def0; }
+body.dark-mode .ab-home-hero-benefit + .ab-home-hero-benefit { border-color: #536d8d; }
+body.dark-mode .ab-home-hero-secondary { color: #b8d3ff; }
+body.dark-mode .ab-home-hero-secondary:hover { color: #102b52; background: #b8d3ff; }

@@ -1,0 +1,191 @@
+/* Shared modal and dropdown dimensions. */
+:root {
+  --modal-content-max-width: 32.5rem;
+  --dropdown-menu-min-width: 12.5rem;
+}
+
+ /* src/styles/modal.css */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  background: var(--bg-overlay);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--page-gutter-x);
+}
+
+.modal-content {
+  background: var(--surface-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-card);
+  padding: var(--card-padding-y-spacious) var(--card-padding-x-spacious);
+  max-width: var(--modal-content-max-width);
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-raised);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--content-gap);
+}
+
+.modal-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-section-title);
+  font-weight: var(--weight-section-title);
+  line-height: var(--leading-section-title);
+  color: var(--text-main);
+}
+
+.modal-close {
+  width: var(--space-10);
+  height: var(--space-10);
+  border-radius: var(--radius-button);
+  border: 1px solid var(--border-default);
+  background: var(--surface-card);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background var(--ease-fast), border-color var(--ease-fast);
+}
+
+.modal-close:hover {
+  background: var(--surface-subtle);
+  border-color: var(--border-strong);
+}
+
+.modal-close:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+.modal-body {
+  margin-bottom: var(--content-gap);
+  font-size: var(--text-body);
+  color: var(--text-secondary);
+  line-height: var(--leading-body);
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-default);
+}
+
+.toast {
+  position: fixed;
+  bottom: var(--space-6);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--z-toast);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-button);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--text-inverse);
+  border: 1px solid transparent;
+  max-width: 90%;
+  text-align: center;
+}
+
+.toast-success { background: var(--success); border-color: var(--success); }
+.toast-error { background: var(--danger); border-color: var(--danger); }
+.toast-warning { background: var(--warning); border-color: var(--warning); }
+.toast-info { background: var(--info); border-color: var(--info); }
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + var(--space-2));
+  min-width: var(--dropdown-menu-min-width);
+  background: var(--surface-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  z-index: var(--z-dropdown);
+  padding: var(--space-2);
+  box-shadow: var(--shadow-card);
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  color: var(--text-main);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background var(--ease-fast), color var(--ease-fast);
+}
+
+.dropdown-item:hover { background: var(--bg-card-hover); color: var(--primary); }
+.dropdown-divider { height: 1px; background: var(--border-default); margin: var(--space-2) 0; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+@keyframes slideUp { from { opacity: 0; transform: translateX(-50%) translateY(10px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+
+.modal-overlay { animation: fadeIn var(--duration-fast) var(--ease-standard) forwards; }
+.modal-content { animation: scaleIn var(--duration-smooth) var(--ease-standard) forwards; }
+.toast { animation: slideUp var(--duration-smooth) var(--ease-standard) forwards; }
+
+@media (max-width: 640px) {
+  .modal-content {
+    padding: var(--card-padding-y) var(--card-padding-x);
+    max-width: 100%;
+    margin: var(--space-4);
+    border-radius: var(--radius-card);
+  }
+
+  .modal-title {
+    font-size: var(--text-section-title);
+  }
+
+  .modal-footer {
+    flex-direction: column-reverse;
+    gap: var(--space-2);
+  }
+
+  .modal-footer .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .toast {
+    bottom: var(--space-4);
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-xs);
+    max-width: 95%;
+  }
+
+  .dropdown-menu {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
+    padding: var(--space-4);
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+}
+
+body.dark-mode :is(.modal, .modal-dialog, .modal-content, .modal-card, .modal-body, .modal-footer) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode :is(.modal, .modal-dialog, .modal-content) :is(h1, h2, h3, h4, h5, h6, p, label, small) { color: var(--dark-text); }
+body.dark-mode :is(.modal, .modal-dialog, .modal-content) :is(input, select, textarea) { background: var(--dark-background); color: var(--dark-text); border-color: var(--dark-border); }

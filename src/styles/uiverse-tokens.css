@@ -1,0 +1,107 @@
+:root {
+  --u3d-top-start: var(--primary);
+  --u3d-top-end: var(--primary);
+  --u3d-bottom-start: var(--primary);
+  --u3d-bottom-end: var(--primary);
+  --u3d-text: var(--background);
+  --u3d-text-shadow: 0 -1px var(--shadow-black-25);
+  --u3d-inset-shadow: inset 0 2px 2px var(--shadow-black-25);
+  --u3d-button-min-height: 4em;
+  --u3d-base: var(--shadow-black-15);
+  --u3d-shadow: var(--shadow-black-50);
+  --u3d-highlight: var(--glass-white-75);
+  --u3d-radius: 20px;
+  --u3d-active-radius: 10px 10px 8px 8px / 8px;
+  --u3d-depth: 4px;
+  --u3d-transition: 0.3s;
+
+  --switcher-width: 360px;
+  --switcher-width-fluid: 90%;
+  --switcher-padding: 20px;
+  --switcher-radius: 35px;
+  --switcher-bg: var(--text);
+  --switcher-text: var(--background);
+  --switcher-muted: var(--secondary);
+  --switcher-control-bg: var(--text);
+  --switcher-control-radius: 20px;
+  --switcher-control-padding: 4px;
+  --switcher-option-gap: 8px;
+  --switcher-option-radius: 16px;
+  --switcher-option-text: var(--secondary);
+  --switcher-slider-bg: var(--glass-white-40);
+  --switcher-slider-border: var(--glass-white-20);
+  --switcher-slider-shadow:
+    0 4px 8px var(--shadow-black-40),
+    inset 0 -2px 4px var(--glass-white-20);
+  --switcher-chart-bg: var(--text);
+  --switcher-chart-radius: 12px;
+  --switcher-shadow: 0 10px 30px var(--shadow-black-50);
+  --switcher-transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  --tactile-toggle-width: 15rem;
+  --tactile-toggle-duration: 0.6s;
+  --tactile-toggle-easing: cubic-bezier(1, 0, 1, 1);
+  --tactile-toggle-hue: 142deg;
+  --tactile-toggle-accent-hue: 45deg;
+  --tactile-toggle-track-radius: 999px;
+  --tactile-toggle-shadow:
+    inset 10px 10px 10px var(--toggle-track),
+    inset -10px -10px 10px var(--toggle-track-highlight);
+  --tactile-toggle-thumb-shadow:
+    2px 2px 3px var(--toggle-thumb-shadow),
+    2px 2px 6px var(--toggle-thumb-shadow-soft),
+    10px 20px 10px var(--toggle-thumb-shadow-soft),
+    20px 30px 30px var(--toggle-thumb-shadow-strong);
+
+  --action-brand-outline-width: 7.5rem;
+  --action-brand-outline-height: 18.75rem;
+  --action-brand-wrap-padding: var(--space-1);
+  --action-brand-splash-border-width: var(--border-width-thick, 3px);
+  --action-brand-outline-inset: var(--space-1);
+  --action-brand-path-width: 1.5rem;
+  --action-brand-path-height: var(--border-width-thick, 3px);
+  --action-brand-path-short-width: 0.875rem;
+  --action-brand-path-dot-size: 1px;
+  --action-brand-outline-duration: var(--duration-fast);
+  --action-brand-white: var(--text-on-primary);
+  --action-brand-100: var(--primary-light);
+  --action-brand-200: var(--primary-border);
+  --action-brand-300: var(--primary);
+  --action-brand-400: var(--primary-dark);
+  --action-brand-500: var(--brand-navy);
+  --action-brand-shadow: var(--primary-ring);
+  --action-brand-shadow-30: color-mix(in srgb, var(--action-brand-shadow) 75%, transparent);
+  --action-brand-shadow-25: color-mix(in srgb, var(--action-brand-shadow) 62.5%, transparent);
+  --action-brand-shadow-15: color-mix(in srgb, var(--action-brand-shadow) 37.5%, transparent);
+  --action-brand-shadow-12: color-mix(in srgb, var(--action-brand-shadow) 30%, transparent);
+  --action-brand-shadow-8: color-mix(in srgb, var(--action-brand-shadow) 20%, transparent);
+  --action-brand-shadow-5: color-mix(in srgb, var(--action-brand-shadow) 12.5%, transparent);
+  --action-brand-inset-shadow: inset 1px -3px 11px 0 var(--shadow-black-35);
+  --action-brand-radius: 18px;
+  --action-brand-width: 220px;
+  --action-brand-height: 80px;
+  --action-brand-duration: 0.3s;
+  --action-brand-slow: 0.7s;
+  --action-brand-char-delay-step: 0.03s;
+  --action-brand-loop: 1s;
+  --action-brand-spin: 3s;
+  --action-brand-focus: 1.6s;
+  --action-brand-splash: 0.8s;
+
+  --hero-pattern-tile: 60px;
+  --hero-pattern-base: var(--primary);
+  --hero-pattern-accent: var(--secondary);
+  --hero-pattern-light: var(--secondary);
+  --hero-pattern-strong: var(--primary);
+
+  --theme-switch-height: 0.9em;
+  --theme-switch-radius: 0.9em;
+  --theme-switch-shadow-size: 0.3em;
+  --theme-switch-track: var(--text-muted);
+  --theme-switch-stroke: var(--text-inverse);
+  --theme-switch-stroke-width: 16;
+  --theme-switch-dasharray: 136 224;
+  --theme-switch-dashoffset: 180;
+  --theme-switch-duration: 0.5s;
+  --theme-switch-easing: ease-out;
+}

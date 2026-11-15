@@ -1,0 +1,344 @@
+import AdSlot from '../components/Advertising/AdSlot';
+import { useState, useEffect, useMemo } from 'react';
+import { Link, useNavigate, useSearchParams, useLocation } from 'react-router-dom';
+import { useContentAccess } from '../hooks/useContentAccess';
+import { useAuth } from '../contexts/AuthContext';
+import { useLevelFilter } from '../hooks/useLevelFilter';
+import { useLayout } from '../contexts/LayoutContext';
+import { getNotesList as getNotesStructure } from '../api/client';
+import { getCurriculumNode } from '../api/curriculumNavigation';
+import Card from '../components/Card/Card';
+import Icon from '../components/Icon/Icon';
+import Skeleton from '../components/Skeleton/Skeleton';
+import EmptyState from '../components/EmptyState/EmptyState';
+import Button from '../components/Button/Button';
+import Container from '../components/Container/Container';
+import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
+import LearningJourney from '../components/LearningJourney/LearningJourney';
+import { redirectToSubscription } from '../utils/subscriptionNavigation';
+import { getCachedStale, setCache } from '../utils/cache';
+import { normalizeCurriculumResponse, buildCurriculumPath, formatResourceCount } from '../utils/notesPage';
+
+const notesPageCache = new Map();
+const notesContextCache = new Map();
+
+export default function NotesPage() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [searchParams] = useSearchParams();
+  const access = useContentAccess();
+  const { user } = useAuth();
+  const { level, class_name, displayName } = useLevelFilter();
+  const { bootstrap } = useLayout();
+  const unitId = searchParams.get('unit_id');
+
+  const [notes, setNotes] = useState(() => getCachedStale(`notes_page_${user?.id || 'guest'}:${level || ''}:${class_name || ''}:${unitId || 'all'}`) || notesPageCache.get(`${user?.id || 'guest'}:${level || ''}:${class_name || ''}:${unitId || 'all'}`) || []);
+  const [curriculumContext, setCurriculumContext] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [loading, setLoading] = useState(() => !getCachedStale(`notes_page_${user?.id || 'guest'}:${level || ''}:${class_name || ''}:${unitId || 'all'}`) && !notesPageCache.has(`${user?.id || 'guest'}:${level || ''}:${class_name || ''}:${unitId || 'all'}`));
+  const [contextLoading, setContextLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const cacheKey = `${user?.id || 'guest'}:${level || ''}:${class_name || ''}:${unitId || 'all'}`;
+
+  useEffect(() => {
+    if (!access.canAccess) {
+      setLoading(false);
+      return;
+    }
+
+    let mounted = true;
+    const cachedNotes = getCachedStale(`notes_page_${cacheKey}`) || notesPageCache.get(cacheKey);
+
+    if (cachedNotes) {
+      setNotes(cachedNotes);
+      setLoading(false);
+      setError(null);
+      loadContent(() => mounted, false);
+    } else {
+      setLoading(true);
+      loadContent(() => mounted, true);
+    }
+
+    return () => {
+      mounted = false;
+    };
+  }, [access.canAccess, user?.id, level, class_name, unitId]);
+
+  useEffect(() => {
+    if (!access.canAccess || !unitId) {
+      setCurriculumContext(null);
+      setContextLoading(false);
+      return;
+    }
+
+    let mounted = true;
+    const cachedContext = notesContextCache.get(unitId);
+    if (cachedContext) {
+      setCurriculumContext(cachedContext);
+      setContextLoading(false);
+    } else {
+      setContextLoading(true);
+    }
+
+    getCurriculumNode(unitId)
+      .then((data) => {
+        const context = normalizeCurriculumResponse(data);
+        notesContextCache.set(unitId, context);
+        if (mounted) setCurriculumContext(context);
+      })
+      .catch(() => {
+        if (mounted && !cachedContext) setCurriculumContext(null);
+      })
+      .finally(() => {
+        if (mounted) setContextLoading(false);
+      });
+
+    return () => {
+      mounted = false;
+    };
+  }, [access.canAccess, unitId]);
+
+  async function loadContent(isMounted = () => true, showLoading = true) {
+    if (showLoading) setLoading(true);
+    setError(null);
+
+    try {
+      const data = await getNotesStructure(unitId || null);
+      const nextNotes = Array.isArray(data) ? data : [];
+      notesPageCache.set(cacheKey, nextNotes);
+      setCache(`notes_page_${cacheKey}`, nextNotes);
+      if (isMounted()) setNotes(nextNotes);
+    } catch {
+      if (isMounted() && !notesPageCache.has(cacheKey)) setError("We couldn't load your notes. Please try again.");
+    } finally {
+      if (isMounted()) setLoading(false);
+    }
+  }
+
+  function getEmptyStateImage(key) {
+    const uiComponents = bootstrap?.ui_components || [];
+    const component = uiComponents.find((item) => item.component_key === `empty_state_${key}`);
+
+    return component?.properties?.image_url || null;
+  }
+
+  const filteredNotes = useMemo(() => {
+    const query = searchTerm.trim().toLowerCase();
+    if (!query) return notes;
+
+    return notes.filter((note) => [
+      note.title,
+      note.content_preview,
+      note.category,
+      note.tag,
+      note.author,
+    ].filter(Boolean).some((value) => String(value).toLowerCase().includes(query)));
+  }, [notes, searchTerm]);
+
+  const contextPath = useMemo(
+    () => buildCurriculumPath(curriculumContext),
+    [curriculumContext]
+  );
+
+  const contextTitle = curriculumContext?.node?.name || null;
+  const contextAncestors = curriculumContext?.ancestors || [];
+  const breadcrumbItems = useMemo(() => {
+    const items = [
+      { label: 'Home', href: '/' },
+      { label: 'Notes', href: unitId ? `/notes?unit_id=${encodeURIComponent(unitId)}` : '/notes' },
+    ];
+
+    if (contextLoading) {
+      items.push({ label: 'Loading curriculum…' });
+    } else if (contextTitle) {
+      contextAncestors.forEach((ancestor, index) => {
+        items.push({
+          label: ancestor.name,
+          href: buildCurriculumPath({
+            node: ancestor,
+            ancestors: contextAncestors.slice(0, index),
+          }),
+        });
+      });
+      if (items[items.length - 1]?.label !== contextTitle) {
+        items.push({ label: contextTitle });
+      }
+    } else if (unitId) {
+      items.push({ label: 'Selected curriculum' });
+    }
+
+    return items;
+  }, [unitId, contextLoading, contextTitle, contextAncestors]);
+  const contextChildren = curriculumContext?.children || [];
+  const resourceNoteCount = curriculumContext?.resourceCounts?.notes;
+  const levelName = displayName || level || '';
+  const classLabel = class_name || '';
+
+  if (!access.canAccess) {
+    return (
+      <Container>
+        <EmptyState
+          image={getEmptyStateImage('notes')}
+          title="Study notes unavailable"
+          description="Your account doesn’t currently have access to these study notes."
+        />
+      </Container>
+    );
+  }
+
+  return (
+    <Container className="notes-page-shell">
+      <div className="notes-page">
+        <header className="notes-page-heading">
+          <div className="notes-page-intro">
+            <span className="notes-page-kicker">STUDY AT YOUR PACE</span>
+            <h1 className="section-title notes-page-title font-fraunces">
+              Study notes
+            </h1>
+            <p className="notes-page-description">
+              Clear explanations and key ideas to review whenever you need them.
+            </p>
+          </div>
+
+          <Breadcrumb items={breadcrumbItems} />
+        </header>
+
+        <AdSlot placement="notes" pageContext="notes" />
+        {contextTitle && (
+          <section className="notes-curriculum-context" aria-label="Learning pathway context">
+            <div className="notes-context-main">
+              <div className="notes-context-kicker font-mono">Your learning pathway</div>
+              <p className="notes-context-description">
+                Topic: <strong>{contextTitle}</strong>.
+              </p>
+              {contextPath && (
+                <Link className="notes-context-link" to={contextPath}>
+                  <span>View topic</span>
+                  <Icon name="arrow-right" />
+                </Link>
+              )}
+            </div>
+
+            <div className="notes-context-meta" aria-label="Note count">
+              <strong>{resourceNoteCount == null ? notes.length : resourceNoteCount}</strong>
+              <span>{formatResourceCount(resourceNoteCount == null ? notes.length : resourceNoteCount).replace(/^\d+\s*/, '')}</span>
+            </div>
+          </section>
+        )}
+
+        {contextChildren.length > 0 && (
+          <section className="notes-pathway" aria-labelledby="notes-pathway-title">
+            <div className="notes-section-heading">
+              <div>
+                <span className="sec-label font-mono">Continue studying</span>
+                <h2 id="notes-pathway-title">Next topics</h2>
+              </div>
+              <span className="notes-section-count font-mono">{contextChildren.length} topics</span>
+            </div>
+
+            <div className="notes-pathway-list">
+              {contextChildren.map((child) => {
+                const childPath = buildCurriculumPath({
+                  node: child,
+                  ancestors: [...contextAncestors, curriculumContext.node],
+                });
+
+                return childPath ? (
+                  <Link className="notes-pathway-item" to={childPath} key={child.id}>
+                    <span>
+                      <small className="font-mono">{child.node_type || 'topic'}</small>
+                      <strong>{child.name}</strong>
+                    </span>
+                    <Icon name="arrow-right" />
+                  </Link>
+                ) : null;
+              })}
+            </div>
+          </section>
+        )}
+
+        <div className="notes-toolbar" role="search">
+          <div className="notes-toolbar-label">
+            <span className="sec-label font-mono">Study notes</span>
+            {!loading && <span className="notes-result-count font-mono">{filteredNotes.length} {filteredNotes.length === 1 ? 'note' : 'notes'} found</span>}
+          </div>
+          <label className="notes-search">
+            <Icon name="search" plain className="notes-search-icon" />
+            <input
+              type="search"
+              value={searchTerm}
+              onChange={(event) => setSearchTerm(event.target.value)}
+              placeholder="Search notes"
+              aria-label="Search notes"
+            />
+            {searchTerm && (
+              <button type="button" className="notes-search-clear" onClick={() => setSearchTerm('')} aria-label="Clear note search">
+                <Icon name="xmark" />
+              </button>
+            )}
+          </label>
+        </div>
+
+        {loading ? (
+          <div className="notes-skeleton-grid">
+            <Skeleton height={160} />
+            <Skeleton height={160} />
+            <Skeleton height={160} />
+          </div>
+        ) : error ? (
+          <EmptyState
+            image={getEmptyStateImage('error')}
+            title="We couldn’t load your notes"
+            description={error}
+            action={<Button onClick={() => loadContent(() => true, true)}>Try again</Button>}
+          />
+        ) : notes.length === 0 ? (
+          <EmptyState
+            image={getEmptyStateImage('notes')}
+            title="No study notes are available for this selection yet"
+            description={`Notes for ${contextTitle || classLabel || levelName || 'your selected study level'} will appear here as they become available.`}
+          />
+        ) : filteredNotes.length === 0 ? (
+          <EmptyState
+            image={getEmptyStateImage('notes')}
+            title="No matching study notes"
+            description={`No notes match “${searchTerm}”. Try a different search term.`}
+            action={<Button onClick={() => setSearchTerm('')}>Clear search</Button>}
+          />
+        ) : (
+          <div className="notes-grid">
+            {filteredNotes.map((note) => (
+              <Card
+                key={note.id}
+                variant="white"
+                className="card-round notes-card"
+                image={note.cover_image_url || note.thumbnail_url || note.topic_image_url || 'https://images.pexels.com/photos/7972949/pexels-photo-7972949.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop'}
+                title={note.title}
+                description={note.content_preview}
+                footer={
+                  <div className="notes-card-footer">
+                    <span className="notes-card-meta font-mono">
+                      {note.read_time ? `${note.read_time} min read` : 'Read note'}
+                      {note.is_premium ? ' · Premium' : ''}
+                    </span>
+                    <Button variant="primary" size="sm" onClick={() => navigate(`/notes/read?id=${encodeURIComponent(note.id)}`)}>
+                      Read note
+                    </Button>
+                  </div>
+                }
+              />
+            ))}
+          </div>
+        )}
+        {unitId && (
+          <LearningJourney
+            unitId={unitId}
+            excludeStages={['notes']}
+            returnTo={'/notes?unit_id=' + encodeURIComponent(unitId)}
+          />
+        )}
+      </div>
+    </Container>
+  );
+}
+

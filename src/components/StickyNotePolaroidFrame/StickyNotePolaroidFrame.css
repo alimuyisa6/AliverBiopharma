@@ -1,0 +1,224 @@
+.sticky-polaroid-frame {
+  position: relative;
+  display: block;
+  width: min(100%, var(--sticky-polaroid-width, 100%));
+  min-width: 0;
+  margin: 0;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--paper);
+  box-shadow: var(--shadow-card);
+  transform: rotate(var(--sticky-polaroid-rotation, -2deg));
+  transform-origin: 50% 50%;
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+
+.sticky-polaroid-frame:hover {
+  transform: rotate(0deg) translateY(-2px);
+  box-shadow: var(--shadow-float);
+}
+
+.sticky-polaroid-photo {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--r-sm);
+  background: var(--soft);
+}
+
+.sticky-polaroid-media,
+.sticky-polaroid-media > img,
+.sticky-polaroid-media > video,
+.sticky-polaroid-media > iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.sticky-polaroid-media > img,
+.sticky-polaroid-media > video,
+.sticky-polaroid-media > iframe {
+  border: 0;
+  object-fit: cover;
+}
+
+.sticky-polaroid-media > iframe {
+  aspect-ratio: 4 / 3;
+}
+
+.sticky-polaroid-placeholder {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  background: var(--soft);
+  color: var(--primary-dark);
+  font-size: var(--t-xs);
+  font-weight: 700;
+}
+
+.sticky-polaroid-placeholder svg {
+  width: min(76%, 10rem);
+  max-height: 78%;
+}
+
+.sticky-polaroid-skeleton {
+  width: 100%;
+  height: 100%;
+  padding: .75rem;
+  background: var(--soft);
+}
+
+.sticky-polaroid-skeleton span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--r-sm);
+  background: var(--line);
+}
+
+.sticky-polaroid-caption {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  min-height: 5.5rem;
+  padding: 1rem .25rem .25rem;
+}
+
+.sticky-polaroid-caption-copy {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: .25rem;
+  padding-right: 38%;
+}
+
+.sticky-polaroid-kicker {
+  color: var(--primary-dark);
+  font-size: .64rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+
+.sticky-polaroid-caption-copy > strong {
+  color: var(--ink);
+  font-family: var(--f-display);
+  font-size: var(--t-sm);
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.sticky-polaroid-caption-copy p {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 0;
+  color: var(--ink-2);
+  font-size: var(--t-xs);
+  line-height: 1.5;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.sticky-polaroid-caption-copy small {
+  color: var(--ink-3);
+  font-size: var(--t-xs);
+}
+
+.sticky-polaroid-paper-note {
+  position: absolute;
+  z-index: 2;
+  top: -.75rem;
+  right: -.5rem;
+  display: flex;
+  width: min(46%, 8rem);
+  min-height: 5.25rem;
+  flex-direction: column;
+  gap: .25rem;
+  padding: .75rem .5rem .5rem;
+  border: 1px solid var(--primary-border);
+  border-radius: var(--r-sm);
+  background: var(--primary-light);
+  color: var(--ink);
+  box-shadow: var(--shadow-card);
+  transform: rotate(4deg);
+  overflow-wrap: anywhere;
+}
+
+.sticky-polaroid-clip {
+  position: absolute;
+  top: -.75rem;
+  left: 50%;
+  width: 1.2rem;
+  height: 2rem;
+  color: var(--ink-2);
+  transform: translateX(-50%) rotate(-4deg);
+}
+
+.sticky-polaroid-note-heading {
+  font-family: var(--f-display);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.sticky-polaroid-note-body {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--ink-2);
+  font-size: .68rem;
+  line-height: 1.4;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.sticky-polaroid-blue {
+  --sticky-note-paper: var(--primary-light);
+}
+
+.sticky-polaroid-gold {
+  --sticky-note-paper: var(--primary-light);
+}
+
+.sticky-polaroid-teal {
+  --sticky-note-paper: var(--primary-light);
+}
+
+.sticky-polaroid-rose {
+  --sticky-note-paper: var(--primary-light);
+}
+
+.sticky-polaroid-frame .sticky-polaroid-caption-copy {
+  padding-right: 38%;
+}
+
+@media (max-width: 480px) {
+  .sticky-polaroid-frame {
+    padding: .5rem;
+  }
+
+  .sticky-polaroid-caption {
+    padding-top: .75rem;
+  }
+
+  .sticky-polaroid-paper-note {
+    width: 44%;
+    min-height: 4.5rem;
+    padding: .5rem;
+  }
+
+  .sticky-polaroid-caption-copy p {
+    -webkit-line-clamp: 2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sticky-polaroid-frame {
+    transition: none;
+  }
+}

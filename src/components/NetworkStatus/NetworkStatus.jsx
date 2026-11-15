@@ -1,0 +1,116 @@
+import { useEffect, useState } from 'react';
+import Icon from '../Icon/Icon';
+import { useAuth } from '../../contexts/AuthContext';
+import useNetworkStatus from '../../hooks/useNetworkStatus';
+
+const MIN_READ_MS = 3500;
+const MS_PER_WORD = 320;
+
+function getFirstName(user) {
+  const raw =
+    user?.profile?.display_name ||
+    user?.profile?.full_name ||
+    user?.display_name ||
+    user?.full_name ||
+    '';
+
+  return raw.trim().split(' ')[0] || '';
+}
+
+function getReadDuration(text) {
+  const words = text.trim().split(/\s+/).length;
+  return Math.max(MIN_READ_MS, words * MS_PER_WORD);
+}
+
+export default function NetworkStatus() {
+  const { status, effectiveType, downlink, rtt } = useNetworkStatus();
+  const { user } = useAuth();
+  const [visible, setVisible] = useState(false);
+  const [displayStatus, setDisplayStatus] = useState(status);
+  const [wasDown, setWasDown] = useState(false);
+
+  const firstName = getFirstName(user);
+
+  const messages = {
+    offline: {
+      icon: 'wifi-slash',
+      text: firstName
+        ? `${firstName}, you're offline — check that mobile data or Wi-Fi is on and airplane mode is off.`
+        : "You're offline. Check that mobile data or Wi-Fi is on and airplane mode is off.",
+      tone: 'offline'
+    },
+    slow: {
+      icon: 'triangle-exclamation',
+      text: firstName
+        ? `${firstName}, your connection is slower than usual. Some content may take longer to load.`
+        : 'Your connection is slower than usual. Some content may take longer to load.',
+      tone: 'slow'
+    },
+    good: {
+      icon: 'wifi',
+      text: firstName
+        ? `${firstName}, your network is back — continue browsing. Enjoy your studies at AliverBiopharm. Thanks!`
+        : "Your network is back — continue browsing. Enjoy your studies at AliverBiopharm. Thanks!",
+      tone: 'good'
+    }
+  };
+
+  useEffect(() => {
+    if (status === 'offline' || status === 'slow') {
+      setDisplayStatus(status);
+      setVisible(true);
+      setWasDown(true);
+      return;
+    }
+
+    if (status === 'good' && wasDown) {
+      setDisplayStatus('good');
+      setVisible(true);
+      setWasDown(false);
+
+      const duration = getReadDuration(messages.good.text);
+      const timer = setTimeout(() => setVisible(false), duration);
+      return () => clearTimeout(timer);
+    }
+
+    setVisible(false);
+  }, [status, wasDown]);
+
+  const message = messages[displayStatus];
+
+  const showDebug =
+    typeof window !== 'undefined' &&
+    new URLSearchParams(window.location.search).get('debug') === 'network';
+
+  return (
+    <>
+      {visible && message && (
+        <div
+          className={`network-status-banner network-status-${message.tone}`}
+          role="status"
+          aria-live="polite"
+        >
+          <div className="network-status-icon" aria-hidden="true">
+            <Icon name={message.icon} />
+          </div>
+          <span className="network-status-message">{message.text}</span>
+          <button
+            type="button"
+            className="network-status-close"
+            onClick={() => setVisible(false)}
+            aria-label="Close network status"
+            title="Close"
+          >
+            <Icon name="xmark" />
+          </button>
+        </div>
+      )}
+
+      {showDebug && (
+        <div className="network-status-debug">
+          status: {status} | online: {String(typeof navigator !== 'undefined' && navigator.onLine)} | effectiveType: {String(effectiveType)} | downlink: {String(downlink)} | rtt: {String(rtt)}
+        </div>
+      )}
+    </>
+  );
+}

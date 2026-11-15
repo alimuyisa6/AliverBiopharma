@@ -1,0 +1,42 @@
+#root .app-layout {
+  background: var(--surface-page);
+}
+
+#root .app-layout main {
+  background: var(--surface-page);
+}
+
+#root .app-layout :where(.notes-page-shell, .notes-page, .flashcards-page, .recall-page, .pp-page, .profile-page, .quiz-page, .dashboard-wrapper) {
+  position: relative;
+  isolation: isolate;
+  background: transparent;
+}
+
+#root .app-layout :where(.notes-page-shell, .notes-page, .flashcards-page, .recall-page, .pp-page, .profile-page, .quiz-page, .dashboard-wrapper)::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0 auto 0 50%;
+  width: 100vw;
+  background: var(--surface-page);
+  content: "";
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+#root .app-layout :where(.notes-page-heading, .notes-curriculum-context, .notes-pathway, .pp-hero, .resources-intro, .quiz-page-section, .flashcard-subject-section, .recall-page-section, .profile-overview-panel, .dashboard-curriculum-section) {
+  background: var(--surface-section);
+}
+
+#root .app-layout :where(.notes-pathway, .notes-curriculum-context, .pp-toolbar, .pp-filters, .resources-toolbar, .notes-toolbar, .glossary-search-area) {
+  background: var(--surface-section-alt);
+}
+
+#root .app-layout :where(.notes-pathway-list, .quiz-assessment-facts, .quiz-mode-picker, .quiz-nav-pills, .flashcard-type-row, .recall-chips-row, .resources-filter-chips) {
+  background: var(--surface-muted);
+}
+
+#root .app-layout :where(.resource-card, .notes-card, .flashcard-deck-card, .dashboard-card, .profile-category-card, .pp-card, .pdf-card, .quiz-question-card, .quiz-result-card, .quiz-review-card, .recall-question-card, .recall-feedback-card, .recall-report-card) {
+  background: var(--surface-card);
+  border-color: var(--border-default);
+}
+

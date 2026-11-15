@@ -1,0 +1,106 @@
+.tutor-apply-page .section {
+  padding-block: var(--section-space-y);
+}
+
+.tutor-apply-page .page-intro {
+  margin: 0 0 var(--content-gap);
+  color: var(--text-secondary);
+  font-family: var(--font-reading);
+  font-size: var(--text-base);
+  font-weight: var(--weight-normal);
+  line-height: var(--leading-relaxed);
+}
+
+.tutor-apply-page .status-description {
+  margin: 0 0 var(--text-gap-description);
+  color: var(--text-secondary);
+  font-family: var(--font-reading);
+  font-size: var(--text-body-lead);
+  font-weight: var(--weight-normal);
+  line-height: var(--leading-body-lead);
+}
+
+.tutor-apply-page .step-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--content-gap);
+  margin-bottom: var(--section-space-y-compact);
+}
+
+.tutor-apply-page .step-indicator .badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-8);
+  height: var(--space-8);
+  padding: 0;
+  border-radius: var(--radius-round);
+}
+
+.tutor-apply-page .step-indicator .step-label {
+  font-family: var(--font-primary);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+.tutor-apply-page .step-indicator .step-label.active {
+  color: var(--text-main);
+  font-weight: var(--weight-medium);
+}
+
+.tutor-apply-page .step-indicator .step-label.inactive {
+  color: var(--text-muted);
+  font-weight: var(--weight-normal);
+}
+
+@media (max-width: 768px) {
+  .tutor-apply-page .section {
+    padding-block: var(--section-space-y);
+  }
+
+  .tutor-apply-page .step-indicator {
+    gap: var(--content-gap-compact);
+    margin-bottom: var(--content-gap);
+  }
+}
+
+@media (max-width: 480px) {
+  .tutor-apply-page .status-description {
+    font-size: var(--text-base);
+  }
+
+  .tutor-apply-page .step-indicator {
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: var(--stack-gap-tight) var(--content-gap-compact);
+  }
+}
+
+body.dark-mode .tutor-apply-page { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .tutor-apply-page :is(.card, .application-card, .step-panel, .status-card, .step-indicator) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .tutor-apply-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small) { color: var(--dark-text); }
+body.dark-mode .tutor-apply-page :is(.text-muted, .page-intro, .status-description) { color: var(--dark-text-secondary); }
+body.dark-mode .tutor-apply-page :is(input, select, textarea) { background: var(--dark-surface-raised); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .tutor-apply-page :is(input, textarea)::placeholder { color: var(--dark-text-secondary); }
+
+.tutor-apply-page .card-image-placeholder {
+  background: var(--primary-light);
+}
+
+.tutor-apply-page .tutor-level-icon {
+  font-size: var(--text-3xl);
+}
+
+.tutor-apply-page .tutor-level-icon--primary {
+  color: var(--primary);
+}
+
+.tutor-apply-page .tutor-level-icon--navy {
+  color: var(--brand-navy);
+}
+
+.tutor-apply-page .tutor-level-icon--mint {
+  color: var(--brand-mint-ink);
+}

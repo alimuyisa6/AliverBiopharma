@@ -1,0 +1,508 @@
+:root {
+
+  --success: var(--success-color);
+  --color-success: var(--success-color);
+  --color-success-strong: var(--success-color);
+
+  --danger: var(--danger-color);
+
+  --warning: var(--warning-color);
+
+  --info: var(--info-color);
+
+  --tone-primary: var(--primary);
+  --tone-primary-hover: var(--primary-hover);
+  --tone-primary-bg: var(--primary-light);
+  --tone-primary-border: var(--primary-border);
+
+  --tone-success: var(--success);
+  --tone-success-hover: var(--success-hover);
+  --tone-success-bg: var(--success-light);
+  --tone-success-border: var(--success-border);
+
+  --tone-warning: var(--warning);
+  --tone-warning-hover: var(--warning-hover);
+  --tone-warning-bg: var(--warning-light);
+  --tone-warning-border: var(--warning-border);
+
+  --tone-danger: var(--danger);
+  --tone-danger-hover: var(--danger-hover);
+  --tone-danger-bg: var(--danger-light);
+  --tone-danger-border: var(--danger-border);
+
+  --tone-info: var(--info);
+  --tone-info-hover: var(--info-hover);
+  --tone-info-bg: var(--info-light);
+  --tone-info-border: var(--info-border);
+
+
+
+
+  --surface-inverse: var(--ink);
+  --surface-overlay: var(--overlay-color);
+  --surface-disabled: var(--grey-100);
+
+  --bg-page: var(--background);
+  --bg-card: var(--paper);
+  --bg-card-hover: var(--soft);
+  --bg-card-tinted: var(--surface-tinted);
+  --bg-muted: var(--soft);
+  --bg-input: var(--soft);
+  --bg-input-disabled: var(--soft);
+  --bg-disabled: var(--soft);
+  --bg-overlay: var(--overlay-color);
+
+  --text-main: var(--text);
+  --text-secondary: var(--grey-600);
+  --text-muted: var(--grey-500);
+  --text-placeholder: var(--grey-500);
+  --text-inverse: var(--white);
+  --text-link: var(--primary);
+  --text-link-hover: var(--secondary);
+  --text-on-dark: var(--white);
+  --text-dim: var(--grey-600);
+
+  --border-transparent: transparent;
+  --border-subtle: var(--grey-300);
+  --border-light: var(--grey-300);
+  --border-default: var(--grey-300);
+  --border-strong: var(--grey-300);
+  --border-focus: var(--primary);
+
+  --border-width-thin: 1px;
+  --border-width-thick: 2px;
+
+  --shadow-none: none;
+  --shadow-subtle: 0 1px 3px var(--shadow-ink-08);
+  --shadow-card: 0 2px 5px var(--shadow-ink-07), 0 12px 26px -16px var(--shadow-ink-24);
+  --shadow-raised: 0 8px 20px var(--shadow-ink-10), 0 18px 34px -20px var(--shadow-ink-28);
+  --shadow-floating: 0 18px 45px var(--shadow-ink-14);
+  --shadow-focus: 0 0 0 3px var(--primary-ring);
+  --shadow-sm: var(--shadow-subtle);
+  --shadow-md: var(--shadow-card);
+  --shadow-lg: var(--shadow-raised);
+  --shadow-xl: var(--shadow-floating);
+
+  --error: var(--danger);
+  --error-light: var(--danger-light);
+  --error-hover: var(--danger-hover);
+
+  --level-olevel: var(--primary);
+  --level-alevel: var(--accent);
+
+  --profile-page-bg: var(--background);
+  --profile-page-bottom-space: var(--page-space-bottom);
+  --profile-header-top-space: var(--page-space-top);
+  --profile-header-top-space-mobile: var(--page-space-top);
+  --profile-header-top-space-small: var(--page-space-top);
+  --profile-header-bottom-space: var(--space-4);
+  --profile-header-gap: var(--space-3);
+  --profile-title-gap: var(--space-2);
+  --profile-subtitle-max: var(--content-max-readable);
+
+  --profile-switcher-gap: var(--space-8);
+  --profile-switcher-min-width: var(--space-56);
+  --profile-switcher-height: var(--space-14);
+  --profile-switcher-padding-y: var(--space-3);
+  --profile-switcher-padding-x: var(--space-5);
+  --profile-switcher-icon-gap: var(--space-3);
+  --profile-switcher-icon-size: var(--space-6);
+  --profile-switcher-bg: var(--primary);
+  --profile-switcher-border: var(--primary-hover);
+  --profile-switcher-depth: var(--space-2);
+  --profile-switcher-shadow: 0 var(--space-2) var(--primary-hover), var(--shadow-floating);
+  --profile-switcher-shadow-hover: 0 var(--space-1) var(--primary-hover), var(--shadow-raised);
+  --profile-switcher-shadow-active: var(--shadow-subtle);
+
+  --profile-panel-side-space: var(--space-2);
+  --profile-panel-side-space-mobile: var(--space-1);
+  --profile-panel-padding-x: var(--space-8);
+  --profile-panel-padding-y: var(--space-8);
+  --profile-panel-padding-x-mobile: var(--space-5);
+  --profile-panel-padding-y-mobile: var(--space-6);
+  --profile-panel-padding-x-small: var(--space-4);
+  --profile-panel-padding-y-small: var(--space-5);
+  --profile-panel-bg: var(--surface-card);
+  --profile-panel-border: var(--primary-border);
+  --profile-panel-radius: var(--radius-xl);
+  --profile-panel-shadow: var(--shadow-none);
+
+  --profile-overview-heading-gap: var(--space-6);
+  --profile-overview-icon-size: var(--space-12);
+  --profile-overview-icon-glyph: var(--space-6);
+
+  --profile-summary-gap: var(--space-8);
+  --profile-summary-padding-x: var(--space-5);
+  --profile-summary-padding-y: var(--space-5);
+  --profile-summary-padding-x-small: var(--space-4);
+  --profile-summary-padding-y-small: var(--space-4);
+  --profile-summary-bg: var(--surface-tinted);
+  --profile-summary-border: var(--primary-border);
+  --profile-summary-radius: var(--radius-lg);
+  --profile-summary-divider-space: var(--space-6);
+  --profile-summary-divider-space-mobile: var(--space-4);
+  --profile-avatar-size: var(--space-24);
+
+  --profile-detail-icon-size: var(--space-5);
+  --profile-detail-label-width: var(--space-16);
+  --profile-detail-label-width-mobile: var(--space-20);
+
+  --profile-categories-gap: var(--space-8);
+  --profile-category-grid-gap: var(--space-5);
+  --profile-category-gap: var(--space-4);
+  --profile-category-padding-x: var(--space-4);
+  --profile-category-padding-y: var(--space-4);
+  --profile-category-radius: var(--radius-md);
+  --profile-category-bg: var(--surface-card);
+  --profile-category-border: var(--border-light);
+  --profile-category-shadow: var(--shadow-subtle);
+  --profile-category-shadow-hover: var(--shadow-card);
+  --profile-category-lift: var(--space-1);
+  --profile-category-icon-size: var(--space-10);
+  --profile-category-icon-glyph: var(--space-6);
+  --profile-category-arrow-size: var(--space-5);
+
+  --profile-sidebar-width: var(--space-56);
+  --profile-sidebar-offset: var(--space-8);
+
+  --hero-bg: var(--background);
+  --hero-border: var(--secondary);
+
+  --header-bg: var(--white);
+  --header-border: var(--grey-200);
+
+  --footer-bg: var(--ink);
+  --footer-text: var(--white);
+  --footer-border: var(--primary);
+
+  --level-o: var(--primary);
+  --level-o-light: var(--primary-light);
+
+  --level-a: var(--accent);
+  --level-a-light: var(--accent-light);
+
+  --level-pharmacy: var(--secondary);
+  --level-pharmacy-light: var(--grey-100);
+
+  --section-tint: var(--soft);
+
+  --auth-bg: var(--soft);
+  --auth-surface: var(--paper);
+  --auth-surface-alt: var(--soft);
+  --auth-border: var(--grey-200);
+  --auth-border-strong: var(--grey-300);
+  --auth-text: var(--text);
+  --auth-text-muted: var(--grey-600);
+  --auth-text-faint: var(--grey-500);
+  --auth-brand-hover: var(--secondary);
+  --auth-brand-soft: var(--primary-light);
+  --auth-brand-ring: var(--primary-ring);
+  --auth-accent: var(--accent);
+  --auth-accent-soft: var(--surface-tinted);
+  --auth-danger: var(--danger-color);
+  --auth-danger-soft: var(--danger-background);
+  --auth-success: var(--success-color);
+  --auth-success-soft: var(--success-background);
+  --auth-warning: var(--warning-color);
+  --auth-warning-soft: var(--warning-background);
+  --auth-shadow-xs: 0 1px 2px var(--shadow-ink-05);
+  --auth-shadow-sm: 0 2px 6px var(--shadow-ink-06);
+  --auth-shadow: 0 8px 20px -6px var(--shadow-ink-10), 0 2px 6px var(--shadow-ink-05);
+  --auth-shadow-lg: 0 30px 60px -20px var(--shadow-ink-20);
+  --auth-radius-xs: 6px;
+  --auth-radius-sm: 10px;
+  --auth-radius: 14px;
+  --auth-radius-lg: 20px;
+  --auth-radius-xl: 28px;
+}
+
+body.dark-mode {
+  --tone-primary: var(--primary);
+  --tone-primary-hover: var(--primary-hover);
+  --tone-primary-bg: var(--primary-light);
+  --tone-primary-border: var(--primary-border);
+  --tone-success: var(--success);
+  --tone-success-hover: var(--success-hover);
+  --tone-success-bg: var(--success-light);
+  --tone-success-border: var(--success-border);
+  --tone-warning: var(--warning);
+  --tone-warning-hover: var(--warning-hover);
+  --tone-warning-bg: var(--warning-light);
+  --tone-warning-border: var(--warning-border);
+  --tone-danger: var(--danger);
+  --tone-danger-hover: var(--danger-hover);
+  --tone-danger-bg: var(--danger-light);
+  --tone-danger-border: var(--danger-border);
+  --tone-info: var(--info);
+  --tone-info-hover: var(--info-hover);
+  --tone-info-bg: var(--info-light);
+  --tone-info-border: var(--info-border);
+  --surface-inverse: var(--dark-text);
+  --surface-overlay: var(--overlay-color);
+  --surface-disabled: var(--dark-surface-raised);
+  --bg-page: var(--surface-page);
+  --bg-card: var(--surface-card);
+  --bg-card-hover: var(--surface-raised);
+  --bg-card-tinted: var(--surface-tinted);
+  --bg-muted: var(--surface-muted);
+  --bg-input: var(--surface-raised);
+  --bg-input-disabled: var(--surface-disabled);
+  --bg-disabled: var(--surface-disabled);
+  --bg-overlay: var(--surface-overlay);
+  --text-main: var(--dark-text);
+  --text-secondary: var(--dark-text-secondary);
+  --text-muted: var(--dark-text-secondary);
+  --text-placeholder: var(--dark-text-secondary);
+  --text-inverse: var(--dark-background);
+  --text-link: var(--dark-primary);
+  --text-link-hover: var(--dark-primary);
+  --text-on-primary: var(--dark-background);
+  --text-on-dark: var(--dark-text);
+  --text-dim: var(--dark-text-secondary);
+  --border-transparent: transparent;
+  --border-subtle: var(--dark-border);
+  --border-light: var(--dark-border);
+  --border-default: var(--dark-border);
+  --border-strong: var(--dark-border);
+  --border-focus: var(--dark-primary);
+  --shadow-subtle: 0 1px 2px var(--shadow-black-30);
+  --shadow-card: 0 4px 14px var(--shadow-black-28);
+  --shadow-raised: 0 10px 28px var(--shadow-black-36);
+  --shadow-floating: 0 18px 45px var(--shadow-black-44);
+  --shadow-focus: 0 0 0 3px var(--primary-ring);
+  --shadow-sm: var(--shadow-subtle);
+  --shadow-md: var(--shadow-card);
+  --shadow-lg: var(--shadow-raised);
+  --shadow-xl: var(--shadow-floating);
+  --error: var(--danger);
+  --error-light: var(--danger-light);
+  --error-hover: var(--danger-hover);
+  --level-olevel: var(--primary);
+  --level-alevel: var(--accent);
+  --hero-bg: var(--dark-background);
+  --hero-border: var(--dark-border);
+  --level-o: var(--primary);
+  --level-o-light: var(--primary-light);
+  --level-a: var(--accent);
+  --level-a-light: var(--accent-light);
+  --level-pharmacy: var(--dark-primary);
+  --level-pharmacy-light: var(--primary-light);
+  --section-tint: var(--surface-muted);
+  --profile-page-bg: var(--dark-background);
+  --header-bg: var(--dark-surface);
+  --header-border: var(--dark-border);
+  --footer-bg: var(--dark-background);
+  --footer-text: var(--dark-text);
+  --footer-border: var(--dark-border);
+  --auth-bg: var(--dark-background);
+  --auth-surface: var(--dark-surface);
+  --auth-surface-alt: var(--surface-muted);
+  --auth-border: var(--dark-border);
+  --auth-border-strong: var(--dark-border);
+  --auth-text: var(--dark-text);
+  --auth-text-muted: var(--dark-text-secondary);
+  --auth-text-faint: var(--dark-text-secondary);
+  --auth-brand-hover: var(--primary-hover);
+  --auth-brand-soft: var(--primary-light);
+  --auth-brand-ring: var(--primary-ring);
+  --auth-accent: var(--dark-accent);
+  --auth-accent-soft: var(--accent-light);
+  --auth-danger: var(--danger);
+  --auth-danger-soft: var(--danger-light);
+  --auth-success: var(--success);
+  --auth-success-soft: var(--success-light);
+  --auth-warning: var(--warning);
+  --auth-warning-soft: var(--warning-light);
+}
+
+.section-tint {
+  background: var(--section-tint);
+}
+
+
+
+
+
+body.accessibility-large-text {
+  --text-xs: 0.8125rem;
+  --text-sm: 0.9375rem;
+  --text-base: 1.0625rem;
+  --text-md: 1.125rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.625rem;
+  --text-3xl: 2rem;
+  --text-4xl: 2.375rem;
+  --text-5xl: 3.125rem;
+  --text-body: 1.125rem;
+  --text-body-sm: 1rem;
+  --text-supporting: 0.9375rem;
+  --text-label: 0.875rem;
+  --text-caption: 0.875rem;
+}
+
+body.accessibility-large-text,
+body.accessibility-large-text #root {
+  font-size: 112.5% !important;
+}
+
+body.accessibility-large-text :is(p, li, label, input, select, textarea, button, a, th, td, small) {
+  font-size: max(1rem, var(--text-body)) !important;
+}
+
+body.accessibility-large-text h1 {
+  font-size: calc(var(--type-page-title-size) * 1.125) !important;
+}
+
+body.accessibility-large-text h2 {
+  font-size: calc(var(--type-section-title-size) * 1.125) !important;
+}
+
+body.accessibility-large-text h3,
+body.accessibility-large-text h4,
+body.accessibility-large-text h5,
+body.accessibility-large-text h6 {
+  font-size: calc(var(--type-card-title-size) * 1.125) !important;
+}
+
+body.accessibility-high-contrast {
+  --text-main: var(--text);
+  --text-secondary: var(--text);
+  --text-muted: var(--text);
+  --text-placeholder: var(--text);
+  --border-default: var(--text);
+  --border-strong: var(--text);
+  --border-subtle: var(--text);
+  --border-light: var(--text);
+  --primary-ring: color-mix(in srgb, var(--text) 45%, transparent);
+}
+
+body.dark-mode.accessibility-high-contrast {
+  --text-main: var(--background);
+  --text-secondary: var(--text);
+  --text-muted: var(--text);
+  --text-placeholder: var(--text);
+  --border-default: var(--text);
+  --border-strong: var(--background);
+  --border-subtle: var(--text);
+  --border-light: var(--text);
+  --primary-ring: color-mix(in srgb, var(--dark-text) 55%, transparent);
+}
+
+body.accessibility-high-contrast :is(p, li, label, th, td, span, small, h1, h2, h3, h4, h5, h6) {
+  color: var(--text-main) !important;
+}
+
+body.accessibility-high-contrast :is(input, select, textarea, button) {
+  border-color: var(--border-strong) !important;
+}
+
+body.accessibility-high-contrast :focus-visible {
+  outline: 3px solid var(--text-main) !important;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--primary-ring) !important;
+}
+
+body.accessibility-reduce-motion,
+body.accessibility-reduce-motion * {
+  animation: none !important;
+  transition: none !important;
+}
+
+body.accessibility-reduce-motion {
+  scroll-behavior: auto !important;
+}
+
+body.accessibility-dyslexia-font,
+body.accessibility-dyslexia-font * {
+  --font-primary: Verdana, Arial, sans-serif;
+  --font-heading: Verdana, Arial, sans-serif;
+  --font-maven: Verdana, Arial, sans-serif;
+  --font-reading: Verdana, Arial, sans-serif;
+  font-family: Verdana, Arial, sans-serif !important;
+}
+
+:root {
+  --overlay-backdrop: var(--shadow-black-28);
+  --social-default-bg: var(--text);
+  --social-facebook: var(--primary);
+  --social-instagram: var(--accent);
+  --social-youtube: var(--primary);
+  --social-x: var(--text);
+  --social-whatsapp: var(--secondary);
+  --social-telegram: var(--accent);
+  --social-linkedin: var(--primary);
+  --social-github: var(--text);
+}
+
+:root {
+  --skeleton-shimmer-base: color-mix(in srgb, var(--grey-500) 8%, transparent);
+  --skeleton-shimmer-highlight: var(--glass-white-35);
+}
+
+body.dark-mode {
+  --skeleton-shimmer-base: color-mix(in srgb, var(--dark-text-secondary) 8%, transparent);
+  --skeleton-shimmer-highlight: color-mix(in srgb, var(--dark-background) 35%, transparent);
+}
+
+:root {
+  --auth-glass-white-72: var(--glass-white-72);
+  --auth-glass-white-52: var(--glass-white-52);
+  --auth-glass-white-34: var(--glass-white-34);
+  --auth-glass-white-12: var(--glass-white-12);
+  --auth-glass-white-44: var(--glass-white-44);
+  --auth-glass-white-27: var(--glass-white-27);
+  --auth-glass-white-8: var(--glass-white-08);
+  --auth-glass-white-43: var(--glass-white-43);
+  --auth-glass-white-25: var(--glass-white-25);
+  --auth-glass-white-38: var(--glass-white-38);
+  --auth-glass-white-22: var(--glass-white-22);
+  --auth-glass-white-7: var(--glass-white-07);
+  --auth-glass-white-10: var(--glass-white-10);
+  --auth-glass-white-13: var(--glass-white-13);
+  --auth-glass-white-24: var(--glass-white-24);
+  --auth-glass-white-16: var(--glass-white-16);
+  --auth-glass-white-78: var(--glass-white-78);
+  --auth-glass-white-92: var(--glass-white-92);
+  --auth-glass-white-88: var(--glass-white-88);
+  --auth-glass-white-55: var(--glass-white-55);
+}
+
+body.dark-mode :is(.page-shell, .page-container, .page-content, .content-shell, .content-container, .settings-page, .settings-content, .library-page, .resources-page, .glossary-page, .profile-page, .dashboard-page, .classroom-page, .quiz-page, .flashcard-page, .recall-page, .search-page, .legal-page, .about-page, .contact-page, .donate-page, .maintenance-page) {
+  background-color: var(--dark-background);
+  color: var(--dark-text);
+}
+
+body.dark-mode :is(.card, .panel, .surface-card, .content-card, .content-panel, .section-card, .settings-card, .filter-panel, .results-panel, .modal-card, .dropdown-menu, .popover, .table-container) {
+  background-color: var(--dark-surface);
+  color: var(--dark-text);
+  border-color: var(--dark-border);
+}
+
+body.dark-mode :is(input, select, textarea, .form-control, .form-input) {
+  background-color: var(--dark-surface-raised);
+  color: var(--dark-text);
+  border-color: var(--dark-border);
+}
+
+body.dark-mode :is(input, textarea, .form-control, .form-input)::placeholder {
+  color: var(--dark-text-secondary);
+  opacity: 1;
+}
+
+body.dark-mode :is(.text-muted, .text-secondary, .muted, .field-hint, .form-hint, .helper-text, .page-description, .section-description) {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode :is(.page-shell, .page-container, .page-content, .content-shell, .content-container) :is(h1, h2, h3, h4, h5, h6, p, li, label, small, strong) {
+  color: var(--dark-text);
+}
+
+body.dark-mode :is(.page-shell, .page-container, .page-content, .content-shell, .content-container) a:not(.btn):not(.button) {
+  color: var(--dark-primary);
+}
+
+body.dark-mode :is(.page-shell, .page-container, .page-content, .content-shell, .content-container) :is(button, input, select, textarea, a):focus-visible {
+  outline-color: var(--dark-primary);
+}
+

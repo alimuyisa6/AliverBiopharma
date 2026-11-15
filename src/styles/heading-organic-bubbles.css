@@ -1,0 +1,22 @@
+:root {
+  --heading-bubble-primary-bg: #b9eaf3;
+  --heading-bubble-primary-border: #55bfd2;
+  --heading-bubble-primary-ink: #102c40;
+}
+
+body.dark-mode {
+  --heading-bubble-primary-bg: #236575;
+  --heading-bubble-primary-border: #4a9caf;
+  --heading-bubble-primary-ink: #f0fcff;
+}
+
+.ab-home-hero h1::first-letter {
+  display: inline-block;
+  padding: .09em .27em .13em;
+  border: 1px solid var(--heading-bubble-primary-border);
+  border-radius: 50% 50% 50% 0 / 58% 58% 42% 42%;
+  background: var(--heading-bubble-primary-bg);
+  color: var(--heading-bubble-primary-ink);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}

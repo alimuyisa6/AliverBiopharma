@@ -1,0 +1,1140 @@
+/* pages/PastPapers.jsx */
+import { useState, useEffect, useRef } from 'react';
+import { Link, useNavigate, useSearchParams, useLocation } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
+import { useLevelFilter } from '../hooks/useLevelFilter';
+import {
+  getPastPapers,
+  getPastPaper,
+  getPastPaperFilterOptions,
+  getPastPaperDownloadUrl,
+  togglePaperBookmark,
+  getBookmarkedPapers,
+  trackPaperView,
+  getDownloadHistory,
+  trackPaperDownloadAttempt,
+  getPaperReviews,
+  ratePaper,
+  deletePaperReview,
+  getPaperFilterPresets,
+  savePaperFilterPreset,
+  deletePaperFilterPreset
+} from '../api/client';
+import Icon from '../components/Icon/Icon';
+import Skeleton from '../components/Skeleton/Skeleton';
+import Button from '../components/Button/Button';
+import DownloadButton from '../components/ui/DownloadButton';
+import PremiumAccessButton from '../components/ui/PremiumAccessButton';
+import Select from '../components/Select/Select';
+import EmptyState from '../components/EmptyState/EmptyState';
+import { useToast } from '../components/Toast/Toast';
+import { useLayout } from '../contexts/LayoutContext';
+import ContentSwitcher from '../components/ContentSwitcher/ContentSwitcher';
+import LearningJourney from '../components/LearningJourney/LearningJourney';
+import { isPremiumAccessError, redirectToSubscription } from '../utils/subscriptionNavigation';
+import { getCachedStale, setCache } from '../utils/cache';
+
+const TABS = [
+  { key: 'all', label: 'All papers' },
+  { key: 'bookmarked', label: 'Saved papers' },
+  { key: 'downloaded', label: 'Downloaded' }
+];
+
+export default function PastPapers() {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [searchParams] = useSearchParams();
+  const curriculumUnitId = searchParams.get('unit_id') || null;
+  const { level, class_name, showAll, displayName } = useLevelFilter();
+  const { bootstrap } = useLayout();
+  const addToast = useToast();
+  const effectiveLevel = showAll ? null : level;
+  const effectiveClass = showAll ? null : class_name;
+  const initialPapersKey = `papers_page_papers:${user?.id || 'guest'}:${curriculumUnitId || ''}:${effectiveLevel || ''}:${effectiveClass || ''}:all:1::year_desc:{"subject":"","year":"","exam_board":"","paper_type":""}`;
+  const initialPapers = getCachedStale(initialPapersKey);
+
+  const [initializing, setInitializing] = useState(true);
+  const [papers, setPapers] = useState(() => initialPapers?.papers || []);
+  const [filterOptions, setFilterOptions] = useState({
+    subjects: [],
+    years: [],
+    exam_boards: [],
+    paper_types: []
+  });
+  const [filters, setFilters] = useState({
+    subject: '',
+    year: '',
+    exam_board: '',
+    paper_type: ''
+  });
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(() => initialPapers?.totalPages || 1);
+  const [total, setTotal] = useState(() => initialPapers?.total || 0);
+  const [papersLoading, setPapersLoading] = useState(() => !initialPapers);
+  const [downloadingId, setDownloadingId] = useState(null);
+  const [bookmarkingId, setBookmarkingId] = useState(null);
+  const [deletingReview, setDeletingReview] = useState(false);
+  const [savingPreset, setSavingPreset] = useState(false);
+  const [deletingPresetId, setDeletingPresetId] = useState(null);
+  const [showFilters, setShowFilters] = useState(false);
+  const [activeTab, setActiveTab] = useState('all');
+  const [bookmarkedIds, setBookmarkedIds] = useState(new Set());
+  const [downloadedIds, setDownloadedIds] = useState(new Set());
+  const [selectedPaper, setSelectedPaper] = useState(null);
+  const [reviews, setReviews] = useState([]);
+  const [reviewsLoading, setReviewsLoading] = useState(false);
+  const [reviewRating, setReviewRating] = useState(0);
+  const [reviewComment, setReviewComment] = useState('');
+  const [submittingReview, setSubmittingReview] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [sortBy, setSortBy] = useState('year_desc');
+  const [presets, setPresets] = useState([]);
+  const [presetName, setPresetName] = useState('');
+  const [showPresets, setShowPresets] = useState(false);
+
+  const papersRequestId = useRef(0);
+
+
+
+  function getEmptyStateImage(key) {
+    const uiComponents = bootstrap?.ui_components || [];
+    const component = uiComponents.find(
+      (item) => item.component_key === `empty_state_${key}`
+    );
+    return component?.properties?.image_url || null;
+  }
+
+  useEffect(() => {
+    let mounted = true;
+
+    getPastPaperFilterOptions()
+      .then((result) => {
+        if (mounted) {
+          setFilterOptions({
+            subjects: result?.subjects || [],
+            years: result?.years || [],
+            exam_boards: result?.exam_boards || [],
+            paper_types: result?.paper_types || []
+          });
+        }
+      })
+      .catch(() => {})
+      .finally(() => {
+        if (mounted) {
+          setInitializing(false);
+        }
+      });
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    setPage(1);
+  }, [effectiveLevel, effectiveClass, activeTab, searchQuery, curriculumUnitId]);
+
+  useEffect(() => {
+    if (!user) {
+      setBookmarkedIds(new Set());
+      setDownloadedIds(new Set());
+      setPresets([]);
+      return;
+    }
+
+    loadUserInteractions();
+    loadPresets();
+  }, [user]);
+
+  useEffect(() => {
+    loadPapers();
+  }, [
+    page,
+    effectiveLevel,
+    effectiveClass,
+    activeTab,
+    searchQuery,
+    sortBy,
+    filters.subject,
+    filters.year,
+    filters.exam_board,
+    filters.paper_type,
+    curriculumUnitId,
+    user?.id
+  ]);
+
+  const loadUserInteractions = async () => {
+    try {
+      const [bookmarked, downloaded] = await Promise.all([
+        getBookmarkedPapers(1, 100),
+        getDownloadHistory(1, 100)
+      ]);
+
+      setBookmarkedIds(
+        new Set((bookmarked?.papers || []).map((paper) => paper.id))
+      );
+
+      setDownloadedIds(
+        new Set((downloaded?.papers || []).map((paper) => paper.id))
+      );
+    } catch {}
+  };
+
+  const loadPresets = async () => {
+    try {
+      const result = await getPaperFilterPresets();
+      setPresets(Array.isArray(result) ? result : []);
+    } catch {
+      setPresets([]);
+    }
+  };
+
+  const loadPapers = async () => {
+    const requestId = ++papersRequestId.current;
+    const cacheKey = `papers:${user?.id || 'guest'}:${curriculumUnitId || ''}:${effectiveLevel || ''}:${effectiveClass || ''}:${activeTab}:${page}:${searchQuery.trim()}:${sortBy}:${JSON.stringify(filters)}`;
+    const persistentCacheKey = `papers_page_${cacheKey}`;
+    const cached = getCachedStale(persistentCacheKey);
+
+    if (cached) {
+      setPapers(cached.papers);
+      setTotalPages(cached.totalPages);
+      setTotal(cached.total);
+      setPapersLoading(false);
+    } else {
+      setPapersLoading(true);
+    }
+
+    try {
+      let result;
+
+      if (activeTab === 'bookmarked') {
+        result = await getBookmarkedPapers(page, 12);
+      } else if (activeTab === 'downloaded') {
+        result = await getDownloadHistory(page, 12);
+      } else {
+        const params = {
+          page,
+          limit: 12
+        };
+
+        if (curriculumUnitId) {
+          params.unit_id = curriculumUnitId;
+        }
+
+        if (effectiveLevel) {
+          params.level = effectiveLevel;
+        }
+
+        if (effectiveClass) {
+          params.class_name = effectiveClass;
+        }
+
+        if (searchQuery.trim()) {
+          params.search = searchQuery.trim();
+        }
+
+        if (sortBy) {
+          params.sort = sortBy;
+        }
+
+        if (filters.subject) {
+          params.subject = filters.subject;
+        }
+
+        if (filters.year) {
+          params.year = filters.year;
+        }
+
+        if (filters.exam_board) {
+          params.exam_board = filters.exam_board;
+        }
+
+        if (filters.paper_type) {
+          params.paper_type = filters.paper_type;
+        }
+
+        result = await getPastPapers(params);
+      }
+
+      if (requestId !== papersRequestId.current) {
+        return;
+      }
+
+      const nextData = {
+        papers: result?.papers || [],
+        totalPages: result?.total_pages || 1,
+        total: result?.total || 0
+      };
+      setCache(persistentCacheKey, nextData);
+      setPapers(nextData.papers);
+      setTotalPages(nextData.totalPages);
+      setTotal(nextData.total);
+    } catch (error) {
+      if (requestId !== papersRequestId.current) {
+        return;
+      }
+
+      console.error('[PAST_PAPERS_LOAD_ERROR]', error);
+      addToast("We couldn't load the past papers. Please try again.", 'error');
+
+      setPapers([]);
+      setTotalPages(1);
+      setTotal(0);
+    } finally {
+      if (requestId === papersRequestId.current) {
+        setPapersLoading(false);
+      }
+    }
+  };
+
+  const loadReviews = async (paperId) => {
+    setReviewsLoading(true);
+
+    try {
+      const result = await getPaperReviews(paperId, 1, 20);
+      setReviews(result?.reviews || []);
+    } catch {
+      setReviews([]);
+    } finally {
+      setReviewsLoading(false);
+    }
+  };
+
+  const recordDownloadAttempt = (paper, status, reason) => {
+    trackPaperDownloadAttempt(paper?.id, status, reason).catch(() => {
+      // Best-effort audit only: logging must never block a user's download flow.
+    });
+  };
+
+  const handleDownload = async (paper) => {
+    if (!user) {
+      addToast('Sign in to download this paper.', 'warning');
+      return;
+    }
+
+    if (paper.locked) {
+      recordDownloadAttempt(paper, 'premium_blocked', paper.reason || 'Premium access required');
+      redirectToSubscription(navigate, location, { preserveCurrent: true, reason: 'premium' });
+      return;
+    }
+
+    setDownloadingId(paper.id);
+
+    try {
+      const result = await getPastPaperDownloadUrl(paper.id);
+
+      if (!result?.url) {
+        throw new Error('Download URL was not returned');
+      }
+
+      recordDownloadAttempt(paper, 'link_issued', 'A signed download link was issued; file completion cannot be confirmed by the browser.');
+
+      const anchor = document.createElement('a');
+
+      anchor.href = result.url;
+      anchor.download = `${paper.title}.pdf`;
+      anchor.target = '_blank';
+      anchor.rel = 'noopener noreferrer';
+
+      document.body.appendChild(anchor);
+      anchor.click();
+      document.body.removeChild(anchor);
+
+      setDownloadedIds((prev) => {
+        const next = new Set(prev);
+        next.add(paper.id);
+        return next;
+      });
+
+      addToast('Download started', 'success');
+    } catch (error) {
+      const status = error?.status === 403
+        ? 'premium_blocked'
+        : (error?.code === 'REQUEST_TIMEOUT' || error instanceof TypeError)
+          ? 'network_error'
+          : 'request_failed';
+      recordDownloadAttempt(paper, status, error?.message || 'Download request failed');
+
+      if (isPremiumAccessError(error) || error?.status === 403 && /premium/i.test(error?.message || '')) {
+        redirectToSubscription(navigate, location, { preserveCurrent: true, reason: 'premium' });
+      } else if (status === 'network_error') {
+        addToast('Connection problem. Check your internet and try again.', 'error');
+      } else {
+        addToast("We couldn't download this paper. Please try again.", 'error');
+      }
+    } finally {
+      setDownloadingId(null);
+    }
+  };
+
+  const handleBookmark = async (paperId) => {
+    if (!user) {
+      addToast('Sign in to save this paper to your bookmarks.', 'warning');
+      return;
+    }
+
+    setBookmarkingId(paperId);
+    try {
+      const result = await togglePaperBookmark(paperId);
+
+      setBookmarkedIds((prev) => {
+        const next = new Set(prev);
+
+        if (result?.bookmarked) {
+          next.add(paperId);
+        } else {
+          next.delete(paperId);
+        }
+
+        return next;
+      });
+
+      if (activeTab === 'bookmarked') {
+        loadPapers();
+      }
+    } catch {
+      addToast("We couldn't update your bookmark. Please try again.", 'error');
+    } finally {
+      setBookmarkingId(null);
+    }
+  };
+
+  const handlePaperOpen = async (paper) => {
+    if (paper.is_premium) {
+      try {
+        const access = await getPastPaper(paper.id);
+        if (access?.locked && ['premium_locked', 'premium_required'].includes(access.reason)) {
+          redirectToSubscription(navigate, location, { preserveCurrent: true, reason: 'premium' });
+          return;
+        }
+        if (access?.locked) {
+          addToast('This paper is restricted for your account.', 'warning');
+          return;
+        }
+      } catch (error) {
+        if (isPremiumAccessError(error)) {
+          redirectToSubscription(navigate, location, { preserveCurrent: true, reason: 'premium' });
+          return;
+        }
+        addToast(error?.message || "We couldn't open this paper. Please try again.", 'error');
+        return;
+      }
+    }
+
+    setSelectedPaper(paper);
+
+    setReviewRating(0);
+    setReviewComment('');
+
+    if (user) {
+      try {
+        await trackPaperView(paper.id);
+      } catch {}
+    }
+
+    loadReviews(paper.id);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedPaper(null);
+    setReviews([]);
+    setReviewRating(0);
+    setReviewComment('');
+  };
+
+  const handleSubmitReview = async () => {
+    if (!selectedPaper) {
+      return;
+    }
+
+    if (!user) {
+      addToast('Sign in to leave a review for this paper.', 'warning');
+      return;
+    }
+
+    if (!reviewRating) {
+      addToast('Choose a star rating before submitting your review.', 'warning');
+      return;
+    }
+
+    setSubmittingReview(true);
+
+    try {
+      await ratePaper(
+        selectedPaper.id,
+        reviewRating,
+        reviewComment.trim() || null
+      );
+
+      addToast('Review submitted', 'success');
+
+      setReviewRating(0);
+      setReviewComment('');
+
+      loadReviews(selectedPaper.id);
+    } catch {
+      addToast("We couldn't submit your review. Please try again.", 'error');
+    } finally {
+      setSubmittingReview(false);
+    }
+  };
+
+  const handleDeleteReview = async () => {
+    if (!selectedPaper) {
+      return;
+    }
+
+    setDeletingReview(true);
+    try {
+      await deletePaperReview(selectedPaper.id);
+
+      addToast('Review deleted', 'success');
+      loadReviews(selectedPaper.id);
+    } catch {
+      addToast("We couldn't delete your review. Please try again.", 'error');
+    } finally {
+      setDeletingReview(false);
+    }
+  };
+
+  const handleSavePreset = async () => {
+    if (!user) {
+      addToast('Sign in to save your filter settings.', 'warning');
+      return;
+    }
+
+    if (!presetName.trim()) {
+      return;
+    }
+
+    setSavingPreset(true);
+    try {
+      const preset = await savePaperFilterPreset(
+        presetName.trim(),
+        filters
+      );
+
+      setPresets((prev) => [
+        preset,
+        ...prev.filter((item) => item.name !== preset.name)
+      ]);
+
+      setPresetName('');
+
+      addToast('Filter preset saved', 'success');
+    } catch {
+      addToast("We couldn't save these filters. Please try again.", 'error');
+    } finally {
+      setSavingPreset(false);
+    }
+  };
+
+  const handleApplyPreset = (preset) => {
+    setFilters({
+      subject: preset?.filters?.subject || '',
+      year: preset?.filters?.year || '',
+      exam_board: preset?.filters?.exam_board || '',
+      paper_type: preset?.filters?.paper_type || ''
+    });
+
+    setPage(1);
+    setShowPresets(false);
+  };
+
+  const handleDeletePreset = async (presetId) => {
+    setDeletingPresetId(presetId);
+    try {
+      await deletePaperFilterPreset(presetId);
+
+      setPresets((prev) =>
+        prev.filter((preset) => preset.id !== presetId)
+      );
+    } catch {
+      addToast("We couldn't delete this saved filter. Please try again.", 'error');
+    } finally {
+      setDeletingPresetId(null);
+    }
+  };
+
+  const clearFilters = () => {
+    setFilters({
+      subject: '',
+      year: '',
+      exam_board: '',
+      paper_type: ''
+    });
+
+    setPage(1);
+  };
+
+  const activeFilterCount = [
+    filters.subject,
+    filters.year,
+    filters.exam_board,
+    filters.paper_type
+  ].filter(Boolean).length;
+
+  const levelName = displayName || level || '';
+  const classLabel = class_name || '';
+
+  return (
+    <div className="pp-page">
+      <div className="pp-hero">
+        <div className="pp-hero-inner">
+          <div className="pp-hero-content">
+            <span className="pp-eyebrow">
+              <span className="pp-eyebrow-line" />
+              Exam Preparation
+            </span>
+
+            <h1 className="pp-title">
+              {levelName ? `${levelName} past papers` : 'Past papers'}
+            </h1>
+
+            {classLabel && (
+              <p className="pp-subtitle">
+                {classLabel}
+              </p>
+            )}
+
+            <p className="pp-description">
+              Search past exams by subject, year, or exam board. Save papers and practise at your own pace.
+            </p>
+
+            <Breadcrumb items={[
+              { label: 'Home', href: '/' },
+              { label: curriculumUnitId ? 'Curriculum Past Papers' : 'Past Papers' },
+            ]} />
+
+            <div className="pp-meta">
+              <span className="pp-meta-item">
+                <strong>{total}</strong> papers
+              </span>
+              <span className="pp-meta-divider" />
+              <span className="pp-meta-item">
+                <strong>{filterOptions.years.length || '—'}</strong> years
+              </span>
+              <span className="pp-meta-divider" />
+              <span className="pp-meta-item">
+                <strong>{filterOptions.subjects.length || '—'}</strong> subjects
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="pp-main">
+        {!user && (
+          <div className="pp-alert pp-alert-info">
+            <Icon name="lock" /> <span>You can browse past papers freely. Sign in when you're ready to download one.</span>
+          </div>
+        )}
+
+        <ContentSwitcher
+          title="Past paper collection"
+          options={TABS.map((tab) => ({
+            value: tab.key,
+            label: tab.label,
+            icon: <Icon name={tab.key === 'all' ? 'file-lines' : tab.key === 'bookmarked' ? 'bookmark' : 'download'} />
+          }))}
+          value={activeTab}
+          onChange={setActiveTab}
+          className="pp-content-switcher"
+        />
+
+        {activeTab === 'all' && (
+          <div className="pp-toolbar">
+            <div className="pp-search-wrapper">
+              <input
+                type="search"
+                placeholder="Search past papers…"
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
+                className="pp-search-input"
+                aria-label="Search past papers"
+              />
+              <span className="pp-search-icon">
+                <Icon name="magnifying-glass" />
+              </span>
+            </div>
+
+            <Select
+              label="Sort by"
+              options={[
+                { value: 'year_desc', label: 'Newest' },
+                { value: 'year_asc', label: 'Oldest' },
+                { value: 'downloads', label: 'Most downloaded' },
+                { value: 'rating', label: 'Highest rated' }
+              ]}
+              value={sortBy}
+              onChange={(event) => setSortBy(event.target.value)}
+            />
+
+            <Button
+              variant={showFilters ? 'primary' : 'secondary'}
+              size="sm"
+              onClick={() => setShowFilters((value) => !value)}
+            >
+              <Icon name="filter" /> Filter papers
+              {activeFilterCount > 0 && (
+                <span className="pp-badge">{activeFilterCount}</span>
+              )}
+            </Button>
+
+            {user && presets.length > 0 && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setShowPresets((value) => !value)}
+              >
+                <Icon name="bookmark" /> Presets
+              </Button>
+            )}
+
+            {activeFilterCount > 0 && (
+              <Button variant="ghost" size="sm" onClick={clearFilters}>
+                <Icon name="xmark" /> Clear filters
+              </Button>
+            )}
+
+            <p className="pp-count">
+              {papersLoading ? 'Loading past papers…' : `${total} ${total === 1 ? 'paper' : 'papers'} found`}
+            </p>
+          </div>
+        )}
+
+        {showPresets && activeTab === 'all' && user && (
+          <div className="pp-presets">
+            {presets.length === 0 ? (
+              <p className="pp-presets-empty">No saved filters yet. Save a filter to reuse it later.</p>
+            ) : (
+              presets.map((preset) => (
+                <div key={preset.id} className="pp-preset-item">
+                  <button
+                    className="pp-preset-apply"
+                    onClick={() => handleApplyPreset(preset)}
+                  >
+                    <Icon name="bookmark" />
+                    {preset.name}
+                  </button>
+                  <button
+                    className="pp-preset-delete"
+                    onClick={() => handleDeletePreset(preset.id)}
+                    disabled={deletingPresetId === preset.id}
+                    aria-label={`Delete ${preset.name}`}
+                  >
+                    <Icon name="trash" />
+                  </button>
+                </div>
+              ))
+            )}
+            <div className="pp-preset-form">
+              <input
+                type="text"
+                placeholder="Name this filter…"
+                value={presetName}
+                onChange={(event) => setPresetName(event.target.value)}
+                className="pp-preset-input"
+                maxLength={50}
+              />
+              <Button
+                size="sm"
+                variant="secondary"
+                onClick={handleSavePreset}
+                loading={savingPreset}
+                loadingLabel="Saving…"
+                disabled={!presetName.trim()}
+              >
+                Save
+              </Button>
+            </div>
+          </div>
+        )}
+
+        {showFilters && activeTab === 'all' && (
+          <div className="pp-filters">
+            <Select
+              label="Subject"
+              options={filterOptions.subjects.map((subject) => ({
+                value: subject,
+                label: subject
+              }))}
+              value={filters.subject}
+              onChange={(event) =>
+                setFilters((prev) => ({
+                  ...prev,
+                  subject: event.target.value
+                }))
+              }
+            />
+
+            <Select
+              label="Year"
+              options={filterOptions.years.map((year) => ({
+                value: String(year),
+                label: String(year)
+              }))}
+              value={filters.year}
+              onChange={(event) =>
+                setFilters((prev) => ({
+                  ...prev,
+                  year: event.target.value
+                }))
+              }
+            />
+
+            <Select
+              label="Exam Board"
+              options={filterOptions.exam_boards.map((board) => ({
+                value: board,
+                label: board
+              }))}
+              value={filters.exam_board}
+              onChange={(event) =>
+                setFilters((prev) => ({
+                  ...prev,
+                  exam_board: event.target.value
+                }))
+              }
+            />
+
+            <Select
+              label="Paper Type"
+              options={filterOptions.paper_types.map((type) => ({
+                value: type,
+                label: type
+              }))}
+              value={filters.paper_type}
+              onChange={(event) =>
+                setFilters((prev) => ({
+                  ...prev,
+                  paper_type: event.target.value
+                }))
+              }
+            />
+          </div>
+        )}
+
+        {papersLoading ? (
+          <div className="pp-skeleton-grid">
+            {Array.from({ length: 6 }, (_, index) => (
+              <div key={index} className="pp-skeleton-card" aria-hidden="true">
+                <div className="pp-skeleton-body">
+                  <Skeleton width="80%" height={20} borderRadius="var(--radius-sm)" />
+                  <Skeleton width="50%" height={14} borderRadius="var(--radius-sm)" />
+                  <Skeleton width="100%" height={14} borderRadius="var(--radius-sm)" />
+                  <Skeleton width="60%" height={14} borderRadius="var(--radius-sm)" />
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : papers.length === 0 ? (
+          <EmptyState
+            image={getEmptyStateImage('past_papers')}
+            title={
+              activeTab === 'bookmarked'
+                ? 'Your saved papers'
+                : activeTab === 'downloaded'
+                ? 'Your downloads'
+                : 'Past papers for your studies'
+            }
+            description={
+              activeTab === 'bookmarked'
+                ? 'Save papers here to find them quickly next time.'
+                : activeTab === 'downloaded'
+                ? 'Your downloaded papers will appear here for easy access.'
+                : `There are no past papers listed for ${classLabel || levelName || 'your selected programme'} yet. Try adjusting the filters above.`
+            }
+            action={
+              activeTab === 'all' && (
+                <Button variant="secondary" onClick={clearFilters}>
+                  Clear filters
+                </Button>
+              )
+            }
+          />
+        ) : (
+          <div className="pp-grid">
+            {papers.map((paper) => (
+              <article
+                key={paper.id}
+                className={`pp-card ${paper.is_premium ? 'pp-card-premium' : ''}`}
+              >
+                <span
+                  className={`pp-premium-ribbon ${paper.is_premium ? 'pp-premium-ribbon--premium' : 'pp-premium-ribbon--free'}`}
+                  aria-label={paper.is_premium ? 'Premium resource' : 'Free resource'}
+                >
+                  <span aria-hidden="true" />
+                </span>
+                <div className="pp-card-artwork">
+                  <img
+                    src={paper.cover_image_url || paper.thumbnail_url || paper.image_url || 'https://images.pexels.com/photos/5428836/pexels-photo-5428836.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop'}
+                    alt={paper.subject ? `${paper.subject} past paper` : paper.title}
+                    loading="lazy"
+                    width="900"
+                    height="600"
+                  />
+                  <span className="pp-card-image-label">{paper.subject || 'Exam paper'}</span>
+                </div>
+                <div className="pp-card-body">
+                  <div className="pp-card-title-row">
+                    <h3 className="pp-card-title">{paper.title}</h3>
+                    <button
+                      className={`pp-bookmark-btn ${bookmarkedIds.has(paper.id) ? 'active' : ''}`}
+                      onClick={() => handleBookmark(paper.id)}
+                      aria-label={bookmarkedIds.has(paper.id) ? 'Remove bookmark' : 'Bookmark paper'}
+                      disabled={bookmarkingId === paper.id}
+                    >
+                      <Icon name={bookmarkedIds.has(paper.id) ? 'bookmark-solid' : 'bookmark'} />
+                    </button>
+                  </div>
+                  <p className="pp-card-subject">{paper.subject}</p>
+                  {paper.avg_rating > 0 && (
+                    <div className="pp-rating-stars">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <span
+                          key={star}
+                          className={
+                            star <= Math.round(paper.avg_rating)
+                              ? 'pp-star-filled'
+                              : 'pp-star-empty'
+                          }
+                        >
+                          <Icon name="star" />
+                        </span>
+                      ))}
+                      <span className="pp-rating-count">({paper.rating_count || 0})</span>
+                    </div>
+                  )}
+                  <div className="pp-card-chips">
+                    {paper.level && <span className="pp-chip">{paper.level}</span>}
+                    {paper.year && <span className="pp-chip pp-chip-accent">{paper.year}</span>}
+                    {paper.paper_type && <span className="pp-chip pp-chip-primary">{paper.paper_type}</span>}
+                    {paper.class_name && <span className="pp-chip pp-chip-emerald">{paper.class_name}</span>}
+                    {downloadedIds.has(paper.id) && (
+                      <span className="pp-chip pp-chip-success">
+                        <Icon name="circle" /> Downloaded
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <div className="pp-card-footer">
+                  <Button variant="secondary" size="sm" className="pp-card-open" onClick={() => handlePaperOpen(paper)}>
+                    View details
+                  </Button>
+                  {paper.is_premium ? (
+                    <PremiumAccessButton
+                      loading={downloadingId === paper.id}
+                      onClick={() => handleDownload(paper)}
+                    >
+                      Download premium paper
+                    </PremiumAccessButton>
+                  ) : (
+                    <DownloadButton
+                      loading={downloadingId === paper.id}
+                      onClick={() => handleDownload(paper)}
+                    >
+                      {user ? 'Download paper' : 'Sign in to download'}
+                    </DownloadButton>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
+
+        {!papersLoading && totalPages > 1 && (
+          <div className="pp-pagination">
+            <Button
+              variant="secondary"
+              size="sm"
+              onClick={() => setPage((current) => Math.max(1, current - 1))}
+              disabled={page === 1}
+            >
+              <Icon name="chevron-left" />
+            </Button>
+
+            {Array.from({ length: totalPages }, (_, index) => index + 1)
+              .filter(
+                (item) =>
+                  item === 1 ||
+                  item === totalPages ||
+                  Math.abs(item - page) <= 2
+              )
+              .map((item) => (
+                <Button
+                  key={item}
+                  variant={item === page ? 'primary' : 'ghost'}
+                  size="sm"
+                  onClick={() => setPage(item)}
+                >
+                  {item}
+                </Button>
+              ))}
+
+            <Button
+              variant="secondary"
+              size="sm"
+              onClick={() => setPage((current) => Math.min(totalPages, current + 1))}
+              disabled={page === totalPages}
+            >
+              <Icon name="chevron-right" />
+            </Button>
+          </div>
+        )}
+      </div>
+
+      {curriculumUnitId && (
+        <LearningJourney
+          unitId={curriculumUnitId}
+          excludeStages={['papers']}
+          returnTo={'/past-papers?unit_id=' + encodeURIComponent(curriculumUnitId)}
+        />
+      )}
+
+      {selectedPaper && (
+        <div className="pp-modal-overlay" onClick={handleCloseModal}>
+          <div className="pp-modal" onClick={(event) => event.stopPropagation()}>
+            <div className="pp-modal-header">
+              <div>
+                <h2 className="pp-modal-title">{selectedPaper.title}</h2>
+                <p className="pp-modal-subject">{selectedPaper.subject}</p>
+              </div>
+              <button className="pp-modal-close" onClick={handleCloseModal} aria-label="Close">
+                <Icon name="xmark" />
+              </button>
+            </div>
+
+            <div className="pp-modal-body">
+              <div className="pp-modal-meta">
+                {selectedPaper.level && <span className="pp-chip">{selectedPaper.level}</span>}
+                {selectedPaper.year && <span className="pp-chip pp-chip-accent">{selectedPaper.year}</span>}
+                {selectedPaper.paper_type && <span className="pp-chip pp-chip-primary">{selectedPaper.paper_type}</span>}
+                {selectedPaper.exam_board && <span className="pp-chip">{selectedPaper.exam_board}</span>}
+                {selectedPaper.class_name && <span className="pp-chip pp-chip-emerald">{selectedPaper.class_name}</span>}
+              </div>
+
+              <div className="pp-modal-actions">
+                {selectedPaper.is_premium ? (
+                  <Button
+                    size="sm"
+                    loading={downloadingId === selectedPaper.id}
+                    onClick={() => handleDownload(selectedPaper)}
+                    variant="warm"
+                  >
+                    <Icon name="lock" />
+                    Download premium paper
+                  </Button>
+                ) : (
+                  <DownloadButton
+                    loading={downloadingId === selectedPaper.id}
+                    onClick={() => handleDownload(selectedPaper)}
+                  >
+                    Download
+                  </DownloadButton>
+                )}
+                <Button
+                  size="sm"
+                  variant="secondary"
+                  onClick={() => handleBookmark(selectedPaper.id)}
+                >
+                  <Icon name={bookmarkedIds.has(selectedPaper.id) ? 'bookmark-solid' : 'bookmark'} />
+                  {bookmarkedIds.has(selectedPaper.id) ? 'Bookmarked' : 'Bookmark'}
+                </Button>
+              </div>
+
+              <div className="pp-review-form">
+                <span className="pp-review-label">Your rating</span>
+                <div className="pp-rating-stars">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <button
+                      key={star}
+                      className={`pp-star-btn ${star <= reviewRating ? 'active' : ''}`}
+                      onClick={() => setReviewRating(star)}
+                      aria-label={`Rate ${star} star${star !== 1 ? 's' : ''}`}
+                    >
+                      <Icon name="star" />
+                    </button>
+                  ))}
+                </div>
+                <textarea
+                  className="pp-review-input"
+                  placeholder="Share your thoughts on this paper (optional)…"
+                  value={reviewComment}
+                  onChange={(event) => setReviewComment(event.target.value)}
+                  rows={3}
+                />
+                <Button
+                  size="sm"
+                  variant="primary"
+                  loading={submittingReview}
+                  onClick={handleSubmitReview}
+                >
+                  <Icon name="paper-plane" /> Submit review
+                </Button>
+              </div>
+
+              {reviewsLoading ? (
+                <div className="pp-reviews-loading">
+                  <Spinner size="sm" />
+                </div>
+              ) : reviews.length === 0 ? (
+                <p className="pp-reviews-empty">No reviews yet. Leave a review to help other learners choose useful papers.</p>
+              ) : (
+                <div className="pp-reviews-list">
+                  {reviews.map((review) => (
+                    <div key={review.id} className="pp-review-item">
+                      <div className="pp-review-header">
+                        <div className="pp-review-author">
+                          <div className="pp-review-avatar">
+                            {review.display_name?.[0] || 'U'}
+                          </div>
+                          <div>
+                            <span className="pp-review-name">
+                              {review.display_name || 'Anonymous'}
+                            </span>
+                            <div className="pp-review-stars">
+                              {[1, 2, 3, 4, 5].map((star) => (
+                                <span
+                                  key={star}
+                                  style={{
+                                    color:
+                                      star <= review.rating
+                                        ? 'var(--primary-dark)'
+                                        : 'var(--grey-300)'
+                                  }}
+                                >
+                                  <Icon name="star" />
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="pp-review-meta">
+                          <span className="pp-review-date">
+                            {new Date(review.created_at).toLocaleDateString()}
+                          </span>
+                          {review.user_id === user?.id && (
+                            <button className="pp-review-delete" onClick={handleDeleteReview} loading={deletingReview}>
+                              <Icon name="trash" /> Delete
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                      {review.comment && (
+                        <p className="pp-review-comment">{review.comment}</p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
