@@ -180,7 +180,25 @@
   .home-daily-recall-card,.home-continue-learning-row,.lernwick-testimonial-card,
   .pricing-card,.pricing-empty,.section-teaser-inner,.ads-home-panel,
   .newsletter-card,.stats-impact-card
-) :is(h1,h2,h3,h4,h5,h6,p,span,strong,small,li,label,blockquote,figcaption) {
+) :is(h1,h2,h3,h4,h5,h6,strong,blockquote) {
+  color: var(--brand-navy) !important;
+}
+.home-page :is(
+  .lernwick-pathway-card,.lernwick-step-card,.lernwick-connected-card,
+  .home-curriculum-map,.home-curriculum-node,.home-challenge-treasure,.dash-cell,
+  .home-daily-recall-card,.home-continue-learning-row,.lernwick-testimonial-card,
+  .pricing-card,.pricing-empty,.section-teaser-inner,.ads-home-panel,
+  .newsletter-card,.stats-impact-card
+) :is(p,small,li,label,figcaption) {
+  color: var(--ink-2) !important;
+}
+.home-page :is(
+  .lernwick-pathway-card,.lernwick-step-card,.lernwick-connected-card,
+  .home-curriculum-map,.home-curriculum-node,.home-challenge-treasure,.dash-cell,
+  .home-daily-recall-card,.home-continue-learning-row,.lernwick-testimonial-card,
+  .pricing-card,.pricing-empty,.section-teaser-inner,.ads-home-panel,
+  .newsletter-card,.stats-impact-card
+) a:not(.btn) {
   color: var(--brand-navy) !important;
 }
 
@@ -297,8 +315,26 @@ body.dark-mode .home-page :is(
   .home-daily-recall-card,.home-continue-learning-row,.lernwick-testimonial-card,
   .pricing-card,.pricing-empty,.section-teaser-inner,.ads-home-panel,
   .newsletter-card,.dash-cell,.stats-impact-card
-) :is(h1,h2,h3,h4,h5,h6,p,span,strong,small,li,label,blockquote,figcaption) {
+) :is(h1,h2,h3,h4,h5,h6,strong,blockquote) {
   color: var(--dark-text) !important;
+}
+body.dark-mode .home-page :is(
+  .lernwick-pathway-card,.lernwick-step-card,.lernwick-connected-card,
+  .home-curriculum-map,.home-curriculum-node,.home-challenge-treasure,
+  .home-daily-recall-card,.home-continue-learning-row,.lernwick-testimonial-card,
+  .pricing-card,.pricing-empty,.section-teaser-inner,.ads-home-panel,
+  .newsletter-card,.dash-cell,.stats-impact-card
+) :is(p,small,li,label,figcaption) {
+  color: var(--dark-text-secondary) !important;
+}
+body.dark-mode .home-page :is(
+  .lernwick-pathway-card,.lernwick-step-card,.lernwick-connected-card,
+  .home-curriculum-map,.home-curriculum-node,.home-challenge-treasure,
+  .home-daily-recall-card,.home-continue-learning-row,.lernwick-testimonial-card,
+  .pricing-card,.pricing-empty,.section-teaser-inner,.ads-home-panel,
+  .newsletter-card,.dash-cell,.stats-impact-card
+) a:not(.btn) {
+  color: var(--dark-primary) !important;
 }
 body.dark-mode .home-page > :is(.home-curriculum-section,.home-student-section,.home-testimonials-section,.home-newsletter-section) :is(
   .section-head h1,.section-head h2,.section-head h3,.section-head p,
