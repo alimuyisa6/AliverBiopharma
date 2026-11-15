@@ -1533,20 +1533,6 @@ body.dark-mode :is(.input, .form-input, .form-control, .select, .textarea):disab
   color: var(--primary-dark);
 }
 
-.progress-track {
-  width: 100%;
-  height: var(--space-1);
-  overflow: hidden;
-  background: var(--soft);
-  border-radius: var(--radius-xs);
-}
-
-.progress-fill {
-  height: 100%;
-  border-radius: var(--radius-xs);
-  background: var(--primary);
-}
-
 .progress-fill.emerald {
   background: var(--primary-dark);
 }
@@ -1770,6 +1756,7 @@ body.dark-mode :is(.card, .card-body, .card-soft, .card-panel, .content-card, .f
   max-height: 85vh;
   overflow-y: auto;
   box-shadow: var(--shadow-raised);
+  animation: scaleIn var(--duration-smooth) var(--ease-standard) forwards;
 }
 
 .modal-header {
@@ -1840,6 +1827,7 @@ body.dark-mode :is(.card, .card-body, .card-soft, .card-panel, .content-card, .f
   border: 1px solid transparent;
   max-width: 90%;
   text-align: center;
+  animation: slideUp var(--duration-smooth) var(--ease-standard) forwards;
 }
 
 .toast-success { background: var(--success); border-color: var(--success); }
@@ -1884,8 +1872,6 @@ body.dark-mode :is(.card, .card-body, .card-soft, .card-panel, .content-card, .f
 @keyframes slideUp { from { opacity: 0; transform: translateX(-50%) translateY(10px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
 
 .modal-overlay { animation: fadeIn var(--duration-fast) var(--ease-standard) forwards; }
-.modal-content { animation: scaleIn var(--duration-smooth) var(--ease-standard) forwards; }
-.toast { animation: slideUp var(--duration-smooth) var(--ease-standard) forwards; }
 
 @media (max-width: 640px) {
   .modal-content {
@@ -2068,6 +2054,7 @@ body.dark-mode .badge-muted { background: var(--dark-surface-raised); color: var
 .progress-fill {
   height: 100%;
   border-radius: var(--radius-full);
+  background: var(--primary);
   transition: width var(--ease-smooth);
 }
 
