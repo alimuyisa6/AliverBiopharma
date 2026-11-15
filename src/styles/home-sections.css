@@ -34,7 +34,7 @@
 .home-newsletter-section { width: 100%; }
 
 .home-hero-section { position: relative; }
- .home-stats-section { position: relative; z-index: 3; margin-block-start: calc(-1 * var(--space-16)); }
+.home-stats-section { position: relative; z-index: auto; margin-block-start: 0; }
 .home-scope-switcher { width: 100%; }
 .home-continue-learning-section,
 .home-continue-learning-list,
@@ -317,7 +317,6 @@ body.dark-mode .testimonial-flat cite { color: var(--success-hover); }
 
 @media (prefers-reduced-motion: reduce) { .home-faq-item.active .home-faq-plus { transform: none; } }
 @media (max-width: 768px) {
-   .home-stats-section { margin-block-start: calc(-1 * var(--space-10)); }
   .team-scroll-nav { display: none; }
   .testimonial-flat { padding: var(--card-padding-y) var(--card-padding-x); }
   .home-curriculum-node-type { display: none; }
@@ -332,7 +331,6 @@ body.dark-mode .testimonial-flat cite { color: var(--success-hover); }
   .home-curriculum-depth-4 { margin-inline-start: var(--space-4); }
 }
 @media (max-width: 480px) {
-   .home-stats-section { margin-block-start: calc(-1 * var(--space-6)); }
   .home-continue-learning-row { align-items: flex-start; }
   .home-daily-recall-card { align-items: stretch; }
   .home-daily-recall-actions { flex-wrap: wrap; }
