@@ -344,3 +344,60 @@
     transition: none;
   }
 }
+
+
+/* Connected curriculum experience: one calm section surface, consistent white
+   resource cards, and a single icon treatment across every learning stage. */
+.learning-journey {
+  border: 0;
+  background: var(--surface-section-alt);
+  color: var(--text);
+}
+
+.learning-journey-stage-content {
+  border-color: var(--border-subtle);
+  background: var(--surface-card);
+  box-shadow: var(--shadow-card);
+}
+
+.learning-journey-stage.is-focused .learning-journey-stage-content {
+  border-color: var(--primary-border);
+  background: var(--surface-card);
+}
+
+.learning-journey-stage-marker {
+  border-color: var(--border-default);
+  background: var(--surface-card);
+  color: var(--primary-dark);
+}
+
+.learning-journey-stage-icon {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+.learning-journey-stage-step,
+.learning-journey-eyebrow {
+  color: var(--primary-dark);
+}
+
+.learning-journey-stage-count {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+.learning-journey-item {
+  border-color: var(--border-subtle);
+  background: var(--surface-raised);
+  color: var(--text);
+}
+
+.learning-journey-item:hover:not(:disabled),
+.learning-journey-item:focus-visible {
+  border-color: var(--primary-border);
+  background: var(--primary-light);
+}
+
+.learning-journey-item-action {
+  color: var(--primary-dark);
+}
