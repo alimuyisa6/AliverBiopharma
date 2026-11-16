@@ -1,6 +1,3 @@
-/* Donation page converted from the legacy donate.html design.
-   Uses AliverBiopharm's shared typography, spacing and surface tokens. */
-
 .donate-page {
   width: 100%;
   min-height: 100%;
@@ -337,7 +334,7 @@
 }
 
 .donate-status-success { color: var(--success); }
-.donate-status-error { color: var(--danger); }
+.donate-status-error { color: var(--danger-color); }
 
 .donor-list {
   display: flex;
