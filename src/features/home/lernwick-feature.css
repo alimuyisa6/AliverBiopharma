@@ -5,7 +5,7 @@
 .lernwick-feature.teaser-image-left .section-teaser-image-wrap{order:-1}
 .lernwick-feature .section-teaser-content{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:1rem;width:100%;max-width:none;margin:0;padding:clamp(2rem,3vw,3.5rem)}
 .lernwick-feature .section-teaser-title{margin:0;color:var(--text-main);font-family:var(--font-heading);font-size:var(--text-2xl);font-weight:700;line-height:1.16;letter-spacing:-.03em}
-.lernwick-feature .section-subtitle{max-width:36rem;margin:0;color:var(--text-secondary);font-size:var(--t-md);line-height:1.75}
+.lernwick-feature .section-subtitle{max-width:36rem;margin:0;color:var(--text-secondary);font-size:var(--text-md);line-height:1.75}
 .lernwick-feature .section-teaser-content>.btn{width:fit-content;min-height:3.1rem;margin-top:.4rem;padding:.8rem 1.5rem;border:0;border-radius:var(--radius-pill);background:var(--orange);color:var(--text-main);font-family:var(--font-heading);font-weight:600}
 .lernwick-feature .section-teaser-content>.btn:hover{background:var(--orange-hover);color:var(--text-main)}
 .lernwick-feature .section-teaser-image-wrap{width:100%;min-height:24rem;margin:0;overflow:hidden;border:0;border-radius:0;background:var(--surface-card)}
