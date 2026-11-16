@@ -898,3 +898,49 @@ body.dark-mode .auth-page :is(input, textarea)::placeholder { color: var(--dark-
 body.dark-mode .auth-brand-panel {
   background: var(--brand-navy-soft);
 }
+
+
+.auth-page {
+  border-color: var(--border-default);
+  background: var(--surface-card);
+  box-shadow: var(--shadow-card);
+}
+
+.auth-brand-panel {
+  background: var(--brand-navy);
+}
+
+.auth-brand-panel::before,
+.auth-brand-panel::after {
+  display: none;
+}
+
+.auth-form-panel {
+  background: var(--surface-card);
+}
+
+.auth-page .auth-submit {
+  min-height: var(--control-height-lg);
+}
+
+body.dark-mode .auth-brand-panel {
+  background: var(--dark-surface-raised);
+}
+
+body.dark-mode .auth-form-panel,
+body.dark-mode .auth-page {
+  background: var(--dark-surface);
+}
+
+body.dark-mode .auth-page {
+  border-color: var(--dark-border);
+}
+
+@media (max-width: 560px) {
+  .auth-page {
+    width: 100%;
+    margin-inline: 0;
+    border-inline: 0;
+    border-radius: 0;
+  }
+}

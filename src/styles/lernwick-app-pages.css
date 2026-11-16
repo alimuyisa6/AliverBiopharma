@@ -157,9 +157,10 @@
 }
 
 #root .app-layout :where(.page-hero, .content-hero, .about-hero, .contact-hero) {
+  border: 1px solid var(--border-default);
   border-radius: var(--r-xl);
-  background-color: var(--primary-light);
-  background-image: radial-gradient(ellipse at 10% 12%,color-mix(in srgb,var(--primary) 20%,transparent),transparent 46%),radial-gradient(ellipse at 92% 18%,color-mix(in srgb,var(--secondary) 28%,transparent),transparent 42%),linear-gradient(130deg,var(--background),var(--primary-light) 58%,var(--secondary-light));
+  background: var(--surface-section);
+  background-image: none;
   color: var(--ink);
 }
 
@@ -1750,3 +1751,994 @@ body.dark-mode .app-layout .curriculum-node-linked-group {
   border-color: var(--border-default);
 }
 
+#root .app-layout {
+  --app-page-width: 1240px;
+  --app-card-radius: 16px;
+  --app-panel-radius: 20px;
+  --app-control-radius: 9px;
+  color: var(--ink);
+  background: var(--surface-page);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) {
+  min-width: 0;
+  color: var(--ink);
+  background: var(--surface-page);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(h1, .page-title, .page-heading, .content-title) {
+  color: var(--ink);
+  font-family: var(--f-display);
+  font-size: clamp(2rem, 1.45rem + 2.4vw, 3.15rem);
+  font-weight: 750;
+  letter-spacing: -.04em;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(h2, .section-title) {
+  color: var(--ink);
+  font-family: var(--f-display);
+  font-size: clamp(1.45rem, 1.15rem + 1.1vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.page-description, .section-description, .content-description, .page-subtitle, .section-subtitle) {
+  max-width: 62ch;
+  color: var(--ink-2);
+  font-size: clamp(.95rem, .9rem + .25vw, 1.08rem);
+  line-height: 1.75;
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.page-header, .section-header, .content-header, .section-head) {
+  gap: .65rem;
+  margin-bottom: clamp(1.4rem, 1rem + 1.4vw, 2.25rem);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.card, .content-card, .resource-card, .notes-card, .note-card, .paper-card, .pdf-card, .feature-card, .dashboard-card, .stat-card, .quiz-card, .flashcard-card, .flashcard-deck-card, .recall-card, .classroom-card, .tutor-card, .faq-item, .about-block, .profile-card, .settings-card, .quiz-question-card, .quiz-result-card, .quiz-review-card, .recall-question-card, .recall-feedback-card, .recall-report-card) {
+  min-width: 0;
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-lg);
+  background: var(--surface-card);
+  color: var(--ink);
+  box-shadow: var(--shadow-card);
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.card, .content-card, .resource-card, .notes-card, .note-card, .paper-card, .pdf-card, .feature-card, .dashboard-card, .stat-card, .quiz-card, .flashcard-card, .flashcard-deck-card, .recall-card, .classroom-card, .tutor-card, .faq-item, .about-block, .profile-card, .settings-card, .quiz-question-card, .quiz-result-card, .quiz-review-card, .recall-question-card, .recall-feedback-card, .recall-report-card) :where(h2, h3, h4, strong) {
+  color: var(--ink);
+  font-family: var(--f-display);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.card, .content-card, .resource-card, .notes-card, .note-card, .paper-card, .pdf-card, .feature-card, .dashboard-card, .stat-card, .quiz-card, .flashcard-card, .flashcard-deck-card, .recall-card, .classroom-card, .tutor-card, .faq-item, .about-block, .profile-card, .settings-card, .quiz-question-card, .quiz-result-card, .quiz-review-card, .recall-question-card, .recall-feedback-card, .recall-report-card) :where(p, small, .description, .subtitle, figcaption) {
+  color: var(--ink-2);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resource-card, .notes-card, .note-card, .paper-card, .pdf-card, .feature-card, .quiz-card, .flashcard-deck-card, .recall-card, .tutor-card, .faq-item, .profile-card):hover {
+  border-color: var(--primary-border);
+  box-shadow: var(--shadow-float);
+  transform: translateY(-2px);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.page-hero, .content-hero, .resources-intro, .notes-page-heading, .notes-curriculum-context, .pp-hero, .curriculum-node-header, .note-hero, .note-learning-header, .pdf-library-heading) {
+  border: 1px solid var(--border-default);
+  border-radius: var(--app-panel-radius);
+  background: var(--surface-section);
+  color: var(--ink);
+  box-shadow: none;
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.toolbar, .filters, .filter-panel, .resources-toolbar, .notes-toolbar, .pp-toolbar, .pp-filters, .pdf-library-controls, .glossary-search-area) {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--r-lg);
+  background: var(--surface-section-alt);
+  color: var(--ink);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(input:not([type="checkbox"]):not([type="radio"]), select, textarea) {
+  border: 1px solid var(--border-default);
+  border-radius: var(--app-control-radius);
+  background: var(--surface-card);
+  color: var(--ink);
+  box-shadow: none;
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(input:not([type="checkbox"]):not([type="radio"]), select, textarea)::placeholder {
+  color: var(--ink-3);
+  opacity: 1;
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(input:not([type="checkbox"]):not([type="radio"]), select, textarea):focus-visible {
+  border-color: var(--primary);
+  outline: 3px solid var(--primary-ring);
+  outline-offset: 1px;
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.btn-primary, .button-primary, button.primary, input[type="submit"]) {
+  border: 1px solid var(--primary);
+  border-radius: var(--app-control-radius);
+  background: var(--primary);
+  color: var(--text-on-primary);
+  font-family: var(--f-display);
+  font-weight: 700;
+  box-shadow: none;
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.btn-secondary, .button-secondary, .btn-outline, button.secondary) {
+  border: 1px solid var(--border-strong);
+  border-radius: var(--app-control-radius);
+  background: var(--surface-card);
+  color: var(--ink);
+  font-family: var(--f-display);
+  font-weight: 650;
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.btn-primary, .button-primary, button.primary, input[type="submit"], .btn-secondary, .button-secondary, .btn-outline, button.secondary):hover:not(:disabled) {
+  border-color: var(--primary-dark);
+  box-shadow: 0 5px 14px var(--primary-ring);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(table) {
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-lg);
+  background: var(--surface-card);
+  color: var(--ink);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(th) {
+  background: var(--surface-section);
+  color: var(--ink);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(td) {
+  color: var(--ink-2);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.empty-state, .error-state, .access-denied, .pending-approval-screen) {
+  border: 1px solid var(--border-default);
+  border-radius: var(--app-panel-radius);
+  background: var(--surface-card);
+  color: var(--ink);
+}
+
+body.dark-mode #root .app-layout,
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) {
+  color: var(--dark-text);
+  background: var(--surface-page);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(h1, h2, h3, h4, h5, h6, .page-title, .page-heading, .content-title, .section-title) {
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.page-description, .section-description, .content-description, .page-subtitle, .section-subtitle, figcaption) {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.card, .content-card, .resource-card, .notes-card, .note-card, .paper-card, .pdf-card, .feature-card, .dashboard-card, .stat-card, .quiz-card, .flashcard-card, .flashcard-deck-card, .recall-card, .classroom-card, .tutor-card, .faq-item, .about-block, .profile-card, .settings-card, .quiz-question-card, .quiz-result-card, .quiz-review-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .empty-state, .error-state, .access-denied, .pending-approval-screen) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 18%);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.card, .content-card, .resource-card, .notes-card, .note-card, .paper-card, .pdf-card, .feature-card, .dashboard-card, .stat-card, .quiz-card, .flashcard-card, .flashcard-deck-card, .recall-card, .classroom-card, .tutor-card, .faq-item, .about-block, .profile-card, .settings-card, .quiz-question-card, .quiz-result-card, .quiz-review-card, .recall-question-card, .recall-feedback-card, .recall-report-card) :where(h2, h3, h4, strong) {
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.card, .content-card, .resource-card, .notes-card, .note-card, .paper-card, .pdf-card, .feature-card, .dashboard-card, .stat-card, .quiz-card, .flashcard-card, .flashcard-deck-card, .recall-card, .classroom-card, .tutor-card, .faq-item, .about-block, .profile-card, .settings-card, .quiz-question-card, .quiz-result-card, .quiz-review-card, .recall-question-card, .recall-feedback-card, .recall-report-card) :where(p, small, .description, .subtitle, figcaption) {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.page-hero, .content-hero, .resources-intro, .notes-page-heading, .notes-curriculum-context, .pp-hero, .curriculum-node-header, .note-hero, .note-learning-header, .pdf-library-heading, .toolbar, .filters, .filter-panel, .resources-toolbar, .notes-toolbar, .pp-toolbar, .pp-filters, .pdf-library-controls, .glossary-search-area) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(input:not([type="checkbox"]):not([type="radio"]), select, textarea) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(input:not([type="checkbox"]):not([type="radio"]), select, textarea)::placeholder {
+  color: var(--dark-text-secondary);
+}
+
+@media (max-width: 700px) {
+  #root .app-layout {
+    --app-card-radius: 13px;
+    --app-panel-radius: 16px;
+  }
+
+  #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.page-header, .section-header, .content-header, .section-head) {
+    margin-bottom: 1.25rem;
+  }
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-page, .pp-page, .curriculum-node-page, .notes-page-shell, .note-detail-container, .dashboard-wrapper, .dashboard-content, .quiz-page-section, .recall-page-section) {
+  color: var(--ink);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-page, .pp-page) {
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  border: 0;
+  border-radius: 0;
+  background: var(--surface-page);
+  box-shadow: none;
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-hero, .pp-hero, .curriculum-node-header, .notes-page-heading, .note-hero, .quiz-hero-section, .recall-due-banner) {
+  border: 0;
+  border-radius: 0;
+  background: var(--brand-navy);
+  color: var(--white);
+  box-shadow: none;
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-hero, .pp-hero, .curriculum-node-header, .notes-page-heading, .note-hero, .quiz-hero-section, .recall-due-banner) :where(h1, h2, h3, h4, p, small, strong, .pp-title, .pp-subtitle, .note-title, .note-class-badge, .curriculum-node-type, .curriculum-node-kicker) {
+  color: var(--white);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-page, .pp-page, .curriculum-node-page, .notes-page-shell, .note-detail-container, .dashboard-content, .quiz-page-section, .recall-page-section) :where(.resource-card, .pp-card, .curriculum-card, .curriculum-node-child, .curriculum-node-resource, .notes-card, .note-related-card, .panel, .stat-card, .quiz-challenge-card, .recall-intro-card, .recall-stat-card, .recall-topic-card) {
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-lg);
+  background: var(--surface-card);
+  color: var(--ink);
+  box-shadow: var(--shadow-card);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-page, .pp-page, .curriculum-node-page, .notes-page-shell, .note-detail-container, .dashboard-content, .quiz-page-section, .recall-page-section) :where(.resource-card, .pp-card, .curriculum-card, .curriculum-node-child, .curriculum-node-resource, .notes-card, .note-related-card, .panel, .stat-card, .quiz-challenge-card, .recall-intro-card, .recall-stat-card, .recall-topic-card) :where(h2, h3, h4, strong, .resource-card-title, .pp-card-title, .curriculum-card-title, .note-related-link-title, .panel-title, .stat-value, .quiz-challenge-title, .recall-topic-card-heading) {
+  color: var(--ink);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-page, .pp-page, .curriculum-node-page, .notes-page-shell, .note-detail-container, .dashboard-content, .quiz-page-section, .recall-page-section) :where(.resource-card, .pp-card, .curriculum-card, .curriculum-node-child, .curriculum-node-resource, .notes-card, .note-related-card, .panel, .stat-card, .quiz-challenge-card, .recall-intro-card, .recall-stat-card, .recall-topic-card) :where(p, small, .description, .subtitle, .resource-card-desc, .pp-card-meta, .curriculum-card-meta, .panel-description, .stat-label) {
+  color: var(--ink-2);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-page, .pp-page, .curriculum-node-page, .notes-page-shell, .note-detail-container, .dashboard-content, .quiz-page-section, .recall-page-section) :where(.resource-card, .pp-card, .curriculum-card, .curriculum-node-child, .curriculum-node-resource, .notes-card, .note-related-card, .panel, .quiz-challenge-card, .recall-topic-card):hover {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-float);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-toolbar, .pp-toolbar, .pp-filters, .notes-toolbar, .quiz-tab-bar, .recall-tab-bar) {
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-lg);
+  background: var(--surface-section);
+  color: var(--ink);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-page, .pp-page, .curriculum-node-page, .notes-page-shell, .note-detail-container, .dashboard-content, .quiz-page-section, .recall-page-section) {
+  color: var(--dark-text);
+  background-color: var(--surface-page);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-hero, .pp-hero, .curriculum-node-header, .notes-page-heading, .note-hero, .quiz-hero-section, .recall-due-banner) {
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-hero, .pp-hero, .curriculum-node-header, .notes-page-heading, .note-hero, .quiz-hero-section, .recall-due-banner) :where(h1, h2, h3, h4, p, small, strong, .pp-title, .pp-subtitle, .note-title, .note-class-badge, .curriculum-node-type, .curriculum-node-kicker) {
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-page, .pp-page, .curriculum-node-page, .notes-page-shell, .note-detail-container, .dashboard-content, .quiz-page-section, .recall-page-section) :where(.resource-card, .pp-card, .curriculum-card, .curriculum-node-child, .curriculum-node-resource, .notes-card, .note-related-card, .panel, .stat-card, .quiz-challenge-card, .recall-intro-card, .recall-stat-card, .recall-topic-card) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 18%);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-page, .pp-page, .curriculum-node-page, .notes-page-shell, .note-detail-container, .dashboard-content, .quiz-page-section, .recall-page-section) :where(.resource-card, .pp-card, .curriculum-card, .curriculum-node-child, .curriculum-node-resource, .notes-card, .note-related-card, .panel, .stat-card, .quiz-challenge-card, .recall-intro-card, .recall-stat-card, .recall-topic-card) :where(h2, h3, h4, strong, .resource-card-title, .pp-card-title, .curriculum-card-title, .note-related-link-title, .panel-title, .stat-value, .quiz-challenge-title, .recall-topic-card-heading) {
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-page, .pp-page, .curriculum-node-page, .notes-page-shell, .note-detail-container, .dashboard-content, .quiz-page-section, .recall-page-section) :where(.resource-card, .pp-card, .curriculum-card, .curriculum-node-child, .curriculum-node-resource, .notes-card, .note-related-card, .panel, .stat-card, .quiz-challenge-card, .recall-intro-card, .recall-stat-card, .recall-topic-card) :where(p, small, .description, .subtitle, .resource-card-desc, .pp-card-meta, .curriculum-card-meta, .panel-description, .stat-label) {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-toolbar, .pp-toolbar, .pp-filters, .notes-toolbar, .quiz-tab-bar, .recall-tab-bar) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+
+@media (max-width: 700px) {
+  #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-hero-inner, .pp-hero-inner, .curriculum-node-header, .notes-page-heading, .note-hero) {
+    padding-inline: var(--page-gutter-x);
+  }
+
+  #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-page, .pp-page) {
+    border-radius: 0;
+  }
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.about-page, .contact-page, .legal-page, .info-page, .classroom-page, .classroom-room-page, .tutor-marketplace-page, .tutor-profile-page, .profile-page, .faq-page, .donate-page, .advertise-page, .advertise-payment-page, .search-page, .search-results-page) {
+  color: var(--ink);
+  background-color: var(--surface-page);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.about-hero, .contact-hero, .faq-hero, .donate-hero, .advertise-hero, .classroom-page-header, .tutor-marketplace-hero, .profile-page-header, .legal-page-header) {
+  border: 0;
+  border-radius: 0;
+  background: var(--brand-navy);
+  background-image: none;
+  color: var(--white);
+  box-shadow: none;
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.about-hero, .contact-hero, .faq-hero, .donate-hero, .advertise-hero, .classroom-page-header, .tutor-marketplace-hero, .profile-page-header, .legal-page-header) :where(h1, h2, h3, h4, p, small, strong, .about-hero-title, .about-hero-subtext, .faq-hero-title, .faq-hero-description, .advertise-hero-copy) {
+  color: var(--white);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.team-card, .contributor-card, .legal-card, .legal-panel, .classroom-card, .classroom-room-card, .tutor-card, .tutor-profile-card, .profile-card, .profile-overview-panel, .profile-category-card, .faq-item, .faq-featured-card, .donate-card, .donate-momo-card, .ads-home-panel, .ad-slot-card, .advertise-card, .contact-card, .info-card, .search-panel, .search-result, .search-result-card, .search-empty-state) {
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-lg);
+  background: var(--surface-card);
+  color: var(--ink);
+  box-shadow: var(--shadow-card);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.team-card, .contributor-card, .legal-card, .legal-panel, .classroom-card, .classroom-room-card, .tutor-card, .tutor-profile-card, .profile-card, .profile-overview-panel, .profile-category-card, .faq-item, .faq-featured-card, .donate-card, .donate-momo-card, .ads-home-panel, .ad-slot-card, .advertise-card, .contact-card, .info-card, .search-panel, .search-result, .search-result-card, .search-empty-state) :where(h2, h3, h4, strong, .team-card-role, .faq-question, .ad-slot-title) {
+  color: var(--ink);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.team-card, .contributor-card, .legal-card, .legal-panel, .classroom-card, .classroom-room-card, .tutor-card, .tutor-profile-card, .profile-card, .profile-overview-panel, .profile-category-card, .faq-item, .faq-featured-card, .donate-card, .donate-momo-card, .ads-home-panel, .ad-slot-card, .advertise-card, .contact-card, .info-card, .search-panel, .search-result, .search-result-card, .search-empty-state) :where(p, small, .description, .subtitle, .team-card-bio, .faq-answer) {
+  color: var(--ink-2);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.about-page, .contact-page, .legal-page, .info-page, .classroom-page, .classroom-room-page, .tutor-marketplace-page, .tutor-profile-page, .profile-page, .faq-page, .donate-page, .advertise-page, .advertise-payment-page, .search-page, .search-results-page) {
+  color: var(--dark-text);
+  background-color: var(--surface-page);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.about-hero, .contact-hero, .faq-hero, .donate-hero, .advertise-hero, .classroom-page-header, .tutor-marketplace-hero, .profile-page-header, .legal-page-header) {
+  background: var(--dark-surface-raised);
+  background-image: none;
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.about-hero, .contact-hero, .faq-hero, .donate-hero, .advertise-hero, .classroom-page-header, .tutor-marketplace-hero, .profile-page-header, .legal-page-header) :where(h1, h2, h3, h4, p, small, strong, .about-hero-title, .about-hero-subtext, .faq-hero-title, .faq-hero-description, .advertise-hero-copy) {
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.team-card, .contributor-card, .legal-card, .legal-panel, .classroom-card, .classroom-room-card, .tutor-card, .tutor-profile-card, .profile-card, .profile-overview-panel, .profile-category-card, .faq-item, .faq-featured-card, .donate-card, .donate-momo-card, .ads-home-panel, .ad-slot-card, .advertise-card, .contact-card, .info-card, .search-panel, .search-result, .search-result-card, .search-empty-state) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 18%);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.team-card, .contributor-card, .legal-card, .legal-panel, .classroom-card, .classroom-room-card, .tutor-card, .tutor-profile-card, .profile-card, .profile-overview-panel, .profile-category-card, .faq-item, .faq-featured-card, .donate-card, .donate-momo-card, .ads-home-panel, .ad-slot-card, .advertise-card, .contact-card, .info-card, .search-panel, .search-result, .search-result-card, .search-empty-state) :where(h2, h3, h4, strong, .team-card-role, .faq-question, .ad-slot-title) {
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.team-card, .contributor-card, .legal-card, .legal-panel, .classroom-card, .classroom-room-card, .tutor-card, .tutor-profile-card, .profile-card, .profile-overview-panel, .profile-category-card, .faq-item, .faq-featured-card, .donate-card, .donate-momo-card, .ads-home-panel, .ad-slot-card, .advertise-card, .contact-card, .info-card, .search-panel, .search-result, .search-result-card, .search-empty-state) :where(p, small, .description, .subtitle, .team-card-bio, .faq-answer) {
+  color: var(--dark-text-secondary);
+}
+
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-result-page, .quiz-review-page) {
+  width: 100%;
+  max-width: none;
+  padding: clamp(1.5rem, 4vw, 3.5rem) var(--gutter) clamp(3rem, 6vw, 5rem);
+  background: var(--surface-page);
+  color: var(--ink);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-result-shell, .quiz-review-shell) {
+  width: min(100%, 1180px);
+  margin-inline: auto;
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-result-header, .quiz-review-hero) {
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  padding: clamp(1.5rem, 4vw, 2.75rem);
+  border: 0;
+  border-radius: var(--r-lg);
+  background: var(--brand-navy);
+  color: var(--white);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-result-header, .quiz-review-hero) :where(h1, h2, h3, p, span, strong, .quiz-review-eyebrow, .quiz-attempt-result-eyebrow) {
+  color: var(--white);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-result-header h1, .quiz-review-hero h1) {
+  font-size: clamp(2.15rem, 4.2vw, 3.35rem);
+  font-weight: 750;
+  letter-spacing: -.045em;
+  line-height: 1.08;
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-result-summary, .quiz-attempt-answer-card, .quiz-attempt-result-empty, .quiz-review-inbox, .quiz-review-question-card, .quiz-review-marking-form, .quiz-review-access-error, .quiz-review-empty) {
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-lg);
+  background: var(--surface-card);
+  color: var(--ink);
+  box-shadow: var(--shadow-card);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-answer-card, .quiz-review-question-card, .quiz-review-marking-form) {
+  padding: clamp(1.1rem, 2vw, 1.75rem);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-answer-card, .quiz-review-question-card, .quiz-review-marking-form) :where(h2, h3, strong, label) {
+  color: var(--ink);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-answer-card, .quiz-review-question-card, .quiz-review-marking-form) :where(p, small, span, .quiz-attempt-answer-label, .quiz-review-section-label) {
+  color: var(--ink-2);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-answer-text, .quiz-attempt-teacher-feedback, .quiz-attempt-correct-answer, .quiz-review-response, .quiz-review-rubric, .quiz-review-criteria, .quiz-review-instructions) {
+  border-color: var(--line);
+  background: var(--surface-section);
+  color: var(--ink);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) .quiz-review-inbox-item {
+  color: var(--ink);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) .quiz-review-inbox-item.is-active {
+  background: var(--surface-section);
+  color: var(--ink);
+}
+
+#root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-review-inbox-heading, .quiz-review-detail-meta, .quiz-review-response-meta, .quiz-review-form-footer) {
+  border-color: var(--line);
+  color: var(--ink-2);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-result-page, .quiz-review-page) {
+  background: var(--surface-page);
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-result-header, .quiz-review-hero) {
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-result-header, .quiz-review-hero) :where(h1, h2, h3, p, span, strong, .quiz-review-eyebrow, .quiz-attempt-result-eyebrow) {
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-result-summary, .quiz-attempt-answer-card, .quiz-attempt-result-empty, .quiz-review-inbox, .quiz-review-question-card, .quiz-review-marking-form, .quiz-review-access-error, .quiz-review-empty) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 18%);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-answer-card, .quiz-review-question-card, .quiz-review-marking-form) :where(h2, h3, strong, label) {
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-answer-card, .quiz-review-question-card, .quiz-review-marking-form) :where(p, small, span, .quiz-attempt-answer-label, .quiz-review-section-label) {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-answer-text, .quiz-attempt-teacher-feedback, .quiz-attempt-correct-answer, .quiz-review-response, .quiz-review-rubric, .quiz-review-criteria, .quiz-review-instructions, .quiz-review-inbox-item.is-active) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+
+@media (max-width: 700px) {
+  #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-result-page, .quiz-review-page) {
+    padding-inline: 1rem;
+  }
+
+  #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-result-header, .quiz-review-hero) {
+    border-radius: 0;
+    margin-inline: -1rem;
+    padding-inline: 1rem;
+  }
+}
+
+
+#root .app-layout :where(.recall-page, .flashcard-page) {
+  width: 100%;
+  max-width: none;
+  color: var(--ink);
+  background: var(--surface-page);
+}
+
+#root .app-layout :where(.recall-page, .flashcard-page) :where(.recall-page-header, .flashcard-page-header) {
+  border: 0;
+  border-radius: 0;
+  background: var(--brand-navy);
+  color: var(--white);
+}
+
+#root .app-layout :where(.recall-page, .flashcard-page) :where(.recall-page-header, .flashcard-page-header) :where(h1, h2, h3, p, small, span) {
+  color: var(--white);
+}
+
+#root .app-layout :where(.recall-page, .flashcard-page) :where(.recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .recall-topic-card, .recall-stat-card, .flashcard, .flashcard-card, .fcd-question-card, .fcd-question-card-static, .flashcard-panel, .flashcard-deck-card) {
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-lg);
+  background: var(--surface-card);
+  color: var(--ink);
+  box-shadow: var(--shadow-card);
+}
+
+#root .app-layout :where(.recall-page, .flashcard-page) :where(.recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .recall-topic-card, .recall-stat-card, .flashcard, .flashcard-card, .fcd-question-card, .fcd-question-card-static, .flashcard-panel, .flashcard-deck-card) :where(h2, h3, h4, strong, .fcd-card-heading) {
+  color: var(--ink);
+}
+
+#root .app-layout :where(.recall-page, .flashcard-page) :where(.recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .recall-topic-card, .recall-stat-card, .flashcard, .flashcard-card, .fcd-question-card, .fcd-question-card-static, .flashcard-panel, .flashcard-deck-card) :where(p, small, label, .description) {
+  color: var(--ink-2);
+}
+
+body.dark-mode #root .app-layout :where(.recall-page, .flashcard-page) {
+  background: var(--surface-page);
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout :where(.recall-page, .flashcard-page) :where(.recall-page-header, .flashcard-page-header) {
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout :where(.recall-page, .flashcard-page) :where(.recall-page-header, .flashcard-page-header) :where(h1, h2, h3, p, small, span) {
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout :where(.recall-page, .flashcard-page) :where(.recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .recall-topic-card, .recall-stat-card, .flashcard, .flashcard-card, .fcd-question-card, .fcd-question-card-static, .flashcard-panel, .flashcard-deck-card) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 18%);
+}
+
+body.dark-mode #root .app-layout :where(.recall-page, .flashcard-page) :where(.recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .recall-topic-card, .recall-stat-card, .flashcard, .flashcard-card, .fcd-question-card, .fcd-question-card-static, .flashcard-panel, .flashcard-deck-card) :where(h2, h3, h4, strong, .fcd-card-heading) {
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout :where(.recall-page, .flashcard-page) :where(.recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .recall-topic-card, .recall-stat-card, .flashcard, .flashcard-card, .fcd-question-card, .fcd-question-card-static, .flashcard-panel, .flashcard-deck-card) :where(p, small, label, .description) {
+  color: var(--dark-text-secondary);
+}
+
+
+#root .app-layout .classroom-room-page {
+  width: 100%;
+  max-width: none;
+  padding: 0 0 clamp(2rem, 5vw, 4rem);
+  background: var(--surface-page);
+  color: var(--ink);
+}
+
+#root .app-layout .classroom-room-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: clamp(1.25rem, 3vw, 2rem) var(--gutter);
+  border: 0;
+  border-radius: 0;
+  background: var(--brand-navy);
+  color: var(--white);
+  box-shadow: none;
+}
+
+#root .app-layout .classroom-room-header :where(h1, h2, h3, p, span, .classroom-room-header-title, .classroom-room-header-sub, .classroom-room-live-label) {
+  color: var(--white);
+}
+
+#root .app-layout .classroom-room-header-title {
+  margin: 0;
+  font-size: clamp(1.45rem, 2.6vw, 2.15rem);
+  line-height: 1.15;
+}
+
+#root .app-layout .classroom-room-header-info {
+  min-width: 0;
+  flex: 1;
+}
+
+#root .app-layout .classroom-room-header-sub {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-top: .7rem;
+}
+
+#root .app-layout .classroom-room-header .chip {
+  border: 1px solid rgb(255 255 255 / 28%);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 12%);
+  color: var(--white);
+}
+
+#root .app-layout .classroom-room-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 0 0 auto;
+}
+
+#root .app-layout .classroom-room-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(18rem, .8fr);
+  align-items: start;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  width: min(100%, 90rem);
+  margin-inline: auto;
+  padding: clamp(1rem, 2vw, 1.5rem) var(--gutter) 0;
+}
+
+#root .app-layout .classroom-room-left,
+#root .app-layout .classroom-room-right {
+  display: grid;
+  min-width: 0;
+  gap: 1rem;
+}
+
+#root .app-layout .classroom-video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: .85rem;
+}
+
+#root .app-layout .classroom-room-page .video-tile {
+  position: relative;
+  display: flex;
+  min-height: clamp(12rem, 22vw, 18rem);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .8rem;
+  overflow: hidden;
+  padding: 1.25rem;
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-lg);
+  background: var(--brand-navy);
+  color: var(--white);
+}
+
+#root .app-layout .classroom-room-page .video-tile :where(.name, .avatar, .tile-status) {
+  color: var(--white);
+}
+
+#root .app-layout .classroom-room-page .video-tile .avatar {
+  font-size: clamp(2rem, 4vw, 3.25rem);
+}
+
+#root .app-layout .classroom-room-page .video-tile.speaking {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+#root .app-layout .classroom-video-controls,
+#root .app-layout .classroom-room-footer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .65rem;
+}
+
+#root .app-layout .classroom-room-page :where(.classroom-chat-panel, .classroom-participants-panel, .classroom-room-info-panel, .classroom-whiteboard) {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-lg);
+  background: var(--surface-card);
+  color: var(--ink);
+  box-shadow: var(--shadow-card);
+}
+
+#root .app-layout .classroom-room-page :where(.chat-panel-header, .participants-panel-header, .whiteboard-toolbar) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .75rem;
+  padding: 1rem 1.15rem;
+  border-bottom: 1px solid var(--border-default);
+  background: var(--surface-section);
+}
+
+#root .app-layout .classroom-room-page :where(.chat-panel-header h4, .participants-panel-header h4, .classroom-room-info-panel h4) {
+  margin: 0;
+  color: var(--ink);
+}
+
+#root .app-layout .classroom-chat-body,
+#root .app-layout .classroom-participants-list {
+  max-height: 27rem;
+  overflow: auto;
+  padding: .9rem;
+  background: var(--surface-page);
+}
+
+#root .app-layout .classroom-message-row {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: .75rem;
+}
+
+#root .app-layout .classroom-message-row.is-own {
+  justify-content: flex-end;
+}
+
+#root .app-layout .classroom-message-bubble {
+  max-width: min(88%, 34rem);
+  padding: .75rem .9rem;
+  border: 1px solid var(--border-default);
+  border-radius: 1rem 1rem 1rem .3rem;
+  background: var(--surface-card);
+  color: var(--ink);
+}
+
+#root .app-layout .classroom-message-row.is-own .classroom-message-bubble {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: var(--text-on-primary);
+}
+
+#root .app-layout .classroom-message-bubble-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: .35rem;
+  font-size: .75rem;
+  font-weight: 700;
+}
+
+#root .app-layout .classroom-message-bubble-time {
+  opacity: .72;
+  font-weight: 500;
+}
+
+#root .app-layout .classroom-message-bubble-text {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: inherit;
+  line-height: 1.55;
+}
+
+#root .app-layout .classroom-chat-input-row {
+  display: flex;
+  align-items: end;
+  gap: .6rem;
+  padding: .85rem;
+  border-top: 1px solid var(--border-default);
+  background: var(--surface-card);
+}
+
+#root .app-layout .classroom-chat-textarea {
+  min-width: 0;
+  flex: 1;
+  resize: vertical;
+}
+
+#root .app-layout .classroom-participant-row {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .7rem;
+  border-bottom: 1px solid var(--border-default);
+  color: var(--ink);
+}
+
+#root .app-layout .classroom-participant-row:last-child {
+  border-bottom: 0;
+}
+
+#root .app-layout .classroom-participant-name {
+  color: var(--ink);
+  font-weight: 650;
+}
+
+#root .app-layout .classroom-participant-role {
+  color: var(--ink-2);
+  font-size: .8rem;
+  text-transform: capitalize;
+}
+
+#root .app-layout .classroom-room-info-panel {
+  padding: 1.15rem;
+}
+
+#root .app-layout .classroom-room-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .75rem;
+  margin-top: .85rem;
+}
+
+#root .app-layout .classroom-room-info-grid .info-item {
+  min-width: 0;
+  padding: .75rem;
+  border-radius: .7rem;
+  background: var(--surface-section);
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+
+#root .app-layout .classroom-room-info-grid .info-item strong {
+  display: block;
+  margin-bottom: .25rem;
+  color: var(--ink);
+}
+
+#root .app-layout .classroom-whiteboard {
+  padding: 0;
+}
+
+#root .app-layout .classroom-whiteboard .whiteboard-canvas {
+  display: grid;
+  min-height: 16rem;
+  place-content: center;
+  justify-items: center;
+  gap: .75rem;
+  padding: 1.5rem;
+  background: var(--surface-card);
+  color: var(--ink-2);
+  text-align: center;
+}
+
+#root .app-layout .classroom-room-footer {
+  width: min(100%, 90rem);
+  margin: 1.25rem auto 0;
+  padding-inline: var(--gutter);
+}
+
+#root .app-layout .tutor-dashboard-page {
+  width: 100%;
+  max-width: none;
+  background: var(--surface-page);
+  color: var(--ink);
+}
+
+#root .app-layout .tutor-dashboard-page > .section {
+  width: min(100%, 90rem);
+  margin-inline: auto;
+  padding: clamp(1.5rem, 3vw, 2.75rem) var(--gutter) clamp(3rem, 5vw, 4.5rem);
+}
+
+#root .app-layout .tutor-dashboard-page .section-title {
+  font-size: clamp(2.15rem, 4.4vw, 3.5rem);
+  font-weight: 750;
+  letter-spacing: -.045em;
+  line-height: 1.08;
+}
+
+#root .app-layout .tutor-dashboard-page .page-intro {
+  max-width: 54rem;
+  color: var(--ink-2);
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  line-height: 1.65;
+}
+
+#root .app-layout .tutor-dashboard-page :where(.card, .empty-state) {
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-lg);
+  background: var(--surface-card);
+  color: var(--ink);
+  box-shadow: var(--shadow-card);
+}
+
+#root .app-layout .tutor-dashboard-page .grid {
+  gap: 1rem;
+}
+
+body.dark-mode #root .app-layout :where(.classroom-room-page, .tutor-dashboard-page) {
+  background: var(--surface-page);
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout .classroom-room-header {
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout .classroom-room-header :where(h1, h2, h3, p, span, .classroom-room-header-title, .classroom-room-header-sub, .classroom-room-live-label) {
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout .classroom-room-header .chip {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout .classroom-room-page :where(.classroom-chat-panel, .classroom-participants-panel, .classroom-room-info-panel, .classroom-whiteboard, .classroom-message-bubble, .classroom-message-resource) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 18%);
+}
+
+body.dark-mode #root .app-layout .classroom-room-page :where(.chat-panel-header, .participants-panel-header, .whiteboard-toolbar, .classroom-room-info-grid .info-item) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout .classroom-room-page :where(.chat-panel-header h4, .participants-panel-header h4, .classroom-room-info-panel h4, .classroom-participant-name, .classroom-room-info-grid .info-item strong) {
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout .classroom-room-page :where(.classroom-chat-body, .classroom-participants-list, .classroom-whiteboard .whiteboard-canvas) {
+  background: var(--dark-background);
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode #root .app-layout .classroom-room-page :where(.classroom-participant-row, .classroom-room-info-grid .info-item) {
+  border-color: var(--dark-border);
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode #root .app-layout .classroom-room-page .classroom-message-row.is-own .classroom-message-bubble {
+  background: var(--dark-primary);
+  color: var(--dark-background);
+}
+
+body.dark-mode #root .app-layout .tutor-dashboard-page :where(.card, .empty-state) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 18%);
+}
+
+@media (max-width: 850px) {
+  #root .app-layout .classroom-room-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #root .app-layout .classroom-room-header {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  #root .app-layout .classroom-room-header-actions {
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  #root .app-layout .classroom-room-layout {
+    padding-inline: 1rem;
+  }
+
+  #root .app-layout .classroom-room-header {
+    padding-inline: 1rem;
+  }
+
+  #root .app-layout .classroom-room-header-actions {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  #root .app-layout .classroom-room-info-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #root .app-layout .classroom-video-controls {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #root .app-layout .classroom-video-controls .btn {
+    min-width: 0;
+    justify-content: center;
+  }
+
+  #root .app-layout .classroom-room-footer {
+    padding-inline: 1rem;
+  }
+
+  #root .app-layout .tutor-dashboard-page > .section {
+    padding-inline: 1rem;
+  }
+}

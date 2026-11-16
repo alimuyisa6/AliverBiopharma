@@ -35,10 +35,10 @@
 }
 
 .home-page > .home-stats-section { --section-bg: var(--brand-navy); --section-ink: var(--white); margin-block-start: 0 !important; }
-.home-page > .lernwick-pathways { --section-bg: var(--info-color); --section-ink: var(--white); }
+.home-page > .lernwick-pathways { --section-bg: var(--brand-navy); --section-ink: var(--white); }
 .home-page > .home-curriculum-section { --section-bg: var(--brand-navy); --section-ink: var(--white); }
-.home-page > .lernwick-how { --section-bg: var(--dark-background); --section-ink: var(--white); }
-.home-page > .lernwick-connected { --section-bg: var(--info-color); --section-ink: var(--white); }
+.home-page > .lernwick-how { --section-bg: var(--info-color); --section-ink: var(--white); }
+.home-page > .lernwick-connected { --section-bg: var(--dark-background); --section-ink: var(--white); }
 .home-page > .home-student-section { --section-bg: var(--info-color); --section-ink: var(--white); }
 .home-page > .home-daily-learning-section { --section-bg: var(--brand-navy); --section-ink: var(--white); }
 .home-page > .home-testimonials-section { --section-bg: var(--info-color); --section-ink: var(--white); }
