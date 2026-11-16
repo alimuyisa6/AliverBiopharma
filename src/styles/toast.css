@@ -2,7 +2,6 @@
   --toast-max-width: 25rem;
 }
 
- /* src/styles/toast.css */
 .toast-container {
   position: fixed;
   bottom: var(--space-6);
@@ -23,51 +22,38 @@
   font-weight: var(--weight-medium);
   cursor: pointer;
   animation: slideUp var(--ease-smooth) forwards;
-  border: 1px solid var(--line);
-  border-radius: var(--r-md);
-  background: var(--ink);
-  color: var(--paper);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--text-main);
+  color: var(--surface-card);
   box-shadow: var(--shadow-float);
-  font-family: var(--f-body);
+  font-family: var(--font-primary);
 }
 
 .toast-success {
   background: var(--primary-light);
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 .toast-error {
   background: var(--primary-dark);
-  color: var(--paper);
+  color: var(--surface-card);
 }
 
 .toast-warning {
   background: var(--primary-light);
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 .toast-info {
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--text-main);
+  color: var(--surface-card);
 }
 
 body.dark-mode .toast,
 body.dark-mode .toast-message,
 body.dark-mode .toast-container .toast { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
 body.dark-mode .toast :is(h1, h2, h3, p, small) { color: var(--dark-text); }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @media (max-width: 600px) {
   .toast-container {

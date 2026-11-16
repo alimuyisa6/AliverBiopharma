@@ -35,8 +35,8 @@
 
 .home-page > .home-student-section,
 .home-page > .home-daily-learning-section {
-  --section-bg: #EBEBF5;
-  --section-ink: #222132;
+  --section-bg: var(--surface-section);
+  --section-ink: var(--text-main);
 }
 
 .home-page > .lernwick-pathways,
@@ -46,25 +46,25 @@
 .home-page > .home-classroom-section,
 .home-page > .home-tutor-section,
 .home-page > .home-advertising-section {
-  --section-bg: #FFFFFF;
-  --section-ink: #222132;
+  --section-bg: var(--text-inverse);
+  --section-ink: var(--text-main);
 }
 
 .home-page > .home-stats-section {
-  --section-bg: #E0F6FF;
-  --section-ink: #222132;
+  --section-bg: var(--primary-light);
+  --section-ink: var(--text-main);
 }
 
 .home-page > .lernwick-connected,
 .home-page > .home-curriculum-section,
 .home-page > .pricing-section,
 .home-page > .home-newsletter-section {
-  --section-bg: #003294;
-  --section-ink: #FFFFFF;
+  --section-bg: var(--secondary);
+  --section-ink: var(--text-inverse);
 }
 
 .home-page > .home-newsletter-section {
-  --section-bg: #11111D;
+  --section-bg: var(--secondary-dark);
 }
 
 .home-page > :is(.home-stats-section,.home-student-section,.home-daily-learning-section) :is(
@@ -72,7 +72,7 @@
   .lernwick-section-heading,.lernwick-section-heading p,.lernwick-section-heading h2,
   .lernwick-note,.section-head .text-link
 ) {
-  color: #222132 !important;
+  color: var(--text-main) !important;
 }
 
 .home-page > :is(.lernwick-connected,.home-curriculum-section,.pricing-section,.home-newsletter-section) :is(
@@ -80,7 +80,7 @@
   .lernwick-section-heading,.lernwick-section-heading p,.lernwick-section-heading h2,
   .lernwick-note,.section-head .text-link
 ) {
-  color: #FFFFFF !important;
+  color: var(--text-inverse) !important;
 }
 
 .home-page > :is(.lernwick-pathways,.lernwick-programme-studio,.lernwick-how,.home-testimonials-section,.home-classroom-section,.home-tutor-section,.home-advertising-section) :is(
@@ -88,7 +88,7 @@
   .lernwick-section-heading,.lernwick-section-heading p,.lernwick-section-heading h2,
   .lernwick-note,.section-head .text-link
 ) {
-  color: #222132 !important;
+  color: var(--text-main) !important;
 }
 
 .home-page > :is(
@@ -116,10 +116,10 @@
   .lernwick-testimonial-card,.pricing-card,.pricing-empty,
   .section-teaser-inner,.ads-home-panel,.newsletter-card,.stats-impact-card
 ) {
-  border: 1px solid #DBDBE9 !important;
+  border: 1px solid var(--border-subtle) !important;
   border-radius: 12px !important;
-  background: #FFFFFF !important;
-  color: #222132 !important;
+  background: var(--text-inverse) !important;
+  color: var(--text-main) !important;
   box-shadow: 0 2px 5px rgb(17 17 29 / 6%), 0 14px 30px -14px rgb(17 17 29 / 18%) !important;
 }
 
@@ -130,7 +130,7 @@
   .lernwick-testimonial-card,.pricing-card,.pricing-empty,
   .section-teaser-inner,.ads-home-panel,.newsletter-card,.stats-impact-card
 ) :is(h1,h2,h3,h4,h5,h6,strong,blockquote,a:not(.btn)) {
-  color: #222132 !important;
+  color: var(--text-main) !important;
 }
 
 .home-page :is(
@@ -140,7 +140,7 @@
   .lernwick-testimonial-card,.pricing-card,.pricing-empty,
   .section-teaser-inner,.ads-home-panel,.newsletter-card,.stats-impact-card
 ) :is(p,small,li,label,figcaption) {
-  color: #5C5B6C !important;
+  color: var(--text-secondary) !important;
 }
 
 .home-page :is(
@@ -157,27 +157,27 @@
   .lernwick-connected-link-icon,.home-curriculum-node-marker,
   .lernwick-studio-card-icon
 ) {
-  color: #0292D3 !important;
+  color: var(--info-color) !important;
 }
 
 .home-page > :is(.lernwick-connected,.home-curriculum-section,.pricing-section,.home-newsletter-section) :is(a:not(.btn),.text-link) {
-  color: #FFFFFF;
+  color: var(--text-inverse);
 }
 
 .home-page > :is(.lernwick-connected,.home-curriculum-section,.pricing-section,.home-newsletter-section) .btn-primary {
-  border-color: #00B2FF;
-  background: #00B2FF;
-  color: #11111D;
+  border-color: var(--primary);
+  background: var(--primary);
+  color: var(--secondary-dark);
 }
 
 .home-page > .home-newsletter-section :is(input,textarea,select) {
-  border-color: #C5C5D2;
-  background: #FFFFFF;
-  color: #222132;
+  border-color: var(--border-default);
+  background: var(--text-inverse);
+  color: var(--text-main);
 }
 
 .home-page :is(button,a):focus-visible {
-  outline: 3px solid #F37F29 !important;
+  outline: 3px solid var(--accent) !important;
   outline-offset: 3px !important;
 }
 
@@ -186,16 +186,16 @@ body.dark-mode .home-page > :is(
   .home-advertising-section,.lernwick-connected,.home-curriculum-section,
   .pricing-section,.home-newsletter-section
 ) {
-  --section-bg: #11111D;
-  --section-ink: #FFFFFF;
+  --section-bg: var(--secondary-dark);
+  --section-ink: var(--text-inverse);
 }
 
 body.dark-mode .home-page > :is(
   .lernwick-pathways,.lernwick-programme-studio,.lernwick-how,
   .home-testimonials-section,.home-classroom-section,.home-tutor-section
 ) {
-  --section-bg: #222132;
-  --section-ink: #FFFFFF;
+  --section-bg: var(--text-main);
+  --section-ink: var(--text-inverse);
 }
 
 body.dark-mode .home-page > :is(
@@ -205,7 +205,7 @@ body.dark-mode .home-page > :is(
   .lernwick-programme-studio,.lernwick-how,.home-testimonials-section,
   .home-classroom-section,.home-tutor-section
 ) :is(h1,h2,h3,h4,h5,h6,p,li,.eyebrow,.section-description,.section-head-left,.lernwick-section-heading,.lernwick-section-heading p,.lernwick-section-heading h2,.lernwick-note,.text-link) {
-  color: #FFFFFF !important;
+  color: var(--text-inverse) !important;
 }
 
 body.dark-mode .home-page :is(
@@ -215,9 +215,9 @@ body.dark-mode .home-page :is(
   .lernwick-testimonial-card,.pricing-card,.section-teaser-inner,
   .ads-home-panel,.newsletter-card,.stats-impact-card
 ) {
-  border-color: #464558 !important;
-  background: #2F2E41 !important;
-  color: #FFFFFF !important;
+  border-color: var(--dark-border) !important;
+  background: var(--dark-surface-raised) !important;
+  color: var(--text-inverse) !important;
 }
 
 body.dark-mode .home-page :is(
@@ -227,7 +227,7 @@ body.dark-mode .home-page :is(
   .lernwick-testimonial-card,.pricing-card,.section-teaser-inner,
   .ads-home-panel,.newsletter-card,.stats-impact-card
 ) :is(h1,h2,h3,h4,h5,h6,strong,p,small,li,label,figcaption,a:not(.btn)) {
-  color: #FFFFFF !important;
+  color: var(--text-inverse) !important;
 }
 
 @media (max-width: 768px) {

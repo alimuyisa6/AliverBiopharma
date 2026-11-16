@@ -1,5 +1,3 @@
-/* src/styles/recall.css */
-
 .recall-page {
   margin: 0 auto;
   padding: var(--page-space-top) 0 var(--page-space-bottom);
@@ -24,7 +22,7 @@
 .recall-page-header {
   padding: clamp(1rem, 2.5vw, 1.5rem);
   margin-bottom: var(--space-4);
-  border: 1px solid var(--line);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   background: var(--primary-light);
 }
@@ -886,10 +884,6 @@
   }
 }
 
-
-
-
-
 .recall-page-section,
 .recall-tab-fullscreen-content {
   min-width: 0;
@@ -948,18 +942,12 @@
   }
 }
 
-
-/* Recall resource page: concise intro and consistent practice surfaces. */
-
-
-
 .recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card {
-  border: 1px solid var(--line);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   background: var(--white);
   box-shadow: none;
 }
-
 
 body.dark-mode .recall-page {
   background: var(--dark-background);
@@ -969,11 +957,6 @@ body.dark-mode .recall-page-header, body.dark-mode .recall-intro-card, body.dark
   border-color: var(--dark-border);
   background: var(--dark-surface);
 }
-
-
-/* Recall uses solid backgrounds and one shared style for feature icons. */
-
-
 
 .recall-intro-icon, .recall-due-banner-icon, .recall-report-icon {
   display: inline-grid;
@@ -988,35 +971,6 @@ body.dark-mode .recall-page-header, body.dark-mode .recall-intro-card, body.dark
 body.dark-mode .recall-page-header {
   background: var(--bg-card);
 }
-
-
-/* Flat recall surfaces with the same light/dark behavior as other resources. */
-
-
-
-
-
-
-/* Neutral recall canvas; use a quiet neutral header surface. */
-
-
-
-
-
-
-/* Solid palette section treatment: faint mint band and white recall cards. */
-
-
-
-
-
-
-
-/* Aliver palette: one solid faint mint section with white learning cards. */
-
-
-
-
 
 body.dark-mode .recall-page :is(.recall-page-header, .recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .recall-session-card) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
 body.dark-mode .recall-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small) { color: var(--dark-text); }

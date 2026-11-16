@@ -19,7 +19,7 @@
   align-items: center;
   gap: var(--space-10);
   padding: clamp(var(--space-12), 7vw, var(--space-20)) max(var(--space-5), calc((100vw - var(--content-max-width)) / 2));
-  background: var(--soft);
+  background: var(--surface-muted);
   border-block-end: 1px solid var(--border-subtle);
 }
 

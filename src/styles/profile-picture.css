@@ -1,5 +1,3 @@
-/* src/styles/profile-picture.css */
-
 .profile-picture-upload {
   display: flex;
   flex-direction: column;
@@ -12,8 +10,8 @@
   overflow: hidden;
   border: 3px solid var(--border-default);
   position: relative;
-  border-color: var(--line-2);
-  background: var(--soft);
+  border-color: var(--border-default);
+  background: var(--surface-muted);
 }
 
 .profile-picture-image {
@@ -29,8 +27,8 @@
   align-items: center;
   justify-content: center;
   font-size: var(--text-2xl);
-  background: var(--soft);
-  color: var(--ink-3);
+  background: var(--surface-muted);
+  color: var(--text-muted);
 }
 
 .profile-picture-overlay {
@@ -61,12 +59,3 @@
 body.dark-mode .profile-picture-frame,
 body.dark-mode .profile-picture-upload,
 body.dark-mode .profile-picture-placeholder { background: var(--dark-surface-raised); color: var(--dark-text); border-color: var(--dark-border); }
-
-
-
-
-
-
-
-
-
