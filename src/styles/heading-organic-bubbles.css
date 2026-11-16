@@ -1,5 +1,5 @@
 :root {
-  --heading-bubble-primary-bg: #e0f6ff;
+  --heading-bubble-primary-bg: var(--primary-light);
   --heading-bubble-primary-border: var(--primary);
   --heading-bubble-primary-ink: var(--night-2);
 }
