@@ -1,4 +1,3 @@
-/* Quiz challenge screens reuse the established quiz-page visual language. */
 .quiz-challenge-page {
   width: min(100%, var(--max-width, 1180px));
   min-height: calc(100vh - var(--header-height));
