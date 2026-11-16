@@ -7,13 +7,11 @@
   background: var(--surface-section-alt);
   color: var(--text);
 }
-
 .learning-journey-heading {
   max-width: 48rem;
   margin: 0 auto 2.25rem;
   text-align: center;
 }
-
 .learning-journey-eyebrow {
   display: inline-flex;
   align-items: center;
@@ -24,21 +22,18 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
-
 .learning-journey-heading h2 {
   margin: 0;
   color: var(--text);
   font-size: clamp(1.65rem, 3.5vw, 2.45rem);
   line-height: 1.15;
 }
-
 .learning-journey-heading p {
   margin: 0.8rem auto 0;
   color: var(--grey-600);
   font-size: 1rem;
   line-height: 1.7;
 }
-
 .learning-journey-flow {
   position: relative;
   display: grid;
@@ -46,7 +41,6 @@
   max-width: 58rem;
   margin: 0 auto;
 }
-
 .learning-journey-flow::before {
   position: absolute;
   top: 2.2rem;
@@ -56,25 +50,21 @@
   background: var(--primary-border);
   content: '';
 }
-
 .learning-journey-stage {
   position: relative;
   display: grid;
   grid-template-columns: 2.25rem minmax(0, 1fr);
   gap: 1rem;
 }
-
 .learning-journey-stage.is-focused .learning-journey-stage-content {
   border-color: var(--primary-border);
   background: var(--surface-card);
 }
-
 .learning-journey-stage.is-focused .learning-journey-stage-step::after {
   content: ' · selected from resources';
   letter-spacing: 0;
   text-transform: none;
 }
-
 .learning-journey-stage-marker {
   z-index: 1;
   display: grid;
@@ -89,24 +79,21 @@
   background: var(--surface-card);
   color: var(--primary-dark);
 }
-
 .learning-journey-stage-content {
   min-width: 0;
   padding: 1.15rem;
-  border: 1px solid var(--line);
+  border: 1px solid var(--border-subtle);
   border-radius: 1.15rem;
   border-color: var(--border-subtle);
   background: var(--surface-card);
   box-shadow: var(--shadow-ink-08);
 }
-
 .learning-journey-stage-heading {
   display: flex;
   align-items: flex-start;
   gap: 0.85rem;
   margin-bottom: 1rem;
 }
-
 .learning-journey-stage-icon {
   display: grid;
   flex: 0 0 2.65rem;
@@ -118,12 +105,10 @@
   background: var(--primary-light);
   color: var(--primary-dark);
 }
-
 .learning-journey-stage-heading > div {
   min-width: 0;
   flex: 1;
 }
-
 .learning-journey-stage-step {
   display: block;
   margin-bottom: 0.2rem;
@@ -133,21 +118,18 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
-
 .learning-journey-stage-heading h3 {
   margin: 0;
   color: var(--text);
   font-size: 1.15rem;
   line-height: 1.35;
 }
-
 .learning-journey-stage-heading p {
   margin: 0.25rem 0 0;
   color: var(--grey-600);
   font-size: 0.88rem;
   line-height: 1.55;
 }
-
 .learning-journey-stage-count {
   flex: 0 0 auto;
   padding: 0.35rem 0.6rem;
@@ -157,12 +139,10 @@
   background: var(--primary-light);
   color: var(--primary-dark);
 }
-
 .learning-journey-items {
   display: grid;
   gap: 0.6rem;
 }
-
 .learning-journey-item {
   display: flex;
   width: 100%;
@@ -171,7 +151,7 @@
   justify-content: space-between;
   gap: 1rem;
   padding: 0.9rem 1rem;
-  border: 1px solid var(--line);
+  border: 1px solid var(--border-subtle);
   border-radius: 0.85rem;
   font: inherit;
   text-align: left;
@@ -182,29 +162,24 @@
   background: var(--surface-card);
   color: var(--text);
 }
-
 .learning-journey-item:hover:not(:disabled),
 .learning-journey-item:focus-visible {
   outline: none;
   border-color: var(--primary-border);
   background: var(--primary-light);
 }
-
 .learning-journey-item:hover:not(:disabled) {
   transform: translateY(-1px);
 }
-
 .learning-journey-item:disabled {
   cursor: wait;
   opacity: 0.65;
 }
-
 .learning-journey-item-copy {
   display: grid;
   min-width: 0;
   gap: 0.22rem;
 }
-
 .learning-journey-item-copy strong {
   overflow-wrap: anywhere;
   color: var(--text);
@@ -212,14 +187,12 @@
   font-weight: 750;
   line-height: 1.4;
 }
-
 .learning-journey-item-copy small {
   overflow-wrap: anywhere;
   color: var(--grey-600);
   font-size: 0.8rem;
   line-height: 1.45;
 }
-
 .learning-journey-item-action {
   display: inline-flex;
   flex: 0 0 auto;
@@ -230,12 +203,10 @@
   white-space: nowrap;
   color: var(--primary-dark);
 }
-
 .learning-journey-item-action svg {
   width: 0.95rem;
   height: 0.95rem;
 }
-
 .learning-journey-loading {
   width: min(100%, 42rem);
   height: 0.65rem;
@@ -244,7 +215,6 @@
   border-radius: 999px;
   background: var(--primary-light);
 }
-
 .learning-journey-loading::after {
   display: block;
   width: 35%;
@@ -254,61 +224,50 @@
   content: '';
   animation: learning-journey-loading 1.4s ease-in-out infinite;
 }
-
 .learning-journey-error {
   max-width: 58rem;
   margin: 1rem auto 0;
   color: var(--danger-color);
   font-size: 0.85rem;
 }
-
 @keyframes learning-journey-loading {
   from {
     transform: translateX(-110%);
   }
-
   to {
     transform: translateX(310%);
   }
 }
-
 @media (max-width: 640px) {
   .learning-journey {
     margin: 2rem auto;
     padding: 1rem 0.75rem;
     border-radius: 1.1rem;
   }
-
   .learning-journey-heading {
     margin-bottom: 1.5rem;
     padding: 0 0.35rem;
     text-align: left;
   }
-
   .learning-journey-stage {
     grid-template-columns: 1.8rem minmax(0, 1fr);
     gap: 0.65rem;
   }
-
   .learning-journey-flow::before {
     left: 0.9rem;
   }
-
   .learning-journey-stage-marker {
     width: 1.8rem;
     height: 1.8rem;
     font-size: 0.62rem;
   }
-
   .learning-journey-stage-content {
     padding: 0.85rem;
     border-radius: 0.95rem;
   }
-
   .learning-journey-stage-heading {
     gap: 0.65rem;
   }
-
   .learning-journey-stage-icon {
     flex-basis: 2.25rem;
     width: 2.25rem;
@@ -316,30 +275,24 @@
     border-radius: 0.7rem;
     font-size: 0.95rem;
   }
-
   .learning-journey-stage-heading h3 {
     font-size: 1rem;
   }
-
   .learning-journey-stage-heading p {
     font-size: 0.8rem;
   }
-
   .learning-journey-stage-count {
     display: none;
   }
-
   .learning-journey-item {
     align-items: flex-start;
     padding: 0.8rem;
   }
-
   .learning-journey-item-action {
     padding-top: 0.1rem;
     font-size: 0.7rem;
   }
 }
-
 @media (prefers-reduced-motion: reduce) {
   .learning-journey-item,
   .learning-journey-loading::after {
@@ -347,28 +300,3 @@
     transition: none;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-.learning-journey-stage-step,
-.learning-journey-eyebrow {
-  color: var(--primary-dark);
-}
-
-
-
-
-
-
-
-
