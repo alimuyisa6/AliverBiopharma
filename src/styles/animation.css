@@ -1,5 +1,3 @@
-/* src/styles/animation.css */
-
 :root {
   --duration-fast: 150ms;
   --duration-smooth: 220ms;
@@ -209,10 +207,6 @@ body.accessibility-reduce-motion .scroll-reveal {
   opacity: 1;
   transform: translate3d(0, 0, 0);
 }
-
-
-
-
 
 body.accessibility-reduce-motion .reveal,
 body.accessibility-reduce-motion .scroll-reveal {

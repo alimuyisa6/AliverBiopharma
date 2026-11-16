@@ -673,8 +673,6 @@ body.dark-mode {
   --auth-text-faint: var(--grey-500);
 }
 
-
-
 .auth-login-block {
   max-width: 28rem;
   margin-inline: auto;
@@ -753,10 +751,6 @@ body.dark-mode {
   }
 }
 
-
-
-
-
 .auth-form-container > * {
   position: relative;
 }
@@ -816,8 +810,6 @@ body.dark-mode {
     padding: 0;
   }
 }
-
-
 
 .auth-form-container > .auth-form-watermark {
   position: absolute;
@@ -898,7 +890,6 @@ body.dark-mode .auth-page :is(input, textarea)::placeholder { color: var(--dark-
 body.dark-mode .auth-brand-panel {
   background: var(--brand-navy-soft);
 }
-
 
 .auth-page {
   border-color: var(--border-default);

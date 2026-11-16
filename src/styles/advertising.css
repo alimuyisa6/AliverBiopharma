@@ -1,7 +1,3 @@
- /* src/styles/advertising.css */
-
-/* Advertisement component sizing tokens.
-   Shared spacing and typography continue to come from the global token scales. */
 :root {
   --advertise-width-wide: 20rem;
   --advertise-width-copy: 42rem;
@@ -28,7 +24,6 @@
   --advertising-illustration-float-duration: 3.2s;
   --advertising-illustration-drift-duration: 4.6s;
 }
-
 
 .eyebrow {
   display: inline-flex;
@@ -100,7 +95,6 @@
   min-width: 0;
 }
 
-
 .ads-home-image {
   display: block;
   width: 100%;
@@ -123,7 +117,7 @@
 
 .advertise-page {
   color: var(--text-main);
-  background: var(--bg-page);
+  background: var(--surface-page);
 }
 
 .advertise-hero {
@@ -214,7 +208,7 @@
   min-height: var(--advertise-image-min-height);
   border-radius: var(--radius-md);
   object-fit: cover;
-  background: var(--bg-muted);
+  background: var(--surface-muted);
 }
 
 .advertise-programmes,
@@ -272,7 +266,7 @@
   padding: var(--space-6);
   border: var(--advertise-slot-border-width) solid var(--border-default);
   border-radius: var(--radius-sm);
-  background: var(--bg-card);
+  background: var(--surface-card);
 }
 
 .advertise-programme-number {
@@ -309,7 +303,7 @@
 }
 
 .advertise-benefits {
-  background: var(--bg-page);
+  background: var(--surface-page);
 }
 
 .advertise-benefit-list {
@@ -323,7 +317,7 @@
 .advertise-benefit {
   padding: var(--space-6);
   border-top: 2px solid var(--secondary);
-  background: var(--bg-card);
+  background: var(--surface-card);
 }
 
 .advertise-benefit-icon {
@@ -402,7 +396,7 @@
   padding: var(--space-6);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
-  background: var(--bg-card);
+  background: var(--surface-card);
 }
 
 .advertise-process-note-icon {
@@ -500,8 +494,8 @@
   max-width: var(--content-max-wide);
   margin: var(--space-10) auto 0;
   padding: var(--space-2);
-  border: 1px solid var(--border-light);
-  background: var(--bg-muted);
+  border: 1px solid var(--border-subtle);
+  background: var(--surface-muted);
 }
 
 .advertise-create-progress-item {
@@ -535,12 +529,12 @@
 
 .advertise-create-progress-item.is-active {
   color: var(--accent-hover);
-  background: var(--bg-card);
+  background: var(--surface-card);
 }
 
 .advertise-create-progress-item.is-complete {
   color: var(--secondary-hover);
-  background: var(--bg-card);
+  background: var(--surface-card);
 }
 
 .advertise-create-layout {
@@ -556,7 +550,7 @@
   min-width: 0;
   border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
-  background: var(--bg-card);
+  background: var(--surface-card);
 }
 
 .advertise-create-loading {
@@ -688,7 +682,7 @@
   padding: var(--space-4);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
-  background: var(--bg-card);
+  background: var(--surface-card);
   cursor: pointer;
   transition: border-color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard);
 }
@@ -758,7 +752,7 @@
   padding: var(--space-5);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
-  background: var(--bg-muted);
+  background: var(--surface-muted);
 }
 
 .advertise-review-row {
@@ -840,10 +834,10 @@
 .advertise-create-error {
   margin: var(--space-4) var(--space-8) 0;
   padding: var(--space-3) var(--space-4);
-  border: 1px solid var(--danger);
+  border: 1px solid var(--danger-color);
   border-radius: var(--radius-xs);
-  color: var(--danger);
-  background: var(--danger-light);
+  color: var(--danger-color);
+  background: var(--danger-background);
   font-size: var(--text-sm);
   line-height: var(--leading-normal);
 }
@@ -870,7 +864,7 @@
   padding: var(--space-6);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
-  background: var(--bg-card);
+  background: var(--surface-card);
 }
 
 .advertise-create-aside-mark {
@@ -941,7 +935,7 @@
   padding: var(--space-4) var(--space-5);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
-  background: var(--bg-muted);
+  background: var(--surface-muted);
   text-align: center;
 }
 
@@ -1029,7 +1023,7 @@
   padding: var(--space-6);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
-  background: var(--bg-card);
+  background: var(--surface-card);
 }
 
 .ad-campaign-success-summary-title {
@@ -1111,21 +1105,21 @@
 }
 
 .advertise-payment-error {
-  border-color: var(--danger);
-  color: var(--danger);
-  background: var(--danger-light);
+  border-color: var(--danger-color);
+  color: var(--danger-color);
+  background: var(--danger-background);
 }
 
 .advertise-payment-message {
   color: var(--text-secondary);
-  background: var(--bg-card);
+  background: var(--surface-card);
 }
 
 .advertise-payment-empty {
   padding: var(--space-12) var(--space-6);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
-  background: var(--bg-card);
+  background: var(--surface-card);
   text-align: center;
 }
 
@@ -1165,7 +1159,7 @@
   padding: var(--space-6);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
-  background: var(--bg-card);
+  background: var(--surface-card);
 }
 
 .advertise-payment-status-icon {
@@ -1200,7 +1194,7 @@
   padding: var(--space-6);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
-  background: var(--bg-card);
+  background: var(--surface-card);
 }
 
 .advertise-payment-summary-row {
@@ -1240,7 +1234,7 @@
   padding: var(--space-8);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
-  background: var(--bg-card);
+  background: var(--surface-card);
 }
 
 .advertise-payment-form-heading {
@@ -1283,7 +1277,7 @@
   padding: var(--space-6);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
-  background: var(--bg-muted);
+  background: var(--surface-muted);
 }
 
 .advertise-payment-next h2 {
@@ -1310,7 +1304,7 @@
   padding: var(--space-6);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
-  background: var(--bg-card);
+  background: var(--surface-card);
 }
 
 .advertise-payment-aside-icon {
@@ -1569,8 +1563,6 @@
   }
 }
 
-
-/* Central UI preference integration for advertising pages. */
 .advertise-page,
 .advertise-create-page,
 .advertise-payment-page { font-family: var(--font-primary); }
@@ -1579,13 +1571,11 @@
 .advertise-benefits,
 .advertise-process { padding-inline: var(--ui-page-gutter-x, var(--page-gutter-x)); }
 
-
 .advertise-programme-list,
 .advertise-benefit-list { gap: var(--ui-content-gap, var(--content-gap)); max-width: var(--ui-content-max-width, var(--max-width)); }
 .advertise-programme,
 .advertise-benefit,
 .advertise-process-note { padding: var(--ui-card-padding-y, var(--card-padding-y)) var(--ui-card-padding-x, var(--card-padding-x)); }
-
 
 .advertise-create-layout,
 .advertise-create-header,
@@ -1600,8 +1590,6 @@ html[data-ui-surface="flat"] .advertise-benefit,
 html[data-ui-surface="flat"] .advertise-process-note,
 html[data-ui-surface="flat"] .advertise-create-form { box-shadow: var(--shadow-none); background: transparent; }
 
-
-/* Learner-facing served advertisements */
 .ad-slot { width: 100%; margin: var(--space-8) 0; }
 .ad-slot-loading { min-height: var(--space-20); display: flex; align-items: center; justify-content: center; }
 .ad-slot-label { display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-2); font: var(--weight-semibold) var(--text-xs)/var(--leading-normal) var(--font-mono); text-transform: uppercase; letter-spacing: var(--tracking-eyebrow); color: var(--text-secondary); }
@@ -1611,7 +1599,7 @@ html[data-ui-surface="flat"] .advertise-create-form { box-shadow: var(--shadow-n
   overflow: hidden;
   border: var(--advertise-slot-border-width) solid var(--border-default);
   border-radius: var(--radius-lg);
-  background: var(--bg-card);
+  background: var(--surface-card);
   color: inherit;
   text-decoration: none;
   box-shadow: var(--shadow-sm);
@@ -1651,11 +1639,6 @@ html[data-ui-surface="flat"] .advertise-create-form { box-shadow: var(--shadow-n
 .ad-slot-body { margin: 0; color: var(--text-secondary); line-height: var(--leading-relaxed); }
 
 @media (max-width: 700px) { .ad-slot-card { grid-template-columns: 1fr; } .ad-slot-content { padding: var(--space-5); } }
-
-
-/* Original animated SVG artwork for the homepage advertising section. */
-
-
 
 .advertising-reach-illustration {
   display: block;
@@ -1754,7 +1737,6 @@ html[data-ui-surface="flat"] .advertise-create-form { box-shadow: var(--shadow-n
   50% { opacity: 1; }
 }
 
-/* Character acting: blinking, typing and independent arm movement. */
 .advertising-reach-eyes {
   transform-box: fill-box;
   transform-origin: center;

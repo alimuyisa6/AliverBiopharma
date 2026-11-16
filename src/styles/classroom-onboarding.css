@@ -55,5 +55,5 @@ body.dark-mode .classroom-onboarding .onboarding-topic-card {
   color: var(--dark-text);
 }
 body.dark-mode .classroom-onboarding .onboarding-topic-card.selected {
-  border-color: var(--dark-primary);
+  border-color: var(--primary);
 }
