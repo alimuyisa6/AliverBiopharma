@@ -2551,7 +2551,7 @@ body.dark-mode .quiz-essay-submitted {
 
 .quiz-hero-card {
   border: 0;
-  border-radius: var(--app-card-radius);
+  border-radius: var(--r-lg);
   background: var(--brand-navy);
   color: var(--white);
   box-shadow: none;
@@ -2573,7 +2573,7 @@ body.dark-mode .quiz-essay-submitted {
 
 .quiz-page :where(.quiz-empty-topics, .quiz-challenge-card, .stat-card, .quiz-weakareas-inner, .quiz-topic-card, .quiz-question-card, .quiz-attempt-card) {
   border-color: var(--border-default);
-  border-radius: var(--app-card-radius);
+  border-radius: var(--r-lg);
   background: var(--surface-card);
   color: var(--ink);
   box-shadow: var(--shadow-card);
