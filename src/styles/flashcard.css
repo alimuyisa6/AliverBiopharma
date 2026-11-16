@@ -6,7 +6,6 @@
   --flashcard-content-max-width: 31.25rem;
 }
 
- /* src/styles/flashcard.css */
 .fcd-section {
   box-sizing: border-box;
   width: 100%;
@@ -121,7 +120,7 @@
 
 .fcd-meta-index {
   font-size: var(--text-sm);
-  color: var(--text-dim);
+  color: var(--text-muted);
 }
 
 .fcd-meta-title {
@@ -174,7 +173,6 @@
 .fcd-question-card.card-mint .fcd-flip-face {
   background: var(--brand-mint-soft);
 }
-
 
  .fcd-flip-control {
   display: flex;
@@ -495,7 +493,7 @@
 }
 
 .fcp-message {
-  color: var(--text-dim);
+  color: var(--text-muted);
   margin-top: var(--space-3);
   opacity: 0.86;
 }
@@ -520,7 +518,7 @@
 
 .fcp-stat-label {
   font-size: var(--text-sm);
-  color: var(--text-dim);
+  color: var(--text-muted);
 }
 
 .fcp-actions-row {
@@ -560,7 +558,7 @@
 }
 
 .flashcard-class {
-  color: var(--text-dim);
+  color: var(--text-muted);
   margin-bottom: var(--space-4);
   opacity: 0.82;
   font-family: var(--font-reading);
@@ -597,15 +595,11 @@
   }
 }
 
-
-
 .flashcards-page,
 .flashcard-subject-section,
 .flashcard-decks-grid {
   min-width: 0;
 }
-
-
 
 .flashcard-decks-grid > * {
   width: 100%;
@@ -623,7 +617,6 @@
     grid-template-columns: 1fr;
   }
 }
-
 
 @media (max-width: 640px) {
   .flashcard-deck-view {
