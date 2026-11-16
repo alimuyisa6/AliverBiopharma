@@ -203,18 +203,18 @@
   --surface-page: var(--background);
   --surface-card: var(--white);
   --surface-raised: var(--white);
-  --surface-muted: var(--surface-muted);
-  --surface-subtle: var(--surface-muted);
+  --surface-muted: var(--surface-section);
+  --surface-subtle: var(--surface-section);
   --surface-tinted: var(--primary-light);
   --bg-page: var(--background);
   --bg-card: var(--white);
-  --bg-card-hover: var(--surface-muted);
-  --bg-muted: var(--surface-muted);
+  --bg-card-hover: var(--surface-section);
+  --bg-muted: var(--surface-section);
   --bg-input: var(--white);
-  --border-subtle: var(--border-subtle);
-  --border-light: var(--border-subtle);
-  --border-default: var(--border-subtle);
-  --border-strong: var(--border-default);
+  --border-subtle: var(--surface-section-alt);
+  --border-light: var(--surface-section-alt);
+  --border-default: var(--surface-strong);
+  --border-strong: var(--grey-400);
 }
 
 body.dark-mode {
