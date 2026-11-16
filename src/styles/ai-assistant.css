@@ -1,5 +1,4 @@
- :root {
-  --ai-assistant-panel-min-height: var(--ai-assistant-panel-min-height);
+:root {
   --ai-assistant-panel-min-height-mobile: 20rem;
 }
 
@@ -95,7 +94,7 @@
   gap: var(--content-gap);
   padding: var(--space-4) var(--space-5);
   color: var(--white);
-  background: var(--ink);
+  background: var(--text-main);
   border-bottom: 1px solid var(--primary-hover);
 }
 
@@ -115,7 +114,7 @@
   height: var(--space-10);
   color: var(--primary-hover);
   background: var(--white);
-  border-radius: var(--shape-round);
+  border-radius: var(--radius-pill);
   box-shadow: var(--shadow-sm);
 }
 
@@ -203,7 +202,7 @@
   color: var(--warning-color);
   background: var(--warning-light);
   border: 1px solid var(--warning-border);
-  border-radius: var(--shape-round);
+  border-radius: var(--radius-pill);
 }
 
 .ai-assistant-welcome h3 {
@@ -342,7 +341,6 @@
   }
 }
 
-
 .ai-assistant-live-chat > span {
   display: flex;
   flex: 1 1 auto;
@@ -436,7 +434,7 @@
   margin-top: var(--space-3);
   padding: var(--space-3);
   color: var(--danger-hover);
-  background: var(--danger-light);
+  background: var(--danger-background);
   border: 1px solid var(--danger-border);
   border-radius: var(--radius-none);
   font-size: var(--text-xs);
