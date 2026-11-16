@@ -295,11 +295,11 @@ body.dark-mode .organic-letter--secondary {
 .lernwick-programme-studio--biology-foundations { background: var(--primary-light); }
 .lernwick-programme-studio--advanced-biology { background: var(--accent-light); }
 .lernwick-programme-studio--pharmacy-science { background: var(--secondary-light); }
-.lernwick-programme-studio--biology-foundations .lernwick-studio-visual-core { color: #12677b; }
-.lernwick-programme-studio--advanced-biology .lernwick-studio-visual-core { color: #514a91; }
+.lernwick-programme-studio--biology-foundations .lernwick-studio-visual-core { color: #003294; }
+.lernwick-programme-studio--advanced-biology .lernwick-studio-visual-core { color: #003294; }
 .lernwick-programme-studio--pharmacy-science .lernwick-studio-visual-core { color: #246c50; }
-.lernwick-programme-studio--advanced-biology .lernwick-studio-orbit { border-color: #7771b2; }
-.lernwick-programme-studio--pharmacy-science .lernwick-studio-orbit { border-color: #6da98b; }
+.lernwick-programme-studio--advanced-biology .lernwick-studio-orbit { border-color: #00b2ff; }
+.lernwick-programme-studio--pharmacy-science .lernwick-studio-orbit { border-color: #80d9ff; }
 .lernwick-studio-card-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -383,50 +383,50 @@ body.dark-mode .lernwick-studio-orbit { border-color: var(--dark-primary); }
 .lernwick-studio-visual--cell::before {
   width: 4.8rem;
   height: 4.2rem;
-  border: 2px solid #55aebd;
+  border: 2px solid #00b2ff;
   border-radius: 48% 52% 63% 37% / 45% 40% 60% 55%;
-  background: #d9f1f1;
-  box-shadow: inset 0 0 0 8px #c2e8e8, inset 0 0 0 18px #d9f1f1, 0 0 0 7px #a8d8df;
+  background: #e0f6ff;
+  box-shadow: inset 0 0 0 8px #dbdbe9, inset 0 0 0 18px #e0f6ff, 0 0 0 7px #80d9ff;
   transform: translate(5.4rem, -3.6rem) rotate(18deg);
 }
 .lernwick-studio-visual--cell::after {
   width: 3rem;
   height: 2.6rem;
-  border: 2px solid #55aebd;
+  border: 2px solid #00b2ff;
   border-radius: 42% 58% 50% 50%;
-  background: #cce9e9;
-  box-shadow: inset 0 0 0 9px #e6f6f4;
+  background: #e0f6ff;
+  box-shadow: inset 0 0 0 9px #ebebf5;
   transform: translate(-5.4rem, 3.5rem) rotate(-22deg);
 }
 .lernwick-studio-visual--molecule::before {
   width: 13rem;
   height: 8rem;
   background: transparent;
-  box-shadow: 1.5rem 4rem 0 -.95rem #7c79b8, 4.8rem 1.3rem 0 -.95rem #7c79b8, 8.1rem 6.7rem 0 -.95rem #7c79b8, 11.4rem 4rem 0 -.95rem #7c79b8;
+  box-shadow: 1.5rem 4rem 0 -.95rem #003294, 4.8rem 1.3rem 0 -.95rem #003294, 8.1rem 6.7rem 0 -.95rem #003294, 11.4rem 4rem 0 -.95rem #003294;
 }
 .lernwick-studio-visual--pharmacy::before {
   width: 9rem;
   height: 3.5rem;
-  border: 2px solid #4f9873;
+  border: 2px solid #00b2ff;
   border-radius: 999px;
-  background: #d7f0e2;
-  box-shadow: inset -4.5rem 0 0 -4.35rem #5ca783;
+  background: #e0f6ff;
+  box-shadow: inset -4.5rem 0 0 -4.35rem #00b2ff;
   transform: translate(4.7rem, -3.2rem) rotate(-32deg);
 }
 .lernwick-studio-visual--pharmacy::after {
   width: 4rem;
   height: 4rem;
-  border: 2px solid #4f9873;
+  border: 2px solid #00b2ff;
   border-radius: 50%;
-  background: #d7f0e2;
-  box-shadow: inset 0 0 0 9px #b8dfc8, inset 0 0 0 17px #d7f0e2;
+  background: #e0f6ff;
+  box-shadow: inset 0 0 0 9px #dbdbe9, inset 0 0 0 17px #e0f6ff;
   transform: translate(-5.2rem, 3.7rem);
 }
 body.dark-mode .lernwick-studio-visual--cell::before,
-body.dark-mode .lernwick-studio-visual--cell::after { border-color: #73c7d6; }
+body.dark-mode .lernwick-studio-visual--cell::after { border-color: #00b2ff; }
 body.dark-mode .lernwick-studio-visual--molecule::before { filter: brightness(1.35); }
 body.dark-mode .lernwick-studio-visual--pharmacy::before,
-body.dark-mode .lernwick-studio-visual--pharmacy::after { border-color: #83c7a2; }
+body.dark-mode .lernwick-studio-visual--pharmacy::after { border-color: #80d9ff; }
 
 
 /* Programme discovery uses Aliver palette and simple inline scientific marks. */
