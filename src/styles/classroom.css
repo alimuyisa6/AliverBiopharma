@@ -309,14 +309,14 @@ body.dark-mode .classroom-page .classroom-view-toggle {
 }
 
 body.dark-mode .classroom-page .classroom-view-toggle .view-toggle-btn.active {
-  background: var(--dark-primary);
+  background: var(--primary);
   color: var(--dark-background);
 }
 
 body.dark-mode .classroom-page .classroom-chip-level {
   border-color: var(--dark-border);
   background: var(--dark-surface-raised);
-  color: var(--dark-primary);
+  color: var(--primary);
 }
 
 body.dark-mode .classroom-page .classroom-chip-class {
