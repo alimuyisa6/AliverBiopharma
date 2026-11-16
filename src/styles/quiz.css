@@ -2533,3 +2533,110 @@ body.dark-mode .quiz-essay-submitted {
 
 
 .clinical-case-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.clinical-case-card{display:grid;align-content:start;gap:.75rem;padding:1.2rem;border:1px solid var(--border-subtle);border-radius:16px;background:var(--surface-card);color:var(--text);box-shadow:0 3px 14px var(--shadow-ink-05)}.clinical-case-card h2,.clinical-case-card h3,.clinical-case-card h4{margin:0;color:var(--text)}.clinical-case-card p{margin:0;color:var(--ink-2);line-height:1.6}.clinical-case-card section{display:grid;gap:.55rem;padding-top:.75rem;border-top:1px solid var(--border-subtle)}.clinical-case-card ul{margin:0;padding-left:1.2rem;color:var(--ink-2);line-height:1.7}.clinical-case-card section article{padding:.7rem;border-radius:9px;background:var(--surface-section-alt)}.clinical-case-empty{max-width:720px;margin:0 auto}.clinical-case-empty .qbank-select-button{margin-top:.8rem;text-decoration:none}@media(max-width:640px){.clinical-case-grid{grid-template-columns:1fr}}
+
+
+.quiz-page {
+  width: 100%;
+  max-width: none;
+  background: var(--surface-page);
+  color: var(--ink);
+}
+
+.quiz-page-title {
+  font-size: clamp(2.1rem, 4.3vw, 3.4rem);
+  font-weight: 750;
+  letter-spacing: -.045em;
+  line-height: 1.08;
+}
+
+.quiz-hero-card {
+  border: 0;
+  border-radius: var(--app-card-radius);
+  background: var(--brand-navy);
+  color: var(--white);
+  box-shadow: none;
+}
+
+.quiz-hero-card :where(h1, h2, h3, h4, p, span, strong, .quiz-hero-title, .quiz-hero-classlabel, .quiz-hero-subtitle) {
+  color: var(--white);
+}
+
+.quiz-hero-card .stat-card {
+  border-color: rgb(255 255 255 / 20%);
+  background: rgb(255 255 255 / 10%);
+  color: var(--white);
+}
+
+.quiz-hero-card .stat-card :where(.stat-value, .stat-label) {
+  color: var(--white);
+}
+
+.quiz-page :where(.quiz-empty-topics, .quiz-challenge-card, .stat-card, .quiz-weakareas-inner, .quiz-topic-card, .quiz-question-card, .quiz-attempt-card) {
+  border-color: var(--border-default);
+  border-radius: var(--app-card-radius);
+  background: var(--surface-card);
+  color: var(--ink);
+  box-shadow: var(--shadow-card);
+}
+
+.quiz-page :where(.quiz-empty-topics, .quiz-challenge-card, .stat-card, .quiz-weakareas-inner, .quiz-topic-card, .quiz-question-card, .quiz-attempt-card) :where(h2, h3, h4, strong, .stat-value, .quiz-challenge-title, .quiz-weakareas-title) {
+  color: var(--ink);
+}
+
+.quiz-page :where(.quiz-empty-topics, .quiz-challenge-card, .stat-card, .quiz-weakareas-inner, .quiz-topic-card, .quiz-question-card, .quiz-attempt-card) :where(p, small, .stat-label, .quiz-challenge-sublabel, .quiz-intro-description, .quiz-topic-description) {
+  color: var(--ink-2);
+}
+
+body.dark-mode .quiz-page {
+  background: var(--surface-page);
+  color: var(--dark-text);
+}
+
+body.dark-mode .quiz-hero-card {
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+
+body.dark-mode .quiz-hero-card :where(h1, h2, h3, h4, p, span, strong, .quiz-hero-title, .quiz-hero-classlabel, .quiz-hero-subtitle) {
+  color: var(--dark-text);
+}
+
+body.dark-mode .quiz-hero-card .stat-card {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+}
+
+body.dark-mode .quiz-hero-card .stat-card :where(.stat-value, .stat-label) {
+  color: var(--dark-text);
+}
+
+body.dark-mode .quiz-page :where(.quiz-empty-topics, .quiz-challenge-card, .stat-card, .quiz-weakareas-inner, .quiz-topic-card, .quiz-question-card, .quiz-attempt-card) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 18%);
+}
+
+body.dark-mode .quiz-page :where(.quiz-empty-topics, .quiz-challenge-card, .stat-card, .quiz-weakareas-inner, .quiz-topic-card, .quiz-question-card, .quiz-attempt-card) :where(h2, h3, h4, strong, .stat-value, .quiz-challenge-title, .quiz-weakareas-title) {
+  color: var(--dark-text);
+}
+
+body.dark-mode .quiz-page :where(.quiz-empty-topics, .quiz-challenge-card, .stat-card, .quiz-weakareas-inner, .quiz-topic-card, .quiz-question-card, .quiz-attempt-card) :where(p, small, .stat-label, .quiz-challenge-sublabel, .quiz-intro-description, .quiz-topic-description) {
+  color: var(--dark-text-secondary);
+}
+
+@media (max-width: 640px) {
+  .quiz-page-title {
+    font-size: clamp(1.9rem, 8vw, 2.5rem);
+  }
+
+  .quiz-hero-card {
+    border-radius: 0;
+    margin-inline: calc(-1 * var(--page-gutter-x));
+    padding-inline: var(--page-gutter-x);
+  }
+
+  .quiz-hero-stats {
+    grid-template-columns: 1fr;
+  }
+}
