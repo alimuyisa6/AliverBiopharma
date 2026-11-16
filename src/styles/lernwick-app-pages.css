@@ -1801,7 +1801,7 @@ body.dark-mode .app-layout .curriculum-node-linked-group {
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.card, .content-card, .resource-card, .notes-card, .note-card, .paper-card, .pdf-card, .feature-card, .dashboard-card, .stat-card, .quiz-card, .flashcard-card, .flashcard-deck-card, .recall-card, .classroom-card, .tutor-card, .faq-item, .about-block, .profile-card, .settings-card, .quiz-question-card, .quiz-result-card, .quiz-review-card, .recall-question-card, .recall-feedback-card, .recall-report-card) {
   min-width: 0;
   border: 1px solid var(--border-default);
-  border-radius: var(--app-card-radius);
+  border-radius: var(--r-lg);
   background: var(--surface-card);
   color: var(--ink);
   box-shadow: var(--shadow-card);
@@ -1833,7 +1833,7 @@ body.dark-mode .app-layout .curriculum-node-linked-group {
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.toolbar, .filters, .filter-panel, .resources-toolbar, .notes-toolbar, .pp-toolbar, .pp-filters, .pdf-library-controls, .glossary-search-area) {
   border: 1px solid var(--border-subtle);
-  border-radius: var(--app-card-radius);
+  border-radius: var(--r-lg);
   background: var(--surface-section-alt);
   color: var(--ink);
 }
@@ -1883,7 +1883,7 @@ body.dark-mode .app-layout .curriculum-node-linked-group {
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(table) {
   border: 1px solid var(--border-default);
-  border-radius: var(--app-card-radius);
+  border-radius: var(--r-lg);
   background: var(--surface-card);
   color: var(--ink);
 }
@@ -1988,7 +1988,7 @@ body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(i
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-page, .pp-page, .curriculum-node-page, .notes-page-shell, .note-detail-container, .dashboard-content, .quiz-page-section, .recall-page-section) :where(.resource-card, .pp-card, .curriculum-card, .curriculum-node-child, .curriculum-node-resource, .notes-card, .note-related-card, .panel, .stat-card, .quiz-challenge-card, .recall-intro-card, .recall-stat-card, .recall-topic-card) {
   border: 1px solid var(--border-default);
-  border-radius: var(--app-card-radius);
+  border-radius: var(--r-lg);
   background: var(--surface-card);
   color: var(--ink);
   box-shadow: var(--shadow-card);
@@ -2009,7 +2009,7 @@ body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(i
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-toolbar, .pp-toolbar, .pp-filters, .notes-toolbar, .quiz-tab-bar, .recall-tab-bar) {
   border: 1px solid var(--border-default);
-  border-radius: var(--app-card-radius);
+  border-radius: var(--r-lg);
   background: var(--surface-section);
   color: var(--ink);
 }
@@ -2079,7 +2079,7 @@ body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.team-card, .contributor-card, .legal-card, .legal-panel, .classroom-card, .classroom-room-card, .tutor-card, .tutor-profile-card, .profile-card, .profile-overview-panel, .profile-category-card, .faq-item, .faq-featured-card, .donate-card, .donate-momo-card, .ads-home-panel, .ad-slot-card, .advertise-card, .contact-card, .info-card, .search-panel, .search-result, .search-result-card, .search-empty-state) {
   border: 1px solid var(--border-default);
-  border-radius: var(--app-card-radius);
+  border-radius: var(--r-lg);
   background: var(--surface-card);
   color: var(--ink);
   box-shadow: var(--shadow-card);
@@ -2141,7 +2141,7 @@ body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.
   margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
   padding: clamp(1.5rem, 4vw, 2.75rem);
   border: 0;
-  border-radius: var(--app-card-radius);
+  border-radius: var(--r-lg);
   background: var(--brand-navy);
   color: var(--white);
 }
@@ -2159,7 +2159,7 @@ body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-result-summary, .quiz-attempt-answer-card, .quiz-attempt-result-empty, .quiz-review-inbox, .quiz-review-question-card, .quiz-review-marking-form, .quiz-review-access-error, .quiz-review-empty) {
   border: 1px solid var(--border-default);
-  border-radius: var(--app-card-radius);
+  border-radius: var(--r-lg);
   background: var(--surface-card);
   color: var(--ink);
   box-shadow: var(--shadow-card);
@@ -2265,7 +2265,7 @@ body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.
 
 #root .app-layout :where(.recall-page, .flashcard-page) :where(.recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .recall-topic-card, .recall-stat-card, .flashcard, .flashcard-card, .fcd-question-card, .fcd-question-card-static, .flashcard-panel, .flashcard-deck-card) {
   border: 1px solid var(--border-default);
-  border-radius: var(--app-card-radius);
+  border-radius: var(--r-lg);
   background: var(--surface-card);
   color: var(--ink);
   box-shadow: var(--shadow-card);
@@ -2400,7 +2400,7 @@ body.dark-mode #root .app-layout :where(.recall-page, .flashcard-page) :where(.r
   overflow: hidden;
   padding: 1.25rem;
   border: 1px solid var(--border-default);
-  border-radius: var(--app-card-radius);
+  border-radius: var(--r-lg);
   background: var(--brand-navy);
   color: var(--white);
 }
@@ -2430,7 +2430,7 @@ body.dark-mode #root .app-layout :where(.recall-page, .flashcard-page) :where(.r
   min-width: 0;
   overflow: hidden;
   border: 1px solid var(--border-default);
-  border-radius: var(--app-card-radius);
+  border-radius: var(--r-lg);
   background: var(--surface-card);
   color: var(--ink);
   box-shadow: var(--shadow-card);
@@ -2622,7 +2622,7 @@ body.dark-mode #root .app-layout :where(.recall-page, .flashcard-page) :where(.r
 
 #root .app-layout .tutor-dashboard-page :where(.card, .empty-state) {
   border: 1px solid var(--border-default);
-  border-radius: var(--app-card-radius);
+  border-radius: var(--r-lg);
   background: var(--surface-card);
   color: var(--ink);
   box-shadow: var(--shadow-card);
