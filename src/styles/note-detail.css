@@ -1875,7 +1875,7 @@ body.dark-mode .note-detail-page :is(.text-muted, .note-description, .note-meta)
   padding: 0.08em 0.48em 0.12em;
   border: 1px solid var(--primary-border);
   border-radius: 0.72em 0.52em 0.78em 0.48em;
-  background: #e0f6ff;
+  background: var(--primary-light);
   color: var(--secondary);
   font-weight: var(--weight-semibold);
   box-decoration-break: clone;
@@ -1885,5 +1885,5 @@ body.dark-mode .note-detail-page :is(.text-muted, .note-description, .note-meta)
 body.dark-mode .notes-content-container .term-bubble {
   border-color: var(--primary);
   background: var(--night-2);
-  color: #e0f6ff;
+  color: var(--primary-light);
 }
