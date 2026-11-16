@@ -37,13 +37,13 @@
 
 .accordion-trigger:hover {
   background: var(--surface-muted);
-  color: var(--primary)-deep);
+  color: var(--primary-dark);
 }
 
 .accordion-trigger:focus-visible {
   outline: 2px solid var(--border-focus);
   outline-offset: -2px;
-  outline-color: var(--primary)-deep);
+  outline-color: var(--primary-dark);
 }
 
 .accordion-icon {
@@ -57,7 +57,7 @@
 
 .accordion-item.active .accordion-icon {
   transform: rotate(45deg);
-  color: var(--primary)-deep);
+  color: var(--primary-dark);
 }
 
 .accordion-content {
