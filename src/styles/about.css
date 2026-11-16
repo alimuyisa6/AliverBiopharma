@@ -18,7 +18,7 @@
   min-height: 46vh;
   padding: var(--space-12) var(--space-5);
   background: var(--primary-light);
-  color: var(--ink);
+  color: var(--text-main);
   text-align: center;
 }
 
@@ -380,7 +380,7 @@ a.about-contact-item:hover {
   justify-content: center;
   padding: var(--space-3) var(--space-6);
   background: var(--primary);
-  color: var(--ink);
+  color: var(--text-main);
   border-radius: var(--radius-full);
   font-family: var(--font-button);
   font-weight: var(--weight-semibold);
@@ -476,14 +476,10 @@ body.dark-mode .contact-page :is(.text-muted, .contact-description) { color: var
 body.dark-mode .contact-page :is(input, select, textarea) { background: var(--dark-background); color: var(--dark-text); border-color: var(--dark-border); }
 body.dark-mode .contact-page :is(input, textarea)::placeholder { color: var(--dark-text-secondary); }
 
-
-
 .about-hero-title,
 .about-hero-subtext {
-  color: var(--ink);
+  color: var(--text-main);
 }
-
-
 
 body.dark-mode .about-hero {
   background-color: var(--dark-surface);
