@@ -1,10 +1,8 @@
-/* Empty and error state component widths. */
 :root {
   --empty-state-image-max-width: 17.5rem;
   --empty-state-copy-max-width: 25rem;
 }
 
- /* styles/empty-state.css */
 .empty-state {
   display: flex;
   flex-direction: column;
@@ -72,8 +70,6 @@
   line-height: var(--leading-body);
 }
 
-
-/* Reusable shadcn-inspired empty state, adapted to AliverBiopharm tokens. */
 .ab-empty {
   display: flex;
   min-width: 0;
@@ -106,9 +102,9 @@
   height: var(--empty-icon-size, 3.25rem);
   border: 1px solid var(--border-default);
   color: var(--primary);
-  border-color: var(--line);
-  border-radius: var(--r-md);
-  background: var(--soft);
+  border-color: var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--surface-muted);
 }
 .ab-empty-media--icon svg {
   width: var(--icon-size-lg, 1.5rem);
@@ -141,7 +137,7 @@
 .empty-state-retry {
   min-height: 44px;
   min-width: 120px;
-  border-radius: var(--r-pill);
+  border-radius: var(--radius-pill);
 }
 @media (min-width: 640px) {
   .ab-empty { padding: var(--space-8); }
@@ -154,32 +150,27 @@ body.dark-mode .empty-state-panel { background: var(--dark-surface); color: var(
 body.dark-mode .empty-state :is(h1, h2, h3, h4, p, small) { color: var(--dark-text); }
 body.dark-mode .empty-state :is(.description, .text-muted) { color: var(--dark-text-secondary); }
 
-
 .empty-state,
 .error-state,
 .ab-empty {
-  color: var(--ink);
-  font-family: var(--f-body);
+  color: var(--text-main);
+  font-family: var(--font-primary);
 }
 
 .empty-state-title,
 .error-state-title,
 .ab-empty-title {
-  color: var(--ink);
-  font-family: var(--f-display);
+  color: var(--text-main);
+  font-family: var(--font-heading);
 }
 
 .empty-state-text,
 .error-state-text,
 .ab-empty-description {
-  color: var(--ink-2);
+  color: var(--text-secondary);
 }
 
 .empty-state-icon,
 .ab-empty-media--icon {
-  color: var(--primary)-deep);
+  color: var(--primary-dark);
 }
-
-
-
-
