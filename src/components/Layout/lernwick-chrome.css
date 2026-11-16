@@ -1,5 +1,5 @@
-.site-header{position:fixed;top:0;right:0;left:0;z-index:var(--z-sticky);height:5.5rem;background:#10203F;border-bottom:1px solid #003294;box-shadow:none}
-.site-header.scrolled{background:#10203F;border-bottom-color:#003294;box-shadow:0 8px 24px rgb(17 17 29 / 18%)}
+.site-header{position:fixed;top:0;right:0;left:0;z-index:var(--z-sticky);height:5.5rem;background:#003294;border-bottom:1px solid #003294;box-shadow:none}
+.site-header.scrolled{background:#003294;border-bottom-color:#003294;box-shadow:0 8px 24px rgb(17 17 29 / 18%)}
 .header-container{width:min(calc(100% - (var(--gutter) * 2)),calc(var(--container) + 2 * var(--gutter)));height:100%;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;margin-inline:auto}
 .header-logo{display:inline-flex;flex:0 0 auto;align-items:center;gap:.55rem;color:#FFFFFF;font-family:var(--f-display);font-size:1.35rem;font-weight:700;letter-spacing:-.04em;text-decoration:none}
 .header-logo:hover{color:#00B2FF}
@@ -22,7 +22,7 @@
 .header-glyph{width:1.2rem;height:1.2rem}
 .hamburger-btn{display:none;width:2.65rem;height:2.65rem;min-width:2.65rem;border-radius:50%!important;color:#FFFFFF}
 .hamburger-btn:hover{background:#003294!important;color:#00B2FF}
-.mobile-menu-panel{background:#10203F;border:1px solid #003294;border-radius:12px;box-shadow:0 12px 32px rgb(17 17 29 / 24%)}
+.mobile-menu-panel{background:#003294;border:1px solid #003294;border-radius:12px;box-shadow:0 12px 32px rgb(17 17 29 / 24%)}
 .mobile-menu-heading{color:#FFFFFF;font-family:var(--f-display)}
 .mobile-menu-link{border-radius:8px;color:#EBEBF5;font-family:var(--f-body)}
 .mobile-menu-link:hover,.mobile-menu-link:focus-visible,.mobile-menu-link.active{background:#003294;color:#FFFFFF}
