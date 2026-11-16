@@ -25,11 +25,11 @@
   --tone-info-hover: var(--info-hover);
   --tone-info-bg: var(--info-light);
   --tone-info-border: var(--info-border);
-  --surface-inverse: var(--ink);
+  --surface-inverse: var(--text-main);
   --surface-overlay: var(--overlay-color);
   --surface-disabled: var(--grey-100);
-  --bg-input-disabled: var(--soft);
-  --bg-disabled: var(--soft);
+  --bg-input-disabled: var(--surface-muted);
+  --bg-disabled: var(--surface-muted);
   --bg-overlay: var(--overlay-color);
   --text-main: var(--text);
   --text-secondary: var(--grey-600);
@@ -130,7 +130,7 @@
   --hero-border: var(--secondary);
   --header-bg: var(--white);
   --header-border: var(--grey-200);
-  --footer-bg: var(--ink);
+  --footer-bg: var(--text-main);
   --footer-text: var(--white);
   --footer-border: var(--primary);
   --level-o: var(--primary);
@@ -139,10 +139,10 @@
   --level-a-light: var(--accent-light);
   --level-pharmacy: var(--secondary);
   --level-pharmacy-light: var(--grey-100);
-  --section-tint: var(--soft);
-  --auth-bg: var(--soft);
-  --auth-surface: var(--paper);
-  --auth-surface-alt: var(--soft);
+  --section-tint: var(--surface-muted);
+  --auth-bg: var(--surface-muted);
+  --auth-surface: var(--surface-card);
+  --auth-surface-alt: var(--surface-muted);
   --auth-border: var(--grey-200);
   --auth-border-strong: var(--grey-300);
   --auth-text: var(--text);
@@ -203,18 +203,18 @@
   --surface-page: var(--background);
   --surface-card: var(--white);
   --surface-raised: var(--white);
-  --surface-muted: var(--soft);
-  --surface-subtle: var(--soft);
+  --surface-muted: var(--surface-muted);
+  --surface-subtle: var(--surface-muted);
   --surface-tinted: var(--primary-light);
   --bg-page: var(--background);
   --bg-card: var(--white);
-  --bg-card-hover: var(--soft);
-  --bg-muted: var(--soft);
+  --bg-card-hover: var(--surface-muted);
+  --bg-muted: var(--surface-muted);
   --bg-input: var(--white);
-  --border-subtle: var(--line);
-  --border-light: var(--line);
-  --border-default: var(--line);
-  --border-strong: var(--line-2);
+  --border-subtle: var(--border-subtle);
+  --border-light: var(--border-subtle);
+  --border-default: var(--border-subtle);
+  --border-strong: var(--border-default);
 }
 
 body.dark-mode {
@@ -327,10 +327,6 @@ body.dark-mode {
   background: var(--section-tint);
 }
 
-
-
-
-
 body.accessibility-large-text {
   --text-xs: 0.8125rem;
   --text-sm: 0.9375rem;
@@ -430,14 +426,6 @@ body.accessibility-dyslexia-font * {
   font-family: Verdana, Arial, sans-serif !important;
 }
 
-
-
-
-
-
-
-
-
 body.dark-mode :is(.page-shell, .page-container, .page-content, .content-shell, .content-container, .settings-page, .settings-content, .library-page, .resources-page, .glossary-page, .profile-page, .dashboard-page, .classroom-page, .quiz-page, .flashcard-page, .recall-page, .search-page, .legal-page, .about-page, .contact-page, .donate-page, .maintenance-page) {
   background-color: var(--dark-background);
   color: var(--dark-text);
@@ -472,17 +460,12 @@ body.dark-mode :is(.page-shell, .page-container, .page-content, .content-shell, 
   color: var(--dark-primary);
 }
 
-/* Global application surfaces, contrast and typography system. */
-
-
-
-
 #root .app-layout {
   width: 100%;
   min-width: 0;
   background: var(--surface-page);
   color: var(--text-main);
-  font-family: var(--f-body);
+  font-family: var(--font-primary);
 }
 
 #root .app-layout > .main-content {
@@ -505,12 +488,12 @@ body.dark-mode :is(.page-shell, .page-container, .page-content, .content-shell, 
 
 #root .app-layout :where(h1, h2, h3, h4, h5, h6, .page-title, .page-heading, .section-title, .content-title) {
   color: var(--text-main);
-  font-family: var(--f-display);
+  font-family: var(--font-heading);
 }
 
 #root .app-layout :where(p, li, label, small, .description, .subtitle, .supporting-text) {
   color: inherit;
-  font-family: var(--f-body);
+  font-family: var(--font-primary);
 }
 
 #root .app-layout :where(.resource-card, .notes-card, .blog-post-card, .team-card, .contributor-card, .flashcard-deck-card, .dashboard-curriculum-card, .profile-category-card, .pp-card, .glossary-route-card, .quiz-topic-cards > .card, .quiz-blocks-grid > .card, .recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .pdf-card, .tutor-card, .faq-item, .about-block, .contact-form, .donate-card, .donate-widget, .donate-momo-card, .note-learning-card) {
@@ -577,8 +560,6 @@ body.dark-mode #root .app-layout :where(input, textarea, .form-control, .form-in
   color: var(--dark-text-secondary);
 }
 
-
-/* WCAG contrast defaults for links and supporting text across the application. */
 #root .app-layout a:not(.btn):not(.button):not([class*="btn-"]) {
   color: var(--text-link);
   text-decoration-thickness: 0.08em;
