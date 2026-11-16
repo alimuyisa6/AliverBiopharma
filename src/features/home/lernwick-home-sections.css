@@ -5,8 +5,8 @@
 .lernwick-section-heading{display:flex;align-items:end;justify-content:space-between;gap:1rem 2rem;margin-bottom:clamp(2rem,1.5rem + 2vw,3.25rem)}
 .lernwick-section-heading>div{display:grid;gap:.8rem;max-width:46rem}
 .lernwick-section-heading h2,.lernwick-about-copy h2{font-family:var(--font-heading);font-size:var(--text-2xl);font-weight:700;line-height:1.18;letter-spacing:-.03em}
-.lernwick-section-heading p:not(.lernwick-note){color:var(--text-secondary);font-size:var(--t-md);line-height:1.7}
-.lernwick-note{display:inline-block;color:var(--primary-dark);font:700 1.35rem/1.1 var(--f-hand);transform:rotate(-3deg)}
+.lernwick-section-heading p:not(.lernwick-note){color:var(--text-secondary);font-size:var(--text-md);line-height:1.7}
+.lernwick-note{display:inline-block;color:var(--primary-dark);font:700 1.35rem/1.1 var(--font-heading);transform:rotate(-3deg)}
 .lernwick-outline-button,.lernwick-dark-button{display:inline-flex;min-height:3rem;align-items:center;justify-content:center;gap:.6rem;padding:.75rem 1.35rem;border:1.5px solid var(--text-main);border-radius:var(--radius-pill);font:600 var(--text-sm)/1.2 var(--font-heading);white-space:nowrap;transition:background-color var(--duration-normal) var(--ease),color var(--duration-normal) var(--ease),transform var(--duration-normal) var(--ease)}
 .lernwick-outline-button:hover{background:var(--text-main);color:var(--surface-card)}
 .lernwick-outline-button svg,.lernwick-dark-button svg{width:1.1rem;height:1.1rem;transition:transform var(--duration-normal) var(--ease)}
@@ -28,7 +28,7 @@
 .lernwick-pathway-card:hover .lernwick-pathway-image img{transform:scale(1.04)}
 .lernwick-pathway-image>span{position:absolute;z-index:1;left:.8rem;bottom:.8rem;padding:.35rem .85rem;border-radius:var(--radius-pill);background:var(--surface-card);font:600 var(--text-xs)/1.3 var(--font-heading)}
 .lernwick-pathway-body{display:grid;flex:1;gap:.7rem;padding:1.1rem 1.25rem 1.3rem;background:var(--surface-card)}
-.lernwick-pathway-body h3{font:600 var(--t-md)/1.3 var(--font-heading)}
+.lernwick-pathway-body h3{font:600 var(--text-md)/1.3 var(--font-heading)}
 .lernwick-pathway-body p{color:var(--text-secondary);font-size:var(--text-sm);line-height:1.7}
 .lernwick-pathway-action{display:inline-flex;align-items:center;gap:.45rem;align-self:end;margin-top:.35rem;font:700 var(--text-sm)/1.2 var(--font-heading)}
 .lernwick-pathway-action svg{width:1rem;height:1rem;transition:transform var(--duration-normal) var(--ease)}
@@ -43,7 +43,7 @@
 .lernwick-step-card:hover{transform:translateY(-4px)}
 .lernwick-step-number{display:grid;width:2.8rem;height:2.8rem;place-items:center;border:1.5px solid currentColor;border-radius:50%;font:700 var(--text-sm)/1 var(--font-heading)}
 .lernwick-step-mark{width:2.4rem;height:3px;border-radius:4px;background:var(--primary)}
-.lernwick-step-card h3{font:600 var(--t-md)/1.3 var(--font-heading)}
+.lernwick-step-card h3{font:600 var(--text-md)/1.3 var(--font-heading)}
 .lernwick-step-card p{color:var(--text-secondary);font-size:var(--text-sm);line-height:1.7}
 .lernwick-about-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:clamp(2.5rem,5vw,5rem)}
 .lernwick-about-media{position:relative;min-height:28rem}
@@ -51,7 +51,7 @@
 .lernwick-about-sticker{position:absolute;right:-1rem;bottom:1.5rem;display:grid;gap:.1rem;padding:1.1rem 1.4rem;border:1px solid var(--border-default);border-radius:1.5rem .4rem 1.5rem 1.5rem;background:var(--accent-light);box-shadow:var(--shadow-float);transform:rotate(4deg);font:600 var(--text-sm)/1.35 var(--font-heading)}
 .lernwick-about-sticker span{color:var(--secondary)}
 .lernwick-about-copy{display:grid;justify-items:start;gap:1.1rem}
-.lernwick-about-copy>p:not(.lernwick-note){color:var(--text-secondary);font-size:var(--t-md);line-height:1.8}
+.lernwick-about-copy>p:not(.lernwick-note){color:var(--text-secondary);font-size:var(--text-md);line-height:1.8}
 .lernwick-about-copy ul{display:grid;gap:.9rem;margin:.4rem 0 .6rem}
 .lernwick-about-copy li{display:flex;align-items:flex-start;gap:.65rem;color:var(--text-secondary);font-size:var(--text-sm);line-height:1.6}
 .lernwick-about-copy li svg{width:1.2rem;height:1.2rem;flex:0 0 auto;margin-top:.1rem;color:var(--primary-dark)}
@@ -66,7 +66,7 @@
 .home-page .home-learning-snapshot-section .section-head,.home-page .home-continue-learning-section .section-head,.home-page .home-curriculum-section .section-head,.home-page .home-daily-recall-section .section-head{align-items:end;justify-content:space-between;gap:1rem;margin-bottom:1.4rem}
 .home-page .home-learning-snapshot-section .section-head-left,.home-page .home-continue-learning-section .section-head-left,.home-page .home-curriculum-section .section-head-left,.home-page .home-daily-recall-section .section-head-left{display:grid;gap:.65rem}
 .home-page .home-learning-snapshot-section h2,.home-page .home-continue-learning-section h2,.home-page .home-curriculum-section h2,.home-page .home-daily-recall-section h2{color:var(--text-main);font-family:var(--font-heading);font-size:var(--text-xl);font-weight:700;line-height:1.2;letter-spacing:-.025em}
-.home-page .home-learning-snapshot-section .eyebrow,.home-page .home-continue-learning-section .eyebrow,.home-page .home-curriculum-section .eyebrow,.home-page .home-daily-recall-section .eyebrow{color:var(--primary-dark);font:700 1.2rem/1.1 var(--f-hand)}
+.home-page .home-learning-snapshot-section .eyebrow,.home-page .home-continue-learning-section .eyebrow,.home-page .home-curriculum-section .eyebrow,.home-page .home-daily-recall-section .eyebrow{color:var(--primary-dark);font:700 1.2rem/1.1 var(--font-heading)}
 .home-page .home-learning-snapshot-dashboard-link{border-color:var(--text-main);background:var(--text-main);color:var(--white);box-shadow:none}
 .home-page .home-learning-snapshot-dashboard-link:hover{border-color:var(--primary);background:var(--primary);color:var(--text-on-primary)}
 .home-page .home-snapshot-stack{padding:0;background:transparent}
@@ -96,7 +96,7 @@
 .home-page .home-curriculum-node>svg{width:1rem;height:1rem;flex:0 0 auto;margin-left:auto;color:var(--text-secondary)}
 .home-page .home-challenge-treasure{display:grid;grid-template-columns:minmax(0,1fr);gap:1.2rem;padding:clamp(1.5rem,1rem + 2vw,2.5rem)}
 .home-page .home-challenge-treasure-copy{display:grid;justify-items:start;gap:.8rem}
-.home-page .home-challenge-treasure-copy .eyebrow{color:var(--primary-dark);font:700 1.2rem/1.1 var(--f-hand)}
+.home-page .home-challenge-treasure-copy .eyebrow{color:var(--primary-dark);font:700 1.2rem/1.1 var(--font-heading)}
 .home-page .home-challenge-treasure-copy h2{color:var(--text-main);font:700 var(--text-xl)/1.2 var(--font-heading)}
 .home-page .home-challenge-treasure-copy>p{max-width:44rem;color:var(--text-secondary);font-size:var(--text-sm);line-height:1.7}
 .home-page .home-challenge-meta{display:flex;flex-wrap:wrap;gap:.6rem}
@@ -242,7 +242,7 @@ body.dark-mode .organic-letter--secondary {
 .lernwick-studio-intro > p:not(.lernwick-note) {
   max-width: 42rem;
   color: var(--text-secondary);
-  font-size: var(--t-md);
+  font-size: var(--text-md);
   line-height: 1.8;
 }
 .lernwick-studio-visual {
@@ -293,9 +293,9 @@ body.dark-mode .organic-letter--secondary {
 .lernwick-programme-studio--pharmacy-science { background: var(--secondary-light); }
 .lernwick-programme-studio--biology-foundations .lernwick-studio-visual-core { color: var(--secondary); }
 .lernwick-programme-studio--advanced-biology .lernwick-studio-visual-core { color: var(--secondary); }
-.lernwick-programme-studio--pharmacy-science .lernwick-studio-visual-core { color: #246c50; }
-.lernwick-programme-studio--advanced-biology .lernwick-studio-orbit { border-color: #00b2ff; }
-.lernwick-programme-studio--pharmacy-science .lernwick-studio-orbit { border-color: #80d9ff; }
+.lernwick-programme-studio--pharmacy-science .lernwick-studio-visual-core { color: var(--success-color); }
+.lernwick-programme-studio--advanced-biology .lernwick-studio-orbit { border-color: var(--primary); }
+.lernwick-programme-studio--pharmacy-science .lernwick-studio-orbit { border-color: var(--primary-border); }
 .lernwick-studio-card-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -378,19 +378,19 @@ body.dark-mode .lernwick-studio-orbit { border-color: var(--dark-primary); }
 .lernwick-studio-visual--cell::before {
   width: 4.8rem;
   height: 4.2rem;
-  border: 2px solid #00b2ff;
+  border: 2px solid var(--primary);
   border-radius: 48% 52% 63% 37% / 45% 40% 60% 55%;
-  background: #e0f6ff;
-  box-shadow: inset 0 0 0 8px #dbdbe9, inset 0 0 0 18px #e0f6ff, 0 0 0 7px #80d9ff;
+  background: var(--primary-light);
+  box-shadow: inset 0 0 0 8px var(--grey-200), inset 0 0 0 18px var(--primary-light), 0 0 0 7px var(--primary-border);
   transform: translate(5.4rem, -3.6rem) rotate(18deg);
 }
 .lernwick-studio-visual--cell::after {
   width: 3rem;
   height: 2.6rem;
-  border: 2px solid #00b2ff;
+  border: 2px solid var(--primary);
   border-radius: 42% 58% 50% 50%;
-  background: #e0f6ff;
-  box-shadow: inset 0 0 0 9px #ebebf5;
+  background: var(--primary-light);
+  box-shadow: inset 0 0 0 9px var(--grey-100);
   transform: translate(-5.4rem, 3.5rem) rotate(-22deg);
 }
 .lernwick-studio-visual--molecule::before {
@@ -402,26 +402,26 @@ body.dark-mode .lernwick-studio-orbit { border-color: var(--dark-primary); }
 .lernwick-studio-visual--pharmacy::before {
   width: 9rem;
   height: 3.5rem;
-  border: 2px solid #00b2ff;
+  border: 2px solid var(--primary);
   border-radius: 999px;
-  background: #e0f6ff;
-  box-shadow: inset -4.5rem 0 0 -4.35rem #00b2ff;
+  background: var(--primary-light);
+  box-shadow: inset -4.5rem 0 0 -4.35rem var(--primary);
   transform: translate(4.7rem, -3.2rem) rotate(-32deg);
 }
 .lernwick-studio-visual--pharmacy::after {
   width: 4rem;
   height: 4rem;
-  border: 2px solid #00b2ff;
+  border: 2px solid var(--primary);
   border-radius: 50%;
-  background: #e0f6ff;
-  box-shadow: inset 0 0 0 9px #dbdbe9, inset 0 0 0 17px #e0f6ff;
+  background: var(--primary-light);
+  box-shadow: inset 0 0 0 9px var(--grey-200), inset 0 0 0 17px var(--primary-light);
   transform: translate(-5.2rem, 3.7rem);
 }
 body.dark-mode .lernwick-studio-visual--cell::before,
-body.dark-mode .lernwick-studio-visual--cell::after { border-color: #00b2ff; }
+body.dark-mode .lernwick-studio-visual--cell::after { border-color: var(--primary); }
 body.dark-mode .lernwick-studio-visual--molecule::before { filter: brightness(1.35); }
 body.dark-mode .lernwick-studio-visual--pharmacy::before,
-body.dark-mode .lernwick-studio-visual--pharmacy::after { border-color: #80d9ff; }
+body.dark-mode .lernwick-studio-visual--pharmacy::after { border-color: var(--primary-border); }
 
 .lernwick-pathways { background: var(--primary-light); }
 .lernwick-pathway-card,
@@ -1077,7 +1077,7 @@ body.dark-mode .lernwick-stats .stats-impact-category {
 .pricing-card li svg{width:1rem;height:1rem;flex:0 0 auto;margin-top:.15rem;color:var(--primary)}
 .pricing-card .pricing-cta-btn{display:flex;width:100%;align-items:center;justify-content:center;gap:.5rem;margin-top:auto}
 .pricing-empty{padding:1.5rem;border:1px solid var(--border-subtle);border-radius:var(--radius-xl);background:var(--surface-card)}
-.pricing-empty h3{margin:0 0 .4rem;color:var(--text-main);font-family:var(--font-heading);font-size:var(--t-md)}
+.pricing-empty h3{margin:0 0 .4rem;color:var(--text-main);font-family:var(--font-heading);font-size:var(--text-md)}
 .pricing-empty p{margin:0;color:var(--text-secondary);font-size:var(--text-sm);line-height:1.5}
 @media(max-width:640px){.pricing-section{padding-block:2rem}.pricing-grid{grid-template-columns:minmax(0,1fr)}}
 
@@ -1137,7 +1137,7 @@ body.dark-mode .pricing-payment-method{color:var(--dark-text-secondary)}
   padding-top: 1.3rem;
   color: var(--text-main);
   font-family: var(--font-heading);
-  font-size: var(--t-md);
+  font-size: var(--text-md);
   font-weight: 500;
   line-height: 1.65;
 }
