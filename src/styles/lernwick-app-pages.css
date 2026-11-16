@@ -2307,3 +2307,438 @@ body.dark-mode #root .app-layout :where(.recall-page, .flashcard-page) :where(.r
 body.dark-mode #root .app-layout :where(.recall-page, .flashcard-page) :where(.recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .recall-topic-card, .recall-stat-card, .flashcard, .flashcard-card, .fcd-question-card, .fcd-question-card-static, .flashcard-panel, .flashcard-deck-card) :where(p, small, label, .description) {
   color: var(--dark-text-secondary);
 }
+
+
+#root .app-layout .classroom-room-page {
+  width: 100%;
+  max-width: none;
+  padding: 0 0 clamp(2rem, 5vw, 4rem);
+  background: var(--surface-page);
+  color: var(--ink);
+}
+
+#root .app-layout .classroom-room-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: clamp(1.25rem, 3vw, 2rem) var(--gutter);
+  border: 0;
+  border-radius: 0;
+  background: var(--brand-navy);
+  color: var(--white);
+  box-shadow: none;
+}
+
+#root .app-layout .classroom-room-header :where(h1, h2, h3, p, span, .classroom-room-header-title, .classroom-room-header-sub, .classroom-room-live-label) {
+  color: var(--white);
+}
+
+#root .app-layout .classroom-room-header-title {
+  margin: 0;
+  font-size: clamp(1.45rem, 2.6vw, 2.15rem);
+  line-height: 1.15;
+}
+
+#root .app-layout .classroom-room-header-info {
+  min-width: 0;
+  flex: 1;
+}
+
+#root .app-layout .classroom-room-header-sub {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-top: .7rem;
+}
+
+#root .app-layout .classroom-room-header .chip {
+  border: 1px solid rgb(255 255 255 / 28%);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 12%);
+  color: var(--white);
+}
+
+#root .app-layout .classroom-room-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 0 0 auto;
+}
+
+#root .app-layout .classroom-room-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(18rem, .8fr);
+  align-items: start;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  width: min(100%, 90rem);
+  margin-inline: auto;
+  padding: clamp(1rem, 2vw, 1.5rem) var(--gutter) 0;
+}
+
+#root .app-layout .classroom-room-left,
+#root .app-layout .classroom-room-right {
+  display: grid;
+  min-width: 0;
+  gap: 1rem;
+}
+
+#root .app-layout .classroom-video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: .85rem;
+}
+
+#root .app-layout .classroom-room-page .video-tile {
+  position: relative;
+  display: flex;
+  min-height: clamp(12rem, 22vw, 18rem);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .8rem;
+  overflow: hidden;
+  padding: 1.25rem;
+  border: 1px solid var(--border-default);
+  border-radius: var(--app-card-radius);
+  background: var(--brand-navy);
+  color: var(--white);
+}
+
+#root .app-layout .classroom-room-page .video-tile :where(.name, .avatar, .tile-status) {
+  color: var(--white);
+}
+
+#root .app-layout .classroom-room-page .video-tile .avatar {
+  font-size: clamp(2rem, 4vw, 3.25rem);
+}
+
+#root .app-layout .classroom-room-page .video-tile.speaking {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+#root .app-layout .classroom-video-controls,
+#root .app-layout .classroom-room-footer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .65rem;
+}
+
+#root .app-layout .classroom-room-page :where(.classroom-chat-panel, .classroom-participants-panel, .classroom-room-info-panel, .classroom-whiteboard) {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--border-default);
+  border-radius: var(--app-card-radius);
+  background: var(--surface-card);
+  color: var(--ink);
+  box-shadow: var(--shadow-card);
+}
+
+#root .app-layout .classroom-room-page :where(.chat-panel-header, .participants-panel-header, .whiteboard-toolbar) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .75rem;
+  padding: 1rem 1.15rem;
+  border-bottom: 1px solid var(--border-default);
+  background: var(--surface-section);
+}
+
+#root .app-layout .classroom-room-page :where(.chat-panel-header h4, .participants-panel-header h4, .classroom-room-info-panel h4) {
+  margin: 0;
+  color: var(--ink);
+}
+
+#root .app-layout .classroom-chat-body,
+#root .app-layout .classroom-participants-list {
+  max-height: 27rem;
+  overflow: auto;
+  padding: .9rem;
+  background: var(--surface-page);
+}
+
+#root .app-layout .classroom-message-row {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: .75rem;
+}
+
+#root .app-layout .classroom-message-row.is-own {
+  justify-content: flex-end;
+}
+
+#root .app-layout .classroom-message-bubble {
+  max-width: min(88%, 34rem);
+  padding: .75rem .9rem;
+  border: 1px solid var(--border-default);
+  border-radius: 1rem 1rem 1rem .3rem;
+  background: var(--surface-card);
+  color: var(--ink);
+}
+
+#root .app-layout .classroom-message-row.is-own .classroom-message-bubble {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: var(--text-on-primary);
+}
+
+#root .app-layout .classroom-message-bubble-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: .35rem;
+  font-size: .75rem;
+  font-weight: 700;
+}
+
+#root .app-layout .classroom-message-bubble-time {
+  opacity: .72;
+  font-weight: 500;
+}
+
+#root .app-layout .classroom-message-bubble-text {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: inherit;
+  line-height: 1.55;
+}
+
+#root .app-layout .classroom-chat-input-row {
+  display: flex;
+  align-items: end;
+  gap: .6rem;
+  padding: .85rem;
+  border-top: 1px solid var(--border-default);
+  background: var(--surface-card);
+}
+
+#root .app-layout .classroom-chat-textarea {
+  min-width: 0;
+  flex: 1;
+  resize: vertical;
+}
+
+#root .app-layout .classroom-participant-row {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .7rem;
+  border-bottom: 1px solid var(--border-default);
+  color: var(--ink);
+}
+
+#root .app-layout .classroom-participant-row:last-child {
+  border-bottom: 0;
+}
+
+#root .app-layout .classroom-participant-name {
+  color: var(--ink);
+  font-weight: 650;
+}
+
+#root .app-layout .classroom-participant-role {
+  color: var(--ink-2);
+  font-size: .8rem;
+  text-transform: capitalize;
+}
+
+#root .app-layout .classroom-room-info-panel {
+  padding: 1.15rem;
+}
+
+#root .app-layout .classroom-room-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .75rem;
+  margin-top: .85rem;
+}
+
+#root .app-layout .classroom-room-info-grid .info-item {
+  min-width: 0;
+  padding: .75rem;
+  border-radius: .7rem;
+  background: var(--surface-section);
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+
+#root .app-layout .classroom-room-info-grid .info-item strong {
+  display: block;
+  margin-bottom: .25rem;
+  color: var(--ink);
+}
+
+#root .app-layout .classroom-whiteboard {
+  padding: 0;
+}
+
+#root .app-layout .classroom-whiteboard .whiteboard-canvas {
+  display: grid;
+  min-height: 16rem;
+  place-content: center;
+  justify-items: center;
+  gap: .75rem;
+  padding: 1.5rem;
+  background: var(--surface-card);
+  color: var(--ink-2);
+  text-align: center;
+}
+
+#root .app-layout .classroom-room-footer {
+  width: min(100%, 90rem);
+  margin: 1.25rem auto 0;
+  padding-inline: var(--gutter);
+}
+
+#root .app-layout .tutor-dashboard-page {
+  width: 100%;
+  max-width: none;
+  background: var(--surface-page);
+  color: var(--ink);
+}
+
+#root .app-layout .tutor-dashboard-page > .section {
+  width: min(100%, 90rem);
+  margin-inline: auto;
+  padding: clamp(1.5rem, 3vw, 2.75rem) var(--gutter) clamp(3rem, 5vw, 4.5rem);
+}
+
+#root .app-layout .tutor-dashboard-page .section-title {
+  font-size: clamp(2.15rem, 4.4vw, 3.5rem);
+  font-weight: 750;
+  letter-spacing: -.045em;
+  line-height: 1.08;
+}
+
+#root .app-layout .tutor-dashboard-page .page-intro {
+  max-width: 54rem;
+  color: var(--ink-2);
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  line-height: 1.65;
+}
+
+#root .app-layout .tutor-dashboard-page :where(.card, .empty-state) {
+  border: 1px solid var(--border-default);
+  border-radius: var(--app-card-radius);
+  background: var(--surface-card);
+  color: var(--ink);
+  box-shadow: var(--shadow-card);
+}
+
+#root .app-layout .tutor-dashboard-page .grid {
+  gap: 1rem;
+}
+
+body.dark-mode #root .app-layout :where(.classroom-room-page, .tutor-dashboard-page) {
+  background: var(--surface-page);
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout .classroom-room-header {
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout .classroom-room-header :where(h1, h2, h3, p, span, .classroom-room-header-title, .classroom-room-header-sub, .classroom-room-live-label) {
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout .classroom-room-header .chip {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout .classroom-room-page :where(.classroom-chat-panel, .classroom-participants-panel, .classroom-room-info-panel, .classroom-whiteboard, .classroom-message-bubble, .classroom-message-resource) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 18%);
+}
+
+body.dark-mode #root .app-layout .classroom-room-page :where(.chat-panel-header, .participants-panel-header, .whiteboard-toolbar, .classroom-room-info-grid .info-item) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout .classroom-room-page :where(.chat-panel-header h4, .participants-panel-header h4, .classroom-room-info-panel h4, .classroom-participant-name, .classroom-room-info-grid .info-item strong) {
+  color: var(--dark-text);
+}
+
+body.dark-mode #root .app-layout .classroom-room-page :where(.classroom-chat-body, .classroom-participants-list, .classroom-whiteboard .whiteboard-canvas) {
+  background: var(--dark-background);
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode #root .app-layout .classroom-room-page :where(.classroom-participant-row, .classroom-room-info-grid .info-item) {
+  border-color: var(--dark-border);
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode #root .app-layout .classroom-room-page .classroom-message-row.is-own .classroom-message-bubble {
+  background: var(--dark-primary);
+  color: var(--dark-background);
+}
+
+body.dark-mode #root .app-layout .tutor-dashboard-page :where(.card, .empty-state) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 18%);
+}
+
+@media (max-width: 850px) {
+  #root .app-layout .classroom-room-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #root .app-layout .classroom-room-header {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  #root .app-layout .classroom-room-header-actions {
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  #root .app-layout .classroom-room-layout {
+    padding-inline: 1rem;
+  }
+
+  #root .app-layout .classroom-room-header {
+    padding-inline: 1rem;
+  }
+
+  #root .app-layout .classroom-room-header-actions {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  #root .app-layout .classroom-room-info-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #root .app-layout .classroom-video-controls {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #root .app-layout .classroom-video-controls .btn {
+    min-width: 0;
+    justify-content: center;
+  }
+
+  #root .app-layout .classroom-room-footer {
+    padding-inline: 1rem;
+  }
+
+  #root .app-layout .tutor-dashboard-page > .section {
+    padding-inline: 1rem;
+  }
+}
