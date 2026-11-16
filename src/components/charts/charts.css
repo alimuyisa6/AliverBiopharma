@@ -1,9 +1,9 @@
 :root {
   --ch-1: var(--primary);
-  --ch-2: var(--ink);
+  --ch-2: var(--secondary);
   --ch-3: var(--primary-border);
   --ch-4: var(--primary-light);
-  --ch-5: var(--line);
+  --ch-5: var(--border-subtle);
 }
 
 .ch-shell {

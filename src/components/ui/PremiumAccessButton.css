@@ -5,16 +5,16 @@
   justify-content: center;
   gap: .5rem;
   padding: .5rem .75rem;
-  border: 1px solid var(--line-2);
-  border-radius: var(--r-pill);
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--f-display);
-  font-size: var(--t-sm);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-pill);
+  background: var(--surface-card);
+  color: var(--text-main);
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
   font-weight: 700;
   line-height: 1.4;
   cursor: pointer;
-  transition: border-color var(--dur) var(--ease), background-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+  transition: border-color var(--duration-normal) var(--ease), background-color var(--duration-normal) var(--ease), transform var(--duration-normal) var(--ease);
 }
 
 .premium-access-button:hover:not(:disabled) {
@@ -53,7 +53,7 @@
 
 .premium-access-button-lock .premium-lock-shackle {
   transform-origin: 12px 10px;
-  transition: transform var(--dur) var(--ease);
+  transition: transform var(--duration-normal) var(--ease);
 }
 
 .premium-access-button:hover:not(:disabled):not(.is-loading) .premium-lock-shackle {

@@ -5,23 +5,23 @@
   align-items: center;
   justify-content: center;
   padding: .5rem 1.25rem .5rem 2.25rem;
-  border: 1px solid var(--ink);
-  border-radius: var(--r-pill);
-  background: var(--ink);
-  color: var(--paper);
-  font-family: var(--f-display);
-  font-size: var(--t-sm);
+  border: 1px solid var(--text-main);
+  border-radius: var(--radius-pill);
+  background: var(--text-main);
+  color: var(--surface-card);
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
   font-weight: 700;
   line-height: 1.4;
   text-align: center;
   cursor: pointer;
-  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+  transition: background-color var(--duration-normal) var(--ease), border-color var(--duration-normal) var(--ease), transform var(--duration-normal) var(--ease);
 }
 
 .buttonDownload:hover:not(:disabled) {
-  border-color: var(--primary)-deep);
-  background: var(--primary)-deep);
-  color: var(--paper);
+  border-color: var(--primary-dark);
+  background: var(--primary-dark);
+  color: var(--surface-card);
 }
 
 .buttonDownload:active:not(:disabled) {
@@ -29,7 +29,7 @@
 }
 
 .buttonDownload:focus-visible {
-  outline: 2px solid var(--primary)-deep);
+  outline: 2px solid var(--primary-dark);
   outline-offset: 3px;
 }
 

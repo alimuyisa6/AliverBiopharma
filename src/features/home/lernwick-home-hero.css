@@ -5,8 +5,8 @@
   padding: clamp(2.5rem, 5vw, 4.75rem) max(4.5%, calc((100vw - 1320px) / 2));
   overflow: hidden;
   box-sizing: border-box;
-  color: #FFFFFF;
-  background: #003294;
+  color: var(--white);
+  background: var(--secondary);
 }
 
 .ab-home-hero-main {
@@ -31,10 +31,10 @@
   align-items: center;
   margin: 0;
   padding: .55rem 1.15rem;
-  border: 2px solid #00B2FF;
+  border: 2px solid var(--primary);
   border-radius: 999px;
-  color: #00B2FF;
-  background: #003294;
+  color: var(--primary);
+  background: var(--secondary);
   font-size: .95rem;
   font-weight: 800;
   letter-spacing: -.01em;
@@ -42,7 +42,7 @@
 
 .ab-home-hero-welcome {
   margin: 1.35rem 0 .45rem;
-  color: #DBDBE9;
+  color: var(--grey-200);
   font-size: .9rem;
   font-weight: 700;
 }
@@ -50,8 +50,8 @@
 .ab-home-hero h1 {
   max-width: 12ch;
   margin: 1.55rem 0 0;
-  color: #FFFFFF;
-  font-family: var(--f-display, 'Rubik', sans-serif);
+  color: var(--white);
+  font-family: var(--font-heading);
   font-size: clamp(3.5rem, 6.4vw, 6.4rem);
   font-weight: 800;
   letter-spacing: -.065em;
@@ -63,13 +63,13 @@
 
 .ab-home-hero h1 span {
   display: block;
-  color: #00B2FF;
+  color: var(--primary);
 }
 
 .ab-home-hero-description {
   max-width: 43rem;
   margin: 1.35rem 0 0;
-  color: #DBDBE9;
+  color: var(--grey-200);
   font-size: clamp(1.05rem, 1.55vw, 1.4rem);
   line-height: 1.48;
   text-wrap: pretty;
@@ -94,12 +94,12 @@
 }
 
 .ab-home-hero-benefit + .ab-home-hero-benefit {
-  border-left: 1px solid #464558;
+  border-left: 1px solid var(--grey-800);
 }
 
 .ab-home-hero-benefit strong,
 .ab-home-hero-benefit span {
-  color: #FFFFFF;
+  color: var(--white);
   font-size: clamp(.76rem, 1vw, .95rem);
   line-height: 1.3;
 }
@@ -122,7 +122,7 @@
   align-items: center;
   justify-content: center;
   padding: .75rem 1.65rem;
-  border: 2px solid #00B2FF;
+  border: 2px solid var(--primary);
   border-radius: 999px;
   font-size: 1rem;
   font-weight: 800;
@@ -132,13 +132,13 @@
 
 .ab-home-hero-primary {
   min-width: 15rem;
-  color: #11111D;
-  background: #00B2FF;
+  color: var(--night);
+  background: var(--primary);
 }
 
 .ab-home-hero-secondary {
   min-width: 14rem;
-  color: #FFFFFF;
+  color: var(--white);
   background: transparent;
 }
 
@@ -148,22 +148,22 @@
 }
 
 .ab-home-hero-primary:hover {
-  border-color: #003294;
-  background: #003294;
+  border-color: var(--secondary);
+  background: var(--secondary);
 }
 
 .ab-home-hero-secondary:hover {
-  color: #11111D;
-  background: #00B2FF;
+  color: var(--night);
+  background: var(--primary);
 }
 
 .ab-home-hero-path {
   margin: 1rem 0 0;
-  color: #DBDBE9;
+  color: var(--grey-200);
   font-size: .8rem;
 }
 
-.ab-home-hero-path strong { color: #FFFFFF; }
+.ab-home-hero-path strong { color: var(--white); }
 
 .ab-home-hero-visual {
   position: relative;
@@ -194,7 +194,7 @@
 }
 
 .ab-home-hero a:focus-visible {
-  outline: 3px solid #F37F29;
+  outline: 3px solid var(--accent);
   outline-offset: 4px;
 }
 
@@ -236,20 +236,20 @@
 }
 
 body.dark-mode .ab-home-hero {
-  color: #EBEBF5;
-  background: #11111D;
+  color: var(--grey-100);
+  background: var(--night);
 }
 body.dark-mode .ab-home-hero-brand {
-  border-color: #00B2FF;
-  color: #E0F6FF;
-  background: #222132;
+  border-color: var(--primary);
+  color: var(--primary-light);
+  background: var(--night-2);
 }
-body.dark-mode .ab-home-hero h1 { color: #FFFFFF; }
-body.dark-mode .ab-home-hero h1 span { color: #00B2FF; }
+body.dark-mode .ab-home-hero h1 { color: var(--white); }
+body.dark-mode .ab-home-hero h1 span { color: var(--primary); }
 body.dark-mode .ab-home-hero-description,
 body.dark-mode .ab-home-hero-benefit strong,
 body.dark-mode .ab-home-hero-benefit span,
-body.dark-mode .ab-home-hero-path { color: #DBDBE9; }
-body.dark-mode .ab-home-hero-benefit + .ab-home-hero-benefit { border-color: #464558; }
-body.dark-mode .ab-home-hero-secondary { color: #E0F6FF; border-color: #E0F6FF; }
-body.dark-mode .ab-home-hero-secondary:hover { color: #222132; background: #E0F6FF; }
+body.dark-mode .ab-home-hero-path { color: var(--grey-200); }
+body.dark-mode .ab-home-hero-benefit + .ab-home-hero-benefit { border-color: var(--grey-800); }
+body.dark-mode .ab-home-hero-secondary { color: var(--primary-light); border-color: var(--primary-light); }
+body.dark-mode .ab-home-hero-secondary:hover { color: var(--night-2); background: var(--primary-light); }
