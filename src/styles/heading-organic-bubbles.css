@@ -1,13 +1,13 @@
 :root {
-  --heading-bubble-primary-bg: #b9eaf3;
-  --heading-bubble-primary-border: #55bfd2;
-  --heading-bubble-primary-ink: #102c40;
+  --heading-bubble-primary-bg: #e0f6ff;
+  --heading-bubble-primary-border: #00b2ff;
+  --heading-bubble-primary-ink: #222132;
 }
 
 body.dark-mode {
-  --heading-bubble-primary-bg: #236575;
-  --heading-bubble-primary-border: #4a9caf;
-  --heading-bubble-primary-ink: #f0fcff;
+  --heading-bubble-primary-bg: #003294;
+  --heading-bubble-primary-border: #00b2ff;
+  --heading-bubble-primary-ink: #ffffff;
 }
 
 .ab-home-hero h1::first-letter {
