@@ -116,7 +116,7 @@
   .lernwick-testimonial-card,.pricing-card,.pricing-empty,
   .section-teaser-inner,.ads-home-panel,.newsletter-card,.stats-impact-card
 ) {
-  border: 1px solid #DBDBE9 !important;
+  border: 1px solid var(--border-subtle) !important;
   border-radius: 12px !important;
   background: var(--text-inverse) !important;
   color: var(--text-main) !important;
@@ -140,7 +140,7 @@
   .lernwick-testimonial-card,.pricing-card,.pricing-empty,
   .section-teaser-inner,.ads-home-panel,.newsletter-card,.stats-impact-card
 ) :is(p,small,li,label,figcaption) {
-  color: #5C5B6C !important;
+  color: var(--text-secondary) !important;
 }
 
 .home-page :is(
@@ -157,7 +157,7 @@
   .lernwick-connected-link-icon,.home-curriculum-node-marker,
   .lernwick-studio-card-icon
 ) {
-  color: #0292D3 !important;
+  color: var(--info-color) !important;
 }
 
 .home-page > :is(.lernwick-connected,.home-curriculum-section,.pricing-section,.home-newsletter-section) :is(a:not(.btn),.text-link) {
@@ -165,19 +165,19 @@
 }
 
 .home-page > :is(.lernwick-connected,.home-curriculum-section,.pricing-section,.home-newsletter-section) .btn-primary {
-  border-color: #00B2FF;
-  background: #00B2FF;
+  border-color: var(--primary);
+  background: var(--primary);
   color: var(--secondary-dark);
 }
 
 .home-page > .home-newsletter-section :is(input,textarea,select) {
-  border-color: #C5C5D2;
+  border-color: var(--border-default);
   background: var(--text-inverse);
   color: var(--text-main);
 }
 
 .home-page :is(button,a):focus-visible {
-  outline: 3px solid #F37F29 !important;
+  outline: 3px solid var(--accent) !important;
   outline-offset: 3px !important;
 }
 
@@ -215,8 +215,8 @@ body.dark-mode .home-page :is(
   .lernwick-testimonial-card,.pricing-card,.section-teaser-inner,
   .ads-home-panel,.newsletter-card,.stats-impact-card
 ) {
-  border-color: #464558 !important;
-  background: #2F2E41 !important;
+  border-color: var(--dark-border) !important;
+  background: var(--dark-surface-raised) !important;
   color: var(--text-inverse) !important;
 }
 
