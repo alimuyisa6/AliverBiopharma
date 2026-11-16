@@ -175,10 +175,6 @@ export default function HomeView(props) {
 
       <DynamicActions pageId="home" className="home-dynamic-actions" />
 
-      <section className="home-stats-section" aria-label="Platform statistics">
-        <StatsGrid stats={publicStats || {}} scopeLabel={activeGroupName || activeLevelName || 'All learning levels'} />
-      </section>
-
       <ProgrammeDiscovery activeLevelName={activeLevelName} activeGroupName={activeGroupName} activeGroupId={activeGroupId} />
 
       {user && <CurriculumSnapshot nodes={curriculumUnits} activeLevelName={activeLevelName} activeGroupName={activeGroupName} sections={sections} />}
@@ -204,9 +200,13 @@ export default function HomeView(props) {
         <TestimonialSlider quotes={sections?.testimonials?.quotes || []} />
       </section>
 
+      <section className="home-stats-section" aria-label="Platform statistics">
+        <StatsGrid stats={publicStats || {}} scopeLabel={activeGroupName || activeLevelName || 'All learning levels'} />
+      </section>
+
       <PricingCards plans={subscriptionPlans} user={user} />
       <section className="home-classroom-section" id="classroom"><ClassroomTeaser /></section>
-      <section className="home-tutor-section"><TutorMarketplaceTeaser /></section>
+      <section className="home-tutor-section" id="instructors"><TutorMarketplaceTeaser /></section>
       <section className="home-advertising-section">
         <AdsHomeSection />
         <AdSlot placement="homepage" pageContext="home" />
