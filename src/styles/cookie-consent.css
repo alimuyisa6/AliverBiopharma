@@ -26,7 +26,7 @@
   padding: var(--space-5);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  background: var(--bg-card);
+  background: var(--surface-card);
   box-shadow: var(--shadow-lg);
   position: relative;
 }
@@ -74,7 +74,6 @@
   .cookie-consent-actions > * { flex:1 1 100%; }
 }
 
-
 .cookie-consent.cookie-consent-visible { transform: translateY(0); opacity: 1; }
 
 .cookie-consent-close {
@@ -91,44 +90,37 @@
   font-size: var(--text-xl);
   line-height: var(--leading-none);
   cursor: pointer;
-  color: var(--ink-2);
+  color: var(--text-secondary);
 }
 .cookie-consent-close:hover {
-  background: var(--soft);
-  color: var(--ink);
+  background: var(--surface-muted);
+  color: var(--text-main);
 }
 .cookie-consent-close:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
-  outline-color: var(--primary)-deep);
+  outline-color: var(--primary-dark);
 }
 @media (prefers-reduced-motion: reduce) { .cookie-consent { transition: opacity var(--duration-fast) var(--ease-standard); transform: none; } .cookie-consent:not(.cookie-consent-visible) { opacity: 0; } }
 
 body.dark-mode :is(.cookie-consent, .cookie-consent-banner, .cookie-consent-panel, .cookie-preferences, .cookie-settings) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
 body.dark-mode :is(.cookie-consent, .cookie-consent-banner, .cookie-consent-panel, .cookie-preferences, .cookie-settings) :is(h1, h2, h3, p, label, small) { color: var(--dark-text); }
 
-
 .cookie-consent-card,
 .cookie-consent-banner,
 .cookie-consent-panel,
 .cookie-preferences,
 .cookie-settings {
-  border-color: var(--line);
-  border-radius: var(--r-lg);
-  background: var(--paper);
-  color: var(--ink);
+  border-color: var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--surface-card);
+  color: var(--text-main);
   box-shadow: var(--shadow-float);
-  font-family: var(--f-body);
+  font-family: var(--font-primary);
 }
 
 .cookie-consent :is(h1, h2, h3, p, label, small),
 .cookie-consent-banner :is(h1, h2, h3, p, label, small),
 .cookie-preferences :is(h1, h2, h3, p, label, small) {
-  color: var(--ink);
+  color: var(--text-main);
 }
-
-
-
-
-
-
