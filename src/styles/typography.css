@@ -1,5 +1,3 @@
-/* src/styles/typography.css */
-
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&display=swap');
 
 :root {
@@ -13,7 +11,6 @@
   --font-source-sans: var(--font-reading);
   --font-mono: 'DM Mono', monospace;
 
-  /* Authentication surface typography */
   --auth-font-body: var(--font-primary);
   --auth-font-display: var(--font-heading);
   --auth-font-ui: var(--font-primary);
@@ -31,9 +28,8 @@
   --text-4xl: 2.25rem;
   --text-5xl: 3rem;
 
-  /* Compact title scale; body copy is refined separately without changing controls. */
   --text-display: clamp(1.5rem, 3vw, 2rem);
-  --text-page-title: clamp(2.5rem, 5vw, 4rem);
+  --text-page-title: clamp(2.75rem, 5.5vw, 4.25rem);
   --text-section-title: clamp(1.5rem, 2.5vw, 2.25rem);
   --text-subsection-title: 1rem;
   --text-card-title: 0.9375rem;
@@ -101,8 +97,6 @@ h1,h2,h3,h4,h5,h6 { margin: 0 0 var(--text-gap-title); color: var(--heading-colo
 .font-reading { font-family: var(--font-reading); }
 .font-mono { font-family: var(--font-mono); }
 
-/* Global heading hierarchy: compact and softly weighted across all pages.
-   Note Detail remains exempt from the shared title rules. */
 #root :is(h1, .page-title, .page-heading, .about-title, .legal-title,
   .modal-title, .quiz-hero-title, .notes-page-title, .recall-page-title,
   .quiz-page-title, .flashcard-title, .curriculum-node-title):not(.note-detail-container *) {
@@ -164,7 +158,7 @@ h1,h2,h3,h4,h5,h6 { margin: 0 0 var(--text-gap-title); color: var(--heading-colo
   #root :is(h1, .page-title, .page-heading, .about-title, .legal-title,
     .modal-title, .quiz-hero-title, .notes-page-title, .recall-page-title,
     .quiz-page-title, .flashcard-title, .curriculum-node-title):not(.note-detail-container *) {
-    font-size: clamp(2rem, 7.5vw, 2.5rem);
+    font-size: clamp(2.1rem, 8vw, 2.65rem);
   }
 
   #root :is(h2, .section-title, .glossary-title, .curriculum-node-section-title):not(.note-detail-container *) {
