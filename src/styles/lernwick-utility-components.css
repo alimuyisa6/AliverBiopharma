@@ -1,7 +1,7 @@
 :where(.ab-not-found, .aliver-global-loader) {
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--f-body);
+  background: var(--surface-card);
+  color: var(--text-main);
+  font-family: var(--font-primary);
 }
 
 .ab-not-found {
@@ -10,14 +10,14 @@
 
 .ab-not-found__code {
   color: var(--primary);
-  font-family: var(--f-display);
+  font-family: var(--font-heading);
   font-weight: 800;
 }
 
 .ab-not-found h1,
 .aliver-loader-brand {
-  color: var(--ink);
-  font-family: var(--f-display);
+  color: var(--text-main);
+  font-family: var(--font-heading);
   font-weight: 700;
   letter-spacing: -.04em;
 }
@@ -25,20 +25,20 @@
 .ab-not-found p:not(.ab-not-found__code),
 .aliver-loader-tagline,
 .aliver-loader-status {
-  color: var(--ink-2);
+  color: var(--text-secondary);
 }
 
 .ab-not-found__button {
   border-color: var(--primary);
-  border-radius: var(--r-pill);
+  border-radius: var(--radius-pill);
   background: var(--primary);
-  color: var(--ink);
-  font-family: var(--f-display);
+  color: var(--text-main);
+  font-family: var(--font-heading);
 }
 
 .ab-not-found__button:hover {
   background: var(--accent);
-  color: var(--ink);
+  color: var(--text-main);
   filter: none;
 }
 
@@ -47,9 +47,9 @@
 }
 
 .aliver-loader-content {
-  border-color: var(--line);
-  border-radius: var(--r-xl);
-  background: var(--paper);
+  border-color: var(--border-subtle);
+  border-radius: var(--radius-xl);
+  background: var(--surface-card);
   box-shadow: var(--shadow-card);
 }
 
@@ -62,10 +62,10 @@
 }
 
 .ch-card {
-  border-color: var(--line);
-  border-radius: var(--r-lg);
-  background: var(--paper);
-  color: var(--ink);
+  border-color: var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--surface-card);
+  color: var(--text-main);
   box-shadow: var(--shadow-card);
 }
 
@@ -73,43 +73,43 @@
 .ch-stat-value,
 .ch-tooltip-title,
 .ch-tooltip-value {
-  color: var(--ink);
-  font-family: var(--f-display);
+  color: var(--text-main);
+  font-family: var(--font-heading);
 }
 
 .ch-card-subtitle,
 .ch-stat-label,
 .ch-legend-item,
 .ch-tooltip-row {
-  color: var(--ink-2);
+  color: var(--text-secondary);
 }
 
 .ch-control,
 .ch-export-button,
 .ch-export-menu,
 .ch-tooltip {
-  border-color: var(--line);
-  border-radius: var(--r-md);
-  background: var(--paper);
-  color: var(--ink);
+  border-color: var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--surface-card);
+  color: var(--text-main);
 }
 
 .ch-control:hover,
 .ch-export-button:hover,
 .ch-export-item:hover {
   border-color: var(--primary-border);
-  background: var(--soft);
+  background: var(--surface-muted);
 }
 
 .ch-segmented {
-  border-color: var(--line);
-  border-radius: var(--r-pill);
-  background: var(--soft);
+  border-color: var(--border-subtle);
+  border-radius: var(--radius-pill);
+  background: var(--surface-muted);
 }
 
 .ch-segment.is-active {
   background: var(--primary-light);
-  color: var(--ink);
+  color: var(--text-main);
   box-shadow: none;
 }
 
@@ -128,18 +128,18 @@
 .ch-stat-box,
 .ch-stat-cell + .ch-stat-cell,
 .ch-metric-row {
-  border-color: var(--line);
+  border-color: var(--border-subtle);
 }
 
 .ch-skeleton-line {
-  background: var(--soft);
+  background: var(--surface-muted);
 }
 
 .ch-empty,
 .ch-error {
-  border-color: var(--line-2);
-  border-radius: var(--r-lg);
-  color: var(--ink-2);
+  border-color: var(--border-default);
+  border-radius: var(--radius-lg);
+  color: var(--text-secondary);
 }
 
 .ch-control:focus-visible,
@@ -152,33 +152,33 @@
 
 .buttonDownload,
 .premium-access-button {
-  border-radius: var(--r-pill);
-  font-family: var(--f-display);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-heading);
   font-weight: 700;
 }
 
 .buttonDownload {
-  border-color: var(--ink);
-  background: var(--ink);
-  color: var(--paper);
+  border-color: var(--text-main);
+  background: var(--text-main);
+  color: var(--surface-card);
 }
 
 .buttonDownload:hover:not(:disabled) {
   border-color: var(--primary-dark);
   background: var(--primary-dark);
-  color: var(--paper);
+  color: var(--surface-card);
 }
 
 .premium-access-button {
-  border-color: var(--line-2);
-  background: var(--paper);
-  color: var(--ink);
+  border-color: var(--border-default);
+  background: var(--surface-card);
+  color: var(--text-main);
 }
 
 .premium-access-button:hover:not(:disabled) {
   border-color: var(--primary);
   background: var(--primary-light);
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 .premium-access-button-lock {
@@ -187,18 +187,18 @@
 
 .animated-join-button {
   width: min(100%, 14rem);
-  border-radius: var(--r-pill);
-  color: var(--paper);
+  border-radius: var(--radius-pill);
+  color: var(--surface-card);
   transform: none;
 }
 
 .animated-join-button__shadow {
-  background: var(--ink);
+  background: var(--text-main);
 }
 
 .animated-join-button__wrap {
   padding: 1px;
-  background: var(--ink);
+  background: var(--text-main);
   transform: none;
 }
 
@@ -216,18 +216,18 @@
 
 .animated-join-button__letters > span::before,
 .animated-join-button__letters > span::after {
-  color: var(--ink);
+  color: var(--text-main);
   text-shadow: none;
 }
 
 .animated-join-button__arrow > span {
-  background: var(--ink);
+  background: var(--text-main);
   box-shadow: none;
 }
 
 .animated-join-button__arrow > span::before,
 .animated-join-button__arrow > span::after {
-  background: var(--ink);
+  background: var(--text-main);
 }
 
 .animated-join-button:hover .animated-join-button__wrap,
@@ -243,7 +243,7 @@
 @media (max-width: 600px) {
   .ch-card {
     padding: 1rem;
-    border-radius: var(--r-md);
+    border-radius: var(--radius-md);
   }
 
   .ch-card-head {
@@ -264,8 +264,8 @@
 .challenge-runner-page,
 .challenges-page,
 .quiz-challenge-page {
-  color: var(--ink);
-  font-family: var(--f-body);
+  color: var(--text-main);
+  font-family: var(--font-primary);
 }
 
 .challenge-runner-hero,
@@ -275,15 +275,15 @@
 .quiz-challenge-page .quiz-challenge-shell,
 .quiz-challenge-page .quiz-challenge-state,
 .quiz-challenge-page .quiz-challenge-result {
-  border: 1px solid var(--line);
-  border-radius: var(--r-xl);
-  background: var(--paper);
-  color: var(--ink);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  background: var(--surface-card);
+  color: var(--text-main);
   box-shadow: var(--shadow-card);
 }
 
 .challenge-runner-visual {
-  border-color: var(--line);
+  border-color: var(--border-subtle);
   background: var(--primary-light);
 }
 
@@ -291,8 +291,8 @@
 .challenge-runner-copy h2,
 .challenges-heading :where(h1, h2),
 .quiz-challenge-page :where(h1, h2, h3) {
-  color: var(--ink);
-  font-family: var(--f-display);
+  color: var(--text-main);
+  font-family: var(--font-heading);
   letter-spacing: -.035em;
 }
 
@@ -301,34 +301,34 @@
 .challenge-runner-note,
 .challenges-page :where(p, small),
 .quiz-challenge-page :where(p, small) {
-  color: var(--ink-2);
+  color: var(--text-secondary);
 }
 
 .challenge-runner-facts span,
 .challenge-runner-note,
 .quiz-challenge-page .quiz-challenge-question {
-  border-color: var(--line);
-  border-radius: var(--r-md);
-  background: var(--soft);
+  border-color: var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--surface-muted);
 }
 
 .quiz-challenge-page .quiz-challenge-option {
-  border-color: var(--line-2);
-  border-radius: var(--r-md);
-  background: var(--paper);
-  color: var(--ink);
+  border-color: var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--surface-card);
+  color: var(--text-main);
 }
 
 .quiz-challenge-page .quiz-challenge-option:hover:not(:disabled),
 .quiz-challenge-page .quiz-challenge-option.is-selected {
   border-color: var(--primary);
   background: var(--primary-light);
-  color: var(--ink);
+  color: var(--text-main);
   box-shadow: none;
 }
 
 .quiz-challenge-page .quiz-challenge-progress-bar {
-  background: var(--line);
+  background: var(--border-subtle);
 }
 
 .quiz-challenge-page .quiz-challenge-progress-bar span {
@@ -344,10 +344,10 @@
 .challenges-page .btn-primary,
 .quiz-challenge-page .btn-primary {
   border-color: var(--primary);
-  border-radius: var(--r-pill);
+  border-radius: var(--radius-pill);
   background: var(--primary);
-  color: var(--ink);
-  font-family: var(--f-display);
+  color: var(--text-main);
+  font-family: var(--font-heading);
   font-weight: 700;
 }
 
@@ -355,7 +355,7 @@
   .challenge-runner-hero,
   .challenges-hero,
   .quiz-challenge-page .quiz-challenge-shell {
-    border-radius: var(--r-lg);
+    border-radius: var(--radius-lg);
   }
 }
 

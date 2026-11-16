@@ -4,7 +4,7 @@
 
 html {
   min-height: 100%;
-  background: var(--bg-page);
+  background: var(--surface-page);
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
 }
@@ -14,7 +14,7 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  background: var(--bg-page);
+  background: var(--surface-page);
   color: var(--text-main);
   font-family: var(--font-primary);
   font-size: var(--text-body);
@@ -185,7 +185,7 @@ li + li {
   border: 1px solid var(--border-default);
   border-left: var(--border-width-emphasis) solid var(--warning);
   border-radius: var(--radius-sm);
-  background: var(--bg-card);
+  background: var(--surface-card);
   color: var(--text-main);
   box-shadow: var(--shadow-md);
 }
@@ -260,7 +260,7 @@ li + li {
   max-width: calc(100vw - var(--space-6));
   padding: var(--space-2) var(--space-3);
   border: 1px solid var(--border-default);
-  background: var(--bg-card);
+  background: var(--surface-card);
   color: var(--text-muted);
   font-family: var(--font-mono);
   font-size: var(--text-2xs);
@@ -308,7 +308,7 @@ li + li {
 .section-blue,
 .section.blue {
   background: var(--primary-light);
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 .section-mint {
@@ -323,7 +323,7 @@ li + li {
 
 .section-blue :is(h1, h2, h3, h4, h5, h6, p, li, small, strong, em, span, label),
 .section.blue :is(h1, h2, h3, h4, h5, h6, p, li, small, strong, em, span, label) {
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 .section-blue .text-muted,
@@ -332,7 +332,7 @@ li + li {
 .section.blue .text-muted,
 .section.blue .lead,
 .section.blue .text-lead {
-  color: var(--ink-2);
+  color: var(--text-secondary);
 }
 
 .section.mint :is(h1, h2, h3, h4, h5, h6, p, li) {
@@ -350,7 +350,7 @@ li + li {
 }
 
 .on-dark {
-  background: var(--ink);
+  background: var(--text-main);
   color: var(--white);
 }
 
@@ -486,7 +486,6 @@ body.dark-mode :is(.btn-primary, .button-primary, .button--primary, .bg-primary)
     animation: none;
   }
 }
-
 
 .fatal-error-screen {
   min-height: 100vh;

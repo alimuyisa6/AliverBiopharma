@@ -1,5 +1,3 @@
- /* styles/grid.css */
-
 .grid {
   display: grid;
   gap: var(--content-gap);

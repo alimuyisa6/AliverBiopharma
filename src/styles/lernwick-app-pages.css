@@ -1,27 +1,27 @@
 :where(#root .app-layout) {
   min-height: 100vh;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--f-body);
+  background: var(--surface-card);
+  color: var(--text-main);
+  font-family: var(--font-primary);
 }
 
 #root .app-layout :where(main, .page-content, .section, .page-container, .content-container) {
   width: 100%;
-  max-width: calc(var(--container) + 2 * var(--gutter));
+  max-width: calc(var(--container) + 2 * var(--page-gutter-x));
   box-sizing: border-box;
   margin-inline: auto;
-  padding-inline: var(--gutter);
+  padding-inline: var(--page-gutter-x);
 }
 
 #root .app-layout :where(main) {
   padding-top: 2rem;
-  padding-bottom: var(--section);
+  padding-bottom: var(--section-space-y-large);
 }
 
 #root .app-layout :where(.section-title, .page-title, .page-heading, .content-title) {
-  color: var(--ink);
-  font-family: var(--f-display);
-  font-size: var(--t-2xl);
+  color: var(--text-main);
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
   font-weight: 700;
   letter-spacing: -.035em;
   line-height: 1.14;
@@ -29,9 +29,9 @@
 
 #root .app-layout :where(.section-subtitle, .page-subtitle, .page-description, .content-description) {
   max-width: 48rem;
-  color: var(--ink-2);
-  font-family: var(--f-body);
-  font-size: var(--t-md);
+  color: var(--text-secondary);
+  font-family: var(--font-primary);
+  font-size: var(--text-lg);
   line-height: 1.75;
 }
 
@@ -42,37 +42,37 @@
 }
 
 #root .app-layout :where(.card, .content-card, .resource-card, .note-card, .paper-card, .feature-card, .dashboard-card, .stat-card, .quiz-card, .flashcard-card, .recall-card, .classroom-card, .tutor-card, .faq-item, .about-block, .contact-form, .profile-card, .settings-card, .empty-state, .modal-content) {
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  background: var(--paper);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--surface-card);
   box-shadow: var(--shadow-card);
 }
 
 #root .app-layout :where(.card, .content-card, .resource-card, .note-card, .paper-card, .feature-card, .dashboard-card, .stat-card, .quiz-card, .flashcard-card, .recall-card, .classroom-card, .tutor-card, .faq-item, .about-block, .contact-form, .profile-card, .settings-card) {
   padding: clamp(1rem, .75rem + 1vw, 1.6rem);
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 #root .app-layout :where(.card, .content-card, .resource-card, .note-card, .paper-card, .feature-card, .dashboard-card, .stat-card, .quiz-card, .flashcard-card, .recall-card, .classroom-card, .tutor-card) :where(h2, h3, h4) {
-  color: var(--ink);
-  font-family: var(--f-display);
+  color: var(--text-main);
+  font-family: var(--font-heading);
   letter-spacing: -.025em;
 }
 
 #root .app-layout :where(.card, .content-card, .resource-card, .note-card, .paper-card, .feature-card, .dashboard-card, .stat-card, .quiz-card, .flashcard-card, .recall-card, .classroom-card, .tutor-card) :where(p, small, .description, .subtitle) {
-  color: var(--ink-2);
+  color: var(--text-secondary);
 }
 
 #root .app-layout :where(button, .btn, [role="button"], input[type="submit"]) {
-  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease), color var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+  transition: background-color var(--dur) var(--ease-standard), border-color var(--dur) var(--ease-standard), color var(--dur) var(--ease-standard), box-shadow var(--dur) var(--ease-standard), transform var(--dur) var(--ease-standard);
 }
 
 #root .app-layout :where(.btn-primary, .button-primary, button.primary, input[type="submit"]) {
   border-color: var(--primary);
-  border-radius: var(--r-pill);
+  border-radius: var(--radius-pill);
   background: var(--primary);
   color: var(--text-on-primary);
-  font-family: var(--f-display);
+  font-family: var(--font-heading);
   font-weight: 700;
 }
 
@@ -84,23 +84,23 @@
 
 #root .app-layout :where(input:not([type="checkbox"]):not([type="radio"]), select, textarea) {
   min-height: 2.9rem;
-  border: 1px solid var(--line-2);
-  border-radius: var(--r-md);
-  background: var(--soft);
-  color: var(--ink);
-  font-family: var(--f-body);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--surface-muted);
+  color: var(--text-main);
+  font-family: var(--font-primary);
 }
 
 #root .app-layout :where(input:not([type="checkbox"]):not([type="radio"]), select, textarea):focus {
-  border-color: var(--ink);
+  border-color: var(--text-main);
   outline: 2px solid var(--primary-light);
   outline-offset: 1px;
-  background: var(--paper);
+  background: var(--surface-card);
 }
 
 #root .app-layout :where(label, legend, .form-label) {
-  color: var(--ink);
-  font-family: var(--f-display);
+  color: var(--text-main);
+  font-family: var(--font-heading);
   font-weight: 600;
 }
 
@@ -109,22 +109,22 @@
   border-collapse: separate;
   border-spacing: 0;
   overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: var(--r-md);
-  background: var(--paper);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--surface-card);
 }
 
 #root .app-layout :where(th) {
-  background: var(--soft);
-  color: var(--ink);
-  font-family: var(--f-display);
+  background: var(--surface-muted);
+  color: var(--text-main);
+  font-family: var(--font-heading);
   font-weight: 700;
   text-align: left;
 }
 
 #root .app-layout :where(th, td) {
   padding: .8rem 1rem;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 #root .app-layout :where(tr:last-child td) {
@@ -132,51 +132,51 @@
 }
 
 #root .app-layout :where(details) {
-  border-color: var(--line);
-  border-radius: var(--r-md);
+  border-color: var(--border-subtle);
+  border-radius: var(--radius-md);
 }
 
 #root .app-layout :where(details > summary) {
-  color: var(--ink);
-  font-family: var(--f-display);
+  color: var(--text-main);
+  font-family: var(--font-heading);
   font-weight: 600;
   cursor: pointer;
 }
 
 #root .app-layout :where(.badge, .chip, .tag, .status-badge, .filter-chip) {
-  border-radius: var(--r-pill);
-  font-family: var(--f-display);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-heading);
   font-weight: 600;
 }
 
 #root .app-layout :where(.badge, .chip, .tag, .filter-chip) {
-  border-color: var(--line);
-  background: var(--soft);
-  color: var(--ink-2);
+  border-color: var(--border-subtle);
+  background: var(--surface-muted);
+  color: var(--text-secondary);
 }
 
 #root .app-layout :where(.page-hero, .content-hero, .about-hero, .contact-hero) {
   border: 1px solid var(--border-default);
-  border-radius: var(--r-xl);
+  border-radius: var(--radius-xl);
   background: var(--surface-section);
   background-image: none;
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 #root .app-layout :where(.page-hero, .content-hero) :where(h1, h2, p),
 #root .app-layout :where(.about-hero, .contact-hero) :where(h1, h2, p) {
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 #root .app-layout :where(.dashboard-wrapper, .dashboard-content, .profile-page, .notes-page, .resources-page, .quiz-page, .flashcards-page, .recall-page, .classroom-page, .past-papers-page, .glossary-page, .tutor-marketplace-page) {
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 #root .app-layout :where(.dashboard-section, .dashboard-panel, .profile-section, .notes-section, .resources-section, .quiz-section, .flashcards-section, .recall-section, .classroom-section, .past-papers-section, .glossary-section) {
   margin-block: 1.5rem;
   padding: clamp(1.25rem, 2.5vw, 2rem);
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
   background: var(--surface-section);
 }
 
@@ -189,21 +189,21 @@
 }
 
 #root .app-layout :where(.loading-skeleton, .skeleton, .dashboard-skeleton-block) {
-  border-radius: var(--r-md);
+  border-radius: var(--radius-md);
 }
 
 #root .app-layout :where(.empty-state, .error-state, .access-denied) {
-  border: 1px solid var(--line);
-  border-radius: var(--r-xl);
-  background: var(--soft);
-  color: var(--ink);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  background: var(--surface-muted);
+  color: var(--text-main);
 }
 
 #root .app-layout :where(.modal, .dialog, [role="dialog"]) {
-  border-color: var(--line);
-  border-radius: var(--r-xl);
-  background: var(--paper);
-  color: var(--ink);
+  border-color: var(--border-subtle);
+  border-radius: var(--radius-xl);
+  background: var(--surface-card);
+  color: var(--text-main);
   box-shadow: var(--shadow-float);
 }
 
@@ -217,11 +217,11 @@
 
 @media (max-width: 768px) {
   #root .app-layout :where(main, .page-content, .section, .page-container, .content-container) {
-    padding-inline: max(1rem, var(--gutter));
+    padding-inline: max(1rem, var(--page-gutter-x));
   }
 
   #root .app-layout :where(.card, .content-card, .resource-card, .note-card, .paper-card, .feature-card, .dashboard-card, .stat-card, .quiz-card, .flashcard-card, .recall-card, .classroom-card, .tutor-card, .faq-item, .about-block, .contact-form, .profile-card, .settings-card) {
-    border-radius: var(--r-md);
+    border-radius: var(--radius-md);
   }
 
   #root .app-layout :where(table) {
@@ -238,7 +238,7 @@
 }
 
 #root .app-layout {
-  color: var(--ink);
+  color: var(--text-main);
   background: var(--surface-page);
 }
 
@@ -247,21 +247,16 @@
 }
 
 #root .app-layout :where(.section--soft, .dashboard-panel, .profile-section, .notes-section, .resources-section, .quiz-section, .flashcards-section, .recall-page-section, .classroom-list-section) {
-  background: var(--soft);
+  background: var(--surface-muted);
 }
 
-
-
-
-
-/* Consolidated content-page styles. */
 .app-layout .resources-page,
 .app-layout .notes-page-shell,
 .app-layout .blog-page,
 .app-layout .contact-page,
 .app-layout .faq-page,
 .app-layout .about-section {
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 .app-layout .resources-main,
@@ -271,10 +266,10 @@
 .app-layout .faq-page,
 .app-layout .about-content-wrap {
   width: 100%;
-  max-width: calc(var(--container) + 2 * var(--gutter));
+  max-width: calc(var(--container) + 2 * var(--page-gutter-x));
   box-sizing: border-box;
   margin-inline: auto;
-  padding-inline: var(--gutter);
+  padding-inline: var(--page-gutter-x);
 }
 
 .app-layout .resources-main,
@@ -283,7 +278,7 @@
 .app-layout .contact-page,
 .app-layout .faq-page {
   padding-top: clamp(2rem, 1.2rem + 2vw, 3.25rem);
-  padding-bottom: var(--section);
+  padding-bottom: var(--section-space-y-large);
 }
 
 .app-layout .resources-intro,
@@ -298,8 +293,8 @@
 .app-layout .notes-page-kicker,
 .app-layout .sec-label {
   color: var(--primary-dark);
-  font-family: var(--f-display);
-  font-size: var(--t-xs);
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
   font-weight: 700;
   letter-spacing: .1em;
   text-transform: uppercase;
@@ -312,8 +307,8 @@
 .app-layout .blog-article-header h1,
 .app-layout .contact-page > h1,
 .app-layout .faq-page h1 {
-  color: var(--ink);
-  font-family: var(--f-display);
+  color: var(--text-main);
+  font-family: var(--font-heading);
   font-size: clamp(2.15rem, 1.45rem + 3vw, 4rem);
   font-weight: 700;
   letter-spacing: -.055em;
@@ -326,9 +321,9 @@
 .app-layout .contact-page > p,
 .app-layout .blog-article-header p {
   max-width: 46rem;
-  color: var(--ink-2);
-  font-family: var(--f-body);
-  font-size: var(--t-md);
+  color: var(--text-secondary);
+  font-family: var(--font-primary);
+  font-size: var(--text-lg);
   line-height: 1.75;
 }
 
@@ -341,17 +336,17 @@
   gap: 1rem;
   margin-block: 1.5rem 2rem;
   padding: 1rem;
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  background: var(--soft);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--surface-muted);
 }
 
 .app-layout .resources-search,
 .app-layout .notes-search {
   min-width: min(100%, 18rem);
-  border: 1px solid var(--line-2);
-  border-radius: var(--r-pill);
-  background: var(--paper);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-pill);
+  background: var(--surface-card);
 }
 
 .app-layout .resources-filter-chips,
@@ -379,10 +374,10 @@
 .app-layout .contributor-card {
   min-width: 0;
   overflow: hidden;
-  border: 1px solid var(--line);
-  background: var(--paper);
+  border: 1px solid var(--border-subtle);
+  background: var(--surface-card);
   box-shadow: var(--shadow-card);
-  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+  transition: border-color var(--dur) var(--ease-standard), box-shadow var(--dur) var(--ease-standard), transform var(--dur) var(--ease-standard);
   border-radius: 30px 30px 30px 7px;
 }
 
@@ -405,9 +400,9 @@
 .app-layout .blog-post-title,
 .app-layout .team-card-body h3,
 .app-layout .about-block-heading {
-  color: var(--ink);
-  font-family: var(--f-display);
-  font-size: var(--t-lg);
+  color: var(--text-main);
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
   font-weight: 700;
   letter-spacing: -.025em;
   line-height: 1.25;
@@ -417,9 +412,9 @@
 .app-layout .blog-post-excerpt,
 .app-layout .team-card-bio,
 .app-layout .about-block p {
-  color: var(--ink-2);
-  font-family: var(--f-body);
-  font-size: var(--t-sm);
+  color: var(--text-secondary);
+  font-family: var(--font-primary);
+  font-size: var(--text-sm);
   line-height: 1.75;
 }
 
@@ -427,7 +422,7 @@
 .app-layout .blog-post-image,
 .app-layout .team-card-image {
   overflow: hidden;
-  background: var(--soft);
+  background: var(--surface-muted);
 }
 
 .app-layout .resource-card-artwork img,
@@ -446,9 +441,9 @@
 .app-layout .contact-form-wrap {
   margin-block: 1.5rem;
   padding: clamp(1.2rem, .8rem + 1.2vw, 2rem);
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  background: var(--paper);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--surface-card);
   box-shadow: var(--shadow-card);
 }
 
@@ -457,8 +452,8 @@
 .app-layout .notes-result-count,
 .app-layout .blog-article-meta,
 .app-layout .blog-post-date {
-  color: var(--ink-3);
-  font-size: var(--t-xs);
+  color: var(--text-muted);
+  font-size: var(--text-xs);
 }
 
 .app-layout .notes-section-heading {
@@ -472,11 +467,11 @@
 
 .app-layout .about-hero {
   margin: clamp(1rem, .5rem + 1vw, 1.5rem) auto 2.5rem;
-  width: calc(100% - 2 * var(--gutter));
-  max-width: calc(var(--container) + 2 * var(--gutter));
+  width: calc(100% - 2 * var(--page-gutter-x));
+  max-width: calc(var(--container) + 2 * var(--page-gutter-x));
   box-sizing: border-box;
   padding: clamp(2rem, 1.2rem + 4vw, 5rem);
-  border-radius: var(--r-xl);
+  border-radius: var(--radius-xl);
   background: var(--primary-light);
 }
 
@@ -492,33 +487,33 @@
 
 .app-layout .faq-item {
   overflow: hidden;
-  background: var(--paper);
+  background: var(--surface-card);
 }
 
 .app-layout .faq-question {
-  color: var(--ink);
-  font-family: var(--f-display);
+  color: var(--text-main);
+  font-family: var(--font-heading);
   font-weight: 700;
 }
 
 .app-layout .faq-answer {
-  color: var(--ink-2);
+  color: var(--text-secondary);
   line-height: 1.75;
 }
 
 .app-layout .contact-form {
-  border-color: var(--line);
-  border-radius: var(--r-lg);
-  background: var(--paper);
+  border-color: var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--surface-card);
   box-shadow: var(--shadow-card);
 }
 
 .app-layout .blog-topic-button,
 .app-layout .notes-pathway-item {
-  border: 1px solid var(--line);
-  border-radius: var(--r-pill);
-  background: var(--soft);
-  color: var(--ink-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-pill);
+  background: var(--surface-muted);
+  color: var(--text-secondary);
 }
 
 .app-layout .blog-topic-button:hover,
@@ -527,7 +522,7 @@
 .app-layout .notes-pathway-item.active {
   border-color: var(--primary);
   background: var(--primary-light);
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 @media (max-width: 900px) {
@@ -561,16 +556,15 @@
   .app-layout .resources-toolbar,
   .app-layout .notes-toolbar {
     align-items: stretch;
-    border-radius: var(--r-md);
+    border-radius: var(--radius-md);
   }
 
   .app-layout .about-hero {
     width: calc(100% - 2rem);
     padding: 2rem 1.25rem;
-    border-radius: var(--r-lg);
+    border-radius: var(--radius-lg);
   }
 }
-
 
 .app-layout .resource-card,
 .app-layout .notes-card,
@@ -578,7 +572,7 @@
 .app-layout .flashcard-deck-card,
 .app-layout .quiz-topic-cards .card {
   overflow: hidden;
-  border-radius: var(--r-lg);
+  border-radius: var(--radius-lg);
 }
 
 .app-layout .resource-card-body,
@@ -591,7 +585,7 @@
   width: calc(100% - 1.2rem);
   aspect-ratio: 3 / 2;
   margin: .6rem .6rem 0;
-  border-radius: calc(var(--r-lg) - .5rem);
+  border-radius: calc(var(--radius-lg) - .5rem);
 }
 
 .app-layout .resource-card-image-label {
@@ -612,7 +606,7 @@
   height: auto;
   aspect-ratio: 3 / 2;
   margin: .6rem .6rem 0;
-  border-radius: calc(var(--r-lg) - .5rem);
+  border-radius: calc(var(--radius-lg) - .5rem);
   object-fit: cover;
 }
 
@@ -628,7 +622,7 @@
   height: auto;
   aspect-ratio: 3 / 2;
   margin: .6rem .6rem 0;
-  border-radius: calc(var(--r-lg) - .5rem);
+  border-radius: calc(var(--radius-lg) - .5rem);
   object-fit: cover;
 }
 
@@ -644,8 +638,6 @@
     transition: none;
   }
 }
-
-
 
 .app-layout .resource-card:nth-child(4n + 2),
 .app-layout .notes-card:nth-child(4n + 2),
@@ -680,13 +672,10 @@
   width: 2.8rem;
   height: 2.8rem;
   border-bottom-left-radius: 2.8rem;
-  background: var(--background, var(--paper));
+  background: var(--background, var(--surface-card));
   pointer-events: none;
 }
 
-
-
-/* Consolidated learning-page styles. */
 .app-layout .quiz-page,
 .app-layout .flashcards-page,
 .app-layout .recall-page,
@@ -695,18 +684,18 @@
 .app-layout .profile-page,
 .app-layout .pp-page,
 .app-layout .glossary-page {
-  color: var(--ink);
-  font-family: var(--f-body);
+  color: var(--text-main);
+  font-family: var(--font-primary);
 }
 
 .app-layout :where(.quiz-page, .flashcards-page, .recall-page, .classroom-page, .dashboard-wrapper, .profile-page, .pp-page, .glossary-page) :where(h1, h2, h3, h4) {
-  color: var(--ink);
-  font-family: var(--f-display);
+  color: var(--text-main);
+  font-family: var(--font-heading);
   letter-spacing: -.035em;
 }
 
 .app-layout :where(.quiz-page, .flashcards-page, .recall-page, .classroom-page, .dashboard-wrapper, .profile-page, .pp-page, .glossary-page) :where(p, .description, .subtitle) {
-  color: var(--ink-2);
+  color: var(--text-secondary);
   line-height: 1.7;
 }
 
@@ -715,10 +704,10 @@
 .app-layout .recall-page-section,
 .app-layout .classroom-list-section {
   width: 100%;
-  max-width: calc(var(--container) + 2 * var(--gutter));
+  max-width: calc(var(--container) + 2 * var(--page-gutter-x));
   box-sizing: border-box;
   margin-inline: auto;
-  padding: clamp(1.5rem, 1rem + 2vw, 3rem) var(--gutter);
+  padding: clamp(1.5rem, 1rem + 2vw, 3rem) var(--page-gutter-x);
 }
 
 .app-layout .quiz-page-title,
@@ -744,24 +733,24 @@
 }
 
 .app-layout :where(.quiz-question-card, .quiz-result-card, .quiz-review-card, .flashcard-deck-card, .recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .classroom-page .card, .dashboard-card, .dashboard-curriculum-card, .profile-overview-panel, .profile-category-card, .profile-card, .profile-card-main, .pp-card, .glossary-term-detail, .glossary-route-card) {
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  background: var(--paper);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--surface-card);
   box-shadow: var(--shadow-card);
 }
 
 .app-layout :where(.quiz-question-card, .quiz-result-card, .quiz-review-card, .flashcard-deck-card, .recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .classroom-page .card, .dashboard-card, .dashboard-curriculum-card, .profile-overview-panel, .profile-category-card, .profile-card, .profile-card-main, .pp-card, .glossary-term-detail, .glossary-route-card) :where(h2, h3, h4) {
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 .app-layout :where(.quiz-nav-pills, .quiz-nav-button-card, .flashcard-type-row .chip, .recall-chips-row .chip, .classroom-level-chips .chip, .pp-chip, .glossary-class-badge, .glossary-term-category-badge) {
-  border-radius: var(--r-pill);
+  border-radius: var(--radius-pill);
 }
 
 .app-layout :where(.quiz-nav-pills, .quiz-nav-button-card, .flashcard-type-row .chip, .recall-chips-row .chip, .classroom-level-chips .chip, .pp-chip, .glossary-class-badge) {
-  border-color: var(--line);
-  background: var(--soft);
-  color: var(--ink-2);
+  border-color: var(--border-subtle);
+  background: var(--surface-muted);
+  color: var(--text-secondary);
 }
 
 .app-layout .quiz-question-card,
@@ -770,41 +759,41 @@
 }
 
 .app-layout :where(.quiz-option, .quiz-answer-option, .recall-confidence-buttons button) {
-  border-radius: var(--r-md);
+  border-radius: var(--radius-md);
 }
 
 .app-layout .quiz-option:not(.is-correct):not(.is-incorrect):not([aria-checked="true"]) {
-  border-color: var(--line);
-  background: var(--paper);
+  border-color: var(--border-subtle);
+  background: var(--surface-card);
 }
 
 .app-layout .quiz-option:not(.is-correct):not(.is-incorrect):hover,
 .app-layout .recall-confidence-buttons button:hover {
   border-color: var(--primary);
   background: var(--primary-light);
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 .app-layout .recall-due-banner,
 .app-layout .dashboard-welcome-card {
   border: 1px solid var(--primary-border);
-  border-radius: var(--r-lg);
+  border-radius: var(--radius-lg);
   background: var(--primary-light);
-  color: var(--ink);
+  color: var(--text-main);
   box-shadow: none;
 }
 
 .app-layout .recall-due-banner :where(h2, h3, p),
 .app-layout .dashboard-welcome-card :where(h1, h2, h3, p) {
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 .app-layout .dashboard-wrapper {
   width: 100%;
-  max-width: calc(var(--container) + 2 * var(--gutter));
+  max-width: calc(var(--container) + 2 * var(--page-gutter-x));
   box-sizing: border-box;
   margin-inline: auto;
-  padding: clamp(1.5rem, 1rem + 2vw, 3rem) var(--gutter);
+  padding: clamp(1.5rem, 1rem + 2vw, 3rem) var(--page-gutter-x);
 }
 
 .app-layout .dashboard-card,
@@ -814,29 +803,29 @@
 
 .app-layout .dashboard-wrapper .panel-header,
 .app-layout .dashboard-wrapper .panel-body {
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 .app-layout .dashboard-wrapper .panel-title {
-  font-size: var(--t-lg);
+  font-size: var(--text-xl);
 }
 
 .app-layout .dashboard-wrapper .stat-box {
-  border: 1px solid var(--line);
-  border-radius: var(--r-md);
-  background: var(--soft);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--surface-muted);
 }
 
 .app-layout .profile-page {
   width: 100%;
-  max-width: calc(var(--container) + 2 * var(--gutter));
+  max-width: calc(var(--container) + 2 * var(--page-gutter-x));
   box-sizing: border-box;
   margin-inline: auto;
-  padding: clamp(1.5rem, 1rem + 2vw, 3rem) var(--gutter);
+  padding: clamp(1.5rem, 1rem + 2vw, 3rem) var(--page-gutter-x);
 }
 
 .app-layout .profile-tabs {
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .app-layout .profile-tab-item[aria-selected="true"],
@@ -845,9 +834,9 @@
 }
 
 .app-layout .pp-hero {
-  border-radius: var(--r-xl);
+  border-radius: var(--radius-xl);
   background: var(--primary-light);
-  color: var(--ink);
+  color: var(--text-main);
   box-shadow: none;
 }
 
@@ -855,65 +844,65 @@
 .app-layout .pp-subtitle,
 .app-layout .pp-description,
 .app-layout .pp-eyebrow {
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 .app-layout .pp-main {
   width: 100%;
-  max-width: calc(var(--container) + 2 * var(--gutter));
+  max-width: calc(var(--container) + 2 * var(--page-gutter-x));
   box-sizing: border-box;
   margin-inline: auto;
-  padding: 1.5rem var(--gutter) var(--section);
+  padding: 1.5rem var(--page-gutter-x) var(--section-space-y-large);
 }
 
 .app-layout .pp-toolbar,
 .app-layout .pp-filters,
 .app-layout .glossary-search-area {
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  background: var(--soft);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--surface-muted);
 }
 
 .app-layout .pp-search-input,
 .app-layout .glossary-search-input {
-  border-radius: var(--r-pill);
-  background: var(--paper);
+  border-radius: var(--radius-pill);
+  background: var(--surface-card);
 }
 
 .app-layout .glossary-header {
   background: var(--primary-light);
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 .app-layout .glossary-header :where(h1, p, span) {
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 .app-layout .glossary-main-layout {
   width: 100%;
-  max-width: calc(var(--container) + 2 * var(--gutter));
+  max-width: calc(var(--container) + 2 * var(--page-gutter-x));
   box-sizing: border-box;
   margin-inline: auto;
-  padding: 1.5rem var(--gutter) var(--section);
+  padding: 1.5rem var(--page-gutter-x) var(--section-space-y-large);
 }
 
 .app-layout .glossary-sidebar-inner {
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  background: var(--paper);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--surface-card);
 }
 
 .app-layout .glossary-term-btn-text,
 .app-layout .glossary-term-title {
-  color: var(--ink);
-  font-family: var(--f-display);
+  color: var(--text-main);
+  font-family: var(--font-heading);
 }
 
 .app-layout .glossary-term-btn:hover,
 .app-layout .glossary-related-term-btn:hover,
 .app-layout .glossary-route-card:hover {
   border-color: var(--primary-border);
-  background: var(--soft);
+  background: var(--surface-muted);
 }
 
 @media (max-width: 700px) {
@@ -929,11 +918,11 @@
   }
 
   .app-layout :where(.quiz-question-card, .recall-question-card, .dashboard-card, .profile-card, .pp-card) {
-    border-radius: var(--r-md);
+    border-radius: var(--radius-md);
   }
 
   .app-layout .pp-hero {
-    border-radius: var(--r-lg);
+    border-radius: var(--radius-lg);
   }
 }
 
@@ -977,17 +966,14 @@
   border-radius: 30px 30px 7px 30px;
 }
 
-
-
-/* Consolidated remaining application-page styles. */
 .app-layout .auth-page {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(24rem, .9fr);
   min-height: min(48rem, calc(100vh - 5.5rem));
   overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: var(--r-xl);
-  background: var(--paper);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  background: var(--surface-card);
   box-shadow: var(--shadow-card);
 }
 
@@ -998,17 +984,17 @@
   gap: 2rem;
   padding: clamp(2rem, 1.3rem + 3vw, 4.5rem);
   background: var(--primary-light);
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 .app-layout .auth-brand-panel :where(h1, h2, h3, p, li, a) {
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 .app-layout .auth-brand-logo,
 .app-layout .auth-brand-mark {
-  color: var(--ink);
-  font-family: var(--f-display);
+  color: var(--text-main);
+  font-family: var(--font-heading);
   font-weight: 700;
 }
 
@@ -1016,7 +1002,7 @@
   display: grid;
   align-items: center;
   padding: clamp(1.5rem, 1rem + 2vw, 3rem);
-  background: var(--paper);
+  background: var(--surface-card);
 }
 
 .app-layout .auth-form-container {
@@ -1025,8 +1011,8 @@
 }
 
 .app-layout .auth-heading {
-  color: var(--ink);
-  font-family: var(--f-display);
+  color: var(--text-main);
+  font-family: var(--font-heading);
   font-size: clamp(1.8rem, 1.3rem + 1.8vw, 2.7rem);
   font-weight: 700;
   letter-spacing: -.045em;
@@ -1034,7 +1020,7 @@
 
 .app-layout .auth-subheading,
 .app-layout .auth-switch {
-  color: var(--ink-2);
+  color: var(--text-secondary);
   line-height: 1.7;
 }
 
@@ -1043,28 +1029,28 @@
 }
 
 .app-layout .auth-field :where(label) {
-  color: var(--ink);
-  font-family: var(--f-display);
+  color: var(--text-main);
+  font-family: var(--font-heading);
   font-weight: 600;
 }
 
 .app-layout .auth-field :where(input, select) {
   width: 100%;
   min-height: 3rem;
-  border: 1px solid var(--line-2);
-  border-radius: var(--r-md);
-  background: var(--soft);
-  color: var(--ink);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--surface-muted);
+  color: var(--text-main);
 }
 
 .app-layout .auth-submit {
   width: 100%;
   min-height: 3.1rem;
   border: 1px solid var(--primary);
-  border-radius: var(--r-pill);
+  border-radius: var(--radius-pill);
   background: var(--primary);
   color: var(--text-on-primary);
-  font-family: var(--f-display);
+  font-family: var(--font-heading);
   font-weight: 700;
 }
 
@@ -1075,7 +1061,7 @@
 
 .app-layout .auth-state,
 .app-layout .auth-alert {
-  border-radius: var(--r-md);
+  border-radius: var(--radius-md);
 }
 
 .app-layout .advertise-page,
@@ -1094,22 +1080,22 @@
 .app-layout .pdf-library-page,
 .app-layout .legal-section,
 .app-layout .info-page {
-  color: var(--ink);
-  font-family: var(--f-body);
+  color: var(--text-main);
+  font-family: var(--font-primary);
 }
 
 .app-layout :where(.advertise-page, .advertise-create-page, .advertise-payment-page, .donate-page, .challenges-page, .challenge-runner-page, .tutor-marketplace-page, .tutor-profile-page, .tutor-apply-page, .tutor-dashboard-page, .classroom-room-page, .curriculum-node-page, .note-learning-page, .pdf-library-page, .legal-section, .info-page) :where(h1, h2, h3, h4) {
-  color: var(--ink);
-  font-family: var(--f-display);
+  color: var(--text-main);
+  font-family: var(--font-heading);
   letter-spacing: -.035em;
 }
 
 .app-layout :where(.advertise-create-page, .advertise-payment-page, .donate-content, .challenges-page, .challenge-runner-page, .tutor-marketplace-page, .tutor-profile-page, .tutor-apply-page, .tutor-dashboard-page, .curriculum-node-page, .note-learning-page, .pdf-library-page, .legal-content-wrap, .info-page-section) {
   width: 100%;
-  max-width: calc(var(--container) + 2 * var(--gutter));
+  max-width: calc(var(--container) + 2 * var(--page-gutter-x));
   box-sizing: border-box;
   margin-inline: auto;
-  padding: clamp(1.5rem, 1rem + 2vw, 3rem) var(--gutter);
+  padding: clamp(1.5rem, 1rem + 2vw, 3rem) var(--page-gutter-x);
 }
 
 .app-layout .advertise-hero,
@@ -1118,14 +1104,14 @@
 .app-layout .challenge-runner-hero,
 .app-layout .pdf-library-heading,
 .app-layout .note-learning-header {
-  border-radius: var(--r-xl);
+  border-radius: var(--radius-xl);
   background: var(--primary-light);
-  color: var(--ink);
+  color: var(--text-main);
   box-shadow: none;
 }
 
 .app-layout :where(.advertise-hero, .donate-hero, .challenges-hero, .challenge-runner-hero) :where(h1, h2, h3, p, span) {
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 .app-layout .advertise-create-layout,
@@ -1136,9 +1122,9 @@
 }
 
 .app-layout :where(.advertise-create-form, .advertise-create-aside, .advertise-payment-main, .advertise-payment-aside, .donate-card, .donate-widget, .donate-form, .donate-momo-card, .challenge-empty-card, .challenge-showcase-content, .challenge-runner-copy, .tutor-profile-card, .tutor-profile-state, .tutor-card, .tutor-apply-page .card, .tutor-dashboard-page .card, .curriculum-node-section, .note-learning-card, .pdf-card, .legal-block, .info-content) {
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  background: var(--paper);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--surface-card);
   box-shadow: var(--shadow-card);
 }
 
@@ -1147,15 +1133,15 @@
 }
 
 .app-layout :where(.advertise-create-progress, .advertise-payment-status, .advertise-create-price, .donate-goal, .donate-tabs, .challenge-progress, .challenge-runner-facts, .pdf-library-controls, .pdf-library-controls-copy) {
-  border-radius: var(--r-md);
-  background: var(--soft);
+  border-radius: var(--radius-md);
+  background: var(--surface-muted);
 }
 
 .app-layout :where(.advertise-create-page, .advertise-payment-page, .donate-page, .tutor-marketplace-page, .pdf-library-page, .info-page) :where(input:not([type="checkbox"]):not([type="radio"]), select, textarea) {
-  border: 1px solid var(--line-2);
-  border-radius: var(--r-md);
-  background: var(--soft);
-  color: var(--ink);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--surface-muted);
+  color: var(--text-main);
 }
 
 .app-layout .donate-content {
@@ -1166,8 +1152,8 @@
 .app-layout .donate-goal-track,
 .app-layout .challenge-progress-track {
   overflow: hidden;
-  border-radius: var(--r-pill);
-  background: var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--border-subtle);
 }
 
 .app-layout .donate-goal-fill,
@@ -1189,22 +1175,22 @@
 .app-layout .pdf-card,
 .app-layout .note-related-grid > * {
   overflow: hidden;
-  border-radius: var(--r-lg);
-  background: var(--paper);
+  border-radius: var(--radius-lg);
+  background: var(--surface-card);
 }
 
 .app-layout .legal-section,
 .app-layout .info-page {
   min-height: 60vh;
-  padding-block: 2rem var(--section);
+  padding-block: 2rem var(--section-space-y-large);
 }
 
 .app-layout .legal-title,
 .app-layout .info-page-title {
   max-width: 52rem;
   margin-bottom: 1.5rem;
-  color: var(--ink);
-  font-family: var(--f-display);
+  color: var(--text-main);
+  font-family: var(--font-heading);
   font-size: clamp(2rem, 1.3rem + 2.5vw, 3.5rem);
   font-weight: 700;
   letter-spacing: -.05em;
@@ -1214,8 +1200,8 @@
 .app-layout .legal-body,
 .app-layout .info-content {
   max-width: 54rem;
-  color: var(--ink-2);
-  font-size: var(--t-base);
+  color: var(--text-secondary);
+  font-size: var(--text-base);
   line-height: 1.8;
 }
 
@@ -1226,9 +1212,9 @@
 .app-layout .legal-block h2,
 .app-layout .info-content-heading,
 .app-layout .info-text-heading {
-  color: var(--ink);
-  font-family: var(--f-display);
-  font-size: var(--t-lg);
+  color: var(--text-main);
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
   font-weight: 700;
 }
 
@@ -1256,32 +1242,32 @@
 .app-layout .note-learning-message-content,
 .app-layout .pdf-library-controls,
 .app-layout .pdf-card-body {
-  border-color: var(--line);
-  background: var(--soft);
-  color: var(--ink);
+  border-color: var(--border-subtle);
+  background: var(--surface-muted);
+  color: var(--text-main);
 }
 
 .app-layout .note-detail-container {
   width: min(100%, 80rem);
   margin-inline: auto;
-  padding: 1.5rem var(--gutter) var(--section);
+  padding: 1.5rem var(--page-gutter-x) var(--section-space-y-large);
 }
 
 .app-layout .note-article {
   min-width: 0;
-  border-radius: var(--r-lg);
-  background: var(--paper);
+  border-radius: var(--radius-lg);
+  background: var(--surface-card);
 }
 
 .app-layout .note-hero {
   padding: clamp(1.5rem, 1rem + 2vw, 3rem);
-  border-radius: var(--r-xl);
+  border-radius: var(--radius-xl);
   background: var(--primary-light);
 }
 
 .app-layout .note-title {
-  color: var(--ink);
-  font-family: var(--f-display);
+  color: var(--text-main);
+  font-family: var(--font-heading);
   font-size: clamp(2rem, 1.35rem + 2.5vw, 3.5rem);
   font-weight: 700;
   letter-spacing: -.05em;
@@ -1289,9 +1275,9 @@
 }
 
 .app-layout .notes-content-container {
-  color: var(--ink);
-  font-family: var(--f-body);
-  font-size: var(--t-base);
+  color: var(--text-main);
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
   line-height: 1.85;
 }
 
@@ -1300,9 +1286,9 @@
 .app-layout .note-understanding-panel,
 .app-layout .note-comments-section,
 .app-layout .note-reactions-section {
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  background: var(--paper);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--surface-card);
   box-shadow: var(--shadow-card);
 }
 
@@ -1313,7 +1299,7 @@
 .app-layout .classroom-room-page {
   width: min(100%, 90rem);
   margin-inline: auto;
-  padding: 1.5rem var(--gutter) var(--section);
+  padding: 1.5rem var(--page-gutter-x) var(--section-space-y-large);
 }
 
 .app-layout .classroom-room-header,
@@ -1321,10 +1307,10 @@
 .app-layout .classroom-participants-panel,
 .app-layout .classroom-room-info-panel,
 .app-layout .classroom-whiteboard {
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  background: var(--paper);
-  color: var(--ink);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--surface-card);
+  color: var(--text-main);
   box-shadow: var(--shadow-card);
 }
 
@@ -1336,64 +1322,64 @@
 .app-layout .classroom-room-header-sub,
 .app-layout .classroom-chat-panel :where(h2, h3),
 .app-layout .classroom-participants-panel :where(h2, h3) {
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 .app-layout .classroom-chat-body,
 .app-layout .classroom-participants-list {
-  background: var(--soft);
+  background: var(--surface-muted);
 }
 
 .app-layout .classroom-message-bubble,
 .app-layout .classroom-message-resource {
-  border: 1px solid var(--line);
-  border-radius: var(--r-md);
-  background: var(--paper);
-  color: var(--ink);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--surface-card);
+  color: var(--text-main);
 }
 
 .app-layout .classroom-chat-textarea {
-  border: 1px solid var(--line-2);
-  border-radius: var(--r-md);
-  background: var(--soft);
-  color: var(--ink);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--surface-muted);
+  color: var(--text-main);
 }
 
 .app-layout .home-page .section,
 .app-layout .home-page .section.reveal {
   width: 100%;
-  max-width: calc(var(--container) + 2 * var(--gutter));
+  max-width: calc(var(--container) + 2 * var(--page-gutter-x));
   box-sizing: border-box;
   margin-inline: auto;
-  padding: clamp(1.5rem, 1rem + 2vw, 3rem) var(--gutter);
+  padding: clamp(1.5rem, 1rem + 2vw, 3rem) var(--page-gutter-x);
 }
 
 .app-layout .ai-assistant-panel,
 .app-layout .chat-panel {
-  border: 1px solid var(--line);
-  border-radius: var(--r-xl);
-  background: var(--paper);
-  color: var(--ink);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  background: var(--surface-card);
+  color: var(--text-main);
   box-shadow: var(--shadow-float);
 }
 
 .app-layout :where(.ai-assistant-header, .chat-panel-header) {
-  border-bottom: 1px solid var(--line);
-  background: var(--soft);
-  color: var(--ink);
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--surface-muted);
+  color: var(--text-main);
 }
 
 .app-layout :where(.ai-assistant-heading, .chat-panel-title) {
-  color: var(--ink);
-  font-family: var(--f-display);
+  color: var(--text-main);
+  font-family: var(--font-heading);
   font-weight: 700;
 }
 
 .app-layout :where(.ai-assistant-input, .chat-textarea) {
-  border: 1px solid var(--line-2);
-  border-radius: var(--r-md);
-  background: var(--soft);
-  color: var(--ink);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--surface-muted);
+  color: var(--text-main);
 }
 
 @media (max-width: 850px) {
@@ -1421,11 +1407,11 @@
   }
 
   .app-layout :where(.advertise-hero, .donate-hero, .challenges-hero, .challenge-runner-hero, .note-hero, .pdf-library-heading) {
-    border-radius: var(--r-lg);
+    border-radius: var(--radius-lg);
   }
 
   .app-layout .auth-page {
-    border-radius: var(--r-lg);
+    border-radius: var(--radius-lg);
   }
 
   .app-layout .auth-brand-panel,
@@ -1463,13 +1449,10 @@
   width: 2.8rem;
   height: 2.8rem;
   border-bottom-left-radius: 2.8rem;
-  background: var(--background, var(--paper));
+  background: var(--background, var(--surface-card));
   pointer-events: none;
 }
 
-
-
-/* Curriculum, note-reader and resource architecture. */
 .app-layout .home-curriculum-map,
 .app-layout .home-curriculum-node-list,
 .app-layout .home-curriculum-grid {
@@ -1481,12 +1464,12 @@
 .app-layout .curriculum-node-child,
 .app-layout .curriculum-node-resource,
 .app-layout .curriculum-node-linked-group {
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  background: var(--paper);
-  color: var(--ink);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--surface-card);
+  color: var(--text-main);
   box-shadow: var(--shadow-card);
-  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+  transition: border-color var(--dur) var(--ease-standard), box-shadow var(--dur) var(--ease-standard), transform var(--dur) var(--ease-standard);
 }
 
 .app-layout .home-curriculum-node-item:hover,
@@ -1507,7 +1490,7 @@
 .app-layout .note-related-link,
 .app-layout .pdf-card-action {
   color: var(--primary-dark);
-  font-family: var(--f-display);
+  font-family: var(--font-heading);
   font-weight: 700;
 }
 
@@ -1515,7 +1498,7 @@
 .app-layout .curriculum-node-action:hover,
 .app-layout .note-related-link:hover,
 .app-layout .pdf-card-action:hover {
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 .app-layout .note-hero,
@@ -1523,8 +1506,8 @@
 .app-layout .note-learning-header,
 .app-layout .pdf-library-heading,
 .app-layout .resources-intro {
-  border-radius: var(--r-xl);
-  background: var(--soft);
+  border-radius: var(--radius-xl);
+  background: var(--surface-muted);
 }
 
 .app-layout .note-hero::before,
@@ -1536,22 +1519,22 @@
 .app-layout .note-toc-mobile-panel,
 .app-layout .pdf-library-controls,
 .app-layout .curriculum-node-linked-group {
-  border-color: var(--line);
-  border-radius: var(--r-lg);
-  background: var(--soft);
+  border-color: var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--surface-muted);
 }
 
 .app-layout .note-article,
 .app-layout .notes-content-container,
 .app-layout .curriculum-node-content {
-  color: var(--ink);
+  color: var(--text-main);
   line-height: 1.8;
 }
 
 .app-layout .note-article :where(h2, h3, h4),
 .app-layout .curriculum-node-content :where(h2, h3, h4) {
-  color: var(--ink);
-  font-family: var(--f-display);
+  color: var(--text-main);
+  font-family: var(--font-heading);
   letter-spacing: -.025em;
 }
 
@@ -1569,11 +1552,11 @@
 }
 
 .app-layout :where(.resource-card, .notes-card, .pdf-card, .quiz-topic-cards > .card, .quiz-blocks-grid > .card, .note-related-grid > *, .tutor-card) {
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  background: var(--paper);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--surface-card);
   box-shadow: var(--shadow-card);
-  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+  transition: border-color var(--dur) var(--ease-standard), box-shadow var(--dur) var(--ease-standard), transform var(--dur) var(--ease-standard);
 }
 
 .app-layout :where(.resource-card, .notes-card, .pdf-card, .quiz-topic-cards > .card, .quiz-blocks-grid > .card, .note-related-grid > *, .tutor-card):hover {
@@ -1583,41 +1566,41 @@
 }
 
 .app-layout :where(.resource-card, .notes-card, .pdf-card, .quiz-topic-cards > .card, .quiz-blocks-grid > .card, .tutor-card) :where(h2, h3, h4) {
-  color: var(--ink);
-  font-family: var(--f-display);
+  color: var(--text-main);
+  font-family: var(--font-heading);
 }
 
 .app-layout :where(.resource-card, .notes-card, .pdf-card, .quiz-topic-cards > .card, .quiz-blocks-grid > .card, .tutor-card) :where(p, small) {
-  color: var(--ink-2);
+  color: var(--text-secondary);
 }
 
 .app-layout :where(.eyebrow, .section-kicker, .page-kicker, .resources-section-kicker, .notes-page-kicker) {
   color: var(--primary-dark);
-  font-family: var(--f-display);
+  font-family: var(--font-heading);
 }
 
 .app-layout :where(.btn-primary, .button-primary, button.primary, input[type="submit"]) {
   background: var(--primary);
-  color: var(--ink);
+  color: var(--text-main);
   border-color: var(--primary);
 }
 
 .app-layout :where(.btn-primary, .button-primary, button.primary, input[type="submit"]):hover:not(:disabled) {
   background: var(--primary-hover);
   border-color: var(--primary-hover);
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 .app-layout :where(.btn-secondary, .button-secondary, .btn-outline) {
-  border-color: var(--line-2);
-  background: var(--paper);
-  color: var(--ink);
+  border-color: var(--border-default);
+  background: var(--surface-card);
+  color: var(--text-main);
 }
 
 .app-layout :where(.btn-secondary, .button-secondary, .btn-outline):hover:not(:disabled) {
   border-color: var(--primary);
   background: var(--primary-light);
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 .app-layout :where(.tag-free, .badge-free, .status-free) {
@@ -1627,7 +1610,7 @@
 
 .app-layout :where(.tag-premium, .badge-premium, .status-premium) {
   background: var(--accent-light);
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 body.dark-mode .app-layout .home-curriculum-node-item,
@@ -1658,7 +1641,7 @@ body.dark-mode .app-layout .curriculum-node-linked-group {
   }
 
   .app-layout :where(.resource-card, .notes-card, .pdf-card, .quiz-topic-cards > .card, .quiz-blocks-grid > .card, .note-related-grid > *, .tutor-card) {
-    border-radius: var(--r-md);
+    border-radius: var(--radius-md);
   }
 }
 
@@ -1704,14 +1687,6 @@ body.dark-mode .app-layout .curriculum-node-linked-group {
   min-height: 38px;
 }
 
-
-
-
-
-
-/* Page spacing and visual rhythm. */
-
-
 #root .app-layout main {
   background: var(--surface-page);
 }
@@ -1755,19 +1730,19 @@ body.dark-mode .app-layout .curriculum-node-linked-group {
   --app-card-radius: 16px;
   --app-panel-radius: 20px;
   --app-control-radius: 9px;
-  color: var(--ink);
+  color: var(--text-main);
   background: var(--surface-page);
 }
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) {
   min-width: 0;
-  color: var(--ink);
+  color: var(--text-main);
   background: var(--surface-page);
 }
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(h1, .page-title, .page-heading, .content-title) {
-  color: var(--ink);
-  font-family: var(--f-display);
+  color: var(--text-main);
+  font-family: var(--font-heading);
   font-size: clamp(2rem, 1.45rem + 2.4vw, 3.15rem);
   font-weight: 750;
   letter-spacing: -.04em;
@@ -1776,8 +1751,8 @@ body.dark-mode .app-layout .curriculum-node-linked-group {
 }
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(h2, .section-title) {
-  color: var(--ink);
-  font-family: var(--f-display);
+  color: var(--text-main);
+  font-family: var(--font-heading);
   font-size: clamp(1.45rem, 1.15rem + 1.1vw, 2.1rem);
   font-weight: 700;
   letter-spacing: -.03em;
@@ -1787,7 +1762,7 @@ body.dark-mode .app-layout .curriculum-node-linked-group {
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.page-description, .section-description, .content-description, .page-subtitle, .section-subtitle) {
   max-width: 62ch;
-  color: var(--ink-2);
+  color: var(--text-secondary);
   font-size: clamp(.95rem, .9rem + .25vw, 1.08rem);
   line-height: 1.75;
 }
@@ -1800,20 +1775,20 @@ body.dark-mode .app-layout .curriculum-node-linked-group {
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.card, .content-card, .resource-card, .notes-card, .note-card, .paper-card, .pdf-card, .feature-card, .dashboard-card, .stat-card, .quiz-card, .flashcard-card, .flashcard-deck-card, .recall-card, .classroom-card, .tutor-card, .faq-item, .about-block, .profile-card, .settings-card, .quiz-question-card, .quiz-result-card, .quiz-review-card, .recall-question-card, .recall-feedback-card, .recall-report-card) {
   min-width: 0;
   border: 1px solid var(--border-default);
-  border-radius: var(--r-lg);
+  border-radius: var(--radius-lg);
   background: var(--surface-card);
-  color: var(--ink);
+  color: var(--text-main);
   box-shadow: var(--shadow-card);
-  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+  transition: border-color var(--dur) var(--ease-standard), box-shadow var(--dur) var(--ease-standard), transform var(--dur) var(--ease-standard);
 }
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.card, .content-card, .resource-card, .notes-card, .note-card, .paper-card, .pdf-card, .feature-card, .dashboard-card, .stat-card, .quiz-card, .flashcard-card, .flashcard-deck-card, .recall-card, .classroom-card, .tutor-card, .faq-item, .about-block, .profile-card, .settings-card, .quiz-question-card, .quiz-result-card, .quiz-review-card, .recall-question-card, .recall-feedback-card, .recall-report-card) :where(h2, h3, h4, strong) {
-  color: var(--ink);
-  font-family: var(--f-display);
+  color: var(--text-main);
+  font-family: var(--font-heading);
 }
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.card, .content-card, .resource-card, .notes-card, .note-card, .paper-card, .pdf-card, .feature-card, .dashboard-card, .stat-card, .quiz-card, .flashcard-card, .flashcard-deck-card, .recall-card, .classroom-card, .tutor-card, .faq-item, .about-block, .profile-card, .settings-card, .quiz-question-card, .quiz-result-card, .quiz-review-card, .recall-question-card, .recall-feedback-card, .recall-report-card) :where(p, small, .description, .subtitle, figcaption) {
-  color: var(--ink-2);
+  color: var(--text-secondary);
 }
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resource-card, .notes-card, .note-card, .paper-card, .pdf-card, .feature-card, .quiz-card, .flashcard-deck-card, .recall-card, .tutor-card, .faq-item, .profile-card):hover {
@@ -1827,31 +1802,31 @@ body.dark-mode .app-layout .curriculum-node-linked-group {
   width: 100vw;
   max-width: 100vw;
   margin-inline: calc(50% - 50vw);
-  padding: clamp(2.5rem, 4vw, 4.5rem) max(var(--gutter), calc((100vw - 1200px) / 2));
+  padding: clamp(2.5rem, 4vw, 4.5rem) max(var(--page-gutter-x), calc((100vw - 1200px) / 2));
   border: 0;
   border-radius: 0;
-  background: #003294;
-  color: #FFFFFF;
+  background: var(--secondary);
+  color: var(--white);
   box-shadow: none;
 }
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.toolbar, .filters, .filter-panel, .resources-toolbar, .notes-toolbar, .pp-toolbar, .pp-filters, .pdf-library-controls, .glossary-search-area) {
   border: 1px solid var(--border-subtle);
-  border-radius: var(--r-lg);
+  border-radius: var(--radius-lg);
   background: var(--surface-section-alt);
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(input:not([type="checkbox"]):not([type="radio"]), select, textarea) {
   border: 1px solid var(--border-default);
   border-radius: var(--app-control-radius);
   background: var(--surface-card);
-  color: var(--ink);
+  color: var(--text-main);
   box-shadow: none;
 }
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(input:not([type="checkbox"]):not([type="radio"]), select, textarea)::placeholder {
-  color: var(--ink-3);
+  color: var(--text-muted);
   opacity: 1;
 }
 
@@ -1866,7 +1841,7 @@ body.dark-mode .app-layout .curriculum-node-linked-group {
   border-radius: var(--app-control-radius);
   background: var(--primary);
   color: var(--text-on-primary);
-  font-family: var(--f-display);
+  font-family: var(--font-heading);
   font-weight: 700;
   box-shadow: none;
 }
@@ -1875,8 +1850,8 @@ body.dark-mode .app-layout .curriculum-node-linked-group {
   border: 1px solid var(--border-strong);
   border-radius: var(--app-control-radius);
   background: var(--surface-card);
-  color: var(--ink);
-  font-family: var(--f-display);
+  color: var(--text-main);
+  font-family: var(--font-heading);
   font-weight: 650;
 }
 
@@ -1887,25 +1862,25 @@ body.dark-mode .app-layout .curriculum-node-linked-group {
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(table) {
   border: 1px solid var(--border-default);
-  border-radius: var(--r-lg);
+  border-radius: var(--radius-lg);
   background: var(--surface-card);
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(th) {
   background: var(--surface-section);
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(td) {
-  color: var(--ink-2);
+  color: var(--text-secondary);
 }
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.empty-state, .error-state, .access-denied, .pending-approval-screen) {
   border: 1px solid var(--border-default);
   border-radius: var(--app-panel-radius);
   background: var(--surface-card);
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 body.dark-mode #root .app-layout,
@@ -1965,7 +1940,7 @@ body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(i
 }
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-page, .pp-page, .curriculum-node-page, .notes-page-shell, .note-detail-container, .dashboard-wrapper, .dashboard-content, .quiz-page-section, .recall-page-section) {
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-page, .pp-page) {
@@ -1981,8 +1956,8 @@ body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(i
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-hero, .pp-hero, .curriculum-node-header, .notes-page-heading, .note-hero, .quiz-hero-section, .recall-due-banner) {
   border: 0;
   border-radius: 0;
-  background: #003294;
-  color: #FFFFFF;
+  background: var(--secondary);
+  color: var(--white);
   box-shadow: none;
 }
 
@@ -1992,18 +1967,18 @@ body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(i
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-page, .pp-page, .curriculum-node-page, .notes-page-shell, .note-detail-container, .dashboard-content, .quiz-page-section, .recall-page-section) :where(.resource-card, .pp-card, .curriculum-card, .curriculum-node-child, .curriculum-node-resource, .notes-card, .note-related-card, .panel, .stat-card, .quiz-challenge-card, .recall-intro-card, .recall-stat-card, .recall-topic-card) {
   border: 1px solid var(--border-default);
-  border-radius: var(--r-lg);
+  border-radius: var(--radius-lg);
   background: var(--surface-card);
-  color: var(--ink);
+  color: var(--text-main);
   box-shadow: var(--shadow-card);
 }
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-page, .pp-page, .curriculum-node-page, .notes-page-shell, .note-detail-container, .dashboard-content, .quiz-page-section, .recall-page-section) :where(.resource-card, .pp-card, .curriculum-card, .curriculum-node-child, .curriculum-node-resource, .notes-card, .note-related-card, .panel, .stat-card, .quiz-challenge-card, .recall-intro-card, .recall-stat-card, .recall-topic-card) :where(h2, h3, h4, strong, .resource-card-title, .pp-card-title, .curriculum-card-title, .note-related-link-title, .panel-title, .stat-value, .quiz-challenge-title, .recall-topic-card-heading) {
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-page, .pp-page, .curriculum-node-page, .notes-page-shell, .note-detail-container, .dashboard-content, .quiz-page-section, .recall-page-section) :where(.resource-card, .pp-card, .curriculum-card, .curriculum-node-child, .curriculum-node-resource, .notes-card, .note-related-card, .panel, .stat-card, .quiz-challenge-card, .recall-intro-card, .recall-stat-card, .recall-topic-card) :where(p, small, .description, .subtitle, .resource-card-desc, .pp-card-meta, .curriculum-card-meta, .panel-description, .stat-label) {
-  color: var(--ink-2);
+  color: var(--text-secondary);
 }
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-page, .pp-page, .curriculum-node-page, .notes-page-shell, .note-detail-container, .dashboard-content, .quiz-page-section, .recall-page-section) :where(.resource-card, .pp-card, .curriculum-card, .curriculum-node-child, .curriculum-node-resource, .notes-card, .note-related-card, .panel, .quiz-challenge-card, .recall-topic-card):hover {
@@ -2013,9 +1988,9 @@ body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(i
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-toolbar, .pp-toolbar, .pp-filters, .notes-toolbar, .quiz-tab-bar, .recall-tab-bar) {
   border: 1px solid var(--border-default);
-  border-radius: var(--r-lg);
+  border-radius: var(--radius-lg);
   background: var(--surface-section);
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.resources-page, .pp-page, .curriculum-node-page, .notes-page-shell, .note-detail-container, .dashboard-content, .quiz-page-section, .recall-page-section) {
@@ -2064,7 +2039,7 @@ body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.
 }
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.about-page, .contact-page, .legal-page, .info-page, .classroom-page, .classroom-room-page, .tutor-marketplace-page, .tutor-profile-page, .profile-page, .faq-page, .donate-page, .advertise-page, .advertise-payment-page, .search-page, .search-results-page) {
-  color: var(--ink);
+  color: var(--text-main);
   background-color: var(--surface-page);
 }
 
@@ -2083,18 +2058,18 @@ body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.team-card, .contributor-card, .legal-card, .legal-panel, .classroom-card, .classroom-room-card, .tutor-card, .tutor-profile-card, .profile-card, .profile-overview-panel, .profile-category-card, .faq-item, .faq-featured-card, .donate-card, .donate-momo-card, .ads-home-panel, .ad-slot-card, .advertise-card, .contact-card, .info-card, .search-panel, .search-result, .search-result-card, .search-empty-state) {
   border: 1px solid var(--border-default);
-  border-radius: var(--r-lg);
+  border-radius: var(--radius-lg);
   background: var(--surface-card);
-  color: var(--ink);
+  color: var(--text-main);
   box-shadow: var(--shadow-card);
 }
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.team-card, .contributor-card, .legal-card, .legal-panel, .classroom-card, .classroom-room-card, .tutor-card, .tutor-profile-card, .profile-card, .profile-overview-panel, .profile-category-card, .faq-item, .faq-featured-card, .donate-card, .donate-momo-card, .ads-home-panel, .ad-slot-card, .advertise-card, .contact-card, .info-card, .search-panel, .search-result, .search-result-card, .search-empty-state) :where(h2, h3, h4, strong, .team-card-role, .faq-question, .ad-slot-title) {
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.team-card, .contributor-card, .legal-card, .legal-panel, .classroom-card, .classroom-room-card, .tutor-card, .tutor-profile-card, .profile-card, .profile-overview-panel, .profile-category-card, .faq-item, .faq-featured-card, .donate-card, .donate-momo-card, .ads-home-panel, .ad-slot-card, .advertise-card, .contact-card, .info-card, .search-panel, .search-result, .search-result-card, .search-empty-state) :where(p, small, .description, .subtitle, .team-card-bio, .faq-answer) {
-  color: var(--ink-2);
+  color: var(--text-secondary);
 }
 
 body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.about-page, .contact-page, .legal-page, .info-page, .classroom-page, .classroom-room-page, .tutor-marketplace-page, .tutor-profile-page, .profile-page, .faq-page, .donate-page, .advertise-page, .advertise-payment-page, .search-page, .search-results-page) {
@@ -2127,13 +2102,12 @@ body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.
   color: var(--dark-text-secondary);
 }
 
-
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-result-page, .quiz-review-page) {
   width: 100%;
   max-width: none;
-  padding: clamp(1.5rem, 4vw, 3.5rem) var(--gutter) clamp(3rem, 6vw, 5rem);
+  padding: clamp(1.5rem, 4vw, 3.5rem) var(--page-gutter-x) clamp(3rem, 6vw, 5rem);
   background: var(--surface-page);
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-result-shell, .quiz-review-shell) {
@@ -2145,7 +2119,7 @@ body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.
   margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
   padding: clamp(1.5rem, 4vw, 2.75rem);
   border: 0;
-  border-radius: var(--r-lg);
+  border-radius: var(--radius-lg);
   background: var(--brand-navy);
   color: var(--white);
 }
@@ -2163,9 +2137,9 @@ body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-result-summary, .quiz-attempt-answer-card, .quiz-attempt-result-empty, .quiz-review-inbox, .quiz-review-question-card, .quiz-review-marking-form, .quiz-review-access-error, .quiz-review-empty) {
   border: 1px solid var(--border-default);
-  border-radius: var(--r-lg);
+  border-radius: var(--radius-lg);
   background: var(--surface-card);
-  color: var(--ink);
+  color: var(--text-main);
   box-shadow: var(--shadow-card);
 }
 
@@ -2174,31 +2148,31 @@ body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.
 }
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-answer-card, .quiz-review-question-card, .quiz-review-marking-form) :where(h2, h3, strong, label) {
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-answer-card, .quiz-review-question-card, .quiz-review-marking-form) :where(p, small, span, .quiz-attempt-answer-label, .quiz-review-section-label) {
-  color: var(--ink-2);
+  color: var(--text-secondary);
 }
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-answer-text, .quiz-attempt-teacher-feedback, .quiz-attempt-correct-answer, .quiz-review-response, .quiz-review-rubric, .quiz-review-criteria, .quiz-review-instructions) {
-  border-color: var(--line);
+  border-color: var(--border-subtle);
   background: var(--surface-section);
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) .quiz-review-inbox-item {
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) .quiz-review-inbox-item.is-active {
   background: var(--surface-section);
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-review-inbox-heading, .quiz-review-detail-meta, .quiz-review-response-meta, .quiz-review-form-footer) {
-  border-color: var(--line);
-  color: var(--ink-2);
+  border-color: var(--border-subtle);
+  color: var(--text-secondary);
 }
 
 body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.quiz-attempt-result-page, .quiz-review-page) {
@@ -2248,11 +2222,10 @@ body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.
   }
 }
 
-
 #root .app-layout :where(.recall-page, .flashcard-page) {
   width: 100%;
   max-width: none;
-  color: var(--ink);
+  color: var(--text-main);
   background: var(--surface-page);
 }
 
@@ -2269,18 +2242,18 @@ body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(.
 
 #root .app-layout :where(.recall-page, .flashcard-page) :where(.recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .recall-topic-card, .recall-stat-card, .flashcard, .flashcard-card, .fcd-question-card, .fcd-question-card-static, .flashcard-panel, .flashcard-deck-card) {
   border: 1px solid var(--border-default);
-  border-radius: var(--r-lg);
+  border-radius: var(--radius-lg);
   background: var(--surface-card);
-  color: var(--ink);
+  color: var(--text-main);
   box-shadow: var(--shadow-card);
 }
 
 #root .app-layout :where(.recall-page, .flashcard-page) :where(.recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .recall-topic-card, .recall-stat-card, .flashcard, .flashcard-card, .fcd-question-card, .fcd-question-card-static, .flashcard-panel, .flashcard-deck-card) :where(h2, h3, h4, strong, .fcd-card-heading) {
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 #root .app-layout :where(.recall-page, .flashcard-page) :where(.recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .recall-topic-card, .recall-stat-card, .flashcard, .flashcard-card, .fcd-question-card, .fcd-question-card-static, .flashcard-panel, .flashcard-deck-card) :where(p, small, label, .description) {
-  color: var(--ink-2);
+  color: var(--text-secondary);
 }
 
 body.dark-mode #root .app-layout :where(.recall-page, .flashcard-page) {
@@ -2312,13 +2285,12 @@ body.dark-mode #root .app-layout :where(.recall-page, .flashcard-page) :where(.r
   color: var(--dark-text-secondary);
 }
 
-
 #root .app-layout .classroom-room-page {
   width: 100%;
   max-width: none;
   padding: 0 0 clamp(2rem, 5vw, 4rem);
   background: var(--surface-page);
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 #root .app-layout .classroom-room-header {
@@ -2326,7 +2298,7 @@ body.dark-mode #root .app-layout :where(.recall-page, .flashcard-page) :where(.r
   align-items: center;
   gap: 1rem;
   width: 100%;
-  padding: clamp(1.25rem, 3vw, 2rem) var(--gutter);
+  padding: clamp(1.25rem, 3vw, 2rem) var(--page-gutter-x);
   border: 0;
   border-radius: 0;
   background: var(--brand-navy);
@@ -2377,7 +2349,7 @@ body.dark-mode #root .app-layout :where(.recall-page, .flashcard-page) :where(.r
   gap: clamp(1rem, 2vw, 1.5rem);
   width: min(100%, 90rem);
   margin-inline: auto;
-  padding: clamp(1rem, 2vw, 1.5rem) var(--gutter) 0;
+  padding: clamp(1rem, 2vw, 1.5rem) var(--page-gutter-x) 0;
 }
 
 #root .app-layout .classroom-room-left,
@@ -2404,7 +2376,7 @@ body.dark-mode #root .app-layout :where(.recall-page, .flashcard-page) :where(.r
   overflow: hidden;
   padding: 1.25rem;
   border: 1px solid var(--border-default);
-  border-radius: var(--r-lg);
+  border-radius: var(--radius-lg);
   background: var(--brand-navy);
   color: var(--white);
 }
@@ -2434,9 +2406,9 @@ body.dark-mode #root .app-layout :where(.recall-page, .flashcard-page) :where(.r
   min-width: 0;
   overflow: hidden;
   border: 1px solid var(--border-default);
-  border-radius: var(--r-lg);
+  border-radius: var(--radius-lg);
   background: var(--surface-card);
-  color: var(--ink);
+  color: var(--text-main);
   box-shadow: var(--shadow-card);
 }
 
@@ -2453,7 +2425,7 @@ body.dark-mode #root .app-layout :where(.recall-page, .flashcard-page) :where(.r
 
 #root .app-layout .classroom-room-page :where(.chat-panel-header h4, .participants-panel-header h4, .classroom-room-info-panel h4) {
   margin: 0;
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 #root .app-layout .classroom-chat-body,
@@ -2480,7 +2452,7 @@ body.dark-mode #root .app-layout :where(.recall-page, .flashcard-page) :where(.r
   border: 1px solid var(--border-default);
   border-radius: 1rem 1rem 1rem .3rem;
   background: var(--surface-card);
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 #root .app-layout .classroom-message-row.is-own .classroom-message-bubble {
@@ -2531,7 +2503,7 @@ body.dark-mode #root .app-layout :where(.recall-page, .flashcard-page) :where(.r
   gap: .75rem;
   padding: .7rem;
   border-bottom: 1px solid var(--border-default);
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 #root .app-layout .classroom-participant-row:last-child {
@@ -2539,12 +2511,12 @@ body.dark-mode #root .app-layout :where(.recall-page, .flashcard-page) :where(.r
 }
 
 #root .app-layout .classroom-participant-name {
-  color: var(--ink);
+  color: var(--text-main);
   font-weight: 650;
 }
 
 #root .app-layout .classroom-participant-role {
-  color: var(--ink-2);
+  color: var(--text-secondary);
   font-size: .8rem;
   text-transform: capitalize;
 }
@@ -2565,14 +2537,14 @@ body.dark-mode #root .app-layout :where(.recall-page, .flashcard-page) :where(.r
   padding: .75rem;
   border-radius: .7rem;
   background: var(--surface-section);
-  color: var(--ink-2);
+  color: var(--text-secondary);
   overflow-wrap: anywhere;
 }
 
 #root .app-layout .classroom-room-info-grid .info-item strong {
   display: block;
   margin-bottom: .25rem;
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 #root .app-layout .classroom-whiteboard {
@@ -2587,27 +2559,27 @@ body.dark-mode #root .app-layout :where(.recall-page, .flashcard-page) :where(.r
   gap: .75rem;
   padding: 1.5rem;
   background: var(--surface-card);
-  color: var(--ink-2);
+  color: var(--text-secondary);
   text-align: center;
 }
 
 #root .app-layout .classroom-room-footer {
   width: min(100%, 90rem);
   margin: 1.25rem auto 0;
-  padding-inline: var(--gutter);
+  padding-inline: var(--page-gutter-x);
 }
 
 #root .app-layout .tutor-dashboard-page {
   width: 100%;
   max-width: none;
   background: var(--surface-page);
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 #root .app-layout .tutor-dashboard-page > .section {
   width: min(100%, 90rem);
   margin-inline: auto;
-  padding: clamp(1.5rem, 3vw, 2.75rem) var(--gutter) clamp(3rem, 5vw, 4.5rem);
+  padding: clamp(1.5rem, 3vw, 2.75rem) var(--page-gutter-x) clamp(3rem, 5vw, 4.5rem);
 }
 
 #root .app-layout .tutor-dashboard-page .section-title {
@@ -2619,16 +2591,16 @@ body.dark-mode #root .app-layout :where(.recall-page, .flashcard-page) :where(.r
 
 #root .app-layout .tutor-dashboard-page .page-intro {
   max-width: 54rem;
-  color: var(--ink-2);
+  color: var(--text-secondary);
   font-size: clamp(1rem, 1.2vw, 1.15rem);
   line-height: 1.65;
 }
 
 #root .app-layout .tutor-dashboard-page :where(.card, .empty-state) {
   border: 1px solid var(--border-default);
-  border-radius: var(--r-lg);
+  border-radius: var(--radius-lg);
   background: var(--surface-card);
-  color: var(--ink);
+  color: var(--text-main);
   box-shadow: var(--shadow-card);
 }
 
@@ -2747,13 +2719,12 @@ body.dark-mode #root .app-layout .tutor-dashboard-page :where(.card, .empty-stat
   }
 }
 
-
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(
   .page-hero,.content-hero,.resources-intro,.resources-hero,.notes-page-heading,
   .notes-curriculum-context,.pp-hero,.curriculum-node-header,.note-hero,
   .note-learning-header,.pdf-library-heading,.quiz-hero-section,.recall-due-banner
 ) :where(h1,h2,h3,h4,p,small,strong,.page-description,.section-description,.page-subtitle,.section-subtitle) {
-  color: #FFFFFF;
+  color: var(--white);
 }
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(
@@ -2761,7 +2732,7 @@ body.dark-mode #root .app-layout .tutor-dashboard-page :where(.card, .empty-stat
   .notes-curriculum-context,.pp-hero,.curriculum-node-header,.note-hero,
   .note-learning-header,.pdf-library-heading,.quiz-hero-section,.recall-due-banner
 ) :where(a:not(.btn)) {
-  color: #80D9FF;
+  color: var(--primary-border);
 }
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(
@@ -2771,8 +2742,8 @@ body.dark-mode #root .app-layout .tutor-dashboard-page :where(.card, .empty-stat
   .about-block,.profile-card,.settings-card,.quiz-question-card,.quiz-result-card,
   .quiz-review-card,.recall-question-card,.recall-feedback-card,.recall-report-card
 ) {
-  background: #FFFFFF;
-  border-color: #DBDBE9;
+  background: var(--white);
+  border-color: var(--border-subtle);
   border-radius: 12px;
   box-shadow: 0 2px 5px rgb(17 17 29 / 6%), 0 14px 30px -14px rgb(17 17 29 / 18%);
 }
@@ -2784,7 +2755,7 @@ body.dark-mode #root .app-layout .tutor-dashboard-page :where(.card, .empty-stat
   .about-block,.profile-card,.settings-card,.quiz-question-card,.quiz-result-card,
   .quiz-review-card,.recall-question-card,.recall-feedback-card,.recall-report-card
 ) :where(h2,h3,h4,strong) {
-  color: #222132;
+  color: var(--night-2);
 }
 
 #root .app-layout main:not(:has(.home-page, .auth-page)) :where(
@@ -2794,7 +2765,7 @@ body.dark-mode #root .app-layout .tutor-dashboard-page :where(.card, .empty-stat
   .about-block,.profile-card,.settings-card,.quiz-question-card,.quiz-result-card,
   .quiz-review-card,.recall-question-card,.recall-feedback-card,.recall-report-card
 ) :where(p,small,.description,.subtitle,figcaption) {
-  color: #5C5B6C;
+  color: var(--text-secondary);
 }
 
 body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(
@@ -2802,7 +2773,7 @@ body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(
   .notes-curriculum-context,.pp-hero,.curriculum-node-header,.note-hero,
   .note-learning-header,.pdf-library-heading,.quiz-hero-section,.recall-due-banner
 ) {
-  background: #003294;
+  background: var(--secondary);
 }
 
 @media (max-width: 768px) {
@@ -2822,9 +2793,9 @@ body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(
   .about-block,.profile-card,.settings-card,.quiz-question-card,.quiz-result-card,
   .quiz-review-card,.recall-question-card,.recall-feedback-card,.recall-report-card
 ) {
-  background: #2F2E41;
-  border-color: #464558;
-  color: #FFFFFF;
+  background: var(--dark-surface-raised);
+  border-color: var(--dark-border);
+  color: var(--white);
 }
 
 body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(
@@ -2834,5 +2805,5 @@ body.dark-mode #root .app-layout main:not(:has(.home-page, .auth-page)) :where(
   .about-block,.profile-card,.settings-card,.quiz-question-card,.quiz-result-card,
   .quiz-review-card,.recall-question-card,.recall-feedback-card,.recall-report-card
 ) :where(h2,h3,h4,strong,p,small,.description,.subtitle,figcaption) {
-  color: #FFFFFF;
+  color: var(--white);
 }

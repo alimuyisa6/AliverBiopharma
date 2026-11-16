@@ -1,9 +1,7 @@
-/* Notification panel list sizing. */
 :root {
   --notification-list-max-height: 25rem;
 }
 
-/* styles/notification.css */
 .notification-center {
   position: relative;
   display: inline-flex;
@@ -16,7 +14,7 @@
   align-items: center;
   justify-content: center;
   transition: color var(--ease-fast), transform var(--ease-fast);
-  color: var(--ink-2);
+  color: var(--text-secondary);
 }
 
 .notification-bell:hover,
@@ -86,9 +84,9 @@
   z-index: var(--z-dropdown);
   overflow: hidden;
   border: 1px solid var(--border-default);
-  border-color: var(--line);
-  border-radius: var(--r-lg);
-  background: var(--paper);
+  border-color: var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--surface-card);
   box-shadow: var(--shadow-float);
 }
 
@@ -118,7 +116,7 @@
   justify-content: center;
   padding: var(--space-8) var(--space-4);
   gap: var(--space-3);
-  color: var(--text-dim);
+  color: var(--text-muted);
 }
 
 .notification-empty-icon {
@@ -133,7 +131,7 @@
   border-bottom: 1px solid var(--border-default);
   cursor: pointer;
   transition: background var(--ease-fast);
-  background: var(--bg-card);
+  background: var(--surface-card);
 }
 
 .notification-item:last-child {
@@ -141,12 +139,12 @@
 }
 
 .notification-item:hover {
-  background: var(--bg-card-hover);
+  background: var(--surface-raised);
 }
 
 .notification-item.unread,
 .notification-item.notification-unread {
-  background: var(--bg-card-hover);
+  background: var(--surface-raised);
 }
 
 .notification-item-row {
@@ -181,7 +179,7 @@
 
 .notification-item-body {
   font-size: var(--text-xs);
-  color: var(--text-dim);
+  color: var(--text-muted);
   margin-top: var(--space-1);
   line-height: var(--leading-relaxed);
   opacity: 0.85;
@@ -203,7 +201,7 @@
 }
 
 .notification-dismiss:hover {
-  color: var(--primary)-deep);
+  color: var(--primary-dark);
 }
 
 @media (max-width: 36rem) {
@@ -224,39 +222,32 @@ body.dark-mode .notification-center :is(.notification-card, .notification-item, 
 body.dark-mode .notification-page :is(h1, h2, h3, p, small),
 body.dark-mode .notification-center :is(h1, h2, h3, p, small) { color: var(--dark-text); }
 
-
-
-
 .notification-bell:hover,
 .notification-bell:focus-visible,
 .notification-bell--unread {
-  color: var(--primary)-deep);
+  color: var(--primary-dark);
 }
-
-
 
 .notification-dropdown-header,
 .notification-item {
-  border-color: var(--line);
-  background: var(--paper);
+  border-color: var(--border-subtle);
+  background: var(--surface-card);
 }
 
 .notification-dropdown-title,
 .notification-item-title {
-  color: var(--ink);
-  font-family: var(--f-display);
+  color: var(--text-main);
+  font-family: var(--font-heading);
 }
 
 .notification-item-body,
 .notification-item-time,
 .notification-empty {
-  color: var(--ink-2);
+  color: var(--text-secondary);
 }
 
 .notification-item:hover,
 .notification-item.unread,
 .notification-item.notification-unread {
-  background: var(--soft);
+  background: var(--surface-muted);
 }
-
-

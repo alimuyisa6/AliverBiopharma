@@ -1,23 +1,23 @@
-:root{
---f-display:"Rubik",ui-sans-serif,system-ui,sans-serif;
---f-body:"Rubik",ui-sans-serif,system-ui,sans-serif;
---f-hand:"Rubik",ui-sans-serif,system-ui,sans-serif;
---t-xs:.78rem;
---t-sm:.9rem;
---t-base:1rem;
---t-md:1.125rem;
---t-lg:clamp(1.2rem,1.05rem + .6vw,1.45rem);
---t-xl:clamp(1.5rem,1.2rem + 1.3vw,2.1rem);
---t-2xl:clamp(1.9rem,1.3rem + 2.6vw,3.1rem);
---t-hero:clamp(2.5rem,1.4rem + 4.2vw,4.4rem);
---r-sm:6px;
---r-md:10px;
---r-lg:14px;
---r-xl:18px;
---r-pill:999px;
---container:1400px;
---gutter:clamp(1rem,.5rem + 2.2vw,2.5rem);
---section:clamp(4rem,2.8rem + 5vw,7.5rem);
---ease:cubic-bezier(.2,.7,.2,1);
---dur:220ms;
+:root {
+  --f-display: var(--font-heading);
+  --f-body: var(--font-primary);
+  --f-hand: var(--font-heading);
+  --t-xs: var(--text-xs);
+  --t-sm: var(--text-sm);
+  --t-base: var(--text-base);
+  --t-md: var(--text-lg);
+  --t-lg: var(--text-xl);
+  --t-xl: var(--text-2xl);
+  --t-2xl: var(--text-3xl);
+  --t-hero: var(--text-4xl);
+  --r-sm: var(--radius-sm);
+  --r-md: var(--radius-md);
+  --r-lg: var(--radius-lg);
+  --r-xl: var(--radius-xl);
+  --r-pill: var(--radius-pill);
+  --container: var(--max-width);
+  --gutter: var(--page-gutter-x);
+  --section: var(--section-space-y-large);
+  --ease: var(--ease-standard);
+  --dur: 220ms;
 }

@@ -9,7 +9,7 @@
   min-width: 0;
   padding-top: var(--page-space-top);
   padding-bottom: var(--page-space-bottom);
-  background: var(--soft);
+  background: var(--surface-muted);
 }
 
 .glossary-loading-wrap {
@@ -64,7 +64,7 @@
   position: relative;
   overflow: hidden;
   padding: clamp(1.25rem, 3vw, 2rem) var(--page-gutter-x);
-  background: var(--ink);
+  background: var(--text-main);
   text-align: left;
   color: var(--text-inverse);
 }
@@ -149,7 +149,7 @@
   padding: var(--space-2) var(--space-3);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
-  background: var(--bg-card);
+  background: var(--surface-card);
   color: var(--text-main);
   font-family: var(--font-primary);
   font-size: var(--text-sm);
@@ -178,7 +178,7 @@
   position: sticky;
   top: calc(var(--header-height) + var(--space-3));
   overflow: hidden;
-  background: var(--bg-card);
+  background: var(--surface-card);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-md);
 }
@@ -210,7 +210,7 @@
   padding: var(--space-2) var(--space-8);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
-  background: var(--bg-input);
+  background: var(--surface-card);
   color: var(--text-main);
   font-family: var(--font-primary);
   font-size: var(--text-sm);
@@ -241,7 +241,7 @@
   padding: var(--space-2) var(--space-3);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
-  background: var(--bg-input);
+  background: var(--surface-card);
   color: var(--text-main);
   font-family: var(--font-primary);
   font-size: var(--text-sm);
@@ -312,12 +312,12 @@
 
 .glossary-term-btn:hover {
   border-inline-start-color: var(--primary);
-  background: var(--bg-card-hover);
+  background: var(--surface-raised);
 }
 
 .glossary-term-btn.active {
   border-inline-start-color: var(--primary);
-  background: var(--bg-card-hover);
+  background: var(--surface-raised);
   font-weight: var(--weight-semibold);
 }
 
@@ -338,7 +338,7 @@
   padding: var(--space-10) var(--card-padding-x);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-md);
-  background: var(--bg-card);
+  background: var(--surface-card);
   text-align: center;
 }
 
@@ -428,7 +428,7 @@
   border: 1px solid var(--border-default);
   border-inline-start: 3px solid var(--hero-accent, var(--primary));
   border-radius: var(--radius-md);
-  background: var(--bg-card);
+  background: var(--surface-card);
 }
 
 .glossary-term-breadcrumb {
@@ -443,7 +443,7 @@
   padding: var(--space-1) var(--space-2);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-xs);
-  background: var(--bg-card-hover);
+  background: var(--surface-raised);
   color: var(--text-muted);
   font-family: var(--font-mono);
   font-size: var(--text-xs);
@@ -490,7 +490,7 @@
   padding: var(--space-3);
   border-inline-start: 2px solid var(--primary);
   border-radius: var(--radius-sm);
-  background: var(--bg-card-hover);
+  background: var(--surface-raised);
 }
 
 .glossary-definition-technical h4 {
@@ -567,7 +567,7 @@
   padding: var(--space-5);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-md);
-  background: var(--bg-card);
+  background: var(--surface-card);
 }
 
 .glossary-route-header {
@@ -591,7 +591,7 @@
   padding: var(--space-1) var(--space-2);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-xs);
-  background: var(--bg-card-hover);
+  background: var(--surface-raised);
   color: var(--text-muted);
   font-family: var(--font-mono);
   font-size: var(--text-xs);
@@ -639,14 +639,13 @@
   padding: var(--space-3);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
-  background: var(--bg-card);
+  background: var(--surface-card);
   text-decoration: none;
 }
 
 .glossary-route-card:hover {
   border-color: var(--primary);
 }
-
 
 .glossary-route-card-icon.quiz-icon {
   background: var(--primary);
@@ -714,7 +713,7 @@
   padding: var(--space-2) var(--space-3);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
-  background: var(--bg-card);
+  background: var(--surface-card);
   color: var(--text-main);
   font-family: var(--font-primary);
   font-size: var(--text-sm);

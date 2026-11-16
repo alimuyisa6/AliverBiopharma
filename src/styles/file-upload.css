@@ -1,11 +1,9 @@
-/* src/styles/file-upload.css */
-
 .file-upload {
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
-  color: var(--ink);
-  font-family: var(--f-body);
+  color: var(--text-main);
+  font-family: var(--font-primary);
 }
 
 .file-upload-actions {
@@ -31,30 +29,30 @@
   gap: var(--space-3);
   padding: var(--space-3) var(--space-4);
   border: 1px solid var(--border-subtle);
-  border-color: var(--line);
-  border-radius: var(--r-md);
-  background: var(--paper);
+  border-color: var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--surface-card);
 }
 
 .file-upload-icon {
   font-size: var(--text-xl);
-  color: var(--primary)-deep);
+  color: var(--primary-dark);
 }
 
 .file-upload-icon.pdf {
-  color: var(--primary)-deep);
+  color: var(--primary-dark);
 }
 
 .file-upload-name {
   flex: 1;
   min-width: 0;
   font-size: var(--text-sm);
-  color: var(--ink);
+  color: var(--text-main);
 }
 
 .file-upload-size {
   font-size: var(--text-xs);
-  color: var(--ink-3);
+  color: var(--text-muted);
 }
 
 body.dark-mode .file-upload,
@@ -62,16 +60,3 @@ body.dark-mode .file-upload-dropzone,
 body.dark-mode .file-upload-preview { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
 body.dark-mode .file-upload :is(h1, h2, h3, p, label, small) { color: var(--dark-text); }
 body.dark-mode .file-upload :is(.description, .text-muted) { color: var(--dark-text-secondary); }
-
-
-
-
-
-
-
-
-
-
-
-
-

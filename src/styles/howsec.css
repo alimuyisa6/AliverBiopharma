@@ -1,5 +1,3 @@
- /* src/styles/how-it-works.css */
-
 .how-it-works-section {
   width: 100%;
 }
@@ -21,7 +19,7 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   width: 100%;
   overflow: hidden;
-  background: var(--bg-card);
+  background: var(--surface-card);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-md);
 }
@@ -34,7 +32,7 @@
   min-height: var(--space-28);
   padding: var(--space-7);
   overflow: hidden;
-  background: var(--bg-card);
+  background: var(--surface-card);
 }
 
 .how-step + .how-step {
