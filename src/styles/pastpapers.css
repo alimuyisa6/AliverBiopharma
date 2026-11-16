@@ -127,7 +127,7 @@
   border: 1px solid var(--primary-light);
   border-color: var(--primary-light);
   border-radius: 0.875rem;
-  background: var(--soft);
+  background: var(--surface-muted);
   color: var(--primary-dark);
 }
 
@@ -170,7 +170,7 @@
 }
 
 .pp-tabs .btn-ghost:hover {
-  background: var(--soft);
+  background: var(--surface-muted);
   color: var(--primary-dark);
 }
 
@@ -203,7 +203,7 @@
   padding: var(--space-4);
   border-color: var(--primary-light);
   border-radius: 1rem;
-  background: var(--soft);
+  background: var(--surface-muted);
 }
 
 .pp-search-wrapper {
@@ -739,8 +739,6 @@
   margin-top: var(--space-1);
 }
 
-
-
 .pp-grid,
 .pp-skeleton-grid {
   display: grid;
@@ -849,7 +847,6 @@
   }
 }
 
-
 .pp-premium-ribbon {
   position: absolute;
   z-index: 4;
@@ -899,13 +896,6 @@
   .pp-card { transition: none; }
 }
 
-
-
-
-
-
-
-
 .pp-description {
   margin-top: var(--space-3);
   color: var(--text-secondary);
@@ -913,12 +903,6 @@
   font-size: var(--text-sm);
   line-height: var(--leading-relaxed);
 }
-
-
-
-
-
-
 
 .pp-count {
   color: var(--text-secondary);
@@ -931,9 +915,6 @@
   background: var(--white);
 }
 
-
-
-
 .pp-card-footer .btn-primary,
 .pp-modal-actions .btn-primary {
   background: var(--primary);
@@ -943,8 +924,6 @@
 .pp-modal-actions .btn-primary:hover {
   background: var(--primary-dark);
 }
-
-
 
 .pp-search-input:focus-visible,
 .pp-page :is(button, a, select, input):focus-visible {
@@ -1005,7 +984,6 @@ body.dark-mode .pp-filters {
   }
 }
 
-
 .pp-page,
 .pastpapers-page,
 .past-papers-page {
@@ -1013,20 +991,6 @@ body.dark-mode .pp-filters {
   max-width: none;
   background: var(--primary-light);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .pp-page-header,
 .pp-header {
@@ -1079,8 +1043,6 @@ body.dark-mode .pp-page :is(input, textarea)::placeholder {
   color: var(--dark-text-secondary);
 }
 
-
-
 .pp-card-artwork {
   position: relative;
   aspect-ratio: 3 / 2;
@@ -1120,17 +1082,10 @@ body.dark-mode .pp-page :is(input, textarea)::placeholder {
   left: .7rem;
 }
 
-
-
 @media (prefers-reduced-motion: reduce) {
   .pp-card-artwork img {
     transition: none;
   }
 }
-
-
-
-
-
 
 .pp-card-open { margin-right: auto; }
