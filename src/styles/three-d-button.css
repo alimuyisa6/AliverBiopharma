@@ -1,4 +1,3 @@
-/* Reusable 3D action button — inherits AliverBiopharm semantic theme tokens. */
 .btn-3d.three-d-button {
   --u3d-button-min-height: var(--control-height-lg);
   --u3d-radius: var(--radius-lg);
