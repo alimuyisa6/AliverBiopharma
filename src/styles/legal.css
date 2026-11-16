@@ -78,7 +78,7 @@
 
 @media (max-width: 768px) {
   .legal-title {
-    font-size: var(--text-3xl);
+    font-size: var(--text-page-title);
   }
 }
 
