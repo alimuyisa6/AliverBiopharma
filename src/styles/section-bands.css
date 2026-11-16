@@ -33,11 +33,8 @@
   color: var(--section-ink) !important;
 }
 
-.home-page > .home-stats-section,
 .home-page > .home-student-section,
-.home-page > .home-daily-learning-section,
-.home-page > .lernwick-connected,
-.home-page > .home-advertising-section {
+.home-page > .home-daily-learning-section {
   --section-bg: #EBEBF5;
   --section-ink: #222132;
 }
@@ -47,11 +44,18 @@
 .home-page > .lernwick-how,
 .home-page > .home-testimonials-section,
 .home-page > .home-classroom-section,
-.home-page > .home-tutor-section {
+.home-page > .home-tutor-section,
+.home-page > .home-advertising-section {
   --section-bg: #FFFFFF;
   --section-ink: #222132;
 }
 
+.home-page > .home-stats-section {
+  --section-bg: #E0F6FF;
+  --section-ink: #222132;
+}
+
+.home-page > .lernwick-connected,
 .home-page > .home-curriculum-section,
 .home-page > .pricing-section,
 .home-page > .home-newsletter-section {
@@ -63,7 +67,7 @@
   --section-bg: #11111D;
 }
 
-.home-page > :is(.home-stats-section,.home-student-section,.home-daily-learning-section,.lernwick-connected,.home-advertising-section) :is(
+.home-page > :is(.home-stats-section,.home-student-section,.home-daily-learning-section) :is(
   h1,h2,h3,h4,h5,h6,p,li,.eyebrow,.section-description,.section-head-left,
   .lernwick-section-heading,.lernwick-section-heading p,.lernwick-section-heading h2,
   .lernwick-note,.section-head .text-link
@@ -71,7 +75,7 @@
   color: #222132 !important;
 }
 
-.home-page > :is(.home-curriculum-section,.pricing-section,.home-newsletter-section) :is(
+.home-page > :is(.lernwick-connected,.home-curriculum-section,.pricing-section,.home-newsletter-section) :is(
   h1,h2,h3,h4,h5,h6,p,li,.eyebrow,.section-description,.section-head-left,
   .lernwick-section-heading,.lernwick-section-heading p,.lernwick-section-heading h2,
   .lernwick-note,.section-head .text-link
@@ -79,7 +83,7 @@
   color: #FFFFFF !important;
 }
 
-.home-page > :is(.lernwick-pathways,.lernwick-programme-studio,.lernwick-how,.home-testimonials-section,.home-classroom-section,.home-tutor-section) :is(
+.home-page > :is(.lernwick-pathways,.lernwick-programme-studio,.lernwick-how,.home-testimonials-section,.home-classroom-section,.home-tutor-section,.home-advertising-section) :is(
   h1,h2,h3,h4,h5,h6,p,li,.eyebrow,.section-description,.section-head-left,
   .lernwick-section-heading,.lernwick-section-heading p,.lernwick-section-heading h2,
   .lernwick-note,.section-head .text-link
@@ -156,11 +160,11 @@
   color: #0292D3 !important;
 }
 
-.home-page > :is(.home-curriculum-section,.pricing-section,.home-newsletter-section) :is(a:not(.btn),.text-link) {
+.home-page > :is(.lernwick-connected,.home-curriculum-section,.pricing-section,.home-newsletter-section) :is(a:not(.btn),.text-link) {
   color: #FFFFFF;
 }
 
-.home-page > :is(.home-curriculum-section,.pricing-section,.home-newsletter-section) .btn-primary {
+.home-page > :is(.lernwick-connected,.home-curriculum-section,.pricing-section,.home-newsletter-section) .btn-primary {
   border-color: #00B2FF;
   background: #00B2FF;
   color: #11111D;
@@ -179,7 +183,7 @@
 
 body.dark-mode .home-page > :is(
   .home-stats-section,.home-student-section,.home-daily-learning-section,
-  .lernwick-connected,.home-advertising-section,.home-curriculum-section,
+  .home-advertising-section,.lernwick-connected,.home-curriculum-section,
   .pricing-section,.home-newsletter-section
 ) {
   --section-bg: #11111D;
@@ -196,7 +200,7 @@ body.dark-mode .home-page > :is(
 
 body.dark-mode .home-page > :is(
   .home-stats-section,.home-student-section,.home-daily-learning-section,
-  .lernwick-connected,.home-advertising-section,.home-curriculum-section,
+  .home-advertising-section,.lernwick-connected,.home-curriculum-section,
   .pricing-section,.home-newsletter-section,.lernwick-pathways,
   .lernwick-programme-studio,.lernwick-how,.home-testimonials-section,
   .home-classroom-section,.home-tutor-section
