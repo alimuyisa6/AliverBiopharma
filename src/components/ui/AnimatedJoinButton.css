@@ -5,10 +5,10 @@
   width: min(100%, 14rem);
   min-height: 3.25rem;
   border: 0;
-  border-radius: var(--r-pill);
+  border-radius: var(--radius-pill);
   background: transparent;
-  color: var(--ink);
-  font-family: var(--f-display);
+  color: var(--text-main);
+  font-family: var(--font-heading);
   font-size: var(--t-base);
   font-weight: 700;
   letter-spacing: -.025em;
@@ -27,7 +27,7 @@
 
 .animated-join-button__shadow {
   z-index: -1;
-  background: var(--ink);
+  background: var(--text-main);
 }
 
 .animated-join-button__shadow::before {
@@ -41,8 +41,8 @@
 .animated-join-button__wrap {
   overflow: hidden;
   padding: 1px;
-  background: var(--ink);
-  transition: transform var(--dur) var(--ease);
+  background: var(--text-main);
+  transition: transform var(--duration-normal) var(--ease);
 }
 
 .animated-join-button__face {
@@ -88,7 +88,7 @@
 .animated-join-button__letters > span::after {
   position: absolute;
   inset: 0;
-  color: var(--ink);
+  color: var(--text-main);
   content: attr(data-label);
   text-shadow: none;
 }
@@ -126,7 +126,7 @@
   width: 1.35rem;
   height: 3px;
   border-radius: 2px;
-  background: var(--ink);
+  background: var(--text-main);
   animation: join-arrow-sway 1s ease-in-out infinite paused;
 }
 
@@ -137,7 +137,7 @@
   width: .75rem;
   height: 3px;
   border-radius: 8px;
-  background: var(--ink);
+  background: var(--text-main);
   content: "";
   transform-origin: center right;
 }
@@ -178,7 +178,7 @@
 }
 
 .animated-join-button:focus-visible {
-  outline: 3px solid var(--primary)-deep);
+  outline: 3px solid var(--primary-dark);
   outline-offset: 4px;
 }
 
