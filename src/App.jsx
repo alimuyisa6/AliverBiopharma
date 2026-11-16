@@ -1,6 +1,5 @@
  /* src/App.jsx */
 import { Routes, Route, useLocation } from 'react-router-dom';
-const NotFoundPage = lazy(() => import('./components/NotFoundPage'));
 import { lazy, Suspense, useState, useEffect } from 'react';
 import { ProtectedRoute } from './contexts/AuthContext';
 import { LayoutProvider, useLayout } from './contexts/LayoutContext';
@@ -53,6 +52,8 @@ import CookieConsent from './components/CookieConsent/CookieConsent';
 import MaintenanceGate, { MaintenanceBoundary } from './components/Maintenance/MaintenanceGate';
 import './styles/cookie-consent.css';
 import './styles/maintenance.css';
+
+const NotFoundPage = lazy(() => import('./components/NotFoundPage'));
 
 function SetupRequired() {
   return (

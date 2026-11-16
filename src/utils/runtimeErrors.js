@@ -1,6 +1,7 @@
 export function showFatalError(title, message, stack) {
-  const root = document.getElementById('root') || document.body;
+  document.getElementById('fatal-error-overlay')?.remove();
   const screen = document.createElement('main');
+  screen.id = 'fatal-error-overlay';
   const heading = document.createElement('h2');
   const detail = document.createElement('p');
   const reload = document.createElement('button');
@@ -25,7 +26,7 @@ export function showFatalError(title, message, stack) {
   }
 
   screen.append(reload);
-  root.replaceChildren(screen);
+  document.body.append(screen);
 }
 
 function recoverFromStaleChunk(event) {
