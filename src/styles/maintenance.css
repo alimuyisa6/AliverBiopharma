@@ -1,5 +1,3 @@
-/* Maintenance and temporary service-state layouts use shared theme tokens. */
-
 :root {
   --maintenance-card-max-width: var(--content-max-compact);
   --maintenance-alert-max-width: var(--content-max-readable);
@@ -16,9 +14,9 @@
   place-items: center;
   padding: var(--space-6);
   overflow: auto;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--f-body);
+  background: var(--surface-card);
+  color: var(--text-main);
+  font-family: var(--font-primary);
 }
 
 .maintenance-card {
@@ -108,9 +106,9 @@
   padding: var(--space-2) var(--space-3);
   font-weight: var(--weight-bold);
   border: 1px solid var(--primary-border);
-  border-radius: var(--r-md);
+  border-radius: var(--radius-md);
   background: var(--primary-light);
-  color: var(--ink) !important;
+  color: var(--text-main) !important;
 }
 
 .maintenance-boundary {
@@ -149,22 +147,19 @@ body.dark-mode .maintenance-page :is(.maintenance-card, .maintenance-panel, .mai
 body.dark-mode .maintenance-page :is(h1, h2, h3, h4, h5, h6, p, label, small, time) { color: var(--dark-text); }
 body.dark-mode .maintenance-page :is(.text-muted, .maintenance-description) { color: var(--dark-text-secondary); }
 
-
-
-
 .maintenance-card,
 .maintenance-alert {
-  border: 1px solid var(--line);
-  border-radius: var(--r-xl);
-  background: var(--soft);
-  color: var(--ink);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  background: var(--surface-muted);
+  color: var(--text-main);
   box-shadow: var(--shadow-card);
 }
 
 .maintenance-card h1,
 .maintenance-alert strong {
-  color: var(--ink);
-  font-family: var(--f-display);
+  color: var(--text-main);
+  font-family: var(--font-heading);
 }
 
 .maintenance-card p,
@@ -172,7 +167,5 @@ body.dark-mode .maintenance-page :is(.text-muted, .maintenance-description) { co
 .maintenance-note,
 .maintenance-alert span,
 .maintenance-alert time {
-  color: var(--ink-2);
+  color: var(--text-secondary);
 }
-
-
