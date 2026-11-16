@@ -6,11 +6,10 @@
 
 .accordion-item {
   overflow: hidden;
-  border: 1px solid var(--border-default);
+  border: 1px solid var(--border-subtle);
   transition: border-color var(--duration-fast) var(--ease-standard);
-  border-color: var(--line);
-  border-radius: var(--r-md);
-  background: var(--paper);
+  border-radius: var(--radius-md);
+  background: var(--surface-card);
 }
 
 .accordion-item.active {
@@ -32,12 +31,12 @@
   cursor: pointer;
   transition: color var(--duration-fast) var(--ease-standard),
     background-color var(--duration-fast) var(--ease-standard);
-  color: var(--ink);
-  font-family: var(--f-display);
+  color: var(--text-main);
+  font-family: var(--font-heading);
 }
 
 .accordion-trigger:hover {
-  background: var(--soft);
+  background: var(--surface-muted);
   color: var(--primary)-deep);
 }
 
@@ -96,20 +95,7 @@ body.dark-mode .accordion-content { background: var(--dark-surface); color: var(
 body.dark-mode .accordion-trigger:hover { background: var(--dark-surface-raised); }
 body.dark-mode .accordion :is(h1, h2, h3, h4, h5, h6, p, span, small) { color: inherit; }
 
-
-
-
-
-
-
-
-
-
-
-
 .accordion-icon,
 .accordion-body {
-  color: var(--ink-2);
+  color: var(--text-secondary);
 }
-
-
