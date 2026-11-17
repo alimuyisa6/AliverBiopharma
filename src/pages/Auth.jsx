@@ -451,8 +451,8 @@ export default function Auth() {
   }
 
   return (
-    <div className="auth-page">
-      <aside className="auth-brand-panel">
+    <div className="grid min-h-screen w-full bg-slate-50 lg:grid-cols-[minmax(320px,0.9fr)_minmax(0,1.1fr)]">
+      <aside className="relative hidden flex-col justify-between overflow-hidden bg-primary-900 px-10 py-12 text-white lg:flex xl:px-16">
         <div className="auth-brand-top">
           <div className="auth-brand-logo" aria-label="AliverBiopharm">
             <span className="auth-brand-mark" aria-hidden="true">
@@ -464,8 +464,8 @@ export default function Auth() {
           </div>
         </div>
 
-        <div className="auth-brand-copy">
-          <h1>Learn with clarity. Build confidence.</h1>
+        <div className="relative z-10 my-auto max-w-xl py-16">
+          <h1 className="text-4xl font-extrabold leading-tight text-white xl:text-5xl">Learn with clarity. Build confidence.</h1>
           <p>
             Study Biology or Pharmacy with clear resources and practice tools that help you understand and remember what you learn.
           </p>
@@ -491,17 +491,17 @@ export default function Auth() {
         </div>
       </aside>
 
-      <main className="auth-form-panel">
-        <div className="auth-form-container">
+      <main className="flex min-w-0 items-center justify-center px-4 py-10 sm:px-8 lg:px-12">
+        <div className="w-full max-w-xl">
           {pendingConfirmation ? (
-            <div className="auth-state">
+            <div className="mx-auto w-full max-w-md rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-xl shadow-slate-900/5">
               <div className="auth-state-icon-wrap">
                 <Icon name="envelope-circle" className="auth-state-icon" />
               </div>
-              <h2 className="auth-state-title">
+              <h2 className="mt-5 text-2xl font-bold text-primary-900">
                 Check your inbox
               </h2>
-              <p className="auth-state-text">
+              <p className="mt-3 leading-7 text-slate-600">
                 {confirmationMessage}
               </p>
               <Button variant="ghost" onClick={() => switchMode('login')}>
@@ -510,35 +510,35 @@ export default function Auth() {
               </Button>
             </div>
           ) : success ? (
-            <div className="auth-state">
+            <div className="mx-auto w-full max-w-md rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-xl shadow-slate-900/5">
               <div className="auth-state-icon-wrap auth-state-icon-wrap-success">
                 <Icon name="circle" className="auth-state-icon" />
               </div>
-              <h2 className="auth-state-title">
+              <h2 className="mt-5 text-2xl font-bold text-primary-900">
                 {t('auth.accountCreated')}
               </h2>
-              <p className="auth-state-text">
+              <p className="mt-3 leading-7 text-slate-600">
                 Your account is ready. Your selected study level and class will become available after an administrator approves your curriculum request.
               </p>
               <Spinner context="brand" />
             </div>
           ) : mfaStep && verificationPending ? (
-            <div className="auth-state" role="status" aria-live="polite">
+            <div className="mx-auto w-full max-w-md rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-xl shadow-slate-900/5" role="status" aria-live="polite">
               <div className="auth-state-icon-wrap">
                 <Spinner context="brand" />
               </div>
-              <h2 className="auth-state-title">Waiting for further verification. Please wait.</h2>
-              <p className="auth-state-text">
+              <h2 className="mt-5 text-2xl font-bold text-primary-900">Waiting for further verification. Please wait.</h2>
+              <p className="mt-3 leading-7 text-slate-600">
                 The server is verifying your administrator email, registered device, session, and security binding. Sign-in will continue automatically when verification succeeds.
               </p>
             </div>
           ) : mfaStep ? (
-            <div className="auth-form-block">
-              <div className="auth-form-head">
-                <h2 className="auth-heading">
+            <div className="mx-auto w-full max-w-md rounded-3xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-900/5 sm:p-9">
+              <div className="mb-7 space-y-3">
+                <h2 className="text-3xl font-bold text-primary-900 sm:text-4xl">
                   {deviceApprovalRequired ? 'Confirm it’s you' : t('auth.twoFactor')}
                 </h2>
-                <p className="auth-subheading">
+                <p className="text-base leading-7 text-slate-600">
                   {deviceApprovalRequired
                     ? 'For your security, confirm your identity before continuing.'
                     : passkeyMfaToken
@@ -548,7 +548,7 @@ export default function Auth() {
               </div>
 
               {mfaError && (
-                <div className="auth-alert auth-alert-error">
+                <div className="mb-5 flex items-start gap-3 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">
                   <Icon name="exclamation-triangle" />
                   <span>{mfaError}</span>
                 </div>
@@ -594,7 +594,7 @@ export default function Auth() {
                 )}
 
                 {!passkeyMfaToken && (
-                  <div ref={setCaptchaSlot} className="auth-captcha" />
+                  <div ref={setCaptchaSlot} className="my-5 flex min-h-16 items-center justify-center overflow-x-auto rounded-xl border border-slate-200 bg-slate-50 p-3" />
                 )}
 
                 <Button
@@ -608,7 +608,7 @@ export default function Auth() {
                 </Button>
               </form>
 
-              <div className="auth-switch">
+              <div className="mt-7 flex flex-wrap items-center justify-center gap-2 border-t border-slate-100 pt-6 text-sm text-slate-600">
                 <Button
                   variant="ghost"
                   size="sm"
@@ -627,12 +627,12 @@ export default function Auth() {
               </div>
             </div>
           ) : onboardingStep > 0 ? (
-            <div className="auth-form-block">
-              <div className="auth-form-head">
-                <h2 className="auth-heading">
+            <div className="mx-auto w-full max-w-md rounded-3xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-900/5 sm:p-9">
+              <div className="mb-7 space-y-3">
+                <h2 className="text-3xl font-bold text-primary-900 sm:text-4xl">
                   {t('auth.completeProfile')}
                 </h2>
-                <p className="auth-subheading">
+                <p className="text-base leading-7 text-slate-600">
                   {t('auth.personaliseLearning')}
                 </p>
               </div>
@@ -647,7 +647,7 @@ export default function Auth() {
               </div>
 
               {error && (
-                <div className="auth-alert auth-alert-error">
+                <div className="mb-5 flex items-start gap-3 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">
                   <Icon name="exclamation-triangle" />
                   <span>{error}</span>
                 </div>
@@ -701,7 +701,7 @@ export default function Auth() {
 
                   {!levelsLoading && !levelsError && (
                     <>
-                      <div ref={setCaptchaSlot} className="auth-captcha" />
+                      <div ref={setCaptchaSlot} className="my-5 flex min-h-16 items-center justify-center overflow-x-auto rounded-xl border border-slate-200 bg-slate-50 p-3" />
                       <div className="auth-options">
                       {levels.map((lvl) => {
                         const value = lvl.display_name;
@@ -752,15 +752,15 @@ export default function Auth() {
                 t={t}
               />
             ) : (
-              <div className="auth-form-block">
+              <div className="mx-auto w-full max-w-md rounded-3xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-900/5 sm:p-9">
   
-                <div className="auth-form-head">
-                  <h2 className="auth-heading">
+                <div className="mb-7 space-y-3">
+                  <h2 className="text-3xl font-bold text-primary-900 sm:text-4xl">
                     {mode === 'login'
                       ? t('auth.loginTitle')
                       : t('auth.registerTitle')}
                   </h2>
-                  <p className="auth-subheading">
+                  <p className="text-base leading-7 text-slate-600">
                     {mode === 'login'
                       ? t('auth.accessAccount')
                       : t('auth.joinLearners')}
@@ -768,7 +768,7 @@ export default function Auth() {
                 </div>
   
                 {error && (
-                  <div className="auth-alert auth-alert-error">
+                  <div className="mb-5 flex items-start gap-3 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">
                     <Icon name="exclamation-triangle" />
                     <span>{error}</span>
                   </div>
@@ -862,7 +862,7 @@ export default function Auth() {
                   )}
   
                   {onboardingStep === 0 && (
-                    <div ref={setCaptchaSlot} className="auth-captcha" />
+                    <div ref={setCaptchaSlot} className="my-5 flex min-h-16 items-center justify-center overflow-x-auto rounded-xl border border-slate-200 bg-slate-50 p-3" />
                   )}
   
                   {mode === 'register' && (
@@ -912,7 +912,7 @@ export default function Auth() {
                   </Button>
                 )}
   
-                <div className="auth-switch">
+                <div className="mt-7 flex flex-wrap items-center justify-center gap-2 border-t border-slate-100 pt-6 text-sm text-slate-600">
                   <span>
                     {mode === 'login'
                       ? t('auth.noAccount')
