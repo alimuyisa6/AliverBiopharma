@@ -43,6 +43,10 @@
   --stack-gap: var(--space-3);
   --stack-gap-tight: var(--space-2);
   --stack-gap-loose: var(--space-5);
+  --icon-text-gap: 1.25rem;
+  --icon-text-gap-compact: 1rem;
+  --icon-label-gap: 0.75rem;
+  --icon-stack-gap: 1.125rem;
 
   --text-gap-title: var(--space-2);
   --text-gap-subtitle: var(--space-1);

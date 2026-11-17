@@ -1395,3 +1395,53 @@ body.dark-mode .home-page .lernwick-studio-visual-core svg {
 .home-page .lernwick-pathway-image>svg,.home-page .lernwick-studio-card-icon svg,.home-page .lernwick-connected-link-icon svg,.home-page .lernwick-studio-visual-core svg{color:var(--primary-dark)!important}
 body.dark-mode .home-page .lernwick-pathway-image,body.dark-mode .home-page .lernwick-studio-card-icon,body.dark-mode .home-page .lernwick-connected-link-icon,body.dark-mode .home-page .lernwick-studio-visual-core{background:var(--dark-surface)!important;color:var(--dark-primary)!important}
 body.dark-mode .home-page .lernwick-pathway-image>svg,body.dark-mode .home-page .lernwick-studio-card-icon svg,body.dark-mode .home-page .lernwick-connected-link-icon svg,body.dark-mode .home-page .lernwick-studio-visual-core svg{color:var(--dark-primary)!important}
+
+
+/* Give icon-led homepage rows and stacked icon content deliberate separation. */
+.home-page .home-continue-learning-row {
+  column-gap: 1.25rem;
+  row-gap: 1rem;
+}
+
+.home-page .home-continue-learning-row .row-copy,
+.home-page .home-continue-learning-row .row-content {
+  min-width: 0;
+}
+
+.home-page .home-curriculum-node {
+  column-gap: 1.1rem;
+  row-gap: .85rem;
+}
+
+.home-page .home-daily-recall-card {
+  column-gap: 1.75rem;
+  row-gap: 1.25rem;
+}
+
+.home-page .home-daily-recall-card > :where(div, section) {
+  min-width: 0;
+}
+
+.home-page .home-challenge-meta > span {
+  gap: .65rem;
+}
+
+.lernwick-about-copy li {
+  gap: .9rem;
+}
+
+.lernwick-pathway-body,
+.lernwick-step-card {
+  row-gap: 1.1rem;
+}
+
+@media (max-width: 680px) {
+  .home-page .home-continue-learning-row {
+    column-gap: 1rem;
+    row-gap: .9rem;
+  }
+
+  .home-page .home-daily-recall-card {
+    gap: 1.25rem;
+  }
+}
