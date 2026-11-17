@@ -1,6 +1,4 @@
-/* src/components/Layout/Layout.jsx */
-
-import { lazy, Suspense, useState, useEffect, useLayoutEffect, useRef } from 'react';
+ import { lazy, Suspense, useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate, useNavigationType } from 'react-router-dom';
 import Icon from '../Icon/Icon';
 import { useLayout } from '../../contexts/LayoutContext';
@@ -67,8 +65,6 @@ export default function Layout({ children, showFooter = true }) {
   useEffect(() => { if ('scrollRestoration' in window.history) window.history.scrollRestoration = 'manual'; }, []);
   useEffect(() => { const handler = () => { if (scrollFrame.current !== null) return; scrollFrame.current = requestAnimationFrame(() => { scrollFrame.current = null; const scrollY = window.scrollY; setScrolled(scrollY > 10); scrollPositions.current.set(routeKey, scrollY); clearTimeout(persistTimeout.current); persistTimeout.current = setTimeout(() => persistScrollMap(scrollPositions.current), 200); }); }; window.addEventListener('scroll', handler, { passive: true }); return () => { window.removeEventListener('scroll', handler); if (scrollFrame.current !== null) { cancelAnimationFrame(scrollFrame.current); scrollFrame.current = null; } clearTimeout(persistTimeout.current); }; }, [routeKey]);
   useLayoutEffect(() => {
-    // Restore once after the new route has committed. A second restore can
-    // override the user's first scroll gesture immediately after navigation.
     const raf = requestAnimationFrame(() => {
       const top = navigationType === 'POP' && scrollPositions.current.has(routeKey)
         ? scrollPositions.current.get(routeKey)
@@ -96,9 +92,6 @@ export default function Layout({ children, showFooter = true }) {
   const addMenuLink = (href, label, icon) => { const existing = menuLinks.find((link) => link.href === href); if (existing) { if (!existing.icon && icon) existing.icon = icon; return; } menuLinks.push({ href, label, icon }); };
   addMenuLink('/', t('common.home'), 'home');
   if (isAuthenticated) { addMenuLink('/dashboard', t('common.dashboard'), 'gauge-high'); addMenuLink('/profile', t('common.profile'), 'gear'); } else { addMenuLink('/login', loginButton.label, loginButton.icon); addMenuLink('/register', signupButton.label, signupButton.icon); }
-  // Keep essential destinations at the start of the desktop navigation so
-  // they remain discoverable when configured links and utility controls share
-  // the available header width.
   const primaryMenuOrder = isAuthenticated ? ['/', '/dashboard', '/profile'] : ['/', '/login', '/register'];
   menuLinks.sort((a, b) => {
     const aIndex = primaryMenuOrder.indexOf(a.href);
@@ -112,17 +105,17 @@ export default function Layout({ children, showFooter = true }) {
       <nav className="main-nav">{menuLinks.map((link) => <Link key={link.href} to={link.href} className={`main-nav-link${location.pathname === link.href ? ' active' : ''}`}>{link.icon && <Icon name={link.icon} />}{link.label}</Link>)}</nav>
       <div className="nav-actions">
         {isAuthenticated && <ClassSwitcher />}
-        <button className="btn btn-ghost btn-sm btn-icon header-action-button" onClick={() => setSearchOpen(true)} aria-label={t('common.search')} type="button"><SearchGlyph /></button>
+        <button className="header-action-button" onClick={() => setSearchOpen(true)} aria-label={t('common.search')} type="button"><SearchGlyph /></button>
         <NotificationCenter />
         <BiopharmToggle checked={isDarkTheme} onChange={toggleTheme} ariaLabel={t('common.toggleTheme')} />
-        <button className="hamburger-btn header-action-button"  onClick={() => setMobileOpen((prev) => !prev)} aria-label={mobileOpen ? t('common.closeMenu') : t('common.menu')} aria-expanded={mobileOpen} type="button"><MenuGlyph isOpen={mobileOpen} /></button>
+        <button className="hamburger-btn header-action-button" onClick={() => setMobileOpen((prev) => !prev)} aria-label={mobileOpen ? t('common.closeMenu') : t('common.menu')} aria-expanded={mobileOpen} type="button"><MenuGlyph isOpen={mobileOpen} /></button>
       </div>
     </div></header>}
     {!hideHeader && <Suspense fallback={null}>{searchOpen && <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />}</Suspense>}<AdminLauncher />
     {!hideHeader && <>
       <button className={`mobile-menu-backdrop${mobileOpen ? ' open' : ''}`} onClick={() => setMobileOpen(false)} aria-label={t('common.closeMenu')} tabIndex={mobileOpen ? 0 : -1} type="button" />
       <div className={`mobile-menu-panel${mobileOpen ? ' open' : ''}`} aria-hidden={!mobileOpen}>
-        <div className="mobile-menu-heading"><Icon name="bars" /><span>{t('common.menu')}</span></div>
+        <div className="mobile-menu-heading"><span className="mobile-menu-heading-icon"><Icon name="bars" /></span><span>{t('common.menu')}</span></div>
         <div className="mobile-menu-divider" aria-hidden="true" />
         <nav className="mobile-menu-nav" aria-label={t('common.menu')}>
           {menuLinks.map((link) => <Link key={link.href} to={link.href} className={`mobile-menu-link${location.pathname === link.href ? ' active' : ''}`} onClick={() => setMobileOpen(false)} tabIndex={mobileOpen ? 0 : -1}><span className="mobile-menu-icon">{link.icon && <Icon name={link.icon} />}</span><span className="mobile-menu-label">{link.label}</span></Link>)}
@@ -131,7 +124,7 @@ export default function Layout({ children, showFooter = true }) {
       </div>
     </>}
     <main id="main-content" className={`main-content${location.pathname.startsWith('/profile') ? ' main-content-profile' : ''}`} key={routeKey}>{children}</main>
-    {!hideFooter && showFooter && <footer className="footer"><div className="footer-inner">
+    {!hideFooter && showFooter && <footer className="footer"><div className="footer-wave" aria-hidden="true"><svg viewBox="0 0 1440 120" preserveAspectRatio="none" focusable="false"><path className="footer-wave-path-back" d="M0 62C180 18 360 96 600 62S1000 8 1200 52 1360 88 1440 56V120H0Z" /><path className="footer-wave-path-mid" d="M0 78C220 34 420 104 680 74S1040 26 1240 70 1380 96 1440 74V120H0Z" /><path className="footer-wave-path-front" d="M0 92C240 58 460 112 720 90S1080 52 1260 88 1390 106 1440 94V120H0Z" /></svg></div><div className="footer-inner">
       <div className="footer-brand"><Link to="/" className="header-logo">{logo ? <img src={logo} alt="" aria-hidden="true" className="footer-logo" /> : siteName}</Link><p className="footer-tagline">{t('common.footerTagline')}</p>{footer.social_links && Object.keys(footer.social_links).length > 0 && <div className="footer-social">{Object.entries(footer.social_links).map(([platform, url]) => <a key={platform} href={url} target="_blank" rel="noopener noreferrer" className="footer-social-link" data-platform={platform} aria-label={platform}><Icon name={platform} /></a>)}</div>}</div>
       <div className="footer-right-groups">
         <div className="footer-community-group">
