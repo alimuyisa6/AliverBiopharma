@@ -1,5 +1,4 @@
 import Button from '../../components/Button/Button';
-import './lernwick-feature.css';
 
 const teaserImages = {
   'live-room': 'https://images.pexels.com/photos/8199770/pexels-photo-4145190.jpeg?auto=compress&cs=tinysrgb&w=900&h=900&fit=crop',

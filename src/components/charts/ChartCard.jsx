@@ -1,5 +1,4 @@
 import { useId } from 'react';
-import './charts.css';
 
 export default function ChartCard({
   title,

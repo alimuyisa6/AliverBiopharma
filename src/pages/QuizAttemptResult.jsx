@@ -5,7 +5,6 @@ import Card from '../components/Card/Card';
 import Button from '../components/Button/Button';
 import Icon from '../components/Icon/Icon';
 import PageSkeleton from '../components/Loading/PageSkeleton';
-import '../styles/quiz-attempt-result.css';
 
 export default function QuizAttemptResult() {
   const { attemptId } = useParams();

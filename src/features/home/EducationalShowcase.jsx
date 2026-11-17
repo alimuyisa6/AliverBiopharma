@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './EducationalShowcase.css';
 import StickyNotePolaroidFrame from '../../components/StickyNotePolaroidFrame/StickyNotePolaroidFrame';
 
 const screens = [

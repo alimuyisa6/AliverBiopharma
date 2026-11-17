@@ -1,5 +1,4 @@
 import { ChevronDown } from 'lucide-react';
-import './charts.css';
 
 export default function ChartSelect({
   value,

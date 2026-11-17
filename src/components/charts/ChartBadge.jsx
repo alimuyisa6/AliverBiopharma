@@ -1,5 +1,4 @@
 import { ArrowDown, ArrowUp } from 'lucide-react';
-import './charts.css';
 
 export default function ChartBadge({
   value,

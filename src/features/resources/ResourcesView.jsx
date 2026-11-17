@@ -6,7 +6,6 @@ import Icon from '../../components/Icon/Icon';
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import Button from '../../components/Button/Button';
 import { useLayout } from '../../contexts/LayoutContext';
-import '../../styles/resources.css';
 import DynamicActions from '../../components/DynamicActions';
 
 const CONTENT_TYPES = [
