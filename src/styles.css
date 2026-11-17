@@ -152,7 +152,7 @@ body {
   .main-nav-link svg { @apply h-4 w-4 shrink-0; }
   .nav-actions { @apply ml-auto flex shrink-0 items-center gap-2; }
   .header-action-button { @apply inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-white text-primary-800 transition-colors hover:border-primary-200 hover:bg-primary-50; }
-  .header-glyph { @apply h-5 w-5 fill-none stroke-current stroke-[1.8] stroke-linecap-round stroke-linejoin-round; }
+  .header-glyph { @apply h-5 w-5 fill-none stroke-current stroke-[1.8]; stroke-linecap: round; stroke-linejoin: round; }
   .hamburger-btn { @apply lg:hidden; }
   .main-content { @apply min-h-[60vh] flex-1; }
   .footer { @apply relative mt-16 overflow-hidden border-t border-primary-900 bg-primary-900 text-white; }
