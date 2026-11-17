@@ -1,9 +1,5 @@
-/* src/styles/spacing.css */
-
+ 
 :root {
-  /* --------------------------------------------------------------
-     Spacing scale
-     -------------------------------------------------------------- */
   --space-0: 0;
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -26,20 +22,14 @@
   --space-56: 14rem;
   --space-64: 16rem;
 
-  /* --------------------------------------------------------------
-     Page / section rhythm
-     -------------------------------------------------------------- */
-  /* One source of truth for page-level spacing. Individual components may
-     control their internal padding, but page shells consume these tokens. */
-  /* Compact, consistent outer spacing across page shells. */
-  --page-gutter-x: clamp(1rem, 2vw, 1.5rem);
+  --page-gutter-x: 1rem;
   --page-gutter-y: var(--space-2);
   --page-space-top: var(--space-2);
   --page-space-bottom: var(--space-3);
   --page-shell-max-width: var(--max-width);
-  --section-space-y: var(--space-6);
-  --section-space-y-compact: var(--space-5);
-  --section-space-y-large: var(--space-10);
+  --section-space-y: var(--space-16);
+  --section-space-y-compact: var(--space-12);
+  --section-space-y-large: var(--space-20);
 
   --content-gap: var(--space-4);
   --content-gap-compact: var(--space-3);
@@ -54,9 +44,6 @@
   --stack-gap-tight: var(--space-2);
   --stack-gap-loose: var(--space-5);
 
-  /* --------------------------------------------------------------
-     Text rhythm
-     -------------------------------------------------------------- */
   --text-gap-title: var(--space-2);
   --text-gap-subtitle: var(--space-1);
   --text-gap-description: var(--space-2);
@@ -66,7 +53,6 @@
   --text-gap-action: var(--space-4);
   --title-line-gap: var(--space-1);
 
-  /* Authentication layout rhythm */
   --auth-shell-max-width: 1060px;
   --auth-shell-min-height: 660px;
   --auth-panel-padding-x: var(--space-8);
@@ -78,7 +64,6 @@
   --auth-control-padding-x: var(--space-3);
   --auth-form-max-width: 460px;
 
-  /* Challenge page component dimensions shared by both challenge views. */
   --challenge-showcase-max-width: 61.25rem;
   --challenge-runner-max-width: 67.5rem;
   --challenge-heading-max-width: 47.5rem;
@@ -92,7 +77,6 @@
   --challenge-card-radius: var(--radius-2xl);
   --challenge-character-shadow-color: color-mix(in srgb, var(--text-main) 8%, transparent);
 
-  /* Shared notification and toolbar dimensions */
   --nav-switcher-max-width: 11.25rem;
   --nav-switcher-label-max-width: 9.375rem;
   --dropdown-menu-min-width: 13.75rem;
@@ -109,7 +93,6 @@
   --select-control-min-width: 9.375rem;
   --border-width-emphasis: 3px;
 
-  /* Shared interactive control sizing */
   --control-height-xs: 2rem;
   --control-height-sm: 2.125rem;
   --control-height-md: 2.5rem;
@@ -118,9 +101,6 @@
   --control-height-lg-mobile: 2.75rem;
   --input-textarea-min-height: 6.25rem;
 
-  /* --------------------------------------------------------------
-     Component density
-     -------------------------------------------------------------- */
   --density-compact: var(--space-2);
   --density-comfortable: var(--space-4);
   --density-spacious: var(--space-6);
@@ -132,30 +112,22 @@
   --card-padding-x-spacious: var(--space-5);
   --card-padding-y-spacious: var(--space-5);
 
-  /* --------------------------------------------------------------
-     Chat widget sizing
-     -------------------------------------------------------------- */
   --chat-toggle-size: 4.5rem;
   --chat-toggle-icon-size: 3rem;
   --chat-panel-max-width: 23rem;
   --chat-panel-max-height: 34rem;
 
-  /* --------------------------------------------------------------
-     Radius / shape scale
-     Keep shape independent from surface, tone and elevation.
-     -------------------------------------------------------------- */
   --radius-none: 0;
   --radius-xs: 0.25rem;
-  --radius-sm: 0.375rem;
+  --radius-sm: 0.3rem;
   --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
+  --radius-lg: 0.7rem;
   --radius-xl: 1rem;
   --radius-2xl: 1.25rem;
-  --radius-pill: 9999px;
+  --radius-pill: 10rem;
   --radius-full: 9999px;
   --radius-round: 50%;
 
-  /* Named component defaults */
   --radius-panel: var(--radius-none);
   --radius-card: var(--radius-md);
   --radius-input: var(--radius-sm);
@@ -163,7 +135,6 @@
   --radius-badge: var(--radius-pill);
   --radius-avatar: var(--radius-round);
 
-  /* Shape modifiers */
   --shape-square: var(--radius-none);
   --shape-sm: var(--radius-sm);
   --shape-md: var(--radius-md);
@@ -171,9 +142,6 @@
   --shape-pill: var(--radius-pill);
   --shape-round: var(--radius-round);
 
-  /* --------------------------------------------------------------
-     Layout / layering
-     -------------------------------------------------------------- */
   --z-raised: 25;
   --z-dropdown: 50;
   --z-sticky: 100;
@@ -183,24 +151,29 @@
   --z-tooltip: 400;
   --z-maintenance: 10000;
 
-  --breakpoint-sm: 640px;
-  --breakpoint-md: 768px;
-  --breakpoint-lg: 1024px;
-  --breakpoint-xl: 1280px;
+  --breakpoint-sm: 540px;
+  --breakpoint-md: 720px;
+  --breakpoint-lg: 960px;
+  --breakpoint-xl: 1140px;
+  --breakpoint-xxl: 1420px;
 
-  --max-width: 1360px;
+  --container-sm: 540px;
+  --container-md: 720px;
+  --container-lg: 960px;
+  --container-xl: 1140px;
+  --container-xxl: 1420px;
+  --container: var(--container-xl);
+  --gutter: var(--page-gutter-x);
+
+  --max-width: var(--container-xxl);
   --header-height: 64px;
 
-  /* --------------------------------------------------------------
-     Line-height scale
-     -------------------------------------------------------------- */
   --leading-tight: 1.2;
   --leading-snug: 1.35;
-  --leading-normal: 1.5;
+  --leading-normal: 1.45;
   --leading-relaxed: 1.65;
   --leading-loose: 1.85;
 
-  /* User-controlled UI rhythm. Values are applied through LayoutContext. */
   --ui-density-scale: 1;
   --ui-section-scale: 1;
   --ui-content-max-width: 76rem;
@@ -221,9 +194,9 @@ html[data-ui-density="spacious"] { --content-gap: calc(var(--space-6) * var(--ui
 @media (max-width: 768px) {
   :root {
     --header-height: 56px;
-    --section-space-y: var(--space-6);
-    --section-space-y-compact: var(--space-3);
-    --section-space-y-large: var(--space-8);
+    --section-space-y: var(--space-12);
+    --section-space-y-compact: var(--space-8);
+    --section-space-y-large: var(--space-16);
     --content-gap: var(--space-4);
     --content-gap-compact: var(--space-3);
     --content-gap-large: var(--space-5);
@@ -240,9 +213,9 @@ html[data-ui-density="spacious"] { --content-gap: calc(var(--space-6) * var(--ui
 
 @media (max-width: 480px) {
   :root {
-    --section-space-y: var(--space-5);
-    --section-space-y-compact: var(--space-3);
-    --section-space-y-large: var(--space-6);
+    --section-space-y: var(--space-12);
+    --section-space-y-compact: var(--space-8);
+    --section-space-y-large: var(--space-12);
     --card-padding-x: var(--space-4);
     --card-padding-y: var(--space-4);
     --card-padding-x-spacious: var(--space-5);
