@@ -334,14 +334,14 @@ export default function Hero() {
                   <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/15" aria-hidden="true"><ArrowUpRight size={21} strokeWidth={1.8} /></span>
                 </Link>
               ) : (
-                <Link to="/notes" className="hero-aero-button hero-aero-button-primary">
+                <Link to="/notes" className="inline-flex min-h-14 items-center justify-center gap-4 rounded-xl bg-secondary-500 px-6 py-3.5 text-base font-bold text-white shadow-lg shadow-black/20 transition hover:-translate-y-0.5 hover:bg-secondary-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
                   <span>Continue Learning</span>
                   <span className="hero-aero-button-icon" aria-hidden="true"><ArrowUpRight size={21} strokeWidth={1.8} /></span>
                 </Link>
               )
             ) : (
               <>
-                <Link to="/register" className="hero-aero-button hero-aero-button-primary">
+                <Link to="/register" className="inline-flex min-h-14 items-center justify-center gap-4 rounded-xl bg-secondary-500 px-6 py-3.5 text-base font-bold text-white shadow-lg shadow-black/20 transition hover:-translate-y-0.5 hover:bg-secondary-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
                   <span>Start Learning</span>
                   <span className="hero-aero-button-icon" aria-hidden="true"><ArrowUpRight size={21} strokeWidth={1.8} /></span>
                 </Link>
