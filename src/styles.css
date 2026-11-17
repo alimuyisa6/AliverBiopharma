@@ -35,6 +35,61 @@
   --font-sans: "Inter", "Mulish", ui-sans-serif, system-ui, sans-serif;
 }
 
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply font-sans text-foreground antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold tracking-tight text-primary-900;
+  }
+
+  h1 {
+    @apply text-4xl leading-tight sm:text-5xl lg:text-6xl;
+  }
+
+  h2 {
+    @apply text-3xl leading-tight sm:text-4xl;
+  }
+
+  h3 {
+    @apply text-2xl leading-snug sm:text-3xl;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
+
+  a,
+  button {
+    @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+
+  button:disabled {
+    @apply cursor-not-allowed opacity-60;
+  }
+
+  img,
+  svg {
+    @apply max-w-full;
+  }
+}
+
 :root {
   color-scheme: light;
   font-family: var(--font-sans);
