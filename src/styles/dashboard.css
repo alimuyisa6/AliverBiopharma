@@ -1506,3 +1506,10 @@ body.dark-mode .dashboard-content .dashboard-section-link:hover{background:var(-
 body.dark-mode .dashboard-content :is(.dashboard-curriculum-card-detail,.dashboard-curriculum-count,.dashboard-quiz-metric-label,.dashboard-quiz-note,.mastery-chart-explainer,.dashboard-download-date,.dashboard-download-help,.panel-meta,.item-text,.dashboard-section-intro){color:var(--dark-text-secondary)}
 body.dark-mode .dashboard-content :is(.dashboard-curriculum-card-title,.dashboard-curriculum-card-action,.dashboard-curriculum-count strong,.sidebar-item-link){color:var(--dark-text)}
 body.dark-mode .dashboard-content :is(a,button,input,select,textarea):focus-visible{outline-color:var(--dark-primary)}
+
+/* Increase dashboard navigation and activity icon visibility. */
+.dashboard-content .stat-box .stat-icon { font-size: 2rem; }
+.dashboard-content .activity-icon { flex-basis: 3.25rem; width: 3.25rem; height: 3.25rem; font-size: 1.5rem; }
+.dashboard-content .activity-icon svg { width: 1.75rem; height: 1.75rem; }
+.dashboard-content .dashboard-continue-icon { font-size: 2rem; }
+.dashboard-activity-stats-btn svg { width: 1.5rem; height: 1.5rem; }
