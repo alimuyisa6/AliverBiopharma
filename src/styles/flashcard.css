@@ -641,4 +641,73 @@ body.dark-mode .flashcard-page .fcd-question-card.card-mint .fcd-flip-face { bac
 body.dark-mode .flashcard-page :is(.fcd-question-card, .fcd-question-card-static).card-violet,
 body.dark-mode .flashcard-page .fcd-question-card.card-violet .fcd-flip-face { background: var(--brand-navy-soft); border-color: var(--brand-navy); }
 body.dark-mode .flashcard-page :is(h1, h2, h3, h4, h5, h6, p, label, small) { color: var(--dark-text); }
-body.dark-mode .flashcard-page :is(.text-muted, .flashcard-description) { color: var(--dark-text-secondary); }
+body.dark-mode .flashcards-page,
+body.dark-mode .flashcard-deck-view {
+  color: var(--dark-text);
+}
+
+body.dark-mode .flashcards-page :is(.flashcard-deck-card, .card),
+body.dark-mode .flashcard-deck-view :is(.fcd-review-controls, .fcd-mode-row) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text);
+}
+
+body.dark-mode .flashcards-page :is(h1, h2, h3, h4, h5, h6, p, label, small, .flashcard-class, .flashcard-subtitle),
+body.dark-mode .flashcard-deck-view :is(.fcd-meta-index, .fcd-meta-title, .fcd-keyboard-hint, .fcd-mc-empty, .fcd-structure-placeholder) {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .flashcards-page .flashcard-title,
+body.dark-mode .flashcards-page .flashcard-deck-card :is(h2, h3, p, strong),
+body.dark-mode .flashcard-deck-view .fcd-card-heading {
+  color: var(--dark-text);
+}
+
+body.dark-mode .flashcard-deck-view .fcd-question-card.card-blue,
+body.dark-mode .flashcard-deck-view .fcd-question-card-static.card-blue,
+body.dark-mode .flashcard-deck-view .fcd-question-card.card-blue .fcd-flip-face {
+  border-color: var(--primary-border);
+  background: var(--primary-light);
+}
+
+body.dark-mode .flashcard-deck-view .fcd-question-card.card-teal,
+body.dark-mode .flashcard-deck-view .fcd-question-card-static.card-teal,
+body.dark-mode .flashcard-deck-view .fcd-question-card.card-teal .fcd-flip-face {
+  border-color: var(--secondary-border);
+  background: var(--secondary-light);
+}
+
+body.dark-mode .flashcard-deck-view .fcd-question-card.card-violet,
+body.dark-mode .flashcard-deck-view .fcd-question-card-static.card-violet,
+body.dark-mode .flashcard-deck-view .fcd-question-card.card-violet .fcd-flip-face {
+  border-color: var(--brand-navy);
+  background: var(--brand-navy-soft);
+}
+
+body.dark-mode .flashcard-deck-view .fcd-question-card.card-mint,
+body.dark-mode .flashcard-deck-view .fcd-question-card-static.card-mint,
+body.dark-mode .flashcard-deck-view .fcd-question-card.card-mint .fcd-flip-face {
+  border-color: var(--brand-mint);
+  background: var(--brand-mint-soft);
+}
+
+body.dark-mode .flashcard-deck-view .fcd-input-row .form-input {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text);
+}
+
+body.dark-mode .flashcard-deck-view .fcd-input-row .form-input::placeholder {
+  color: var(--dark-text-secondary);
+  opacity: 1;
+}
+
+body.dark-mode .flashcard-deck-view :is(.fcd-mode-row > button, .fcd-review-controls button) {
+  border-color: var(--dark-border);
+}
+
+body.dark-mode .flashcards-page :is(a, button):focus-visible,
+body.dark-mode .flashcard-deck-view :is(a, button, input):focus-visible {
+  outline-color: var(--dark-primary);
+}
