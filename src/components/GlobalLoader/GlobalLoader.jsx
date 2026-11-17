@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import './GlobalLoader.css';
 
 export default function GlobalLoader({
   tagline = 'Welcome to biology & pharmacy',

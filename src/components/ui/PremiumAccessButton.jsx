@@ -1,4 +1,3 @@
-import './PremiumAccessButton.css';
 
 export default function PremiumAccessButton({ loading = false, onClick, children = 'Premium download', disabled = false }) {
   return (

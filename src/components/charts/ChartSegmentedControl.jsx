@@ -1,4 +1,3 @@
-import './charts.css';
 
 export default function ChartSegmentedControl({
   value,
