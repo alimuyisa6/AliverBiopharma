@@ -532,3 +532,139 @@ body.dark-mode .curriculum-page :is(.text-muted, .curriculum-description) { colo
 .curriculum-symbol-detail p{margin:0;font-size:.87rem;line-height:1.6}
 .curriculum-symbol-detail img{display:block;max-width:100%;max-height:180px;margin-top:.65rem;object-fit:contain}
 @media(max-width:620px){.curriculum-symbol-explorer-content{grid-template-columns:1fr}}
+
+
+.curriculum-node-page {
+  color: var(--text-main);
+}
+.curriculum-node-page .breadcrumb,
+.curriculum-node-page .breadcrumb a,
+.curriculum-node-page .breadcrumb-item {
+  color: var(--text-secondary);
+}
+.curriculum-node-page .breadcrumb a:hover,
+.curriculum-node-page .breadcrumb a:focus-visible {
+  color: var(--primary-dark);
+}
+.curriculum-node-header,
+.curriculum-node-section,
+.curriculum-node-block,
+.curriculum-node-child,
+.curriculum-node-resource,
+.curriculum-node-linked-group,
+.curriculum-node-link {
+  color: var(--text-main);
+}
+.curriculum-node-header :is(h1, h2, h3, h4),
+.curriculum-node-section-heading :is(h2, h3),
+.curriculum-node-block :is(h2, h3, h4),
+.curriculum-node-child strong,
+.curriculum-node-link span {
+  color: var(--text-main);
+}
+.curriculum-node-count,
+.curriculum-node-header p,
+.curriculum-node-block p,
+.curriculum-node-linked-preview,
+.curriculum-node-linked-preview li {
+  color: var(--text-secondary);
+}
+.curriculum-node-child,
+.curriculum-node-resource,
+.curriculum-node-linked-group,
+.curriculum-node-link {
+  border-color: var(--border-default);
+  background: var(--surface-card);
+}
+.curriculum-node-child:hover,
+.curriculum-node-resource:hover,
+.curriculum-node-link:hover {
+  border-color: var(--border-strong);
+  color: var(--text-main);
+}
+.curriculum-node-child:focus-visible,
+.curriculum-node-resource:focus-visible,
+.curriculum-node-resource-action:focus-visible,
+.curriculum-node-linked-preview a:focus-visible,
+.curriculum-node-link:focus-visible,
+.curriculum-node-question-bank-action:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+}
+.curriculum-node-question-bank {
+  background: var(--surface-section);
+  color: var(--text-main);
+}
+.curriculum-node-question-bank h2,
+.curriculum-node-question-bank p {
+  color: var(--text-main);
+}
+.curriculum-node-question-bank p {
+  color: var(--text-secondary);
+}
+.curriculum-node-question-bank-eyebrow {
+  color: var(--primary-dark);
+}
+body.dark-mode .curriculum-node-page {
+  background: var(--dark-background);
+  color: var(--dark-text);
+}
+body.dark-mode .curriculum-node-page :is(.curriculum-node-header, .curriculum-node-section, .curriculum-node-block) {
+  color: var(--dark-text);
+}
+body.dark-mode .curriculum-node-header {
+  background: var(--dark-surface-raised);
+  border-color: var(--dark-border);
+}
+body.dark-mode .curriculum-node-section,
+body.dark-mode .curriculum-node-section:nth-of-type(3n + 2),
+body.dark-mode .curriculum-node-section:nth-of-type(3n) {
+  background: var(--dark-surface);
+  border-color: var(--dark-border);
+}
+body.dark-mode .curriculum-node-page :is(h1, h2, h3, h4, h5, h6, strong) {
+  color: var(--dark-text);
+}
+body.dark-mode .curriculum-node-page :is(p, li, .curriculum-node-count, .curriculum-node-linked-preview) {
+  color: var(--dark-text-secondary);
+}
+body.dark-mode .curriculum-node-page :is(.curriculum-node-child, .curriculum-node-resource, .curriculum-node-linked-group, .curriculum-node-link, .curriculum-node-core-reading-link) {
+  background: var(--dark-surface-raised);
+  border-color: var(--dark-border);
+  color: var(--dark-text);
+}
+body.dark-mode .curriculum-node-page :is(.curriculum-node-child, .curriculum-node-resource, .curriculum-node-link):hover {
+  background: var(--dark-surface);
+  border-color: var(--dark-text-secondary);
+  color: var(--dark-text);
+}
+body.dark-mode .curriculum-node-page :is(.curriculum-node-child strong, .curriculum-node-link span, .curriculum-node-core-reading-link) {
+  color: var(--dark-text);
+}
+body.dark-mode .curriculum-node-page :is(.curriculum-node-resource-action, .curriculum-node-reading-cta, .curriculum-node-question-bank-eyebrow) {
+  color: var(--dark-primary);
+}
+body.dark-mode .curriculum-node-question-bank {
+  background: var(--dark-surface);
+  color: var(--dark-text);
+  border: 1px solid var(--dark-border);
+}
+body.dark-mode .curriculum-node-question-bank h2 {
+  color: var(--dark-text);
+}
+body.dark-mode .curriculum-node-question-bank p {
+  color: var(--dark-text-secondary);
+}
+body.dark-mode .curriculum-node-question-bank-action {
+  background: var(--dark-primary);
+  color: var(--dark-background);
+}
+body.dark-mode .curriculum-node-page .breadcrumb,
+body.dark-mode .curriculum-node-page .breadcrumb a,
+body.dark-mode .curriculum-node-page .breadcrumb-item {
+  color: var(--dark-text-secondary);
+}
+body.dark-mode .curriculum-node-page .breadcrumb a:hover,
+body.dark-mode .curriculum-node-page .breadcrumb a:focus-visible {
+  color: var(--dark-primary);
+}
