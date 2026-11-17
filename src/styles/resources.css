@@ -1148,3 +1148,17 @@ body.dark-mode .resources-page :is(.resources-chip, .resource-card-footer .btn):
 body.dark-mode .resources-page :is(a, button, input):focus-visible {
   outline-color: var(--dark-primary);
 }
+
+/* Resource artwork and card glyphs are deliberately prominent. */
+.resources-page .resource-card-icon { width: 4.25rem; height: 4.25rem; flex-basis: 4.25rem; }
+.resources-page .resource-card-icon > .icon,
+.resources-page .resource-card-icon > svg { width: 2.75rem; height: 2.75rem; font-size: 2.75rem; }
+.resources-page .resource-card-artwork svg { width: 2.75rem; height: 2.75rem; }
+.resources-page .resources-empty-icon { width: 5rem; height: 5rem; }
+.resources-page .resources-empty-icon svg { width: 3rem; height: 3rem; }
+@media(max-width:640px) {
+  .resources-page .resource-card-icon { width: 3.75rem; height: 3.75rem; flex-basis: 3.75rem; }
+  .resources-page .resource-card-icon > .icon,
+  .resources-page .resource-card-icon > svg,
+  .resources-page .resource-card-artwork svg { width: 2.25rem; height: 2.25rem; font-size: 2.25rem; }
+}
