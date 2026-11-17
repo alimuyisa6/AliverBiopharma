@@ -18,7 +18,7 @@ function RichText({ text }) {
         href={isEmail ? `mailto:${raw}` : raw}
         target={isEmail ? undefined : '_blank'}
         rel={isEmail ? undefined : 'noopener noreferrer'}
-        className="legal-link"
+        className="font-semibold text-primary-700 underline underline-offset-4 hover:text-primary-900"
       >
         {raw}
       </a>
@@ -45,13 +45,13 @@ export default function LegalPage({ type }) {
   const page = sections[type];
 
   return (
-    <section className="legal-section">
-      <div className="legal-content-wrap">
-        <h1 className="legal-title">{page?.title || 'This page isn’t available'}</h1>
+    <section className="w-full bg-slate-50 px-5 py-14 sm:py-20">
+      <div className="mx-auto w-full max-w-4xl rounded-3xl border border-slate-200 bg-white px-6 py-8 shadow-sm sm:px-10 sm:py-12">
+        <h1 className="mb-10 border-b border-slate-200 pb-7 text-4xl font-extrabold text-primary-900 sm:text-5xl">{page?.title || 'This page isn’t available'}</h1>
         {page?.sections?.length ? (
-          <div className="legal-body">
+          <div className="space-y-9">
             {page.sections.map((block, idx) => (
-              <div key={idx} className="legal-block">
+              <div key={idx} className="space-y-4">
                 {block.heading && <h2>{block.heading}</h2>}
                 {block.content.split('\n\n').map((para, pIdx) => (
                   <p key={pIdx}>
@@ -62,7 +62,7 @@ export default function LegalPage({ type }) {
             ))}
           </div>
         ) : (
-          <p className="legal-empty">This page’s content hasn’t been added yet. Please check back later.</p>
+          <p className="rounded-xl bg-primary-50 p-5 text-slate-700">This page’s content hasn’t been added yet. Please check back later.</p>
         )}
       </div>
     </section>
