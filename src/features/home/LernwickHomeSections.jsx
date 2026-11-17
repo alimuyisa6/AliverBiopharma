@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import Icon from '../../components/Icon/Icon';
-import './lernwick-home-sections.css';
 
 const pathways = [
   { id: 'o-level', label: 'O-Level Biology', title: 'Build strong foundations', description: 'Explore the living world through observation, clear scientific explanations and practical understanding.', icon: 'microscope' },
@@ -60,26 +59,26 @@ function resolveStudio(activeLevelName, activeGroupName) {
 
 function PublicPathways() {
   return (
-    <section className="lernwick-pathways section" id="pathways" aria-labelledby="lernwick-pathways-title">
-      <div className="container">
-        <div className="lernwick-section-heading">
+    <section className="w-full bg-white py-16 sm:py-20" id="pathways" aria-labelledby="lernwick-pathways-title">
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
+        <div className="mb-9 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="lernwick-note">One platform. Distinct learning journeys.</p>
+            <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-secondary-700">One platform. Distinct learning journeys.</p>
             <h2 id="lernwick-pathways-title">Choose the science you want to explore</h2>
             <p>Each programme has its own subject focus and learning experience.</p>
           </div>
         </div>
-        <div className="lernwick-pathway-grid">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
           {pathways.map((pathway) => (
-            <article className={`lernwick-pathway-card lernwick-pathway-card--${pathway.id}`} key={pathway.id}>
-              <div className="lernwick-pathway-image" aria-hidden="true">
-                <Icon name={pathway.icon} monochrome />
+            <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg" key={pathway.id}>
+              <div className="flex min-h-48 flex-col items-start justify-between bg-primary-50 p-7 text-primary-800" aria-hidden="true">
+                <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-4xl text-primary-700 shadow-sm"><Icon name={pathway.icon} monochrome /></span>
                 <span>{pathway.label}</span>
               </div>
-              <div className="lernwick-pathway-body">
+              <div className="p-7">
                 <h3>{pathway.title}</h3>
                 <p>{pathway.description}</p>
-                <Link className="lernwick-pathway-action" to="/resources">Explore learning resources <Icon name="arrow-right" /></Link>
+                <Link className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-primary-700 transition hover:text-secondary-700" to="/resources">Explore learning resources <Icon name="arrow-right" /></Link>
               </div>
             </article>
           ))}
@@ -119,20 +118,20 @@ const learningSteps = {
 function HowLearningWorks({ studio }) {
   const steps = studio ? learningSteps[studio.kind === 'biology-foundations' ? 'olevel' : studio.kind === 'advanced-biology' ? 'alevel' : 'pharmacy'] : learningSteps.general;
   return (
-    <section className="lernwick-how section section--soft" id="how" aria-labelledby="lernwick-how-title">
-      <div className="container">
-        <div className="lernwick-section-heading lernwick-section-heading--center">
+    <section className="w-full bg-primary-50 py-16 sm:py-20" id="how" aria-labelledby="lernwick-how-title">
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
+        <div className="mx-auto mb-10 max-w-3xl text-center">
           <div>
-            <p className="lernwick-note">A clear learning process</p>
+            <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-secondary-700">A clear learning process</p>
             <h2 id="lernwick-how-title"><span className="organic-letter organic-letter--accent">L</span>earn, practise and progress</h2>
             <p>Your learning journey moves from understanding concepts to applying and strengthening them.</p>
           </div>
         </div>
-        <ol className="lernwick-step-grid">
+        <ol className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {steps.map(([number, title, description]) => (
-            <li className="lernwick-step-card" key={number}>
-              <span className="lernwick-step-number">{number}</span>
-              <span className="lernwick-step-mark" aria-hidden="true" />
+            <li className="rounded-2xl border border-primary-100 bg-white p-6 shadow-sm" key={number}>
+              <span className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary-100 text-lg font-extrabold text-primary-800">{number}</span>
+              <span className="mb-4 block h-1 w-12 rounded-full bg-secondary-500" aria-hidden="true" />
               <h3>{title}</h3>
               <p>{description}</p>
             </li>
@@ -142,7 +141,6 @@ function HowLearningWorks({ studio }) {
     </section>
   );
 }
-
 
 const connectedLearningStages = [
   {
@@ -195,29 +193,29 @@ const connectedLearningStages = [
 
 export function ConnectedLearning() {
   return (
-    <section className="lernwick-connected section" id="connected-learning" aria-labelledby="lernwick-connected-title">
-      <div className="container">
-        <div className="lernwick-section-heading">
+    <section className="w-full bg-white py-16 sm:py-20" id="connected-learning" aria-labelledby="lernwick-connected-title">
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
+        <div className="mb-9 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="lernwick-note">One connected learning experience</p>
+            <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-secondary-700">One connected learning experience</p>
             <h2 id="lernwick-connected-title">Move from understanding to confident application</h2>
             <p>Each stage builds on the previous one. Choose a tool when you need it, then return to your learning pathway.</p>
           </div>
-          <Link className="lernwick-outline-button" to="/resources">Explore all resources <Icon name="arrow-right" /></Link>
+          <Link className="inline-flex items-center justify-center gap-2 rounded-xl border border-primary-300 bg-white px-5 py-3 text-sm font-bold text-primary-800 transition hover:bg-primary-50" to="/resources">Explore all resources <Icon name="arrow-right" /></Link>
         </div>
-        <div className="lernwick-connected-grid">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
           {connectedLearningStages.map((stage) => (
-            <article className={`lernwick-connected-card lernwick-connected-card--${stage.key}`} key={stage.key}>
-              <div className="lernwick-connected-card-heading">
-                <span className="lernwick-connected-number">{stage.number}</span>
+            <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm" key={stage.key}>
+              <div className="mb-4 flex items-center gap-3">
+                <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-secondary-100 text-sm font-extrabold text-secondary-800">{stage.number}</span>
                 <h3>{stage.title}</h3>
               </div>
-              <p className="lernwick-connected-description">{stage.description}</p>
-              <div className="lernwick-connected-links">
+              <p className="mb-5 text-sm leading-7 text-slate-600">{stage.description}</p>
+              <div className="flex flex-col gap-2">
                 {stage.links.map((item) => (
-                  <Link className="lernwick-connected-link" to={item.to} key={item.label}>
-                    <span className="lernwick-connected-link-icon"><Icon name={item.icon} monochrome /></span>
-                    <span className="lernwick-connected-link-copy"><strong>{item.label}</strong><small>{item.detail}</small></span>
+                  <Link className="group flex min-w-0 items-center gap-3 rounded-xl border border-slate-100 bg-slate-50 p-3 transition hover:border-primary-200 hover:bg-primary-50" to={item.to} key={item.label}>
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary-100 text-lg text-primary-700"><Icon name={item.icon} monochrome /></span>
+                    <span className="flex min-w-0 flex-1 flex-col"><strong>{item.label}</strong><small>{item.detail}</small></span>
                     <Icon name="arrow-right" />
                   </Link>
                 ))}
@@ -232,36 +230,36 @@ export function ConnectedLearning() {
 
 function ProgrammeStudio({ studio, activeGroupName, activeGroupId }) {
   return (
-    <section className={`lernwick-programme-studio section lernwick-programme-studio--${studio.kind}`} aria-labelledby="programme-studio-title">
-      <div className="container">
-        <div className="lernwick-studio-layout">
-          <div className="lernwick-studio-intro">
-            <p className="lernwick-note">{studio.eyebrow}{activeGroupName ? ` · ${activeGroupName}` : ''}</p>
+    <section className="w-full bg-secondary-50 py-16 sm:py-20" aria-labelledby="programme-studio-title">
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1fr_0.8fr]">
+          <div className="max-w-2xl">
+            <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-secondary-700">{studio.eyebrow}{activeGroupName ? ` · ${activeGroupName}` : ''}</p>
             <h2 id="programme-studio-title">{studio.title}</h2>
             <p>{studio.description}</p>
           </div>
-          <div className={`lernwick-studio-visual lernwick-studio-visual--${studio.visual}`} aria-label={studio.visualLabel}>
+          <div className="relative flex min-h-72 flex-col items-center justify-center overflow-hidden rounded-[2rem] border border-secondary-200 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 p-8 text-white shadow-xl" aria-label={studio.visualLabel}>
             <span className="lernwick-studio-orbit lernwick-studio-orbit--one" />
             <span className="lernwick-studio-orbit lernwick-studio-orbit--two" />
-            <span className="lernwick-studio-visual-core">
+            <span className="relative z-10 flex h-28 w-28 items-center justify-center rounded-full border border-white/25 bg-white/10 text-5xl text-secondary-200 shadow-2xl backdrop-blur">
               <Icon name={studio.visual === 'pharmacy' ? 'capsules' : studio.visual === 'molecule' ? 'atom' : 'microscope'} monochrome />
             </span>
-            <span className="lernwick-studio-visual-label">{studio.visualLabel}</span>
+            <span className="relative z-10 mt-6 text-sm font-semibold tracking-wide text-white/85">{studio.visualLabel}</span>
           </div>
         </div>
-        <div className="lernwick-studio-card-grid" aria-label="Explore learning resources">
+        <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3" aria-label="Explore learning resources">
           {studio.cards.map((card, index) => {
             const destination = activeGroupId && card.resource
               ? `/curriculum/${encodeURIComponent(activeGroupId)}?resource=${encodeURIComponent(card.resource)}`
               : (card.route || (activeGroupId ? `/curriculum/${encodeURIComponent(activeGroupId)}` : '/resources'));
 
             return (
-              <article className={`lernwick-studio-card lernwick-studio-card--${index + 1}`} key={card.title}>
-                <span className="lernwick-studio-card-icon"><Icon name={card.icon} monochrome /></span>
-                <span className="lernwick-studio-card-label">{card.label}</span>
+              <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm" key={card.title}>
+                <span className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary-100 text-xl text-primary-700"><Icon name={card.icon} monochrome /></span>
+                <span className="mb-2 block text-xs font-bold uppercase tracking-wider text-secondary-700">{card.label}</span>
                 <h3>{card.title}</h3>
                 <p>{card.description}</p>
-                <Link to={destination}>{card.action}<Icon name="arrow-right" /></Link>
+                <Link className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-primary-700 transition hover:text-secondary-700" to={destination}>{card.action}<Icon name="arrow-right" /></Link>
               </article>
             );
           })}

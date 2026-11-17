@@ -493,7 +493,7 @@ export default function BlogPage() {
         }
       `}</style>
 
-      <div className="blog-page">
+      <div className="blog-page min-h-screen bg-background text-foreground">
         {loading ? (
           <section className="blog-article-body" aria-busy="true" aria-live="polite">
             <p>Loading blog content…</p>

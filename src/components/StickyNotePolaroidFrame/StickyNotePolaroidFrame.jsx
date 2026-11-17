@@ -1,4 +1,3 @@
-import './StickyNotePolaroidFrame.css';
 
 function PaperClip() {
   return (

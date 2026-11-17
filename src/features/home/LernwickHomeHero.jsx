@@ -36,48 +36,48 @@ export default function LernwickHomeHero({
   const imageAlt = heroContent.imageAlt || 'A smiling Black female healthcare student in a white coat';
 
   return (
-    <section className="ab-home-hero" aria-labelledby="ab-home-hero-title">
-      <div className="ab-home-hero-main">
-        <div className="ab-home-hero-copy">
-          <p className="ab-home-hero-brand">{eyebrow}</p>
-          {name && <p className="ab-home-hero-welcome">Welcome back, {name}</p>}
+    <section className="w-full overflow-hidden bg-primary-50 text-foreground" aria-labelledby="ab-home-hero-title">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:px-12 lg:py-24">
+        <div className="order-2 min-w-0 lg:order-1">
+          <p className="mb-4 text-sm font-bold uppercase tracking-[0.18em] text-secondary-700">{eyebrow}</p>
+          {name && <p className="mb-3 text-sm font-semibold text-primary-700">Welcome back, {name}</p>}
 
-          <h1 id="ab-home-hero-title">
+          <h1 id="ab-home-hero-title" className="max-w-2xl text-4xl font-bold leading-[1.08] tracking-tight text-primary-900 sm:text-5xl lg:text-6xl">
             {headingLead}
-            <span>{headingAccent}</span>
+            <span className="mt-1 block text-secondary-600">{headingAccent}</span>
           </h1>
 
-          <p className="ab-home-hero-description">{description}</p>
+          <p className="mt-6 max-w-2xl text-base leading-8 text-slate-700 sm:text-lg">{description}</p>
 
-          <div className="ab-home-hero-benefits" aria-label="Learning benefits">
+          <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4" aria-label="Learning benefits">
             {benefits.map((benefit, index) => (
-              <div className="ab-home-hero-benefit" key={benefit.id || benefit.title || index}>
-                <strong>{benefit.title}</strong>
-                <span>{benefit.detail}</span>
+              <div className="flex min-h-24 flex-col justify-center rounded-xl border border-primary-100 bg-white px-4 py-4 shadow-sm" key={benefit.id || benefit.title || index}>
+                <strong className="text-base font-bold text-primary-900">{benefit.title}</strong>
+                <span className="mt-1 text-xs font-medium text-slate-600">{benefit.detail}</span>
               </div>
             ))}
           </div>
 
-          <div className="ab-home-hero-actions">
-            <Link className="ab-home-hero-primary" to={primaryHref}>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Link className="inline-flex min-h-12 items-center justify-center rounded-xl bg-primary-600 px-6 py-3 text-sm font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-primary-700" to={primaryHref}>
               {primaryLabel}
             </Link>
-            <Link className="ab-home-hero-secondary" to={secondaryHref}>
+            <Link className="inline-flex min-h-12 items-center justify-center rounded-xl border border-primary-300 bg-white px-6 py-3 text-sm font-bold text-primary-800 transition hover:border-primary-500 hover:bg-primary-100" to={secondaryHref}>
               {secondaryLabel}
             </Link>
           </div>
 
           {learningPath && (
-            <p className="ab-home-hero-path">
+            <p className="mt-6 text-sm text-slate-600">
               Your current programme: <strong>{learningPath}</strong>
             </p>
           )}
         </div>
 
-        <div className="ab-home-hero-visual" aria-label="Student portrait">
-          <div className="ab-home-hero-photo-frame">
+        <div className="order-1 mx-auto w-full max-w-xl lg:order-2">
+          <div className="relative overflow-hidden rounded-[2rem] border-[10px] border-white bg-white shadow-2xl shadow-primary-900/15">
             <img
-              className="ab-home-hero-student"
+              className="aspect-[4/5] h-full w-full object-cover object-center"
               src={imageSrc}
               alt={imageAlt}
               fetchPriority="high"

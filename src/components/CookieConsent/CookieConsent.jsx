@@ -144,10 +144,10 @@ export default function CookieConsent() {
       aria-modal="false"
       aria-labelledby="cookie-consent-title"
     >
-      <div className="cookie-consent-card">
+      <div className="relative rounded-2xl border border-slate-200 bg-white p-5 shadow-2xl shadow-slate-950/20 sm:p-7">
         <button
           type="button"
-          className="cookie-consent-close"
+          className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-xl text-slate-700 hover:bg-slate-200"
           aria-label="Close cookie notice"
           onClick={close}
           disabled={saving}
@@ -155,16 +155,16 @@ export default function CookieConsent() {
           ×
         </button>
 
-        <div className="cookie-consent-brand">
+        <div className="mb-4 pr-10">
           {logo ? (
             <img src={logo} alt={siteName} className="cookie-consent-logo" />
           ) : (
-            <span className="cookie-consent-wordmark">{siteName}</span>
+            <span className="font-bold text-primary-900">{siteName}</span>
           )}
         </div>
 
-        <div className="cookie-consent-content">
-          <h2 id="cookie-consent-title">Your cookie preferences</h2>
+        <div className="space-y-4">
+          <h2 id="cookie-consent-title" className="text-2xl font-bold text-primary-900">Your cookie preferences</h2>
           <p>
             AliverBiopharm uses essential cookies for secure account sessions.
             You can accept all cookies, reject all optional cookies, or choose
@@ -172,8 +172,8 @@ export default function CookieConsent() {
           </p>
 
           {showSettings && (
-            <div className="cookie-consent-options">
-              <div className="cookie-consent-option cookie-consent-option-essential">
+            <div className="grid gap-3 rounded-xl bg-slate-50 p-4">
+              <div className="flex items-center justify-between gap-4 border-b border-slate-200 pb-3 text-sm text-slate-700">
                 <div>
                   <strong>Essential</strong>
                   <span>Always active for secure sign-in and core site functions.</span>
@@ -186,7 +186,7 @@ export default function CookieConsent() {
                 ['analytics', 'Analytics', 'Allow anonymous usage measurement where enabled by the platform.'],
                 ['marketing', 'Marketing', 'Allow advertising and campaign measurement cookies where enabled.']
               ].map(([key, label, description]) => (
-                <label key={key} className="cookie-consent-option">
+                <label key={key} className="flex items-center justify-between gap-4 rounded-lg border border-slate-200 bg-white p-3 text-sm text-slate-700">
                   <div>
                     <strong>{label}</strong>
                     <span>{description}</span>
@@ -204,7 +204,7 @@ export default function CookieConsent() {
             </div>
           )}
 
-          <div className="cookie-consent-actions">
+          <div className="flex flex-wrap gap-3 [&>button]:min-h-10 [&>button]:rounded-xl [&>button]:px-4 [&>button]:py-2 [&>button]:font-semibold">
             <button
               type="button"
               className="btn btn-primary"

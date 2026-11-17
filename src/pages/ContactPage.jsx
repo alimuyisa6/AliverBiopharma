@@ -34,9 +34,9 @@ export default function ContactPage() {
   }, [contactForm]);
 
   return (
-    <div className="section contact-page">
-      <h1 className="section-title">Contact AliverBiopharm</h1>
-      <p className="section-subtitle">Need help with your account, study materials, or a website feature? Send our team a message.</p>
+    <div className="w-full bg-slate-50 px-5 py-14 sm:py-20">
+      <h1 className="mx-auto mb-4 max-w-5xl text-4xl font-extrabold text-primary-900 sm:text-5xl">Contact AliverBiopharm</h1>
+      <p className="mx-auto mb-10 max-w-5xl text-lg leading-8 text-slate-600">Need help with your account, study materials, or a website feature? Send our team a message.</p>
       <ContactSection
         contactForm={contactForm}
         contactStatus={contactStatus}
