@@ -202,6 +202,23 @@
   box-shadow: var(--shadow-card);
 }
 
+.classroom-page .classroom-room-card .card-body {
+  background: var(--surface-card);
+  color: var(--text-main);
+}
+
+.classroom-page .classroom-room-card :where(.card-title, h3, p, .card-text) {
+  color: var(--text-main);
+}
+
+.classroom-page .classroom-room-card :where(.classroom-room-meta, .text-muted, small) {
+  color: var(--text-secondary);
+}
+
+.classroom-page .classroom-room-card :where(svg, .icon) {
+  color: var(--primary-dark);
+}
+
 .classroom-page .classroom-list-table-wrap {
   overflow-x: auto;
   margin-block-start: var(--ui-content-gap, var(--content-gap));
@@ -291,6 +308,23 @@ body.dark-mode .classroom-room-page .classroom-chat-panel {
   border-color: var(--dark-border);
   background: var(--dark-surface);
   color: var(--dark-text);
+}
+
+body.dark-mode .classroom-page .classroom-room-card .card-body {
+  background: var(--dark-surface);
+  color: var(--dark-text);
+}
+
+body.dark-mode .classroom-page .classroom-room-card :where(.card-title, h3, p, .card-text) {
+  color: var(--dark-text);
+}
+
+body.dark-mode .classroom-page .classroom-room-card :where(.classroom-room-meta, .text-muted, small) {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .classroom-page .classroom-room-card :where(svg, .icon) {
+  color: var(--dark-primary);
 }
 
 body.dark-mode .classroom-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small),

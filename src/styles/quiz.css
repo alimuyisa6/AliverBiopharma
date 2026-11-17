@@ -522,6 +522,23 @@
   background: var(--bg-card);
 }
 
+.quiz-question-card {
+  color: var(--text-main);
+  border-color: var(--border-default);
+}
+
+.quiz-question-card :where(h1, h2, h3, h4, h5, h6, p, li, label, .question-text, .question-prompt) {
+  color: var(--text-main);
+}
+
+.quiz-question-card :where(small, .question-hint, .question-meta, .field-hint) {
+  color: var(--text-secondary);
+}
+
+.quiz-question-card :where(svg, .icon) {
+  color: var(--primary-dark);
+}
+
 .quiz-question-heading {
   margin: 0 0 var(--text-gap-action);
   color: var(--text-main);
@@ -1743,6 +1760,22 @@
   margin: 0;
 }
 
+.quiz-result-container .quiz-review-card {
+  color: var(--text-main);
+}
+
+.quiz-result-container .quiz-review-card :where(p, li, strong, .quiz-review-qnum) {
+  color: var(--text-main);
+}
+
+.quiz-result-container .quiz-review-card .quiz-review-explanation {
+  color: var(--text-secondary);
+}
+
+.quiz-result-container .quiz-review-card :where(.quiz-review-status, svg, .icon) {
+  color: var(--primary-dark);
+}
+
 .quiz-result-container .quiz-review-card > p + p {
   margin-top: var(--space-3);
 }
@@ -2038,6 +2071,26 @@ body.dark-mode .quiz-page .quiz-options-list .quiz-option-btn.incorrect {
 body.dark-mode .quiz-result-container .quiz-review-card {
   border-color: var(--night-500);
   background: var(--night-800);
+}
+
+body.dark-mode .quiz-page .quiz-question-card,
+body.dark-mode .quiz-result-container .quiz-review-card {
+  color: var(--dark-text);
+}
+
+body.dark-mode .quiz-page .quiz-question-card :where(h1, h2, h3, h4, h5, h6, p, li, label, .question-text, .question-prompt),
+body.dark-mode .quiz-result-container .quiz-review-card :where(p, li, strong, .quiz-review-qnum) {
+  color: var(--dark-text);
+}
+
+body.dark-mode .quiz-page .quiz-question-card :where(small, .question-hint, .question-meta, .field-hint),
+body.dark-mode .quiz-result-container .quiz-review-card .quiz-review-explanation {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .quiz-page .quiz-question-card :where(svg, .icon),
+body.dark-mode .quiz-result-container .quiz-review-card :where(svg, .icon) {
+  color: var(--dark-primary);
 }
 body.dark-mode .quiz-result-container .quiz-review-card .quiz-review-explanation {
   border-inline-start-color: var(--accent);

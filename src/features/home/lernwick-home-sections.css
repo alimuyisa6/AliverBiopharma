@@ -1298,3 +1298,37 @@ body.dark-mode .lernwick-newsletter-status.success {
 body.dark-mode .lernwick-newsletter-status.error {
   color: var(--danger-color);
 }
+
+
+/* Surface-aware typography and icon contrast for homepage learning cards. */
+.home-page :is(.lernwick-pathway-card, .lernwick-step-card, .lernwick-connected-card, .lernwick-studio-card) {
+  color: var(--text-main);
+}
+
+.home-page :is(.lernwick-pathway-card, .lernwick-step-card, .lernwick-connected-card, .lernwick-studio-card) :is(h3, h4, .lernwick-pathway-title, .lernwick-step-title, .lernwick-connected-title) {
+  color: var(--text-main);
+}
+
+.home-page :is(.lernwick-pathway-card, .lernwick-step-card, .lernwick-connected-card, .lernwick-studio-card) :is(p, .lernwick-pathway-description, .lernwick-step-description, .lernwick-connected-description) {
+  color: var(--text-secondary);
+}
+
+.home-page :is(.lernwick-pathway-card, .lernwick-step-card, .lernwick-connected-card, .lernwick-studio-card) :is(svg, .icon, .lernwick-pathway-image-icon, .lernwick-step-icon) {
+  color: var(--primary-dark);
+}
+
+body.dark-mode .home-page :is(.lernwick-pathway-card, .lernwick-step-card, .lernwick-connected-card, .lernwick-studio-card) {
+  color: var(--dark-text);
+}
+
+body.dark-mode .home-page :is(.lernwick-pathway-card, .lernwick-step-card, .lernwick-connected-card, .lernwick-studio-card) :is(h3, h4, .lernwick-pathway-title, .lernwick-step-title, .lernwick-connected-title) {
+  color: var(--dark-text);
+}
+
+body.dark-mode .home-page :is(.lernwick-pathway-card, .lernwick-step-card, .lernwick-connected-card, .lernwick-studio-card) :is(p, .lernwick-pathway-description, .lernwick-step-description, .lernwick-connected-description) {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .home-page :is(.lernwick-pathway-card, .lernwick-step-card, .lernwick-connected-card, .lernwick-studio-card) :is(svg, .icon, .lernwick-pathway-image-icon, .lernwick-step-icon) {
+  color: var(--dark-primary);
+}
