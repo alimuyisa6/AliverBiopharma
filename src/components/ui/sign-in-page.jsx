@@ -24,23 +24,23 @@ export function LoginPage({
   const emailId = useId();
 
   return (
-    <div className="auth-form-block auth-login-block">
-      <div className="auth-form-head">
-        <span className="auth-login-kicker">ALIVERBIOPHARM LEARNING</span>
-        <h2 className="auth-heading">Welcome back</h2>
-        <p className="auth-subheading">
+    <div className="mx-auto w-full max-w-md rounded-3xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-900/5 sm:p-9">
+      <div className="mb-8 space-y-3">
+        <span className="inline-flex rounded-full bg-primary-50 px-3 py-1 text-xs font-bold tracking-widest text-primary-800">ALIVERBIOPHARM LEARNING</span>
+        <h2 className="text-3xl font-bold tracking-tight text-primary-900 sm:text-4xl">Welcome back</h2>
+        <p className="text-base leading-7 text-slate-600">
           Sign in to continue your Biology and Pharmacy learning journey.
         </p>
       </div>
 
       {error && (
-        <div className="auth-alert auth-alert-error" role="alert">
+        <div className="mb-5 flex items-start gap-3 rounded-xl border border-red-200 bg-red-50 p-4 text-sm font-medium text-red-800" role="alert">
           <Icon name="exclamation-triangle" />
           <span>{error}</span>
         </div>
       )}
 
-      <form className="auth-form" onSubmit={handleLogin}>
+      <form className="grid gap-5" onSubmit={handleLogin}>
         <Input
           id={emailId}
           label={t('auth.emailAddress')}
@@ -66,7 +66,7 @@ export function LoginPage({
           className="auth-field"
         />
 
-        <div ref={setCaptchaSlot} className="auth-captcha" />
+        <div ref={setCaptchaSlot} className="flex min-h-16 items-center justify-center overflow-x-auto rounded-xl border border-slate-200 bg-slate-50 p-3" />
 
         <Button
           type="submit"
@@ -90,7 +90,7 @@ export function LoginPage({
         Sign in with a Passkey
       </Button>
 
-      <div className="auth-switch">
+      <div className="mt-7 flex flex-wrap items-center justify-center gap-2 border-t border-slate-100 pt-6 text-sm text-slate-600">
         <span>{t('auth.noAccount')}</span>
         <Button variant="ghost" size="sm" onClick={onSignUp}>
           Sign up
