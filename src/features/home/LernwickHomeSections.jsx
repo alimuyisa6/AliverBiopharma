@@ -230,7 +230,7 @@ export function ConnectedLearning() {
 
 function ProgrammeStudio({ studio, activeGroupName, activeGroupId }) {
   return (
-    <section className={`lernwick-programme-studio section lernwick-programme-studio--${studio.kind}`} aria-labelledby="programme-studio-title">
+    <section className="w-full bg-secondary-50 py-16 sm:py-20" aria-labelledby="programme-studio-title">
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1fr_0.8fr]">
           <div className="max-w-2xl">
@@ -238,13 +238,13 @@ function ProgrammeStudio({ studio, activeGroupName, activeGroupId }) {
             <h2 id="programme-studio-title">{studio.title}</h2>
             <p>{studio.description}</p>
           </div>
-          <div className={`lernwick-studio-visual lernwick-studio-visual--${studio.visual}`} aria-label={studio.visualLabel}>
+          <div className="relative flex min-h-72 flex-col items-center justify-center overflow-hidden rounded-[2rem] border border-secondary-200 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 p-8 text-white shadow-xl" aria-label={studio.visualLabel}>
             <span className="lernwick-studio-orbit lernwick-studio-orbit--one" />
             <span className="lernwick-studio-orbit lernwick-studio-orbit--two" />
-            <span className="lernwick-studio-visual-core">
+            <span className="relative z-10 flex h-28 w-28 items-center justify-center rounded-full border border-white/25 bg-white/10 text-5xl text-secondary-200 shadow-2xl backdrop-blur">
               <Icon name={studio.visual === 'pharmacy' ? 'capsules' : studio.visual === 'molecule' ? 'atom' : 'microscope'} monochrome />
             </span>
-            <span className="lernwick-studio-visual-label">{studio.visualLabel}</span>
+            <span className="relative z-10 mt-6 text-sm font-semibold tracking-wide text-white/85">{studio.visualLabel}</span>
           </div>
         </div>
         <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3" aria-label="Explore learning resources">
@@ -259,7 +259,7 @@ function ProgrammeStudio({ studio, activeGroupName, activeGroupId }) {
                 <span className="mb-2 block text-xs font-bold uppercase tracking-wider text-secondary-700">{card.label}</span>
                 <h3>{card.title}</h3>
                 <p>{card.description}</p>
-                <Link to={destination}>{card.action}<Icon name="arrow-right" /></Link>
+                <Link className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-primary-700 transition hover:text-secondary-700" to={destination}>{card.action}<Icon name="arrow-right" /></Link>
               </article>
             );
           })}
