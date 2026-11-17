@@ -23,6 +23,8 @@ const ICON_DATA = {
   'calendar': { badge: 'circle', bg: 'var(--accent-dark)', r: 0, bgPath: "", glyph: "<path d=\"M12 6v6l4 2\" stroke=\"var(--white)\" stroke-width=\"2\" stroke-linecap=\"round\" fill=\"none\"/>" },
   'camera': { badge: 'rect', bg: 'var(--primary)', r: 4, bgPath: "", glyph: "<path d=\"M5 8h3l1.5-2h5L16 8h3a1 1 0 011 1v8a1 1 0 01-1 1H5a1 1 0 01-1-1V9a1 1 0 011-1z\" stroke=\"var(--white)\" stroke-width=\"1.6\" fill=\"none\"/><circle cx=\"12\" cy=\"13\" r=\"3\" stroke=\"var(--white)\" stroke-width=\"1.6\" fill=\"none\"/>" },
   'capsules': { badge: 'circle', bg: 'var(--success-color)', r: 0, bgPath: "", glyph: "<rect x=\"4\" y=\"10\" width=\"9\" height=\"5.5\" rx=\"2.75\" fill=\"var(--white)\" transform=\"rotate(-30 8.5 12.75)\"/><rect x=\"11\" y=\"8.5\" width=\"9\" height=\"5.5\" rx=\"2.75\" stroke=\"var(--white)\" stroke-width=\"1.4\" fill=\"none\" transform=\"rotate(-30 15.5 11.25)\"/>" },
+  'chart-pie': { badge: 'circle', bg: 'var(--primary)', r: 0, bgPath: "", glyph: "<path d=\"M12 3v9h9A9 9 0 1012 3z\" fill=\"none\" stroke=\"var(--white)\" stroke-width=\"1.7\" stroke-linejoin=\"round\"/><path d=\"M15 3.5A8.5 8.5 0 0120.5 9H15V3.5z\" fill=\"var(--white)\"/>" },
+  'calendar-clock': { badge: 'circle', bg: 'var(--primary)', r: 0, bgPath: "", glyph: "<rect x=\"4\" y=\"5\" width=\"16\" height=\"15\" rx=\"2\" stroke=\"var(--white)\" stroke-width=\"1.6\" fill=\"none\"/><path d=\"M8 3v4M16 3v4M4 9h16\" stroke=\"var(--white)\" stroke-width=\"1.6\" stroke-linecap=\"round\"/><circle cx=\"15.5\" cy=\"15\" r=\"3\" fill=\"var(--primary)\" stroke=\"var(--white)\" stroke-width=\"1.2\"/><path d=\"M15.5 13.5v1.7l1.1.7\" stroke=\"var(--white)\" stroke-width=\"1.1\" stroke-linecap=\"round\"/>" },
   'chart-line': { badge: 'none', bg: '', r: 0, bgPath: "", glyph: "<rect x=\"2\" y=\"12\" width=\"4\" height=\"8\" rx=\"1\" fill=\"var(--success-color)\"/><rect x=\"8\" y=\"8\" width=\"4\" height=\"12\" rx=\"1\" fill=\"var(--success-color)\"/><rect x=\"14\" y=\"4\" width=\"4\" height=\"16\" rx=\"1\" fill=\"var(--primary)\"/><rect x=\"20\" y=\"10\" width=\"4\" height=\"10\" rx=\"1\" fill=\"var(--secondary)\"/>" },
   'check': { badge: 'circle', bg: 'var(--primary)', r: 0, bgPath: "", glyph: "<circle cx=\"12\" cy=\"12\" r=\"3\" fill=\"var(--white)\"/>" },
   'check-double': { badge: 'circle', bg: 'var(--primary)', r: 0, bgPath: "", glyph: "<circle cx=\"12\" cy=\"12\" r=\"3\" fill=\"var(--white)\"/>" },
@@ -35,6 +37,9 @@ const ICON_DATA = {
   'circle-xmark': { badge: 'circle', bg: 'var(--danger-color)', r: 0, bgPath: "", glyph: "<path d=\"m8 8 8 8M16 8l-8 8\" stroke=\"var(--white)\" stroke-width=\"2\" stroke-linecap=\"round\"/>" },
   'clipboard-check': { badge: 'rect', bg: 'var(--primary)', r: 4, bgPath: "", glyph: "<rect x=\"7\" y=\"5\" width=\"10\" height=\"16\" rx=\"1.5\" fill=\"none\" stroke=\"var(--white)\" stroke-width=\"1.5\"/><path d=\"M9 4h6v3H9zM9 12l2 2 4-4\" fill=\"none\" stroke=\"var(--white)\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>" },
   'clock': { badge: 'circle', bg: 'var(--accent-dark)', r: 0, bgPath: "", glyph: "<circle cx=\"12\" cy=\"12\" r=\"7.5\" stroke=\"var(--white)\" stroke-width=\"1.7\" fill=\"none\"/><path d=\"M12 7.5v4.8l3.2 2\" stroke=\"var(--white)\" stroke-width=\"1.7\" stroke-linecap=\"round\" fill=\"none\"/>" },
+  'wrench': { badge: 'circle', bg: 'var(--secondary)', r: 0, bgPath: "", glyph: "<path d=\"M14.5 6.5a4.5 4.5 0 00-5.8 5.8L4 17l3 3 4.7-4.7a4.5 4.5 0 005.8-5.8l-2.7 2.7-3-3 2.7-2.7z\" stroke=\"var(--white)\" stroke-width=\"1.6\" stroke-linejoin=\"round\" fill=\"none\"/>" },
+  'rotate': { badge: 'circle', bg: 'var(--primary)', r: 0, bgPath: "", glyph: "<path d=\"M20 7v5h-5M4 17v-5h5\" stroke=\"var(--white)\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><path d=\"M6.2 9A7 7 0 0118 6l2 1M4 17l2 1a7 7 0 0011.8-3\" stroke=\"var(--white)\" stroke-width=\"1.8\" stroke-linecap=\"round\" fill=\"none\"/>" },
+  'wifi-slash': { badge: 'circle', bg: 'var(--danger-color)', r: 0, bgPath: "", glyph: "<path d=\"M3 8a14 14 0 0115-2M21 8a14 14 0 00-2-1.5M8.5 12a7 7 0 017.5-.5M12 16a2 2 0 012 0M3 3l18 18\" stroke=\"var(--white)\" stroke-width=\"1.7\" stroke-linecap=\"round\" fill=\"none\"/>" },
   'comment': { badge: 'none', bg: '', r: 0, bgPath: "", glyph: "<path d=\"M20 2H4a2 2 0 00-2 2v18l4-4h14a2 2 0 002-2V4a2 2 0 00-2-2z\" fill=\"var(--success-color)\"/><circle cx=\"8\" cy=\"10\" r=\"1.5\" fill=\"var(--white)\"/><circle cx=\"12\" cy=\"10\" r=\"1.5\" fill=\"var(--white)\"/><circle cx=\"16\" cy=\"10\" r=\"1.5\" fill=\"var(--white)\"/>" },
   'credit-card': { badge: 'rect', bg: 'var(--primary)', r: 4, bgPath: "", glyph: "<rect x=\"4\" y=\"9\" width=\"16\" height=\"2.2\" fill=\"var(--white)\"/><rect x=\"4\" y=\"14\" width=\"6\" height=\"1.6\" rx=\"0.8\" fill=\"var(--white)\"/>" },
   'crown': { badge: 'none', bg: '', r: 0, bgPath: "", glyph: "<path d=\"M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z\" fill=\"var(--accent-dark)\"/><path d=\"M12 2l-3.09 6.26L2 9.27l5 4.87-1.18 6.88L12 17.77V2z\" fill=\"var(--accent-dark)\"/>" },
@@ -164,8 +169,7 @@ const Icon = memo(function Icon({
   monochrome = false,
   ...props
 }) {
-  const entry = ICON_DATA[name];
-  if (!entry) return null;
+  const entry = ICON_DATA[name] || ICON_DATA['circle-info'];
 
   const { badge, bg, r, bgPath, glyph } = entry;
   const renderedGlyph = monochrome ? glyph.replace(/var\(--[^)]+\)/g, 'currentColor') : glyph;
