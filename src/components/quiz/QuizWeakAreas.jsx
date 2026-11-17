@@ -20,19 +20,19 @@ export default function QuizWeakAreas({ user, level, class_name }) {
   const classLabel = class_name || '';
 
   return (
-    <section className="section quiz-weakareas-card">
-      <div className="card card-surface-tinted card-tone-violet card-elevation-soft card-density-comfortable quiz-weakareas-inner">
-        <Icon name="triangle-exclamation" className="quiz-weakareas-icon" />
+    <section className="mx-auto mt-8 w-full max-w-7xl px-4 sm:px-6">
+      <div className="flex flex-col gap-4 rounded-2xl border border-secondary-200 bg-secondary-50 p-5 sm:flex-row sm:items-start sm:p-6">
+        <Icon name="triangle-exclamation" className="h-8 w-8 shrink-0 text-secondary-800" />
 
-        <div className="quiz-weakareas-body">
-          <h4 className="quiz-weakareas-title font-poppins">
+        <div className="min-w-0 flex-1">
+          <h4 className="text-lg font-bold text-primary-950">
             Focus Areas
-            {levelName && <span className="quiz-section-heading-sub font-maven-pro"> — {levelName}{classLabel ? ` · ${classLabel}` : ''}</span>}
+            {levelName && <span className="text-sm font-semibold text-slate-600"> — {levelName}{classLabel ? ` · ${classLabel}` : ''}</span>}
           </h4>
 
-          <div className="quiz-weakareas-tags">
+          <div className="mt-4 flex flex-wrap gap-2">
             {weakAreas.map((area, idx) => (
-              <span key={idx} className="badge badge-accent font-comfortaa">
+              <span key={idx} className="rounded-full border border-secondary-300 bg-white px-3 py-1.5 text-sm font-semibold text-secondary-900">
                 {area.topic_name}
               </span>
             ))}
