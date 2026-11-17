@@ -2646,3 +2646,24 @@ body.dark-mode .quiz-page :where(.quiz-empty-topics, .quiz-challenge-card, .stat
     grid-template-columns: 1fr;
   }
 }
+
+.qbank-page :is(input, select, textarea, button, a):focus-visible {
+  outline: 3px solid var(--primary-border);
+  outline-offset: 3px;
+}
+
+.qbank-page :is(input, select, textarea)::placeholder {
+  color: var(--ink-2);
+  opacity: 1;
+}
+
+.qbank-page .qbank-detail-button:hover,
+.qbank-page .qbank-clear-button:hover,
+.qbank-page .qbank-pagination button:hover:not(:disabled) {
+  border-color: var(--primary);
+  background: var(--surface-section-alt);
+}
+
+.qbank-page .qbank-question-card :is(h3, p, li, span, small) {
+  overflow-wrap: anywhere;
+}
