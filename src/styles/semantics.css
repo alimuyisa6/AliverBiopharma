@@ -627,3 +627,19 @@ body.dark-mode #root .app-layout a:not(.btn):not(.button):not([class*="btn-"]):h
 body.dark-mode #root .app-layout :where(.text-muted, .text-secondary, .muted, .field-hint, .form-hint, .helper-text, .page-description, .section-description, .supporting-text) {
   color: var(--dark-text-secondary);
 }
+
+
+/* Large, legible icon glyphs inside shared content cards. */
+#root .app-layout :where(.resource-card, .notes-card, .blog-post-card, .team-card, .contributor-card, .flashcard-deck-card, .dashboard-curriculum-card, .profile-category-card, .pp-card, .glossary-route-card, .quiz-topic-cards > .card, .quiz-blocks-grid > .card, .recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .pdf-card, .tutor-card, .faq-item, .about-block, .contact-form, .donate-card, .donate-widget, .donate-momo-card, .note-learning-card) :where(.card-icon, .icon, .feature-icon, .resource-icon, .topic-icon) > svg {
+  width: 2.5rem;
+  height: 2.5rem;
+  max-width: none;
+  max-height: none;
+}
+
+@media (max-width: 640px) {
+  #root .app-layout :where(.resource-card, .notes-card, .blog-post-card, .team-card, .contributor-card, .flashcard-deck-card, .dashboard-curriculum-card, .profile-category-card, .pp-card, .glossary-route-card, .quiz-topic-cards > .card, .quiz-blocks-grid > .card, .recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .pdf-card, .tutor-card, .faq-item, .about-block, .contact-form, .donate-card, .donate-widget, .donate-momo-card, .note-learning-card) :where(.card-icon, .icon, .feature-icon, .resource-icon, .topic-icon) > svg {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+}
