@@ -98,8 +98,8 @@ export default function AboutPage() {
 
   if (!page) {
     return (
-      <section className="about-section about-page-loading" aria-busy="true">
-        <div className="about-content-wrap">
+      <section className="w-full bg-slate-50 px-5 py-16" aria-busy="true">
+        <div className="mx-auto w-full max-w-5xl space-y-10">
           <div className="about-loading-block" />
           <div className="about-loading-line" />
           <div className="about-loading-line about-loading-line-short" />
@@ -118,22 +118,22 @@ export default function AboutPage() {
             backgroundColor: 'var(--primary)'
           } : undefined}
         >
-          <div className="about-hero-content">
-            <h1 className="about-hero-title">{page.hero.heading || page.title}</h1>
-            {page.hero.subtext && <p className="about-hero-subtext">{page.hero.subtext}</p>}
+          <div className="mx-auto w-full max-w-5xl px-5 py-20 sm:py-28">
+            <h1 className="max-w-3xl text-4xl font-extrabold leading-tight text-white sm:text-5xl lg:text-6xl">{page.hero.heading || page.title}</h1>
+            {page.hero.subtext && <p className="mt-5 max-w-2xl text-lg leading-8 text-white/90">{page.hero.subtext}</p>}
           </div>
         </section>
       )}
 
-      <section className="section about-section">
-        <div className="about-content-wrap">
+      <section className="w-full bg-slate-50 px-5 py-14 sm:py-20">
+        <div className="mx-auto w-full max-w-5xl space-y-10">
           {!page?.hero && (
-            <h1 className="about-title">{page?.title || 'About AliverBiopharm'}</h1>
+            <h1 className="mb-10 text-4xl font-extrabold text-primary-900 sm:text-5xl">{page?.title || 'About AliverBiopharm'}</h1>
           )}
 
           {page?.mission && (
-            <div className="about-block">
-              {page.mission.heading && <h2 className="about-block-heading">{page.mission.heading}</h2>}
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+              {page.mission.heading && <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.mission.heading}</h2>}
               {page.mission.content.split('\n\n').map((para, i) => (
                 <p key={i}><RichText text={para} /></p>
               ))}
@@ -141,8 +141,8 @@ export default function AboutPage() {
           )}
 
           {page?.vision && (
-            <div className="about-block">
-              {page.vision.heading && <h2 className="about-block-heading">{page.vision.heading}</h2>}
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+              {page.vision.heading && <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.vision.heading}</h2>}
               {page.vision.content.split('\n\n').map((para, i) => (
                 <p key={i}><RichText text={para} /></p>
               ))}
@@ -150,8 +150,8 @@ export default function AboutPage() {
           )}
 
           {page?.story && (
-            <div className="about-block">
-              {page.story.heading && <h2 className="about-block-heading">{page.story.heading}</h2>}
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+              {page.story.heading && <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.story.heading}</h2>}
               {page.story.content.split('\n\n').map((para, i) => (
                 <p key={i}><RichText text={para} /></p>
               ))}
@@ -159,8 +159,8 @@ export default function AboutPage() {
           )}
 
           {page?.why_choose_us && (
-            <div className="about-block">
-              {page.why_choose_us.heading && <h2 className="about-block-heading">{page.why_choose_us.heading}</h2>}
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+              {page.why_choose_us.heading && <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.why_choose_us.heading}</h2>}
               {page.why_choose_us.content.split('\n\n').map((para, i) => (
                 <p key={i}><RichText text={para} /></p>
               ))}
@@ -168,8 +168,8 @@ export default function AboutPage() {
           )}
 
           {page?.learning_philosophy && (
-            <div className="about-block">
-              {page.learning_philosophy.heading && <h2 className="about-block-heading">{page.learning_philosophy.heading}</h2>}
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+              {page.learning_philosophy.heading && <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.learning_philosophy.heading}</h2>}
               {page.learning_philosophy.content.split('\n\n').map((para, i) => (
                 <p key={i}><RichText text={para} /></p>
               ))}
@@ -177,8 +177,8 @@ export default function AboutPage() {
           )}
 
           {page?.founders && (
-            <div className="about-block">
-              {page.founders.heading && <h2 className="about-block-heading">{page.founders.heading}</h2>}
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+              {page.founders.heading && <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.founders.heading}</h2>}
               {page.founders.content.split('\n\n').map((para, i) => (
                 <p key={i}><RichText text={para} /></p>
               ))}
@@ -186,8 +186,8 @@ export default function AboutPage() {
           )}
 
           {page?.values && (
-            <div className="about-block">
-              {page.values.heading && <h2 className="about-block-heading">{page.values.heading}</h2>}
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+              {page.values.heading && <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.values.heading}</h2>}
               {page.values.content.split('\n\n').map((para, i) => (
                 <p key={i}><RichText text={para} /></p>
               ))}
@@ -195,9 +195,9 @@ export default function AboutPage() {
           )}
 
           {page?.team?.length > 0 && (
-            <div className="about-block">
-              <h2 className="about-block-heading">{page.team_heading || 'Meet our team'}</h2>
-              <div className="team-grid">
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+              <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.team_heading || 'Meet our team'}</h2>
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {page.team.map((member, idx) => (
                   <TeamCard key={idx} member={member} />
                 ))}
@@ -206,9 +206,9 @@ export default function AboutPage() {
           )}
 
           {page?.contributors?.length > 0 && (
-            <div className="about-block">
-              <h2 className="about-block-heading">{page.contributors_heading || 'Content contributors and reviewers'}</h2>
-              <div className="contributors-grid">
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+              <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.contributors_heading || 'Content contributors and reviewers'}</h2>
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {page.contributors.map((contributor, idx) => (
                   <ContributorCard key={idx} contributor={contributor} />
                 ))}
@@ -217,8 +217,8 @@ export default function AboutPage() {
           )}
 
           {page?.commitment_to_quality && (
-            <div className="about-block">
-              {page.commitment_to_quality.heading && <h2 className="about-block-heading">{page.commitment_to_quality.heading}</h2>}
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+              {page.commitment_to_quality.heading && <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.commitment_to_quality.heading}</h2>}
               {page.commitment_to_quality.content.split('\n\n').map((para, i) => (
                 <p key={i}><RichText text={para} /></p>
               ))}
@@ -226,8 +226,8 @@ export default function AboutPage() {
           )}
 
           {page?.future && (
-            <div className="about-block">
-              {page.future.heading && <h2 className="about-block-heading">{page.future.heading}</h2>}
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+              {page.future.heading && <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.future.heading}</h2>}
               {page.future.content.split('\n\n').map((para, i) => (
                 <p key={i}><RichText text={para} /></p>
               ))}
@@ -235,8 +235,8 @@ export default function AboutPage() {
           )}
 
           {page?.legal && (
-            <div className="about-block">
-              {page.legal.heading && <h2 className="about-block-heading">{page.legal.heading}</h2>}
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+              {page.legal.heading && <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.legal.heading}</h2>}
               {page.legal.content.split('\n\n').map((para, i) => (
                 <p key={i}><RichText text={para} /></p>
               ))}
@@ -244,8 +244,8 @@ export default function AboutPage() {
           )}
 
           {page?.faq && (
-            <div className="about-block">
-              {page.faq.heading && <h2 className="about-block-heading">{page.faq.heading}</h2>}
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+              {page.faq.heading && <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.faq.heading}</h2>}
               <div className="faq-list">
                 {(page.faq.questions || []).map((item, idx) => (
                   <details key={idx} className="faq-item">
@@ -259,7 +259,7 @@ export default function AboutPage() {
 
           {page?.contact && (
             <div className="about-block about-contact">
-              {page.contact.heading && <h2 className="about-block-heading">{page.contact.heading}</h2>}
+              {page.contact.heading && <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.contact.heading}</h2>}
               {page.contact.subtext && <p className="about-contact-subtext"><RichText text={page.contact.subtext} /></p>}
               <div className="about-contact-details">
                 {page.contact.email && (
@@ -292,12 +292,12 @@ export default function AboutPage() {
 
           {page?.call_to_action && (
             <div className="about-block about-cta">
-              <h2 className="about-block-heading">{page.call_to_action.heading || 'Start learning with AliverBiopharm'}</h2>
+              <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.call_to_action.heading || 'Start learning with AliverBiopharm'}</h2>
               {page.call_to_action.content && <p className="about-cta-text"><RichText text={page.call_to_action.content} /></p>}
               {page.call_to_action.button_text && (
                 <Link
                   to={page.call_to_action.button_url || '/register'}
-                  className="about-cta-button"
+                  className="mt-5 inline-flex min-h-11 items-center justify-center rounded-xl bg-secondary-600 px-6 py-3 font-bold text-white transition hover:bg-secondary-700"
                 >
                   {page.call_to_action.button_text}
                 </Link>
