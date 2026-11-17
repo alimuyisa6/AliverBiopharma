@@ -930,8 +930,8 @@
   font-variant-numeric: tabular-nums;
 }
 body.dark-mode .dashboard-content .dashboard-activity-summary > div {
-  border-color: var(--night-500);
-  background: var(--night-800);
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
 }
 @media (max-width: 420px) {
   .dashboard-content .dashboard-activity-summary {
@@ -1422,8 +1422,8 @@ body.dark-mode .dashboard-content .dashboard-activity-summary > div {
   outline-offset: 3px;
 }
 body.dark-mode .dashboard-content .dashboard-welcome-card {
-  border-color: var(--night-500);
-  border-bottom-color: var(--night-450);
+  border-color: var(--dark-border);
+  border-bottom-color: var(--dark-border);
   background: var(--background);
 }
 body.dark-mode .dashboard-content .dashboard-curriculum-section > .panel-header {
@@ -1435,28 +1435,28 @@ body.dark-mode .dashboard-content .dashboard-curriculum-card-action {
 }
 body.dark-mode .dashboard-content .dashboard-curriculum-card,
 body.dark-mode .dashboard-content .stat-box {
-  border-color: var(--night-500);
-  border-bottom-color: var(--night-450);
+  border-color: var(--dark-border);
+  border-bottom-color: var(--dark-border);
   background: var(--background);
 }
 body.dark-mode .dashboard-content .dashboard-curriculum-card-type {
-  background: var(--night-700);
+  background: var(--dark-surface-raised);
   color: var(--primary);
 }
 body.dark-mode .dashboard-content .dashboard-section-link {
-  border-color: var(--night-450);
-  background: var(--night-800);
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
   color: var(--primary);
 }
 body.dark-mode .dashboard-content .dashboard-section-link:hover {
-  background: var(--night-700);
+  background: var(--dark-surface-raised);
 }
 body.dark-mode  .dashboard-content .dashboard-card-secondary .panel-header {
   background: var(--surface-muted);
 }
 body.dark-mode .dashboard-content .dashboard-section-aside {
   border-left-color: var(--secondary);
-  background: var(--night-700);
+  background: var(--dark-surface-raised);
 }
 @media (max-width: 640px) {
   .dashboard-content .dashboard-welcome-card {
@@ -1491,3 +1491,11 @@ body.dark-mode .dashboard-content :is(h1, h2, h3, h4, h5, h6, p, label, small) {
 body.dark-mode .dashboard-content :is(.text-muted, .dashboard-description, .card-description) { color: var(--dark-text-secondary); }
 body.dark-mode .dashboard-content :is(input, select, textarea) { background: var(--dark-surface-raised); color: var(--dark-text); border-color: var(--dark-border); }
 body.dark-mode .dashboard-content :is(input, textarea)::placeholder { color: var(--dark-text-secondary); }
+
+.dashboard-content :is(a,button,input,select,textarea):focus-visible{outline:3px solid var(--primary-ring);outline-offset:3px}
+body.dark-mode .dashboard-content :is(.dashboard-welcome-card,.dashboard-curriculum-section>.panel-header,.dashboard-curriculum-card,.stat-box,.dashboard-section-aside){border-color:var(--dark-border);background:var(--dark-surface);color:var(--dark-text)}
+body.dark-mode .dashboard-content :is(.dashboard-curriculum-card-type,.dashboard-section-link){border-color:var(--dark-border);background:var(--dark-surface-raised);color:var(--dark-primary)}
+body.dark-mode .dashboard-content .dashboard-section-link:hover{background:var(--dark-surface);border-color:var(--dark-primary);color:var(--dark-text)}
+body.dark-mode .dashboard-content :is(.dashboard-curriculum-card-detail,.dashboard-curriculum-count,.dashboard-quiz-metric-label,.dashboard-quiz-note,.mastery-chart-explainer,.dashboard-download-date,.dashboard-download-help,.panel-meta,.item-text,.dashboard-section-intro){color:var(--dark-text-secondary)}
+body.dark-mode .dashboard-content :is(.dashboard-curriculum-card-title,.dashboard-curriculum-card-action,.dashboard-curriculum-count strong,.sidebar-item-link){color:var(--dark-text)}
+body.dark-mode .dashboard-content :is(a,button,input,select,textarea):focus-visible{outline-color:var(--dark-primary)}

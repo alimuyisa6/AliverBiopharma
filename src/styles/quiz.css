@@ -2759,3 +2759,11 @@ body.dark-mode .quiz-question-content .quiz-option-btn.incorrect {
 body.dark-mode .quiz-question-content :is(button, input, select, textarea):focus-visible {
   outline-color: var(--dark-primary);
 }
+
+.clinical-simulation-page :is(a,button):focus-visible{outline:3px solid var(--primary-ring);outline-offset:3px}
+body.dark-mode .clinical-simulation-page :is(.clinical-case-card,.clinical-case-empty,.qbank-empty){border-color:var(--dark-border);background:var(--dark-surface);color:var(--dark-text)}
+body.dark-mode .clinical-simulation-page :is(.clinical-case-card h2,.clinical-case-card h3,.clinical-case-card h4,.clinical-case-card p,.clinical-case-card li,.qbank-header h1){color:var(--dark-text)}
+body.dark-mode .clinical-simulation-page :is(.clinical-case-card p,.clinical-case-card li,.qbank-header p,.qbank-builder-note){color:var(--dark-text-secondary)}
+body.dark-mode .clinical-simulation-page .clinical-case-card section{border-color:var(--dark-border)}
+body.dark-mode .clinical-simulation-page .clinical-case-card section article{background:var(--dark-surface-raised);color:var(--dark-text)}
+body.dark-mode .clinical-simulation-page :is(a,button):focus-visible{outline-color:var(--dark-primary)}

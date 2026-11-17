@@ -408,26 +408,26 @@
   outline-offset: 3px;
 }
 body.dark-mode .curriculum-node-page {
-  background: var(--night-900);
+  background: var(--dark-background);
 }
 body.dark-mode .curriculum-node-header {
-  border-color: var(--night-500);
-  border-bottom-color: var(--night-450);
+  border-color: var(--dark-border);
+  border-bottom-color: var(--dark-border);
   background: var(--dark-surface-raised);
 }
 body.dark-mode .curriculum-node-section,
 body.dark-mode .curriculum-node-section:nth-of-type(3n + 2),
 body.dark-mode .curriculum-node-section:nth-of-type(3n) {
-  border-color: var(--night-500);
-  background: var(--night-850);
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
 }
 body.dark-mode .curriculum-node-child,
 body.dark-mode .curriculum-node-resource,
 body.dark-mode .curriculum-node-linked-group,
 body.dark-mode .curriculum-node-child:hover,
 body.dark-mode .curriculum-node-resource:hover {
-  border-color: var(--night-500);
-  background: var(--night-800);
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
 }
 @media (max-width: 640px) {
   .curriculum-node-section { padding: var(--space-3); }
@@ -453,8 +453,8 @@ body.dark-mode .curriculum-node-resource:hover {
   .notes-grid { grid-template-columns: minmax(0, 1fr); }
 }
 body.dark-mode .notes-page-shell { background: var(--dark-background); }
-body.dark-mode .notes-page-heading { border-color: var(--night-500); background: var(--dark-surface-raised); }
-body.dark-mode .notes-curriculum-context, body.dark-mode .notes-pathway-item, body.dark-mode .notes-pathway-item + .notes-pathway-item, body.dark-mode .notes-card { border-color: var(--night-500); background: var(--night-800); }
+body.dark-mode .notes-page-heading { border-color: var(--dark-border); background: var(--dark-surface-raised); }
+body.dark-mode .notes-curriculum-context, body.dark-mode .notes-pathway-item, body.dark-mode .notes-pathway-item + .notes-pathway-item, body.dark-mode .notes-card { border-color: var(--dark-border); background: var(--dark-surface); }
 
 #root .notes-page .notes-page-title {
   display: block;
@@ -494,7 +494,7 @@ body.dark-mode .notes-curriculum-context, body.dark-mode .notes-pathway-item, bo
   color: inherit;
 }
 
-body.dark-mode .curriculum-node-child, body.dark-mode .curriculum-node-resource { background: var(--night-800); }
+body.dark-mode .curriculum-node-child, body.dark-mode .curriculum-node-resource { background: var(--dark-surface); }
 
 body.dark-mode .curriculum-page { background: var(--dark-background); color: var(--dark-text); }
 body.dark-mode .curriculum-page :is(.curriculum-card, .curriculum-node, .curriculum-panel, .curriculum-level-card, .curriculum-node-child) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
@@ -668,3 +668,10 @@ body.dark-mode .curriculum-node-page .breadcrumb a:hover,
 body.dark-mode .curriculum-node-page .breadcrumb a:focus-visible {
   color: var(--dark-primary);
 }
+
+.curriculum-node-page :is(.curriculum-node-link,.curriculum-node-resource-action,.curriculum-node-question-bank-action,.curriculum-node-reading-cta,a):focus-visible{outline:3px solid var(--primary-ring);outline-offset:3px}
+.curriculum-node-page .curriculum-node-blocks{color:var(--text)}
+body.dark-mode .curriculum-node-page :is(.curriculum-node-blocks,.curriculum-node-block-interactive,.curriculum-node-block-quiz){color:var(--dark-text)}
+body.dark-mode .curriculum-node-page :is(.curriculum-node-block-video,.curriculum-node-block-interactive,.curriculum-node-block-quiz){border-color:var(--dark-border);background:var(--dark-surface-raised)}
+body.dark-mode .curriculum-node-page :is(.curriculum-node-child-icon,.curriculum-node-count){color:var(--dark-primary)}
+body.dark-mode .curriculum-node-page :is(a,button):focus-visible{outline-color:var(--dark-primary)}

@@ -123,3 +123,10 @@ body.dark-mode .challenge-runner-page :is(.challenge-runner-card, .challenge-run
 body.dark-mode .challenge-runner-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small) { color: var(--dark-text); }
 body.dark-mode .challenge-runner-page :is(.text-muted, .challenge-runner-description) { color: var(--dark-text-secondary); }
 body.dark-mode .challenge-runner-page :is(input, select, textarea) { background: var(--dark-background); color: var(--dark-text); border-color: var(--dark-border); }
+
+.challenge-runner-page :is(a,button):focus-visible{outline:3px solid var(--primary-ring);outline-offset:3px}
+body.dark-mode .challenge-runner-page :is(.challenge-runner-hero,.challenge-runner-error){border-color:var(--dark-border);background:var(--dark-surface);color:var(--dark-text)}
+body.dark-mode .challenge-runner-page .challenge-runner-visual{border-color:var(--dark-border);background:var(--dark-surface-raised)}
+body.dark-mode .challenge-runner-page :is(.challenge-type-badge,.challenge-runner-facts,.challenge-runner-note){border-color:var(--dark-border);background:var(--dark-surface-raised);color:var(--dark-text-secondary)}
+body.dark-mode .challenge-runner-page .challenge-runner-copy :is(h1,h2,h3,p){color:var(--dark-text)}
+body.dark-mode .challenge-runner-page :is(a,button):focus-visible{outline-color:var(--dark-primary)}

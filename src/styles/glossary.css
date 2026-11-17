@@ -892,3 +892,13 @@ body.dark-mode .glossary-page :is(input, select, textarea) {
 body.dark-mode .glossary-page :is(input, textarea)::placeholder {
   color: var(--dark-text-secondary);
 }
+
+.glossary-page :is(button,a,input,select,textarea):focus-visible{outline:3px solid var(--primary-ring);outline-offset:3px}
+.glossary-route-card{border:1px solid var(--border-default);color:var(--text);text-decoration:none}
+.glossary-route-card:hover{border-color:var(--primary);color:var(--text)}
+body.dark-mode .glossary-page :is(.glossary-sidebar-inner,.glossary-welcome,.glossary-term-hero,.glossary-route-section,.glossary-definition-plain,.glossary-definition-technical,.glossary-meta-item,.glossary-welcome-stat,.glossary-term-group){border-color:var(--dark-border);background:var(--dark-surface);color:var(--dark-text)}
+body.dark-mode .glossary-page :is(.glossary-term-btn,.glossary-related-term-btn){border-color:var(--dark-border);background:var(--dark-surface-raised);color:var(--dark-text)}
+body.dark-mode .glossary-page :is(.glossary-term-btn.active,.glossary-term-btn:hover,.glossary-related-term-btn:hover){border-color:var(--dark-primary);background:var(--dark-surface);color:var(--dark-text)}
+body.dark-mode .glossary-page :is(.glossary-route-card,.glossary-route-card h4,.glossary-route-card-meta,.glossary-meta-value,.glossary-term-title){color:var(--dark-text)}
+body.dark-mode .glossary-page :is(.glossary-route-card-meta,.glossary-meta-label,.glossary-category-heading,.glossary-term-pronunciation){color:var(--dark-text-secondary)}
+body.dark-mode .glossary-page :is(button,a,input,select,textarea):focus-visible{outline-color:var(--dark-primary)}

@@ -672,3 +672,10 @@ body.dark-mode .home-page .home-continue-learning-progress {
 body.dark-mode .home-page .home-continue-learning-row .row-actions {
   color: var(--dark-text-secondary);
 }
+
+.home-page :is(a,button,input,select,textarea):focus-visible{outline:3px solid var(--primary-ring);outline-offset:3px}
+body.dark-mode .home-page :is(.mood-card,.card-surface-solid,.card-surface-subtle){border-color:var(--dark-border);background:var(--dark-surface);color:var(--dark-text)}
+body.dark-mode .home-page :is(.mood-card h3,.mood-card p,.mood-success,.card-surface-solid h3,.card-surface-solid p,.card-surface-subtle span){color:var(--dark-text)}
+body.dark-mode .home-page :is(.mood-textarea,.mood-card textarea){border-color:var(--dark-border);background:var(--dark-surface-raised);color:var(--dark-text)}
+body.dark-mode .home-page :is(.mood-textarea,.mood-card textarea)::placeholder{color:var(--dark-text-secondary)}
+body.dark-mode .home-page :is(a,button,input,select,textarea):focus-visible{outline-color:var(--dark-primary)}

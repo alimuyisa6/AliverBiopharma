@@ -4,3 +4,12 @@ body.dark-mode .challenges-page { background: var(--dark-background); color: var
 body.dark-mode .challenges-page :is(.challenge-card, .challenge-panel, .challenge-summary, .challenge-empty-state) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
 body.dark-mode .challenges-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small) { color: var(--dark-text); }
 body.dark-mode .challenges-page :is(.text-muted, .challenge-description, .section-description) { color: var(--dark-text-secondary); }
+
+.challenges-page :is(a,button):focus-visible{outline:3px solid var(--primary-ring);outline-offset:3px}
+body.dark-mode .challenges-page :is(.challenge-showcase-card,.challenge-empty-card){border-color:var(--dark-border);background:var(--dark-surface);color:var(--dark-text)}
+body.dark-mode .challenges-page .challenge-showcase-visual{border-color:var(--dark-border);background:var(--dark-surface-raised)}
+body.dark-mode .challenges-page .challenge-showcase-badge{border-color:var(--dark-border);background:var(--dark-surface);color:var(--dark-text)}
+body.dark-mode .challenges-page :is(.challenge-context span,.challenge-scope span){border-color:var(--dark-border);background:var(--dark-surface-raised);color:var(--dark-text-secondary)}
+body.dark-mode .challenges-page :is(.challenge-showcase-content h1,.challenge-showcase-content h2,.challenge-showcase-content h3,.challenge-showcase-content p,.challenge-progress-head){color:var(--dark-text)}
+body.dark-mode .challenges-page :is(.challenge-showcase-content p,.challenge-progress-head){color:var(--dark-text-secondary)}
+body.dark-mode .challenges-page :is(a,button):focus-visible{outline-color:var(--dark-primary)}

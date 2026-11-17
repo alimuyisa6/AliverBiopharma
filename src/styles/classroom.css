@@ -387,3 +387,11 @@ body.dark-mode .classroom-room-page :is(input, textarea)::placeholder {
     padding: var(--space-3);
   }
 }
+
+.classroom-page :is(a,button,input,select,textarea):focus-visible,.classroom-room-page :is(a,button,input,select,textarea):focus-visible{outline:3px solid var(--primary-ring);outline-offset:3px}
+body.dark-mode .classroom-room-page :is(.classroom-room-header,.classroom-chat-panel,.classroom-participants-panel,.classroom-room-info-panel,.classroom-whiteboard){border-color:var(--dark-border);background:var(--dark-surface);color:var(--dark-text)}
+body.dark-mode .classroom-room-page :is(.classroom-video-grid,.classroom-whiteboard-toolbar,.whiteboard-toolbar,.classroom-chat-body){border-color:var(--dark-border);background:var(--dark-surface-raised);color:var(--dark-text)}
+body.dark-mode .classroom-room-page :is(.classroom-message,.classroom-message-resource,.classroom-message-bubble,.classroom-participant-row,.info-item){border-color:var(--dark-border);background:var(--dark-surface-raised);color:var(--dark-text)}
+body.dark-mode .classroom-room-page :is(.classroom-room-header-title,.classroom-room-header-sub,.classroom-participant-name,.classroom-participant-role,.classroom-message-bubble-text,.whiteboard-label){color:var(--dark-text)}
+body.dark-mode .classroom-room-page :is(.classroom-message-bubble-time,.classroom-message-resource-time,.classroom-room-info-grid strong){color:var(--dark-text-secondary)}
+body.dark-mode .classroom-room-page :is(a,button,input,select,textarea):focus-visible{outline-color:var(--dark-primary)}

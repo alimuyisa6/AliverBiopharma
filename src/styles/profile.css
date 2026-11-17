@@ -1236,3 +1236,10 @@ body.dark-mode .profile-page :is(h1, h2, h3, h4, h5, h6, p, label, small, strong
 body.dark-mode .profile-page :is(.text-muted, .profile-description, .profile-summary-detail span) { color: var(--dark-text-secondary); }
 body.dark-mode .profile-page :is(input, select, textarea) { background: var(--dark-surface-raised); color: var(--dark-text); border-color: var(--dark-border); }
 body.dark-mode .profile-page :is(input, textarea)::placeholder { color: var(--dark-text-secondary); }
+
+.profile-page :is(a,button,input,select,textarea):focus-visible{outline:3px solid var(--primary-ring);outline-offset:3px}
+body.dark-mode .profile-page :is(.profile-overview-panel,.profile-category-card,.profile-tabs,.profile-content,.profile-card-main,.profile-preference-control,.profile-plan-list,.table-wrapper,.profile-passkey-verification,.device-list){border-color:var(--dark-border);background:var(--dark-surface);color:var(--dark-text)}
+body.dark-mode .profile-page :is(.profile-summary-name,.profile-detail-title,.profile-preferences-title,.profile-preferences-subtitle,.profile-tab-item,.profile-category-card){color:var(--dark-text)}
+body.dark-mode .profile-page :is(.profile-summary-status,.profile-summary-detail-label,.profile-detail-description,.profile-preferences-description,.profile-text-muted,.profile-preference-control small){color:var(--dark-text-secondary)}
+body.dark-mode .profile-page .profile-tab-item.active{background:var(--dark-surface-raised);color:var(--dark-text)}
+body.dark-mode .profile-page :is(a,button,input,select,textarea):focus-visible{outline-color:var(--dark-primary)}
