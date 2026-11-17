@@ -5,7 +5,6 @@ import { getPdfDownloadUrl, getPastPaperDownloadUrl } from '../../api/client';
 import { getCurriculumNode } from '../../api/curriculumNavigation';
 import { isPremiumAccessError, redirectToSubscription } from '../../utils/subscriptionNavigation';
 import { buildLearningStages } from '../../utils/learningJourney';
-import './LearningJourney.css';
 
 const journeyCache = new Map();
 
