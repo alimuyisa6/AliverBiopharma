@@ -1887,3 +1887,163 @@ body.dark-mode .notes-content-container .term-bubble {
   background: var(--night-2);
   color: var(--primary-light);
 }
+
+
+.note-detail-container {
+  color: var(--text-main);
+}
+.note-article,
+.note-hero,
+.notes-content-container,
+.note-understanding-panel,
+.note-related-section,
+.note-reactions-section,
+.note-comments-section {
+  color: var(--text-main);
+}
+.notes-content-container :is(p, li, dd, figcaption, td) {
+  color: var(--text-main);
+}
+.notes-content-container :is(a, .note-inline-link) {
+  color: var(--primary-dark);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+.notes-content-container :is(a, .note-inline-link):hover {
+  color: var(--primary);
+}
+.note-toc-link,
+.note-learning-history-link {
+  color: var(--primary-dark);
+}
+.note-comment-input,
+.note-learning-question-form textarea {
+  color: var(--text-main);
+  background: var(--surface-card);
+  border-color: var(--border-default);
+}
+.note-detail-container :is(button, a, input, textarea):focus-visible,
+.note-toc-sidebar :is(a, button):focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+}
+body.dark-mode .note-detail-container,
+body.dark-mode .note-article,
+body.dark-mode .notes-content-container {
+  color: var(--dark-text);
+}
+body.dark-mode .note-detail-container {
+  background: transparent;
+}
+body.dark-mode .note-hero,
+body.dark-mode .note-understanding-panel,
+body.dark-mode .note-related-section,
+body.dark-mode .note-reactions-section,
+body.dark-mode .note-comments-section,
+body.dark-mode .note-trial-question,
+body.dark-mode .note-toc-sidebar,
+body.dark-mode .note-toc-mobile-panel {
+  background: var(--dark-surface);
+  border-color: var(--dark-border);
+  color: var(--dark-text);
+}
+body.dark-mode .note-title,
+body.dark-mode .note-detail-container :is(h2, h3, h4, strong),
+body.dark-mode .note-toc-title {
+  color: var(--dark-text);
+}
+body.dark-mode .notes-content-container :is(p, li, dd, figcaption, td, th, blockquote, code, pre) {
+  color: var(--dark-text-secondary);
+}
+body.dark-mode .notes-content-container :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--dark-text);
+}
+body.dark-mode .notes-content-container :is(a, .note-inline-link),
+body.dark-mode .note-toc-link,
+body.dark-mode .note-learning-history-link {
+  color: var(--dark-primary);
+}
+body.dark-mode .notes-content-container :is(a, .note-inline-link):hover,
+body.dark-mode .note-toc-link:hover,
+body.dark-mode .note-learning-history-link:hover {
+  color: var(--dark-text);
+}
+body.dark-mode .notes-content-container blockquote {
+  border-inline-start-color: var(--dark-primary);
+  background: var(--dark-surface-raised);
+  color: var(--dark-text-secondary);
+}
+body.dark-mode .notes-content-container :is(th, td) {
+  border-color: var(--dark-border);
+}
+body.dark-mode .notes-content-container th {
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+body.dark-mode .notes-content-container .term-bubble {
+  border-color: var(--dark-border);
+  background: var(--dark-surface-raised);
+  color: var(--dark-primary);
+}
+body.dark-mode .note-detail-container :is(.note-comment-input, .note-learning-question-form textarea) {
+  background: var(--dark-surface-raised);
+  border-color: var(--dark-border);
+  color: var(--dark-text);
+}
+body.dark-mode .note-detail-container :is(input, textarea)::placeholder {
+  color: var(--dark-text-secondary);
+  opacity: 1;
+}
+body.dark-mode .note-detail-container :is(.note-comment-date, .note-comments-empty, .note-discussion-art-caption, .note-reactions-label, .note-link-preview-text, .note-link-preview-readtime) {
+  color: var(--dark-text-secondary);
+}
+body.dark-mode .note-detail-container :is(.note-comment-item, .note-trial-options label, .note-reaction-btn, .note-nav-button) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+body.dark-mode .note-detail-container :is(.note-comment-author, .note-comment-text, .note-reaction-label, .note-reaction-count) {
+  color: var(--dark-text);
+}
+body.dark-mode .note-detail-container :is(.note-trial-options label.is-selected, .note-reaction-btn.active) {
+  border-color: var(--dark-primary);
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+body.dark-mode .note-detail-container :is(.note-reaction-btn:hover, .note-nav-button:hover, .note-trial-options label:hover) {
+  border-color: var(--dark-primary);
+  color: var(--dark-text);
+}
+body.dark-mode .note-detail-container :is(.note-return-to-lesson-link, .note-back-btn) {
+  color: var(--dark-text);
+}
+body.dark-mode .note-detail-container :is(.note-progress-indicator, .note-progress-bar) {
+  color: var(--dark-text);
+}
+body.dark-mode .note-progress-bar {
+  background: var(--dark-surface-raised);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.45);
+}
+body.dark-mode .note-progress-bar::before {
+  background: var(--dark-primary);
+}
+body.dark-mode .note-link-preview {
+  border-color: var(--dark-border);
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+body.dark-mode .note-link-preview-title {
+  color: var(--dark-text);
+}
+body.dark-mode .note-toc-mobile-toggle {
+  border-color: var(--dark-border);
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+body.dark-mode .note-toc-mobile-overlay {
+  background: rgba(0, 0, 0, 0.72);
+}
+body.dark-mode .note-detail-container :is(button, a, input, textarea):focus-visible,
+body.dark-mode .note-toc-sidebar :is(a, button):focus-visible {
+  outline-color: var(--dark-primary);
+}
