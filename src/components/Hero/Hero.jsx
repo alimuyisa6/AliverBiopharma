@@ -260,8 +260,8 @@ function WaveArtwork() {
   }, []);
 
   return (
-    <div className="hero-wave-art" ref={heroRef} aria-hidden="true">
-      <svg className="hero-wave-svg" ref={svgRef} preserveAspectRatio="none">
+    <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden opacity-70" ref={heroRef} aria-hidden="true">
+      <svg className="h-full w-full" ref={svgRef} preserveAspectRatio="none">
  </defs>
         <g ref={layersRef} />
         <g ref={bordersRef} />
@@ -306,32 +306,32 @@ export default function Hero() {
   }, [isAuthenticated]);
 
   return (
-    <section className="hero hero-aero" aria-labelledby="hero-title">
+    <section className="relative isolate flex min-h-[680px] items-center overflow-hidden bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 text-white sm:min-h-[720px]" aria-labelledby="hero-title">
       <WaveArtwork />
-      <div className="hero-aero-shade" aria-hidden="true" />
-      <div className="hero-aero-content">
-        <div className="hero-aero-inner">
-          <div className="hero-aero-badge">
-            <span className="hero-aero-badge-dot" aria-hidden="true" />
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-primary-900/95 via-primary-900/75 to-primary-800/35" aria-hidden="true" />
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
+        <div className="max-w-3xl">
+          <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold tracking-[0.12em] text-white/90 shadow-sm backdrop-blur sm:text-sm">
+            <span className="h-2.5 w-2.5 rounded-full bg-secondary-400 ring-4 ring-secondary-400/20" aria-hidden="true" />
             Biology &amp; Pharmacy Learning Platform
           </div>
 
-          <h1 id="hero-title" className="hero-aero-title">
-            Master the science of <span>life and medicine</span>
+          <h1 id="hero-title" className="max-w-3xl text-4xl font-bold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-7xl">
+            Master the science of <span className="text-secondary-300">life and medicine</span>
           </h1>
 
-          <p className="hero-aero-description">
+          <p className="mt-7 max-w-2xl text-base leading-8 text-white/80 sm:text-lg lg:text-xl">
             {isAuthenticated && groupName
               ? `Your ${groupName} journey continues. Explore structured notes, adaptive quizzes, BioRecall spaced repetition, and learning resources tailored to your level.`
               : 'From O-Level biology to A-Level and pharmacy programmes, learn with adaptive quizzes, spaced repetition and structured curriculum built around your level.'}
           </p>
 
-          <div className="hero-aero-actions">
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
             {isAuthenticated ? (
               resume && resumeAllowed ? (
-                <Link to={resumeHref(resume)} className="hero-aero-button hero-aero-button-primary">
+                <Link to={resumeHref(resume)} className="inline-flex min-h-14 items-center justify-center gap-4 rounded-xl bg-secondary-500 px-6 py-3.5 text-base font-bold text-white shadow-lg shadow-black/20 transition hover:-translate-y-0.5 hover:bg-secondary-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
                   <span>Continue to {MODULE_LABELS[resume.module] || 'Learning'}</span>
-                  <span className="hero-aero-button-icon" aria-hidden="true"><ArrowUpRight size={21} strokeWidth={1.8} /></span>
+                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/15" aria-hidden="true"><ArrowUpRight size={21} strokeWidth={1.8} /></span>
                 </Link>
               ) : (
                 <Link to="/notes" className="hero-aero-button hero-aero-button-primary">
@@ -345,15 +345,15 @@ export default function Hero() {
                   <span>Start Learning</span>
                   <span className="hero-aero-button-icon" aria-hidden="true"><ArrowUpRight size={21} strokeWidth={1.8} /></span>
                 </Link>
-                <Link to="/notes" className="hero-aero-button hero-aero-button-ghost">Explore Modules</Link>
+                <Link to="/notes" className="inline-flex min-h-14 items-center justify-center rounded-xl border border-white/35 bg-white/5 px-6 py-3.5 text-base font-semibold text-white transition hover:bg-white/15">Explore Modules</Link>
               </>
             )}
           </div>
 
-          <div className="hero-aero-stats" aria-label="Platform highlights">
-            <div><strong>3</strong><span>Learning levels</span></div>
-            <div><strong>BioRecall</strong><span>Spaced repetition</span></div>
-            <div><strong>Adaptive</strong><span>Quizzes &amp; practice</span></div>
+          <div className="mt-14 grid max-w-2xl grid-cols-1 gap-5 border-t border-white/20 pt-7 sm:grid-cols-3 sm:gap-8" aria-label="Platform highlights">
+            <div className="flex flex-col gap-1"><strong className="text-2xl font-bold text-white">3</strong><span className="text-sm text-white/70">Learning levels</span></div>
+            <div className="flex flex-col gap-1"><strong className="text-2xl font-bold text-white">BioRecall</strong><span className="text-sm text-white/70">Spaced repetition</span></div>
+            <div className="flex flex-col gap-1"><strong className="text-2xl font-bold text-white">Adaptive</strong><span className="text-sm text-white/70">Quizzes &amp; practice</span></div>
           </div>
         </div>
       </div>
