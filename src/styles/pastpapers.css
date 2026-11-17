@@ -1134,3 +1134,50 @@ body.dark-mode .pp-page :is(input, textarea)::placeholder {
 
 
 .pp-card-open { margin-right: auto; }
+
+
+body.dark-mode .pp-page :is(.pp-modal, .pp-modal-header, .pp-modal-body, .pp-review-form, .pp-review-item, .pp-preset-item, .pp-preset-form) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text);
+}
+
+body.dark-mode .pp-page :is(.pp-modal-title, .pp-modal-subject, .pp-card-title, .pp-card-subject, .pp-review-name, .pp-review-comment, .pp-presets-empty, .pp-count, .pp-rating-count) {
+  color: var(--dark-text);
+}
+
+body.dark-mode .pp-page :is(.pp-review-meta, .pp-review-date, .pp-rating-count, .pp-card-meta, .pp-meta-item) {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .pp-page :is(.pp-chip, .pp-preset-apply, .pp-bookmark-btn, .pp-modal-close, .pp-review-delete) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+
+body.dark-mode .pp-page :is(.pp-chip-accent, .pp-chip-primary, .pp-chip-emerald, .pp-chip-success) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface-raised);
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .pp-page :is(.pp-bookmark-btn.active, .pp-preset-apply:hover, .pp-modal-close:hover, .pp-review-delete:hover) {
+  border-color: var(--dark-primary);
+  color: var(--dark-primary);
+}
+
+body.dark-mode .pp-page :is(.pp-search-input, .pp-preset-input, .pp-review-input) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+
+body.dark-mode .pp-page :is(.pp-search-input, .pp-preset-input, .pp-review-input)::placeholder {
+  color: var(--dark-text-secondary);
+  opacity: 1;
+}
+
+body.dark-mode .pp-page :is(button, a, select, input, textarea):focus-visible {
+  outline-color: var(--dark-primary);
+}
