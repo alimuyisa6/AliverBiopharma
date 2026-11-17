@@ -22,30 +22,30 @@ const CONTINUE_ICON = { note: 'book-open', video: 'play', quiz: 'clipboard-check
 function ContinueLearningRail({ items, navigate }) {
   if (!items?.length) return null;
   return (
-    <section className="section home-continue-learning-section">
-      <div className="section-head">
-        <div className="section-head-left">
-          <span className="eyebrow">Pick up where you left off</span>
+    <section className="w-full bg-background px-5 py-12 sm:px-8 lg:px-12">
+      <div className="mx-auto mb-7 flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div className="min-w-0">
+          <span className="mb-2 block text-xs font-bold uppercase tracking-[0.15em] text-secondary-700">Pick up where you left off</span>
           <h2>Continue learning</h2>
         </div>
-        <Link to="/dashboard" className="text-link">View all learning activity →</Link>
+        <Link to="/dashboard" className="text-sm font-bold text-primary-700 hover:text-secondary-700">View all learning activity →</Link>
       </div>
-      <div className="row-list home-continue-learning-list">
+      <div className="mx-auto flex max-w-7xl flex-col gap-3">
         {items.map((item) => (
-          <div key={item.id} className="row home-continue-learning-row">
-            <div className="row-thumb home-continue-learning-thumb">
+          <div key={item.id} className="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:flex-row sm:items-center">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary-100 text-xl text-primary-700">
               <Icon name={CONTINUE_ICON[item.type] || 'book-open'} />
             </div>
-            <div className="row-body">
-              <div className="row-title">{item.title}</div>
-              <div className="row-meta">
+            <div className="min-w-0 flex-1">
+              <div className="font-bold text-primary-900">{item.title}</div>
+              <div className="mt-2 flex flex-col gap-2 text-xs text-slate-600 sm:flex-row sm:items-center">
                 <span>{item.type} · {item.subject || 'Biology'}</span>
-                <span className="progress-track home-continue-learning-progress" aria-label={`${item.progress_percent || 0}% complete`}>
-                  <span className={`progress-fill ${item.progress_color || 'blue'}`} style={{ width: `${item.progress_percent || 0}%` }} />
+                <span className="h-2 min-w-24 flex-1 overflow-hidden rounded-full bg-slate-100" aria-label={`${item.progress_percent || 0}% complete`}>
+                  <span className="block h-full rounded-full bg-primary-500" style={{ width: `${item.progress_percent || 0}%` }} />
                 </span>
               </div>
             </div>
-            <div className="row-actions">
+            <div className="flex flex-wrap items-center justify-between gap-3 text-sm text-slate-600 sm:justify-end">
               <span>{item.progress_label}</span>
               <ThreeDButton type="button" variant="soft" size="sm" iconRight="arrow-right" onClick={() => navigate(item.route)}>{item.cta_label}</ThreeDButton>
             </div>
@@ -64,7 +64,7 @@ function CurriculumNodeList({ nodes, parentId = null, isPharmacy = false }) {
   if (!children.length) return null;
 
   return (
-    <div className="home-curriculum-node-list" aria-label="Available curriculum topics">
+    <div className="mx-auto flex max-w-7xl flex-col gap-3" aria-label="Available curriculum topics">
       {children.map((node) => {
         const nodeSlug = node.slug || String(node.name || '')
           .trim()
@@ -87,13 +87,13 @@ function CurriculumNodeList({ nodes, parentId = null, isPharmacy = false }) {
                     : 'Learning area';
 
         return (
-          <article key={node.id} className="home-curriculum-node home-curriculum-node-item">
-            <span className="home-curriculum-node-marker" aria-hidden="true" />
-            <span className="home-curriculum-node-copy">
-              <strong className="home-curriculum-node-name">{node.name}</strong>
-              <small className="home-curriculum-node-type">{label}</small>
+          <article key={node.id} className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:flex-row sm:items-center">
+            <span className="hidden h-3 w-3 shrink-0 rounded-full bg-secondary-500 sm:block" aria-hidden="true" />
+            <span className="min-w-0 flex-1">
+              <strong className="block font-bold text-primary-900">{node.name}</strong>
+              <small className="mt-1 block text-xs font-semibold uppercase tracking-wide text-slate-500">{label}</small>
             </span>
-            <Link to={`/curriculum/${node.group_id}/${nodeSlug}`} className="home-curriculum-node-action">
+            <Link to={`/curriculum/${node.group_id}/${nodeSlug}`} className="inline-flex items-center gap-2 self-start rounded-lg bg-primary-50 px-4 py-2 text-sm font-bold text-primary-700 transition hover:bg-primary-100 sm:self-auto">
               Open {label.toLowerCase()} <Icon name="chevron-right" />
             </Link>
           </article>
@@ -115,9 +115,9 @@ function CurriculumSnapshot({ nodes, activeLevelName, activeGroupName, sections 
       : 'Choose a Biology topic, then explore its subtopics, themes and lessons for your selected class.';
 
   return (
-    <section className="section home-curriculum-section" aria-labelledby="home-curriculum-heading">
-      <div className="section-head">
-        <div className="section-head-left">
+    <section className="w-full bg-secondary-50 px-5 py-16 sm:px-8 lg:px-12" aria-labelledby="home-curriculum-heading">
+      <div className="mx-auto mb-7 flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div className="min-w-0">
           <span className="eyebrow">{activeLevelName}{activeGroupName ? ` · ${activeGroupName}` : ''}</span>
           <h2 id="home-curriculum-heading" className="home-curriculum-heading">
             Choose a {firstStepLabel}
@@ -125,7 +125,7 @@ function CurriculumSnapshot({ nodes, activeLevelName, activeGroupName, sections 
           <p className="section-description home-curriculum-description">{description}</p>
         </div>
       </div>
-      <div className="home-curriculum-map" aria-label="Your curriculum">
+      <div className="mx-auto max-w-7xl rounded-2xl border border-secondary-100 bg-white p-4 shadow-sm sm:p-6" aria-label="Your curriculum">
         <CurriculumNodeList nodes={nodes} isPharmacy={isPharmacy} />
       </div>
     </section>
@@ -147,9 +147,9 @@ function DailyRecallCard({ recall, onReveal, onStart }) {
   const { question_text, meta, score } = recall;
   const progress = score?.total ? (score.completed / score.total) * 100 : 0;  return (
     <section className="section section-emerald home-daily-recall-section card-glass">
-      <div className="section-head"><div className="section-head-left"><span className="eyebrow">Daily active recall</span><h2>{question_text}</h2><p className="section-description home-daily-recall-description">{meta}</p></div></div>
+      <div className="mx-auto mb-7 flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"><div className="min-w-0"><span className="eyebrow">Daily active recall</span><h2>{question_text}</h2><p className="section-description home-daily-recall-description">{meta}</p></div></div>
       <div className="card card-lifted card-surface-solid card-elevation-soft card-density-comfortable row home-daily-recall-card">
-        <div className="row-body">{score && <div className="home-daily-recall-progress"><div className="home-daily-recall-score"><span>Today's recall</span><strong>{score.completed} / {score.total}</strong><span>· +{score.xp_earned} XP</span></div><div className="progress-track" aria-label={`${Math.round(progress)}% complete`}><span className="progress-fill emerald" style={{ width: `${progress}%` }} /></div></div>}</div>
+        <div className="min-w-0 flex-1">{score && <div className="home-daily-recall-progress"><div className="home-daily-recall-score"><span>Today's recall</span><strong>{score.completed} / {score.total}</strong><span>· +{score.xp_earned} XP</span></div><div className="progress-track" aria-label={`${Math.round(progress)}% complete`}><span className="progress-fill emerald" style={{ width: `${progress}%` }} /></div></div>}</div>
         <div className="row-actions home-daily-recall-actions"><ThreeDButton type="button" variant="soft" onClick={onReveal}>Reveal answer</ThreeDButton><ThreeDButton type="button" variant="solid" iconRight="arrow-right" onClick={onStart}>Start recall</ThreeDButton></div>
       </div>
     </section>
@@ -168,8 +168,8 @@ export default function HomeView(props) {
   const { sections, user, navigate, activeLevelName, activeGroupName, activeGroupId, publicStats, subscriptionPlans, chatOpen, chatMessages, chatInput, adminOnline, newsletterEmail, newsletterStatus, newsletterLoading, chatRequestLoading, chatSending, chatDeletingId, handleNewsletterSubmit, sendChat, deleteChatMsg, setChatOpen, setChatInput, setNewsletterEmail, chatBodyRef, continueLearning, curriculumUnits, dailyRecall, onRevealRecall, onStartRecall, dailyChallenge, onOpenChallenge } = props;
 
   return (
-    <div className="home-page eduprix-home">
-      <section className="home-hero-section" id="top" aria-label="Introduction">
+    <div className="min-h-screen bg-background text-foreground">
+      <section className="w-full" id="top" aria-label="Introduction">
         <LernwickHomeHero user={user} activeLevelName={activeLevelName} activeGroupName={activeGroupName} activeGroupId={activeGroupId} />
       </section>
 
@@ -184,14 +184,14 @@ export default function HomeView(props) {
       <ConnectedLearning />
 
       {user && (
-        <section className="home-student-section" id="dashboard">
+        <section className="w-full bg-primary-50 px-5 py-12 sm:px-8 lg:px-12" id="dashboard">
           {!isDesktopViewport && <ClassSwitcher className="home-scope-switcher" />}
           <HomeDashboardCard />
           <ContinueLearningRail items={continueLearning} navigate={navigate} />
         </section>
       )}
 
-      {user && <section className="home-daily-learning-section" aria-label="Daily learning activities">
+      {user && <section className="w-full bg-secondary-50 px-5 py-12 sm:px-8 lg:px-12" aria-label="Daily learning activities">
         <ChallengeTreasureCard challenge={dailyChallenge} onOpen={onOpenChallenge} />
         <DailyRecallCard recall={dailyRecall} onReveal={onRevealRecall} onStart={onStartRecall} />
       </section>}
