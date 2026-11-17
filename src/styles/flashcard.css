@@ -711,3 +711,70 @@ body.dark-mode .flashcards-page :is(a, button):focus-visible,
 body.dark-mode .flashcard-deck-view :is(a, button, input):focus-visible {
   outline-color: var(--dark-primary);
 }
+
+
+.flashcard-welcome,
+.flashcard-progress {
+  min-width: 0;
+  color: var(--text-main);
+}
+
+.flashcard-welcome :is(button, a):focus-visible,
+.flashcard-progress :is(button, a):focus-visible,
+.flashcard-deck-view :is(button, a, input, select, textarea):focus-visible {
+  outline: 3px solid var(--primary-border);
+  outline-offset: 3px;
+}
+
+.flashcard-welcome .fcw-flip-face,
+.flashcard-progress .fcp-card {
+  color: var(--text-main);
+}
+
+.flashcard-welcome .fcw-flip-face :is(h2, h3, p),
+.flashcard-progress .fcp-card :is(h2, h3, p, span) {
+  color: inherit;
+}
+
+.fcp-recommendation {
+  margin: var(--space-5) 0;
+  padding: var(--space-4);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--surface-section);
+  color: var(--text-main);
+  text-align: left;
+}
+
+.fcp-recommendation :is(h3, p) {
+  color: inherit;
+}
+
+body.dark-mode .flashcard-welcome,
+body.dark-mode .flashcard-progress {
+  color: var(--dark-text);
+}
+
+body.dark-mode .flashcard-welcome .fcw-flip-face,
+body.dark-mode .flashcard-progress .fcp-card {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text);
+}
+
+body.dark-mode .flashcard-welcome .fcw-flip-face :is(h2, h3, p),
+body.dark-mode .flashcard-progress .fcp-card :is(h2, h3, p, span) {
+  color: var(--dark-text);
+}
+
+body.dark-mode .flashcard-progress .fcp-recommendation {
+  border-color: var(--dark-border);
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+
+body.dark-mode .flashcard-welcome :is(button, a):focus-visible,
+body.dark-mode .flashcard-progress :is(button, a):focus-visible,
+body.dark-mode .flashcard-deck-view :is(button, a, input, select, textarea):focus-visible {
+  outline-color: var(--dark-primary);
+}
