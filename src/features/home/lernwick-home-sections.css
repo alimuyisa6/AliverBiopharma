@@ -1358,3 +1358,35 @@ body.dark-mode .home-page :is(.lernwick-pathway-card, .lernwick-step-card, .lern
   .lernwick-connected-link-icon { width: 3.75rem; height: 3.75rem; }
   .lernwick-connected-link-icon svg { width: 2.4rem; height: 2.4rem; }
 }
+
+
+/* Keep each homepage icon family visually consistent. */
+.home-page .lernwick-pathway-image,
+.home-page .lernwick-studio-card-icon,
+.home-page .lernwick-connected-link-icon,
+.home-page .lernwick-studio-visual-core {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+.home-page .lernwick-pathway-image > svg,
+.home-page .lernwick-studio-card-icon svg,
+.home-page .lernwick-connected-link-icon svg,
+.home-page .lernwick-studio-visual-core svg {
+  color: var(--primary-dark);
+}
+
+body.dark-mode .home-page .lernwick-pathway-image,
+body.dark-mode .home-page .lernwick-studio-card-icon,
+body.dark-mode .home-page .lernwick-connected-link-icon,
+body.dark-mode .home-page .lernwick-studio-visual-core {
+  background: var(--dark-surface);
+  color: var(--dark-primary);
+}
+
+body.dark-mode .home-page .lernwick-pathway-image > svg,
+body.dark-mode .home-page .lernwick-studio-card-icon svg,
+body.dark-mode .home-page .lernwick-connected-link-icon svg,
+body.dark-mode .home-page .lernwick-studio-visual-core svg {
+  color: var(--dark-primary);
+}
