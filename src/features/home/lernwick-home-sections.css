@@ -1445,3 +1445,71 @@ body.dark-mode .home-page .lernwick-pathway-image>svg,body.dark-mode .home-page 
     gap: 1.25rem;
   }
 }
+
+
+/* Wider icon and copy columns: prevent icon badges from crowding labels. */
+.lernwick-connected-link {
+  grid-template-columns: 2.75rem minmax(0, 1fr) auto;
+  column-gap: 1.15rem;
+  row-gap: .65rem;
+  padding: .9rem 1rem;
+}
+
+.lernwick-connected-link-icon {
+  width: 2.75rem;
+  height: 2.75rem;
+}
+
+.lernwick-connected-link-copy {
+  gap: .35rem;
+  padding-inline-start: .1rem;
+}
+
+.lernwick-connected-link-copy strong,
+.lernwick-connected-link-copy small {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  overflow-wrap: anywhere;
+}
+
+.lernwick-connected-link-copy strong {
+  line-height: 1.4;
+}
+
+.lernwick-connected-link-copy small {
+  line-height: 1.55;
+}
+
+.lernwick-studio-card {
+  row-gap: 1rem;
+}
+
+.lernwick-studio-card-icon {
+  margin-bottom: .35rem;
+}
+
+.lernwick-studio-card-label {
+  margin-top: .15rem;
+}
+
+.lernwick-pathway-body {
+  row-gap: 1rem;
+}
+
+.lernwick-pathway-body h3 {
+  margin-top: .15rem;
+}
+
+@media (max-width: 640px) {
+  .lernwick-connected-link {
+    grid-template-columns: 2.5rem minmax(0, 1fr) auto;
+    column-gap: .9rem;
+    padding: .85rem;
+  }
+
+  .lernwick-connected-link-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}

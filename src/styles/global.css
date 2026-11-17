@@ -585,33 +585,3 @@ body.dark-mode :is(.btn-primary, .button-primary, .button--primary, .bg-primary)
     height: 2.25rem;
   }
 }
-
-
-/* Consistent breathing room between iconography and its supporting copy. */
-#root .app-layout :where(.section-icon, .feature-icon, .card-icon, .resource-icon, .topic-icon) {
-  margin-inline-end: var(--icon-text-gap);
-}
-
-#root .app-layout :where(.section-icon, .feature-icon, .card-icon, .resource-icon, .topic-icon) + :is(div, span, p, h2, h3, h4) {
-  min-width: 0;
-}
-
-#root .app-layout :where(.feature-item, .feature-row, .resource-feature, .dashboard-activity-item, .activity-item, .stat-item) {
-  column-gap: var(--icon-text-gap);
-  row-gap: var(--icon-label-gap);
-}
-
-#root .app-layout :where(.feature-item, .feature-row, .resource-feature, .dashboard-activity-item, .activity-item, .stat-item) :where(h2, h3, h4, p, small, .description, .supporting-text) {
-  line-height: var(--leading-relaxed);
-}
-
-@media (max-width: 640px) {
-  #root .app-layout :where(.section-icon, .feature-icon, .card-icon, .resource-icon, .topic-icon) {
-    margin-inline-end: var(--icon-text-gap-compact);
-  }
-
-  #root .app-layout :where(.feature-item, .feature-row, .resource-feature, .dashboard-activity-item, .activity-item, .stat-item) {
-    column-gap: var(--icon-text-gap-compact);
-    row-gap: var(--icon-label-gap);
-  }
-}
