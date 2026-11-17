@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import Icon from '../../components/Icon/Icon';
-import './lernwick-home-sections.css';
 
 const pathways = [
   { id: 'o-level', label: 'O-Level Biology', title: 'Build strong foundations', description: 'Explore the living world through observation, clear scientific explanations and practical understanding.', icon: 'microscope' },
@@ -142,7 +141,6 @@ function HowLearningWorks({ studio }) {
     </section>
   );
 }
-
 
 const connectedLearningStages = [
   {
