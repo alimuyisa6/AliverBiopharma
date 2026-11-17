@@ -2667,3 +2667,95 @@ body.dark-mode .quiz-page :where(.quiz-empty-topics, .quiz-challenge-card, .stat
 .qbank-page .qbank-question-card :is(h3, p, li, span, small) {
   overflow-wrap: anywhere;
 }
+
+
+.quiz-question-content :is(button, input, select, textarea):focus-visible {
+  outline: 3px solid var(--primary-border);
+  outline-offset: 3px;
+}
+
+.quiz-question-content :is(input, select, textarea) {
+  border-color: var(--border-default);
+  background: var(--bg-input);
+  color: var(--text-main);
+}
+
+.quiz-question-content :is(input, select, textarea)::placeholder {
+  color: var(--text-muted);
+  opacity: 1;
+}
+
+.quiz-question-content .quiz-mark-review {
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  color: var(--text-main);
+}
+
+.quiz-question-content .quiz-mark-review.is-marked {
+  border-color: var(--accent);
+  background: var(--accent-light);
+  color: var(--text-main);
+}
+
+.quiz-question-content .quiz-essay-instructions,
+.quiz-question-content .quiz-essay-meta,
+.quiz-question-content .quiz-essay-footer,
+.quiz-question-content .quiz-answer-feedback {
+  color: var(--text-secondary);
+}
+
+body.dark-mode .quiz-question-content :is(h3, label, .quiz-option-text, .quiz-option-letter) {
+  color: var(--dark-text);
+}
+
+body.dark-mode .quiz-question-content :is(input, select, textarea) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text);
+}
+
+body.dark-mode .quiz-question-content :is(input, select, textarea)::placeholder {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .quiz-question-content .quiz-mark-review {
+  border-color: var(--dark-border);
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+
+body.dark-mode .quiz-question-content .quiz-mark-review.is-marked {
+  border-color: var(--dark-primary);
+  background: color-mix(in srgb, var(--dark-primary) 14%, var(--dark-surface));
+  color: var(--dark-text);
+}
+
+body.dark-mode .quiz-question-content :is(.quiz-essay-instructions, .quiz-essay-meta, .quiz-essay-footer, .quiz-answer-feedback) {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .quiz-question-content .quiz-option-btn {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text);
+}
+
+body.dark-mode .quiz-question-content .quiz-option-btn.selected {
+  border-color: var(--dark-primary);
+  background: var(--dark-surface-raised);
+}
+
+body.dark-mode .quiz-question-content .quiz-option-btn.correct {
+  border-color: var(--success);
+  background: color-mix(in srgb, var(--success) 16%, var(--dark-surface));
+}
+
+body.dark-mode .quiz-question-content .quiz-option-btn.incorrect {
+  border-color: var(--danger);
+  background: color-mix(in srgb, var(--danger) 16%, var(--dark-surface));
+}
+
+body.dark-mode .quiz-question-content :is(button, input, select, textarea):focus-visible {
+  outline-color: var(--dark-primary);
+}
