@@ -222,3 +222,9 @@ html[data-ui-density="spacious"] { --content-gap: calc(var(--space-6) * var(--ui
     --card-padding-y-spacious: var(--space-5);
   }
 }
+
+:root {
+  --icon-size-hero: 5rem;
+  --icon-size-display: 6rem;
+  --icon-size-large: 4rem;
+}
