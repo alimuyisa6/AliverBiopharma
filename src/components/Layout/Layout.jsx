@@ -101,7 +101,7 @@ export default function Layout({ children, showFooter = true }) {
     <NetworkStatus />
     {!hideHeader && <header className={`site-header${scrolled ? ' scrolled' : ''}`}><div className="header-container">
       <Link to="/" className="header-logo">{logo ? <img src={logo} alt="" aria-hidden="true" /> : siteName}</Link>
-      <nav className="main-nav">{menuLinks.map((link) => <Link key={link.href} to={link.href} className={`main-nav-link${location.pathname === link.href ? ' active' : ''}`}>{link.icon && <Icon name={link.icon} />}{link.label}</Link>)}</nav>
+      <nav className="main-nav" aria-label="Primary navigation">{menuLinks.map((link) => <Link key={link.href} to={link.href} className={`main-nav-link${location.pathname === link.href ? ' active' : ''}`}>{link.icon && <Icon name={link.icon} />}{link.label}</Link>)}</nav>
       <div className="nav-actions">
         {isAuthenticated && <ClassSwitcher />}
         <button className="header-action-button" onClick={() => setSearchOpen(true)} aria-label={t('common.search')} type="button"><SearchGlyph /></button>
@@ -122,7 +122,7 @@ export default function Layout({ children, showFooter = true }) {
         </nav>
       </div>
     </>}
-    <main id="main-content" className={`main-content${location.pathname.startsWith('/profile') ? ' main-content-profile' : ''}`} key={routeKey}>{children}</main>
+    <main id="main-content" tabIndex="-1" className={`main-content${location.pathname.startsWith('/profile') ? ' main-content-profile' : ''}`} key={routeKey}>{children}</main>
     {!hideFooter && showFooter && <footer className="footer"><div className="footer-wave" aria-hidden="true"><svg viewBox="0 0 1440 120" preserveAspectRatio="none" focusable="false"><path className="footer-wave-path-back" d="M0 62C180 18 360 96 600 62S1000 8 1200 52 1360 88 1440 56V120H0Z" /><path className="footer-wave-path-mid" d="M0 78C220 34 420 104 680 74S1040 26 1240 70 1380 96 1440 74V120H0Z" /><path className="footer-wave-path-front" d="M0 92C240 58 460 112 720 90S1080 52 1260 88 1390 106 1440 94V120H0Z" /></svg></div><div className="footer-inner">
       <div className="footer-brand"><Link to="/" className="header-logo">{logo ? <img src={logo} alt="" aria-hidden="true" className="footer-logo" /> : siteName}</Link><p className="footer-tagline">{t('common.footerTagline')}</p>{footer.social_links && Object.keys(footer.social_links).length > 0 && <div className="footer-social">{Object.entries(footer.social_links).map(([platform, url]) => <a key={platform} href={url} target="_blank" rel="noopener noreferrer" className="footer-social-link" data-platform={platform} aria-label={platform}><Icon name={platform} /></a>)}</div>}</div>
       <div className="footer-right-groups">
@@ -134,6 +134,6 @@ export default function Layout({ children, showFooter = true }) {
           {footer.resource_links?.length > 0 && <section><h4 className="footer-heading">{t('common.resources')}</h4><div className="footer-links">{footer.resource_links.filter((item) => !['/about','/classroom','/notes','/quiz','/flashcards','/past-papers','/recall','/pdfs','/glossary'].includes(item.path)).map((item, index) => <Link key={index} to={item.path} className="footer-link">{item.label}</Link>)}</div></section>}
         </div>
       </div>
-    </div><div className="footer-bottom"><p className="footer-copyright">&copy; {new Date().getFullYear()} AliverBiopharm. All rights reserved.</p><nav className="footer-bottom-nav"><Link to="/privacy" className="footer-bottom-link">{t('common.privacy')}</Link><Link to="/terms" className="footer-bottom-link">{t('common.terms')}</Link><Link to="/about" className="footer-bottom-link">{t('common.about')}</Link></nav></div></footer>}
+    </div><div className="footer-bottom"><p className="footer-copyright">&copy; {new Date().getFullYear()} AliverBiopharm. All rights reserved.</p><nav className="footer-bottom-nav" aria-label="Legal and company links"><Link to="/privacy" className="footer-bottom-link">{t('common.privacy')}</Link><Link to="/terms" className="footer-bottom-link">{t('common.terms')}</Link><Link to="/about" className="footer-bottom-link">{t('common.about')}</Link></nav></div></footer>}
   </div>;
 }
