@@ -8,7 +8,6 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from './empty';
-import '../../styles/empty-state.css';
 
 export default function EmptyComponent({
   title = 'No Internet Connection',

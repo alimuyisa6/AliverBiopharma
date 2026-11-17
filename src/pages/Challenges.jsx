@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import Icon from '../components/Icon/Icon';
 import Spinner from '../components/Spinner/Spinner';
 import { getPersonalizedDailyChallenge } from '../api/client';
-import './challenges.css';
 import ThreeDButton from '../components/buttons/ThreeDButton';
 import { getChallengeMeta, getChallengeProgress, isChallengeCompleted } from '../utils/challengeConfig';
 

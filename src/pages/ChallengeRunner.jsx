@@ -3,7 +3,6 @@ import { useNavigate, useSearchParams, useParams } from 'react-router-dom';
 import Icon from '../components/Icon/Icon';
 import Spinner from '../components/Spinner/Spinner';
 import { getPersonalizedDailyChallenge } from '../api/client';
-import './challenge-runner.css';
 import ThreeDButton from '../components/buttons/ThreeDButton';
 
 const META = {

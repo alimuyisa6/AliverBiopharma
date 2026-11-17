@@ -4,7 +4,6 @@ import Icon from '../components/Icon/Icon';
 import Spinner from '../components/Spinner/Spinner';
 import { getDonateConfig, getDonors, submitMomoDonation } from '../api/client';
 import { DEFAULT_DONATION_GOAL, formatDonationAmount, calculateDonationPercentage } from '../utils/donationFormatting';
-import '../styles/donate.css';
 
 export default function Donate() {
   const [tab, setTab] = useState('crypto');

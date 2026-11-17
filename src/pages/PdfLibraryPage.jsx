@@ -18,7 +18,6 @@ import LearningJourney from '../components/LearningJourney/LearningJourney';
 import { isPremiumAccessError, redirectToSubscription } from '../utils/subscriptionNavigation';
 import { getCachedStale, setCache } from '../utils/cache';
 import { useToast } from '../components/Toast/Toast';
-import './PdfLibraryPage.css';
 
 export default function PdfLibraryPage() {
   const access = useContentAccess();

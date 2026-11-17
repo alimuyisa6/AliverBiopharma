@@ -11,7 +11,6 @@ import {
   searchQuestionBank,
   startCustomTest
 } from '../api/client';
-import '../styles/quiz.css';
 
 const PAGE_SIZE = 20;
 const TYPES = [

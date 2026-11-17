@@ -6,7 +6,6 @@ import Icon from '../components/Icon/Icon';
 import PageSkeleton from '../components/Loading/PageSkeleton';
 import EmptyState from '../components/EmptyState/EmptyState';
 import { useToast } from '../components/Toast/Toast';
-import '../styles/quiz-review.css';
 
 export default function QuizReview() {
   const addToast = useToast();
