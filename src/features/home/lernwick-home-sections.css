@@ -1332,3 +1332,19 @@ body.dark-mode .home-page :is(.lernwick-pathway-card, .lernwick-step-card, .lern
 body.dark-mode .home-page :is(.lernwick-pathway-card, .lernwick-step-card, .lernwick-connected-card, .lernwick-studio-card) :is(svg, .icon, .lernwick-pathway-image-icon, .lernwick-step-icon) {
   color: var(--dark-primary);
 }
+
+/* Prominent feature artwork and card icons. */
+.lernwick-pathway-image > svg { width: 4.75rem; height: 4.75rem; }
+.lernwick-studio-card-icon { width: 4rem; height: 4rem; }
+.lernwick-studio-card-icon svg { width: 2.5rem; height: 2.5rem; }
+.lernwick-connected-link-icon { width: 3.5rem; height: 3.5rem; }
+.lernwick-connected-link-icon svg { width: 2.25rem; height: 2.25rem; }
+.lernwick-connected-link > svg { width: 1.5rem; height: 1.5rem; }
+.home-page .home-curriculum-node > svg { width: 1.5rem; height: 1.5rem; }
+.home-page .home-challenge-meta svg { width: 1.5rem; height: 1.5rem; }
+.home-page .home-daily-recall-card svg { width: 2rem; height: 2rem; }
+@media(max-width:700px) {
+  .lernwick-pathway-image > svg { width: 4rem; height: 4rem; }
+  .lernwick-studio-card-icon { width: 3.5rem; height: 3.5rem; }
+  .lernwick-studio-card-icon svg { width: 2.25rem; height: 2.25rem; }
+}
