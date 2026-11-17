@@ -580,26 +580,26 @@ export default function PastPapers() {
   const classLabel = class_name || '';
 
   return (
-    <div className="pp-page">
-      <div className="pp-hero">
-        <div className="pp-hero-inner">
-          <div className="pp-hero-content">
-            <span className="pp-eyebrow">
-              <span className="pp-eyebrow-line" />
+    <div className="min-h-screen bg-background text-foreground">
+      <div className="w-full bg-primary-50 px-4 py-10 sm:px-6 lg:py-14">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-4xl rounded-3xl border border-primary-100 bg-white p-6 shadow-sm sm:p-10">
+            <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-secondary-800">
+              <span className="h-1 w-7 rounded-full bg-secondary-600" />
               Exam Preparation
             </span>
 
-            <h1 className="pp-title">
+            <h1 className="mt-4 text-4xl font-extrabold leading-tight tracking-tight text-primary-950 sm:text-5xl">
               {levelName ? `${levelName} past papers` : 'Past papers'}
             </h1>
 
             {classLabel && (
-              <p className="pp-subtitle">
+              <p className="mt-2 text-lg font-semibold text-secondary-800">
                 {classLabel}
               </p>
             )}
 
-            <p className="pp-description">
+            <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
               Search past exams by subject, year, or exam board. Save papers and practise at your own pace.
             </p>
 
@@ -608,11 +608,11 @@ export default function PastPapers() {
               { label: curriculumUnitId ? 'Curriculum Past Papers' : 'Past Papers' },
             ]} />
 
-            <div className="pp-meta">
-              <span className="pp-meta-item">
+            <div className="mt-7 flex flex-wrap items-center gap-4 border-t border-border pt-5 text-sm text-slate-600">
+              <span className="inline-flex items-center gap-1">
                 <strong>{total}</strong> papers
               </span>
-              <span className="pp-meta-divider" />
+              <span className="h-5 w-px bg-border" />
               <span className="pp-meta-item">
                 <strong>{filterOptions.years.length || '—'}</strong> years
               </span>
@@ -625,9 +625,9 @@ export default function PastPapers() {
         </div>
       </div>
 
-      <div className="pp-main">
+      <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         {!user && (
-          <div className="pp-alert pp-alert-info">
+          <div className="mb-6 flex items-center gap-3 rounded-xl border border-primary-200 bg-primary-50 p-4 text-sm font-medium text-primary-950">
             <Icon name="lock" /> <span>You can browse past papers freely. Sign in when you're ready to download one.</span>
           </div>
         )}
@@ -645,17 +645,17 @@ export default function PastPapers() {
         />
 
         {activeTab === 'all' && (
-          <div className="pp-toolbar">
-            <div className="pp-search-wrapper">
+          <div className="my-6 flex flex-wrap items-end gap-4 rounded-2xl border border-border bg-white p-4 shadow-sm">
+            <div className="relative min-w-[min(100%,18rem)] flex-1">
               <input
                 type="search"
                 placeholder="Search past papers…"
                 value={searchQuery}
                 onChange={(event) => setSearchQuery(event.target.value)}
-                className="pp-search-input"
+                className="min-h-12 w-full rounded-xl border border-border bg-white px-4 pr-11 text-sm text-foreground outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-100"
                 aria-label="Search past papers"
               />
-              <span className="pp-search-icon">
+              <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-slate-500">
                 <Icon name="magnifying-glass" />
               </span>
             </div>
@@ -679,7 +679,7 @@ export default function PastPapers() {
             >
               <Icon name="filter" /> Filter papers
               {activeFilterCount > 0 && (
-                <span className="pp-badge">{activeFilterCount}</span>
+                <span className="ml-2 rounded-full bg-secondary-100 px-2 py-0.5 text-xs font-bold text-secondary-900">{activeFilterCount}</span>
               )}
             </Button>
 
@@ -699,7 +699,7 @@ export default function PastPapers() {
               </Button>
             )}
 
-            <p className="pp-count">
+            <p className="ml-auto text-sm font-semibold text-slate-600">
               {papersLoading ? 'Loading past papers…' : `${total} ${total === 1 ? 'paper' : 'papers'} found`}
             </p>
           </div>

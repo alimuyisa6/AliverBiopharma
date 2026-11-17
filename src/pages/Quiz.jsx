@@ -640,18 +640,18 @@ export default function Quiz() {
     const blockCount = Number(topicData?.total_blocks) || Math.ceil((Number(topicData?.question_count) || 0) / 10);
 
     return (
-      <div className="quiz-page quiz-blocks-route-page">
-        <div className="section quiz-page-section">
-          <button type="button" className="quiz-cards-route-back" onClick={() => navigate('/quiz/blocks')} aria-label="Back to quiz cards">
+      <div className="min-h-screen bg-background text-foreground">
+        <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+          <button type="button" className="mb-6 inline-flex min-h-10 items-center gap-2 rounded-lg border border-border bg-white px-4 py-2 text-sm font-semibold text-primary-800 hover:bg-primary-50" onClick={() => navigate('/quiz/blocks')} aria-label="Back to quiz cards">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <path d="M14.5 5.5 8 12l6.5 6.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
-          <div className="quiz-cards-route-header">
-            <span className="eyebrow">{isPharmacy ? 'Course Unit' : 'Topic'}</span>
-            <h1 className="section-title quiz-page-title">{currentTopic}</h1>
+          <div className="mb-8 border-b border-border pb-6">
+            <span className="text-xs font-bold uppercase tracking-[0.16em] text-secondary-800">{isPharmacy ? 'Course Unit' : 'Topic'}</span>
+            <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-primary-950 sm:text-4xl">{currentTopic}</h1>
           </div>
-          <div className="quiz-blocks-grid">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {Array.from({ length: blockCount }).map((_, index) => {
               const failed = topicData?.failed_blocks?.includes(index);
               const pendingReview = topicData?.pending_review_blocks?.includes(index);
@@ -667,7 +667,7 @@ export default function Quiz() {
                   title={retryLocked ? retryLabel : undefined}
                 >
                   <span>Question set {index + 1}</span>
-                  {passed && <span className="quiz-block-status-label">Passed</span>}
+                  {passed && <span className="mt-1 block text-xs font-semibold opacity-80">Passed</span>}
                   {pendingReview && <span className="quiz-block-status-label">Awaiting marking</span>}
                   {failed && (
                     <span className="quiz-block-status-label">
@@ -680,25 +680,25 @@ export default function Quiz() {
           </div>
 
           <Modal open={showRulesModal} onClose={() => setShowRulesModal(false)} title={t('common.quizRules')}>
-            <div className="quiz-mode-picker" role="group" aria-label="Choose assessment mode">
-            <button type="button" className={`quiz-mode-option ${quizMode === 'study' ? 'is-active' : ''}`} onClick={() => setQuizMode('study')}>
+            <div className="grid gap-3 sm:grid-cols-2" role="group" aria-label="Choose assessment mode">
+            <button type="button" className={`flex min-h-20 items-center gap-3 rounded-xl border p-4 text-left transition ${quizMode === "study" ? "border-primary-500 bg-primary-50 text-primary-950" : "border-border bg-white text-slate-800 hover:border-primary-300"}`} onClick={() => setQuizMode('study')}>
               <Icon name="lightbulb" />
               <span><strong>Study mode</strong><small>Get feedback and explanations as you practise.</small></span>
               {quizMode === 'study' && <Icon name="circle-check" />}
             </button>
-            <button type="button" className={`quiz-mode-option ${quizMode === 'exam' ? 'is-active' : ''}`} onClick={() => setQuizMode('exam')}>
+            <button type="button" className={`flex min-h-20 items-center gap-3 rounded-xl border p-4 text-left transition ${quizMode === "exam" ? "border-primary-500 bg-primary-50 text-primary-950" : "border-border bg-white text-slate-800 hover:border-primary-300"}`} onClick={() => setQuizMode('exam')}>
               <Icon name="graduation-cap" />
               <span><strong>Exam mode</strong><small>Complete the assessment before seeing feedback.</small></span>
               {quizMode === 'exam' && <Icon name="circle-check" />}
             </button>
           </div>
-          <div className="quiz-assessment-facts">
+          <div className="my-5 flex flex-wrap gap-3 rounded-xl bg-background p-4 text-sm font-semibold text-slate-700">
             <span><Icon name="list-check" /> 10 questions</span>
             <span><Icon name="clock" /> 10 minutes</span>
             <span><Icon name="flag" /> {t('common.passMark')}</span>
           </div>
-          <ul className="quiz-rules-list">
-              <li><span className="quiz-rules-bullet" aria-hidden="true" /> <span>{t('common.questionsPerBlock')}</span></li>
+          <ul className="grid gap-3 py-2 text-sm leading-6 text-slate-700">
+              <li><span className="mr-2 inline-block h-2 w-2 rounded-full bg-secondary-600" aria-hidden="true" /> <span>{t('common.questionsPerBlock')}</span></li>
               <li><span className="quiz-rules-bullet" aria-hidden="true" /> <span>{t('common.passMark')}</span></li>
               <li><span className="quiz-rules-bullet" aria-hidden="true" /> <span>{t('common.immediateFeedback')}</span></li>
               <li><span className="quiz-rules-bullet" aria-hidden="true" /> <span>{t('common.fullExplanations')}</span></li>
@@ -706,8 +706,8 @@ export default function Quiz() {
               <li><Icon name="exclamation-triangle" className="quiz-rules-icon is-warning" /> <span>{t('common.tabRecorded')}</span></li>
               <li><Icon name="exclamation-triangle" className="quiz-rules-icon is-error" /> <span>{t('common.tabAutoSubmit')}</span></li>
             </ul>
-            <div className="quiz-rules-submit">
-              <Button variant="3d" onClick={confirmStartBlock} loading={startingBlock} loadingContext="brand" loadingLabel={t('common.start')} className="quiz-rules-submit-btn">{t('common.start')}</Button>
+            <div className="mt-6 flex justify-end">
+              <Button variant="3d" onClick={confirmStartBlock} loading={startingBlock} loadingContext="brand" loadingLabel={t('common.start')} className="min-w-32">{t('common.start')}</Button>
             </div>
           </Modal>
         </div>
@@ -1159,12 +1159,12 @@ export default function Quiz() {
 
         <Modal open={showRulesModal} onClose={() => setShowRulesModal(false)} title={t('common.quizRules')}>
           <div className="quiz-mode-picker" role="group" aria-label="Choose assessment mode">
-            <button type="button" className={`quiz-mode-option ${quizMode === 'study' ? 'is-active' : ''}`} onClick={() => setQuizMode('study')}>
+            <button type="button" className={`flex min-h-20 items-center gap-3 rounded-xl border p-4 text-left transition ${quizMode === "study" ? "border-primary-500 bg-primary-50 text-primary-950" : "border-border bg-white text-slate-800 hover:border-primary-300"}`} onClick={() => setQuizMode('study')}>
               <Icon name="lightbulb" />
               <span><strong>Study mode</strong><small>Get feedback and explanations as you practise.</small></span>
               {quizMode === 'study' && <Icon name="circle-check" />}
             </button>
-            <button type="button" className={`quiz-mode-option ${quizMode === 'exam' ? 'is-active' : ''}`} onClick={() => setQuizMode('exam')}>
+            <button type="button" className={`flex min-h-20 items-center gap-3 rounded-xl border p-4 text-left transition ${quizMode === "exam" ? "border-primary-500 bg-primary-50 text-primary-950" : "border-border bg-white text-slate-800 hover:border-primary-300"}`} onClick={() => setQuizMode('exam')}>
               <Icon name="graduation-cap" />
               <span><strong>Exam mode</strong><small>Complete the assessment before seeing feedback.</small></span>
               {quizMode === 'exam' && <Icon name="circle-check" />}
