@@ -326,6 +326,11 @@ li + li {
   color: var(--text-main);
 }
 
+.section-blue :where(svg, .icon, .section-icon),
+.section.blue :where(svg, .icon, .section-icon) {
+  color: var(--primary-dark);
+}
+
 .section-blue .text-muted,
 .section-blue .lead,
 .section-blue .text-lead,
@@ -337,6 +342,11 @@ li + li {
 
 .section.mint :is(h1, h2, h3, h4, h5, h6, p, li) {
   color: inherit;
+}
+
+.section-mint :where(svg, .icon, .section-icon),
+.section.mint :where(svg, .icon, .section-icon) {
+  color: var(--accent-dark);
 }
 
 .section.mint .hl,

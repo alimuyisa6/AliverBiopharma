@@ -213,7 +213,15 @@ body.dark-mode .home-page {
   .home-curriculum-node-marker,
   .lernwick-studio-card-icon
 ) {
-  color: var(--info-color);
+  color: var(--card-icon-ink, var(--primary-dark));
+}
+
+.home-page > :is(.lernwick-connected, .home-curriculum-section, .pricing-section, .home-newsletter-section) :is(.section-icon, .section-heading-icon, .section-head-icon) {
+  color: var(--section-ink);
+}
+
+.home-page :is(.lernwick-pathway-card, .lernwick-step-card, .lernwick-connected-card, .lernwick-studio-card, .home-curriculum-node, .home-challenge-treasure, .dash-cell, .home-daily-recall-card, .home-continue-learning-row, .lernwick-testimonial-card, .pricing-card, .pricing-empty, .section-teaser-inner, .ads-home-panel, .newsletter-card, .stats-impact-card) :is(svg, .icon, .card-icon, .feature-icon) {
+  color: var(--primary-dark);
 }
 
 .home-page > :is(

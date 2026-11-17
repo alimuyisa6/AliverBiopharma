@@ -37,6 +37,10 @@
   color: var(--text-main);
 }
 
+.page-header :where(.page-header-icon, .page-header-title-icon, .page-header-eyebrow svg) {
+  color: var(--primary-dark);
+}
+
 .page-header-title-dim {
   font-weight: var(--weight-normal);
   color: var(--text-secondary);
