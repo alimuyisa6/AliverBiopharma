@@ -1,4 +1,3 @@
-import './DownloadButton.css';
 
 export default function DownloadButton({
   children = 'Download',

@@ -5,7 +5,6 @@ import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 import Icon from '../components/Icon/Icon';
 import { getRequest } from '../api/client';
 import { useToast } from '../components/Toast/Toast';
-import '../styles/quiz.css';
 
 export default function ClinicalSimulationsPage() {
   const { caseId } = useParams();

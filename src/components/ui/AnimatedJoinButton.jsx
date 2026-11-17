@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import './AnimatedJoinButton.css';
 
 const FIRST_LABEL = 'Start Free';
 const SECOND_LABEL = 'Join Now';

@@ -1,4 +1,3 @@
-import './PageSkeleton.css';
 
 export default function PageSkeleton({ variant = 'page' }) {
   const compact = variant === 'compact';

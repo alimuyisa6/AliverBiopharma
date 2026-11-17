@@ -4,7 +4,6 @@ import ChartCard from './ChartCard';
 import LineAreaChart from './LineAreaChart';
 import BarChart from './BarChart';
 import RadarChart from './RadarChart';
-import './charts.css';
 
 const CONFIG = {
   notes: { title: 'Learning progress', subtitle: 'Your recent activity from the main learning dashboard.' },

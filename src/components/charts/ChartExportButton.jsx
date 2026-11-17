@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { Download } from 'lucide-react';
-import './charts.css';
 
 function downloadBlob(blob, filename) {
   const url = URL.createObjectURL(blob);

@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import Icon from '../../components/Icon/Icon';
 import Spinner from '../../components/Spinner/Spinner';
-import './quiz-challenge.css';
 import {
   getPersonalizedDailyChallenge,
   startQuizChallenge,

@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import './lernwick-home-hero.css';
 
 const defaultBenefits = [
   { title: 'Learn', detail: 'Step-by-Step' },
