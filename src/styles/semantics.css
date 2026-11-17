@@ -643,3 +643,14 @@ body.dark-mode #root .app-layout :where(.text-muted, .text-secondary, .muted, .f
     height: 2.25rem;
   }
 }
+
+/* Increase the established profile icon system rather than styling unrelated SVG artwork. */
+:root {
+  --profile-switcher-icon-size: 1.75rem;
+  --profile-overview-icon-size: 4.5rem;
+  --profile-overview-icon-glyph: 2.75rem;
+  --profile-detail-icon-size: 1.5rem;
+  --profile-category-icon-size: 4rem;
+  --profile-category-icon-glyph: 2.5rem;
+  --profile-category-arrow-size: 1.5rem;
+}
