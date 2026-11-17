@@ -161,16 +161,18 @@ const Icon = memo(function Icon({
   className,
   style,
   plain = false,
+  monochrome = false,
   ...props
 }) {
   const entry = ICON_DATA[name];
   if (!entry) return null;
 
   const { badge, bg, r, bgPath, glyph } = entry;
+  const renderedGlyph = monochrome ? glyph.replace(/var\(--[^)]+\)/g, 'currentColor') : glyph;
 
   let bgMarkup = '';
 
-  if (!plain) {
+  if (!plain && !monochrome) {
     if (badge === 'rect') {
       bgMarkup = `<rect x="1" y="1" width="22" height="22" rx="${r}" fill="${bg}"/>`;
     } else if (badge === 'circle') {
@@ -198,7 +200,7 @@ const Icon = memo(function Icon({
 
       <g
         className={plain ? 'icon-plain-glyph' : undefined}
-        dangerouslySetInnerHTML={{ __html: glyph }}
+        dangerouslySetInnerHTML={{ __html: renderedGlyph }}
       />
     </svg>
   );

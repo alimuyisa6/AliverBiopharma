@@ -73,7 +73,7 @@ function PublicPathways() {
           {pathways.map((pathway) => (
             <article className={`lernwick-pathway-card lernwick-pathway-card--${pathway.id}`} key={pathway.id}>
               <div className="lernwick-pathway-image" aria-hidden="true">
-                <Icon name={pathway.icon} />
+                <Icon name={pathway.icon} monochrome />
                 <span>{pathway.label}</span>
               </div>
               <div className="lernwick-pathway-body">
@@ -216,7 +216,7 @@ export function ConnectedLearning() {
               <div className="lernwick-connected-links">
                 {stage.links.map((item) => (
                   <Link className="lernwick-connected-link" to={item.to} key={item.label}>
-                    <span className="lernwick-connected-link-icon"><Icon name={item.icon} /></span>
+                    <span className="lernwick-connected-link-icon"><Icon name={item.icon} monochrome /></span>
                     <span className="lernwick-connected-link-copy"><strong>{item.label}</strong><small>{item.detail}</small></span>
                     <Icon name="arrow-right" />
                   </Link>
@@ -244,7 +244,7 @@ function ProgrammeStudio({ studio, activeGroupName, activeGroupId }) {
             <span className="lernwick-studio-orbit lernwick-studio-orbit--one" />
             <span className="lernwick-studio-orbit lernwick-studio-orbit--two" />
             <span className="lernwick-studio-visual-core">
-              <Icon name={studio.visual === 'pharmacy' ? 'capsules' : studio.visual === 'molecule' ? 'atom' : 'microscope'} />
+              <Icon name={studio.visual === 'pharmacy' ? 'capsules' : studio.visual === 'molecule' ? 'atom' : 'microscope'} monochrome />
             </span>
             <span className="lernwick-studio-visual-label">{studio.visualLabel}</span>
           </div>
@@ -257,7 +257,7 @@ function ProgrammeStudio({ studio, activeGroupName, activeGroupId }) {
 
             return (
               <article className={`lernwick-studio-card lernwick-studio-card--${index + 1}`} key={card.title}>
-                <span className="lernwick-studio-card-icon"><Icon name={card.icon} /></span>
+                <span className="lernwick-studio-card-icon"><Icon name={card.icon} monochrome /></span>
                 <span className="lernwick-studio-card-label">{card.label}</span>
                 <h3>{card.title}</h3>
                 <p>{card.description}</p>

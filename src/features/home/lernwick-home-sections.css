@@ -1390,3 +1390,8 @@ body.dark-mode .home-page .lernwick-connected-link-icon svg,
 body.dark-mode .home-page .lernwick-studio-visual-core svg {
   color: var(--dark-primary);
 }
+
+.home-page .lernwick-pathway-image,.home-page .lernwick-studio-card-icon,.home-page .lernwick-connected-link-icon,.home-page .lernwick-studio-visual-core{background:var(--primary-light)!important;color:var(--primary-dark)!important}
+.home-page .lernwick-pathway-image>svg,.home-page .lernwick-studio-card-icon svg,.home-page .lernwick-connected-link-icon svg,.home-page .lernwick-studio-visual-core svg{color:var(--primary-dark)!important}
+body.dark-mode .home-page .lernwick-pathway-image,body.dark-mode .home-page .lernwick-studio-card-icon,body.dark-mode .home-page .lernwick-connected-link-icon,body.dark-mode .home-page .lernwick-studio-visual-core{background:var(--dark-surface)!important;color:var(--dark-primary)!important}
+body.dark-mode .home-page .lernwick-pathway-image>svg,body.dark-mode .home-page .lernwick-studio-card-icon svg,body.dark-mode .home-page .lernwick-connected-link-icon svg,body.dark-mode .home-page .lernwick-studio-visual-core svg{color:var(--dark-primary)!important}
