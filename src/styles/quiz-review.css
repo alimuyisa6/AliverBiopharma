@@ -421,7 +421,28 @@
 }
 
 body.dark-mode .quiz-review-hero {
-  background: var(--night-800);
+  border: 1px solid var(--dark-border);
+  background: var(--dark-surface);
+}
+
+body.dark-mode .quiz-review-page :is(.quiz-review-inbox, .quiz-review-question-card, .quiz-review-marking-form, .quiz-review-access-error, .quiz-review-empty) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text);
+}
+
+body.dark-mode .quiz-review-page :is(.quiz-review-response, .quiz-review-rubric, .quiz-review-criteria, .quiz-review-instructions) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+
+body.dark-mode .quiz-review-page :is(h1, h2, h3, h4, p, label, strong, .quiz-review-criteria > div) {
+  color: var(--dark-text);
+}
+
+body.dark-mode .quiz-review-page :is(.quiz-review-detail-meta, .quiz-review-response-meta, .quiz-review-section-label, .quiz-review-inbox-copy small) {
+  color: var(--dark-text-secondary);
 }
 
 body.dark-mode .quiz-review-inbox-item.is-active,
@@ -459,4 +480,28 @@ body.dark-mode .quiz-essay-submitted {
 .quiz-review-criteria strong {
   flex: 0 0 auto;
   color: var(--primary);
+}
+
+.quiz-review-page :is(button, input, textarea):focus-visible {
+  outline: 3px solid var(--primary-border);
+  outline-offset: 3px;
+}
+
+.quiz-review-marking-form :is(input, textarea)::placeholder {
+  color: var(--text-secondary);
+  opacity: 1;
+}
+
+body.dark-mode .quiz-review-marking-form :is(input, textarea) {
+  border-color: var(--dark-border);
+  background: var(--dark-background);
+  color: var(--dark-text);
+}
+
+body.dark-mode .quiz-review-marking-form :is(input, textarea)::placeholder {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .quiz-review-page :is(button, input, textarea):focus-visible {
+  outline-color: var(--dark-primary);
 }
