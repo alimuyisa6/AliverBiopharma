@@ -255,3 +255,20 @@ body.dark-mode .quiz-challenge-page { background: var(--dark-background); color:
 body.dark-mode .quiz-challenge-page :is(.quiz-challenge-card, .quiz-challenge-panel, .quiz-challenge-question, .quiz-challenge-option, .quiz-challenge-feedback) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
 body.dark-mode .quiz-challenge-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small) { color: var(--dark-text); }
 body.dark-mode .quiz-challenge-page :is(.text-muted, .quiz-challenge-description) { color: var(--dark-text-secondary); }
+
+.quiz-challenge-page :is(button, a):focus-visible {
+  outline: 3px solid var(--primary-border);
+  outline-offset: 3px;
+}
+
+body.dark-mode .quiz-challenge-page :is(.quiz-challenge-progress, .quiz-challenge-question-meta, .quiz-challenge-navigation, .quiz-challenge-page-description) {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .quiz-challenge-page :is(.quiz-challenge-option, .quiz-challenge-question, .quiz-challenge-result, .quiz-challenge-state) :is(h1, h2, h3, p, span, strong, small, label) {
+  color: var(--dark-text);
+}
+
+body.dark-mode .quiz-challenge-page :is(.quiz-challenge-option, button, a):focus-visible {
+  outline-color: var(--dark-primary);
+}
