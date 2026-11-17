@@ -10,7 +10,6 @@ import { getCurriculumNode } from '../api/curriculumNavigation';
 import Icon from '../components/Icon/Icon';
 import Skeleton from '../components/Skeleton/Skeleton';
 import EmptyState from '../components/EmptyState/EmptyState';
-import Button from '../components/Button/Button';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 import LearningJourney from '../components/LearningJourney/LearningJourney';
 import { getCachedStale, setCache } from '../utils/cache';
