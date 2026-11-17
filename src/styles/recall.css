@@ -1040,3 +1040,51 @@ body.dark-mode .recall-page .recall-tab.is-active {
   background: var(--dark-surface-raised);
   color: var(--dark-text);
 }
+
+
+.recall-page :is(button, a, input, select, textarea):focus-visible,
+.recall-graph-fullpage :is(button, a):focus-visible {
+  outline: 3px solid var(--primary-border);
+  outline-offset: 3px;
+}
+
+.recall-analytics-card,
+.recall-graph-fullpage-card,
+.recall-leaderboard-row {
+  color: var(--text-main);
+}
+
+.recall-analytics-card :is(h3, h4, p),
+.recall-graph-fullpage-card :is(h3, h4, p) {
+  color: inherit;
+}
+
+body.dark-mode .recall-page :is(.recall-analytics-card, .recall-graph-fullpage-card, .recall-leaderboard-row, .recall-stat-card-inner, .recall-topic-card-inner) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text);
+}
+
+body.dark-mode .recall-page :is(.recall-analytics-title, .recall-analytics-subtitle, .recall-analytics-card-title, .recall-analytics-card-desc, .recall-graph-fullpage-title, .recall-graph-fullpage-desc, .recall-graph-fullpage-insight-text, .recall-entry-name, .recall-stat-card-heading, .recall-stat-card-sub, .recall-stat-card-footer, .recall-topic-card-heading, .recall-topic-card-pct) {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .recall-page :is(.recall-analytics-card-title, .recall-graph-fullpage-title, .recall-stat-card-heading, .recall-topic-card-heading, .recall-entry-name) {
+  color: var(--dark-text);
+}
+
+body.dark-mode .recall-page .recall-tab {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .recall-page .recall-tab:hover,
+body.dark-mode .recall-page .recall-tab.is-active {
+  border-color: var(--dark-border);
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+
+body.dark-mode .recall-page :is(button, a, input, select, textarea):focus-visible,
+body.dark-mode .recall-graph-fullpage :is(button, a):focus-visible {
+  outline-color: var(--dark-primary);
+}
