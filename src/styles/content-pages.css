@@ -677,3 +677,39 @@ body.dark-mode .content-page :is(input, select, textarea) {
   color: var(--dark-text);
   border-color: var(--dark-border);
 }
+
+
+body.dark-mode #root .notes-page .notes-page-title {
+  color: var(--dark-text);
+}
+body.dark-mode .notes-page :is(.notes-page-description, .notes-context-description, .notes-result-count, .notes-section-count, .notes-card .card-text, .notes-card-meta) {
+  color: var(--dark-text-secondary);
+}
+body.dark-mode .notes-page :is(.notes-context-description strong, .notes-pathway-item strong, .notes-card .card-title) {
+  color: var(--dark-text);
+}
+body.dark-mode .notes-page .notes-pathway-item {
+  background: var(--dark-surface-raised);
+  border-color: var(--dark-border);
+  color: var(--dark-text);
+}
+body.dark-mode .notes-page .notes-card {
+  background: var(--dark-surface);
+  border-color: var(--dark-border);
+  color: var(--dark-text);
+}
+body.dark-mode .notes-page .notes-search input {
+  background: transparent;
+  color: var(--dark-text);
+}
+body.dark-mode .notes-page .notes-search input::placeholder {
+  color: var(--dark-text-secondary);
+  opacity: 1;
+}
+body.dark-mode .notes-page .notes-search-icon,
+body.dark-mode .notes-page .notes-search-clear {
+  color: var(--dark-text-secondary);
+}
+body.dark-mode .notes-page :is(a, button, input):focus-visible {
+  outline-color: var(--dark-primary);
+}
