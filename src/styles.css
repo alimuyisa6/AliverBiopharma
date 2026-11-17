@@ -143,14 +143,15 @@ body {
 
   .content-switcher-card { @apply w-full rounded-2xl border border-border bg-white p-3 shadow-sm sm:p-4; }
   .content-switcher-card__title { @apply mb-3 text-sm font-bold tracking-wide text-primary-900; }
-  .content-switcher { @apply grid w-full grid-cols-1 gap-2 rounded-xl bg-slate-100 p-1.5 sm:grid-cols-3; }
-  .content-switcher__option { @apply flex min-h-12 min-w-0 items-center justify-center gap-2 rounded-lg border border-transparent px-3 py-2 text-center text-sm font-semibold leading-tight text-slate-600 transition-all duration-200 hover:bg-white/80 hover:text-primary-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 sm:min-h-11; }
+  .content-switcher { @apply flex w-full gap-2 overflow-x-auto rounded-xl bg-slate-100 p-1.5; }
+  .content-switcher__option { @apply flex min-h-12 min-w-[8.5rem] flex-1 items-center justify-center gap-2 rounded-lg border border-transparent px-3 py-2 text-center text-sm font-semibold leading-tight text-slate-600 transition-all duration-200 hover:bg-white/80 hover:text-primary-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 sm:min-h-11; }
   .content-switcher__option.is-active { @apply border-primary-100 bg-white text-primary-900 shadow-sm; }
   .content-switcher__icon { @apply inline-flex h-6 w-6 shrink-0 items-center justify-center text-primary-700; }
   .content-switcher__icon svg { @apply block h-5 w-5; }
   .content-switcher__label { @apply min-w-0; }
   .icon-plain-glyph { color: currentColor; }
   .content-switcher__option:active { @apply scale-[0.99]; }
+  @media (min-width: 640px) { .content-switcher { display: grid; grid-template-columns: repeat(var(--content-switcher-count), minmax(0, 1fr)); overflow: visible; } .content-switcher__option { min-width: 0; } }
 
   .app-layout { @apply min-h-screen flex flex-col bg-background text-foreground; }
   .site-header { @apply sticky top-0 z-40 w-full border-b border-border bg-white/95 backdrop-blur-xl transition-shadow; }

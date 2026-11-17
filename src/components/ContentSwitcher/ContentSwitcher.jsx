@@ -23,7 +23,7 @@ export default function ContentSwitcher({
   return (
     <section className={`content-switcher-card ${className}`.trim()} aria-label={title || 'Content categories'}>
       {title && <h2 className="content-switcher-card__title">{title}</h2>}
-      <div className="content-switcher" role="group" aria-label={title || 'Choose a content view'} id={id}>
+      <div className="content-switcher" role="group" aria-label={title || 'Choose a content view'} id={id} style={{ "--content-switcher-count": options.length }}>
         {options.map((item) => {
           const active = item.value === activeValue;
           const icon = typeof item.icon === 'string'
