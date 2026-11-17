@@ -547,3 +547,41 @@ body.dark-mode :is(.btn-primary, .button-primary, .button--primary, .bg-primary)
   outline: 3px solid var(--border-focus);
   outline-offset: 3px;
 }
+
+
+/* Prominent icon scale across the application. */
+#root .app-layout :where(.i, .icon-outline) {
+  width: 2em;
+  height: 2em;
+  min-width: 2em;
+  min-height: 2em;
+}
+
+#root .app-layout :where(.section-icon, .feature-icon, .card-icon, .resource-icon, .topic-icon) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  flex: 0 0 4rem;
+}
+
+#root .app-layout :where(.section-icon, .feature-icon, .card-icon, .resource-icon, .topic-icon) > svg {
+  width: 2.5rem;
+  height: 2.5rem;
+  max-width: none;
+  max-height: none;
+}
+
+@media (max-width: 640px) {
+  #root .app-layout :where(.section-icon, .feature-icon, .card-icon, .resource-icon, .topic-icon) {
+    width: 3.5rem;
+    height: 3.5rem;
+    flex-basis: 3.5rem;
+  }
+
+  #root .app-layout :where(.section-icon, .feature-icon, .card-icon, .resource-icon, .topic-icon) > svg {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+}
