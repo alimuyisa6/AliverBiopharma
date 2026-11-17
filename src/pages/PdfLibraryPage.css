@@ -491,3 +491,47 @@ body.dark-mode .pdf-library-page :is(input, select, textarea) {
   background: var(--surface-subtle);
   font-size: var(--text-xs);
 }
+
+
+.pdf-library-page :is(button, a, input, select):focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+}
+
+body.dark-mode .pdf-library-page > .toolbar {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text);
+}
+
+body.dark-mode .pdf-library-page .result-count,
+body.dark-mode .pdf-library-page .pdf-card-author,
+body.dark-mode .pdf-library-page .pdf-card-size {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .pdf-library-page .result-count strong,
+body.dark-mode .pdf-library-page .pdf-card-title {
+  color: var(--dark-text);
+}
+
+body.dark-mode .pdf-library-page .sort-select {
+  border-color: var(--dark-border);
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+
+body.dark-mode .pdf-library-page .sort-select option {
+  background: var(--dark-surface);
+  color: var(--dark-text);
+}
+
+body.dark-mode .pdf-library-page > .pdf-library-class {
+  border-left-color: var(--dark-primary);
+  background: var(--dark-surface-raised);
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .pdf-library-page :is(button, a, input, select):focus-visible {
+  outline-color: var(--dark-primary);
+}
