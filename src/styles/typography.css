@@ -32,3 +32,4 @@
   --text-page-title: clamp(2.5rem, 5vw, 4rem);
   --text-section-title: clamp(1.5rem, 2.5vw, 2.25rem);
   --text-subsection-title: 1rem;
+}
