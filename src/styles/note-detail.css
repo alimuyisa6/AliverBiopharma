@@ -2047,3 +2047,111 @@ body.dark-mode .note-detail-container :is(button, a, input, textarea):focus-visi
 body.dark-mode .note-toc-sidebar :is(a, button):focus-visible {
   outline-color: var(--dark-primary);
 }
+
+
+.note-learning-page :is(a, button, textarea):focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+}
+
+.note-learning-message--user {
+  background: var(--surface-card);
+}
+
+.note-learning-message--assistant {
+  background: var(--surface-raised);
+}
+
+.note-learning-composer label {
+  color: var(--text-main);
+  font-weight: var(--weight-semibold);
+}
+
+.note-learning-composer textarea {
+  width: 100%;
+  min-height: 7rem;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--surface-card);
+  color: var(--text-main);
+  font: inherit;
+  line-height: var(--leading-relaxed);
+  resize: vertical;
+}
+
+.note-learning-composer textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 1;
+}
+
+.note-learning-composer button {
+  justify-self: start;
+  min-height: 44px;
+  padding: var(--space-3) var(--space-5);
+  border: 1px solid var(--primary);
+  border-radius: var(--radius-md);
+  background: var(--primary);
+  color: var(--text-inverse);
+  font: inherit;
+  font-weight: var(--weight-semibold);
+  cursor: pointer;
+}
+
+.note-learning-composer button:disabled {
+  cursor: not-allowed;
+  opacity: .58;
+}
+
+.note-learning-error {
+  color: var(--danger);
+}
+
+body.dark-mode .note-learning-page {
+  color: var(--dark-text);
+}
+
+body.dark-mode .note-learning-card,
+body.dark-mode .note-learning-message,
+body.dark-mode .note-learning-message--user,
+body.dark-mode .note-learning-message--assistant {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text);
+}
+
+body.dark-mode .note-learning-page :is(h1, h2, h3, strong, label) {
+  color: var(--dark-text);
+}
+
+body.dark-mode .note-learning-page :is(p, .note-learning-eyebrow, .note-learning-message-content, .note-learning-save-status) {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .note-learning-page :is(.note-learning-back, .note-learning-nav-button) {
+  color: var(--dark-primary);
+}
+
+body.dark-mode .note-learning-composer {
+  border-top-color: var(--dark-border);
+}
+
+body.dark-mode .note-learning-composer textarea {
+  border-color: var(--dark-border);
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+
+body.dark-mode .note-learning-composer textarea::placeholder {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .note-learning-composer button {
+  border-color: var(--dark-primary);
+  background: var(--dark-primary);
+  color: var(--dark-background);
+}
+
+body.dark-mode .note-learning-page :is(a, button, textarea):focus-visible {
+  outline-color: var(--dark-primary);
+}
