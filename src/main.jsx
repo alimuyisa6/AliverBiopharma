@@ -7,18 +7,6 @@ import { AuthProvider } from './contexts/AuthContext';
 import { I18nProvider } from './contexts/I18nContext';
 import { showFatalError, installRuntimeErrorHandlers } from './utils/runtimeErrors';
 import { initRevealObserver } from './utils/scrollReveal';
-import './styles/colors.css';
-import './styles/spacing.css';
-import './styles/animation.css';
-import './styles/global.css';
-import './styles/layout.css';
-import './styles/components.css';
-import './styles/content-switcher.css';
-import './styles/slide-to-confirm.css';
-import './styles/three-d-button.css';
-import './styles/section-bands.css';
-import './styles/semantics.css';
-import './styles/typography.css';
 
 installRuntimeErrorHandlers();
 

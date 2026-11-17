@@ -50,8 +50,6 @@ const CurriculumNodePage = lazy(() => import('./pages/CurriculumNodePage'));
 const Donate = lazy(() => import('./pages/Donate'));
 import CookieConsent from './components/CookieConsent/CookieConsent';
 import MaintenanceGate, { MaintenanceBoundary } from './components/Maintenance/MaintenanceGate';
-import './styles/cookie-consent.css';
-import './styles/maintenance.css';
 
 const NotFoundPage = lazy(() => import('./components/NotFoundPage'));
 
