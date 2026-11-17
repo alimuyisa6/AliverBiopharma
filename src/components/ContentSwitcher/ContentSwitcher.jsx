@@ -1,4 +1,5 @@
 import { useId, useState } from 'react';
+import Icon from '../Icon/Icon';
 
 export default function ContentSwitcher({
   options = [],
@@ -11,7 +12,6 @@ export default function ContentSwitcher({
   const id = useId();
   const [internalValue, setInternalValue] = useState(defaultValue ?? options[0]?.value);
   const activeValue = value ?? internalValue;
-  const activeIndex = Math.max(0, options.findIndex((item) => item.value === activeValue));
 
   const select = (nextValue) => {
     if (value === undefined) setInternalValue(nextValue);
@@ -21,37 +21,28 @@ export default function ContentSwitcher({
   if (!options.length) return null;
 
   return (
-    <div className={`content-switcher-card ${className}`.trim()}>
-      {title && <div className="content-switcher-card__title">{title}</div>}
-      <div
-        className="content-switcher"
-        role="tablist"
-        aria-label={title || 'Content categories'}
-        style={{
-          '--content-switcher-count': options.length,
-          '--content-switcher-index': activeIndex
-        }}
-      >
-        <div className="content-switcher__slider" aria-hidden="true" />
+    <section className={`content-switcher-card ${className}`.trim()} aria-label={title || 'Content categories'}>
+      {title && <h2 className="content-switcher-card__title">{title}</h2>}
+      <div className="content-switcher" role="group" aria-label={title || 'Choose a content view'} id={id} style={{ "--content-switcher-count": options.length }}>
         {options.map((item) => {
-          const optionId = `${id}-${item.value}`;
           const active = item.value === activeValue;
+          const icon = typeof item.icon === 'string'
+            ? <Icon name={item.icon} monochrome />
+            : item.icon;
           return (
             <button
               key={item.value}
-              id={optionId}
               type="button"
               className={`content-switcher__option${active ? ' is-active' : ''}`}
-              role="tab"
-              aria-selected={active}
+              aria-pressed={active}
               onClick={() => select(item.value)}
             >
-              {item.icon}
-              <span>{item.label}</span>
+              {icon && <span className="content-switcher__icon" aria-hidden="true">{icon}</span>}
+              <span className="content-switcher__label">{item.label}</span>
             </button>
           );
         })}
       </div>
-    </div>
+    </section>
   );
 }
