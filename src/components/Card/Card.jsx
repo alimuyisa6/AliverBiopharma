@@ -1,4 +1,4 @@
- import { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import Skeleton from '../Skeleton/Skeleton';
 
 const Card = forwardRef(function Card(
@@ -21,8 +21,7 @@ const Card = forwardRef(function Card(
   },
   ref
 ) {
-
-  let imageClassName = 'card-image';
+  let imageClassName = 'card-img-top';
   if (scoop) imageClassName += ` card-image-scoop-${scoop}`;
   if (imageVariant === 'original') imageClassName += ' card-image-original';
 
@@ -30,13 +29,11 @@ const Card = forwardRef(function Card(
   if (variant) cardClass += ` card-${variant}`;
   if (className) cardClass += ` ${className}`;
 
-  const hasMedia = !!image;
-
   if (loading) {
     return (
       <div
         ref={ref}
-        className={cardClass + ' card-loading'}
+        className={`${cardClass} card-loading`}
         aria-busy="true"
         aria-label="Loading"
       >
@@ -48,17 +45,17 @@ const Card = forwardRef(function Card(
   }
 
   return (
-    <div ref={ref} className={cardClass} {...props}>
-      {media && <div className="card-media-slot">{media}</div>}
+    <div ref={ref} className={cardClass} onClick={onClick} {...props}>
+      {media && <div className="position-relative">{media}</div>}
 
-      {hasMedia && (
+      {image && (
         <img src={image} alt={title || ''} className={imageClassName} loading="lazy" />
       )}
 
       {(title || description) && (
         <div className="card-body">
-          {title && <h3 className="card-title">{title}</h3>}
-          {description && <p className="card-text">{description}</p>}
+          {title && <h5 className="card-title">{title}</h5>}
+          {description && <p className="card-text text-muted">{description}</p>}
         </div>
       )}
 
@@ -70,3 +67,4 @@ const Card = forwardRef(function Card(
 });
 
 export default Card;
+ 
