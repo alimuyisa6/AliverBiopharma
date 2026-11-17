@@ -21,6 +21,7 @@ import {
   getBillingSummary,
   createSubscriptionCryptoInvoice,
   getReferralStats,
+  requestReferralPayout,
   getCertificates,
   getApiKeys,
   createApiKey,
@@ -330,6 +331,11 @@ export default function Profile() {
     return '';
   });
   const [referral, setReferral] = useState(null);
+  const [payoutAmount, setPayoutAmount] = useState('');
+  const [payoutCurrency, setPayoutCurrency] = useState('USD');
+  const [payoutMethod, setPayoutMethod] = useState('');
+  const [payoutDetails, setPayoutDetails] = useState('');
+  const [payoutSubmitting, setPayoutSubmitting] = useState(false);
   const [certificates, setCertificates] = useState([]);
   const [apiKeys, setApiKeys] = useState([]);
   const [webhooks, setWebhooks] = useState([]);
@@ -1066,6 +1072,29 @@ export default function Profile() {
     }
   };
 
+  const handleReferralPayout = async (event) => {
+    event.preventDefault();
+    if (!referral || payoutSubmitting) return;
+    setPayoutSubmitting(true);
+    try {
+      await requestReferralPayout({
+        amount: Number(payoutAmount),
+        currency: payoutCurrency,
+        payout_method: payoutMethod.trim(),
+        payout_details: { account_or_phone: payoutDetails.trim() }
+      });
+      const refreshed = await getReferralStats();
+      setReferral(refreshed);
+      setPayoutAmount('');
+      setPayoutDetails('');
+      addToast('Your payout request has been submitted for review.', 'success');
+    } catch (error) {
+      addToast(getExactErrorMessage(error, 'Unable to submit payout request.'), 'error');
+    } finally {
+      setPayoutSubmitting(false);
+    }
+  };
+
   if (profileLoading) {
     return (
       <Container>
@@ -1774,7 +1803,7 @@ export default function Profile() {
                   {t('profile.referralProgram')}
                 </h3>
                 <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
-                  Share your referral code. When someone signs up with it, you can earn experience points.
+                  Invite friends to Aliver Biopharma. Earn $0.50 when each referred friend completes their first premium subscription. Reach 10 qualifying referrals to request a payout; reach 50 to unlock 10% subscription commission.
                 </p>
 
                 {sectionLoading ? (
@@ -1796,10 +1825,64 @@ export default function Profile() {
                     >
                       Copy code
                     </Button>
+                    <Button
+                      variant="outline"
+                      icon="share"
+                      style={{ marginTop: 12, marginLeft: 8 }}
+                      onClick={() => {
+                        navigator.clipboard.writeText(referral.referral_link || `https://aliver-biopharma.vercel.app/register?ref=${encodeURIComponent(referral.referral_code)}`);
+                        addToast('Referral link copied.', 'success');
+                      }}
+                    >
+                      Copy invite link
+                    </Button>
 
                     <p style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 13, marginTop: 8 }}>
                       {referral.referral_count} friends joined · {referral.total_xp_earned} XP earned
                     </p>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: 12, marginTop: 18 }}>
+                      <div><strong>{referral.premium_referral_count || 0}</strong><div style={{ color: THEME.textMuted, fontSize: 12 }}>Premium referrals</div></div>
+                      <div><strong>{referral.withdrawal_threshold || 10}</strong><div style={{ color: THEME.textMuted, fontSize: 12 }}>Referrals for payout access</div></div>
+                      <div><strong>{referral.commission_threshold || 50}</strong><div style={{ color: THEME.textMuted, fontSize: 12 }}>Referrals to unlock commission</div></div>
+                    </div>
+                    <div style={{ marginTop: 16 }}>
+                      <strong style={{ color: THEME.textMain }}>Available earnings</strong>
+                      {(referral.balances || []).length ? referral.balances.map(item => (
+                        <p key={item.currency} style={{ margin: '6px 0', color: THEME.textSecondary }}>{item.currency} {Number(item.available).toFixed(2)}</p>
+                      )) : <p style={{ color: THEME.textMuted, fontSize: 13 }}>No available rewards yet.</p>}
+                    </div>
+                    <form onSubmit={handleReferralPayout} style={{ marginTop: 20, paddingTop: 16, borderTop: `1px solid ${THEME.border}` }}>
+                      <strong style={{ color: THEME.textMain }}>Request a payout</strong>
+                      <p style={{ color: THEME.textMuted, fontSize: 13, marginTop: 6 }}>
+                        Payout requests become available after {referral.withdrawal_threshold || 10} successful premium referrals. Requests are reviewed before payment.
+                      </p>
+                      <Input label="Amount" type="number" min="0.01" step="0.01" value={payoutAmount} onChange={event => setPayoutAmount(event.target.value)} required disabled={payoutSubmitting || (referral.premium_referral_count || 0) < (referral.withdrawal_threshold || 10)} />
+                      <Input label="Currency" value={payoutCurrency} onChange={event => setPayoutCurrency(event.target.value.toUpperCase())} required disabled={payoutSubmitting || (referral.premium_referral_count || 0) < (referral.withdrawal_threshold || 10)} />
+                      <Input label="Payout method (e.g. Mobile Money)" value={payoutMethod} onChange={event => setPayoutMethod(event.target.value)} required disabled={payoutSubmitting || (referral.premium_referral_count || 0) < (referral.withdrawal_threshold || 10)} />
+                      <Input label="Payout phone or account details" value={payoutDetails} onChange={event => setPayoutDetails(event.target.value)} required disabled={payoutSubmitting || (referral.premium_referral_count || 0) < (referral.withdrawal_threshold || 10)} />
+                      <Button type="submit" disabled={payoutSubmitting || !payoutAmount || !payoutMethod.trim() || !payoutDetails.trim() || (referral.premium_referral_count || 0) < (referral.withdrawal_threshold || 10)} style={{ marginTop: 12 }}>
+                        {payoutSubmitting ? 'Submitting…' : 'Submit payout request'}
+                      </Button>
+                    </form>
+                    {(referral.payouts || []).length > 0 && (
+                      <div style={{ marginTop: 16 }}>
+                        <strong style={{ color: THEME.textMain }}>Payout history</strong>
+                        {referral.payouts.slice(0, 5).map(item => (
+                          <p key={item.id} style={{ margin: '6px 0', color: THEME.textSecondary, fontSize: 13 }}>
+                            {item.currency} {Number(item.amount).toFixed(2)} · {item.status}
+                          </p>
+                        ))}
+                      </div>
+                    )}
+                    <div style={{ marginTop: 16 }}>
+                      <strong style={{ color: THEME.textMain }}>Recent referral earnings</strong>
+                      {(referral.ledger || []).slice(0, 5).map(item => (
+                        <p key={item.id} style={{ margin: '6px 0', color: THEME.textSecondary, fontSize: 13 }}>
+                          {item.reward_type === 'premium_referral_reward' ? 'Premium referral reward' : item.reward_type === 'subscription_commission' ? 'Subscription commission' : item.reward_type}
+                          {' · '}{item.currency} {Number(item.amount).toFixed(2)}
+                        </p>
+                      ))}
+                    </div>
                   </>
                 ) : (
                   !sectionError && (
