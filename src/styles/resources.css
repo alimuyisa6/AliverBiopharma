@@ -1091,3 +1091,60 @@ body.dark-mode .resources-page .resource-card-artwork {
 body.dark-mode .resources-page .resource-card-artwork svg {
   color: var(--primary);
 }
+
+
+.resources-page :is(a, button, input):focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+}
+
+.resource-card {
+  color: var(--text-main);
+}
+
+.resource-card-title {
+  color: var(--text-main);
+}
+
+.resource-card-desc {
+  color: var(--text-secondary);
+}
+
+.resource-card-meta {
+  color: var(--text-muted);
+}
+
+body.dark-mode .resources-page :is(.resources-section-title, .resource-card-title, .resources-empty-state h3) {
+  color: var(--dark-text);
+}
+
+body.dark-mode .resources-page :is(.resources-section-kicker, .resource-card-desc, .resource-card-meta, .resources-empty-state p) {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .resources-page .resource-card {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text);
+}
+
+body.dark-mode .resources-page .resource-card-footer {
+  border-top-color: var(--dark-border);
+  background: var(--dark-surface);
+}
+
+body.dark-mode .resources-page .resources-search input {
+  border-color: var(--dark-border);
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+
+body.dark-mode .resources-page .resources-search input::placeholder {
+  color: var(--dark-text-secondary);
+  opacity: 1;
+}
+
+body.dark-mode .resources-page :is(.resources-chip, .resource-card-footer .btn):focus-visible,
+body.dark-mode .resources-page :is(a, button, input):focus-visible {
+  outline-color: var(--dark-primary);
+}
