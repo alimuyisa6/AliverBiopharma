@@ -226,12 +226,38 @@
   text-align: center;
 }
 
-body.dark-mode .quiz-attempt-result-summary.is-pending {
-  background: var(--night-800);
+body.dark-mode .quiz-attempt-result-summary.is-pending,
+body.dark-mode .quiz-attempt-result-summary.is-passed {
+  background: var(--dark-surface);
+  border-color: var(--dark-border);
 }
 
-body.dark-mode .quiz-attempt-result-summary.is-passed {
-  background: var(--night-800);
+body.dark-mode .quiz-attempt-result-page :is(.quiz-attempt-answer-card, .quiz-attempt-result-empty) {
+  border-color: var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text);
+}
+
+body.dark-mode .quiz-attempt-result-page :is(.quiz-attempt-answer-text, .quiz-attempt-teacher-feedback, .quiz-attempt-correct-answer, .quiz-attempt-answer-badge) {
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
+
+body.dark-mode .quiz-attempt-result-page :is(.quiz-attempt-answer-topline, .quiz-attempt-answer-label, .quiz-attempt-result-status, .quiz-attempt-explanation) {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .quiz-attempt-result-page :is(h1, h2, h3, p, strong) {
+  color: var(--dark-text);
+}
+
+.quiz-attempt-result-page :is(a, button):focus-visible {
+  outline: 3px solid var(--primary-border);
+  outline-offset: 3px;
+}
+
+body.dark-mode .quiz-attempt-result-page :is(a, button):focus-visible {
+  outline-color: var(--dark-primary);
 }
 
 @media (max-width: 560px) {
