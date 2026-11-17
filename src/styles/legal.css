@@ -82,8 +82,9 @@
   }
 }
 
-body.dark-mode .legal-page,
-body.dark-mode .legal-content { background: var(--dark-background); color: var(--dark-text); }
-body.dark-mode .legal-page :is(.legal-card, .legal-panel, .legal-content section) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
-body.dark-mode .legal-page :is(h1, h2, h3, h4, h5, h6, p, li, strong, small) { color: var(--dark-text); }
-body.dark-mode .legal-page :is(.text-muted, .legal-intro, .legal-meta) { color: var(--dark-text-secondary); }
+body.dark-mode .legal-section { background: var(--dark-background); color: var(--dark-text); }
+body.dark-mode .legal-section :is(.legal-title, .legal-block h2, .legal-block p, .legal-empty) { color: var(--dark-text); }
+body.dark-mode .legal-section .legal-block p { color: var(--dark-text-secondary); }
+body.dark-mode .legal-section .legal-link { color: var(--dark-primary); }
+body.dark-mode .info-page-loading { background: var(--dark-background); color: var(--dark-text-secondary); }
+.legal-section a:focus-visible { outline: 2px solid var(--border-focus); outline-offset: 3px; }

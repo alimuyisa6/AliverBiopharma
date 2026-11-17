@@ -1828,8 +1828,12 @@ body.dark-mode .ads-home-section :is(h1, h2, h3, h4, h5, h6, p, li, label, small
 body.dark-mode .advertise-page :is(.text-muted, .section-description, .advertise-description),
 body.dark-mode .ads-home-section :is(.text-muted, .section-description) { color: var(--dark-text-secondary); }
 body.dark-mode .advertise-page :is(input, select, textarea),
-body.dark-mode .ads-home-section :is(input, select, textarea) { background: var(--dark-background); color: var(--dark-text); border-color: var(--dark-border); }
-body.dark-mode .advertise-page :is(input, textarea)::placeholder { color: var(--dark-text-secondary); }
+body.dark-mode .ads-home-section :is(input, select, textarea) { background: var(--dark-surface-raised); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .advertise-page :is(input, textarea)::placeholder,
+body.dark-mode .ads-home-section :is(input, textarea)::placeholder { color: var(--dark-text-secondary); }
+body.dark-mode .advertise-page :is(a:not(.btn), .advertise-text-link) { color: var(--dark-primary); }
+body.dark-mode .advertise-page :is(.advertise-programme-number, .advertise-benefit-icon) { color: var(--dark-background); }
+.advertise-page :is(a, button, input, select, textarea):focus-visible { outline: 2px solid var(--border-focus); outline-offset: 3px; }
 
 body.dark-mode .home-advertising-section .ad-slot-label,
 body.dark-mode .home-advertising-section .ad-slot-advertiser,

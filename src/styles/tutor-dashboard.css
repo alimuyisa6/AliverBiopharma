@@ -60,4 +60,6 @@ body.dark-mode .tutor-dashboard-page :is(.card, .dashboard-card, .section-card, 
 body.dark-mode .tutor-dashboard-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small) { color: var(--dark-text); }
 body.dark-mode .tutor-dashboard-page :is(.text-muted, .page-intro, .section-description) { color: var(--dark-text-secondary); }
 body.dark-mode .tutor-dashboard-page :is(input, select, textarea) { background: var(--dark-surface-raised); color: var(--dark-text); border-color: var(--dark-border); }
-body.dark-mode .tutor-dashboard-page :is(input, textarea)::placeholder { color: var(--dark-text-secondary); }
+body.dark-mode .tutor-dashboard-page :is(input, select, textarea)::placeholder { color: var(--dark-text-secondary); }
+body.dark-mode .tutor-dashboard-page :is(a:not(.btn), .section-description) { color: var(--dark-primary); }
+.tutor-dashboard-page :is(a, button, input, select, textarea):focus-visible { outline: 2px solid var(--border-focus); outline-offset: 3px; }

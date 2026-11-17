@@ -112,7 +112,9 @@
 .tutor-marketplace-page .tutor-card { padding: var(--ui-card-padding-y, var(--card-padding-y)) var(--ui-card-padding-x, var(--card-padding-x)); }
 .tutor-marketplace-page .tutor-actions-spaced { gap: var(--ui-content-gap-compact, var(--content-gap-compact)); }
 .tutor-marketplace-page .tutor-marketplace-intro-action { margin-block: var(--ui-content-gap, var(--content-gap)); }
-html[data-ui-surface="flat"] .tutor-marketplace-page .tutor-card { box-shadow: var(--shadow-none); background: transparent; }
+.tutor-marketplace-page .tutor-card { background: var(--surface-card); border: 1px solid var(--border-subtle); box-shadow: var(--shadow-card); }
+.tutor-marketplace-page :is(a, button, input, select, textarea):focus-visible,
+.tutor-profile-page :is(a, button, input, select, textarea):focus-visible { outline: 2px solid var(--border-focus); outline-offset: 3px; }
 
 body.dark-mode .tutor-marketplace-page,
 body.dark-mode .tutor-profile-page { background: var(--dark-background); color: var(--dark-text); }
@@ -123,4 +125,9 @@ body.dark-mode .tutor-marketplace-page :is(.text-muted, .section-description, .t
 body.dark-mode .tutor-profile-page :is(.text-muted, .section-description, .tutor-bio) { color: var(--dark-text-secondary); }
 body.dark-mode .tutor-marketplace-page :is(input, select, textarea),
 body.dark-mode .tutor-profile-page :is(input, select, textarea) { background: var(--dark-surface-raised); color: var(--dark-text); border-color: var(--dark-border); }
-body.dark-mode .tutor-marketplace-page :is(input, textarea)::placeholder { color: var(--dark-text-secondary); }
+body.dark-mode .tutor-marketplace-page :is(input, select, textarea)::placeholder,
+body.dark-mode .tutor-profile-page :is(input, select, textarea)::placeholder { color: var(--dark-text-secondary); }
+body.dark-mode .tutor-marketplace-page .tutor-card { background: var(--dark-surface); border-color: var(--dark-border); }
+body.dark-mode .tutor-marketplace-page :is(a:not(.btn), .tutor-card a) { color: var(--dark-primary); }
+body.dark-mode .tutor-profile-page .tutor-profile-details div { background: var(--dark-surface-raised); border-color: var(--dark-border); }
+body.dark-mode .tutor-profile-page .tutor-profile-back { color: var(--dark-text-secondary); }

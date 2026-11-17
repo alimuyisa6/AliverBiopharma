@@ -424,6 +424,12 @@
 }
 
 body.dark-mode .donate-page { background: var(--dark-background); color: var(--dark-text); }
-body.dark-mode .donate-page :is(.donate-card, .donate-panel, .donate-widget, .donate-option, .donate-impact-card) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
-body.dark-mode .donate-page :is(h1, h2, h3, h4, h5, h6, p, label, small) { color: var(--dark-text); }
-body.dark-mode .donate-page :is(.text-muted, .donate-description) { color: var(--dark-text-secondary); }
+body.dark-mode .donate-page :is(.donate-card, .donate-goal, .donate-widget, .donate-momo-card, .donate-unavailable) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .donate-page :is(h1, h2, h3, h4, h5, h6, p, label, strong) { color: var(--dark-text); }
+body.dark-mode .donate-page :is(.donate-muted, .donate-description, .donate-goal-label, .donate-momo-card span, .donor-info small) { color: var(--dark-text-secondary); }
+body.dark-mode .donate-page :is(input, select, textarea) { background: var(--dark-surface-raised); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .donate-page :is(input, textarea)::placeholder { color: var(--dark-text-secondary); }
+body.dark-mode .donate-page .donate-tab { color: var(--dark-primary); border-color: var(--dark-primary); }
+body.dark-mode .donate-page .donate-tab.is-active { background: var(--dark-primary); color: var(--dark-background); }
+body.dark-mode .donate-page .donate-external-button { background: var(--dark-primary); color: var(--dark-background); }
+.donate-page :is(a, button, input, select, textarea):focus-visible { outline: 2px solid var(--border-focus); outline-offset: 3px; }

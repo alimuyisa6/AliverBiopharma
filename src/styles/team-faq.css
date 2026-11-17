@@ -791,6 +791,14 @@
 
 body.dark-mode .faq-page,
 body.dark-mode .team-page { background: var(--dark-background); color: var(--dark-text); }
-body.dark-mode :is(.faq-category, .faq-featured-item, .faq-resource, .faq-search, .faq-question-text, .team-card) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
-body.dark-mode :is(.faq-page, .team-page) :is(h1, h2, h3, h4, h5, h6, p, li, label, small) { color: var(--dark-text); }
-body.dark-mode :is(.faq-page, .team-page) :is(.text-muted, .section-description) { color: var(--dark-text-secondary); }
+body.dark-mode .faq-page :is(.faq-category, .faq-featured-item, .faq-resource, .faq-search, .faq-question-item),
+body.dark-mode .team-page .team-card { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
+body.dark-mode .faq-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small),
+body.dark-mode .team-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small) { color: var(--dark-text); }
+body.dark-mode .faq-page :is(.faq-category small, .faq-resource small, .faq-question-answer, .faq-result-count),
+body.dark-mode .team-page :is(.text-muted, .section-description) { color: var(--dark-text-secondary); }
+body.dark-mode .faq-page .faq-search input { background: transparent; color: var(--dark-text); }
+body.dark-mode .faq-page .faq-search input::placeholder { color: var(--dark-text-secondary); }
+body.dark-mode .faq-page :is(.faq-tone-blue, .faq-tone-emerald, .faq-tone-violet, .faq-tone-amber, .faq-tone-teal, .faq-tone-pink, .faq-featured-mark) { background: var(--dark-surface-raised); color: var(--dark-primary); }
+.faq-page :is(a, button, input):focus-visible,
+.team-page :is(a, button):focus-visible { outline: 2px solid var(--border-focus); outline-offset: 3px; }
