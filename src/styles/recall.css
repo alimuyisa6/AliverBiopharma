@@ -1022,3 +1022,21 @@ body.dark-mode .recall-page-header {
 body.dark-mode .recall-page :is(.recall-page-header, .recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .recall-session-card) { background: var(--dark-surface); color: var(--dark-text); border-color: var(--dark-border); }
 body.dark-mode .recall-page :is(h1, h2, h3, h4, h5, h6, p, li, label, small) { color: var(--dark-text); }
 body.dark-mode .recall-page :is(.text-muted, .recall-description) { color: var(--dark-text-secondary); }
+
+.recall-page :is(button, a, input, textarea, select):focus-visible {
+  outline: 3px solid var(--primary-border);
+  outline-offset: 3px;
+}
+
+body.dark-mode .recall-page :is(button, a, input, textarea, select):focus-visible {
+  outline-color: var(--dark-primary);
+}
+
+body.dark-mode .recall-page :is(.recall-tab, .recall-topic-card, .recall-stat-card) {
+  border-color: var(--dark-border);
+}
+
+body.dark-mode .recall-page .recall-tab.is-active {
+  background: var(--dark-surface-raised);
+  color: var(--dark-text);
+}
