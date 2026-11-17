@@ -236,20 +236,46 @@
 }
 
 body.dark-mode .ab-home-hero {
-  color: var(--grey-100);
-  background: var(--night);
+  color: var(--dark-text);
+  background: var(--dark-background);
 }
 body.dark-mode .ab-home-hero-brand {
-  border-color: var(--primary);
-  color: var(--primary-light);
-  background: var(--night-2);
+  border-color: var(--dark-primary);
+  color: var(--dark-primary);
+  background: var(--dark-surface);
 }
-body.dark-mode .ab-home-hero h1 { color: var(--white); }
-body.dark-mode .ab-home-hero h1 span { color: var(--primary); }
+body.dark-mode .ab-home-hero-welcome,
 body.dark-mode .ab-home-hero-description,
 body.dark-mode .ab-home-hero-benefit strong,
 body.dark-mode .ab-home-hero-benefit span,
-body.dark-mode .ab-home-hero-path { color: var(--grey-200); }
-body.dark-mode .ab-home-hero-benefit + .ab-home-hero-benefit { border-color: var(--grey-800); }
-body.dark-mode .ab-home-hero-secondary { color: var(--primary-light); border-color: var(--primary-light); }
-body.dark-mode .ab-home-hero-secondary:hover { color: var(--night-2); background: var(--primary-light); }
+body.dark-mode .ab-home-hero-path {
+  color: var(--dark-text-secondary);
+}
+body.dark-mode .ab-home-hero h1,
+body.dark-mode .ab-home-hero-path strong {
+  color: var(--dark-text);
+}
+body.dark-mode .ab-home-hero h1 span {
+  color: var(--dark-primary);
+}
+body.dark-mode .ab-home-hero-benefit + .ab-home-hero-benefit {
+  border-color: var(--dark-border);
+}
+body.dark-mode .ab-home-hero-primary {
+  border-color: var(--dark-primary);
+  background: var(--dark-primary);
+  color: var(--dark-background);
+}
+body.dark-mode .ab-home-hero-primary:hover {
+  border-color: var(--dark-primary);
+  background: var(--dark-primary);
+  color: var(--dark-background);
+}
+body.dark-mode .ab-home-hero-secondary {
+  color: var(--dark-primary);
+  border-color: var(--dark-primary);
+}
+body.dark-mode .ab-home-hero-secondary:hover {
+  color: var(--dark-background);
+  background: var(--dark-primary);
+}
