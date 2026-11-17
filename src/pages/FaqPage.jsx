@@ -15,7 +15,7 @@ export default function FaqPage() {
   }, [level]);
 
   return (
-    <div className="section faq-page">
+    <div className="w-full bg-primary-50 px-5 py-14 sm:py-20">
       <FaqAccordion data={sections?.faq} standalone />
     </div>
   );
