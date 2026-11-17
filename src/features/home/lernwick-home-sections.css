@@ -1333,18 +1333,28 @@ body.dark-mode .home-page :is(.lernwick-pathway-card, .lernwick-step-card, .lern
   color: var(--dark-primary);
 }
 
-/* Prominent feature artwork and card icons. */
-.lernwick-pathway-image > svg { width: 4.75rem; height: 4.75rem; }
-.lernwick-studio-card-icon { width: 4rem; height: 4rem; }
-.lernwick-studio-card-icon svg { width: 2.5rem; height: 2.5rem; }
-.lernwick-connected-link-icon { width: 3.5rem; height: 3.5rem; }
-.lernwick-connected-link-icon svg { width: 2.25rem; height: 2.25rem; }
-.lernwick-connected-link > svg { width: 1.5rem; height: 1.5rem; }
-.home-page .home-curriculum-node > svg { width: 1.5rem; height: 1.5rem; }
-.home-page .home-challenge-meta svg { width: 1.5rem; height: 1.5rem; }
-.home-page .home-daily-recall-card svg { width: 2rem; height: 2rem; }
+/* Large, legible homepage iconography. */
+.lernwick-pathway-image { aspect-ratio: 2.1 / 1; }
+.lernwick-pathway-image > svg { width: 5.9rem; height: 5.9rem; }
+.lernwick-studio-visual-core svg { width: 5rem; height: 5rem; }
+.lernwick-studio-card-icon { width: 4.75rem; height: 4.75rem; }
+.lernwick-studio-card-icon svg { width: 3.1rem; height: 3.1rem; }
+.lernwick-connected-link-icon { width: 4.25rem; height: 4.25rem; }
+.lernwick-connected-link-icon svg { width: 2.75rem; height: 2.75rem; }
+.lernwick-connected-link > svg { width: 1.75rem; height: 1.75rem; }
+.lernwick-pathway-action svg { width: 1.25rem; height: 1.25rem; }
+.lernwick-outline-button svg, .lernwick-dark-button svg { width: 1.35rem; height: 1.35rem; }
+.home-page .home-curriculum-node > svg { width: 1.75rem; height: 1.75rem; }
+.home-page .home-challenge-meta svg { width: 1.75rem; height: 1.75rem; }
+.home-page .home-daily-recall-card svg { width: 2.5rem; height: 2.5rem; }
+.home-page .home-continue-learning-thumb svg { width: 2.5rem; height: 2.5rem; }
+
 @media(max-width:700px) {
-  .lernwick-pathway-image > svg { width: 4rem; height: 4rem; }
-  .lernwick-studio-card-icon { width: 3.5rem; height: 3.5rem; }
-  .lernwick-studio-card-icon svg { width: 2.25rem; height: 2.25rem; }
+  .lernwick-pathway-image { aspect-ratio: 2.2 / 1; }
+  .lernwick-pathway-image > svg { width: 5.1rem; height: 5.1rem; }
+  .lernwick-studio-visual-core svg { width: 4.25rem; height: 4.25rem; }
+  .lernwick-studio-card-icon { width: 4.25rem; height: 4.25rem; }
+  .lernwick-studio-card-icon svg { width: 2.75rem; height: 2.75rem; }
+  .lernwick-connected-link-icon { width: 3.75rem; height: 3.75rem; }
+  .lernwick-connected-link-icon svg { width: 2.4rem; height: 2.4rem; }
 }
