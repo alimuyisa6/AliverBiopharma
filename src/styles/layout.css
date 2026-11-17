@@ -1,4 +1,4 @@
-html, body, #root { width: 100%; max-width: 100%; min-width: 0; }
+ html, body, #root { width: 100%; max-width: 100%; min-width: 0; }
 html, body { overflow-x: clip; }
 #root { display: flex; flex-direction: column; min-height: 100vh; min-height: 100dvh; }
 .app-layout { display: flex; flex: 1 0 auto; flex-direction: column; min-height: 100vh; min-height: 100dvh; }
@@ -18,7 +18,6 @@ html, body { overflow-x: clip; }
   box-shadow: var(--shadow-sm);
   border-bottom-color: var(--grey-200);
 }
-.site-container, .page-container, .header-container, .footer-inner, .footer-bottom { width: min(calc(100% - (var(--page-gutter-x) * 2)), var(--max-width)); margin-inline: auto; }
 .site-container { min-width: 0; }
 .main-content { display: block; width: 100%; min-width: 0; flex: 1 0 auto; padding-top: var(--header-height); }
 .page-container { min-width: 0; }
@@ -402,7 +401,7 @@ body.dark-mode .home-scope-switcher {
   }
 }
 
-@media (max-width: 768px) { .main-nav { display: none; } .hamburger-btn { display: inline-flex; } .header-container { width: min(calc(100% - (var(--page-gutter-x) * 2)), var(--max-width)); } .footer-inner { grid-template-columns: minmax(0, 1fr); gap: var(--content-gap); } .footer-right-groups { grid-column: auto; grid-template-columns: minmax(0, 1fr); gap: var(--content-gap); } .footer-quick-groups { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--content-gap-compact); } .footer-bottom { align-items: flex-start; flex-direction: column; } .footer-bottom-nav { gap: var(--content-gap-compact); } }
+@media (max-width: 768px) { .main-nav { display: none; } .hamburger-btn { display: inline-flex; } .footer-inner { grid-template-columns: minmax(0, 1fr); gap: var(--content-gap); } .footer-right-groups { grid-column: auto; grid-template-columns: minmax(0, 1fr); gap: var(--content-gap); } .footer-quick-groups { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--content-gap-compact); } .footer-bottom { align-items: flex-start; flex-direction: column; } .footer-bottom-nav { gap: var(--content-gap-compact); } }
 @media (max-width: 480px) { .mobile-menu-panel { width: calc(100vw - (var(--page-gutter-x) * 2)); max-height: 82vh; } .mobile-menu-nav { max-height: 82vh; } .footer-social { gap: var(--stack-gap-tight); } }
 
 .footer-science-art-wrap {
