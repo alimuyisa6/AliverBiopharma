@@ -129,7 +129,6 @@ h6 { color: var(--color-h6); }
 #root :is(h1, .page-title, .page-heading, .about-title, .legal-title,
   .modal-title, .quiz-hero-title, .notes-page-title, .recall-page-title,
   .quiz-page-title, .flashcard-title, .curriculum-node-title):not(.note-detail-container *) {
-  color: var(--color-h1);
   font-family: var(--font-heading);
   font-size: var(--site-page-title-size);
   font-weight: var(--weight-page-title);
@@ -139,35 +138,30 @@ h6 { color: var(--color-h6); }
 }
 
 #root :is(h2, .section-title, .glossary-title, .curriculum-node-section-title):not(.note-detail-container *) {
-  color: var(--color-h2);
   font-size: var(--site-section-title-size);
   font-weight: var(--weight-section-title);
   line-height: var(--leading-section-title);
 }
 
 #root h3:not(.note-detail-container *) {
-  color: var(--color-h3);
   font-size: var(--site-subsection-title-size);
   font-weight: var(--weight-medium);
   line-height: var(--leading-subsection-title);
 }
 
 #root h4:not(.note-detail-container *) {
-  color: var(--color-h4);
   font-size: var(--site-card-title-size);
   font-weight: var(--weight-medium);
   line-height: var(--leading-card-title);
 }
 
 #root h5:not(.note-detail-container *) {
-  color: var(--color-h5);
   font-size: 0.875rem;
   font-weight: var(--weight-medium);
   line-height: var(--leading-card-title);
 }
 
 #root h6:not(.note-detail-container *) {
-  color: var(--color-h6);
   font-size: 0.8125rem;
   font-weight: var(--weight-medium);
   line-height: var(--leading-card-title);

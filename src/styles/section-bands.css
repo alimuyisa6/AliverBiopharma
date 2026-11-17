@@ -18,16 +18,17 @@
 }
 
 body.dark-mode .home-page {
-  --ink-on-light: var(--white);
-  --bg-white: var(--night-2);
-  --bg-ads: var(--night);
-  --bg-muted: var(--night);
-  --bg-tint: var(--night);
-  --bg-brand: var(--night);
-  --card-bg: var(--night-3);
-  --card-border: var(--night-500);
-  --card-heading-ink: var(--white);
-  --card-body-ink: var(--white);
+  --ink-on-light: var(--dark-text);
+  --bg-white: var(--dark-surface);
+  --bg-ads: var(--dark-background);
+  --bg-muted: var(--dark-background);
+  --bg-tint: var(--primary-light);
+  --bg-brand: var(--dark-surface-raised);
+  --card-bg: var(--dark-surface-raised);
+  --card-border: var(--dark-border);
+  --card-heading-ink: var(--dark-text);
+  --card-body-ink: var(--dark-text-secondary);
+  --input-border: var(--dark-border);
 }
 
 .home-page > :is(

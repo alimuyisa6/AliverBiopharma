@@ -504,7 +504,6 @@ body.dark-mode :is(.page-shell, .page-container, .page-content, .content-shell, 
 }
 
 #root .app-layout :where(h1, h2, h3, h4, h5, h6, .page-title, .page-heading, .section-title, .content-title) {
-  color: var(--text-main);
   font-family: var(--f-display);
 }
 
@@ -553,7 +552,7 @@ body.dark-mode #root .app-layout :where(main, .page-content, .page-container, .c
 }
 
 body.dark-mode #root .app-layout :where(h1, h2, h3, h4, h5, h6, .page-title, .page-heading, .section-title, .content-title) {
-  color: var(--dark-text);
+  font-family: var(--f-display);
 }
 
 body.dark-mode #root .app-layout :where(.resource-card, .notes-card, .blog-post-card, .team-card, .contributor-card, .flashcard-deck-card, .dashboard-curriculum-card, .profile-category-card, .pp-card, .glossary-route-card, .quiz-topic-cards > .card, .quiz-blocks-grid > .card, .recall-intro-card, .recall-question-card, .recall-feedback-card, .recall-report-card, .pdf-card, .tutor-card, .faq-item, .about-block, .contact-form, .donate-card, .donate-widget, .donate-momo-card, .note-learning-card) {

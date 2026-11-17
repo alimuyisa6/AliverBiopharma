@@ -414,13 +414,13 @@ html:has(body.dark-mode) {
 body.dark-mode :is(.btn-primary, .button-primary, .button--primary, .bg-primary) {
   background-color: var(--dark-primary);
   border-color: var(--dark-primary);
-  color: var(--text);
+  color: var(--text-on-primary);
 }
 
 body.dark-mode :is(.btn-primary, .button-primary, .button--primary, .bg-primary):hover:not(:disabled) {
   background-color: var(--dark-primary);
   border-color: var(--dark-primary);
-  color: var(--text);
+  color: var(--text-on-primary);
 }
 
 @media (max-width: 640px) {
