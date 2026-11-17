@@ -635,7 +635,7 @@ body.dark-mode .home-page :is(.stats-impact-value, .stats-impact-topics-title, .
   color: var(--dark-text);
 }
 
-body.dark-mode .home-page :is(.stats-impact-label, .stats-impact-topic, .stats-impact-empty, .home-section-description, .home-card-description, .stats-impact-scope) {
+body.dark-mode .home-page :is(.stats-impact-label, .stats-impact-topic, .stats-impact-empty, .home-section-description, .home-card-description) {
   color: var(--dark-text-secondary);
 }
 
@@ -647,28 +647,4 @@ body.dark-mode .home-page a.stats-impact-card :is(span, strong, small) {
 
 body.dark-mode .home-page a.stats-impact-card:hover {
   border-color: var(--dark-primary);
-}
-
-body.dark-mode .home-page .home-curriculum-node-action {
-  border-color: var(--dark-primary);
-  color: var(--dark-primary);
-}
-
-body.dark-mode .home-page .home-curriculum-node-action:hover,
-body.dark-mode .home-page .home-curriculum-node-action:focus-visible {
-  background: var(--dark-surface-raised);
-}
-
-body.dark-mode .home-page .home-curriculum-node-marker,
-body.dark-mode .home-page .home-continue-learning-thumb {
-  background: var(--primary-light);
-  color: var(--dark-primary);
-}
-
-body.dark-mode .home-page .home-continue-learning-progress {
-  background: var(--dark-border);
-}
-
-body.dark-mode .home-page .home-continue-learning-row .row-actions {
-  color: var(--dark-text-secondary);
 }

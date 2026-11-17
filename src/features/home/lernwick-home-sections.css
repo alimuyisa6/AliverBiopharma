@@ -1245,3 +1245,56 @@ body.dark-mode .lernwick-testimonial-initials {
 .lernwick-newsletter-status.error{color:var(--red-200)}
 @media(max-width:760px){.lernwick-newsletter-card{grid-template-columns:minmax(0,1fr);gap:1.5rem;border-radius:var(--radius-lg)}}
 @media(max-width:480px){.lernwick-newsletter-row{grid-template-columns:minmax(0,1fr)}.lernwick-newsletter-submit{width:100%}}
+
+body.dark-mode .lernwick-newsletter-card {
+  border: 1px solid var(--dark-border);
+  background: var(--dark-surface);
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .lernwick-newsletter-copy .lernwick-note {
+  color: var(--dark-primary);
+}
+
+body.dark-mode .lernwick-newsletter-copy h2,
+body.dark-mode .lernwick-newsletter-form > label {
+  color: var(--dark-text);
+}
+
+body.dark-mode .lernwick-newsletter-copy > p:last-child {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .lernwick-newsletter-input input {
+  border-color: var(--dark-border);
+  background: var(--dark-background);
+  color: var(--dark-text);
+}
+
+body.dark-mode .lernwick-newsletter-input input::placeholder {
+  color: var(--dark-text-secondary);
+  opacity: 1;
+}
+
+body.dark-mode .lernwick-newsletter-input input:focus {
+  border-color: var(--dark-primary);
+  outline-color: var(--dark-primary);
+}
+
+body.dark-mode .lernwick-newsletter-submit {
+  background: var(--dark-primary);
+  color: var(--dark-background);
+}
+
+body.dark-mode .lernwick-newsletter-submit:hover:not(:disabled) {
+  background: var(--dark-primary);
+  color: var(--dark-background);
+}
+
+body.dark-mode .lernwick-newsletter-status.success {
+  color: var(--success-color);
+}
+
+body.dark-mode .lernwick-newsletter-status.error {
+  color: var(--danger-color);
+}
