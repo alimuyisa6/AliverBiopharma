@@ -1,5 +1,4 @@
 import { forwardRef } from 'react';
-import Icon from '../Icon/Icon';
 
 const Select = forwardRef(function Select(
   { label, hint, error, options = [], placeholder, className = '', id, children, ...props },
@@ -32,7 +31,7 @@ const Select = forwardRef(function Select(
           ))}
         </select>
         <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-slate-500">
-          <Icon name="chevron-down" className="h-4 w-4" />
+          <span className="h-2 w-2 rotate-45 border-b-2 border-r-2 border-current" />
         </span>
       </div>
       {error && <p id={errorId} className="m-0 text-sm font-medium text-danger" role="alert">{error}</p>}
