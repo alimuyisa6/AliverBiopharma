@@ -427,18 +427,18 @@ selectedPlacement?.currency,
 }
 
 return (
-<main className="advertise-create-page">
-<section className="advertise-create-header">
+<main className="min-h-screen bg-background px-5 py-10 text-foreground sm:px-8 sm:py-14">
+<section className="mx-auto mb-10 max-w-7xl">
 <div>
 <Link
 to="/advertise"
-className="advertise-back-link"
+className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-primary-700 no-underline hover:text-primary-900"
 >
 <Icon name="arrow-left" />
 Advertising
 </Link>
 
-      <span className="eyebrow">
+      <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary-700">
         Create a campaign
       </span>
 
@@ -454,14 +454,10 @@ Advertising
       </p>
     </div>
 
-    <div className="advertise-create-progress">
+    <div className="mx-auto mb-8 flex max-w-7xl flex-wrap gap-2">
       {STEP_TITLES.map((title, index) => (
         <div
-          className={`advertise-create-progress-item${
-            index === step ? ' is-active' : ''
-          }${
-            index < step ? ' is-complete' : ''
-          }`}
+          className={`inline-flex min-h-10 items-center rounded-full border px-4 py-2 text-xs font-bold transition ${index === step ? 'border-primary-700 bg-primary-700 text-white' : index < step ? 'border-emerald-200 bg-emerald-50 text-emerald-800' : 'border-border bg-white text-slate-500'}`}
           key={title}
         >
           <span>
@@ -474,21 +470,21 @@ Advertising
     </div>
   </section>
 
-  <section className="advertise-create-layout">
+  <section className="mx-auto grid max-w-7xl items-start gap-8 lg:grid-cols-[minmax(0,1.6fr)_minmax(280px,0.7fr)]">
     <form
-      className="advertise-create-form"
+      className="min-w-0 rounded-3xl border border-border bg-white p-5 shadow-sm sm:p-8"
       onSubmit={handleSubmit}
     >
       {loadingConfig && (
-        <div className="advertise-create-loading">
+        <div className="flex min-h-48 items-center justify-center rounded-2xl bg-primary-50 text-sm font-semibold text-primary-800">
           Loading advertising options…
         </div>
       )}
 
       {!loadingConfig && step === 0 && (
-        <div className="advertise-create-step">
-          <div className="advertise-create-step-heading">
-            <span className="eyebrow">
+        <div className="space-y-7">
+          <div className="mb-2 max-w-2xl space-y-3">
+            <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary-700">
               Step 01
             </span>
 
@@ -503,7 +499,7 @@ Advertising
             </p>
           </div>
 
-          <div className="advertise-form-grid">
+          <div className="grid gap-5 sm:grid-cols-2">
             <label>
               Organisation or advertiser name
               <input
@@ -518,7 +514,7 @@ Advertising
                 placeholder="Organisation name"
                 maxLength={200}
                 required
-               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
+               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
 
             <label>
@@ -534,7 +530,7 @@ Advertising
                 }
                 placeholder="name@example.com"
                 required
-               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
+               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
 
             <label>
@@ -549,7 +545,7 @@ Advertising
                   )
                 }
                 placeholder="Optional"
-               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
+               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
 
             <label>
@@ -564,16 +560,16 @@ Advertising
                   )
                 }
                 placeholder="https://example.com"
-               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
+               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
           </div>
         </div>
       )}
 
       {!loadingConfig && step === 1 && (
-        <div className="advertise-create-step">
-          <div className="advertise-create-step-heading">
-            <span className="eyebrow">
+        <div className="space-y-7">
+          <div className="mb-2 max-w-2xl space-y-3">
+            <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary-700">
               Step 02
             </span>
 
@@ -588,7 +584,7 @@ Advertising
             </p>
           </div>
 
-          <div className="advertise-form-stack">
+          <div className="grid gap-5">
             <label>
               Campaign title
               <input
@@ -603,7 +599,7 @@ Advertising
                 placeholder="Internal campaign name"
                 maxLength={200}
                 required
-               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
+               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
 
             <label>
@@ -617,7 +613,7 @@ Advertising
                   )
                 }
                 required
-               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
+               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
                 <option value="">
                   Select a category
                 </option>
@@ -648,7 +644,7 @@ Advertising
                 }
                 placeholder="https://example.com/your-page"
                 required
-               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
+               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
 
             <label>
@@ -665,7 +661,7 @@ Advertising
                 placeholder="A clear message for learners"
                 maxLength={180}
                 required
-               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
+               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
 
             <label>
@@ -681,7 +677,7 @@ Advertising
                 placeholder="Explain the opportunity, service or message."
                 rows={5}
                 maxLength={5000}
-               className="block min-h-32 w-full min-w-0 resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
+               className="block min-h-32 w-full min-w-0 resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
 
             <label>
@@ -697,16 +693,16 @@ Advertising
                 }
                 placeholder="Learn more"
                 maxLength={80}
-               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
+               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
           </div>
         </div>
       )}
 
       {!loadingConfig && step === 2 && (
-        <div className="advertise-create-step">
-          <div className="advertise-create-step-heading">
-            <span className="eyebrow">
+        <div className="space-y-7">
+          <div className="mb-2 max-w-2xl space-y-3">
+            <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary-700">
               Step 03
             </span>
 
@@ -722,13 +718,11 @@ Advertising
             </p>
           </div>
 
-          <div className="advertise-option-list">
+          <div className="grid gap-3 sm:grid-cols-2">
             {config.scopes.map((scope) => (
               <label
-                className={`advertise-option${
-                  form.scopeId === scope.id
-                    ? ' is-selected'
-                    : ''
+                className={`flex cursor-pointer items-start gap-3 rounded-2xl border p-4 transition ${
+                  form.scopeId === scope.id ? ' border-primary-500 bg-primary-50 ring-2 ring-primary-100' : ' border-border bg-white hover:border-primary-200 hover:bg-primary-50/40'
                 }`}
                 key={scope.id}
               >
@@ -744,7 +738,7 @@ Advertising
                       event.target.value
                     )
                   }
-                 className="h-4 w-4 shrink-0 accent-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700" />
+                 className="h-4 w-4 shrink-0 accent-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-700" />
 
                 <span>
                   <strong>
@@ -768,7 +762,7 @@ Advertising
           {selectedScope &&
             selectedScope.scope_type !==
               'all_levels' && (
-              <div className="advertise-form-stack">
+              <div className="grid gap-5">
                 <label>
                   Learning level
                   <select
@@ -780,7 +774,7 @@ Advertising
                       )
                     }
                     required
-                   className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
+                   className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
                     <option value="">
                       Select a level
                     </option>
@@ -812,7 +806,7 @@ Advertising
                           )
                         }
                         required
-                       className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
+                       className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
                         <option value="">
                           Select a class or programme
                         </option>
@@ -836,9 +830,9 @@ Advertising
       )}
 
       {!loadingConfig && step === 3 && (
-        <div className="advertise-create-step">
-          <div className="advertise-create-step-heading">
-            <span className="eyebrow">
+        <div className="space-y-7">
+          <div className="mb-2 max-w-2xl space-y-3">
+            <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary-700">
               Step 04
             </span>
 
@@ -853,18 +847,15 @@ Advertising
             </p>
           </div>
 
-          <div className="advertise-create-choice-section">
+          <div className="mt-8 space-y-4 rounded-2xl border border-border bg-slate-50/70 p-5">
             <h3>Placement</h3>
 
-            <div className="advertise-option-list">
+            <div className="grid gap-3 sm:grid-cols-2">
               {config.placements.map(
                 (placement) => (
                   <label
-                    className={`advertise-option${
-                      form.placementId ===
-                      placement.id
-                        ? ' is-selected'
-                        : ''
+                    className={`flex cursor-pointer items-start gap-3 rounded-2xl border p-4 transition ${
+                      form.placementId === placement.id ? ' border-primary-500 bg-primary-50 ring-2 ring-primary-100' : ' border-border bg-white hover:border-primary-200 hover:bg-primary-50/40'
                     }`}
                     key={placement.id}
                   >
@@ -882,7 +873,7 @@ Advertising
                           event.target.value
                         )
                       }
-                     className="h-4 w-4 shrink-0 accent-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700" />
+                     className="h-4 w-4 shrink-0 accent-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-700" />
 
                     <span>
                       <strong>
@@ -906,18 +897,15 @@ Advertising
             </div>
           </div>
 
-          <div className="advertise-create-choice-section">
+          <div className="mt-8 space-y-4 rounded-2xl border border-border bg-slate-50/70 p-5">
             <h3>Campaign duration</h3>
 
-            <div className="advertise-option-list">
+            <div className="grid gap-3 sm:grid-cols-2">
               {config.duration_tiers.map(
                 (tier) => (
                   <label
-                    className={`advertise-option${
-                      form.durationTierId ===
-                      tier.id
-                        ? ' is-selected'
-                        : ''
+                    className={`flex cursor-pointer items-start gap-3 rounded-2xl border p-4 transition ${
+                      form.durationTierId === tier.id ? ' border-primary-500 bg-primary-50 ring-2 ring-primary-100' : ' border-border bg-white hover:border-primary-200 hover:bg-primary-50/40'
                     }`}
                     key={tier.id}
                   >
@@ -935,7 +923,7 @@ Advertising
                           event.target.value
                         )
                       }
-                     className="h-4 w-4 shrink-0 accent-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700" />
+                     className="h-4 w-4 shrink-0 accent-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-700" />
 
                     <span>
                       <strong>
@@ -964,15 +952,15 @@ Advertising
                 )
               }
               required
-             className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
+             className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
           </label>
         </div>
       )}
 
       {!loadingConfig && step === 4 && (
-        <div className="advertise-create-step">
-          <div className="advertise-create-step-heading">
-            <span className="eyebrow">
+        <div className="space-y-7">
+          <div className="mb-2 max-w-2xl space-y-3">
+            <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary-700">
               Step 05
             </span>
 
@@ -988,29 +976,29 @@ Advertising
             </p>
           </div>
 
-          <div className="advertise-review">
-            <div className="advertise-review-row">
+          <div className="grid gap-3">
+            <div className="flex flex-col gap-1 rounded-xl border border-border bg-white p-4 sm:flex-row sm:items-center sm:justify-between">
               <span>Advertiser</span>
               <strong>
                 {form.advertiserName}
               </strong>
             </div>
 
-            <div className="advertise-review-row">
+            <div className="flex flex-col gap-1 rounded-xl border border-border bg-white p-4 sm:flex-row sm:items-center sm:justify-between">
               <span>Campaign</span>
               <strong>
                 {form.campaignTitle}
               </strong>
             </div>
 
-            <div className="advertise-review-row">
+            <div className="flex flex-col gap-1 rounded-xl border border-border bg-white p-4 sm:flex-row sm:items-center sm:justify-between">
               <span>Category</span>
               <strong>
                 {selectedCategory?.label || '—'}
               </strong>
             </div>
 
-            <div className="advertise-review-row">
+            <div className="flex flex-col gap-1 rounded-xl border border-border bg-white p-4 sm:flex-row sm:items-center sm:justify-between">
               <span>Audience</span>
               <strong>
                 {selectedScope?.scope_type ===
@@ -1030,7 +1018,7 @@ Advertising
               </strong>
             </div>
 
-            <div className="advertise-review-row">
+            <div className="flex flex-col gap-1 rounded-xl border border-border bg-white p-4 sm:flex-row sm:items-center sm:justify-between">
               <span>Placement</span>
               <strong>
                 {selectedPlacement?.display_name ||
@@ -1038,25 +1026,25 @@ Advertising
               </strong>
             </div>
 
-            <div className="advertise-review-row">
+            <div className="flex flex-col gap-1 rounded-xl border border-border bg-white p-4 sm:flex-row sm:items-center sm:justify-between">
               <span>Duration</span>
               <strong>
                 {selectedDuration?.label || '—'}
               </strong>
             </div>
 
-            <div className="advertise-review-row">
+            <div className="flex flex-col gap-1 rounded-xl border border-border bg-white p-4 sm:flex-row sm:items-center sm:justify-between">
               <span>Start date</span>
               <strong>{form.startDate}</strong>
             </div>
 
-            <div className="advertise-review-row advertise-review-message">
+            <div className="flex flex-col gap-2 rounded-xl border border-primary-100 bg-primary-50/70 p-4">
               <span>Headline</span>
               <strong>{form.headline}</strong>
             </div>
 
             {form.bodyText && (
-              <div className="advertise-review-row advertise-review-message">
+              <div className="flex flex-col gap-2 rounded-xl border border-primary-100 bg-primary-50/70 p-4">
                 <span>Message</span>
                 <strong>{form.bodyText}</strong>
               </div>
@@ -1064,7 +1052,7 @@ Advertising
           </div>
 
           {estimatedPrice && (
-            <div className="advertise-create-price">
+            <div className="mt-5 rounded-2xl border border-secondary-200 bg-secondary-50 p-5 text-secondary-900">
               <span>
                 Estimated campaign cost
               </span>
@@ -1086,7 +1074,7 @@ Advertising
 
       {error && (
         <div
-          className="advertise-create-error"
+          className="mb-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-800"
           role="alert"
         >
           {error}
@@ -1094,11 +1082,11 @@ Advertising
       )}
 
       {!loadingConfig && (
-        <div className="advertise-create-navigation">
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-6">
           {step > 0 ? (
             <button
               type="button"
-              className="btn btn-secondary"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-border bg-white px-5 py-3 text-sm font-bold text-primary-800 transition hover:border-primary-200 hover:bg-primary-50 disabled:cursor-not-allowed disabled:opacity-60"
               onClick={previousStep}
               disabled={submitting}
             >
@@ -1107,7 +1095,7 @@ Advertising
           ) : (
             <Link
               to="/advertise"
-              className="advertise-text-link"
+              className="text-sm font-semibold text-primary-700 underline underline-offset-4 hover:text-primary-900"
             >
               Cancel
             </Link>
@@ -1116,7 +1104,7 @@ Advertising
           {step < STEP_TITLES.length - 1 ? (
             <button
               type="button"
-              className="btn btn-primary"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-primary-700 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-primary-800 disabled:cursor-not-allowed disabled:opacity-60"
               onClick={nextStep}
             >
               Continue
@@ -1124,7 +1112,7 @@ Advertising
           ) : (
             <button
               type="submit"
-              className="btn btn-primary"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-primary-700 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-primary-800 disabled:cursor-not-allowed disabled:opacity-60"
               disabled={submitting}
             >
               {submitting
@@ -1136,8 +1124,8 @@ Advertising
       )}
     </form>
 
-    <aside className="advertise-create-aside">
-      <div className="advertise-create-aside-mark">
+    <aside className="sticky top-24 rounded-3xl border border-primary-800 bg-primary-900 p-6 text-white shadow-xl [&_h2]:text-white [&_p]:text-blue-100 [&_a]:text-orange-100">
+      <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-orange-200">
         <AdStepIcon
           name={
             step === 0
@@ -1154,7 +1142,7 @@ Advertising
         />
       </div>
 
-      <span className="eyebrow">
+      <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary-700">
         Advertising on AliverBiopharm
       </span>
 
@@ -1171,7 +1159,7 @@ Advertising
 
       <Link
         to="/advertise"
-        className="advertise-text-link"
+        className="text-sm font-semibold text-primary-700 underline underline-offset-4 hover:text-primary-900"
       >
         Read the advertising guidelines
       </Link>

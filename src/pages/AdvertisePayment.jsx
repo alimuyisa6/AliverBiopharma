@@ -165,8 +165,8 @@ try {
 
 if (loading) {
 return (
-<main className="advertise-payment-page">
-<section className="advertise-payment-loading">
+<main className="min-h-screen bg-background px-5 py-10 text-foreground sm:px-8 sm:py-14">
+<section className="mx-auto flex min-h-64 max-w-4xl flex-col items-center justify-center gap-4 rounded-3xl border border-border bg-white p-8 text-primary-800 shadow-sm">
 <AdStepIcon name="review" size={38} />
 <p>Loading campaign details…</p>
 </section>
@@ -182,17 +182,17 @@ campaign;
 const paymentState = getPaymentState(placement);
 
 return (
-<main className="advertise-payment-page">
-<section className="advertise-payment-header">
+<main className="min-h-screen bg-background px-5 py-10 text-foreground sm:px-8 sm:py-14">
+<section className="mx-auto mb-10 max-w-7xl">
 <Link
 to="/advertise"
-className="advertise-back-link"
+className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-primary-700 no-underline hover:text-primary-900"
 >
 <Icon name="arrow-left" />
 Advertising
 </Link>
 
-    <span className="eyebrow">
+    <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary-700">
       Campaign payment
     </span>
 
@@ -207,11 +207,11 @@ Advertising
     </p>
   </section>
 
-  <section className="advertise-payment-layout">
-    <div className="advertise-payment-main">
+  <section className="mx-auto grid max-w-7xl items-start gap-8 lg:grid-cols-[minmax(0,1.6fr)_minmax(280px,0.7fr)]">
+    <div className="min-w-0 space-y-6 rounded-3xl border border-border bg-white p-5 shadow-sm sm:p-8">
       {error && (
         <div
-          className="advertise-payment-error"
+          className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-800"
           role="alert"
         >
           {error}
@@ -220,7 +220,7 @@ Advertising
 
       {message && (
         <div
-          className="advertise-payment-message"
+          className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-800"
           role="status"
         >
           {message}
@@ -228,8 +228,8 @@ Advertising
       )}
 
       {!campaign && !error && (
-        <div className="advertise-payment-empty">
-          <div className="advertise-payment-empty-icon">
+        <div className="flex min-h-64 flex-col items-center justify-center rounded-2xl bg-slate-50 p-8 text-center">
+          <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary-100 text-primary-700">
             <AdStepIcon name="campaign" size={36} />
           </div>
 
@@ -241,7 +241,7 @@ Advertising
 
           <button
             type="button"
-            className="btn btn-primary"
+            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-primary-700 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-primary-800 disabled:cursor-not-allowed disabled:opacity-60"
             onClick={() => navigate('/advertise')}
           >
             Back to advertising
@@ -251,8 +251,8 @@ Advertising
 
       {campaign && (
         <>
-          <div className="advertise-payment-status">
-            <div className="advertise-payment-status-icon">
+          <div className="flex items-start gap-4 rounded-2xl border border-primary-100 bg-primary-50/70 p-5">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-primary-900 text-white">
               <AdStepIcon
                 name={
                   paymentState === 'paid'
@@ -266,7 +266,7 @@ Advertising
             </div>
 
             <div>
-              <span className="eyebrow">
+              <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary-700">
                 Payment status
               </span>
 
@@ -288,8 +288,8 @@ Advertising
             </div>
           </div>
 
-          <div className="advertise-payment-summary">
-            <div className="advertise-payment-summary-row">
+          <div className="grid gap-3 rounded-2xl border border-border bg-white p-4">
+            <div className="flex flex-col gap-1 border-b border-border pb-3 text-sm last:border-0 last:pb-0 sm:flex-row sm:items-center sm:justify-between">
               <span>Campaign</span>
               <strong>
                 {campaign.title ||
@@ -298,7 +298,7 @@ Advertising
               </strong>
             </div>
 
-            <div className="advertise-payment-summary-row">
+            <div className="flex flex-col gap-1 border-b border-border pb-3 text-sm last:border-0 last:pb-0 sm:flex-row sm:items-center sm:justify-between">
               <span>Placement</span>
               <strong>
                 {placement?.placement_name ||
@@ -307,7 +307,7 @@ Advertising
               </strong>
             </div>
 
-            <div className="advertise-payment-summary-row">
+            <div className="flex flex-col gap-1 border-b border-border pb-3 text-sm last:border-0 last:pb-0 sm:flex-row sm:items-center sm:justify-between">
               <span>Campaign amount</span>
               <strong>
                 {formatMoney(
@@ -317,14 +317,14 @@ Advertising
               </strong>
             </div>
 
-            <div className="advertise-payment-summary-row">
+            <div className="flex flex-col gap-1 border-b border-border pb-3 text-sm last:border-0 last:pb-0 sm:flex-row sm:items-center sm:justify-between">
               <span>Start date</span>
               <strong>
                 {placement?.start_date || '—'}
               </strong>
             </div>
 
-            <div className="advertise-payment-summary-row">
+            <div className="flex flex-col gap-1 border-b border-border pb-3 text-sm last:border-0 last:pb-0 sm:flex-row sm:items-center sm:justify-between">
               <span>End date</span>
               <strong>
                 {placement?.end_date || '—'}
@@ -335,11 +335,11 @@ Advertising
           {paymentState !== 'paid' &&
             paymentState !== 'rejected' && (
               <form
-                className="advertise-payment-form"
+                className="mt-6 grid gap-5 rounded-2xl border border-border bg-slate-50 p-5"
                 onSubmit={handleVerify}
               >
-                <div className="advertise-payment-form-heading">
-                  <span className="eyebrow">
+                <div className="space-y-3">
+                  <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary-700">
                     Payment reference
                   </span>
 
@@ -367,7 +367,7 @@ Advertising
                     placeholder="Enter payment ID"
                     inputMode="numeric"
                     required
-                   className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
+                   className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
                 </label>
 
                 <SlideToConfirmButton
@@ -381,9 +381,9 @@ Advertising
             )}
 
           {paymentState === 'paid' && (
-            <div className="advertise-payment-next">
+            <div className="flex flex-col items-start justify-between gap-6 rounded-2xl border border-emerald-200 bg-emerald-50 p-6 sm:flex-row sm:items-center">
               <div>
-                <span className="eyebrow">
+                <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary-700">
                   Next step
                 </span>
 
@@ -401,7 +401,7 @@ Advertising
 
               <Link
                 to="/advertise"
-                className="btn btn-primary"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-primary-700 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-primary-800 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 Back to advertising
               </Link>
@@ -411,12 +411,12 @@ Advertising
       )}
     </div>
 
-    <aside className="advertise-payment-aside">
-      <div className="advertise-payment-aside-icon">
+    <aside className="sticky top-24 rounded-3xl border border-primary-800 bg-primary-900 p-6 text-white shadow-xl [&_h2]:text-white [&_p]:text-blue-100 [&_a]:text-orange-100">
+      <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-orange-200">
         <AdStepIcon name="review" size={38} />
       </div>
 
-      <span className="eyebrow">
+      <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary-700">
         Payment & review
       </span>
 
@@ -431,7 +431,7 @@ Advertising
         campaigns must also pass review.
       </p>
 
-      <div className="advertise-payment-checklist">
+      <div className="mt-7 grid gap-3">
         <div>
           <span>01</span>
           <strong>Payment submitted</strong>
@@ -455,7 +455,7 @@ Advertising
 
       <Link
         to="/advertise"
-        className="advertise-text-link"
+        className="mt-5 inline-flex text-sm font-semibold text-primary-700 underline underline-offset-4 hover:text-primary-900"
       >
         Advertising guidelines
       </Link>

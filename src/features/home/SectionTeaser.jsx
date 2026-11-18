@@ -6,34 +6,29 @@ const teaserImages = {
 };
 
 export function SectionTeaser({
-  eyebrow,
-  title,
-  intro,
-  imageUrl,
-  imageAlt,
-  illustrationType,
-  ctaLabel,
-  onCtaClick,
-  imageSide = 'right'
+  eyebrow, title, intro, imageUrl, imageAlt, illustrationType, ctaLabel, onCtaClick, imageSide = 'right'
 }) {
   const image = imageUrl || teaserImages[illustrationType];
+  const reverse = imageSide === 'left';
 
   return (
-    <section className={`section section-teaser lernwick-feature teaser-image-${imageSide} lernwick-feature--${illustrationType || 'default'}`}>
-      <div className="container">
-        <div className="section-teaser-inner">
-          <div className="section-teaser-content">
-            {eyebrow && <p className="lernwick-note">{eyebrow}</p>}
-            <h2 className="section-teaser-title">{title}</h2>
-            {intro && <p className="section-subtitle">{intro}</p>}
+    <section className="w-full bg-primary-50 px-5 py-16 sm:px-8 sm:py-20 lg:px-12" aria-label={eyebrow || title}>
+      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 overflow-hidden rounded-[2rem] border border-primary-100 bg-white p-6 shadow-sm sm:p-9 lg:grid-cols-2 lg:gap-14 lg:p-12">
+        <div className={`min-w-0 ${reverse ? 'lg:order-2' : ''}`}>
+          {eyebrow && <p className="mb-3 text-xs font-extrabold uppercase tracking-[0.16em] text-secondary-700">{eyebrow}</p>}
+          <h2 className="max-w-xl text-3xl font-bold leading-tight text-primary-900 sm:text-4xl lg:text-5xl">{title}</h2>
+          {intro && <p className="mt-5 max-w-xl text-base leading-8 text-slate-600 sm:text-lg">{intro}</p>}
+          <div className="mt-7">
             <Button variant="primary" onClick={onCtaClick}>{ctaLabel}</Button>
           </div>
-          {image && (
-            <div className="section-teaser-image-wrap">
-              <img src={image} alt={imageAlt || ''} className="section-teaser-image" loading="lazy" />
-            </div>
-          )}
         </div>
+        {image && (
+          <div className={`min-w-0 ${reverse ? 'lg:order-1' : ''}`}>
+            <div className="overflow-hidden rounded-3xl border-[8px] border-primary-50 bg-primary-50 shadow-xl shadow-primary-900/10">
+              <img src={image} alt={imageAlt || ''} className="aspect-[5/4] h-full w-full object-cover" loading="lazy" />
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

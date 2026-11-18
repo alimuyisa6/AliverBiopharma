@@ -25,11 +25,14 @@ export default function TutorMarketplace() {
   const [formatFilter, setFormatFilter] = useState('');
   const [allTutors, setAllTutors] = useState([]);
   const [curriculumUnits, setCurriculumUnits] = useState([]);
+  const [loadError, setLoadError] = useState('');
 
   useEffect(() => {
     let cancelled = false;
 
     const groupId = activeGroupId || null;
+    setLoading(true);
+    setLoadError('');
 
     Promise.all([
       listTutorsCached({ limit: 50 }),
@@ -41,7 +44,9 @@ export default function TutorMarketplace() {
         setTutors(tutorData || []);
         setCurriculumUnits(unitData || []);
       })
-      .catch(() => {})
+      .catch((error) => {
+        if (!cancelled) setLoadError(error?.message || 'Tutors could not be loaded. Please try again.');
+      })
       .finally(() => {
         if (!cancelled) setLoading(false);
       });
@@ -58,9 +63,9 @@ export default function TutorMarketplace() {
       const query = search.toLowerCase();
       filtered = filtered.filter(
         (tutor) =>
-          tutor.display_name.toLowerCase().includes(query) ||
-          (tutor.headline && tutor.headline.toLowerCase().includes(query)) ||
-          (tutor.specialty && tutor.specialty.toLowerCase().includes(query))
+          String(tutor.display_name || '').toLowerCase().includes(query) ||
+          String(tutor.headline || '').toLowerCase().includes(query) ||
+          String(tutor.specialty || '').toLowerCase().includes(query)
       );
     }
 
@@ -118,21 +123,21 @@ export default function TutorMarketplace() {
     <div className="min-h-screen bg-background text-foreground">
       <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <div className="relative mb-8 overflow-hidden rounded-[2rem] border border-primary-100 bg-gradient-to-br from-primary-50 via-white to-secondary-50 p-6 shadow-sm sm:p-10 lg:p-12">
-          <div className="relative z-10 flex flex-col items-start gap-5">
+          <div className="relative z-10 grid grid-cols-1 items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(260px,0.72fr)] lg:gap-12">
             <span className="mb-3 inline-flex w-fit items-center gap-2 rounded-full border border-secondary-200 bg-secondary-100 px-3 py-1.5 text-xs font-extrabold uppercase tracking-[0.16em] text-secondary-800">{t('common.tutorMarketplace')}</span>
 
-            <h1 className="max-w-2xl text-3xl font-extrabold leading-tight text-primary-900 sm:text-4xl lg:text-5xl">Find a tutor who fits your needs</h1>
+            <h1 className="max-w-2xl text-4xl font-extrabold leading-[1.08] tracking-tight text-primary-900 sm:text-5xl lg:text-6xl">Find a tutor who fits your needs</h1>
 
             <p className="mt-0 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
               For learners, schools, and institutions. Filter tutors by subject, level, and teaching format.
             </p>
 
             {getUiImage('tutor_marketplace_hero') && (
-              <div className="overflow-hidden rounded-3xl border border-white bg-white p-2 shadow-xl shadow-primary-900/10">
+              <div className="w-full overflow-hidden rounded-3xl border-[6px] border-white bg-white p-1 shadow-xl shadow-primary-900/10">
                 <img
                   src={getUiImage('tutor_marketplace_hero')}
-                  alt="Tutor marketplace"
-                  className="max-h-64 w-full rounded-2xl object-cover object-center"
+                  alt="Tutor supporting a learner"
+                  className="aspect-[5/4] max-h-[360px] w-full rounded-2xl object-cover object-center"
                   loading="lazy"
                 />
               </div>
@@ -152,7 +157,8 @@ export default function TutorMarketplace() {
           />
 
           <select
-            className="min-h-12 w-full rounded-xl border border-border bg-slate-50 px-4 text-sm text-foreground outline-none transition focus:border-primary-500 focus:bg-white focus:ring-4 focus:ring-primary-100 block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
+            aria-label={level === 'Pharmacy' ? 'Filter by course unit' : 'Filter by subject'}
+            className="block min-h-12 w-full min-w-0 rounded-xl border border-border bg-white px-4 py-3 pr-10 text-sm text-foreground shadow-sm outline-none transition hover:border-primary-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
             value={subjectFilter}
             onChange={(e) => setSubjectFilter(e.target.value)}
           >
@@ -166,7 +172,8 @@ export default function TutorMarketplace() {
 
 
           <select
-            className="min-h-12 w-full rounded-xl border border-border bg-slate-50 px-4 text-sm text-foreground outline-none transition focus:border-primary-500 focus:bg-white focus:ring-4 focus:ring-primary-100 block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
+            aria-label="Filter by teaching format"
+            className="block min-h-12 w-full min-w-0 rounded-xl border border-border bg-white px-4 py-3 pr-10 text-sm text-foreground shadow-sm outline-none transition hover:border-primary-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
             value={formatFilter}
             onChange={(e) => setFormatFilter(e.target.value)}
           >
@@ -181,7 +188,13 @@ export default function TutorMarketplace() {
           {(search || subjectFilter || formatFilter) && <button type="button" className="inline-flex min-h-10 items-center gap-2 rounded-xl px-3 text-sm font-semibold text-primary-700 transition hover:bg-primary-50" onClick={() => { setSearch(""); setSubjectFilter(""); setFormatFilter(""); }}>Clear filters <span aria-hidden="true">×</span></button>}
         </div>
 
-        {tutors.length === 0 ? (
+        {loadError ? (
+          <EmptyState
+            title="Tutors are temporarily unavailable"
+            description={loadError}
+            action={<Button onClick={() => window.location.reload()}>Try again</Button>}
+          />
+        ) : tutors.length === 0 ? (
           <EmptyState
             image={getUiImage('empty_state_tutors')}
             title="No tutors found"

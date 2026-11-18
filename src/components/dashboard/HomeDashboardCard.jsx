@@ -1,4 +1,3 @@
- /* components/dashboard/HomeDashboardCard.jsx */
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
@@ -11,77 +10,43 @@ export default function HomeDashboardCard() {
   useEffect(() => {
     if (!user) {
       setSummary(null);
-      return;
+      return undefined;
     }
-
     let mounted = true;
-
     getUserDashboard()
-      .then((data) => {
-        if (mounted) setSummary(data);
-      })
+      .then((data) => { if (mounted) setSummary(data); })
       .catch(() => {});
-
-    return () => {
-      mounted = false;
-    };
+    return () => { mounted = false; };
   }, [user]);
 
   if (!summary) return null;
-
-  const { platform, quiz, achievements } = summary;
+  const platform = summary.platform || {};
+  const quiz = summary.quiz || {};
+  const achievements = summary.achievements || {};
+  const metrics = [
+    { label: 'Total XP', value: Number(platform.total_xp || 0).toLocaleString(), detail: `${platform.xp_progress?.xpToNext ?? 0} to next level`, tone: 'text-emerald-700' },
+    { label: 'Day streak', value: platform.current_streak ?? 0, detail: 'Keep going', tone: 'text-secondary-700' },
+    { label: 'Badges', value: achievements.earned_count ?? 0, detail: `of ${achievements.total_count ?? 0}`, tone: 'text-primary-800' },
+    { label: 'Quiz blocks', value: quiz.blocks_completed ?? 0, detail: `${quiz.recent_pass_rate ?? 0}% pass rate`, tone: 'text-primary-800' }
+  ];
 
   return (
-    <section className="section home-learning-snapshot-section">
-      <div className="section-head">
-        <div className="section-head-left">
-          <span className="eyebrow">Your learning</span>
-          <h2>Learning snapshot</h2>
+    <section className="mx-auto w-full max-w-7xl rounded-3xl border border-primary-100 bg-white p-5 shadow-sm sm:p-7" aria-labelledby="home-learning-snapshot-title">
+      <header className="mb-6 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.15em] text-secondary-700">Your learning</p>
+          <h2 id="home-learning-snapshot-title" className="m-0 text-2xl font-bold text-primary-900 sm:text-3xl">Learning snapshot</h2>
         </div>
-        <Link
-          to="/dashboard"
-          className="text-link home-learning-snapshot-dashboard-link"
-        >
-          <span>View full dashboard</span>
-          <svg
-            className="home-dashboard-link-arrow"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-            focusable="false"
-          >
-            <path
-              d="M4 12h15m-6-6 6 6-6 6"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.4"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </Link>
-      </div>
-      <div className="home-snapshot-stack card-stack">        <div className="card-stack-back" aria-hidden="true" />        <div className="dash-strip card-stack-front">
-        <div className="dash-cell">
-          <div className="dc-label">Total XP</div>
-          <div className="dc-value green">{platform.total_xp.toLocaleString()}</div>
-          <div className="dc-sub">{platform.xp_progress.xpToNext} to next level</div>
-        </div>
-        <div className="dash-cell">
-          <div className="dc-label">Day streak</div>
-          <div className="dc-value mint">{platform.current_streak}</div>
-          <div className="dc-sub">Keep going</div>
-        </div>
-        <div className="dash-cell">
-          <div className="dc-label">Badges</div>
-          <div className="dc-value">{achievements.earned_count}</div>
-          <div className="dc-sub">of {achievements.total_count}</div>
-        </div>
-        <div className="dash-cell">
-          <div className="dc-label">Quiz blocks</div>
-          <div className="dc-value">{quiz.blocks_completed}</div>
-          <div className="dc-sub">{quiz.recent_pass_rate}% pass rate</div>
-        </div>
-        </div>
+        <Link to="/dashboard" className="inline-flex items-center gap-2 text-sm font-bold text-primary-700 hover:text-secondary-700">View full dashboard <span aria-hidden="true">→</span></Link>
+      </header>
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        {metrics.map((metric) => (
+          <article key={metric.label} className="rounded-2xl border border-slate-200 bg-primary-50/60 p-5">
+            <p className="text-xs font-bold uppercase tracking-wider text-slate-500">{metric.label}</p>
+            <strong className={`mt-3 block text-3xl font-extrabold tracking-tight ${metric.tone}`}>{metric.value}</strong>
+            <p className="mt-2 text-xs font-medium text-slate-500">{metric.detail}</p>
+          </article>
+        ))}
       </div>
     </section>
   );

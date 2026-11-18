@@ -108,13 +108,13 @@ export default function AdCampaignSuccess({
     String(reviewStatus).toLowerCase() === 'rejected';
 
   return (
-    <main className="ad-campaign-success">
-      <section className="ad-campaign-success-header">
-        <div className="ad-campaign-success-mark">
+    <main className="min-h-screen bg-background px-5 py-12 text-foreground sm:px-8">
+      <section className="mx-auto max-w-4xl text-center">
+        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-3xl bg-emerald-100 text-emerald-700">
           <AdStepIcon name="reach" size={42} />
         </div>
 
-        <span className="eyebrow">
+        <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary-700">
           Campaign submitted
         </span>
 
@@ -131,19 +131,19 @@ export default function AdCampaignSuccess({
         </p>
 
         {campaignPlacementId && (
-          <div className="ad-campaign-reference">
+          <div className="mx-auto mt-5 inline-flex rounded-full border border-primary-100 bg-primary-50 px-4 py-2 text-sm font-semibold text-primary-800">
             <span>Campaign placement reference</span>
             <strong>{campaignPlacementId}</strong>
           </div>
         )}
       </section>
 
-      <section className="ad-campaign-success-content">
-        <div className="ad-campaign-success-main">
-          <div className="ad-campaign-status-card">
-            <div className="ad-campaign-status-heading">
+      <section className="mx-auto mt-10 grid max-w-7xl items-start gap-8 lg:grid-cols-[minmax(0,1.6fr)_minmax(280px,0.7fr)]">
+        <div className="min-w-0 space-y-6">
+          <div className="rounded-3xl border border-border bg-white p-6 shadow-sm sm:p-8">
+            <div className="flex items-start gap-4">
               <div>
-                <span className="eyebrow">
+                <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary-700">
                   Campaign progress
                 </span>
 
@@ -155,8 +155,8 @@ export default function AdCampaignSuccess({
               <AdStepIcon name="review" size={32} />
             </div>
 
-            <div className="ad-campaign-progress">
-              <div className="ad-campaign-success-progress-step complete">
+            <div className="mt-8 grid gap-3 sm:grid-cols-4">
+              <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-800">
                 <span>01</span>
 
                 <div>
@@ -168,8 +168,8 @@ export default function AdCampaignSuccess({
               </div>
 
               <div
-                className={`ad-campaign-success-progress-step ${
-                  isPaid ? 'complete' : 'current'
+                className={`rounded-xl border p-4 text-sm font-semibold transition ${
+                  isPaid ? 'border-emerald-200 bg-emerald-50 text-emerald-800' : 'border-primary-200 bg-primary-50 text-primary-800'
                 }`}
               >
                 <span>02</span>
@@ -185,12 +185,12 @@ export default function AdCampaignSuccess({
               </div>
 
               <div
-                className={`ad-campaign-success-progress-step ${
+                className={`rounded-xl border p-4 text-sm font-semibold transition ${
                   isRejected
-                    ? 'rejected'
+                    ? 'border-red-200 bg-red-50 text-red-800'
                     : reviewStatus === 'approved'
-                      ? 'complete'
-                      : 'current'
+                      ? 'border-emerald-200 bg-emerald-50 text-emerald-800'
+                      : 'border-primary-200 bg-primary-50 text-primary-800'
                 }`}
               >
                 <span>03</span>
@@ -208,10 +208,10 @@ export default function AdCampaignSuccess({
               </div>
 
               <div
-                className={`ad-campaign-success-progress-step ${
+                className={`rounded-xl border p-4 text-sm font-semibold transition ${
                   reviewStatus === 'approved'
-                    ? 'current'
-                    : ''
+                    ? 'border-primary-200 bg-primary-50 text-primary-800'
+                    : 'border-border bg-white text-slate-500'
                 }`}
               >
                 <span>04</span>
@@ -227,10 +227,10 @@ export default function AdCampaignSuccess({
             </div>
           </div>
 
-          <div className="ad-campaign-summary-card">
-            <div className="ad-campaign-summary-heading">
+          <div className="rounded-3xl border border-border bg-white p-6 shadow-sm sm:p-8">
+            <div className="mb-5 flex items-center justify-between gap-3">
               <div>
-                <span className="eyebrow">
+                <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary-700">
                   Campaign details
                 </span>
 
@@ -242,7 +242,7 @@ export default function AdCampaignSuccess({
               <AdStepIcon name="campaign" size={30} />
             </div>
 
-            <div className="ad-campaign-summary-grid">
+            <div className="grid gap-3 sm:grid-cols-2">
               <div>
                 <span>Campaign</span>
 
@@ -302,11 +302,11 @@ export default function AdCampaignSuccess({
             </div>
           </div>
 
-          <div className="ad-campaign-success-actions">
+          <div className="flex flex-wrap items-center gap-3 border-t border-border pt-6">
             {onBack ? (
               <button
                 type="button"
-                className="btn btn-primary"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-primary-700 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-primary-800 disabled:cursor-not-allowed disabled:opacity-60"
                 onClick={onBack}
               >
                 Back to advertising
@@ -315,7 +315,7 @@ export default function AdCampaignSuccess({
             ) : (
               <Link
                 to="/advertise"
-                className="btn btn-primary"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-primary-700 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-primary-800 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 Back to advertising
                 <Icon name="arrow-left" />
@@ -324,7 +324,7 @@ export default function AdCampaignSuccess({
 
             <Link
               to="/"
-              className="ad-campaign-text-link"
+              className="text-sm font-semibold text-primary-700 underline underline-offset-4 hover:text-primary-900"
             >
               Return home
               <Icon name="arrow-right" />
@@ -332,13 +332,13 @@ export default function AdCampaignSuccess({
           </div>
         </div>
 
-        <aside className="ad-campaign-success-aside">
-          <div className="ad-campaign-aside-block">
-            <div className="ad-campaign-aside-icon">
+        <aside className="sticky top-24 space-y-5 rounded-3xl border border-primary-800 bg-primary-900 p-6 text-white shadow-xl [&_h2]:text-white [&_p]:text-blue-100 [&_a]:text-orange-100">
+          <div className="rounded-2xl border border-white/15 bg-white/10 p-5">
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 text-orange-200">
               <AdStepIcon name="audience" size={32} />
             </div>
 
-            <span className="eyebrow">
+            <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary-700">
               Aliver audience
             </span>
 
@@ -353,12 +353,12 @@ export default function AdCampaignSuccess({
             </p>
           </div>
 
-          <div className="ad-campaign-aside-block">
-            <div className="ad-campaign-aside-icon">
+          <div className="rounded-2xl border border-white/15 bg-white/10 p-5">
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 text-orange-200">
               <AdStepIcon name="review" size={32} />
             </div>
 
-            <span className="eyebrow">
+            <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary-700">
               Responsible advertising
             </span>
 
@@ -375,7 +375,7 @@ export default function AdCampaignSuccess({
 
           <Link
             to="/advertise"
-            className="ad-campaign-aside-link"
+            className="mt-4 inline-flex text-sm font-semibold text-orange-100 underline underline-offset-4 hover:text-white"
           >
             Review advertising information
             <Icon name="arrow-right" />

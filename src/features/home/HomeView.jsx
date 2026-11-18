@@ -64,7 +64,7 @@ function CurriculumNodeList({ nodes, parentId = null, isPharmacy = false }) {
   if (!children.length) return null;
 
   return (
-    <div className="mx-auto flex max-w-7xl flex-col gap-3" aria-label="Available curriculum topics">
+    <div className={`mx-auto flex max-w-7xl flex-col gap-3 ${parentId ? 'ml-4 border-l-2 border-primary-100 pl-4 sm:ml-7' : ''}`} aria-label="Available curriculum topics">
       {children.map((node) => {
         const nodeSlug = node.slug || String(node.name || '')
           .trim()
@@ -93,9 +93,10 @@ function CurriculumNodeList({ nodes, parentId = null, isPharmacy = false }) {
               <strong className="block font-bold text-primary-900">{node.name}</strong>
               <small className="mt-1 block text-xs font-semibold uppercase tracking-wide text-slate-500">{label}</small>
             </span>
-            <Link to={`/curriculum/${node.group_id}/${nodeSlug}`} className="inline-flex items-center gap-2 self-start rounded-lg bg-primary-50 px-4 py-2 text-sm font-bold text-primary-700 transition hover:bg-primary-100 sm:self-auto">
+            <Link to={`/curriculum/${node.group_id}/${nodeSlug}`} className="inline-flex min-h-10 items-center gap-2 self-start rounded-lg bg-primary-50 px-4 py-2 text-sm font-bold text-primary-700 transition hover:bg-primary-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 sm:self-auto">
               Open {label.toLowerCase()} <Icon name="chevron-right" />
             </Link>
+            <CurriculumNodeList nodes={nodes} parentId={node.id} isPharmacy={isPharmacy} />
           </article>
         );
       })}
