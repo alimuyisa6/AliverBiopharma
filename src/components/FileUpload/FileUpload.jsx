@@ -60,7 +60,7 @@ export default function FileUpload({ category, onUploadComplete }) {
     <section className="grid min-w-0 gap-4" aria-label="File attachments">
       <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-dashed border-primary-200 bg-primary-50/70 p-4 sm:p-5">
         <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-primary-700 shadow-sm">
-          <Icon name="cloud-arrow-up" className="h-6 w-6" />
+          <Icon name="arrow-up" className="h-6 w-6" />
         </div>
         <div className="min-w-0 flex-1">
           <p className="m-0 text-sm font-semibold text-primary-900">Add an attachment</p>
