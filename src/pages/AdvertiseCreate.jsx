@@ -457,11 +457,7 @@ Advertising
     <div className="mx-auto mb-8 flex max-w-7xl flex-wrap gap-2">
       {STEP_TITLES.map((title, index) => (
         <div
-          className={`inline-flex min-h-10 items-center rounded-full border px-4 py-2 text-xs font-bold transition ${
-            index === step ? ' border-primary-700 bg-primary-700 text-white' : ''
-          }${
-            index < step ? ' border-emerald-200 bg-emerald-50 text-emerald-800' : ' border-border bg-white text-slate-500'
-          }`}
+          className={`inline-flex min-h-10 items-center rounded-full border px-4 py-2 text-xs font-bold transition ${index === step ? 'border-primary-700 bg-primary-700 text-white' : index < step ? 'border-emerald-200 bg-emerald-50 text-emerald-800' : 'border-border bg-white text-slate-500'}`}
           key={title}
         >
           <span>
@@ -742,7 +738,7 @@ Advertising
                       event.target.value
                     )
                   }
-                 className="h-4 w-4 shrink-0 accent-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700" />
+                 className="h-4 w-4 shrink-0 accent-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-700" />
 
                 <span>
                   <strong>
@@ -877,7 +873,7 @@ Advertising
                           event.target.value
                         )
                       }
-                     className="h-4 w-4 shrink-0 accent-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700" />
+                     className="h-4 w-4 shrink-0 accent-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-700" />
 
                     <span>
                       <strong>
@@ -927,7 +923,7 @@ Advertising
                           event.target.value
                         )
                       }
-                     className="h-4 w-4 shrink-0 accent-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700" />
+                     className="h-4 w-4 shrink-0 accent-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-700" />
 
                     <span>
                       <strong>
@@ -1128,7 +1124,7 @@ Advertising
       )}
     </form>
 
-    <aside className="sticky top-24 rounded-3xl border border-primary-800 bg-primary-900 p-6 text-white shadow-xl">
+    <aside className="sticky top-24 rounded-3xl border border-primary-800 bg-primary-900 p-6 text-white shadow-xl [&_h2]:text-white [&_p]:text-blue-100 [&_a]:text-orange-100">
       <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-orange-200">
         <AdStepIcon
           name={
