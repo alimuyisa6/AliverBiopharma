@@ -133,7 +133,7 @@ export function NotesSection({
                     <div className="comment-input-group">
                       <input
                         type="text"
-                        className="form-input"
+                        className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
                         placeholder="Add a comment..."
                         value={notesCommentInput}
                         onChange={e => onCommentInputChange(e.target.value)}
