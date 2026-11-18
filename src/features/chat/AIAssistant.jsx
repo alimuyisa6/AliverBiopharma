@@ -329,7 +329,7 @@ export default function AIAssistant() {
           >
             <textarea
               value={input}
-              onChange={(event) = className="block min-h-32 w-full min-w-0 resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"> setInput(event.target.value.slice(0, 2000))}
+              onChange={(event) => setInput(event.target.value.slice(0, 2000))}
               onKeyDown={handleKeyDown}
               placeholder={
                 mode === 'practice'
