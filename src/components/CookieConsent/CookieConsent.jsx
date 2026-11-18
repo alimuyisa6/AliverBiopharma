@@ -178,7 +178,7 @@ export default function CookieConsent() {
                   <strong>Essential</strong>
                   <span>Always active for secure sign-in and core site functions.</span>
                 </div>
-                <input type="checkbox" checked disabled aria-label="Essential cookies always active" />
+                <input type="checkbox" checked disabled aria-label="Essential cookies always active" / className="h-4 w-4 shrink-0 accent-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700">
               </div>
 
               {[
@@ -194,7 +194,7 @@ export default function CookieConsent() {
                   <input
                     type="checkbox"
                     checked={choices[key]}
-                    onChange={(event) => setChoices((prev) => ({
+                    onChange={(event) = className="h-4 w-4 shrink-0 accent-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"> setChoices((prev) => ({
                       ...prev,
                       [key]: event.target.checked
                     }))}
