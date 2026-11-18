@@ -228,7 +228,7 @@ export default function ClassroomRoom() {
             {participants.map((participant) => (
               <div
                 key={participant.id || participant.user_id}
-                className={`relative flex min-h-48 flex-col items-center justify-center gap-3 overflow-hidden rounded-2xl border border-primary-100 bg-gradient-to-br from-primary-900 to-slate-900 p-5 text-center text-white shadow-lg ${participant.is_speaking ? 'speaking' : ''} ${participant.user_id === user?.id ? 'self' : ''}`}
+                className={`relative flex min-h-48 flex-col items-center justify-center gap-3 overflow-hidden rounded-2xl border border-primary-100 bg-gradient-to-br from-primary-900 to-slate-900 p-5 text-center text-white shadow-lg ${participant.is_speaking ? 'ring-2 ring-emerald-400 ring-offset-2' : ''} ${participant.user_id === user?.id ? 'border-primary-300' : ''}`}
               >
                 {participant.role === 'tutor' && <span className="absolute left-3 top-3 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider tutor">Tutor</span>}
                 {participant.role === 'admin' && <span className="absolute left-3 top-3 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider admin">Admin</span>}
@@ -317,7 +317,7 @@ export default function ClassroomRoom() {
                       </div>
                     </div>
                   ) : (
-                    <div className={`classroom-message-row${message.user_id === user?.id ? ' is-own' : ''}`}>
+                    <div className={`flex ${message.user_id === user?.id ? 'justify-end' : 'justify-start'}`}>
                       <div className="max-w-[88%] rounded-2xl rounded-tl-md border border-border bg-slate-50 px-3.5 py-3">
                         <div className="mb-1 flex items-center justify-between gap-4 text-xs font-bold text-primary-800">
                           {message.sender_name || 'User'}
@@ -366,7 +366,7 @@ export default function ClassroomRoom() {
                 <div key={participant.id || participant.user_id} className="flex items-center gap-3 rounded-xl px-3 py-2.5 transition hover:bg-slate-50">
                   <Icon
                     name={participant.role === 'tutor' ? 'user-graduate' : participant.role === 'admin' ? 'shield-halved' : 'user'}
-                    className={`classroom-participant-role-icon ${participant.role === 'tutor' ? 'tutor' : participant.role === 'admin' ? 'admin' : ''}`}
+                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary-50 p-2 ${participant.role === 'tutor' ? 'bg-secondary-50 text-secondary-700' : participant.role === 'admin' ? 'bg-primary-100 text-primary-800' : 'text-primary-700'}`}
                   />
                   <div>
                     <div className="text-sm font-semibold text-slate-800">{participant.user_name || 'Participant'}</div>
@@ -383,7 +383,7 @@ export default function ClassroomRoom() {
           <div className="rounded-2xl border border-border bg-white p-4 shadow-sm">
             <h4><Icon name="circle-info" /> Session details</h4>
             <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
-              {room.level && <div className="info-item"><strong>Level</strong> {room.level}</div>}
+              {room.level && <div className="rounded-xl bg-slate-50 p-3 text-sm text-slate-600 [&>strong]:mb-1 [&>strong]:block [&>strong]:text-xs [&>strong]:uppercase [&>strong]:tracking-wide [&>strong]:text-slate-500"><strong>Level</strong> {room.level}</div>}
               {roomClass && <div className="info-item"><strong>Class</strong> {roomClass}</div>}
               {room.topic_name && <div className="info-item"><strong>Topic</strong> {room.topic_name}</div>}
               <div className="info-item"><strong>Type</strong> {room.room_type === 'free' ? 'Open discussion' : room.room_type === 'hard_topic' ? 'Focused topic' : 'Premium'}</div>
