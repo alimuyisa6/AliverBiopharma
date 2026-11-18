@@ -666,7 +666,7 @@ export default function NoteDetail() {
                 <textarea
                   id="note-learning-question"
                   value={learningQuestion}
-                  onChange={(event) => setLearningQuestion(event.target.value.slice(0, 4000))}
+                  onChange={(event) = className="block min-h-32 w-full min-w-0 resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"> setLearningQuestion(event.target.value.slice(0, 4000))}
                   maxLength={4000}
                   minLength={3}
                   rows={4}
@@ -698,7 +698,7 @@ export default function NoteDetail() {
                               name={`trial-${question.id}`}
                               value={option.key}
                               checked={trialAnswers[question.id] === option.key}
-                              onChange={() => setTrialAnswers((current) => ({ ...current, [question.id]: option.key }))}
+                              onChange={() = className="h-4 w-4 shrink-0 accent-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"> setTrialAnswers((current) => ({ ...current, [question.id]: option.key }))}
                               disabled={!!feedback}
                             />
                             <span><strong>{option.key}.</strong> {option.text}</span>
@@ -786,7 +786,7 @@ export default function NoteDetail() {
             <div className="note-comment-input-wrapper">
               <input
                 type="text"
-                className="note-comment-input"
+                className="note-comment-input block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
                 placeholder="Share a thought about this note..."
                 value={commentInput}
                 onChange={(event) => setCommentInput(event.target.value)}
