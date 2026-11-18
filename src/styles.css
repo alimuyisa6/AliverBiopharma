@@ -216,3 +216,121 @@ body {
   .footer-inner { @apply gap-10; }
   .footer-right-groups { @apply gap-8; }
 }
+
+
+/* Advertising flow: resilient form and content styling, scoped to advertising routes. */
+[data-advertising-page] {
+  color: var(--color-foreground);
+}
+
+[data-advertising-page] h1,
+[data-advertising-page] h2,
+[data-advertising-page] h3 {
+  color: var(--color-primary-900);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+}
+
+[data-advertising-page] p {
+  color: var(--color-muted);
+  line-height: 1.75;
+}
+
+[data-advertising-page] label {
+  display: grid;
+  align-content: start;
+  gap: 0.55rem;
+  color: var(--color-primary-900);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+[data-advertising-page] input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+[data-advertising-page] select,
+[data-advertising-page] textarea {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 3rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.8rem;
+  background: #fff;
+  padding: 0.75rem 0.95rem;
+  color: #243447;
+  font: inherit;
+  font-size: 0.925rem;
+  line-height: 1.5;
+  box-shadow: 0 1px 2px rgb(15 23 42 / 0.05);
+  transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+
+[data-advertising-page] textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+[data-advertising-page] input::placeholder,
+[data-advertising-page] textarea::placeholder {
+  color: #94a3b8;
+  opacity: 1;
+}
+
+[data-advertising-page] input:focus,
+[data-advertising-page] select:focus,
+[data-advertising-page] textarea:focus {
+  border-color: var(--color-primary-500);
+  outline: 0;
+  box-shadow: 0 0 0 4px rgb(37 99 166 / 0.14);
+}
+
+[data-advertising-page] input:disabled,
+[data-advertising-page] select:disabled,
+[data-advertising-page] textarea:disabled {
+  cursor: not-allowed;
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+[data-advertising-page] input[type="checkbox"],
+[data-advertising-page] input[type="radio"] {
+  width: 1.05rem;
+  height: 1.05rem;
+  accent-color: var(--color-primary-600);
+}
+
+[data-advertising-page] form {
+  min-width: 0;
+}
+
+[data-advertising-page] form > button,
+[data-advertising-page] form a[role="button"] {
+  font-weight: 700;
+}
+
+[data-advertising-page] aside {
+  min-width: 0;
+}
+
+[data-advertising-page] aside h2 {
+  color: #fff;
+}
+
+[data-advertising-page] aside p {
+  color: #dbeafe;
+}
+
+[data-advertising-page] article {
+  min-width: 0;
+}
+
+@media (max-width: 640px) {
+  [data-advertising-page] {
+    overflow-wrap: anywhere;
+  }
+
+  [data-advertising-page] input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+  [data-advertising-page] select,
+  [data-advertising-page] textarea {
+    font-size: 16px;
+  }
+}
