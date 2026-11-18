@@ -117,11 +117,15 @@ export default function ClassroomRoom() {
   }
 
   async function handleRaiseHand() {
+    if (raisingHand) return;
     setRaisingHand(true);
     try {
       await raiseHand(roomId, !handRaised);
       setHandRaised((value) => !value);
-    } catch {}
+    } catch {
+    } finally {
+      setRaisingHand(false);
+    }
   }
 
   async function handleLeaveRoom() {
