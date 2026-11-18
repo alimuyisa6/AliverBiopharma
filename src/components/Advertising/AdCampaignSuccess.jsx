@@ -187,10 +187,10 @@ export default function AdCampaignSuccess({
               <div
                 className={`rounded-xl border p-4 text-sm font-semibold transition ${
                   isRejected
-                    ? 'rejected'
+                    ? 'border-red-200 bg-red-50 text-red-800'
                     : reviewStatus === 'approved'
-                      ? 'complete'
-                      : 'current'
+                      ? 'border-emerald-200 bg-emerald-50 text-emerald-800'
+                      : 'border-primary-200 bg-primary-50 text-primary-800'
                 }`}
               >
                 <span>03</span>
@@ -332,7 +332,7 @@ export default function AdCampaignSuccess({
           </div>
         </div>
 
-        <aside className="sticky top-24 space-y-5 rounded-3xl border border-primary-800 bg-primary-900 p-6 text-white shadow-xl">
+        <aside className="sticky top-24 space-y-5 rounded-3xl border border-primary-800 bg-primary-900 p-6 text-white shadow-xl [&_h2]:text-white [&_p]:text-blue-100 [&_a]:text-orange-100">
           <div className="rounded-2xl border border-white/15 bg-white/10 p-5">
             <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 text-orange-200">
               <AdStepIcon name="audience" size={32} />
