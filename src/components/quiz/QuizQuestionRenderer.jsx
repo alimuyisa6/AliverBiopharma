@@ -53,7 +53,7 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
             id={`quiz-essay-${question.id}`}
             value={draft}
             disabled={disabled || Boolean(answer)}
-            onChange={(event) => setDraft(event.target.value)}
+            onChange={(event) = className="block min-h-32 w-full min-w-0 resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"> setDraft(event.target.value)}
             rows={9}
             maxLength={20000}
             placeholder="Write your answer clearly, explaining the key points..."
@@ -82,7 +82,7 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
         <div className="grid gap-3" role="group" aria-label="Choose all correct answers">
           {optionRows.map((option) => (
             <label key={option.id} className={`flex min-h-14 cursor-pointer items-center gap-3 rounded-xl border p-4 text-left text-sm font-semibold transition ${draft.includes(option.id) ? "border-primary-500 bg-primary-50 text-primary-950" : "border-border bg-white text-slate-800 hover:border-primary-300 hover:bg-background"}`}>
-              <input type="checkbox" checked={draft.includes(option.id)} disabled={disabled || Boolean(answer)} onChange={(event) => setDraft((current) => event.target.checked ? [...current, option.id] : current.filter((item) => item !== option.id))} />
+              <input type="checkbox" checked={draft.includes(option.id)} disabled={disabled || Boolean(answer)} onChange={(event) = className="h-4 w-4 shrink-0 accent-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"> setDraft((current) => event.target.checked ? [...current, option.id] : current.filter((item) => item !== option.id))} />
               <span className="min-w-0 flex-1 leading-6">{option.label}</span>
             </label>
           ))}
@@ -105,7 +105,7 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
       {['short_answer', 'fill_blank', 'numerical'].includes(type) && (
         <div className="grid max-w-2xl gap-3">
           <label htmlFor={`quiz-answer-${question.id}`}>{type === 'numerical' ? 'Enter your numerical answer' : 'Enter your answer'}</label>
-          <input id={`quiz-answer-${question.id}`} type={type === 'numerical' ? 'number' : 'text'} inputMode={type === 'numerical' ? 'decimal' : 'text'} value={draft} disabled={disabled || Boolean(answer)} onChange={(event) => setDraft(event.target.value)} placeholder={type === 'numerical' ? 'Your answer' : 'Type your answer here'} />
+          <input id={`quiz-answer-${question.id}`} type={type === 'numerical' ? 'number' : 'text'} inputMode={type === 'numerical' ? 'decimal' : 'text'} value={draft} disabled={disabled || Boolean(answer)} onChange={(event) = className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"> setDraft(event.target.value)} placeholder={type === 'numerical' ? 'Your answer' : 'Type your answer here'} />
           {!answer && <Button variant="primary" onClick={submit} disabled={disabled || !String(draft).trim()}>Check answer</Button>}
         </div>
       )}
@@ -113,7 +113,7 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
       {type === 'dropdown' && (
         <div className="quiz-typed-answer">
           <label htmlFor={`quiz-answer-${question.id}`}>Choose the best answer</label>
-          <select id={`quiz-answer-${question.id}`} value={draft} disabled={disabled || Boolean(answer)} onChange={(event) => setDraft(event.target.value)}>
+          <select id={`quiz-answer-${question.id}`} value={draft} disabled={disabled || Boolean(answer)} onChange={(event) = className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"> setDraft(event.target.value)}>
             <option value="">Select an answer</option>
             {optionRows.map((option) => <option key={option.id} value={option.id}>{option.label}</option>)}
           </select>
