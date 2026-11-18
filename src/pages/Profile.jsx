@@ -1644,8 +1644,8 @@ export default function Profile() {
                     <select
                       value={uiPreferences.font_family}
                       disabled={savingUIPreference === 'font_family'}
-                      onChange={(e) = className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"> handleUIPreferenceChange('font_family', e.target.value)}
-                    >
+                      onChange={(e) => handleUIPreferenceChange('font_family', e.target.value)}
+                     className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
                       <option value="maven">Maven Pro</option>
                       <option value="system">System Sans</option>
                       <option value="serif">Serif</option>
@@ -1658,8 +1658,8 @@ export default function Profile() {
                     <select
                       value={uiPreferences.font_size}
                       disabled={savingUIPreference === 'font_size'}
-                      onChange={(e) = className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"> handleUIPreferenceChange('font_size', e.target.value)}
-                    >
+                      onChange={(e) => handleUIPreferenceChange('font_size', e.target.value)}
+                     className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
                       <option value="90">{t('profile.smaller')}</option>
                       <option value="100">Default</option>
                       <option value="110">Large</option>
@@ -1672,8 +1672,8 @@ export default function Profile() {
                     <select
                       value={uiPreferences.content_width}
                       disabled={savingUIPreference === 'content_width'}
-                      onChange={(e) = className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"> handleUIPreferenceChange('content_width', e.target.value)}
-                    >
+                      onChange={(e) => handleUIPreferenceChange('content_width', e.target.value)}
+                     className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
                       <option value="readable">{t('profile.readable')}</option>
                       <option value="wide">{t('profile.wide')}</option>
                       <option value="full">{t('profile.full')}</option>
@@ -1685,8 +1685,8 @@ export default function Profile() {
                     <select
                       value={uiPreferences.section_spacing}
                       disabled={savingUIPreference === 'section_spacing'}
-                      onChange={(e) = className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"> handleUIPreferenceChange('section_spacing', e.target.value)}
-                    >
+                      onChange={(e) => handleUIPreferenceChange('section_spacing', e.target.value)}
+                     className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
                       <option value="compact">{t('profile.compact')}</option>
                       <option value="comfortable">{t('profile.comfortable')}</option>
                       <option value="spacious">{t('profile.spacious')}</option>
@@ -1701,8 +1701,8 @@ export default function Profile() {
                     <select
                       value={uiPreferences.density}
                       disabled={savingUIPreference === 'density'}
-                      onChange={(e) = className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"> handleUIPreferenceChange('density', e.target.value)}
-                    >
+                      onChange={(e) => handleUIPreferenceChange('density', e.target.value)}
+                     className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
                       <option value="compact">{t('profile.compact')}</option>
                       <option value="comfortable">{t('profile.comfortable')}</option>
                       <option value="spacious">{t('profile.spacious')}</option>
@@ -1714,8 +1714,8 @@ export default function Profile() {
                     <select
                       value={uiPreferences.surface_style}
                       disabled={savingUIPreference === 'surface_style'}
-                      onChange={(e) = className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"> handleUIPreferenceChange('surface_style', e.target.value)}
-                    >
+                      onChange={(e) => handleUIPreferenceChange('surface_style', e.target.value)}
+                     className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
                       <option value="card">{t('profile.cardSurfaces')}</option>
                       <option value="flat">{t('profile.flatSurfaces')}</option>
                     </select>
@@ -1726,8 +1726,8 @@ export default function Profile() {
                     <select
                       value={uiPreferences.button_size}
                       disabled={savingUIPreference === 'button_size'}
-                      onChange={(e) = className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"> handleUIPreferenceChange('button_size', e.target.value)}
-                    >
+                      onChange={(e) => handleUIPreferenceChange('button_size', e.target.value)}
+                     className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
                       <option value="small">{t('profile.small')}</option>
                       <option value="medium">{t('profile.default')}</option>
                       <option value="large">{t('profile.large')}</option>
@@ -1739,8 +1739,8 @@ export default function Profile() {
                     <select
                       value={uiPreferences.button_width}
                       disabled={savingUIPreference === 'button_width'}
-                      onChange={(e) = className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"> handleUIPreferenceChange('button_width', e.target.value)}
-                    >
+                      onChange={(e) => handleUIPreferenceChange('button_width', e.target.value)}
+                     className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
                       <option value="auto">{t('profile.fitText')}</option>
                       <option value="full">{t('profile.fullWidth')}</option>
                     </select>
@@ -2029,8 +2029,8 @@ export default function Profile() {
                       <input
                         type="checkbox"
                         checked={webhookEvents.includes(event)}
-                        onChange={(e) = className="h-4 w-4 shrink-0 accent-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"> setWebhookEvents((prev) => e.target.checked ? [...new Set([...prev, event])] : prev.filter((item) => item !== event))}
-                      />
+                        onChange={(e) => setWebhookEvents((prev) => e.target.checked ? [...new Set([...prev, event])] : prev.filter((item) => item !== event))}
+                       className="h-4 w-4 shrink-0 accent-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700" />
                       {event}
                     </label>
                   ))}
