@@ -102,14 +102,18 @@ export default function ClassroomRoom() {
   }
 
   async function handleSendMessage() {
+    const messageText = chatInput.trim();
+    if (!messageText || sending) return;
     setSending(true);
-    if (!chatInput.trim()) return;
-    const text = chatInput.trim();
     setChatInput('');
     try {
-      await sendClassroomMessage(roomId, text);
-      fetchMessages();
-    } catch {}
+      await sendClassroomMessage(roomId, messageText);
+      await fetchMessages();
+    } catch {
+      setChatInput(messageText);
+    } finally {
+      setSending(false);
+    }
   }
 
   async function handleRaiseHand() {
