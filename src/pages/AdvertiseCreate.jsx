@@ -509,7 +509,7 @@ Advertising
               <input
                 type="text"
                 value={form.advertiserName}
-                onChange={(event) = className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
+                onChange={(event) =>
                   updateField(
                     'advertiserName',
                     event.target.value
@@ -518,7 +518,7 @@ Advertising
                 placeholder="Organisation name"
                 maxLength={200}
                 required
-              />
+               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
 
             <label>
@@ -526,7 +526,7 @@ Advertising
               <input
                 type="email"
                 value={form.contactEmail}
-                onChange={(event) = className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
+                onChange={(event) =>
                   updateField(
                     'contactEmail',
                     event.target.value
@@ -534,7 +534,7 @@ Advertising
                 }
                 placeholder="name@example.com"
                 required
-              />
+               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
 
             <label>
@@ -542,14 +542,14 @@ Advertising
               <input
                 type="tel"
                 value={form.contactPhone}
-                onChange={(event) = className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
+                onChange={(event) =>
                   updateField(
                     'contactPhone',
                     event.target.value
                   )
                 }
                 placeholder="Optional"
-              />
+               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
 
             <label>
@@ -557,14 +557,14 @@ Advertising
               <input
                 type="url"
                 value={form.website}
-                onChange={(event) = className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
+                onChange={(event) =>
                   updateField(
                     'website',
                     event.target.value
                   )
                 }
                 placeholder="https://example.com"
-              />
+               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
           </div>
         </div>
@@ -594,7 +594,7 @@ Advertising
               <input
                 type="text"
                 value={form.campaignTitle}
-                onChange={(event) = className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
+                onChange={(event) =>
                   updateField(
                     'campaignTitle',
                     event.target.value
@@ -603,21 +603,21 @@ Advertising
                 placeholder="Internal campaign name"
                 maxLength={200}
                 required
-              />
+               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
 
             <label>
               Category
               <select
                 value={form.categoryId}
-                onChange={(event) = className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
+                onChange={(event) =>
                   updateField(
                     'categoryId',
                     event.target.value
                   )
                 }
                 required
-              >
+               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
                 <option value="">
                   Select a category
                 </option>
@@ -640,7 +640,7 @@ Advertising
               <input
                 type="url"
                 value={form.landingUrl}
-                onChange={(event) = className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
+                onChange={(event) =>
                   updateField(
                     'landingUrl',
                     event.target.value
@@ -648,7 +648,7 @@ Advertising
                 }
                 placeholder="https://example.com/your-page"
                 required
-              />
+               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
 
             <label>
@@ -656,7 +656,7 @@ Advertising
               <input
                 type="text"
                 value={form.headline}
-                onChange={(event) = className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
+                onChange={(event) =>
                   updateField(
                     'headline',
                     event.target.value
@@ -665,14 +665,14 @@ Advertising
                 placeholder="A clear message for learners"
                 maxLength={180}
                 required
-              />
+               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
 
             <label>
               Advert message
               <textarea
                 value={form.bodyText}
-                onChange={(event) = className="block min-h-32 w-full min-w-0 resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
+                onChange={(event) =>
                   updateField(
                     'bodyText',
                     event.target.value
@@ -681,7 +681,7 @@ Advertising
                 placeholder="Explain the opportunity, service or message."
                 rows={5}
                 maxLength={5000}
-              />
+               className="block min-h-32 w-full min-w-0 resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
 
             <label>
@@ -689,7 +689,7 @@ Advertising
               <input
                 type="text"
                 value={form.ctaText}
-                onChange={(event) = className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
+                onChange={(event) =>
                   updateField(
                     'ctaText',
                     event.target.value
@@ -697,7 +697,7 @@ Advertising
                 }
                 placeholder="Learn more"
                 maxLength={80}
-              />
+               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
           </div>
         </div>
@@ -739,12 +739,12 @@ Advertising
                   checked={
                     form.scopeId === scope.id
                   }
-                  onChange={(event) = className="h-4 w-4 shrink-0 accent-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700">
+                  onChange={(event) =>
                     handleScopeChange(
                       event.target.value
                     )
                   }
-                />
+                 className="h-4 w-4 shrink-0 accent-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700" />
 
                 <span>
                   <strong>
@@ -773,14 +773,14 @@ Advertising
                   Learning level
                   <select
                     value={form.levelId}
-                    onChange={(event) = className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
+                    onChange={(event) =>
                       updateField(
                         'levelId',
                         event.target.value
                       )
                     }
                     required
-                  >
+                   className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
                     <option value="">
                       Select a level
                     </option>
@@ -805,14 +805,14 @@ Advertising
                       Class or programme
                       <select
                         value={form.className}
-                        onChange={(event) = className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
+                        onChange={(event) =>
                           updateField(
                             'className',
                             event.target.value
                           )
                         }
                         required
-                      >
+                       className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
                         <option value="">
                           Select a class or programme
                         </option>
@@ -876,13 +876,13 @@ Advertising
                         form.placementId ===
                         placement.id
                       }
-                      onChange={(event) = className="h-4 w-4 shrink-0 accent-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700">
+                      onChange={(event) =>
                         updateField(
                           'placementId',
                           event.target.value
                         )
                       }
-                    />
+                     className="h-4 w-4 shrink-0 accent-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700" />
 
                     <span>
                       <strong>
@@ -929,13 +929,13 @@ Advertising
                         form.durationTierId ===
                         tier.id
                       }
-                      onChange={(event) = className="h-4 w-4 shrink-0 accent-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700">
+                      onChange={(event) =>
                         updateField(
                           'durationTierId',
                           event.target.value
                         )
                       }
-                    />
+                     className="h-4 w-4 shrink-0 accent-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700" />
 
                     <span>
                       <strong>
@@ -957,14 +957,14 @@ Advertising
             <input
               type="date"
               value={form.startDate}
-              onChange={(event) = className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
+              onChange={(event) =>
                 updateField(
                   'startDate',
                   event.target.value
                 )
               }
               required
-            />
+             className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
           </label>
         </div>
       )}
