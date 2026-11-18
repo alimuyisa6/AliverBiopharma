@@ -448,7 +448,7 @@ Advertising
         campaign.
       </h1>
 
-      <p className="leading-7 text-slate-600">
+      <p className="leading-7">
         Complete the steps below. Available options and pricing come from
         the advertising system.
       </p>
@@ -494,7 +494,7 @@ Advertising
               organisation.
             </h2>
 
-            <p className="leading-7 text-slate-600">
+            <p className="leading-7">
               These details identify who's responsible for the campaign.
             </p>
           </div>
@@ -579,7 +579,7 @@ Advertising
               details.
             </h2>
 
-            <p className="leading-7 text-slate-600">
+            <p className="leading-7">
               Keep the message clear and relevant to learners.
             </p>
           </div>
@@ -712,7 +712,7 @@ Advertising
               audience.
             </h2>
 
-            <p className="leading-7 text-slate-600">
+            <p className="leading-7">
               Targeting options come from the current advertising
               configuration.
             </p>
@@ -842,7 +842,7 @@ Advertising
               and timing.
             </h2>
 
-            <p className="leading-7 text-slate-600">
+            <p className="leading-7">
               Placement availability is confirmed when you submit your campaign.
             </p>
           </div>
@@ -970,7 +970,7 @@ Advertising
               submit.
             </h2>
 
-            <p className="leading-7 text-slate-600">
+            <p className="leading-7">
               Confirm the details below. Payment and review follow after
               submission.
             </p>
@@ -1152,7 +1152,7 @@ Advertising
         useful.
       </h2>
 
-      <p className="leading-7 text-slate-600">
+      <p className="leading-7">
         AliverBiopharm is a learning environment. Campaigns should add
         real value for the learners who see them.
       </p>
