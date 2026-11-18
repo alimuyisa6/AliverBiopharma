@@ -222,7 +222,6 @@ export default function ClassroomRoom() {
         </div>
 
         <div className="ml-auto flex flex-wrap items-center gap-3">
-          <span className="inline-flex items-center gap-2 rounded-full border border-red-200/30 bg-red-500/15 px-3 py-1.5 text-xs font-bold text-red-100"><span className="h-2 w-2 animate-pulse rounded-full bg-red-400"></span> Recording</span>
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200/30 bg-emerald-400/15 px-3 py-1.5">
             <span className="h-2 w-2 rounded-full bg-emerald-400" />
             <span className="text-xs font-bold uppercase tracking-wider text-emerald-100">Live</span>
@@ -249,7 +248,7 @@ export default function ClassroomRoom() {
             ))}
           </div>
 
-          <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-border bg-white p-3 shadow-sm sm:p-4">
+          <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-border bg-white p-3 shadow-sm sm:p-4" aria-label="Classroom controls">
             <Button variant={isMuted ? 'ghost' : 'primary'} size="sm" onClick={toggleMute}>
               <Icon name={isMuted ? 'microphone-slash' : 'microphone'} />
               {isMuted ? 'Unmute' : 'Mute'}
@@ -342,13 +341,14 @@ export default function ClassroomRoom() {
             </div>
 
             <div className="flex items-end gap-2 border-t border-border bg-white p-3">
-              <button className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border bg-slate-50 text-lg transition hover:bg-primary-50" onClick={() => {
+              <button type="button" aria-label="Insert a random reaction" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border bg-slate-50 text-lg transition hover:bg-primary-50" onClick={() => {
                 const emojis = ['👍', '❤️', '😂', '😮', '🎉', '🙌', '👏', '💯'];
                 const pick = emojis[Math.floor(Math.random() * emojis.length)];
                 setChatInput(chatInput + pick);
               }}>😊</button>
               <textarea
-                className="max-h-28 min-h-10 w-full flex-1 resize-none rounded-xl border border-border bg-slate-50 px-3 py-2.5 text-sm text-foreground outline-none transition focus:border-primary-400 focus:bg-white focus:ring-2 focus:ring-primary-100 block min-h-32 w-full min-w-0 resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
+                aria-label="Write a classroom message"
+                className="max-h-32 min-h-12 w-full min-w-0 flex-1 resize-y rounded-xl border border-border bg-white px-4 py-3 text-sm leading-6 text-foreground shadow-sm outline-none transition placeholder:text-slate-400 hover:border-primary-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
                 value={chatInput}
                 onChange={(event) => setChatInput(event.target.value)}
                 onKeyDown={handleKeyDown}
