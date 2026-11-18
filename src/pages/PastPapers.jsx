@@ -651,7 +651,7 @@ export default function PastPapers() {
                 type="search"
                 placeholder="Search past papers…"
                 value={searchQuery}
-                onChange={(event) => setSearchQuery(event.target.value)}
+                onChange={(event) = className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"> setSearchQuery(event.target.value)}
                 className="min-h-12 w-full rounded-xl border border-border bg-white px-4 pr-11 text-sm text-foreground outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-100"
                 aria-label="Search past papers"
               />
@@ -735,7 +735,7 @@ export default function PastPapers() {
                 type="text"
                 placeholder="Name this filter…"
                 value={presetName}
-                onChange={(event) => setPresetName(event.target.value)}
+                onChange={(event) = className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"> setPresetName(event.target.value)}
                 className="pp-preset-input"
                 maxLength={50}
               />
@@ -1060,7 +1060,7 @@ export default function PastPapers() {
                   ))}
                 </div>
                 <textarea
-                  className="pp-review-input"
+                  className="pp-review-input block min-h-32 w-full min-w-0 resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
                   placeholder="Share your thoughts on this paper (optional)…"
                   value={reviewComment}
                   onChange={(event) => setReviewComment(event.target.value)}
