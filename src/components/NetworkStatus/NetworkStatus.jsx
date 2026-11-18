@@ -18,9 +18,33 @@ function getFirstName(user) {
 }
 
 function getReadDuration(text) {
-  const words = text.trim().split(/\s+/).length;
+  const words = text.trim().split(/\\s+/).length;
   return Math.max(MIN_READ_MS, words * MS_PER_WORD);
 }
+
+const TONE_STYLES = {
+  offline: {
+    panel: 'border-red-200 bg-red-50 text-red-950',
+    icon: 'bg-red-100 text-red-700 ring-red-200',
+    label: 'Connection lost',
+    labelText: 'text-red-700',
+    close: 'text-red-700 hover:bg-red-100 focus-visible:outline-red-500'
+  },
+  slow: {
+    panel: 'border-amber-200 bg-amber-50 text-amber-950',
+    icon: 'bg-amber-100 text-amber-700 ring-amber-200',
+    label: 'Slow connection',
+    labelText: 'text-amber-800',
+    close: 'text-amber-800 hover:bg-amber-100 focus-visible:outline-amber-500'
+  },
+  good: {
+    panel: 'border-emerald-200 bg-emerald-50 text-emerald-950',
+    icon: 'bg-emerald-100 text-emerald-700 ring-emerald-200',
+    label: 'Connection restored',
+    labelText: 'text-emerald-800',
+    close: 'text-emerald-800 hover:bg-emerald-100 focus-visible:outline-emerald-500'
+  }
+};
 
 export default function NetworkStatus() {
   const { status, effectiveType, downlink, rtt } = useNetworkStatus();
@@ -77,6 +101,7 @@ export default function NetworkStatus() {
   }, [status, wasDown]);
 
   const message = messages[displayStatus];
+  const tone = message ? TONE_STYLES[message.tone] : null;
 
   const showDebug =
     typeof window !== 'undefined' &&
@@ -84,19 +109,32 @@ export default function NetworkStatus() {
 
   return (
     <>
-      {visible && message && (
+      {visible && message && tone && (
         <div
-          className={`network-status-banner network-status-${message.tone}`}
+          className={`fixed inset-x-3 top-[5.25rem] z-[60] mx-auto flex max-w-3xl items-start gap-3 rounded-2xl border px-3.5 py-3.5 shadow-xl shadow-slate-900/10 backdrop-blur sm:inset-x-5 sm:items-center sm:gap-4 sm:px-5 sm:py-4 ${tone.panel}`}
           role="status"
           aria-live="polite"
+          aria-atomic="true"
         >
-          <div className="network-status-icon" aria-hidden="true">
+          <span
+            className={`mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ring-1 sm:mt-0 sm:h-11 sm:w-11 ${tone.icon}`}
+            aria-hidden="true"
+          >
             <Icon name={message.icon} />
+          </span>
+
+          <div className="min-w-0 flex-1">
+            <p className={`mb-0.5 text-[11px] font-extrabold uppercase tracking-[0.14em] ${tone.labelText}`}>
+              {tone.label}
+            </p>
+            <p className="m-0 text-sm font-medium leading-6 sm:text-[15px]">
+              {message.text}
+            </p>
           </div>
-          <span className="network-status-message">{message.text}</span>
+
           <button
             type="button"
-            className="network-status-close"
+            className={`-mr-1 -mt-1 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 sm:mr-0 sm:mt-0 ${tone.close}`}
             onClick={() => setVisible(false)}
             aria-label="Close network status"
             title="Close"
@@ -107,8 +145,10 @@ export default function NetworkStatus() {
       )}
 
       {showDebug && (
-        <div className="network-status-debug">
-          status: {status} | online: {String(typeof navigator !== 'undefined' && navigator.onLine)} | effectiveType: {String(effectiveType)} | downlink: {String(downlink)} | rtt: {String(rtt)}
+        <div className="fixed bottom-3 left-3 z-[70] max-w-[calc(100vw-1.5rem)] rounded-xl border border-slate-700 bg-slate-950/95 px-3 py-2 font-mono text-[11px] leading-5 text-emerald-300 shadow-lg">
+          <span className="font-bold text-white">NETWORK</span>
+          <span className="mx-2 text-slate-500">|</span>
+          status: {status} · online: {String(typeof navigator !== 'undefined' && navigator.onLine)} · type: {String(effectiveType)} · downlink: {String(downlink)} · rtt: {String(rtt)}
         </div>
       )}
     </>
