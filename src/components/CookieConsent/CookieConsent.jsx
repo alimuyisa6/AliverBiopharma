@@ -194,7 +194,7 @@ export default function CookieConsent() {
                   <input
                     type="checkbox"
                     checked={choices[key]}
-                    onChange={(event) = className="h-4 w-4 shrink-0 accent-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"> setChoices((prev) => ({
+                    onChange={(event) => setChoices((prev) => ({
                       ...prev,
                       [key]: event.target.checked
                     }))}
