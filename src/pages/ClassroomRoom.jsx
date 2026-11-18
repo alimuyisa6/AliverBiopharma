@@ -310,7 +310,7 @@ export default function ClassroomRoom() {
                       {message.content}
                     </div>
                   ) : message.message_type === 'resource' ? (
-                    <div className="card rounded-xl border border-border bg-slate-50 p-3">
+                    <div className="rounded-xl border border-border bg-slate-50 p-3">
                       <div className="mb-2 flex items-center justify-between gap-3 text-xs">
                         <strong>{message.sender_name || 'Tutor'}</strong>
                         <span className="shrink-0 text-[11px] text-slate-500">
@@ -392,11 +392,11 @@ export default function ClassroomRoom() {
             <h4><Icon name="circle-info" /> Session details</h4>
             <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
               {room.level && <div className="rounded-xl bg-slate-50 p-3 text-sm text-slate-600 [&>strong]:mb-1 [&>strong]:block [&>strong]:text-xs [&>strong]:uppercase [&>strong]:tracking-wide [&>strong]:text-slate-500"><strong>Level</strong> {room.level}</div>}
-              {roomClass && <div className="info-item"><strong>Class</strong> {roomClass}</div>}
-              {room.topic_name && <div className="info-item"><strong>Topic</strong> {room.topic_name}</div>}
-              <div className="info-item"><strong>Type</strong> {room.room_type === 'free' ? 'Open discussion' : room.room_type === 'hard_topic' ? 'Focused topic' : 'Premium'}</div>
-              {room.tutor_name && <div className="info-item"><strong>Tutor</strong> {room.tutor_name}</div>}
-              <div className="info-item"><strong>Status</strong> {room.status === 'live' ? '● Live' : room.status}</div>
+              {roomClass && <div className="rounded-xl bg-slate-50 p-3 text-sm text-slate-600 [&>strong]:mb-1 [&>strong]:block [&>strong]:text-xs [&>strong]:uppercase [&>strong]:tracking-wide [&>strong]:text-slate-500"><strong>Class</strong> {roomClass}</div>}
+              {room.topic_name && <div className="rounded-xl bg-slate-50 p-3 text-sm text-slate-600 [&>strong]:mb-1 [&>strong]:block [&>strong]:text-xs [&>strong]:uppercase [&>strong]:tracking-wide [&>strong]:text-slate-500"><strong>Topic</strong> {room.topic_name}</div>}
+              <div className="rounded-xl bg-slate-50 p-3 text-sm text-slate-600 [&>strong]:mb-1 [&>strong]:block [&>strong]:text-xs [&>strong]:uppercase [&>strong]:tracking-wide [&>strong]:text-slate-500"><strong>Type</strong> {room.room_type === 'free' ? 'Open discussion' : room.room_type === 'hard_topic' ? 'Focused topic' : 'Premium'}</div>
+              {room.tutor_name && <div className="rounded-xl bg-slate-50 p-3 text-sm text-slate-600 [&>strong]:mb-1 [&>strong]:block [&>strong]:text-xs [&>strong]:uppercase [&>strong]:tracking-wide [&>strong]:text-slate-500"><strong>Tutor</strong> {room.tutor_name}</div>}
+              <div className="rounded-xl bg-slate-50 p-3 text-sm text-slate-600 [&>strong]:mb-1 [&>strong]:block [&>strong]:text-xs [&>strong]:uppercase [&>strong]:tracking-wide [&>strong]:text-slate-500"><strong>Status</strong> {room.status === 'live' ? '● Live' : room.status}</div>
             </div>
           </div>
         </div>
