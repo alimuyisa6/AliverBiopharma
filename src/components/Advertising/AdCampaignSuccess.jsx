@@ -118,13 +118,13 @@ export default function AdCampaignSuccess({
           Campaign submitted
         </span>
 
-        <h1>
+        <h1 className="font-extrabold tracking-tight">
           Your advertising campaign
           <br />
           is now in the process.
         </h1>
 
-        <p>
+        <p className="leading-7 text-slate-600">
           Thank you for choosing AliverBiopharm. Your campaign details have
           been submitted and will move through payment verification and
           advertising review before activation.
@@ -147,7 +147,7 @@ export default function AdCampaignSuccess({
                   Campaign progress
                 </span>
 
-                <h2>
+                <h2 className="font-extrabold tracking-tight">
                   What happens next
                 </h2>
               </div>
@@ -161,7 +161,7 @@ export default function AdCampaignSuccess({
 
                 <div>
                   <strong>Campaign submitted</strong>
-                  <p>
+                  <p className="leading-7 text-slate-600">
                     Your campaign configuration has been received.
                   </p>
                 </div>
@@ -176,7 +176,7 @@ export default function AdCampaignSuccess({
 
                 <div>
                   <strong>Payment verification</strong>
-                  <p>
+                  <p className="leading-7 text-slate-600">
                     {isPaid
                       ? 'Payment has been verified.'
                       : 'Payment must be verified before activation.'}
@@ -197,7 +197,7 @@ export default function AdCampaignSuccess({
 
                 <div>
                   <strong>Advertising review</strong>
-                  <p>
+                  <p className="leading-7 text-slate-600">
                     {isRejected
                       ? 'The campaign requires attention before it can proceed.'
                       : reviewStatus === 'approved'
@@ -218,7 +218,7 @@ export default function AdCampaignSuccess({
 
                 <div>
                   <strong>Campaign activation</strong>
-                  <p>
+                  <p className="leading-7 text-slate-600">
                     The campaign becomes eligible to run after approval and
                     all required conditions are satisfied.
                   </p>
@@ -234,7 +234,7 @@ export default function AdCampaignSuccess({
                   Campaign details
                 </span>
 
-                <h2>
+                <h2 className="font-extrabold tracking-tight">
                   Your submission
                 </h2>
               </div>
@@ -342,11 +342,11 @@ export default function AdCampaignSuccess({
               Aliver audience
             </span>
 
-            <h2>
+            <h2 className="font-extrabold tracking-tight">
               Your campaign reaches a focused learning community.
             </h2>
 
-            <p>
+            <p className="leading-7 text-slate-600">
               Advertising placements are designed around the learners,
               classes, programmes and educational interests supported by
               AliverBiopharm.
@@ -362,11 +362,11 @@ export default function AdCampaignSuccess({
               Responsible advertising
             </span>
 
-            <h2>
+            <h2 className="font-extrabold tracking-tight">
               Every campaign must support a suitable learning environment.
             </h2>
 
-            <p>
+            <p className="leading-7 text-slate-600">
               Payment alone does not guarantee publication. Campaigns remain
               subject to the platform's advertising requirements and review
               process.
