@@ -168,7 +168,7 @@ return (
 <main className="min-h-screen bg-background px-5 py-10 text-foreground sm:px-8 sm:py-14">
 <section className="mx-auto flex min-h-64 max-w-4xl flex-col items-center justify-center gap-4 rounded-3xl border border-border bg-white p-8 text-primary-800 shadow-sm">
 <AdStepIcon name="review" size={38} />
-<p>Loading campaign details…</p>
+<p className="leading-7 text-slate-600">Loading campaign details…</p>
 </section>
 </main>
 );
@@ -196,13 +196,13 @@ Advertising
       Campaign payment
     </span>
 
-    <h1>
+    <h1 className="font-extrabold tracking-tight">
       Confirm your
       <br />
       campaign payment.
     </h1>
 
-    <p>
+    <p className="leading-7 text-slate-600">
       Enter your transaction’s payment reference. We’ll check it against your campaign before it moves forward.
     </p>
   </section>
@@ -233,9 +233,9 @@ Advertising
             <AdStepIcon name="campaign" size={36} />
           </div>
 
-          <h2>Campaign details unavailable</h2>
+          <h2 className="font-extrabold tracking-tight">Campaign details unavailable</h2>
 
-          <p>
+          <p className="leading-7 text-slate-600">
             We couldn’t find the campaign linked to this payment page.
           </p>
 
@@ -270,7 +270,7 @@ Advertising
                 Payment status
               </span>
 
-              <h2>
+              <h2 className="font-extrabold tracking-tight">
                 {paymentState === 'paid'
                   ? 'Payment verified'
                   : paymentState === 'rejected'
@@ -278,7 +278,7 @@ Advertising
                     : 'Payment awaiting verification'}
               </h2>
 
-              <p>
+              <p className="leading-7 text-slate-600">
                 {paymentState === 'paid'
                   ? 'Your payment is verified. The campaign now moves into the standard review process.'
                   : paymentState === 'rejected'
@@ -343,19 +343,19 @@ Advertising
                     Payment reference
                   </span>
 
-                  <h2>
+                  <h2 className="font-extrabold tracking-tight">
                     Match your payment
                     <br />
                     to this campaign.
                   </h2>
 
-                  <p>
+                  <p className="leading-7 text-slate-600">
                     Enter the ID or reference from your payment
                     confirmation.
                   </p>
                 </div>
 
-                <label>
+                <label className="block space-y-2 text-sm font-semibold text-primary-900">
                   Payment reference
                   <input
                     type="text"
@@ -387,13 +387,13 @@ Advertising
                   Next step
                 </span>
 
-                <h2>
+                <h2 className="font-extrabold tracking-tight">
                   Ready for
                   <br />
                   review.
                 </h2>
 
-                <p>
+                <p className="leading-7 text-slate-600">
                   Your campaign remains subject to AliverBiopharm's
                   advertising review requirements before it goes live.
                 </p>
@@ -420,13 +420,13 @@ Advertising
         Payment & review
       </span>
 
-      <h2>
+      <h2 className="font-extrabold tracking-tight">
         Payment isn't
         <br />
         activation.
       </h2>
 
-      <p>
+      <p className="leading-7 text-slate-600">
         A verified payment doesn't publish your advert automatically —
         campaigns must also pass review.
       </p>
