@@ -1187,7 +1187,7 @@ export default function Profile() {
                   id={`profile-tab-${section.id}`}
                   name="profile-sections"
                   checked={activeSection === section.id}
-                  onChange={() = className="h-4 w-4 shrink-0 accent-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"> selectSection(section.id)}
+                  onChange={() => selectSection(section.id)}
                   className={`profile-tab-radio profile-tab-${index + 1}`}
                 />
                 <label
