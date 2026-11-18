@@ -348,7 +348,7 @@ export default function ClassroomRoom() {
                 setChatInput(chatInput + pick);
               }}>😊</button>
               <textarea
-                className="max-h-28 min-h-10 w-full flex-1 resize-none rounded-xl border border-border bg-slate-50 px-3 py-2.5 text-sm text-foreground outline-none transition focus:border-primary-400 focus:bg-white focus:ring-2 focus:ring-primary-100"
+                className="max-h-28 min-h-10 w-full flex-1 resize-none rounded-xl border border-border bg-slate-50 px-3 py-2.5 text-sm text-foreground outline-none transition focus:border-primary-400 focus:bg-white focus:ring-2 focus:ring-primary-100 block min-h-32 w-full min-w-0 resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
                 value={chatInput}
                 onChange={(event) => setChatInput(event.target.value)}
                 onKeyDown={handleKeyDown}
