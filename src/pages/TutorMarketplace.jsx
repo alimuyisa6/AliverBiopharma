@@ -107,7 +107,7 @@ export default function TutorMarketplace() {
   if (loading) {
     return (
       <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="fcd-loading-wrap">
+        <div className="flex min-h-[60vh] items-center justify-center py-12">
           <Spinner size="lg" />
         </div>
       </div>
@@ -118,20 +118,22 @@ export default function TutorMarketplace() {
     <div className="min-h-screen bg-background text-foreground">
       <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <div className="relative mb-8 overflow-hidden rounded-[2rem] border border-primary-100 bg-gradient-to-br from-primary-50 via-white to-secondary-50 p-6 shadow-sm sm:p-10 lg:p-12">
-          <div className="relative z-10 grid items-center gap-8 md:grid-cols-[minmax(0,1.2fr)_minmax(240px,0.8fr)]">
+          <div className="relative z-10 flex flex-col items-start gap-5">
             <span className="mb-3 inline-flex w-fit items-center gap-2 rounded-full border border-secondary-200 bg-secondary-100 px-3 py-1.5 text-xs font-extrabold uppercase tracking-[0.16em] text-secondary-800">{t('common.tutorMarketplace')}</span>
 
             <h1 className="max-w-2xl text-3xl font-extrabold leading-tight text-primary-900 sm:text-4xl lg:text-5xl">Find a tutor who fits your needs</h1>
 
-            <h3 className="mt-4 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
+            <p className="mt-0 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
               For learners, schools, and institutions. Filter tutors by subject, level, and teaching format.
-            </h3>
+            </p>
 
             {getUiImage('tutor_marketplace_hero') && (
               <div className="overflow-hidden rounded-3xl border border-white bg-white p-2 shadow-xl shadow-primary-900/10">
                 <img
                   src={getUiImage('tutor_marketplace_hero')}
                   alt="Tutor marketplace"
+                  className="max-h-64 w-full rounded-2xl object-cover object-center"
+                  loading="lazy"
                 />
               </div>
             )}
@@ -172,6 +174,11 @@ export default function TutorMarketplace() {
             <option value="online">Online</option>
             <option value="in-person">In-person</option>
           </select>
+        </div>
+
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3 px-1">
+          <div><h2 className="m-0 text-xl font-bold text-primary-900">Available tutors</h2><p className="mt-1 text-sm text-slate-500">{tutors.length} {tutors.length === 1 ? "tutor" : "tutors"} match your search</p></div>
+          {(search || subjectFilter || formatFilter) && <button type="button" className="inline-flex min-h-10 items-center gap-2 rounded-xl px-3 text-sm font-semibold text-primary-700 transition hover:bg-primary-50" onClick={() => { setSearch(""); setSubjectFilter(""); setFormatFilter(""); }}>Clear filters <span aria-hidden="true">×</span></button>}
         </div>
 
         {tutors.length === 0 ? (
