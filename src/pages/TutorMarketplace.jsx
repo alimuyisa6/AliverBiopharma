@@ -1,6 +1,5 @@
  /* src/pages/TutorMarketplace.jsx */
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useLayout } from '../contexts/LayoutContext';
 import { getUnits, listTutorsCached } from '../api/cachedClient';
@@ -9,7 +8,6 @@ import TutorCard from '../features/tutor-marketplace/TutorCard';
 import Spinner from '../components/Spinner/Spinner';
 import EmptyState from '../components/EmptyState/EmptyState';
 import { useToast } from '../components/Toast/Toast';
-import Icon from '../components/Icon/Icon';
 import Input from '../components/Input/Input';
 import Button from '../components/Button/Button';
 import { useI18n } from '../contexts/I18nContext';
@@ -18,7 +16,6 @@ export default function TutorMarketplace() {
   const { user } = useAuth();
   const { bootstrap, activeGroupId, level } = useLayout();
   const addToast = useToast();
-  const navigate = useNavigate();
   const { t } = useI18n();
 
   const [tutors, setTutors] = useState([]);
@@ -119,19 +116,19 @@ export default function TutorMarketplace() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="section">
-        <div className="mb-8 rounded-3xl border border-primary-100 bg-primary-50 p-6 sm:p-10">
-          <div className="grid items-center gap-6 md:grid-cols-[1.2fr_0.8fr]">
-            <span className="text-xs font-bold uppercase tracking-[0.16em] text-secondary-800">{t('common.tutorMarketplace')}</span>
+      <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+        <div className="relative mb-8 overflow-hidden rounded-[2rem] border border-primary-100 bg-gradient-to-br from-primary-50 via-white to-secondary-50 p-6 shadow-sm sm:p-10 lg:p-12">
+          <div className="relative z-10 grid items-center gap-8 md:grid-cols-[minmax(0,1.2fr)_minmax(240px,0.8fr)]">
+            <span className="mb-3 inline-flex w-fit items-center gap-2 rounded-full border border-secondary-200 bg-secondary-100 px-3 py-1.5 text-xs font-extrabold uppercase tracking-[0.16em] text-secondary-800">{t('common.tutorMarketplace')}</span>
 
-            <h2>Find a tutor who fits your needs</h2>
+            <h1 className="max-w-2xl text-3xl font-extrabold leading-tight text-primary-900 sm:text-4xl lg:text-5xl">Find a tutor who fits your needs</h1>
 
-            <h3 className="mt-3 max-w-2xl text-base font-medium leading-7 text-slate-600 sm:text-lg">
+            <h3 className="mt-4 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
               For learners, schools, and institutions. Filter tutors by subject, level, and teaching format.
             </h3>
 
             {getUiImage('tutor_marketplace_hero') && (
-              <div className="overflow-hidden rounded-2xl border border-white bg-white shadow-md">
+              <div className="overflow-hidden rounded-3xl border border-white bg-white p-2 shadow-xl shadow-primary-900/10">
                 <img
                   src={getUiImage('tutor_marketplace_hero')}
                   alt="Tutor marketplace"
@@ -142,7 +139,7 @@ export default function TutorMarketplace() {
           </div>
         </div>
 
-        <div className="mb-8 grid gap-3 rounded-2xl border border-border bg-white p-4 shadow-sm md:grid-cols-[minmax(0,1fr)_minmax(12rem,0.4fr)_minmax(12rem,0.4fr)]">
+        <div className="mb-8 grid gap-3 rounded-2xl border border-border bg-white p-4 shadow-lg shadow-slate-900/5 md:grid-cols-[minmax(0,1fr)_minmax(12rem,0.4fr)_minmax(12rem,0.4fr)]">
           <Input
             type="text"
             placeholder={level === 'Pharmacy' ? 'Search by name, specialty, or course unit' : 'Search by name, specialty, or subject'}
@@ -153,7 +150,7 @@ export default function TutorMarketplace() {
           />
 
           <select
-            className="min-h-12 w-full rounded-xl border border-border bg-white px-4 text-sm text-foreground outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-100"
+            className="min-h-12 w-full rounded-xl border border-border bg-slate-50 px-4 text-sm text-foreground outline-none transition focus:border-primary-500 focus:bg-white focus:ring-4 focus:ring-primary-100"
             value={subjectFilter}
             onChange={(e) => setSubjectFilter(e.target.value)}
           >
@@ -167,7 +164,7 @@ export default function TutorMarketplace() {
 
 
           <select
-            className="filter-select"
+            className="min-h-12 w-full rounded-xl border border-border bg-slate-50 px-4 text-sm text-foreground outline-none transition focus:border-primary-500 focus:bg-white focus:ring-4 focus:ring-primary-100"
             value={formatFilter}
             onChange={(e) => setFormatFilter(e.target.value)}
           >
@@ -187,7 +184,7 @@ export default function TutorMarketplace() {
                 onClick={() => {
                   setSearch('');
                   setSubjectFilter('');
-                          setFormatFilter('');
+                  setFormatFilter('');
                 }}
               >
                 Clear Filters
