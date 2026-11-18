@@ -112,8 +112,8 @@ export default function Layout({ children, showFooter = true }) {
     </div></header>}
     {!hideHeader && <Suspense fallback={null}>{searchOpen && <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />}</Suspense>}<AdminLauncher />
     {!hideHeader && <>
-      <button className={`mobile-menu-backdrop${mobileOpen ? ' open' : ''}`} onClick={() => setMobileOpen(false)} aria-label={t('common.closeMenu')} tabIndex={mobileOpen ? 0 : -1} type="button" />
-      <div className={`mobile-menu-panel${mobileOpen ? ' open' : ''}`} aria-hidden={!mobileOpen}>
+      <button className={`fixed inset-0 z-40 bg-slate-950/50 transition-all lg:hidden ${mobileOpen ? "visible opacity-100" : "invisible opacity-0"}`} onClick={() => setMobileOpen(false)} aria-label={t('common.closeMenu')} tabIndex={mobileOpen ? 0 : -1} type="button" />
+      <div className={`fixed inset-y-0 right-0 z-50 flex w-[min(88vw,380px)] flex-col overflow-y-auto bg-white p-6 shadow-2xl transition-transform duration-300 lg:hidden ${mobileOpen ? "visible translate-x-0" : "invisible translate-x-full"}`} aria-hidden={!mobileOpen}>
         <div className="flex items-center gap-3 text-lg font-bold text-primary-900"><span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-50 text-primary-700"><Icon name="bars" /></span><span>{t('common.menu')}</span></div>
         <div className="my-5 h-px bg-border" aria-hidden="true" />
         <nav className="grid gap-2" aria-label={t('common.menu')}>
