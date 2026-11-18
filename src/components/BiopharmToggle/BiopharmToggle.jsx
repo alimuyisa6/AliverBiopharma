@@ -12,7 +12,7 @@ export default function BiopharmToggle({
     <label className={`biopharm-toggle__switch ${className}`.trim()} htmlFor={id}>
       <input
         id={id}
-        className="biopharm-toggle__input"
+        className="biopharm-toggle__input h-4 w-4 shrink-0 accent-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
         type="checkbox"
         checked={checked}
         onChange={(event) => onChange?.(event.target.checked)}

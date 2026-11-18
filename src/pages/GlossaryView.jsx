@@ -80,7 +80,7 @@ export default function GlossaryView({
                 <i className="fa-solid fa-magnifying-glass glossary-search-icon"></i>
                 <input
                   type="text"
-                  className="glossary-search-input"
+                  className="glossary-search-input block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
                   placeholder="Search for a term…"
                   value={searchQuery}
                   onChange={(event) => onSearchChange(event.target.value)}
@@ -94,7 +94,7 @@ export default function GlossaryView({
 
               <div className="glossary-category-filter">
                 <select
-                  className="glossary-category-select"
+                  className="glossary-category-select block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
                   value={selectedCategory}
                   onChange={(event) => onCategoryChange(event.target.value)}
                 >

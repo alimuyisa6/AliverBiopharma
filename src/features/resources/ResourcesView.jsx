@@ -124,7 +124,7 @@ export default function ResourcesView({ navigate, user }) {
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder="Search resources…"
                 aria-label="Search resources"
-                className="min-w-0 flex-1 border-0 bg-transparent py-2 text-sm text-foreground outline-none placeholder:text-slate-400 focus:ring-0"
+                className="min-w-0 flex-1 border-0 bg-transparent py-2 text-sm text-foreground outline-none placeholder:text-slate-400 focus:ring-0 block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
               />
             </label>
           </div>

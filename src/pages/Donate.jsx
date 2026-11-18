@@ -229,15 +229,15 @@ export default function Donate() {
               <div className="donate-form-grid">
                 <label>
                   <span>Name <em>optional</em></span>
-                  <input value={form.name} onChange={(e) => updateField('name', e.target.value)} maxLength={100} placeholder="Your name" />
+                  <input value={form.name} onChange={(e) => updateField('name', e.target.value)} maxLength={100} placeholder="Your name"  className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
                 </label>
                 <label>
                   <span>Amount (UGX) *</span>
-                  <input type="number" min="1" inputMode="numeric" value={form.amount} onChange={(e) => updateField('amount', e.target.value)} placeholder="e.g. 10000" required />
+                  <input type="number" min="1" inputMode="numeric" value={form.amount} onChange={(e) => updateField('amount', e.target.value)} placeholder="e.g. 10000" required  className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
                 </label>
                 <label>
                   <span>Transaction ID *</span>
-                  <input value={form.txid} onChange={(e) => updateField('txid', e.target.value)} maxLength={100} placeholder="Enter the transaction ID from your Mobile Money confirmation message" required />
+                  <input value={form.txid} onChange={(e) => updateField('txid', e.target.value)} maxLength={100} placeholder="Enter the transaction ID from your Mobile Money confirmation message" required  className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
                 </label>
               </div>
 

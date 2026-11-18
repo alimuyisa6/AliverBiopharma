@@ -614,7 +614,7 @@ export default function PastPapers() {
                 onChange={(event) =>
                   setSearchQuery(event.target.value)
                 }
-                className="search-input"
+                className="search-input block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
                 aria-label="Search papers"
               />
 
@@ -744,7 +744,7 @@ export default function PastPapers() {
                 onChange={(event) =>
                   setPresetName(event.target.value)
                 }
-                className="past-papers-preset-input"
+                className="past-papers-preset-input block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
                 maxLength={50}
               />
 
@@ -1259,7 +1259,7 @@ export default function PastPapers() {
                 </div>
 
                 <textarea
-                  className="paper-review-input"
+                  className="paper-review-input block min-h-32 w-full min-w-0 resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
                   placeholder="Share your experience with this paper..."
                   value={reviewComment}
                   onChange={(event) =>

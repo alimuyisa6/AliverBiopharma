@@ -100,7 +100,7 @@ export default function ProfilePictureUpload({ currentUrl, onUpdate, size = 80 }
           type="file"
           accept="image/jpeg,image/png,image/webp,image/gif"
           onChange={handleUpload}
-          className="profile-picture-input"
+          className="profile-picture-input block w-full cursor-pointer rounded-xl border border-dashed border-slate-300 bg-slate-50 p-3 text-sm text-slate-700 file:mr-4 file:rounded-lg file:border-0 file:bg-blue-100 file:px-4 file:py-2 file:font-semibold file:text-blue-800 hover:file:bg-blue-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
         />
       </div>
 

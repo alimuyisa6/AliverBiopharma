@@ -518,7 +518,7 @@ Advertising
                 placeholder="Organisation name"
                 maxLength={200}
                 required
-              />
+               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
 
             <label>
@@ -534,7 +534,7 @@ Advertising
                 }
                 placeholder="name@example.com"
                 required
-              />
+               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
 
             <label>
@@ -549,7 +549,7 @@ Advertising
                   )
                 }
                 placeholder="Optional"
-              />
+               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
 
             <label>
@@ -564,7 +564,7 @@ Advertising
                   )
                 }
                 placeholder="https://example.com"
-              />
+               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
           </div>
         </div>
@@ -603,7 +603,7 @@ Advertising
                 placeholder="Internal campaign name"
                 maxLength={200}
                 required
-              />
+               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
 
             <label>
@@ -617,7 +617,7 @@ Advertising
                   )
                 }
                 required
-              >
+               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
                 <option value="">
                   Select a category
                 </option>
@@ -648,7 +648,7 @@ Advertising
                 }
                 placeholder="https://example.com/your-page"
                 required
-              />
+               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
 
             <label>
@@ -665,7 +665,7 @@ Advertising
                 placeholder="A clear message for learners"
                 maxLength={180}
                 required
-              />
+               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
 
             <label>
@@ -681,7 +681,7 @@ Advertising
                 placeholder="Explain the opportunity, service or message."
                 rows={5}
                 maxLength={5000}
-              />
+               className="block min-h-32 w-full min-w-0 resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
 
             <label>
@@ -697,7 +697,7 @@ Advertising
                 }
                 placeholder="Learn more"
                 maxLength={80}
-              />
+               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
           </div>
         </div>
@@ -744,7 +744,7 @@ Advertising
                       event.target.value
                     )
                   }
-                />
+                 className="h-4 w-4 shrink-0 accent-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700" />
 
                 <span>
                   <strong>
@@ -780,7 +780,7 @@ Advertising
                       )
                     }
                     required
-                  >
+                   className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
                     <option value="">
                       Select a level
                     </option>
@@ -812,7 +812,7 @@ Advertising
                           )
                         }
                         required
-                      >
+                       className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
                         <option value="">
                           Select a class or programme
                         </option>
@@ -882,7 +882,7 @@ Advertising
                           event.target.value
                         )
                       }
-                    />
+                     className="h-4 w-4 shrink-0 accent-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700" />
 
                     <span>
                       <strong>
@@ -935,7 +935,7 @@ Advertising
                           event.target.value
                         )
                       }
-                    />
+                     className="h-4 w-4 shrink-0 accent-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700" />
 
                     <span>
                       <strong>
@@ -964,7 +964,7 @@ Advertising
                 )
               }
               required
-            />
+             className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
           </label>
         </div>
       )}

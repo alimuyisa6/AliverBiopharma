@@ -201,6 +201,7 @@ export default function QuizReview() {
                     step="0.5"
                     value={marks}
                     onChange={(event) => setMarks(event.target.value)}
+                    className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
                     required
                   />
                   <label htmlFor="quiz-review-feedback">Feedback for the learner</label>
@@ -208,6 +209,7 @@ export default function QuizReview() {
                     id="quiz-review-feedback"
                     value={feedback}
                     onChange={(event) => setFeedback(event.target.value)}
+                    className="block min-h-32 w-full min-w-0 resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
                     rows={5}
                     maxLength={5000}
                     placeholder="Explain what was done well and what could be improved..."

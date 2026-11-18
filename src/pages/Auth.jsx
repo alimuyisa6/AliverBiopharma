@@ -872,7 +872,7 @@ export default function Auth() {
                         checked={termsAccepted}
                         onChange={(event) => setTermsAccepted(event.target.checked)}
                         disabled={submitting}
-                      />
+                       className="h-4 w-4 shrink-0 accent-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700" />
                       <span>
                         I agree to the <a href="/terms">Terms of Service</a> and{' '}
                         <a href="/privacy">Privacy Policy</a>.
