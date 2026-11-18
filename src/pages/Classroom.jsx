@@ -192,7 +192,7 @@ export default function Classroom() {
                       </Button>
                     ) : (
                       <Button size="sm" variant="ghost" disabled>
-                        <Icon name="circle" /> {STATUS_LABELS[room.status] || 'Offline'}
+                        {STATUS_LABELS[room.status] || 'Offline'}
                       </Button>
                     )}
                   </div>
@@ -246,7 +246,7 @@ export default function Classroom() {
                           </Button>
                         ) : (
                           <Button size="xs" variant="ghost" disabled>
-                            <Icon name="circle" /> {STATUS_LABELS[room.status] || 'Offline'}
+                            {STATUS_LABELS[room.status] || 'Offline'}
                           </Button>
                         )}
                       </td>

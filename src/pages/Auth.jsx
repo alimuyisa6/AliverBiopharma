@@ -472,15 +472,15 @@ export default function Auth() {
 
           <ul className="auth-feature-list">
             <li>
-              <Icon name="circle" />
+              <Icon name="book-open-reader" />
               Learning resources for Biology and Pharmacy
             </li>
             <li>
-              <Icon name="circle" />
+              <Icon name="clipboard-check" />
               Notes, flashcards, quizzes, and revision practice
             </li>
             <li>
-              <Icon name="circle" />
+              <Icon name="chart-line" />
               Track your progress as you learn
             </li>
           </ul>
@@ -512,7 +512,7 @@ export default function Auth() {
           ) : success ? (
             <div className="mx-auto w-full max-w-md rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-xl shadow-slate-900/5">
               <div className="auth-state-icon-wrap auth-state-icon-wrap-success">
-                <Icon name="circle" className="auth-state-icon" />
+                <Icon name="circle-check" className="auth-state-icon" />
               </div>
               <h2 className="mt-5 text-2xl font-bold text-primary-900">
                 {t('auth.accountCreated')}
