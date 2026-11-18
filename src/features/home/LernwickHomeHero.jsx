@@ -75,7 +75,7 @@ export default function LernwickHomeHero({
         </div>
 
         <div className="order-1 mx-auto w-full max-w-xl lg:order-2">
-          <div className="relative overflow-hidden rounded-[2rem] border-[10px] border-white bg-white shadow-2xl shadow-primary-900/15">
+          <div className="ab-home-hero-photo-frame relative min-h-[320px] overflow-hidden rounded-[2rem] border-[10px] border-white bg-primary-100 shadow-2xl shadow-primary-900/15 sm:min-h-[440px]">
             <img
               className="aspect-[4/5] h-full w-full object-cover object-center"
               src={imageSrc}
