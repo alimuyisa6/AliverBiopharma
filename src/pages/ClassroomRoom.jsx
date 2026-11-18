@@ -293,14 +293,14 @@ export default function ClassroomRoom() {
 
         <div className="flex min-w-0 flex-col gap-5">
           <div className="flex min-h-[420px] flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-sm">
-            <div className="flex items-center justify-between gap-3 border-b border-border bg-primary-50/70 px-4 py-3">
-              <h4><Icon name="comment-dots" /> Live chat</h4>
+            <div className="flex items-center justify-between gap-3 border-b border-primary-800 bg-primary-900 px-4 py-3 text-white">
+              <h4 className="m-0 flex items-center gap-2 text-base font-bold text-white"><Icon name="comment-dots" /> Live chat</h4>
               <div className="flex items-center gap-1">
-                <Button variant="ghost" size="xs"><Icon name="smile" /></Button>
-                <Button variant="ghost" size="xs"><Icon name="ellipsis-vertical" /></Button>
+                <Button variant="ghost" size="xs" className="text-white hover:bg-white/15 hover:text-white" aria-label="Chat reactions"><Icon name="smile" /></Button>
+                <Button variant="ghost" size="xs" className="text-white hover:bg-white/15 hover:text-white" aria-label="Chat options"><Icon name="ellipsis-vertical" /></Button>
               </div>
             </div>
-            <div className="flex max-h-[420px] min-h-64 flex-1 flex-col gap-3 overflow-y-auto p-4" ref={chatBodyRef}>
+            <div className="flex max-h-[420px] min-h-64 flex-1 flex-col gap-3 overflow-y-auto bg-slate-50/70 p-4" ref={chatBodyRef} aria-live="polite" aria-label="Classroom messages">
               {messages.map((message) => (
                 <div key={message.id} className="w-full">
                   {message.message_type === 'system' ? (
@@ -325,14 +325,14 @@ export default function ClassroomRoom() {
                     </div>
                   ) : (
                     <div className={`flex ${message.user_id === user?.id ? 'justify-end' : 'justify-start'}`}>
-                      <div className="max-w-[88%] rounded-2xl rounded-tl-md border border-border bg-slate-50 px-3.5 py-3">
-                        <div className="mb-1 flex items-center justify-between gap-4 text-xs font-bold text-primary-800">
+                      <div className={`max-w-[88%] rounded-2xl border px-3.5 py-3 shadow-sm ${message.user_id === user?.id ? "rounded-tr-md border-primary-700 bg-primary-700 text-white" : "rounded-tl-md border-slate-200 bg-white text-slate-800"}`}>
+                        <div className={`mb-1 flex items-center justify-between gap-4 text-xs font-bold ${message.user_id === user?.id ? "text-blue-100" : "text-primary-800"}`}>
                           {message.sender_name || 'User'}
-                          <span className="text-[10px] font-medium text-slate-400">
+                          <span className={`text-[10px] font-medium ${message.user_id === user?.id ? "text-blue-100/80" : "text-slate-400"}`}>
                             {new Date(message.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                           </span>
                         </div>
-                        <p className="m-0 whitespace-pre-wrap break-words text-sm text-slate-700">{message.content}</p>
+                        <p className={`m-0 whitespace-pre-wrap break-words text-sm ${message.user_id === user?.id ? "text-white" : "text-slate-700"}`}>{message.content}</p>
                       </div>
                     </div>
                   )}
