@@ -107,7 +107,7 @@ export function FaqAccordion({ items, data, standalone = false }) {
           <p className="faq-hero-description">{faq.hero.description}</p>
           <label className="faq-search">
             <i className="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-            <input type="search" value={search} onChange={event = className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"> { setSearch(event.target.value); setActiveIndex(null); }} placeholder={faq.hero.search_placeholder} aria-label="Search frequently asked questions" />
+            <input type="search" value={search} onChange={event => { setSearch(event.target.value); setActiveIndex(null); }} placeholder={faq.hero.search_placeholder} aria-label="Search frequently asked questions" />
             {search && <button type="button" className="faq-search-clear" onClick={() => setSearch('')} aria-label="Clear FAQ search"><i className="fa-solid fa-xmark" aria-hidden="true"></i></button>}
           </label>
           <div className="faq-illustration faq-illustration-browse-topic" style={{ position: 'relative', inset: 'auto', width: '150px', height: '150px', marginTop: 'var(--space-5)', borderRadius: '50%', background: 'var(--primary-light))', overflow: 'hidden' }}>
