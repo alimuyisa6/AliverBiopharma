@@ -232,11 +232,11 @@ export default function ClassroomRoom() {
               >
                 {participant.role === 'tutor' && <span className="absolute left-3 top-3 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider tutor">Tutor</span>}
                 {participant.role === 'admin' && <span className="absolute left-3 top-3 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider admin">Admin</span>}
-                <i className={`mb-1 flex h-16 w-16 items-center justify-center rounded-full bg-white/10 text-3xl text-white fa-solid ${participant.role === 'tutor' ? 'fa-user-graduate' : participant.role === 'admin' ? 'fa-user-tie' : 'fa-user'}`}></i>
+                <span className="mb-1 flex h-16 w-16 items-center justify-center rounded-full bg-white/10 text-white"><Icon name={participant.role === "tutor" ? "user-graduate" : participant.role === "admin" ? "shield-halved" : "user"} size="2rem" monochrome /></span>
                 <span className="max-w-full truncate text-sm font-semibold text-white">{participant.user_name || 'Participant'}{participant.user_id === user?.id ? ' (you)' : ''}</span>
-                {participant.is_muted && <i className="tile-status muted fa-solid fa-microphone-slash"></i>}
-                {participant.hand_raised && <i className="tile-status hand fa-solid fa-hand"></i>}
-                {participant.is_screen_sharing && <i className="tile-status screen fa-solid fa-desktop"></i>}
+                {participant.is_muted && <span className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-red-500/20 text-red-100"><Icon name="microphone-slash" monochrome /></span>}
+                {participant.hand_raised && <span className="absolute bottom-3 right-12 flex h-8 w-8 items-center justify-center rounded-full bg-secondary-400/20 text-orange-100"><Icon name="hand" monochrome /></span>}
+                {participant.is_screen_sharing && <span className="absolute bottom-3 right-21 flex h-8 w-8 items-center justify-center rounded-full bg-primary-400/20 text-blue-100"><Icon name="desktop" monochrome /></span>}
               </div>
             ))}
           </div>
@@ -295,7 +295,7 @@ export default function ClassroomRoom() {
             </div>
             <div className="flex max-h-[420px] min-h-64 flex-1 flex-col gap-3 overflow-y-auto p-4" ref={chatBodyRef}>
               {messages.map((message) => (
-                <div key={message.id} className="classroom-message">
+                <div key={message.id} className="w-full">
                   {message.message_type === 'system' ? (
                     <div className="mx-auto flex max-w-[95%] items-center gap-2 rounded-xl bg-primary-50 px-3 py-2 text-xs font-medium text-primary-800">
                       <Icon name="circle-info" />
@@ -340,7 +340,7 @@ export default function ClassroomRoom() {
                 setChatInput(chatInput + pick);
               }}>😊</button>
               <textarea
-                className="form-textarea max-h-28 min-h-10 w-full flex-1 resize-none rounded-xl border border-border bg-slate-50 px-3 py-2.5 text-sm text-foreground outline-none transition focus:border-primary-400 focus:bg-white focus:ring-2 focus:ring-primary-100"
+                className="max-h-28 min-h-10 w-full flex-1 resize-none rounded-xl border border-border bg-slate-50 px-3 py-2.5 text-sm text-foreground outline-none transition focus:border-primary-400 focus:bg-white focus:ring-2 focus:ring-primary-100"
                 value={chatInput}
                 onChange={(event) => setChatInput(event.target.value)}
                 onKeyDown={handleKeyDown}
@@ -372,9 +372,9 @@ export default function ClassroomRoom() {
                     <div className="text-sm font-semibold text-slate-800">{participant.user_name || 'Participant'}</div>
                     <div className="mt-0.5 text-xs capitalize text-slate-500">{participant.role}</div>
                   </div>
-                  {participant.is_muted && <Icon name="microphone-slash" className="classroom-participant-status-icon icon-muted" />}
-                  {participant.hand_raised && <Icon name="hand" className="classroom-participant-status-icon icon-handraised" />}
-                  {participant.is_screen_sharing && <Icon name="desktop" className="classroom-participant-status-icon icon-screen" />}
+                  {participant.is_muted && <Icon name="microphone-slash" className="ml-auto h-4 w-4 shrink-0 text-red-600" />}
+                  {participant.hand_raised && <Icon name="hand" className="ml-auto h-4 w-4 shrink-0 text-secondary-600" />}
+                  {participant.is_screen_sharing && <Icon name="desktop" className="ml-auto h-4 w-4 shrink-0 text-primary-600" />}
                 </div>
               ))}
             </div>
