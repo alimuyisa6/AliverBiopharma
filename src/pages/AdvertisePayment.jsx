@@ -411,7 +411,7 @@ Advertising
       )}
     </div>
 
-    <aside className="sticky top-24 rounded-3xl border border-primary-800 bg-primary-900 p-6 text-white shadow-xl">
+    <aside className="sticky top-24 rounded-3xl border border-primary-800 bg-primary-900 p-6 text-white shadow-xl [&_h2]:text-white [&_p]:text-blue-100 [&_a]:text-orange-100">
       <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-orange-200">
         <AdStepIcon name="review" size={38} />
       </div>
