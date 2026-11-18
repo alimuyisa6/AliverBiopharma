@@ -216,3 +216,20 @@ body {
   .footer-inner { @apply gap-10; }
   .footer-right-groups { @apply gap-8; }
 }
+
+
+/* Responsive stability guards for the header, class switcher and floating chat. */
+@media (max-width: 768px) {
+  header .class-switcher { display: none; }
+}
+header img { max-height: 2.75rem; width: auto; max-width: min(42vw, 13rem); object-fit: contain; }
+header > div { min-width: 0; }
+header nav { min-width: 0; }
+.class-switcher { position: relative; min-width: 0; max-width: 100%; }
+.class-switcher > button { min-width: 0; max-width: 100%; }
+.home-scope-switcher { width: min(100%, 20rem); margin: 0 auto 1rem; }
+.home-scope-switcher .class-switcher-label { display: block; margin: 0 0 .5rem .25rem; color: var(--color-primary-900); font-size: .75rem; font-weight: 800; }
+@media (min-width: 640px) { .home-scope-switcher { margin-left: 0; } }
+@media (max-width: 639px) {
+  .home-scope-switcher { width: 100%; }
+}
