@@ -165,7 +165,7 @@ try {
 
 if (loading) {
 return (
-<main className="min-h-screen bg-background px-5 py-10 text-foreground sm:px-8 sm:py-14">
+<main className="min-h-screen bg-background px-5 py-10 text-foreground sm:px-8 sm:py-14" data-advertising-page="true">
 <section className="mx-auto flex min-h-64 max-w-4xl flex-col items-center justify-center gap-4 rounded-3xl border border-border bg-white p-8 text-primary-800 shadow-sm">
 <AdStepIcon name="review" size={38} />
 <p className="leading-7">Loading campaign details…</p>
