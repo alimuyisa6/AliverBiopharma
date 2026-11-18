@@ -108,7 +108,7 @@ export default function AdCampaignSuccess({
     String(reviewStatus).toLowerCase() === 'rejected';
 
   return (
-    <main className="min-h-screen bg-background px-5 py-12 text-foreground sm:px-8">
+    <main className="min-h-screen bg-background px-5 py-12 text-foreground sm:px-8" data-advertising-page="true">
       <section className="mx-auto max-w-4xl text-center">
         <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-3xl bg-emerald-100 text-emerald-700">
           <AdStepIcon name="reach" size={42} />
