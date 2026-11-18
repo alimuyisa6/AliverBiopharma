@@ -45,7 +45,7 @@ export default function Advertise() {
   const imageAlt = component?.properties?.image_alt || 'Reach relevant learners through AliverBiopharm advertising';
 
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main className="min-h-screen bg-background text-foreground" data-advertising-page="true">
       <section className="relative isolate overflow-hidden bg-primary-900 text-white">
         <div className="absolute inset-0 -z-0 bg-[radial-gradient(ellipse_at_top_right,rgba(37,99,166,0.75),transparent_55%)]" aria-hidden="true" />
         <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1.05fr_0.95fr] lg:py-28">
