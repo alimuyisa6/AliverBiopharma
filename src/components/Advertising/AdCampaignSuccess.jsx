@@ -124,7 +124,7 @@ export default function AdCampaignSuccess({
           is now in the process.
         </h1>
 
-        <p className="leading-7 text-slate-600">
+        <p className="leading-7">
           Thank you for choosing AliverBiopharm. Your campaign details have
           been submitted and will move through payment verification and
           advertising review before activation.
@@ -161,7 +161,7 @@ export default function AdCampaignSuccess({
 
                 <div>
                   <strong>Campaign submitted</strong>
-                  <p className="leading-7 text-slate-600">
+                  <p className="leading-7">
                     Your campaign configuration has been received.
                   </p>
                 </div>
@@ -176,7 +176,7 @@ export default function AdCampaignSuccess({
 
                 <div>
                   <strong>Payment verification</strong>
-                  <p className="leading-7 text-slate-600">
+                  <p className="leading-7">
                     {isPaid
                       ? 'Payment has been verified.'
                       : 'Payment must be verified before activation.'}
@@ -197,7 +197,7 @@ export default function AdCampaignSuccess({
 
                 <div>
                   <strong>Advertising review</strong>
-                  <p className="leading-7 text-slate-600">
+                  <p className="leading-7">
                     {isRejected
                       ? 'The campaign requires attention before it can proceed.'
                       : reviewStatus === 'approved'
@@ -218,7 +218,7 @@ export default function AdCampaignSuccess({
 
                 <div>
                   <strong>Campaign activation</strong>
-                  <p className="leading-7 text-slate-600">
+                  <p className="leading-7">
                     The campaign becomes eligible to run after approval and
                     all required conditions are satisfied.
                   </p>
@@ -346,7 +346,7 @@ export default function AdCampaignSuccess({
               Your campaign reaches a focused learning community.
             </h2>
 
-            <p className="leading-7 text-slate-600">
+            <p className="leading-7">
               Advertising placements are designed around the learners,
               classes, programmes and educational interests supported by
               AliverBiopharm.
@@ -366,7 +366,7 @@ export default function AdCampaignSuccess({
               Every campaign must support a suitable learning environment.
             </h2>
 
-            <p className="leading-7 text-slate-600">
+            <p className="leading-7">
               Payment alone does not guarantee publication. Campaigns remain
               subject to the platform's advertising requirements and review
               process.
