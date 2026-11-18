@@ -58,7 +58,7 @@ export function MoodCheckSection({
 
         {moodSubmitted && (
           <p className="mood-success">
-            <Icon name="circle" /> Thanks for sharing!
+            <Icon name="circle-check" /> Thanks for sharing!
           </p>
         )}
       </div>

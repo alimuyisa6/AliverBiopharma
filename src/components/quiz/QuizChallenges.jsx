@@ -53,7 +53,7 @@ export default function QuizChallenges({ user, level, class_name }) {
 
       <div className="flex items-center justify-between gap-3 sm:justify-end">
         {challenge.completed ? (
-          <Icon name="circle" className="h-7 w-7 text-green-700" />
+          <Icon name="circle-check" className="h-7 w-7 text-green-700" />
         ) : (
           <>
             <span className="text-sm font-bold tabular-nums text-primary-900">{challenge.progress}/{challenge.target}</span>

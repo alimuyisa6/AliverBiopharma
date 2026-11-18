@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 import Icon from '../../components/Icon/Icon';
 
 const pathways = [
-  { id: 'o-level', label: 'O-Level Biology', title: 'Build strong foundations', description: 'Explore the living world through observation, clear scientific explanations and practical understanding.', icon: 'microscope' },
+  { id: 'o-level', label: 'O-Level Biology', title: 'Build strong foundations', description: 'Explore the living world through observation, clear scientific explanations and practical understanding.', icon: 'cell' },
   { id: 'a-level', label: 'A-Level Biology', title: 'Think across biological systems', description: 'Connect complex processes, analyse evidence and develop deeper scientific reasoning.', icon: 'atom' },
-  { id: 'pharmacy', label: 'Pharmacy', title: 'Connect science with medicines', description: 'Explore pharmaceutical science, medicines and their role in patient care.', icon: 'capsules' }
+  { id: 'pharmacy', label: 'Pharmacy', title: 'Connect science with medicines', description: 'Explore pharmaceutical science, medicines and their role in patient care.', icon: 'pill-bottle' }
 ];
 
 const studios = {
@@ -16,9 +16,9 @@ const studios = {
     visual: 'cell',
     visualLabel: 'Explore living systems',
     cards: [
-      { icon: 'book-open', label: 'Understand a topic', title: 'Biology notes', description: 'Work through explanations organised around your curriculum.', resource: 'notes', action: 'Open notes' },
-      { icon: 'microscope', label: 'Build scientific vocabulary', title: 'Biology glossary', description: 'Strengthen your understanding of important biological terms.', resource: 'notes', action: 'Explore terms' },
-      { icon: 'book-open', label: 'Prepare for assessment', title: 'Past examination papers', description: 'Practise with available Biology examination papers.', resource: 'past-papers', action: 'View papers' }
+      { icon: 'book-open-reader', label: 'Understand a topic', title: 'Biology notes', description: 'Work through explanations organised around your curriculum.', resource: 'notes', action: 'Open notes' },
+      { icon: 'dna', label: 'Build scientific vocabulary', title: 'Biology glossary', description: 'Strengthen your understanding of important biological terms.', resource: 'notes', action: 'Explore terms' },
+      { icon: 'file-contract', label: 'Prepare for assessment', title: 'Past examination papers', description: 'Practise with available Biology examination papers.', resource: 'past-papers', action: 'View papers' }
     ]
   },
   alevel: {
@@ -29,9 +29,9 @@ const studios = {
     visual: 'molecule',
     visualLabel: 'Explore biological mechanisms',
     cards: [
-      { icon: 'book-open', label: 'Develop deeper understanding', title: 'Advanced topic notes', description: 'Study detailed explanations across your Biology curriculum.', resource: 'notes', action: 'Study notes' },
-      { icon: 'brain', label: 'Test your reasoning', title: 'Knowledge checks', description: 'Use focused questions to identify concepts that need more work.', resource: 'quiz', action: 'Practise questions' },
-      { icon: 'file-lines', label: 'Prepare for examinations', title: 'Past examination papers', description: 'Apply your knowledge to available examination papers.', resource: 'past-papers', action: 'View papers' }
+      { icon: 'dna', label: 'Develop deeper understanding', title: 'Advanced topic notes', description: 'Study detailed explanations across your Biology curriculum.', resource: 'notes', action: 'Study notes' },
+      { icon: 'brain-circuit', label: 'Test your reasoning', title: 'Knowledge checks', description: 'Use focused questions to identify concepts that need more work.', resource: 'quiz', action: 'Practise questions' },
+      { icon: 'file-contract', label: 'Prepare for examinations', title: 'Past examination papers', description: 'Apply your knowledge to available examination papers.', resource: 'past-papers', action: 'View papers' }
     ]
   },
   pharmacy: {
@@ -42,9 +42,9 @@ const studios = {
     visual: 'pharmacy',
     visualLabel: 'Explore pharmaceutical science',
     cards: [
-      { icon: 'book-open', label: 'Study your programme', title: 'Pharmacy course notes', description: 'Explore explanations organised around your course units.', resource: 'notes', action: 'Open notes' },
-      { icon: 'atom', label: 'Strengthen recall', title: 'Pharmacy flashcards', description: 'Review key concepts and terminology through active recall.', resource: 'flashcards', action: 'Study flashcards' },
-      { icon: 'clipboard-check', label: 'Check your understanding', title: 'Knowledge practice', description: 'Test your understanding of pharmaceutical concepts.', resource: 'quiz', action: 'Start practice' }
+      { icon: 'book-open-reader', label: 'Study your programme', title: 'Pharmacy course notes', description: 'Explore explanations organised around your course units.', resource: 'notes', action: 'Open notes' },
+      { icon: 'pill-bottle', label: 'Strengthen recall', title: 'Pharmacy flashcards', description: 'Review key concepts and terminology through active recall.', resource: 'flashcards', action: 'Study flashcards' },
+      { icon: 'clinical-case', label: 'Check your understanding', title: 'Knowledge practice', description: 'Test your understanding of pharmaceutical concepts.', resource: 'quiz', action: 'Start practice' }
     ]
   }
 };
@@ -72,7 +72,7 @@ function PublicPathways() {
           {pathways.map((pathway) => (
             <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg" key={pathway.id}>
               <div className="flex min-h-48 flex-col items-start justify-between bg-primary-50 p-7 text-primary-800" aria-hidden="true">
-                <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-4xl text-primary-700 shadow-sm"><Icon name={pathway.icon} monochrome /></span>
+                <span className="flex h-20 w-20 items-center justify-center rounded-2xl bg-white text-primary-700 shadow-md"><Icon name={pathway.icon} size="3.25rem" monochrome /></span>
                 <span>{pathway.label}</span>
               </div>
               <div className="p-7">
@@ -149,9 +149,9 @@ const connectedLearningStages = [
     title: 'Learn',
     description: 'Build understanding with structured explanations and supporting references.',
     links: [
-      { label: 'Study notes', detail: 'Read topic explanations', to: '/notes', icon: 'book-open' },
+      { label: 'Study notes', detail: 'Read topic explanations', to: '/notes', icon: 'book-open-reader' },
       { label: 'PDF library', detail: 'Open study documents', to: '/pdfs', icon: 'file-pdf' },
-      { label: 'Glossary', detail: 'Clarify key terminology', to: '/glossary', icon: 'book-open' }
+      { label: 'Glossary', detail: 'Clarify key terminology', to: '/glossary', icon: 'spell-check' }
     ]
   },
   {
@@ -161,7 +161,7 @@ const connectedLearningStages = [
     description: 'Strengthen understanding through active retrieval and question practice.',
     links: [
       { label: 'Question practice', detail: 'Answer curriculum questions', to: '/quiz', icon: 'clipboard-check' },
-      { label: 'Question bank', detail: 'Search questions and build custom tests', to: '/question-bank', icon: 'search' },
+      { label: 'Question bank', detail: 'Search questions and build custom tests', to: '/question-bank', icon: 'file-search' },
       { label: 'Flashcards', detail: 'Recall important concepts', to: '/flashcards', icon: 'layer-group' },
       { label: 'Spaced recall', detail: 'Revisit what you have learned', to: '/recall', icon: 'brain' }
     ]
@@ -173,7 +173,7 @@ const connectedLearningStages = [
     description: 'Use your knowledge in assessment and collaborative learning contexts.',
     links: [
       { label: 'Past papers', detail: 'Work through exam papers', to: '/past-papers', icon: 'file-lines' },
-      { label: 'Clinical simulations', detail: 'Apply knowledge to reviewed patient cases', to: '/clinical-simulations', icon: 'capsules' },
+      { label: 'Clinical simulations', detail: 'Apply knowledge to reviewed patient cases', to: '/clinical-simulations', icon: 'clinical-case' },
       { label: 'Daily challenges', detail: 'Take a focused knowledge challenge', to: '/challenges', icon: 'flag' },
       { label: 'Classroom', detail: 'Continue learning with your class', to: '/classroom', icon: 'users' }
     ]
@@ -186,7 +186,7 @@ const connectedLearningStages = [
     links: [
       { label: 'Learning dashboard', detail: 'Review your learning progress', to: '/dashboard', icon: 'chart-line' },
       { label: 'Quiz review', detail: 'Revisit completed quiz attempts', to: '/quiz/review', icon: 'list-check' },
-      { label: 'Continue learning', detail: 'Return to your curriculum', to: '/resources', icon: 'arrow-right' }
+      { label: 'Continue learning', detail: 'Return to your curriculum', to: '/resources', icon: 'route' }
     ]
   }
 ];
@@ -214,7 +214,7 @@ export function ConnectedLearning() {
               <div className="flex flex-col gap-2">
                 {stage.links.map((item) => (
                   <Link className="group flex min-w-0 items-center gap-3 rounded-xl border border-slate-100 bg-slate-50 p-3 transition hover:border-primary-200 hover:bg-primary-50" to={item.to} key={item.label}>
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary-100 text-lg text-primary-700"><Icon name={item.icon} monochrome /></span>
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary-100 text-primary-700"><Icon name={item.icon} size="1.75rem" monochrome /></span>
                     <span className="flex min-w-0 flex-1 flex-col"><strong>{item.label}</strong><small>{item.detail}</small></span>
                     <Icon name="arrow-right" />
                   </Link>
@@ -241,8 +241,8 @@ function ProgrammeStudio({ studio, activeGroupName, activeGroupId }) {
           <div className="relative flex min-h-72 flex-col items-center justify-center overflow-hidden rounded-[2rem] border border-secondary-200 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 p-8 text-white shadow-xl" aria-label={studio.visualLabel}>
             <span className="lernwick-studio-orbit lernwick-studio-orbit--one" />
             <span className="lernwick-studio-orbit lernwick-studio-orbit--two" />
-            <span className="relative z-10 flex h-28 w-28 items-center justify-center rounded-full border border-white/25 bg-white/10 text-5xl text-secondary-200 shadow-2xl backdrop-blur">
-              <Icon name={studio.visual === 'pharmacy' ? 'capsules' : studio.visual === 'molecule' ? 'atom' : 'microscope'} monochrome />
+            <span className="relative z-10 flex h-32 w-32 items-center justify-center rounded-full border border-white/25 bg-white/10 text-secondary-200 shadow-2xl backdrop-blur">
+              <Icon name={studio.visual === 'pharmacy' ? 'pill-bottle' : studio.visual === 'molecule' ? 'dna' : 'cell'} size="4.25rem" monochrome />
             </span>
             <span className="relative z-10 mt-6 text-sm font-semibold tracking-wide text-white/85">{studio.visualLabel}</span>
           </div>
@@ -255,7 +255,7 @@ function ProgrammeStudio({ studio, activeGroupName, activeGroupId }) {
 
             return (
               <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm" key={card.title}>
-                <span className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary-100 text-xl text-primary-700"><Icon name={card.icon} monochrome /></span>
+                <span className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-primary-100 text-primary-700"><Icon name={card.icon} size="2rem" monochrome /></span>
                 <span className="mb-2 block text-xs font-bold uppercase tracking-wider text-secondary-700">{card.label}</span>
                 <h3>{card.title}</h3>
                 <p>{card.description}</p>

@@ -243,7 +243,7 @@ export default function TutorDashboard() {
           <div>
             <div className="alert alert-success" style={{ marginBottom: 'var(--space-6)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 'var(--space-3)', flexWrap: 'wrap' }}>
               <div>
-                <Icon name="circle" style={{ marginRight: 'var(--space-3)' }} />
+                <Icon name="circle-check" style={{ marginRight: 'var(--space-3)' }} />
                 Approved tutor — {application.display_name || 'Tutor'}
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-2)' }}>
