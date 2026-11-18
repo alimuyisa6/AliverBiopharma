@@ -2,8 +2,6 @@
 import { Link } from 'react-router-dom';
 import Icon from '../components/Icon/Icon';
 import AdStepIcon from '../components/Advertising/AdStepIcon';
-import { useLayout } from '../contexts/LayoutContext';
-import { useI18n } from '../contexts/I18nContext';
 
 const BENEFITS = [
   {
@@ -39,22 +37,8 @@ const PROGRAMMES = [
 ];
 
 export default function Advertise() {
-  const { bootstrap } = useLayout();
-  const { t } = useI18n();
-
-  const uiComponents = bootstrap?.ui_components || [];
-
-  const component = uiComponents.find(
-    (item) => item.component_key === 'advertise_hero'
-  );
-
-  const imageUrl =
-    component?.properties?.image_url ||
-    '/images/advertise-hero.jpg';
-
-  const imageAlt =
-    component?.properties?.image_alt ||
-    'Reach relevant learners through AliverBiopharm advertising';
+  const imageUrl = '/images/advertise-hero.jpg';
+  const imageAlt = 'Reach relevant learners through AliverBiopharm advertising';
 
   return (
     <main className="min-h-screen bg-background text-foreground">
