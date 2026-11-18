@@ -169,7 +169,7 @@ export default function ClassroomRoom() {
 
   if (loading) {
     return (
-      <div className="fcd-loading-wrap">
+      <div className="mx-auto flex min-h-[60vh] w-full items-center justify-center px-4 py-12">
         <Spinner size="lg" />
       </div>
     );
@@ -177,7 +177,7 @@ export default function ClassroomRoom() {
 
   if (error || !room) {
     return (
-      <div className="section classroom-room-error">
+      <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8 mx-auto flex min-h-[60vh] max-w-4xl items-center justify-center px-4 py-12">
         <EmptyState
           image={getEmptyStateImage('classrooms')}
           title="This classroom is unavailable"
@@ -196,44 +196,44 @@ export default function ClassroomRoom() {
   const roomClass = room.class_name || class_name || '';
 
   return (
-    <div className="classroom-room-page">
-      <div className="classroom-room-header">
+    <div className="mx-auto flex w-full max-w-[1600px] flex-col gap-6 px-4 py-5 sm:px-6 lg:px-8 lg:py-8">
+      <div className="flex flex-wrap items-center gap-4 rounded-3xl border border-primary-100 bg-gradient-to-r from-primary-900 via-primary-800 to-primary-700 p-4 text-white shadow-xl shadow-primary-900/10 sm:p-6">
         <Button variant="ghost" size="sm" icon onClick={handleLeaveRoom} loading={leaving}>
           <Icon name="arrow-left" />
         </Button>
 
-        <div className="classroom-room-header-info">
-          <h2 className="classroom-room-header-title">
+        <div className="min-w-0 flex-1">
+          <h2 className="m-0 text-xl font-bold leading-tight text-white sm:text-2xl">
             {room.title}<br />
-            <span className="classroom-room-header-sub">
-              {room.topic_name && <span className="chip classroom-chip-topic">{room.topic_name}</span>}
-              {roomClass && <span className="chip classroom-chip-class">{roomClass}</span>}
-              {levelName && <span className="chip classroom-chip-level-alt">{levelName}</span>}
+            <span className="mt-3 flex flex-wrap gap-2">
+              {room.topic_name && <span className="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold border border-white/20 bg-white/15 text-white">{room.topic_name}</span>}
+              {roomClass && <span className="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold border border-secondary-200/40 bg-secondary-400/20 text-orange-50">{roomClass}</span>}
+              {levelName && <span className="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold border border-primary-200/40 bg-primary-400/20 text-blue-50">{levelName}</span>}
             </span>
           </h2>
         </div>
 
-        <div className="classroom-room-header-actions">
-          <span className="recording-badge"><span className="rec-dot"></span> Recording</span>
-          <div className="classroom-room-live-indicator">
-            <span className="status-dot status-dot-success" />
-            <span className="classroom-room-live-label">Live</span>
+        <div className="ml-auto flex flex-wrap items-center gap-3">
+          <span className="inline-flex items-center gap-2 rounded-full border border-red-200/30 bg-red-500/15 px-3 py-1.5 text-xs font-bold text-red-100"><span className="h-2 w-2 animate-pulse rounded-full bg-red-400"></span> Recording</span>
+          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200/30 bg-emerald-400/15 px-3 py-1.5">
+            <span className="h-2 w-2 rounded-full bg-emerald-400" />
+            <span className="text-xs font-bold uppercase tracking-wider text-emerald-100">Live</span>
           </div>
         </div>
       </div>
 
-      <div className="classroom-room-layout">
-        <div className="classroom-room-left">
-          <div className="classroom-video-grid">
+      <div className="grid min-w-0 gap-6 xl:grid-cols-[minmax(0,1.7fr)_minmax(320px,0.8fr)]">
+        <div className="flex min-w-0 flex-col gap-5">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 2xl:grid-cols-3">
             {participants.map((participant) => (
               <div
                 key={participant.id || participant.user_id}
-                className={`video-tile ${participant.is_speaking ? 'speaking' : ''} ${participant.user_id === user?.id ? 'self' : ''}`}
+                className={`relative flex min-h-48 flex-col items-center justify-center gap-3 overflow-hidden rounded-2xl border border-primary-100 bg-gradient-to-br from-primary-900 to-slate-900 p-5 text-center text-white shadow-lg ${participant.is_speaking ? 'speaking' : ''} ${participant.user_id === user?.id ? 'self' : ''}`}
               >
-                {participant.role === 'tutor' && <span className="tile-badge tutor">Tutor</span>}
-                {participant.role === 'admin' && <span className="tile-badge admin">Admin</span>}
-                <i className={`avatar fa-solid ${participant.role === 'tutor' ? 'fa-user-graduate' : participant.role === 'admin' ? 'fa-user-tie' : 'fa-user'}`}></i>
-                <span className="name">{participant.user_name || 'Participant'}{participant.user_id === user?.id ? ' (you)' : ''}</span>
+                {participant.role === 'tutor' && <span className="absolute left-3 top-3 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider tutor">Tutor</span>}
+                {participant.role === 'admin' && <span className="absolute left-3 top-3 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider admin">Admin</span>}
+                <i className={`mb-1 flex h-16 w-16 items-center justify-center rounded-full bg-white/10 text-3xl text-white fa-solid ${participant.role === 'tutor' ? 'fa-user-graduate' : participant.role === 'admin' ? 'fa-user-tie' : 'fa-user'}`}></i>
+                <span className="max-w-full truncate text-sm font-semibold text-white">{participant.user_name || 'Participant'}{participant.user_id === user?.id ? ' (you)' : ''}</span>
                 {participant.is_muted && <i className="tile-status muted fa-solid fa-microphone-slash"></i>}
                 {participant.hand_raised && <i className="tile-status hand fa-solid fa-hand"></i>}
                 {participant.is_screen_sharing && <i className="tile-status screen fa-solid fa-desktop"></i>}
@@ -241,7 +241,7 @@ export default function ClassroomRoom() {
             ))}
           </div>
 
-          <div className="classroom-video-controls">
+          <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-border bg-white p-3 shadow-sm sm:p-4">
             <Button variant={isMuted ? 'ghost' : 'primary'} size="sm" onClick={toggleMute}>
               <Icon name={isMuted ? 'microphone-slash' : 'microphone'} />
               {isMuted ? 'Unmute' : 'Mute'}
@@ -265,8 +265,8 @@ export default function ClassroomRoom() {
           </div>
 
           {isWhiteboardVisible && (
-            <div className="classroom-whiteboard">
-              <div className="whiteboard-toolbar">
+            <div className="overflow-hidden rounded-2xl border border-border bg-white shadow-sm">
+              <div className="flex flex-wrap items-center gap-2 border-b border-border bg-slate-50 p-3">
                 <Button variant="secondary" size="xs"><Icon name="pencil" /> Pen</Button>
                 <Button variant="secondary" size="xs"><Icon name="eraser" /> Eraser</Button>
                 <Button variant="secondary" size="xs"><Icon name="shapes" /> Shape</Button>
@@ -274,9 +274,9 @@ export default function ClassroomRoom() {
                 <Button variant="secondary" size="xs"><Icon name="undo" /></Button>
                 <Button variant="secondary" size="xs"><Icon name="redo" /></Button>
                 <Button variant="secondary" size="xs"><Icon name="trash" /> Clear</Button>
-                <span className="whiteboard-label">Shared whiteboard</span>
+                <span className="ml-auto text-xs font-bold uppercase tracking-wider text-slate-500">Shared whiteboard</span>
               </div>
-              <div className="whiteboard-canvas">
+              <div className="flex min-h-64 flex-col items-center justify-center gap-3 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:24px_24px] p-8 text-center text-sm font-medium text-slate-500">
                 <Icon name="pen-fancy" />
                 <span>Draw here to share your ideas with the class.</span>
               </div>
@@ -284,32 +284,32 @@ export default function ClassroomRoom() {
           )}
         </div>
 
-        <div className="classroom-room-right">
-          <div className="classroom-chat-panel">
-            <div className="chat-panel-header">
+        <div className="flex min-w-0 flex-col gap-5">
+          <div className="flex min-h-[420px] flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-sm">
+            <div className="flex items-center justify-between gap-3 border-b border-border bg-primary-50/70 px-4 py-3">
               <h4><Icon name="comment-dots" /> Live chat</h4>
-              <div className="chat-actions">
+              <div className="flex items-center gap-1">
                 <Button variant="ghost" size="xs"><Icon name="smile" /></Button>
                 <Button variant="ghost" size="xs"><Icon name="ellipsis-vertical" /></Button>
               </div>
             </div>
-            <div className="classroom-chat-body" ref={chatBodyRef}>
+            <div className="flex max-h-[420px] min-h-64 flex-1 flex-col gap-3 overflow-y-auto p-4" ref={chatBodyRef}>
               {messages.map((message) => (
                 <div key={message.id} className="classroom-message">
                   {message.message_type === 'system' ? (
-                    <div className="classroom-message-system">
+                    <div className="mx-auto flex max-w-[95%] items-center gap-2 rounded-xl bg-primary-50 px-3 py-2 text-xs font-medium text-primary-800">
                       <Icon name="circle-info" />
                       {message.content}
                     </div>
                   ) : message.message_type === 'resource' ? (
-                    <div className="card classroom-message-resource">
-                      <div className="classroom-message-resource-header">
+                    <div className="card rounded-xl border border-border bg-slate-50 p-3">
+                      <div className="mb-2 flex items-center justify-between gap-3 text-xs">
                         <strong>{message.sender_name || 'Tutor'}</strong>
-                        <span className="classroom-message-resource-time">
+                        <span className="shrink-0 text-[11px] text-slate-500">
                           {new Date(message.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                         </span>
                       </div>
-                      <div className="classroom-message-resource-file">
+                      <div className="flex items-center gap-2 text-sm font-semibold text-primary-700">
                         <Icon name="file-pdf" />
                         <a href={message.file_url} target="_blank" rel="noreferrer" download={message.file_name}>
                           {message.file_name}
@@ -318,14 +318,14 @@ export default function ClassroomRoom() {
                     </div>
                   ) : (
                     <div className={`classroom-message-row${message.user_id === user?.id ? ' is-own' : ''}`}>
-                      <div className="classroom-message-bubble">
-                        <div className="classroom-message-bubble-header">
+                      <div className="max-w-[88%] rounded-2xl rounded-tl-md border border-border bg-slate-50 px-3.5 py-3">
+                        <div className="mb-1 flex items-center justify-between gap-4 text-xs font-bold text-primary-800">
                           {message.sender_name || 'User'}
-                          <span className="classroom-message-bubble-time">
+                          <span className="text-[10px] font-medium text-slate-400">
                             {new Date(message.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                           </span>
                         </div>
-                        <p className="classroom-message-bubble-text">{message.content}</p>
+                        <p className="m-0 whitespace-pre-wrap break-words text-sm text-slate-700">{message.content}</p>
                       </div>
                     </div>
                   )}
@@ -333,14 +333,14 @@ export default function ClassroomRoom() {
               ))}
             </div>
 
-            <div className="classroom-chat-input-row">
-              <button className="btn-emoji" onClick={() => {
+            <div className="flex items-end gap-2 border-t border-border bg-white p-3">
+              <button className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border bg-slate-50 text-lg transition hover:bg-primary-50" onClick={() => {
                 const emojis = ['👍', '❤️', '😂', '😮', '🎉', '🙌', '👏', '💯'];
                 const pick = emojis[Math.floor(Math.random() * emojis.length)];
                 setChatInput(chatInput + pick);
               }}>😊</button>
               <textarea
-                className="form-textarea classroom-chat-textarea"
+                className="form-textarea max-h-28 min-h-10 w-full flex-1 resize-none rounded-xl border border-border bg-slate-50 px-3 py-2.5 text-sm text-foreground outline-none transition focus:border-primary-400 focus:bg-white focus:ring-2 focus:ring-primary-100"
                 value={chatInput}
                 onChange={(event) => setChatInput(event.target.value)}
                 onKeyDown={handleKeyDown}
@@ -354,23 +354,23 @@ export default function ClassroomRoom() {
             </div>
           </div>
 
-          <div className="classroom-participants-panel">
-            <div className="participants-panel-header">
+          <div className="overflow-hidden rounded-2xl border border-border bg-white shadow-sm">
+            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border bg-primary-50/70 px-4 py-3">
               <h4><Icon name="users" /> Participants ({participants.length})</h4>
               <Button variant="secondary" size="xs" onClick={muteAll}>
                 <Icon name="microphone-slash" /> Mute all
               </Button>
             </div>
-            <div className="classroom-participants-list">
+            <div className="grid max-h-64 gap-1 overflow-y-auto p-3">
               {participants.map((participant) => (
-                <div key={participant.id || participant.user_id} className="classroom-participant-row">
+                <div key={participant.id || participant.user_id} className="flex items-center gap-3 rounded-xl px-3 py-2.5 transition hover:bg-slate-50">
                   <Icon
                     name={participant.role === 'tutor' ? 'user-graduate' : participant.role === 'admin' ? 'shield-halved' : 'user'}
                     className={`classroom-participant-role-icon ${participant.role === 'tutor' ? 'tutor' : participant.role === 'admin' ? 'admin' : ''}`}
                   />
                   <div>
-                    <div className="classroom-participant-name">{participant.user_name || 'Participant'}</div>
-                    <div className="classroom-participant-role">{participant.role}</div>
+                    <div className="text-sm font-semibold text-slate-800">{participant.user_name || 'Participant'}</div>
+                    <div className="mt-0.5 text-xs capitalize text-slate-500">{participant.role}</div>
                   </div>
                   {participant.is_muted && <Icon name="microphone-slash" className="classroom-participant-status-icon icon-muted" />}
                   {participant.hand_raised && <Icon name="hand" className="classroom-participant-status-icon icon-handraised" />}
@@ -380,9 +380,9 @@ export default function ClassroomRoom() {
             </div>
           </div>
 
-          <div className="classroom-room-info-panel">
+          <div className="rounded-2xl border border-border bg-white p-4 shadow-sm">
             <h4><Icon name="circle-info" /> Session details</h4>
-            <div className="classroom-room-info-grid">
+            <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
               {room.level && <div className="info-item"><strong>Level</strong> {room.level}</div>}
               {roomClass && <div className="info-item"><strong>Class</strong> {roomClass}</div>}
               {room.topic_name && <div className="info-item"><strong>Topic</strong> {room.topic_name}</div>}
@@ -394,7 +394,7 @@ export default function ClassroomRoom() {
         </div>
       </div>
 
-      <div className="classroom-room-footer">
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border bg-white p-3 shadow-sm sm:p-4">
         <Button variant="danger" size="sm" onClick={handleLeaveRoom}>
           <Icon name="right-from-bracket" /> Leave classroom
         </Button>
