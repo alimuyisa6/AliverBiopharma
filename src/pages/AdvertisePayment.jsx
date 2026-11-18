@@ -168,7 +168,7 @@ return (
 <main className="min-h-screen bg-background px-5 py-10 text-foreground sm:px-8 sm:py-14">
 <section className="mx-auto flex min-h-64 max-w-4xl flex-col items-center justify-center gap-4 rounded-3xl border border-border bg-white p-8 text-primary-800 shadow-sm">
 <AdStepIcon name="review" size={38} />
-<p className="leading-7 text-slate-600">Loading campaign details…</p>
+<p className="leading-7">Loading campaign details…</p>
 </section>
 </main>
 );
@@ -202,7 +202,7 @@ Advertising
       campaign payment.
     </h1>
 
-    <p className="leading-7 text-slate-600">
+    <p className="leading-7">
       Enter your transaction’s payment reference. We’ll check it against your campaign before it moves forward.
     </p>
   </section>
@@ -235,7 +235,7 @@ Advertising
 
           <h2 className="font-extrabold tracking-tight">Campaign details unavailable</h2>
 
-          <p className="leading-7 text-slate-600">
+          <p className="leading-7">
             We couldn’t find the campaign linked to this payment page.
           </p>
 
@@ -278,7 +278,7 @@ Advertising
                     : 'Payment awaiting verification'}
               </h2>
 
-              <p className="leading-7 text-slate-600">
+              <p className="leading-7">
                 {paymentState === 'paid'
                   ? 'Your payment is verified. The campaign now moves into the standard review process.'
                   : paymentState === 'rejected'
@@ -349,7 +349,7 @@ Advertising
                     to this campaign.
                   </h2>
 
-                  <p className="leading-7 text-slate-600">
+                  <p className="leading-7">
                     Enter the ID or reference from your payment
                     confirmation.
                   </p>
@@ -393,7 +393,7 @@ Advertising
                   review.
                 </h2>
 
-                <p className="leading-7 text-slate-600">
+                <p className="leading-7">
                   Your campaign remains subject to AliverBiopharm's
                   advertising review requirements before it goes live.
                 </p>
@@ -426,7 +426,7 @@ Advertising
         activation.
       </h2>
 
-      <p className="leading-7 text-slate-600">
+      <p className="leading-7">
         A verified payment doesn't publish your advert automatically —
         campaigns must also pass review.
       </p>
