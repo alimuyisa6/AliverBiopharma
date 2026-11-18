@@ -64,7 +64,7 @@ function CurriculumNodeList({ nodes, parentId = null, isPharmacy = false }) {
   if (!children.length) return null;
 
   return (
-    <div className="mx-auto flex max-w-7xl flex-col gap-3" aria-label="Available curriculum topics">
+    <div className={`mx-auto flex max-w-7xl flex-col gap-3 ${parentId ? 'ml-4 border-l-2 border-primary-100 pl-4 sm:ml-7' : ''}`} aria-label="Available curriculum topics">
       {children.map((node) => {
         const nodeSlug = node.slug || String(node.name || '')
           .trim()
