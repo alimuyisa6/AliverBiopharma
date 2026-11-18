@@ -185,7 +185,7 @@ export default function ClassroomRoom() {
 
   if (error || !room) {
     return (
-      <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8 mx-auto flex min-h-[60vh] max-w-4xl items-center justify-center px-4 py-12">
+      <div className="mx-auto flex min-h-[60vh] w-full max-w-4xl items-center justify-center px-4 py-12">
         <EmptyState
           image={getEmptyStateImage('classrooms')}
           title="This classroom is unavailable"
@@ -238,13 +238,13 @@ export default function ClassroomRoom() {
                 key={participant.id || participant.user_id}
                 className={`relative flex min-h-48 flex-col items-center justify-center gap-3 overflow-hidden rounded-2xl border border-primary-100 bg-gradient-to-br from-primary-900 to-slate-900 p-5 text-center text-white shadow-lg ${participant.is_speaking ? 'ring-2 ring-emerald-400 ring-offset-2' : ''} ${participant.user_id === user?.id ? 'border-primary-300' : ''}`}
               >
-                {participant.role === 'tutor' && <span className="absolute left-3 top-3 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider tutor">Tutor</span>}
-                {participant.role === 'admin' && <span className="absolute left-3 top-3 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider admin">Admin</span>}
+                {participant.role === 'tutor' && <span className="absolute left-3 top-3 rounded-full border border-secondary-200/30 bg-secondary-400/20 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-orange-100">Tutor</span>}
+                {participant.role === 'admin' && <span className="absolute left-3 top-3 rounded-full border border-primary-200/30 bg-primary-400/20 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-blue-100">Admin</span>}
                 <span className="mb-1 flex h-16 w-16 items-center justify-center rounded-full bg-white/10 text-white"><Icon name={participant.role === "tutor" ? "user-graduate" : participant.role === "admin" ? "shield-halved" : "user"} size="2rem" monochrome /></span>
                 <span className="max-w-full truncate text-sm font-semibold text-white">{participant.user_name || 'Participant'}{participant.user_id === user?.id ? ' (you)' : ''}</span>
                 {participant.is_muted && <span className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-red-500/20 text-red-100"><Icon name="microphone-slash" monochrome /></span>}
                 {participant.hand_raised && <span className="absolute bottom-3 right-12 flex h-8 w-8 items-center justify-center rounded-full bg-secondary-400/20 text-orange-100"><Icon name="hand" monochrome /></span>}
-                {participant.is_screen_sharing && <span className="absolute bottom-3 right-21 flex h-8 w-8 items-center justify-center rounded-full bg-primary-400/20 text-blue-100"><Icon name="desktop" monochrome /></span>}
+                {participant.is_screen_sharing && <span className="absolute bottom-3 right-[5.25rem] flex h-8 w-8 items-center justify-center rounded-full bg-primary-400/20 text-blue-100"><Icon name="desktop" monochrome /></span>}
               </div>
             ))}
           </div>
