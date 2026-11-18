@@ -442,13 +442,13 @@ Advertising
         Create a campaign
       </span>
 
-      <h1>
+      <h1 className="font-extrabold tracking-tight">
         Build your
         <br />
         campaign.
       </h1>
 
-      <p>
+      <p className="leading-7 text-slate-600">
         Complete the steps below. Available options and pricing come from
         the advertising system.
       </p>
@@ -488,19 +488,19 @@ Advertising
               Step 01
             </span>
 
-            <h2>
+            <h2 className="font-extrabold tracking-tight">
               About your
               <br />
               organisation.
             </h2>
 
-            <p>
+            <p className="leading-7 text-slate-600">
               These details identify who's responsible for the campaign.
             </p>
           </div>
 
           <div className="grid gap-5 sm:grid-cols-2">
-            <label>
+            <label className="block space-y-2 text-sm font-semibold text-primary-900">
               Organisation or advertiser name
               <input
                 type="text"
@@ -517,7 +517,7 @@ Advertising
                className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
 
-            <label>
+            <label className="block space-y-2 text-sm font-semibold text-primary-900">
               Contact email
               <input
                 type="email"
@@ -533,7 +533,7 @@ Advertising
                className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
 
-            <label>
+            <label className="block space-y-2 text-sm font-semibold text-primary-900">
               Contact phone
               <input
                 type="tel"
@@ -548,7 +548,7 @@ Advertising
                className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
 
-            <label>
+            <label className="block space-y-2 text-sm font-semibold text-primary-900">
               Website
               <input
                 type="url"
@@ -573,19 +573,19 @@ Advertising
               Step 02
             </span>
 
-            <h2>
+            <h2 className="font-extrabold tracking-tight">
               Campaign
               <br />
               details.
             </h2>
 
-            <p>
+            <p className="leading-7 text-slate-600">
               Keep the message clear and relevant to learners.
             </p>
           </div>
 
           <div className="grid gap-5">
-            <label>
+            <label className="block space-y-2 text-sm font-semibold text-primary-900">
               Campaign title
               <input
                 type="text"
@@ -602,7 +602,7 @@ Advertising
                className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
 
-            <label>
+            <label className="block space-y-2 text-sm font-semibold text-primary-900">
               Category
               <select
                 value={form.categoryId}
@@ -631,7 +631,7 @@ Advertising
               </select>
             </label>
 
-            <label>
+            <label className="block space-y-2 text-sm font-semibold text-primary-900">
               Landing page
               <input
                 type="url"
@@ -647,7 +647,7 @@ Advertising
                className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
 
-            <label>
+            <label className="block space-y-2 text-sm font-semibold text-primary-900">
               Advert headline
               <input
                 type="text"
@@ -664,7 +664,7 @@ Advertising
                className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
 
-            <label>
+            <label className="block space-y-2 text-sm font-semibold text-primary-900">
               Advert message
               <textarea
                 value={form.bodyText}
@@ -680,7 +680,7 @@ Advertising
                className="block min-h-32 w-full min-w-0 resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
             </label>
 
-            <label>
+            <label className="block space-y-2 text-sm font-semibold text-primary-900">
               Button text
               <input
                 type="text"
@@ -706,13 +706,13 @@ Advertising
               Step 03
             </span>
 
-            <h2>
+            <h2 className="font-extrabold tracking-tight">
               Choose your
               <br />
               audience.
             </h2>
 
-            <p>
+            <p className="leading-7 text-slate-600">
               Targeting options come from the current advertising
               configuration.
             </p>
@@ -751,7 +751,7 @@ Advertising
                         : 'Specific class or programme'}
                   </strong>
 
-                  <small>
+                  <small className="mt-1 block text-sm font-normal leading-6 text-slate-600">
                     {scope.description}
                   </small>
                 </span>
@@ -763,7 +763,7 @@ Advertising
             selectedScope.scope_type !==
               'all_levels' && (
               <div className="grid gap-5">
-                <label>
+                <label className="block space-y-2 text-sm font-semibold text-primary-900">
                   Learning level
                   <select
                     value={form.levelId}
@@ -795,7 +795,7 @@ Advertising
                 {selectedScope.scope_type ===
                   'specific_class' &&
                   form.levelId && (
-                    <label>
+                    <label className="block space-y-2 text-sm font-semibold text-primary-900">
                       Class or programme
                       <select
                         value={form.className}
@@ -836,19 +836,19 @@ Advertising
               Step 04
             </span>
 
-            <h2>
+            <h2 className="font-extrabold tracking-tight">
               Placement
               <br />
               and timing.
             </h2>
 
-            <p>
+            <p className="leading-7 text-slate-600">
               Placement availability is confirmed when you submit your campaign.
             </p>
           </div>
 
           <div className="mt-8 space-y-4 rounded-2xl border border-border bg-slate-50/70 p-5">
-            <h3>Placement</h3>
+            <h3 className="font-bold tracking-tight">Placement</h3>
 
             <div className="grid gap-3 sm:grid-cols-2">
               {config.placements.map(
@@ -880,7 +880,7 @@ Advertising
                         {placement.display_name}
                       </strong>
 
-                      <small>
+                      <small className="mt-1 block text-sm font-normal leading-6 text-slate-600">
                         {placement.description}
                       </small>
                     </span>
@@ -898,7 +898,7 @@ Advertising
           </div>
 
           <div className="mt-8 space-y-4 rounded-2xl border border-border bg-slate-50/70 p-5">
-            <h3>Campaign duration</h3>
+            <h3 className="font-bold tracking-tight">Campaign duration</h3>
 
             <div className="grid gap-3 sm:grid-cols-2">
               {config.duration_tiers.map(
@@ -930,7 +930,7 @@ Advertising
                         {tier.label}
                       </strong>
 
-                      <small>
+                      <small className="mt-1 block text-sm font-normal leading-6 text-slate-600">
                         {tier.duration_days} days
                       </small>
                     </span>
@@ -940,7 +940,7 @@ Advertising
             </div>
           </div>
 
-          <label>
+          <label className="block space-y-2 text-sm font-semibold text-primary-900">
             Start date
             <input
               type="date"
@@ -964,13 +964,13 @@ Advertising
               Step 05
             </span>
 
-            <h2>
+            <h2 className="font-extrabold tracking-tight">
               Review and
               <br />
               submit.
             </h2>
 
-            <p>
+            <p className="leading-7 text-slate-600">
               Confirm the details below. Payment and review follow after
               submission.
             </p>
@@ -1064,7 +1064,7 @@ Advertising
                 )}
               </strong>
 
-              <small>
+              <small className="mt-1 block text-sm font-normal leading-6 text-slate-600">
                 Your final price will be confirmed when you submit the campaign.
               </small>
             </div>
@@ -1146,13 +1146,13 @@ Advertising
         Advertising on AliverBiopharm
       </span>
 
-      <h2>
+      <h2 className="font-extrabold tracking-tight">
         Keep it
         <br />
         useful.
       </h2>
 
-      <p>
+      <p className="leading-7 text-slate-600">
         AliverBiopharm is a learning environment. Campaigns should add
         real value for the learners who see them.
       </p>
