@@ -427,7 +427,7 @@ selectedPlacement?.currency,
 }
 
 return (
-<main className="min-h-screen bg-background px-5 py-10 text-foreground sm:px-8 sm:py-14">
+<main className="min-h-screen bg-background px-5 py-10 text-foreground sm:px-8 sm:py-14" data-advertising-page="true">
 <section className="mx-auto mb-10 max-w-7xl">
 <div>
 <Link
