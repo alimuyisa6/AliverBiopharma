@@ -2,7 +2,6 @@
 import { Link, useLocation, useNavigate, useNavigationType } from 'react-router-dom';
 import Icon from '../Icon/Icon';
 import { useLayout } from '../../contexts/LayoutContext';
-import { useAuth } from '../../contexts/AuthContext';
 import { useI18n } from '../../contexts/I18nContext';
 import { signout } from '../../api/client';
 const SearchOverlay = lazy(() => import('../SearchOverlay/SearchOverlay'));
@@ -52,12 +51,24 @@ function ThemeGlyph({ isDark }) {
   );
 }
 
+function AccountMenuIcon({ name, size = '2rem' }) {
+  const shared = { width: size, height: size, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': true, focusable: false };
+  const glyphs = {
+    dashboard: <><path d="M4 18a9 9 0 1 1 16 0" /><path d="M12 13 17 8M5 18h14" /><circle cx="12" cy="13" r="1.7" fill="currentColor" stroke="none" /></>,
+    profile: <><circle cx="12" cy="8" r="3.2" /><path d="M5.2 20a6.8 6.8 0 0 1 13.6 0" /><path d="M3.5 8.5a9 9 0 0 1 17 0M2.8 14.5a10 10 0 0 0 18.4 0" strokeWidth="1.3" opacity=".65" /></>,
+    signin: <><path d="M13 4h5a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-5" /><path d="m10 8 4 4-4 4m4-4H3" /></>,
+    register: <><circle cx="9" cy="8" r="3.2" /><path d="M3 20a6 6 0 0 1 12 0m3-10v7m-3.5-3.5h7" /></>,
+    signout: <><path d="M11 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h5" /><path d="m14 8 4 4-4 4m4-4H9" /></>,
+    arrow: <><path d="M7 17 17 7M8 7h9v9" /></>,
+  };
+  return <svg {...shared}>{glyphs[name] || glyphs.dashboard}</svg>;
+}
+
 export default function Layout({ children, showFooter = true }) {
   const [mobileOpen, setMobileOpen] = useState(false), [searchOpen, setSearchOpen] = useState(false), [scrolled, setScrolled] = useState(false), [signingOut, setSigningOut] = useState(false);
   const location = useLocation(), navigate = useNavigate(), navigationType = useNavigationType();
-  const { logo, siteName, navigation, footer, theme, toggleTheme, isAuthenticated, refreshUser, features, uiMap } = useLayout();
+  const { logo, siteName, footer, theme, toggleTheme, isAuthenticated, refreshUser, uiMap } = useLayout();
   const { t } = useI18n();
-  const { user } = useAuth();
   const isAuthPage = EXCLUDED_PATHS.includes(location.pathname), isNoteDetailPage = location.pathname.startsWith('/notes/read'), isRoomPage = location.pathname.startsWith('/classroom/'), isNoChromePage = NO_CHROME_PATHS.some((path) => location.pathname.startsWith(path)), isNoFooterPage = NO_FOOTER_PATHS.some((path) => location.pathname === path || location.pathname.startsWith(`${path}/`));
   const hideHeader = isAuthPage || isNoteDetailPage || isNoChromePage, hideFooter = isAuthPage || isRoomPage || isNoteDetailPage || isNoChromePage || isNoFooterPage;
   const scrollPositions = useRef(loadScrollMap()), persistTimeout = useRef(null), scrollFrame = useRef(null), routeKey = location.key || 'default';
@@ -73,56 +84,73 @@ export default function Layout({ children, showFooter = true }) {
     return () => cancelAnimationFrame(raf);
   }, [routeKey, navigationType]);
   useEffect(() => { setMobileOpen(false); setSearchOpen(false); }, [location.pathname]);
-
   useEffect(() => {
-    const desktopQuery = window.matchMedia('(min-width: 769px)');
-    const closeMenuOnDesktop = (event) => {
-      if (event.matches) setMobileOpen(false);
-    };
-    closeMenuOnDesktop(desktopQuery);
-    desktopQuery.addEventListener('change', closeMenuOnDesktop);
-    return () => desktopQuery.removeEventListener('change', closeMenuOnDesktop);
-  }, []);
+    if (!mobileOpen) return undefined;
+    const closeOnEscape = (event) => { if (event.key === 'Escape') setMobileOpen(false); };
+    window.addEventListener('keydown', closeOnEscape);
+    return () => window.removeEventListener('keydown', closeOnEscape);
+  }, [mobileOpen]);
+
   const handleSignout = async () => { setSigningOut(true); try { await signout(); await refreshUser(); navigate('/'); } catch { navigate('/'); } finally { setSigningOut(false); } };
-  const blockedHeaderPaths = ['/about', '/blog', '/contact', '/notes', '/quiz', '/flashcards', '/past-papers', '/recall', '/pdfs', '/glossary'];
-  const filteredNavigation = navigation.filter((link) => { if (blockedHeaderPaths.includes(link.href)) return false; if (link.href === '/quiz' && features.quizzes === false) return false; if (link.href === '/flashcards' && features.flashcards === false) return false; if (link.href === '/past-papers' && features.past_papers === false) return false; if (link.href === '/recall' && features.recall === false) return false; if (link.href === '/classroom' && features.classrooms === false) return false; return true; });
-  const loginButton = uiMap.login_button || { label: 'Sign In', variant: 'outline', color: 'primary', icon: 'right-to-bracket' }, signupButton = uiMap.signup_button || { label: 'Sign Up', variant: 'solid', color: 'primary', icon: 'user-plus' }, isDarkTheme = theme === 'dark';
-  const menuLinks = [...filteredNavigation];
-  const addMenuLink = (href, label, icon) => { const existing = menuLinks.find((link) => link.href === href); if (existing) { if (!existing.icon && icon) existing.icon = icon; return; } menuLinks.push({ href, label, icon }); };
-  addMenuLink('/', t('common.home'), 'home');
-  if (features.classrooms !== false) addMenuLink('/classroom', 'Live Room', 'video');
-  addMenuLink('/tutors', t('common.tutorMarketplace'), 'user-graduate');
-  if (isAuthenticated) { addMenuLink('/dashboard', t('common.dashboard'), 'gauge-high'); addMenuLink('/profile', t('common.profile'), 'gear'); } else { addMenuLink('/login', loginButton.label, loginButton.icon); addMenuLink('/register', signupButton.label, signupButton.icon); }
-  const primaryMenuOrder = isAuthenticated ? ['/', '/dashboard', '/profile'] : ['/', '/login', '/register'];
-  menuLinks.sort((a, b) => {
-    const aIndex = primaryMenuOrder.indexOf(a.href);
-    const bIndex = primaryMenuOrder.indexOf(b.href);
-    return (aIndex < 0 ? primaryMenuOrder.length : aIndex) - (bIndex < 0 ? primaryMenuOrder.length : bIndex);
-  });
+  const loginButton = uiMap.login_button || { label: 'Sign In', variant: 'outline', color: 'primary' }, signupButton = uiMap.signup_button || { label: 'Sign Up', variant: 'solid', color: 'primary' }, isDarkTheme = theme === 'dark';
+  const menuLinks = isAuthenticated
+    ? [
+        { href: '/dashboard', label: t('common.dashboard'), icon: 'dashboard' },
+        { href: '/profile', label: t('common.profile'), icon: 'profile' },
+      ]
+    : [
+        { href: '/login', label: loginButton.label, icon: 'signin' },
+        { href: '/register', label: signupButton.label, icon: 'register' },
+      ];
   return <div className="min-h-screen flex flex-col bg-background text-foreground">
     <NetworkStatus />
     {!hideHeader && <header className={`sticky top-0 z-40 w-full border-b border-border bg-white/95 backdrop-blur-xl transition-shadow ${scrolled ? 'shadow-md' : ''}`}><div className="mx-auto flex min-h-[68px] w-full max-w-7xl min-w-0 items-center gap-2 px-3 sm:min-h-[76px] sm:gap-4 sm:px-6 lg:gap-6">
       <Link to="/" className="flex min-w-0 max-w-[min(42vw,13rem)] shrink-0 items-center gap-2 overflow-hidden text-base font-extrabold tracking-tight text-primary-900 no-underline sm:max-w-[14rem] sm:text-lg">{logo ? <img src={logo} alt="" aria-hidden="true" className="block h-9 max-h-9 w-auto max-w-full shrink object-contain sm:h-11 sm:max-h-11" /> : <span className="truncate">{siteName}</span>}</Link>
-      <nav className="hidden min-w-0 flex-1 items-center justify-center gap-1 overflow-hidden xl:flex" aria-label="Primary navigation">{menuLinks.map((link) => <Link key={link.href} to={link.href} className={`inline-flex items-center gap-2 rounded-xl px-3 py-2.5 text-sm font-semibold no-underline transition-colors hover:bg-primary-50 hover:text-primary-700 ${(location.pathname === link.href || (link.href !== '/' && location.pathname.startsWith(`${link.href}/`))) ? 'bg-primary-50 text-primary-800' : 'text-slate-600'}`}>{link.icon && <Icon name={link.icon} />}{link.label}</Link>)}</nav>
       <div className="ml-auto flex min-w-0 shrink-0 items-center justify-end gap-1.5 sm:gap-2">
         {isAuthenticated && <div className="hidden min-w-0 max-w-[12rem] shrink min-[769px]:block"><ClassSwitcher /></div>}
         <button className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border bg-white text-primary-800 transition-colors hover:border-primary-200 hover:bg-primary-50 sm:inline-flex" onClick={() => setSearchOpen(true)} aria-label={t('common.search')} type="button"><SearchGlyph /></button>
         <span className="hidden shrink-0 sm:inline-flex"><NotificationCenter /></span>
         <span className="hidden shrink-0 sm:inline-flex"><BiopharmToggle checked={isDarkTheme} onChange={toggleTheme} ariaLabel={t('common.toggleTheme')} /></span>
-        <button className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border bg-white text-primary-800 transition-colors hover:border-primary-200 hover:bg-primary-50 xl:hidden" onClick={() => setMobileOpen((prev) => !prev)} aria-label={mobileOpen ? t('common.closeMenu') : t('common.menu')} aria-expanded={mobileOpen} type="button"><MenuGlyph isOpen={mobileOpen} /></button>
+        <button className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border bg-white text-primary-800 transition-colors hover:border-primary-200 hover:bg-primary-50" onClick={() => setMobileOpen((prev) => !prev)} aria-label={mobileOpen ? t('common.closeMenu') : t('common.menu')} aria-expanded={mobileOpen} type="button"><MenuGlyph isOpen={mobileOpen} /></button>
       </div>
     </div></header>}
     {!hideHeader && <Suspense fallback={null}>{searchOpen && <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />}</Suspense>}<AdminLauncher />
     {!hideHeader && <>
-      <button className={`fixed inset-0 z-40 bg-slate-950/50 transition-all xl:hidden ${mobileOpen ? "visible opacity-100" : "invisible opacity-0"}`} onClick={() => setMobileOpen(false)} aria-label={t('common.closeMenu')} tabIndex={mobileOpen ? 0 : -1} type="button" />
-      <div className={`fixed inset-y-0 right-0 z-50 flex w-[min(88vw,380px)] flex-col overflow-y-auto bg-white p-6 shadow-2xl transition-transform duration-300 xl:hidden ${mobileOpen ? "visible translate-x-0" : "invisible translate-x-full"}`} aria-hidden={!mobileOpen}>
-        <div className="flex items-center justify-between gap-3 text-lg font-bold text-primary-900"><span className="flex items-center gap-3"><span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-50 text-primary-700"><Icon name="bars" /></span><span>{t('common.menu')}</span></span><button type="button" onClick={() => setMobileOpen(false)} aria-label={t('common.closeMenu')} className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-white text-primary-800 hover:bg-primary-50"><Icon name="xmark" /></button></div>
-        <div className="my-5 h-px bg-border" aria-hidden="true" />
-        <nav className="grid gap-2" aria-label={t('common.menu')}>
-          {menuLinks.map((link) => <Link key={link.href} to={link.href} className={`flex min-h-12 w-full items-center gap-3 rounded-xl px-3 py-2 text-left text-sm font-semibold no-underline transition-colors hover:bg-primary-50 hover:text-primary-800 ${(location.pathname === link.href || (link.href !== '/' && location.pathname.startsWith(`${link.href}/`))) ? 'bg-primary-50 text-primary-800' : 'text-slate-700'}`} onClick={() => setMobileOpen(false)} tabIndex={mobileOpen ? 0 : -1}><span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-primary-700">{link.icon && <Icon name={link.icon} />}</span><span className="min-w-0 flex-1">{link.label}</span></Link>)}
-          {isAuthenticated && <button className="flex min-h-12 w-full items-center gap-3 rounded-xl px-3 py-2 mt-3 border border-red-100 bg-red-50/50 text-left text-sm font-semibold text-red-700 hover:bg-red-50" onClick={handleSignout} disabled={signingOut} type="button" tabIndex={mobileOpen ? 0 : -1}><span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-primary-700"><Icon name="right-from-bracket" /></span><span className="min-w-0 flex-1">{signingOut ? t('common.signingOut') : t('common.signOut')}</span></button>}
+      <button className={`fixed inset-0 z-40 bg-slate-950/35 backdrop-blur-[2px] transition-opacity duration-300 ${mobileOpen ? "visible opacity-100" : "invisible opacity-0"}`} onClick={() => setMobileOpen(false)} aria-label={t('common.closeMenu')} tabIndex={mobileOpen ? 0 : -1} type="button" />
+      <section
+        className={`fixed left-1/2 top-[76px] z-50 w-[min(50vw,640px)] max-w-[calc(100vw-2rem)] max-[640px]:w-[calc(100vw-2rem)] -translate-x-1/2 origin-top rounded-3xl border border-blue-100 bg-white/95 p-5 shadow-[0_24px_70px_-24px_rgba(21,48,75,0.42)] backdrop-blur-xl transition-[opacity,transform,visibility] duration-300 ease-out sm:top-[88px] sm:p-7 ${mobileOpen ? "visible translate-y-0 scale-y-100 opacity-100" : "invisible -translate-y-2 scale-y-75 opacity-0"}`}
+        aria-hidden={!mobileOpen}
+        aria-label={t('common.menu')}
+      >
+        <div className="mb-5 flex items-center justify-between gap-3">
+          <div>
+            <p className="m-0 text-[0.68rem] font-bold uppercase tracking-[0.22em] text-primary-500">{isAuthenticated ? 'Your account' : 'Welcome'}</p>
+            <h2 className="mb-0 mt-1 text-xl font-extrabold tracking-tight text-primary-950 sm:text-2xl">{t('common.menu')}</h2>
+          </div>
+          <button type="button" onClick={() => setMobileOpen(false)} aria-label={t('common.closeMenu')} className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-primary-800 transition hover:border-primary-300 hover:bg-primary-50" tabIndex={mobileOpen ? 0 : -1}>
+            <Icon name="xmark" size="1.2rem" plain />
+          </button>
+        </div>
+        <nav className="grid grid-cols-2 gap-3 sm:gap-4" aria-label={t('common.menu')}>
+          {menuLinks.map((link) => {
+            const active = location.pathname === link.href || location.pathname.startsWith(`${link.href}/`);
+            return <Link key={link.href} to={link.href} onClick={() => setMobileOpen(false)} tabIndex={mobileOpen ? 0 : -1}
+              className={`group flex min-h-28 flex-col items-start justify-between gap-4 rounded-2xl border p-4 text-left no-underline transition duration-200 hover:-translate-y-0.5 hover:shadow-lg sm:min-h-32 sm:p-5 ${active ? 'border-primary-300 bg-primary-50 text-primary-950 shadow-sm' : 'border-slate-200 bg-white text-primary-900 hover:border-primary-200 hover:bg-blue-50/70'}`}>
+              <span className={`flex h-12 w-12 items-center justify-center rounded-2xl shadow-sm transition-colors sm:h-14 sm:w-14 ${active ? 'bg-primary-700 text-white' : 'bg-primary-50 text-primary-700 group-hover:bg-primary-100'}`}>
+                <AccountMenuIcon name={link.icon} size="2rem" />
+              </span>
+              <span className="flex w-full items-center justify-between gap-2 text-sm font-bold sm:text-base">
+                {link.label}
+                <span className="shrink-0 opacity-60 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"><AccountMenuIcon name="arrow" size="1rem" /></span>
+              </span>
+            </Link>;
+          })}
+          {isAuthenticated && <button className="col-span-2 flex min-h-12 items-center justify-center gap-2 rounded-xl border border-red-100 bg-red-50/70 px-4 py-3 text-sm font-bold text-red-700 transition hover:border-red-200 hover:bg-red-100" onClick={handleSignout} disabled={signingOut} type="button" tabIndex={mobileOpen ? 0 : -1}>
+            <AccountMenuIcon name="signout" size="1.2rem" />
+            {signingOut ? t('common.signingOut') : t('common.signOut')}
+          </button>}
         </nav>
-      </div>
+      </section>
     </>}
     <main id="main-content" tabIndex="-1" className={`min-h-[60vh] flex-1 ${location.pathname.startsWith('/profile') ? 'bg-primary-50/30' : ''}`} key={routeKey}>{children}</main>
     {!hideFooter && showFooter && <footer className="relative isolate mt-0 overflow-hidden text-white"><div className="pointer-events-none relative z-0 block h-28 sm:h-32 lg:h-36" aria-hidden="true"><svg className="block h-full w-full" viewBox="0 0 1440 140" preserveAspectRatio="none" focusable="false"><path className="fill-secondary-400" d="M0 34C170 4 330 78 540 45S900 5 1090 34 1320 70 1440 30V140H0Z" /><path className="fill-primary-500" d="M0 57C190 25 390 94 600 67S960 28 1160 58 1350 88 1440 54V140H0Z" /><path className="fill-primary-900" d="M0 81C210 51 410 112 650 87S1010 50 1200 82 1370 108 1440 78V140H0Z" /></svg></div><div className="relative z-10 mx-auto grid w-full max-w-7xl gap-12 bg-primary-900 px-5 pb-12 pt-10 sm:px-8 sm:pt-12 lg:grid-cols-[1fr_1.5fr] lg:pt-14">
