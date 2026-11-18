@@ -4,7 +4,7 @@ import Button from '../../components/Button/Button';
 
 export default function TutorCard({ tutor, onContact, user }) {
   const initials = (tutor.display_name || 'Tutor')
-    .split(/\\s+/)
+    .split(/\s+/)
     .slice(0, 2)
     .map((part) => part[0])
     .join('')
