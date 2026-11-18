@@ -7,7 +7,7 @@ import Icon from '../Icon/Icon';
 function SwitchGlyph() {
   return (
     <svg
-      className="class-switcher-glyph"
+      className="h-5 w-5 shrink-0 text-primary-700"
       viewBox="0 0 24 24"
       aria-hidden="true"
       focusable="false"
@@ -62,54 +62,51 @@ export default function ClassSwitcher({ className = '' }) {
   const isHomeSwitcher = className.split(/\s+/).includes('home-scope-switcher');
 
   return (
-    <div className={`class-switcher ${className}`.trim()}>
+    <div className={`class-switcher relative z-30 w-full min-w-0 max-w-full sm:w-auto sm:max-w-[15rem] ${className}`.trim()}>
       {isHomeSwitcher && <span className="class-switcher-label">{label}</span>}
-      <div className="btn btn-card class-switcher-trigger">
+      <button
+        type="button"
+        className="flex min-h-10 w-full min-w-0 max-w-full items-center gap-2 rounded-xl border border-primary-100 bg-white px-3 py-2 text-left text-sm font-semibold text-primary-900 shadow-sm transition hover:border-primary-300 hover:bg-primary-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 disabled:cursor-wait"
+        onClick={() => setOpen((value) => !value)}
+        disabled={switching}
+        aria-label={open ? 'Close class switcher' : label}
+        aria-haspopup="menu"
+        aria-expanded={open}
+      >
         <SwitchGlyph />
-        <span>{switching ? <>Switching<span className="switching-dots" aria-hidden="true"><i>.</i><i>.</i><i>.</i></span></> : current?.name || 'Select'}</span>
-        <button
-          type="button"
-          className="class-switcher-chevron"
-          onClick={() => setOpen((value) => !value)}
-          disabled={switching}
-          aria-label={open ? 'Close class switcher' : label}
-          aria-haspopup="menu"
-          aria-expanded={open}
-        >
-          <Icon name="chevron-down" />
-        </button>
-      </div>
+        <span className="min-w-0 flex-1 truncate">{switching ? 'Switching…' : current?.name || 'Select'}</span>
+        <Icon name="chevron-down" className={`h-4 w-4 shrink-0 transition-transform ${open ? 'rotate-180' : ''}`} />
+      </button>
 
       {open && (
         <>
-          <div className="dropdown-backdrop" onClick={() => setOpen(false)} />
-          <div className="dropdown-menu class-switcher-menu" role="menu" aria-label={label}>
-            <div className="class-switcher-menu-intro">
-              <span className="class-switcher-menu-eyebrow">CURRENT LEVEL</span>
-              <strong>{level?.display_name || level?.name || 'Your learning level'}</strong>
-              <span className="class-switcher-menu-caption">{isPharmacy ? 'Switch to a programme of your choice.' : 'Switch to a class of your choice.'}</span>
+          <button type="button" className="fixed inset-0 z-40 cursor-default bg-slate-950/10" onClick={() => setOpen(false)} aria-label="Close class switcher menu" />
+          <div className="absolute right-0 top-[calc(100%+0.5rem)] z-50 max-h-[min(70vh,28rem)] w-[min(19rem,calc(100vw-2rem))] overflow-y-auto rounded-2xl border border-slate-200 bg-white p-2 shadow-2xl" role="menu" aria-label={label}>
+            <div className="rounded-xl bg-primary-50 p-3">
+              <span className="block text-[10px] font-extrabold tracking-[0.14em] text-primary-600">CURRENT LEVEL</span>
+              <strong className="mt-1 block break-words text-sm text-primary-950">{level?.display_name || level?.name || 'Your learning level'}</strong>
+              <span className="mt-1 block text-xs leading-5 text-slate-600">{isPharmacy ? 'Switch to a programme of your choice.' : 'Switch to a class of your choice.'}</span>
             </div>
-            <div className="dropdown-divider" />
 
             {switchGroups.map((group) => (
               <button
                 key={group.id}
                 type="button"
-                className={`dropdown-item class-switcher-option${group.id === activeGroupId ? ' is-active' : ''}`}
+                className={`flex min-h-11 w-full items-center justify-between gap-3 rounded-lg px-3 py-2 text-left text-sm font-semibold transition hover:bg-primary-50 ${group.id === activeGroupId ? 'bg-primary-50 text-primary-900' : 'text-slate-700'}`}
                 onClick={() => handleSelect(group.id)}
                 role="menuitem"
                 aria-current={group.id === activeGroupId ? 'true' : undefined}
               >
                 <span>{group.name}</span>
-                {group.id === activeGroupId && <Icon name="circle" />}
+                {group.id === activeGroupId && <Icon name="check" className="h-4 w-4 shrink-0 text-primary-700" />}
               </button>
             ))}
-            <div className="dropdown-divider" />
-            <div className="class-switcher-approval-note">
+            <div className="my-2 border-t border-slate-100" />
+            <div className="flex items-start gap-2 rounded-xl bg-amber-50 p-3 text-xs text-amber-950">
               <span className="class-switcher-approval-mark" aria-hidden="true">
                 <svg viewBox="0 0 24 24" focusable="false"><path d="M12 3.5 19 6v5.3c0 4.2-2.8 7.4-7 9.2-4.2-1.8-7-5-7-9.2V6l7-2.5Z" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg>
               </span>
-              <span><strong>Changing learning level?</strong><small>Level changes require admin approval.</small><a href="/profile" onClick={() => setOpen(false)}>Request a level change</a></span>
+              <span className="min-w-0"><strong className="block">Changing learning level?</strong><small className="mt-1 block text-amber-900">Level changes require admin approval.</small><a className="mt-1 inline-block font-bold text-primary-700 underline" href="/profile" onClick={() => setOpen(false)}>Request a level change</a></span>
             </div>
           </div>
         </>
