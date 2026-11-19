@@ -72,7 +72,7 @@ const ICON_DATA = {
   'hand-holding-heart': { badge: 'none', bg: '', r: 0, bgPath: "", glyph: '<path d="M3 14h5l2 2h4a2 2 0 0 0 2h-6l-3-2H3zM8 13l3 2h4a2 2 0 0 1 0 3H9l-4-3" stroke="var(--white)" stroke-width="1.5" fill="none" stroke-linejoin="round"/><path d="M16 3c-1.5 0-2.5 1-2.5 2.4C13.5 7 16 9 16 9s2.5-2 2.5-3.6C18.5 4 17.5 3 16 3z" fill="var(--white)"/>' },
   'headset': { badge: 'none', bg: '', r: 0, bgPath: "", glyph: '<path d="M4 13v-1a8 8 0 0 1 16 0v1M4 13h3v6H5a2 2 0 0 1-2-2v-2a2 2 0 0 1 1-2zm16 0h-3v6h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-1-2zM17 19a5 5 0 0 1-5 3h-2" stroke="var(--white)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>' },
   'heart': { badge: 'none', bg: '', r: 0, bgPath: "", glyph: '<path d="M12 21S3 15.4 3 9.3C3 5.3 7.8 3.3 12 7c4.2-3.7 9-1.7 9 2.3 0 6.1-9 11.7-9 11.7z" fill="var(--white)"/>' },
-  'home': { badge: 'none', bg: '', r: 0, bgPath: "", glyph: "<path d=\"M12 3l9 8h-2.5v9h-4.5v-6h-4v6h-4.5v-9H3l9-8z\" fill=\"var(--primary)\"/>" },
+  'home': { badge: 'rect', bg: 'var(--primary)', r: 5, bgPath: "", glyph: "<path d=\"M12 4.2 19.5 11h-2v8h-4v-5h-3v5h-4v-8h-2z\" fill=\"var(--white)\"/>" },
   'id-card': { badge: 'none', bg: '', r: 0, bgPath: "", glyph: '<rect x="3" y="4" width="18" height="16" rx="2" stroke="var(--white)" stroke-width="1.6" fill="none"/><circle cx="8" cy="10" r="2" fill="var(--white)"/><path d="M5.5 15a2.5 2.5 0 0 1 5 0M13 9h5M13 12h5M13 15h4" stroke="var(--white)" stroke-width="1.4" stroke-linecap="round" fill="none"/>' },
   'image': { badge: 'rect', bg: 'var(--secondary)', r: 4, bgPath: "", glyph: "<rect x=\"5\" y=\"6\" width=\"14\" height=\"12\" rx=\"1.5\" stroke=\"var(--white)\" stroke-width=\"1.6\" fill=\"none\"/><circle cx=\"9\" cy=\"10.5\" r=\"1.3\" fill=\"var(--white)\"/><path d=\"M6 17l4.5-4.5 3 3 2.5-2.5 4 4\" stroke=\"var(--white)\" stroke-width=\"1.5\" fill=\"none\" stroke-linejoin=\"round\"/>" },
   'instagram': { badge: 'rect', bg: 'var(--secondary)', r: 7, bgPath: "", glyph: "<rect x=\"6\" y=\"6\" width=\"12\" height=\"12\" rx=\"4\" stroke=\"var(--white)\" stroke-width=\"1.6\" fill=\"none\"/><circle cx=\"12\" cy=\"12\" r=\"3\" stroke=\"var(--white)\" stroke-width=\"1.6\" fill=\"none\"/><circle cx=\"16.2\" cy=\"7.8\" r=\"1\" fill=\"var(--white)\"/>" },
@@ -203,7 +203,7 @@ const Icon = memo(function Icon({
   const entry = ICON_DATA[name] || ICON_DATA['circle-info'];
 
   const { badge, bg, r, bgPath, glyph } = entry;
-  const renderedGlyph = monochrome ? glyph.replace(/var\(--[^)]+\)/g, 'currentColor') : glyph;
+  // Unbadged glyphs inherit their surrounding text color; this prevents white-only icons disappearing on white surfaces.\n  const safeGlyph = badge === 'none' ? glyph.replace(/var\(--white\)/g, 'currentColor') : glyph;\n  const renderedGlyph = monochrome ? safeGlyph.replace(/var\(--[^)]+\)/g, 'currentColor') : safeGlyph;
 
   let bgMarkup = '';
 
