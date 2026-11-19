@@ -56,7 +56,18 @@ function ContinueLearningRail({ items, navigate }) {
   );
 }
 
-function CurriculumNodeList({ nodes, parentId = null, isPharmacy = false }) {
+function curriculumNodeLabel(node, isPharmacy) {
+  const type = String(node?.node_type || '').toLowerCase();
+  if (type === 'unit') return isPharmacy ? 'Course Unit' : 'Topic';
+  if (type === 'sub_course_unit' && isPharmacy) return 'Sub-course Unit';
+  if (type === 'topic') return 'Topic';
+  if (type === 'subtopic') return 'Subtopic';
+  if (type === 'theme') return 'Theme';
+  if (type === 'lesson') return 'Lesson';
+  return 'Learning area';
+}
+
+function CurriculumNodeList({ nodes, parentId = null, isPharmacy = false, onSelect }) {
   const children = nodes
     .filter((node) => (node.parent_id || null) === parentId)
     .sort((a, b) => (a.display_order ?? 0) - (b.display_order ?? 0) || a.name.localeCompare(b.name));
@@ -64,39 +75,34 @@ function CurriculumNodeList({ nodes, parentId = null, isPharmacy = false }) {
   if (!children.length) return null;
 
   return (
-    <div className={`mx-auto flex max-w-7xl flex-col gap-3 ${parentId ? 'ml-4 border-l-2 border-primary-100 pl-4 sm:ml-7' : ''}`} aria-label="Available curriculum topics">
+    <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3" aria-label="Curriculum items at this level">
       {children.map((node) => {
+        const childNodes = nodes.filter((item) => item.parent_id === node.id);
+        const label = curriculumNodeLabel(node, isPharmacy);
         const nodeSlug = node.slug || String(node.name || '')
           .trim()
           .toLowerCase()
           .replace(/[^a-z0-9]+/g, '-')
           .replace(/^-+|-+$/g, '');
-        const nodeType = String(node.node_type || '').toLowerCase();
-        const label = nodeType === 'unit'
-          ? (isPharmacy ? 'Course Unit' : 'Topic')
-          : nodeType === 'sub_course_unit' && isPharmacy
-            ? 'Sub-course Unit'
-            : nodeType === 'topic'
-              ? 'Topic'
-              : nodeType === 'subtopic'
-                ? 'Subtopic'
-                : nodeType === 'theme'
-                  ? 'Theme'
-                  : nodeType === 'lesson'
-                    ? 'Lesson'
-                    : 'Learning area';
-
+        const href = `/curriculum/${node.group_id}/${nodeSlug}`;
         return (
-          <article key={node.id} className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:flex-row sm:items-center">
-            <span className="hidden h-3 w-3 shrink-0 rounded-full bg-secondary-500 sm:block" aria-hidden="true" />
-            <span className="min-w-0 flex-1">
-              <strong className="block font-bold text-primary-900">{node.name}</strong>
-              <small className="mt-1 block text-xs font-semibold uppercase tracking-wide text-slate-500">{label}</small>
-            </span>
-            <Link to={`/curriculum/${node.group_id}/${nodeSlug}`} className="inline-flex min-h-10 items-center gap-2 self-start rounded-lg bg-primary-50 px-4 py-2 text-sm font-bold text-primary-700 transition hover:bg-primary-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 sm:self-auto">
-              Open {label.toLowerCase()} <Icon name="chevron-right" />
-            </Link>
-            <CurriculumNodeList nodes={nodes} parentId={node.id} isPharmacy={isPharmacy} />
+          <article key={node.id} className="flex min-w-0 flex-col rounded-2xl border border-secondary-100 bg-white p-4 shadow-sm transition duration-200 hover:border-primary-200 hover:shadow-md sm:p-5">
+            <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-primary-50 text-primary-700" aria-hidden="true">
+              <Icon name={node.icon || 'book-open'} className="h-5 w-5" />
+            </div>
+            <h3 className="text-base font-bold leading-6 text-primary-900 sm:text-lg">{node.name}</h3>
+            <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500">{label}</p>
+            <div className="mt-auto pt-5">
+              {childNodes.length > 0 ? (
+                <button type="button" onClick={() => onSelect(node)} className="inline-flex min-h-11 w-full items-center justify-between gap-3 rounded-xl bg-primary-50 px-4 py-2.5 text-sm font-semibold text-primary-800 transition hover:bg-primary-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500">
+                  <span>Explore {label.toLowerCase()}</span><Icon name="arrow-right" className="h-4 w-4 shrink-0" />
+                </button>
+              ) : (
+                <Link to={href} className="inline-flex min-h-11 w-full items-center justify-between gap-3 rounded-xl bg-primary-700 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500">
+                  <span>Open {label.toLowerCase()}</span><Icon name="arrow-right" className="h-4 w-4 shrink-0" />
+                </Link>
+              )}
+            </div>
           </article>
         );
       })}
@@ -105,29 +111,45 @@ function CurriculumNodeList({ nodes, parentId = null, isPharmacy = false }) {
 }
 
 function CurriculumSnapshot({ nodes, activeLevelName, activeGroupName, sections }) {
+  const [currentParent, setCurrentParent] = useState(null);
   if (!nodes?.length) return null;
   const isPharmacy = /pharmacy/i.test(`${activeLevelName || ''} ${activeGroupName || ''}`);
   const firstStepLabel = isPharmacy ? 'course unit' : 'topic';
   const configuredDescription = sections?.section_headings?.curriculum_subtitle;
   const description = isPharmacy
-    ? 'Choose a course unit, then move through its sub-course units, themes and lessons. Your curriculum is matched to your selected programme.'
+    ? 'Choose a course unit to explore its next step. Open one level at a time, then continue into themes and lessons.'
     : configuredDescription && !/sub?[- ]?course unit|course unit/i.test(configuredDescription)
       ? configuredDescription
-      : 'Choose a Biology topic, then explore its subtopics, themes and lessons for your selected class.';
+      : 'Choose a Biology topic and explore one level at a time, from subtopics to themes and lessons.';
+  const selectedNode = currentParent ? nodes.find((node) => node.id === currentParent) : null;
+  const visibleParentId = selectedNode?.id || null;
+  const levelLabel = selectedNode ? curriculumNodeLabel(selectedNode, isPharmacy) : (isPharmacy ? 'Course Units' : 'Topics');
+  const breadcrumbs = [];
+  let cursor = selectedNode;
+  while (cursor) {
+    breadcrumbs.unshift(cursor);
+    cursor = nodes.find((node) => node.id === cursor.parent_id) || null;
+  }
 
   return (
-    <section className="w-full bg-secondary-50 px-5 py-16 sm:px-8 lg:px-12" aria-labelledby="home-curriculum-heading">
-      <div className="mx-auto mb-7 flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+    <section className="w-full bg-secondary-50 px-5 py-12 sm:px-8 sm:py-16 lg:px-12" aria-labelledby="home-curriculum-heading">
+      <div className="mx-auto mb-6 flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div className="min-w-0">
           <span className="eyebrow">{activeLevelName}{activeGroupName ? ` · ${activeGroupName}` : ''}</span>
-          <h2 id="home-curriculum-heading" className="home-curriculum-heading">
-            Choose a {firstStepLabel}
-          </h2>
-          <p className="section-description home-curriculum-description">{description}</p>
+          <h2 id="home-curriculum-heading" className="home-curriculum-heading mt-2">{selectedNode ? selectedNode.name : `Choose a ${firstStepLabel}`}</h2>
+          <p className="section-description home-curriculum-description mt-2">{description}</p>
         </div>
       </div>
-      <div className="mx-auto max-w-7xl rounded-2xl border border-secondary-100 bg-white p-4 shadow-sm sm:p-6" aria-label="Your curriculum">
-        <CurriculumNodeList nodes={nodes} isPharmacy={isPharmacy} />
+      <div className="mx-auto max-w-7xl rounded-2xl border border-secondary-100 bg-white p-4 shadow-sm sm:p-6">
+        <div className="mb-5 flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
+          <nav className="flex min-w-0 flex-wrap items-center gap-1.5 text-sm text-slate-500" aria-label="Curriculum navigation">
+            <button type="button" onClick={() => setCurrentParent(null)} className="rounded-md px-2 py-1 font-semibold text-primary-700 hover:bg-primary-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-500">{isPharmacy ? 'Course Units' : 'Topics'}</button>
+            {breadcrumbs.map((item) => <span key={item.id} className="inline-flex items-center gap-1.5"><Icon name="chevron-right" className="h-3 w-3" aria-hidden="true" /><span className="font-medium text-slate-700">{item.name}</span></span>)}
+          </nav>
+          {selectedNode && <button type="button" onClick={() => setCurrentParent(selectedNode.parent_id || null)} className="inline-flex min-h-10 items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"><Icon name="arrow-left" className="h-4 w-4" />Back</button>}
+        </div>
+        <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-slate-500">{levelLabel}</p>
+        <CurriculumNodeList nodes={nodes} parentId={visibleParentId} isPharmacy={isPharmacy} onSelect={setCurrentParent} />
       </div>
     </section>
   );
