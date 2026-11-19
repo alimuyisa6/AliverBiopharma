@@ -233,3 +233,233 @@ header nav { min-width: 0; }
 @media (max-width: 639px) {
   .home-scope-switcher { width: 100%; }
 }
+
+/* Sitewide visual quality pass: consistent contrast, spacious sections, visible icons and actionable controls. */
+@layer components {
+  .dashboard-wrapper, .profile-page, .donate-page, .blog-page,
+  main:not(#main-content) { min-width: 0; }
+  .dashboard-wrapper { @apply mx-auto w-full max-w-7xl px-4 py-7 sm:px-6 sm:py-10 lg:px-8; }
+  .dashboard-content { @apply space-y-7; }
+  .dashboard-header, .dashboard-welcome-card { @apply rounded-3xl border border-primary-100 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 p-5 text-white shadow-xl sm:p-8; }
+  .dashboard-header h1, .dashboard-welcome-card h1, .dashboard-welcome-card h2 { @apply text-white; }
+  .dashboard-header p, .dashboard-welcome-card p, .dashboard-welcome-guidance { @apply text-blue-100; }
+  .dashboard-card { @apply overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-md; }
+  .dashboard-card-primary { @apply border-primary-100 bg-primary-50/80; }
+  .dashboard-card-secondary { @apply bg-white; }
+  .dashboard-card .panel-header { @apply flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 px-4 py-4 sm:px-6; }
+  .dashboard-card .panel-body { @apply space-y-4 p-4 sm:p-6; }
+  .dashboard-card .panel-title { @apply mb-0 text-xl font-bold text-primary-900 sm:text-2xl; }
+  .dashboard-section-intro { @apply max-w-3xl text-sm text-slate-600 sm:text-base; }
+  .dashboard-section-aside { @apply rounded-xl border-l-4 border-secondary-500 bg-secondary-50 px-4 py-3 text-sm text-secondary-900; }
+  .dashboard-section-aside p { @apply mt-1 text-secondary-800; }
+  .dashboard-section-link { @apply inline-flex min-h-10 items-center justify-center gap-2 rounded-xl border border-primary-200 bg-white px-4 py-2 text-sm font-bold text-primary-800 no-underline transition hover:border-primary-400 hover:bg-primary-50 hover:text-primary-900; }
+  .dashboard-curriculum-grid { @apply grid gap-4 sm:grid-cols-2 xl:grid-cols-3; }
+  .dashboard-curriculum-card { @apply flex min-w-0 flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 text-primary-900 no-underline shadow-sm transition hover:-translate-y-0.5 hover:border-primary-300 hover:shadow-lg sm:p-5; }
+  .dashboard-curriculum-card-title { @apply break-words text-lg font-bold text-primary-900; }
+  .dashboard-curriculum-card-detail { @apply text-sm leading-6 text-slate-600; }
+  .dashboard-card svg, .dashboard-card .icon { @apply inline-block shrink-0; }
+  .dashboard-card button, .dashboard-card a, .dashboard-wrapper button:not([aria-label]), .dashboard-wrapper .btn { @apply font-semibold; }
+  .dashboard-card button:not(.chart-control), .dashboard-card .dashboard-section-link { @apply min-h-10; }
+  .dashboard-card .sidebar-item, .dashboard-card .activity-item, .dashboard-card .unit-xp-item { @apply rounded-xl border border-slate-100 bg-white px-3 py-3; }
+  .dashboard-card .sidebar-list { @apply grid gap-2; }
+  .dashboard-card .item-text, .dashboard-card .activity-copy, .dashboard-card .unit-name { @apply min-w-0 text-slate-700; }
+  .dashboard-card .item-meta { @apply font-bold text-primary-800; }
+  .dashboard-insight-chart, .dashboard-graph-guide { @apply rounded-xl bg-white p-3 sm:p-4; }
+
+  .profile-page { @apply min-h-screen bg-gradient-to-b from-primary-50 via-slate-50 to-white py-5 sm:py-8; }
+  .profile-page .container, .profile-page [class*="container"] { @apply min-w-0; }
+  .profile-overview-panel { @apply overflow-hidden rounded-3xl border border-primary-100 bg-white shadow-lg; }
+  .profile-overview-heading { @apply flex flex-wrap items-center gap-4 bg-gradient-to-r from-primary-900 to-primary-700 p-5 text-white sm:p-7; }
+  .profile-overview-heading h2 { @apply mb-1 text-white; }
+  .profile-overview-heading p { @apply text-blue-100; }
+  .profile-overview-icon { @apply flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/15 text-white; }
+  .profile-overview-icon svg { @apply h-9 w-9; }
+  .profile-overview-summary { @apply grid gap-5 p-4 sm:p-6 lg:grid-cols-2; }
+  .profile-summary-identity { @apply flex min-w-0 items-center gap-4; }
+  .profile-summary-name h3 { @apply break-words text-xl font-bold text-primary-900; }
+  .profile-summary-name p { @apply flex items-center gap-2 text-sm text-slate-600; }
+  .profile-summary-status { @apply inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-800; }
+  .profile-summary-details { @apply grid gap-3; }
+  .profile-summary-detail { @apply flex min-w-0 flex-wrap items-center gap-2 rounded-xl border border-slate-100 bg-slate-50 p-3; }
+  .profile-summary-detail strong { @apply break-all text-sm text-slate-800; }
+  .profile-categories { @apply border-t border-slate-100 p-4 sm:p-6; }
+  .profile-categories-heading { @apply mb-5 flex items-center gap-3; }
+  .profile-categories-heading span { @apply h-px flex-1 bg-slate-200; }
+  .profile-categories-heading h2 { @apply mb-0 text-lg font-bold sm:text-xl; }
+  .profile-category-grid { @apply grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5; }
+  .profile-category-card { @apply flex min-h-32 flex-col items-center justify-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 text-center text-sm font-bold text-primary-900 shadow-sm transition hover:-translate-y-0.5 hover:border-primary-300 hover:bg-primary-50 hover:shadow-md sm:min-h-36; }
+  .profile-category-icon { @apply flex h-12 w-12 items-center justify-center rounded-xl bg-secondary-50 text-secondary-700; }
+  .profile-category-icon svg { @apply h-9 w-9; }
+  .profile-category-icon-primary { @apply bg-primary-50 text-primary-700; }
+  .profile-tabs { @apply my-5 rounded-2xl border border-slate-200 bg-white p-2 shadow-sm; }
+  .profile-tabs-wrap { @apply flex flex-wrap gap-1; }
+  .profile-tab-label { @apply inline-flex min-h-10 items-center justify-center rounded-xl px-3 py-2 text-sm font-semibold text-slate-600 transition hover:bg-primary-50 hover:text-primary-800; }
+  .profile-tab-radio:checked + .profile-tab-label { @apply bg-primary-800 text-white shadow-sm; }
+  .profile-layout { @apply grid min-w-0 gap-5; }
+  .profile-content { @apply min-w-0 space-y-5; }
+  .profile-card, .profile-card-main { @apply overflow-hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6; }
+  .profile-detail-title { @apply flex items-center gap-3 text-xl font-bold text-primary-900; }
+  .profile-detail-description, .profile-text-muted { @apply text-slate-600; }
+  .profile-page .form-group, .profile-page label { @apply min-w-0; }
+  .profile-page button, .profile-page .btn { @apply min-h-10; }
+  .profile-page .profile-preference-grid { @apply grid gap-4 sm:grid-cols-2; }
+  .profile-page .notification-row { @apply flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white p-4; }
+  .profile-page .divider { @apply border-slate-200; }
+
+  .donate-page { @apply min-h-screen bg-gradient-to-b from-orange-50 via-slate-50 to-primary-50 pb-10; }
+  .donate-hero { @apply relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary-800 to-secondary-700 px-5 py-14 text-white sm:py-20; }
+  .donate-hero-overlay { @apply absolute inset-0 bg-gradient-to-br from-primary-900/30 via-transparent to-secondary-900/30; }
+  .donate-hero-content { @apply relative mx-auto max-w-4xl space-y-4 text-center; }
+  .donate-hero-content .eyebrow { @apply inline-flex rounded-full border border-white/25 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-orange-100; }
+  .donate-hero-content h1 { @apply text-balance text-white; }
+  .donate-hero-content p { @apply mx-auto max-w-2xl text-base text-blue-100 sm:text-lg; }
+  .donate-content { @apply mx-auto grid w-full max-w-5xl gap-5 px-4 pt-7 sm:px-6 sm:pt-10; }
+  .donate-goal, .donate-card { @apply rounded-2xl border border-slate-200 bg-white p-4 shadow-md sm:p-6; }
+  .donate-goal { @apply border-primary-100 bg-primary-50/90; }
+  .donate-goal-label { @apply flex flex-wrap items-center justify-between gap-3 font-semibold text-primary-900; }
+  .donate-goal-track { @apply my-3 h-4 overflow-hidden rounded-full bg-slate-200; }
+  .donate-goal-fill { @apply h-full rounded-full bg-gradient-to-r from-primary-600 to-secondary-500 transition-[width] duration-700; }
+  .donate-tabs { @apply grid grid-cols-2 gap-2 rounded-2xl border border-slate-200 bg-white p-2 shadow-sm; }
+  .donate-tab { @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-transparent px-3 py-3 text-sm font-bold text-slate-600 transition hover:bg-primary-50 hover:text-primary-800; }
+  .donate-tab.is-active { @apply border-primary-200 bg-primary-800 text-white shadow-md; }
+  .donate-tab svg { @apply h-5 w-5 shrink-0; }
+  .donate-card-heading { @apply mb-4 flex flex-wrap items-center gap-3 border-b border-slate-100 pb-4; }
+  .donate-card-heading > svg { @apply h-8 w-8 rounded-xl bg-primary-50 p-1.5 text-primary-700; }
+  .donate-card-heading h2 { @apply mb-0 text-xl font-bold sm:text-2xl; }
+  .donate-muted { @apply text-slate-600; }
+  .donate-momo-grid { @apply grid gap-4 sm:grid-cols-2; }
+  .donate-momo-card { @apply flex min-w-0 flex-col items-center gap-3 rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-5 text-center shadow-sm; }
+  .donate-momo-card strong { @apply break-all text-lg font-extrabold text-primary-900; }
+  .donate-momo-card span { @apply text-sm text-slate-600; }
+  .donate-copy, .donate-external-button, .donate-submit { @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-primary-700 bg-primary-800 px-4 py-2.5 font-bold text-white no-underline shadow-sm transition hover:bg-primary-900 hover:shadow-md; }
+  .donate-copy svg, .donate-submit svg { @apply h-5 w-5; }
+  .donate-form { @apply mt-5 space-y-4 rounded-2xl bg-primary-50/70 p-4 sm:p-5; }
+  .donate-form-grid { @apply grid gap-4 sm:grid-cols-2; }
+  .donate-form-grid label { @apply grid min-w-0 gap-2 text-sm font-bold text-slate-700; }
+  .donate-form-grid label:last-child { @apply sm:col-span-2; }
+  .donate-status { @apply rounded-xl border px-4 py-3 text-sm font-semibold; }
+  .donate-status-error { @apply border-red-200 bg-red-50 text-red-800; }
+  .donate-status-success { @apply border-emerald-200 bg-emerald-50 text-emerald-800; }
+  .donor-row { @apply flex flex-wrap items-center gap-3 border-b border-slate-100 py-3; }
+  .donor-avatar { @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary-100 font-bold text-primary-800; }
+  .donor-info { @apply min-w-0 flex-1; }
+  .donor-info strong { @apply block break-words text-slate-800; }
+  .donor-info small { @apply text-slate-500; }
+  .donor-amount { @apply shrink-0 text-sm font-bold text-emerald-700; }
+  .donate-return { @apply flex justify-center pt-2; }
+
+  .blog-page { @apply bg-gradient-to-b from-primary-50/70 via-white to-slate-50; }
+  .blog-page .blog-topic-area { @apply rounded-2xl border border-primary-100 bg-primary-50/80 p-4 sm:p-6; }
+  .blog-page .blog-topic-buttons { @apply flex flex-wrap gap-2; }
+  .blog-page .blog-topic-button { @apply inline-flex min-h-10 items-center justify-center rounded-full border border-primary-200 bg-white px-4 py-2 text-sm font-bold text-primary-800 transition hover:border-primary-400 hover:bg-primary-100; }
+  .blog-page .blog-explore-button { @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-primary-700 bg-primary-800 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-primary-900 hover:shadow-md; }
+  .blog-page .blog-article-header { @apply rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6; }
+  .blog-page .blog-article-body { @apply min-w-0; }
+  .blog-page .blog-featured-image { @apply w-full rounded-2xl object-cover; }
+  .blog-page .blog-latest { @apply rounded-3xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6; }
+  .blog-page .blog-posts-grid { @apply grid gap-4 sm:grid-cols-2 lg:grid-cols-3; }
+  .blog-page .blog-post-card { @apply flex min-w-0 flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-primary-200 hover:shadow-lg; }
+  .blog-page .blog-post-image { @apply aspect-[16/9] w-full object-cover; }
+  .blog-page .blog-post-content { @apply flex flex-1 flex-col gap-3 p-4; }
+  .blog-page .blog-post-title { @apply break-words text-lg font-bold text-primary-900; }
+  .blog-page .blog-post-excerpt { @apply text-sm leading-6 text-slate-600; }
+  .blog-page .blog-read-more { @apply mt-auto inline-flex min-h-10 items-center gap-2 font-bold text-primary-700 no-underline hover:text-primary-900 hover:underline; }
+  .blog-page .blog-share-link { @apply inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-primary-50 font-bold text-primary-800 transition hover:border-primary-300 hover:bg-primary-100; }
+}
+
+/* Keep action text and iconography legible on all legacy and Tailwind pages. */
+:where(.dashboard-wrapper, .profile-page, .donate-page, .blog-page) button,
+:where(.dashboard-wrapper, .profile-page, .donate-page, .blog-page) [role="button"] { min-height: 2.5rem; }
+:where(.dashboard-wrapper, .profile-page, .donate-page, .blog-page) svg { flex-shrink: 0; vertical-align: middle; }
+:where(.dashboard-wrapper, .profile-page, .donate-page, .blog-page) button svg { width: 1.15em; height: 1.15em; }
+:where(.dashboard-wrapper, .profile-page, .donate-page, .blog-page) button:focus-visible,
+:where(.dashboard-wrapper, .profile-page, .donate-page, .blog-page) a:focus-visible { outline: 3px solid #75a8d5; outline-offset: 3px; }
+
+@layer components {
+  .app-layout, .main-content, #main-content { @apply min-w-0; }
+  .main-content > .section, .main-content > section, .main-content > [class*="page"] { @apply min-w-0; }
+  .section { @apply mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-9 lg:px-8; }
+  .card { @apply rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6; }
+  .btn { @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold leading-tight no-underline transition duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400 disabled:cursor-not-allowed disabled:opacity-60; }
+  .btn-primary { @apply border border-primary-700 bg-primary-800 text-white shadow-sm hover:bg-primary-900 hover:shadow-md; }
+  .btn-secondary { @apply border border-slate-300 bg-white text-primary-800 hover:border-primary-300 hover:bg-primary-50; }
+  .btn-danger { @apply border border-red-700 bg-red-700 text-white hover:bg-red-800; }
+  .btn-outline { @apply border border-primary-300 bg-white text-primary-800 hover:bg-primary-50; }
+  .btn svg, .btn .icon { @apply h-5 w-5 shrink-0; }
+  .main-content :is(button, a.btn, [role="button"]) { @apply transition-colors; }
+  .main-content :is(button, a.btn):not([class*="text-"]) { @apply text-primary-800; }
+  .main-content :is(button, a.btn)[class*="bg-primary-"] { @apply text-white; }
+  .main-content :is(button, a.btn)[class*="bg-red-"] { @apply text-white; }
+  .main-content :is(button, a.btn)[class*="bg-emerald-"] { @apply text-emerald-900; }
+  .main-content :is(button, a.btn) svg { @apply inline-block h-5 w-5 shrink-0; }
+  .main-content :is(button, a.btn) > span { @apply min-w-0; }
+  .main-content input:not([type="checkbox"]):not([type="radio"]), .main-content textarea, .main-content select { @apply rounded-xl border border-slate-300 bg-white text-slate-800; }
+  .main-content input::placeholder, .main-content textarea::placeholder { @apply text-slate-400; }
+  .main-content :is(section, article) > h2 { @apply mb-4; }
+}
+
+@media (max-width: 640px) {
+  .dashboard-wrapper { @apply px-3 py-4; }
+  .dashboard-card .panel-header, .dashboard-card .panel-body { @apply px-3; }
+  .profile-page .profile-category-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .donate-content { @apply px-3; }
+  .donate-hero-content h1 { @apply text-3xl leading-tight; }
+  .blog-page .blog-posts-grid { @apply grid-cols-1; }
+}
+
+/* Additional coverage requested: Contact page and the AI Tutor widget. */
+@layer components {
+  .contact-page { @apply min-w-0; }
+  .contact-hero h1 { @apply text-3xl font-extrabold leading-tight sm:text-5xl lg:text-6xl; }
+  .contact-section { @apply min-w-0; }
+  .contact-form-card { @apply grid min-w-0 gap-4 rounded-3xl border border-slate-200 bg-white p-4 shadow-lg sm:gap-5 sm:p-7; }
+  .contact-form-card label { @apply font-semibold text-slate-700; }
+  .contact-form-card input, .contact-form-card textarea { @apply min-h-12 rounded-xl border border-slate-300 bg-white text-slate-800; }
+  .contact-form-card input::placeholder, .contact-form-card textarea::placeholder { @apply text-slate-400; }
+  .contact-form-card button[type="submit"] { @apply inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary-800 px-5 py-3 font-bold text-white shadow-sm transition hover:bg-primary-900 sm:w-fit; }
+  .contact-form-card .form-status { @apply rounded-xl border px-4 py-3 text-sm font-semibold; }
+  .contact-form-card .form-status.success { @apply border-emerald-200 bg-emerald-50 text-emerald-800; }
+  .contact-form-card .form-status.error { @apply border-red-200 bg-red-50 text-red-800; }
+
+  .ai-assistant { @apply fixed right-4 z-[60] flex flex-col items-end gap-3 sm:right-6; bottom: calc(1rem + var(--ai-assistant-footer-offset, 0px)); }
+  .ai-assistant-toggle { @apply inline-flex min-h-12 items-center gap-2 rounded-full border border-primary-600 bg-gradient-to-r from-primary-800 to-primary-700 px-4 py-3 text-sm font-extrabold text-white shadow-xl shadow-primary-900/20 transition hover:-translate-y-0.5 hover:from-primary-900 hover:to-primary-800; }
+  .ai-assistant-toggle .ai-assistant-mascot { @apply inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/15 text-white; }
+  .ai-assistant-toggle .ai-assistant-mascot svg { @apply h-5 w-5; }
+  .ai-assistant-panel { @apply flex min-w-0 flex-col overflow-hidden rounded-3xl border border-primary-100 bg-white shadow-2xl shadow-slate-900/20; width: min(92vw, 430px); height: min(76vh, 680px); }
+  .ai-assistant-header { @apply flex items-center justify-between gap-3 bg-gradient-to-r from-primary-900 to-primary-700 p-4 text-white; }
+  .ai-assistant-heading { @apply flex min-w-0 items-center gap-3; }
+  .ai-assistant-avatar { @apply flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white/15 text-white; }
+  .ai-assistant-avatar svg { @apply h-6 w-6; }
+  .ai-assistant-header h2 { @apply mb-1 text-lg font-extrabold text-white; }
+  .ai-assistant-header p { @apply m-0 text-xs text-blue-100; }
+  .ai-assistant-close { @apply inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white hover:bg-white/20; }
+  .ai-assistant-modes { @apply grid grid-cols-4 gap-1 border-b border-slate-200 bg-slate-50 p-2; }
+  .ai-assistant-mode { @apply inline-flex min-h-10 min-w-0 items-center justify-center gap-1 rounded-xl px-2 text-xs font-bold text-slate-600 transition hover:bg-white hover:text-primary-800; }
+  .ai-assistant-mode svg { @apply h-4 w-4 shrink-0; }
+  .ai-assistant-mode.is-active { @apply bg-primary-800 text-white shadow-sm; }
+  .ai-assistant-mode:disabled { @apply opacity-50; }
+  .ai-assistant-body { @apply flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto bg-gradient-to-b from-primary-50/60 to-white p-3 sm:p-4; }
+  .ai-assistant-live-chat { @apply flex w-full items-center gap-3 rounded-2xl border border-secondary-200 bg-secondary-50 p-3 text-left text-secondary-900 transition hover:border-secondary-400 hover:bg-secondary-100; }
+  .ai-assistant-live-chat svg.live-chat-animation { @apply h-12 w-12 shrink-0; }
+  .ai-assistant-live-chat strong { @apply block font-extrabold; }
+  .ai-assistant-live-chat small { @apply block text-xs text-secondary-800; }
+  .ai-assistant-live-chat > svg:last-child { @apply ml-auto h-5 w-5 shrink-0; }
+  .ai-assistant-welcome { @apply rounded-2xl border border-primary-100 bg-white p-4 text-center shadow-sm; }
+  .ai-assistant-welcome-icon { @apply mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-secondary-100 text-secondary-700; }
+  .ai-assistant-welcome-icon svg { @apply h-6 w-6; }
+  .ai-assistant-welcome h3 { @apply mb-2 text-lg font-extrabold text-primary-900; }
+  .ai-assistant-welcome p { @apply mb-4 text-sm leading-6 text-slate-600; }
+  .ai-assistant-starters { @apply grid gap-2 sm:grid-cols-2; }
+  .ai-assistant-starter { @apply inline-flex min-h-10 items-center justify-center rounded-xl border border-primary-200 bg-primary-50 px-3 py-2 text-xs font-bold text-primary-800 transition hover:border-primary-400 hover:bg-primary-100; }
+  .ai-assistant-message { @apply max-w-[92%] rounded-2xl border p-3 shadow-sm; }
+  .ai-assistant-message-user { @apply ml-auto border-primary-200 bg-primary-100 text-primary-900; }
+  .ai-assistant-message-assistant { @apply mr-auto border-slate-200 bg-white text-slate-800; }
+  .ai-assistant-message-label { @apply mb-1 text-xs font-extrabold text-primary-700; }
+  .ai-assistant-message-content { @apply whitespace-pre-wrap break-words text-sm leading-6; }
+  .ai-assistant-error { @apply rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm font-semibold text-red-800; }
+  .ai-assistant-input { @apply flex items-end gap-2 border-t border-slate-200 bg-white p-3; }
+  .ai-assistant-input textarea { @apply min-h-12 max-h-40 flex-1 rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm leading-6 text-slate-800 placeholder:text-slate-400; }
+  .ai-assistant-send { @apply inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl p-0; }
+  .ai-assistant-send svg { @apply h-5 w-5; }
+}
+@media (max-width: 640px) { .ai-assistant-panel { height: min(78vh, 650px); } .ai-assistant { @apply right-3; } }

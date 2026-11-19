@@ -13,7 +13,6 @@ import BiopharmToggle from '../BiopharmToggle/BiopharmToggle';
 
 const EXCLUDED_PATHS = ['/login', '/register'];
 const SCROLL_STORAGE_KEY = 'scroll-positions';
-const NO_CHROME_PATHS = ['/recall', '/quiz', '/profile', '/notes', '/past-papers'];
 const NO_FOOTER_PATHS = ['/advertise', '/advertise/create', '/advertise/payment', '/tutors'];
 
 function loadScrollMap() { try { return new Map(JSON.parse(sessionStorage.getItem(SCROLL_STORAGE_KEY) || '[]')); } catch { return new Map(); } }
@@ -69,8 +68,8 @@ export default function Layout({ children, showFooter = true }) {
   const location = useLocation(), navigate = useNavigate(), navigationType = useNavigationType();
   const { logo, siteName, footer, theme, toggleTheme, isAuthenticated, refreshUser, uiMap } = useLayout();
   const { t } = useI18n();
-  const isAuthPage = EXCLUDED_PATHS.includes(location.pathname), isNoteDetailPage = location.pathname.startsWith('/notes/read'), isRoomPage = location.pathname.startsWith('/classroom/'), isNoChromePage = NO_CHROME_PATHS.some((path) => location.pathname.startsWith(path)), isNoFooterPage = NO_FOOTER_PATHS.some((path) => location.pathname === path || location.pathname.startsWith(`${path}/`));
-  const hideHeader = isAuthPage || isNoteDetailPage || isNoChromePage, hideFooter = isAuthPage || isRoomPage || isNoteDetailPage || isNoChromePage || isNoFooterPage;
+  const isAuthPage = EXCLUDED_PATHS.includes(location.pathname);
+  const hideHeader = isAuthPage, hideFooter = isAuthPage;
   const scrollPositions = useRef(loadScrollMap()), persistTimeout = useRef(null), scrollFrame = useRef(null), routeKey = location.key || 'default';
   useEffect(() => { if ('scrollRestoration' in window.history) window.history.scrollRestoration = 'manual'; }, []);
   useEffect(() => { const handler = () => { if (scrollFrame.current !== null) return; scrollFrame.current = requestAnimationFrame(() => { scrollFrame.current = null; const scrollY = window.scrollY; setScrolled(scrollY > 10); scrollPositions.current.set(routeKey, scrollY); clearTimeout(persistTimeout.current); persistTimeout.current = setTimeout(() => persistScrollMap(scrollPositions.current), 200); }); }; window.addEventListener('scroll', handler, { passive: true }); return () => { window.removeEventListener('scroll', handler); if (scrollFrame.current !== null) { cancelAnimationFrame(scrollFrame.current); scrollFrame.current = null; } clearTimeout(persistTimeout.current); }; }, [routeKey]);
@@ -107,10 +106,10 @@ export default function Layout({ children, showFooter = true }) {
     {!hideHeader && <header className={`sticky top-0 z-40 w-full border-b border-border bg-white/95 backdrop-blur-xl transition-shadow ${scrolled ? 'shadow-md' : ''}`}><div className="mx-auto flex min-h-[68px] w-full max-w-7xl min-w-0 items-center gap-2 px-3 sm:min-h-[76px] sm:gap-4 sm:px-6 lg:gap-6">
       <Link to="/" className="flex min-w-0 max-w-[min(42vw,13rem)] shrink-0 items-center gap-2 overflow-hidden text-base font-extrabold tracking-tight text-primary-900 no-underline sm:max-w-[14rem] sm:text-lg">{logo ? <img src={logo} alt="" aria-hidden="true" className="block h-9 max-h-9 w-auto max-w-full shrink object-contain sm:h-11 sm:max-h-11" /> : <span className="truncate">{siteName}</span>}</Link>
       <div className="ml-auto flex min-w-0 shrink-0 items-center justify-end gap-1.5 sm:gap-2">
-        {isAuthenticated && <div className="hidden min-w-0 max-w-[12rem] shrink min-[769px]:block"><ClassSwitcher /></div>}
-        <button className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border bg-white text-primary-800 transition-colors hover:border-primary-200 hover:bg-primary-50 sm:inline-flex" onClick={() => setSearchOpen(true)} aria-label={t('common.search')} type="button"><SearchGlyph /></button>
-        <span className="hidden shrink-0 sm:inline-flex"><NotificationCenter /></span>
-        <span className="hidden shrink-0 sm:inline-flex"><BiopharmToggle checked={isDarkTheme} onChange={toggleTheme} ariaLabel={t('common.toggleTheme')} /></span>
+        {isAuthenticated && <div className="min-w-0 max-w-[6.5rem] shrink min-[769px]:max-w-[12rem]"><ClassSwitcher /></div>}
+        <button className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-border bg-white text-primary-800 transition-colors hover:border-primary-200 hover:bg-primary-50 sm:h-10 sm:w-10" onClick={() => setSearchOpen(true)} aria-label={t('common.search')} type="button"><SearchGlyph /></button>
+        <span className="inline-flex shrink-0"><NotificationCenter /></span>
+        <span className="inline-flex shrink-0"><BiopharmToggle checked={isDarkTheme} onChange={toggleTheme} ariaLabel={t('common.toggleTheme')} /></span>
         <button className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border bg-white text-primary-800 transition-colors hover:border-primary-200 hover:bg-primary-50" onClick={() => setMobileOpen((prev) => !prev)} aria-label={mobileOpen ? t('common.closeMenu') : t('common.menu')} aria-expanded={mobileOpen} type="button"><MenuGlyph isOpen={mobileOpen} /></button>
       </div>
     </div></header>}

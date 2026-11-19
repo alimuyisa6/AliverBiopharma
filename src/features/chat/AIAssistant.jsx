@@ -67,7 +67,7 @@ export default function AIAssistant() {
       if (frame) cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
         frame = 0;
-        const footer = document.querySelector('.footer');
+        const footer = document.querySelector('footer');
         if (!footer) {
           setFooterOffset(0);
           return;
