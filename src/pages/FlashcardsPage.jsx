@@ -238,7 +238,7 @@ export default function FlashcardsPage() {
   if (stage === STAGE.SUBJECT) {
     return (
       <>
-     <div className="flashcards-page">
+     <div className="flashcards-page min-h-screen bg-background px-4 py-6 text-foreground sm:px-6 lg:px-8">
         <Breadcrumb items={[
           { label: 'Home', href: '/' },
           { label: 'Flashcards' },
