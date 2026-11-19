@@ -191,7 +191,7 @@ export default function QuestionBankPage() {
                 const checked = selected.includes(String(question.id));
                 const options = questionOptions(question);
                 return (
-                  <article className={`qbank-question-card${checked ? ' is-selected' : ''}`} key={question.id}>
+                  <article className={`qbank-question-card flex min-w-0 flex-col rounded-xl border border-border bg-white p-4 shadow-sm sm:p-5${checked ? ' is-selected' : ''}`} key={question.id}>
                     <div className="qbank-question-topline"><span>{question.curriculum_unit?.name || 'Curriculum lesson'}</span><span>{question.difficulty || 'Standard'}</span><span>{String(question.question_type || 'single_choice').replaceAll('_', ' ')}</span></div>
                     <h3>{question.question_text}</h3>
                     {question.image_url && <img className="qbank-question-image" src={question.image_url} alt={question.image_alt_text || 'Question illustration'} loading="lazy" />}
