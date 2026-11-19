@@ -742,11 +742,11 @@ export default function BioRecall() {
   }
 
   return (
-    <div className="recall-page">
-      <div className="section recall-page-section">
+    <div className="recall-page min-h-screen w-full bg-background text-foreground">
+      <div className="section recall-page-section mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
         <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Recall practice' }]} />
 
-        <div className="recall-page-header">
+        <header className="recall-page-header mb-8 flex flex-col gap-4 border-b border-border pb-8">
           <span className="sec-label font-mono">
             BioRecall
           </span>
@@ -772,13 +772,13 @@ export default function BioRecall() {
               )}
             </div>
           )}
-        </div>
+        </header>
 
         {dueTotal > 0 &&
           !sessionActive &&
           !showReport &&
           !reviewMode && (
-            <div className="recall-due-banner">
+            <div className="recall-due-banner mb-8 flex flex-col gap-4 rounded-2xl border border-primary-200 bg-primary-50 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
               <div className="recall-due-banner-content">
                 <Icon
                   name="calendar-clock"
@@ -815,7 +815,7 @@ export default function BioRecall() {
                 <div className="recall-skeleton">
                   <Skeleton height={140} />
 
-                  <div className="recall-skeleton-grid">
+                  <div className="recall-skeleton-grid grid grid-cols-1 gap-4 sm:grid-cols-3">
                     <Skeleton height={100} />
                     <Skeleton height={100} />
                     <Skeleton height={100} />
@@ -823,7 +823,7 @@ export default function BioRecall() {
                 </div>
               ) : (
                 <>
-                  <div className="card recall-intro-card">
+                  <div className="card recall-intro-card mb-8 flex flex-col gap-5 rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-7">
                     <Icon
                       name={levelIcon}
                       className="recall-intro-icon"
