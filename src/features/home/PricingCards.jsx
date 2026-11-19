@@ -45,7 +45,7 @@ export function PricingCards({ plans = [], user = null }) {
     <section className="w-full bg-secondary-50 px-5 py-16 sm:px-8 sm:py-20 lg:px-12" id="membership" aria-labelledby="pricing-title">
       <div className="mx-auto max-w-7xl">
         <header className="mb-9 max-w-3xl">
-          <p className="mb-3 text-xs font-extrabold uppercase tracking-[0.16em] text-secondary-700">Membership</p>
+          
           <h2 id="pricing-title" className="text-3xl font-bold text-primary-900 sm:text-4xl">Choose your premium access</h2>
           <p className="mt-4 text-base leading-7 text-slate-600">Unlock premium learning materials across your programme. Pay securely in USDT on the TRON network.</p>
         </header>
@@ -66,7 +66,7 @@ export function PricingCards({ plans = [], user = null }) {
                 <ul className="my-6 flex-1 space-y-3 p-0">
                   {planFeatures(plan.features).map((feature, index) => (
                     <li key={`${plan.id}-feature-${index}`} className="flex items-start gap-3 text-sm leading-6 text-slate-700">
-                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-50 text-emerald-700"><Icon name="check" /></span>
+                      <span aria-hidden="true" className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary-700 text-white" style={{ width: "20px", height: "20px", minWidth: "20px", borderRadius: "9999px", backgroundColor: "#1d4ed8", color: "#ffffff", display: "inline-flex" }}><svg viewBox="0 0 20 20" fill="none" width="12" height="12" style={{ display: "block", width: "12px", height: "12px" }}><path d="M4 10.2 8 14l8-8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg></span>
                       <span>{String(feature)}</span>
                     </li>
                   ))}
