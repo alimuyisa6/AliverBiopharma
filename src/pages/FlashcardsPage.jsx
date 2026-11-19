@@ -297,7 +297,6 @@ export default function FlashcardsPage() {
               returnTo={'/flashcards?unit_id=' + encodeURIComponent(curriculumUnitId)}
             />
           )}
-        </div>
         </section>
       </div>
       </>
