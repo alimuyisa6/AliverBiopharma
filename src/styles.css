@@ -463,3 +463,21 @@ header nav { min-width: 0; }
   .ai-assistant-send svg { @apply h-5 w-5; }
 }
 @media (max-width: 640px) { .ai-assistant-panel { height: min(78vh, 650px); } .ai-assistant { @apply right-3; } }
+
+/* Site-wide button and icon contrast baseline. Component/page styles can refine variants. */
+@layer components {
+  .main-content button:not(.btn), .main-content [role="button"]:not(.btn),
+  button:not(.btn) {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-3 py-2 font-semibold text-primary-800 shadow-sm transition-colors duration-150;
+  }
+  button:not(.btn):hover, [role="button"]:not(.btn):hover { @apply border-primary-300 bg-primary-50 text-primary-900; }
+  button:not(.btn):focus-visible, [role="button"]:not(.btn):focus-visible { @apply outline outline-2 outline-offset-2 outline-primary-400; }
+  button:not(.btn):disabled, [role="button"]:not(.btn)[aria-disabled="true"] { @apply cursor-not-allowed opacity-55; }
+  button:not(.btn)[class*="bg-primary-"], button:not(.btn)[class*="bg-blue-"], button:not(.btn)[class*="bg-indigo-"], button:not(.btn)[class*="bg-emerald-"], button:not(.btn)[class*="bg-red-"], button:not(.btn)[class*="bg-orange-"] { @apply text-white; }
+  button[aria-label]:not(.btn), button[title]:not(.btn) { @apply h-10 w-10 shrink-0 p-0; }
+  .modal-close, .pdf-preview-close, .pp-modal-close, .paper-modal-close, .mobile-close-btn {
+    @apply inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-slate-300 bg-slate-100 p-0 text-slate-800 shadow-sm transition hover:border-red-300 hover:bg-red-50 hover:text-red-700;
+  }
+  .modal-close svg, .mobile-close-btn svg { @apply h-5 w-5; }
+  .modal-header .modal-close, .pdf-preview-header .pdf-preview-close { @apply bg-slate-100 text-slate-800; }
+}
