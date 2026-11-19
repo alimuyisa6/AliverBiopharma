@@ -17,7 +17,7 @@ function TutorIcon({ name, className = 'h-5 w-5' }) {
     'arrow-right': <path d="M4 12h16m-6-6 6 6-6 6"/>,
     lightbulb: <><path d="M9 18h6m-5 3h4"/><path d="M8 14a6 6 0 1 1 8 0c-1 1-1.5 2-1.5 3h-5c0-1-.5-2-1.5-3Z"/></>,
     'paper-plane': <><path d="m22 2-7 20-4-9-9-4 20-7Z"/><path d="M22 2 11 13"/></>,
-    brain: <><path d="M12 4a3 3 0 0 0-5.7 1.2A3.5 3.5 0 0 0 5 11.5a3.5 3.5 0 0 0 2.5 6A3 3 0 0 0 12 20V4Zm0 0a3 3 0 0 1 5.7 1.2A3.5 3.5 0 0 1 19 11.5a3.5 3.5 0 0 1-2.5 6A3 3 0 0 A12 20"/><path d="M8 8h2m4 0h2M7 13h3m4 0h3M9 17h2m2-9v3m0 4v2"/></>
+    brain: <><path d="M12 4a3 3 0 0 0-5.7 1.2A3.5 3.5 0 0 0 5 11.5a3.5 3.5 0 0 0 2.5 6A3 3 0 0 0 12 20V4Zm0 0a3 3 0 0 1 5.7 1.2A3.5 3.5 0 0 1 19 11.5a3.5 3.5 0 0 1-2.5 6A3 3 0 0 0 12 20"/><path d="M8 8h2m4 0h2M7 13h3m4 0h3M9 17h2m2-9v3m0 4v2"/></>
   };
   return <svg viewBox="0 0 24 24" className={className} aria-hidden="true" focusable="false" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">{glyphs[name] || glyphs.brain}</svg>;
 }
