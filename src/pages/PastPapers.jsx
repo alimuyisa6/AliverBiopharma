@@ -1007,7 +1007,7 @@ export default function PastPapers() {
               </button>
             </div>
 
-            <div className="pp-modal-body max-h-[80vh] overflow-y-auto p-4 sm:p-6>
+            <div className="pp-modal-body max-h-[80vh] overflow-y-auto p-4 sm:p-6">
               <div className="pp-modal-meta">
                 {selectedPaper.level && <span className="pp-chip">{selectedPaper.level}</span>}
                 {selectedPaper.year && <span className="pp-chip pp-chip-accent">{selectedPaper.year}</span>}
