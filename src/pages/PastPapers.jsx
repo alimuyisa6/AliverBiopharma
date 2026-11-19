@@ -706,7 +706,7 @@ export default function PastPapers() {
         )}
 
         {showPresets && activeTab === 'all' && user && (
-          <div className="pp-presets">
+          <div className="pp-presets mt-4 flex flex-col gap-3 rounded-2xl border border-border bg-white p-4 shadow-sm">
             {presets.length === 0 ? (
               <p className="pp-presets-empty">No saved filters yet. Save a filter to reuse it later.</p>
             ) : (
@@ -730,7 +730,7 @@ export default function PastPapers() {
                 </div>
               ))
             )}
-            <div className="pp-preset-form">
+            <div className="pp-preset-form flex flex-col gap-3 sm:flex-row sm:items-center">
               <input
                 type="text"
                 placeholder="Name this filter…"
@@ -754,7 +754,7 @@ export default function PastPapers() {
         )}
 
         {showFilters && activeTab === 'all' && (
-          <div className="pp-filters">
+          <div className="pp-filters mt-4 grid grid-cols-1 gap-4 rounded-2xl border border-border bg-white p-4 sm:grid-cols-2 xl:grid-cols-4">
             <Select
               label="Subject"
               options={filterOptions.subjects.map((subject) => ({
@@ -818,7 +818,7 @@ export default function PastPapers() {
         )}
 
         {papersLoading ? (
-          <div className="pp-skeleton-grid">
+          <div className="pp-skeleton-grid grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
             {Array.from({ length: 6 }, (_, index) => (
               <div key={index} className="pp-skeleton-card" aria-hidden="true">
                 <div className="pp-skeleton-body">
@@ -856,7 +856,7 @@ export default function PastPapers() {
             }
           />
         ) : (
-          <div className="pp-grid">
+          <div className="pp-grid grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
             {papers.map((paper) => (
               <article
                 key={paper.id}
@@ -868,7 +868,7 @@ export default function PastPapers() {
                 >
                   <span aria-hidden="true" />
                 </span>
-                <div className="pp-card-artwork">
+                <div className="pp-card-artwork relative aspect-[16/10] w-full overflow-hidden bg-primary-50">
                   <img
                     src={paper.cover_image_url || paper.thumbnail_url || paper.image_url || 'https://images.pexels.com/photos/5428836/pexels-photo-5428836.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop'}
                     alt={paper.subject ? `${paper.subject} past paper` : paper.title}
@@ -878,7 +878,7 @@ export default function PastPapers() {
                   />
                   <span className="pp-card-image-label">{paper.subject || 'Exam paper'}</span>
                 </div>
-                <div className="pp-card-body">
+                <div className="pp-card-body flex flex-1 flex-col gap-3 p-5">
                   <div className="pp-card-title-row">
                     <h3 className="pp-card-title">{paper.title}</h3>
                     <button
@@ -920,7 +920,7 @@ export default function PastPapers() {
                     )}
                   </div>
                 </div>
-                <div className="pp-card-footer">
+                <div className="pp-card-footer mt-auto flex flex-wrap items-center gap-3 border-t border-border p-5">
                   <Button variant="secondary" size="sm" className="pp-card-open" onClick={() => handlePaperOpen(paper)}>
                     View details
                   </Button>
@@ -995,8 +995,8 @@ export default function PastPapers() {
       )}
 
       {selectedPaper && (
-        <div className="pp-modal-overlay" onClick={handleCloseModal}>
-          <div className="pp-modal" onClick={(event) => event.stopPropagation()}>
+        <div className="pp-modal-overlay fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-slate-950/60 p-3 sm:p-6" onClick={handleCloseModal}>
+          <div className="pp-modal my-auto w-full max-w-3xl overflow-hidden rounded-2xl bg-white shadow-2xl" onClick={(event) => event.stopPropagation()}>
             <div className="pp-modal-header">
               <div>
                 <h2 className="pp-modal-title">{selectedPaper.title}</h2>
@@ -1007,7 +1007,7 @@ export default function PastPapers() {
               </button>
             </div>
 
-            <div className="pp-modal-body">
+            <div className="pp-modal-body max-h-[80vh] overflow-y-auto p-4 sm:p-6>
               <div className="pp-modal-meta">
                 {selectedPaper.level && <span className="pp-chip">{selectedPaper.level}</span>}
                 {selectedPaper.year && <span className="pp-chip pp-chip-accent">{selectedPaper.year}</span>}
@@ -1117,7 +1117,7 @@ export default function PastPapers() {
                             {new Date(review.created_at).toLocaleDateString()}
                           </span>
                           {review.user_id === user?.id && (
-                            <button className="pp-review-delete" onClick={handleDeleteReview} loading={deletingReview}>
+                            <button className="pp-review-delete inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold text-red-700 hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50" onClick={handleDeleteReview} disabled={deletingReview}>
                               <Icon name="trash" /> Delete
                             </button>
                           )}
