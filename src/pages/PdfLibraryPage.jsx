@@ -160,7 +160,7 @@ export default function PdfLibraryPage() {
             <div className="toolbar-spacer" />
             <label className="sort-control" htmlFor="sortSelect">
               <span>Sort by:</span>
-              <select className="sort-select block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" id="sortSelect" value={sortBy} onChange={(event) => setSortBy(event.target.value)}>
+              <select className="sort-select block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" id="sortSelect" value={sortBy} onChange={(event) => setSortBy(event.target.value)}>
                 <option value="title">Title</option>
                 <option value="author">Author</option>
                 <option value="size">File size</option>
