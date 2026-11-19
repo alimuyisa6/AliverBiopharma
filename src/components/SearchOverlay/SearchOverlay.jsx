@@ -128,7 +128,7 @@ export default function SearchOverlay({ open, onClose }) {
           transition={{ duration: 0.2 }}
         >
           <div className="search-input-wrapper flex w-full items-center gap-2 rounded-2xl border border-slate-200 bg-slate-50 p-2 shadow-inner" style={{ display: "flex", width: "100%", alignItems: "center", gap: "0.5rem" }}>
-            <Icon name="magnifying-glass" className="search-input-icon shrink-0 text-slate-500" />
+            <svg className="search-input-icon shrink-0" viewBox="0 0 24 24" aria-hidden="true" style={{ width: 22, height: 22, display: "block", color: "#475569" }}><circle cx="10.8" cy="10.8" r="5.8" fill="none" stroke="currentColor" strokeWidth="2" /><path d="m15.2 15.2 4.4 4.4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
             <input
               ref={inputRef}
               type="text"
@@ -137,8 +137,8 @@ export default function SearchOverlay({ open, onClose }) {
               value={query}
               onChange={handleChange}
             />
-            <button className="search-close inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-100" onClick={onClose} aria-label="Close search" type="button">
-              <Icon name="xmark" />
+            <button className="search-close inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-100" style={{ color: "#334155", backgroundColor: "#fff", borderColor: "#cbd5e1" }} onClick={onClose} aria-label="Close search" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true" style={{ width: 20, height: 20, display: "block" }}><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" /></svg>
             </button>
           </div>
 
