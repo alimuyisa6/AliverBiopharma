@@ -100,14 +100,14 @@ export default function NotificationCenter() {
         aria-expanded={open}
         aria-haspopup="true"
       >
-        <span className="notification-bell-icon" aria-hidden="true">
+        <span className="notification-bell-icon" aria-hidden="true" style={{ display: "inline-flex", width: "20px", height: "20px", alignItems: "center", justifyContent: "center", color: "inherit" }}>
           <svg viewBox="0 0 24 24" focusable="false" style={{ width: "20px", height: "20px", display: "block", color: "inherit" }}>
             <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M10 21h4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
           </svg>
         </span>
         {unreadCount > 0 && (
-          <span className="notification-badge">
+          <span className="notification-badge" style={{ position: "absolute", top: "-5px", right: "-5px", display: "inline-flex", minWidth: "18px", height: "18px", padding: "0 4px", alignItems: "center", justifyContent: "center", borderRadius: "999px", background: "#dc2626", color: "#fff", fontSize: "10px", fontWeight: 800, lineHeight: 1, border: "2px solid #fff" }}>
             {unreadCount > 99 ? '99+' : unreadCount}
           </span>
         )}
