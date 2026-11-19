@@ -181,8 +181,8 @@ export default function NotificationCenter() {
               ))
             )}
           </div>
-        </div>
-      )}
+        </motion.div>
+      )}</AnimatePresence>
     </div>
   );
 }
