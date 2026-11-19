@@ -64,7 +64,8 @@ function AccountMenuIcon({ name, size = '2rem' }) {
 }
 
 const SOCIAL_BRAND_COLORS = { facebook: '#1877F2', instagram: '#E1306C', linkedin: '#0A66C2', youtube: '#FF0033', 'x-twitter': '#FFFFFF', twitter: '#FFFFFF', x: '#FFFFFF', tiktok: '#FFFFFF', whatsapp: '#25D366', telegram: '#229ED9', github: '#FFFFFF' };
-\nexport default function Layout({ children, showFooter = true }) {
+
+export default function Layout({ children, showFooter = true }) {
   const [mobileOpen, setMobileOpen] = useState(false), [searchOpen, setSearchOpen] = useState(false), [scrolled, setScrolled] = useState(false), [signingOut, setSigningOut] = useState(false);
   const location = useLocation(), navigate = useNavigate(), navigationType = useNavigationType();
   const { logo, siteName, footer, theme, toggleTheme, isAuthenticated, refreshUser, uiMap } = useLayout();
