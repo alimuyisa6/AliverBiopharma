@@ -114,8 +114,8 @@ export default function NotificationCenter() {
         )}
       </button>
 
-      <AnimatePresence>{open && (
-        <motion.div className="notification-dropdown" role="dialog" aria-label="Notifications" initial={{ opacity: 0, y: -24, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: -12, scale: 0.985 }} transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }} style={{ position: "fixed", top: "calc(76px + 10px)", left: "50%", width: "min(92vw, 430px)", maxHeight: "min(72vh, 620px)", overflow: "hidden", zIndex: 100, borderRadius: 20, border: "1px solid #dbe5ef", background: "#fff", boxShadow: "0 24px 70px rgba(15, 23, 42, .22)", color: "#172b43" }}>
+      <AnimatePresence><AnimatePresence>{open && (
+        <motion.div className="notification-dropdown" role="dialog" aria-label="Notifications" initial={{ opacity: 0, y: -24, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: -12, scale: 0.985 }} transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }} style={{ position: "fixed", top: "calc(76px + 10px)", left: 0, right: 0, margin: "0 auto", width: "min(92vw, 430px)", maxHeight: "min(72vh, 620px)", overflow: "hidden", zIndex: 100, borderRadius: 20, border: "1px solid #dbe5ef", background: "#fff", boxShadow: "0 24px 70px rgba(15, 23, 42, .22)", color: "#172b43" }}>
           <div className="notification-dropdown-header" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, padding: "16px 18px", borderBottom: "1px solid #e5edf5", background: "#f8fbff" }}>
             <span className="notification-dropdown-title" style={{ fontSize: 16, fontWeight: 800, color: "#15304b" }}>Notifications</span>
             {unreadCount > 0 && (
