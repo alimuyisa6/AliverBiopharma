@@ -107,7 +107,7 @@ export default function PdfLibraryPage() {
   if (access.loading) {
     return (
       <Container className="pdf-library-section">
-        <div className="pdf-library-page">
+        <div className="pdf-library-page w-full text-foreground">
           <div className="pdf-skeleton-grid">
             <Skeleton height={160} />
             <Skeleton height={160} />
