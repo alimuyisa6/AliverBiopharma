@@ -452,7 +452,7 @@ header nav { min-width: 0; }
   .ai-assistant-starters { @apply grid gap-2 sm:grid-cols-2; }
   .ai-assistant-starter { @apply inline-flex min-h-10 items-center justify-center rounded-xl border border-primary-200 bg-primary-50 px-3 py-2 text-xs font-bold text-primary-800 transition hover:border-primary-400 hover:bg-primary-100; }
   .ai-assistant-message { @apply max-w-[92%] rounded-2xl border p-3 shadow-sm; }
-  .ai-assistant-message-user { @apply ml-auto border-primary-200 bg-primary-100 text-primary-950; }
+  .ai-assistant-message-user { @apply ml-auto border-primary-200 bg-primary-100 text-primary-900; }
   .ai-assistant-message-assistant { @apply mr-auto border-slate-200 bg-white text-slate-800; }
   .ai-assistant-message-label { @apply mb-1 text-xs font-extrabold text-primary-700; }
   .ai-assistant-message-content { @apply whitespace-pre-wrap break-words text-sm leading-6; }

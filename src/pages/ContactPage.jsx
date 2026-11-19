@@ -34,9 +34,9 @@ export default function ContactPage() {
   }, [contactForm]);
 
   return (
-    <div className="contact-page min-h-screen bg-gradient-to-b from-primary-50 via-white to-slate-50 px-4 py-8 sm:px-6 sm:py-14 lg:px-8">
-      <div className="contact-hero mx-auto mb-8 max-w-6xl rounded-3xl border border-primary-100 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 p-6 text-white shadow-xl sm:p-10"><h1 className="mb-4 text-white">Contact AliverBiopharm</h1>
-      <p className="max-w-3xl text-base leading-8 text-blue-100 sm:text-lg">Need help with your account, study materials, or a website feature? Send our team a message.</p></div>
+    <div className="w-full bg-slate-50 px-5 py-14 sm:py-20">
+      <h1 className="mx-auto mb-4 max-w-5xl text-4xl font-extrabold text-primary-900 sm:text-5xl">Contact AliverBiopharm</h1>
+      <p className="mx-auto mb-10 max-w-5xl text-lg leading-8 text-slate-600">Need help with your account, study materials, or a website feature? Send our team a message.</p>
       <ContactSection
         contactForm={contactForm}
         contactStatus={contactStatus}

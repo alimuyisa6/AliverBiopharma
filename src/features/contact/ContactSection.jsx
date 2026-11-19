@@ -11,10 +11,10 @@ export function ContactSection({
   submitting = false
 }) {
   return (
-    <section className="contact-section reveal mx-auto grid w-full max-w-6xl gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,0.65fr)]">
-      <div className="contact-form-wrap min-w-0">
-        <form className="contact-form min-w-0" onSubmit={onSubmit}>
-          <div className="card card-blue card-surface-solid card-tone-info card-elevation-soft form-card contact-form-card">
+    <section className="contact-section reveal">
+      <div className="contact-form-wrap">
+        <form className="contact-form" onSubmit={onSubmit}>
+          <div className="card card-blue card-surface-solid card-tone-info card-elevation-soft form-card">
             <Input
               label="Full Name"
               value={contactForm.name}
