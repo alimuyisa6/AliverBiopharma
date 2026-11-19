@@ -43,6 +43,20 @@ export default function FaqPage() {
         .faq-page-shell .faq-category:hover { border-color: #a8c7e6; background: #f8fbff; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(24,64,110,.07); }
         .faq-page-shell .faq-category.is-active { border-color: var(--primary, #173b72); background: #edf5ff; box-shadow: inset 0 0 0 1px var(--primary, #173b72); }
         .faq-page-shell .faq-category-icon, .faq-page-shell .faq-featured-mark, .faq-page-shell .faq-resource-icon { display: inline-flex; width: 2.8rem; height: 2.8rem; align-items: center; justify-content: center; flex: 0 0 auto; border-radius: 13px; background: #eaf2ff; color: #1c4e86; font-size: 1.15rem; }
+        /* Keep FAQ icon glyphs visible even when global icon styles override them. */
+        .faq-page-shell i[class*="fa-"] { display: inline-block; font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", FontAwesome !important; font-style: normal !important; font-weight: 900 !important; line-height: 1 !important; opacity: 1 !important; visibility: visible !important; }
+        .faq-page-shell .faq-category-icon, .faq-page-shell .faq-featured-mark, .faq-page-shell .faq-resource-icon, .faq-page-shell .faq-question-icon { color: #174b83 !important; background-color: #e4efff !important; border: 1px solid #c7dcf5; box-shadow: inset 0 0 0 1px rgba(255,255,255,.45); }
+        .faq-page-shell .faq-category-icon i, .faq-page-shell .faq-featured-mark i, .faq-page-shell .faq-resource-icon i, .faq-page-shell .faq-question-icon i { color: #174b83 !important; font-size: 1.25rem !important; }
+        .faq-page-shell .faq-category-icon.faq-tone-mint { color: #08665b !important; background-color: #d9f5ed !important; border-color: #a8e4d5; }
+        .faq-page-shell .faq-category-icon.faq-tone-mint i { color: #08665b !important; }
+        .faq-page-shell .faq-category-icon.faq-tone-amber { color: #854d0e !important; background-color: #fff0cc !important; border-color: #f4d38b; }
+        .faq-page-shell .faq-category-icon.faq-tone-amber i { color: #854d0e !important; }
+        .faq-page-shell .faq-category-icon.faq-tone-purple { color: #5b3696 !important; background-color: #eee5ff !important; border-color: #d5c1fa; }
+        .faq-page-shell .faq-category-icon.faq-tone-purple i { color: #5b3696 !important; }
+        .faq-page-shell .faq-category-icon.faq-tone-rose { color: #9a3150 !important; background-color: #ffe4ec !important; border-color: #f4bfd0; }
+        .faq-page-shell .faq-category-icon.faq-tone-rose i { color: #9a3150 !important; }
+        .faq-page-shell .faq-question-icon { width: 2.25rem; height: 2.25rem; flex: 0 0 auto; }
+        .faq-page-shell .faq-search > i, .faq-page-shell .faq-search-clear i, .faq-page-shell .faq-featured-mark i, .faq-page-shell .faq-resource-arrow, .faq-page-shell .faq-support-button i, .faq-page-shell .faq-share-link i { opacity: 1 !important; visibility: visible !important; }
         .faq-page-shell .faq-category strong, .faq-page-shell .faq-resource strong { display: block; color: #172b46; font-size: .95rem; font-weight: 800; }
         .faq-page-shell .faq-category small, .faq-page-shell .faq-resource small { display: block; margin-top: .25rem; color: #64748b; font-size: .8rem; line-height: 1.4; }
         .faq-page-shell .faq-featured-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: .75rem; }
