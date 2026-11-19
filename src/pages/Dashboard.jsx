@@ -63,10 +63,10 @@ const classroomStatusStyles = {
 };
 
 const activityIconStyles = {
-  recall: 'bg-primary-50 text-primary-700',
-  quiz: 'bg-secondary-50 text-secondary-700',
-  flashcards: 'bg-emerald-50 text-emerald-700',
-  reading: 'bg-slate-100 text-slate-700'
+  recall: 'bg-violet-100 text-violet-800 ring-1 ring-violet-200',
+  quiz: 'bg-sky-100 text-sky-800 ring-1 ring-sky-200',
+  flashcards: 'bg-amber-100 text-amber-800 ring-1 ring-amber-200',
+  reading: 'bg-emerald-100 text-emerald-800 ring-1 ring-emerald-200'
 };
 
 function ChartFallback() {
@@ -629,28 +629,28 @@ export default function Dashboard() {
                 <p className={sectionIntro}>A quick snapshot of your learning so far, including progress and practice activity.</p>
                 <DashboardSectionAside>Pick one measure you want to improve this week, then use quizzes or revision to work towards it.</DashboardSectionAside>
                 <div className="grid grid-cols-2 gap-3 lg:grid-cols-4" id="top-stats">
-                  <div className="flex flex-col items-center gap-1 rounded-2xl border border-primary-100 bg-white p-4 text-center">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary-50 text-secondary-700 [&_svg]:h-6 [&_svg]:w-6"><Icon name="rocket" /></span>
-                    <span className="text-2xl font-extrabold text-primary-900">
-                      {platform.total_xp?.toLocaleString?.() ?? platform.total_xp}
-                    </span>
-                    <span className="text-xs font-semibold text-slate-600">{t('common.totalXp')}</span>
-                  </div>
-                  <div className="flex flex-col items-center gap-1 rounded-2xl border border-primary-100 bg-white p-4 text-center">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary-50 text-secondary-700 [&_svg]:h-6 [&_svg]:w-6"><Icon name="fire" /></span>
-                    <span className="text-2xl font-extrabold text-primary-900">{platform.current_streak}</span>
-                    <span className="text-xs font-semibold text-slate-600">{t('common.dayStreak')}</span>
-                  </div>
-                  <div className="flex flex-col items-center gap-1 rounded-2xl border border-primary-100 bg-white p-4 text-center">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary-50 text-secondary-700 [&_svg]:h-6 [&_svg]:w-6"><Icon name="trophy" /></span>
-                    <span className="text-2xl font-extrabold text-primary-900">{achievements.earned_count}</span>
-                    <span className="text-xs font-semibold text-slate-600">{t('common.badges')}</span>
-                  </div>
-                  <div className="flex flex-col items-center gap-1 rounded-2xl border border-primary-100 bg-white p-4 text-center">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary-50 text-secondary-700 [&_svg]:h-6 [&_svg]:w-6"><Icon name="microscope" /></span>
-                    <span className="text-2xl font-extrabold text-primary-900">{quiz.blocks_completed ?? 0}</span>
-                    <span className="text-xs font-semibold text-slate-600">Quiz Blocks Done</span>
-                  </div>
+                  {[
+                    { key: 'xp', value: platform.total_xp?.toLocaleString?.() ?? platform.total_xp, label: t('common.totalXp'), tone: 'emerald', icon: <path d="M12 3 5 13h5l-1 8 10-12h-6l1-6z" /> },
+                    { key: 'streak', value: platform.current_streak, label: t('common.dayStreak'), tone: 'amber', icon: <><path d="M12 3c1.5 3 4.5 4.5 3.5 8-1-1-2-1.4-2.5-3.2C10 10 7 12 8 16a4 4 0 0 0 8 0c3-3.5 1-8-4-13z" /><path d="M12 16a2 2 0 0 0 2-2c-1 .4-1.5 1-2 2z" /></> },
+                    { key: 'badges', value: achievements.earned_count, label: t('common.badges'), tone: 'violet', icon: <><path d="M8 4h8v5a4 4 0 0 1-8 0V4z" /><path d="M8 6H5v2a3 3 0 0 0 3 3M16 6h3v2a3 3 0 0 1-3 3M12 13v4m-3 3h6" /></> },
+                    { key: 'quiz', value: quiz.blocks_completed ?? 0, label: 'Quiz Blocks Done', tone: 'blue', icon: <><rect x="5" y="3" width="14" height="18" rx="2" /><path d="M8 8h8M8 12h4M8 16h2" /><circle cx="16" cy="15" r="2" /></> }
+                  ].map((stat) => {
+                    const tone = {
+                      emerald: 'border-emerald-100 bg-emerald-50 text-emerald-700',
+                      amber: 'border-amber-100 bg-amber-50 text-amber-700',
+                      violet: 'border-violet-100 bg-violet-50 text-violet-700',
+                      blue: 'border-sky-100 bg-sky-50 text-sky-700'
+                    }[stat.tone];
+                    return (
+                      <div key={stat.key} className="group flex min-h-32 flex-col items-center gap-2 rounded-2xl border border-slate-200 bg-white p-4 text-center shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+                        <span className={`flex h-11 w-11 items-center justify-center rounded-xl border ${tone}`}>
+                          <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{stat.icon}</svg>
+                        </span>
+                        <span className="text-2xl font-extrabold text-primary-900">{stat.value}</span>
+                        <span className="text-xs font-semibold text-slate-600">{stat.label}</span>
+                      </div>
+                    );
+                  })}
                   <div className="col-span-2 space-y-2 lg:col-span-4">
                     <div className="flex justify-between text-xs font-bold text-slate-600">
                       <span id="xp-current">{platform.xp_progress.xpIntoLevel} XP</span>
@@ -697,7 +697,7 @@ export default function Dashboard() {
                 </div>
                 {Number(quiz.total_attempts) > 0 && quizOutcomeChart.some((item) => item.value > 0) && (
                   <div className={insightChart}>
-                    <ChartBlock><DonutChart data={quizOutcomeChart.map((item) => item.value)} labels={quizOutcomeChart.map((item) => item.label)} title="Quiz outcomes" subtitle="Passed versus not-passed recorded attempts." height={220} /></ChartBlock>
+                    <ChartBlock><DonutChart data={quizOutcomeChart.map((item) => item.value)} labels={quizOutcomeChart.map((item) => item.label)} segmentColors={['#16a34a', '#e11d48']} title="Quiz outcomes" subtitle="Passed versus not-passed recorded attempts." height={220} /></ChartBlock>
                     <p className={graphGuide}>Each slice shows the share of quiz attempts that passed or did not pass. Compare the slices to see your recent quiz results.</p>
                   </div>
                 )}
@@ -945,9 +945,36 @@ export default function Dashboard() {
                     <div className={statCell}><strong>{Number(notes.reading_analytics.notes_completed) || 0}</strong><span>Notes completed</span></div>
                     <div className={statCell}><strong>{Number(notes.reading_analytics.average_progress) || 0}%</strong><span>Average progress</span></div>
                   </div>
-                  <div className={insightChart}>
-                    <ChartBlock><BarChart data={notes.reading_analytics.recent_progress.map((item) => Math.max(0, Math.min(100, Number(item.progress_percentage) || 0)))} labels={notes.reading_analytics.recent_progress.map((item) => item.title || 'Study note')} label="Reading progress (%)" title="Progress by note" subtitle="Latest saved reading progress for notes you've opened." horizontal height={Math.max(220, notes.reading_analytics.recent_progress.length * 42)} /></ChartBlock>
-                    <p className={graphGuide}>Each bar shows your saved reading progress for a note. Start with notes showing less progress if you want to continue unfinished reading.</p>
+                  <div className="space-y-4 rounded-2xl border border-slate-100 bg-white p-4 sm:p-5">
+                    <div className="flex items-center justify-between gap-3">
+                      <h4 className="text-base font-extrabold text-primary-900">Progress by note</h4>
+                      <span className="rounded-full bg-primary-50 px-2.5 py-1 text-xs font-bold text-primary-700">{notes.reading_analytics.recent_progress.length} tracked</span>
+                    </div>
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      {notes.reading_analytics.recent_progress.slice(0, 6).map((item, index) => {
+                        const value = Math.max(0, Math.min(100, Math.round(Number(item.progress_percentage) || 0)));
+                        const colors = ['bg-sky-600', 'bg-emerald-600', 'bg-violet-600', 'bg-amber-500', 'bg-rose-500', 'bg-cyan-600'];
+                        return (
+                          <div key={item.note_id || item.id || item.title || index} className="min-w-0 rounded-xl border border-slate-200 bg-slate-50 p-4">
+                            <div className="mb-3 flex items-start gap-3">
+                              <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${colors[index % colors.length]} text-white`} aria-hidden="true">
+                                <Icon name="book-open-reader" className="h-5 w-5" />
+                              </span>
+                              <div className="min-w-0 flex-1">
+                                <p className="line-clamp-2 break-words text-sm font-bold leading-5 text-slate-800">{item.title || 'Study note'}</p>
+                                <p className="mt-1 text-xs text-slate-500">Reading progress</p>
+                              </div>
+                              <strong className="shrink-0 text-sm font-extrabold text-primary-900">{value}%</strong>
+                            </div>
+                            <div className="h-2.5 overflow-hidden rounded-full bg-slate-200" role="img" aria-label={`${value}% completed`}>
+                              <div className={`h-full rounded-full transition-all ${colors[index % colors.length]}`} style={{ width: `${value}%` }} />
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                    {notes.reading_analytics.recent_progress.length > 6 && <p className="text-xs text-slate-500">Showing the 6 most recently updated notes.</p>}
+                    <p className={graphGuide}>Each spacious card shows one note and its saved completion percentage. Resume the lowest-progress note to continue reading.</p>
                   </div>
                 </div>
               </section>
@@ -1313,7 +1340,7 @@ export default function Dashboard() {
                   )}
                   {recentActivityMix.some((item) => item.value > 0) && (
                     <div className={insightChart}>
-                      <ChartBlock><DonutChart data={recentActivityMix.map((item) => item.value)} labels={recentActivityMix.map((item) => item.label)} title="Learning Activity Distribution" subtitle="A view of your recent reading, quiz, recall, and flashcard activity." height={220} /></ChartBlock>
+                      <ChartBlock><DonutChart data={recentActivityMix.map((item) => item.value)} labels={recentActivityMix.map((item) => item.label)} segmentColors={['#0284c7', '#7c3aed', '#059669', '#d97706']} title="Learning Activity Distribution" subtitle="A view of your recent reading, quiz, recall, and flashcard activity." height={220} /></ChartBlock>
                       <p className={graphGuide}>Each segment represents a type of learning activity recorded recently. Compare the segments to see how your recent study time is distributed across reading, quizzes, recall practice, and flashcards.</p>
                     </div>
                   )}
@@ -1321,7 +1348,7 @@ export default function Dashboard() {
                     {recentActivity.map((activity, index) => {
                       const progress = Math.max(0, Math.min(100, Math.round(Number(activity.progress_percentage) || 0)));
                       const contentLabel = activity.type === 'recall' ? 'Recall' : activity.type === 'quiz' ? 'Quiz' : activity.type === 'flashcards' ? 'Flashcards' : 'Reading';
-                      const iconName = activity.type === 'recall' ? 'brain' : activity.type === 'quiz' ? 'graduation-cap' : activity.type === 'flashcards' ? 'layers' : 'book-open';
+                      const iconName = activity.type === 'recall' ? 'brain' : activity.type === 'quiz' ? 'atom' : activity.type === 'flashcards' ? 'layer-group' : 'book-open-reader';
                       const iconStyle = activityIconStyles[activity.type] || activityIconStyles.reading;
 
                       const activityLink = activity.type === 'reading' && activity.note_id

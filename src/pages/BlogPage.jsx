@@ -5,6 +5,7 @@ import { useLayout } from '../contexts/LayoutContext';
 import { useParams } from 'react-router-dom';
 import { getSections } from '../api/sections';
 import { getArticleBySlug, listArticles } from '../api/cachedClient';
+import Icon from '../components/Icon/Icon';
 
 export default function BlogPage() {
   const { level } = useLayout();
@@ -494,6 +495,7 @@ export default function BlogPage() {
       `}</style>
 
       <div className="blog-page min-h-screen w-full bg-background text-foreground">
+        {!slug && !loading && !error && (featured || posts.length > 0) && <section className="blog-landing-hero relative overflow-hidden bg-gradient-to-br from-primary-950 via-primary-800 to-secondary-700 px-4 py-12 text-white sm:px-6 sm:py-16 lg:py-20"><div className="pointer-events-none absolute inset-0 opacity-20" aria-hidden="true"><div className="absolute -right-16 -top-24 h-72 w-72 rounded-full border-[36px] border-white/20"/><div className="absolute -bottom-28 left-8 h-64 w-64 rounded-full border-[28px] border-secondary-200/30"/></div><div className="relative mx-auto grid max-w-6xl gap-8 md:grid-cols-[1fr_auto] md:items-end"><div className="max-w-3xl"><span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-extrabold uppercase tracking-[.18em] text-blue-100"><Icon name="book-open-reader" size="1.1rem" plain /> Aliver knowledge journal</span><h1 className="mt-5 text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">Ideas that make <span className="text-secondary-200">medicine clearer.</span></h1><p className="mt-4 max-w-2xl text-base leading-7 text-blue-100 sm:text-lg">Explore practical learning, pharmacy insights and science explained for curious minds.</p></div><a href="#latest-articles" className="inline-flex min-h-12 w-fit items-center gap-2 rounded-xl border border-white/20 bg-white px-5 py-3 font-bold text-primary-900 shadow-lg transition hover:-translate-y-0.5 hover:bg-blue-50">Browse articles <Icon name="arrow-right" size="1.15rem" plain /></a></div></section>}
         {loading ? (
           <section className="blog-article-body" aria-busy="true" aria-live="polite">
             <p>Loading blog content…</p>
@@ -517,16 +519,12 @@ export default function BlogPage() {
                       : topic?.label || topic?.name || '';
                     if (!label) return null;
                     return (
-                      <button type="button" className="blog-topic-button inline-flex min-h-11 items-center justify-center rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-900" key={label}>
-                        {label}
-                      </button>
+                      <span className="blog-topic-button inline-flex min-h-10 items-center justify-center rounded-full border border-primary-200 bg-white px-4 py-2 text-sm font-bold text-primary-800" key={label}>{label}</span>
                     );
                   })}
                 </div>
                 {blog?.explore_label && (
-                  <button type="button" className="blog-explore-button mx-auto flex min-h-12 w-full max-w-sm items-center justify-center rounded-xl border border-blue-800 bg-blue-800 px-6 py-3 text-sm font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-blue-900 hover:shadow-lg">
-                    {blog.explore_label}
-                  </button>
+                  <a href="#latest-articles" className="blog-explore-button mx-auto flex min-h-12 w-full max-w-sm items-center justify-center gap-2 rounded-xl border border-primary-700 bg-primary-800 px-6 py-3 text-sm font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-primary-900 hover:shadow-lg">{blog.explore_label}<Icon name="arrow-right" size="1.1rem" plain /></a>
                 )}
               </section>
             )}
@@ -535,17 +533,18 @@ export default function BlogPage() {
               <article>
                 <header className="blog-article-header mx-auto mb-6 mt-8 w-full max-w-4xl px-4 text-center sm:mt-12 sm:px-6">
                   <h1 className="mb-4 text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">{featured.title}</h1>
-                  <div className="blog-article-meta mb-5 flex flex-wrap items-center justify-center gap-2 text-sm text-slate-500">
-                    {featured.category && <strong>{featured.category}</strong>}
-                    {featured.author && <> · by {featured.author}</>}
-                    {featured.published_at && <> · {formatDate(featured.published_at)}</>}
+                  <div className="blog-article-meta mb-6 flex flex-wrap items-center justify-center gap-3 text-sm text-slate-500">
+                    {featured.category && <strong className="rounded-full bg-primary-50 px-3 py-1.5 text-primary-800">{featured.category}</strong>}
+                    {featured.author && <span>By {featured.author}</span>}
+                    {featured.published_at && <span className="inline-flex items-center gap-1.5"><Icon name="calendar" size="1rem" plain />{formatDate(featured.published_at)}</span>}
+                    {featured.read_time_minutes && <span className="inline-flex items-center gap-1.5"><Icon name="clock" size="1rem" plain />{featured.read_time_minutes} min read</span>}
                   </div>
                   {(featured.share?.facebook || featured.share?.x || featured.share?.linkedin || featured.share?.whatsapp) && (
                     <div className="blog-share mb-8 flex items-center justify-center gap-3" aria-label="Share article">
-                      {featured.share.facebook && <a href={featured.share.facebook} className="blog-share-link inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-sm font-bold text-slate-700 transition hover:-translate-y-0.5 hover:bg-blue-700 hover:text-white" aria-label="Share on Facebook">f</a>}
-                      {featured.share.x && <a href={featured.share.x} className="blog-share-link" aria-label="Share on X">X</a>}
-                      {featured.share.linkedin && <a href={featured.share.linkedin} className="blog-share-link" aria-label="Share on LinkedIn">in</a>}
-                      {featured.share.whatsapp && <a href={featured.share.whatsapp} className="blog-share-link" aria-label="Share on WhatsApp">W</a>}
+                      {featured.share.facebook && <a href={featured.share.facebook} className="blog-share-link inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-sm font-bold text-slate-700 transition hover:-translate-y-0.5 hover:bg-blue-700 hover:text-white" aria-label="Share on Facebook"><Icon name="facebook" size="1.2rem" plain /></a>}
+                      {featured.share.x && <a href={featured.share.x} className="blog-share-link" aria-label="Share on X"><Icon name="x-twitter" size="1.2rem" plain /></a>}
+                      {featured.share.linkedin && <a href={featured.share.linkedin} className="blog-share-link" aria-label="Share on LinkedIn"><Icon name="linkedin" size="1.2rem" plain /></a>}
+                      {featured.share.whatsapp && <a href={featured.share.whatsapp} className="blog-share-link" aria-label="Share on WhatsApp"><Icon name="whatsapp" size="1.2rem" plain /></a>}
                     </div>
                   )}
                 </header>
@@ -572,8 +571,8 @@ export default function BlogPage() {
             )}
 
             {posts.length > 0 && (
-              <section className="blog-latest border-y border-slate-200 bg-slate-50 px-4 py-12 sm:px-6 sm:py-16" aria-labelledby="latest-blog-heading">
-                {blog?.latest_heading && <h2 id="latest-blog-heading" className="mb-8 text-center text-2xl font-extrabold tracking-tight text-slate-900 sm:mb-10 sm:text-3xl">{blog.latest_heading}</h2>}
+              <section id="latest-articles" className="blog-latest border-y border-slate-200 bg-slate-50 px-4 py-12 sm:px-6 sm:py-16" aria-labelledby="latest-blog-heading">
+                <h2 id="latest-blog-heading" className="mb-8 text-center text-2xl font-extrabold tracking-tight text-slate-900 sm:mb-10 sm:text-3xl">{blog?.latest_heading || 'Latest articles'}</h2>
                 <div className="blog-posts-grid mx-auto grid w-full max-w-6xl grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
                   {posts.slice(0, 3).map((post) => (
                     <article className="blog-post-card flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl" key={post.id || post.slug || post.title}>
@@ -581,7 +580,7 @@ export default function BlogPage() {
                       <div className="blog-post-content flex flex-1 flex-col items-start p-5 sm:p-6">
                         {post.category && <span className="blog-post-category mb-3 inline-flex rounded-full bg-blue-50 px-3 py-1 text-xs font-bold uppercase tracking-wide text-blue-800">{post.category}</span>}
                         <h3 className="blog-post-title mb-3 text-xl font-bold leading-snug text-slate-900">{post.title}</h3>
-                        {post.published_at && <div className="blog-post-date mb-4 text-xs font-medium text-slate-500">{formatDate(post.published_at)}</div>}
+                        {post.published_at && <div className="blog-post-date mb-4 inline-flex items-center gap-1.5 text-xs font-medium text-slate-500"><Icon name="calendar" size=".95rem" plain />{formatDate(post.published_at)}</div>}
                         {post.excerpt && <p className="blog-post-excerpt mb-5 line-clamp-3 text-sm leading-6 text-slate-600">{post.excerpt}</p>}
                         {post.slug && (
                           <a href={`/blog/${post.slug}`} className="blog-read-more mt-auto inline-flex min-h-10 items-center justify-center rounded-lg border border-blue-700 px-4 py-2 text-sm font-semibold text-blue-800 transition hover:bg-blue-700 hover:text-white">
