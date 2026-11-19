@@ -152,7 +152,7 @@ export default function Donate() {
             role="tab"
             aria-selected={tab === 'crypto'}
           >
-            <Icon name="credit-card" />
+            <Icon name="bitcoin" />
             Cryptocurrency
           </button>
           <button
@@ -162,7 +162,7 @@ export default function Donate() {
             role="tab"
             aria-selected={tab === 'momo'}
           >
-            <Icon name="credit-card" />
+            <Icon name="mobile-money" />
             Mobile Money
           </button>
         </div>
@@ -170,7 +170,7 @@ export default function Donate() {
         {tab === 'crypto' && (
           <section className="donate-card" aria-labelledby="crypto-title">
             <div className="donate-card-heading">
-              <Icon name="credit-card" />
+              <Icon name="bitcoin" />
               <h2 id="crypto-title">Donate with cryptocurrency</h2>
             </div>
             <p className="donate-muted donate-center">Choose a donation method.</p>
@@ -193,7 +193,7 @@ export default function Donate() {
         {tab === 'momo' && (
           <section className="donate-card" aria-labelledby="momo-title">
             <div className="donate-card-heading">
-              <Icon name="credit-card" />
+              <Icon name="mobile-money" />
               <h2 id="momo-title">Mobile Money</h2>
             </div>
 
