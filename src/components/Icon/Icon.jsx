@@ -203,7 +203,9 @@ const Icon = memo(function Icon({
   const entry = ICON_DATA[name] || ICON_DATA['circle-info'];
 
   const { badge, bg, r, bgPath, glyph } = entry;
-  // Unbadged glyphs inherit their surrounding text color; this prevents white-only icons disappearing on white surfaces.\n  const safeGlyph = badge === 'none' ? glyph.replace(/var\(--white\)/g, 'currentColor') : glyph;\n  const renderedGlyph = monochrome ? safeGlyph.replace(/var\(--[^)]+\)/g, 'currentColor') : safeGlyph;
+  // Unbadged glyphs inherit their surrounding text color; this prevents white-only icons disappearing on white surfaces.
+  const safeGlyph = badge === 'none' ? glyph.replace(/var\(--white\)/g, 'currentColor') : glyph;
+  const renderedGlyph = monochrome ? safeGlyph.replace(/var\(--[^)]+\)/g, 'currentColor') : safeGlyph;
 
   let bgMarkup = '';
 
