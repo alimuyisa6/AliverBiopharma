@@ -91,17 +91,17 @@ export default function NotificationCenter() {
   };
 
   return (
-    <div className="notification-center" ref={rootRef}>
+    <div className="notification-center relative inline-flex shrink-0" ref={rootRef} style={{ display: "inline-flex", position: "relative", flexShrink: 0 }}>
       <button
         type="button"
-        className={`btn btn-ghost btn-sm btn-icon header-action-button notification-bell${unreadCount > 0 ? ' notification-bell--unread' : ''}${hasNewNotification ? ' notification-bell--new' : ''}`}
+        className={`header-action-button notification-bell${unreadCount > 0 ? ' notification-bell--unread' : ''}${hasNewNotification ? ' notification-bell--new' : ''}`} style={{ display: "inline-flex", position: "relative", width: "40px", height: "40px", minWidth: "40px", minHeight: "40px", alignItems: "center", justifyContent: "center", flexShrink: 0, border: "1px solid #dbe3ec", borderRadius: "12px", background: "#fff", color: "#183b5b", cursor: "pointer" }}
         onClick={() => setOpen((current) => !current)}
         aria-label={unreadCount ? `Notifications, ${unreadCount} unread` : 'Notifications'}
         aria-expanded={open}
         aria-haspopup="true"
       >
         <span className="notification-bell-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" focusable="false">
+          <svg viewBox="0 0 24 24" focusable="false" style={{ width: "20px", height: "20px", display: "block", color: "inherit" }}>
             <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M10 21h4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
           </svg>
