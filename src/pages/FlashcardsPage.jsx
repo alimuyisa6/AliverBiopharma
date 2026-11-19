@@ -224,7 +224,7 @@ export default function FlashcardsPage() {
 
   if (error) {
     return (
-      <div className="section flashcard-error">
+      <div className="section flashcard-error mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <EmptyState
           image={getEmptyStateImage('general')}
           title="We couldn’t load your flashcards"
@@ -244,7 +244,7 @@ export default function FlashcardsPage() {
           { label: 'Flashcards' },
           ...(curriculumUnitId ? [{ label: 'Selected learning area' }] : [])
         ]} />
-        <div className="section flashcard-subject-section">
+        <section className="section flashcard-subject-section mt-8 w-full rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-7">
           <span className="sec-label">FLASHCARD PRACTICE</span>
           <h1 className="section-title flashcard-title">
             {levelName || 'Flashcards'}
@@ -265,14 +265,14 @@ export default function FlashcardsPage() {
               description={`Flashcard sets for ${classLabel || levelName || 'your programme'} haven’t been added yet.`}
             />
           ) : (
-            <div className="flashcard-decks-grid">
+            <div className="flashcard-decks-grid grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
               {decks.map((deck) => (
                 <Card
                   key={deck.id}
                   image={deck.cover_image_url || deck.image_url || deck.thumbnail_url || 'https://images.pexels.com/photos/16420473/pexels-photo-16420473.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop'}
                   title={deck.title}
                   description={deck.description || 'Test your recall of key ideas.'}
-                  className="flashcard-deck-card"
+                  className="flashcard-deck-card group h-full overflow-hidden rounded-2xl border border-border bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:border-primary-200 hover:shadow-lg"
                   footer={
                     <Button variant="3d" size="sm" icon="play" onClick={() => handleDeckSelect(deck)} disabled={locked}>
                       Study cards
@@ -282,7 +282,7 @@ export default function FlashcardsPage() {
                   {deck.card_types && (
                     <div className="flashcard-type-row">
                       {deck.card_types.map((type) => (
-                        <span key={type} className="chip">{type.replace('_', ' ')}</span>
+                        <span key={type} className="chip inline-flex rounded-full border border-secondary-200 bg-secondary-50 px-3 py-1 text-xs font-semibold text-secondary-800">{type.replace('_', ' ')}</span>
                       ))}
                     </div>
                   )}
@@ -298,6 +298,7 @@ export default function FlashcardsPage() {
             />
           )}
         </div>
+        </section>
       </div>
       </>
     );
