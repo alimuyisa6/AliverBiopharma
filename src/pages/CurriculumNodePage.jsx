@@ -218,16 +218,26 @@ export default function CurriculumNodePage() {
     return (
       <Container className="curriculum-node-page">
         <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Resources', href: '/resources' }, { label: rootLabelPlural, href: null }]} />
-        <header className="curriculum-node-header">
-          <h1>Choose a {rootLabel}</h1>
-          <p>{isPharmacy ? 'Begin with a course unit, then follow its sub-course units, themes and lessons.' : 'Begin with a topic, then follow its subtopics, themes and lessons.'}</p>
+        <header className="curriculum-node-header rounded-3xl border border-primary-100 bg-gradient-to-br from-primary-50 via-white to-secondary-50 px-5 py-8 shadow-sm sm:px-8 sm:py-10">
+          <span className="inline-flex items-center gap-2 rounded-full border border-primary-200 bg-white px-3 py-1.5 text-xs font-extrabold uppercase tracking-[.16em] text-primary-800"><Icon name="route" /> Step 1 of 4 · {rootLabelPlural}</span>
+          <h1 className="mt-4 text-4xl font-extrabold tracking-tight text-primary-950 sm:text-5xl">Choose a {rootLabel}</h1>
+          <p className="mt-3 max-w-3xl text-base leading-7 text-slate-600 sm:text-lg">{isPharmacy ? 'Begin with a course unit, then follow its sub-course units, themes and lessons.' : 'Begin with a topic, then follow its subtopics, themes and lessons.'}</p>
+          <div className="mt-7 grid grid-cols-2 gap-2 sm:grid-cols-4">
+            {(isPharmacy ? ['Course unit','Sub-course unit','Theme','Lesson'] : ['Topic','Subtopic','Theme','Lesson']).map((step, index) => (
+              <div key={step} className={`rounded-xl border px-3 py-3 ${index === 0 ? 'border-primary-300 bg-primary-100 text-primary-900 shadow-sm' : 'border-slate-200 bg-white/80 text-slate-500'}`}>
+                <span className="block text-[11px] font-bold uppercase tracking-wider">Step {index + 1}</span><strong className="mt-1 block text-sm">{step}</strong>
+              </div>
+            ))}
+          </div>
         </header>
-        <section className="curriculum-node-section">
-          <div className="curriculum-node-section-heading"><div><h2>{rootLabelPlural}</h2></div><span className="curriculum-node-count">{rootNodes.length} available</span></div>
-          <div className="curriculum-node-children">
-            {rootNodes.map((item) => (
-              <Link key={item.id} to={`/curriculum/${encodeURIComponent(groupId)}/${slugify(item.slug || item.name)}${resourceFocus ? `?resource=${encodeURIComponent(resourceFocus)}` : ''}`} className="curriculum-node-child">
-                <span className="curriculum-node-child-body"><strong>{item.name}</strong></span>
+        <section className="curriculum-node-section mt-8 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7">
+          <div className="curriculum-node-section-heading mb-5 flex items-end justify-between gap-3"><div><span className="text-xs font-bold uppercase tracking-[.15em] text-primary-700">Start here</span><h2 className="mt-2 text-2xl font-extrabold text-primary-950 sm:text-3xl">{rootLabelPlural}</h2></div><span className="curriculum-node-count rounded-full bg-primary-50 px-3 py-1.5 text-sm font-bold text-primary-800">{rootNodes.length} available</span></div>
+          <div className="curriculum-node-children grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+            {rootNodes.map((item, index) => (
+              <Link key={item.id} to={`/curriculum/${encodeURIComponent(groupId)}/${slugify(item.slug || item.name)}${resourceFocus ? `?resource=${encodeURIComponent(resourceFocus)}` : ''}`} className="group flex min-h-36 items-center gap-4 rounded-2xl border border-primary-100 bg-gradient-to-br from-white to-primary-50 p-5 text-primary-950 no-underline shadow-sm transition duration-200 hover:-translate-y-1 hover:border-primary-300 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-500">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary-700 text-lg font-black text-white shadow-sm">{String(index + 1).padStart(2,'0')}</span>
+                <span className="curriculum-node-child-body min-w-0 flex-1"><small className="block text-xs font-bold uppercase tracking-wider text-primary-700">{rootLabel}</small><strong className="mt-1 block text-lg leading-snug">{item.name}</strong></span>
+                <Icon name="arrow-right" className="h-5 w-5 shrink-0 text-primary-700 transition-transform group-hover:translate-x-1" />
               </Link>
             ))}
           </div>
@@ -278,9 +288,17 @@ export default function CurriculumNodePage() {
     <Container className="curriculum-node-page">
       <Breadcrumb items={breadcrumbItems} />
 
-      <header className="curriculum-node-header">
-        <h1>{node.name}</h1>
-        {node.description && <p className="curriculum-node-description">{node.description}</p>}
+      <header className="curriculum-node-header rounded-3xl border border-primary-100 bg-gradient-to-br from-primary-50 via-white to-secondary-50 px-5 py-7 shadow-sm sm:px-8 sm:py-9">
+        <span className="inline-flex items-center gap-2 rounded-full border border-primary-200 bg-white px-3 py-1.5 text-xs font-extrabold uppercase tracking-[.15em] text-primary-800"><Icon name="route" /> Step {Math.min(curriculumDepth + 1, 4)} of 4 · {nodeLabel}</span>
+        <h1 className="mt-4 text-4xl font-extrabold tracking-tight text-primary-950 sm:text-5xl">{node.name}</h1>
+        {node.description && <p className="curriculum-node-description mt-3 max-w-3xl text-base leading-7 text-slate-600 sm:text-lg">{node.description}</p>}
+        <div className="mt-7 grid grid-cols-2 gap-2 sm:grid-cols-4">
+          {(isPharmacy ? ['Course unit','Sub-course unit','Theme','Lesson'] : ['Topic','Subtopic','Theme','Lesson']).map((step, index) => (
+            <div key={step} className={`rounded-xl border px-3 py-3 ${index === curriculumDepth ? 'border-primary-300 bg-primary-100 text-primary-900 shadow-sm' : index < curriculumDepth ? 'border-secondary-200 bg-secondary-50 text-secondary-900' : 'border-slate-200 bg-white/80 text-slate-500'}`}>
+              <span className="block text-[11px] font-bold uppercase tracking-wider">{index < curriculumDepth ? 'Completed' : index === curriculumDepth ? 'Current step' : `Step ${index + 1}`}</span><strong className="mt-1 block text-sm">{step}</strong>
+            </div>
+          ))}
+        </div>
       </header>
 
       {isLeaf && blocks.length > 0 && (
@@ -313,14 +331,12 @@ export default function CurriculumNodePage() {
 
       {children.length > 0 && (
         <section className="curriculum-node-section">
-          <div className="curriculum-node-section-heading">
-            <div>
-              <h2>Explore {node.name}</h2>
-            </div>
-            <span className="curriculum-node-count">{children.length} {children.length === 1 ? 'item' : 'items'}</span>
+          <div className="curriculum-node-section-heading mb-5 flex items-end justify-between gap-3">
+            <div><span className="text-xs font-bold uppercase tracking-[.15em] text-primary-700">Next in your pathway</span><h2 className="mt-2 text-2xl font-extrabold text-primary-950 sm:text-3xl">Explore {node.name}</h2></div>
+            <span className="curriculum-node-count rounded-full bg-primary-50 px-3 py-1.5 text-sm font-bold text-primary-800">{children.length} {children.length === 1 ? 'item' : 'items'}</span>
           </div>
 
-          <div className="curriculum-node-children">
+          <div className="curriculum-node-children grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {children.map((child) => {
               const parentPath = ancestors
                 .map((item) => slugify(item.slug || item.name))
@@ -331,10 +347,10 @@ export default function CurriculumNodePage() {
               const childHref = `/curriculum/${encodeURIComponent(groupId)}/${childPath}${resourceFocus ? `?resource=${encodeURIComponent(resourceFocus)}` : ''}`;
 
               return (
-                <Link key={child.id} to={childHref} className="curriculum-node-child">
-                  <span className="curriculum-node-child-body">
-                    <strong>{child.name}</strong>
-                  </span>
+                <Link key={child.id} to={childHref} className="curriculum-node-child group flex min-h-32 items-center gap-4 rounded-2xl border border-primary-100 bg-gradient-to-br from-white to-primary-50 p-5 text-primary-950 no-underline shadow-sm transition duration-200 hover:-translate-y-1 hover:border-primary-300 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-500">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary-700 text-white shadow-sm"><Icon name={child.node_type === 'lesson' ? 'book-open' : child.node_type === 'theme' ? 'layer-group' : 'graduation-cap'} className="h-5 w-5" /></span>
+                  <span className="curriculum-node-child-body min-w-0 flex-1"><small className="block text-xs font-bold uppercase tracking-wider text-primary-700">{curriculumLevelLabel(curriculumDepth + 1, isPharmacy)}</small><strong className="mt-1 block text-base leading-snug">{child.name}</strong></span>
+                  <Icon name="arrow-right" className="h-5 w-5 shrink-0 text-primary-700 transition-transform group-hover:translate-x-1" />
                 </Link>
               );
             })}

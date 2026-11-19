@@ -625,7 +625,7 @@ export default function NoteDetail() {
         <Breadcrumb items={breadcrumb} className="note-breadcrumb" />
 
         <article ref={contentRef} className="note-article">
-          <header className="note-hero">
+          <header className="note-hero rounded-3xl border border-primary-100 bg-gradient-to-br from-primary-50 via-white to-secondary-50 px-5 py-7 shadow-sm sm:px-8 sm:py-10">
             <div
               ref={progressBarRef}
               className="note-progress-bar"
@@ -636,7 +636,7 @@ export default function NoteDetail() {
               aria-valuemax="100"
             />
 
-            <h1 className="note-title font-fraunces">{note.title}</h1>
+            <div className="mt-5"><span className="inline-flex items-center gap-2 rounded-full border border-secondary-200 bg-secondary-50 px-3 py-1.5 text-xs font-extrabold uppercase tracking-[.15em] text-secondary-800"><i className="fa-solid fa-book-open" aria-hidden="true" /> Step 5 · Study note</span><h1 className="note-title font-fraunces mt-4 text-4xl font-extrabold leading-tight tracking-tight text-primary-950 sm:text-5xl">{note.title}</h1><p className="mt-3 max-w-3xl text-base leading-7 text-slate-600">Read, reflect, and track your understanding as you move through your learning pathway.</p></div>
           </header>
 
           <div
