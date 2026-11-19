@@ -1,10 +1,26 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Icon from '../../components/Icon/Icon';
 import { streamAIAssistant } from '../../api/client';
 import { useAuth } from '../../contexts/AuthContext';
 import { useLayout } from '../../contexts/LayoutContext';
 import { useChat } from '../../contexts/ChatContext';
+
+
+function TutorIcon({ name, className = 'h-5 w-5' }) {
+  const glyphs = {
+    'graduation-cap': <><path d="m2 9 10-5 10 5-10 5L2 9Z"/><path d="M6 11v5c3.5 2.5 8.5 2.5 12 0v-5M22 9v6"/></>,
+    xmark: <path d="m6 6 12 12M18 6 6 18"/>,
+    'book-open': <><path d="M3 5a2 2 0 0 1 2-2h5a2 2 0 0 1 2 2v16a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2V5Zm18 0a2 2 0 0 0-2-2h-5a2 2 0 0 0-2 2v16a2 2 0 0 1 2-2h5a2 2 0 0 1 2 2V5Z"/></>,
+    'circle-question': <><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 4.4 1.6c-1.2 1.2-1.9 1.3-1.9 2.9M12 17h.01"/></>,
+    rotate: <><path d="M20 7v5h-5M4 17v-5h5"/><path d="M5.5 9A7 7 0 0 1 18 6l2 2M4 16l2 2a7 7 0 0 0 12.5-3"/></>,
+    capsules: <><path d="M4.5 16.5a5 5 0 0 1 0-7l5-5a5 5 0 0 1 7 7l-5 5a5 5 0 0 1-7 0Z"/><path d="m8 8 8 8"/></>,
+    'arrow-right': <path d="M4 12h16m-6-6 6 6-6 6"/>,
+    lightbulb: <><path d="M9 18h6m-5 3h4"/><path d="M8 14a6 6 0 1 1 8 0c-1 1-1.5 2-1.5 3h-5c0-1-.5-2-1.5-3Z"/></>,
+    'paper-plane': <><path d="m22 2-7 20-4-9-9-4 20-7Z"/><path d="M22 2 11 13"/></>,
+    brain: <><path d="M12 4a3 3 0 0 0-5.7 1.2A3.5 3.5 0 0 0 5 11.5a3.5 3.5 0 0 0 2.5 6A3 3 0 0 0 12 20V4Zm0 0a3 3 0 0 1 5.7 1.2A3.5 3.5 0 0 1 19 11.5a3.5 3.5 0 0 1-2.5 6A3 3 0 0 A12 20"/><path d="M8 8h2m4 0h2M7 13h3m4 0h3M9 17h2m2-9v3m0 4v2"/></>
+  };
+  return <svg viewBox="0 0 24 24" className={className} aria-hidden="true" focusable="false" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">{glyphs[name] || glyphs.brain}</svg>;
+}
 
 const MODES = [
   { key: 'learn', label: 'Learn', icon: 'book-open' },
@@ -204,7 +220,7 @@ export default function AIAssistant() {
           <header className="ai-assistant-header">
             <div className="ai-assistant-heading">
               <span className="ai-assistant-avatar" aria-hidden="true">
-                <Icon name="graduation-cap" />
+                <TutorIcon name="graduation-cap" className="h-6 w-6" />
               </span>
               <div>
                 <h2>AliverBiopharm AI Tutor</h2>
@@ -218,7 +234,7 @@ export default function AIAssistant() {
               onClick={closeAssistant}
               aria-label="Close AI tutor"
             >
-              <Icon name="xmark" />
+              <TutorIcon name="xmark" className="h-5 w-5" />
             </button>
           </header>
 
@@ -233,7 +249,7 @@ export default function AIAssistant() {
                 aria-selected={mode === item.key}
                 disabled={streaming}
               >
-                <Icon name={item.icon} />
+                <TutorIcon name={item.icon} className="h-4 w-4 shrink-0" />
                 <span>{item.label}</span>
               </button>
             ))}
@@ -263,12 +279,12 @@ export default function AIAssistant() {
                 <strong>Live Chat</strong>
                 <small>Talk to our support team</small>
               </span>
-              <Icon name="arrow-right" />
+              <TutorIcon name="arrow-right" className="h-5 w-5 shrink-0" />
             </button>
             {messages.length === 0 ? (
               <div className="ai-assistant-welcome">
                 <span className="ai-assistant-welcome-icon" aria-hidden="true">
-                  <Icon name="lightbulb" />
+                  <TutorIcon name="lightbulb" className="h-6 w-6" />
                 </span>
                 <h3>Study with your AI tutor</h3>
                 <p>
@@ -347,7 +363,7 @@ export default function AIAssistant() {
               disabled={!input.trim() || streaming}
               aria-label="Send to AI tutor"
             >
-              <Icon name="paper-plane" />
+              <TutorIcon name="paper-plane" className="h-5 w-5" />
             </button>
           </form>
         </section>
@@ -360,7 +376,7 @@ export default function AIAssistant() {
         aria-label={open ? 'Close AliverBiopharm AI Tutor' : 'Open AliverBiopharm AI Tutor'}
         aria-expanded={open}
       >
-        <span className="ai-assistant-mascot" aria-hidden="true"><Icon name="brain" /></span>
+        <span className="ai-assistant-mascot" aria-hidden="true"><TutorIcon name="brain" className="h-6 w-6" /></span>
         <span>{open ? 'Close' : 'AI Tutor'}</span>
       </button>
     </div>
