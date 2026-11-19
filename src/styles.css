@@ -474,3 +474,77 @@ header nav { min-width: 0; }
   .ai-assistant-send svg { @apply h-5 w-5; }
 }
 @media (max-width: 640px) { .ai-assistant-panel { height: min(78vh, 650px); } .ai-assistant { @apply right-3; } }
+
+/* AliverBiopharma profile page: one coherent component system */
+@layer components {
+  .profile-page { @apply py-6 sm:py-9; }
+  .profile-page > .container { @apply mx-auto max-w-7xl px-3 sm:px-5 lg:px-8; }
+  .profile-overview-panel { @apply rounded-[1.75rem] border border-primary-100 bg-white shadow-xl shadow-primary-900/5; }
+  .profile-overview-heading { @apply gap-4 px-5 py-6 sm:px-8 sm:py-8; }
+  .profile-overview-heading h2 { @apply text-2xl font-extrabold tracking-tight sm:text-3xl; }
+  .profile-overview-heading p { @apply mt-1 max-w-2xl text-sm leading-6 sm:text-base; }
+  .profile-overview-icon { @apply h-16 w-16 rounded-2xl; }
+  .profile-overview-icon svg { @apply h-9 w-9; }
+  .profile-overview-summary { @apply items-center gap-6 p-5 sm:p-7 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]; }
+  .profile-summary-identity { @apply gap-4; }
+  .profile-summary-avatar { @apply shrink-0 rounded-2xl ring-4 ring-primary-50; }
+  .profile-summary-name h3 { @apply mb-1 text-2xl font-extrabold tracking-tight; }
+  .profile-summary-name p { @apply mt-1 text-sm font-semibold; }
+  .profile-summary-status { @apply mt-3 inline-flex; }
+  .profile-summary-details { @apply gap-3; }
+  .profile-summary-detail { @apply rounded-xl border-primary-100 bg-primary-50/60 px-4 py-3; }
+  .profile-summary-detail-label { @apply text-xs font-semibold uppercase tracking-wide text-slate-500; }
+  .profile-summary-detail strong { @apply min-w-0 text-sm font-semibold text-slate-800; }
+  .profile-categories { @apply border-t border-slate-100 px-5 py-5 sm:px-7 sm:py-7; }
+  .profile-categories-heading { @apply mb-5; }
+  .profile-categories-heading h2 { @apply text-xl font-extrabold tracking-tight text-primary-900; }
+  .profile-category-grid { @apply gap-3 sm:gap-4; }
+  .profile-category-card { @apply min-h-32 rounded-2xl border-primary-100 px-3 py-4 text-primary-900 shadow-sm sm:min-h-36; }
+  .profile-category-card:hover, .profile-category-card:focus-visible { @apply border-primary-300 bg-primary-50 shadow-md; }
+  .profile-category-icon, .profile-category-icon-primary { @apply h-14 w-14 rounded-2xl bg-primary-50 text-primary-700; }
+  .profile-category-icon svg { @apply h-8 w-8; }
+  .profile-tabs { @apply my-6 rounded-2xl border-primary-100 bg-white p-2 shadow-sm; }
+  .profile-tabs-wrap { @apply gap-1.5; }
+  .profile-tab-label { @apply min-h-11 rounded-xl px-3 text-sm font-bold; }
+  .profile-tab-radio:checked + .profile-tab-label { @apply bg-primary-800 text-white; }
+  .profile-layout { @apply gap-5; }
+  .profile-content { @apply space-y-5; }
+  .profile-card, .profile-card-main { @apply rounded-2xl border-slate-200 bg-white p-5 shadow-sm sm:p-7; }
+  .profile-page .profile-card h3, .profile-page .profile-detail-title { @apply mb-2 flex items-center gap-3 text-xl font-extrabold tracking-tight text-primary-900; }
+  .profile-detail-description, .profile-page .profile-card > p { @apply mb-5 max-w-3xl text-sm leading-6 text-slate-600; }
+  .profile-page .form-group { @apply mb-5; }
+  .profile-page input:not([type="checkbox"]):not([type="radio"]), .profile-page select, .profile-page textarea { @apply rounded-xl border-slate-300 bg-white text-slate-800 shadow-sm; }
+  .profile-page input:focus, .profile-page select:focus, .profile-page textarea:focus { @apply border-primary-500 ring-4 ring-primary-100; }
+  .profile-page .notification-row { @apply gap-4 rounded-xl border-slate-200 bg-slate-50/80 p-4; }
+  .profile-page .profile-row-copy { @apply min-w-0 flex-1; }
+  .profile-page .profile-toggle-group { @apply flex flex-wrap items-center gap-2; }
+  .profile-page .profile-flex-wrap { @apply gap-4; }
+  .profile-page .profile-plan-list { @apply mt-5 space-y-3; }
+  .profile-page .profile-plan-option { @apply min-w-0 flex-1 rounded-xl border border-slate-200 bg-slate-50 p-4; }
+  .profile-page .profile-plan-option.is-selected { @apply border-primary-400 bg-primary-50 ring-2 ring-primary-100; }
+  .profile-page .table-wrapper { @apply overflow-x-auto rounded-xl border border-slate-200; }
+  .profile-page .data-table { @apply min-w-full; }
+  .profile-page .profile-error { @apply rounded-2xl border border-red-200 bg-red-50 p-4; }
+  .profile-page .profile-error-icon { @apply text-red-700; }
+  .profile-page .profile-account-delete-confirm { @apply rounded-xl border border-red-200 bg-red-50 p-4; }
+  .profile-page .profile-divider { @apply my-5; }
+  .profile-page button, .profile-page .btn, .profile-page [role="button"] { @apply min-h-11 rounded-xl font-semibold; }
+  .profile-page .btn-primary, .profile-page button.btn-primary { @apply border-primary-800 bg-primary-800 text-white shadow-sm hover:border-primary-900 hover:bg-primary-900; }
+  .profile-page .btn-outline, .profile-page button.btn-outline, .profile-page button[class*="outline"] { @apply border-primary-200 bg-white text-primary-800 hover:border-primary-300 hover:bg-primary-50; }
+  .profile-page button svg, .profile-page .btn svg { @apply h-5 w-5; }
+  .profile-page .profile-detail-title svg, .profile-page .profile-card h3 svg { @apply h-6 w-6; }
+  .profile-page .profile-category-card:focus-visible, .profile-page .profile-tab-label:focus-visible { @apply outline outline-2 outline-offset-2 outline-primary-500; }
+  .profile-page .profile-category-icon svg *, .profile-page .profile-detail-title svg *, .profile-page .profile-card h3 svg *, .profile-page .profile-summary-detail svg * { stroke: currentColor !important; }
+  .profile-page .profile-category-icon svg *[fill]:not([fill="none"]), .profile-page .profile-detail-title svg *[fill]:not([fill="none"]), .profile-page .profile-card h3 svg *[fill]:not([fill="none"]), .profile-page .profile-summary-detail svg *[fill]:not([fill="none"]) { fill: currentColor !important; }
+}
+@media (max-width: 640px) {
+  .profile-page .profile-overview-summary { @apply grid-cols-1; }
+  .profile-page .profile-summary-identity { @apply items-start; }
+  .profile-page .profile-summary-details { @apply grid-cols-1; }
+  .profile-page .profile-category-card { @apply min-h-28; }
+  .profile-page .profile-tabs-wrap { @apply grid grid-cols-2; }
+  .profile-page .profile-tab-label { @apply w-full px-2 text-xs; }
+  .profile-page .profile-plan-option { @apply w-full; }
+  .profile-page .profile-plan-list > div { @apply items-stretch; }
+  .profile-page .profile-plan-list button { @apply w-full; }
+}
