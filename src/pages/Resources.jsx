@@ -17,19 +17,25 @@ export default function Resources() {
 
   useEffect(() => {
     const levelId = level?.id;
-    if (!levelId) return undefined;
-
     let mounted = true;
+
+    if (!levelId) {
+      setSections({});
+      return () => { mounted = false; };
+    }
+
     const cached = resourcesSectionsCache.get(levelId);
-    if (cached) setSections(cached);
+    setSections(cached || {});
 
     getSections(levelId)
       .then((data) => {
-        const next = data || {};
+        const next = data && typeof data === 'object' ? data : {};
         resourcesSectionsCache.set(levelId, next);
         if (mounted) setSections(next);
       })
-      .catch(() => {});
+      .catch(() => {
+        if (mounted && !cached) setSections({});
+      });
 
     return () => { mounted = false; };
   }, [level?.id]);

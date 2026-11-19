@@ -51,12 +51,15 @@ function AnimatedNumber({ value }) {
   return <span ref={numberRef}>{formatNumber(displayValue)}</span>;
 }
 
-function MetricValue({ value, label, detail }) {
+function MetricValue({ value, label, detail, variant = 'dark' }) {
+  const isDark = variant === 'dark';
   return (
-    <div className="rounded-xl border border-white/15 bg-white/10 p-4">
-      <strong className="block text-2xl font-extrabold tracking-tight text-white sm:text-3xl"><AnimatedNumber value={value} /></strong>
-      <span className="mt-1 block text-sm font-semibold text-blue-50">{label}</span>
-      {detail && <small className="mt-1 block text-xs text-blue-100/75">{detail}</small>}
+    <div className={isDark
+      ? 'rounded-xl border border-blue-200/30 bg-blue-700/70 p-4 shadow-sm'
+      : 'rounded-xl border border-blue-200 bg-blue-50 p-4 shadow-sm'}>
+      <strong className={`block text-2xl font-extrabold tracking-tight sm:text-3xl ${isDark ? 'text-white' : 'text-primary-900'}`}><AnimatedNumber value={value} /></strong>
+      <span className={`mt-1 block text-sm font-semibold ${isDark ? 'text-blue-50' : 'text-primary-800'}`}>{label}</span>
+      {detail && <small className={`mt-1 block text-xs ${isDark ? 'text-blue-100' : 'text-slate-600'}`}>{detail}</small>}
     </div>
   );
 }
@@ -97,16 +100,16 @@ function LearningActivity({ stats }) {
         <div className="rounded-2xl border border-primary-100 bg-white p-5">
           <h4 className="mb-4 text-sm font-extrabold uppercase tracking-wider text-primary-900">Active recall</h4>
           <div className="grid gap-3 sm:grid-cols-2">
-            <MetricValue value={stats.recall_active_users} label="Active Recall learners" />
+            <MetricValue value={stats.recall_active_users} label="Active Recall learners" variant="light" />
           </div>
         </div>
         <div className="rounded-2xl border border-primary-100 bg-white p-5">
           <h4 className="mb-4 text-sm font-extrabold uppercase tracking-wider text-primary-900">Quizzes</h4>
           <div className="grid gap-3 sm:grid-cols-2">
-            <MetricValue value={stats.quiz_users} label="Quiz learners" />
-            <MetricValue value={stats.quiz_active_users} label="Active quiz learners" />
-            <MetricValue value={stats.quiz_passes} label="Passed attempts" />
-            <MetricValue value={stats.quiz_failures} label="Failed attempts" />
+            <MetricValue value={stats.quiz_users} label="Quiz learners" variant="light" />
+            <MetricValue value={stats.quiz_active_users} label="Active quiz learners" variant="light" />
+            <MetricValue value={stats.quiz_passes} label="Passed attempts" variant="light" />
+            <MetricValue value={stats.quiz_failures} label="Failed attempts" variant="light" />
           </div>
         </div>
       </div>

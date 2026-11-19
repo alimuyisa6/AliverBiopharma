@@ -163,35 +163,35 @@ export default function QuestionBankPage() {
   }
 
   return (
-    <Container className="qbank-page">
+    <Container className="qbank-page mx-auto w-full max-w-7xl px-4 py-8 text-foreground sm:px-6 sm:py-12 lg:px-8">
       <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Resources', href: '/resources' }, { label: 'Question bank', href: null }]} />
-      <header className="qbank-header">
+      <header className="qbank-header mb-8 flex flex-col gap-4 border-b border-border pb-8">
         <span className="qbank-eyebrow">Learn & recall</span>
         <h1>Question bank</h1>
         <p>Find published questions from your active curriculum, review their learning objectives and assemble focused tests for exam practice.</p>
       </header>
 
-      <section className="qbank-search-panel" aria-label="Question bank filters">
+      <section className="qbank-search-panel mb-8 grid grid-cols-1 gap-4 rounded-2xl border border-border bg-white p-5 shadow-sm sm:grid-cols-2 lg:grid-cols-3" aria-label="Question bank filters">
         <label className="qbank-search-field">
           <span>Search questions and concepts</span>
-          <span className="qbank-input-wrap"><Icon name="search" /><input value={filters.search} onChange={(event) => updateFilter('search', event.target.value)} placeholder="Search pharmacology, concepts or learning objectives"  className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" /></span>
+          <span className="qbank-input-wrap"><Icon name="search" /><input value={filters.search} onChange={(event) => updateFilter('search', event.target.value)} placeholder="Search pharmacology, concepts or learning objectives"  className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" /></span>
         </label>
-        <label><span>Difficulty</span><select value={filters.difficulty} onChange={(event) => updateFilter('difficulty', event.target.value)} className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"><option value="">All levels</option><option value="easy">Easy</option><option value="medium">Moderate</option><option value="hard">Advanced</option></select></label>
-        <label><span>Question format</span><select value={filters.question_type} onChange={(event) => updateFilter('question_type', event.target.value)} className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"><option value="">All formats</option>{TYPES.map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>
+        <label><span>Difficulty</span><select value={filters.difficulty} onChange={(event) => updateFilter('difficulty', event.target.value)} className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"><option value="">All levels</option><option value="easy">Easy</option><option value="medium">Moderate</option><option value="hard">Advanced</option></select></label>
+        <label><span>Question format</span><select value={filters.question_type} onChange={(event) => updateFilter('question_type', event.target.value)} className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"><option value="">All formats</option>{TYPES.map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>
       </section>
 
-      <div className="qbank-layout">
-        <section className="qbank-results" aria-labelledby="qbank-results-title">
+      <div className="qbank-layout grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1fr)_22rem] xl:items-start">
+        <section className="qbank-results min-w-0 rounded-2xl border border-border bg-white p-4 shadow-sm sm:p-6" aria-labelledby="qbank-results-title">
           <div className="qbank-section-heading"><div><h2 id="qbank-results-title">Curriculum questions</h2><p>{total} published questions available {filters.unit_id ? 'in this lesson' : 'in your active programme'}</p></div><span>{selected.length}/40 selected</span></div>
           {loading ? <div className="qbank-empty">Searching your curriculum…</div> : questions.length === 0 ? (
             <div className="qbank-empty"><Icon name="search" /><h3>No matching questions</h3><p>Try a different search phrase or remove one of the filters.</p></div>
           ) : (
-            <div className="qbank-question-list">
+            <div className="qbank-question-list grid grid-cols-1 gap-4">
               {questions.map((question) => {
                 const checked = selected.includes(String(question.id));
                 const options = questionOptions(question);
                 return (
-                  <article className={`qbank-question-card${checked ? ' is-selected' : ''}`} key={question.id}>
+                  <article className={`qbank-question-card flex min-w-0 flex-col rounded-xl border border-border bg-white p-4 shadow-sm sm:p-5${checked ? ' is-selected' : ''}`} key={question.id}>
                     <div className="qbank-question-topline"><span>{question.curriculum_unit?.name || 'Curriculum lesson'}</span><span>{question.difficulty || 'Standard'}</span><span>{String(question.question_type || 'single_choice').replaceAll('_', ' ')}</span></div>
                     <h3>{question.question_text}</h3>
                     {question.image_url && <img className="qbank-question-image" src={question.image_url} alt={question.image_alt_text || 'Question illustration'} loading="lazy" />}
@@ -211,11 +211,11 @@ export default function QuestionBankPage() {
           <div className="qbank-pagination"><button type="button" disabled={filters.page <= 0 || loading} onClick={() => setFilters((current) => ({ ...current, page: current.page - 1 }))}>Previous</button><span>Page {filters.page + 1} of {Math.max(1, Math.ceil(total / PAGE_SIZE))}</span><button type="button" disabled={(filters.page + 1) * PAGE_SIZE >= total || loading} onClick={() => setFilters((current) => ({ ...current, page: current.page + 1 }))}>Next</button></div>
         </section>
 
-        <aside className="qbank-builder-panel">
+        <aside className="qbank-builder-panel flex min-w-0 flex-col gap-4 rounded-2xl border border-primary-200 bg-primary-50 p-5 shadow-sm sm:p-6 xl:sticky xl:top-6">
           <div className="qbank-builder-heading"><span><Icon name="clipboard-check" /></span><div><h2>Custom test builder</h2><p>Target a lesson and build a focused assessment.</p></div></div>
           <div className="qbank-selection-summary"><strong>{selected.length}</strong><span>questions selected</span></div>
-          <label><span>Test title</span><input value={title} maxLength={120} onChange={(event) => setTitle(event.target.value)} placeholder="e.g. Pharmacokinetics revision"  className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" /></label>
-          <label><span>Description (optional)</span><textarea value={description} maxLength={500} onChange={(event) => setDescription(event.target.value)} rows={3} placeholder="What do you want to practise?"  className="block min-h-32 w-full min-w-0 resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" /></label>
+          <label><span>Test title</span><input value={title} maxLength={120} onChange={(event) => setTitle(event.target.value)} placeholder="e.g. Pharmacokinetics revision"  className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" /></label>
+          <label><span>Description (optional)</span><textarea value={description} maxLength={500} onChange={(event) => setDescription(event.target.value)} rows={3} placeholder="What do you want to practise?"  className="block min-h-32 w-full min-w-0 resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" /></label>
           <button type="button" className="qbank-primary-button" disabled={saving || selected.length < 2 || !title.trim()} onClick={saveSelection}>{saving ? 'Saving test…' : 'Save custom test'}</button>
           <button type="button" className="qbank-clear-button" disabled={!selected.length} onClick={() => { setSelected([]); setSelectedUnit(null); }}>Clear selection</button>
           <p className="qbank-builder-note">Choose 2–40 questions from one lesson. Your saved test keeps its own question order and launches through the secure quiz attempt system.</p>

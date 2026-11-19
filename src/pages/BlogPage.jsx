@@ -493,7 +493,7 @@ export default function BlogPage() {
         }
       `}</style>
 
-      <div className="blog-page min-h-screen bg-background text-foreground">
+      <div className="blog-page min-h-screen w-full bg-background text-foreground">
         {loading ? (
           <section className="blog-article-body" aria-busy="true" aria-live="polite">
             <p>Loading blog content…</p>
@@ -509,22 +509,22 @@ export default function BlogPage() {
         ) : (
           <>
             {topics.length > 0 && (
-              <section className="blog-topic-area" aria-label="Blog topics">
-                <div className="blog-topic-buttons">
+              <section className="blog-topic-area mx-auto my-8 w-full max-w-5xl px-4 text-center sm:my-12 sm:px-6" aria-label="Blog topics">
+                <div className="blog-topic-buttons flex flex-wrap justify-center gap-3">
                   {topics.map((topic) => {
                     const label = typeof topic === 'string'
                       ? topic
                       : topic?.label || topic?.name || '';
                     if (!label) return null;
                     return (
-                      <button type="button" className="blog-topic-button" key={label}>
+                      <button type="button" className="blog-topic-button inline-flex min-h-11 items-center justify-center rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-900" key={label}>
                         {label}
                       </button>
                     );
                   })}
                 </div>
                 {blog?.explore_label && (
-                  <button type="button" className="blog-explore-button">
+                  <button type="button" className="blog-explore-button mx-auto flex min-h-12 w-full max-w-sm items-center justify-center rounded-xl border border-blue-800 bg-blue-800 px-6 py-3 text-sm font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-blue-900 hover:shadow-lg">
                     {blog.explore_label}
                   </button>
                 )}
@@ -533,25 +533,25 @@ export default function BlogPage() {
 
             {featured && (
               <article>
-                <header className="blog-article-header">
-                  <h1>{featured.title}</h1>
-                  <div className="blog-article-meta">
+                <header className="blog-article-header mx-auto mb-6 mt-8 w-full max-w-4xl px-4 text-center sm:mt-12 sm:px-6">
+                  <h1 className="mb-4 text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">{featured.title}</h1>
+                  <div className="blog-article-meta mb-5 flex flex-wrap items-center justify-center gap-2 text-sm text-slate-500">
                     {featured.category && <strong>{featured.category}</strong>}
                     {featured.author && <> · by {featured.author}</>}
                     {featured.published_at && <> · {formatDate(featured.published_at)}</>}
                   </div>
                   {(featured.share?.facebook || featured.share?.x || featured.share?.linkedin || featured.share?.whatsapp) && (
-                    <div className="blog-share" aria-label="Share article">
-                      {featured.share.facebook && <a href={featured.share.facebook} className="blog-share-link" aria-label="Share on Facebook">f</a>}
+                    <div className="blog-share mb-8 flex items-center justify-center gap-3" aria-label="Share article">
+                      {featured.share.facebook && <a href={featured.share.facebook} className="blog-share-link inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-sm font-bold text-slate-700 transition hover:-translate-y-0.5 hover:bg-blue-700 hover:text-white" aria-label="Share on Facebook">f</a>}
                       {featured.share.x && <a href={featured.share.x} className="blog-share-link" aria-label="Share on X">X</a>}
                       {featured.share.linkedin && <a href={featured.share.linkedin} className="blog-share-link" aria-label="Share on LinkedIn">in</a>}
                       {featured.share.whatsapp && <a href={featured.share.whatsapp} className="blog-share-link" aria-label="Share on WhatsApp">W</a>}
                     </div>
                   )}
                 </header>
-                <img src={getArticleImage(featured)} alt={featured.image_alt || featured.title} className="blog-featured-image" loading="lazy" />
+                <img src={getArticleImage(featured)} alt={featured.image_alt || featured.title} className="blog-featured-image mx-auto mb-8 block w-[calc(100%-2rem)] max-w-4xl max-h-[32rem] rounded-2xl border border-slate-200 object-cover shadow-xl sm:w-full" loading="lazy" />
                 {(bodyParagraphs.length > 0 || bodySections.length > 0) && (
-                  <div className="blog-article-body">
+                  <div className="blog-article-body mx-auto w-full max-w-4xl px-4 pb-16 text-base leading-8 text-slate-700 sm:px-6 sm:text-lg">
                     {bodyParagraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
                     {bodySections.map((section, index) => (
                       <section key={section.id || index}>
@@ -572,19 +572,19 @@ export default function BlogPage() {
             )}
 
             {posts.length > 0 && (
-              <section className="blog-latest" aria-labelledby="latest-blog-heading">
-                {blog?.latest_heading && <h2 id="latest-blog-heading">{blog.latest_heading}</h2>}
-                <div className="blog-posts-grid">
+              <section className="blog-latest border-y border-slate-200 bg-slate-50 px-4 py-12 sm:px-6 sm:py-16" aria-labelledby="latest-blog-heading">
+                {blog?.latest_heading && <h2 id="latest-blog-heading" className="mb-8 text-center text-2xl font-extrabold tracking-tight text-slate-900 sm:mb-10 sm:text-3xl">{blog.latest_heading}</h2>}
+                <div className="blog-posts-grid mx-auto grid w-full max-w-6xl grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
                   {posts.slice(0, 3).map((post) => (
-                    <article className="blog-post-card" key={post.id || post.slug || post.title}>
-                      <img src={getArticleImage(post)} alt={post.image_alt || post.title} className="blog-post-image" loading="lazy" />
-                      <div className="blog-post-content">
-                        {post.category && <span className="blog-post-category">{post.category}</span>}
-                        <h3 className="blog-post-title">{post.title}</h3>
-                        {post.published_at && <div className="blog-post-date">{formatDate(post.published_at)}</div>}
-                        {post.excerpt && <p className="blog-post-excerpt">{post.excerpt}</p>}
+                    <article className="blog-post-card flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl" key={post.id || post.slug || post.title}>
+                      <img src={getArticleImage(post)} alt={post.image_alt || post.title} className="blog-post-image h-48 w-full object-cover sm:h-52" loading="lazy" />
+                      <div className="blog-post-content flex flex-1 flex-col items-start p-5 sm:p-6">
+                        {post.category && <span className="blog-post-category mb-3 inline-flex rounded-full bg-blue-50 px-3 py-1 text-xs font-bold uppercase tracking-wide text-blue-800">{post.category}</span>}
+                        <h3 className="blog-post-title mb-3 text-xl font-bold leading-snug text-slate-900">{post.title}</h3>
+                        {post.published_at && <div className="blog-post-date mb-4 text-xs font-medium text-slate-500">{formatDate(post.published_at)}</div>}
+                        {post.excerpt && <p className="blog-post-excerpt mb-5 line-clamp-3 text-sm leading-6 text-slate-600">{post.excerpt}</p>}
                         {post.slug && (
-                          <a href={`/blog/${post.slug}`} className="blog-read-more">
+                          <a href={`/blog/${post.slug}`} className="blog-read-more mt-auto inline-flex min-h-10 items-center justify-center rounded-lg border border-blue-700 px-4 py-2 text-sm font-semibold text-blue-800 transition hover:bg-blue-700 hover:text-white">
                             {post.read_more_label || 'Read article'}
                           </a>
                         )}

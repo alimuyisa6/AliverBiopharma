@@ -187,7 +187,24 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (level?.id) getSections(level.id).then(setSections).catch(() => {});
+    let cancelled = false;
+    if (!level?.id) {
+      setSections({});
+      return () => { cancelled = true; };
+    }
+
+    // Clear the previous programme's section configuration and guard against
+    // late responses when the user switches learning levels.
+    setSections({});
+    getSections(level.id)
+      .then((nextSections) => {
+        if (!cancelled) setSections(nextSections && typeof nextSections === 'object' ? nextSections : {});
+      })
+      .catch(() => {
+        if (!cancelled) setSections({});
+      });
+
+    return () => { cancelled = true; };
   }, [level?.id]);
 
   useEffect(() => {

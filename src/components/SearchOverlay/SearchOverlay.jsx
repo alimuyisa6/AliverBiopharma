@@ -121,14 +121,14 @@ export default function SearchOverlay({ open, onClose }) {
     <AnimatePresence>
       {open && (
         <motion.div
-          className="search-overlay"
+          className="search-overlay relative z-30 mx-auto w-full max-w-7xl border-b border-slate-200 bg-white px-3 py-3 shadow-lg sm:px-6 sm:py-4" style={{ position: "relative", inset: "auto", width: "100%", maxWidth: "80rem", margin: "0 auto", background: "#fff", zIndex: 30 }}
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.2 }}
         >
-          <div className="search-input-wrapper">
-            <Icon name="magnifying-glass" className="search-input-icon" />
+          <div className="search-input-wrapper flex w-full items-center gap-2 rounded-2xl border border-slate-200 bg-slate-50 p-2 shadow-inner" style={{ display: "flex", width: "100%", alignItems: "center", gap: "0.5rem" }}>
+            <svg className="search-input-icon shrink-0" viewBox="0 0 24 24" aria-hidden="true" style={{ width: 22, height: 22, display: "block", color: "#475569" }}><circle cx="10.8" cy="10.8" r="5.8" fill="none" stroke="currentColor" strokeWidth="2" /><path d="m15.2 15.2 4.4 4.4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
             <input
               ref={inputRef}
               type="text"
@@ -137,40 +137,40 @@ export default function SearchOverlay({ open, onClose }) {
               value={query}
               onChange={handleChange}
             />
-            <button className="search-close" onClick={onClose}>
-              <Icon name="xmark" />
+            <button className="search-close inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-100" style={{ color: "#334155", backgroundColor: "#fff", borderColor: "#cbd5e1" }} onClick={onClose} aria-label="Close search" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true" style={{ width: 20, height: 20, display: "block" }}><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" /></svg>
             </button>
           </div>
 
           {loading && (
-            <div className="search-results search-loading">
+            <div className="search-results search-loading mt-3 flex min-h-16 items-center justify-center rounded-xl border border-slate-100 bg-white p-4">
               <div className="spinner" />
             </div>
           )}
 
           {!loading && hasResults && (
-            <div className="search-results">
+            <div className="search-results mt-3 max-h-[65vh] overflow-y-auto rounded-2xl border border-slate-200 bg-white p-3 shadow-sm sm:p-4">
               {CATEGORIES.map((category) => {
                 const items = results.results.filter((item) => item.type === category.key);
 
                 if (!items.length) return null;
 
                 return (
-                  <div key={category.key} className="search-result-group">
-                    <div className="search-result-group-label">{category.label}</div>
+                  <div key={category.key} className="search-result-group mb-3 last:mb-0">
+                    <div className="search-result-group-label mb-2 px-2 text-xs font-bold uppercase tracking-wider text-slate-500">{category.label}</div>
 
                     {items.map((item, idx) => (
                       <button
                         key={idx}
-                        className="search-result-item"
+                        className="search-result-item flex w-full items-center gap-3 rounded-xl p-3 text-left transition hover:bg-blue-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600" type="button"
                         onClick={() => handleResultClick(category.path(item))}
                       >
-                        <Icon name={category.icon === 'dna' ? 'microscope' : category.icon} className="search-result-icon" />
-                        <div className="search-result-content">
-                          <div className="search-result-title">{item.title}</div>
+                        <Icon name={category.icon === 'dna' ? 'microscope' : category.icon} className="search-result-icon shrink-0 text-blue-700" />
+                        <div className="search-result-content min-w-0 flex-1">
+                          <div className="search-result-title truncate font-semibold text-slate-800">{item.title}</div>
                           {item.preview && (
                             <div
-                              className="search-result-meta"
+                              className="search-result-meta mt-1 line-clamp-2 text-sm leading-5 text-slate-600"
                               dangerouslySetInnerHTML={{
                                 __html: DOMPurify.sanitize(item.preview)
                               }}
@@ -187,7 +187,7 @@ export default function SearchOverlay({ open, onClose }) {
 
           {!loading && query.length >= 2 && !hasResults && (
             <div className="search-results">
-              <div className="search-empty">No results for "{query}"</div>
+              <div className="search-empty rounded-xl bg-slate-50 px-4 py-6 text-center text-sm text-slate-500">No results for "{query}"</div>
             </div>
           )}
         </motion.div>

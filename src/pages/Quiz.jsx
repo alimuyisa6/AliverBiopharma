@@ -717,7 +717,7 @@ export default function Quiz() {
 
   if (isQuizCardsPage && !currentTopic && !quizQuestions.length && !resultData) {
     return (
-      <div className="quiz-page quiz-cards-route-page">
+      <div className="quiz-page min-h-screen bg-background text-foreground quiz-cards-route-page">
         <div className="section quiz-page-section">
           <button
             type="button"
@@ -1112,7 +1112,7 @@ export default function Quiz() {
             </div>
           </div>
         ) : (
-          <div className="quiz-blocks-page">
+          <div className="quiz-blocks-page min-h-screen bg-background text-foreground">
             <div className="quiz-blocks-grid">
               {Array.from({ length: totalBlocks }).map((_, index) => {
                 const topicData = allTopics.find((topic) => topic.topic_name === currentTopic);

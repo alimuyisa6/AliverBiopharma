@@ -9,7 +9,6 @@ import AdminLauncher from '../AdminLauncher';
 import NetworkStatus from '../NetworkStatus/NetworkStatus';
 import NotificationCenter from '../NotificationCenter/NotificationCenter';
 import ClassSwitcher from '../ClassSwitcher/ClassSwitcher';
-import BiopharmToggle from '../BiopharmToggle/BiopharmToggle';
 
 const EXCLUDED_PATHS = ['/login', '/register'];
 const SCROLL_STORAGE_KEY = 'scroll-positions';
@@ -112,7 +111,7 @@ export default function Layout({ children, showFooter = true }) {
         {isAuthenticated && <div className="min-w-0 max-w-[6.5rem] shrink min-[769px]:max-w-[12rem]"><ClassSwitcher /></div>}
         <button className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-border bg-white text-primary-800 transition-colors hover:border-primary-200 hover:bg-primary-50 sm:h-10 sm:w-10" onClick={() => setSearchOpen(true)} aria-label={t('common.search')} type="button"><SearchGlyph /></button>
         <span className="inline-flex shrink-0"><NotificationCenter /></span>
-        <span className="inline-flex shrink-0"><BiopharmToggle checked={isDarkTheme} onChange={toggleTheme} ariaLabel={t('common.toggleTheme')} /></span>
+        <button type="button" onClick={toggleTheme} aria-label={t('common.toggleTheme')} title={t('common.toggleTheme')} className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-white text-primary-800 shadow-sm transition-colors hover:border-primary-300 hover:bg-primary-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 sm:h-11 sm:w-11"><ThemeGlyph isDark={isDarkTheme} /></button>
         <button className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border bg-white text-primary-800 transition-colors hover:border-primary-200 hover:bg-primary-50" onClick={() => setMobileOpen((prev) => !prev)} aria-label={mobileOpen ? t('common.closeMenu') : t('common.menu')} aria-expanded={mobileOpen} type="button"><MenuGlyph isOpen={mobileOpen} /></button>
       </div>
     </div></header>}

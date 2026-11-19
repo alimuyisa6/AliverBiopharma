@@ -107,8 +107,8 @@ export default function PdfLibraryPage() {
   if (access.loading) {
     return (
       <Container className="pdf-library-section">
-        <div className="pdf-library-page">
-          <div className="pdf-skeleton-grid">
+        <div className="pdf-library-page w-full text-foreground">
+          <div className="pdf-skeleton-grid grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
             <Skeleton height={160} />
             <Skeleton height={160} />
             <Skeleton height={160} />
@@ -132,9 +132,9 @@ export default function PdfLibraryPage() {
 
   return (
     <Container className="pdf-library-section">
-      <div className="pdf-library-page">
+      <div className="pdf-library-page w-full max-w-7xl px-4 py-8 text-foreground sm:px-6 sm:py-12 lg:px-8">
         <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'PDF library' }]} />
-        <header className="pdf-library-heading">
+        <header className="pdf-library-heading mt-8 flex flex-col gap-5 border-b border-border pb-8 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <h1 className="section-title pdf-library-title">PDF library</h1>
             <p className="pdf-library-description">Course notes and reference documents for your programme.</p>
@@ -146,21 +146,21 @@ export default function PdfLibraryPage() {
           )}
         </header>
 
-        <section className="pdf-library-controls" aria-labelledby="pdf-library-controls-title">
+        <section className="pdf-library-controls mt-8 flex flex-col gap-5 rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-6 lg:flex-row lg:items-center lg:justify-between" aria-labelledby="pdf-library-controls-title">
           <div className="pdf-library-controls-copy">
             <h2 id="pdf-library-controls-title">Find a document</h2>
             <p>Sort by title, author, or file size.</p>
           </div>
-          <div className="toolbar">
-            <div className="result-count" aria-live="polite">
+          <div className="toolbar flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="result-count flex items-center gap-3 rounded-xl bg-primary-50 px-4 py-3 text-primary-900" aria-live="polite">
               <span className="result-count-label">PDFs available</span>
               <strong>{pdfs.length}</strong>
               <span>{pdfs.length === 1 ? 'PDF' : 'PDFs'}</span>
             </div>
             <div className="toolbar-spacer" />
-            <label className="sort-control" htmlFor="sortSelect">
+            <label className="sort-control flex w-full flex-col gap-2 text-sm font-semibold text-slate-700 sm:w-auto sm:flex-row sm:items-center" htmlFor="sortSelect">
               <span>Sort by:</span>
-              <select className="sort-select block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" id="sortSelect" value={sortBy} onChange={(event) => setSortBy(event.target.value)}>
+              <select className="sort-select block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" id="sortSelect" value={sortBy} onChange={(event) => setSortBy(event.target.value)}>
                 <option value="title">Title</option>
                 <option value="author">Author</option>
                 <option value="size">File size</option>
@@ -190,14 +190,14 @@ export default function PdfLibraryPage() {
         ) : pdfs.length === 0 ? (
           <EmptyState image={getEmptyStateImage('pdfs')} title="No PDFs are available for this selection yet." />
         ) : (
-          <div className="pdf-grid">
+          <div className="pdf-grid grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
             {sortedPdfs.map((pdf) => (
-              <article key={pdf.id} className="pdf-card">
+              <article key={pdf.id} className="pdf-card flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:border-primary-200 hover:shadow-lg">
                 <span
                   className={`pdf-premium-ribbon ${pdf.is_premium ? 'pdf-premium-ribbon--premium' : 'pdf-premium-ribbon--free'}`}
                   aria-label={pdf.is_premium ? 'Premium PDF' : 'Free PDF'}
                 />
-                <div className="pdf-card-artwork">
+                <div className="pdf-card-artwork relative aspect-[16/10] w-full overflow-hidden bg-primary-50">
                   <img
                     src={pdf.cover_image_url || pdf.thumbnail_url || pdf.image_url || 'https://images.pexels.com/photos/7972795/pexels-photo-7972795.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop'}
                     alt={pdf.title}
@@ -207,12 +207,12 @@ export default function PdfLibraryPage() {
                   />
                   <span className="pdf-card-image-label">PDF resource</span>
                 </div>
-                <div className="pdf-card-body">
+                <div className="pdf-card-body flex flex-1 flex-col gap-2 p-5">
                   <h3 className="pdf-card-title">{pdf.title}</h3>
                   {pdf.author && !/^(aliverbiopharm|aliver biopharm|aliver-biopharma|aliverbiopharm\.com|aliver-biopharma\.vercel\.app)$/i.test(String(pdf.author).trim()) && <p className="pdf-card-author">{pdf.author}</p>}
                   {pdf.file_size && <span className="pdf-card-size">{pdf.file_size}</span>}
                 </div>
-                <div className="pdf-card-footer">
+                <div className="pdf-card-footer mt-auto border-t border-border p-5">
                   {pdf.is_premium ? (
                     <Button type="button" variant="primary" onClick={() => handlePremiumPdfDownload(pdf)}>
                       <Icon name="lock" /> Access premium PDF
