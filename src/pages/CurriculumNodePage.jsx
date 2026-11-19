@@ -348,7 +348,7 @@ export default function CurriculumNodePage() {
 
               return (
                 <Link key={child.id} to={childHref} className="curriculum-node-child group flex min-h-32 items-center gap-4 rounded-2xl border border-primary-100 bg-gradient-to-br from-white to-primary-50 p-5 text-primary-950 no-underline shadow-sm transition duration-200 hover:-translate-y-1 hover:border-primary-300 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-500">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary-700 text-white shadow-sm"><Icon name={child.node_type === 'lesson' ? 'book-open' : child.node_type === 'theme' ? 'layers' : 'folder-open'} className="h-5 w-5" /></span>
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary-700 text-white shadow-sm"><Icon name={child.node_type === 'lesson' ? 'book-open' : child.node_type === 'theme' ? 'layer-group' : 'graduation-cap'} className="h-5 w-5" /></span>
                   <span className="curriculum-node-child-body min-w-0 flex-1"><small className="block text-xs font-bold uppercase tracking-wider text-primary-700">{curriculumLevelLabel(curriculumDepth + 1, isPharmacy)}</small><strong className="mt-1 block text-base leading-snug">{child.name}</strong></span>
                   <Icon name="arrow-right" className="h-5 w-5 shrink-0 text-primary-700 transition-transform group-hover:translate-x-1" />
                 </Link>
