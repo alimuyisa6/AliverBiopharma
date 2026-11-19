@@ -151,7 +151,7 @@ const connectedLearningStages = [
     links: [
       { label: 'Study notes', detail: 'Read topic explanations', to: '/notes', icon: 'book-open-reader' },
       { label: 'PDF library', detail: 'Open study documents', to: '/pdfs', icon: 'file-pdf' },
-      { label: 'Glossary', detail: 'Clarify key terminology', to: '/glossary', icon: 'spell-check' }
+      { label: 'Glossary', detail: 'Clarify key terminology', to: '/resources', icon: 'spell-check' }
     ]
   },
   {
