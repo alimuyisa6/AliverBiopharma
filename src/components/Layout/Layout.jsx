@@ -53,6 +53,7 @@ function ThemeGlyph({ isDark }) {
 function AccountMenuIcon({ name, size = '2rem' }) {
   const shared = { width: size, height: size, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': true, focusable: false };
   const glyphs = {
+    home: <><path d="M3 10.5 12 3l9 7.5" /><path d="M5.5 9.5V20h13V9.5M9 20v-6h6v6" /></>,
     dashboard: <><path d="M4 18a9 9 0 1 1 16 0" /><path d="M12 13 17 8M5 18h14" /><circle cx="12" cy="13" r="1.7" fill="currentColor" stroke="none" /></>,
     profile: <><circle cx="12" cy="8" r="3.2" /><path d="M5.2 20a6.8 6.8 0 0 1 13.6 0" /><path d="M3.5 8.5a9 9 0 0 1 17 0M2.8 14.5a10 10 0 0 0 18.4 0" strokeWidth="1.3" opacity=".65" /></>,
     signin: <><path d="M13 4h5a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-5" /><path d="m10 8 4 4-4 4m4-4H3" /></>,
@@ -94,10 +95,12 @@ export default function Layout({ children, showFooter = true }) {
   const loginButton = uiMap.login_button || { label: 'Sign In', variant: 'outline', color: 'primary' }, signupButton = uiMap.signup_button || { label: 'Sign Up', variant: 'solid', color: 'primary' }, isDarkTheme = theme === 'dark';
   const menuLinks = isAuthenticated
     ? [
+        { href: '/', label: t('common.home') || 'Home', icon: 'home' },
         { href: '/dashboard', label: t('common.dashboard'), icon: 'dashboard' },
         { href: '/profile', label: t('common.profile'), icon: 'profile' },
       ]
     : [
+        { href: '/', label: t('common.home') || 'Home', icon: 'home' },
         { href: '/login', label: loginButton.label, icon: 'signin' },
         { href: '/register', label: signupButton.label, icon: 'register' },
       ];
