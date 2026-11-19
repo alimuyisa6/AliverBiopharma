@@ -630,10 +630,10 @@ export default function Dashboard() {
                 <DashboardSectionAside>Pick one measure you want to improve this week, then use quizzes or revision to work towards it.</DashboardSectionAside>
                 <div className="grid grid-cols-2 gap-3 lg:grid-cols-4" id="top-stats">
                   {[
-                    { key: 'xp', value: platform.total_xp?.toLocaleString?.() ?? platform.total_xp, label: t('common.totalXp'), tone: 'emerald', icon: <><path d="M12 3 5 13h5l-1 8 10-12h-6l1-6z" /></></> },
-                    { key: 'streak', value: platform.current_streak, label: t('common.dayStreak'), tone: 'amber', icon: <><path d="M12 3c1.5 3 4.5 4.5 3.5 8-1-1-2-1.4-2.5-3.2C10 10 7 12 8 16a4 4 0 0 0 8 0c3-3.5 1-8-4-13z" /><path d="M12 16a2 2 0 0 0 2-2c-1 .4-1.5 1-2 2z" /></></> },
-                    { key: 'badges', value: achievements.earned_count, label: t('common.badges'), tone: 'violet', icon: <><path d="M8 4h8v5a4 4 0 0 1-8 0V4z" /><path d="M8 6H5v2a3 3 0 0 0 3 3M16 6h3v2a3 3 0 0 1-3 3M12 13v4m-3 3h6" /></></> },
-                    { key: 'quiz', value: quiz.blocks_completed ?? 0, label: 'Quiz Blocks Done', tone: 'blue', icon: <><rect x="5" y="3" width="14" height="18" rx="2" /><path d="M8 8h8M8 12h4M8 16h2" /><circle cx="16" cy="15" r="2" /></></> }
+                    { key: 'xp', value: platform.total_xp?.toLocaleString?.() ?? platform.total_xp, label: t('common.totalXp'), tone: 'emerald', icon: <path d="M12 3 5 13h5l-1 8 10-12h-6l1-6z" /> },
+                    { key: 'streak', value: platform.current_streak, label: t('common.dayStreak'), tone: 'amber', icon: <><path d="M12 3c1.5 3 4.5 4.5 3.5 8-1-1-2-1.4-2.5-3.2C10 10 7 12 8 16a4 4 0 0 0 8 0c3-3.5 1-8-4-13z" /><path d="M12 16a2 2 0 0 0 2-2c-1 .4-1.5 1-2 2z" /></> },
+                    { key: 'badges', value: achievements.earned_count, label: t('common.badges'), tone: 'violet', icon: <><path d="M8 4h8v5a4 4 0 0 1-8 0V4z" /><path d="M8 6H5v2a3 3 0 0 0 3 3M16 6h3v2a3 3 0 0 1-3 3M12 13v4m-3 3h6" /></> },
+                    { key: 'quiz', value: quiz.blocks_completed ?? 0, label: 'Quiz Blocks Done', tone: 'blue', icon: <><rect x="5" y="3" width="14" height="18" rx="2" /><path d="M8 8h8M8 12h4M8 16h2" /><circle cx="16" cy="15" r="2" /></> }
                   ].map((stat) => {
                     const tone = {
                       emerald: 'border-emerald-100 bg-emerald-50 text-emerald-700',
@@ -1348,7 +1348,7 @@ export default function Dashboard() {
                     {recentActivity.map((activity, index) => {
                       const progress = Math.max(0, Math.min(100, Math.round(Number(activity.progress_percentage) || 0)));
                       const contentLabel = activity.type === 'recall' ? 'Recall' : activity.type === 'quiz' ? 'Quiz' : activity.type === 'flashcards' ? 'Flashcards' : 'Reading';
-                      const iconName = activity.type === 'recall' ? 'brain' : activity.type === 'quiz' ? 'atom' : activity.type === 'flashcards' ? 'cards' : 'book-open-reader';
+                      const iconName = activity.type === 'recall' ? 'brain' : activity.type === 'quiz' ? 'atom' : activity.type === 'flashcards' ? 'layer-group' : 'book-open-reader';
                       const iconStyle = activityIconStyles[activity.type] || activityIconStyles.reading;
 
                       const activityLink = activity.type === 'reading' && activity.note_id
