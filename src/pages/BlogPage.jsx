@@ -1,11 +1,11 @@
-/* pages/BlogPage.jsx */
-const blogPageCache = new Map();
-import { useEffect, useState } from 'react';
+ import { useEffect, useState } from 'react';
 import { useLayout } from '../contexts/LayoutContext';
 import { useParams } from 'react-router-dom';
 import { getSections } from '../api/sections';
 import { getArticleBySlug, listArticles } from '../api/cachedClient';
 import Icon from '../components/Icon/Icon';
+
+const blogPageCache = new Map();
 
 export default function BlogPage() {
   const { level } = useLayout();
@@ -115,608 +115,167 @@ export default function BlogPage() {
         }).format(date);
   };
 
+  const share = featured?.share;
+  const hasShare = share?.facebook || share?.x || share?.linkedin || share?.whatsapp;
+
   return (
-    <>
-      <style>{`
-        .blog-page {
-          --blog-content-width: 800px;
-          --blog-grid-width: 1000px;
-          --blog-page-gutter: var(--page-gutter-x);
-          --blog-surface: var(--bg-card);
-          --blog-surface-muted: var(--bg-muted);
-          --blog-border: var(--border-default);
-          --blog-text: var(--text-main);
-          --blog-secondary: var(--text-secondary);
-          --blog-muted: var(--text-muted);
-          --blog-primary: var(--primary);
-          --blog-primary-hover: var(--primary-hover);
-          --blog-primary-light: var(--primary-light);
-          --blog-radius: var(--radius-md);
-          --blog-radius-small: var(--radius-sm);
-          --blog-shadow-card: var(--shadow-card);
-          --blog-shadow-raised: var(--shadow-raised);
-        }
+    <div className="blog-page journal-page">
+      {!slug && !loading && !error && (featured || posts.length > 0) && (
+        <section className="relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary-800 to-secondary-700 px-4 py-12 text-white sm:px-6 sm:py-16 lg:py-20">
+          <div className="pointer-events-none absolute inset-0 opacity-20" aria-hidden="true">
+            <div className="absolute -right-16 -top-24 h-72 w-72 rounded-full border-[36px] border-white/20" />
+            <div className="absolute -bottom-28 left-8 h-64 w-64 rounded-full border-[28px] border-secondary-200/30" />
+          </div>
+          <div className="relative mx-auto grid max-w-6xl gap-8 md:grid-cols-[1fr_auto] md:items-end">
+            <div className="max-w-3xl">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-extrabold uppercase tracking-[.18em] text-blue-100">
+                <Icon name="book-open-reader" size="1.1rem" plain /> Aliver knowledge journal
+              </span>
+              <h1 className="mt-5 text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+                Ideas that make <span className="text-secondary-200">medicine clearer.</span>
+              </h1>
+              <p className="mt-4 max-w-2xl text-base leading-7 text-blue-100 sm:text-lg">
+                Explore practical learning, pharmacy insights and science explained for curious minds.
+              </p>
+            </div>
+            <a
+              href="#latest-articles"
+              className="inline-flex min-h-12 w-fit items-center gap-2 rounded-xl border border-white/20 bg-white px-5 py-3 font-bold text-primary-900 no-underline shadow-lg transition hover:-translate-y-0.5 hover:bg-blue-50"
+            >
+              Browse articles <Icon name="arrow-right" size="1.15rem" plain />
+            </a>
+          </div>
+        </section>
+      )}
 
-        .blog-page * {
-          box-sizing: border-box;
-        }
+      {loading ? (
+        <p className="journal-state" aria-busy="true" aria-live="polite">Loading blog content…</p>
+      ) : error ? (
+        <p className="journal-state journal-state-error" role="alert">{error}</p>
+      ) : !featured && posts.length === 0 ? (
+        <p className="journal-state">No articles have been published yet.</p>
+      ) : (
+        <>
+          {topics.length > 0 && (
+            <section className="journal-topics" aria-label="Blog topics">
+              <div className="journal-topic-list">
+                {topics.map((topic) => {
+                  const label = typeof topic === 'string' ? topic : topic?.label || topic?.name || '';
+                  if (!label) return null;
+                  return <span className="journal-topic-chip" key={label}>{label}</span>;
+                })}
+              </div>
+              {blog?.explore_label && (
+                <a href="#latest-articles" className="journal-explore">
+                  {blog.explore_label}
+                  <Icon name="arrow-right" size="1.1rem" plain />
+                </a>
+              )}
+            </section>
+          )}
 
-        .blog-page .blog-topic-area {
-          width: min(100%, var(--blog-content-width));
-          margin: var(--space-10) auto;
-          padding: 0 var(--blog-page-gutter);
-          text-align: center;
-        }
-
-        .blog-page .blog-topic-buttons {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          gap: var(--space-3);
-          margin-bottom: var(--space-8);
-        }
-
-        .blog-page .blog-topic-button {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          gap: var(--space-2);
-          min-height: var(--button-height-md);
-          padding: var(--space-3) var(--space-5);
-          border: 1px solid var(--blog-border);
-          border-radius: var(--blog-radius-small);
-          background: var(--blog-surface);
-          color: var(--blog-text);
-          font-family: var(--font-primary);
-          font-size: var(--text-md);
-          font-weight: var(--weight-semibold);
-          line-height: var(--leading-normal);
-          cursor: pointer;
-          transition:
-            background-color var(--duration-fast) var(--ease-standard),
-            border-color var(--duration-fast) var(--ease-standard),
-            transform var(--duration-fast) var(--ease-standard);
-        }
-
-        .blog-page .blog-topic-button:hover {
-          background: var(--blog-primary-light);
-          border-color: var(--blog-primary);
-          transform: translateY(-1px);
-        }
-
-        .blog-page .blog-explore-button {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: min(100%, 400px);
-          min-height: var(--button-height-lg);
-          margin: 0 auto;
-          padding: var(--space-3) var(--space-8);
-          border: 1px solid var(--blog-primary);
-          border-radius: var(--blog-radius-small);
-          background: var(--blog-primary);
-          color: var(--text-on-primary);
-          font-family: var(--font-primary);
-          font-size: var(--text-md);
-          font-weight: var(--weight-bold);
-          letter-spacing: var(--tracking-wide);
-          line-height: var(--leading-normal);
-          cursor: pointer;
-          box-shadow: var(--shadow-sm);
-          transition:
-            background-color var(--duration-fast) var(--ease-standard),
-            transform var(--duration-fast) var(--ease-standard),
-            box-shadow var(--duration-fast) var(--ease-standard);
-        }
-
-        .blog-page .blog-explore-button:hover {
-          background: var(--blog-primary-hover);
-          transform: translateY(-1px);
-          box-shadow: var(--shadow-md);
-        }
-
-        .blog-page .blog-article-header {
-          width: min(100%, var(--blog-content-width));
-          margin: var(--space-12) auto var(--space-6);
-          padding: 0 var(--blog-page-gutter);
-          text-align: center;
-        }
-
-        .blog-page .blog-article-header h1 {
-          margin: 0 0 var(--space-4);
-          color: var(--blog-text);
-          font-family: var(--font-heading);
-          font-size: var(--text-page-title);
-          font-weight: var(--weight-page-title);
-          line-height: var(--leading-page-title);
-          letter-spacing: var(--tracking-tight);
-        }
-
-        .blog-page .blog-article-meta {
-          margin-bottom: var(--space-5);
-          color: var(--blog-muted);
-          font-size: var(--text-sm);
-          line-height: var(--leading-normal);
-        }
-
-        .blog-page .blog-article-meta strong {
-          color: var(--blog-primary);
-          font-weight: var(--weight-bold);
-        }
-
-        .blog-page .blog-share {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          gap: var(--space-3);
-          margin-bottom: var(--space-8);
-        }
-
-        .blog-page .blog-share-link {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          width: var(--space-10);
-          height: var(--space-10);
-          border: 1px solid var(--blog-border);
-          border-radius: var(--radius-round);
-          background: var(--blog-surface);
-          color: var(--blog-text);
-          font-size: var(--text-sm);
-          font-weight: var(--weight-bold);
-          transition:
-            background-color var(--duration-fast) var(--ease-standard),
-            border-color var(--duration-fast) var(--ease-standard),
-            transform var(--duration-fast) var(--ease-standard);
-        }
-
-        .blog-page .blog-share-link:hover {
-          background: var(--blog-primary);
-          border-color: var(--blog-primary);
-          color: var(--text-on-primary);
-          transform: translateY(-2px);
-        }
-
-        .blog-page .blog-featured-image {
-          display: block;
-          width: min(calc(100% - (var(--blog-page-gutter) * 2)), var(--blog-content-width));
-          height: auto;
-          max-height: 500px;
-          margin: 0 auto var(--space-8);
-          object-fit: cover;
-          border: 1px solid var(--blog-border);
-          border-radius: var(--blog-radius);
-          box-shadow: var(--blog-shadow-raised);
-        }
-
-        .blog-page .blog-article-body {
-          width: min(100%, var(--blog-content-width));
-          margin: 0 auto;
-          padding: 0 var(--blog-page-gutter) var(--space-16);
-          color: var(--blog-secondary);
-          font-family: var(--font-reading);
-          font-size: var(--text-body-lead);
-          line-height: var(--leading-body-lead);
-        }
-
-        .blog-page .blog-article-body p {
-          margin: 0 0 var(--space-5);
-          color: var(--blog-secondary);
-        }
-
-        .blog-page .blog-article-body h2 {
-          margin: var(--space-10) 0 var(--space-4);
-          color: var(--blog-text);
-          font-family: var(--font-heading);
-          font-size: var(--text-subsection-title);
-          font-weight: var(--weight-semibold);
-          line-height: var(--leading-subsection-title);
-        }
-
-        .blog-page .blog-article-body ul {
-          margin: 0 0 var(--space-5);
-          padding-left: var(--space-6);
-        }
-
-        .blog-page .blog-article-body li {
-          margin-bottom: var(--space-2);
-          color: var(--blog-secondary);
-        }
-
-        /* Complete article reading surface — not just the hero */
-        .blog-page .blog-article-body {
-          max-width: 860px;
-          padding: var(--space-6) var(--blog-page-gutter) var(--space-16);
-          color: var(--blog-text);
-          font-size: clamp(1rem, .98rem + .2vw, 1.125rem);
-          line-height: 1.85;
-        }
-        .blog-page .blog-article-body > p:first-child {
-          padding: var(--space-5) var(--space-6);
-          margin-bottom: var(--space-8);
-          border: 1px solid var(--blog-border);
-          border-left: 4px solid var(--blog-primary);
-          border-radius: var(--blog-radius);
-          background: var(--blog-primary-light);
-          color: var(--blog-text);
-          font-size: clamp(1.08rem, 1rem + .3vw, 1.25rem);
-          font-weight: var(--weight-medium, 500);
-          line-height: 1.75;
-        }
-        .blog-page .blog-article-body p { max-width: 72ch; margin: 0 auto var(--space-6); }
-        .blog-page .blog-article-body section {
-          margin: 0 0 var(--space-7);
-          padding: clamp(1rem, 3vw, 1.75rem);
-          border: 1px solid var(--blog-border);
-          border-left: 4px solid var(--blog-primary);
-          border-radius: var(--blog-radius);
-          background: var(--blog-surface);
-          box-shadow: var(--blog-shadow-card);
-        }
-        .blog-page .blog-article-body section h2 {
-          margin: 0 0 var(--space-5);
-          padding-bottom: var(--space-4);
-          border-bottom: 1px solid var(--blog-border);
-          color: var(--blog-text);
-          font-family: var(--font-heading);
-          font-size: clamp(1.25rem, 1.1rem + .6vw, 1.65rem);
-          line-height: 1.35;
-        }
-        .blog-page .blog-article-body section p:last-child { margin-bottom: 0; }
-        .blog-page .blog-article-body ul {
-          list-style: none;
-          padding: 0;
-          margin: var(--space-4) 0 0;
-          display: grid;
-          gap: var(--space-3);
-        }
-        .blog-page .blog-article-body li {
-          position: relative;
-          margin: 0;
-          padding: .65rem .85rem .65rem 2.35rem;
-          border-radius: var(--radius-sm);
-          background: var(--blog-surface-muted);
-          color: var(--blog-text);
-        }
-        .blog-page .blog-article-body li::before {
-          content: '';
-          position: absolute;
-          left: 1rem;
-          top: 1.15em;
-          width: .5rem;
-          height: .5rem;
-          border-radius: 50%;
-          background: var(--blog-primary);
-        }
-        .blog-page .blog-article-body a {
-          color: var(--blog-primary);
-          font-weight: var(--weight-semibold);
-          text-decoration: underline;
-          text-decoration-thickness: 1px;
-          text-underline-offset: .2em;
-        }
-        .blog-page .blog-article-body blockquote {
-          margin: var(--space-7) 0;
-          padding: var(--space-5) var(--space-6);
-          border-left: 4px solid var(--blog-primary);
-          border-radius: var(--blog-radius-small);
-          background: var(--blog-primary-light);
-          color: var(--blog-text);
-          font-size: 1.05em;
-          font-weight: var(--weight-medium, 500);
-        }
-        .blog-page .blog-article-body strong { color: var(--blog-text); font-weight: var(--weight-bold); }
-        .blog-page .blog-article-body code {
-          padding: .15em .4em;
-          border: 1px solid var(--blog-border);
-          border-radius: 5px;
-          background: var(--blog-surface-muted);
-          font-size: .9em;
-        }
-        /* Cards and their actions are separate; only the button/link is interactive */
-        .blog-page .blog-post-card { gap: 0; }
-        .blog-page .blog-post-content { gap: .15rem; }
-        .blog-page .blog-post-title { color: var(--blog-text); font-size: clamp(1.15rem, 1rem + .35vw, 1.35rem); line-height: 1.4; }
-        .blog-page .blog-post-excerpt { line-height: 1.75; }
-        .blog-page .blog-post-category { border: 1px solid color-mix(in srgb, var(--blog-primary) 25%, transparent); border-radius: var(--radius-round); background: var(--blog-primary-light); padding: .4rem .75rem; }
-        .blog-page .blog-read-more {
-          width: fit-content;
-          min-width: 9.5rem;
-          gap: .55rem;
-          padding: .7rem 1.1rem;
-          border: 1px solid var(--blog-primary);
-          border-radius: var(--radius-sm);
-          background: var(--blog-primary);
-          color: var(--text-on-primary);
-          font-weight: var(--weight-bold);
-          box-shadow: var(--shadow-sm);
-        }
-        .blog-page .blog-read-more::after { content: '→'; transition: transform var(--duration-fast) var(--ease-standard); }
-        .blog-page .blog-read-more:hover { background: var(--blog-primary-hover); border-color: var(--blog-primary-hover); color: var(--text-on-primary); transform: translateY(-1px); box-shadow: var(--shadow-md); }
-        .blog-page .blog-read-more:hover::after { transform: translateX(3px); }
-        .blog-page .blog-topic-button { border-radius: var(--radius-round); }
-        .blog-page .blog-topic-button:focus-visible, .blog-page .blog-explore-button:focus-visible, .blog-page .blog-read-more:focus-visible, .blog-page .blog-share-link:focus-visible { outline: 3px solid var(--blog-primary); outline-offset: 3px; }
-        @media (max-width: 640px) {
-          .blog-page .blog-article-body { padding-inline: var(--space-4); }
-          .blog-page .blog-article-body > p:first-child { padding: var(--space-4); }
-          .blog-page .blog-article-body section { padding: var(--space-4); }
-          .blog-page .blog-read-more { width: 100%; }
-        }
-
-
-        .blog-page .blog-latest {
-          padding: var(--space-16) var(--blog-page-gutter);
-          background: var(--section-tint);
-          border-top: 1px solid var(--blog-border);
-          border-bottom: 1px solid var(--blog-border);
-        }
-
-        .blog-page .blog-latest h2 {
-          margin: 0 0 var(--space-10);
-          color: var(--blog-text);
-          font-family: var(--font-heading);
-          font-size: var(--text-section-title);
-          font-weight: var(--weight-section-title);
-          line-height: var(--leading-section-title);
-          text-align: center;
-        }
-
-        .blog-page .blog-posts-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-          gap: var(--content-gap);
-          width: min(100%, var(--blog-grid-width));
-          margin: 0 auto;
-        }
-
-        .blog-page .blog-post-card {
-          display: flex;
-          flex-direction: column;
-          min-width: 0;
-          overflow: hidden;
-          background: var(--blog-surface);
-          border: 1px solid var(--blog-border);
-          border-radius: var(--blog-radius);
-          box-shadow: var(--blog-shadow-card);
-          transition:
-            border-color var(--duration-fast) var(--ease-standard),
-            box-shadow var(--duration-fast) var(--ease-standard),
-            transform var(--duration-fast) var(--ease-standard);
-        }
-
-        .blog-page .blog-post-card:hover {
-          border-color: var(--border-strong);
-          box-shadow: var(--blog-shadow-raised);
-          transform: translateY(-4px);
-        }
-
-        .blog-page .blog-post-image {
-          width: 100%;
-          height: 200px;
-          object-fit: cover;
-        }
-
-        .blog-page .blog-post-content {
-          display: flex;
-          flex: 1;
-          flex-direction: column;
-          align-items: flex-start;
-          padding: var(--card-padding-y) var(--card-padding-x);
-        }
-
-        .blog-page .blog-post-category {
-          margin-bottom: var(--space-3);
-          color: var(--blog-primary);
-          font-size: var(--text-eyebrow);
-          font-weight: var(--weight-eyebrow);
-          letter-spacing: var(--tracking-eyebrow);
-          text-transform: uppercase;
-        }
-
-        .blog-page .blog-post-title {
-          margin: 0 0 var(--space-3);
-          color: var(--blog-text);
-          font-family: var(--font-heading);
-          font-size: var(--text-card-title);
-          font-weight: var(--weight-card-title);
-          line-height: var(--leading-card-title);
-        }
-
-        .blog-page .blog-post-date {
-          margin-bottom: var(--space-4);
-          color: var(--blog-muted);
-          font-size: var(--text-caption);
-        }
-
-        .blog-page .blog-post-excerpt {
-          display: -webkit-box;
-          overflow: hidden;
-          margin: 0 0 var(--space-5);
-          color: var(--blog-secondary);
-          font-size: var(--text-body-sm);
-          line-height: var(--leading-relaxed);
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 3;
-        }
-
-        .blog-page .blog-read-more {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          min-height: var(--button-height-sm);
-          margin-top: auto;
-          padding: var(--space-2) var(--space-5);
-          border: 1px solid var(--border-strong);
-          border-radius: var(--radius-sm);
-          background: transparent;
-          color: var(--blog-text);
-          font-size: var(--text-sm);
-          font-weight: var(--weight-semibold);
-          transition:
-            background-color var(--duration-fast) var(--ease-standard),
-            border-color var(--duration-fast) var(--ease-standard),
-            color var(--duration-fast) var(--ease-standard);
-        }
-
-        .blog-page .blog-read-more:hover {
-          background: var(--blog-primary);
-          border-color: var(--blog-primary);
-          color: var(--text-on-primary);
-        }
-
-        @media (max-width: 768px) {
-          .blog-page .blog-topic-area {
-            margin-block: var(--space-8);
-          }
-
-          .blog-page .blog-topic-buttons {
-            flex-direction: column;
-            align-items: stretch;
-          }
-
-          .blog-page .blog-topic-button {
-            width: 100%;
-          }
-
-          .blog-page .blog-article-header {
-            margin-top: var(--space-8);
-          }
-
-          .blog-page .blog-article-header h1 {
-            font-size: var(--text-2xl);
-          }
-
-          .blog-page .blog-article-body {
-            font-size: var(--text-body);
-          }
-
-          .blog-page .blog-latest {
-            padding-block: var(--space-12);
-          }
-
-          .blog-page .blog-latest h2 {
-            font-size: var(--text-2xl);
-            margin-bottom: var(--space-8);
-          }
-        }
-
-        @media (max-width: 480px) {
-          .blog-page .blog-featured-image {
-            width: calc(100% - (var(--space-4) * 2));
-          }
-
-          .blog-page .blog-post-image {
-            height: 180px;
-          }
-
-          .blog-page .blog-post-content {
-            padding: var(--card-padding-y-compact) var(--card-padding-x-compact);
-          }
-        }
-      `}</style>
-
-      <div className="blog-page min-h-screen w-full bg-background text-foreground">
-        {!slug && !loading && !error && (featured || posts.length > 0) && <section className="blog-landing-hero relative overflow-hidden bg-gradient-to-br from-primary-950 via-primary-800 to-secondary-700 px-4 py-12 text-white sm:px-6 sm:py-16 lg:py-20"><div className="pointer-events-none absolute inset-0 opacity-20" aria-hidden="true"><div className="absolute -right-16 -top-24 h-72 w-72 rounded-full border-[36px] border-white/20"/><div className="absolute -bottom-28 left-8 h-64 w-64 rounded-full border-[28px] border-secondary-200/30"/></div><div className="relative mx-auto grid max-w-6xl gap-8 md:grid-cols-[1fr_auto] md:items-end"><div className="max-w-3xl"><span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-extrabold uppercase tracking-[.18em] text-blue-100"><Icon name="book-open-reader" size="1.1rem" plain /> Aliver knowledge journal</span><h1 className="mt-5 text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">Ideas that make <span className="text-secondary-200">medicine clearer.</span></h1><p className="mt-4 max-w-2xl text-base leading-7 text-blue-100 sm:text-lg">Explore practical learning, pharmacy insights and science explained for curious minds.</p></div><a href="#latest-articles" className="inline-flex min-h-12 w-fit items-center gap-2 rounded-xl border border-white/20 bg-white px-5 py-3 font-bold text-primary-900 shadow-lg transition hover:-translate-y-0.5 hover:bg-blue-50">Browse articles <Icon name="arrow-right" size="1.15rem" plain /></a></div></section>}
-        {loading ? (
-          <section className="blog-article-body" aria-busy="true" aria-live="polite">
-            <p>Loading blog content…</p>
-          </section>
-        ) : error ? (
-          <section className="blog-article-body" role="alert">
-            <p>{error}</p>
-          </section>
-        ) : !featured && posts.length === 0 ? (
-          <section className="blog-article-body">
-            <p>No articles have been published yet.</p>
-          </section>
-        ) : (
-          <>
-            {topics.length > 0 && (
-              <section className="blog-topic-area mx-auto my-8 w-full max-w-5xl px-4 text-center sm:my-12 sm:px-6" aria-label="Blog topics">
-                <div className="blog-topic-buttons flex flex-wrap justify-center gap-3">
-                  {topics.map((topic) => {
-                    const label = typeof topic === 'string'
-                      ? topic
-                      : topic?.label || topic?.name || '';
-                    if (!label) return null;
-                    return (
-                      <span className="blog-topic-button inline-flex min-h-10 items-center justify-center rounded-full border border-primary-200 bg-white px-4 py-2 text-sm font-bold text-primary-800" key={label}>{label}</span>
-                    );
-                  })}
-                </div>
-                {blog?.explore_label && (
-                  <a href="#latest-articles" className="blog-explore-button mx-auto flex min-h-12 w-full max-w-sm items-center justify-center gap-2 rounded-xl border border-primary-700 bg-primary-800 px-6 py-3 text-sm font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-primary-900 hover:shadow-lg">{blog.explore_label}<Icon name="arrow-right" size="1.1rem" plain /></a>
-                )}
-              </section>
-            )}
-
-            {featured && (
-              <article>
-                <header className="blog-article-header mx-auto mb-6 mt-8 w-full max-w-4xl px-4 text-center sm:mt-12 sm:px-6">
-                  <h1 className="mb-4 text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">{featured.title}</h1>
-                  <div className="blog-article-meta mb-6 flex flex-wrap items-center justify-center gap-3 text-sm text-slate-500">
-                    {featured.category && <strong className="rounded-full bg-primary-50 px-3 py-1.5 text-primary-800">{featured.category}</strong>}
-                    {featured.author && <span>By {featured.author}</span>}
-                    {featured.published_at && <span className="inline-flex items-center gap-1.5"><Icon name="calendar" size="1rem" plain />{formatDate(featured.published_at)}</span>}
-                    {featured.read_time_minutes && <span className="inline-flex items-center gap-1.5"><Icon name="clock" size="1rem" plain />{featured.read_time_minutes} min read</span>}
-                  </div>
-                  {(featured.share?.facebook || featured.share?.x || featured.share?.linkedin || featured.share?.whatsapp) && (
-                    <div className="blog-share mb-8 flex items-center justify-center gap-3" aria-label="Share article">
-                      {featured.share.facebook && <a href={featured.share.facebook} className="blog-share-link inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-sm font-bold text-slate-700 transition hover:-translate-y-0.5 hover:bg-blue-700 hover:text-white" aria-label="Share on Facebook"><Icon name="facebook" size="1.2rem" plain /></a>}
-                      {featured.share.x && <a href={featured.share.x} className="blog-share-link" aria-label="Share on X"><Icon name="x-twitter" size="1.2rem" plain /></a>}
-                      {featured.share.linkedin && <a href={featured.share.linkedin} className="blog-share-link" aria-label="Share on LinkedIn"><Icon name="linkedin" size="1.2rem" plain /></a>}
-                      {featured.share.whatsapp && <a href={featured.share.whatsapp} className="blog-share-link" aria-label="Share on WhatsApp"><Icon name="whatsapp" size="1.2rem" plain /></a>}
-                    </div>
+          {featured && (
+            <article>
+              <header className="journal-article-header">
+                <h1 className="journal-title">{featured.title}</h1>
+                <div className="journal-meta">
+                  {featured.category && <strong className="journal-category">{featured.category}</strong>}
+                  {featured.author && <span className="journal-meta-item">By {featured.author}</span>}
+                  {featured.published_at && (
+                    <span className="journal-meta-item">
+                      <Icon name="calendar" size="1rem" plain />
+                      {formatDate(featured.published_at)}
+                    </span>
                   )}
-                </header>
-                <img src={getArticleImage(featured)} alt={featured.image_alt || featured.title} className="blog-featured-image mx-auto mb-8 block w-[calc(100%-2rem)] max-w-4xl max-h-[32rem] rounded-2xl border border-slate-200 object-cover shadow-xl sm:w-full" loading="lazy" />
-                {(bodyParagraphs.length > 0 || bodySections.length > 0) && (
-                  <div className="blog-article-body mx-auto w-full max-w-4xl px-4 pb-16 text-base leading-8 text-slate-700 sm:px-6 sm:text-lg">
-                    {bodyParagraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
-                    {bodySections.map((section, index) => (
-                      <section key={section.id || index}>
-                        {section.heading && <h2>{section.heading}</h2>}
-                        {Array.isArray(section.paragraphs)
-                          ? section.paragraphs.filter(Boolean).map((paragraph, paragraphIndex) => (
-                              <p key={paragraphIndex}>{paragraph}</p>
-                            ))
-                          : section.content && <p>{section.content}</p>}
-                        {Array.isArray(section.items) && section.items.length > 0 && (
-                          <ul>{section.items.filter(Boolean).map((item, itemIndex) => <li key={itemIndex}>{item}</li>)}</ul>
-                        )}
-                      </section>
-                    ))}
+                  {featured.read_time_minutes && (
+                    <span className="journal-meta-item">
+                      <Icon name="clock" size="1rem" plain />
+                      {featured.read_time_minutes} min read
+                    </span>
+                  )}
+                </div>
+                {hasShare && (
+                  <div className="journal-share" aria-label="Share article">
+                    {share.facebook && <a href={share.facebook} className="journal-share-link" aria-label="Share on Facebook"><Icon name="facebook" size="1.2rem" plain /></a>}
+                    {share.x && <a href={share.x} className="journal-share-link" aria-label="Share on X"><Icon name="x-twitter" size="1.2rem" plain /></a>}
+                    {share.linkedin && <a href={share.linkedin} className="journal-share-link" aria-label="Share on LinkedIn"><Icon name="linkedin" size="1.2rem" plain /></a>}
+                    {share.whatsapp && <a href={share.whatsapp} className="journal-share-link" aria-label="Share on WhatsApp"><Icon name="whatsapp" size="1.2rem" plain /></a>}
                   </div>
                 )}
-              </article>
-            )}
+              </header>
 
-            {posts.length > 0 && (
-              <section id="latest-articles" className="blog-latest border-y border-slate-200 bg-slate-50 px-4 py-12 sm:px-6 sm:py-16" aria-labelledby="latest-blog-heading">
-                <h2 id="latest-blog-heading" className="mb-8 text-center text-2xl font-extrabold tracking-tight text-slate-900 sm:mb-10 sm:text-3xl">{blog?.latest_heading || 'Latest articles'}</h2>
-                <div className="blog-posts-grid mx-auto grid w-full max-w-6xl grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                  {posts.slice(0, 3).map((post) => (
-                    <article className="blog-post-card flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl" key={post.id || post.slug || post.title}>
-                      <img src={getArticleImage(post)} alt={post.image_alt || post.title} className="blog-post-image h-48 w-full object-cover sm:h-52" loading="lazy" />
-                      <div className="blog-post-content flex flex-1 flex-col items-start p-5 sm:p-6">
-                        {post.category && <span className="blog-post-category mb-3 inline-flex rounded-full bg-blue-50 px-3 py-1 text-xs font-bold uppercase tracking-wide text-blue-800">{post.category}</span>}
-                        <h3 className="blog-post-title mb-3 text-xl font-bold leading-snug text-slate-900">{post.title}</h3>
-                        {post.published_at && <div className="blog-post-date mb-4 inline-flex items-center gap-1.5 text-xs font-medium text-slate-500"><Icon name="calendar" size=".95rem" plain />{formatDate(post.published_at)}</div>}
-                        {post.excerpt && <p className="blog-post-excerpt mb-5 line-clamp-3 text-sm leading-6 text-slate-600">{post.excerpt}</p>}
-                        {post.slug && (
-                          <a href={`/blog/${post.slug}`} className="blog-read-more mt-auto inline-flex min-h-10 items-center justify-center rounded-lg border border-blue-700 px-4 py-2 text-sm font-semibold text-blue-800 transition hover:bg-blue-700 hover:text-white">
-                            {post.read_more_label || 'Read article'}
-                          </a>
-                        )}
-                      </div>
-                    </article>
+              <img
+                src={getArticleImage(featured)}
+                alt={featured.image_alt || featured.title}
+                className="journal-cover"
+                loading="lazy"
+              />
+
+              {(bodyParagraphs.length > 0 || bodySections.length > 0) && (
+                <div className="journal-prose">
+                  {bodyParagraphs.map((paragraph, index) => (
+                    <p key={index} className={index === 0 ? 'journal-lead' : undefined}>{paragraph}</p>
+                  ))}
+                  {bodySections.map((section, index) => (
+                    <section className="journal-section" key={section.id || index}>
+                      {section.heading && <h2>{section.heading}</h2>}
+                      {Array.isArray(section.paragraphs)
+                        ? section.paragraphs.filter(Boolean).map((paragraph, paragraphIndex) => (
+                            <p key={paragraphIndex}>{paragraph}</p>
+                          ))
+                        : section.content && <p>{section.content}</p>}
+                      {Array.isArray(section.items) && section.items.length > 0 && (
+                        <ul>
+                          {section.items.filter(Boolean).map((item, itemIndex) => (
+                            <li key={itemIndex}>{item}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </section>
                   ))}
                 </div>
-              </section>
-            )}
-          </>
-        )}
-      </div>
-    </>
+              )}
+            </article>
+          )}
+
+          {posts.length > 0 && (
+            <section id="latest-articles" className="journal-latest" aria-labelledby="latest-blog-heading">
+              <h2 id="latest-blog-heading" className="journal-latest-title">
+                {blog?.latest_heading || 'Latest articles'}
+              </h2>
+              <div className="journal-grid">
+                {posts.slice(0, 3).map((post) => (
+                  <article className="journal-card" key={post.id || post.slug || post.title}>
+                    <img
+                      src={getArticleImage(post)}
+                      alt={post.image_alt || post.title}
+                      className="journal-card-image"
+                      loading="lazy"
+                    />
+                    <div className="journal-card-body">
+                      {post.category && <span className="journal-card-category">{post.category}</span>}
+                      <h3 className="journal-card-title">{post.title}</h3>
+                      {post.published_at && (
+                        <div className="journal-card-date">
+                          <Icon name="calendar" size=".95rem" plain />
+                          {formatDate(post.published_at)}
+                        </div>
+                      )}
+                      {post.excerpt && <p className="journal-card-excerpt">{post.excerpt}</p>}
+                      {post.slug && (
+                        <a href={`/blog/${post.slug}`} className="journal-card-link">
+                          {post.read_more_label || 'Read article'}
+                          <Icon name="arrow-right" size="1rem" plain />
+                        </a>
+                      )}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
+          )}
+        </>
+      )}
+    </div>
   );
 }
