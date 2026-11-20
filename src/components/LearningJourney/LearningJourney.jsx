@@ -139,9 +139,9 @@ export default function LearningJourney({
   if (!stages.length) return null;
 
   return (
-    <section className="learning-journey" aria-labelledby="learning-journey-title">
-      <div className="learning-journey-heading">
-        <span className="learning-journey-eyebrow">Keep learning</span>
+    <section className="mt-8 rounded-2xl border border-border bg-white p-6 shadow-sm sm:p-8" aria-labelledby="learning-journey-title">
+      <div className="mb-5 text-2xl font-bold tracking-tight text-primary-900 sm:text-3xl">
+        <span className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-secondary-700">Keep learning</span>
         <h2 id="learning-journey-title">Continue exploring{nodeName ? ' ' + nodeName : ''}</h2>
         <p>These materials are connected to the same curriculum area, so you can move naturally from reading to revision and exam practice.</p>
       </div>
@@ -193,7 +193,7 @@ export default function LearningJourney({
                     </button>
                   ) : (
                     <Link
-                      className="learning-journey-item"
+                      className="rounded-xl border border-border bg-white p-4 shadow-sm"
                       key={stage.key + '-' + item.id}
                       to={item.to}
                     >
