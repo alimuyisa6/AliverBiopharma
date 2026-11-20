@@ -529,3 +529,25 @@ header nav { min-width: 0; }
   .profile-page .profile-plan-list > div { @apply items-stretch; }
   .profile-page .profile-plan-list button { @apply w-full; }
 }
+
+
+/* Shared Card component styling contract (Tailwind v4; no Bootstrap dependency). */
+@layer components {
+  .card {
+    @apply min-w-0 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm;
+    margin: .65rem .4rem;
+    padding: 1.25rem;
+  }
+  .card-body { @apply grid min-w-0 gap-2 p-0; }
+  .card-title { @apply m-0 text-lg font-extrabold leading-snug tracking-tight text-slate-900; }
+  .card-text { @apply m-0 text-sm leading-6 text-slate-600; }
+  .card-footer { @apply mt-4 flex flex-wrap items-center gap-3 border-t border-slate-100 bg-transparent p-0 pt-4; }
+  .card-img-top { @apply block h-auto max-h-72 w-full rounded-xl object-cover; }
+  .card-loading { @apply animate-pulse; }
+  .card > .card-body + .card-body { @apply mt-4; }
+  .card > :not(.card-body):not(.card-footer) + .card-body { @apply mt-4; }
+  .card > .card-footer:first-child { @apply mt-0 border-0 pt-0; }
+}
+@media (min-width: 640px) {
+  .card { margin: .8rem .55rem; padding: 1.6rem; }
+}
