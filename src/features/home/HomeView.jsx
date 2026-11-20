@@ -142,9 +142,9 @@ function CurriculumSnapshot({ nodes, activeLevelName, activeGroupName, sections 
       </div>
       <div className="mx-auto max-w-7xl rounded-2xl border border-secondary-100 bg-white p-4 shadow-sm sm:p-6">
         <div className="mb-5 flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
-          <nav className="flex min-w-0 flex-wrap items-center gap-1.5 text-sm text-slate-500" aria-label="Curriculum navigation">
+          <nav className="flex min-w-0 flex-nowrap items-center gap-1.5 overflow-x-auto whitespace-nowrap text-sm text-slate-500" aria-label="Curriculum navigation">
             <button type="button" onClick={() => setCurrentParent(null)} className="rounded-md px-2 py-1 font-semibold text-primary-700 hover:bg-primary-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-500">{isPharmacy ? 'Course Units' : 'Topics'}</button>
-            {breadcrumbs.map((item) => <span key={item.id} className="inline-flex items-center gap-1.5"><Icon name="chevron-right" className="h-3 w-3" aria-hidden="true" /><span className="font-medium text-slate-700">{item.name}</span></span>)}
+            {breadcrumbs.map((item) => <span key={item.id} className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap"><Icon name="chevron-right" className="h-3 w-3" aria-hidden="true" /><span className="font-medium text-slate-700">{item.name}</span></span>)}
           </nav>
           {selectedNode && <button type="button" onClick={() => setCurrentParent(selectedNode.parent_id || null)} className="inline-flex min-h-10 items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"><Icon name="arrow-left" className="h-4 w-4" />Back</button>}
         </div>
