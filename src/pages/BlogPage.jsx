@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { getSections } from '../api/sections';
 import { getArticleBySlug, listArticles } from '../api/cachedClient';
 import Icon from '../components/Icon/Icon';
+import Card from '../components/Card/Card';
 
 const blogPageCache = new Map();
 
@@ -245,13 +246,16 @@ export default function BlogPage() {
               </h2>
               <div className="journal-grid">
                 {posts.slice(0, 3).map((post) => (
-                  <article className="journal-card" key={post.id || post.slug || post.title}>
-                    <img
+                  <Card
+                    className="journal-card"
+                    key={post.id || post.slug || post.title}
+                    media={<img
                       src={getArticleImage(post)}
                       alt={post.image_alt || post.title}
                       className="journal-card-image"
                       loading="lazy"
-                    />
+                    />}
+                  >
                     <div className="journal-card-body">
                       {post.category && <span className="journal-card-category">{post.category}</span>}
                       <h3 className="journal-card-title">{post.title}</h3>
@@ -269,7 +273,7 @@ export default function BlogPage() {
                         </a>
                       )}
                     </div>
-                  </article>
+                  </Card>
                 ))}
               </div>
             </section>
