@@ -1,6 +1,7 @@
  /* pages/GlossaryView.jsx */
 import { Link } from 'react-router-dom';
 import Spinner from '../components/Spinner/Spinner';
+import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 
 export default function GlossaryView({
   user,
@@ -57,11 +58,7 @@ export default function GlossaryView({
         </div>
       </div>
 
-      <div className="breadcrumb">
-        <Link to="/"><i className="fa-solid fa-house breadcrumb-icon"></i> Home</Link>
-        <span>›</span>
-        <span>Glossary</span>
-      </div>
+      <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Glossary' }]} />
 
       <div className="glossary-main-layout">
         <button
