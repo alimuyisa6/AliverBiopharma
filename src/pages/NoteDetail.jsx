@@ -502,12 +502,12 @@ export default function NoteDetail() {
   }
 
   if (loading) {
-    return <div className="section" style={{ paddingTop: 'var(--space-8)' }}><PageSkeleton variant="compact" /></div>;
+    return <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8" style={{ paddingTop: 'var(--space-8)' }}><PageSkeleton variant="compact" /></div>;
   }
 
   if (fetchError || !note) {
     return (
-      <div className="section" style={{ paddingTop: 'var(--space-16)' }}>
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8" style={{ paddingTop: 'var(--space-16)' }}>
         <EmptyState
           image={getEmptyStateImage('notes')}
           title="This note is unavailable"
@@ -528,7 +528,7 @@ export default function NoteDetail() {
     <>
       {isBarFloating && createPortal(
         <div
-          className="note-progress-bar note-progress-bar--floating"
+          className="fixed left-0 top-0 z-50 h-1 w-full bg-primary-100"
           style={{ '--progress-width': `${readProgress}%` }}
           role="progressbar"
           aria-valuenow={readProgress}
@@ -539,48 +539,48 @@ export default function NoteDetail() {
       )}
 
       {user && (
-        <div className="note-progress-indicator font-mono">
-          <i className={`fa-solid fa-circle ${progressSaved ? 'progress-saved' : 'progress-unsaved'}`}></i>
+        <div className="fixed bottom-4 right-4 z-40 rounded-full border border-border bg-white px-3 py-2 font-mono text-xs font-semibold text-slate-700 shadow-lg">
+          <i className={`fa-solid fa-circle ${progressSaved ? 'text-emerald-500' : 'text-amber-400'}`}></i>
           {readProgress}% read {progressSaved && '· saved'}
         </div>
       )}
 
       {linkPreview && (
         <div
-          className="note-link-preview"
+          className="fixed z-50 max-w-sm rounded-xl border border-border bg-white p-4 shadow-xl"
           style={{ left: `${linkPreviewPosition.x}px`, top: `${linkPreviewPosition.y}px` }}
           onMouseEnter={() => {
             if (previewTimer.current) clearTimeout(previewTimer.current);
           }}
           onMouseLeave={hideLinkPreview}
         >
-          <strong className="note-link-preview-title font-poppins">{linkPreview.title}</strong>
+          <strong className="block text-sm font-bold text-primary-900">{linkPreview.title}</strong>
           {linkPreview.preview && (
-            <p className="note-link-preview-text font-source-sans">{linkPreview.preview.slice(0, 120)}...</p>
+            <p className="mt-2 text-sm leading-6 text-muted">{linkPreview.preview.slice(0, 120)}...</p>
           )}
           {linkPreview.read_time && (
-            <span className="note-link-preview-readtime font-mono">{linkPreview.read_time}</span>
+            <span className="mt-2 block font-mono text-xs text-muted">{linkPreview.read_time}</span>
           )}
         </div>
       )}
 
       {lightboxImage && createPortal(
-        <div className="note-lightbox-overlay" onClick={() => setLightboxImage(null)}>
-          <img src={lightboxImage} className="note-lightbox-image" alt="Lightbox" />
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/90 p-4" onClick={() => setLightboxImage(null)}>
+          <img src={lightboxImage} className="max-h-[90vh] max-w-[95vw] rounded-xl object-contain shadow-2xl" alt="Lightbox" />
         </div>,
         document.body
       )}
 
       {toc.length > 0 && (
         <>
-          <aside className="note-toc-sidebar">
-            <h4 className="note-toc-title font-poppins"><i className="fa-solid fa-list"></i> Contents</h4>
-            <ul className="note-toc-list">
+          <aside className="sticky top-24 hidden max-h-[calc(100vh-7rem)] overflow-y-auto rounded-2xl border border-border bg-white p-5 shadow-sm xl:block">
+            <h4 className="mb-4 flex items-center gap-2 text-base font-bold text-primary-900"><i className="fa-solid fa-list"></i> Contents</h4>
+            <ul className="m-0 grid list-none gap-2 p-0">
               {toc.map((item, index) => (
-                <li key={index} className="note-toc-item" style={{ paddingLeft: `${(item.level - 2) * 12}px` }}>
+                <li key={index} className="m-0 list-none" style={{ paddingLeft: `${(item.level - 2) * 12}px` }}>
                   <a
                     href={`#${item.anchor}`}
-                    className="note-toc-link font-source-sans"
+                    className="block rounded-lg px-3 py-2 text-sm leading-5 text-muted no-underline transition hover:bg-primary-50 hover:text-primary-800"
                     onClick={(e) => handleTocLinkClick(e, item.anchor)}
                   >
                     {item.text}
@@ -591,23 +591,23 @@ export default function NoteDetail() {
           </aside>
 
           <button
-            className="note-toc-mobile-toggle"
+            className="fixed bottom-5 left-5 z-40 inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary-700 text-white shadow-lg xl:hidden"
             onClick={() => setTocOpen(!tocOpen)}
             aria-label="Toggle table of contents"
           >
-            <i className={`fa-solid ${tocOpen ? 'fa-xmark' : 'fa-list'}`}></i>
+            <i className={`fa-solid ${tocOpen ? 'fa-xmark' : 'fa-list'} text-white`}></i>
           </button>
 
           {tocOpen && (
-            <div className="note-toc-mobile-overlay" onClick={() => setTocOpen(false)}>
-              <div className="note-toc-mobile-panel" onClick={(e) => e.stopPropagation()}>
-                <h4 className="note-toc-title font-poppins">Contents</h4>
-                <ul className="note-toc-list">
+            <div className="fixed inset-0 z-50 bg-slate-950/50 p-4 xl:hidden" onClick={() => setTocOpen(false)}>
+              <div className="mx-auto mt-12 max-h-[75vh] max-w-lg overflow-y-auto rounded-2xl border border-border bg-white p-5 shadow-xl" onClick={(e) => e.stopPropagation()}>
+                <h4 className="mb-4 flex items-center gap-2 text-base font-bold text-primary-900">Contents</h4>
+                <ul className="m-0 grid list-none gap-2 p-0">
                   {toc.map((item, index) => (
-                    <li key={index} className="note-toc-item" style={{ paddingLeft: `${(item.level - 2) * 12}px` }}>
+                    <li key={index} className="m-0 list-none" style={{ paddingLeft: `${(item.level - 2) * 12}px` }}>
                       <a
                         href={`#${item.anchor}`}
-                        className="note-toc-link font-source-sans"
+                        className="block rounded-lg px-3 py-2 text-sm leading-5 text-muted no-underline transition hover:bg-primary-50 hover:text-primary-800"
                         onClick={(e) => handleTocLinkClick(e, item.anchor)}
                       >
                         {item.text}
@@ -621,14 +621,14 @@ export default function NoteDetail() {
         </>
       )}
 
-      <div className="note-detail-container">
-        <Breadcrumb items={breadcrumb} className="note-breadcrumb" />
+      <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <Breadcrumb items={breadcrumb} className="mb-6" />
 
-        <article ref={contentRef} className="note-article">
-          <header className="note-hero">
+        <article ref={contentRef} className="min-w-0 rounded-2xl border border-border bg-white shadow-sm">
+          <header className="border-b border-border bg-primary-50 px-5 py-8 sm:px-8 sm:py-10">
             <div
               ref={progressBarRef}
-              className="note-progress-bar"
+              className="h-1 w-full overflow-hidden bg-primary-100"
               style={{ '--progress-width': `${readProgress}%` }}
               role="progressbar"
               aria-valuenow={readProgress}
@@ -636,33 +636,33 @@ export default function NoteDetail() {
               aria-valuemax="100"
             />
 
-            <h1 className="note-title font-fraunces">{note.title}</h1>
+            <h1 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight text-primary-950 sm:text-4xl lg:text-5xl">{note.title}</h1>
           </header>
 
           <div
-            className="notes-content-container font-open-sans"
+            className="max-w-none px-5 py-6 sm:px-8 sm:py-10 [&_h2]:mt-10 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-primary-900 [&_h3]:mt-7 [&_h3]:text-xl [&_h3]:font-bold [&_h3]:text-primary-900 [&_p]:leading-7 [&_a]:font-semibold [&_a]:text-primary-700 [&_a]:underline [&_ul]:my-5 [&_ol]:my-5 [&_li]:my-1 [&_img]:my-6 [&_img]:rounded-xl [&_table]:my-6 [&_table]:w-full [&_table]:border-collapse [&_th]:bg-primary-50 [&_th]:p-3 [&_td]:border [&_td]:border-border [&_td]:p-3"
             dangerouslySetInnerHTML={{ __html: finalContent || '<p>Content not available.</p>' }}
           />
         </article>
 
         {user && readingComplete && (
-          <section className="note-understanding-panel" aria-labelledby="note-understanding-title">
-            <h2 id="note-understanding-title" className="font-poppins">How well did you understand this note?</h2>
+          <section className="mt-8 rounded-2xl border border-primary-200 bg-primary-50 p-5 sm:p-7" aria-labelledby="note-understanding-title">
+            <h2 id="note-understanding-title" className="font-sans">How well did you understand this note?</h2>
             <p>Choose what would help you next. This practice is separate from formal quizzes. It doesn’t award quiz XP or BioRecall XP.</p>
-            <p><Link to="/learning/explanation" className="note-learning-history-link">View saved explanations</Link></p>
-            <div className="note-understanding-actions">
-              <button type="button" className={`note-understanding-choice${understanding === 'yes' ? ' is-selected' : ''}`} onClick={handleUnderstandingYes}>
+            <p><Link to="/learning/explanation" className="inline-flex text-sm font-semibold text-primary-800 underline underline-offset-4 hover:text-primary-950">View saved explanations</Link></p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <button type="button" className={`inline-flex min-h-11 items-center justify-center rounded-xl border px-4 py-2.5 text-sm font-bold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 ${understanding === 'yes' ? 'border-primary-500 bg-primary-100 text-primary-950 ring-2 ring-primary-200' : 'border-primary-200 bg-white text-primary-900 hover:border-primary-400 hover:bg-primary-50'}`} onClick={handleUnderstandingYes}>
                 Yes, I understand
               </button>
-              <button type="button" className={`note-understanding-choice${understanding === 'no' ? ' is-selected' : ''}`} onClick={() => setUnderstanding('no')}>
+              <button type="button" className={`inline-flex min-h-11 items-center justify-center rounded-xl border px-4 py-2.5 text-sm font-bold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 ${understanding === 'no' ? 'border-primary-500 bg-primary-100 text-primary-950 ring-2 ring-primary-200' : 'border-primary-200 bg-white text-primary-900 hover:border-primary-400 hover:bg-primary-50'}`} onClick={() => setUnderstanding('no')}>
                 Not yet — explain it
               </button>
             </div>
 
             {understanding === 'no' && (
-              <form className="note-learning-question-form" onSubmit={handleLearningQuestionSubmit}>
+              <form className="mt-5 grid gap-3 rounded-xl border border-border bg-white p-4" onSubmit={handleLearningQuestionSubmit}>
                 <label htmlFor="note-learning-question">What would you like explained?</label>
-                {learningError && <p className="note-learning-error" role="alert">{learningError}</p>}
+                {learningError && <p className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-900" role="alert">{learningError}</p>}
                 <textarea
                   id="note-learning-question"
                   value={learningQuestion}
@@ -680,19 +680,19 @@ export default function NoteDetail() {
             )}
 
             {understanding === 'yes' && (
-              <div className="note-trial-questions">
-                <h3 className="font-poppins">Quick practice</h3>
+              <div className="mt-5 rounded-xl border border-secondary-200 bg-white p-5">
+                <h3 className="font-sans">Quick practice</h3>
                 {trialLoading ? <p>Finding practice questions for this learning area…</p> : trialQuestions.length === 0 ? (
                   <p>No practice questions are available for this learning area yet. Your progress is saved. Try another note later.</p>
                 ) : trialQuestions.map((question, index) => {
                   const feedback = trialFeedback[question.id];
                   return (
-                    <article className="note-trial-question" key={question.id}>
+                    <article className="mt-4 rounded-xl border border-border bg-white p-4" key={question.id}>
                       <h4>{index + 1}. {question.question_text}</h4>
                       {question.image_url && <img src={question.image_url} alt={question.image_alt_text || ''} loading="lazy" />}
-                      <div className="note-trial-options">
+                      <div className="mt-4 grid gap-3">
                         {question.options.map((option) => (
-                          <label key={option.key} className={trialAnswers[question.id] === option.key ? 'is-selected' : ''}>
+                          <label key={option.key} className={`flex cursor-pointer items-start gap-3 rounded-xl border p-3 text-sm leading-6 transition ${trialAnswers[question.id] === option.key ? 'border-primary-400 bg-primary-50 text-primary-950 ring-1 ring-primary-200' : 'border-border bg-white text-slate-700 hover:border-primary-300 hover:bg-primary-50'}`}>
                             <input
                               type="radio"
                               name={`trial-${question.id}`}
@@ -707,7 +707,7 @@ export default function NoteDetail() {
                       </div>
                       {!feedback && <button type="button" onClick={() => handleTrialAnswer(question.id)} disabled={!trialAnswers[question.id]}>Check answer</button>}
                       {feedback && (
-                        <div className={`note-trial-feedback${feedback.correct ? ' is-correct' : ' is-incorrect'}`} role="status">
+                        <div className={`mt-3 rounded-lg border p-3 text-sm font-semibold ${feedback.correct ? 'border-emerald-200 bg-emerald-50 text-emerald-900' : 'border-amber-200 bg-amber-50 text-amber-950'}`} role="status">
                           {feedback.error || (feedback.correct ? 'Correct.' : 'Not quite.')}
                           {feedback.explanation && <p>{feedback.explanation}</p>}
                         </div>
@@ -728,27 +728,27 @@ export default function NoteDetail() {
         />
 
         {internalLinks.related_articles?.length > 0 && (
-          <section className="note-related-section" aria-labelledby="note-related-articles-title">
-            <h2 id="note-related-articles-title" className="note-related-title font-poppins">Related reading</h2>
+          <section className="mt-10 rounded-2xl border border-border bg-white p-5 sm:p-7" aria-labelledby="note-related-articles-title">
+            <h2 id="note-related-articles-title" className="mb-4 text-2xl font-bold text-primary-900">Related reading</h2>
             <p>Continue with articles selected for this note.</p>
-            <div className="note-related-grid">
+            <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {internalLinks.related_articles.map((article) => (
                 <Card
                   key={article.id}
                   variant="blue-strong"
-                  className="card-mixed"
+                  className="rounded-2xl border border-border bg-white shadow-sm"
                   title={article.title}
                   description={article.excerpt || article.reason || 'Read this related article'}
-                  footer={article.slug ? <Link className="btn btn-secondary" to={`/blog/${encodeURIComponent(article.slug)}`}>{article.read_time_minutes ? `${article.read_time_minutes} min read · ` : ''}Read article <span aria-hidden="true">→</span></Link> : <span>Article details unavailable</span>}
+                  footer={article.slug ? <Link className="inline-flex min-h-10 items-center justify-center rounded-xl border border-border bg-white px-4 py-2 text-sm font-bold text-primary-800 no-underline hover:bg-primary-50" to={`/blog/${encodeURIComponent(article.slug)}`}>{article.read_time_minutes ? `${article.read_time_minutes} min read · ` : ''}Read article <span aria-hidden="true">→</span></Link> : <span>Article details unavailable</span>}
                 />
               ))}
             </div>
           </section>
         )}
 
-        <div className="note-reactions-section">
-          <p className="note-reactions-label font-source-sans">Was this helpful?</p>
-          <div className="note-reactions-buttons">
+        <div className="mt-8 rounded-2xl border border-border bg-white p-5">
+          <p className="text-sm font-semibold text-muted">Was this helpful?</p>
+          <div className="mt-3 flex flex-wrap gap-3">
             {[
               { type: 'like', icon: 'fa-thumbs-up', label: 'Helpful' },
               { type: 'love', icon: 'fa-heart', label: 'Love it' },
@@ -758,32 +758,32 @@ export default function NoteDetail() {
                 key={type}
                 type="button"
                 data-reaction-type={type}
-                className={`note-reaction-btn ${type === 'like' ? 'note-reaction-btn-like' : ''} ${reactions.user.includes(type) ? 'active' : ''}`}
+                className={`inline-flex min-h-10 items-center gap-2 rounded-xl border px-3 py-2 text-sm transition ${reactions.user.includes(type) ? 'border-primary-300 bg-primary-50 text-primary-900' : 'border-border bg-white text-slate-700 hover:bg-slate-50'}`}
                 onClick={() => handleReaction(type)}
                 aria-pressed={reactions.user.includes(type)}
                 disabled={reactionLoading === type}
                 aria-label={`${label}: ${reactions.counts?.[type] || 0} reactions`}
               >
                 {type === 'like' ? (
-                  <svg className="note-like-heart" viewBox="0 0 24 24" aria-hidden="true">
+                  <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M12 21s-1.45-.86-2.7-1.72C5.4 16.55 2 13.15 2 8.9 2 5.9 4.3 3.5 7.25 3.5c1.9 0 3.6 1 4.75 2.55A5.8 5.8 0 0 1 16.75 3.5C19.7 3.5 22 5.9 22 8.9c0 4.25-3.4 7.65-7.3 10.38C13.45 20.14 12 21 12 21Z" />
                   </svg>
                 ) : <i className={`fa-regular ${icon}`} aria-hidden="true" />}
-                <span className="note-reaction-label">{label}</span>
-                <span className="note-reaction-count font-mono">{reactions.counts?.[type] || 0}</span>
+                <span className="text-sm font-semibold">{label}</span>
+                <span className="font-mono text-xs text-muted">{reactions.counts?.[type] || 0}</span>
               </button>
             ))}
           </div>
         </div>
 
-        <div className="note-comments-section">
-          <h3 className="note-comments-title font-poppins">
+        <div className="mt-8 rounded-2xl border border-border bg-white p-5 sm:p-7">
+          <h3 className="mb-5 flex items-center gap-2 text-xl font-bold text-primary-900">
             <i className="fa-regular fa-comments"></i>
             Discussion {comments.length > 0 && `(${comments.length})`}
           </h3>
 
           {user ? (
-            <div className="note-comment-input-wrapper">
+            <div className="flex flex-col gap-3 sm:flex-row">
               <input
                 type="text"
                 className="note-comment-input block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
@@ -792,32 +792,32 @@ export default function NoteDetail() {
                 onChange={(event) => setCommentInput(event.target.value)}
                 onKeyDown={(event) => event.key === 'Enter' && handleComment()}
               />
-              <Button className="note-comment-submit font-outfit" variant="primary" onClick={handleComment} disabled={!commentInput.trim() || commentSubmitting} loading={commentSubmitting} loadingLabel="Posting…">Post</Button>
+              <Button className="inline-flex min-h-11 items-center justify-center rounded-xl bg-primary-700 px-4 py-2.5 text-sm font-bold text-white hover:bg-primary-800" variant="primary" onClick={handleComment} disabled={!commentInput.trim() || commentSubmitting} loading={commentSubmitting} loadingLabel="Posting…">Post</Button>
             </div>
           ) : (
-            <div className="note-comment-signin font-source-sans">
+            <div className="text-sm text-muted">
               <p>Sign in to join the discussion</p>
-              <Link to="/login" className="btn-primary note-signin-btn">Sign In</Link>
+              <Link to="/login" className="inline-flex min-h-10 items-center justify-center rounded-xl bg-primary-700 px-4 py-2 text-sm font-bold text-white no-underline hover:bg-primary-800">Sign In</Link>
             </div>
           )}
 
-          <div className="note-comments-list">
+          <div className="mt-6 grid gap-4">
             {comments.length === 0 ? (
-              <p className="note-comments-empty font-open-sans">No comments yet.</p>
+              <p className="rounded-xl border border-dashed border-border bg-slate-50 p-5 text-sm text-muted">No comments yet.</p>
             ) : (
               comments.filter(Boolean).map((comment) => (
-                <div key={comment.id || comment.created_at} className="note-comment-item">
-                  <div className="note-comment-header">
-                    <strong className="note-comment-author font-poppins">{comment.user_name}</strong>
-                    <span className="note-comment-date font-mono">{new Date(comment.created_at).toLocaleDateString()}</span>
+                <div key={comment.id || comment.created_at} className="rounded-xl border border-border bg-white p-4">
+                  <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
+                    <strong className="text-sm font-bold text-primary-900">{comment.user_name}</strong>
+                    <span className="font-mono text-xs text-muted">{new Date(comment.created_at).toLocaleDateString()}</span>
                   </div>
-                  <p className="note-comment-text font-source-sans">{comment.body || comment.comment}</p>
+                  <p className="text-sm leading-6 text-slate-700">{comment.body || comment.comment}</p>
                 </div>
               ))
             )}
           </div>
 
-          <div className="note-discussion-art" aria-hidden="true">
+          <div className="mx-auto mt-8 max-w-md text-center" aria-hidden="true">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 150" role="presentation" focusable="false" width="320" height="150">
               <ellipse cx="160" cy="130" rx="91" ry="7" fill="var(--primary)" opacity=".10" />
               <g strokeLinejoin="round" strokeLinecap="round">
@@ -834,27 +834,27 @@ export default function NoteDetail() {
               <circle cx="28" cy="86" r="4" fill="var(--accent)" />
               <path d="M285 75c8-12 17-11 22-5-2 10-10 15-22 5Zm0 0c-1-9-7-13-14-11 0 8 5 12 14 11Z" fill="var(--primary)" opacity=".8" />
             </svg>
-            <p className="note-discussion-art-caption">Every thoughtful question helps us grow.</p>
+            <p className="mt-2 text-xs text-muted">Every thoughtful question helps us grow.</p>
           </div>
         </div>
 
-        <nav className="note-bottom-navigation" aria-label="Note navigation">
+        <nav className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6" aria-label="Note navigation">
           {returnToLesson ? (
-            <Link to={returnToLesson} className="note-return-to-lesson-link note-nav-button">
+            <Link to={returnToLesson} className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-primary-200 bg-white px-4 py-2.5 text-sm font-bold text-primary-800 no-underline hover:bg-primary-50">
               <svg aria-hidden="true" viewBox="0 0 20 20" width="16" height="16" fill="none">
                 <path d="M12.5 4.5 7 10l5.5 5.5M7.5 10H17" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
               <span>Back to the lesson</span>
             </Link>
           ) : (
-            <button type="button" className="note-return-to-lesson-link note-nav-button" onClick={() => navigate(-1)}>
+            <button type="button" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-primary-200 bg-white px-4 py-2.5 text-sm font-bold text-primary-800 no-underline hover:bg-primary-50" onClick={() => navigate(-1)}>
               <svg aria-hidden="true" viewBox="0 0 20 20" width="16" height="16" fill="none">
                 <path d="M12.5 4.5 7 10l5.5 5.5M7.5 10H17" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
               <span>Back to the lesson</span>
             </button>
           )}
-          <button type="button" className="note-back-btn note-back-bottom note-nav-button" onClick={handleBack}>
+          <button type="button" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-primary-700 px-4 py-2.5 text-sm font-bold text-white no-underline hover:bg-primary-800" onClick={handleBack}>
             <svg aria-hidden="true" viewBox="0 0 20 20" width="16" height="16" fill="none">
               <path d="M12.5 4.5 7 10l5.5 5.5M7.5 10H17" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
