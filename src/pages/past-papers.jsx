@@ -19,6 +19,7 @@ import {
   deletePaperFilterPreset
 } from '../api/client';
 import Icon from '../components/Icon/Icon';
+import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 import Skeleton from '../components/Skeleton/Skeleton';
 import Button from '../components/Button/Button';
 import Select from '../components/Select/Select';
@@ -515,22 +516,7 @@ export default function PastPapers() {
               </p>
             )}
 
-            <nav className="breadcrumb">
-              <Link to="/">
-                <Icon
-                  name="home"
-                  className="breadcrumb-icon"
-                />
-                Home
-              </Link>
-
-              <Icon
-                name="chevron-right"
-                className="breadcrumb-sep"
-              />
-
-              <span>Past Papers</span>
-            </nav>
+            <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Past Papers' }]} />
 
             <div className="past-papers-meta">
               <span className="past-papers-meta-item">
