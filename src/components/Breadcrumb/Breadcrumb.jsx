@@ -1,5 +1,4 @@
 import { Link, useLocation } from 'react-router-dom';
-import Icon from '../Icon/Icon';
 
 export default function Breadcrumb({ items = [], className = '' }) {
   const location = useLocation();
