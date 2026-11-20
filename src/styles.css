@@ -457,11 +457,12 @@ header nav { min-width: 0; }
     @apply mb-10 text-center text-3xl font-extrabold tracking-tight text-primary-900;
   }
   .journal-grid {
-    @apply mx-auto grid w-full max-w-6xl grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3;
+    @apply mx-auto grid w-full max-w-5xl grid-cols-1 items-stretch gap-7 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3;
   }
   .journal-card {
-    @apply flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-card transition duration-200 hover:-translate-y-1 hover:border-primary-200 hover:shadow-card-hover;
+    @apply !m-0 !p-0 flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-card transition duration-200 hover:-translate-y-1 hover:border-primary-200 hover:shadow-card-hover;
   }
+  .journal-card > .position-relative { @apply w-full shrink-0; }
   .journal-card-image {
     @apply aspect-[16/10] w-full object-cover;
   }
