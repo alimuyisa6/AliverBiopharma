@@ -529,12 +529,11 @@ export default function NoteDetail() {
       {isBarFloating && createPortal(
         <div
           className="fixed left-0 top-0 z-50 h-1 w-full bg-primary-100"
-          style={{ '--progress-width': `${readProgress}%` }}
           role="progressbar"
           aria-valuenow={readProgress}
           aria-valuemin="0"
           aria-valuemax="100"
-        />,
+        ><span className="block h-full bg-primary-600 transition-[width] duration-300" style={{ width: `${readProgress}%` }} /></div>,
         document.body
       )}
 
@@ -629,12 +628,11 @@ export default function NoteDetail() {
             <div
               ref={progressBarRef}
               className="h-1 w-full overflow-hidden bg-primary-100"
-              style={{ '--progress-width': `${readProgress}%` }}
               role="progressbar"
               aria-valuenow={readProgress}
               aria-valuemin="0"
               aria-valuemax="100"
-            />
+            ><span className="block h-full bg-primary-600 transition-[width] duration-300" style={{ width: `${readProgress}%` }} /></div>
 
             <h1 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight text-primary-950 sm:text-4xl lg:text-5xl">{note.title}</h1>
           </header>
