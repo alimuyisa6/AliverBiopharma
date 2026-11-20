@@ -31,7 +31,19 @@ export default function Breadcrumb({ items = [], className = '' }) {
                   aria-hidden="true"
                 />
               )}
-              {href ? (
+              {item.onClick ? (
+                <button
+                  type="button"
+                  onClick={item.onClick}
+                  className={isCurrent
+                    ? 'whitespace-nowrap font-semibold text-slate-800 dark:text-slate-100'
+                    : 'whitespace-nowrap text-slate-500 transition-colors hover:text-blue-700 dark:text-slate-400 dark:hover:text-blue-300'}
+                  aria-current={isCurrent ? 'page' : undefined}
+                  title={item.label}
+                >
+                  {item.label}
+                </button>
+              ) : href ? (
                 <Link
                   to={href}
                   className={isCurrent
