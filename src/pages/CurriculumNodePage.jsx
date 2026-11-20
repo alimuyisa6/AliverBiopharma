@@ -48,7 +48,7 @@ function renderBlockContent(block, node) {
       <img
         src={block.media_url}
         alt={block.title || 'Learning illustration'}
-        className="curriculum-node-block-image"
+        className="my-5 block max-h-[32rem] w-full rounded-2xl object-contain"
         loading="lazy"
       />
     ) : null;
@@ -58,7 +58,7 @@ function renderBlockContent(block, node) {
     if (!block.media_url) return content ? <p>{content}</p> : null;
 
     return (
-      <div className="curriculum-node-block-video">
+      <div className="my-5 overflow-hidden rounded-2xl border border-border bg-slate-950">
         <video controls preload="metadata" src={block.media_url}>
           Your browser does not support video playback.
         </video>
@@ -68,7 +68,7 @@ function renderBlockContent(block, node) {
 
   if (block.content_type === 'interactive') {
     return (
-      <div className="curriculum-node-block-interactive">
+      <div className="my-5 rounded-2xl border border-primary-200 bg-primary-50 p-5 sm:p-7">
         {content && <p>{content}</p>}
         <InteractiveSymbolExplorer config={block.interactive_config || {}} />
       </div>
@@ -77,9 +77,9 @@ function renderBlockContent(block, node) {
 
   if (block.content_type === 'quiz_ref') {
     return (
-      <div className="curriculum-node-block-quiz">
+      <div className="my-5 rounded-2xl border border-secondary-200 bg-secondary-50 p-5 sm:p-7">
         {content ? <p>{content}</p> : <p>Check your understanding with questions connected to this lesson.</p>}
-        {node?.id && <Link to={`/quiz?unit_id=${encodeURIComponent(node.id)}&activity_scope=lesson`} className="curriculum-node-question-bank-action">Start lesson quiz <Icon name="arrow-right" /></Link>}
+        {node?.id && <Link to={`/quiz?unit_id=${encodeURIComponent(node.id)}&activity_scope=lesson`} className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-xl bg-primary-700 px-4 py-2.5 text-sm font-bold text-white no-underline hover:bg-primary-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">Start lesson quiz <Icon name="arrow-right" /></Link>}
       </div>
     );
   }
@@ -202,8 +202,8 @@ export default function CurriculumNodePage() {
 
   if (loading) {
     return (
-      <Container className="curriculum-node-page">
-        <div className="curriculum-node-loading">
+      <Container className="min-h-screen bg-background">
+        <div className="flex min-h-[45vh] items-center justify-center">
           <Spinner context="brand" size="lg" />
         </div>
       </Container>
@@ -216,18 +216,18 @@ export default function CurriculumNodePage() {
     const rootLabelPlural = isPharmacy ? 'Course units' : 'Topics';
     const childLabel = isPharmacy ? 'course units' : 'topics';
     return (
-      <Container className="curriculum-node-page">
+      <Container className="min-h-screen bg-background">
         <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Resources', href: '/resources' }, { label: rootLabelPlural, href: null }]} />
-        <header className="curriculum-node-header">
+        <header className="mb-8 max-w-4xl border-b border-border pb-8">
           <h1>Choose a {rootLabel}</h1>
           <p>{isPharmacy ? 'Begin with a course unit, then follow its sub-course units, themes and lessons.' : 'Begin with a topic, then follow its subtopics, themes and lessons.'}</p>
         </header>
-        <section className="curriculum-node-section">
-          <div className="curriculum-node-section-heading"><div><h2>{rootLabelPlural}</h2></div><span className="curriculum-node-count">{rootNodes.length} available</span></div>
-          <div className="curriculum-node-children">
+        <section className="mt-10 rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-7">
+          <div className="mb-5 flex flex-wrap items-end justify-between gap-3"><div><h2>{rootLabelPlural}</h2></div><span className="inline-flex rounded-full bg-primary-50 px-3 py-1 text-xs font-bold text-primary-800">{rootNodes.length} available</span></div>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {rootNodes.map((item) => (
-              <Link key={item.id} to={`/curriculum/${encodeURIComponent(groupId)}/${slugify(item.slug || item.name)}${resourceFocus ? `?resource=${encodeURIComponent(resourceFocus)}` : ''}`} className="curriculum-node-child">
-                <span className="curriculum-node-child-body"><strong>{item.name}</strong></span>
+              <Link key={item.id} to={`/curriculum/${encodeURIComponent(groupId)}/${slugify(item.slug || item.name)}${resourceFocus ? `?resource=${encodeURIComponent(resourceFocus)}` : ''}`} className="group flex min-h-24 items-center gap-4 rounded-xl border border-border bg-white p-4 text-foreground no-underline shadow-sm transition hover:border-primary-300 hover:bg-primary-50 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
+                <span className="min-w-0 flex-1"><strong>{item.name}</strong></span>
               </Link>
             ))}
           </div>
@@ -238,12 +238,12 @@ export default function CurriculumNodePage() {
 
   if (error || !node) {
     return (
-      <Container className="curriculum-node-page">
-        <div className="curriculum-node-error">
+      <Container className="min-h-screen bg-background">
+        <div className="mx-auto mt-12 max-w-2xl rounded-2xl border border-red-200 bg-red-50 p-6 text-red-900">
           <Icon name="triangle-exclamation" />
           <h1>This learning item isn’t available</h1>
           <p>{error || 'We couldn’t find the learning item you requested.'}</p>
-          <Link to="/resources" className="btn btn-primary">Back to learning resources</Link>
+          <Link to="/resources" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-primary-700 px-4 py-2.5 text-sm font-bold text-white no-underline hover:bg-primary-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">Back to learning resources</Link>
         </div>
       </Container>
     );
@@ -275,36 +275,36 @@ export default function CurriculumNodePage() {
   };
 
   return (
-    <Container className="curriculum-node-page">
+    <Container className="min-h-screen bg-background">
       <Breadcrumb items={breadcrumbItems} />
 
-      <header className="curriculum-node-header">
+      <header className="mb-8 max-w-4xl border-b border-border pb-8">
         <h1>{node.name}</h1>
-        {node.description && <p className="curriculum-node-description">{node.description}</p>}
+        {node.description && <p className="mt-4 max-w-3xl text-base leading-7 text-muted sm:text-lg">{node.description}</p>}
       </header>
 
       {isLeaf && blocks.length > 0 && (
-        <section className="curriculum-node-section curriculum-node-learning">
-          <div className="curriculum-node-section-heading">
+        <section className="mt-10 rounded-2xl border border-primary-200 bg-primary-50 p-5 sm:p-7">
+          <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
             <div>
               <h2>Study {node.name}</h2>
             </div>
           </div>
 
-          <div className="curriculum-node-blocks">
+          <div className="mt-6 grid gap-5">
             {blocks.map((block) => (
               <article
                 key={block.id}
-                className={`curriculum-node-block curriculum-node-block-${block.content_type || 'text'}`}
+                className="rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-7"
               >
                 {block.title && <h3>{block.title}</h3>}
                 {block.locked ? (
-                  <div className="curriculum-node-premium-locked">
+                  <div className="my-8 rounded-2xl border border-amber-200 bg-amber-50 p-6 text-amber-950">
                     <p>This lesson is part of premium access.</p>
-                    <Link to={getSubscriptionPath(location, { preserveCurrent: true, reason: 'premium' })} className="btn btn-primary">Unlock this lesson</Link>
+                    <Link to={getSubscriptionPath(location, { preserveCurrent: true, reason: 'premium' })} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-primary-700 px-4 py-2.5 text-sm font-bold text-white no-underline hover:bg-primary-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">Unlock this lesson</Link>
                   </div>
                 ) : renderBlockContent(block)}
-                {block.is_premium && <span className="curriculum-node-premium">Premium</span>}
+                {block.is_premium && <span className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-xl bg-amber-600 px-4 py-2.5 text-sm font-bold text-white no-underline hover:bg-amber-700">Premium</span>}
               </article>
             ))}
           </div>
@@ -312,15 +312,15 @@ export default function CurriculumNodePage() {
       )}
 
       {children.length > 0 && (
-        <section className="curriculum-node-section">
-          <div className="curriculum-node-section-heading">
+        <section className="mt-10 rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-7">
+          <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
             <div>
               <h2>Explore {node.name}</h2>
             </div>
-            <span className="curriculum-node-count">{children.length} {children.length === 1 ? 'item' : 'items'}</span>
+            <span className="inline-flex rounded-full bg-primary-50 px-3 py-1 text-xs font-bold text-primary-800">{children.length} {children.length === 1 ? 'item' : 'items'}</span>
           </div>
 
-          <div className="curriculum-node-children">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {children.map((child) => {
               const parentPath = ancestors
                 .map((item) => slugify(item.slug || item.name))
@@ -331,8 +331,8 @@ export default function CurriculumNodePage() {
               const childHref = `/curriculum/${encodeURIComponent(groupId)}/${childPath}${resourceFocus ? `?resource=${encodeURIComponent(resourceFocus)}` : ''}`;
 
               return (
-                <Link key={child.id} to={childHref} className="curriculum-node-child">
-                  <span className="curriculum-node-child-body">
+                <Link key={child.id} to={childHref} className="group flex min-h-24 items-center gap-4 rounded-xl border border-border bg-white p-4 text-foreground no-underline shadow-sm transition hover:border-primary-300 hover:bg-primary-50 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
+                  <span className="min-w-0 flex-1">
                     <strong>{child.name}</strong>
                   </span>
                 </Link>
@@ -343,13 +343,13 @@ export default function CurriculumNodePage() {
       )}
 
       {isLesson && (
-        <section className="curriculum-node-question-bank">
+        <section className="mt-8 rounded-2xl border border-secondary-200 bg-secondary-50 p-6 sm:p-8">
           <div>
-            <span className="curriculum-node-question-bank-eyebrow">Targeted practice</span>
+            <span className="text-xs font-bold uppercase tracking-[0.16em] text-secondary-700">Targeted practice</span>
             <h2>Build a test from this lesson</h2>
             <p>Search the questions linked to this lesson, select the concepts you want to practise and save a custom assessment.</p>
           </div>
-          <Link to={`/question-bank?unit_id=${encodeURIComponent(node.id)}`} className="curriculum-node-question-bank-action">
+          <Link to={`/question-bank?unit_id=${encodeURIComponent(node.id)}`} className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-xl bg-primary-700 px-4 py-2.5 text-sm font-bold text-white no-underline hover:bg-primary-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
             Open lesson question bank <Icon name="arrow-right" />
           </Link>
         </section>
@@ -367,20 +367,20 @@ export default function CurriculumNodePage() {
       )}
 
       {relationships.length > 0 && (
-        <section className="curriculum-node-section">
-          <div className="curriculum-node-section-heading">
+        <section className="mt-10 rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-7">
+          <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
             <div>
               <h2>Connected learning</h2>
             </div>
           </div>
 
-          <div className="curriculum-node-links">
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {relationships.map((relationship, index) => (
               <Link
                 key={`${relationship.relationship_type}-${relationship.target_id}-${index}`}
                 to={`/curriculum/${encodeURIComponent(groupId)}/${slugify(relationship.target_slug || relationship.target_name)}`}
                 onClick={(event) => openRelatedNode(event, relationship)}
-                className="curriculum-node-link"
+                className="flex min-h-20 items-center justify-between gap-3 rounded-xl border border-border bg-white p-4 text-foreground no-underline shadow-sm transition hover:border-primary-300 hover:bg-primary-50"
               >
                 <span>{relationship.target_name}</span>
               </Link>
