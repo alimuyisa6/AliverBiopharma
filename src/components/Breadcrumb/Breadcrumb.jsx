@@ -1,5 +1,4 @@
 import { Link, useLocation } from 'react-router-dom';
-import Icon from '../Icon/Icon';
 
 export default function Breadcrumb({ items = [], className = '' }) {
   const location = useLocation();
@@ -23,13 +22,20 @@ export default function Breadcrumb({ items = [], className = '' }) {
               key={`${item.label}-${idx}`}
             >
               {idx > 0 && (
-                <Icon
-                  name="chevron-right"
-                  className="shrink-0 text-slate-300 dark:text-slate-600"
-                  plain
-                  size="0.65rem"
+                <svg
+                  className="mx-0.5 h-4 w-4 shrink-0 text-blue-400 dark:text-blue-500"
+                  viewBox="0 0 16 16"
+                  fill="none"
                   aria-hidden="true"
-                />
+                >
+                  <path
+                    d="M5.5 3.25 10.25 8l-4.75 4.75"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               )}
               {item.onClick ? (
                 <button
