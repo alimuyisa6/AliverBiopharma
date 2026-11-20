@@ -630,10 +630,10 @@ export default function Dashboard() {
                 <DashboardSectionAside>Pick one measure you want to improve this week, then use quizzes or revision to work towards it.</DashboardSectionAside>
                 <div className="grid grid-cols-2 gap-3 lg:grid-cols-4" id="top-stats">
                   {[
-                    { key: 'xp', value: platform.total_xp?.toLocaleString?.() ?? platform.total_xp, label: t('common.totalXp'), tone: 'emerald', icon: <path d="M12 3 5 13h5l-1 8 10-12h-6l1-6z" /> },
-                    { key: 'streak', value: platform.current_streak, label: t('common.dayStreak'), tone: 'amber', icon: <><path d="M12 3c1.5 3 4.5 4.5 3.5 8-1-1-2-1.4-2.5-3.2C10 10 7 12 8 16a4 4 0 0 0 8 0c3-3.5 1-8-4-13z" /><path d="M12 16a2 2 0 0 0 2-2c-1 .4-1.5 1-2 2z" /></> },
-                    { key: 'badges', value: achievements.earned_count, label: t('common.badges'), tone: 'violet', icon: <><path d="M8 4h8v5a4 4 0 0 1-8 0V4z" /><path d="M8 6H5v2a3 3 0 0 0 3 3M16 6h3v2a3 3 0 0 1-3 3M12 13v4m-3 3h6" /></> },
-                    { key: 'quiz', value: quiz.blocks_completed ?? 0, label: 'Quiz Blocks Done', tone: 'blue', icon: <><rect x="5" y="3" width="14" height="18" rx="2" /><path d="M8 8h8M8 12h4M8 16h2" /><circle cx="16" cy="15" r="2" /></> }
+                    { key: 'xp', value: platform.total_xp?.toLocaleString?.() ?? platform.total_xp, label: t('common.totalXp'), tone: 'emerald', icon: <path d="M13.5 2.8 6.2 13h5.1l-.8 8.2 7.3-10.1h-5.1l.8-8.3z" /> },
+                    { key: 'streak', value: platform.current_streak, label: t('common.dayStreak'), tone: 'amber', icon: <><path d="M12 2.8c.7 2.5 3.8 4.1 3.2 7.1-.3 1.2-1 1.9-1.8 2.3.1-1.6-.7-2.6-1.7-3.5-1.2 2.3-3.8 3.6-3.8 6.6a4.1 4.1 0 0 0 8.2 0c2.4-3.5.3-8.3-4.1-12.5z"/><path d="M11.9 16.1a1.8 1.8 0 0 0 1.8-1.8c-.8.3-1.4.8-1.8 1.8z"/></> },
+                    { key: 'badges', value: achievements.earned_count, label: t('common.badges'), tone: 'violet', icon: <><path d="M7 3.5h10v5.2a5 5 0 0 1-10 0V3.5z"/><path d="M7 5H4.5v2a3.5 3.5 0 0 0 3.2 3.5M17 5h2.5v2a3.5 3.5 0 0 1-3.2 3.5M12 13.7v3.1m-3 3h6"/><path d="m9.5 8.4 1.6 1.6 3.4-3.5"/></> },
+                    { key: 'quiz', value: quiz.blocks_completed ?? 0, label: 'Quiz Blocks Done', tone: 'blue', icon: <><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7.5h8M8 11.5h5"/><circle cx="15.5" cy="16" r="2.5"/><path d="m14.3 16 1 1 1.5-2"/></> }
                   ].map((stat) => {
                     const tone = {
                       emerald: 'border-emerald-100 bg-emerald-50 text-emerald-700',
@@ -643,8 +643,8 @@ export default function Dashboard() {
                     }[stat.tone];
                     return (
                       <div key={stat.key} className="group flex min-h-32 flex-col items-center gap-2 rounded-2xl border border-slate-200 bg-white p-4 text-center shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
-                        <span className={`flex h-11 w-11 items-center justify-center rounded-xl border ${tone}`}>
-                          <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{stat.icon}</svg>
+                        <span className={`flex h-12 w-12 items-center justify-center rounded-xl border ${tone}`}>
+                          <svg viewBox="0 0 24 24" className="h-7 w-7" fill="currentColor" stroke="currentColor" strokeWidth="1.35" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{stat.icon}</svg>
                         </span>
                         <span className="text-2xl font-extrabold text-primary-900">{stat.value}</span>
                         <span className="text-xs font-semibold text-slate-600">{stat.label}</span>
@@ -679,18 +679,22 @@ export default function Dashboard() {
                 <DashboardSectionAside>Open a quiz and try a short practice round. Review any questions you miss before attempting them again.</DashboardSectionAside>
                 <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
                   <div className={metricBox}>
+                    <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary-50 text-primary-700" aria-hidden="true"><svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M8 3h8l3 3v15H5V3z"/><path d="M8 9h8M8 13h5M8 17h3"/></svg></span>
                     <span className={metricValue}>{quiz.total_attempts ?? 0}</span>
                     <span className={metricLabel}>Attempts recorded</span>
                   </div>
                   <div className={metricBoxPass}>
+                    <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-100 text-emerald-700" aria-hidden="true"><svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg></span>
                     <span className={metricValue}>{quiz.passed_count ?? 0}</span>
                     <span className={metricLabel}>Passed</span>
                   </div>
                   <div className={metricBoxFail}>
+                    <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-red-100 text-red-700" aria-hidden="true"><svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9"/><path d="m9 9 6 6m0-6-6 6"/></svg></span>
                     <span className={metricValue}>{quiz.failed_count ?? 0}</span>
                     <span className={metricLabel}>Not passed</span>
                   </div>
                   <div className={metricBox}>
+                    <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-violet-50 text-violet-700" aria-hidden="true"><svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19V5m0 14h17"/><path d="m7 15 4-4 3 2 5-6"/><path d="M16 7h3v3"/></svg></span>
                     <span className={metricValue}>{quiz.average_score ?? 0}%</span>
                     <span className={metricLabel}>Average score</span>
                   </div>
