@@ -121,7 +121,7 @@ export default function BlogPage() {
   return (
     <main className="blog-page min-h-screen w-full overflow-x-clip bg-gradient-to-b from-primary-50 via-white to-slate-50 text-foreground">
       {!slug && !loading && !error && featured && (
-        <section className="relative isolate overflow-hidden bg-gradient-to-br from-primary-950 via-primary-900 to-primary-700 px-4 py-12 text-white sm:px-6 sm:py-16 lg:py-20">
+        <section className="relative isolate overflow-hidden bg-gradient-to-br from-primary-900 via-primary-900 to-primary-700 px-4 py-12 text-white sm:px-6 sm:py-16 lg:py-20">
           <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
             <div className="absolute -right-20 -top-24 h-80 w-80 rounded-full border-[36px] border-white/10" />
             <div className="absolute -bottom-36 left-[8%] h-72 w-72 rounded-full border-[28px] border-secondary-300/20" />
@@ -209,7 +209,7 @@ export default function BlogPage() {
                 </a>
               )}
               <header className="mx-auto mb-7 max-w-3xl text-center">
-                <h1 className="text-3xl font-black leading-tight tracking-tight text-primary-950 sm:text-4xl lg:text-5xl">{featured.title}</h1>
+                <h1 className="text-3xl font-black leading-tight tracking-tight text-primary-900 sm:text-4xl lg:text-5xl">{featured.title}</h1>
                 <div className="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-slate-500">
                   {featured.category && <span className="rounded-full bg-primary-50 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-primary-800">{featured.category}</span>}
                   {featured.author && <span>By {featured.author}</span>}
@@ -254,7 +254,7 @@ export default function BlogPage() {
               <div className="mx-auto w-full max-w-6xl">
                 <div className="mb-8 flex flex-col gap-2 text-center sm:mb-10">
                   <span className="text-xs font-extrabold uppercase tracking-[.18em] text-primary-600">Keep exploring</span>
-                  <h2 className="text-3xl font-black tracking-tight text-primary-950 sm:text-4xl">{blog?.latest_heading || 'Latest articles'}</h2>
+                  <h2 className="text-3xl font-black tracking-tight text-primary-900 sm:text-4xl">{blog?.latest_heading || 'Latest articles'}</h2>
                   <p className="mx-auto max-w-2xl text-slate-600">Browse more ideas, practical guides and science-backed learning.</p>
                 </div>
                 <div className="mx-auto grid w-full max-w-5xl grid-cols-1 items-stretch gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
