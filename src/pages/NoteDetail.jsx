@@ -786,7 +786,7 @@ export default function NoteDetail() {
             <div className="flex flex-col gap-3 sm:flex-row">
               <input
                 type="text"
-                className="note-comment-input block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
+                className="block min-h-12 w-full min-w-0 rounded-xl border border-border bg-white px-4 py-3 text-sm leading-6 text-foreground shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-500 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
                 placeholder="Share a thought about this note..."
                 value={commentInput}
                 onChange={(event) => setCommentInput(event.target.value)}
