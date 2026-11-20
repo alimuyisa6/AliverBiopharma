@@ -360,7 +360,7 @@ header nav { min-width: 0; }
   .donor-info small { @apply text-slate-500; }
   .donor-amount { @apply shrink-0 text-sm font-bold text-emerald-700; }
   .donate-return { @apply flex justify-center pt-2; }
-
+}
 
 :where(.dashboard-wrapper, .profile-page, .donate-page, .blog-page) button,
 :where(.dashboard-wrapper, .profile-page, .donate-page, .blog-page) [role="button"] { min-height: 2.5rem; }
