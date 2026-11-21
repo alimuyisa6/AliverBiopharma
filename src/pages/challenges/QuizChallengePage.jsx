@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import Icon from '../../components/Icon/Icon';
 import Spinner from '../../components/Spinner/Spinner';
+import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import {
   getPersonalizedDailyChallenge,
   startQuizChallenge,
@@ -223,6 +224,13 @@ export default function QuizChallengePage() {
   return (
     <div className="quiz-page quiz-challenge-page">
       <section className="section quiz-challenge-shell">
+        <Breadcrumb
+          className="mb-4"
+          items={[
+            { label: 'Challenges', href: '/challenges' },
+            { label: 'Quiz Challenge' },
+          ]}
+        />
         <div className="quiz-challenge-header">
           <div>
             <span className="eyebrow">Quiz practice</span>
