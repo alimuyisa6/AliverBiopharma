@@ -51,7 +51,7 @@ export default function LegalPage({ type }) {
         {page?.sections?.length ? (
           <div className="space-y-9">
             {page.sections.map((block, idx) => (
-              <div key={idx} className="space-y-4">
+              <div key={idx} className="space-y-4 rounded-2xl p-5 sm:p-6" style={{ backgroundColor: ['#E8F4F2', '#EAF2FA', '#F1EDFA', '#F8F1E7'][idx % 4] }}>
                 {block.heading && <h2>{block.heading}</h2>}
                 {block.content.split('\n\n').map((para, pIdx) => (
                   <p key={pIdx}>
