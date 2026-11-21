@@ -47,7 +47,7 @@ export default function ProgressBar({ value = 0, max = 100, variant = 'primary',
     success: 'bg-emerald-600',
     warning: 'bg-amber-500',
     danger: 'bg-red-600',
-    info: 'bg-sky-600'
+    info: 'bg-sky-600',\n    gradient: 'bg-gradient-to-r from-primary-600 to-secondary-500'
   };
   const colorClass = colors[variant.replace(/^progress-/, '')] || 'bg-primary-600';
   return (
