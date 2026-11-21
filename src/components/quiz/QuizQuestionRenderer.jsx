@@ -82,7 +82,7 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
         <div className="grid gap-3" role="group" aria-label="Choose all correct answers">
           {optionRows.map((option) => (
             <label key={option.id} className={`flex min-h-14 cursor-pointer items-center gap-3 rounded-xl border p-4 text-left text-sm font-semibold transition ${draft.includes(option.id) ? "border-primary-500 bg-primary-50 text-primary-950" : "border-border bg-white text-slate-800 hover:border-primary-300 hover:bg-background"}`}>
-              <input type="checkbox" checked={draft.includes(option.id)} disabled={disabled || Boolean(answer)} onChange={(event) => setDraft((current) => event.target.checked ? [...current, option.id] : current.filter((item) => item !== option.id))}  className="h-4 w-4 shrink-0 accent-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700" />
+              <input type="checkbox" checked={draft.includes(option.id)} disabled={disabled || Boolean(answer)} onChange={(event) => setDraft((current) => event.target.checked ? [...current, option.id] : current.filter((item) => item !== option.id))}  className="h-4 w-4 shrink-0 accent-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-700" />
               <span className="min-w-0 flex-1 leading-6">{option.label}</span>
             </label>
           ))}
@@ -105,7 +105,7 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
       {['short_answer', 'fill_blank', 'numerical'].includes(type) && (
         <div className="grid max-w-2xl gap-3">
           <label className="block text-sm font-semibold leading-5 text-slate-700" htmlFor={`quiz-answer-${question.id}`}>{type === 'numerical' ? 'Enter your numerical answer' : 'Enter your answer'}</label>
-          <input id={`quiz-answer-${question.id}`} type={type === 'numerical' ? 'number' : 'text'} inputMode={type === 'numerical' ? 'decimal' : 'text'} value={draft} disabled={disabled || Boolean(answer)} onChange={(event) => setDraft(event.target.value)} placeholder={type === 'numerical' ? 'Your answer' : 'Type your answer here'}  className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
+          <input id={`quiz-answer-${question.id}`} type={type === 'numerical' ? 'number' : 'text'} inputMode={type === 'numerical' ? 'decimal' : 'text'} value={draft} disabled={disabled || Boolean(answer)} onChange={(event) => setDraft(event.target.value)} placeholder={type === 'numerical' ? 'Your answer' : 'Type your answer here'}  className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-500 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
           {!answer && <Button variant="primary" onClick={submit} disabled={disabled || !String(draft).trim()}>Check answer</Button>}
         </div>
       )}
@@ -113,7 +113,7 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
       {type === 'dropdown' && (
         <div className="grid max-w-2xl gap-3">
           <label htmlFor={`quiz-answer-${question.id}`}>Choose the best answer</label>
-          <select id={`quiz-answer-${question.id}`} value={draft} disabled={disabled || Boolean(answer)} onChange={(event) => setDraft(event.target.value)} className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
+          <select id={`quiz-answer-${question.id}`} value={draft} disabled={disabled || Boolean(answer)} onChange={(event) => setDraft(event.target.value)} className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-primary-500 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
             <option value="">Select an answer</option>
             {optionRows.map((option) => <option key={option.id} value={option.id}>{option.label}</option>)}
           </select>
@@ -122,7 +122,7 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
       )}
 
       {['single_choice', ''].includes(type) && (
-        <div className="quiz-options-list">
+        <div className="grid gap-3">
           {['A', 'B', 'C', 'D'].map((option) => {
             const selected = answer?.selected;
             const correctOption = answer?.correct_option;
@@ -130,7 +130,7 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
             return (
               <button key={option} type="button" className={`flex min-h-14 items-center gap-3 rounded-xl border p-4 text-left font-semibold transition disabled:cursor-not-allowed ${stateClass === "correct" ? "border-green-300 bg-green-50 text-green-950" : stateClass === "incorrect" ? "border-red-300 bg-red-50 text-red-950" : "border-border bg-white text-slate-800 hover:border-primary-300"}`} onClick={() => onSubmit(option)} disabled={disabled || Boolean(answer)}>
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-sm font-extrabold text-primary-800">{option}</span>
-                <span className="quiz-option-text">{question[`option_${option.toLowerCase()}`]}</span>
+                <span className="min-w-0 flex-1 leading-6">{question[`option_${option.toLowerCase()}`]}</span>
               </button>
             );
           })}
