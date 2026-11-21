@@ -7,7 +7,7 @@ export default function DonutChart({ data = [], labels = [], title, subtitle, ce
   const theme = useChartTheme();
   const rows = data.map((value, index) => ({ label: labels[index] || String(index + 1), value: Number(value) || 0 }));
   const chart = (
-    <div className="ch-chart-frame" style={{ height }}>
+    <div className="w-full min-w-0 overflow-hidden" style={{ height }}>
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie data={rows} dataKey="value" nameKey="label" innerRadius="64%" outerRadius="82%" paddingAngle={2} stroke="none">
