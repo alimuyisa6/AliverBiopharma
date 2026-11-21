@@ -122,7 +122,7 @@ export default function TutorMarketplace() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <div className="relative mb-8 overflow-hidden rounded-[2rem] border border-primary-100 bg-gradient-to-br from-primary-50 via-white to-secondary-50 p-6 shadow-sm sm:p-10 lg:p-12">
+        <div className="relative mb-8 overflow-hidden rounded-[2rem] border border-white/70 p-6 shadow-sm sm:p-10 lg:p-12" style={{ backgroundColor: '#F8F1E7' }}>
           <div className="relative z-10 grid grid-cols-1 items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(260px,0.72fr)] lg:gap-12">
             <span className="mb-3 inline-flex w-fit items-center gap-2 rounded-full border border-secondary-200 bg-secondary-100 px-3 py-1.5 text-xs font-extrabold uppercase tracking-[0.16em] text-secondary-800">{t('common.tutorMarketplace')}</span>
 
@@ -146,7 +146,7 @@ export default function TutorMarketplace() {
           </div>
         </div>
 
-        <div className="mb-8 grid gap-3 rounded-2xl border border-border bg-white p-4 shadow-lg shadow-slate-900/5 md:grid-cols-[minmax(0,1fr)_minmax(12rem,0.4fr)_minmax(12rem,0.4fr)]">
+        <div className="mb-8 grid gap-3 rounded-2xl border border-white/70 p-4 shadow-lg shadow-slate-900/5 md:grid-cols-[minmax(0,1fr)_minmax(12rem,0.4fr)_minmax(12rem,0.4fr)]" style={{ backgroundColor: '#E8F4F2' }}>
           <Input
             type="text"
             placeholder={level === 'Pharmacy' ? 'Search by name, specialty, or course unit' : 'Search by name, specialty, or subject'}
@@ -183,7 +183,7 @@ export default function TutorMarketplace() {
           </select>
         </div>
 
-        <div className="mb-4 flex flex-wrap items-center justify-between gap-3 px-1">
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-xl px-4 py-3" style={{ backgroundColor: '#EAF2FA' }}>
           <div><h2 className="m-0 text-xl font-bold text-primary-900">Available tutors</h2><p className="mt-1 text-sm text-slate-500">{tutors.length} {tutors.length === 1 ? "tutor" : "tutors"} match your search</p></div>
           {(search || subjectFilter || formatFilter) && <button type="button" className="inline-flex min-h-10 items-center gap-2 rounded-xl px-3 text-sm font-semibold text-primary-700 transition hover:bg-primary-50" onClick={() => { setSearch(""); setSubjectFilter(""); setFormatFilter(""); }}>Clear filters <span aria-hidden="true">×</span></button>}
         </div>
