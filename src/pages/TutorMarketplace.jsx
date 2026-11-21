@@ -120,7 +120,7 @@ export default function TutorMarketplace() {
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen text-foreground" style={{ backgroundColor: '#F3F6F9' }}>
       <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <div className="relative mb-8 overflow-hidden rounded-[2rem] border border-white/70 p-6 shadow-sm sm:p-10 lg:p-12" style={{ backgroundColor: '#F8F1E7' }}>
           <div className="relative z-10 grid grid-cols-1 items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(260px,0.72fr)] lg:gap-12">
@@ -212,7 +212,7 @@ export default function TutorMarketplace() {
             }
           />
         ) : (
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 rounded-2xl p-4 sm:grid-cols-2 sm:p-5 xl:grid-cols-3" style={{ backgroundColor: '#F8F1E7' }}>
             {tutors.map((tutor) => (
               <TutorCard
                 key={tutor.id}
