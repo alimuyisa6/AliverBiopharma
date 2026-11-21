@@ -63,12 +63,12 @@ export default function ResourcesView({ navigate, user }) {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen" style={{ backgroundColor: '#F3F6F9' }}>
       <main className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
         <DynamicActions pageId="resources" className="mb-6" />
         <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Resources' }]} />
 
-        <header className="mt-8 flex flex-col gap-6 border-b border-border pb-8 sm:flex-row sm:items-end sm:justify-between">
+        <header className="mt-8 flex flex-col gap-6 rounded-2xl border border-white/70 px-5 py-6 pb-8 sm:flex-row sm:items-end sm:justify-between sm:px-8" style={{ backgroundColor: '#EAF2FA' }}>
           <div className="max-w-3xl">
             <span className="inline-flex items-center rounded-full border border-primary-200 bg-primary-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-primary-800">
               Resources <span className="mx-2 text-primary-400">·</span> {levelName}{activeGroup?.name ? ` · ${activeGroup.name}` : ''}
@@ -96,7 +96,7 @@ export default function ResourcesView({ navigate, user }) {
           </section>
         )}
 
-        <section className="mt-10" aria-label="Resource filters">
+        <section className="mt-10 rounded-2xl px-4 py-5 sm:px-6" style={{ backgroundColor: '#F1EDFA' }} aria-label="Resource filters">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div className="flex flex-wrap gap-2" role="group" aria-label="Filter resources">
               {FILTERS.map((item) => {
@@ -130,7 +130,7 @@ export default function ResourcesView({ navigate, user }) {
           </div>
         </section>
 
-        <section className="mt-10" aria-labelledby="resources-grid-heading">
+        <section className="mt-10 rounded-2xl px-4 py-6 sm:px-6 sm:py-8" style={{ backgroundColor: '#F8F1E7' }} aria-labelledby="resources-grid-heading">
           <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <span className="text-xs font-bold uppercase tracking-[0.16em] text-secondary-700">Learn · Practise · Apply · Review</span>
