@@ -59,7 +59,7 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
             placeholder="Write your answer clearly, explaining the key points..."
            className="block min-h-48 w-full min-w-0 resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-500 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
           <div className="flex flex-col gap-3 border-t border-slate-100 pt-3 sm:flex-row sm:items-center sm:justify-between">
-            <span>{wordCount} words</span>
+            <span className="text-sm text-slate-500"><strong className="text-slate-700">{wordCount}</strong> words</span>
             {!answer && (
               <Button
                 variant="primary"
@@ -112,7 +112,7 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
 
       {type === 'dropdown' && (
         <div className="grid max-w-2xl gap-3">
-          <label htmlFor={`quiz-answer-${question.id}`}>Choose the best answer</label>
+          <label className="block text-sm font-semibold leading-5 text-slate-700" htmlFor={`quiz-answer-${question.id}`}>Choose the best answer</label>
           <select id={`quiz-answer-${question.id}`} value={draft} disabled={disabled || Boolean(answer)} onChange={(event) => setDraft(event.target.value)} className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-primary-500 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
             <option value="">Select an answer</option>
             {optionRows.map((option) => <option key={option.id} value={option.id}>{option.label}</option>)}
@@ -128,7 +128,7 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
             const correctOption = answer?.correct_option;
             const stateClass = answer ? option === correctOption ? 'correct' : option === selected ? 'incorrect' : '' : '';
             return (
-              <button key={option} type="button" className={`flex min-h-14 items-center gap-3 rounded-xl border p-4 text-left font-semibold transition disabled:cursor-not-allowed ${stateClass === "correct" ? "border-green-300 bg-green-50 text-green-950" : stateClass === "incorrect" ? "border-red-300 bg-red-50 text-red-950" : "border-border bg-white text-slate-800 hover:border-primary-300"}`} onClick={() => onSubmit(option)} disabled={disabled || Boolean(answer)}>
+              <button key={option} type="button" className={`flex min-h-14 items-center gap-3 rounded-xl border p-4 text-left font-semibold transition disabled:cursor-not-allowed ${stateClass === "correct" ? "border-emerald-300 bg-emerald-50 text-emerald-950" : stateClass === "incorrect" ? "border-rose-300 bg-rose-50 text-rose-950" : "border-border bg-white text-slate-800 hover:border-primary-300"}`} onClick={() => onSubmit(option)} disabled={disabled || Boolean(answer)}>
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-sm font-extrabold text-primary-800">{option}</span>
                 <span className="min-w-0 flex-1 leading-6">{question[`option_${option.toLowerCase()}`]}</span>
               </button>
