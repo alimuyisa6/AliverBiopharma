@@ -34,9 +34,16 @@ export default function ContactPage() {
   }, [contactForm]);
 
   return (
-    <div className="w-full bg-slate-50 px-5 py-14 sm:py-20">
-      <h1 className="mx-auto mb-4 max-w-5xl text-4xl font-extrabold text-primary-900 sm:text-5xl">Contact AliverBiopharm</h1>
-      <p className="mx-auto mb-10 max-w-5xl text-lg leading-8 text-slate-600">Need help with your account, study materials, or a website feature? Send our team a message.</p>
+    <main className="contact-page w-full bg-slate-50">
+      <section className="ab-page-hero ab-contact-hero relative isolate overflow-hidden px-5 py-16 sm:py-24">
+        <div className="ab-page-hero-overlay absolute inset-0" aria-hidden="true" />
+        <div className="relative z-10 mx-auto max-w-5xl">
+          <span className="ab-page-hero-eyebrow">We're here to help</span>
+          <h1 className="max-w-3xl text-4xl font-extrabold text-white sm:text-5xl lg:text-6xl">Contact AliverBiopharm</h1>
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-white/85">Need help with your account, study materials, or a website feature? Send our team a message.</p>
+        </div>
+      </section>
+      <div className="px-5 py-12 sm:py-16">
       <ContactSection
         contactForm={contactForm}
         contactStatus={contactStatus}
@@ -44,6 +51,7 @@ export default function ContactPage() {
         onChange={setContactForm}
         onSubmit={handleContactSubmit} submitting={submitting}
       />
-    </div>
+      </div>
+    </main>
   );
 }
