@@ -139,7 +139,7 @@ export default function CookieConsent() {
 
   return (
     <div
-      className={`cookie-consent${visible ? ' cookie-consent-visible' : ''}`}
+      className={`fixed inset-x-4 bottom-4 z-[80] mx-auto w-full max-w-2xl transition-all duration-300 ${visible ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-4 opacity-0'}`}
       role="dialog"
       aria-modal="false"
       aria-labelledby="cookie-consent-title"
@@ -157,14 +157,14 @@ export default function CookieConsent() {
 
         <div className="mb-4 pr-10">
           {logo ? (
-            <img src={logo} alt={siteName} className="cookie-consent-logo" />
+            <img src={logo} alt={siteName} className="mb-3 block max-h-12 max-w-40 object-contain" />
           ) : (
-            <span className="font-bold text-primary-900">{siteName}</span>
+            <span className="text-base font-extrabold text-primary-900">{siteName}</span>
           )}
         </div>
 
         <div className="space-y-4">
-          <h2 id="cookie-consent-title" className="text-2xl font-bold text-primary-900">Your cookie preferences</h2>
+          <h2 id="cookie-consent-title" className="text-xl font-bold leading-7 text-primary-900 sm:text-2xl sm:leading-8">Your cookie preferences</h2>
           <p>
             AliverBiopharm uses essential cookies for secure account sessions.
             You can accept all cookies, reject all optional cookies, or choose
@@ -204,10 +204,10 @@ export default function CookieConsent() {
             </div>
           )}
 
-          <div className="flex flex-wrap gap-3 [&>button]:min-h-10 [&>button]:rounded-xl [&>button]:px-4 [&>button]:py-2 [&>button]:font-semibold">
+          <div className="flex flex-wrap gap-2.5">
             <button
               type="button"
-              className="btn btn-primary"
+              className="inline-flex min-h-10 items-center justify-center rounded-xl bg-primary-700 px-4 py-2 text-sm font-bold text-white transition hover:bg-primary-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:cursor-wait disabled:opacity-60"
               disabled={saving}
               onClick={() => save({ preferences: true, analytics: true, marketing: true })}
             >
@@ -216,7 +216,7 @@ export default function CookieConsent() {
 
             <button
               type="button"
-              className="btn btn-secondary"
+              className="inline-flex min-h-10 items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-primary-200 hover:bg-primary-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:cursor-wait disabled:opacity-60"
               disabled={saving}
               onClick={() => save({ preferences: false, analytics: false, marketing: false })}
             >
@@ -226,7 +226,7 @@ export default function CookieConsent() {
             {showSettings ? (
               <button
                 type="button"
-                className="btn btn-ghost"
+                className="inline-flex min-h-10 items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:cursor-wait disabled:opacity-60"
                 disabled={saving}
                 onClick={() => save(choices)}
               >
