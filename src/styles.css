@@ -1,42 +1,4 @@
-/* CENTRAL DESIGN + ACCESSIBILITY CONTROLS — keep this block at the top of the Tailwind entry stylesheet.
-   Contrast targets: WCAG AA (4.5:1 normal text, 3:1 large text/UI boundaries). */
-@theme {
-  --color-primary-700: #194775;
-  --color-primary-800: #153b60;
-  --color-primary-900: #15304b;
-  --color-secondary-400: #a9551d;
-  --color-secondary-500: #a9551d;
-  --color-secondary-600: #874319;
-  --color-secondary-700: #6e381a;
-  --color-foreground: #243447;
-  --color-muted: #526174;
-}
-
-:root {
-  --ab-focus-color: #194775;
-  --ab-text-on-secondary: #ffffff;
-  --ab-link-color: #194775;
-}
-
-@layer base {
-  body { color: #243447; }
-  a:not([class*="text-"]) { color: var(--ab-link-color); }
-  :focus-visible {
-    outline: 3px solid var(--ab-focus-color) !important;
-    outline-offset: 3px !important;
-  }
-  ::placeholder { color: #526174 !important; opacity: 1; }
-}
-
-/* Contrast fixes for common low-contrast utility usage on light surfaces. */
-@layer components {
-  .text-secondary-400, .text-secondary-500, .text-secondary-600 { color: #874319; }
-  .bg-secondary-400, .bg-secondary-500, .bg-secondary-600 { color: #fff; }
-  .text-blue-100 { color: #dbeafe; }
-  .text-slate-500 { color: #526174; }
-}
-
-  @import "tailwindcss";
+@import "tailwindcss";
 
 @theme {
   --color-primary-50: #eff6fc;
@@ -54,17 +16,17 @@
   --color-secondary-100: #fff1e5;
   --color-secondary-200: #fbdcc5;
   --color-secondary-300: #f4bd91;
-  --color-secondary-400: #e99458;
-  --color-secondary-500: #c66a24;
-  --color-secondary-600: #a9551d;
-  --color-secondary-700: #874319;
+  --color-secondary-400: #a9551d;
+  --color-secondary-500: #a9551d;
+  --color-secondary-600: #874319;
+  --color-secondary-700: #6e381a;
   --color-secondary-800: #6e381a;
   --color-secondary-900: #5b3019;
 
   --color-surface: #ffffff;
   --color-background: #f5f7fa;
   --color-foreground: #243447;
-  --color-muted: #64748b;
+  --color-muted: #526174;
   --color-border: #e2e8f0;
   --color-success: #15803d;
   --color-warning: #d97706;
@@ -82,6 +44,26 @@
     50% { opacity: 0.55; }
   }
 }
+
+/* Central design and accessibility controls. Keep theme tokens in one place. */
+:root {
+  --ab-focus-color: #194775;
+  --ab-text-on-secondary: #ffffff;
+  --ab-link-color: #194775;
+}
+@layer base {
+  body { color: #243447; }
+  a:not([class*="text-"]) { color: var(--ab-link-color); }
+  :focus-visible { outline: 3px solid var(--ab-focus-color) !important; outline-offset: 3px !important; }
+  ::placeholder { color: #526174 !important; opacity: 1; }
+}
+@layer components {
+  .text-secondary-400, .text-secondary-500, .text-secondary-600, .text-secondary-700 { color: #874319; }
+  .bg-secondary-400, .bg-secondary-500, .bg-secondary-600 { background-color: #a9551d; color: #fff; }
+  .text-slate-500 { color: #526174; }
+}
+
+
 
 @utility scrollbar-hidden {
   scrollbar-width: none;
