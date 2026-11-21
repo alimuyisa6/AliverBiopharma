@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { UI, Icon } from '../../design-system.jsx';
 
 const defaultBenefits = [
   { title: 'Learn', detail: 'Step-by-step' },
@@ -36,29 +37,29 @@ export default function LernwickHomeHero({
   const imageAlt = heroContent.imageAlt || 'A smiling healthcare student in a white coat';
 
   return (
-    <section className="relative isolate w-full overflow-hidden bg-primary-50 text-foreground" aria-labelledby="ab-home-hero-title">
+    <section className={UI.hero.section} aria-labelledby="ab-home-hero-title">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-primary-50 via-white to-primary-100/70" aria-hidden="true" />
-      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-5 py-14 sm:px-8 sm:py-18 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 lg:px-12 lg:py-24">
+      <div className={UI.hero.container}>
         <div className="order-2 min-w-0 lg:order-1">
-          <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary-200 bg-white/80 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-primary-700 shadow-sm">
+          <p className={UI.hero.eyebrow}>
             <span className="h-2 w-2 rounded-full bg-secondary-500" aria-hidden="true" />
             {eyebrow}
           </p>
           {name && <p className="mb-3 text-sm font-semibold text-primary-700">Welcome back, {name}</p>}
 
-          <h1 id="ab-home-hero-title" className="max-w-2xl text-4xl font-extrabold leading-[1.02] tracking-[-0.04em] text-primary-900 sm:text-5xl lg:text-6xl xl:text-7xl">
+          <h1 id="ab-home-hero-title" className={UI.hero.heading}>
             {headingLead}
-            <span className="mt-2 block text-primary-600">{headingAccent}</span>
+            <span className={UI.hero.accent}>{headingAccent}</span>
           </h1>
 
-          <p className="mt-6 max-w-xl text-base leading-8 text-foreground sm:text-lg">{description}</p>
+          <p className={UI.hero.description}>{description}</p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-primary-700 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-primary-900/10 transition duration-200 hover:-translate-y-0.5 hover:bg-primary-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400" to={primaryHref}>
+            <Link className={UI.primaryButton} to={primaryHref}>
               {primaryLabel}
-              <span aria-hidden="true">↗</span>
+              <Icon name="arrowUpRight" size="sm" aria-hidden="true" />
             </Link>
-            <Link className="inline-flex min-h-12 items-center justify-center rounded-xl border border-primary-200 bg-white/90 px-6 py-3 text-sm font-bold text-primary-800 transition duration-200 hover:-translate-y-0.5 hover:border-primary-300 hover:bg-primary-100" to={secondaryHref}>
+            <Link className={UI.secondaryButton} to={secondaryHref}>
               {secondaryLabel}
             </Link>
           </div>
@@ -80,7 +81,7 @@ export default function LernwickHomeHero({
         </div>
 
         <div className="order-1 mx-auto w-full max-w-xl lg:order-2">
-          <div className="ab-home-hero-photo-frame relative isolate min-h-[320px] overflow-hidden rounded-[2rem] border border-white/80 bg-primary-100 shadow-2xl shadow-primary-900/10 sm:min-h-[440px]">
+          <div className={`ab-home-hero-photo-frame ${UI.hero.imageFrame}`}>
             <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-primary-900/10 via-transparent to-white/20" aria-hidden="true" />
             <img
               className="aspect-[4/5] h-full w-full object-cover object-center"
