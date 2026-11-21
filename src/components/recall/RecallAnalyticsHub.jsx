@@ -71,7 +71,7 @@ export default function RecallAnalyticsHub() {
 
   if (loading || !stats) {
     return (
-      <div className="recall-analytics-hub">
+      <div className="w-full min-w-0">
         <Skeleton height={200} />
       </div>
     );
@@ -151,32 +151,32 @@ export default function RecallAnalyticsHub() {
 
   if (activeGraph && activeGraphData) {
     return (
-      <div className="recall-graph-fullpage">
-        <Card className="recall-graph-fullpage-card">
-          <div className="recall-graph-fullpage-header">
+      <div className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6">
+        <Card className="w-full rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7">
+          <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div>
-              <h3 className="recall-graph-fullpage-title">
-                <Icon name={activeGraphData.icon} className="recall-graph-fullpage-icon" />
+              <h3 className="flex items-center gap-3 text-xl font-bold leading-7 text-slate-900">
+                <Icon name={activeGraphData.icon} className="h-6 w-6 shrink-0 text-primary-700" />
                 {activeGraphData.title}
               </h3>
-              <p className="recall-graph-fullpage-desc">{activeGraphData.description}</p>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">{activeGraphData.description}</p>
             </div>
             <Button variant="ghost" size="sm" onClick={() => setActiveGraph(null)}>
               <Icon name="arrow-left" /> Back to Graphs
             </Button>
           </div>
 
-          <div className="recall-graph-fullpage-area">
-            <Suspense fallback={<div className="chart-loading" role="status">Loading chart…</div>}>
+          <div className="min-w-0 rounded-xl border border-slate-100 bg-slate-50 p-3 sm:p-4">
+            <Suspense fallback={<div className="flex min-h-48 items-center justify-center rounded-xl bg-slate-50 p-5 text-sm text-slate-500" role="status">Loading chart…</div>}>
               {renderGraph()}
             </Suspense>
           </div>
 
-          <div className="recall-graph-fullpage-insight">
-            <Icon name="lightbulb" className="recall-graph-fullpage-insight-icon" />
+          <div className="mt-6 flex items-start gap-3 rounded-xl border border-secondary-100 bg-secondary-50 p-4">
+            <Icon name="lightbulb" className="h-5 w-5 shrink-0 text-secondary-700" />
             <div>
-              <span className="recall-graph-fullpage-insight-label">Insight</span>
-              <p className="recall-graph-fullpage-insight-text">{activeGraphData.insight}</p>
+              <span className="text-xs font-bold uppercase tracking-wider text-secondary-800">Insight</span>
+              <p className="mt-1 text-sm leading-6 text-slate-700">{activeGraphData.insight}</p>
             </div>
           </div>
         </Card>
@@ -185,25 +185,25 @@ export default function RecallAnalyticsHub() {
   }
 
   return (
-    <div className="recall-analytics-hub">
-      <div className="recall-analytics-header">
-        <h3 className="recall-analytics-title">
-          <Icon name="chart-line" className="recall-analytics-title-icon" />
+    <div className="w-full min-w-0">
+      <div className="mb-6">
+        <h3 className="flex items-center gap-3 text-xl font-bold leading-7 text-primary-950">
+          <Icon name="chart-line" className="h-6 w-6 text-primary-700" />
           Learning Analytics
         </h3>
-        <p className="recall-analytics-subtitle">
+        <p className="mt-2 text-sm leading-6 text-slate-600">
           Visualize your progress and identify areas for improvement
         </p>
       </div>
 
-      <div className="recall-analytics-grid">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {GRAPH_TYPES.map((graph) => (
-          <Card key={graph.key} className="recall-analytics-card">
-            <div className="recall-analytics-card-body">
-              <Icon name={graph.icon} className="recall-analytics-card-icon" style={{ color: graph.color }} />
-              <h4 className="recall-analytics-card-title">{graph.title}</h4>
-              <p className="recall-analytics-card-desc">{graph.description}</p>
-              <Button variant="ghost" size="sm" className="recall-analytics-card-btn" onClick={() => setActiveGraph(graph.key)}>
+          <Card key={graph.key} className="h-full rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div className="flex h-full min-w-0 flex-col items-start gap-3">
+              <Icon name={graph.icon} className="h-7 w-7 text-primary-700" style={{ color: graph.color }} />
+              <h4 className="text-base font-bold leading-6 text-slate-900">{graph.title}</h4>
+              <p className="text-sm leading-6 text-slate-600">{graph.description}</p>
+              <Button variant="ghost" size="sm" className="mt-auto inline-flex min-h-9 items-center gap-2 rounded-lg px-3 py-2 text-xs font-bold text-primary-700 hover:bg-primary-50" onClick={() => setActiveGraph(graph.key)}>
                 View Graph <Icon name="arrow-right" />
               </Button>
             </div>
