@@ -1,3 +1,39 @@
+/* CENTRAL DESIGN + ACCESSIBILITY CONTROLS — keep this block at the top of the Tailwind entry stylesheet.
+   Contrast targets: WCAG AA (4.5:1 normal text, 3:1 large text/UI boundaries). */
+@theme {
+  --color-primary-700: #194775;
+  --color-primary-800: #153b60;
+  --color-primary-900: #15304b;
+  --color-secondary-600: #a9551d;
+  --color-secondary-700: #874319;
+  --color-foreground: #243447;
+  --color-muted: #526174;
+}
+
+:root {
+  --ab-focus-color: #194775;
+  --ab-text-on-secondary: #ffffff;
+  --ab-link-color: #194775;
+}
+
+@layer base {
+  body { color: #243447; }
+  a:not([class*="text-"]) { color: var(--ab-link-color); }
+  :focus-visible {
+    outline: 3px solid var(--ab-focus-color) !important;
+    outline-offset: 3px !important;
+  }
+  ::placeholder { color: #526174 !important; opacity: 1; }
+}
+
+/* Contrast fixes for common low-contrast utility usage on light surfaces. */
+@layer components {
+  .text-secondary-400, .text-secondary-500, .text-secondary-600 { color: #874319; }
+  .bg-secondary-400, .bg-secondary-500, .bg-secondary-600 { color: #fff; }
+  .text-blue-100 { color: #dbeafe; }
+  .text-slate-500 { color: #526174; }
+}
+
   @import "tailwindcss";
 
 @theme {
