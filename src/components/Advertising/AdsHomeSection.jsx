@@ -16,7 +16,7 @@ export default function AdsHomeSection() {
           </div>
         </div>
         <div className="flex w-full min-w-0 flex-col items-start gap-3 lg:w-auto lg:items-end">
-          <Link to="/advertise" className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-xl bg-secondary-500 px-6 py-3 text-sm font-extrabold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-secondary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500 sm:w-auto">
+          <Link to="/advertise" className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-xl bg-primary-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-primary-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500 sm:w-auto">
             <span>Place Your Ad</span><Icon name="arrow-right" className="h-5 w-5" />
           </Link>
           <span className="text-xs text-slate-500">Reach learners with relevant opportunities.</span>
