@@ -3,7 +3,7 @@ import { memo } from 'react';
 
 const TOKEN_RE = /([a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,})|((https?:\/\/)[^\s<>"']+)/g;
 
-const RichText = memo(function RichText({ text, className = 'rich-link' }) {
+const RichText = memo(function RichText({ text, className = 'font-semibold text-primary-700 underline decoration-primary-300 underline-offset-2 transition hover:text-primary-900' }) {
   if (!text) return null;
   const parts = [];
   let last = 0;
