@@ -14,6 +14,7 @@ import {
   Target, Zap, Stethoscope, Pill, Microscope, Atom, Brain, Lightbulb,
   Sun, Moon, LogOut, Copy, Share2, CheckCircle2, XCircle, AlertTriangle
 } from 'lucide-react';
+import { FaEnvelope, FaLocationDot, FaLinkedinIn, FaXTwitter, FaInstagram, FaGlobe } from 'react-icons/fa6';
 
 export const ICONS = Object.freeze({
   arrowUpRight: ArrowUpRight, arrowRight: ArrowRight, arrowUp: ArrowUp, arrowDown: ArrowDown, check: Check, close: X,
@@ -29,7 +30,9 @@ export const ICONS = Object.freeze({
   bookmarked: BookmarkCheck, analytics: ChartNoAxesCombined, trophy: Trophy, target: Target,
   energy: Zap, health: Stethoscope, pharmacy: Pill, microscope: Microscope, atom: Atom,
   brain: Brain, idea: Lightbulb, sun: Sun, moon: Moon, logout: LogOut, copy: Copy,
-  share: Share2, success: CheckCircle2, failure: XCircle, warning: AlertTriangle
+  share: Share2, success: CheckCircle2, failure: XCircle, warning: AlertTriangle,
+  emailBrand: FaEnvelope, locationPin: FaLocationDot, linkedinBrand: FaLinkedinIn,
+  xBrand: FaXTwitter, instagramBrand: FaInstagram, websiteBrand: FaGlobe
 });
 
 export const ICON_SIZE = Object.freeze({ xs: 14, sm: 16, md: 20, lg: 24, xl: 32 });
