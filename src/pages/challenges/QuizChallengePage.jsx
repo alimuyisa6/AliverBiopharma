@@ -153,8 +153,8 @@ export default function QuizChallengePage() {
 
   if (loading) {
     return (
-      <div className="quiz-page quiz-challenge-page">
-        <div className="fcd-loading-wrap">
+      <div className="min-h-screen bg-slate-50 px-4 py-8 text-slate-900 dark:bg-slate-950 dark:text-slate-100 sm:px-6">
+        <div className="flex min-h-[60vh] items-center justify-center">
           <Spinner context="brand" size="lg" />
         </div>
       </div>
@@ -163,13 +163,13 @@ export default function QuizChallengePage() {
 
   if (error) {
     return (
-      <div className="quiz-page quiz-challenge-page">
-        <section className="section quiz-challenge-state">
+      <div className="min-h-screen bg-slate-50 px-4 py-8 text-slate-900 dark:bg-slate-950 dark:text-slate-100 sm:px-6">
+        <section className="mx-auto flex max-w-2xl flex-col items-center gap-4 rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-sm dark:border-slate-800 dark:bg-slate-900">
           <Icon name="alert-circle" />
-          <span className="eyebrow">Quiz practice</span>
-          <h1>We couldn’t open your quiz challenge</h1>
-          <p>{error}</p>
-          <button className="btn btn-secondary" onClick={() => navigate('/challenges')}>
+          <span className="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">Quiz practice</span>
+          <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">We couldn’t open your quiz challenge</h1>
+          <p className="text-slate-600 dark:text-slate-300">{error}</p>
+          <button className="inline-flex items-center justify-center rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800" onClick={() => navigate('/challenges')}>
             Back to challenges
           </button>
         </section>
@@ -179,12 +179,12 @@ export default function QuizChallengePage() {
 
   if (!currentQuestion && !result) {
     return (
-      <div className="quiz-page quiz-challenge-page">
-        <section className="section quiz-challenge-state">
-          <span className="eyebrow">Quiz practice</span>
-          <h1>Your quiz challenge isn’t ready yet</h1>
-          <p>This quiz challenge is still being prepared. Return to the challenge centre and try again later.</p>
-          <button className="btn btn-secondary" onClick={() => navigate('/challenges')}>
+      <div className="min-h-screen bg-slate-50 px-4 py-8 text-slate-900 dark:bg-slate-950 dark:text-slate-100 sm:px-6">
+        <section className="mx-auto flex max-w-2xl flex-col items-center gap-4 rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-sm dark:border-slate-800 dark:bg-slate-900">
+          <span className="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">Quiz practice</span>
+          <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">Your quiz challenge isn’t ready yet</h1>
+          <p className="text-slate-600 dark:text-slate-300">This quiz challenge is still being prepared. Return to the challenge centre and try again later.</p>
+          <button className="inline-flex items-center justify-center rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800" onClick={() => navigate('/challenges')}>
             Back to challenges
           </button>
         </section>
@@ -194,18 +194,18 @@ export default function QuizChallengePage() {
 
   if (isComplete) {
     return (
-      <div className="quiz-page quiz-challenge-page">
-        <section className="section quiz-challenge-result">
-          <span className="challenge-type-badge">
+      <div className="min-h-screen bg-slate-50 px-4 py-8 text-slate-900 dark:bg-slate-950 dark:text-slate-100 sm:px-6">
+        <section className="mx-auto flex max-w-2xl flex-col items-center gap-5 rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-lg dark:border-slate-800 dark:bg-slate-900">
+          <span className="inline-flex items-center gap-2 rounded-full bg-blue-100 px-3 py-1.5 text-sm font-semibold text-blue-800 dark:bg-blue-900/50 dark:text-blue-200">
             <Icon name="clipboard-check" /> Quiz Challenge
           </span>
           <Icon
             name={result?.passed ? 'trophy' : 'book-open'}
-            className="quiz-challenge-result-icon"
+            className="h-14 w-14 text-blue-600 dark:text-blue-400"
           />
-          <span className="eyebrow">Challenge complete</span>
-          <h1>{result?.passed ? 'Well done!' : 'Challenge completed'}</h1>
-          <div className="quiz-challenge-score">
+          <span className="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">Challenge complete</span>
+          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{result?.passed ? 'Well done!' : 'Challenge completed'}</h1>
+          <div className="rounded-2xl bg-blue-50 px-6 py-3 text-4xl font-extrabold text-blue-700 dark:bg-blue-950/50 dark:text-blue-300">
             {Number(result?.score ?? session?.score ?? 0)}%
           </div>
           <p>
@@ -213,7 +213,7 @@ export default function QuizChallengePage() {
               ? `You earned +${result?.reward_xp ?? challenge?.reward_xp ?? 0} XP.`
               : 'Keep practising and use your next challenge to strengthen this area.'}
           </p>
-          <button className="btn btn-primary" onClick={() => navigate('/challenges')}>
+          <button className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700" onClick={() => navigate('/challenges')}>
             Back to challenges
           </button>
         </section>
@@ -222,8 +222,8 @@ export default function QuizChallengePage() {
   }
 
   return (
-    <div className="quiz-page quiz-challenge-page">
-      <section className="section quiz-challenge-shell">
+    <div className="min-h-screen bg-slate-50 px-4 py-8 text-slate-900 dark:bg-slate-950 dark:text-slate-100 sm:px-6">
+      <section className="mx-auto max-w-4xl rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:p-8">
         <Breadcrumb
           className="mb-4"
           items={[
@@ -231,14 +231,14 @@ export default function QuizChallengePage() {
             { label: 'Quiz Challenge' },
           ]}
         />
-        <div className="quiz-challenge-header">
+        <div className="mb-6 flex flex-col justify-between gap-5 sm:flex-row sm:items-start">
           <div>
-            <span className="eyebrow">Quiz practice</span>
-            <h1>{challenge?.title || 'Quiz practice'}</h1>
-            {challenge?.description && <p>{challenge.description}</p>}
+            <span className="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">Quiz practice</span>
+            <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">{challenge?.title || 'Quiz practice'}</h1>
+            {challenge?.description && <p className="mt-2 max-w-2xl text-slate-600 dark:text-slate-300">{challenge.description}</p>}
           </div>
           <button
-            className="btn btn-secondary"
+            className="inline-flex items-center justify-center rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
             type="button"
             onClick={() => navigate('/challenges')}
           >
@@ -246,22 +246,22 @@ export default function QuizChallengePage() {
           </button>
         </div>
 
-        <div className="quiz-challenge-progress" aria-label={`${answeredCount} of ${questions.length} answered`}>
-          <div className="quiz-challenge-progress-bar">
-            <span style={{ width: `${progress}%` }} />
+        <div className="mb-6 flex items-center gap-3 text-sm font-medium text-slate-600 dark:text-slate-300" aria-label={`${answeredCount} of ${questions.length} answered`}>
+          <div className="h-2 flex-1 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
+            <span className="block h-full rounded-full bg-blue-600 transition-all duration-300" style={{ width: `${progress}%` }} />
           </div>
           <span>{answeredCount} / {questions.length}</span>
         </div>
 
-        <article className="quiz-challenge-question">
-          <div className="quiz-challenge-question-meta">
-            <span>Question {currentIndex + 1} of {questions.length}</span>
-            {currentQuestion.difficulty && <span>{currentQuestion.difficulty}</span>}
+        <article className="rounded-2xl border border-slate-200 bg-slate-50 p-5 dark:border-slate-700 dark:bg-slate-800/60 sm:p-7">
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-2 text-sm text-slate-500 dark:text-slate-400">
+            <span className="font-semibold">Question {currentIndex + 1} of {questions.length}</span>
+            {currentQuestion.difficulty && <span className="rounded-full bg-slate-100 px-2.5 py-1 capitalize dark:bg-slate-700">{currentQuestion.difficulty}</span>}
           </div>
 
-          <h2>{currentQuestion.question_text}</h2>
+          <h2 className="text-xl font-semibold leading-relaxed text-slate-900 dark:text-white sm:text-2xl">{currentQuestion.question_text}</h2>
 
-          <div className="quiz-challenge-options">
+          <div className="mt-6 grid gap-3">
             {['A', 'B', 'C', 'D'].map((option) => {
               const selected = answers[currentQuestion.id] === option;
 
@@ -273,26 +273,26 @@ export default function QuizChallengePage() {
                   disabled={submitting || Boolean(answers[currentQuestion.id])}
                   onClick={() => selectAnswer(option)}
                 >
-                  <span className="quiz-challenge-option-letter">{option}</span>
-                  <span>{currentQuestion[`option_${option.toLowerCase()}`]}</span>
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-blue-100 font-bold text-blue-800 dark:bg-blue-900/50 dark:text-blue-200">{option}</span>
+                  <span className="flex-1 text-slate-800 dark:text-slate-100">{currentQuestion[`option_${option.toLowerCase()}`]}</span>
                 </button>
               );
             })}
           </div>
         </article>
 
-        <div className="quiz-challenge-navigation">
+        <div className="mt-6 flex items-center justify-between gap-3">
           <button
-            className="btn btn-secondary"
+            className="inline-flex items-center justify-center rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
             type="button"
             disabled={currentIndex === 0 || submitting}
             onClick={() => setCurrentIndex((index) => index - 1)}
           >
             Previous
           </button>
-          <span>{challenge?.reward_xp ? `+${challenge.reward_xp} XP` : 'Challenge reward'}</span>
+          <span className="text-sm font-semibold text-blue-600 dark:text-blue-400">{challenge?.reward_xp ? `+${challenge.reward_xp} XP` : 'Challenge reward'}</span>
           <button
-            className="btn btn-secondary"
+            className="inline-flex items-center justify-center rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
             type="button"
             disabled={
               currentIndex >= questions.length - 1 ||
