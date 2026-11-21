@@ -28,19 +28,19 @@ export default function QuizDashboard({ user, level, class_name }) {
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 xl:grid-cols-5">
         <div className="flex min-w-0 flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:p-5">
-          <Icon name="trophy" className="h-8 w-8 text-amber-600" />
+          <Icon name="trophy" className="h-8 w-8 text-orange-600" />
           <div className="break-words text-lg font-extrabold leading-6 tracking-tight text-slate-900 sm:text-xl">{platform.rank_title}</div>
           <div className="text-xs font-semibold leading-5 text-slate-600 sm:text-sm">Rank</div>
         </div>
 
         <div className="flex min-w-0 flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:p-5">
           <Icon name="fire" className="h-8 w-8 text-amber-600" />
-          <div className="stat-value font-poppins">{platform.current_streak} days</div>
-          <div className="stat-label font-source-sans">Streak</div>
+          <div className="break-words text-lg font-extrabold leading-6 tracking-tight text-slate-900 sm:text-xl">{platform.current_streak} days</div>
+          <div className="text-xs font-semibold leading-5 text-slate-600 sm:text-sm">Streak</div>
         </div>
 
         <div className="flex min-w-0 flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:p-5">
-          <Icon name="medal" className="stat-icon stat-icon-accent" />
+          <Icon name="medal" className="h-8 w-8 text-violet-600" />
           <div className="stat-value font-poppins">{achievements?.earned_count || 0}</div>
           <div className="stat-label font-source-sans">Badges</div>
         </div>
