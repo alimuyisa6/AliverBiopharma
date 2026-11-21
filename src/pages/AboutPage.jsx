@@ -98,7 +98,7 @@ export default function AboutPage() {
 
   if (!page) {
     return (
-      <section className="w-full bg-slate-50 px-5 py-16" aria-busy="true">
+      <section className="w-full px-5 py-16" style={{ backgroundColor: '#F3F6F9' }} aria-busy="true">
         <div className="mx-auto w-full max-w-5xl space-y-10">
           <div className="about-loading-block" />
           <div className="about-loading-line" />
@@ -128,7 +128,7 @@ export default function AboutPage() {
         </section>
       )}
 
-      <section className="w-full bg-slate-50 px-5 py-14 sm:py-20">
+      <section className="w-full px-5 py-14 sm:py-20" style={{ backgroundColor: '#E8F4F2' }}>
         <div className="mx-auto w-full max-w-5xl space-y-10">
           {!page?.hero && (
             <h1 className="mb-10 text-4xl font-extrabold text-primary-900 sm:text-5xl">{page?.title || 'About AliverBiopharm'}</h1>
