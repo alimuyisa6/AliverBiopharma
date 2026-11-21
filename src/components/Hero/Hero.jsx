@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight } from 'lucide-react';
+import { Icon } from '../../design-system.jsx';
 import { useAuth } from '../../contexts/AuthContext';
 import { useLayout } from '../../contexts/LayoutContext';
 
@@ -330,7 +330,7 @@ export default function Hero() {
               resume && resumeAllowed ? (
                 <Link to={resumeHref(resume)} className="inline-flex min-h-14 items-center justify-center gap-4 rounded-xl bg-secondary-500 px-6 py-3.5 text-base font-bold text-white shadow-lg shadow-black/20 transition hover:-translate-y-0.5 hover:bg-secondary-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
                   <span>Continue to {MODULE_LABELS[resume.module] || 'Learning'}</span>
-                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/15" aria-hidden="true"><ArrowUpRight size={21} strokeWidth={1.8} /></span>
+                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/15" aria-hidden="true"><Icon name="arrowUpRight" size={21} strokeWidth={1.8} aria-hidden="true" /></span>
                 </Link>
               ) : (
                 <Link to="/notes" className="inline-flex min-h-14 items-center justify-center gap-4 rounded-xl bg-secondary-500 px-6 py-3.5 text-base font-bold text-white shadow-lg shadow-black/20 transition hover:-translate-y-0.5 hover:bg-secondary-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
