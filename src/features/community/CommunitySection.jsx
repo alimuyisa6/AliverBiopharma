@@ -62,7 +62,7 @@ export function CommunitySection({
       )}
 
       {activity.length > 0 && (
-        <section className="section reveal">
+        <section className="section reveal rounded-2xl px-5 py-8 sm:px-8" style={{ backgroundColor: '#EAF2FA' }} >
           <span className="sec-label">Community</span>
           <h2 className="section-title">
             Recent<br />Activity
