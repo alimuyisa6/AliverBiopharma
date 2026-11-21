@@ -14,6 +14,7 @@ export default function TutorMarketplaceTeaser() {
       ctaLabel="Find your tutor"
       onCtaClick={() => navigate('/tutors')}
       imageSide="right"
+      backgroundColor="#F8F1E7"
     />
   );
 }
