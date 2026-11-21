@@ -22,8 +22,8 @@ const Card = forwardRef(function Card(
   ref
 ) {
   const cardClass = [
-    'relative min-w-0 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm',
-    variant === 'interactive' ? 'transition hover:-translate-y-0.5 hover:border-primary-200 hover:shadow-md' : '',
+    'relative min-w-0 overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7',
+    variant === 'interactive' ? 'transition hover:-translate-y-0.5 hover:border-primary-200 hover:shadow-md' : variant === 'primary' ? 'border-primary-100' : variant === 'secondary' ? 'border-secondary-100' : variant === 'success' ? 'border-emerald-100' : variant === 'warning' ? 'border-amber-200' : variant === 'danger' ? 'border-red-200' : '',
     onClick ? 'cursor-pointer focus-within:ring-2 focus-within:ring-primary-200' : '',
     className
   ].filter(Boolean).join(' ');
