@@ -59,7 +59,8 @@ export default function ClassSwitcher({ className = '' }) {
     }
   };
 
-  const isHomeSwitcher = className.split(/\s+/).includes('home-scope-switcher');\n  const safeClassName = className.split(/\\s+/).filter((name) => name !== 'home-scope-switcher').join(' ');
+  const isHomeSwitcher = className.split(/\s+/).includes('home-scope-switcher');
+  const safeClassName = className.split(/\s+/).filter((name) => name !== 'home-scope-switcher').join(' ');
 
   return (
     <div className={`relative z-30 w-full min-w-0 max-w-full sm:w-auto sm:max-w-[15rem] ${safeClassName}`.trim()}>
