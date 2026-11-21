@@ -2,7 +2,7 @@
 import { getInfoSection } from '../api/client';
 import { getCachedStale } from '../utils/cache';
 import { Link } from 'react-router-dom';
-import { Icon } from '../design-system.jsx';
+import { Icon, getIconNameFromClass } from '../design-system.jsx';
 
 function RichText({ text }) {
   const TOKEN_RE = /([a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,})|((https?:\/\/)[^\s<>"']+)/g;
@@ -285,7 +285,7 @@ export default function AboutPage() {
                 <div className="about-social-links">
                   {page.contact.social_links.map((s, i) => (
                     <a key={i} href={s.url} target="_blank" rel="noopener noreferrer" className="about-social-link">
-                      <i className={s.icon}></i>
+                      <Icon name={getIconNameFromClass(s.icon)} size={16} aria-hidden="true" />
                     </a>
                   ))}
                 </div>
