@@ -6,7 +6,7 @@ export default function RadarChart({ data = [], labels = [], label = 'Mastery', 
   const theme = useChartTheme();
   const rows = data.map((value, index) => ({ label: labels[index] || String(index + 1), value: Number(value) || 0 }));
   const chart = (
-    <div className="ch-chart-frame" style={{ height }}>
+    <div className="w-full min-w-0 overflow-hidden" style={{ height }}>
       <ResponsiveContainer width="100%" height="100%">
         <RechartsRadarChart data={rows} outerRadius="72%">
           <PolarGrid stroke={theme.subtleBorder} />

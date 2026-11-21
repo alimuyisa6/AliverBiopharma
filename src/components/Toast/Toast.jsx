@@ -40,9 +40,9 @@ export function ToastProvider({ children }) {
       {children}
 
       {createPortal(
-        <div className="toast-container">
+        <div className="fixed right-4 top-4 z-[100] flex w-full max-w-sm flex-col gap-3">
           {toasts.map((toast) => (
-            <div key={toast.id} className={`toast toast-${toast.type}`} onClick={() => removeToast(toast.id)}>
+            <div key={toast.id} className={`flex cursor-pointer items-start gap-3 rounded-xl border px-4 py-3 text-sm font-medium leading-6 shadow-lg backdrop-blur transition hover:-translate-y-0.5 ${toast.type === 'success' ? 'border-emerald-200 bg-emerald-50 text-emerald-900' : toast.type === 'error' ? 'border-red-200 bg-red-50 text-red-900' : toast.type === 'warning' ? 'border-amber-200 bg-amber-50 text-amber-900' : 'border-sky-200 bg-sky-50 text-sky-900'}`} onClick={() => removeToast(toast.id)}>
               <Icon name={TOAST_ICONS[toast.type] || 'circle-info'} />
               <span>{toast.message}</span>
             </div>

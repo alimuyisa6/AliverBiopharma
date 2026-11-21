@@ -20,9 +20,9 @@ function persistScrollMap(map) { try { sessionStorage.setItem(SCROLL_STORAGE_KEY
 function MenuGlyph({ isOpen }) {
   return (
     <svg className="h-5 w-5 fill-none stroke-current stroke-[1.8]" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path className="menu-line menu-line-top" d={isOpen ? "M6 7l6 10" : "M6 7h14"} />
-      <path className="menu-line menu-line-middle" d={isOpen ? "M12 17V7" : "M10 12h10"} />
-      <path className="menu-line menu-line-bottom" d={isOpen ? "M12 17l6-10" : "M6 17h14"} />
+      <path className="transition-colors" d={isOpen ? "M6 7l6 10" : "M6 7h14"} />
+      <path className="transition-colors" d={isOpen ? "M12 17V7" : "M10 12h10"} />
+      <path className="transition-colors" d={isOpen ? "M12 17l6-10" : "M6 17h14"} />
     </svg>
   );
 }
@@ -105,16 +105,16 @@ export default function Layout({ children, showFooter = true }) {
         { href: '/login', label: loginButton.label, icon: 'signin' },
         { href: '/register', label: signupButton.label, icon: 'register' },
       ];
-  return <div className="min-h-screen flex flex-col bg-background text-foreground">
+  return <div className="min-h-screen flex flex-col bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100">
     <NetworkStatus />
-    {!hideHeader && <header className={`sticky top-0 z-40 w-full border-b border-border bg-white/95 backdrop-blur-xl transition-shadow ${scrolled ? 'shadow-md' : ''}`}><div className="mx-auto flex min-h-[68px] w-full max-w-7xl min-w-0 items-center gap-2 px-3 sm:min-h-[76px] sm:gap-4 sm:px-6 lg:gap-6">
+    {!hideHeader && <header className={`sticky top-0 z-40 w-full border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-950/95 backdrop-blur-xl transition-shadow ${scrolled ? 'shadow-md' : ''}`}><div className="mx-auto flex min-h-[68px] w-full max-w-7xl min-w-0 items-center gap-2 px-3 sm:min-h-[76px] sm:gap-4 sm:px-6 lg:gap-6">
       <Link to="/" className="flex min-w-0 max-w-[min(42vw,13rem)] shrink-0 items-center gap-2 overflow-hidden text-base font-extrabold tracking-tight text-primary-900 no-underline sm:max-w-[14rem] sm:text-lg">{logo ? <img src={logo} alt="" aria-hidden="true" className="block h-9 max-h-9 w-auto max-w-full shrink object-contain sm:h-11 sm:max-h-11" /> : <span className="truncate">{siteName}</span>}</Link>
       <div className="ml-auto flex min-w-0 shrink-0 items-center justify-end gap-1.5 sm:gap-2">
         {isAuthenticated && <div className="min-w-0 max-w-[6.5rem] shrink min-[769px]:max-w-[12rem]"><ClassSwitcher /></div>}
-        <button className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-border bg-white text-primary-800 transition-colors hover:border-primary-200 hover:bg-primary-50 sm:h-10 sm:w-10" onClick={() => setSearchOpen(true)} aria-label={t('common.search')} type="button"><SearchGlyph /></button>
+        <button className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-slate-200 dark:border-slate-800 bg-white text-primary-800 transition-colors hover:border-primary-200 hover:bg-primary-50 sm:h-10 sm:w-10" onClick={() => setSearchOpen(true)} aria-label={t('common.search')} type="button"><SearchGlyph /></button>
         <span className="inline-flex shrink-0"><NotificationCenter /></span>
         <button type="button" onClick={toggleTheme} aria-label={t('common.toggleTheme')} title={t('common.toggleTheme')} className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-white text-primary-800 shadow-sm transition-colors hover:border-primary-300 hover:bg-primary-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 sm:h-11 sm:w-11"><ThemeGlyph isDark={isDarkTheme} /></button>
-        <button className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border bg-white text-primary-800 transition-colors hover:border-primary-200 hover:bg-primary-50" onClick={() => setMobileOpen((prev) => !prev)} aria-label={mobileOpen ? t('common.closeMenu') : t('common.menu')} aria-expanded={mobileOpen} type="button"><MenuGlyph isOpen={mobileOpen} /></button>
+        <button className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-slate-200 dark:border-slate-800 bg-white text-primary-800 transition-colors hover:border-primary-200 hover:bg-primary-50" onClick={() => setMobileOpen((prev) => !prev)} aria-label={mobileOpen ? t('common.closeMenu') : t('common.menu')} aria-expanded={mobileOpen} type="button"><MenuGlyph isOpen={mobileOpen} /></button>
       </div>
     </div></header>}
     {!hideHeader && <Suspense fallback={null}>{searchOpen && <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />}</Suspense>}<AdminLauncher />

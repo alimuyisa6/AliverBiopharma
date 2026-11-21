@@ -108,7 +108,7 @@ export default function AdCampaignSuccess({
     String(reviewStatus).toLowerCase() === 'rejected';
 
   return (
-    <main className="min-h-screen bg-background px-5 py-12 text-foreground sm:px-8">
+    <main className="min-h-screen bg-slate-50 px-5 py-12 text-slate-800 sm:px-8">
       <section className="mx-auto max-w-4xl text-center">
         <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-3xl bg-emerald-100 text-emerald-700">
           <AdStepIcon name="reach" size={42} />
@@ -118,13 +118,13 @@ export default function AdCampaignSuccess({
           Campaign submitted
         </span>
 
-        <h1>
+        <h1 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight text-primary-950 sm:text-4xl">
           Your advertising campaign
           <br />
           is now in the process.
         </h1>
 
-        <p>
+        <p className="mt-2 text-sm leading-6 text-slate-600">
           Thank you for choosing AliverBiopharm. Your campaign details have
           been submitted and will move through payment verification and
           advertising review before activation.
@@ -140,14 +140,14 @@ export default function AdCampaignSuccess({
 
       <section className="mx-auto mt-10 grid max-w-7xl items-start gap-8 lg:grid-cols-[minmax(0,1.6fr)_minmax(280px,0.7fr)]">
         <div className="min-w-0 space-y-6">
-          <div className="rounded-3xl border border-border bg-white p-6 shadow-sm sm:p-8">
+          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
             <div className="flex items-start gap-4">
               <div>
                 <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary-700">
                   Campaign progress
                 </span>
 
-                <h2>
+                <h2 className="mt-2 text-lg font-bold leading-7 text-primary-950">
                   What happens next
                 </h2>
               </div>
@@ -211,7 +211,7 @@ export default function AdCampaignSuccess({
                 className={`rounded-xl border p-4 text-sm font-semibold transition ${
                   reviewStatus === 'approved'
                     ? 'border-primary-200 bg-primary-50 text-primary-800'
-                    : 'border-border bg-white text-slate-500'
+                    : 'border-slate-200 bg-white text-slate-500'
                 }`}
               >
                 <span>04</span>
@@ -227,7 +227,7 @@ export default function AdCampaignSuccess({
             </div>
           </div>
 
-          <div className="rounded-3xl border border-border bg-white p-6 shadow-sm sm:p-8">
+          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
             <div className="mb-5 flex items-center justify-between gap-3">
               <div>
                 <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary-700">
@@ -302,7 +302,7 @@ export default function AdCampaignSuccess({
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3 border-t border-border pt-6">
+          <div className="flex flex-wrap items-center gap-3 border-t border-slate-200 pt-6">
             {onBack ? (
               <button
                 type="button"

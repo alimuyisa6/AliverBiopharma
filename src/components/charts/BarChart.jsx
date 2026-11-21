@@ -7,7 +7,7 @@ export default function BarChart({ data = [], labels = [], label = 'Value', titl
   const theme = useChartTheme();
   const rows = data.map((value, index) => ({ label: labels[index] || String(index + 1), value: Number(value) || 0 }));
   const chart = (
-    <div className="ch-chart-frame" style={{ height }}>
+    <div className="w-full min-w-0 overflow-hidden" style={{ height }}>
       <ResponsiveContainer width="100%" height="100%">
         <RechartsBarChart data={rows} layout={horizontal ? 'vertical' : 'horizontal'} margin={{ top: 8, right: 8, bottom: 8, left: horizontal ? 8 : 0 }}>
           <CartesianGrid vertical={!horizontal} horizontal={horizontal} stroke={theme.subtleBorder} strokeDasharray="3 3" />

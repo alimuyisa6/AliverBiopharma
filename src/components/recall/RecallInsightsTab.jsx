@@ -3,7 +3,7 @@ import RecallAnalyticsHub from './RecallAnalyticsHub';
 
 export default function RecallInsightsTab() {
   return (
-    <div className="recall-tab-content">
+    <div className="w-full min-w-0 space-y-5">
       <RecallAnalyticsHub />
     </div>
   );

@@ -7,7 +7,7 @@ import ChartTooltip from './ChartTooltip';
 import useChartTheme from './useChartTheme';
 
 function Frame({ children, height = 260, summary }) {
-  return <><div className="ch-chart-frame" style={{ height }}>{children}</div><span className="ch-sr-only">{summary}</span></>;
+  return <><div className="w-full min-w-0 overflow-hidden" style={{ height }}>{children}</div><span className="sr-only">{summary}</span></>;
 }
 
 function ActivityBars({ data = [] }) {
@@ -29,7 +29,7 @@ export function TotalLearningActivity({ data = [], embedded = false }) {
   const theme = useChartTheme();
   return <ChartCard embedded={embedded} title="Total learning activity" subtitle="Recent activity from your learning dashboard." action={<ChartExportButton data={data} filename="learning-activity" />}>
     <ActivityBars data={data} />
-    <div className="ch-stat-box"><div className="ch-stat-cell"><p className="ch-stat-label">Activity</p><p className="ch-stat-value">{data.reduce((s, x) => s + Number(x.value || 0), 0)}</p></div><div className="ch-stat-cell"><p className="ch-stat-label">Period</p><p className="ch-stat-value">{data.length} days</p></div></div>
+    <div className="mt-4 grid grid-cols-2 gap-3"><div className="rounded-xl border border-slate-200 bg-slate-50 p-3"><p className="text-xs font-semibold text-slate-500">Activity</p><p className="mt-1 text-lg font-extrabold leading-6 text-slate-900">{data.reduce((s, x) => s + Number(x.value || 0), 0)}</p></div><div className="rounded-xl border border-slate-200 bg-slate-50 p-3"><p className="text-xs font-semibold text-slate-500">Period</p><p className="mt-1 text-lg font-extrabold leading-6 text-slate-900">{data.length} days</p></div></div>
   </ChartCard>;
 }
 
@@ -58,7 +58,7 @@ export function ActivityDistribution({ data = [], embedded = false }) {
         </BarChart>
       </ResponsiveContainer>
     </Frame>
-    <p className="dashboard-graph-guide">This frequency chart groups days by the number of sessions recorded. Taller bars mean more days had that activity level. Use it to see whether your routine is consistent or mostly made up of low-activity days.</p>
+    <p className="mt-4 rounded-xl bg-slate-50 px-4 py-3 text-sm leading-6 text-slate-600">This frequency chart groups days by the number of sessions recorded. Taller bars mean more days had that activity level. Use it to see whether your routine is consistent or mostly made up of low-activity days.</p>
   </ChartCard>;
 }
 

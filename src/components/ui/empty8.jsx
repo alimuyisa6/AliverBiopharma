@@ -41,7 +41,7 @@ export default function EmptyComponent({
         <EmptyDescription>{description}</EmptyDescription>
       </EmptyHeader>
       <EmptyContent>
-        <button className="btn btn-primary empty-state-retry" type="button" onClick={handleRetry} disabled={checking}>
+        <button className="inline-flex min-h-10 items-center justify-center rounded-xl bg-primary-700 px-4 py-2 text-sm font-bold text-white transition hover:bg-primary-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:cursor-wait disabled:opacity-60" type="button" onClick={handleRetry} disabled={checking}>
           {checking ? 'Checking connection…' : 'Try Again'}
         </button>
       </EmptyContent>

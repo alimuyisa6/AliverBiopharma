@@ -22,7 +22,7 @@ export default function ChartWhenVisible({ children }) {
     return () => observer.disconnect();
   }, []);
 
-  return <div ref={hostRef} className="chart-deferred" style={{ minHeight: visible ? undefined : 220 }}>
-    {visible ? children : <div className="chart-loading" aria-hidden="true" />}
+  return <div ref={hostRef} className="w-full min-w-0" style={{ minHeight: visible ? undefined : 220 }}>
+    {visible ? children : <div className="flex min-h-48 items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 p-5" aria-hidden="true" />}
   </div>;
 }

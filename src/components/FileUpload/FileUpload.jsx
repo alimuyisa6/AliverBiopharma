@@ -93,12 +93,12 @@ export default function FileUpload({ category, onUploadComplete }) {
       {files.length > 0 && (
         <ul className="m-0 grid list-none gap-2 p-0" aria-label="Uploaded files">
           {files.map((file) => (
-            <li key={file.id} className="flex min-w-0 items-center gap-3 rounded-xl border border-border bg-white p-3 shadow-sm sm:p-4">
+            <li key={file.id} className="flex min-w-0 items-center gap-3 rounded-xl border border-slate-200 bg-white p-3 shadow-sm sm:p-4">
               <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${file.file_mime_type === 'application/pdf' ? 'bg-red-50 text-red-700' : 'bg-primary-50 text-primary-700'}`}>
                 <Icon name={getFileIcon(file.file_mime_type)} className="h-5 w-5" />
               </span>
-              <span className="min-w-0 flex-1 truncate text-sm font-semibold text-foreground">{file.file_name}</span>
-              <span className="shrink-0 text-xs text-muted">{(file.file_size / 1024).toFixed(0)} KB</span>
+              <span className="min-w-0 flex-1 truncate text-sm font-semibold text-slate-800">{file.file_name}</span>
+              <span className="shrink-0 text-xs text-slate-500">{(file.file_size / 1024).toFixed(0)} KB</span>
               <Button
                 variant="ghost"
                 size="sm"

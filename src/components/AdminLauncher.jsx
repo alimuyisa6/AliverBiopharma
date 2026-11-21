@@ -24,8 +24,7 @@ export default function AdminLauncher() {
     <Button
       onClick={openAdminDashboard}
       disabled={loading}
-      className="btn btn-primary btn-sm"
-      style={{ position: 'fixed', bottom: 0, left: 0, zIndex: 50 }}
+      className="fixed bottom-4 left-4 z-50 min-h-9 rounded-lg px-3 py-2 text-xs shadow-lg"
     >
       <Icon name="shield-halved" />
       {loading ? 'Opening…' : 'Admin'}

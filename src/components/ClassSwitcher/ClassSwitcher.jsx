@@ -60,10 +60,11 @@ export default function ClassSwitcher({ className = '' }) {
   };
 
   const isHomeSwitcher = className.split(/\s+/).includes('home-scope-switcher');
+  const safeClassName = className.split(/\s+/).filter((name) => name !== 'home-scope-switcher').join(' ');
 
   return (
-    <div className={`class-switcher relative z-30 w-full min-w-0 max-w-full sm:w-auto sm:max-w-[15rem] ${className}`.trim()}>
-      {isHomeSwitcher && <span className="class-switcher-label">{label}</span>}
+    <div className={`relative z-30 w-full min-w-0 max-w-full sm:w-auto sm:max-w-[15rem] ${safeClassName}`.trim()}>
+      {isHomeSwitcher && <span className="mb-1 block text-[10px] font-extrabold uppercase tracking-[0.14em] text-primary-600">{label}</span>}
       <button
         type="button"
         className="flex min-h-10 w-full min-w-0 max-w-full items-center gap-2 rounded-xl border border-primary-100 bg-white px-3 py-2 text-left text-sm font-semibold text-primary-900 shadow-sm transition hover:border-primary-300 hover:bg-primary-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 disabled:cursor-wait"
@@ -103,7 +104,7 @@ export default function ClassSwitcher({ className = '' }) {
             ))}
             <div className="my-2 border-t border-slate-100" />
             <div className="flex items-start gap-2 rounded-xl bg-amber-50 p-3 text-xs text-amber-950">
-              <span className="class-switcher-approval-mark" aria-hidden="true">
+              <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 text-amber-700" aria-hidden="true">
                 <svg viewBox="0 0 24 24" focusable="false"><path d="M12 3.5 19 6v5.3c0 4.2-2.8 7.4-7 9.2-4.2-1.8-7-5-7-9.2V6l7-2.5Z" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg>
               </span>
               <span className="min-w-0"><strong className="block">Changing learning level?</strong><small className="mt-1 block text-amber-900">Level changes require admin approval.</small><a className="mt-1 inline-block font-bold text-primary-700 underline" href="/profile" onClick={() => setOpen(false)}>Request a level change</a></span>

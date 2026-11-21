@@ -113,10 +113,10 @@ export default function ChartExportButton({
   };
 
   return (
-    <div className="ch-export" ref={rootRef}>
+    <div className="relative inline-flex" ref={rootRef}>
       <button
         type="button"
-        className="ch-export-button"
+        className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 transition hover:bg-slate-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-600"
         aria-label="Export chart"
         aria-haspopup="menu"
         aria-expanded={open}
@@ -126,11 +126,11 @@ export default function ChartExportButton({
       </button>
 
       {open && (
-        <div className="ch-export-menu" role="menu">
-          <button type="button" className="ch-export-item" role="menuitem" onClick={() => handleExport('csv')}>
+        <div className="absolute right-0 top-[calc(100%+0.5rem)] z-50 min-w-36 overflow-hidden rounded-xl border border-slate-200 bg-white p-1 shadow-lg" role="menu">
+          <button type="button" className="flex w-full items-center rounded-lg px-3 py-2 text-left text-xs font-semibold text-slate-700 hover:bg-slate-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-600" role="menuitem" onClick={() => handleExport('csv')}>
             Export CSV
           </button>
-          <button type="button" className="ch-export-item" role="menuitem" onClick={() => handleExport('png')}>
+          <button type="button" className="flex w-full items-center rounded-lg px-3 py-2 text-left text-xs font-semibold text-slate-700 hover:bg-slate-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-600" role="menuitem" onClick={() => handleExport('png')}>
             Export PNG
           </button>
         </div>

@@ -25,10 +25,10 @@ const MODES = [
 ];
 
 const MODE_CARD_COLOR = {
-  flip: 'card-blue',
-  typed: 'card-teal',
-  multiple_choice: 'card-violet',
-  structure_identification: 'card-mint'
+  flip: 'border-blue-200 bg-blue-50 text-blue-950',
+  typed: 'border-teal-200 bg-teal-50 text-teal-950',
+  multiple_choice: 'border-violet-200 bg-violet-50 text-violet-950',
+  structure_identification: 'border-emerald-200 bg-emerald-50 text-emerald-950'
 };
 
 export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode: initialMode = 'flip', onComplete, onPremiumRequired, challengeId = null, sourceNoteId = null, activityScope = null, unitId = null }) {
@@ -195,7 +195,7 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
 
   if (loading) {
     return (
-      <div className="fcd-loading-wrap">
+      <div className="flex min-h-[40vh] items-center justify-center px-4 py-10">
         <Spinner size="lg" />
       </div>
     );
@@ -203,8 +203,8 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
 
   if (!card) {
     return (
-      <div className="section fcd-empty">
-        <Icon name="layer-group" className="fcd-empty-icon" />
+      <div className="mx-auto flex min-h-[40vh] w-full max-w-5xl flex-col items-center justify-center gap-4 px-4 py-10 text-center">
+        <Icon name="layer-group" className="h-8 w-8 text-primary-700" />
         <p>No cards in this deck yet.</p>
         <Button variant="ghost" onClick={() => onComplete({ sessionId, total: 0 })} icon="arrow-left">
           Back
@@ -216,16 +216,16 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
   const isKnown = known.has(card.id);
   const isBookmarked = bookmarked.has(card.id);
   const isLast = index === cards.length - 1;
-  const cardColor = MODE_CARD_COLOR[mode] || 'card-blue';
+  const cardColor = MODE_CARD_COLOR[mode] || 'border-blue-200 bg-blue-50 text-blue-950';
 
   return (
-    <div className="flashcard-deck-view">
-      <div className="section fcd-section">
-        <div className="fcd-progress-row">
+    <div className="w-full">
+      <div className="mx-auto w-full max-w-5xl px-4 py-6 sm:px-6">
+        <div className="mb-4">
           <ProgressBar value={index + 1} max={cards.length} variant="gradient" />
         </div>
 
-        <div className="fcd-mode-row">
+        <div className="mb-5 flex flex-wrap gap-2">
           {MODES.map((item) => (
             <Button
               key={item.value}
@@ -240,30 +240,30 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
           ))}
         </div>
 
-        <div className="fcd-meta-row">
-          <span className="fcd-meta-index">{index + 1} / {cards.length}</span>
-          {deck?.title && <span className="fcd-meta-title">{deck.title}</span>}
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-2 text-sm">
+          <span className="rounded-lg bg-slate-100 px-3 py-1 font-bold text-slate-700">{index + 1} / {cards.length}</span>
+          {deck?.title && <span className="font-semibold text-slate-500">{deck.title}</span>}
         </div>
 
         {mode === 'flip' && (
-          <div className="fcd-flip-control">
-            <div className={`card ${cardColor} fcd-question-card is-flip`} aria-live="polite">
-              <span className={`fcd-flip-inner${flipped ? ' is-flipped' : ''}`}>
-                <span className="fcd-flip-face is-front">
-                  <span className="chip fcd-answer-chip">Question</span>
-                  <span className="fcd-card-heading">{card.front_text}</span>
-                  {card.image_url && <img src={card.image_url} alt="" className="fcd-card-image" />}
+          <div className="grid gap-4">
+            <div className={`relative min-h-[18rem] rounded-2xl border p-5 shadow-sm sm:p-8 ${cardColor}`} aria-live="polite">
+              <span className={`relative grid min-h-[18rem] [transform-style:preserve-3d] transition-transform duration-500 ${flipped ? '[transform:rotateY(180deg)]' : ''}`}>
+                <span className="absolute inset-0 flex min-h-[18rem] flex-col items-start gap-4 rounded-2xl border p-5 [backface-visibility:hidden] sm:p-8">
+                  <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-xs font-bold uppercase tracking-wide text-slate-700">Question</span>
+                  <span className="text-xl font-bold leading-8 sm:text-2xl">{card.front_text}</span>
+                  {card.image_url && <img src={card.image_url} alt="" className="mt-3 max-h-72 w-full rounded-xl object-contain" />}
                 </span>
-                <span className="fcd-flip-face is-back">
-                  <span className="chip fcd-answer-chip is-correct">Answer</span>
-                  <span className="fcd-card-heading">{card.back_text}</span>
+                <span className="absolute inset-0 flex min-h-[18rem] flex-col items-start gap-4 rounded-2xl border p-5 [backface-visibility:hidden] [transform:rotateY(180deg)] sm:p-8">
+                  <span className="inline-flex items-center gap-2 rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold uppercase tracking-wide text-emerald-800">Answer</span>
+                  <span className="text-xl font-bold leading-8 sm:text-2xl">{card.back_text}</span>
                 </span>
               </span>
             </div>
             <Button
               type="button"
               variant="secondary"
-              className="fcd-flip-trigger"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-600"
               onClick={() => setFlipped((current) => !current)}
               aria-pressed={flipped}
             >
@@ -274,15 +274,15 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
 
         {mode === 'typed' && (
           <div>
-            <div className={`card ${cardColor} fcd-question-card-static`}>
-              <span className="chip fcd-answer-chip">Question</span>
+            <div className={`rounded-2xl border p-5 shadow-sm ${cardColor}`}>
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-xs font-bold uppercase tracking-wide text-slate-700">Question</span>
               <h3>{card.front_text}</h3>
-              {card.image_url && <img src={card.image_url} alt="" className="fcd-card-image" />}
+              {card.image_url && <img src={card.image_url} alt="" className="mt-3 max-h-72 w-full rounded-xl object-contain" />}
             </div>
 
-            <div className="fcd-input-row">
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row">
               <input
-                className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
+                className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-500 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
                 placeholder="Type your answer..."
                 value={typedAnswer}
                 onChange={(event) => setTypedAnswer(event.target.value)}
@@ -297,7 +297,7 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
             </div>
 
             {feedback && (
-              <div className={`alert ${feedback.correct ? 'alert-success' : 'alert-error'}`}>
+              <div className={`flex items-start gap-3 rounded-xl border p-4 text-sm leading-6 ${feedback.correct ? "border-emerald-200 bg-emerald-50 text-emerald-900" : "border-red-200 bg-red-50 text-red-900"}`}>
                 <Icon name={feedback.correct ? 'circle-check' : 'circle-xmark'} />
                 <span>
                   {feedback.correct ? 'Correct. ' : 'Incorrect. '}
@@ -310,13 +310,13 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
 
         {mode === 'multiple_choice' && (
           <div>
-            <div className={`card ${cardColor} fcd-question-card-static`}>
-              <span className="chip fcd-answer-chip">Question</span>
+            <div className={`rounded-2xl border p-5 shadow-sm ${cardColor}`}>
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-xs font-bold uppercase tracking-wide text-slate-700">Question</span>
               <h3>{card.front_text}</h3>
             </div>
 
             {card.mc_options?.length > 0 ? (
-              <div className="fcd-mc-list">
+              <div className="grid gap-3">
                 {card.mc_options.map((option, optionIndex) => {
                   let variant = 'secondary';
 
@@ -332,18 +332,18 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
                       onClick={() => handleMCSelect(optionIndex)}
                       disabled={mcAnswered !== null || locked}
                     >
-                      <span className="fcd-mc-option-letter">{String.fromCharCode(65 + optionIndex)}</span>
+                      <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-primary-50 text-xs font-extrabold text-primary-800">{String.fromCharCode(65 + optionIndex)}</span>
                       {option}
                     </Button>
                   );
                 })}
               </div>
             ) : (
-              <p className="fcd-mc-empty">No MCQ options for this card.</p>
+              <p className="mt-3 rounded-xl border border-dashed border-slate-200 bg-slate-50 p-4 text-sm text-slate-500">No MCQ options for this card.</p>
             )}
 
             {feedback && (
-              <div className={`alert ${feedback.correct ? 'alert-success' : 'alert-error'}`}>
+              <div className={`flex items-start gap-3 rounded-xl border p-4 text-sm leading-6 ${feedback.correct ? "border-emerald-200 bg-emerald-50 text-emerald-900" : "border-red-200 bg-red-50 text-red-900"}`}>
                 <Icon name={feedback.correct ? 'circle-check' : 'circle-xmark'} />
                 <span>
                   {feedback.correct ? 'Correct. ' : `Incorrect. Answer: `}
@@ -356,19 +356,19 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
 
         {mode === 'structure_identification' && (
           <div>
-            <div className={`card ${cardColor} fcd-question-card-static`}>
-              <span className="chip fcd-answer-chip">Structure</span>
+            <div className={`rounded-2xl border p-5 shadow-sm ${cardColor}`}>
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-xs font-bold uppercase tracking-wide text-slate-700">Structure</span>
               {card.image_url ? (
-                <img src={card.image_url} alt={card.structure_name || 'Structure'} className="fcd-structure-image" />
+                <img src={card.image_url} alt={card.structure_name || 'Structure'} className="max-h-[28rem] w-full rounded-xl object-contain" />
               ) : (
-                <div className="fcd-structure-placeholder">
-                  <Icon name="image" className="fcd-structure-placeholder-icon" />
+                <div className="flex min-h-48 flex-col items-center justify-center gap-3 rounded-xl bg-slate-100 p-5 text-center text-slate-500">
+                  <Icon name="image" className="h-8 w-8 text-slate-400" />
                   <p>{card.structure_name || 'Image coming soon'}</p>
                 </div>
               )}
             </div>
 
-            <div className="fcd-structure-tabs">
+            <div className="mt-4 flex flex-wrap gap-2">
               <Button variant={structureTab === 'name' ? 'primary' : 'ghost'} size="sm" onClick={() => setStructureTab('name')} icon="tag" disabled={locked}>
                 Name
               </Button>
@@ -377,9 +377,9 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
               </Button>
             </div>
 
-            <div className="fcd-input-row">
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row">
               <input
-                className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
+                className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-500 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
                 placeholder={structureTab === 'name' ? 'What is this structure called?' : 'What is its function?'}
                 value={typedAnswer}
                 onChange={(event) => setTypedAnswer(event.target.value)}
@@ -394,7 +394,7 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
             </div>
 
             {feedback && (
-              <div className={`alert ${feedback.correct ? 'alert-success' : 'alert-error'}`}>
+              <div className={`flex items-start gap-3 rounded-xl border p-4 text-sm leading-6 ${feedback.correct ? "border-emerald-200 bg-emerald-50 text-emerald-900" : "border-red-200 bg-red-50 text-red-900"}`}>
                 <Icon name={feedback.correct ? 'circle-check' : 'circle-xmark'} />
                 <span>
                   {feedback.correct ? 'Correct. ' : 'Not quite. '}
@@ -407,14 +407,14 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
           </div>
         )}
 
-        <div className="fcd-review-controls">
-          <div className="fcd-rate-row">
+        <div className="mt-6 flex flex-col gap-4 border-t border-slate-200 pt-4">
+          <div className="flex flex-wrap gap-2">
             <Button variant="ghost" size="sm" onClick={() => handleRate('easy')} disabled={locked}>Easy</Button>
             <Button variant="ghost" size="sm" onClick={() => handleRate('medium')} disabled={locked}>Medium</Button>
             <Button variant="ghost" size="sm" onClick={() => handleRate('hard')} disabled={locked}>Hard</Button>
           </div>
 
-          <div className="fcd-actions-row">
+          <div className="flex flex-wrap gap-2">
             <Button variant={isKnown ? 'primary' : 'ghost'} size="sm" onClick={handleToggleKnown} icon={'circle'} disabled={locked}>
               {isKnown ? 'Known' : 'Mark Known'}
             </Button>
@@ -424,7 +424,7 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
           </div>
         </div>
 
-        <div className="fcd-nav-row">
+        <div className="mt-4 flex items-center justify-between gap-3">
           <Button variant="secondary" onClick={handlePrev} disabled={index === 0} icon="arrow-left" />
           {isLast ? (
             <Button onClick={handleFinish} icon="flag-checkered" disabled={locked}>Finish</Button>
@@ -433,7 +433,7 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
           )}
         </div>
 
-        <p className="fcd-keyboard-hint">
+        <p className="mt-4 flex items-center justify-center gap-2 text-xs text-slate-500">
           <Icon name="keyboard" /> Arrow keys navigate · Space flips
         </p>
       </div>

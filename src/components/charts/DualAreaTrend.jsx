@@ -39,7 +39,7 @@ export default function DualAreaTrend({ activities = [], days = 7, embedded = fa
 
   const data = Array.from(rowsByDate.values());
   const chart = (
-    <div className="ch-chart-frame dashboard-dual-area-frame" style={{ height: 300 }}>
+    <div className="w-full min-w-0 overflow-hidden" style={{ height: 300 }}>
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart data={data} margin={{ top: 12, right: 12, bottom: 4, left: -12 }}>
           <defs>

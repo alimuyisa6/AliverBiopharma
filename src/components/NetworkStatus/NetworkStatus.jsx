@@ -134,12 +134,12 @@ export default function NetworkStatus() {
 
           <button
             type="button"
-            className={`inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-current/20 bg-white shadow-sm transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${tone.close}`} style={{ color: displayStatus === "offline" ? "#b91c1c" : displayStatus === "slow" ? "#92400e" : "#047857" }}
+            className={`inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-current/20 bg-white shadow-sm transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${tone.close}`}
             onClick={() => setVisible(false)}
             aria-label="Close network status"
             title="Close"
           >
-            <svg viewBox="0 0 24 24" aria-hidden="true" style={{ width: 20, height: 20, display: "block" }}><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" /></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" /></svg>
           </button>
         </div>
       )}

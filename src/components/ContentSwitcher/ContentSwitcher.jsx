@@ -21,9 +21,9 @@ export default function ContentSwitcher({
   if (!options.length) return null;
 
   return (
-    <section className={`content-switcher-card ${className}`.trim()} aria-label={title || 'Content categories'}>
-      {title && <h2 className="content-switcher-card__title">{title}</h2>}
-      <div className="content-switcher" role="group" aria-label={title || 'Choose a content view'} id={id} style={{ "--content-switcher-count": options.length }}>
+    <section className={`w-full rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5 ${className}`.trim()} aria-label={title || 'Content categories'}>
+      {title && <h2 className="mb-3 text-base font-bold leading-6 text-slate-900">{title}</h2>}
+      <div className="grid w-full grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4" role="group" aria-label={title || 'Choose a content view'} id={id}>
         {options.map((item) => {
           const active = item.value === activeValue;
           const icon = typeof item.icon === 'string'
@@ -33,12 +33,12 @@ export default function ContentSwitcher({
             <button
               key={item.value}
               type="button"
-              className={`content-switcher__option${active ? ' is-active' : ''}`}
+              className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border px-3 py-2.5 text-sm font-semibold leading-5 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 ${active ? 'border-primary-300 bg-primary-50 text-primary-900 shadow-sm' : 'border-slate-200 bg-white text-slate-600 hover:border-primary-200 hover:bg-slate-50'}`}
               aria-pressed={active}
               onClick={() => select(item.value)}
             >
-              {icon && <span className="content-switcher__icon" aria-hidden="true">{icon}</span>}
-              <span className="content-switcher__label">{item.label}</span>
+              {icon && <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center">{icon}</span>}
+              <span className="min-w-0 truncate">{item.label}</span>
             </button>
           );
         })}

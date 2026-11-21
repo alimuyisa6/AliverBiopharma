@@ -42,12 +42,12 @@ export default function QuizChallenges({ user, level, class_name }) {
       <Icon name="rocket" className="h-9 w-9 shrink-0 text-secondary-800" />
 
       <div className="min-w-0 flex-1">
-        <h4 className="text-lg font-bold text-primary-950">
+        <h4 className="text-lg font-bold leading-7 text-primary-950">
           {challenge.title}
-          {levelName && <span className="block text-sm font-medium text-slate-600"> — {levelName}{classLabel ? ` · ${classLabel}` : ''}</span>}
+          {levelName && <span className="block text-sm leading-6 text-slate-600"> — {levelName}{classLabel ? ` · ${classLabel}` : ''}</span>}
         </h4>
 
-        <p className="mt-1 text-sm font-semibold text-secondary-800">{challenge.reward_xp} XP reward</p>
+        <p className="mt-1 text-sm font-semibold leading-5 text-secondary-800">{challenge.reward_xp} XP reward</p>
         <ProgressBar value={challenge.progress} max={challenge.target} variant="warm" />
       </div>
 

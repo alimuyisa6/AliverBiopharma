@@ -46,24 +46,24 @@ function MaintenanceMessage({ data, boundary = false }) {
   if (data.upcoming) {
     const unsaved = hasUnsavedInput();
     return (
-      <div className="maintenance-alert" role="status" aria-live="polite">
+      <div className="my-4 flex flex-col gap-2 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-6 text-amber-950" role="status" aria-live="polite">
         <strong>{title}</strong>
         <span>{message}</span>
-        {countdown && <span className="maintenance-countdown">Starts in {countdown}</span>}
-        {unsaved && <strong className="maintenance-unsaved-warning">Please save or submit your current work before maintenance begins.</strong>}
+        {countdown && <span className="inline-flex w-fit rounded-lg bg-white px-3 py-1 text-xs font-bold tabular-nums text-amber-900">Starts in {countdown}</span>}
+        {unsaved && <strong className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm font-bold text-red-800">Please save or submit your current work before maintenance begins.</strong>}
         {data.starts_at && <time dateTime={data.starts_at}>Starts {new Date(data.starts_at).toLocaleString()}</time>}
       </div>
     );
   }
 
   return (
-    <div className={boundary ? 'maintenance-boundary' : 'maintenance-screen'} role="alert" aria-live="assertive">
-      <div className="maintenance-card">
-        <div className="maintenance-mark" aria-hidden="true">⏳</div>
+    <div className={boundary ? 'fixed inset-0 z-[95] flex items-center justify-center bg-slate-950/50 p-4' : 'fixed inset-0 z-[95] flex items-center justify-center bg-slate-950 p-5'} role="alert" aria-live="assertive">
+      <div className="w-full max-w-xl rounded-2xl border border-slate-700 bg-white p-6 text-center shadow-2xl sm:p-8">
+        <div className="mb-4 text-4xl" aria-hidden="true">⏳</div>
         <h1>{title}</h1>
         <p>{message}</p>
         {data.ends_at && <time dateTime={data.ends_at}>Expected completion {new Date(data.ends_at).toLocaleString()}</time>}
-        <p className="maintenance-note">Your account and saved work remain protected. Please check back after maintenance is complete.</p>
+        <p className="mt-4 text-sm leading-6 text-slate-600">Your account and saved work remain protected. Please check back after maintenance is complete.</p>
       </div>
     </div>
   );

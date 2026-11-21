@@ -81,8 +81,8 @@ export default function AdSlot({
 
   if (!shouldLoad || loading) {
     return (
-      <div ref={slotRef} className={`ad-slot ad-slot-loading ${className}`} aria-label={label} aria-busy="true">
-        <span className="page-skeleton__bar page-skeleton__bar--medium" />
+      <div ref={slotRef} className={`mx-auto my-6 w-full max-w-5xl rounded-2xl border border-slate-200 bg-slate-50 p-4 ${className}`} aria-label={label} aria-busy="true">
+        <span className="block h-4 w-2/3 animate-pulse rounded bg-slate-200" />
       </div>
     );
   }
@@ -102,34 +102,35 @@ export default function AdSlot({
   };
 
   return (
-    <aside className={`ad-slot ${className}`} aria-label={label}>
-      <div className="ad-slot-label">
+    <aside className={`mx-auto my-6 w-full max-w-5xl overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm ${className}`} aria-label={label}>
+      <div className="mb-2 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500">
         <Icon name="bullhorn" aria-hidden="true" />
         <span>{label}</span>
       </div>
 
-      <article className="ad-slot-card">
+      <article className="grid min-w-0 overflow-hidden sm:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)]">
         {ad.image_url && (
-          <div className="ad-slot-media">
+          <div className="min-h-40 overflow-hidden bg-slate-100 sm:min-h-full">
             <img
               src={ad.image_url}
               alt={ad.headline}
               loading="lazy"
+              className="h-full w-full object-cover"
             />
           </div>
         )}
 
-        <div className="ad-slot-content">
+        <div className="flex min-w-0 flex-col items-start gap-3 p-5 sm:p-6">
           {ad.advertiser_name && (
-            <span className="ad-slot-advertiser">{ad.advertiser_name}</span>
+            <span className="text-xs font-bold uppercase tracking-wider text-secondary-700">{ad.advertiser_name}</span>
           )}
-          <h2 className="ad-slot-headline">{ad.headline}</h2>
+          <h2 className="text-lg font-bold leading-7 text-slate-900 sm:text-xl">{ad.headline}</h2>
           {ad.body_text && (
-            <p className="ad-slot-body">{ad.body_text}</p>
+            <p className="text-sm leading-6 text-slate-600">{ad.body_text}</p>
           )}
           <a
             href={ad.landing_url}
-            className="ad-slot-cta"
+            className="mt-auto inline-flex min-h-10 items-center justify-center gap-2 rounded-xl bg-primary-700 px-4 py-2 text-sm font-bold text-white transition hover:bg-primary-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
             onClick={handleClick}
             target="_blank"
             rel="noopener noreferrer sponsored"
