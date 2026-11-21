@@ -108,7 +108,7 @@ export default function Challenges() {
   }
 
   return (
-    <main className="min-h-screen bg-slate-50 px-4 py-8 dark:bg-slate-950 sm:px-6 sm:py-12">
+    <main className="min-h-screen px-4 py-8 sm:px-6 sm:py-12" style={{ backgroundColor: '#EAF2FA' }}>
       <div className="mx-auto max-w-6xl">
         <header className="mb-7 max-w-3xl sm:mb-10">
           <p className="text-sm font-semibold text-blue-700 dark:text-blue-400">AliverBiopharm challenges</p>
