@@ -110,7 +110,7 @@ export default function Donate() {
 
   if (loading) {
     return (
-      <main className="donate-page">
+      <main className="donate-page" style={{ backgroundColor: '#F8F1E7' }}>
         <div className="donate-loading">
           <Spinner size="lg" />
         </div>
