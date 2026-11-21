@@ -51,7 +51,7 @@ export function LoginPage({
           onChange={(event) => setEmail(event.target.value)}
           required
           disabled={submitting}
-          className="auth-field"
+          className=""
         />
 
         <Input
@@ -73,7 +73,7 @@ export function LoginPage({
           loading={submitting}
           loadingContext="brand"
           variant="primary"
-          className="auth-submit auth-login-submit"
+          className="min-h-12 w-full"
         >
           {t('common.signIn')}
         </Button>
@@ -85,7 +85,7 @@ export function LoginPage({
         loading={passkeySubmitting}
         loadingContext="brand"
         onClick={handlePasskeyLogin}
-        className="auth-submit auth-passkey"
+        className="mt-3 min-h-11 w-full"
       >
         Sign in with a Passkey
       </Button>
