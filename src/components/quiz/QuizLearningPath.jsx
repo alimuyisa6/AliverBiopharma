@@ -29,13 +29,13 @@ export default function QuizLearningPath({ level, class_name }) {
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {paths.map((path) => (
-          <div key={path.id} className="rounded-2xl border border-border bg-white p-5 shadow-sm">
+          <div key={path.id} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-primary-200 hover:shadow-md">
             <Icon
               name={path.icon === 'dna' ? 'microscope' : path.icon || 'book-open'}
               className={`h-7 w-7 ${path.completed ? "text-green-700" : "text-slate-500"}`}
             />
-            <div className="mt-3 text-base font-bold text-primary-900">{path.topic_name}</div>
-            <div className="mt-1 text-sm font-medium text-slate-600">{path.completed ? 'Completed' : 'Upcoming'}</div>
+            <div className="mt-3 text-lg font-bold leading-7 text-primary-950">{path.topic_name}</div>
+            <div className="mt-1 text-sm leading-6 text-slate-600">{path.completed ? 'Completed' : 'Upcoming'}</div>
           </div>
         ))}
       </div>
