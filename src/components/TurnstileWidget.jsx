@@ -4,7 +4,7 @@ const TURNSTILE_SITE_KEY = '0x4AAAAAADknPpI_XcH1KfPe';
 
 export default function TurnstileWidget({
   onTokenChange,
-  className = 'auth-captcha',
+  className = 'mx-auto flex min-h-[4.5rem] w-full items-center justify-center',
   disabled = false
 }) {
   const containerRef = useRef(null);
