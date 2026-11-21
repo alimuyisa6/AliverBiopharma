@@ -8,8 +8,8 @@ export default function ChartBadge({
   const positive = tone === 'positive';
 
   return (
-    <span className={`ch-badge ch-badge--${positive ? 'positive' : 'negative'}`}>
-      {showIcon && (positive ? <ArrowUp aria-hidden="true" /> : <ArrowDown aria-hidden="true" />)}
+    <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-bold ${positive ? 'bg-emerald-50 text-emerald-700' : 'bg-red-50 text-red-700'}`}>
+      {showIcon && (positive ? <ArrowUp className="h-3.5 w-3.5" aria-hidden="true" /> : <ArrowDown className="h-3.5 w-3.5" aria-hidden="true" />)}
       {value}
     </span>
   );
