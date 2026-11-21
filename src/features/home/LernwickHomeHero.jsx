@@ -38,9 +38,10 @@ export default function LernwickHomeHero({
 
   return (
     <section className={UI.hero.section} aria-labelledby="ab-home-hero-title">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-primary-50 via-white to-primary-100/70" aria-hidden="true" />
-      <div className={UI.hero.container}>
-        <div className="order-2 min-w-0 lg:order-1">
+      <div className="ab-home-hero-background" aria-hidden="true" />
+      <div className="ab-home-hero-vignette" aria-hidden="true" />
+      <div className={`${UI.hero.container} ab-home-hero-layout`}>
+        <div className="order-2 min-w-0 lg:order-1 ab-home-hero-copy">
           <p className={UI.hero.eyebrow}>
             <span className="h-2 w-2 rounded-full bg-secondary-500" aria-hidden="true" />
             {eyebrow}
@@ -80,7 +81,7 @@ export default function LernwickHomeHero({
           )}
         </div>
 
-        <div className="order-1 mx-auto w-full max-w-xl lg:order-2">
+        <div className="order-1 mx-auto w-full max-w-xl lg:order-2 ab-home-hero-student">
           <div className={`ab-home-hero-photo-frame ${UI.hero.imageFrame}`}>
             <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-primary-900/10 via-transparent to-white/20" aria-hidden="true" />
             <img

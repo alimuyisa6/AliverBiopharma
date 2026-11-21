@@ -1,0 +1,74 @@
+/* Layered homepage hero. Background is intentionally independent from the preserved student/drop image. */
+.ab-home-hero-background {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image: url('https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=2200&q=85');
+  background-size: cover;
+  background-position: center 44%;
+  transform: scale(1.015);
+}
+.ab-home-hero-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 78% 48%, rgba(28, 145, 190, .22), transparent 36%),
+    linear-gradient(105deg, rgba(5, 21, 43, .94) 0%, rgba(8, 36, 66, .86) 48%, rgba(7, 31, 58, .72) 100%);
+}
+.ab-home-hero-layout { position: relative; z-index: 1; }
+.ab-home-hero-copy { color: #f8fbff; }
+.ab-home-hero-copy h1 { color: #fff !important; text-wrap: balance; }
+.ab-home-hero-copy h1 span { color: #72d5f5 !important; }
+.ab-home-hero-copy > p:not(.ab-home-hero-eyebrow) { color: rgba(239, 247, 255, .86) !important; }
+.ab-home-hero-copy .ab-home-hero-eyebrow,
+.ab-home-hero-copy [class*="rounded-full"][class*="border"] {
+  border-color: rgba(255,255,255,.28);
+  background: rgba(255,255,255,.10);
+  color: #e5f6ff;
+  backdrop-filter: blur(12px);
+}
+.ab-home-hero-copy .border-t { border-color: rgba(255,255,255,.2) !important; }
+.ab-home-hero-copy strong { color: #fff !important; }
+.ab-home-hero-copy span.text-muted,
+.ab-home-hero-copy .text-muted { color: rgba(226,240,255,.72) !important; }
+.ab-home-hero-copy a { box-shadow: 0 12px 30px rgba(0,0,0,.18); }
+.ab-home-hero-student { filter: drop-shadow(0 28px 50px rgba(0,0,0,.32)); }
+.ab-home-hero-photo-frame {
+  border: 1px solid rgba(255,255,255,.42) !important;
+  background: rgba(255,255,255,.08) !important;
+  border-radius: 2rem !important;
+  box-shadow: 0 24px 80px rgba(0,0,0,.28) !important;
+  backdrop-filter: blur(6px);
+  overflow: hidden;
+}
+.ab-home-hero-photo-frame img { object-position: center; }
+.ab-home-hero-photo-frame > div:last-child {
+  border-color: rgba(255,255,255,.52) !important;
+  box-shadow: 0 16px 40px rgba(4,18,40,.28) !important;
+}
+@media (min-width: 1024px) {
+  .ab-home-hero-layout { min-height: 660px; }
+  .ab-home-hero-student { transform: translateY(10px); }
+}
+@media (max-width: 767px) {
+  .ab-home-hero-background { background-position: 62% center; }
+  .ab-home-hero-vignette { background: linear-gradient(180deg, rgba(5,21,43,.88), rgba(7,31,58,.92)); }
+  .ab-home-hero-student { max-width: 420px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ab-home-hero-student { animation: ab-hero-float 7s ease-in-out infinite; }
+  @keyframes ab-hero-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+}
+
+/* Secondary page heroes share the premium biotech visual language while retaining their own content. */
+.ab-page-hero { isolation: isolate; color: #fff; background-color: #092744; background-size: cover; background-position: center; }
+.ab-page-hero-overlay { z-index: 0; background: linear-gradient(100deg, rgba(5,20,40,.94), rgba(8,43,72,.78) 62%, rgba(7,53,75,.55)); }
+.ab-page-hero-eyebrow { display:inline-flex; margin-bottom:1rem; padding:.5rem .85rem; border:1px solid rgba(255,255,255,.24); border-radius:999px; background:rgba(255,255,255,.1); color:#e1f6ff; font-size:.72rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; backdrop-filter:blur(10px); }
+.ab-about-hero { background-position:center 42%; }
+.ab-contact-hero { background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=2000&q=85'); background-position:center 40%; }
+.ab-donate-hero { background-position:center 48%; }
+.ab-donate-hero:not([style*="background-image"]) { background-image: url('https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&w=1800&q=80'); }
+.faq-page-shell .faq-hero-content, .faq-page-shell .faq-illustration-hero { z-index:1; position:relative; }
+.faq-page-shell .faq-hero { min-height: 340px; }
+@media (max-width: 760px) { .ab-page-hero { background-position: 60% center; } .ab-page-hero-overlay { background:linear-gradient(180deg,rgba(5,20,40,.82),rgba(5,20,40,.94)); } }

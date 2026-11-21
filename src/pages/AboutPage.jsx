@@ -112,13 +112,13 @@ export default function AboutPage() {
     <>
       {page?.hero && (
         <section
-          className="relative isolate flex min-h-[360px] w-full items-center overflow-hidden bg-primary-900 bg-cover bg-center"
+          className="ab-page-hero ab-about-hero relative isolate flex min-h-[420px] w-full items-center overflow-hidden bg-primary-900 bg-cover bg-center"
           style={page.hero.image_url ? {
             backgroundImage: `url(${page.hero.image_url})`,
             backgroundColor: '#15304b'
-          } : undefined}
+          } : { backgroundImage: 'url(https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=2000&q=80)' }}
         >
-          <div className="absolute inset-0 -z-0 bg-gradient-to-r from-slate-950/95 via-primary-900/85 to-primary-900/55" aria-hidden="true" />
+          <div className="ab-page-hero-overlay absolute inset-0 -z-0 bg-gradient-to-r from-slate-950/95 via-primary-900/85 to-primary-900/55" aria-hidden="true" />
           <div className="absolute inset-0 -z-0 bg-gradient-to-t from-slate-950/35 via-transparent to-primary-900/20" aria-hidden="true" />
           <div className="relative z-10 mx-auto w-full max-w-5xl px-5 py-20 sm:py-28">
             <span className="mb-5 inline-flex rounded-full border border-white/25 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-orange-100 shadow-sm backdrop-blur-sm">About AliverBiopharm</span>

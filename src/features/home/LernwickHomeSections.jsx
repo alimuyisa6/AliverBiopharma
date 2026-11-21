@@ -59,7 +59,7 @@ function resolveStudio(activeLevelName, activeGroupName) {
 
 function PublicPathways() {
   return (
-    <section className="w-full bg-white py-16 sm:py-20" id="pathways" aria-labelledby="lernwick-pathways-title">
+    <section className="w-full bg-[#C49A36] py-16 sm:py-20" id="pathways" aria-labelledby="lernwick-pathways-title">
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
         <div className="mb-9 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <div>
@@ -118,13 +118,13 @@ const learningSteps = {
 function HowLearningWorks({ studio }) {
   const steps = studio ? learningSteps[studio.kind === 'biology-foundations' ? 'olevel' : studio.kind === 'advanced-biology' ? 'alevel' : 'pharmacy'] : learningSteps.general;
   return (
-    <section className="w-full bg-primary-50 py-16 sm:py-20" id="how" aria-labelledby="lernwick-how-title">
+    <section className="w-full bg-[#526B8A] py-16 sm:py-20" id="how" aria-labelledby="lernwick-how-title">
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
         <div className="mx-auto mb-10 max-w-3xl text-center">
           <div>
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-secondary-700">A clear learning process</p>
-            <h2 id="lernwick-how-title"><span className="organic-letter organic-letter--accent">L</span>earn, practise and progress</h2>
-            <p>Your learning journey moves from understanding concepts to applying and strengthening them.</p>
+            <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-white">A clear learning process</p>
+            <h2 id="lernwick-how-title" className="text-white"><span className="organic-letter organic-letter--accent">L</span>earn, practise and progress</h2>
+            <p className="text-white">Your learning journey moves from understanding concepts to applying and strengthening them.</p>
           </div>
         </div>
         <ol className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -230,7 +230,7 @@ export function ConnectedLearning() {
 
 function ProgrammeStudio({ studio, activeGroupName, activeGroupId }) {
   return (
-    <section className="w-full bg-secondary-50 py-16 sm:py-20" aria-labelledby="programme-studio-title">
+    <section className="w-full bg-[#C49A36] py-16 sm:py-20" aria-labelledby="programme-studio-title">
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1fr_0.8fr]">
           <div className="max-w-2xl">

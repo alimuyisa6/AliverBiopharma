@@ -32,7 +32,7 @@
   --color-warning: #d97706;
   --color-danger: #dc2626;
 
-  --font-sans: "Inter", "Mulish", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Maven Pro", ui-sans-serif, system-ui, sans-serif;
 
   --shadow-card: 0 1px 2px rgb(15 23 42 / 0.06), 0 8px 24px rgb(15 23 42 / 0.06);
   --shadow-card-hover: 0 2px 4px rgb(15 23 42 / 0.08), 0 14px 32px rgb(15 23 42 / 0.1);

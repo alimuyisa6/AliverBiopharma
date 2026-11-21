@@ -120,7 +120,7 @@ export default function Donate() {
 
   return (
     <main className="donate-page">
-      <section className="donate-hero" style={heroStyle}>
+      <section className="donate-hero ab-page-hero ab-donate-hero" style={heroStyle}>
         <div className="donate-hero-overlay" />
         <div className="donate-hero-content">
           <span className="eyebrow">Support AliverBiopharm</span>
