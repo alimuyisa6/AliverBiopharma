@@ -52,7 +52,7 @@ export default function QuizDashboard({ user, level, class_name }) {
         </div>
 
         <div className="flex min-w-0 flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:p-5">
-          <Icon name="bullseye" className="h-8 w-8 text-violet-600" />
+          <Icon name="bullseye" className="h-8 w-8 text-emerald-700" />
           <div className="break-words text-lg font-extrabold leading-6 tracking-tight text-slate-900 sm:text-xl">{quiz.recent_pass_rate}%</div>
           <div className="text-xs font-semibold leading-5 text-slate-600 sm:text-sm">Recent pass rate</div>
         </div>
