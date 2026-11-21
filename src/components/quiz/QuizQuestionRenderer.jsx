@@ -48,7 +48,7 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
             {minWords > 0 && <span>Minimum {minWords} words</span>}
             {maxWords > 0 && <span>Maximum {maxWords} words</span>}
           </div>
-          <label htmlFor={`quiz-essay-${question.id}`}>Your written response</label>
+          <label className="text-sm font-semibold text-slate-700" htmlFor={`quiz-essay-${question.id}`}>Your written response</label>
           <textarea
             id={`quiz-essay-${question.id}`}
             value={draft}
@@ -91,11 +91,11 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
       )}
 
       {type === 'true_false' && (
-        <div className="quiz-options-list">
+        <div className="grid gap-3">
           {[true, false].map((choice) => (
             <button key={String(choice)} type="button" className={`flex min-h-14 items-center gap-3 rounded-xl border p-4 text-left font-semibold transition ${draft === choice ? "border-primary-500 bg-primary-50 text-primary-950" : "border-border bg-white text-slate-800 hover:border-primary-300"}`} disabled={disabled || Boolean(answer)} onClick={() => setDraft(choice)}>
               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-sm font-extrabold text-primary-800">{choice ? 'T' : 'F'}</span>
-              <span className="quiz-option-text">{choice ? 'True' : 'False'}</span>
+              <span className="min-w-0 flex-1 leading-6">{choice ? 'True' : 'False'}</span>
             </button>
           ))}
           {!answer && <Button variant="primary" onClick={submit} disabled={disabled || typeof draft !== 'boolean'}>Check answer</Button>}
@@ -104,15 +104,15 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
 
       {['short_answer', 'fill_blank', 'numerical'].includes(type) && (
         <div className="grid max-w-2xl gap-3">
-          <label htmlFor={`quiz-answer-${question.id}`}>{type === 'numerical' ? 'Enter your numerical answer' : 'Enter your answer'}</label>
+          <label className="text-sm font-semibold text-slate-700" htmlFor={`quiz-answer-${question.id}`}>{type === 'numerical' ? 'Enter your numerical answer' : 'Enter your answer'}</label>
           <input id={`quiz-answer-${question.id}`} type={type === 'numerical' ? 'number' : 'text'} inputMode={type === 'numerical' ? 'decimal' : 'text'} value={draft} disabled={disabled || Boolean(answer)} onChange={(event) => setDraft(event.target.value)} placeholder={type === 'numerical' ? 'Your answer' : 'Type your answer here'}  className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
           {!answer && <Button variant="primary" onClick={submit} disabled={disabled || !String(draft).trim()}>Check answer</Button>}
         </div>
       )}
 
       {type === 'dropdown' && (
-        <div className="quiz-typed-answer">
-          <label htmlFor={`quiz-answer-${question.id}`}>Choose the best answer</label>
+        <div className="grid max-w-2xl gap-3">
+          <label className="text-sm font-semibold text-slate-700" htmlFor={`quiz-answer-${question.id}`}>Choose the best answer</label>
           <select id={`quiz-answer-${question.id}`} value={draft} disabled={disabled || Boolean(answer)} onChange={(event) => setDraft(event.target.value)} className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
             <option value="">Select an answer</option>
             {optionRows.map((option) => <option key={option.id} value={option.id}>{option.label}</option>)}
@@ -122,14 +122,14 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
       )}
 
       {['single_choice', ''].includes(type) && (
-        <div className="quiz-options-list">
+        <div className="grid gap-3">
           {['A', 'B', 'C', 'D'].map((option) => {
             const selected = answer?.selected;
             const correctOption = answer?.correct_option;
             const stateClass = answer ? option === correctOption ? 'correct' : option === selected ? 'incorrect' : '' : '';
             return (
               <button key={option} type="button" className={`flex min-h-14 items-center gap-3 rounded-xl border p-4 text-left font-semibold transition disabled:cursor-not-allowed ${stateClass === "correct" ? "border-green-300 bg-green-50 text-green-950" : stateClass === "incorrect" ? "border-red-300 bg-red-50 text-red-950" : "border-border bg-white text-slate-800 hover:border-primary-300"}`} onClick={() => onSubmit(option)} disabled={disabled || Boolean(answer)}>
-                <span className="quiz-option-letter">{option}</span>
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-sm font-extrabold text-primary-800">{option}</span>
                 <span className="quiz-option-text">{question[`option_${option.toLowerCase()}`]}</span>
               </button>
             );
@@ -138,7 +138,7 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
       )}
 
       {answer && answer.user_answer_text && type !== 'essay' && (
-        <div className={`quiz-answer-feedback ${answer.correct ? 'is-correct' : 'is-incorrect'}`}>
+        <div className={`mt-4 flex items-start gap-3 rounded-xl border p-4 text-sm font-semibold ${answer.correct ? "border-emerald-200 bg-emerald-50 text-emerald-900" : "border-amber-200 bg-amber-50 text-amber-950"}`}>
           <Icon name={answer.correct ? 'circle-check' : 'circle-xmark'} />
           <span>{answer.correct ? 'Correct' : 'Answer recorded'}{answer.user_answer_text ? ` · ${answer.user_answer_text}` : ''}</span>
         </div>
