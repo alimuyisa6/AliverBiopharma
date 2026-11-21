@@ -14,7 +14,7 @@ import {
   Target, Zap, Stethoscope, Pill, Microscope, Atom, Brain, Lightbulb,
   Sun, Moon, LogOut, Copy, Share2, CheckCircle2, XCircle, AlertTriangle,
   ArrowLeft, Circle, CircleCheck, Route, Rocket, Flame, Medal, ClipboardCheck, ListChecks,
-  Grid2X2, Users, TriangleAlert, UserPen, MessageSquare, ChartLine, ChartPie, MailCheck,
+  Grid2X2, List, Users, TriangleAlert, UserPen, MessageSquare, ChartLine, ChartPie, MailCheck,
   Bitcoin, Smartphone, CalendarClock, Layers, Expand, RotateCcw, IdCard, Pencil,
   KeyRound, Fingerprint, Laptop, SlidersHorizontal, Gift, CreditCard, Award, Terminal,
   Webhook, Filter, Flag
@@ -41,7 +41,7 @@ export const ICONS = Object.freeze({
   facebookBrand: FaFacebook, youtubeBrand: FaYoutube, whatsappBrand: FaWhatsapp,
   arrowLeft: ArrowLeft, circle: Circle, route: Route, rocket: Rocket, flame: Flame,
   medal: Medal, clipboardCheck: ClipboardCheck, listChecks: ListChecks, grid: Grid2X2,
-  users: Users, userPen: UserPen, message: MessageSquare, chartLine: ChartLine,
+  users: Users, list: List, userPen: UserPen, message: MessageSquare, chartLine: ChartLine,
   chartPie: ChartPie, mailCheck: MailCheck, bitcoin: Bitcoin, smartphone: Smartphone,
   calendarClock: CalendarClock, layers: Layers, expand: Expand, rotate: RotateCcw,
   idCard: IdCard, pencil: Pencil, key: KeyRound, fingerprint: Fingerprint, laptop: Laptop,
