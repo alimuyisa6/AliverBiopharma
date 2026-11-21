@@ -248,7 +248,7 @@ export default function QuizChallengePage() {
 
         <div className="mb-6 flex items-center gap-3 text-sm font-medium text-slate-600 dark:text-slate-300" aria-label={`${answeredCount} of ${questions.length} answered`}>
           <div className="h-2 flex-1 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
-            <span className="block h-full rounded-full bg-blue-600 transition-all duration-300" style={{ width: `${progress}%` }} />
+            <span className="block h-full rounded-full bg-primary-700 transition-all duration-300" style={{ width: `${progress}%` }} />
           </div>
           <span>{answeredCount} / {questions.length}</span>
         </div>
@@ -269,12 +269,12 @@ export default function QuizChallengePage() {
                 <button
                   key={option}
                   type="button"
-                  className={`quiz-challenge-option ${selected ? 'is-selected' : ''}`}
+                  className={`flex min-h-16 w-full items-center gap-3 rounded-xl border px-4 py-3 text-left text-sm font-semibold leading-6 transition focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-100 disabled:cursor-not-allowed disabled:opacity-70 ${selected ? 'border-primary-400 bg-primary-50 text-primary-950 ring-1 ring-primary-200' : 'border-slate-200 bg-white text-slate-800 hover:border-primary-300 hover:bg-primary-50/50'}`}
                   disabled={submitting || Boolean(answers[currentQuestion.id])}
                   onClick={() => selectAnswer(option)}
                 >
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-blue-100 font-bold text-blue-800 dark:bg-blue-900/50 dark:text-blue-200">{option}</span>
-                  <span className="flex-1 text-slate-800 dark:text-slate-100">{currentQuestion[`option_${option.toLowerCase()}`]}</span>
+                  <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg font-bold ${selected ? "bg-primary-100 text-primary-800" : "bg-slate-100 text-slate-600"}`}>{option}</span>
+                  <span className="min-w-0 flex-1 leading-6">{currentQuestion[`option_${option.toLowerCase()}`]}</span>
                 </button>
               );
             })}
@@ -290,7 +290,7 @@ export default function QuizChallengePage() {
           >
             Previous
           </button>
-          <span className="text-sm font-semibold text-blue-600 dark:text-blue-400">{challenge?.reward_xp ? `+${challenge.reward_xp} XP` : 'Challenge reward'}</span>
+          <span className="text-sm font-semibold text-primary-700">{challenge?.reward_xp ? `+${challenge.reward_xp} XP` : 'Challenge reward'}</span>
           <button
             className="inline-flex items-center justify-center rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
             type="button"
