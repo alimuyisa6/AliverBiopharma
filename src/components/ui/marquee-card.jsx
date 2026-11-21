@@ -14,19 +14,19 @@ function TestimonialCard({ testimonial }) {
   const rating = Number.isFinite(Number(testimonial.rating)) ? Math.max(0, Math.min(5, Number(testimonial.rating))) : 0;
 
   return (
-    <LiquidCard className="ab-testimonial-card">
-      <CardContent className="ab-testimonial-card__content">
-        <div className="ab-testimonial-card__person">
-          {avatar ? <img src={avatar} alt="" className="ab-testimonial-card__avatar" loading="lazy" /> : <span className="ab-testimonial-card__avatar ab-testimonial-card__avatar--initials" aria-hidden="true">{getInitials(name)}</span>}
-          <div className="ab-testimonial-card__identity">
-            <h3>{name}</h3>
-            {role && <p>{role}</p>}
+    <LiquidCard className="w-[min(20rem,85vw)] shrink-0">
+      <CardContent className="flex flex-col gap-4 p-5 sm:p-6">
+        <div className="flex items-center gap-3">
+          {avatar ? <img src={avatar} alt="" className="h-11 w-11 shrink-0 rounded-full object-cover" loading="lazy" /> : <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary-100 text-sm font-extrabold text-primary-800" aria-hidden="true">{getInitials(name)}</span>}
+          <div className="min-w-0">
+            <h3 className="text-sm font-bold text-slate-900">{name}</h3>
+            {role && <p className="mt-0.5 text-xs text-slate-500">{role}</p>}
           </div>
         </div>
-        <blockquote>{content}</blockquote>
+        <blockquote className="text-sm leading-6 text-slate-700">{content}</blockquote>
         {rating > 0 && (
-          <div className="ab-testimonial-card__rating" aria-label={`Rated ${rating} out of 5`}>
-            {Array.from({ length: rating }, (_, index) => <Star key={index} aria-hidden="true" />)}
+          <div className="flex items-center gap-1 text-amber-500" aria-label={`Rated ${rating} out of 5`}>
+            {Array.from({ length: rating }, (_, index) => <Star key={index} className="h-4 w-4 fill-current" aria-hidden="true" />)}
           </div>
         )}
       </CardContent>
@@ -39,7 +39,7 @@ export function Component({ testimonials = [], className = '' }) {
   const repeatedTestimonials = testimonials.length === 1 ? [...testimonials, ...testimonials] : testimonials;
 
   return (
-    <div className={['ab-testimonial-marquee', className].filter(Boolean).join(' ')}>
+    <div className={['w-full overflow-hidden py-3', className].filter(Boolean).join(' ')}>
       <Marquee pauseOnHover repeat={2} speed="slow" aria-label="Student testimonials">
         {repeatedTestimonials.map((testimonial, index) => (
           <TestimonialCard key={testimonial.id || `${testimonial.author || testimonial.name || 'testimonial'}-${index}`} testimonial={testimonial} />
