@@ -8,9 +8,9 @@ export default function FlashcardProgress({ result, onRestart, onHome }) {
   const { correct = 0, incorrect = 0, score = 0, activity_outcome = 'unscored', deck_complete = false, recommendation = null } = result || {};
 
   function scoreClass() {
-    if (activity_outcome === 'mastered') return 'is-high';
-    if (activity_outcome === 'low') return 'is-low';
-    return '';
+    if (activity_outcome === 'mastered') return 'text-emerald-700';
+    if (activity_outcome === 'low') return 'text-rose-700';
+    return 'text-primary-800';
   }
 
   function message() {
@@ -22,39 +22,39 @@ export default function FlashcardProgress({ result, onRestart, onHome }) {
   }
 
   return (
-    <div className="flashcard-progress">
-      <div className="section fcd-empty">
-        <div className="card card-surface-solid card-tone-primary card-elevation-raised fcp-card">
-          <Icon name="trophy" className="fcp-trophy" />
-          <h2>Session Complete</h2>
-          <p className="fcp-message">{message()}</p>
+    <div className="w-full">
+      <div className="mx-auto flex min-h-[50vh] w-full max-w-4xl items-center justify-center px-4 py-10">
+        <div className="w-full rounded-3xl border border-primary-100 bg-white p-6 text-center shadow-lg sm:p-8">
+          <Icon name="trophy" className="mx-auto mb-4 h-12 w-12 text-amber-500" />
+          <h2 className="text-2xl font-extrabold leading-tight text-primary-950 sm:text-3xl">Session Complete</h2>
+          <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-slate-600">{message()}</p>
 
           {recommendation && (
-            <div className="fcp-recommendation" aria-live="polite">
-              <h3>{recommendation.title}</h3>
-              <p>{recommendation.message}</p>
+            <div className="mt-6 rounded-2xl border border-secondary-200 bg-secondary-50 p-5 text-left" aria-live="polite">
+              <h3 className="text-lg font-bold leading-7 text-primary-950">{recommendation.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600">{recommendation.message}</p>
               <Button variant="secondary" onClick={() => navigate(recommendation.route || '/resources')}>
                 {recommendation.label || 'Continue learning'}
               </Button>
             </div>
           )}
 
-          <div className="fcp-stats-row">
+          <div className="mt-7 grid grid-cols-3 gap-3">
             <div>
-              <div className={`fcp-stat-value is-score ${scoreClass()}`}>{score}%</div>
-              <div className="fcp-stat-label">Score</div>
+              <div className={`text-2xl font-extrabold leading-none sm:text-3xl ${scoreClass()}`}>{score}%</div>
+              <div className="mt-2 text-xs font-semibold text-slate-500">Score</div>
             </div>
             <div>
-              <div className="fcp-stat-value is-correct">{correct}</div>
-              <div className="fcp-stat-label">Correct</div>
+              <div className="text-2xl font-extrabold leading-none text-emerald-700 sm:text-3xl">{correct}</div>
+              <div className="mt-2 text-xs font-semibold text-slate-500">Correct</div>
             </div>
             <div>
-              <div className="fcp-stat-value is-missed">{incorrect}</div>
-              <div className="fcp-stat-label">Missed</div>
+              <div className="text-2xl font-extrabold leading-none text-rose-700 sm:text-3xl">{incorrect}</div>
+              <div className="mt-2 text-xs font-semibold text-slate-500">Missed</div>
             </div>
           </div>
 
-          <div className="fcp-actions-row">
+          <div className="mt-7 flex flex-wrap justify-center gap-3">
             <Button onClick={onRestart} icon="rotate-right">Study Again</Button>
             <Button variant="secondary" onClick={onHome} icon="home">Home</Button>
           </div>
