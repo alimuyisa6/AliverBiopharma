@@ -4,7 +4,7 @@
  * layout can remain local. Tailwind v4 scans these literal class strings.
  */
 import {
-  ArrowUpRight, ArrowRight, Check, X, Menu, Search, Home, BookOpen,
+  ArrowUpRight, ArrowRight, ArrowUp, ArrowDown, Check, X, Menu, Search, Home, BookOpen,
   GraduationCap, FlaskConical, Heart, User, Settings, Bell, Calendar,
   Clock, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, AlertCircle,
   Info, CircleHelp, Loader2, Eye, EyeOff, Mail, Phone, MapPin, Star,
@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 
 export const ICONS = Object.freeze({
-  arrowUpRight: ArrowUpRight, arrowRight: ArrowRight, check: Check, close: X,
+  arrowUpRight: ArrowUpRight, arrowRight: ArrowRight, arrowUp: ArrowUp, arrowDown: ArrowDown, check: Check, close: X,
   menu: Menu, search: Search, home: Home, book: BookOpen, graduation: GraduationCap,
   science: FlaskConical, heart: Heart, user: User, settings: Settings, bell: Bell,
   calendar: Calendar, clock: Clock, chevronDown: ChevronDown, chevronLeft: ChevronLeft,
