@@ -238,13 +238,13 @@ export default function FlashcardsPage() {
   if (stage === STAGE.SUBJECT) {
     return (
       <>
-     <div className="flashcards-page min-h-screen bg-background px-4 py-6 text-foreground sm:px-6 lg:px-8">
+     <div className="flashcards-page min-h-screen px-4 py-6 text-foreground sm:px-6 lg:px-8" style={{ backgroundColor: '#F3F6F9' }}>
         <Breadcrumb items={[
           { label: 'Home', href: '/' },
           { label: 'Flashcards' },
           ...(curriculumUnitId ? [{ label: 'Selected learning area' }] : [])
         ]} />
-        <section className="section flashcard-subject-section mt-8 w-full rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-7">
+        <section className="section flashcard-subject-section mt-8 w-full rounded-2xl border border-white/70 p-5 shadow-sm sm:p-7" style={{ backgroundColor: '#E8F4F2' }}>
           <span className="sec-label">FLASHCARD PRACTICE</span>
           <h1 className="section-title flashcard-title">
             {levelName || 'Flashcards'}
@@ -265,7 +265,7 @@ export default function FlashcardsPage() {
               description={`Flashcard sets for ${classLabel || levelName || 'your programme'} haven’t been added yet.`}
             />
           ) : (
-            <div className="flashcard-decks-grid grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
+            <div className="flashcard-decks-grid grid grid-cols-1 gap-5 rounded-2xl p-4 sm:grid-cols-2 sm:p-5 xl:grid-cols-3" style={{ backgroundColor: '#F8F1E7' }}>
               {decks.map((deck) => (
                 <Card
                   key={deck.id}
