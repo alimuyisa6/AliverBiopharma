@@ -1,4 +1,4 @@
-import { ChevronDown } from 'lucide-react';
+import { Icon } from '../../design-system.jsx';
 
 export default function ChartSelect({
   value,
@@ -24,7 +24,7 @@ export default function ChartSelect({
         })}
       </select>
       <span className="pointer-events-none absolute right-3 inline-flex h-4 w-4 items-center justify-center text-slate-500" aria-hidden="true">
-        <ChevronDown />
+        <Icon name="chevronDown" size={16} aria-hidden="true" />
       </span>
     </label>
   );
