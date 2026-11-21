@@ -2,7 +2,7 @@
 import { getInfoSection } from '../api/client';
 import { getCachedStale } from '../utils/cache';
 import { Link } from 'react-router-dom';
-import { FaEnvelope, FaLocationDot, FaLinkedinIn, FaXTwitter, FaInstagram, FaGlobe } from 'react-icons/fa6';
+import { Icon, getIconNameFromClass } from '../design-system.jsx';
 
 function RichText({ text }) {
   const TOKEN_RE = /([a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,})|((https?:\/\/)[^\s<>"']+)/g;
@@ -32,10 +32,10 @@ function RichText({ text }) {
 
 function TeamCard({ member }) {
   const socialIcons = {
-    linkedin: FaLinkedinIn,
-    twitter: FaXTwitter,
-    instagram: FaInstagram,
-    website: FaGlobe
+    linkedin: 'linkedinBrand',
+    twitter: 'xBrand',
+    instagram: 'instagramBrand',
+    website: 'websiteBrand'
   };
   return (
     <div className="team-card">
@@ -53,10 +53,10 @@ function TeamCard({ member }) {
         {member.social && (
           <div className="team-card-social">
             {Object.entries(member.social).map(([platform, url]) => {
-              const Icon = socialIcons[platform] || FaGlobe;
+              const iconName = socialIcons[platform] || 'websiteBrand';
               return (
                 <a key={platform} href={url} target="_blank" rel="noopener noreferrer" aria-label={platform} className="team-social-link">
-                  <Icon />
+                  <Icon name={iconName} size={16} />
                 </a>
               );
             })}
@@ -267,17 +267,17 @@ export default function AboutPage() {
               <div className="about-contact-details">
                 {page.contact.email && (
                   <a href={`mailto:${page.contact.email}`} className="about-contact-item">
-                    <FaEnvelope /> {page.contact.email}
+                    <Icon name="emailBrand" size={16} /> {page.contact.email}
                   </a>
                 )}
                 {page.contact.phone && (
                   <div className="about-contact-item">
-                    <FaEnvelope /> {page.contact.phone}
+                    <Icon name="phone" size={16} /> {page.contact.phone}
                   </div>
                 )}
                 {page.contact.address && (
                   <div className="about-contact-item">
-                    <FaLocationDot /> {page.contact.address}
+                    <Icon name="locationPin" size={16} /> {page.contact.address}
                   </div>
                 )}
               </div>
@@ -285,7 +285,7 @@ export default function AboutPage() {
                 <div className="about-social-links">
                   {page.contact.social_links.map((s, i) => (
                     <a key={i} href={s.url} target="_blank" rel="noopener noreferrer" className="about-social-link">
-                      <i className={s.icon}></i>
+                      <Icon name={getIconNameFromClass(s.icon)} size={16} aria-hidden="true" />
                     </a>
                   ))}
                 </div>

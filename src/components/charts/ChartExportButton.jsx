@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Download } from 'lucide-react';
+import { Icon } from '../../design-system.jsx';
 
 function downloadBlob(blob, filename) {
   const url = URL.createObjectURL(blob);
@@ -122,7 +122,7 @@ export default function ChartExportButton({
         aria-expanded={open}
         onClick={() => setOpen((current) => !current)}
       >
-        <Download aria-hidden="true" />
+        <Icon name="download" size={18} aria-hidden="true" />
       </button>
 
       {open && (

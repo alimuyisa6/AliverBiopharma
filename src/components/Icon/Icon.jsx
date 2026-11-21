@@ -1,6 +1,5 @@
 import { memo } from 'react';
-
-const ICON_DATA = {};
+import { Icon as CentralIcon } from '../../design-system.jsx';
 
 const Icon = memo(function Icon({
   name,
@@ -10,13 +9,11 @@ const Icon = memo(function Icon({
   ...props
 }) {
   return (
-    <svg
-      viewBox="0 0 24 24"
-      width={size || '1.25em'}
-      height={size || '1.25em'}
-      className={className || undefined}
+    <CentralIcon
+      name={name}
+      size={size ?? 'md'}
+      className={className}
       style={style}
-      xmlns="http://www.w3.org/2000/svg"
       aria-hidden={props['aria-hidden'] ?? true}
       focusable="false"
       {...props}
@@ -25,4 +22,3 @@ const Icon = memo(function Icon({
 });
 
 export default Icon;
-export { ICON_DATA };
