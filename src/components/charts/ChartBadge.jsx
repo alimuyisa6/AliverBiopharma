@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowUp } from 'lucide-react';
+import { Icon } from '../../design-system.jsx';
 
 export default function ChartBadge({
   value,
@@ -9,7 +9,7 @@ export default function ChartBadge({
 
   return (
     <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-bold ${positive ? 'bg-emerald-50 text-emerald-700' : 'bg-red-50 text-red-700'}`}>
-      {showIcon && (positive ? <ArrowUp className="h-3.5 w-3.5" aria-hidden="true" /> : <ArrowDown className="h-3.5 w-3.5" aria-hidden="true" />)}
+      {showIcon && (positive ? <Icon name="arrowUp" size={14} aria-hidden="true" /> : <Icon name="arrowDown" size={14} aria-hidden="true" />)}
       {value}
     </span>
   );
