@@ -19,30 +19,30 @@ export default function FlashcardWelcome({ user, level, discipline, cls, onDone 
   }, [onDone]);
 
   return (
-    <div className="flashcard-welcome">
-      <div className="section fcd-empty">
-        <span className="sec-label">Welcome</span>
-        <h2 className="section-title">You're all set</h2>
-        <p className="section-subtitle fcw-subtitle-gap">
+    <div className="w-full">
+      <div className="mx-auto flex min-h-[50vh] w-full max-w-4xl flex-col items-center justify-center px-4 py-10 text-center">
+        <span className="mb-3 inline-flex rounded-full bg-secondary-50 px-3 py-1 text-xs font-bold uppercase tracking-wider text-secondary-800">Welcome</span>
+        <h2 className="text-2xl font-extrabold leading-tight tracking-tight text-primary-950 sm:text-3xl">You're all set</h2>
+        <p className="mt-3 text-sm leading-6 text-slate-600">
           {level} · {discipline} · {cls}
         </p>
 
-        <div className="fcw-flip-container">
-          <div className={`fcw-flip-inner${flipped ? ' is-flipped' : ''}`}>
-            <div className="card card-blue card-surface-solid card-tone-info card-elevation-soft fcw-flip-face">
-              <span className="fcw-icon" aria-hidden="true"><Icon name="hand" plain /></span>
-              <h3 className="fcd-card-heading">Welcome, {displayName}</h3>
-              <p className="quiz-challenge-reward">
+        <div className="relative mx-auto mt-8 w-full max-w-lg [perspective:1000px]">
+          <div className={`relative grid min-h-64 [transform-style:preserve-3d] transition-transform duration-700 ${flipped ? '[transform:rotateY(180deg)]' : ''}`}>
+            <div className="absolute inset-0 flex min-h-64 flex-col items-center justify-center gap-4 rounded-2xl border border-blue-200 bg-blue-50 p-6 text-blue-950 shadow-sm [backface-visibility:hidden]">
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-blue-700" aria-hidden="true"><Icon name="hand" plain /></span>
+              <h3 className="text-xl font-bold leading-7">Welcome, {displayName}</h3>
+              <p className="text-sm leading-6 text-slate-600">
                 Get ready for your {level} {discipline} flashcards.
               </p>
             </div>
 
-            <div className="card card-teal card-surface-solid card-tone-primary card-elevation-soft fcw-flip-face is-back">
-              <h3 className="fcd-card-heading">Please have a seat.</h3>
-              <p className="quiz-challenge-reward">
+            <div className="absolute inset-0 flex min-h-64 flex-col items-center justify-center gap-4 rounded-2xl border border-teal-200 bg-teal-50 p-6 text-teal-950 shadow-sm [backface-visibility:hidden] [transform:rotateY(180deg)]">
+              <h3 className="text-xl font-bold leading-7">Please have a seat.</h3>
+              <p className="text-sm leading-6 text-slate-600">
                 Loading your personalised study session…
               </p>
-              <span className="chip fcd-answer-chip is-correct">
+              <span className="inline-flex items-center gap-2 rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-800">
                 <Icon name="layer-group" /> {cls}
               </span>
             </div>
