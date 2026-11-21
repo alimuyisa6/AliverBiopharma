@@ -12,7 +12,7 @@ export function CommunitySection({
   return (
     <>
       {weeklyChallenge?.question && (
-        <section className="section reveal">
+        <section className="section reveal rounded-2xl px-5 py-8 sm:px-8" style={{ backgroundColor: '#F1EDFA' }}>
           <span className="sec-label">Challenge</span>
           <h2 className="section-title">
             Weekly<br />Challenge
