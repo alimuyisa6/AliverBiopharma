@@ -89,11 +89,11 @@ export default function QuizHero({ level, class_name, groupId, isPharmacy = fals
 
         <div className="mt-8 flex justify-end gap-3" aria-label="Quiz navigation">
           <button type="button" className="flex h-12 w-12 items-center justify-center rounded-full border border-primary-200 bg-white text-primary-800 shadow-sm transition hover:bg-primary-700 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600" aria-label="Back to resources" onClick={onBack}>
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <svg className="h-6 w-6" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <path d="M14.5 5.5 8 12l6.5 6.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
-          <button type="button" className="quiz-hero-nav-arrow" aria-label="View quiz cards" onClick={onNext}>
+          <button type="button" className="flex h-12 w-12 items-center justify-center rounded-full border border-primary-200 bg-white text-primary-800 shadow-sm transition hover:bg-primary-700 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600" aria-label="View quiz cards" onClick={onNext}>
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <path d="M9.5 5.5 16 12l-6.5 6.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
