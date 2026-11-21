@@ -1,40 +1,36 @@
-
 export default function PageSkeleton({ variant = 'page' }) {
   const compact = variant === 'compact';
-
+  const bar = 'animate-pulse rounded-md bg-slate-200';
+  const block = 'animate-pulse rounded-xl bg-slate-100';
   return (
-    <div className={`page-skeleton${compact ? ' page-skeleton--compact' : ''}`} role="status" aria-label="Loading content">
-      <span className="page-skeleton__sr-only">Loading content</span>
-      <div className="page-skeleton__heading">
-        <span className="page-skeleton__bar page-skeleton__bar--eyebrow" />
-        <span className="page-skeleton__bar page-skeleton__bar--title" />
-        <span className="page-skeleton__bar page-skeleton__bar--description" />
+    <div className={`mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 ${compact ? 'py-4' : 'py-8'}`} role="status" aria-label="Loading content">
+      <span className="sr-only">Loading content</span>
+      <div className="mb-7 flex flex-col gap-3">
+        <span className={`${bar} h-3 w-24`} />
+        <span className={`${bar} h-8 w-2/3 max-w-xl sm:h-10`} />
+        <span className={`${bar} h-4 w-full max-w-2xl`} />
       </div>
-      <div className="page-skeleton__toolbar">
-        <span className="page-skeleton__pill" />
-        <span className="page-skeleton__pill" />
-        <span className="page-skeleton__pill page-skeleton__pill--short" />
+      <div className="mb-6 flex flex-wrap gap-2">
+        <span className="h-8 w-24 animate-pulse rounded-full bg-slate-100" />
+        <span className="h-8 w-28 animate-pulse rounded-full bg-slate-100" />
+        <span className="h-8 w-16 animate-pulse rounded-full bg-slate-100" />
       </div>
-      <div className="page-skeleton__grid">
-        <div className="page-skeleton__card page-skeleton__card--feature">
-          <span className="page-skeleton__bar page-skeleton__bar--card-title" />
-          <span className="page-skeleton__bar" />
-          <span className="page-skeleton__bar page-skeleton__bar--medium" />
-          <span className="page-skeleton__block" />
-          <span className="page-skeleton__bar page-skeleton__bar--medium" />
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+        <div className={`grid gap-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm lg:col-span-2 ${compact ? 'p-4' : 'sm:p-6'}`}>
+          <span className={`${bar} h-5 w-1/2`} />
+          <span className={`${bar} h-4 w-full`} />
+          <span className={`${bar} h-4 w-4/5`} />
+          <span className={`${block} h-40 w-full`} />
+          <span className={`${bar} h-4 w-3/4`} />
         </div>
-        <div className="page-skeleton__card">
-          <span className="page-skeleton__block page-skeleton__block--small" />
-          <span className="page-skeleton__bar page-skeleton__bar--card-title" />
-          <span className="page-skeleton__bar" />
-          <span className="page-skeleton__bar page-skeleton__bar--medium" />
-        </div>
-        <div className="page-skeleton__card">
-          <span className="page-skeleton__block page-skeleton__block--small" />
-          <span className="page-skeleton__bar page-skeleton__bar--card-title" />
-          <span className="page-skeleton__bar" />
-          <span className="page-skeleton__bar page-skeleton__bar--medium" />
-        </div>
+        {Array.from({ length: 2 }, (_, index) => (
+          <div key={index} className="grid content-start gap-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <span className={`${block} h-12 w-12`} />
+            <span className={`${bar} h-5 w-1/2`} />
+            <span className={`${bar} h-4 w-full`} />
+            <span className={`${bar} h-4 w-4/5`} />
+          </div>
+        ))}
       </div>
     </div>
   );
