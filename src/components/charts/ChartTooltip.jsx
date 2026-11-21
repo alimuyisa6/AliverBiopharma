@@ -8,9 +8,9 @@ export default function ChartTooltip({
   if (!active || !payload.length) return null;
 
   return (
-    <div className="ch-tooltip">
+    <div className="min-w-[10rem] rounded-xl border border-slate-200 bg-white p-3 shadow-lg">
       {label !== undefined && label !== null && (
-        <p className="ch-tooltip-title">{label}</p>
+        <p className="mb-2 border-b border-slate-100 pb-2 text-xs font-bold text-slate-800">{label}</p>
       )}
 
       {payload.map((item, index) => {
@@ -18,14 +18,14 @@ export default function ChartTooltip({
         const value = formatter(rawValue, item, index);
 
         return (
-          <div className="ch-tooltip-row" key={item?.dataKey || item?.name || index}>
+          <div className="flex items-center gap-2 py-1.5 text-xs" key={item?.dataKey || item?.name || index}>
             <span
-              className="ch-tooltip-dot"
+              className="h-2.5 w-2.5 shrink-0 rounded-full"
               style={{ background: item?.color || 'var(--ch-2)' }}
               aria-hidden="true"
             />
-            <span className="ch-tooltip-label">{item?.name || item?.dataKey || 'Value'}</span>
-            <span className="ch-tooltip-value">{value}</span>
+            <span className="min-w-0 flex-1 text-slate-600">{item?.name || item?.dataKey || 'Value'}</span>
+            <span className="font-bold tabular-nums text-slate-900">{value}</span>
           </div>
         );
       })}
