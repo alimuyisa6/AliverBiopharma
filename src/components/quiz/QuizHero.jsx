@@ -62,28 +62,28 @@ export default function QuizHero({ level, class_name, groupId, isPharmacy = fals
         </p>
 
         <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
-          <div className="rounded-2xl border border-border bg-background p-4 text-center sm:p-5">
+          <div className="rounded-2xl border border-slate-200 bg-white p-4 text-center shadow-sm transition hover:border-primary-200 hover:shadow-md sm:p-5">
             <Icon name="book-open" className="mx-auto h-7 w-7 text-primary-700" />
-            <div className="mt-3 text-2xl font-extrabold text-primary-950">{scopeStats.questions}</div>
-            <div className="mt-1 text-xs font-semibold uppercase tracking-wide text-slate-600">Questions</div>
+            <div className="mt-3 text-3xl font-extrabold leading-none text-primary-950 sm:text-4xl">{scopeStats.questions}</div>
+            <div className="mt-2 text-xs font-bold uppercase tracking-wider text-slate-600">Questions</div>
           </div>
 
-          <div className="rounded-2xl border border-border bg-background p-4 text-center sm:p-5">
+          <div className="rounded-2xl border border-slate-200 bg-white p-4 text-center shadow-sm transition hover:border-primary-200 hover:shadow-md sm:p-5">
             <Icon name="microscope" className="mx-auto h-7 w-7 text-primary-700" />
-            <div className="mt-3 text-2xl font-extrabold text-primary-950">{scopeStats.topics}</div>
-            <div className="mt-1 text-xs font-semibold uppercase tracking-wide text-slate-600">{isPharmacy ? 'Course Units' : 'Topics'}</div>
+            <div className="mt-3 text-3xl font-extrabold leading-none text-primary-950 sm:text-4xl">{scopeStats.topics}</div>
+            <div className="mt-2 text-xs font-bold uppercase tracking-wider text-slate-600">{isPharmacy ? 'Course Units' : 'Topics'}</div>
           </div>
 
-          <div className="rounded-2xl border border-border bg-background p-4 text-center sm:p-5">
+          <div className="rounded-2xl border border-slate-200 bg-white p-4 text-center shadow-sm transition hover:border-primary-200 hover:shadow-md sm:p-5">
             <Icon name="user-graduate" className="mx-auto h-7 w-7 text-primary-700" />
-            <div className="mt-3 text-2xl font-extrabold text-primary-950">{stats?.total_learners ?? 0}</div>
-            <div className="mt-1 text-xs font-semibold uppercase tracking-wide text-slate-600">Learners</div>
+            <div className="mt-3 text-3xl font-extrabold leading-none text-primary-950 sm:text-4xl">{stats?.total_learners ?? 0}</div>
+            <div className="mt-2 text-xs font-bold uppercase tracking-wider text-slate-600">Learners</div>
           </div>
 
-          <div className="rounded-2xl border border-border bg-background p-4 text-center sm:p-5">
+          <div className="rounded-2xl border border-slate-200 bg-white p-4 text-center shadow-sm transition hover:border-primary-200 hover:shadow-md sm:p-5">
             <Icon name="chart-line" className="mx-auto h-7 w-7 text-primary-700" />
-            <div className="mt-3 text-2xl font-extrabold text-primary-950">{stats?.average_pass_rate ?? 0}%</div>
-            <div className="mt-1 text-xs font-semibold uppercase tracking-wide text-slate-600">Pass Rate</div>
+            <div className="mt-3 text-3xl font-extrabold leading-none text-primary-950 sm:text-4xl">{stats?.average_pass_rate ?? 0}%</div>
+            <div className="mt-2 text-xs font-bold uppercase tracking-wider text-slate-600">Pass Rate</div>
           </div>
         </div>
 
