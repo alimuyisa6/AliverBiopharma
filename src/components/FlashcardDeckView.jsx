@@ -216,7 +216,7 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
   const isKnown = known.has(card.id);
   const isBookmarked = bookmarked.has(card.id);
   const isLast = index === cards.length - 1;
-  const cardColor = MODE_CARD_COLOR[mode] || 'card-blue';
+  const cardColor = MODE_CARD_COLOR[mode] || 'border-blue-200 bg-blue-50 text-blue-950';
 
   return (
     <div className="w-full">
