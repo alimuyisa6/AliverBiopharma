@@ -158,7 +158,7 @@ export function StatsGrid({ stats = {}, scopeLabel = 'All learning levels' }) {
   const passedItems = Array.isArray(stats.most_passed) ? stats.most_passed : [];
 
   return (
-    <section className="w-full bg-white px-5 py-16 sm:px-8 sm:py-20 lg:px-12" aria-labelledby="platform-impact-title">
+    <section className="w-full bg-[#F3F6F9] px-5 py-16 sm:px-8 sm:py-20 lg:px-12" aria-labelledby="platform-impact-title">
       <div className="mx-auto max-w-7xl">
         <header className="mb-9">
           <span className="text-xs font-extrabold uppercase tracking-[0.16em] text-secondary-700">Platform statistics</span>
