@@ -14,7 +14,7 @@ import {
   Target, Zap, Stethoscope, Pill, Microscope, Atom, Brain, Lightbulb,
   Sun, Moon, LogOut, Copy, Share2, CheckCircle2, XCircle, AlertTriangle
 } from 'lucide-react';
-import { FaEnvelope, FaLocationDot, FaLinkedinIn, FaXTwitter, FaInstagram, FaGlobe } from 'react-icons/fa6';
+import { FaEnvelope, FaLocationDot, FaLinkedinIn, FaXTwitter, FaInstagram, FaGlobe, FaFacebook, FaYoutube, FaWhatsapp } from 'react-icons/fa6';
 
 export const ICONS = Object.freeze({
   arrowUpRight: ArrowUpRight, arrowRight: ArrowRight, arrowUp: ArrowUp, arrowDown: ArrowDown, check: Check, close: X,
@@ -32,7 +32,8 @@ export const ICONS = Object.freeze({
   brain: Brain, idea: Lightbulb, sun: Sun, moon: Moon, logout: LogOut, copy: Copy,
   share: Share2, success: CheckCircle2, failure: XCircle, warning: AlertTriangle,
   emailBrand: FaEnvelope, locationPin: FaLocationDot, linkedinBrand: FaLinkedinIn,
-  xBrand: FaXTwitter, instagramBrand: FaInstagram, websiteBrand: FaGlobe
+  xBrand: FaXTwitter, instagramBrand: FaInstagram, websiteBrand: FaGlobe,
+  facebookBrand: FaFacebook, youtubeBrand: FaYoutube, whatsappBrand: FaWhatsapp
 });
 
 export const ICON_SIZE = Object.freeze({ xs: 14, sm: 16, md: 20, lg: 24, xl: 32 });
@@ -73,3 +74,16 @@ export const UI = Object.freeze({
     info: 'rounded-xl border border-primary-200 bg-primary-50 px-4 py-3 text-sm font-semibold text-primary-900',
   },
 });
+
+export function getIconNameFromClass(iconClass = '') {
+  const normalized = String(iconClass).toLowerCase();
+  if (normalized.includes('facebook')) return 'facebookBrand';
+  if (normalized.includes('instagram')) return 'instagramBrand';
+  if (normalized.includes('linkedin')) return 'linkedinBrand';
+  if (normalized.includes('twitter') || normalized.includes('x-twitter')) return 'xBrand';
+  if (normalized.includes('youtube')) return 'youtubeBrand';
+  if (normalized.includes('whatsapp')) return 'whatsappBrand';
+  if (normalized.includes('envelope') || normalized.includes('email')) return 'emailBrand';
+  if (normalized.includes('location') || normalized.includes('map-marker')) return 'locationPin';
+  return 'websiteBrand';
+}
