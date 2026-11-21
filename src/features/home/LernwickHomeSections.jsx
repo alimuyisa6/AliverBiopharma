@@ -118,11 +118,11 @@ const learningSteps = {
 function HowLearningWorks({ studio }) {
   const steps = studio ? learningSteps[studio.kind === 'biology-foundations' ? 'olevel' : studio.kind === 'advanced-biology' ? 'alevel' : 'pharmacy'] : learningSteps.general;
   return (
-    <section className="w-full bg-[#EDF4FA] py-16 sm:py-20" id="how" aria-labelledby="lernwick-how-title">
+    <section className="w-full bg-[#526B8A] py-16 sm:py-20" id="how" aria-labelledby="lernwick-how-title">
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
         <div className="mx-auto mb-10 max-w-3xl text-center">
           <div>
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-secondary-700">A clear learning process</p>
+            <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-white">A clear learning process</p>
             <h2 id="lernwick-how-title" className="text-white"><span className="organic-letter organic-letter--accent">L</span>earn, practise and progress</h2>
             <p className="">Your learning journey moves from understanding concepts to applying and strengthening them.</p>
           </div>
