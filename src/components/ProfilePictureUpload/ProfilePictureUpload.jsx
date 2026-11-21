@@ -67,30 +67,30 @@ export default function ProfilePictureUpload({ currentUrl, onUpdate, size = 80 }
   }
 
   return (
-    <div className="profile-picture-upload">
-      <div className="profile-picture-wrapper" style={{ width: size, height: size }}>
+    <div className="flex flex-col items-center gap-4">
+      <div className="relative overflow-hidden rounded-full border-2 border-slate-200 bg-slate-100 shadow-sm" style={{ width: size, height: size }}>
         {imageUrl ? (
-          <img src={imageUrl} alt="Profile" className="profile-picture-image" />
+          <img src={imageUrl} alt="Profile" className="h-full w-full object-cover" />
         ) : (
-          <div className="profile-picture-placeholder">
+          <div className="flex h-full w-full items-center justify-center bg-primary-50 text-primary-700">
             <Icon name="user" />
           </div>
         )}
 
         {uploading && (
-          <div className="profile-picture-overlay">
+          <div className="absolute inset-0 flex items-center justify-center bg-slate-900/60">
             <div className="spinner" />
           </div>
         )}
       </div>
 
-      <div className="profile-picture-actions">
-        <button className="btn btn-secondary btn-sm" onClick={() => fileInputRef.current?.click()} disabled={uploading}>
+      <div className="flex flex-wrap items-center justify-center gap-2">
+        <button className="inline-flex min-h-9 items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-60" onClick={() => fileInputRef.current?.click()} disabled={uploading}>
           <Icon name="camera" /> Upload
         </button>
 
         {imageUrl && (
-          <button className="btn btn-ghost btn-sm" onClick={handleDelete} disabled={uploading}>
+          <button className="inline-flex min-h-9 items-center justify-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 disabled:opacity-60" onClick={handleDelete} disabled={uploading}>
             <Icon name="trash" /> Remove
           </button>
         )}
@@ -100,11 +100,11 @@ export default function ProfilePictureUpload({ currentUrl, onUpdate, size = 80 }
           type="file"
           accept="image/jpeg,image/png,image/webp,image/gif"
           onChange={handleUpload}
-          className="profile-picture-input block w-full cursor-pointer rounded-xl border border-dashed border-slate-300 bg-slate-50 p-3 text-sm text-slate-700 file:mr-4 file:rounded-lg file:border-0 file:bg-blue-100 file:px-4 file:py-2 file:font-semibold file:text-blue-800 hover:file:bg-blue-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
+          className="block w-full max-w-sm cursor-pointer rounded-xl border border-dashed border-slate-300 bg-slate-50 p-3 text-sm text-slate-700 file:mr-3 file:rounded-lg file:border-0 file:bg-primary-100 file:px-3 file:py-2 file:font-semibold file:text-primary-800 hover:file:bg-primary-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-700"
         />
       </div>
 
-      {error && <div className="profile-picture-error">{error}</div>}
+      {error && <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">{error}</div>}
     </div>
   );
 } 
