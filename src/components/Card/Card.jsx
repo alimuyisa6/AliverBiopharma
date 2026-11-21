@@ -21,50 +21,40 @@ const Card = forwardRef(function Card(
   },
   ref
 ) {
-  let imageClassName = 'card-img-top';
-  if (scoop) imageClassName += ` card-image-scoop-${scoop}`;
-  if (imageVariant === 'original') imageClassName += ' card-image-original';
-
-  let cardClass = 'card';
-  if (variant) cardClass += ` card-${variant}`;
-  if (className) cardClass += ` ${className}`;
+  const cardClass = [
+    'relative min-w-0 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm',
+    variant === 'interactive' ? 'transition hover:-translate-y-0.5 hover:border-primary-200 hover:shadow-md' : '',
+    onClick ? 'cursor-pointer focus-within:ring-2 focus-within:ring-primary-200' : '',
+    className
+  ].filter(Boolean).join(' ');
+  const imageClassName = [
+    'block w-full object-cover',
+    scoop ? 'aspect-[16/9] rounded-t-2xl' : '',
+    imageVariant === 'original' ? 'h-auto max-h-none object-contain' : 'max-h-72'
+  ].filter(Boolean).join(' ');
 
   if (loading) {
     return (
-      <div
-        ref={ref}
-        className={`${cardClass} card-loading`}
-        aria-busy="true"
-        aria-label="Loading"
-      >
-        <div className="card-body">
-          <Skeleton variant="text" lines={loadingLines} />
-        </div>
+      <div ref={ref} className={`${cardClass} p-5 sm:p-6`} aria-busy="true" aria-label="Loading">
+        <Skeleton variant="text" lines={loadingLines} />
       </div>
     );
   }
 
   return (
     <div ref={ref} className={cardClass} onClick={onClick} {...props}>
-      {media && <div className="position-relative">{media}</div>}
-
-      {image && (
-        <img src={image} alt={title || ''} className={imageClassName} loading="lazy" />
-      )}
-
+      {media && <div className="relative">{media}</div>}
+      {image && <img src={image} alt={title || ''} className={imageClassName} loading="lazy" />}
       {(title || description) && (
-        <div className="card-body">
-          {title && <h5 className="card-title">{title}</h5>}
-          {description && <p className="card-text text-muted">{description}</p>}
+        <div className="space-y-2 p-5 sm:p-6">
+          {title && <h3 className="text-lg font-bold leading-7 text-slate-900">{title}</h3>}
+          {description && <p className="text-sm leading-6 text-slate-600">{description}</p>}
         </div>
       )}
-
       {children}
-
-      {footer && <div className="card-footer">{footer}</div>}
+      {footer && <div className="border-t border-slate-100 px-5 py-4 sm:px-6">{footer}</div>}
     </div>
   );
 });
 
 export default Card;
- 
