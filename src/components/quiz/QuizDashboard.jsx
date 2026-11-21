@@ -24,7 +24,7 @@ export default function QuizDashboard({ user, level, class_name }) {
   const { platform, quiz, achievements } = summary;
   return (
     <div className="mx-auto w-full max-w-7xl px-4 sm:px-6">
-      <h3 className="mb-5 text-xl font-bold leading-7 tracking-tight text-slate-900 sm:text-2xl">Your learning dashboard</h3>
+      <h3 className="mb-5 text-xl font-bold leading-7 tracking-tight text-primary-950 sm:text-2xl">Your learning dashboard</h3>
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 xl:grid-cols-5">
         <div className="flex min-w-0 flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:p-5">
