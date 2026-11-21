@@ -46,13 +46,13 @@ const Card = forwardRef(function Card(
       {media && <div className="relative">{media}</div>}
       {image && <img src={image} alt={title || ''} className={imageClassName} loading="lazy" />}
       {(title || description) && (
-        <div className="space-y-2 p-5 sm:p-6">
+        <div className="space-y-2">
           {title && <h3 className="text-lg font-bold leading-7 text-slate-900">{title}</h3>}
           {description && <p className="text-sm leading-6 text-slate-600">{description}</p>}
         </div>
       )}
       {children}
-      {footer && <div className="border-t border-slate-100 px-5 py-4 sm:px-6">{footer}</div>}
+      {footer && <div className="mt-5 border-t border-slate-100 pt-4">{footer}</div>}
     </div>
   );
 });
