@@ -21,7 +21,7 @@ function ChallengeCard({ challenge, onOpen }) {
           <Icon name={meta.icon} className="h-14 w-14 sm:h-20 sm:w-20" />
         </div>
         <span className="relative mt-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold backdrop-blur">
-          <Icon name="sparkles" className="h-4 w-4" /> {meta.label}
+          <Icon name="clipboard-check" className="h-4 w-4" /> {meta.label}
         </span>
       </div>
 
