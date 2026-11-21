@@ -43,7 +43,7 @@ export default function ContactPage() {
           <p className="mt-5 max-w-2xl text-lg leading-8 text-white/85">Need help with your account, study materials, or a website feature? Send our team a message.</p>
         </div>
       </section>
-      <div className="px-5 py-12 sm:py-16">
+      <div className="px-5 py-12 sm:py-16" style={{ backgroundColor: '#F1EDFA' }}>
       <ContactSection
         contactForm={contactForm}
         contactStatus={contactStatus}
