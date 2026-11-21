@@ -20,9 +20,9 @@ export function Marquee({ className = '', reverse = false, pauseOnHover = false,
     <>
       <style>{`@keyframes aliver-marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } } @keyframes aliver-marquee-scroll-vertical { from { transform: translateY(0); } to { transform: translateY(-50%); } `}</style>
       <div {...props} className={`w-full overflow-hidden ${vertical ? 'h-full' : ''} ${className}`.trim()} style={{ ...props.style }}>
-        <div ref={trackRef} className={`flex w-max gap-4 ${vertical ? 'flex-col' : 'flex-row'} ${pauseOnHover ? 'hover:[animation-play-state:paused]' : ''} motion-reduce:animate-none`} style={{ animation: `aliver-marquee-scroll ${duration} linear infinite`, animationDirection: reverse ? 'reverse' : 'normal' }}>
+        <div ref={trackRef} className={`flex w-max gap-4 ${vertical ? 'flex-col' : 'flex-row'} ${pauseOnHover ? 'hover:[animation-play-state:paused]' : ''} motion-reduce:animate-none`} style={{ animation: `${vertical ? 'aliver-marquee-scroll-vertical' : 'aliver-marquee-scroll'} ${duration} linear infinite`, animationDirection: reverse ? 'reverse' : 'normal' }}>
           {Array.from({ length: Math.max(2, repeat) }, (_, index) => (
-            <div className="flex shrink-0 gap-4" key={index} aria-hidden={index > 0 ? 'true' : undefined}>{children}</div>
+            <div className={vertical ? "flex shrink-0 flex-col gap-4" : "flex shrink-0 flex-row gap-4"} key={index} aria-hidden={index > 0 ? 'true' : undefined}>{children}</div>
           ))}
         </div>
       </div>
