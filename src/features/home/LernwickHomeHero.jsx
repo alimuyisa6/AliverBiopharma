@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { UI, Icon } from '../../design-system.jsx';
-import './home-hero.css';
 
 const defaultBenefits = [
   { title: 'Learn', detail: 'Step-by-step' },
