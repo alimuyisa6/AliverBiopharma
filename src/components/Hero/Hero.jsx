@@ -262,7 +262,6 @@ function WaveArtwork() {
   return (
     <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden opacity-70" ref={heroRef} aria-hidden="true">
       <svg className="h-full w-full" ref={svgRef} preserveAspectRatio="none">
- </defs>
         <g ref={layersRef} />
         <g ref={bordersRef} />
         <g ref={smallsRef} />
@@ -336,14 +335,14 @@ export default function Hero() {
               ) : (
                 <Link to="/notes" className="inline-flex min-h-14 items-center justify-center gap-4 rounded-xl bg-secondary-500 px-6 py-3.5 text-base font-bold text-white shadow-lg shadow-black/20 transition hover:-translate-y-0.5 hover:bg-secondary-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
                   <span>Continue Learning</span>
-                  <span className="hero-aero-button-icon" aria-hidden="true"><ArrowUpRight size={21} strokeWidth={1.8} /></span>
+                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/15 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true"><ArrowUpRight size={21} strokeWidth={1.8} /></span>
                 </Link>
               )
             ) : (
               <>
                 <Link to="/register" className="inline-flex min-h-14 items-center justify-center gap-4 rounded-xl bg-secondary-500 px-6 py-3.5 text-base font-bold text-white shadow-lg shadow-black/20 transition hover:-translate-y-0.5 hover:bg-secondary-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
                   <span>Start Learning</span>
-                  <span className="hero-aero-button-icon" aria-hidden="true"><ArrowUpRight size={21} strokeWidth={1.8} /></span>
+                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/15 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true"><ArrowUpRight size={21} strokeWidth={1.8} /></span>
                 </Link>
                 <Link to="/notes" className="inline-flex min-h-14 items-center justify-center rounded-xl border border-white/35 bg-white/5 px-6 py-3.5 text-base font-semibold text-white transition hover:bg-white/15">Explore Modules</Link>
               </>
