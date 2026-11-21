@@ -235,7 +235,7 @@ export default function CookieConsent() {
             ) : (
               <button
                 type="button"
-                className="btn btn-ghost"
+                className="inline-flex min-h-10 items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:cursor-wait disabled:opacity-60"
                 disabled={saving}
                 onClick={() => setShowSettings(true)}
               >
