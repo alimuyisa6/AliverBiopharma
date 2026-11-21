@@ -34,7 +34,7 @@ export default function ContactPage() {
   }, [contactForm]);
 
   return (
-    <main className="contact-page w-full bg-slate-50">
+    <main className="contact-page w-full" style={{ backgroundColor: '#EAF2FA' }}>
       <section className="ab-page-hero ab-contact-hero relative isolate overflow-hidden px-5 py-16 sm:py-24">
         <div className="ab-page-hero-overlay absolute inset-0" aria-hidden="true" />
         <div className="relative z-10 mx-auto max-w-5xl">
