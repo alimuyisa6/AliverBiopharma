@@ -128,7 +128,7 @@ export default function AboutPage() {
         </section>
       )}
 
-      <section className="w-full px-5 py-14 sm:py-20" style={{ backgroundColor: '#E8F4F2' }}>
+      <section className="w-full px-5 py-14 sm:py-20" style={{ backgroundColor: '#F3F6F9' }}>
         <div className="mx-auto w-full max-w-5xl space-y-10">
           {!page?.hero && (
             <h1 className="mb-10 text-4xl font-extrabold text-primary-900 sm:text-5xl">{page?.title || 'About AliverBiopharm'}</h1>
@@ -144,7 +144,7 @@ export default function AboutPage() {
           )}
 
           {page?.vision && (
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+            <div className="rounded-2xl border border-white/70 p-6 shadow-sm sm:p-8" style={{ backgroundColor: '#EAF2FA' }}>
               {page.vision.heading && <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.vision.heading}</h2>}
               {page.vision.content.split('\n\n').map((para, i) => (
                 <p key={i}><RichText text={para} /></p>
@@ -153,7 +153,7 @@ export default function AboutPage() {
           )}
 
           {page?.story && (
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+            <div className="rounded-2xl border border-white/70 p-6 shadow-sm sm:p-8" style={{ backgroundColor: '#F1EDFA' }}>
               {page.story.heading && <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.story.heading}</h2>}
               {page.story.content.split('\n\n').map((para, i) => (
                 <p key={i}><RichText text={para} /></p>
@@ -171,7 +171,7 @@ export default function AboutPage() {
           )}
 
           {page?.learning_philosophy && (
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+            <div className="rounded-2xl border border-white/70 p-6 shadow-sm sm:p-8" style={{ backgroundColor: '#F8F1E7' }}>
               {page.learning_philosophy.heading && <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.learning_philosophy.heading}</h2>}
               {page.learning_philosophy.content.split('\n\n').map((para, i) => (
                 <p key={i}><RichText text={para} /></p>
