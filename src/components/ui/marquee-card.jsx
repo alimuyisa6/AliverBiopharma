@@ -1,4 +1,4 @@
-import { Star } from 'lucide-react';
+import { Icon } from '../../design-system.jsx';
 import { LiquidCard, CardContent } from './liquid-glass-card';
 import { Marquee } from './marquee';
 
@@ -26,7 +26,7 @@ function TestimonialCard({ testimonial }) {
         <blockquote className="text-sm leading-6 text-slate-700">{content}</blockquote>
         {rating > 0 && (
           <div className="flex items-center gap-1 text-amber-500" aria-label={`Rated ${rating} out of 5`}>
-            {Array.from({ length: rating }, (_, index) => <Star key={index} className="h-4 w-4 fill-current" aria-hidden="true" />)}
+            {Array.from({ length: rating }, (_, index) => <Icon key={index} name="star" size={16} className="fill-current" aria-hidden="true" />)}
           </div>
         )}
       </CardContent>
