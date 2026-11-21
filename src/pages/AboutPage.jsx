@@ -272,7 +272,7 @@ export default function AboutPage() {
                 )}
                 {page.contact.phone && (
                   <div className="about-contact-item">
-                    <FaEnvelope /> {page.contact.phone}
+                    <Icon name="phone" size={16} /> {page.contact.phone}
                   </div>
                 )}
                 {page.contact.address && (
