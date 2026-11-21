@@ -60,3 +60,15 @@
   .ab-home-hero-student { animation: ab-hero-float 7s ease-in-out infinite; }
   @keyframes ab-hero-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
 }
+
+/* Secondary page heroes share the premium biotech visual language while retaining their own content. */
+.ab-page-hero { isolation: isolate; color: #fff; background-color: #092744; background-size: cover; background-position: center; }
+.ab-page-hero-overlay { z-index: 0; background: linear-gradient(100deg, rgba(5,20,40,.94), rgba(8,43,72,.78) 62%, rgba(7,53,75,.55)); }
+.ab-page-hero-eyebrow { display:inline-flex; margin-bottom:1rem; padding:.5rem .85rem; border:1px solid rgba(255,255,255,.24); border-radius:999px; background:rgba(255,255,255,.1); color:#e1f6ff; font-size:.72rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; backdrop-filter:blur(10px); }
+.ab-about-hero { background-position:center 42%; }
+.ab-contact-hero { background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=2000&q=85'); background-position:center 40%; }
+.ab-donate-hero { background-position:center 48%; }
+.ab-donate-hero:not([style*="background-image"]) { background-image: url('https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&w=1800&q=80'); }
+.faq-page-shell .faq-hero-content, .faq-page-shell .faq-illustration-hero { z-index:1; position:relative; }
+.faq-page-shell .faq-hero { min-height: 340px; }
+@media (max-width: 760px) { .ab-page-hero { background-position: 60% center; } .ab-page-hero-overlay { background:linear-gradient(180deg,rgba(5,20,40,.82),rgba(5,20,40,.94)); } }
