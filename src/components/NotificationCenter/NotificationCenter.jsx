@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import Icon from '../Icon/Icon';
 import { useNotifications } from '../../contexts/NotificationContext';
 
 function formatNotificationTime(value) {
@@ -115,10 +116,10 @@ export default function NotificationCenter() {
                   }}
                 >
                   <div className="flex items-start gap-3">
-                    <span className="mt-1 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-700" style={{ color: notification.color || undefined }}><BellIcon className="h-5 w-5" /></span>
+                    <span className="mt-1 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-700" style={{ color: notification.color || undefined }}><Icon name={notification.icon === "dna" ? "microscope" : notification.icon || "bell"} className="h-5 w-5" /></span>
                     <div className="min-w-0 flex-1">
                       <div className="text-sm font-bold leading-5 text-slate-900">{notification.title}</div>
-                      <div className="mt-1 break-words text-sm leading-5 text-slate-600">{notificationBody(notification.body)}</div>
+                      {notification.body && <div className="mt-1 break-words text-sm leading-5 text-slate-600">{notificationBody(notification.body)}</div>}
                       <div className="mt-1.5 text-xs font-medium text-slate-500">{formatNotificationTime(notification.created_at)}</div>
                     </div>
                     <button type="button" className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-500 transition hover:bg-slate-100 hover:text-slate-900" onClick={(event) => { event.stopPropagation(); dismiss(notification.id); }} aria-label="Dismiss notification">
