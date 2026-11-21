@@ -130,7 +130,7 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
             return (
               <button key={option} type="button" className={`flex min-h-14 items-center gap-3 rounded-xl border p-4 text-left font-semibold transition disabled:cursor-not-allowed ${stateClass === "correct" ? "border-green-300 bg-green-50 text-green-950" : stateClass === "incorrect" ? "border-red-300 bg-red-50 text-red-950" : "border-border bg-white text-slate-800 hover:border-primary-300"}`} onClick={() => onSubmit(option)} disabled={disabled || Boolean(answer)}>
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-sm font-extrabold text-primary-800">{option}</span>
-                <span className="quiz-option-text">{question[`option_${option.toLowerCase()}`]}</span>
+                <span className="min-w-0 flex-1 leading-6">{question[`option_${option.toLowerCase()}`]}</span>
               </button>
             );
           })}
