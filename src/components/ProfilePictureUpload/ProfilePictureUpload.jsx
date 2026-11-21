@@ -79,7 +79,7 @@ export default function ProfilePictureUpload({ currentUrl, onUpdate, size = 80 }
 
         {uploading && (
           <div className="absolute inset-0 flex items-center justify-center bg-slate-900/60">
-            <div className="spinner" />
+            <div className="h-7 w-7 animate-spin rounded-full border-2 border-white/40 border-t-white" />
           </div>
         )}
       </div>
