@@ -1,7 +1,5 @@
-/* components/ProgressBar/ProgressBar.jsx */
 const PROGRESS_RING_PALETTE = [
-  'var(--primary))', 'var(--primary-dark)', 'var(--primary-dark)',
-  'var(--primary-dark)', 'var(--primary-dark)', 'var(--primary-dark)', 'var(--green-600)',
+  '#2563eb', '#1d4ed8', '#0f766e', '#047857', '#7c3aed', '#c2410c', '#16a34a',
 ];
 
 function hashProgressKey(value) {
@@ -24,37 +22,45 @@ export function ProgressRing({
   const safeMax = Number(max) > 0 ? Number(max) : 100;
   const safeValue = Math.min(safeMax, Math.max(0, Number(value) || 0));
   const progress = Math.round((safeValue / safeMax) * 100);
+  const sizeClass = { sm: 'h-10 w-10 text-[10px]', md: 'h-14 w-14 text-xs', lg: 'h-20 w-20 text-sm', xl: 'h-24 w-24 text-base' }[size] || 'h-14 w-14 text-xs';
+  const ringPadding = variant === 'thin' ? 'p-1' : 'p-1.5';
   return (
     <span
-      className={`progress-ring progress-ring-${size} progress-ring-${variant}`}
-      style={{
-        '--progress-ring-progress': `${progress}%`,
-        '--progress-ring-color': getProgressRingColor(tone),
-      }}
+      className={`inline-flex shrink-0 items-center justify-center rounded-full ${sizeClass} ${ringPadding}`}
+      style={{ background: `conic-gradient(${getProgressRingColor(tone)} ${progress}%, #e2e8f0 0)` }}
       role="progressbar"
       aria-valuenow={safeValue}
       aria-valuemin={0}
       aria-valuemax={safeMax}
       aria-label={ariaLabel || `${progress}% complete`}
     >
-      <span className="progress-ring__inner">{label ?? `${progress}%`}</span>
+      <span className="flex h-full w-full items-center justify-center rounded-full bg-white font-bold text-slate-800">{label ?? `${progress}%`}</span>
     </span>
   );
 }
 
 export default function ProgressBar({ value = 0, max = 100, variant = 'primary', showLabel, size }) {
   const pct = Math.min(100, Math.max(0, (value / max) * 100));
+  const colors = {
+    primary: 'bg-primary-600',
+    secondary: 'bg-secondary-500',
+    success: 'bg-emerald-600',
+    warning: 'bg-amber-500',
+    danger: 'bg-red-600',
+    info: 'bg-sky-600'
+  };
+  const colorClass = colors[variant.replace(/^progress-/, '')] || 'bg-primary-600';
   return (
-    <div className={`progress-track ${size === 'sm' ? 'progress-sm' : ''}`}>
+    <div className={`relative w-full overflow-hidden rounded-full bg-slate-100 ${size === 'sm' ? 'h-1.5' : 'h-2.5'}`}>
       <div
-        className={`progress-fill ${variant.startsWith('progress-') ? variant : `progress-${variant}`}`}
+        className={`h-full rounded-full transition-[width] duration-500 ease-out ${colorClass}`}
         style={{ width: `${pct}%` }}
         role="progressbar"
         aria-valuenow={value}
         aria-valuemin={0}
         aria-valuemax={max}
       />
-      {showLabel && <span className="progress-label">{Math.round(pct)}%</span>}
+      {showLabel && <span className="absolute inset-0 flex items-center justify-center text-[10px] font-bold leading-none text-slate-700">{Math.round(pct)}%</span>}
     </div>
   );
 }
