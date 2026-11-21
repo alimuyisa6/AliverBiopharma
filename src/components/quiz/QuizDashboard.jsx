@@ -41,20 +41,20 @@ export default function QuizDashboard({ user, level, class_name }) {
 
         <div className="flex min-w-0 flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:p-5">
           <Icon name="medal" className="h-8 w-8 text-violet-600" />
-          <div className="stat-value font-poppins">{achievements?.earned_count || 0}</div>
-          <div className="stat-label font-source-sans">Badges</div>
+          <div className="break-words text-lg font-extrabold leading-6 tracking-tight text-slate-900 sm:text-xl">{achievements?.earned_count || 0}</div>
+          <div className="text-xs font-semibold leading-5 text-slate-600 sm:text-sm">Badges</div>
         </div>
 
         <div className="flex min-w-0 flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:p-5">
           <Icon name="microscope" className="h-8 w-8 text-teal-700" />
-          <div className="stat-value font-poppins">{quiz.blocks_completed}</div>
-          <div className="stat-label font-source-sans">Question sets completed</div>
+          <div className="break-words text-lg font-extrabold leading-6 tracking-tight text-slate-900 sm:text-xl">{quiz.blocks_completed}</div>
+          <div className="text-xs font-semibold leading-5 text-slate-600 sm:text-sm">Question sets completed</div>
         </div>
 
         <div className="flex min-w-0 flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:p-5">
-          <Icon name="bullseye" className="stat-icon stat-icon-accent" />
-          <div className="stat-value font-poppins">{quiz.recent_pass_rate}%</div>
-          <div className="stat-label font-source-sans">Recent pass rate</div>
+          <Icon name="bullseye" className="h-8 w-8 text-violet-600" />
+          <div className="break-words text-lg font-extrabold leading-6 tracking-tight text-slate-900 sm:text-xl">{quiz.recent_pass_rate}%</div>
+          <div className="text-xs font-semibold leading-5 text-slate-600 sm:text-sm">Recent pass rate</div>
         </div>
       </div>
     </div>
