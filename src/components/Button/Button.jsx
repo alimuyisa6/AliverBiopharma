@@ -10,7 +10,14 @@ const variantStyles = {
   outline: 'border border-primary-300 bg-white text-primary-800 hover:bg-primary-50',
   success: 'bg-emerald-700 text-white shadow-sm hover:bg-emerald-800',
   link: 'bg-transparent px-0 text-primary-700 underline underline-offset-4 hover:text-primary-900',
-  warm: 'bg-secondary-600 text-white shadow-sm hover:bg-secondary-700',\n  gradient: 'bg-gradient-to-r from-primary-700 to-secondary-600 text-white shadow-sm hover:from-primary-800 hover:to-secondary-700',\n  info: 'bg-sky-700 text-white shadow-sm hover:bg-sky-800',\n  warning: 'bg-amber-500 text-amber-950 shadow-sm hover:bg-amber-600',\n  dark: 'bg-slate-900 text-white shadow-sm hover:bg-slate-800',\n  light: 'bg-slate-100 text-slate-800 hover:bg-slate-200',\n  muted: 'bg-slate-100 text-slate-700 hover:bg-slate-200',\n  '3d': 'relative isolate translate-y-0 bg-primary-700 text-white shadow-[0_5px_0_0_rgb(29_78_216)] transition-transform active:translate-y-1 active:shadow-none'
+  warm: 'bg-secondary-600 text-white shadow-sm hover:bg-secondary-700',
+  gradient: 'bg-gradient-to-r from-primary-700 to-secondary-600 text-white shadow-sm hover:from-primary-800 hover:to-secondary-700',
+  info: 'bg-sky-700 text-white shadow-sm hover:bg-sky-800',
+  warning: 'bg-amber-500 text-amber-950 shadow-sm hover:bg-amber-600',
+  dark: 'bg-slate-900 text-white shadow-sm hover:bg-slate-800',
+  light: 'bg-slate-100 text-slate-800 hover:bg-slate-200',
+  muted: 'bg-slate-100 text-slate-700 hover:bg-slate-200',
+  '3d': 'relative isolate translate-y-0 bg-primary-700 text-white shadow-[0_5px_0_0_rgb(29_78_216)] transition-transform active:translate-y-1 active:shadow-none'
 };
 
 const Button = forwardRef(function Button(
