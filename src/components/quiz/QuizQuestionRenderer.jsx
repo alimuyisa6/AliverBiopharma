@@ -30,18 +30,18 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
   }));
 
   return (
-    <div className="w-full rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6 lg:p-7">
-      <div className="mb-5 flex flex-wrap items-center gap-2.5 border-b border-slate-100 pb-4 text-sm font-semibold text-slate-600 sm:mb-6 sm:gap-3">
+    <div className="w-full rounded-2xl border border-slate-200 bg-white p-5 shadow-md shadow-slate-200/50 sm:p-6 lg:p-8">
+      <div className="mb-5 flex flex-wrap items-center gap-2 border-b border-slate-100 pb-4 sm:mb-7 sm:gap-3">
         <span className="inline-flex items-center gap-2 rounded-lg bg-slate-100 px-3 py-2 text-xs font-bold uppercase tracking-wide text-slate-700"><Icon name="file-lines" /> Question</span>
         <span className="rounded-full bg-primary-50 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary-800">{type.replaceAll('_', ' ')}</span>
         <button type="button" className={`ml-auto inline-flex min-h-9 items-center gap-2 rounded-lg border px-3 py-2 text-xs font-bold ${marked ? "border-secondary-300 bg-secondary-50 text-secondary-900" : "border-border bg-white text-slate-700 hover:bg-background"}`} onClick={onToggleMark} aria-pressed={Boolean(marked)}><Icon name="flag" /> {marked ? 'Marked for review' : 'Mark for review'}</button>
       </div>
-      <h3 className="mb-6 text-lg font-bold leading-7 tracking-tight text-slate-900 sm:mb-7 sm:text-xl sm:leading-8 lg:text-2xl">{question.question_text}</h3>
+      <h3 className="mb-6 text-xl font-bold leading-8 tracking-tight text-slate-900 sm:mb-7 sm:text-2xl sm:leading-9">{question.question_text}</h3>
 
       {type === 'essay' && (
         <div className="space-y-4">
           {question.question_data?.instructions && (
-            <p className="rounded-xl border border-primary-100 bg-primary-50 p-4 text-sm leading-6 text-primary-900 sm:p-5">{question.question_data.instructions}</p>
+            <p className="rounded-xl border border-primary-100 bg-primary-50 p-4 text-sm leading-6 text-primary-950 sm:p-5">{question.question_data.instructions}</p>
           )}
           <div className="flex flex-wrap gap-2">
             <span className="inline-flex items-center gap-1.5 rounded-lg bg-slate-100 px-3 py-2 text-xs font-semibold text-slate-700"><Icon name="clipboard-check" /> {Number(question.question_data?.max_marks) || 10} marks</span>
@@ -57,7 +57,7 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
             rows={9}
             maxLength={20000}
             placeholder="Write your answer clearly, explaining the key points..."
-           className="block min-h-48 w-full min-w-0 resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-500 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
+           className="block min-h-52 w-full min-w-0 resize-y rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-base leading-7 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-500 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
           <div className="flex flex-col gap-3 border-t border-slate-100 pt-3 sm:flex-row sm:items-center sm:justify-between">
             <span className="text-sm text-slate-500"><strong className="text-slate-700">{wordCount}</strong> words</span>
             {!answer && (
@@ -105,7 +105,7 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
       {['short_answer', 'fill_blank', 'numerical'].includes(type) && (
         <div className="grid max-w-2xl gap-3">
           <label className="block text-sm font-semibold leading-5 text-slate-700" htmlFor={`quiz-answer-${question.id}`}>{type === 'numerical' ? 'Enter your numerical answer' : 'Enter your answer'}</label>
-          <input id={`quiz-answer-${question.id}`} type={type === 'numerical' ? 'number' : 'text'} inputMode={type === 'numerical' ? 'decimal' : 'text'} value={draft} disabled={disabled || Boolean(answer)} onChange={(event) => setDraft(event.target.value)} placeholder={type === 'numerical' ? 'Your answer' : 'Type your answer here'}  className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-500 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
+          <input id={`quiz-answer-${question.id}`} type={type === 'numerical' ? 'number' : 'text'} inputMode={type === 'numerical' ? 'decimal' : 'text'} value={draft} disabled={disabled || Boolean(answer)} onChange={(event) => setDraft(event.target.value)} placeholder={type === 'numerical' ? 'Your answer' : 'Type your answer here'}  className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-base leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-500 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
           {!answer && <Button variant="primary" onClick={submit} disabled={disabled || !String(draft).trim()}>Check answer</Button>}
         </div>
       )}
@@ -113,7 +113,7 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
       {type === 'dropdown' && (
         <div className="grid max-w-2xl gap-3">
           <label className="block text-sm font-semibold leading-5 text-slate-700" htmlFor={`quiz-answer-${question.id}`}>Choose the best answer</label>
-          <select id={`quiz-answer-${question.id}`} value={draft} disabled={disabled || Boolean(answer)} onChange={(event) => setDraft(event.target.value)} className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-primary-500 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
+          <select id={`quiz-answer-${question.id}`} value={draft} disabled={disabled || Boolean(answer)} onChange={(event) => setDraft(event.target.value)} className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-base text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-primary-500 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
             <option value="">Select an answer</option>
             {optionRows.map((option) => <option key={option.id} value={option.id}>{option.label}</option>)}
           </select>
