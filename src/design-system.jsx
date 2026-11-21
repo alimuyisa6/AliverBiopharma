@@ -12,7 +12,12 @@ import {
   Lock, Unlock, ShieldCheck, FileText, Play, Pause, RefreshCw, Send,
   MessageCircle, Bookmark, BookmarkCheck, ChartNoAxesCombined, Trophy,
   Target, Zap, Stethoscope, Pill, Microscope, Atom, Brain, Lightbulb,
-  Sun, Moon, LogOut, Copy, Share2, CheckCircle2, XCircle, AlertTriangle
+  Sun, Moon, LogOut, Copy, Share2, CheckCircle2, XCircle, AlertTriangle,
+  ArrowLeft, Circle, CircleCheck, Route, Rocket, Flame, Medal, ClipboardCheck, ListChecks,
+  Grid2X2, Users, TriangleAlert, UserPen, MessageSquare, ChartLine, ChartPie, MailCheck,
+  Bitcoin, Smartphone, CalendarClock, Layers, Expand, RotateCcw, IdCard, Pencil,
+  KeyRound, Fingerprint, Laptop, SlidersHorizontal, Gift, CreditCard, Award, Terminal,
+  Webhook, Filter, Flag
 } from 'lucide-react';
 import { FaEnvelope, FaLocationDot, FaLinkedinIn, FaXTwitter, FaInstagram, FaGlobe, FaFacebook, FaYoutube, FaWhatsapp } from 'react-icons/fa6';
 
@@ -33,13 +38,46 @@ export const ICONS = Object.freeze({
   share: Share2, success: CheckCircle2, failure: XCircle, warning: AlertTriangle,
   emailBrand: FaEnvelope, locationPin: FaLocationDot, linkedinBrand: FaLinkedinIn,
   xBrand: FaXTwitter, instagramBrand: FaInstagram, websiteBrand: FaGlobe,
-  facebookBrand: FaFacebook, youtubeBrand: FaYoutube, whatsappBrand: FaWhatsapp
+  facebookBrand: FaFacebook, youtubeBrand: FaYoutube, whatsappBrand: FaWhatsapp,
+  arrowLeft: ArrowLeft, circle: Circle, route: Route, rocket: Rocket, flame: Flame,
+  medal: Medal, clipboardCheck: ClipboardCheck, listChecks: ListChecks, grid: Grid2X2,
+  users: Users, userPen: UserPen, message: MessageSquare, chartLine: ChartLine,
+  chartPie: ChartPie, mailCheck: MailCheck, bitcoin: Bitcoin, smartphone: Smartphone,
+  calendarClock: CalendarClock, layers: Layers, expand: Expand, rotate: RotateCcw,
+  idCard: IdCard, pencil: Pencil, key: KeyRound, fingerprint: Fingerprint, laptop: Laptop,
+  sliders: SlidersHorizontal, gift: Gift, creditCard: CreditCard, award: Award,
+  terminal: Terminal, webhook: Webhook, filter: Filter, flag: Flag, clipboard: ClipboardCheck
+});
+
+export const ICON_ALIASES = Object.freeze({
+  'arrow-left': 'arrowLeft', 'arrow-right': 'arrowRight', 'arrow-up-right': 'arrowUpRight',
+  'user-graduate': 'graduation', 'triangle-exclamation': 'warning', 'route': 'route',
+  'circle-check': 'success', 'rocket': 'rocket', 'trophy': 'trophy', 'fire': 'flame',
+  'medal': 'medal', 'microscope': 'microscope', 'bullseye': 'target', 'audience': 'users',
+  'review': 'message', 'bitcoin': 'bitcoin', 'mobile-money': 'smartphone',
+  'circle-info': 'info', 'heart': 'heart', 'clipboard-check': 'clipboardCheck',
+  'book-open': 'book', 'list-check': 'listChecks', 'star': 'star', 'grid': 'grid',
+  'list': 'list', 'exclamation-triangle': 'warning', 'user-pen': 'userPen', 'user': 'user',
+  'users': 'users', 'clock': 'clock', 'file-lines': 'document', 'chevron-right': 'chevronRight',
+  'circle-xmark': 'failure', 'comment': 'chat', 'book-open-reader': 'book',
+  'chart-line': 'chartLine', 'envelope-circle': 'mailCheck', 'alert-circle': 'alert',
+  'facebook': 'facebookBrand', 'x-twitter': 'xBrand', 'linkedin': 'linkedinBrand',
+  'whatsapp': 'whatsappBrand', 'xmark': 'close', 'chart-pie': 'chartPie',
+  'calendar-clock': 'calendarClock', 'layer-group': 'layers', 'expand': 'expand',
+  'paper-plane': 'send', 'rotate': 'rotate', 'home': 'home', 'profile-sections': 'sliders',
+  'id-card': 'idCard', 'pen': 'pencil', 'bell': 'bell', 'key': 'key',
+  'fingerprint': 'fingerprint', 'laptop': 'laptop', 'sliders': 'sliders', 'gift': 'gift',
+  'user-group': 'users', 'credit-card': 'creditCard', 'award': 'award', 'terminal': 'terminal',
+  'webhook': 'webhook', 'shield': 'security', 'magnifying-glass': 'search', 'filter': 'filter',
+  'bookmark': 'bookmark', 'trash': 'delete', 'check': 'check', 'chevron-left': 'chevronLeft',
+  'capsules': 'pharmacy', 'lock': 'lock', 'plus': 'add', 'calendar': 'calendar',
+  'circle': 'circle', 'flag': 'flag'
 });
 
 export const ICON_SIZE = Object.freeze({ xs: 14, sm: 16, md: 20, lg: 24, xl: 32 });
 
 export function Icon({ name, size = 'md', className = '', strokeWidth = 2, ...props }) {
-  const Component = ICONS[name] || CircleHelp;
+  const Component = ICONS[ICON_ALIASES[name] || name] || CircleHelp;
   const resolvedSize = typeof size === 'number' ? size : (ICON_SIZE[size] || ICON_SIZE.md);
   return <Component size={resolvedSize} strokeWidth={strokeWidth} className={className} aria-hidden={props['aria-label'] ? undefined : true} {...props} />;
 }
