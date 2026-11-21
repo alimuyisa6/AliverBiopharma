@@ -115,7 +115,7 @@ export default function NotificationCenter() {
                   }}
                 >
                   <div className="flex items-start gap-3">
-                    <span className="mt-1 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-700"><BellIcon className="h-5 w-5" /></span>
+                    <span className="mt-1 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-700" style={{ color: notification.color || undefined }}><BellIcon className="h-5 w-5" /></span>
                     <div className="min-w-0 flex-1">
                       <div className="text-sm font-bold leading-5 text-slate-900">{notification.title}</div>
                       <div className="mt-1 break-words text-sm leading-5 text-slate-600">{notificationBody(notification.body)}</div>
