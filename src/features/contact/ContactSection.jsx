@@ -104,7 +104,11 @@ export function ContactSection({
               <p className={`rounded-xl px-4 py-3 text-sm font-medium ${contactStatus.success ? 'bg-emerald-50 text-emerald-800' : 'bg-red-50 text-red-800'}`} role="status" aria-live="polite">
                 {contactStatus.message}
               </p>
-            )}
+            )
+
+            <p className="mt-2 rounded-xl border border-primary-200 bg-primary-50 px-4 py-3 text-center font-serif text-base italic leading-7 text-primary-900">
+              Note: You can only send two messages per day.
+            </p>}
           </form>
         </div>
 
