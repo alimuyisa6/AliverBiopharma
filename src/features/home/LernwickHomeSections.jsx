@@ -240,7 +240,7 @@ function ProgrammeStudio({ studio, activeGroupName, activeGroupId }) {
             <h2 id="programme-studio-title">{studio.title}</h2>
             <p>{studio.description}</p>
           </div>
-          <div className="flex min-h-72 items-center justify-center overflow-hidden rounded-[2rem] border border-secondary-200 bg-white p-6 shadow-sm" aria-label={studio.visualLabel}>
+          <div className="flex min-h-72 items-center justify-center" aria-label={studio.visualLabel}>
             <StorysetIllustration name={studio.visual === 'pharmacy' ? 'medicalResearch' : 'studying'} alt={studio.visualLabel} className="w-full max-w-[300px] object-contain" />
           </div>
         </div>
