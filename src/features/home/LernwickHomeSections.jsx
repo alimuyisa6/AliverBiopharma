@@ -61,12 +61,19 @@ function PublicPathways() {
   return (
     <section className="w-full bg-[#E8F4F2] py-16 sm:py-20" id="pathways" aria-labelledby="lernwick-pathways-title">
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
-        <div className="mb-9 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+        <div className="mb-9 grid grid-cols-1 items-center gap-5 md:grid-cols-[minmax(0,1fr)_260px]">
           <div>
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-secondary-700">One platform. Distinct learning journeys.</p>
             <h2 id="lernwick-pathways-title">Choose the science you want to explore</h2>
             <p>Each programme has its own subject focus and learning experience.</p>
           </div>
+          <img
+            src="/Svg%20illustrations/Online%20learning-rafiki%20(3).svg"
+            alt="Student taking part in online learning"
+            loading="lazy"
+            decoding="async"
+            className="mx-auto w-full max-w-[240px] md:max-w-[260px]"
+          />
         </div>
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
           {pathways.map((pathway) => (
