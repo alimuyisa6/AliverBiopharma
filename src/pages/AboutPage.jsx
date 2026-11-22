@@ -128,7 +128,7 @@ export default function AboutPage() {
         </section>
       )}
 
-      <section className="w-full px-5 py-14 sm:py-20" style={{ backgroundColor: '#F3F6F9' }}>
+      <section className="about-content-surface w-full px-5 py-14 sm:py-20" style={{ backgroundColor: '#F3F6F9' }}>
         <div className="mx-auto w-full max-w-5xl space-y-10">
           {!page?.hero && (
             <h1 className="mb-10 text-4xl font-extrabold text-primary-900 sm:text-5xl">{page?.title || 'About AliverBiopharm'}</h1>
