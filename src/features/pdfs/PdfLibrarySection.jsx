@@ -8,7 +8,7 @@ export function PdfLibrarySection({ pdfs, onPreview, onDownload }) {
       <section id="pdf-library" className="section-wrapper pdf-library-wrapper">
         <div className="pdf-library-inner">
           <div className="pdf-library-heading">
-            <span className="sec-label pdf-sec-label">PDF Resources</span>
+            
             <h2 className="pdf-section-title pdf-gradient-title">Your study materials library</h2>
             <p className="section-subtitle pdf-subtitle">
               Curated PDF resources for your level. Preview any document before downloading.
@@ -36,7 +36,7 @@ export function PdfLibrarySection({ pdfs, onPreview, onDownload }) {
     <section id="pdf-library" className="section-wrapper pdf-library-wrapper">
       <div className="pdf-library-inner">
         <div className="pdf-library-heading">
-          <span className="sec-label pdf-sec-label">PDF Resources</span>
+          
           <h2 className="pdf-section-title pdf-gradient-title">Your study materials library</h2>
           <p className="section-subtitle pdf-subtitle">
             Curated PDF resources for your level. Preview any document before downloading.
