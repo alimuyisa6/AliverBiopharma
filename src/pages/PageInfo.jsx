@@ -238,10 +238,7 @@ export default function InfoPage() {
             Back to Home
           </Link>
           <header className="info-header">
-            <span className="sec-label">
-              <i className={`fa-solid ${section.icon || 'fa-file-lines'}`} aria-hidden="true" />
-              {' '}{getCategoryLabel(section.category || 'general')}
-            </span>
+            
             <h1 className="section-title info-page-title">{escapeHtml(section.title)}</h1>
             {section.description && (
               <p className="section-subtitle info-page-subtitle">{escapeHtml(section.description)}</p>

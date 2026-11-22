@@ -95,7 +95,7 @@ export default function Classroom() {
   return (
     <div className="classroom-page">
       <div className="section classroom-list-section">
-        <span className="sec-label">{t('common.liveLearning')}</span>
+        
         <h1 className="section-title classroom-page-title">
           Classrooms<br />{levelName ? `– ${levelName}` : ''}
         </h1>
