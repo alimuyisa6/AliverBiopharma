@@ -5,6 +5,7 @@ import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import Button from '../../components/Button/Button';
 import { useLayout } from '../../contexts/LayoutContext';
 import DynamicActions from '../../components/DynamicActions';
+import StorysetIllustration from '../../components/StorysetIllustration';
 
 const CONTENT_TYPES = [
   { key: 'notes', label: 'Notes', description: 'Learn with clear explanations, diagrams, and concise summaries.', icon: 'book-open', route: '/notes', category: 'learn' },
@@ -68,7 +69,7 @@ export default function ResourcesView({ navigate, user }) {
         <DynamicActions pageId="resources" className="mb-6" />
         <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Resources' }]} />
 
-        <header className="mt-8 flex flex-col gap-6 rounded-2xl border border-white/70 px-5 py-6 pb-8 sm:flex-row sm:items-end sm:justify-between sm:px-8" style={{ backgroundColor: '#EAF2FA' }}>
+        <header className="mt-8 grid grid-cols-1 items-center gap-6 rounded-2xl border border-white/70 px-5 py-6 pb-8 sm:grid-cols-[minmax(0,1fr)_auto_180px] sm:px-8" style={{ backgroundColor: '#EAF2FA' }}>
           <div className="max-w-3xl">
             <span className="inline-flex items-center rounded-full border border-primary-200 bg-primary-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-primary-800">
               Resources <span className="mx-2 text-primary-400">·</span> {levelName}{activeGroup?.name ? ` · ${activeGroup.name}` : ''}
@@ -79,6 +80,7 @@ export default function ResourcesView({ navigate, user }) {
           <div className="inline-flex w-fit items-center rounded-xl border border-border bg-white px-4 py-3 text-sm font-semibold text-primary-800 shadow-sm">
             <span className="mr-2 text-xl font-bold">{filteredTypes.length}</span> resources shown
           </div>
+          <StorysetIllustration name="studying" alt="Learner reviewing study materials" className="hidden w-full max-w-[180px] sm:block" />
         </header>
 
         {user && activeGroupId && (
