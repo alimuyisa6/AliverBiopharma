@@ -621,3 +621,8 @@ h2 + p,
 h3 + p {
   margin-top: 2rem !important;
 }
+
+
+/* Ensure eyebrow labels are hidden site-wide while the cleanup is completed. */
+[class*="eyebrow"] { display: none !important; }
+:is(h1, h2, h3) + :is(p, .section-description, [class*="description"]) { margin-top: 2rem !important; }
