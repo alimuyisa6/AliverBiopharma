@@ -355,33 +355,23 @@ export function useAuth() {
 export function ProtectedRoute({ children }) {
   const { user, loading } = useAuth();
 
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (loading) return;
-
-    if (!user) {
-      navigate('/login', {
-        replace: true,
-        state: {
-          from: location
-        }
-      });
-    }
-  }, [
-    user,
-    loading,
-    location,
-    navigate
-  ]);
-
   if (loading) {
     return <PageSkeleton variant="compact" />;
   }
 
   if (!user) {
-    return null;
+    return (
+      <div className="w-full">
+        <aside className="mx-auto my-4 flex max-w-7xl flex-wrap items-center justify-between gap-3 rounded-2xl border border-primary-200 bg-primary-50 px-4 py-3 text-sm text-primary-900" role="note">
+          <p className="m-0">Preview mode: explore this page. Sign in or create an account to access personalized content and protected actions.</p>
+          <div className="flex shrink-0 gap-2">
+            <a href="/login" className="rounded-xl border border-primary-300 bg-white px-4 py-2 font-semibold text-primary-800 no-underline hover:bg-primary-100">Sign in</a>
+            <a href="/register" className="rounded-xl bg-primary-700 px-4 py-2 font-semibold text-white no-underline hover:bg-primary-800">Create account</a>
+          </div>
+        </aside>
+        {children}
+      </div>
+    );
   }
 
   return children;

@@ -46,13 +46,11 @@ export function LayoutProvider({ children }) {
   const activeGroupId = user?.profile?.active_group_id || null;
 
   const [bootstrap, setBootstrap] = useState(() => {
-    if (!effectiveLevel) return null;
-    return getCachedStale(`bootstrap_${effectiveLevel}`);
+    return getCachedStale(`bootstrap_${effectiveLevel || 'undefined'}`);
   });
 
   const [loading, setLoading] = useState(() => {
-    if (!effectiveLevel) return false;
-    return !getCachedStale(`bootstrap_${effectiveLevel}`);
+    return !getCachedStale(`bootstrap_${effectiveLevel || 'undefined'}`);
   });
 
   const [switching, setSwitching] = useState(false);
@@ -86,15 +84,8 @@ export function LayoutProvider({ children }) {
   }, [theme, accessibility]);
 
   useEffect(() => {
-    if (!effectiveLevel) {
-      setBootstrap(null);
-      setLoading(false);
-      return;
-    }
-
     let cancelled = false;
-
-    const cachedBootstrap = getCachedStale(`bootstrap_${effectiveLevel}`);
+    const cachedBootstrap = getCachedStale(`bootstrap_${effectiveLevel || 'undefined'}`);
     const cachedSections = getCachedStale('site_sections');
 
     if (cachedBootstrap) {
@@ -106,7 +97,8 @@ export function LayoutProvider({ children }) {
 
     if (cachedSections) setSections(cachedSections);
 
-    bootstrapPlatform(effectiveLevel)
+    // Without a selected level, the server resolves a public default level for preview.
+    bootstrapPlatform(effectiveLevel || undefined)
       .then((result) => {
         if (cancelled) return;
         setBootstrap(result);
@@ -263,7 +255,12 @@ export function LayoutProvider({ children }) {
       logo: bootstrap.universal?.logo_url || null,
       siteName: 'AliverBiopharm',
       navigation: mergedNavigation,
-      footer: bootstrap.footer || { quick_links: [], resource_links: [], community_links: [], social_links: {} },
+      footer: bootstrap.footer || {
+        quick_links: [{ label: 'Home', path: '/' }, { label: 'About', path: '/about' }, { label: 'Contact', path: '/contact' }, { label: 'FAQ', path: '/faq' }, { label: 'Donate', path: '/donate' }],
+        resource_links: [{ label: 'Resources', path: '/resources' }, { label: 'Blog', path: '/blog' }, { label: 'Notes', path: '/notes' }, { label: 'Past Papers', path: '/past-papers' }, { label: 'PDF Library', path: '/pdfs' }, { label: 'Glossary', path: '/glossary' }],
+        community_links: [{ label: 'Community', path: '/community' }, { label: 'Tutors', path: '/tutors' }, { label: 'Classroom', path: '/classroom' }],
+        social_links: {}
+      },
       groups: bootstrap.groups || [],
       switchGroups: bootstrap.switch_groups || bootstrap.groups || [],
       level: bootstrap.level,
