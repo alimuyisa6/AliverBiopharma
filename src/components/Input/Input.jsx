@@ -24,7 +24,7 @@ const Input = forwardRef(function Input(
       <div className="relative flex min-w-0 items-center">
         {safeIcon && (
           <span className="pointer-events-none absolute left-3 inline-flex h-5 w-5 items-center justify-center text-slate-500">
-            <Icon name={safeIcon} className="h-5 w-5" />
+            <Icon name={safeIcon} size={20} strokeWidth={2} className="h-5 w-5" />
           </span>
         )}
         <input
