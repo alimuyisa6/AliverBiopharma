@@ -4,6 +4,7 @@ import { useLayout } from '../contexts/LayoutContext';
 import { getSections } from '../api/sections';
 import { submitContact } from '../api/cachedClient';
 import { ContactSection } from '../features/contact/ContactSection';
+import StorysetIllustration from '../components/StorysetIllustration';
 
 export default function ContactPage() {
   const { level } = useLayout();
@@ -37,10 +38,11 @@ export default function ContactPage() {
     <main className="contact-page w-full" style={{ backgroundColor: '#EAF2FA' }}>
       <section className="ab-page-hero ab-contact-hero relative isolate overflow-hidden px-5 py-16 sm:py-24">
         <div className="ab-page-hero-overlay absolute inset-0" aria-hidden="true" />
-        <div className="relative z-10 mx-auto max-w-5xl">
+        <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 items-center gap-8 md:grid-cols-[minmax(0,1fr)_240px]">
           <span className="ab-page-hero-eyebrow">We're here to help</span>
           <h1 className="max-w-3xl text-4xl font-extrabold text-white sm:text-5xl lg:text-6xl">Contact AliverBiopharm</h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-white/85">Need help with your account, study materials, or a website feature? Send our team a message.</p>
+          <StorysetIllustration name="chat" alt="Learner communicating with support" className="mx-auto w-full max-w-[240px] object-contain" />
         </div>
       </section>
       <div className="px-5 py-12 sm:py-16" style={{ backgroundColor: '#F1EDFA' }}>
