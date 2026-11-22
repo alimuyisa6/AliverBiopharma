@@ -22,7 +22,6 @@ export default function FaqPage() {
         .faq-page-shell .faq-hero { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(180px, 260px); align-items: center; gap: clamp(1.5rem, 4vw, 3.5rem); overflow: hidden; padding: clamp(1.5rem, 5vw, 3.5rem); border: 1px solid rgba(255,255,255,.22); border-radius: 28px; background: linear-gradient(125deg, rgba(10,32,58,.92), rgba(10,91,111,.78)), url("https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=1800&q=80") center/cover; color: #fff; box-shadow: 0 20px 50px rgba(18,50,88,.14); }
         .faq-page-shell .faq-hero:after { content: ''; position: absolute; width: 330px; height: 330px; right: -100px; top: -150px; border: 35px solid rgba(255,255,255,.08); border-radius: 50%; pointer-events: none; }
         .faq-page-shell .faq-hero-content { position: relative; z-index: 1; max-width: 740px; }
-        .faq-page-shell .faq-eyebrow, .faq-page-shell .faq-section-eyebrow { display: inline-flex; align-items: center; gap: .5rem; margin-bottom: .85rem; color: inherit; font-size: .75rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; opacity: .86; }
         .faq-page-shell .faq-hero-title { margin: 0; color: #fff; font-size: clamp(2.1rem, 5vw, 3.75rem); font-weight: 900; line-height: 1.08; letter-spacing: -.035em; text-wrap: balance; }
         .faq-page-shell .faq-hero-description { max-width: 58ch; margin: 1rem 0 1.5rem; color: rgba(255,255,255,.88); font-size: clamp(1rem, 1.5vw, 1.15rem); line-height: 1.7; }
         .faq-page-shell .faq-search { display: flex; align-items: center; gap: .75rem; max-width: 620px; padding: .45rem .65rem .45rem 1rem; border: 1px solid rgba(255,255,255,.28); border-radius: 16px; background: #fff; color: #1c2b40; box-shadow: 0 8px 24px rgba(4,20,48,.16); }
@@ -35,7 +34,6 @@ export default function FaqPage() {
         .faq-page-shell .faq-illustration-browse-topic { display: none !important; }
         .faq-page-shell .faq-section { margin-top: clamp(2rem, 5vw, 3.5rem); padding: clamp(1.25rem, 3vw, 2rem); border: 1px solid #e1e8f0; border-radius: 24px; background: #fff; box-shadow: 0 8px 26px rgba(18,50,88,.045); }
         .faq-page-shell .faq-section-heading { display: flex; align-items: end; justify-content: space-between; gap: 1rem; margin-bottom: 1.5rem; }
-        .faq-page-shell .faq-section-eyebrow { color: var(--primary, #173b72); margin-bottom: .45rem; }
         .faq-page-shell .faq-section-heading h2, .faq-page-shell .faq-questions-intro h2 { margin: 0; color: #14233a; font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 850; line-height: 1.2; letter-spacing: -.025em; }
         .faq-page-shell .faq-result-count { display: inline-flex; padding: .45rem .8rem; border-radius: 999px; background: #edf5fb; color: #234c76; font-size: .82rem; font-weight: 750; white-space: nowrap; }
         .faq-page-shell .faq-category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: .85rem; }

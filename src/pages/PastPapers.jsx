@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useSearchParams, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
+import StorysetIllustration from '../components/StorysetIllustration';
 import { useLevelFilter } from '../hooks/useLevelFilter';
 import {
   getPastPapers,
@@ -584,14 +585,12 @@ export default function PastPapers() {
       <div className="w-full bg-primary-50 px-4 py-10 sm:px-6 lg:py-14">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-4xl rounded-3xl border border-primary-100 bg-white p-6 shadow-sm sm:p-10">
-            <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-secondary-800">
-              <span className="h-1 w-7 rounded-full bg-secondary-600" />
-              Exam Preparation
-            </span>
-
-            <h1 className="mt-4 text-4xl font-extrabold leading-tight tracking-tight text-primary-950 sm:text-5xl">
+            <div className="flex items-center justify-between gap-6">
+              <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-primary-950 sm:text-5xl">
               {levelName ? `${levelName} past papers` : 'Past papers'}
-            </h1>
+              </h1>
+              <StorysetIllustration name="onlineTest" alt="Learner preparing for an exam" className="hidden w-40 shrink-0 object-contain sm:block" />
+            </div>
 
             {classLabel && (
               <p className="mt-2 text-lg font-semibold text-secondary-800">

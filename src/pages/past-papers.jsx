@@ -495,10 +495,7 @@ export default function PastPapers() {
       <div className="past-papers-hero">
         <div className="past-papers-hero-inner">
           <div className="past-papers-hero-content">
-            <span className="past-papers-eyebrow">
-              <span className="past-papers-eyebrow-line" />
-              Exam Preparation
-            </span>
+            
 
             <h1 className="past-papers-title">
               Past Papers

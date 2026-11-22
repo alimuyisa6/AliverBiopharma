@@ -11,6 +11,7 @@ import Icon from '../components/Icon/Icon';
 import Skeleton from '../components/Skeleton/Skeleton';
 import EmptyState from '../components/EmptyState/EmptyState';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
+import StorysetIllustration from '../components/StorysetIllustration';
 import LearningJourney from '../components/LearningJourney/LearningJourney';
 import { getCachedStale, setCache } from '../utils/cache';
 import { normalizeCurriculumResponse, buildCurriculumPath, formatResourceCount } from '../utils/notesPage';
@@ -172,11 +173,11 @@ export default function NotesPage() {
       <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
         <header className="flex flex-col gap-6 border-b border-border pb-8 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl">
-            <span className="inline-flex rounded-full border border-secondary-200 bg-secondary-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-secondary-800">Study at your pace</span>
-            <h1 className="mt-4 text-4xl font-bold leading-tight tracking-tight text-primary-900 sm:text-5xl">Study notes</h1>
-            <p className="mt-4 max-w-2xl text-base leading-7 text-muted sm:text-lg">Build your understanding step by step. Search your notes, follow your learning path, and revisit ideas that need more practice.</p>
+            <h1 className="text-4xl font-bold leading-tight tracking-tight text-primary-900 sm:text-5xl">Study notes</h1>
+            <p className="mt-8 max-w-2xl text-base leading-7 text-muted sm:text-lg">Build your understanding step by step. Search your notes, follow your learning path, and revisit ideas that need more practice.</p>
           </div>
-          <div className="lg:pb-1">
+          <div className="flex items-center gap-5 lg:pb-1">
+            <StorysetIllustration name="studying" alt="Learner studying with organised notes" className="hidden w-32 shrink-0 object-contain sm:block" />
             <Breadcrumb items={breadcrumbItems} />
           </div>
         </header>

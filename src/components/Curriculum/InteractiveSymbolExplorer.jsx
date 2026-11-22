@@ -29,7 +29,7 @@ export default function InteractiveSymbolExplorer({ config }) {
   return (
     <div className="grid min-w-0 gap-5 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
       <div className="min-w-0">
-        {config?.eyebrow && <span className="mb-2 inline-flex rounded-full bg-secondary-50 px-3 py-1 text-xs font-bold uppercase tracking-wider text-secondary-800">{config.eyebrow}</span>}
+        
         {config?.description && <p className="text-sm leading-6 text-slate-600">{config.description}</p>}
       </div>
       {imageUrl && (
@@ -71,7 +71,7 @@ export default function InteractiveSymbolExplorer({ config }) {
         </div>
         {active && (
           <article className="min-w-0 rounded-xl border border-primary-100 bg-primary-50/70 p-4 sm:p-5" aria-live="polite">
-            <span className="text-xs font-bold uppercase tracking-wider text-primary-700">Selected structure</span>
+            
             <h4 className="mt-2 text-lg font-bold leading-7 text-primary-950">{active.label}</h4>
             <p className="mt-2 text-sm leading-6 text-slate-700">{active.description || 'A detailed explanation for this structure will be provided in the lesson content.'}</p>
             {active.image_url && safeMediaUrl(active.image_url) && <img className="mt-4 max-h-64 w-full rounded-xl border border-slate-200 bg-white object-contain" src={safeMediaUrl(active.image_url)} alt={active.image_alt || active.label} loading="lazy" />}

@@ -23,7 +23,7 @@ export default function TutorProfile() {
           <article className="card tutor-profile-card">
             <header className="tutor-profile-header">
               <div className="tutor-profile-avatar">{tutor.avatar_url ? <img src={tutor.avatar_url} alt="" /> : <Icon name="user-graduate" />}</div>
-              <div><p className="eyebrow">Tutor profile</p><h1>{tutor.display_name}</h1>{tutor.headline && <p>{tutor.headline}</p>}</div>
+              <div><h1>{tutor.display_name}</h1>{tutor.headline && <p>{tutor.headline}</p>}</div>
             </header>
             {tutor.bio && <section><h2>About</h2><p>{tutor.bio}</p></section>}
             <section className="tutor-profile-details">

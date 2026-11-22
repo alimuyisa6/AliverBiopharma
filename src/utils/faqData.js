@@ -16,7 +16,6 @@ export function normalizeFaqData(data) {
 
   return {
     hero: data?.hero || {
-      eyebrow: 'HELP CENTRE',
       title: 'What can we help you with?',
       description: 'Find answers about learning, your account, courses, and using AliverBiopharm.',
       search_placeholder: 'Search questions and answers…',

@@ -13,7 +13,7 @@ export function CommunitySection({
     <>
       {weeklyChallenge?.question && (
         <section className="community-challenge-section section reveal rounded-2xl px-5 py-8 sm:px-8" style={{ backgroundColor: '#F1EDFA' }}>
-          <span className="sec-label">Challenge</span>
+          
           <h2 className="section-title">
             Weekly<br />Challenge
           </h2>
@@ -63,7 +63,7 @@ export function CommunitySection({
 
       {activity.length > 0 && (
         <section className="community-activity-section section reveal rounded-2xl px-5 py-8 sm:px-8" style={{ backgroundColor: '#EAF2FA' }} >
-          <span className="sec-label">Community</span>
+          
           <h2 className="section-title">
             Recent<br />Activity
           </h2>

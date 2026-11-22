@@ -68,9 +68,9 @@ function LibraryImpact({ stats }) {
   return (
     <section className="grid gap-7 rounded-3xl bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 p-6 text-white shadow-xl shadow-primary-900/10 sm:p-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:p-10" aria-labelledby="stats-library-title">
       <div>
-        <span className="text-xs font-extrabold uppercase tracking-[0.16em] text-secondary-300">Learning resources</span>
+        
         <h3 id="stats-library-title" className="mt-3 text-2xl font-bold text-white sm:text-3xl">Knowledge that keeps growing.</h3>
-        <p className="mt-4 max-w-xl text-sm leading-7 text-blue-100">Explore a connected library of learning materials designed to support every stage of your programme.</p>
+        <p className="mt-8 max-w-xl text-sm leading-7 text-blue-100">Explore a connected library of learning materials designed to support every stage of your programme.</p>
         <div className="mt-7">
           <strong className="block text-4xl font-extrabold tracking-tight text-white sm:text-5xl"><AnimatedNumber value={stats.resources_count} /></strong>
           <span className="mt-1 block text-sm font-semibold text-blue-100">learning resources</span>
@@ -91,10 +91,10 @@ function LearningActivity({ stats }) {
     <section className="rounded-3xl border border-primary-100 bg-primary-50 p-6 sm:p-8" aria-labelledby="stats-activity-title">
       <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <span className="text-xs font-extrabold uppercase tracking-[0.16em] text-secondary-700">Learning in action</span>
+          
           <h3 id="stats-activity-title" className="mt-2 text-2xl font-bold text-primary-900 sm:text-3xl">Practice. Test. Improve.</h3>
         </div>
-        <p className="max-w-xl text-sm leading-7 text-slate-600">See how learners are engaging with practice and assessment.</p>
+        <p className="mt-8 max-w-xl text-sm leading-7 text-slate-600">See how learners are engaging with practice and assessment.</p>
       </div>
       <div className="grid gap-4 lg:grid-cols-2">
         <div className="rounded-2xl border border-primary-100 bg-white p-5">
@@ -161,9 +161,9 @@ export function StatsGrid({ stats = {}, scopeLabel = 'All learning levels' }) {
     <section className="w-full bg-[#F3F6F9] px-5 py-16 sm:px-8 sm:py-20 lg:px-12" aria-labelledby="platform-impact-title">
       <div className="mx-auto max-w-7xl">
         <header className="mb-9">
-          <span className="text-xs font-extrabold uppercase tracking-[0.16em] text-secondary-700">Platform statistics</span>
+          
           <h2 id="platform-impact-title" className="mt-3 text-3xl font-bold text-primary-900 sm:text-4xl">Our impact in numbers</h2>
-          <p className="mt-3 text-sm leading-7 text-slate-600">A snapshot of learning activity across {scopeLabel}.</p>
+          <p className="mt-8 text-sm leading-7 text-slate-600">A snapshot of learning activity across {scopeLabel}.</p>
         </header>
         <div className="grid gap-5">
           <LibraryImpact stats={stats} />

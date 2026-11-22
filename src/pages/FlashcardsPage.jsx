@@ -1,5 +1,6 @@
  /* pages/FlashcardsPage.jsx */
 import AdSlot from '../components/Advertising/AdSlot';
+import StorysetIllustration from '../components/StorysetIllustration';
 import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
@@ -245,10 +246,11 @@ export default function FlashcardsPage() {
           ...(curriculumUnitId ? [{ label: 'Selected learning area' }] : [])
         ]} />
         <section className="section flashcard-subject-section mt-8 w-full rounded-2xl border border-white/70 p-5 shadow-sm sm:p-7" style={{ backgroundColor: '#E8F4F2' }}>
-          <span className="sec-label">FLASHCARD PRACTICE</span>
-          <h1 className="section-title flashcard-title">
-            {levelName || 'Flashcards'}
-          </h1>
+          
+          <div className="flex items-center justify-between gap-5">
+            <h1 className="section-title flashcard-title">{levelName || 'Flashcards'}</h1>
+            <StorysetIllustration name="studying" alt="Learner reviewing flashcards" className="hidden w-28 shrink-0 object-contain sm:block md:w-36" />
+          </div>
 
           {classLabel && <p className="flashcard-class">{classLabel}</p>}
 

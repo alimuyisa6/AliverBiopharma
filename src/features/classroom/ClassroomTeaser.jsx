@@ -6,10 +6,9 @@ export default function ClassroomTeaser() {
   const navigate = useNavigate();
   return (
     <SectionTeaser
-      eyebrow="Live Learning"
       title="Find a live room"
       intro="Step into live sessions with verified tutors — ask, discuss, and learn in real time."
-      illustrationType="live-room"
+      illustrationType="collaboration"
       ctaLabel="Find a live room"
       onCtaClick={() => navigate('/classroom')}
       imageSide="left"

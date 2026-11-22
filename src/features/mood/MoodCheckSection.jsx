@@ -20,7 +20,7 @@ export function MoodCheckSection({
 }) {
   return (
     <section className="mood-check-section section reveal rounded-2xl px-5 py-8 sm:px-8" style={{ backgroundColor: '#E8F4F2' }}>
-      <span className="sec-label">Mood Check</span>
+      
       <h2 className="section-title">
         How Are You<br />Feeling Today?
       </h2>

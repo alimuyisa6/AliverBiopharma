@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import StickyNotePolaroidFrame from '../../components/StickyNotePolaroidFrame/StickyNotePolaroidFrame';
 
 const screens = [
-  { label: 'Pathway', eyebrow: '01 · YOUR PATHWAY', title: 'Start with your learning pathway', text: 'Choose O-Level, A-Level or Pharmacy to find materials for your studies.' },
-  { label: 'Curriculum', eyebrow: '02 · YOUR CURRICULUM', title: 'Make sense of each topic', text: 'Start with the key idea, see how it works, then try a question.' },
-  { label: 'Visual lesson', eyebrow: '03 · VISUAL LEARNING', title: 'See osmosis in action', text: 'Watch how water moves across a partially permeable membrane.' },
-  { label: 'Quick quiz', eyebrow: '04 · CHECK YOUR UNDERSTANDING', title: 'Check what you understand', text: 'A plant cell is placed in distilled water. What happens next?' },
-  { label: 'Next steps', eyebrow: '05 · KEEP THE KNOWLEDGE', title: 'Keep what you learn', text: 'Study the idea, test yourself, and return to anything you missed.' }
+  { label: 'Pathway', title: 'Start with your learning pathway', text: 'Choose O-Level, A-Level or Pharmacy to find materials for your studies.' },
+  { label: 'Curriculum', title: 'Make sense of each topic', text: 'Start with the key idea, see how it works, then try a question.' },
+  { label: 'Visual lesson', title: 'See osmosis in action', text: 'Watch how water moves across a partially permeable membrane.' },
+  { label: 'Quick quiz', title: 'Check what you understand', text: 'A plant cell is placed in distilled water. What happens next?' },
+  { label: 'Next steps', title: 'Keep what you learn', text: 'Study the idea, test yourself, and return to anything you missed.' }
 ];
 const pathways = [
   { id: 'O-Level', detail: 'Build Biology foundations topic by topic', icon: '◉' },
@@ -49,13 +49,13 @@ export default function EducationalShowcase() {
   const current = screens[screen];
 
   return <section className="section educational-showcase" aria-labelledby="edu-showcase-title">
-    <header className="edu-showcase-heading"><span className="eyebrow">LEARN · TRY · REMEMBER</span><h2 id="edu-showcase-title">Learn it. Try it. Remember it.</h2><p className="section-description">Choose a pathway, explore a lesson, and try a question.</p></header>
+    <header className="edu-showcase-heading"><h2 id="edu-showcase-title">Learn it. Try it. Remember it.</h2><p className="section-description">Choose a pathway, explore a lesson, and try a question.</p></header>
     <div className="edu-showcase-shell">
       <nav className="edu-showcase-steps" aria-label="Learning tour">
         {screens.map((item, index) => <button key={item.label} type="button" aria-current={screen === index ? 'step' : undefined} className={'edu-showcase-step ' + (screen === index ? 'is-current' : '')} onClick={() => change(index)}><span className="edu-showcase-step-number">{'0' + (index + 1)}</span><span>{item.label}</span></button>)}
       </nav>
       <div className="edu-showcase-content">
-        <div className="edu-showcase-copy"><span className="eyebrow">{current.eyebrow}</span><h3>{current.title}</h3><p>{current.text}</p>
+        <div className="edu-showcase-copy"><h3>{current.title}</h3><p>{current.text}</p>
           {screen === 0 && <div className="edu-pathway-options">{pathways.map((item) => <button key={item.id} type="button" aria-pressed={pathway === item.id} className={'edu-pathway-option ' + (pathway === item.id ? 'is-selected' : '')} onClick={() => setPathway(item.id)}><span className="edu-pathway-icon">{item.icon}</span><span><strong>{item.id}</strong><small>{item.detail}</small></span><span className="edu-pathway-radio" /></button>)}</div>}
           {screen === 1 && <><div className="edu-curriculum-preview">{[['01','Understand','Get the key idea clear.'],['02','Apply','Use it to answer a question.'],['03','Remember','Recall it without looking.']].map((row) => <div className="edu-curriculum-line" key={row[0]}><span>{row[0]}</span><div><strong>{row[1]}</strong><small>{row[2]}</small></div></div>)}</div><div className="edu-knowledge-spotlight"><span className="edu-knowledge-label">{pathway} · KNOWLEDGE SPOTLIGHT</span>{pathwayKnowledge[pathway].map(([title, detail]) => <article className="edu-knowledge-item" key={title}><strong>{title}</strong><p>{detail}</p></article>)}</div></>}
           {screen === 3 && <div className="edu-quiz-options">{answers.map((item) => <button key={item.id} type="button" aria-pressed={answer === item.id} className={'edu-quiz-option ' + (answer === item.id ? (item.id === 'turgid' ? 'is-correct' : 'is-incorrect') : '')} onClick={() => setAnswer(item.id)}>{item.label}</button>)}{answer && <p className={'edu-quiz-feedback ' + (answer === 'turgid' ? 'is-correct' : '')} role="status">{answer === 'turgid' ? 'Correct. Water enters by osmosis, increasing turgor pressure and helping support the plant.' : 'Not quite. Distilled water has a higher water potential than the cell sap, so water enters the cell by osmosis.'}</p>}</div>}

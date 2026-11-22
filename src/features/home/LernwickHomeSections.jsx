@@ -10,9 +10,7 @@ const pathways = [
 
 const studios = {
   olevel: {
-    kind: 'biology-foundations',
-    eyebrow: 'O-Level Biology studio',
-    title: 'See Biology. Understand how life works.',
+    kind: 'biology-foundations',title: 'See Biology. Understand how life works.',
     description: 'Build a clear foundation in living systems, from cell structure to human physiology, with learning activities matched to your level.',
     visual: 'cell',
     visualLabel: 'Explore living systems',
@@ -23,9 +21,7 @@ const studios = {
     ]
   },
   alevel: {
-    kind: 'advanced-biology',
-    eyebrow: 'A-Level Biology studio',
-    title: 'Connect biological concepts. Think critically.',
+    kind: 'advanced-biology',title: 'Connect biological concepts. Think critically.',
     description: 'Explore complex biological processes, strengthen scientific reasoning and practise applying knowledge to examination questions.',
     visual: 'molecule',
     visualLabel: 'Explore biological mechanisms',
@@ -36,9 +32,7 @@ const studios = {
     ]
   },
   pharmacy: {
-    kind: 'pharmacy-science',
-    eyebrow: 'Pharmacy learning studio',
-    title: 'Understand medicines. Apply pharmaceutical science.',
+    kind: 'pharmacy-science',title: 'Understand medicines. Apply pharmaceutical science.',
     description: 'Study the science behind medicines through course-unit learning, terminology and structured knowledge practice.',
     visual: 'pharmacy',
     visualLabel: 'Explore pharmaceutical science',
@@ -64,9 +58,9 @@ function PublicPathways() {
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
         <div className="mb-9 grid grid-cols-1 items-center gap-5 md:grid-cols-[minmax(0,1fr)_260px]">
           <div>
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-secondary-700">One platform. Distinct learning journeys.</p>
+            
             <h2 id="lernwick-pathways-title">Choose the science you want to explore</h2>
-            <p>Each programme has its own subject focus and learning experience.</p>
+            <p className="mt-8">Each programme has its own subject focus and learning experience.</p>
           </div>
           <StorysetIllustration name="onlineLearning" alt="Student taking part in online learning" className="mx-auto w-full max-w-[240px] md:max-w-[260px]" />
         </div>
@@ -122,12 +116,9 @@ function HowLearningWorks({ studio }) {
   return (
     <section className="w-full bg-[#526B8A] py-16 sm:py-20" id="how" aria-labelledby="lernwick-how-title">
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
-        <div className="mx-auto mb-10 max-w-3xl text-center">
-          <div>
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-white">A clear learning process</p>
-            <h2 id="lernwick-how-title" className="text-white"><span className="organic-letter organic-letter--accent">L</span>earn, practise and progress</h2>
-            <p className="">Your learning journey moves from understanding concepts to applying and strengthening them.</p>
-          </div>
+        <div className="mx-auto mb-10 flex max-w-5xl flex-col items-center gap-6 text-center sm:flex-row sm:text-left">
+          <div className="min-w-0 flex-1"><h2 id="lernwick-how-title" className="text-white"><span className="organic-letter organic-letter--accent">L</span>earn, practise and progress</h2><p className="mt-8">Your learning journey moves from understanding concepts to applying and strengthening them.</p></div>
+          <StorysetIllustration name="studying" alt="Learner practising and reviewing concepts" className="hidden w-40 shrink-0 object-contain sm:block" />
         </div>
         <ol className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {steps.map(([number, title, description]) => (
@@ -199,9 +190,9 @@ export function ConnectedLearning() {
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
         <div className="mb-9 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-secondary-700">One connected learning experience</p>
+            
             <h2 id="lernwick-connected-title">Move from understanding to confident application</h2>
-            <p>Each stage builds on the previous one. Choose a tool when you need it, then return to your learning pathway.</p>
+            <p className="mt-8">Each stage builds on the previous one. Choose a tool when you need it, then return to your learning pathway.</p>
           </div>
           <Link className="inline-flex items-center justify-center gap-2 rounded-xl border border-primary-300 bg-white px-5 py-3 text-sm font-bold text-primary-800 transition hover:bg-primary-50" to="/resources">Explore all resources <Icon name="arrow-right" /></Link>
         </div>
@@ -236,11 +227,11 @@ function ProgrammeStudio({ studio, activeGroupName, activeGroupId }) {
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1fr_0.8fr]">
           <div className="max-w-2xl">
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-secondary-700">{studio.eyebrow}{activeGroupName ? ` · ${activeGroupName}` : ''}</p>
+            
             <h2 id="programme-studio-title">{studio.title}</h2>
-            <p>{studio.description}</p>
+            <p className="mt-8">{studio.description}</p>
           </div>
-          <div className="flex min-h-72 items-center justify-center overflow-hidden rounded-[2rem] border border-secondary-200 bg-white p-6 shadow-sm" aria-label={studio.visualLabel}>
+          <div className="flex min-h-72 items-center justify-center" aria-label={studio.visualLabel}>
             <StorysetIllustration name={studio.visual === 'pharmacy' ? 'medicalResearch' : 'studying'} alt={studio.visualLabel} className="w-full max-w-[300px] object-contain" />
           </div>
         </div>
@@ -253,7 +244,7 @@ function ProgrammeStudio({ studio, activeGroupName, activeGroupId }) {
             return (
               <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm" key={card.title}>
                 <span className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-primary-100 text-primary-700"><Icon name={card.icon} size="2rem" monochrome /></span>
-                <span className="mb-2 block text-xs font-bold uppercase tracking-wider text-secondary-700">{card.label}</span>
+                
                 <h3>{card.title}</h3>
                 <p>{card.description}</p>
                 <Link className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-primary-700 transition hover:text-secondary-700" to={destination}>{card.action}<Icon name="arrow-right" /></Link>

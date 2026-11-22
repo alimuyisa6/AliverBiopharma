@@ -40,11 +40,11 @@ export default function ContactPage() {
         <div className="ab-page-hero-overlay absolute inset-0" aria-hidden="true" />
         <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 items-center gap-8 md:grid-cols-[minmax(0,1fr)_240px]">
           <div>
-            <span className="ab-page-hero-eyebrow">We're here to help</span>
+            
             <h1 className="max-w-3xl text-4xl font-extrabold text-white sm:text-5xl lg:text-6xl">Contact AliverBiopharm</h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-white/85">Need help with your account, study materials, or a website feature? Send our team a message.</p>
           </div>
-          <StorysetIllustration name="chat" alt="Learner communicating with support" className="mx-auto w-full max-w-[240px] object-contain" />
+          <StorysetIllustration name="goodTeam" alt="Support team ready to help learners" className="mx-auto w-full max-w-[240px] object-contain" />
         </div>
       </section>
       <div className="px-5 py-12 sm:py-16" style={{ backgroundColor: '#F1EDFA' }}>

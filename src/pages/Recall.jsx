@@ -5,6 +5,7 @@ import { useRequireOnboarding } from '../hooks/useRequireOnboarding';
 import { useLevelFilter } from '../hooks/useLevelFilter';
 import { useContentAccess } from '../hooks/useContentAccess';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
+import StorysetIllustration from '../components/StorysetIllustration';
 import { useSecurityUiLock } from '../hooks/useSecurityUiLock';
 import { useToast } from '../components/Toast/Toast';
 import {
@@ -747,13 +748,12 @@ export default function BioRecall() {
         <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Recall practice' }]} />
 
         <header className="recall-page-header mb-8 flex flex-col gap-4 border-b border-border pb-8">
-          <span className="sec-label font-mono">
-            BioRecall
-          </span>
+          
 
-          <h1 className="section-title recall-page-title font-fraunces">
-            {levelName || 'Strengthen your learning with active recall'}
-          </h1>
+          <div className="flex items-center justify-between gap-5">
+            <h1 className="section-title recall-page-title font-fraunces">{levelName || 'Strengthen your learning with active recall'}</h1>
+            <StorysetIllustration name="personalGoals" alt="Learner building a consistent study habit" className="hidden w-32 shrink-0 object-contain sm:block" />
+          </div>
 
           <p className="recall-page-intro">
             Use spaced repetition to review key ideas, answer questions, and track your progress.

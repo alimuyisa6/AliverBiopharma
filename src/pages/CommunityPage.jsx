@@ -5,6 +5,7 @@ import { useLayout } from '../contexts/LayoutContext';
 import { getCommunityActivity, getWeeklyChallengeStatus, submitMood, submitWeeklyChallenge } from '../api/cachedClient';
 import { MoodCheckSection } from '../features/mood/MoodCheckSection';
 import { CommunitySection } from '../features/community/CommunitySection';
+import StorysetIllustration from '../components/StorysetIllustration';
 
 export default function CommunityPage() {
   const { user } = useAuth();
@@ -74,6 +75,15 @@ export default function CommunityPage() {
 
   return (
     <div className="home-page">
+      <section className="w-full px-5 py-10 sm:px-8 sm:py-14" style={{ backgroundColor: '#EAF2FA' }} aria-labelledby="community-page-heading">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-8">
+          <div className="min-w-0">
+            <h1 id="community-page-heading" className="text-3xl font-bold leading-tight text-primary-900 sm:text-4xl">Learning community</h1>
+            <p className="mt-4 max-w-2xl text-base leading-7 text-slate-700">Share learning moments, take on weekly challenges, and connect with fellow learners.</p>
+          </div>
+          <StorysetIllustration name="teamWork" alt="Learners collaborating as a community" className="hidden w-44 shrink-0 object-contain sm:block lg:w-56" />
+        </div>
+      </section>
       <MoodCheckSection
         moodSelected={moodSelected}
         moodMessage={moodMessage}

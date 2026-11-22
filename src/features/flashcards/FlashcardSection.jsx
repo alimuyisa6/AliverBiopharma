@@ -11,7 +11,7 @@ export function FlashcardSection({ headingTitle, headingSubtitle, onStartStudy, 
 
   return (
     <section id="flashcards" className="section reveal">
-      <span className="sec-label">Study Tools</span>
+      
       <h2 className="section-title">
         {headingTitle || 'Transform the way you retain complex scientific concepts through active recall'}
       </h2>

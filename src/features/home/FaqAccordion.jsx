@@ -1,6 +1,7 @@
 /* features/home/FaqAccordion.jsx */
 import { useEffect, useMemo, useState } from 'react';
 import { slugify, normalizeFaqData, getIllustration } from '../../utils/faqData';
+import StorysetIllustration from '../../components/StorysetIllustration';
 
 const ACCENTS = ['blue', 'mint'];
 
@@ -96,7 +97,7 @@ export function FaqAccordion({ items, data, standalone = false }) {
       <section id="faq" className="section reveal home-faq-section">
         <div className="section-head">
           <div className="section-head-left">
-            <span className="eyebrow">Quick answers</span>
+            
             <h2>Frequently asked questions</h2>
           </div>
         </div>
@@ -128,7 +129,7 @@ export function FaqAccordion({ items, data, standalone = false }) {
     <div className="faq-explorer">
       <section className="faq-hero">
         <div className="faq-hero-content">
-          <span className="faq-eyebrow">{faq.hero.eyebrow}</span>
+          
           <h1 className="faq-hero-title">{faq.hero.title}</h1>
           <p className="faq-hero-description">{faq.hero.description}</p>
           <label className="faq-search">
@@ -147,7 +148,7 @@ export function FaqAccordion({ items, data, standalone = false }) {
 
       <section className="faq-section faq-category-section">
         <div className="faq-section-heading">
-          <div><span className="faq-section-eyebrow">Browse by topic</span><h2>Find the right answer faster</h2></div>
+          <div><h2>Find the right answer faster</h2></div>
           <span className="faq-result-count">{filteredItems.length} {filteredItems.length === 1 ? 'answer' : 'answers'}</span>
         </div>
         <div className="faq-category-grid">
@@ -166,7 +167,7 @@ export function FaqAccordion({ items, data, standalone = false }) {
 
       {featuredItems.length > 0 && !search && activeCategory === 'all' && (
         <section className="faq-section faq-featured-section">
-          <div className="faq-section-heading"><div><span className="faq-section-eyebrow">Popular questions</span><h2>Start with these</h2></div></div>
+          <div className="faq-section-heading"><div><h2>Start with these</h2></div></div>
           <div className="faq-featured-grid">
             {featuredItems.map(item => (
               <button type="button" key={item.id || item.question} className="faq-featured-item" onClick={() => { const index = faq.questions.indexOf(item); setActiveCategory('all'); setActiveIndex(index); document.getElementById(`faq-question-${item.id || slugify(item.question)}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' }); }}>
@@ -181,7 +182,7 @@ export function FaqAccordion({ items, data, standalone = false }) {
       <section className="faq-section faq-questions-section">
         <div className="faq-questions-layout">
           <div className="faq-questions-intro">
-            <span className="faq-section-eyebrow">Questions & answers</span>
+            
             <h2>{search ? 'Search results' : activeCategory === 'all' ? 'Everything you need to know' : categories.find(category => category.id === activeCategory)?.label || 'Questions'}</h2>
             <p>{search ? `Showing answers that match “${search}”.` : 'Open a question to read the answer without leaving the page.'}</p>
           </div>
@@ -211,7 +212,7 @@ export function FaqAccordion({ items, data, standalone = false }) {
 
       {faq.resources.length > 0 && (
         <section className="faq-section faq-resources-section">
-          <div className="faq-section-heading"><div><span className="faq-section-eyebrow">Keep learning</span><h2>Go straight to the right resource</h2></div></div>
+          <div className="faq-section-heading"><div><h2>Go straight to the right resource</h2></div></div>
           <div className="faq-resource-grid">
             {faq.resources.map(resource => <a className="faq-resource" href={resource.href || '#'} key={`${resource.title}-${resource.href}`}><span className="faq-resource-icon"><FaqSvgIcon name={resource.icon || "arrow-right"} size={22} /></span><span><strong>{resource.title}</strong><small>{resource.description}</small></span><FaqSvgIcon name="arrow-up-right-from-square" className="faq-resource-arrow" size={17} /></a>)}
           </div>
@@ -219,7 +220,7 @@ export function FaqAccordion({ items, data, standalone = false }) {
       )}
 
       <section className="faq-support-section">
-        <div className="faq-support-content"><span className="faq-section-eyebrow">Need a person?</span><h2>{faq.support.title}</h2><p>{faq.support.description}</p><a className="faq-support-button" href={faq.support.href || '/contact'}>{faq.support.button || 'Contact Support'} <FaqSvgIcon name="arrow-right" size={18} /></a></div>
+        <div className="faq-support-content"><h2>{faq.support.title}</h2><p>{faq.support.description}</p><a className="faq-support-button" href={faq.support.href || '/contact'}>{faq.support.button || 'Contact Support'} <FaqSvgIcon name="arrow-right" size={18} /></a></div>
         <div className="faq-illustration faq-illustration-support"><img style={FAQ_ILLUSTRATION_STYLE} src={faqSupportIllustration.imageUrl} alt={faqSupportIllustration.alt || 'Friendly tutor providing learning support'} /></div>
       </section>
     </div>

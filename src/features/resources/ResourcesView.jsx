@@ -80,7 +80,7 @@ export default function ResourcesView({ navigate, user }) {
           <div className="inline-flex w-fit items-center rounded-xl border border-border bg-white px-4 py-3 text-sm font-semibold text-primary-800 shadow-sm">
             <span className="mr-2 text-xl font-bold">{filteredTypes.length}</span> resources shown
           </div>
-          <StorysetIllustration name="studying" alt="Learner reviewing study materials" className="hidden w-full max-w-[180px] sm:block" />
+          <StorysetIllustration name="library" alt="Library of learning resources" className="hidden w-full max-w-[180px] sm:block" />
         </header>
 
         {user && activeGroupId && (

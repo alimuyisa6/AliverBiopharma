@@ -75,7 +75,7 @@ export function ClassroomSection({ user }) {
       } : undefined}
     >
       <div className={feed.length > 0 ? 'section-overlay' : ''}>
-        <span className="sec-label">Live Learning</span>
+        
         <h2 className="section-title">
           Where Questions<br />Meet Real Answers
         </h2>

@@ -21,7 +21,7 @@ export function NotesSection({
       <section id="notes-section" className="section-wrapper notes-wrapper">
         <div className="notes-inner">
           <div className="notes-heading">
-            <span className="sec-label notes-sec-label">Study Notes</span>
+            
             <h2 className="pdf-section-title notes-gradient-title">Structured Notes for Serious Students</h2>
             <p className="section-subtitle notes-subtitle">
               Organised by topic. Everything you need for focused, efficient revision.
@@ -45,7 +45,7 @@ export function NotesSection({
     <section id="notes-section" className="section-wrapper notes-wrapper">
       <div className="notes-inner">
         <div className="notes-heading">
-          <span className="sec-label notes-sec-label">Study Notes</span>
+          
           <h2 className="pdf-section-title notes-gradient-title">Structured Notes for Serious Students</h2>
           <p className="section-subtitle notes-subtitle">
             Organised by topic. Everything you need for focused, efficient revision.

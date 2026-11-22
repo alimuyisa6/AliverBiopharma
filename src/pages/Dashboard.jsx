@@ -1180,7 +1180,7 @@ export default function Dashboard() {
                   </h3>
                 </div>
                 <div className={panelBody}>
-                  <div className="flex items-center gap-4"><p className={`${sectionIntro} flex-1`}>Here are some of the learning milestones you've reached so far.</p><StorysetIllustration name="personalGoals" alt="Learner setting personal study goals" className="hidden w-28 shrink-0 object-contain sm:block" /></div>
+                  <div className="flex items-center gap-4"><p className={`${sectionIntro} flex-1`}>Here are some of the learning milestones you've reached so far.</p><StorysetIllustration name="teamGoals" alt="Learner reaching study milestones" className="hidden w-28 shrink-0 object-contain sm:block" /></div>
                   <DashboardSectionAside>Use your best result as encouragement, then set a small goal for your next session.</DashboardSectionAside>
                   <div className={listGrid} id="personal-records-stats">
                     <div className={listItem}>

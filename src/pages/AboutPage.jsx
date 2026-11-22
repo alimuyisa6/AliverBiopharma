@@ -3,6 +3,7 @@ import { getInfoSection } from '../api/client';
 import { getCachedStale } from '../utils/cache';
 import { Link } from 'react-router-dom';
 import { Icon, getIconNameFromClass } from '../design-system.jsx';
+import StorysetIllustration from '../components/StorysetIllustration';
 
 function RichText({ text }) {
   const TOKEN_RE = /([a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,})|((https?:\/\/)[^\s<>"']+)/g;
@@ -121,7 +122,7 @@ export default function AboutPage() {
           <div className="ab-page-hero-overlay absolute inset-0 -z-0 bg-gradient-to-r from-slate-950/95 via-primary-900/85 to-primary-900/55" aria-hidden="true" />
           <div className="absolute inset-0 -z-0 bg-gradient-to-t from-slate-950/35 via-transparent to-primary-900/20" aria-hidden="true" />
           <div className="relative z-10 mx-auto w-full max-w-5xl px-5 py-20 sm:py-28">
-            <span className="mb-5 inline-flex rounded-full border border-white/25 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-orange-100 shadow-sm backdrop-blur-sm">About AliverBiopharm</span>
+            
             <h1 className="max-w-3xl text-4xl font-extrabold leading-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)] sm:text-5xl lg:text-6xl">{page.hero.heading || page.title}</h1>
             {page.hero.subtext && <p className="mt-5 max-w-2xl text-lg font-medium leading-8 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.65)] sm:text-xl">{page.hero.subtext}</p>}
           </div>
@@ -199,7 +200,7 @@ export default function AboutPage() {
 
           {page?.team?.length > 0 && (
             <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-              <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.team_heading || 'Meet our team'}</h2>
+              <div className="mb-5 flex items-center justify-between gap-5"><h2 className="text-2xl font-bold text-primary-900 sm:text-3xl">{page.team_heading || 'Meet our team'}</h2><StorysetIllustration name="team" alt="Our team working together" className="hidden w-32 shrink-0 object-contain sm:block" /></div>
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {page.team.map((member, idx) => (
                   <TeamCard key={idx} member={member} />
