@@ -7,6 +7,7 @@ import { sendContactRequest } from '../../api/client';
 import SplitCard from '../../components/SplitCard/SplitCard';
 import EmptyState from '../../components/EmptyState/EmptyState';
 import Spinner from '../../components/Spinner/Spinner';
+import StorysetIllustration from '../../components/StorysetIllustration';
 import { useToast } from '../../components/Toast/Toast';
 
 export default function TutorMarketplaceSection() {
@@ -73,12 +74,10 @@ export default function TutorMarketplaceSection() {
     >
       <div className={tutors.length > 0 ? 'section-overlay' : ''}>
         
-        <h2 className="section-title">
-          Learn From Someone<br />Who Gets It
-        </h2>
-        <p className="section-subtitle">
-          Browse verified specialists in biology and pharmacy, matched to how you learn best.
-        </p>
+        <div className="mb-8 flex items-center justify-between gap-6">
+          <div><h2 className="section-title">Learn From Someone<br />Who Gets It</h2><p className="section-subtitle mt-8">Browse verified specialists in biology and pharmacy, matched to how you learn best.</p></div>
+          <StorysetIllustration name="teaching" alt="Tutor guiding a learner" className="hidden w-36 shrink-0 object-contain sm:block" />
+        </div>
 
         {tutors.length > 0 ? (
           <>

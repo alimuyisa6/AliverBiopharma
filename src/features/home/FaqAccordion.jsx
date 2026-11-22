@@ -1,6 +1,7 @@
 /* features/home/FaqAccordion.jsx */
 import { useEffect, useMemo, useState } from 'react';
 import { slugify, normalizeFaqData, getIllustration } from '../../utils/faqData';
+import StorysetIllustration from '../../components/StorysetIllustration';
 
 const ACCENTS = ['blue', 'mint'];
 

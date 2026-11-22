@@ -1,5 +1,6 @@
  /* features/home/TeamScroll.jsx */
 import { useRef, useEffect, useCallback } from 'react';
+import StorysetIllustration from '../../components/StorysetIllustration';
 
 const AUTO_SCROLL_SPEED = 0.6;
 const RESUME_DELAY_MS = 2500;
@@ -61,11 +62,9 @@ export function TeamScroll({ members }) {
 
   return (
     <section className="section team-section">
-      <div className="section-head">
-        <div className="section-head-left">
-          
-          <h2>Meet the minds behind the platform</h2>
-        </div>
+      <div className="section-head flex items-center justify-between gap-5">
+        <div className="section-head-left"><h2>Meet the minds behind the platform</h2></div>
+        <StorysetIllustration name="teaching" alt="Educators sharing knowledge" className="hidden w-32 shrink-0 object-contain sm:block" />
       </div>
       <div className="team-scroll-wrap">
         <button type="button" className="team-scroll-nav prev" onClick={() => scrollByStep(-1)} aria-label="Scroll faculty left">
