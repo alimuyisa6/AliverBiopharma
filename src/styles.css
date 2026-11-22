@@ -571,3 +571,45 @@ header nav { min-width: 0; }
 @media (min-width: 640px) {
   .card { margin: .8rem .55rem; padding: 1.6rem; }
 }
+
+
+/* Contrast refinement for the healthcare pastel palette */
+@layer components {
+  .about-content-surface :is(p, li) { color: #334155; }
+  .about-content-surface h2, .about-content-surface h3 { color: #15304b; }
+  .about-content-surface .team-card-role, .about-content-surface .team-card-bio,
+  .about-content-surface .contributor-card span { color: #475569; }
+
+  .legal-content { color: #334155; }
+  .legal-content .legal-section-heading { color: #15304b; font-weight: 800; }
+  .legal-content .legal-section-heading-alt { color: #526B8A; }
+  .legal-content p { color: #334155; line-height: 1.75; }
+  .legal-content a { color: #194775; text-decoration-thickness: 1.5px; }
+
+  .advertise-page .advertise-start-section h2,
+  .advertise-page .advertise-start-section p { color: #334155; }
+  .advertise-page .advertise-start-section h2 { color: #15304b; }
+  .advertise-page .advertise-review-card h3 { color: #15304b; }
+  .advertise-page .advertise-review-card p { color: #334155; }
+  .advertise-page .advertise-review-card strong { color: #15304b; }
+
+  .contact-page :is(label, p, li) { color: #334155; }
+  .contact-page :is(input, textarea, select) { color: #1e293b; background-color: #fff; }
+  .contact-page ::placeholder { color: #64748b !important; opacity: 1; }
+
+  .mood-check-section .section-title,
+  .community-challenge-section .section-title,
+  .community-activity-section .section-title { color: #15304b; }
+  .mood-check-section .section-subtitle,
+  .community-challenge-section .section-subtitle,
+  .community-activity-section .section-subtitle { color: #334155; }
+  .mood-check-section .sec-label,
+  .community-challenge-section .sec-label,
+  .community-activity-section .sec-label { color: #526B8A; }
+
+  .resources-view h1, .resources-view h2, .resources-view h3 { color: #15304b; }
+  .resources-view p { color: #334155; }
+  .pdf-library-page :is(h1, h2, h3) { color: #15304b; }
+  .pdf-library-page p { color: #334155; }
+  .flashcard-page :is(h1, h2, h3) { color: #15304b; }
+}
