@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import Container from '../components/Container/Container';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 import Icon from '../components/Icon/Icon';
+import StorysetIllustration from '../components/StorysetIllustration';
 import { getRequest } from '../api/client';
 import { useToast } from '../components/Toast/Toast';
 
@@ -36,10 +37,9 @@ export default function ClinicalSimulationsPage() {
   return (
     <Container className="clinical-simulation-page">
       <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Resources', href: '/resources' }, { label: 'Clinical simulations', href: caseId ? '/clinical-simulations' : null }, ...(caseId && activeCase ? [{ label: activeCase.title, href: null }] : [])]} />
-      <header className="qbank-header">
-        
-        <h1>{caseId ? activeCase?.title || 'Clinical case' : 'Clinical simulations'}</h1>
-        <p>Practise clinical reasoning through structured patient encounters, investigation findings and reviewed case feedback.</p>
+      <header className="qbank-header flex items-center justify-between gap-6">
+        <div className="min-w-0"><h1>{caseId ? activeCase?.title || 'Clinical case' : 'Clinical simulations'}</h1><p className="mt-6">Practise clinical reasoning through structured patient encounters, investigation findings and reviewed case feedback.</p></div>
+        {!caseId && <StorysetIllustration name="medicalResearch" alt="Clinical research and healthcare learning" className="hidden w-40 shrink-0 object-contain sm:block" />}
       </header>
       {loading ? <div className="qbank-empty">Loading reviewed clinical cases…</div> : restricted ? (
         <div className="qbank-empty"><Icon name="lock" /><h2>Pharmacy learning access</h2><p>Clinical simulations are currently available within the Pharmacy learning pathway.</p></div>
