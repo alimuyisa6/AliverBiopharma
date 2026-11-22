@@ -21,7 +21,7 @@ export default function StorysetIllustration({ name, alt = '', className = '', l
     <img
       src={`/Svg%20illustrations/${encodeURIComponent(filename)}`}
       alt={alt}
-      className={`rounded-sm border border-slate-200 ${className}`.trim()}
+      className={className}
       loading={loading}
       decoding="async"
       {...(alt ? {} : { 'aria-hidden': true })}
