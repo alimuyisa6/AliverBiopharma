@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import Icon from '../../components/Icon/Icon';
+import StorysetIllustration from '../../components/StorysetIllustration';
 
 function formatPrice(plan) {
   const amount = Number(plan.price_amount);
@@ -44,10 +45,12 @@ export function PricingCards({ plans = [], user = null }) {
   return (
     <section className="w-full bg-secondary-50 px-5 py-16 sm:px-8 sm:py-20 lg:px-12" id="membership" aria-labelledby="pricing-title">
       <div className="mx-auto max-w-7xl">
-        <header className="mb-9 max-w-3xl">
-          
-          <h2 id="pricing-title" className="text-3xl font-bold text-primary-900 sm:text-4xl">Choose your premium access</h2>
-          <p className="mt-4 text-base leading-7 text-slate-600">Unlock premium learning materials across your programme. Pay securely in USDT on the TRON network.</p>
+        <header className="mb-9 flex max-w-5xl items-center gap-6">
+          <div className="min-w-0 flex-1">
+            <h2 id="pricing-title" className="text-3xl font-bold text-primary-900 sm:text-4xl">Choose your premium access</h2>
+            <p className="mt-4 text-base leading-7 text-slate-600">Unlock premium learning materials across your programme. Pay securely in USDT on the TRON network.</p>
+          </div>
+          <StorysetIllustration name="achievement" alt="Learner celebrating educational progress" className="hidden w-36 shrink-0 object-contain sm:block md:w-44" />
         </header>
         {availablePlans.length ? (
           <div className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-2 xl:grid-cols-3">
