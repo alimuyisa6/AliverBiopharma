@@ -46,13 +46,11 @@ export function LayoutProvider({ children }) {
   const activeGroupId = user?.profile?.active_group_id || null;
 
   const [bootstrap, setBootstrap] = useState(() => {
-    if (!effectiveLevel) return null;
-    return getCachedStale(`bootstrap_${effectiveLevel}`);
+    return getCachedStale(`bootstrap_${effectiveLevel || 'undefined'}`);
   });
 
   const [loading, setLoading] = useState(() => {
-    if (!effectiveLevel) return false;
-    return !getCachedStale(`bootstrap_${effectiveLevel}`);
+    return !getCachedStale(`bootstrap_${effectiveLevel || 'undefined'}`);
   });
 
   const [switching, setSwitching] = useState(false);
@@ -86,15 +84,8 @@ export function LayoutProvider({ children }) {
   }, [theme, accessibility]);
 
   useEffect(() => {
-    if (!effectiveLevel) {
-      setBootstrap(null);
-      setLoading(false);
-      return;
-    }
-
     let cancelled = false;
-
-    const cachedBootstrap = getCachedStale(`bootstrap_${effectiveLevel}`);
+    const cachedBootstrap = getCachedStale(`bootstrap_${effectiveLevel || 'undefined'}`);
     const cachedSections = getCachedStale('site_sections');
 
     if (cachedBootstrap) {
@@ -106,7 +97,8 @@ export function LayoutProvider({ children }) {
 
     if (cachedSections) setSections(cachedSections);
 
-    bootstrapPlatform(effectiveLevel)
+    // Without a selected level, the server resolves a public default level for preview.
+    bootstrapPlatform(effectiveLevel || undefined)
       .then((result) => {
         if (cancelled) return;
         setBootstrap(result);
@@ -129,6 +121,7 @@ export function LayoutProvider({ children }) {
     return () => {
       cancelled = true;
     };
+  }
   }, [effectiveLevel]);
 
   const toggleTheme = useCallback(() => {
