@@ -50,7 +50,7 @@ export const ICONS = Object.freeze({
 });
 
 export const ICON_ALIASES = Object.freeze({
-  'arrow-left': 'arrowLeft', 'arrow-right': 'arrowRight', 'arrow-up-right': 'arrowUpRight',
+  'envelope': 'mail', 'email': 'mail', 'email-address': 'mail', 'arrow-left': 'arrowLeft', 'arrow-right': 'arrowRight', 'arrow-up-right': 'arrowUpRight',
   'user-graduate': 'graduation', 'triangle-exclamation': 'warning', 'route': 'route',
   'circle-check': 'success', 'rocket': 'rocket', 'trophy': 'trophy', 'fire': 'flame',
   'medal': 'medal', 'microscope': 'microscope', 'bullseye': 'target', 'audience': 'users',
