@@ -747,9 +747,7 @@ export default function BioRecall() {
         <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Recall practice' }]} />
 
         <header className="recall-page-header mb-8 flex flex-col gap-4 border-b border-border pb-8">
-          <span className="sec-label font-mono">
-            BioRecall
-          </span>
+          
 
           <h1 className="section-title recall-page-title font-fraunces">
             {levelName || 'Strengthen your learning with active recall'}

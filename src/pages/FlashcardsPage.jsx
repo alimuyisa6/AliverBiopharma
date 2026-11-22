@@ -245,7 +245,7 @@ export default function FlashcardsPage() {
           ...(curriculumUnitId ? [{ label: 'Selected learning area' }] : [])
         ]} />
         <section className="section flashcard-subject-section mt-8 w-full rounded-2xl border border-white/70 p-5 shadow-sm sm:p-7" style={{ backgroundColor: '#E8F4F2' }}>
-          <span className="sec-label">FLASHCARD PRACTICE</span>
+          
           <h1 className="section-title flashcard-title">
             {levelName || 'Flashcards'}
           </h1>
