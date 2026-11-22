@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Icon from '../components/Icon/Icon';
+import StorysetIllustration from '../components/StorysetIllustration';
 import Spinner from '../components/Spinner/Spinner';
 import { getPersonalizedDailyChallenge } from '../api/client';
 import { getChallengeMeta, getChallengeProgress, isChallengeCompleted } from '../utils/challengeConfig';
@@ -78,7 +79,7 @@ function ChallengeCard({ challenge, onOpen }) {
 function EmptyState({ onScope }) {
   return (
     <div className="mx-auto flex max-w-xl flex-col items-center rounded-3xl border border-slate-200 bg-white p-6 text-center shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:p-10">
-      <div className="mb-5 flex h-20 w-20 items-center justify-center rounded-2xl bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300"><Icon name="clipboard-check" className="h-10 w-10" /></div>
+      <StorysetIllustration name="onlineTest" alt="Learner preparing for a challenge" className="mb-5 w-full max-w-[220px] object-contain" />
       <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">Daily challenge</span>
       <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Your next challenge isn’t ready yet</h2>
       <p className="mt-3 text-base leading-7 text-slate-600 dark:text-slate-300">We couldn’t prepare a challenge for your selected programme just yet. Check your learning level and topic, then try again.</p>
