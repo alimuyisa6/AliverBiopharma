@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Icon from '../components/Icon/Icon';
+import StorysetIllustration from '../components/StorysetIllustration';
 import Spinner from '../components/Spinner/Spinner';
 import { getDonateConfig, getDonors, submitMomoDonation } from '../api/client';
 import { DEFAULT_DONATION_GOAL, formatDonationAmount, calculateDonationPercentage } from '../utils/donationFormatting';
@@ -125,6 +126,7 @@ export default function Donate() {
         <div className="donate-hero-content">
           
           <h1>{config?.title || 'Help learners study Biology and Pharmacy'}</h1>
+          <StorysetIllustration name="achievement" alt="Learners celebrating educational progress" className="mx-auto my-4 w-full max-w-[180px] object-contain" />
           <p>{config?.subtitle || 'Your contribution helps us improve access to Biology and Pharmacy learning materials.'}</p>
         </div>
       </section>
