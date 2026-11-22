@@ -15,6 +15,7 @@ import PageSkeleton from '../components/Loading/PageSkeleton';
 import Button from '../components/Button/Button';
 import AnimatedActionButton from '../components/AnimatedActionButton/AnimatedActionButton';
 import EmptyState from '../components/EmptyState/EmptyState';
+import StorysetIllustration from '../components/StorysetIllustration';
 
 const STATUS_ICONS = {
   live: 'circle',
@@ -96,9 +97,10 @@ export default function Classroom() {
     <div className="classroom-page">
       <div className="section classroom-list-section">
         
-        <h1 className="section-title classroom-page-title">
-          Classrooms<br />{levelName ? `– ${levelName}` : ''}
-        </h1>
+        <div className="flex items-center justify-between gap-5">
+          <h1 className="section-title classroom-page-title">Classrooms<br />{levelName ? `– ${levelName}` : ''}</h1>
+          <StorysetIllustration name="teaching" alt="Teacher guiding learners in a classroom" className="hidden w-36 shrink-0 object-contain sm:block" />
+        </div>
 
         {classLabel && <p className="classroom-class-label">{classLabel}</p>}
 
