@@ -5,6 +5,7 @@ import { getSections } from '../api/sections';
 import { getArticleBySlug, listArticles } from '../api/cachedClient';
 import Icon from '../components/Icon/Icon';
 import Card from '../components/Card/Card';
+import StorysetIllustration from '../components/StorysetIllustration';
 
 const blogPageCache = new Map();
 
@@ -175,6 +176,7 @@ export default function BlogPage() {
       ) : !featured && posts.length === 0 ? (
         <div className="mx-auto my-16 max-w-3xl px-4 sm:px-6">
           <div className="rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-sm sm:p-12">
+            <StorysetIllustration name="blogging" alt="Writing and publishing an article" className="mx-auto mb-5 w-full max-w-[240px] object-contain" />
             <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-primary-50 text-primary-700"><Icon name="book-open" size="2rem" plain /></span>
             <h2 className="mt-5 text-2xl font-extrabold text-primary-900">No articles yet</h2>
             <p className="mt-2 text-slate-600">New articles and learning insights will appear here when published.</p>
