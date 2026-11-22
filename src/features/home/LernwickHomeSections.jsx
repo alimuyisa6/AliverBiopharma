@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Icon from '../../components/Icon/Icon';
+import StorysetIllustration from '../../components/StorysetIllustration';
 
 const pathways = [
   { id: 'o-level', label: 'O-Level Biology', title: 'Build strong foundations', description: 'Explore the living world through observation, clear scientific explanations and practical understanding.', icon: 'cell' },
@@ -67,13 +68,7 @@ function PublicPathways() {
             <h2 id="lernwick-pathways-title">Choose the science you want to explore</h2>
             <p>Each programme has its own subject focus and learning experience.</p>
           </div>
-          <img
-            src="/Svg%20illustrations/Online%20learning-rafiki%20(3).svg"
-            alt="Student taking part in online learning"
-            loading="lazy"
-            decoding="async"
-            className="mx-auto w-full max-w-[240px] md:max-w-[260px]"
-          />
+          <StorysetIllustration name="onlineLearning" alt="Student taking part in online learning" className="mx-auto w-full max-w-[240px] md:max-w-[260px]" />
         </div>
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
           {pathways.map((pathway) => (
@@ -245,13 +240,8 @@ function ProgrammeStudio({ studio, activeGroupName, activeGroupId }) {
             <h2 id="programme-studio-title">{studio.title}</h2>
             <p>{studio.description}</p>
           </div>
-          <div className="relative flex min-h-72 flex-col items-center justify-center overflow-hidden rounded-[2rem] border border-secondary-200 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 p-8 text-white shadow-xl" aria-label={studio.visualLabel}>
-            <span className="lernwick-studio-orbit lernwick-studio-orbit--one" />
-            <span className="lernwick-studio-orbit lernwick-studio-orbit--two" />
-            <span className="relative z-10 flex h-32 w-32 items-center justify-center rounded-full border border-white/25 bg-white/10 text-secondary-200 shadow-2xl backdrop-blur">
-              <Icon name={studio.visual === 'pharmacy' ? 'pill-bottle' : studio.visual === 'molecule' ? 'dna' : 'cell'} size="4.25rem" monochrome />
-            </span>
-            <span className="relative z-10 mt-6 text-sm font-semibold tracking-wide text-white/85">{studio.visualLabel}</span>
+          <div className="flex min-h-72 items-center justify-center overflow-hidden rounded-[2rem] border border-secondary-200 bg-white p-6 shadow-sm" aria-label={studio.visualLabel}>
+            <StorysetIllustration name={studio.visual === 'pharmacy' ? 'medicalResearch' : 'studying'} alt={studio.visualLabel} className="w-full max-w-[300px] object-contain" />
           </div>
         </div>
         <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3" aria-label="Explore learning resources">
