@@ -122,7 +122,7 @@ export function ContactSection({
                   <summary className="cursor-pointer list-none font-semibold text-slate-800 marker:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 [&::-webkit-details-marker]:hidden">
                     <span className="flex items-center justify-between gap-3">
                       {item.question}
-                      <span className="text-lg text-primary-700 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+                      <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary-700 text-3xl font-medium leading-none text-white shadow-md transition-transform group-open:rotate-45 group-open:bg-primary-800" aria-hidden="true">+</span>
                     </span>
                   </summary>
                   <p className="mt-3 text-sm leading-6 text-slate-600">{item.answer}</p>
