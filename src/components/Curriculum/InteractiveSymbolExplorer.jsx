@@ -71,7 +71,7 @@ export default function InteractiveSymbolExplorer({ config }) {
         </div>
         {active && (
           <article className="min-w-0 rounded-xl border border-primary-100 bg-primary-50/70 p-4 sm:p-5" aria-live="polite">
-            <span className="text-xs font-bold uppercase tracking-wider text-primary-700">Selected structure</span>
+            
             <h4 className="mt-2 text-lg font-bold leading-7 text-primary-950">{active.label}</h4>
             <p className="mt-2 text-sm leading-6 text-slate-700">{active.description || 'A detailed explanation for this structure will be provided in the lesson content.'}</p>
             {active.image_url && safeMediaUrl(active.image_url) && <img className="mt-4 max-h-64 w-full rounded-xl border border-slate-200 bg-white object-contain" src={safeMediaUrl(active.image_url)} alt={active.image_alt || active.label} loading="lazy" />}

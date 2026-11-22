@@ -649,7 +649,7 @@ export default function Quiz() {
             </svg>
           </button>
           <div className="mb-8 border-b border-border pb-6">
-            <span className="text-xs font-bold uppercase tracking-[0.16em] text-secondary-800">{isPharmacy ? 'Course Unit' : 'Topic'}</span>
+            
             <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-primary-950 sm:text-4xl">{currentTopic}</h1>
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
