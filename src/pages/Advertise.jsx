@@ -45,7 +45,7 @@ export default function Advertise() {
   const imageAlt = component?.properties?.image_alt || 'Reach relevant learners through AliverBiopharm advertising';
 
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main className="advertise-page min-h-screen bg-background text-foreground">
       <section className="relative isolate overflow-hidden bg-primary-900 text-white">
         <div className="absolute inset-0 -z-0 bg-[radial-gradient(ellipse_at_top_right,rgba(37,99,166,0.75),transparent_55%)]" aria-hidden="true" />
         <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1.05fr_0.95fr] lg:py-28">
@@ -101,7 +101,7 @@ export default function Advertise() {
         </div>
       </section>
 
-      <section className="px-5 py-16 sm:px-8 sm:py-20" style={{ backgroundColor: '#F8F1E7' }} id="start">
+      <section className="advertise-start-section px-5 py-16 sm:px-8 sm:py-20" style={{ backgroundColor: '#F8F1E7' }} id="start">
         <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1fr_0.8fr]">
           <div className="max-w-2xl">
             <span className="text-xs font-bold uppercase tracking-[0.16em] text-secondary-700">Ready when you are</span>
@@ -109,9 +109,9 @@ export default function Advertise() {
             <p className="mt-4 text-base leading-7 text-slate-600">Select your audience and ad placement, enter your campaign details, then submit it for review.</p>
             <Link to="/advertise/create" className="mt-7 inline-flex min-h-12 items-center justify-center gap-3 rounded-xl bg-secondary-500 px-6 py-3 font-bold text-white shadow-lg transition hover:bg-secondary-600">Create campaign <Icon name="arrow-right" /></Link>
           </div>
-          <div className="flex gap-4 rounded-2xl border border-primary-100 bg-white p-6 shadow-sm">
+          <div className="advertise-review-card flex gap-4 rounded-2xl border border-primary-100 bg-white p-6 shadow-sm">
             <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-primary-50 text-primary-700"><AdStepIcon name="review" size={34} /></span>
-            <div><h3 className="text-lg font-bold text-white">Reviewed before it goes live</h3><p className="mt-2 text-sm leading-7 text-blue-100">We check each campaign for accuracy and relevance before it appears on the site.</p></div>
+            <div><h3 className="text-lg font-bold text-primary-900">Reviewed before it goes live</h3><p className="mt-2 text-sm leading-7 text-slate-700">We check each campaign for accuracy and relevance before it appears on the site.</p></div>
           </div>
         </div>
       </section>
