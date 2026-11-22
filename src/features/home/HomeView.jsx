@@ -26,7 +26,7 @@ function ContinueLearningRail({ items, navigate }) {
     <section className="w-full bg-background px-5 py-12 sm:px-8 lg:px-12">
       <div className="mx-auto mb-7 flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div className="min-w-0">
-          <span className="mb-2 block text-xs font-bold uppercase tracking-[0.15em] text-secondary-700">Pick up where you left off</span>
+          
           <h2>Continue learning</h2>
         </div>
         <Link to="/dashboard" className="text-sm font-bold text-primary-700 hover:text-secondary-700">View all learning activity →</Link>
@@ -138,7 +138,7 @@ function CurriculumSnapshot({ nodes, activeLevelName, activeGroupName, sections 
         <div className="min-w-0">
           
           <h2 id="home-curriculum-heading" className="home-curriculum-heading mt-2">{selectedNode ? selectedNode.name : `Choose a ${firstStepLabel}`}</h2>
-          <p className="section-description home-curriculum-description mt-2">{description}</p>
+          <p className="section-description home-curriculum-description mt-8">{description}</p>
         </div>
       </div>
       <div className="mx-auto max-w-7xl rounded-2xl border border-secondary-100 bg-white p-4 shadow-sm sm:p-6">
@@ -174,7 +174,7 @@ function DailyRecallCard({ recall, onReveal, onStart }) {
   const { question_text, meta, score } = recall;
   const progress = score?.total ? (score.completed / score.total) * 100 : 0;  return (
     <section className="section section-emerald home-daily-recall-section card-glass">
-      <div className="mx-auto mb-7 flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"><div className="min-w-0"><h2>{question_text}</h2><p className="section-description home-daily-recall-description">{meta}</p></div></div>
+      <div className="mx-auto mb-7 flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"><div className="min-w-0"><h2>{question_text}</h2><p className="section-description home-daily-recall-description mt-8">{meta}</p></div></div>
       <div className="card card-lifted card-surface-solid card-elevation-soft card-density-comfortable row home-daily-recall-card">
         <div className="min-w-0 flex-1">{score && <div className="home-daily-recall-progress"><div className="home-daily-recall-score"><span>Today's recall</span><strong>{score.completed} / {score.total}</strong><span>· +{score.xp_earned} XP</span></div><div className="progress-track" aria-label={`${Math.round(progress)}% complete`}><span className="progress-fill emerald" style={{ width: `${progress}%` }} /></div></div>}</div>
         <div className="row-actions home-daily-recall-actions"><ThreeDButton type="button" variant="soft" onClick={onReveal}>Reveal answer</ThreeDButton><ThreeDButton type="button" variant="solid" iconRight="arrow-right" onClick={onStart}>Start recall</ThreeDButton></div>

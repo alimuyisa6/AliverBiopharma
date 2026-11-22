@@ -11,7 +11,7 @@ export function TestimonialSlider({ quotes = [] }) {
     <section className="w-full bg-white px-5 py-16 sm:px-8 sm:py-20 lg:px-12" aria-labelledby="testimonials-heading">
       <div className="mx-auto max-w-7xl">
         <header className="mx-auto mb-10 max-w-3xl text-center">
-          <p className="mb-3 text-xs font-extrabold uppercase tracking-[0.16em] text-secondary-700">Learner feedback</p>
+          
           <h2 id="testimonials-heading" className="text-3xl font-bold text-primary-900 sm:text-4xl">Experiences shared by our learners</h2>
         </header>
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">

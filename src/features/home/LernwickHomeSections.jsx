@@ -58,7 +58,7 @@ function PublicPathways() {
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
         <div className="mb-9 grid grid-cols-1 items-center gap-5 md:grid-cols-[minmax(0,1fr)_260px]">
           <div>
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-secondary-700">One platform. Distinct learning journeys.</p>
+            
             <h2 id="lernwick-pathways-title">Choose the science you want to explore</h2>
             <p>Each programme has its own subject focus and learning experience.</p>
           </div>
@@ -118,9 +118,9 @@ function HowLearningWorks({ studio }) {
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
         <div className="mx-auto mb-10 max-w-3xl text-center">
           <div>
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-white">A clear learning process</p>
+            
             <h2 id="lernwick-how-title" className="text-white"><span className="organic-letter organic-letter--accent">L</span>earn, practise and progress</h2>
-            <p className="">Your learning journey moves from understanding concepts to applying and strengthening them.</p>
+            <p className="mt-8">Your learning journey moves from understanding concepts to applying and strengthening them.</p>
           </div>
         </div>
         <ol className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -193,7 +193,7 @@ export function ConnectedLearning() {
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
         <div className="mb-9 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-secondary-700">One connected learning experience</p>
+            
             <h2 id="lernwick-connected-title">Move from understanding to confident application</h2>
             <p>Each stage builds on the previous one. Choose a tool when you need it, then return to your learning pathway.</p>
           </div>
