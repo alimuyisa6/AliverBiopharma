@@ -263,7 +263,12 @@ export function LayoutProvider({ children }) {
       logo: bootstrap.universal?.logo_url || null,
       siteName: 'AliverBiopharm',
       navigation: mergedNavigation,
-      footer: bootstrap.footer || { quick_links: [], resource_links: [], community_links: [], social_links: {} },
+      footer: bootstrap.footer || {
+        quick_links: [{ label: 'Home', path: '/' }, { label: 'About', path: '/about' }, { label: 'Contact', path: '/contact' }, { label: 'FAQ', path: '/faq' }, { label: 'Donate', path: '/donate' }],
+        resource_links: [{ label: 'Resources', path: '/resources' }, { label: 'Blog', path: '/blog' }, { label: 'Notes', path: '/notes' }, { label: 'Past Papers', path: '/past-papers' }, { label: 'PDF Library', path: '/pdfs' }, { label: 'Glossary', path: '/glossary' }],
+        community_links: [{ label: 'Community', path: '/community' }, { label: 'Tutors', path: '/tutors' }, { label: 'Classroom', path: '/classroom' }],
+        social_links: {}
+      },
       groups: bootstrap.groups || [],
       switchGroups: bootstrap.switch_groups || bootstrap.groups || [],
       level: bootstrap.level,
