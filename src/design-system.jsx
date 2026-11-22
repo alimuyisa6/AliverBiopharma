@@ -98,10 +98,10 @@ export const UI = Object.freeze({
   dangerButton: 'inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-red-800 bg-red-800 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-red-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700 disabled:cursor-not-allowed disabled:opacity-60',
   hero: {
     section: 'relative isolate w-full overflow-hidden bg-primary-50 text-slate-900',
-    container: 'mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-5 py-14 sm:px-8 sm:py-18 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 lg:px-12 lg:py-24',
-    heading: 'max-w-2xl text-4xl font-extrabold leading-[1.02] tracking-[-0.04em] text-primary-900 sm:text-5xl lg:text-6xl xl:text-7xl',
+    container: 'mx-auto flex max-w-7xl items-center px-5 py-14 sm:px-8 sm:py-18 lg:px-12 lg:py-24',
+    heading: 'text-4xl font-extrabold leading-[1.02] tracking-[-0.04em] text-primary-900 sm:text-5xl lg:text-6xl xl:text-7xl',
     accent: 'mt-2 block text-primary-700',
-    description: 'mt-6 max-w-xl text-base leading-8 text-slate-700 sm:text-lg',
+    description: 'mt-6 text-base leading-8 text-slate-700 sm:text-lg',
     imageFrame: 'relative isolate min-h-[320px] overflow-hidden rounded-[2rem] border border-white bg-primary-100 shadow-2xl sm:min-h-[440px]',
   },
   status: {
