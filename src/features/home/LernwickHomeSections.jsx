@@ -12,7 +12,7 @@ const studios = {
   olevel: {
     kind: 'biology-foundations',title: 'See Biology. Understand how life works.',
     description: 'Build a clear foundation in living systems, from cell structure to human physiology, with learning activities matched to your level.',
-    visual: 'cell',
+    visual: 'onlineLearning',
     visualLabel: 'Explore living systems',
     cards: [
       { icon: 'book-open-reader', label: 'Understand a topic', title: 'Biology notes', description: 'Work through explanations organised around your curriculum.', resource: 'notes', action: 'Open notes' },
@@ -23,7 +23,7 @@ const studios = {
   alevel: {
     kind: 'advanced-biology',title: 'Connect biological concepts. Think critically.',
     description: 'Explore complex biological processes, strengthen scientific reasoning and practise applying knowledge to examination questions.',
-    visual: 'molecule',
+    visual: 'knowledge',
     visualLabel: 'Explore biological mechanisms',
     cards: [
       { icon: 'dna', label: 'Develop deeper understanding', title: 'Advanced topic notes', description: 'Study detailed explanations across your Biology curriculum.', resource: 'notes', action: 'Study notes' },
@@ -34,7 +34,7 @@ const studios = {
   pharmacy: {
     kind: 'pharmacy-science',title: 'Understand medicines. Apply pharmaceutical science.',
     description: 'Study the science behind medicines through course-unit learning, terminology and structured knowledge practice.',
-    visual: 'pharmacy',
+    visual: 'medicalResearch',
     visualLabel: 'Explore pharmaceutical science',
     cards: [
       { icon: 'book-open-reader', label: 'Study your programme', title: 'Pharmacy course notes', description: 'Explore explanations organised around your course units.', resource: 'notes', action: 'Open notes' },
@@ -138,6 +138,7 @@ function HowLearningWorks({ studio }) {
 const connectedLearningStages = [
   {
     key: 'learn',
+    illustration: 'library',
     number: '01',
     title: 'Learn',
     description: 'Build understanding with structured explanations and supporting references.',
@@ -149,6 +150,7 @@ const connectedLearningStages = [
   },
   {
     key: 'practise',
+    illustration: 'onlineTest',
     number: '02',
     title: 'Practise',
     description: 'Strengthen understanding through active retrieval and question practice.',
@@ -161,6 +163,7 @@ const connectedLearningStages = [
   },
   {
     key: 'apply',
+    illustration: 'teaching',
     number: '03',
     title: 'Apply',
     description: 'Use your knowledge in assessment and collaborative learning contexts.',
@@ -173,6 +176,7 @@ const connectedLearningStages = [
   },
   {
     key: 'review',
+    illustration: 'personalGoals',
     number: '04',
     title: 'Review',
     description: 'Use feedback and progress signals to decide what to strengthen next.',
@@ -199,6 +203,7 @@ export function ConnectedLearning() {
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
           {connectedLearningStages.map((stage) => (
             <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm" key={stage.key}>
+              <StorysetIllustration name={stage.illustration} alt={`${stage.title} learning stage`} className="mx-auto mb-4 h-28 w-full max-w-[180px] object-contain" />
               <div className="mb-4 flex items-center gap-3">
                 <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-secondary-100 text-sm font-extrabold text-secondary-800">{stage.number}</span>
                 <h3>{stage.title}</h3>
@@ -232,7 +237,7 @@ function ProgrammeStudio({ studio, activeGroupName, activeGroupId }) {
             <p className="mt-8">{studio.description}</p>
           </div>
           <div className="flex min-h-72 items-center justify-center" aria-label={studio.visualLabel}>
-            <StorysetIllustration name={studio.visual === 'pharmacy' ? 'medicalResearch' : 'studying'} alt={studio.visualLabel} className="w-full max-w-[300px] object-contain" />
+            <StorysetIllustration name={studio.visual} alt={studio.visualLabel} className="w-full max-w-[300px] object-contain" />
           </div>
         </div>
         <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3" aria-label="Explore learning resources">
