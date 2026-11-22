@@ -343,7 +343,6 @@ header nav { min-width: 0; }
   .donate-hero { @apply relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary-800 to-secondary-700 px-5 py-14 text-white sm:py-20; }
   .donate-hero-overlay { @apply absolute inset-0 bg-gradient-to-br from-primary-900/30 via-transparent to-secondary-900/30; }
   .donate-hero-content { @apply relative mx-auto max-w-4xl space-y-4 text-center; }
-  .donate-hero-content .eyebrow { @apply inline-flex rounded-full border border-white/25 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-orange-100; }
   .donate-hero-content h1 { @apply text-balance text-white; }
   .donate-hero-content p { @apply mx-auto max-w-2xl text-base text-blue-100 sm:text-lg; }
   .donate-content { @apply mx-auto grid w-full max-w-5xl gap-5 px-4 pt-7 sm:px-6 sm:pt-10; }
@@ -603,9 +602,6 @@ header nav { min-width: 0; }
   .mood-check-section .section-subtitle,
   .community-challenge-section .section-subtitle,
   .community-activity-section .section-subtitle { color: #334155; }
-  .mood-check-section .sec-label,
-  .community-challenge-section .sec-label,
-  .community-activity-section .sec-label { color: #526B8A; }
 
   .resources-view h1, .resources-view h2, .resources-view h3 { color: #15304b; }
   .resources-view p { color: #334155; }
@@ -623,6 +619,4 @@ h3 + p {
 }
 
 
-/* Ensure eyebrow labels are hidden site-wide while the cleanup is completed. */
-[class*="eyebrow"] { display: none !important; }
 :is(h1, h2, h3) + :is(p, .section-description, [class*="description"]) { margin-top: 2rem !important; }
