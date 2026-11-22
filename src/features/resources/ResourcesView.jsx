@@ -63,7 +63,7 @@ export default function ResourcesView({ navigate, user }) {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#F3F6F9' }}>
+    <div className="resources-view min-h-screen" style={{ backgroundColor: '#F3F6F9' }}>
       <main className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
         <DynamicActions pageId="resources" className="mb-6" />
         <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Resources' }]} />
