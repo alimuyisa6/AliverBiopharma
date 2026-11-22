@@ -136,8 +136,8 @@ export function ContactSection({
           </div>
 
           <div className="rounded-3xl bg-slate-900 p-6 text-white">
-            <h2 className="text-xl font-bold">What happens next?</h2>
-            <p className="mt-3 leading-7 text-white/80">Your message will be sent to our support team for review. We will follow up using the email address you provided.</p>
+            <h2 className="text-xl font-extrabold tracking-tight text-white">What happens next?</h2>
+            <p className="mt-3 leading-7 text-slate-100">Your message will be sent to our support team for review. We will follow up using the email address you provided.</p>
           </div>
         </aside>
       </div>
