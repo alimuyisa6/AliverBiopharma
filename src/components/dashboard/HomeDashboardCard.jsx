@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import StorysetIllustration from '../StorysetIllustration';
 import { useAuth } from '../../contexts/AuthContext';
 import { getUserDashboard } from '../../api/cachedClient';
 
@@ -33,8 +34,8 @@ export default function HomeDashboardCard() {
   return (
     <section className="mx-auto w-full max-w-7xl rounded-3xl border border-primary-100 bg-white p-5 shadow-sm sm:p-7" aria-labelledby="home-learning-snapshot-title">
       <header className="mb-6 flex flex-wrap items-center justify-between gap-4">
-        <div>
-          
+        <div className="flex items-center gap-3">
+          <StorysetIllustration name="personalGoals" alt="Learner tracking study goals" className="w-16 shrink-0 object-contain sm:w-20" />
           <h2 id="home-learning-snapshot-title" className="m-0 text-2xl font-bold text-primary-900 sm:text-3xl">Learning snapshot</h2>
         </div>
         <Link to="/dashboard" className="inline-flex items-center gap-2 text-sm font-bold text-primary-700 hover:text-secondary-700">View full dashboard <span aria-hidden="true">→</span></Link>

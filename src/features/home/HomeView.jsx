@@ -17,6 +17,7 @@ import HomeDashboardCard from '../../components/dashboard/HomeDashboardCard';
 import DynamicActions from '../../components/DynamicActions';
 import ThreeDButton from '../../components/buttons/ThreeDButton';
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
+import StorysetIllustration from '../../components/StorysetIllustration';
 
 const CONTINUE_ICON = { note: 'book-open', video: 'play', quiz: 'clipboard-check' };
 
@@ -165,7 +166,7 @@ function ChallengeTreasureCard({ challenge, onOpen }) {
   const labels = { recall: 'Recall Challenge', flashcards: 'Flashcard Challenge', quiz: 'Quiz Challenge' };
   const icons = { recall: 'brain', flashcards: 'layers', quiz: 'clipboard-check' };
   return <section className={'section home-challenge-treasure home-challenge-' + (challengeType || 'daily')} aria-labelledby='home-challenge-heading'>
-    <div className='home-challenge-treasure-copy'><h2 id='home-challenge-heading'>{challenge.title}</h2><p>{challenge.description}</p><div className='home-challenge-meta'><span><Icon name={icons[challengeType] || 'star'} /> {labels[challengeType] || 'Challenge'}</span><span>+{challenge.reward_xp} XP</span></div><ThreeDButton type='button' variant='solid' iconRight='arrow-right' onClick={onOpen}>{challenge.passed ? 'View challenge' : 'Start challenge'}</ThreeDButton></div>
+    <div className='mx-auto flex max-w-7xl items-center justify-between gap-6'><div className='home-challenge-treasure-copy min-w-0 flex-1'><h2 id='home-challenge-heading'>{challenge.title}</h2><p className='mt-8'>{challenge.description}</p><div className='home-challenge-meta'><span><Icon name={icons[challengeType] || 'star'} /> {labels[challengeType] || 'Challenge'}</span><span>+{challenge.reward_xp} XP</span></div><ThreeDButton type='button' variant='solid' iconRight='arrow-right' onClick={onOpen}>{challenge.passed ? 'View challenge' : 'Start challenge'}</ThreeDButton></div><StorysetIllustration name='onlineTest' alt='Learner taking a knowledge challenge' className='hidden w-36 shrink-0 object-contain sm:block md:w-44' /></div>
   </section>;
 }
 
