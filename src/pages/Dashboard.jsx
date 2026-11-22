@@ -19,6 +19,7 @@ import { getCurriculumTree } from '../api/curriculumNavigation';
 import { useContentAccess } from '../hooks/useContentAccess';
 import { useSecurityUiLock } from '../hooks/useSecurityUiLock';
 import EmptyState from '../components/EmptyState/EmptyState';
+import StorysetIllustration from '../components/StorysetIllustration';
 import Icon from '../components/Icon/Icon';
 import Container from '../components/Container/Container';
 import ProgressBar, { ProgressRing } from '../components/ProgressBar/ProgressBar';
@@ -289,7 +290,10 @@ export default function Dashboard() {
   function getEmptyStateImage(key) {
     const uiComponents = bootstrap?.ui_components || [];
     const component = uiComponents.find((item) => item.component_key === `empty_state_${key}`);
-    return component?.properties?.image_url || null;
+    if (component?.properties?.image_url) return component.properties.image_url;
+    if (key === 'error') return '/Svg%20illustrations/Work%20in%20progress-rafiki.svg';
+    if (key === 'dashboard') return '/Svg%20illustrations/Studying-rafiki.svg';
+    return null;
   }
 
   if (!access.canAccess) {
@@ -1176,7 +1180,7 @@ export default function Dashboard() {
                   </h3>
                 </div>
                 <div className={panelBody}>
-                  <p className={sectionIntro}>Here are some of the learning milestones you've reached so far.</p>
+                  <div className="flex items-center gap-4"><p className={`${sectionIntro} flex-1`}>Here are some of the learning milestones you've reached so far.</p><StorysetIllustration name="personalGoals" alt="Learner setting personal study goals" className="hidden w-28 shrink-0 object-contain sm:block" /></div>
                   <DashboardSectionAside>Use your best result as encouragement, then set a small goal for your next session.</DashboardSectionAside>
                   <div className={listGrid} id="personal-records-stats">
                     <div className={listItem}>

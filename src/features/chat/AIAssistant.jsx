@@ -4,6 +4,7 @@ import { streamAIAssistant } from '../../api/client';
 import { useAuth } from '../../contexts/AuthContext';
 import { useLayout } from '../../contexts/LayoutContext';
 import { useChat } from '../../contexts/ChatContext';
+import StorysetIllustration from '../../components/StorysetIllustration';
 
 
 function TutorIcon({ name, className = 'h-5 w-5' }) {
@@ -283,6 +284,7 @@ export default function AIAssistant() {
             </button>
             {messages.length === 0 ? (
               <div className="ai-assistant-welcome">
+                <StorysetIllustration name="chatbot" alt="AI chatbot illustration" className="mx-auto mb-3 w-full max-w-[180px] object-contain" />
                 <span className="ai-assistant-welcome-icon" aria-hidden="true">
                   <TutorIcon name="lightbulb" className="h-6 w-6" />
                 </span>

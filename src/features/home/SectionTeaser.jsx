@@ -1,14 +1,13 @@
 import Button from '../../components/Button/Button';
+import StorysetIllustration from '../../components/StorysetIllustration';
 
-const teaserImages = {
-  'live-room': 'https://images.pexels.com/photos/8199770/pexels-photo-4145190.jpeg?auto=compress&cs=tinysrgb&w=900&h=900&fit=crop',
-  tutor: 'https://images.pexels.com/photos/1181742/pexels-photo-5212700.jpeg?auto=compress&cs=tinysrgb&w=900&h=900&fit=crop'
-};
+const teaserIllustrations = { 'live-room': 'chat', tutor: 'teaching' };
 
 export function SectionTeaser({
   eyebrow, title, intro, imageUrl, imageAlt, illustrationType, ctaLabel, onCtaClick, imageSide = 'right', backgroundColor = '#F3F6F9'
 }) {
-  const image = imageUrl || teaserImages[illustrationType];
+  const image = imageUrl || null;
+  const storysetName = teaserIllustrations[illustrationType];
   const reverse = imageSide === 'left';
 
   return (
@@ -22,11 +21,15 @@ export function SectionTeaser({
             <Button variant="primary" onClick={onCtaClick}>{ctaLabel}</Button>
           </div>
         </div>
-        {image && (
-          <div className={`min-w-0 ${reverse ? 'lg:order-1' : ''}`}>
-            <div className="overflow-hidden rounded-3xl border-[8px] border-slate-100 bg-slate-100 shadow-xl shadow-primary-900/10">
-              <img src={image} alt={imageAlt || ''} className="aspect-[5/4] h-full w-full object-cover" loading="lazy" />
-            </div>
+        {(image || storysetName) && (
+          <div className={`flex min-w-0 items-center justify-center ${reverse ? 'lg:order-1' : ''}`}>
+            {image ? (
+              <div className="overflow-hidden rounded-3xl border-[8px] border-slate-100 bg-slate-100 shadow-xl shadow-primary-900/10">
+                <img src={image} alt={imageAlt || ''} className="aspect-[5/4] h-full w-full object-cover" loading="lazy" />
+              </div>
+            ) : (
+              <StorysetIllustration name={storysetName} alt={imageAlt || title} className="w-full max-w-[440px] object-contain" />
+            )}
           </div>
         )}
       </div>

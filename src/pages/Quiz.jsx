@@ -28,6 +28,7 @@ import QuizHero from '../components/quiz/QuizHero';
 import QuizLearningPath from '../components/quiz/QuizLearningPath';
 import QuizWeakAreas from '../components/quiz/QuizWeakAreas';
 import Icon from '../components/Icon/Icon';
+import StorysetIllustration from '../components/StorysetIllustration';
 import PageSkeleton from '../components/Loading/PageSkeleton';
 import { getCachedStale, setCache } from '../utils/cache';
 import QuizAnswerLoader from '../components/quiz/QuizAnswerLoader';
@@ -850,6 +851,7 @@ export default function Quiz() {
         {resultData ? (
           <div className="quiz-result-container">
             <Card variant="flat" className="quiz-result-card card-surface-solid card-elevation-soft">
+              {resultData.passed && !resultData.pending_review && <StorysetIllustration name="achievement" alt="Achievement for completing the assessment" className="mx-auto mb-4 w-full max-w-[220px] object-contain" />}
               <h2>{resultData.pending_review ? 'Your assessment has been submitted' : resultData.passed ? `${t('common.congratulations')}, ${user?.full_name || 'Learner'}!` : t('common.blockComplete')}</h2>
               {resultData.pending_review ? (
                 <div className="quiz-pending-review-notice" role="status">

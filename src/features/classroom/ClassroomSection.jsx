@@ -85,7 +85,7 @@ export function ClassroomSection({ user }) {
 
         {feed.length === 0 ? (
           <EmptyState
-            image={getUiImage('empty_state_classroom')}
+            image={getUiImage('empty_state_classroom') || '/Svg%20illustrations/Chat-rafiki.svg'}
             title="The room is quiet, for now"
             description="No live discussions are running at the moment. Start one yourself or check back shortly."
             action={
