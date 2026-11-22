@@ -289,7 +289,10 @@ export default function Dashboard() {
   function getEmptyStateImage(key) {
     const uiComponents = bootstrap?.ui_components || [];
     const component = uiComponents.find((item) => item.component_key === `empty_state_${key}`);
-    return component?.properties?.image_url || null;
+    if (component?.properties?.image_url) return component.properties.image_url;
+    if (key === 'error') return '/Svg%20illustrations/Work%20in%20progress-rafiki.svg';
+    if (key === 'dashboard') return '/Svg%20illustrations/Studying-rafiki.svg';
+    return null;
   }
 
   if (!access.canAccess) {
