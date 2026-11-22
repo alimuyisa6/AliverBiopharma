@@ -53,23 +53,6 @@ import MaintenanceGate, { MaintenanceBoundary } from './components/Maintenance/M
 
 const NotFoundPage = lazy(() => import('./components/NotFoundPage'));
 
-function SetupRequired() {
-  return (
-    <div className="section setup-required-section">
-      <div className="card setup-required-card">
-        <h1 className="setup-required-title">Select Your Level</h1>
-        <p className="setup-required-text">
-          Your level is set during account creation. Please sign in with an existing account or create a new one to continue.
-        </p>
-        <div className="setup-required-actions">
-          <a href="/register" className="btn btn-primary btn-lg btn-radius-pill">Create Account</a>
-          <a href="/login" className="btn btn-secondary btn-lg btn-radius-pill">Sign In</a>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function FeatureRoute({ feature, children }) {
   const { features } = useLayout();
   const enabled = features[feature] ?? true;
@@ -116,34 +99,6 @@ function AppRoutes() {
       window.clearTimeout(timeoutId);
     };
   }, []);
-  const { level, loading: layoutLoading } = useLayout();
-
-  const publicPaths = [
-    '/login',
-    '/register',
-    '/about',
-    '/terms',
-    '/privacy',
-    '/faq',
-    '/blog',
-    '/contact',
-    '/donate',
-    '/community',
-    '/advertise',
-    '/',
-  ];
-
-  const isPublicPath = publicPaths.some((path) => location.pathname === path || (path !== '/' && location.pathname.startsWith(path + '/')));
-
-  const needsSetup =
-    !layoutLoading &&
-    !level &&
-    !publicPaths.some((path) => location.pathname.startsWith(path));
-
-  if (needsSetup) {
-    return <SetupRequired />;
-  }
-
   return (
     <>
       <Seo />
