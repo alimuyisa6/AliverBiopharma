@@ -72,7 +72,7 @@ export default function TutorMarketplaceSection() {
       } : undefined}
     >
       <div className={tutors.length > 0 ? 'section-overlay' : ''}>
-        <span className="sec-label">Tutor Marketplace</span>
+        
         <h2 className="section-title">
           Learn From Someone<br />Who Gets It
         </h2>

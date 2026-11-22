@@ -1,18 +1,24 @@
 /* features/home/BlogGrid.jsx */
 import React from 'react';
+import StorysetIllustration from '../../components/StorysetIllustration';
 
 export function BlogGrid({ posts }) {
   if (!posts || !Array.isArray(posts)) return null;
 
   return (
     <section id="blog" className="section alt-bg reveal home-blog-section">
-      <span className="sec-label">Worth a read</span>
-      <h2 className="section-title">
-        What Our Writers Have<br />Been Digging Into
-      </h2>
-      <p className="section-subtitle">
-        Short reads on biology, pharmacy, and the occasional science story that caught our attention.
-      </p>
+      
+      <div className="mb-8 flex items-center justify-between gap-6">
+        <div className="min-w-0">
+          <h2 className="section-title">
+            What Our Writers Have<br />Been Digging Into
+          </h2>
+          <p className="section-subtitle mt-8">
+            Short reads on biology, pharmacy, and the occasional science story that caught our attention.
+          </p>
+        </div>
+        <StorysetIllustration name="blogging" alt="Writer preparing a science article" className="hidden w-32 shrink-0 object-contain sm:block md:w-44" />
+      </div>
 
       <div className="grid-3 home-blog-grid">
         {posts.filter(Boolean).map((post) => (
