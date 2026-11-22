@@ -166,7 +166,7 @@ export default function QuestionBankPage() {
     <Container className="qbank-page mx-auto w-full max-w-7xl px-4 py-8 text-foreground sm:px-6 sm:py-12 lg:px-8">
       <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Resources', href: '/resources' }, { label: 'Question bank', href: null }]} />
       <header className="qbank-header mb-8 flex flex-col gap-4 border-b border-border pb-8">
-        <span className="qbank-eyebrow">Learn & recall</span>
+        
         <h1>Question bank</h1>
         <p>Find published questions from your active curriculum, review their learning objectives and assemble focused tests for exam practice.</p>
       </header>

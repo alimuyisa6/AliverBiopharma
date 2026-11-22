@@ -37,7 +37,7 @@ export default function ClinicalSimulationsPage() {
     <Container className="clinical-simulation-page">
       <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Resources', href: '/resources' }, { label: 'Clinical simulations', href: caseId ? '/clinical-simulations' : null }, ...(caseId && activeCase ? [{ label: activeCase.title, href: null }] : [])]} />
       <header className="qbank-header">
-        <span className="qbank-eyebrow">Apply your knowledge</span>
+        
         <h1>{caseId ? activeCase?.title || 'Clinical case' : 'Clinical simulations'}</h1>
         <p>Practise clinical reasoning through structured patient encounters, investigation findings and reviewed case feedback.</p>
       </header>

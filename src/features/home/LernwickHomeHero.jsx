@@ -21,7 +21,6 @@ export default function LernwickHomeHero({
     ? `/curriculum/${encodeURIComponent(activeGroupId)}`
     : '/resources';
 
-  const eyebrow = heroContent.eyebrow || 'Aliver Biopharma';
   const headingLead = heroContent.headingLead || 'Study smarter.';
   const headingAccent = heroContent.headingAccent || 'Achieve more.';
   const description = heroContent.description
@@ -42,10 +41,7 @@ export default function LernwickHomeHero({
       <div className="ab-home-hero-vignette" aria-hidden="true" />
       <div className={`${UI.hero.container} ab-home-hero-layout`}>
         <div className="order-2 min-w-0 lg:order-1 ab-home-hero-copy">
-          <p className={UI.hero.eyebrow}>
-            <span className="h-2 w-2 rounded-full bg-secondary-500" aria-hidden="true" />
-            {eyebrow}
-          </p>
+          
           {name && <p className="mb-3 text-sm font-semibold text-primary-700">Welcome back, {name}</p>}
 
           <h1 id="ab-home-hero-title" className={UI.hero.heading}>

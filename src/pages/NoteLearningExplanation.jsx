@@ -173,7 +173,7 @@ export default function NoteLearningExplanation() {
       <section className="note-learning-page">
         <header className="note-learning-header">
           <Link to="/notes" className="note-learning-back">← Back to study notes</Link>
-          <p className="note-learning-eyebrow">YOUR LEARNING HISTORY</p>
+          
           <h1>Your learning history</h1>
           <p>Return here to revisit questions you asked about a study note.</p>
         </header>
@@ -187,7 +187,7 @@ export default function NoteLearningExplanation() {
         )}
         {history.map((item) => (
           <article className="note-learning-card" key={item.id}>
-            <p className="note-learning-eyebrow">{item.note_title || 'Study note'} · {item.status === 'answered' ? 'Answered' : 'Waiting for an answer'}</p>
+            
             <h2>{item.learner_question}</h2>
             {item.explanation && <p>{item.explanation.slice(0, 260)}{item.explanation.length > 260 ? '…' : ''}</p>}
             <p><small>Last updated {item.updated_at ? new Date(item.updated_at).toLocaleString() : 'recently'}</small></p>
@@ -214,7 +214,7 @@ export default function NoteLearningExplanation() {
     <section className="note-learning-page">
       <header className="note-learning-header">
         
-        <p className="note-learning-eyebrow">YOUR LEARNING HISTORY</p>
+        
         <h1>{noteTitle}</h1>
         <p>Your question and explanation are saved here, so you can continue where you left off.</p>
       </header>

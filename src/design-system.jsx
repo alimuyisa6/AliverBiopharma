@@ -99,7 +99,6 @@ export const UI = Object.freeze({
   hero: {
     section: 'relative isolate w-full overflow-hidden bg-primary-50 text-slate-900',
     container: 'mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-5 py-14 sm:px-8 sm:py-18 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 lg:px-12 lg:py-24',
-    eyebrow: 'mb-4 inline-flex items-center gap-2 rounded-full border border-primary-200 bg-white px-3 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-primary-800',
     heading: 'max-w-2xl text-4xl font-extrabold leading-[1.02] tracking-[-0.04em] text-primary-900 sm:text-5xl lg:text-6xl xl:text-7xl',
     accent: 'mt-2 block text-primary-700',
     description: 'mt-6 max-w-xl text-base leading-8 text-slate-700 sm:text-lg',

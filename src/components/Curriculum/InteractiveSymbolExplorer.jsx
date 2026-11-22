@@ -29,7 +29,7 @@ export default function InteractiveSymbolExplorer({ config }) {
   return (
     <div className="grid min-w-0 gap-5 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
       <div className="min-w-0">
-        {config?.eyebrow && <span className="mb-2 inline-flex rounded-full bg-secondary-50 px-3 py-1 text-xs font-bold uppercase tracking-wider text-secondary-800">{config.eyebrow}</span>}
+        
         {config?.description && <p className="text-sm leading-6 text-slate-600">{config.description}</p>}
       </div>
       {imageUrl && (

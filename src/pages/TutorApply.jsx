@@ -153,7 +153,7 @@ export default function TutorApply() {
 
     return (
       <div className="section" style={{ paddingTop: 'var(--space-6)' }}>
-        <span className="eyebrow">Teaching</span>
+        
         <h1 className="section-title" style={{ textAlign: 'left', margin: '0 0 var(--space-2)' }}>
           Tutor application<br />status
         </h1>
@@ -203,7 +203,7 @@ export default function TutorApply() {
   return (
     <div className="tutor-apply-page">
       <div className="section" style={{ paddingTop: 'var(--space-6)' }}>
-        <span className="eyebrow">Teaching</span>
+        
         <h1 className="section-title" style={{ textAlign: 'left', margin: '0 0 var(--space-2)' }}>
           Apply to become a<br />tutor
         </h1>

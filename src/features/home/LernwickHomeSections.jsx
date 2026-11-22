@@ -10,9 +10,7 @@ const pathways = [
 
 const studios = {
   olevel: {
-    kind: 'biology-foundations',
-    eyebrow: 'O-Level Biology studio',
-    title: 'See Biology. Understand how life works.',
+    kind: 'biology-foundations',title: 'See Biology. Understand how life works.',
     description: 'Build a clear foundation in living systems, from cell structure to human physiology, with learning activities matched to your level.',
     visual: 'cell',
     visualLabel: 'Explore living systems',
@@ -23,9 +21,7 @@ const studios = {
     ]
   },
   alevel: {
-    kind: 'advanced-biology',
-    eyebrow: 'A-Level Biology studio',
-    title: 'Connect biological concepts. Think critically.',
+    kind: 'advanced-biology',title: 'Connect biological concepts. Think critically.',
     description: 'Explore complex biological processes, strengthen scientific reasoning and practise applying knowledge to examination questions.',
     visual: 'molecule',
     visualLabel: 'Explore biological mechanisms',
@@ -36,9 +32,7 @@ const studios = {
     ]
   },
   pharmacy: {
-    kind: 'pharmacy-science',
-    eyebrow: 'Pharmacy learning studio',
-    title: 'Understand medicines. Apply pharmaceutical science.',
+    kind: 'pharmacy-science',title: 'Understand medicines. Apply pharmaceutical science.',
     description: 'Study the science behind medicines through course-unit learning, terminology and structured knowledge practice.',
     visual: 'pharmacy',
     visualLabel: 'Explore pharmaceutical science',
@@ -236,7 +230,7 @@ function ProgrammeStudio({ studio, activeGroupName, activeGroupId }) {
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1fr_0.8fr]">
           <div className="max-w-2xl">
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-secondary-700">{studio.eyebrow}{activeGroupName ? ` · ${activeGroupName}` : ''}</p>
+            
             <h2 id="programme-studio-title">{studio.title}</h2>
             <p>{studio.description}</p>
           </div>

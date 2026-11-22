@@ -58,7 +58,7 @@ export default function QuizAttemptResult() {
     <main className="quiz-attempt-result-page">
       <div className="quiz-attempt-result-shell">
         <header className="quiz-attempt-result-header">
-          <span className="quiz-attempt-result-eyebrow"><Icon name="clipboard-check" /> Assessment report</span>
+          
           <h1>{pending ? 'Your assessment is being marked' : 'Your assessment result'}</h1>
           <p>Review your submitted answers, awarded marks and teacher feedback.</p>
         </header>

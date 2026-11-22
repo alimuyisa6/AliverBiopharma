@@ -90,7 +90,7 @@ export default function QuizReview() {
       <section className="quiz-review-shell">
         <header className="quiz-review-hero">
           <div>
-            <span className="quiz-review-eyebrow"><Icon name="clipboard-check" /> Assessment review</span>
+            
             <h1>Essay marking</h1>
             <p>Review written responses, award marks and provide useful feedback to learners.</p>
           </div>

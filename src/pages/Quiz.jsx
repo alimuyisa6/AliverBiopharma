@@ -731,7 +731,7 @@ export default function Quiz() {
             </svg>
           </button>
           <div className="quiz-cards-route-header">
-            <span className="eyebrow">{isPharmacy ? 'Course Units' : 'Topics'}</span>
+            
             <h1 className="section-title quiz-page-title">{isPharmacy ? 'Course Units' : 'Quiz Topics'}</h1>
           </div>
           <div className="grid grid-cols-3 quiz-topic-cards">

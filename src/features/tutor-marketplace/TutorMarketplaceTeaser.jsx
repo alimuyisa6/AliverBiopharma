@@ -7,7 +7,6 @@ export default function TutorMarketplaceTeaser() {
 
   return (
     <SectionTeaser
-      eyebrow="Tutor Marketplace"
       title="Find your tutor"
       intro="Search qualified tutors by subject, level and availability, and connect directly for one-to-one help."
       illustrationType="tutor"

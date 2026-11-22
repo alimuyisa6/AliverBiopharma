@@ -136,7 +136,7 @@ function CurriculumSnapshot({ nodes, activeLevelName, activeGroupName, sections 
     <section className="w-full bg-secondary-50 px-5 py-12 sm:px-8 sm:py-16 lg:px-12" aria-labelledby="home-curriculum-heading">
       <div className="mx-auto mb-6 flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div className="min-w-0">
-          <span className="eyebrow">{activeLevelName}{activeGroupName ? ` · ${activeGroupName}` : ''}</span>
+          
           <h2 id="home-curriculum-heading" className="home-curriculum-heading mt-2">{selectedNode ? selectedNode.name : `Choose a ${firstStepLabel}`}</h2>
           <p className="section-description home-curriculum-description mt-2">{description}</p>
         </div>
@@ -165,7 +165,7 @@ function ChallengeTreasureCard({ challenge, onOpen }) {
   const labels = { recall: 'Recall Challenge', flashcards: 'Flashcard Challenge', quiz: 'Quiz Challenge' };
   const icons = { recall: 'brain', flashcards: 'layers', quiz: 'clipboard-check' };
   return <section className={'section home-challenge-treasure home-challenge-' + (challengeType || 'daily')} aria-labelledby='home-challenge-heading'>
-    <div className='home-challenge-treasure-copy'><span className='eyebrow'>Your daily challenge</span><h2 id='home-challenge-heading'>{challenge.title}</h2><p>{challenge.description}</p><div className='home-challenge-meta'><span><Icon name={icons[challengeType] || 'star'} /> {labels[challengeType] || 'Challenge'}</span><span>+{challenge.reward_xp} XP</span></div><ThreeDButton type='button' variant='solid' iconRight='arrow-right' onClick={onOpen}>{challenge.passed ? 'View challenge' : 'Start challenge'}</ThreeDButton></div>
+    <div className='home-challenge-treasure-copy'><h2 id='home-challenge-heading'>{challenge.title}</h2><p>{challenge.description}</p><div className='home-challenge-meta'><span><Icon name={icons[challengeType] || 'star'} /> {labels[challengeType] || 'Challenge'}</span><span>+{challenge.reward_xp} XP</span></div><ThreeDButton type='button' variant='solid' iconRight='arrow-right' onClick={onOpen}>{challenge.passed ? 'View challenge' : 'Start challenge'}</ThreeDButton></div>
   </section>;
 }
 
@@ -174,7 +174,7 @@ function DailyRecallCard({ recall, onReveal, onStart }) {
   const { question_text, meta, score } = recall;
   const progress = score?.total ? (score.completed / score.total) * 100 : 0;  return (
     <section className="section section-emerald home-daily-recall-section card-glass">
-      <div className="mx-auto mb-7 flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"><div className="min-w-0"><span className="eyebrow">Daily active recall</span><h2>{question_text}</h2><p className="section-description home-daily-recall-description">{meta}</p></div></div>
+      <div className="mx-auto mb-7 flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"><div className="min-w-0"><h2>{question_text}</h2><p className="section-description home-daily-recall-description">{meta}</p></div></div>
       <div className="card card-lifted card-surface-solid card-elevation-soft card-density-comfortable row home-daily-recall-card">
         <div className="min-w-0 flex-1">{score && <div className="home-daily-recall-progress"><div className="home-daily-recall-score"><span>Today's recall</span><strong>{score.completed} / {score.total}</strong><span>· +{score.xp_earned} XP</span></div><div className="progress-track" aria-label={`${Math.round(progress)}% complete`}><span className="progress-fill emerald" style={{ width: `${progress}%` }} /></div></div>}</div>
         <div className="row-actions home-daily-recall-actions"><ThreeDButton type="button" variant="soft" onClick={onReveal}>Reveal answer</ThreeDButton><ThreeDButton type="button" variant="solid" iconRight="arrow-right" onClick={onStart}>Start recall</ThreeDButton></div>

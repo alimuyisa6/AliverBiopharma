@@ -63,7 +63,7 @@ export function TeamScroll({ members }) {
     <section className="section team-section">
       <div className="section-head">
         <div className="section-head-left">
-          <span className="eyebrow">Faculty</span>
+          
           <h2>Meet the minds behind the platform</h2>
         </div>
       </div>

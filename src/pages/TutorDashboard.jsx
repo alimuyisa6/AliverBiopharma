@@ -200,7 +200,7 @@ export default function TutorDashboard() {
   return (
     <div className="tutor-dashboard-page">
       <div className="section" style={{ paddingTop: 'var(--space-6)' }}>
-        <span className="eyebrow">Tutor portal</span>
+        
         <h1 className="section-title" style={{ textAlign: 'left', margin: '0 0 var(--space-2)' }}>
           Tutor dashboard<br />{levelName ? `– ${levelName}` : ''}
         </h1>

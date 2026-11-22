@@ -614,3 +614,10 @@ header nav { min-width: 0; }
   .flashcard-subject-section :is(h1, h2, h3) { color: #15304b; }
   .flashcard-subject-section .section-subtitle { color: #334155; }
 }
+
+
+h1 + p,
+h2 + p,
+h3 + p {
+  margin-top: 2rem !important;
+}

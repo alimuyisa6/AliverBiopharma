@@ -123,7 +123,7 @@ export default function Donate() {
       <section className="donate-hero ab-page-hero ab-donate-hero" style={heroStyle}>
         <div className="donate-hero-overlay" />
         <div className="donate-hero-content">
-          <span className="eyebrow">Support AliverBiopharm</span>
+          
           <h1>{config?.title || 'Help learners study Biology and Pharmacy'}</h1>
           <p>{config?.subtitle || 'Your contribution helps us improve access to Biology and Pharmacy learning materials.'}</p>
         </div>
