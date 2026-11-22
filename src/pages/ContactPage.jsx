@@ -46,13 +46,6 @@ export default function ContactPage() {
         <div className="relative z-10 mx-auto flex max-w-5xl flex-col items-center text-center">
           <h1 className="max-w-3xl text-4xl font-extrabold text-white sm:text-5xl lg:text-6xl">Contact AliverBiopharm</h1>
           <p className="mt-10 max-w-2xl text-lg leading-8 text-white/85 sm:mt-14">Need help with your account, study materials, or a website feature? Send our team a message and we will review your inquiry.</p>
-          <img
-            src="/illustrations/contact.svg"
-            alt="Illustration of a support conversation"
-            className="mt-12 h-auto w-full max-w-[420px] object-contain sm:mt-16"
-            loading="lazy"
-            decoding="async"
-          />
         </div>
       </section>
 

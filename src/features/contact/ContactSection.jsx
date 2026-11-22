@@ -105,6 +105,10 @@ export function ContactSection({
                 {contactStatus.message}
               </p>
             )}
+
+            <p className="mt-2 rounded-xl border border-primary-200 bg-primary-50 px-4 py-3 text-center font-serif text-base italic leading-7 text-primary-900">
+              Note: You can only send two messages per day.
+            </p>
           </form>
         </div>
 
@@ -132,8 +136,8 @@ export function ContactSection({
           </div>
 
           <div className="rounded-3xl bg-slate-900 p-6 text-white">
-            <h2 className="text-xl font-bold">What happens next?</h2>
-            <p className="mt-3 leading-7 text-white/80">Your message will be sent to our support team for review. We will follow up using the email address you provided.</p>
+            <h2 className="text-xl font-extrabold tracking-tight text-white">What happens next?</h2>
+            <p className="mt-3 leading-7 text-white">Your message will be sent to our support team for review. We will follow up using the email address you provided.</p>
           </div>
         </aside>
       </div>
