@@ -45,14 +45,14 @@ export default function LegalPage({ type }) {
   const page = sections[type];
 
   return (
-    <section className="w-full bg-slate-50 px-5 py-14 sm:py-20">
-      <div className="mx-auto w-full max-w-4xl rounded-3xl border border-slate-200 bg-white px-6 py-8 shadow-sm sm:px-10 sm:py-12">
+    <section className="legal-page w-full px-5 py-14 sm:py-20" style={{ backgroundColor: '#F3F6F9' }}>
+      <div className="legal-content mx-auto w-full max-w-4xl rounded-3xl border border-slate-200 bg-white px-6 py-8 shadow-sm sm:px-10 sm:py-12">
         <h1 className="mb-10 border-b border-slate-200 pb-7 text-4xl font-extrabold text-primary-900 sm:text-5xl">{page?.title || 'This page isn’t available'}</h1>
         {page?.sections?.length ? (
           <div className="space-y-9">
             {page.sections.map((block, idx) => (
-              <div key={idx} className="space-y-4">
-                {block.heading && <h2>{block.heading}</h2>}
+              <div key={idx} className="space-y-4 rounded-2xl p-5 sm:p-6" style={{ backgroundColor: ['#E8F4F2', '#EAF2FA', '#F1EDFA', '#F8F1E7'][idx % 4] }}>
+                {block.heading && <h2 className={idx % 2 === 1 ? "legal-section-heading legal-section-heading-alt" : "legal-section-heading"}>{block.heading}</h2>}
                 {block.content.split('\n\n').map((para, pIdx) => (
                   <p key={pIdx}>
                     <RichText text={para} />

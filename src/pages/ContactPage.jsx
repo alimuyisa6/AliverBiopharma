@@ -34,7 +34,7 @@ export default function ContactPage() {
   }, [contactForm]);
 
   return (
-    <main className="contact-page w-full bg-slate-50">
+    <main className="contact-page w-full" style={{ backgroundColor: '#EAF2FA' }}>
       <section className="ab-page-hero ab-contact-hero relative isolate overflow-hidden px-5 py-16 sm:py-24">
         <div className="ab-page-hero-overlay absolute inset-0" aria-hidden="true" />
         <div className="relative z-10 mx-auto max-w-5xl">
@@ -43,7 +43,7 @@ export default function ContactPage() {
           <p className="mt-5 max-w-2xl text-lg leading-8 text-white/85">Need help with your account, study materials, or a website feature? Send our team a message.</p>
         </div>
       </section>
-      <div className="px-5 py-12 sm:py-16">
+      <div className="px-5 py-12 sm:py-16" style={{ backgroundColor: '#F1EDFA' }}>
       <ContactSection
         contactForm={contactForm}
         contactStatus={contactStatus}

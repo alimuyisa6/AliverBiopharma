@@ -132,9 +132,9 @@ export default function PdfLibraryPage() {
 
   return (
     <Container className="pdf-library-section">
-      <div className="pdf-library-page w-full max-w-7xl px-4 py-8 text-foreground sm:px-6 sm:py-12 lg:px-8">
+      <div className="pdf-library-page w-full max-w-7xl rounded-2xl px-4 py-8 text-foreground sm:px-6 sm:py-12 lg:px-8" style={{ backgroundColor: '#F3F6F9' }}>
         <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'PDF library' }]} />
-        <header className="pdf-library-heading mt-8 flex flex-col gap-5 border-b border-border pb-8 sm:flex-row sm:items-end sm:justify-between">
+        <header className="pdf-library-heading mt-8 flex flex-col gap-5 rounded-2xl px-5 py-6 sm:flex-row sm:items-end sm:justify-between sm:px-7" style={{ backgroundColor: '#EAF2FA' }}>
           <div>
             <h1 className="section-title pdf-library-title">PDF library</h1>
             <p className="pdf-library-description">Course notes and reference documents for your programme.</p>
@@ -146,7 +146,7 @@ export default function PdfLibraryPage() {
           )}
         </header>
 
-        <section className="pdf-library-controls mt-8 flex flex-col gap-5 rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-6 lg:flex-row lg:items-center lg:justify-between" aria-labelledby="pdf-library-controls-title">
+        <section className="pdf-library-controls mt-8 flex flex-col gap-5 rounded-2xl border border-white/70 p-5 shadow-sm sm:p-6 lg:flex-row lg:items-center lg:justify-between" style={{ backgroundColor: '#F1EDFA' }} aria-labelledby="pdf-library-controls-title">
           <div className="pdf-library-controls-copy">
             <h2 id="pdf-library-controls-title">Find a document</h2>
             <p>Sort by title, author, or file size.</p>
@@ -190,7 +190,7 @@ export default function PdfLibraryPage() {
         ) : pdfs.length === 0 ? (
           <EmptyState image={getEmptyStateImage('pdfs')} title="No PDFs are available for this selection yet." />
         ) : (
-          <div className="pdf-grid grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="pdf-grid grid grid-cols-1 gap-5 rounded-2xl p-4 sm:grid-cols-2 sm:p-5 xl:grid-cols-3" style={{ backgroundColor: '#F8F1E7' }}>
             {sortedPdfs.map((pdf) => (
               <article key={pdf.id} className="pdf-card flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:border-primary-200 hover:shadow-lg">
                 <span

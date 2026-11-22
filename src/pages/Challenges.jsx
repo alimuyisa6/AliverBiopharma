@@ -108,15 +108,15 @@ export default function Challenges() {
   }
 
   return (
-    <main className="min-h-screen bg-slate-50 px-4 py-8 dark:bg-slate-950 sm:px-6 sm:py-12">
+    <main className="min-h-screen px-4 py-8 sm:px-6 sm:py-12" style={{ backgroundColor: '#F3F6F9' }}>
       <div className="mx-auto max-w-6xl">
-        <header className="mb-7 max-w-3xl sm:mb-10">
+        <header className="mb-7 max-w-3xl rounded-2xl px-5 py-6 sm:mb-10 sm:px-7" style={{ backgroundColor: '#EAF2FA' }}>
           <p className="text-sm font-semibold text-blue-700 dark:text-blue-400">AliverBiopharm challenges</p>
           <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-4xl lg:text-5xl">Your daily challenge</h1>
           <p className="mt-3 max-w-2xl text-base leading-7 text-slate-600 dark:text-slate-300 sm:text-lg">Build your skills with a short challenge matched to your selected programme and recent progress.</p>
           {(data.scope?.level_name || data.scope?.group_name) && <div className="mt-4 flex flex-wrap gap-2">{[data.scope.level_name, data.scope.group_name].filter(Boolean).map((label, index) => <span key={index} className="inline-flex max-w-full items-center rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200">{label}</span>)}</div>}
         </header>
-        <ChallengeCard challenge={data.challenge} onOpen={(route, id) => navigate(route + '?challenge_id=' + encodeURIComponent(id))} />
+        <section className="rounded-2xl p-4 sm:p-6" style={{ backgroundColor: '#F8F1E7' }}><ChallengeCard challenge={data.challenge} onOpen={(route, id) => navigate(route + '?challenge_id=' + encodeURIComponent(id))} /></section>
       </div>
     </main>
   );

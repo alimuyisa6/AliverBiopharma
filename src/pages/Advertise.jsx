@@ -45,7 +45,7 @@ export default function Advertise() {
   const imageAlt = component?.properties?.image_alt || 'Reach relevant learners through AliverBiopharm advertising';
 
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main className="advertise-page min-h-screen bg-background text-foreground">
       <section className="relative isolate overflow-hidden bg-primary-900 text-white">
         <div className="absolute inset-0 -z-0 bg-[radial-gradient(ellipse_at_top_right,rgba(37,99,166,0.75),transparent_55%)]" aria-hidden="true" />
         <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1.05fr_0.95fr] lg:py-28">
@@ -54,7 +54,7 @@ export default function Advertise() {
             <h1 className="mt-6 text-4xl font-extrabold leading-tight text-white sm:text-5xl lg:text-6xl">Reach learners who are ready to discover opportunities.</h1>
             <p className="mt-6 max-w-xl text-lg leading-8 text-blue-100">Introduce your organisation to learners studying Biology and Pharmacy.</p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <a href="#start" className="inline-flex min-h-12 items-center justify-center rounded-xl bg-secondary-500 px-6 py-3 font-bold text-white shadow-lg transition hover:bg-secondary-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">Start your campaign <Icon name="arrow-right" /></a>
+              <a href="#start" className="inline-flex min-h-12 items-center justify-center rounded-xl bg-primary-700 px-6 py-3 font-bold text-white shadow-lg transition hover:bg-primary-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">Start your campaign <Icon name="arrow-right" /></a>
               <a href="#how-it-works" className="inline-flex min-h-11 items-center font-semibold text-white underline decoration-white/50 underline-offset-4 transition hover:text-orange-100">See how it works</a>
             </div>
           </div>
@@ -68,7 +68,7 @@ export default function Advertise() {
         </div>
       </section>
 
-      <section className="bg-white px-5 py-16 sm:px-8 sm:py-20" aria-labelledby="advertise-programmes-title">
+      <section className="px-5 py-16 sm:px-8 sm:py-20" style={{ backgroundColor: '#E8F4F2' }} aria-labelledby="advertise-programmes-title">
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-2xl text-center">
             <span className="text-xs font-bold uppercase tracking-[0.16em] text-secondary-700">Reach the right learners</span>
@@ -84,7 +84,7 @@ export default function Advertise() {
         </div>
       </section>
 
-      <section className="bg-background px-5 py-16 sm:px-8 sm:py-20" id="how-it-works" aria-labelledby="advertise-benefits-title">
+      <section className="px-5 py-16 sm:px-8 sm:py-20" style={{ backgroundColor: '#F1EDFA' }} id="how-it-works" aria-labelledby="advertise-benefits-title">
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-2xl text-center">
             <span className="text-xs font-bold uppercase tracking-[0.16em] text-secondary-700">Why advertise here</span>
@@ -101,17 +101,17 @@ export default function Advertise() {
         </div>
       </section>
 
-      <section className="bg-primary-900 px-5 py-16 text-white sm:px-8 sm:py-20" id="start">
+      <section className="advertise-start-section px-5 py-16 sm:px-8 sm:py-20" style={{ backgroundColor: '#F8F1E7' }} id="start">
         <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1fr_0.8fr]">
           <div className="max-w-2xl">
-            <span className="text-xs font-bold uppercase tracking-[0.16em] text-orange-200">Ready when you are</span>
-            <h2 className="mt-3 text-3xl font-extrabold text-white sm:text-4xl">Set up your campaign in a few steps.</h2>
-            <p className="mt-4 text-base leading-7 text-blue-100">Select your audience and ad placement, enter your campaign details, then submit it for review.</p>
+            <span className="text-xs font-bold uppercase tracking-[0.16em] text-secondary-700">Ready when you are</span>
+            <h2 className="mt-3 text-3xl font-extrabold text-primary-900 sm:text-4xl">Set up your campaign in a few steps.</h2>
+            <p className="mt-4 text-base leading-7 text-slate-600">Select your audience and ad placement, enter your campaign details, then submit it for review.</p>
             <Link to="/advertise/create" className="mt-7 inline-flex min-h-12 items-center justify-center gap-3 rounded-xl bg-secondary-500 px-6 py-3 font-bold text-white shadow-lg transition hover:bg-secondary-600">Create campaign <Icon name="arrow-right" /></Link>
           </div>
-          <div className="flex gap-4 rounded-2xl border border-white/15 bg-white/10 p-6 backdrop-blur-sm">
-            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/10 text-orange-200"><AdStepIcon name="review" size={34} /></span>
-            <div><h3 className="text-lg font-bold text-white">Reviewed before it goes live</h3><p className="mt-2 text-sm leading-7 text-blue-100">We check each campaign for accuracy and relevance before it appears on the site.</p></div>
+          <div className="advertise-review-card flex gap-4 rounded-2xl border border-primary-100 bg-white p-6 shadow-sm">
+            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-primary-50 text-primary-700"><AdStepIcon name="review" size={34} /></span>
+            <div><h3 className="text-lg font-bold text-primary-900">Reviewed before it goes live</h3><p className="mt-2 text-sm leading-7 text-slate-700">We check each campaign for accuracy and relevance before it appears on the site.</p></div>
           </div>
         </div>
       </section>

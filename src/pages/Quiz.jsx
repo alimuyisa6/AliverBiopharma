@@ -717,8 +717,8 @@ export default function Quiz() {
 
   if (isQuizCardsPage && !currentTopic && !quizQuestions.length && !resultData) {
     return (
-      <div className="quiz-page min-h-screen bg-background text-foreground quiz-cards-route-page">
-        <div className="section quiz-page-section">
+      <div className="quiz-page min-h-screen text-foreground quiz-cards-route-page" style={{ backgroundColor: '#F3F6F9' }}>
+        <div className="section quiz-page-section rounded-2xl px-4 py-6 sm:px-6 sm:py-8" style={{ backgroundColor: '#EAF2FA' }}>
           <button
             type="button"
             className="quiz-cards-route-back"
@@ -786,8 +786,8 @@ export default function Quiz() {
   const timerClass = timerPercent > 50 ? 'is-good' : timerPercent > 20 ? 'is-warn' : 'is-danger';
 
   return (
-    <div className={`quiz-page${!isQuizCardsPage && !currentTopic && !resultData && !quizQuestions.length && !sessionId ? ' quiz-landing-page' : ''}`}>
-      <div className={`section quiz-page-section${!isQuizCardsPage && !currentTopic && !resultData && !quizQuestions.length && !sessionId ? ' quiz-landing-section' : ''}`}>
+    <div className={`quiz-page${!isQuizCardsPage && !currentTopic && !resultData && !quizQuestions.length && !sessionId ? ' quiz-landing-page' : ''}`} style={{ backgroundColor: !isQuizCardsPage && !currentTopic && !resultData && !quizQuestions.length && !sessionId ? '#F3F6F9' : undefined }}>
+      <div className={`section quiz-page-section${!isQuizCardsPage && !currentTopic && !resultData && !quizQuestions.length && !sessionId ? ' quiz-landing-section' : ''}`} style={{ backgroundColor: !isQuizCardsPage && !currentTopic && !resultData && !quizQuestions.length && !sessionId ? '#E8F4F2' : undefined }}>
         <Breadcrumb items={[
           { label: 'Home', href: '/' },
           { label: 'Quiz', href: '/quiz' },
@@ -1112,7 +1112,7 @@ export default function Quiz() {
             </div>
           </div>
         ) : (
-          <div className="quiz-blocks-page min-h-screen bg-background text-foreground">
+          <div className="quiz-blocks-page min-h-screen text-foreground" style={{ backgroundColor: '#F3F6F9' }}>
             <div className="quiz-blocks-grid">
               {Array.from({ length: totalBlocks }).map((_, index) => {
                 const topicData = allTopics.find((topic) => topic.topic_name === currentTopic);

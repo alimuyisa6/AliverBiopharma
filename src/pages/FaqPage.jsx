@@ -15,7 +15,7 @@ export default function FaqPage() {
   }, [level]);
 
   return (
-    <main className="faq-page-shell w-full bg-primary-50 px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+    <main className="faq-page-shell w-full px-4 py-8 sm:px-6 sm:py-12 lg:px-8" style={{ backgroundColor: '#F1EDFA' }}>
       <FaqAccordion data={sections?.faq} standalone />
       <style>{`
         .faq-page-shell .faq-explorer { width: min(100%, 1180px); margin: 0 auto; color: var(--text-primary, #172033); }

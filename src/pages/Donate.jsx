@@ -110,7 +110,7 @@ export default function Donate() {
 
   if (loading) {
     return (
-      <main className="donate-page">
+      <main className="donate-page" style={{ backgroundColor: '#F3F6F9' }}>
         <div className="donate-loading">
           <Spinner size="lg" />
         </div>
@@ -129,7 +129,7 @@ export default function Donate() {
         </div>
       </section>
 
-      <div className="donate-content">
+      <div className="donate-content" style={{ backgroundColor: '#E8F4F2' }}>
         <section className="donate-goal" aria-label="Monthly donation progress">
           <div className="donate-goal-label">
             <span>Monthly support goal</span>
