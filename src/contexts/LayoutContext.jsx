@@ -121,7 +121,6 @@ export function LayoutProvider({ children }) {
     return () => {
       cancelled = true;
     };
-  }
   }, [effectiveLevel]);
 
   const toggleTheme = useCallback(() => {
