@@ -4,7 +4,6 @@ import Container from '../components/Container/Container';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 import Icon from '../components/Icon/Icon';
 import StorysetIllustration from '../components/StorysetIllustration';
-import StorysetIllustration from '../components/StorysetIllustration';
 import { getRequest } from '../api/client';
 import { useToast } from '../components/Toast/Toast';
 
