@@ -114,7 +114,7 @@ export function ContactSection({
 
         <aside className="space-y-6">
           <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-            <h2 className="text-xl font-bold text-slate-900">Before you send</h2>
+            <h2 className="text-xl font-bold text-slate-900">Before you send:</h2>
             <p className="mt-3 leading-7 text-slate-600">A little detail helps us understand your request. Include the page or feature involved and what you expected to happen. Never send passwords or payment details.</p>
           </div>
 
