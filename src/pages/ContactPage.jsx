@@ -22,7 +22,7 @@ export default function ContactPage() {
   const handleContactSubmit = useCallback(async (event) => {
     event.preventDefault();
 
-    if (!contactForm.name || !contactForm.email || !contactForm.message) return;
+    if (!contactForm.name || !contactForm.email || !contactForm.subject || !contactForm.message) return;
 
     setSubmitting(true);
     try {
@@ -31,6 +31,8 @@ export default function ContactPage() {
       setContactForm({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
       setContactStatus({ success: false, message: error.message });
+    } finally {
+      setSubmitting(false);
     }
   }, [contactForm]);
 
@@ -40,7 +42,6 @@ export default function ContactPage() {
         <div className="ab-page-hero-overlay absolute inset-0" aria-hidden="true" />
         <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 items-center gap-8 md:grid-cols-[minmax(0,1fr)_240px]">
           <div>
-            
             <h1 className="max-w-3xl text-4xl font-extrabold text-white sm:text-5xl lg:text-6xl">Contact AliverBiopharm</h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-white/85">Need help with your account, study materials, or a website feature? Send our team a message.</p>
           </div>
@@ -48,13 +49,14 @@ export default function ContactPage() {
         </div>
       </section>
       <div className="px-5 py-12 sm:py-16" style={{ backgroundColor: '#F1EDFA' }}>
-      <ContactSection
-        contactForm={contactForm}
-        contactStatus={contactStatus}
-        contactInfo={sections?.contact?.info || []}
-        onChange={setContactForm}
-        onSubmit={handleContactSubmit} submitting={submitting}
-      />
+        <ContactSection
+          contactForm={contactForm}
+          contactStatus={contactStatus}
+          contactInfo={sections?.contact?.info || []}
+          onChange={setContactForm}
+          onSubmit={handleContactSubmit}
+          submitting={submitting}
+        />
       </div>
     </main>
   );
