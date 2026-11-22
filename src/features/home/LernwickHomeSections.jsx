@@ -60,7 +60,7 @@ function PublicPathways() {
           <div>
             
             <h2 id="lernwick-pathways-title">Choose the science you want to explore</h2>
-            <p>Each programme has its own subject focus and learning experience.</p>
+            <p className="mt-8">Each programme has its own subject focus and learning experience.</p>
           </div>
           <StorysetIllustration name="onlineLearning" alt="Student taking part in online learning" className="mx-auto w-full max-w-[240px] md:max-w-[260px]" />
         </div>
@@ -195,7 +195,7 @@ export function ConnectedLearning() {
           <div>
             
             <h2 id="lernwick-connected-title">Move from understanding to confident application</h2>
-            <p>Each stage builds on the previous one. Choose a tool when you need it, then return to your learning pathway.</p>
+            <p className="mt-8">Each stage builds on the previous one. Choose a tool when you need it, then return to your learning pathway.</p>
           </div>
           <Link className="inline-flex items-center justify-center gap-2 rounded-xl border border-primary-300 bg-white px-5 py-3 text-sm font-bold text-primary-800 transition hover:bg-primary-50" to="/resources">Explore all resources <Icon name="arrow-right" /></Link>
         </div>
@@ -232,7 +232,7 @@ function ProgrammeStudio({ studio, activeGroupName, activeGroupId }) {
           <div className="max-w-2xl">
             
             <h2 id="programme-studio-title">{studio.title}</h2>
-            <p>{studio.description}</p>
+            <p className="mt-8">{studio.description}</p>
           </div>
           <div className="flex min-h-72 items-center justify-center" aria-label={studio.visualLabel}>
             <StorysetIllustration name={studio.visual === 'pharmacy' ? 'medicalResearch' : 'studying'} alt={studio.visualLabel} className="w-full max-w-[300px] object-contain" />
@@ -247,7 +247,7 @@ function ProgrammeStudio({ studio, activeGroupName, activeGroupId }) {
             return (
               <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm" key={card.title}>
                 <span className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-primary-100 text-primary-700"><Icon name={card.icon} size="2rem" monochrome /></span>
-                <span className="mb-2 block text-xs font-bold uppercase tracking-wider text-secondary-700">{card.label}</span>
+                
                 <h3>{card.title}</h3>
                 <p>{card.description}</p>
                 <Link className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-primary-700 transition hover:text-secondary-700" to={destination}>{card.action}<Icon name="arrow-right" /></Link>

@@ -6,9 +6,9 @@ export function NewsletterForm({ email, status, loading = false, onChange, onSub
     <section className="w-full bg-primary-900 px-5 py-16 text-white sm:px-8 sm:py-20 lg:px-12" aria-labelledby="lernwick-newsletter-title">
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-8 rounded-3xl border border-white/15 bg-white/10 p-6 shadow-xl backdrop-blur sm:p-9 lg:grid-cols-[1fr_0.9fr] lg:gap-14 lg:p-12">
         <div className="max-w-2xl">
-          <p className="mb-3 text-xs font-extrabold uppercase tracking-[0.16em] text-secondary-300">Stay connected</p>
+          
           <h2 id="lernwick-newsletter-title" className="text-3xl font-bold leading-tight text-white sm:text-4xl">Keep growing your knowledge.</h2>
-          <p className="mt-5 text-base leading-8 text-blue-100">Receive updates about new Biology and Pharmacy learning resources, study tools and platform opportunities.</p>
+          <p className="mt-8 text-base leading-8 text-blue-100">Receive updates about new Biology and Pharmacy learning resources, study tools and platform opportunities.</p>
         </div>
         <form onSubmit={onSubmit} className="min-w-0 rounded-2xl border border-white/15 bg-white p-5 text-slate-800 shadow-lg sm:p-6" aria-label="Subscribe to AliverBiopharm updates">
           <label htmlFor="lernwick-newsletter-email" className="mb-3 block text-sm font-bold text-primary-900">Get learning updates in your inbox</label>

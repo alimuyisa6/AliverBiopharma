@@ -91,7 +91,7 @@ export default function LernwickHomeHero({
               }}
             />
             <div className="pointer-events-none absolute bottom-5 left-5 z-20 rounded-2xl border border-white/70 bg-white/90 px-4 py-3 shadow-lg backdrop-blur-sm sm:bottom-6 sm:left-6" aria-hidden="true">
-              <span className="block text-xs font-semibold uppercase tracking-wider text-primary-600">Learn with purpose</span>
+              
               <span className="mt-1 block text-sm font-bold text-primary-900">Build knowledge. Grow confidence.</span>
             </div>
           </div>
