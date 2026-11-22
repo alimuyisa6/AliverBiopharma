@@ -168,7 +168,7 @@ export default function QuestionBankPage() {
       <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Resources', href: '/resources' }, { label: 'Question bank', href: null }]} />
       <header className="qbank-header mb-8 flex items-center justify-between gap-6 border-b border-border pb-8">
         <div className="min-w-0"><h1>Question bank</h1><p className="mt-6">Find published questions from your active curriculum, review their learning objectives and assemble focused tests for exam practice.</p></div>
-        <StorysetIllustration name="onlineLearning" alt="Learner using digital study resources" className="hidden w-36 shrink-0 object-contain sm:block" />
+        <StorysetIllustration name="knowledge" alt="Knowledge and question-based learning" className="hidden w-36 shrink-0 object-contain sm:block" />
       </header>
 
       <section className="qbank-search-panel mb-8 grid grid-cols-1 gap-4 rounded-2xl border border-border bg-white p-5 shadow-sm sm:grid-cols-2 lg:grid-cols-3" aria-label="Question bank filters">

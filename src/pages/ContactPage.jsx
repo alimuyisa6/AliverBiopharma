@@ -44,7 +44,7 @@ export default function ContactPage() {
             <h1 className="max-w-3xl text-4xl font-extrabold text-white sm:text-5xl lg:text-6xl">Contact AliverBiopharm</h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-white/85">Need help with your account, study materials, or a website feature? Send our team a message.</p>
           </div>
-          <StorysetIllustration name="chat" alt="Learner communicating with support" className="mx-auto w-full max-w-[240px] object-contain" />
+          <StorysetIllustration name="goodTeam" alt="Support team ready to help learners" className="mx-auto w-full max-w-[240px] object-contain" />
         </div>
       </section>
       <div className="px-5 py-12 sm:py-16" style={{ backgroundColor: '#F1EDFA' }}>

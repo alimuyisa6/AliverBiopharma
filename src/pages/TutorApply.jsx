@@ -207,7 +207,7 @@ export default function TutorApply() {
         
         <div className="flex items-center justify-between gap-5">
           <div><h1 className="section-title" style={{ textAlign: 'left', margin: '0 0 var(--space-2)' }}>Apply to become a<br />tutor</h1><h2 className="page-intro">Share your knowledge and help learners succeed. Complete the steps below to apply.</h2></div>
-          <StorysetIllustration name="teaching" alt="Tutor supporting learners" className="hidden w-36 shrink-0 object-contain sm:block" />
+          <StorysetIllustration name="careerProgress" alt="Career growth through tutoring" className="hidden w-36 shrink-0 object-contain sm:block" />
         </div>
 
         <div style={{ display: 'flex', justifyContent: 'center', gap: 'var(--space-8)', marginBottom: 'var(--space-8)' }}>

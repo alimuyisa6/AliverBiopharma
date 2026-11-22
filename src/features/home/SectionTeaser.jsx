@@ -1,7 +1,7 @@
 import Button from '../../components/Button/Button';
 import StorysetIllustration from '../../components/StorysetIllustration';
 
-const teaserIllustrations = { 'live-room': 'chat', tutor: 'teaching' };
+const teaserIllustrations = { 'live-room': 'chat', tutor: 'teaching', collaboration: 'connectingTeams' };
 
 export function SectionTeaser({
   title, intro, imageUrl, imageAlt, illustrationType, ctaLabel, onCtaClick, imageSide = 'right', backgroundColor = '#F3F6F9'

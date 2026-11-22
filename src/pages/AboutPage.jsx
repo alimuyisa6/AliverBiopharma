@@ -3,6 +3,7 @@ import { getInfoSection } from '../api/client';
 import { getCachedStale } from '../utils/cache';
 import { Link } from 'react-router-dom';
 import { Icon, getIconNameFromClass } from '../design-system.jsx';
+import StorysetIllustration from '../components/StorysetIllustration';
 
 function RichText({ text }) {
   const TOKEN_RE = /([a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,})|((https?:\/\/)[^\s<>"']+)/g;
@@ -199,7 +200,7 @@ export default function AboutPage() {
 
           {page?.team?.length > 0 && (
             <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-              <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.team_heading || 'Meet our team'}</h2>
+              <div className="mb-5 flex items-center justify-between gap-5"><h2 className="text-2xl font-bold text-primary-900 sm:text-3xl">{page.team_heading || 'Meet our team'}</h2><StorysetIllustration name="team" alt="Our team working together" className="hidden w-32 shrink-0 object-contain sm:block" /></div>
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {page.team.map((member, idx) => (
                   <TeamCard key={idx} member={member} />
