@@ -95,11 +95,11 @@ export function FaqAccordion({ items, data, standalone = false }) {
   if (!standalone) {
     return (
       <section id="faq" className="section reveal home-faq-section">
-        <div className="section-head">
-          <div className="section-head-left">
-            
+        <div className="section-head flex items-center justify-between gap-6">
+          <div className="section-head-left min-w-0">
             <h2>Frequently asked questions</h2>
           </div>
+          <StorysetIllustration name="chat" alt="Learner asking questions and finding support" className="hidden w-32 shrink-0 object-contain sm:block md:w-40" />
         </div>
 
         <div className="home-faq-list">
