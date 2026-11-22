@@ -41,7 +41,7 @@ export default function ContactPage() {
 
   return (
     <main className="contact-page w-full bg-[#EAF2FA]">
-      <section className="relative isolate overflow-hidden px-5 py-16 sm:py-24">
+      <section className="ab-page-hero ab-contact-hero relative isolate overflow-hidden px-5 py-16 sm:py-24">
         <div className="ab-page-hero-overlay absolute inset-0" aria-hidden="true" />
         <div className="relative z-10 mx-auto flex max-w-5xl flex-col items-center text-center">
           <h1 className="max-w-3xl text-4xl font-extrabold text-white sm:text-5xl lg:text-6xl">Contact AliverBiopharm</h1>
