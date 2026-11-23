@@ -32,15 +32,13 @@ export default function LernwickHomeHero({
   const secondaryLabel = heroContent.secondaryLabel || 'Browse resources';
   const primaryHref = heroContent.primaryHref || curriculumHref;
   const secondaryHref = heroContent.secondaryHref || '/resources';
-  const imageSrc = heroContent.imageSrc || '/images/aliver-hero-student-drop.webp';
-  const imageAlt = heroContent.imageAlt || 'A smiling healthcare student in a white coat';
 
   return (
     <section className={UI.hero.section} aria-labelledby="ab-home-hero-title">
       <div className="ab-home-hero-background" aria-hidden="true" />
       <div className="ab-home-hero-vignette" aria-hidden="true" />
-      <div className={`${UI.hero.container} ab-home-hero-layout`}>
-        <div className="order-2 min-w-0 lg:order-1 ab-home-hero-copy">
+      <div className="mx-auto flex w-full max-w-7xl items-center px-5 py-14 sm:px-8 sm:py-18 lg:px-12 lg:py-24 ab-home-hero-layout">
+        <div className="min-w-0 max-w-4xl ab-home-hero-copy">
           
           {name && <p className="mb-3 text-sm font-semibold text-primary-700">Welcome back, {name}</p>}
 
@@ -77,25 +75,7 @@ export default function LernwickHomeHero({
           )}
         </div>
 
-        <div className="order-1 mx-auto w-full max-w-xl lg:order-2 ab-home-hero-student">
-          <div className={`ab-home-hero-photo-frame ${UI.hero.imageFrame}`}>
-            <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-primary-900/10 via-transparent to-white/20" aria-hidden="true" />
-            <img
-              className="aspect-[4/5] h-full w-full object-cover object-center"
-              src={imageSrc}
-              alt={imageAlt}
-              fetchPriority="high"
-              onError={(event) => {
-                event.currentTarget.hidden = true;
-                event.currentTarget.closest('.ab-home-hero-photo-frame')?.classList.add('is-image-missing');
-              }}
-            />
-            <div className="pointer-events-none absolute bottom-5 left-5 z-20 rounded-2xl border border-white/70 bg-white/90 px-4 py-3 shadow-lg backdrop-blur-sm sm:bottom-6 sm:left-6" aria-hidden="true">
-              
-              <span className="mt-1 block text-sm font-bold text-primary-900">Build knowledge. Grow confidence.</span>
-            </div>
-          </div>
-        </div>
+
       </div>
     </section>
   );
