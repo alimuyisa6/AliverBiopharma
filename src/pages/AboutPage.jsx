@@ -250,11 +250,18 @@ export default function AboutPage() {
           {page?.faq && (
             <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
               {page.faq.heading && <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.faq.heading}</h2>}
-              <div className="faq-list">
+              <div className="space-y-4">
                 {(page.faq.questions || []).map((item, idx) => (
-                  <details key={idx} className="faq-item">
-                    <summary className="faq-question">{item.question}</summary>
-                    <p className="faq-answer"><RichText text={item.answer} /></p>
+                  <details key={idx} className="group rounded-2xl border border-slate-300 bg-[#EAF2FA] p-5 shadow-sm transition-shadow open:shadow-md sm:p-6">
+                    <summary className="flex cursor-pointer list-none items-start justify-between gap-4 text-left text-base font-bold leading-7 text-slate-900 marker:hidden sm:text-lg [&::-webkit-details-marker]:hidden">
+                      <span>{item.question}</span>
+                      <span className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary-700 text-white transition-transform group-open:rotate-180" aria-hidden="true">
+                        <Icon name="chevronDown" size={18} />
+                      </span>
+                    </summary>
+                    <div className="mt-4 border-t border-slate-300 pt-4 text-base leading-7 text-slate-800">
+                      <RichText text={item.answer} />
+                    </div>
                   </details>
                 ))}
               </div>
