@@ -32,32 +32,9 @@
 .ab-home-hero-copy span.text-muted,
 .ab-home-hero-copy .text-muted { color: rgba(226,240,255,.72) !important; }
 .ab-home-hero-copy a { box-shadow: 0 12px 30px rgba(0,0,0,.18); }
-.ab-home-hero-student { filter: drop-shadow(0 28px 50px rgba(0,0,0,.32)); }
-.ab-home-hero-photo-frame {
-  border: 1px solid rgba(255,255,255,.42) !important;
-  background: rgba(255,255,255,.08) !important;
-  border-radius: 2rem !important;
-  box-shadow: 0 24px 80px rgba(0,0,0,.28) !important;
-  backdrop-filter: blur(6px);
-  overflow: hidden;
-}
-.ab-home-hero-photo-frame img { object-position: center; }
-.ab-home-hero-photo-frame > div:last-child {
-  border-color: rgba(255,255,255,.52) !important;
-  box-shadow: 0 16px 40px rgba(4,18,40,.28) !important;
-}
-@media (min-width: 1024px) {
-  .ab-home-hero-layout { min-height: 660px; }
-  .ab-home-hero-student { transform: translateY(10px); }
-}
 @media (max-width: 767px) {
   .ab-home-hero-background { background-position: 62% center; }
   .ab-home-hero-vignette { background: linear-gradient(180deg, rgba(5,21,43,.88), rgba(7,31,58,.92)); }
-  .ab-home-hero-student { max-width: 420px; }
-}
-@media (prefers-reduced-motion: no-preference) {
-  .ab-home-hero-student { animation: ab-hero-float 7s ease-in-out infinite; }
-  @keyframes ab-hero-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
 }
 
 /* Secondary page heroes share the premium biotech visual language while retaining their own content. */
