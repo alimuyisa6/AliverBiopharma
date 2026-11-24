@@ -3729,3 +3729,8 @@ export async function archiveTestBlueprint(blueprint_id) {
 export async function startCustomTest(blueprint_id) {
   return apiCall('quiz', 'start_custom_test', { blueprint_id });
 }
+
+
+export async function trackPageView(page) {
+  return apiCall('analytics', 'track_page_view', { page }, 'POST');
+}
