@@ -27,23 +27,34 @@ export function ClassroomSection({ user }) {
   const { bootstrap } = useLayout();
   const [feed, setFeed] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [feedError, setFeedError] = useState(false);
+  const [retryKey, setRetryKey] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
 
-    getLiveClassroomFeed()
-      .then((data) => { if (!cancelled) setFeed(data); })
-      .finally(() => { if (!cancelled) setLoading(false); });
+    async function loadFeed() {
+      try {
+        const data = await getLiveClassroomFeed();
+        if (!cancelled) {
+          setFeed(Array.isArray(data) ? data : []);
+          setFeedError(false);
+        }
+      } catch {
+        if (!cancelled) setFeedError(true);
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    }
 
-    const interval = setInterval(() => {
-      getLiveClassroomFeed().then((data) => { if (!cancelled) setFeed(data); });
-    }, 30000);
+    loadFeed();
+    const interval = window.setInterval(loadFeed, 30000);
 
     return () => {
       cancelled = true;
-      clearInterval(interval);
+      window.clearInterval(interval);
     };
-  }, []);
+  }, [retryKey]);
 
   function getUiImage(key) {
     const uiComponents = bootstrap?.ui_components || [];
@@ -83,7 +94,21 @@ export function ClassroomSection({ user }) {
           Step into live sessions with verified tutors — ask, discuss, and learn in real time.
         </p>
 
-        {feed.length === 0 ? (
+        {feedError && feed.length > 0 && (
+          <div role="status" className="mb-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+            <span>Live classroom updates are temporarily unavailable. Showing the latest rooms we loaded.</span>
+            <Button size="sm" variant="secondary" onClick={() => setRetryKey((value) => value + 1)}>Retry updates</Button>
+          </div>
+        )}
+
+        {feedError && feed.length === 0 ? (
+          <EmptyState
+            icon="warning"
+            title="Classroom updates are unavailable"
+            description="We could not load live sessions just now. Please try again."
+            action={<Button variant="secondary" onClick={() => { setLoading(true); setRetryKey((value) => value + 1); }}>Try again</Button>}
+          />
+        ) : feed.length === 0 ? (
           <EmptyState
             image={getUiImage('empty_state_classroom') || '/Svg%20illustrations/Chat-rafiki.svg'}
             title="The room is quiet, for now"
