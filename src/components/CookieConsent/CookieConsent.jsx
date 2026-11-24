@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { getRequest, apiCall } from '../../api/client';
+import { getRequest, apiCall, trackPageView } from '../../api/client';
 import { useLayout } from '../../contexts/LayoutContext';
 import { useAuth } from '../../contexts/AuthContext';
 
@@ -116,6 +116,9 @@ export default function CookieConsent() {
           analytics: data.consent.analytics === true,
           marketing: data.consent.marketing === true
         });
+        if (data.consent.analytics === true) {
+          trackPageView(window.location.pathname).catch(() => {});
+        }
         setShowSettings(false);
         setVisible(false);
 

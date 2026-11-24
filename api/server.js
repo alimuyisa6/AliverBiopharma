@@ -20,6 +20,7 @@ const MODULE_MAP = {
   glossary: () => import('../lib/glossary.js'),
   institutions: () => import('../lib/institutions.js'),
   interactions: () => import('../lib/interactions.js'),
+  analytics: () => import('../lib/analytics.js'),
   lab: () => import('../lib/lab.js'),
   notes: () => import('../lib/notes.js'),
   'note-learning': () => import('../lib/note-learning.js'),
