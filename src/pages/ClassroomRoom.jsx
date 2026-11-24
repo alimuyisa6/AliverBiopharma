@@ -376,8 +376,12 @@ export default function ClassroomRoom() {
     );
   }
 
-  const levelName = displayName || room.level || '';
-  const roomClass = room.class_name || class_name || '';
+  const levelName = displayName || room.level_name || room.level || '';
+  const roomGroup = room.group_name || room.class_name || class_name || '';
+  const isPharmacyLevel = /pharmacy/i.test(`${room.level_kind || ''} ${levelName}`);
+  const groupLabel = isPharmacyLevel ? 'Program' : (room.group_label || 'Class');
+  const unitLabel = isPharmacyLevel ? 'Course Unit' : (room.unit_label || 'Topic');
+  const roomUnit = room.unit_name || room.topic_name || '';
   return (
     <div className="mx-auto flex w-full max-w-[1600px] flex-col gap-6 px-4 py-5 sm:px-6 lg:px-8 lg:py-8">
       <div className="flex flex-wrap items-center gap-4 rounded-3xl border border-primary-100 bg-primary-950 p-4 text-white shadow-xl shadow-primary-900/10 sm:p-6">
@@ -389,8 +393,8 @@ export default function ClassroomRoom() {
           <h2 className="m-0 text-xl font-bold leading-tight text-white sm:text-2xl">
             {room.title}<br />
             <span className="mt-3 flex flex-wrap gap-2">
-              {room.topic_name && <span className="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold border border-white/20 bg-white/15 text-white">{room.topic_name}</span>}
-              {roomClass && <span className="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold border border-secondary-200/40 bg-secondary-400/20 text-orange-50">{roomClass}</span>}
+              {roomUnit && <span className="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold border border-white/20 bg-white/15 text-white">{unitLabel}: {roomUnit}</span>}
+              {roomGroup && <span className="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold border border-secondary-200/40 bg-secondary-400/20 text-orange-50">{groupLabel}: {roomGroup}</span>}
               {levelName && <span className="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold border border-primary-200/40 bg-primary-400/20 text-blue-50">{levelName}</span>}
             </span>
           </h2>
@@ -571,9 +575,9 @@ export default function ClassroomRoom() {
           <div className="rounded-2xl border border-border bg-white p-4 shadow-sm">
             <h4><Icon name="circle-info" /> Session details</h4>
             <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
-              {room.level && <div className="rounded-xl bg-slate-50 p-3 text-sm text-slate-600 [&>strong]:mb-1 [&>strong]:block [&>strong]:text-xs [&>strong]:uppercase [&>strong]:tracking-wide [&>strong]:text-slate-500"><strong>Level</strong> {room.level}</div>}
-              {roomClass && <div className="rounded-xl bg-slate-50 p-3 text-sm text-slate-600 [&>strong]:mb-1 [&>strong]:block [&>strong]:text-xs [&>strong]:uppercase [&>strong]:tracking-wide [&>strong]:text-slate-500"><strong>Class</strong> {roomClass}</div>}
-              {room.topic_name && <div className="rounded-xl bg-slate-50 p-3 text-sm text-slate-600 [&>strong]:mb-1 [&>strong]:block [&>strong]:text-xs [&>strong]:uppercase [&>strong]:tracking-wide [&>strong]:text-slate-500"><strong>Topic</strong> {room.topic_name}</div>}
+              {levelName && <div className="rounded-xl bg-slate-50 p-3 text-sm text-slate-600 [&>strong]:mb-1 [&>strong]:block [&>strong]:text-xs [&>strong]:uppercase [&>strong]:tracking-wide [&>strong]:text-slate-500"><strong>Level</strong> {levelName}</div>}
+              {roomGroup && <div className="rounded-xl bg-slate-50 p-3 text-sm text-slate-600 [&>strong]:mb-1 [&>strong]:block [&>strong]:text-xs [&>strong]:uppercase [&>strong]:tracking-wide [&>strong]:text-slate-500"><strong>{groupLabel}</strong> {roomGroup}</div>}
+              {roomUnit && <div className="rounded-xl bg-slate-50 p-3 text-sm text-slate-600 [&>strong]:mb-1 [&>strong]:block [&>strong]:text-xs [&>strong]:uppercase [&>strong]:tracking-wide [&>strong]:text-slate-500"><strong>{unitLabel}</strong> {roomUnit}</div>}
               <div className="rounded-xl bg-slate-50 p-3 text-sm text-slate-600 [&>strong]:mb-1 [&>strong]:block [&>strong]:text-xs [&>strong]:uppercase [&>strong]:tracking-wide [&>strong]:text-slate-500"><strong>Type</strong> {room.room_type === 'free' ? 'Open discussion' : room.room_type === 'hard_topic' ? 'Focused topic' : 'Premium'}</div>
               {room.tutor_name && <div className="rounded-xl bg-slate-50 p-3 text-sm text-slate-600 [&>strong]:mb-1 [&>strong]:block [&>strong]:text-xs [&>strong]:uppercase [&>strong]:tracking-wide [&>strong]:text-slate-500"><strong>Tutor</strong> {room.tutor_name}</div>}
               <div className="rounded-xl bg-slate-50 p-3 text-sm text-slate-600 [&>strong]:mb-1 [&>strong]:block [&>strong]:text-xs [&>strong]:uppercase [&>strong]:tracking-wide [&>strong]:text-slate-500"><strong>Status</strong> {room.status === 'live' ? '● Live' : room.status}</div>

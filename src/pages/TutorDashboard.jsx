@@ -49,6 +49,10 @@ export default function TutorDashboard() {
   });
   const [topics, setTopics] = useState([]);
   const [loadingTopics, setLoadingTopics] = useState(false);
+  const selectedLevel = levels.find((lvl) => lvl.key === form.level);
+  const isPharmacyLevel = /pharmacy/i.test(`${selectedLevel?.kind || ''} ${selectedLevel?.display_name || ''}`);
+  const groupLabel = isPharmacyLevel ? 'Program' : (selectedLevel?.group_label || 'Class');
+  const unitLabel = isPharmacyLevel ? 'Course Unit' : (selectedLevel?.unit_label || 'Topic');
 
   useEffect(() => {
     if (!user) {
@@ -287,12 +291,12 @@ export default function TutorDashboard() {
                       setForm((prev) => ({ ...prev, level: event.target.value, group_id: '', class_name: '', topic_id: '', topic_name: '' }));
                       setTopics([]);
                     }}
-                    options={levels.map((lvl) => ({ value: lvl.key, label: lvl.key }))}
+                    options={levels.map((lvl) => ({ value: lvl.key, label: lvl.display_name || lvl.key }))}
                     placeholder="Choose level..."
                   />
 
                   <Select
-                    label="Class"
+                    label={groupLabel}
                     value={form.group_id}
                     onChange={(event) => {
                       const groupId = event.target.value;
@@ -307,21 +311,21 @@ export default function TutorDashboard() {
                       value: typeof cls === 'string' ? cls : cls.id,
                       label: typeof cls === 'string' ? cls : cls.name
                     }))}
-                    placeholder="Choose class..."
+                    placeholder={`Choose ${groupLabel.toLowerCase()}...`}
                     disabled={!form.level}
                   />
                 </div>
 
                 <Select
-                  label="Topic"
+                  label={unitLabel}
                   value={form.topic_id}
                   onChange={(event) => {
                     const selected = topics.find((topic) => topic.id === event.target.value);
 
-                    setForm((prev) => ({ ...prev, topic_id: event.target.value, topic_name: selected?.topic_name || '' }));
+                    setForm((prev) => ({ ...prev, topic_id: event.target.value, topic_name: selected?.unit_name || selected?.topic_name || '' }));
                   }}
-                  options={topics.map((topic) => ({ value: topic.id, label: topic.topic_name }))}
-                  placeholder={loadingTopics ? 'Loading topics...' : 'Choose topic...'}
+                  options={topics.map((topic) => ({ value: topic.id, label: topic.unit_name || topic.topic_name }))}
+                  placeholder={loadingTopics ? `Loading ${unitLabel.toLowerCase()}s...` : `Choose ${unitLabel.toLowerCase()}...`}
                   disabled={!form.group_id || loadingTopics}
                 />
 
@@ -383,7 +387,7 @@ export default function TutorDashboard() {
 
                     <div className="card-body">
                       <h4 className="card-title">{room.title}</h4>
-                      <p className="card-text">{room.topic_name} · {room.class_name}</p>
+                      <p className="card-text">{room.group_label || 'Class'}: {room.group_name || room.class_name} · {room.unit_label || 'Topic'}: {room.unit_name || room.topic_name}</p>
                     </div>
 
                     <div className="card-footer" style={{ display: 'flex', gap: 'var(--space-2)' }}>

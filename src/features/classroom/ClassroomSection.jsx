@@ -126,8 +126,8 @@ export function ClassroomSection({ user }) {
                 key={room.id}
                 image={room.image_url}
                 fallbackImage={getUiImage('default_classroom_thumbnail') || '/images/classroom-default.jpg'}
-                title={room.topic_name}
-                subtitle={STATUS_LABEL[room.status] || room.status}
+                title={`${room.unit_label || 'Topic'}: ${room.unit_name || room.topic_name || room.title}`}
+                subtitle={room.group_name ? `${room.group_label || 'Class'}: ${room.group_name}` : STATUS_LABEL[room.status] || room.status}
                 badge={STATUS_LABEL[room.status] || room.status}
                 badgeVariant={STATUS_VARIANT[room.status] || 'primary'}
                 link={`/classroom/${room.id}`}

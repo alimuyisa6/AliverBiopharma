@@ -8,7 +8,7 @@ import { useLayout } from '../contexts/LayoutContext';
 import { useI18n } from '../contexts/I18nContext';
 import { PendingApprovalScreen } from '../components/access/PendingApprovalScreen';
 import { AccessDenied } from '../components/access/AccessDenied';
-import { listClassrooms, getUnits } from '../api/client';
+import { listClassrooms } from '../api/client';
 import Icon from '../components/Icon/Icon';
 import PageSkeleton from '../components/Loading/PageSkeleton';
 import Button from '../components/Button/Button';
@@ -55,50 +55,31 @@ export default function Classroom() {
   const { isReady } = useRequireOnboarding();
   const access = useContentAccess();
   const { level, class_name, showAll, displayName } = useLevelFilter();
-  const { groups, bootstrap } = useLayout();
+  const { groups, bootstrap, activeGroupId } = useLayout();
+  const selectedGroupId = activeGroupId || user?.profile?.active_group_id || groups?.find((group) => group.name === class_name)?.id || null;
   const { t } = useI18n();
 
   const [rooms, setRooms] = useState([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState(null);
-  const [activeUnitId, setActiveUnitId] = useState(null);
-  const [unitRetry, setUnitRetry] = useState(0);
+  const [groupRetry, setGroupRetry] = useState(0);
   const [viewMode, setViewMode] = useState('grid');
 
   useEffect(() => {
-    let cancelled = false;
-
-    async function resolveUnit() {
-      if (!user || !Array.isArray(groups)) return;
-      const groupId = user?.profile?.active_group_id || groups[0]?.id;
-      if (!groupId) {
-        setActiveUnitId(null);
-        setRooms([]);
-        setLoading(false);
-        return;
-      }
-
-      setLoading(true);
-      try {
-        const units = await getUnits({ group_id: groupId });
-        if (!cancelled) setActiveUnitId(units?.[0]?.id || null);
-      } catch {
-        if (!cancelled) {
-          setError("We couldn't load your learning level. Please refresh and try again.");
-          setLoading(false);
-        }
-      }
+    if (!user || !Array.isArray(groups)) return;
+    if (!selectedGroupId) {
+      setRooms([]);
+      setError('Your learning group or Pharmacy programme is not assigned yet. Please check your profile or contact an administrator.');
+      setLoading(false);
+      return;
     }
-
-    resolveUnit();
-    return () => { cancelled = true; };
-  }, [groups, user, unitRetry]);
+    setError(null);
+  }, [groups, selectedGroupId, user, groupRetry]);
 
   const fetchRooms = useCallback(async ({ quiet = false } = {}) => {
-    if (!activeUnitId) {
+    if (!selectedGroupId) {
       setRooms([]);
-      setError(null);
       setLoading(false);
       setRefreshing(false);
       return;
@@ -109,7 +90,7 @@ export default function Classroom() {
     setError(null);
 
     try {
-      const data = await listClassrooms(activeUnitId, null);
+      const data = await listClassrooms(null, selectedGroupId);
       setRooms(Array.isArray(data) ? data : []);
     } catch {
       setError("We couldn't load the classrooms. Please try again.");
@@ -117,12 +98,12 @@ export default function Classroom() {
       setLoading(false);
       setRefreshing(false);
     }
-  }, [activeUnitId]);
+  }, [selectedGroupId]);
 
   useEffect(() => {
-    if (!isReady || !access.canAccess || access.isPending || !activeUnitId) return;
+    if (!isReady || !access.canAccess || access.isPending || !selectedGroupId) return;
     fetchRooms();
-  }, [isReady, access.canAccess, access.isPending, activeUnitId, fetchRooms]);
+  }, [isReady, access.canAccess, access.isPending, selectedGroupId, fetchRooms]);
 
   function getEmptyStateImage(key) {
     const uiComponents = bootstrap?.ui_components || [];
@@ -135,6 +116,7 @@ export default function Classroom() {
 
   const levelName = displayName || level?.display_name || level?.id || '';
   const classLabel = class_name || '';
+  const groupLabel = /pharmacy/i.test(levelName) ? 'Program' : (rooms[0]?.group_label || 'Class');
   const liveCount = rooms.filter((room) => room.status === 'live' || room.status === 'open_floor').length;
   const upcomingCount = rooms.filter((room) => room.status === 'upcoming').length;
 
@@ -162,7 +144,7 @@ export default function Classroom() {
                 Meet your tutors, ask questions, and learn together in focused live sessions.
               </p>
               <div className="mt-5 flex flex-wrap gap-2">
-                {classLabel && <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white">{classLabel}</span>}
+                {classLabel && <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white">{groupLabel}: {classLabel}</span>}
                 {showAll && <span className="rounded-full border border-secondary-200/30 bg-secondary-400/15 px-3 py-1.5 text-xs font-semibold text-secondary-100">{t('common.allLevelsTeacher')}</span>}
               </div>
             </div>
@@ -200,7 +182,7 @@ export default function Classroom() {
                   <Icon name="list" /> List
                 </button>
               </div>
-              <Button variant="secondary" size="sm" onClick={() => activeUnitId ? fetchRooms({ quiet: true }) : setUnitRetry((value) => value + 1)} loading={refreshing || loading} className="min-h-10">
+              <Button variant="secondary" size="sm" onClick={() => selectedGroupId ? fetchRooms({ quiet: true }) : setGroupRetry((value) => value + 1)} loading={refreshing || loading} className="min-h-10">
                 <Icon name="refresh-cw" /> Refresh
               </Button>
             </div>
@@ -219,7 +201,7 @@ export default function Classroom() {
                 image={getEmptyStateImage('classrooms')}
                 icon="users"
                 title="No classrooms available yet"
-                description={`There are no active classrooms for ${classLabel || levelName || 'your selected level'} right now. Check back later for new sessions.`}
+                description={`There are no active classrooms for ${classLabel ? `${groupLabel.toLowerCase()} ${classLabel}` : levelName || 'your selected learning pathway'} right now. Check back later for new sessions.`}
                 action={<Button onClick={() => navigate('/tutor/apply')}><Icon name="user-pen" /> Apply to become a tutor</Button>}
               />
             </div>
@@ -240,8 +222,8 @@ export default function Classroom() {
                   </div>
                   <div className="flex flex-1 flex-col p-5">
                     <div className="mb-2 flex flex-wrap items-center gap-2 text-xs font-semibold text-primary-700">
-                      {room.class_name && <span>{room.class_name}</span>}
-                      {room.topic_name && <><span className="text-slate-300">/</span><span>{room.topic_name}</span></>}
+                      {room.group_name && <span>{room.group_label || 'Class'}: {room.group_name}</span>}
+                      {room.unit_name && <><span className="text-slate-300">/</span><span>{room.unit_label || 'Topic'}: {room.unit_name}</span></>}
                     </div>
                     <h3 className="m-0 text-lg font-bold leading-7 text-slate-900">{room.title}</h3>
                     <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm text-slate-600">
@@ -263,7 +245,7 @@ export default function Classroom() {
               <div className="divide-y divide-slate-100">
                 {rooms.map((room) => (
                   <div key={room.id} className="grid grid-cols-1 gap-3 px-4 py-4 transition hover:bg-primary-50/30 md:grid-cols-[minmax(0,1.5fr)_minmax(120px,0.7fr)_minmax(120px,0.7fr)_minmax(100px,0.6fr)_140px] md:items-center md:gap-4 md:px-5">
-                    <div className="min-w-0"><h3 className="m-0 truncate text-sm font-bold text-slate-900">{room.title}</h3><p className="m-0 mt-1 truncate text-xs text-slate-500">{[room.class_name, room.topic_name].filter(Boolean).join(' · ')}</p></div>
+                    <div className="min-w-0"><h3 className="m-0 truncate text-sm font-bold text-slate-900">{room.title}</h3><p className="m-0 mt-1 truncate text-xs text-slate-500">{[room.group_name && `${room.group_label || 'Class'}: ${room.group_name}`, room.unit_name && `${room.unit_label || 'Topic'}: ${room.unit_name}`].filter(Boolean).join(' · ')}</p></div>
                     <div><RoomStatus status={room.status} /></div>
                     <div className="text-sm text-slate-700">{room.tutor_name || 'Tutor not listed'}</div>
                     <div className="text-sm text-slate-700">{room.participant_count || 0} learners</div>

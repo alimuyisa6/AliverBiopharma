@@ -1,5 +1,6 @@
 import { lazy, Suspense, useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
+import { Link } from 'react-router-dom';
 import Card from '../Card/Card';
 import Icon from '../Icon/Icon';
 import Button from '../Button/Button';
@@ -98,6 +99,13 @@ export default function RecallAnalyticsHub() {
 
   const dayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   const activeGraphData = GRAPH_TYPES.find((g) => g.key === activeGraph);
+  const knowledgeGaps = stats.knowledge_gaps || null;
+  const gapStatus = {
+    priority: { label: 'Priority revision', className: 'border-red-200 bg-red-50 text-red-800', icon: 'alert-circle' },
+    review: { label: 'Needs practice', className: 'border-amber-200 bg-amber-50 text-amber-900', icon: 'book-open' },
+    insufficient_evidence: { label: 'Keep practising', className: 'border-slate-200 bg-slate-100 text-slate-700', icon: 'chart-line' },
+    on_track: { label: 'On track', className: 'border-emerald-200 bg-emerald-50 text-emerald-800', icon: 'circle-check' }
+  };
 
   const renderGraph = () => {
     switch (activeGraph) {
@@ -186,6 +194,54 @@ export default function RecallAnalyticsHub() {
 
   return (
     <div className="w-full min-w-0">
+      <section className="mb-8 overflow-hidden rounded-3xl border border-primary-100 bg-white shadow-sm" aria-labelledby="knowledge-gap-heading">
+        <div className="flex flex-col gap-4 bg-primary-950 px-5 py-6 text-white sm:flex-row sm:items-center sm:justify-between sm:px-7">
+          <div className="flex items-start gap-4">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-secondary-400 text-primary-950 shadow-sm"><Icon name="target" size="1.5rem" /></span>
+            <div>
+              <h3 id="knowledge-gap-heading" className="m-0 text-xl font-extrabold text-white sm:text-2xl">Knowledge Gap Detector</h3>
+              <p className="mt-1 max-w-2xl text-sm leading-6 text-primary-100">A focused view of the {knowledgeGaps?.unit_label?.toLowerCase() || 'curriculum areas'} that need more practice, based on your recent completed quizzes and recall history.</p>
+              {knowledgeGaps?.level_name && <p className="mt-2 text-xs font-semibold text-secondary-200">{knowledgeGaps.level_name}{knowledgeGaps.group_name ? ` · ${knowledgeGaps.group_label || 'Class'}: ${knowledgeGaps.group_name}` : ''}</p>}
+            </div>
+          </div>
+          <div className="flex shrink-0 flex-wrap gap-2">
+            <Link to="/quiz" className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl bg-secondary-400 px-4 py-2 text-sm font-bold text-primary-950 no-underline transition hover:bg-secondary-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Practise questions <Icon name="arrow-up-right" /></Link>
+            <Link to="/recall" className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-white no-underline transition hover:bg-white/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Recall practice</Link>
+          </div>
+        </div>
+
+        {knowledgeGaps?.status === 'no_curriculum' ? (
+          <div className="px-5 py-7 text-sm leading-6 text-slate-600 sm:px-7">Your approved learning {knowledgeGaps.group_label?.toLowerCase() || 'group'} is not available yet. Once your curriculum is assigned, this section will track your progress.</div>
+        ) : !knowledgeGaps?.areas?.length ? (
+          <div className="px-5 py-7 text-sm leading-6 text-slate-600 sm:px-7">No curriculum {knowledgeGaps?.unit_label?.toLowerCase() || 'areas'} are available for your current learning pathway yet.</div>
+        ) : (
+          <div className="p-5 sm:p-7">
+            <div className="mb-5 flex flex-wrap items-center justify-between gap-2">
+              <div><p className="m-0 text-sm font-bold text-slate-900">Your learning priorities</p><p className="m-0 mt-1 text-xs text-slate-500">Only repeated evidence is used to flag a learning gap.</p></div>
+              <span className="rounded-full border border-primary-100 bg-primary-50 px-3 py-1.5 text-xs font-bold text-primary-800">{knowledgeGaps.assessed_units || 0} assessed {knowledgeGaps.unit_label?.toLowerCase() || 'areas'}</span>
+            </div>
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+              {knowledgeGaps.areas.slice(0, 6).map((area) => {
+                const status = gapStatus[area.status] || gapStatus.insufficient_evidence;
+                return (
+                  <article key={area.unit_id} className="flex min-w-0 flex-col gap-3 rounded-2xl border border-slate-200 bg-slate-50/70 p-4 transition hover:border-primary-200 hover:bg-white hover:shadow-sm sm:flex-row sm:items-center sm:justify-between">
+                    <div className="min-w-0">
+                      <p className="m-0 truncate text-sm font-bold text-slate-900">{area.unit_name}</p>
+                      <p className="m-0 mt-1 text-xs text-slate-500">{area.quiz_attempts} quiz attempts · {area.recall_attempts} recall practices</p>
+                    </div>
+                    <div className="flex shrink-0 items-center gap-3">
+                      {area.score !== null && <span className="text-lg font-extrabold tabular-nums text-slate-900">{Math.round(area.score)}%</span>}
+                      <span className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1.5 text-[11px] font-bold ${status.className}`}><Icon name={status.icon} />{status.label}</span>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+            <p className="mb-0 mt-4 text-xs leading-5 text-slate-500">A priority or practice label is guidance, not a diagnosis of ability. Areas with too little completed activity remain unclassified until more evidence is available.</p>
+          </div>
+        )}
+      </section>
+
       <div className="mb-6">
         <h3 className="flex items-center gap-3 text-xl font-bold leading-7 text-primary-950">
           <Icon name="chart-line" className="h-6 w-6 text-primary-700" />
