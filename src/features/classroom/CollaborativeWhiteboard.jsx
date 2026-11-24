@@ -348,8 +348,8 @@ export default function CollaborativeWhiteboard({ roomId, user, isTutor = false 
     setError('');
     try {
       await saveClassroomWhiteboardSnapshot(roomId, archiveTitle);
-      await refreshActivity();
       setShowHistory(true);
+      try { await refreshActivity(); } catch { setError('The snapshot was saved, but the snapshot list could not be refreshed.'); }
     } catch (saveError) {
       setError(saveError.message || 'Unable to save this snapshot.');
     } finally {
@@ -361,6 +361,8 @@ export default function CollaborativeWhiteboard({ roomId, user, isTutor = false 
     await publishOperation({ type: 'restore', archive_id: archiveId });
     await refreshActivity().catch(() => {});
   };
+
+  const canUndo = strokes.some((stroke) => stroke.user_id === user?.id);
 
   const editorLabel = useMemo(() => {
     const others = activeEditors.filter((editor) => editor.key !== user?.id).length;
@@ -398,7 +400,7 @@ export default function CollaborativeWhiteboard({ roomId, user, isTutor = false 
               ))}
             </div>
             <div className="flex items-center gap-2">
-              <button type="button" onClick={undo} disabled={busy || strokes.length === 0} className="min-h-10 rounded-xl border border-slate-200 bg-white px-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40">Undo mine</button>
+              <button type="button" onClick={undo} disabled={busy || !canUndo} className="min-h-10 rounded-xl border border-slate-200 bg-white px-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40">Undo mine</button>
               {isTutor && <button type="button" onClick={clear} disabled={busy || strokes.length === 0} className="min-h-10 rounded-xl border border-red-200 bg-red-50 px-3 text-sm font-semibold text-red-700 transition hover:bg-red-100 disabled:cursor-not-allowed disabled:opacity-40">Clear board</button>}
               <button type="button" onClick={() => { setShowHistory((visible) => !visible); if (!showHistory) refreshActivity().catch((err) => setError(err.message)); }} aria-expanded={showHistory} className="min-h-10 rounded-xl border border-primary-200 bg-primary-50 px-3 text-sm font-semibold text-primary-800 transition hover:bg-primary-100">{showHistory ? 'Hide history' : 'Board history'}</button>
             </div>
