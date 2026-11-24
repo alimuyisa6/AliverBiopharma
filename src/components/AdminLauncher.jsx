@@ -6,7 +6,8 @@ import Icon from './Icon/Icon';
 
 export default function AdminLauncher() {
   const { user } = useContext(AuthContext);
-  const [loading, setLoading] = useState(false);\n  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   if (!user?.is_admin) return null;
 
