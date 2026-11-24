@@ -82,6 +82,16 @@ export default function Auth() {
     : '/dashboard';
 
   useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    if (params.get('admin_device_reapproval') === '1') {
+      setError('Your administrator device needs verification again. Sign in and enter the 48-digit administrator recovery code if prompted.');
+      params.delete('admin_device_reapproval');
+      const nextSearch = params.toString();
+      window.history.replaceState(null, '', `${location.pathname}${nextSearch ? `?${nextSearch}` : ''}`);
+    }
+  }, [location.pathname, location.search]);
+
+  useEffect(() => {
     if (onboardingStep !== 2 || levels.length || levelsLoading) return;
 
     setLevelsLoading(true);
