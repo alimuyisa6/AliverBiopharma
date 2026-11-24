@@ -74,7 +74,7 @@ export default function TutorDashboard() {
       setLevels(levelsData || []);
 
       if (statusData?.application?.status === 'approved') {
-        fetchActiveRooms();
+        await fetchActiveRooms();
       }
     } catch {
       setError('We couldn’t load your dashboard. Please try again.');
@@ -149,11 +149,13 @@ export default function TutorDashboard() {
     try {
       await endClassroom(roomId);
       addToast('The classroom has ended.', 'success');
-      fetchActiveRooms();
+      await fetchActiveRooms();
     } catch (err) {
       addToast(err.message || 'We couldn’t end the classroom. Please try again.', 'error');
+    } finally {
+      setEndingRoomId(null);
     }
-  }    setEndingRoomId(null);
+  }
 
 
   function getEmptyStateImage(key) {
@@ -198,15 +200,16 @@ export default function TutorDashboard() {
   const levelName = displayName || '';
 
   return (
-    <div className="tutor-dashboard-page">
-      <div className="section" style={{ paddingTop: 'var(--space-6)' }}>
-        
-        <h1 className="section-title" style={{ textAlign: 'left', margin: '0 0 var(--space-2)' }}>
-          Tutor dashboard<br />{levelName ? `– ${levelName}` : ''}
-        </h1>
-        <h2 className="page-intro">
-          Manage your teaching sessions, create new classrooms, and track your tutoring activity.
-        </h2>
+    <main className="mx-auto w-full max-w-[1440px] px-4 py-6 sm:px-6 lg:px-8 lg:py-10">
+      <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8">
+        <div className="mb-8 border-b border-slate-100 pb-6">
+          <h1 className="m-0 text-3xl font-extrabold tracking-tight text-primary-950 sm:text-4xl">
+            Tutor dashboard{levelName ? ` · ${levelName}` : ''}
+          </h1>
+          <p className="mb-0 mt-3 max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
+            Manage your teaching sessions, create new classrooms, and track your tutoring activity.
+          </p>
+        </div>
 
         {!application && (
           <EmptyState
@@ -276,7 +279,7 @@ export default function TutorDashboard() {
                   required
                 />
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-4)' }}>
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <Select
                     label="Level"
                     value={form.level}
@@ -322,7 +325,7 @@ export default function TutorDashboard() {
                   disabled={!form.group_id || loadingTopics}
                 />
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-4)' }}>
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <Select
                     label="Room Type"
                     value={form.room_type}
@@ -368,9 +371,9 @@ export default function TutorDashboard() {
                 description="You haven't created any classrooms yet."
               />
             ) : (
-              <div className="grid grid-cols-3">
+              <div className="grid grid-cols-1 gap-5 md:grid-cols-2 2xl:grid-cols-3">
                 {activeRooms.map((room) => (
-                  <Card key={room.id}>
+                  <Card key={room.id} className="h-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                     <div style={{ padding: 'var(--space-3) var(--space-4)', background: room.status === 'live' ? 'var(--success)' : room.status === 'open_floor' ? 'var(--primary)' : 'var(--warning)', color: 'var(--text-on-dark)', display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
                       <Icon name={room.status === 'live' ? 'circle' : room.status === 'open_floor' ? 'users' : 'clock'} />
                       <span style={{ fontSize: 'var(--text-xs)', fontWeight: 600 }}>
@@ -394,6 +397,6 @@ export default function TutorDashboard() {
           </div>
         )}
       </div>
-    </div>
+    </main>
   );
 }

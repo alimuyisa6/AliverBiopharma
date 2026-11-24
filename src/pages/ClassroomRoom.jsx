@@ -10,7 +10,8 @@ import {
   getClassroomMessages,
   getClassroomParticipants,
   sendClassroomMessage,
-  raiseHand
+  raiseHand,
+  fileClassroomComplaint
 } from '../api/client';
 import Icon from '../components/Icon/Icon';
 import Spinner from '../components/Spinner/Spinner';
@@ -26,6 +27,9 @@ export default function ClassroomRoom() {
   const { displayName, class_name } = useLevelFilter();
   const { bootstrap } = useLayout();
   const chatBodyRef = useRef(null);
+  const mediaStreamRef = useRef(null);
+  const screenStreamRef = useRef(null);
+  const videoPreviewRef = useRef(null);
 
   const [room, setRoom] = useState(null);
   const [messages, setMessages] = useState([]);
@@ -41,6 +45,13 @@ export default function ClassroomRoom() {
   const [raisingHand, setRaisingHand] = useState(false);
   const [leaving, setLeaving] = useState(false);
   const [error, setError] = useState(null);
+  const [mediaError, setMediaError] = useState('');
+  const [deviceBusy, setDeviceBusy] = useState(false);
+  const [hasMediaPreview, setHasMediaPreview] = useState(false);
+  const [reportOpen, setReportOpen] = useState(false);
+  const [reportDescription, setReportDescription] = useState('');
+  const [reporting, setReporting] = useState(false);
+  const [reportError, setReportError] = useState('');
 
   useEffect(() => {
     doJoinRoom();
@@ -57,6 +68,17 @@ export default function ClassroomRoom() {
       leaveRoomSilent();
     };
   }, [roomId]);
+
+  useEffect(() => {
+    if (videoPreviewRef.current) {
+      videoPreviewRef.current.srcObject = screenStreamRef.current || mediaStreamRef.current;
+    }
+  }, [isVideoOn, isScreenSharing, participants]);
+
+  useEffect(() => () => {
+    mediaStreamRef.current?.getTracks().forEach((track) => track.stop());
+    screenStreamRef.current?.getTracks().forEach((track) => track.stop());
+  }, []);
 
   useEffect(() => {
     if (chatBodyRef.current) {
@@ -97,7 +119,9 @@ export default function ClassroomRoom() {
   async function fetchParticipants() {
     try {
       const data = await getClassroomParticipants(roomId);
-      setParticipants(data || []);
+      const activeParticipants = data || [];
+      setParticipants(activeParticipants);
+      setHandRaised(Boolean(activeParticipants.find((participant) => participant.user_id === user?.id)?.hand_raised));
     } catch {}
   }
 
@@ -138,6 +162,38 @@ export default function ClassroomRoom() {
     }
   }
 
+  function handleExportChat() {
+    const transcript = messages.map((message) => {
+      const time = message.created_at ? new Date(message.created_at).toLocaleString() : '';
+      const sender = message.sender_name || (message.user_id === user?.id ? 'You' : 'Participant');
+      return `[${time}] ${sender}: ${message.content || message.file_name || ''}`;
+    }).join('\n');
+    const blob = new Blob([`Classroom: ${room?.title || 'Session'}\n\n${transcript}`], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `classroom-chat-${roomId}.txt`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  async function handleReportIssue() {
+    if (!reportDescription.trim() || reporting) return;
+    setReporting(true);
+    setReportError('');
+    try {
+      await fileClassroomComplaint(roomId, 'classroom_session', reportDescription.trim());
+      setReportDescription('');
+      setReportOpen(false);
+    } catch (err) {
+      setReportError(err.message || 'We could not submit your report. Please try again.');
+    } finally {
+      setReporting(false);
+    }
+  }
+
   function handleKeyDown(event) {
     if (event.key === 'Enter' && !event.shiftKey) {
       event.preventDefault();
@@ -151,28 +207,101 @@ export default function ClassroomRoom() {
     return component?.properties?.image_url || null;
   }
 
-  function toggleMute() {
-    setIsMuted(!isMuted);
-    // In real app, would call API to toggle audio
+  async function ensureMediaStream(device) {
+    if (!navigator.mediaDevices?.getUserMedia) {
+      throw new Error('This browser does not support camera and microphone access.');
+    }
+
+    const currentStream = mediaStreamRef.current || new MediaStream();
+    const hasRequestedTrack = device === 'audio'
+      ? currentStream.getAudioTracks().length > 0
+      : currentStream.getVideoTracks().length > 0;
+
+    if (!hasRequestedTrack) {
+      const capturedStream = await navigator.mediaDevices.getUserMedia({
+        audio: device === 'audio',
+        video: device === 'video'
+      });
+      capturedStream.getTracks().forEach((track) => currentStream.addTrack(track));
+      mediaStreamRef.current = currentStream;
+    }
+
+    currentStream.getAudioTracks().forEach((track) => { track.enabled = !isMuted; });
+    currentStream.getVideoTracks().forEach((track) => { track.enabled = isVideoOn; });
+    setHasMediaPreview(currentStream.getVideoTracks().length > 0);
+    if (videoPreviewRef.current && !screenStreamRef.current && currentStream.getVideoTracks().length) {
+      videoPreviewRef.current.srcObject = currentStream;
+    }
+    return currentStream;
   }
 
-  function toggleVideo() {
-    setIsVideoOn(!isVideoOn);
-    // In real app, would call API to toggle video
+  async function toggleMute() {
+    if (deviceBusy) return;
+    setDeviceBusy(true);
+    setMediaError('');
+    try {
+      const nextMuted = !isMuted;
+      const stream = await ensureMediaStream('audio');
+      stream.getAudioTracks().forEach((track) => { track.enabled = !nextMuted; });
+      setIsMuted(nextMuted);
+    } catch (err) {
+      setMediaError(err.message || 'Unable to access your microphone. Check browser permissions.');
+    } finally {
+      setDeviceBusy(false);
+    }
   }
 
-  function toggleScreenShare() {
-    setIsScreenSharing(!isScreenSharing);
-    // In real app, would call API to toggle screen share
+  async function toggleVideo() {
+    if (deviceBusy) return;
+    setDeviceBusy(true);
+    setMediaError('');
+    try {
+      const nextVideoOn = !isVideoOn;
+      const stream = await ensureMediaStream('video');
+      stream.getVideoTracks().forEach((track) => { track.enabled = nextVideoOn; });
+      setIsVideoOn(nextVideoOn);
+    } catch (err) {
+      setMediaError(err.message || 'Unable to access your camera. Check browser permissions.');
+    } finally {
+      setDeviceBusy(false);
+    }
+  }
+
+  async function toggleScreenShare() {
+    if (deviceBusy) return;
+    setDeviceBusy(true);
+    setMediaError('');
+    try {
+      if (screenStreamRef.current) {
+        screenStreamRef.current.getTracks().forEach((track) => track.stop());
+        screenStreamRef.current = null;
+        setIsScreenSharing(false);
+        if (videoPreviewRef.current) videoPreviewRef.current.srcObject = mediaStreamRef.current;
+        setHasMediaPreview(Boolean(mediaStreamRef.current?.getVideoTracks().length));
+        return;
+      }
+      if (!navigator.mediaDevices?.getDisplayMedia) {
+        throw new Error('Screen sharing is not supported by this browser.');
+      }
+      const stream = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: false });
+      screenStreamRef.current = stream;
+      if (videoPreviewRef.current) videoPreviewRef.current.srcObject = stream;
+      stream.getVideoTracks()[0]?.addEventListener('ended', () => {
+        screenStreamRef.current = null;
+        setIsScreenSharing(false);
+        if (videoPreviewRef.current) videoPreviewRef.current.srcObject = mediaStreamRef.current;
+        setHasMediaPreview(Boolean(mediaStreamRef.current?.getVideoTracks().length));
+      }, { once: true });
+      setIsScreenSharing(true);
+    } catch (err) {
+      if (err.name !== 'NotAllowedError') setMediaError(err.message || 'Unable to share your screen.');
+    } finally {
+      setDeviceBusy(false);
+    }
   }
 
   function toggleWhiteboard() {
-    setIsWhiteboardVisible(!isWhiteboardVisible);
-  }
-
-  function muteAll() {
-    // In real app, would call API to mute all participants
-    setParticipants(participants.map(p => ({ ...p, is_muted: true })));
+    setIsWhiteboardVisible((visible) => !visible);
   }
 
   if (loading) {
@@ -205,7 +334,7 @@ export default function ClassroomRoom() {
 
   return (
     <div className="mx-auto flex w-full max-w-[1600px] flex-col gap-6 px-4 py-5 sm:px-6 lg:px-8 lg:py-8">
-      <div className="flex flex-wrap items-center gap-4 rounded-3xl border border-primary-100 bg-gradient-to-r from-primary-900 via-primary-800 to-primary-700 p-4 text-white shadow-xl shadow-primary-900/10 sm:p-6">
+      <div className="flex flex-wrap items-center gap-4 rounded-3xl border border-primary-100 bg-primary-950 p-4 text-white shadow-xl shadow-primary-900/10 sm:p-6">
         <Button variant="ghost" size="sm" icon onClick={handleLeaveRoom} loading={leaving}>
           <Icon name="arrow-left" />
         </Button>
@@ -232,10 +361,15 @@ export default function ClassroomRoom() {
       <div className="grid min-w-0 gap-6 xl:grid-cols-[minmax(0,1.7fr)_minmax(320px,0.8fr)]">
         <div className="flex min-w-0 flex-col gap-5">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 2xl:grid-cols-3">
+            <div className="relative flex min-h-48 flex-col overflow-hidden rounded-2xl border border-primary-200 bg-primary-950 shadow-sm">
+              <video ref={videoPreviewRef} autoPlay muted playsInline className={`h-48 w-full bg-primary-950 object-cover ${isVideoOn || isScreenSharing ? 'block' : 'hidden'}`} />
+              {(!hasMediaPreview || (!isVideoOn && !isScreenSharing)) && <div className="flex min-h-48 flex-1 flex-col items-center justify-center gap-3 text-primary-100"><span className="flex h-16 w-16 items-center justify-center rounded-full bg-white/10"><Icon name="user" size="2rem" monochrome /></span><span className="text-sm font-semibold">{hasMediaPreview ? 'Your camera is off' : 'Camera preview not started'}</span></div>}
+              <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between gap-2 bg-primary-950/90 px-3 py-2 text-xs font-semibold text-white"><span>You · device preview</span><span className="text-primary-200">Local only</span></div>
+            </div>
             {participants.map((participant) => (
               <div
                 key={participant.id || participant.user_id}
-                className={`relative flex min-h-48 flex-col items-center justify-center gap-3 overflow-hidden rounded-2xl border border-primary-100 bg-gradient-to-br from-primary-900 to-slate-900 p-5 text-center text-white shadow-lg ${participant.is_speaking ? 'ring-2 ring-emerald-400 ring-offset-2' : ''} ${participant.user_id === user?.id ? 'border-primary-300' : ''}`}
+                className={`relative flex min-h-48 flex-col items-center justify-center gap-3 overflow-hidden rounded-2xl border border-primary-100 bg-primary-900 p-5 text-center text-white shadow-lg ${participant.is_speaking ? 'ring-2 ring-emerald-400 ring-offset-2' : ''} ${participant.user_id === user?.id ? 'border-primary-300' : ''}`}
               >
                 {participant.role === 'tutor' && <span className="absolute left-3 top-3 rounded-full border border-secondary-200/30 bg-secondary-400/20 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-orange-100">Tutor</span>}
                 {participant.role === 'admin' && <span className="absolute left-3 top-3 rounded-full border border-primary-200/30 bg-primary-400/20 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-blue-100">Admin</span>}
@@ -289,9 +423,10 @@ export default function ClassroomRoom() {
                 <Button variant="secondary" size="xs"><Icon name="trash" /> Clear</Button>
                 <span className="ml-auto rounded-full bg-white px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-600">Shared whiteboard</span>
               </div>
-              <div className="flex min-h-64 flex-col items-center justify-center gap-3 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:24px_24px] p-8 text-center text-sm font-medium text-slate-500">
+              <div className="flex min-h-64 flex-col items-center justify-center gap-3 bg-slate-50 p-8 text-center text-sm font-medium text-slate-500">
                 <Icon name="pen-fancy" />
-                <span>Draw here to share your ideas with the class.</span>
+                <span className="font-semibold text-slate-700">A shared workspace for diagrams and clinical reasoning</span>
+                <span className="max-w-md text-xs leading-6 text-slate-500">The board is being prepared for multi-user drawing and saved session history. It will not pretend to save or share marks until live synchronisation is connected.</span>
               </div>
             </div>
           )}
@@ -301,12 +436,10 @@ export default function ClassroomRoom() {
           <div className="flex min-h-[420px] flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-sm">
             <div className="flex items-center justify-between gap-3 border-b border-primary-800 bg-primary-900 px-4 py-3 text-white">
               <h4 className="m-0 flex items-center gap-2 text-base font-bold text-white"><Icon name="comment-dots" /> Live chat</h4>
-              <div className="flex items-center gap-1">
-                <Button variant="ghost" size="xs" className="text-white hover:bg-white/15 hover:text-white" aria-label="Chat reactions"><Icon name="smile" /></Button>
-                <Button variant="ghost" size="xs" className="text-white hover:bg-white/15 hover:text-white" aria-label="Chat options"><Icon name="ellipsis-vertical" /></Button>
-              </div>
+              <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-primary-100">{messages.length} messages</span>
             </div>
             <div className="flex max-h-[420px] min-h-64 flex-1 flex-col gap-3 overflow-y-auto bg-slate-50/70 p-4" ref={chatBodyRef} aria-live="polite" aria-label="Classroom messages">
+              {messages.length === 0 && <div className="m-auto max-w-xs py-8 text-center"><span className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-50 text-primary-700"><Icon name="message" size="1.5rem" /></span><p className="mb-1 mt-3 text-sm font-bold text-slate-800">Start the conversation</p><p className="m-0 text-xs leading-5 text-slate-500">Ask a question or share a useful idea with the class.</p></div>}
               {messages.map((message) => (
                 <div key={message.id} className="w-full">
                   {message.message_type === 'system' ? (
@@ -371,11 +504,12 @@ export default function ClassroomRoom() {
           <div className="overflow-hidden rounded-2xl border border-border bg-white shadow-sm">
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border bg-primary-50/70 px-4 py-3">
               <h4><Icon name="users" /> Participants ({participants.length})</h4>
-              <Button variant="secondary" size="xs" onClick={muteAll}>
-                <Icon name="microphone-slash" /> Mute all
+              <Button variant="secondary" size="xs" disabled title="Remote audio controls are not connected yet">
+                <Icon name="microphone-slash" /> Mute all unavailable
               </Button>
             </div>
             <div className="grid max-h-64 gap-1 overflow-y-auto p-3">
+              {participants.length === 0 && <p className="m-0 px-3 py-6 text-center text-sm text-slate-500">Participant list is loading or no one else has joined yet.</p>}
               {participants.map((participant) => (
                 <div key={participant.id || participant.user_id} className="flex items-center gap-3 rounded-xl px-3 py-2.5 transition hover:bg-slate-50">
                   <Icon
@@ -412,13 +546,29 @@ export default function ClassroomRoom() {
         <Button variant="danger" size="sm" onClick={handleLeaveRoom}>
           <Icon name="right-from-bracket" /> Leave classroom
         </Button>
-        <Button variant="secondary" size="sm">
-          <Icon name="file-export" /> Export notes
+        <Button variant="secondary" size="sm" onClick={handleExportChat}>
+          <Icon name="file-export" /> Export chat
         </Button>
-        <Button variant="secondary" size="sm">
+        <Button variant="secondary" size="sm" onClick={() => { setReportError(''); setReportOpen(true); }}>
           <Icon name="flag" /> Report an issue
         </Button>
       </div>
+
+      {reportOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/60 p-4" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget && !reporting) setReportOpen(false); }}>
+          <section role="dialog" aria-modal="true" aria-labelledby="classroom-report-title" className="w-full max-w-lg rounded-3xl border border-slate-200 bg-white p-5 shadow-2xl sm:p-7">
+            <div className="mb-5 flex items-start justify-between gap-4">
+              <div><span className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-50 text-amber-700"><Icon name="flag" size="1.25rem" /></span><h3 id="classroom-report-title" className="mb-0 mt-4 text-xl font-bold text-slate-900">Report a classroom issue</h3><p className="mb-0 mt-2 text-sm leading-6 text-slate-600">Tell the Aliver team what happened. Your report will be reviewed privately.</p></div>
+              <button type="button" aria-label="Close report dialog" disabled={reporting} onClick={() => setReportOpen(false)} className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-slate-500 transition hover:bg-slate-100 hover:text-slate-900"><Icon name="close" /></button>
+            </div>
+            <label htmlFor="classroom-report-description" className="mb-2 block text-sm font-semibold text-slate-800">What happened?</label>
+            <textarea id="classroom-report-description" rows={5} maxLength={2000} value={reportDescription} onChange={(event) => setReportDescription(event.target.value)} placeholder="Describe the issue and when it occurred…" className="w-full resize-y rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm leading-6 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-primary-600 focus:ring-4 focus:ring-primary-100" />
+            <div className="mt-1 flex justify-end text-xs text-slate-500">{reportDescription.length}/2000</div>
+            {reportError && <p role="alert" className="mt-3 rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">{reportError}</p>}
+            <div className="mt-5 flex flex-col-reverse justify-end gap-2 sm:flex-row"><Button variant="ghost" onClick={() => setReportOpen(false)} disabled={reporting}>Cancel</Button><Button onClick={handleReportIssue} disabled={!reportDescription.trim()} loading={reporting}>Submit report</Button></div>
+          </section>
+        </div>
+      )}
     </div>
   );
 }
