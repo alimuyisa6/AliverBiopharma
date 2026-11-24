@@ -31,7 +31,7 @@ export default function ClassroomRoom() {
   const mediaStreamRef = useRef(null);
   const screenStreamRef = useRef(null);
   const videoPreviewRef = useRef(null);
-  const joinedRoomRef = useRef(false);
+  const roomLifecycleRef = useRef(null);
 
   const [room, setRoom] = useState(null);
   const [messages, setMessages] = useState([]);
@@ -55,17 +55,44 @@ export default function ClassroomRoom() {
   const [reporting, setReporting] = useState(false);
   const [reportError, setReportError] = useState('');
 
+  async function leaveRoomLifecycle(lifecycle) {
+    if (!lifecycle?.joined) return;
+    lifecycle.joined = false;
+    window.clearTimeout(lifecycle.leaveTimer);
+    lifecycle.leaveTimer = null;
+    try {
+      await leaveClassroom(lifecycle.roomId);
+    } catch {}
+  }
+
   useEffect(() => {
     let cancelled = false;
     let msgInterval;
     let partInterval;
 
+    let lifecycle = roomLifecycleRef.current;
+    if (!lifecycle || lifecycle.roomId !== roomId) {
+      lifecycle = {
+        roomId,
+        activeEffects: 0,
+        leaveTimer: null,
+        joinPromise: null,
+        joined: false
+      };
+      roomLifecycleRef.current = lifecycle;
+    }
+
+    lifecycle.activeEffects += 1;
+    window.clearTimeout(lifecycle.leaveTimer);
+    lifecycle.leaveTimer = null;
+    if (!lifecycle.joinPromise) lifecycle.joinPromise = joinClassroom(roomId);
+
     async function initializeRoom() {
       try {
-        await joinClassroom(roomId);
-        joinedRoomRef.current = true;
+        await lifecycle.joinPromise;
+        lifecycle.joined = true;
         if (cancelled) {
-          await leaveRoomSilent();
+          if (lifecycle.activeEffects === 0) await leaveRoomLifecycle(lifecycle);
           return;
         }
         await Promise.all([fetchRoom(), fetchMessages(), fetchParticipants()]);
@@ -86,10 +113,14 @@ export default function ClassroomRoom() {
       cancelled = true;
       window.clearInterval(msgInterval);
       window.clearInterval(partInterval);
-      if (joinedRoomRef.current) leaveRoomSilent();
+      lifecycle.activeEffects = Math.max(0, lifecycle.activeEffects - 1);
+      if (lifecycle.activeEffects === 0) {
+        lifecycle.leaveTimer = window.setTimeout(() => {
+          if (lifecycle.activeEffects === 0) leaveRoomLifecycle(lifecycle);
+        }, 100);
+      }
     };
   }, [roomId]);
-
   useEffect(() => {
     if (videoPreviewRef.current) {
       videoPreviewRef.current.srcObject = screenStreamRef.current || mediaStreamRef.current;
@@ -106,14 +137,6 @@ export default function ClassroomRoom() {
       chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
     }
   }, [messages]);
-
-  async function leaveRoomSilent() {
-    if (!joinedRoomRef.current) return;
-    joinedRoomRef.current = false;
-    try {
-      await leaveClassroom(roomId);
-    } catch {}
-  }
 
   async function fetchRoom() {
     try {
@@ -177,7 +200,7 @@ export default function ClassroomRoom() {
   async function handleLeaveRoom() {
     if (leaving) return;
     setLeaving(true);
-    await leaveRoomSilent();
+    await leaveRoomLifecycle(roomLifecycleRef.current);
     navigate('/classroom');
   }
 
