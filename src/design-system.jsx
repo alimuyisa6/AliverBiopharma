@@ -17,7 +17,8 @@ import {
   Grid2X2, List, Users, TriangleAlert, UserPen, MessageSquare, ChartLine, ChartPie, MailCheck,
   Bitcoin, Smartphone, CalendarClock, Layers, Expand, RotateCcw, IdCard, Pencil,
   KeyRound, Fingerprint, Laptop, SlidersHorizontal, Gift, CreditCard, Award, Terminal,
-  Webhook, Filter, Flag
+  Webhook, Filter, Flag, Mic, MicOff, Video, VideoOff, MonitorUp, Hand, Shapes,
+  Palette, Undo2, Redo2, Eraser, FileDown, Radio, UserRound
 } from 'lucide-react';
 import { FaEnvelope, FaLocationDot, FaLinkedinIn, FaXTwitter, FaInstagram, FaGlobe, FaFacebook, FaYoutube, FaWhatsapp } from 'react-icons/fa6';
 
@@ -68,8 +69,14 @@ export const ICON_ALIASES = Object.freeze({
   'id-card': 'idCard', 'pen': 'pencil', 'bell': 'bell', 'key': 'key',
   'fingerprint': 'fingerprint', 'laptop': 'laptop', 'sliders': 'sliders', 'gift': 'gift',
   'user-group': 'users', 'credit-card': 'creditCard', 'award': 'award', 'terminal': 'terminal',
-  'webhook': 'webhook', 'shield': 'security', 'magnifying-glass': 'search', 'filter': 'filter',
+  'webhook': 'webhook', 'shield': 'security', 'shield-halved': 'security', 'magnifying-glass': 'search', 'filter': 'filter',
   'bookmark': 'bookmark', 'trash': 'delete', 'check': 'check', 'chevron-left': 'chevronLeft',
+  'radio': 'radio', 'triangle-alert': 'warning', 'user-round': 'userRound',
+  'microphone': 'microphone', 'microphone-slash': 'microphoneOff', 'video': 'video',
+  'video-slash': 'videoOff', 'desktop': 'monitor', 'hand': 'hand', 'shapes': 'shapes',
+  'palette': 'palette', 'undo': 'undo', 'redo': 'redo', 'eraser': 'eraser',
+  'file-pdf': 'document', 'comment-dots': 'message', 'pen-fancy': 'pencil',
+  'right-from-bracket': 'logout', 'file-export': 'fileDown', 'refresh-cw': 'refresh',
   'capsules': 'pharmacy', 'lock': 'lock', 'plus': 'add', 'calendar': 'calendar',
   'circle': 'circle', 'flag': 'flag'
 });

@@ -1138,6 +1138,38 @@ room_id: roomId
 );
 }
 
+export async function getClassroomWhiteboardConfig(roomId, userId) {
+  return getRequest('classroom', 'whiteboard_config', { room_id: roomId }, { requestScope: userId });
+}
+
+export async function getClassroomWhiteboardSnapshot(roomId, userId) {
+  return getRequest('classroom', 'whiteboard_snapshot', { room_id: roomId }, { requestScope: userId });
+}
+
+export async function getClassroomWhiteboardHistory(roomId, userId) {
+  return getRequest('classroom', 'whiteboard_history', { room_id: roomId }, { requestScope: userId });
+}
+
+export async function getClassroomWhiteboardArchives(roomId, userId) {
+  return getRequest('classroom', 'whiteboard_archives', { room_id: roomId }, { requestScope: userId });
+}
+
+export async function saveClassroomWhiteboardSnapshot(roomId, title) {
+  return apiCall('classroom', 'whiteboard_archive', {
+    room_id: roomId,
+    title,
+    request_id: globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`
+  });
+}
+
+export async function applyClassroomWhiteboardOperation(roomId, operation) {
+  return apiCall('classroom', 'whiteboard_operation', {
+    room_id: roomId,
+    operation,
+    operation_id: globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`
+  });
+}
+
 export async function joinClassroom(roomId) {
 return apiCall(
 'classroom',
