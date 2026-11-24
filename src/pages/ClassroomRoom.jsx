@@ -248,32 +248,38 @@ export default function ClassroomRoom() {
             ))}
           </div>
 
-          <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-border bg-white p-3 shadow-sm sm:p-4" aria-label="Classroom controls">
-            <Button variant={isMuted ? 'ghost' : 'primary'} size="sm" onClick={toggleMute}>
+          <section className="rounded-2xl border border-border bg-white p-4 shadow-sm sm:p-5" aria-label="Classroom controls">
+            <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+              <div><h3 className="m-0 text-sm font-bold text-slate-900 sm:text-base">Class controls</h3><p className="m-0 mt-1 text-xs text-slate-500">Manage your participation in this session.</p></div>
+              <span className="rounded-full bg-primary-50 px-3 py-1 text-xs font-semibold text-primary-800">Participant tools</span>
+            </div>
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-5 sm:gap-3">
+            <Button className="min-h-12 w-full justify-center gap-2 rounded-xl px-3 py-3 text-sm" variant={isMuted ? 'ghost' : 'primary'} size="sm" onClick={toggleMute}>
               <Icon name={isMuted ? 'microphone-slash' : 'microphone'} />
               {isMuted ? 'Unmute' : 'Mute'}
             </Button>
-            <Button variant={isVideoOn ? 'ghost' : 'primary'} size="sm" onClick={toggleVideo}>
+            <Button className="min-h-12 w-full justify-center gap-2 rounded-xl px-3 py-3 text-sm" variant={isVideoOn ? 'ghost' : 'primary'} size="sm" onClick={toggleVideo}>
               <Icon name={isVideoOn ? 'video' : 'video-slash'} />
               {isVideoOn ? 'Camera' : 'Camera Off'}
             </Button>
-            <Button variant={isScreenSharing ? 'primary' : 'ghost'} size="sm" onClick={toggleScreenShare}>
+            <Button className="min-h-12 w-full justify-center gap-2 rounded-xl px-3 py-3 text-sm" variant={isScreenSharing ? 'primary' : 'ghost'} size="sm" onClick={toggleScreenShare}>
               <Icon name="desktop" />
               {isScreenSharing ? 'Stop Share' : 'Share'}
             </Button>
-            <Button variant={handRaised ? 'warm' : 'secondary'} size="sm" onClick={handleRaiseHand} loading={raisingHand}>
+            <Button className="min-h-12 w-full justify-center gap-2 rounded-xl px-3 py-3 text-sm" variant={handRaised ? 'warm' : 'secondary'} size="sm" onClick={handleRaiseHand} loading={raisingHand}>
               <Icon name="hand" />
               {handRaised ? 'Hand raised' : 'Raise hand'}
             </Button>
-            <Button variant="secondary" size="sm" onClick={toggleWhiteboard}>
+            <Button className="min-h-12 w-full justify-center gap-2 rounded-xl px-3 py-3 text-sm" variant="secondary" size="sm" onClick={toggleWhiteboard}>
               <Icon name="pencil" />
               {isWhiteboardVisible ? 'Hide board' : 'Show board'}
             </Button>
-          </div>
+            </div>
+          </section>
 
           {isWhiteboardVisible && (
             <div className="overflow-hidden rounded-2xl border border-border bg-white shadow-sm">
-              <div className="flex flex-wrap items-center gap-2 border-b border-border bg-slate-50 p-3">
+              <div className="flex flex-wrap items-center gap-2 border-b border-border bg-slate-50 p-3 sm:gap-3 sm:p-4">
                 <Button variant="secondary" size="xs"><Icon name="pencil" /> Pen</Button>
                 <Button variant="secondary" size="xs"><Icon name="eraser" /> Eraser</Button>
                 <Button variant="secondary" size="xs"><Icon name="shapes" /> Shape</Button>
@@ -281,7 +287,7 @@ export default function ClassroomRoom() {
                 <Button variant="secondary" size="xs"><Icon name="undo" /></Button>
                 <Button variant="secondary" size="xs"><Icon name="redo" /></Button>
                 <Button variant="secondary" size="xs"><Icon name="trash" /> Clear</Button>
-                <span className="ml-auto text-xs font-bold uppercase tracking-wider text-slate-500">Shared whiteboard</span>
+                <span className="ml-auto rounded-full bg-white px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-600">Shared whiteboard</span>
               </div>
               <div className="flex min-h-64 flex-col items-center justify-center gap-3 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:24px_24px] p-8 text-center text-sm font-medium text-slate-500">
                 <Icon name="pen-fancy" />
@@ -402,7 +408,7 @@ export default function ClassroomRoom() {
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border bg-white p-3 shadow-sm sm:p-4">
+      <div className="flex flex-col gap-3 rounded-2xl border border-border bg-white p-4 shadow-sm sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:p-5">
         <Button variant="danger" size="sm" onClick={handleLeaveRoom}>
           <Icon name="right-from-bracket" /> Leave classroom
         </Button>
