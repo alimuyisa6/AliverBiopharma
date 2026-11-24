@@ -63,6 +63,7 @@ export default function Classroom() {
   const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState(null);
   const [activeUnitId, setActiveUnitId] = useState(null);
+  const [unitRetry, setUnitRetry] = useState(0);
   const [viewMode, setViewMode] = useState('grid');
 
   useEffect(() => {
@@ -92,12 +93,14 @@ export default function Classroom() {
 
     resolveUnit();
     return () => { cancelled = true; };
-  }, [groups, user]);
+  }, [groups, user, unitRetry]);
 
   const fetchRooms = useCallback(async ({ quiet = false } = {}) => {
     if (!activeUnitId) {
       setRooms([]);
+      setError(null);
       setLoading(false);
+      setRefreshing(false);
       return;
     }
 
@@ -197,7 +200,7 @@ export default function Classroom() {
                   <Icon name="list" /> List
                 </button>
               </div>
-              <Button variant="secondary" size="sm" onClick={() => fetchRooms({ quiet: true })} loading={refreshing} className="min-h-10">
+              <Button variant="secondary" size="sm" onClick={() => activeUnitId ? fetchRooms({ quiet: true }) : setUnitRetry((value) => value + 1)} loading={refreshing || loading} className="min-h-10">
                 <Icon name="refresh-cw" /> Refresh
               </Button>
             </div>

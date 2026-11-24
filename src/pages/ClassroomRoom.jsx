@@ -54,17 +54,32 @@ export default function ClassroomRoom() {
   const [reportError, setReportError] = useState('');
 
   useEffect(() => {
-    doJoinRoom();
-    fetchRoom();
-    fetchMessages();
-    fetchParticipants();
+    let cancelled = false;
+    let msgInterval;
+    let partInterval;
 
-    const msgInterval = setInterval(fetchMessages, 3000);
-    const partInterval = setInterval(fetchParticipants, 10000);
+    async function initializeRoom() {
+      try {
+        await joinClassroom(roomId);
+        if (cancelled) return;
+        await Promise.all([fetchRoom(), fetchMessages(), fetchParticipants()]);
+        if (cancelled) return;
+        msgInterval = window.setInterval(fetchMessages, 3000);
+        partInterval = window.setInterval(fetchParticipants, 10000);
+      } catch (err) {
+        if (!cancelled) {
+          setError(err.message || 'You could not join this classroom. Please try again.');
+          setLoading(false);
+        }
+      }
+    }
+
+    initializeRoom();
 
     return () => {
-      clearInterval(msgInterval);
-      clearInterval(partInterval);
+      cancelled = true;
+      window.clearInterval(msgInterval);
+      window.clearInterval(partInterval);
       leaveRoomSilent();
     };
   }, [roomId]);
@@ -85,12 +100,6 @@ export default function ClassroomRoom() {
       chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
     }
   }, [messages]);
-
-  async function doJoinRoom() {
-    try {
-      await joinClassroom(roomId);
-    } catch {}
-  }
 
   async function leaveRoomSilent() {
     try {
