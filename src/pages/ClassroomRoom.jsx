@@ -360,9 +360,9 @@ export default function ClassroomRoom() {
         </div>
 
         <div className="ml-auto flex flex-wrap items-center gap-3">
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200/30 bg-emerald-400/15 px-3 py-1.5">
-            <span className="h-2 w-2 rounded-full bg-emerald-400" />
-            <span className="text-xs font-bold uppercase tracking-wider text-emerald-100">Live</span>
+          <div className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 ${room.status === 'live' || room.status === 'open_floor' ? 'border-emerald-200/30 bg-emerald-400/15 text-emerald-100' : 'border-amber-200/30 bg-amber-400/15 text-amber-100'}`}>
+            <span className={`h-2 w-2 rounded-full ${room.status === 'live' || room.status === 'open_floor' ? 'bg-emerald-400' : 'bg-amber-300'}`} />
+            <span className="text-xs font-bold uppercase tracking-wider">{room.status === 'upcoming' ? 'Scheduled' : room.status === 'open_floor' ? 'Open floor' : room.status === 'live' ? 'Live' : room.status}</span>
           </div>
         </div>
       </div>
@@ -393,8 +393,8 @@ export default function ClassroomRoom() {
 
           <section className="rounded-2xl border border-border bg-white p-4 shadow-sm sm:p-5" aria-label="Classroom controls">
             <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
-              <div><h3 className="m-0 text-sm font-bold text-slate-900 sm:text-base">Class controls</h3><p className="m-0 mt-1 text-xs text-slate-500">Manage your participation in this session.</p></div>
-              <span className="rounded-full bg-primary-50 px-3 py-1 text-xs font-semibold text-primary-800">Participant tools</span>
+              <div><h3 className="m-0 text-sm font-bold text-slate-900 sm:text-base">Your devices</h3><p className="m-0 mt-1 text-xs text-slate-500">Control your local camera, microphone and screen preview.</p></div>
+              <span className="rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-800">Local preview only · not broadcasting</span>
             </div>
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-5 sm:gap-3">
             <Button className="min-h-12 w-full justify-center gap-2 rounded-xl px-3 py-3 text-sm" variant={isMuted ? 'ghost' : 'primary'} size="sm" onClick={toggleMute}>
@@ -422,20 +422,14 @@ export default function ClassroomRoom() {
 
           {isWhiteboardVisible && (
             <div className="overflow-hidden rounded-2xl border border-border bg-white shadow-sm">
-              <div className="flex flex-wrap items-center gap-2 border-b border-border bg-slate-50 p-3 sm:gap-3 sm:p-4">
-                <Button variant="secondary" size="xs"><Icon name="pencil" /> Pen</Button>
-                <Button variant="secondary" size="xs"><Icon name="eraser" /> Eraser</Button>
-                <Button variant="secondary" size="xs"><Icon name="shapes" /> Shape</Button>
-                <Button variant="secondary" size="xs"><Icon name="palette" /> Color</Button>
-                <Button variant="secondary" size="xs"><Icon name="undo" /></Button>
-                <Button variant="secondary" size="xs"><Icon name="redo" /></Button>
-                <Button variant="secondary" size="xs"><Icon name="trash" /> Clear</Button>
-                <span className="ml-auto rounded-full bg-white px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-600">Shared whiteboard</span>
+              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border bg-slate-50 p-4">
+                <div className="flex items-center gap-3"><span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-100 text-primary-800"><Icon name="pencil" size="1.25rem" /></span><div><h3 className="m-0 text-sm font-bold text-slate-900">Collaborative whiteboard</h3><p className="m-0 mt-0.5 text-xs text-slate-500">Shared diagrams, annotations and clinical reasoning</p></div></div>
+                <span className="rounded-full border border-amber-200 bg-amber-50 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wide text-amber-800">In development</span>
               </div>
-              <div className="flex min-h-64 flex-col items-center justify-center gap-3 bg-slate-50 p-8 text-center text-sm font-medium text-slate-500">
-                <Icon name="pen-fancy" />
-                <span className="font-semibold text-slate-700">A shared workspace for diagrams and clinical reasoning</span>
-                <span className="max-w-md text-xs leading-6 text-slate-500">The board is being prepared for multi-user drawing and saved session history. It will not pretend to save or share marks until live synchronisation is connected.</span>
+              <div className="flex min-h-64 flex-col items-center justify-center gap-3 bg-slate-50 p-8 text-center">
+                <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-primary-700 shadow-sm"><Icon name="shapes" size="1.75rem" /></span>
+                <span className="font-semibold text-slate-800">A shared workspace for diagrams and clinical reasoning</span>
+                <span className="max-w-md text-xs leading-6 text-slate-500">Multi-user drawing, board history and saved session snapshots will be enabled after the room-authorized realtime and persistence layer is in place.</span>
               </div>
             </div>
           )}
