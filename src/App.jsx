@@ -1,7 +1,7 @@
  /* src/App.jsx */
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { lazy, Suspense, useState, useEffect } from 'react';
-import { ProtectedRoute } from './contexts/AuthContext';
+import { ProtectedRoute, useAuth } from './contexts/AuthContext';
 import { LayoutProvider, useLayout } from './contexts/LayoutContext';
 import { ChatProvider } from './contexts/ChatContext';
 import { ToastProvider } from './components/Toast/Toast';
@@ -77,13 +77,15 @@ function FeatureRoute({ feature, children }) {
 
 function AppRoutes() {
   const location = useLocation();
+  const { user } = useAuth();
   const [assistantReady, setAssistantReady] = useState(false);
 
   useEffect(() => {
     // The server records only signed-in users with valid analytics consent.
     // Route query strings are intentionally excluded to avoid collecting personal data.
+    if (!user?.id) return;
     trackPageView(location.pathname).catch(() => {});
-  }, [location.pathname]);
+  }, [location.pathname, user?.id]);
 
   useEffect(() => {
     let cancelled = false;
