@@ -9,6 +9,7 @@ import { NotificationProvider } from './contexts/NotificationContext';
 import Layout from './components/Layout/Layout';
 import PageSkeleton from './components/Loading/PageSkeleton';
 import Seo from './components/Seo/Seo';
+import { trackPageView } from './api/client';
 const Home = lazy(() => import('./pages/Home'));
 const AIAssistant = lazy(() => import('./features/chat/AIAssistant'));
 const Dashboard = lazy(() => import('./pages/Dashboard'));
@@ -77,6 +78,12 @@ function FeatureRoute({ feature, children }) {
 function AppRoutes() {
   const location = useLocation();
   const [assistantReady, setAssistantReady] = useState(false);
+
+  useEffect(() => {
+    // The server records only signed-in users with valid analytics consent.
+    // Route query strings are intentionally excluded to avoid collecting personal data.
+    trackPageView(location.pathname).catch(() => {});
+  }, [location.pathname]);
 
   useEffect(() => {
     let cancelled = false;
