@@ -19,6 +19,7 @@ import Spinner from '../components/Spinner/Spinner';
 import Button from '../components/Button/Button';
 import EmptyState from '../components/EmptyState/EmptyState';
 import { useLayout } from '../contexts/LayoutContext';
+import CollaborativeWhiteboard from '../features/classroom/CollaborativeWhiteboard';
 
 
 export default function ClassroomRoom() {
@@ -462,17 +463,11 @@ export default function ClassroomRoom() {
           </section>
 
           {isWhiteboardVisible && (
-            <div className="overflow-hidden rounded-2xl border border-border bg-white shadow-sm">
-              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border bg-slate-50 p-4">
-                <div className="flex items-center gap-3"><span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-100 text-primary-800"><Icon name="pencil" size="1.25rem" /></span><div><h3 className="m-0 text-sm font-bold text-slate-900">Collaborative whiteboard</h3><p className="m-0 mt-0.5 text-xs text-slate-500">Shared diagrams, annotations and clinical reasoning</p></div></div>
-                <span className="rounded-full border border-amber-200 bg-amber-50 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wide text-amber-800">In development</span>
-              </div>
-              <div className="flex min-h-64 flex-col items-center justify-center gap-3 bg-slate-50 p-8 text-center">
-                <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-primary-700 shadow-sm"><Icon name="shapes" size="1.75rem" /></span>
-                <span className="font-semibold text-slate-800">A shared workspace for diagrams and clinical reasoning</span>
-                <span className="max-w-md text-xs leading-6 text-slate-500">Multi-user drawing, board history and saved session snapshots will be enabled after the room-authorized realtime and persistence layer is in place.</span>
-              </div>
-            </div>
+            <CollaborativeWhiteboard
+              roomId={roomId}
+              user={user}
+              isTutor={room.tutor_id === user?.id || room.participant_role === 'tutor'}
+            />
           )}
         </div>
 
