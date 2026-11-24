@@ -11,6 +11,7 @@ import {
   getClassroomParticipants,
   sendClassroomMessage,
   raiseHand,
+  toggleClassroomMute,
   fileClassroomComplaint
 } from '../api/client';
 import Icon from '../components/Icon/Icon';
@@ -30,6 +31,7 @@ export default function ClassroomRoom() {
   const mediaStreamRef = useRef(null);
   const screenStreamRef = useRef(null);
   const videoPreviewRef = useRef(null);
+  const joinedRoomRef = useRef(false);
 
   const [room, setRoom] = useState(null);
   const [messages, setMessages] = useState([]);
@@ -61,7 +63,11 @@ export default function ClassroomRoom() {
     async function initializeRoom() {
       try {
         await joinClassroom(roomId);
-        if (cancelled) return;
+        joinedRoomRef.current = true;
+        if (cancelled) {
+          await leaveRoomSilent();
+          return;
+        }
         await Promise.all([fetchRoom(), fetchMessages(), fetchParticipants()]);
         if (cancelled) return;
         msgInterval = window.setInterval(fetchMessages, 3000);
@@ -80,7 +86,7 @@ export default function ClassroomRoom() {
       cancelled = true;
       window.clearInterval(msgInterval);
       window.clearInterval(partInterval);
-      leaveRoomSilent();
+      if (joinedRoomRef.current) leaveRoomSilent();
     };
   }, [roomId]);
 
@@ -102,6 +108,8 @@ export default function ClassroomRoom() {
   }, [messages]);
 
   async function leaveRoomSilent() {
+    if (!joinedRoomRef.current) return;
+    joinedRoomRef.current = false;
     try {
       await leaveClassroom(roomId);
     } catch {}
@@ -130,7 +138,12 @@ export default function ClassroomRoom() {
       const data = await getClassroomParticipants(roomId);
       const activeParticipants = data || [];
       setParticipants(activeParticipants);
-      setHandRaised(Boolean(activeParticipants.find((participant) => participant.user_id === user?.id)?.hand_raised));
+      const self = activeParticipants.find((participant) => participant.user_id === user?.id);
+      setHandRaised(Boolean(self?.hand_raised));
+      if (typeof self?.is_muted === 'boolean') {
+        setIsMuted(self.is_muted);
+        mediaStreamRef.current?.getAudioTracks().forEach((track) => { track.enabled = !self.is_muted; });
+      }
     } catch {}
   }
 
@@ -162,13 +175,10 @@ export default function ClassroomRoom() {
   }
 
   async function handleLeaveRoom() {
+    if (leaving) return;
     setLeaving(true);
-    try {
-      await leaveClassroom(roomId);
-    } catch {
-    } finally {
-      navigate('/classroom');
-    }
+    await leaveRoomSilent();
+    navigate('/classroom');
   }
 
   function handleExportChat() {
@@ -250,9 +260,14 @@ export default function ClassroomRoom() {
     setMediaError('');
     try {
       const nextMuted = !isMuted;
+      if (!user?.id) throw new Error('Your account session is unavailable. Please sign in again.');
       const stream = await ensureMediaStream('audio');
+      await toggleClassroomMute(roomId, user.id, nextMuted);
       stream.getAudioTracks().forEach((track) => { track.enabled = !nextMuted; });
       setIsMuted(nextMuted);
+      setParticipants((current) => current.map((participant) => participant.user_id === user.id
+        ? { ...participant, is_muted: nextMuted }
+        : participant));
     } catch (err) {
       setMediaError(err.message || 'Unable to access your microphone. Check browser permissions.');
     } finally {
@@ -340,7 +355,6 @@ export default function ClassroomRoom() {
 
   const levelName = displayName || room.level || '';
   const roomClass = room.class_name || class_name || '';
-
   return (
     <div className="mx-auto flex w-full max-w-[1600px] flex-col gap-6 px-4 py-5 sm:px-6 lg:px-8 lg:py-8">
       <div className="flex flex-wrap items-center gap-4 rounded-3xl border border-primary-100 bg-primary-950 p-4 text-white shadow-xl shadow-primary-900/10 sm:p-6">
@@ -506,12 +520,10 @@ export default function ClassroomRoom() {
 
           <div className="overflow-hidden rounded-2xl border border-border bg-white shadow-sm">
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border bg-primary-50/70 px-4 py-3">
-              <h4><Icon name="users" /> Participants ({participants.length})</h4>
-              <Button variant="secondary" size="xs" disabled title="Remote audio controls are not connected yet">
-                <Icon name="microphone-slash" /> Mute all unavailable
-              </Button>
+              <div><h4 className="m-0"><Icon name="users" /> Participants ({participants.length})</h4><p className="m-0 mt-1 text-xs text-slate-500">People currently in this classroom</p></div>
+              <span className="rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-800">Live audio not connected</span>
             </div>
-            <div className="grid max-h-64 gap-1 overflow-y-auto p-3">
+            <div className="grid max-h-72 gap-1 overflow-y-auto p-3">
               {participants.length === 0 && <p className="m-0 px-3 py-6 text-center text-sm text-slate-500">Participant list is loading or no one else has joined yet.</p>}
               {participants.map((participant) => (
                 <div key={participant.id || participant.user_id} className="flex items-center gap-3 rounded-xl px-3 py-2.5 transition hover:bg-slate-50">
@@ -523,9 +535,11 @@ export default function ClassroomRoom() {
                     <div className="text-sm font-semibold text-slate-800">{participant.user_name || 'Participant'}</div>
                     <div className="mt-0.5 text-xs capitalize text-slate-500">{participant.role}</div>
                   </div>
-                  {participant.is_muted && <Icon name="microphone-slash" className="ml-auto h-4 w-4 shrink-0 text-red-600" />}
-                  {participant.hand_raised && <Icon name="hand" className="ml-auto h-4 w-4 shrink-0 text-secondary-600" />}
-                  {participant.is_screen_sharing && <Icon name="desktop" className="ml-auto h-4 w-4 shrink-0 text-primary-600" />}
+                  <div className="ml-auto flex shrink-0 items-center gap-2">
+                    {participant.is_muted && <span title="Microphone muted" className="flex h-8 w-8 items-center justify-center rounded-lg bg-red-50 text-red-600"><Icon name="microphone-slash" /></span>}
+                    {participant.hand_raised && <span title="Hand raised" className="flex h-8 w-8 items-center justify-center rounded-lg bg-secondary-50 text-secondary-700"><Icon name="hand" /></span>}
+                    {participant.is_screen_sharing && <span title="Screen sharing" className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-50 text-primary-700"><Icon name="desktop" /></span>}
+                  </div>
                 </div>
               ))}
             </div>
