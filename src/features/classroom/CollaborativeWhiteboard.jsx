@@ -154,7 +154,7 @@ export default function CollaborativeWhiteboard({ roomId, user, isTutor = false 
 
         client = createClient(config.url, config.publishable_key, {
           auth: { autoRefreshToken: false, persistSession: false, detectSessionInUrl: false },
-          realtime: { params: { eventsPerSecond: 12 } }
+          realtime: { params: { eventsPerSecond: 8 } }
         });
         await client.realtime.setAuth(config.access_token);
 
@@ -318,7 +318,7 @@ export default function CollaborativeWhiteboard({ roomId, user, isTutor = false 
     const next = { ...active, points };
     activeStrokeRef.current = next;
     setDraft(next);
-    if (channelRef.current && user?.id && Date.now() - lastPreviewAtRef.current >= 90) {
+    if (channelRef.current && user?.id && Date.now() - lastPreviewAtRef.current >= 160) {
       lastPreviewAtRef.current = Date.now();
       channelRef.current.send({
         type: 'broadcast',
