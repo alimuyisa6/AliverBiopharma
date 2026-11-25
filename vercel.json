@@ -1,9 +1,12 @@
-{
+ {
   "functions": {
     "api/server.js": {
       "includeFiles": "lib/**"
     }
   },
+  "regions": [
+    "dub1"
+  ],
   "rewrites": [
     {
       "source": "/api/(.*)",
