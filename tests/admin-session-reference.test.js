@@ -138,6 +138,25 @@ test('trusted-device approval is invalidated by an administrator email or passwo
   };
 
   assert.equal(isAdminDeviceBindingCurrent(binding), true);
+  assert.equal(isAdminDeviceBindingCurrent({
+    ...binding,
+    storedPasswordUpdatedAt: '2026-11-06T10:00:00.000000+00:00',
+    passwordUpdatedAt: '2026-11-06T10:00:00.000000Z'
+  }), true);
+  assert.equal(isAdminDeviceBindingCurrent({
+    ...binding,
+    storedPasswordUpdatedAt: '2026-11-06T12:00:00.000000+02:00',
+    passwordUpdatedAt: '2026-11-06T10:00:00.000000Z'
+  }), true);
+  assert.equal(isAdminDeviceBindingCurrent({
+    ...binding,
+    storedPasswordUpdatedAt: '2026-11-06T10:00:00.000001Z',
+    passwordUpdatedAt: '2026-11-06T10:00:00.000000Z'
+  }), false);
+  assert.equal(isAdminDeviceBindingCurrent({
+    ...binding,
+    storedPasswordUpdatedAt: 'not-a-timestamp'
+  }), false);
   assert.equal(isAdminDeviceBindingCurrent({ ...binding, email: 'other@example.com' }), false);
   assert.equal(isAdminDeviceBindingCurrent({ ...binding, passwordUpdatedAt: '2026-11-07T10:00:00.000Z' }), false);
   assert.equal(isAdminDeviceBindingCurrent({ ...binding, storedEmail: null }), false);
