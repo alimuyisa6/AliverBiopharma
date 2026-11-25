@@ -1,5 +1,4 @@
- /* src/App.jsx */
-import { Routes, Route, useLocation } from 'react-router-dom';
+ import { Routes, Route, useLocation } from 'react-router-dom';
 import { lazy, Suspense, useState, useEffect } from 'react';
 import { ProtectedRoute, useAuth } from './contexts/AuthContext';
 import { LayoutProvider, useLayout } from './contexts/LayoutContext';
@@ -10,49 +9,63 @@ import Layout from './components/Layout/Layout';
 import PageSkeleton from './components/Loading/PageSkeleton';
 import Seo from './components/Seo/Seo';
 import { trackPageView } from './api/client';
-const Home = lazy(() => import('./pages/Home'));
-const AIAssistant = lazy(() => import('./features/chat/AIAssistant'));
-const Dashboard = lazy(() => import('./pages/Dashboard'));
-const Profile = lazy(() => import('./pages/Profile'));
-const Quiz = lazy(() => import('./pages/Quiz'));
-const QuestionBankPage = lazy(() => import('./pages/QuestionBankPage'));
-const ClinicalSimulationsPage = lazy(() => import('./pages/ClinicalSimulationsPage'));
-const QuizReview = lazy(() => import('./pages/QuizReview'));
-const QuizAttemptResult = lazy(() => import('./pages/QuizAttemptResult'));
-const Challenges = lazy(() => import('./pages/Challenges'));
-const ChallengeRunner = lazy(() => import('./pages/ChallengeRunner'));
-const QuizChallengePage = lazy(() => import('./pages/challenges/QuizChallengePage'));
-const FlashcardsPage = lazy(() => import('./pages/FlashcardsPage'));
-const Classroom = lazy(() => import('./pages/Classroom'));
-const ClassroomRoom = lazy(() => import('./pages/ClassroomRoom'));
-const PastPapers = lazy(() => import('./pages/PastPapers'));
-const NoteDetail = lazy(() => import('./pages/NoteDetail'));
-const NoteLearningExplanation = lazy(() => import('./pages/NoteLearningExplanation'));
-const NotesPage = lazy(() => import('./pages/NotesPage'));
-const PdfLibraryPage = lazy(() => import('./pages/PdfLibraryPage'));
-const Glossary = lazy(() => import('./pages/Glossary'));
-const Recall = lazy(() => import('./pages/Recall'));
-const AboutPage = lazy(() => import('./pages/AboutPage'));
-const LegalPage = lazy(() => import('./pages/LegalPage'));
-const Auth = lazy(() => import('./pages/Auth'));
-const TutorApply = lazy(() => import('./pages/TutorApply'));
-const TutorDashboard = lazy(() => import('./pages/TutorDashboard'));
-const TutorMarketplace = lazy(() => import('./pages/TutorMarketplace'));
-const TutorProfile = lazy(() => import('./pages/TutorProfile'));
-const FaqPage = lazy(() => import('./pages/FaqPage'));
-const BlogPage = lazy(() => import('./pages/BlogPage'));
-const ContactPage = lazy(() => import('./pages/ContactPage'));
-const CommunityPage = lazy(() => import('./pages/CommunityPage'));
-const Resources = lazy(() => import('./pages/Resources'));
-const Advertise = lazy(() => import('./pages/Advertise'));
-const AdvertiseCreate = lazy(() => import('./pages/AdvertiseCreate'));
-const AdvertisePayment = lazy(() => import('./pages/AdvertisePayment'));
-const CurriculumNodePage = lazy(() => import('./pages/CurriculumNodePage'));
-const Donate = lazy(() => import('./pages/Donate'));
+
+function lazyLoad(factory) {
+  return lazy(() => {
+    const load = () =>
+      factory().then((mod) => {
+        if (!mod || !mod.default) throw new Error('Chunk failed to load');
+        return mod;
+      });
+    return load().catch(
+      () => new Promise((resolve) => setTimeout(resolve, 800)).then(load)
+    );
+  });
+}
+
+const Home = lazyLoad(() => import('./pages/Home'));
+const AIAssistant = lazyLoad(() => import('./features/chat/AIAssistant'));
+const Dashboard = lazyLoad(() => import('./pages/Dashboard'));
+const Profile = lazyLoad(() => import('./pages/Profile'));
+const Quiz = lazyLoad(() => import('./pages/Quiz'));
+const QuestionBankPage = lazyLoad(() => import('./pages/QuestionBankPage'));
+const ClinicalSimulationsPage = lazyLoad(() => import('./pages/ClinicalSimulationsPage'));
+const QuizReview = lazyLoad(() => import('./pages/QuizReview'));
+const QuizAttemptResult = lazyLoad(() => import('./pages/QuizAttemptResult'));
+const Challenges = lazyLoad(() => import('./pages/Challenges'));
+const ChallengeRunner = lazyLoad(() => import('./pages/ChallengeRunner'));
+const QuizChallengePage = lazyLoad(() => import('./pages/challenges/QuizChallengePage'));
+const FlashcardsPage = lazyLoad(() => import('./pages/FlashcardsPage'));
+const Classroom = lazyLoad(() => import('./pages/Classroom'));
+const ClassroomRoom = lazyLoad(() => import('./pages/ClassroomRoom'));
+const PastPapers = lazyLoad(() => import('./pages/PastPapers'));
+const NoteDetail = lazyLoad(() => import('./pages/NoteDetail'));
+const NoteLearningExplanation = lazyLoad(() => import('./pages/NoteLearningExplanation'));
+const NotesPage = lazyLoad(() => import('./pages/NotesPage'));
+const PdfLibraryPage = lazyLoad(() => import('./pages/PdfLibraryPage'));
+const Glossary = lazyLoad(() => import('./pages/Glossary'));
+const Recall = lazyLoad(() => import('./pages/Recall'));
+const AboutPage = lazyLoad(() => import('./pages/AboutPage'));
+const LegalPage = lazyLoad(() => import('./pages/LegalPage'));
+const Auth = lazyLoad(() => import('./pages/Auth'));
+const TutorApply = lazyLoad(() => import('./pages/TutorApply'));
+const TutorDashboard = lazyLoad(() => import('./pages/TutorDashboard'));
+const TutorMarketplace = lazyLoad(() => import('./pages/TutorMarketplace'));
+const TutorProfile = lazyLoad(() => import('./pages/TutorProfile'));
+const FaqPage = lazyLoad(() => import('./pages/FaqPage'));
+const BlogPage = lazyLoad(() => import('./pages/BlogPage'));
+const ContactPage = lazyLoad(() => import('./pages/ContactPage'));
+const CommunityPage = lazyLoad(() => import('./pages/CommunityPage'));
+const Resources = lazyLoad(() => import('./pages/Resources'));
+const Advertise = lazyLoad(() => import('./pages/Advertise'));
+const AdvertiseCreate = lazyLoad(() => import('./pages/AdvertiseCreate'));
+const AdvertisePayment = lazyLoad(() => import('./pages/AdvertisePayment'));
+const CurriculumNodePage = lazyLoad(() => import('./pages/CurriculumNodePage'));
+const Donate = lazyLoad(() => import('./pages/Donate'));
 import CookieConsent from './components/CookieConsent/CookieConsent';
 import MaintenanceGate, { MaintenanceBoundary } from './components/Maintenance/MaintenanceGate';
 
-const NotFoundPage = lazy(() => import('./components/NotFoundPage'));
+const NotFoundPage = lazyLoad(() => import('./components/NotFoundPage'));
 
 function FeatureRoute({ feature, children }) {
   const { features } = useLayout();
@@ -81,8 +94,6 @@ function AppRoutes() {
   const [assistantReady, setAssistantReady] = useState(false);
 
   useEffect(() => {
-    // The server records only signed-in users with valid analytics consent.
-    // Route query strings are intentionally excluded to avoid collecting personal data.
     if (!user?.id) return;
     trackPageView(location.pathname).catch(() => {});
   }, [location.pathname, user?.id]);
