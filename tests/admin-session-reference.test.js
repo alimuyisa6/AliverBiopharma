@@ -4,6 +4,7 @@ import {
   createAdminSessionReferenceHash,
   verifyAdminSessionReferenceHash,
   hashAdminDeviceRecoveryCode,
+  verifyAdminDeviceApprovalCode,
   isAdminDeviceBindingCurrent
 } from '../lib/admin-session-reference.js';
 
@@ -19,6 +20,14 @@ const binding = {
   sessionId: 'session-456',
   deviceId: 'device-789'
 };
+
+
+test('device approval code is validated independently from one-time recovery codes', () => {
+  assert.equal(verifyAdminDeviceApprovalCode({ email: 'ADMIN@ALIVERBIOPHARM.COM', code: approvalCode }), true);
+  assert.equal(verifyAdminDeviceApprovalCode({ email: 'another@example.com', code: approvalCode }), false);
+  assert.equal(verifyAdminDeviceApprovalCode({ email: 'admin@aliverbiopharm.com', code: '987654321098765432109876543210987654321098765432' }), false);
+  assert.equal(verifyAdminDeviceApprovalCode({ email: 'admin@aliverbiopharm.com', code: '123456' }), false);
+});
 
 test('admin reference hash is stable for one complete binding', () => {
   const first = createAdminSessionReferenceHash(binding);

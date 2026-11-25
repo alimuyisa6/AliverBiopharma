@@ -84,7 +84,7 @@ export default function Auth() {
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     if (params.get('admin_device_reapproval') === '1') {
-      setError('Your administrator device needs verification again. Sign in and enter the 48-digit administrator recovery code if prompted.');
+      setError('Your administrator device needs verification again. Sign in and enter the 48-digit device approval code if prompted.');
       params.delete('admin_device_reapproval');
       const nextSearch = params.toString();
       window.history.replaceState(null, '', `${location.pathname}${nextSearch ? `?${nextSearch}` : ''}`);
@@ -239,7 +239,7 @@ export default function Auth() {
         setDeviceApprovalRequired(true);
         setMfaStep(true);
         setMfaCode('');
-        setMfaError(result.error || 'This device is awaiting verification. Enter the fixed 48-digit administrator recovery code to continue.');
+        setMfaError(result.error || 'This device is awaiting verification. Enter the fixed 48-digit device approval code to continue.');
         resetTurnstile();
         return;
       }
@@ -302,7 +302,7 @@ export default function Auth() {
     }
 
     if (deviceApprovalRequired && !/^\d{48}$/.test(deviceApprovalCode.trim())) {
-      setMfaError('Enter the 48-digit administrator recovery code.');
+      setMfaError('Enter the 48-digit device approval code.');
       return;
     }
 
@@ -345,7 +345,7 @@ export default function Auth() {
 
       if (result?.device_approval_required) {
         setDeviceApprovalRequired(true);
-        setMfaError(result.error || 'This is a new device. Enter the fixed 48-digit recovery code configured for your administrator account.');
+        setMfaError(result.error || 'This is a new device. Enter the 48-digit device approval code configured for your administrator account.');
         setDeviceApprovalCode('');
         if (!passkeyMfaToken) resetTurnstile();
         return;
@@ -589,7 +589,7 @@ export default function Auth() {
                     autoComplete="off"
                     inputMode="numeric"
                     maxLength={48}
-                    placeholder="48-digit recovery code"
+                    placeholder="48-digit device approval code"
                     value={deviceApprovalCode}
                     onChange={(event) => setDeviceApprovalCode(event.target.value.replace(/\D/g, '').slice(0, 48))}
                     disabled={submitting}
