@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 
@@ -10,6 +10,13 @@ export default defineConfig({
     chunkSizeWarningLimit: 600,
     cssCodeSplit: true,
     sourcemap: false,
+    rollupOptions: {
+      output: {
+        entryFileNames: 'assets/e-[hash].js',
+        chunkFileNames: 'assets/c-[hash].js',
+        assetFileNames: 'assets/a-[hash][extname]',
+      },
+    },
   },
   server: {
     headers: {
