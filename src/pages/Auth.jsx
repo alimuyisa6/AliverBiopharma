@@ -302,7 +302,7 @@ export default function Auth() {
     }
 
     if (deviceApprovalRequired && !/^\d{48}$/.test(deviceApprovalCode.trim())) {
-      setMfaError('Enter the 48-digit administrator recovery code.');
+      setMfaError('Enter the 48-digit device approval code.');
       return;
     }
 
@@ -345,7 +345,7 @@ export default function Auth() {
 
       if (result?.device_approval_required) {
         setDeviceApprovalRequired(true);
-        setMfaError(result.error || 'This is a new device. Enter the fixed 48-digit recovery code configured for your administrator account.');
+        setMfaError(result.error || 'This is a new device. Enter the 48-digit device approval code configured for your administrator account.');
         setDeviceApprovalCode('');
         if (!passkeyMfaToken) resetTurnstile();
         return;
