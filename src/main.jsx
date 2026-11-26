@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './styles.css';
-import './features/home/home-hero.css';
 import { AuthProvider } from './contexts/AuthContext';
 import { I18nProvider } from './contexts/I18nContext';
 import { showFatalError, installRuntimeErrorHandlers } from './utils/runtimeErrors';
