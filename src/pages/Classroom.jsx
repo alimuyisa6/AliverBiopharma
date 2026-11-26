@@ -125,8 +125,8 @@ export default function Classroom() {
   }
 
   return (
-    <main className="mx-auto w-full max-w-[1440px] px-4 py-6 sm:px-6 lg:px-8 lg:py-10">
-      <section className="overflow-hidden rounded-[2rem] border border-primary-100 bg-white shadow-sm">
+    <main className="min-h-screen w-full bg-primary-100 px-4 py-6 sm:px-6 lg:px-8 lg:py-10">\n      <div className="mx-auto w-full max-w-[1440px]">
+      <section className="overflow-hidden rounded-[2rem] border border-primary-200 bg-white shadow-md">
         <div className="relative isolate overflow-hidden bg-primary-950 px-5 py-7 text-white sm:px-8 sm:py-9 lg:px-10">
           <div className="pointer-events-none absolute -right-10 -top-20 -z-10 h-64 w-64 rounded-full border-[36px] border-white/5" />
           <div className="pointer-events-none absolute -bottom-24 right-1/4 -z-10 h-56 w-56 rounded-full bg-secondary-400/10 blur-2xl" />
@@ -156,7 +156,7 @@ export default function Classroom() {
           <div className="mb-7 grid grid-cols-1 gap-3 sm:grid-cols-3">
             <div className="flex items-center gap-3 rounded-2xl border border-emerald-100 bg-emerald-50/70 p-4">
               <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-emerald-700 shadow-sm"><Icon name="radio" size="1.25rem" /></span>
-              <div><p className="m-0 text-2xl font-extrabold text-slate-900">{liveCount}</p><p className="m-0 text-xs font-semibold text-slate-600">Live sessions</p></div>
+              <div><p className="m-0 text-2xl font-extrabold text-slate-900">{liveCount}</p><p className="m-0 text-xs font-semibold text-slate-700">Live sessions</p></div>
             </div>
             <div className="flex items-center gap-3 rounded-2xl border border-amber-100 bg-amber-50/70 p-4">
               <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-amber-700 shadow-sm"><Icon name="calendar-clock" size="1.25rem" /></span>
@@ -170,8 +170,8 @@ export default function Classroom() {
 
           <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <h2 className="m-0 text-2xl font-bold tracking-tight text-slate-900">Explore sessions</h2>
-              <p className="mt-2 text-sm leading-6 text-slate-600">Choose a live room or check what's scheduled next.</p>
+              <h2 className="m-0 text-2xl font-bold tracking-tight text-primary-950">Explore sessions</h2>
+              <p className="mt-2 text-sm leading-6 text-slate-700">Choose a live room or check what's scheduled next.</p>
             </div>
             <div className="flex flex-wrap items-center gap-2">
               <div className="inline-flex rounded-xl border border-slate-200 bg-slate-50 p-1" aria-label="Classroom view">
@@ -225,7 +225,7 @@ export default function Classroom() {
                       {room.group_name && <span>{room.group_label || 'Class'}: {room.group_name}</span>}
                       {room.unit_name && <><span className="text-slate-300">/</span><span>{room.unit_label || 'Topic'}: {room.unit_name}</span></>}
                     </div>
-                    <h3 className="m-0 text-lg font-bold leading-7 text-slate-900">{room.title}</h3>
+                    <h3 className="m-0 text-lg font-bold leading-7 text-primary-950">{room.title}</h3>
                     <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm text-slate-600">
                       {room.tutor_name && <span className="inline-flex items-center gap-2"><Icon name="user-round" className="text-primary-600" />{room.tutor_name}</span>}
                       <span className="inline-flex items-center gap-2"><Icon name="users" className="text-primary-600" />{room.participant_count || 0} {(room.participant_count || 0) === 1 ? 'learner' : 'learners'}</span>
