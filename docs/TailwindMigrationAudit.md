@@ -57,7 +57,7 @@ Base audited: `main` at `9883fe099bab75bb116d5ce40b380b438f2feb9c` (PR #227).
 - [ ] `src/pages/Home.jsx` — pending line-by-line review
 - [ ] `src/pages/LegalPage.jsx` — pending line-by-line review
 - [x] `src/pages/NoteDetail.jsx` — reviewed end-to-end; long-form note typography moved to the shared reading-content contract, redundant arbitrary descendant utilities removed, and feedback/discussion sections no longer use unnecessary outer cards.
-- [ ] `src/pages/NoteLearningExplanation.jsx` — pending line-by-line review
+- [x] `src/pages/NoteLearningExplanation.jsx` — reviewed end-to-end; shared page, card, and form contracts applied, and history empty state now uses the shared empty-state component.
 - [x] `src/pages/NotesPage.jsx` — reviewed end-to-end; page shell, headings, section kickers, and resource cards now use central Tailwind contracts. Existing purposeful empty-state illustration retained.
 - [ ] `src/pages/PageInfo.jsx` — pending line-by-line review
 - [ ] `src/pages/PastPapers.jsx` — pending line-by-line review
@@ -185,7 +185,7 @@ Base audited: `main` at `9883fe099bab75bb116d5ce40b380b438f2feb9c` (PR #227).
 
 ### Feature modules (30 files)
 
-- [ ] `src/features/Notes/NotesSection.jsx` — pending line-by-line review
+- [x] `src/features/Notes/NotesSection.jsx` — reviewed end-to-end; removed redundant section/topic card wrappers, retained individual note resource tiles, and reused the shared reading-content contract.
 - [ ] `src/features/chat/AIAssistant.jsx` — pending line-by-line review
 - [ ] `src/features/chat/ChatWidget.jsx` — pending line-by-line review
 - [ ] `src/features/classroom/ClassroomOnboarding.jsx` — pending line-by-line review
