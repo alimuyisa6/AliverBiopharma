@@ -295,7 +295,7 @@ export default function NoteDetail() {
     const diagrams = metadata.diagrams || [];
 
     const imageHtml = (img) => {
-      const caption = img.caption ? `<figcaption class="mt-3 text-center text-sm leading-6 text-muted">${img.caption}</figcaption>` : '';
+      const caption = img.caption ? `<figcaption class="mt-3 text-center text-sm leading-6 text-slate-600">${img.caption}</figcaption>` : '';
       return `<figure class="my-6 grid justify-items-center gap-2 overflow-hidden rounded-2xl border border-border bg-slate-50 p-3 sm:p-5" data-image-src="${img.src}">
         <img src="${img.src}" alt="${img.caption || 'Illustration for this note'}" loading="lazy" />
         ${caption}
@@ -304,7 +304,7 @@ export default function NoteDetail() {
 
     const diagramHtml = (diagram) => {
       if (diagram.type === 'mermaid') {
-        const caption = diagram.caption ? `<figcaption class="mt-3 text-center text-sm leading-6 text-muted">${diagram.caption}</figcaption>` : '';
+        const caption = diagram.caption ? `<figcaption class="mt-3 text-center text-sm leading-6 text-slate-600">${diagram.caption}</figcaption>` : '';
         return `<figure class="my-6 overflow-x-auto rounded-2xl border border-border bg-white p-4 sm:p-6">
           <div class="mermaid">${diagram.code}</div>
           ${caption}
@@ -556,10 +556,10 @@ export default function NoteDetail() {
         >
           <strong className="block text-sm font-bold text-primary-900">{linkPreview.title}</strong>
           {linkPreview.preview && (
-            <p className="mt-2 text-sm leading-6 text-muted">{linkPreview.preview.slice(0, 120)}...</p>
+            <p className="mt-2 text-sm leading-6 text-slate-600">{linkPreview.preview.slice(0, 120)}...</p>
           )}
           {linkPreview.read_time && (
-            <span className="mt-2 block font-mono text-xs text-muted">{linkPreview.read_time}</span>
+            <span className="mt-2 block font-mono text-xs text-slate-600">{linkPreview.read_time}</span>
           )}
         </div>
       )}
@@ -580,7 +580,7 @@ export default function NoteDetail() {
                 <li key={index} className="m-0 list-none" style={{ paddingLeft: `${(item.level - 2) * 12}px` }}>
                   <a
                     href={`#${item.anchor}`}
-                    className="block rounded-lg px-3 py-2 text-sm leading-5 text-muted no-underline transition hover:bg-primary-50 hover:text-primary-800"
+                    className="block rounded-lg px-3 py-2 text-sm leading-5 text-slate-600 no-underline transition hover:bg-primary-50 hover:text-primary-800"
                     onClick={(e) => handleTocLinkClick(e, item.anchor)}
                   >
                     {item.text}
@@ -607,7 +607,7 @@ export default function NoteDetail() {
                     <li key={index} className="m-0 list-none" style={{ paddingLeft: `${(item.level - 2) * 12}px` }}>
                       <a
                         href={`#${item.anchor}`}
-                        className="block rounded-lg px-3 py-2 text-sm leading-5 text-muted no-underline transition hover:bg-primary-50 hover:text-primary-800"
+                        className="block rounded-lg px-3 py-2 text-sm leading-5 text-slate-600 no-underline transition hover:bg-primary-50 hover:text-primary-800"
                         onClick={(e) => handleTocLinkClick(e, item.anchor)}
                       >
                         {item.text}
@@ -621,11 +621,11 @@ export default function NoteDetail() {
         </>
       )}
 
-      <div className={`${UI.container} py-8 lg:px-8`}>
+      <main className="min-h-screen w-full bg-primary-100 px-4 py-8 sm:px-6 lg:px-8"><div className="mx-auto w-full max-w-7xl">
         <Breadcrumb items={breadcrumb} className="mb-6" />
 
-        <article ref={contentRef} className={UI.readingSurface}>
-          <header className={UI.readingHeader}>
+        <article ref={contentRef} className={`${UI.readingSurface} overflow-hidden border-primary-200 shadow-md`}>
+          <header className={`${UI.readingHeader} border-b-2 border-primary-200 bg-primary-50`}>
             <div
               ref={progressBarRef}
               className="h-1 w-full overflow-hidden bg-primary-100"
@@ -639,7 +639,7 @@ export default function NoteDetail() {
           </header>
 
           <div
-            className={UI.readingContent}
+            className={`${UI.readingContent} text-slate-800 [&_p]:mb-5 [&_p]:text-base [&_p]:leading-8 [&_h2]:mt-10 [&_h2]:text-primary-950 [&_h2]:text-2xl [&_h3]:mt-8 [&_h3]:text-primary-900 [&_h3]:text-xl [&_li]:text-slate-800 [&_a]:font-semibold [&_a]:text-primary-700 [&_a]:underline [&_strong]:text-slate-950`}
             dangerouslySetInnerHTML={{ __html: finalContent || '<p>Content not available.</p>' }}
           />
         </article>
@@ -727,9 +727,9 @@ export default function NoteDetail() {
         />
 
         {internalLinks.related_articles?.length > 0 && (
-          <section className="mt-10" aria-labelledby="note-related-articles-title">
+          <section className="mt-10 rounded-2xl border border-primary-200 bg-white p-5 sm:p-7" aria-labelledby="note-related-articles-title">
             <h2 id="note-related-articles-title" className="mb-4 text-2xl font-bold text-primary-900">Related reading</h2>
-            <p>Continue with articles selected for this note.</p>
+            <p className="text-base leading-7 text-slate-700">Continue with articles selected for this note.</p>
             <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {internalLinks.related_articles.map((article) => (
                 <Card
@@ -745,8 +745,8 @@ export default function NoteDetail() {
           </section>
         )}
 
-        <section className="mt-8 border-t border-border pt-6" aria-label="Note feedback">
-          <p className="text-sm font-semibold text-muted">Was this helpful?</p>
+        <section className="mt-8 rounded-2xl border border-primary-200 bg-white p-5 sm:p-7" aria-label="Note feedback">
+          <p className="text-sm font-semibold text-slate-600">Was this helpful?</p>
           <div className="mt-3 flex flex-wrap gap-3">
             {[
               { type: 'like', icon: 'fa-thumbs-up', label: 'Helpful' },
@@ -769,7 +769,7 @@ export default function NoteDetail() {
                   </svg>
                 ) : <i className={`fa-regular ${icon}`} aria-hidden="true" />}
                 <span className="text-sm font-semibold">{label}</span>
-                <span className="font-mono text-xs text-muted">{reactions.counts?.[type] || 0}</span>
+                <span className="font-mono text-xs text-slate-600">{reactions.counts?.[type] || 0}</span>
               </button>
             ))}
           </div>
@@ -794,7 +794,7 @@ export default function NoteDetail() {
               <Button className="inline-flex min-h-11 items-center justify-center rounded-xl bg-primary-700 px-4 py-2.5 text-sm font-bold text-white hover:bg-primary-800" variant="primary" onClick={handleComment} disabled={!commentInput.trim() || commentSubmitting} loading={commentSubmitting} loadingLabel="Posting…">Post</Button>
             </div>
           ) : (
-            <div className="text-sm text-muted">
+            <div className="text-sm text-slate-600">
               <p>Sign in to join the discussion</p>
               <Link to="/login" className="inline-flex min-h-10 items-center justify-center rounded-xl bg-primary-700 px-4 py-2 text-sm font-bold text-white no-underline hover:bg-primary-800">Sign In</Link>
             </div>
@@ -802,13 +802,13 @@ export default function NoteDetail() {
 
           <div className="mt-6 grid gap-4">
             {comments.length === 0 ? (
-              <p className="rounded-xl border border-dashed border-border bg-slate-50 p-5 text-sm text-muted">No comments yet.</p>
+              <p className="rounded-xl border border-dashed border-border bg-slate-50 p-5 text-sm text-slate-600">No comments yet.</p>
             ) : (
               comments.filter(Boolean).map((comment) => (
                 <div key={comment.id || comment.created_at} className="rounded-xl border border-border bg-white p-4">
                   <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
                     <strong className="text-sm font-bold text-primary-900">{comment.user_name}</strong>
-                    <span className="font-mono text-xs text-muted">{new Date(comment.created_at).toLocaleDateString()}</span>
+                    <span className="font-mono text-xs text-slate-600">{new Date(comment.created_at).toLocaleDateString()}</span>
                   </div>
                   <p className="text-sm leading-6 text-slate-700">{comment.body || comment.comment}</p>
                 </div>
