@@ -832,3 +832,13 @@ h3 + p {
   .ab-page-hero-overlay { @apply bg-primary-900/95; }
 }
 
+/* Shared marquee motion primitives. */
+@keyframes aliver-marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes aliver-marquee-scroll-vertical {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+
