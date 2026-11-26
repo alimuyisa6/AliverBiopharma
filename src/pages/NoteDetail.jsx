@@ -842,6 +842,7 @@ export default function NoteDetail() {
           </button>
         </nav>
       </div>
+      </main>
     </>
   );
 }
