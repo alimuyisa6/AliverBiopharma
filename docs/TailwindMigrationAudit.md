@@ -56,7 +56,7 @@ Base audited: `main` at `9883fe099bab75bb116d5ce40b380b438f2feb9c` (PR #227).
 - [ ] `src/pages/GlossaryView.jsx` — pending line-by-line review
 - [ ] `src/pages/Home.jsx` — pending line-by-line review
 - [ ] `src/pages/LegalPage.jsx` — pending line-by-line review
-- [ ] `src/pages/NoteDetail.jsx` — pending line-by-line review
+- [x] `src/pages/NoteDetail.jsx` — reviewed end-to-end; long-form note typography moved to the shared reading-content contract, redundant arbitrary descendant utilities removed, and feedback/discussion sections no longer use unnecessary outer cards.
 - [ ] `src/pages/NoteLearningExplanation.jsx` — pending line-by-line review
 - [x] `src/pages/NotesPage.jsx` — reviewed end-to-end; page shell, headings, section kickers, and resource cards now use central Tailwind contracts. Existing purposeful empty-state illustration retained.
 - [ ] `src/pages/PageInfo.jsx` — pending line-by-line review
