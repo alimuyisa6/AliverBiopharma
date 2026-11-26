@@ -25,7 +25,7 @@ export default function DynamicActions({ pageId, contentType = null, contentId =
     };
   }, [pageId, contentType, contentId]);
 
-  const variantStyles = { primary: 'bg-primary-700 text-white hover:bg-primary-800', secondary: 'border border-slate-200 bg-white text-primary-800 hover:bg-primary-50', ghost: 'bg-transparent text-slate-700 hover:bg-slate-100', danger: 'bg-red-700 text-white hover:bg-red-800', success: 'bg-emerald-700 text-white hover:bg-emerald-800', warning: 'bg-amber-500 text-amber-950 hover:bg-amber-600', info: 'bg-sky-700 text-white hover:bg-sky-800', outline: 'border border-primary-300 bg-white text-primary-800 hover:bg-primary-50', gradient: 'bg-primary-800 text-white hover:bg-primary-900', warm: 'bg-secondary-600 text-white hover:bg-secondary-700' };
+  const variantStyles = { primary: 'ab-btn-primary', secondary: 'ab-btn-outline', ghost: 'ab-btn-quiet', danger: 'ab-btn-danger', success: 'bg-emerald-700 text-white hover:bg-emerald-800', warning: 'bg-amber-500 text-amber-950 hover:bg-amber-600', info: 'bg-sky-700 text-white hover:bg-sky-800', outline: 'ab-btn-outline', gradient: 'ab-btn-primary', warm: 'ab-btn-secondary' };
 
   const available = actions.filter(
     (action) =>
