@@ -247,7 +247,7 @@ export default function NoteLearningExplanation() {
             rows={3}
             placeholder="What would you like your AI tutor to explain further?"
             disabled={streaming}
-           className="block min-h-32 w-full min-w-0 resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
+           className="block min-h-32 w-full min-w-0 resize-y rounded-xl border border-border bg-white px-4 py-3 text-sm leading-6 text-foreground shadow-sm outline-none transition placeholder:text-slate-400 focus:border-primary-500 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
           <button type="submit" disabled={!input.trim() || streaming || saving} className="inline-flex min-h-11 items-center justify-center rounded-xl bg-primary-700 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-primary-800 disabled:cursor-not-allowed disabled:opacity-50">
             {streaming ? 'Writing your explanation…' : 'Ask AI tutor'}
           </button>
