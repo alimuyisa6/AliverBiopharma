@@ -166,32 +166,32 @@ export default function NoteLearningExplanation() {
     }
   }
 
-  if (loading) return <div className="fcd-loading-wrap"><Spinner size="lg" /></div>;
+  if (loading) return <div className="flex min-h-[55vh] items-center justify-center bg-background px-4 py-16"><Spinner size="lg" /></div>;
 
   if (!threadId) {
     return (
-      <section className="note-learning-page">
-        <header className="note-learning-header">
-          <Link to="/notes" className="note-learning-back">← Back to study notes</Link>
+      <section className="mx-auto min-h-screen w-full max-w-5xl bg-background px-4 py-10 sm:px-6 lg:px-8">
+        <header className="mb-8 border-b border-border pb-7">
+          <Link to="/notes" className="mb-5 inline-flex min-h-10 items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold text-primary-800 no-underline transition hover:bg-primary-50">← Back to study notes</Link>
           
-          <h1>Your learning history</h1>
+          <h1 className="text-3xl font-extrabold tracking-tight text-primary-950 sm:text-4xl">Your learning history</h1>
           <p>Return here to revisit questions you asked about a study note.</p>
         </header>
-        {error && <div className="note-learning-card"><p role="alert">{error}</p></div>}
+        {error && <div className="mb-6 rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-7"><p role="alert">{error}</p></div>}
         {!error && history.length === 0 && (
-          <div className="note-learning-card">
-            <h2>No saved explanations yet</h2>
+          <div className="mb-6 rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-7">
+            <h2 className="text-xl font-bold text-primary-950">No saved explanations yet</h2>
             <p>Need help understanding a study note? Ask your question at the end of the note. Your saved explanation will appear here.</p>
             <Link to="/notes">Browse study notes</Link>
           </div>
         )}
         {history.map((item) => (
-          <article className="note-learning-card" key={item.id}>
+          <article className="mb-6 rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-7" key={item.id}>
             
-            <h2>{item.learner_question}</h2>
+            <h2 className="text-lg font-bold leading-snug text-primary-950">{item.learner_question}</h2>
             {item.explanation && <p>{item.explanation.slice(0, 260)}{item.explanation.length > 260 ? '…' : ''}</p>}
             <p><small>Last updated {item.updated_at ? new Date(item.updated_at).toLocaleString() : 'recently'}</small></p>
-            <Link className="note-learning-back" to={`/learning/explanation?id=${encodeURIComponent(item.id)}`}>View explanation →</Link>
+            <Link className="mb-5 inline-flex min-h-10 items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold text-primary-800 no-underline transition hover:bg-primary-50" to={`/learning/explanation?id=${encodeURIComponent(item.id)}`}>View explanation →</Link>
           </article>
         ))}
       </section>
@@ -200,9 +200,9 @@ export default function NoteLearningExplanation() {
 
   if (error && !thread) {
     return (
-      <section className="note-learning-page">
-        <div className="note-learning-card">
-          <h1>Explanation unavailable</h1>
+      <section className="mx-auto min-h-screen w-full max-w-5xl bg-background px-4 py-10 sm:px-6 lg:px-8">
+        <div className="mb-6 rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-7">
+          <h1 className="text-3xl font-extrabold text-primary-950">Explanation unavailable</h1>
           <p role="alert">{error}</p>
           <Link to="/learning/explanation">Back to learning history</Link>
         </div>
@@ -211,34 +211,34 @@ export default function NoteLearningExplanation() {
   }
 
   return (
-    <section className="note-learning-page">
-      <header className="note-learning-header">
+    <section className="mx-auto min-h-screen w-full max-w-5xl bg-background px-4 py-10 sm:px-6 lg:px-8">
+      <header className="mb-8 border-b border-border pb-7">
         
         
-        <h1>{noteTitle}</h1>
+        <h1 className="text-3xl font-extrabold tracking-tight text-primary-950 sm:text-4xl">{noteTitle}</h1>
         <p>Your question and explanation are saved here, so you can continue where you left off.</p>
       </header>
 
-      <div className="note-learning-card">
-        <div className="note-learning-messages" ref={bodyRef} aria-live="polite">
+      <div className="mb-6 rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-7">
+        <div className="grid max-h-[60vh] min-h-48 gap-4 overflow-y-auto rounded-xl bg-slate-50 p-4 sm:p-6" ref={bodyRef} aria-live="polite">
           {messages.map((message) => (
             <article
               key={message.id}
               data-message-id={message.id}
-              className={`note-learning-message note-learning-message--${message.role}`}
+              className={`max-w-[92%] rounded-2xl border p-4 shadow-sm sm:max-w-[85%] ${message.role === 'user' ? 'ml-auto border-primary-200 bg-primary-50 text-primary-950' : 'mr-auto border-border bg-white text-slate-800'}`}
             >
               <strong>{message.role === 'user' ? 'Your question' : 'AI tutor'}</strong>
-              <div className="note-learning-message-content">{message.content || (streaming ? 'Preparing an explanation…' : '')}</div>
+              <div className="mt-2 whitespace-pre-wrap break-words text-sm leading-7 sm:text-base">{message.content || (streaming ? 'Preparing an explanation…' : '')}</div>
             </article>
           ))}
           {messages.length === 0 && <p>What would you like explained from this note?</p>}
         </div>
 
-        {error && <p className="note-learning-error" role="alert">{error}</p>}
-        {saving && <p className="note-learning-save-status" role="status">Saving your explanation…</p>}
+        {error && <p className="mt-4 rounded-xl border border-red-200 bg-red-50 p-4 text-sm leading-6 text-red-900" role="alert">{error}</p>}
+        {saving && <p className="mt-4 rounded-xl bg-emerald-50 p-3 text-sm font-semibold text-emerald-900" role="status">Saving your explanation…</p>}
 
-        <form className="note-learning-composer" onSubmit={sendMessage}>
-          <label htmlFor="note-learning-followup">Ask another question</label>
+        <form className="mt-6 grid gap-3" onSubmit={sendMessage}>
+          <label htmlFor="note-learning-followup" className="text-sm font-bold text-primary-950">Ask another question</label>
           <textarea
             id="note-learning-followup"
             value={input}
@@ -247,16 +247,16 @@ export default function NoteLearningExplanation() {
             rows={3}
             placeholder="What would you like your AI tutor to explain further?"
             disabled={streaming}
-           className="block min-h-32 w-full min-w-0 resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
-          <button type="submit" disabled={!input.trim() || streaming || saving}>
+           className="block min-h-32 w-full min-w-0 resize-y rounded-xl border border-border bg-white px-4 py-3 text-sm leading-6 text-foreground shadow-sm outline-none transition placeholder:text-slate-400 focus:border-primary-500 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
+          <button type="submit" disabled={!input.trim() || streaming || saving} className="inline-flex min-h-11 items-center justify-center rounded-xl bg-primary-700 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-primary-800 disabled:cursor-not-allowed disabled:opacity-50">
             {streaming ? 'Writing your explanation…' : 'Ask AI tutor'}
           </button>
         </form>
       </div>
 
-      <nav className="note-learning-bottom-navigation" aria-label="Note navigation">
+      <nav className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-6" aria-label="Note navigation">
         {returnToLesson && (
-          <Link to={returnToLesson} className="note-learning-nav-button">
+          <Link to={returnToLesson} className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-primary-200 bg-white px-4 py-2.5 text-sm font-bold text-primary-800 no-underline transition hover:bg-primary-50">
             <svg aria-hidden="true" viewBox="0 0 20 20" width="16" height="16" fill="none">
               <path d="M12.5 4.5 7 10l5.5 5.5M7.5 10H17" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -265,7 +265,7 @@ export default function NoteLearningExplanation() {
         )}
         <Link
           to={'/notes/read?id=' + encodeURIComponent(thread.note_id) + (returnToLesson ? '&return_to=' + encodeURIComponent(returnToLesson) : '')}
-          className="note-learning-nav-button"
+          className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-primary-200 bg-white px-4 py-2.5 text-sm font-bold text-primary-800 no-underline transition hover:bg-primary-50"
         >
           <svg aria-hidden="true" viewBox="0 0 20 20" width="16" height="16" fill="none">
             <path d="M12.5 4.5 7 10l5.5 5.5M7.5 10H17" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
