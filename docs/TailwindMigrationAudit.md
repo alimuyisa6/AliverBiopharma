@@ -46,7 +46,7 @@ Base audited: `main` at `9883fe099bab75bb116d5ce40b380b438f2feb9c` (PR #227).
 - [ ] `src/pages/ClinicalSimulationsPage.jsx` — pending line-by-line review
 - [ ] `src/pages/CommunityPage.jsx` — pending line-by-line review
 - [ ] `src/pages/ContactPage.jsx` — pending line-by-line review
-- [ ] `src/pages/CurriculumNodePage.jsx` — pending line-by-line review
+- [x] `src/pages/CurriculumNodePage.jsx` — reviewed end-to-end; uses the shared page heading and curriculum tile contracts, and removes unnecessary outer section cards.
 - [ ] `src/pages/Dashboard.jsx` — pending line-by-line review
 - [ ] `src/pages/Donate.jsx` — pending line-by-line review
 - [ ] `src/pages/FaqPage.jsx` — pending line-by-line review
@@ -115,7 +115,7 @@ Base audited: `main` at `9883fe099bab75bb116d5ce40b380b438f2feb9c` (PR #227).
 - [ ] `src/components/NotFoundPage.jsx` — pending line-by-line review
 - [ ] `src/components/NotificationBell/NotificationBell.jsx` — pending line-by-line review
 - [ ] `src/components/NotificationCenter/NotificationCenter.jsx` — pending line-by-line review
-- [x] `src/components/PageHeader/PageHeader.jsx` — reviewed; now consumes central contracts and exposes an opt-in illustration slot.
+- [x] `src/components/PageHeader/PageHeader.jsx` — reviewed; consumes central contracts, supports an additive wrapper class, and exposes an opt-in illustration slot.
 - [ ] `src/components/PageTransition.jsx` — pending line-by-line review
 - [ ] `src/components/ProfilePictureUpload/ProfilePictureUpload.jsx` — pending line-by-line review
 - [ ] `src/components/ProgressBar/ProgressBar.jsx` — pending line-by-line review
