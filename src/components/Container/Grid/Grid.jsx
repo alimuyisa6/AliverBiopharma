@@ -1,3 +1,5 @@
+import { UI } from '../../../design-system';
+
 /* components/Grid/Grid.jsx */
 const COLUMN_CLASSES = {
   1: 'grid-cols-1',
@@ -11,7 +13,7 @@ const COLUMN_CLASSES = {
 export default function Grid({ children, cols = 3, gap, className = '' }) {
   return (
     <div
-      className={`grid min-w-0 ${COLUMN_CLASSES[cols] || COLUMN_CLASSES[3]} ${className}`.trim()}
+      className={`${UI.grid} ${COLUMN_CLASSES[cols] || COLUMN_CLASSES[3]} ${className}`.trim()}
       style={gap ? { gap: `var(--space-${gap})` } : undefined}
     >
       {children}
