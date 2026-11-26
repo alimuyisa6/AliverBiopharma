@@ -14,9 +14,10 @@ export default function PageHeader({
   badges = [],
   illustration = null,
   illustrationClassName = '',
+  className = '',
 }) {
   return (
-    <header className={UI.pageTitle}>
+    <header className={`${UI.pageTitle} ${className}`.trim()}>
       {label && <span className={UI.pageTitleLabel}>{label}</span>}
       <h1 className={UI.pageTitleHeading}>
         {icon && <Icon name={icon === 'dna' ? 'microscope' : icon} className="h-8 w-8 shrink-0 text-primary-700 sm:h-10 sm:w-10" />}
