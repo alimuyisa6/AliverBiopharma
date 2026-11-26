@@ -125,6 +125,8 @@ export const UI = Object.freeze({
   contentSwitcherOption: 'inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border px-3 py-2.5 text-sm font-semibold leading-5 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600',
   contentSwitcherOptionActive: 'border-primary-300 bg-primary-50 text-primary-900 shadow-sm',
   contentSwitcherOptionInactive: 'border-slate-200 bg-white text-slate-600 hover:border-primary-200 hover:bg-slate-50',
+  curriculumTile: 'group flex min-h-24 items-center gap-4 rounded-xl border border-border bg-white p-4 text-foreground no-underline shadow-sm transition hover:border-primary-300 hover:bg-primary-50 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600',
+  curriculumRelatedTile: 'flex min-h-20 items-center justify-between gap-3 rounded-xl border border-border bg-white p-4 text-foreground no-underline shadow-sm transition hover:border-primary-300 hover:bg-primary-50',
   sectionHeading: 'mb-6 min-w-0',
   sectionHeadingTitle: 'text-xl font-bold tracking-tight text-primary-900 sm:text-2xl',
   sectionHeadingDescription: 'mt-2 max-w-3xl text-sm leading-6 text-slate-600 sm:text-base sm:leading-7',
