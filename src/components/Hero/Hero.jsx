@@ -305,9 +305,9 @@ export default function Hero() {
   }, [isAuthenticated]);
 
   return (
-    <section className="relative isolate flex min-h-[680px] items-center overflow-hidden bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 text-white sm:min-h-[720px]" aria-labelledby="hero-title">
+    <section className="relative isolate flex min-h-[680px] items-center overflow-hidden bg-primary-900 text-white sm:min-h-[720px]" aria-labelledby="hero-title">
       <WaveArtwork />
-      <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-primary-900/95 via-primary-900/75 to-primary-800/35" aria-hidden="true" />
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-primary-900/85" aria-hidden="true" />
       <div className="relative z-10 mx-auto w-full max-w-7xl px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
         <div className="max-w-3xl">
           <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold tracking-[0.12em] text-white/90 shadow-sm backdrop-blur sm:text-sm">
