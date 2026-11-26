@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
+import { UI } from '../../design-system';
 
 export default function QuizQuestionRenderer({ question, answer, disabled, marked, onToggleMark, onSubmit }) {
   const type = question.question_type || 'single_choice';
@@ -30,13 +31,13 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
   }));
 
   return (
-    <div className="w-full overflow-hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-md shadow-slate-200/50 sm:p-6 lg:p-8">
-      <div className="mb-5 flex flex-wrap items-center gap-2 border-b border-slate-100 pb-4 sm:mb-7 sm:gap-3">
-        <span className="inline-flex items-center gap-2 rounded-lg bg-slate-100 px-3 py-2 text-xs font-bold uppercase tracking-wide text-slate-700"><Icon name="file-lines" /> Question</span>
+    <div className={`${UI.card} w-full overflow-hidden lg:p-8`}>
+      <div className="mb-5 flex flex-wrap items-center gap-2 border-b border-border pb-4 sm:mb-7 sm:gap-3">
+        <span className={UI.quizMetaBadge}><Icon name="file-lines" /> Question</span>
         <span className="rounded-full bg-primary-50 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary-800">{type.replaceAll('_', ' ')}</span>
-        <button type="button" className={`ml-auto inline-flex min-h-10 items-center gap-2 rounded-lg border px-3 py-2 text-xs font-bold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 ${marked ? "border-secondary-300 bg-secondary-50 text-secondary-900" : "border-border bg-white text-slate-700 hover:bg-background"}`} onClick={onToggleMark} aria-pressed={Boolean(marked)}><Icon name="flag" /> {marked ? 'Marked for review' : 'Mark for review'}</button>
+        <button type="button" className={`${UI.quizMarkButton} ${marked ? UI.quizMarkButtonActive : UI.quizMarkButtonInactive}`} onClick={onToggleMark} aria-pressed={Boolean(marked)}><Icon name="flag" /> {marked ? 'Marked for review' : 'Mark for review'}</button>
       </div>
-      <h3 className="mb-6 text-xl font-bold leading-8 tracking-tight text-slate-900 sm:mb-7 sm:text-2xl sm:leading-9">{question.question_text}</h3>
+      <h3 className={UI.quizQuestionTitle}>{question.question_text}</h3>
 
       {type === 'essay' && (
         <div className="space-y-4">
@@ -44,11 +45,11 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
             <p className="rounded-xl border border-primary-100 bg-primary-50 p-4 text-sm leading-6 text-primary-950 sm:p-5 sm:text-base">{question.question_data.instructions}</p>
           )}
           <div className="flex flex-wrap gap-2">
-            <span className="inline-flex items-center gap-1.5 rounded-lg bg-slate-100 px-3 py-2 text-xs font-semibold text-slate-700"><Icon name="clipboard-check" /> {Number(question.question_data?.max_marks) || 10} marks</span>
-            {minWords > 0 && <span className="rounded-lg bg-slate-100 px-3 py-2 text-xs font-semibold text-slate-700">Minimum {minWords} words</span>}
-            {maxWords > 0 && <span className="rounded-lg bg-slate-100 px-3 py-2 text-xs font-semibold text-slate-700">Maximum {maxWords} words</span>}
+            <span className={UI.quizMetaBadge}><Icon name="clipboard-check" /> {Number(question.question_data?.max_marks) || 10} marks</span>
+            {minWords > 0 && <span className={UI.quizMetaBadge}>Minimum {minWords} words</span>}
+            {maxWords > 0 && <span className={UI.quizMetaBadge}>Maximum {maxWords} words</span>}
           </div>
-          <label className="mb-1 block text-sm font-semibold leading-5 text-slate-700" htmlFor={`quiz-essay-${question.id}`}>Your written response</label>
+          <label className={UI.fieldLabel} htmlFor={`quiz-essay-${question.id}`}>Your written response</label>
           <textarea
             id={`quiz-essay-${question.id}`}
             value={draft}
@@ -57,8 +58,8 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
             rows={9}
             maxLength={20000}
             placeholder="Write your answer clearly, explaining the key points..."
-           className="block min-h-52 w-full min-w-0 resize-y rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-base leading-7 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-500 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
-          <div className="flex flex-col gap-3 border-t border-slate-100 pt-4 sm:flex-row sm:items-center sm:justify-between">
+           className={`${UI.inputBase} min-h-52 resize-y py-3.5 leading-7`} />
+          <div className="flex flex-col gap-3 border-t border-border pt-4 sm:flex-row sm:items-center sm:justify-between">
             <span className="text-sm text-slate-500"><strong className="text-slate-700">{wordCount}</strong> words</span>
             {!answer && (
               <Button
@@ -71,7 +72,7 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
             )}
           </div>
           {answer && (
-            <div className="flex items-start gap-3 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm font-semibold leading-6 text-amber-950">
+            <div className={`${UI.status.warning} flex items-start gap-3 text-sm leading-6`}>
               <Icon name="clock" /> Submitted for teacher marking. Your result will be available after review.
             </div>
           )}
@@ -81,7 +82,7 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
       {type === 'multiple_select' && (
         <div className="grid gap-3 sm:gap-3.5" role="group" aria-label="Choose all correct answers">
           {optionRows.map((option) => (
-            <label key={option.id} className={`flex min-h-16 cursor-pointer items-center gap-3 rounded-xl border p-4 text-left text-sm font-semibold leading-6 transition focus-within:ring-2 focus-within:ring-primary-200 ${draft.includes(option.id) ? "border-primary-500 bg-primary-50 text-primary-950" : "border-slate-200 bg-white text-slate-800 hover:border-primary-300 hover:bg-primary-50/40"}`}>
+            <label key={option.id} className={`${UI.quizOption} cursor-pointer p-4 focus-within:ring-2 focus-within:ring-primary-200 ${draft.includes(option.id) ? UI.quizOptionSelected : UI.quizOptionInactive}`}>
               <input type="checkbox" checked={draft.includes(option.id)} disabled={disabled || Boolean(answer)} onChange={(event) => setDraft((current) => event.target.checked ? [...current, option.id] : current.filter((item) => item !== option.id))}  className="h-4 w-4 shrink-0 accent-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-700" />
               <span className="min-w-0 flex-1 leading-6">{option.label}</span>
             </label>
@@ -93,7 +94,7 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
       {type === 'true_false' && (
         <div className="grid gap-3">
           {[true, false].map((choice) => (
-            <button key={String(choice)} type="button" className={`flex min-h-16 items-center gap-3 rounded-xl border p-4 text-left font-semibold leading-6 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 ${draft === choice ? "border-primary-500 bg-primary-50 text-primary-950" : "border-slate-200 bg-white text-slate-800 hover:border-primary-300 hover:bg-primary-50/40"}`} disabled={disabled || Boolean(answer)} onClick={() => setDraft(choice)}>
+            <button key={String(choice)} type="button" className={`${UI.quizOption} p-4 ${draft === choice ? UI.quizOptionSelected : UI.quizOptionInactive}`} disabled={disabled || Boolean(answer)} onClick={() => setDraft(choice)}>
               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-sm font-extrabold text-primary-800">{choice ? 'T' : 'F'}</span>
               <span className="min-w-0 flex-1 leading-6">{choice ? 'True' : 'False'}</span>
             </button>
@@ -104,16 +105,16 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
 
       {['short_answer', 'fill_blank', 'numerical'].includes(type) && (
         <div className="grid max-w-2xl gap-3">
-          <label className="block text-sm font-semibold leading-5 text-slate-700" htmlFor={`quiz-answer-${question.id}`}>{type === 'numerical' ? 'Enter your numerical answer' : 'Enter your answer'}</label>
-          <input id={`quiz-answer-${question.id}`} type={type === 'numerical' ? 'number' : 'text'} inputMode={type === 'numerical' ? 'decimal' : 'text'} value={draft} disabled={disabled || Boolean(answer)} onChange={(event) => setDraft(event.target.value)} placeholder={type === 'numerical' ? 'Your answer' : 'Type your answer here'}  className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-base leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-500 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
+          <label className={UI.fieldLabel} htmlFor={`quiz-answer-${question.id}`}>{type === 'numerical' ? 'Enter your numerical answer' : 'Enter your answer'}</label>
+          <input id={`quiz-answer-${question.id}`} type={type === 'numerical' ? 'number' : 'text'} inputMode={type === 'numerical' ? 'decimal' : 'text'} value={draft} disabled={disabled || Boolean(answer)} onChange={(event) => setDraft(event.target.value)} placeholder={type === 'numerical' ? 'Your answer' : 'Type your answer here'}  className={`${UI.inputBase} leading-6`} />
           {!answer && <Button variant="primary" onClick={submit} disabled={disabled || !String(draft).trim()}>Check answer</Button>}
         </div>
       )}
 
       {type === 'dropdown' && (
         <div className="grid max-w-2xl gap-3">
-          <label className="block text-sm font-semibold leading-5 text-slate-700" htmlFor={`quiz-answer-${question.id}`}>Choose the best answer</label>
-          <select id={`quiz-answer-${question.id}`} value={draft} disabled={disabled || Boolean(answer)} onChange={(event) => setDraft(event.target.value)} className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-base text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-primary-500 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
+          <label className={UI.fieldLabel} htmlFor={`quiz-answer-${question.id}`}>Choose the best answer</label>
+          <select id={`quiz-answer-${question.id}`} value={draft} disabled={disabled || Boolean(answer)} onChange={(event) => setDraft(event.target.value)} className={UI.selectBase}>
             <option value="">Select an answer</option>
             {optionRows.map((option) => <option key={option.id} value={option.id}>{option.label}</option>)}
           </select>
@@ -128,7 +129,7 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
             const correctOption = answer?.correct_option;
             const stateClass = answer ? option === correctOption ? 'correct' : option === selected ? 'incorrect' : '' : '';
             return (
-              <button key={option} type="button" className={`flex min-h-16 items-center gap-3 rounded-xl border p-4 text-left font-semibold leading-6 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:cursor-not-allowed ${stateClass === "correct" ? "border-emerald-300 bg-emerald-50 text-emerald-950" : stateClass === "incorrect" ? "border-rose-300 bg-rose-50 text-rose-950" : "border-slate-200 bg-white text-slate-800 hover:border-primary-300 hover:bg-primary-50/40"}`} onClick={() => onSubmit(option)} disabled={disabled || Boolean(answer)}>
+              <button key={option} type="button" className={`${UI.quizOption} p-4 ${stateClass === 'correct' ? UI.quizOptionCorrect : stateClass === 'incorrect' ? UI.quizOptionIncorrect : UI.quizOptionInactive}`} onClick={() => onSubmit(option)} disabled={disabled || Boolean(answer)}>
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-sm font-extrabold text-primary-800">{option}</span>
                 <span className="min-w-0 flex-1 leading-6">{question[`option_${option.toLowerCase()}`]}</span>
               </button>
@@ -138,7 +139,7 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
       )}
 
       {answer && answer.user_answer_text && type !== 'essay' && (
-        <div className={`mt-4 flex items-start gap-3 rounded-xl border p-4 text-sm font-semibold leading-6 ${answer.correct ? "border-emerald-200 bg-emerald-50 text-emerald-900" : "border-amber-200 bg-amber-50 text-amber-950"}`}>
+        <div className={`${answer.correct ? UI.status.success : UI.status.warning} mt-4 flex items-start gap-3 text-sm leading-6`}>
           <Icon name={answer.correct ? 'circle-check' : 'circle-xmark'} />
           <span>{answer.correct ? 'Correct' : 'Answer recorded'}{answer.user_answer_text ? ` · ${answer.user_answer_text}` : ''}</span>
         </div>
