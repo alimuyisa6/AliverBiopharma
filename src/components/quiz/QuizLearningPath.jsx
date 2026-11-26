@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { getRequest } from '../../api/client';
 import Icon from '../../components/Icon/Icon';
+import { UI } from '../../design-system';
 
 export default function QuizLearningPath({ level, class_name }) {
   const [paths, setPaths] = useState([]);
@@ -20,8 +21,8 @@ export default function QuizLearningPath({ level, class_name }) {
   const levelName = typeof level === 'object' ? level?.display_name || levelId : levelId;
 
   return (
-    <section className="mx-auto mt-10 w-full max-w-7xl px-4 sm:px-6">
-      <h3 className="mb-5 flex items-start gap-3 text-xl font-bold leading-8 text-primary-950 sm:text-2xl sm:leading-9">
+    <section className={`${UI.container} mt-10`}>
+      <h3 className={`${UI.sectionHeadingTitle} mb-5 flex items-start gap-3`}>
         <Icon name="route" className="mt-1 h-7 w-7 shrink-0 text-secondary-700" />
         Your learning<br />path{levelName ? ` in ${levelName}` : ''}
         {class_name && <span className="text-base font-semibold text-slate-600"> – {class_name}</span>}
@@ -29,7 +30,7 @@ export default function QuizLearningPath({ level, class_name }) {
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {paths.map((path) => (
-          <div key={path.id} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-primary-200 hover:shadow-md">
+          <div key={path.id} className={`${UI.resourceCard} p-5`}>
             <Icon
               name={path.icon === 'dna' ? 'microscope' : path.icon || 'book-open'}
               className={`h-7 w-7 ${path.completed ? "text-emerald-700" : "text-primary-600"}`}
