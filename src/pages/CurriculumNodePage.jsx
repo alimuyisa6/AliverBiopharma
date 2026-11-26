@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams, useSearchParams, useLocation, useNavigate } from 'react-router-dom';
 import Container from '../components/Container/Container';
+import PageHeader from '../components/PageHeader/PageHeader';
+import { UI } from '../design-system';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 import Spinner from '../components/Spinner/Spinner';
 import Icon from '../components/Icon/Icon';
@@ -218,15 +220,16 @@ export default function CurriculumNodePage() {
     return (
       <Container className="min-h-screen bg-background">
         <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Resources', href: '/resources' }, { label: rootLabelPlural, href: null }]} />
-        <header className="mb-8 max-w-4xl border-b border-border pb-8">
-          <h1>Choose a {rootLabel}</h1>
-          <p>{isPharmacy ? 'Begin with a course unit, then follow its sub-course units, themes and lessons.' : 'Begin with a topic, then follow its subtopics, themes and lessons.'}</p>
-        </header>
-        <section className="mt-10 rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-7">
+        <PageHeader
+          title={`Choose a ${rootLabel}`}
+          subtitle={isPharmacy ? 'Begin with a course unit, then follow its sub-course units, themes and lessons.' : 'Begin with a topic, then follow its subtopics, themes and lessons.'}
+          className="max-w-4xl border-b border-border pb-8"
+        />
+        <section className="mt-10">
           <div className="mb-5 flex flex-wrap items-end justify-between gap-3"><div><h2>{rootLabelPlural}</h2></div><span className="inline-flex rounded-full bg-primary-50 px-3 py-1 text-xs font-bold text-primary-800">{rootNodes.length} available</span></div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {rootNodes.map((item) => (
-              <Link key={item.id} to={`/curriculum/${encodeURIComponent(groupId)}/${slugify(item.slug || item.name)}${resourceFocus ? `?resource=${encodeURIComponent(resourceFocus)}` : ''}`} className="group flex min-h-24 items-center gap-4 rounded-xl border border-border bg-white p-4 text-foreground no-underline shadow-sm transition hover:border-primary-300 hover:bg-primary-50 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
+              <Link key={item.id} to={`/curriculum/${encodeURIComponent(groupId)}/${slugify(item.slug || item.name)}${resourceFocus ? `?resource=${encodeURIComponent(resourceFocus)}` : ''}`} className={UI.curriculumTile}>
                 <span className="min-w-0 flex-1"><strong>{item.name}</strong></span>
               </Link>
             ))}
@@ -278,10 +281,11 @@ export default function CurriculumNodePage() {
     <Container className="min-h-screen bg-background">
       <Breadcrumb items={breadcrumbItems} />
 
-      <header className="mb-8 max-w-4xl border-b border-border pb-8">
-        <h1>{node.name}</h1>
-        {node.description && <p className="mt-4 max-w-3xl text-base leading-7 text-muted sm:text-lg">{node.description}</p>}
-      </header>
+      <PageHeader
+        title={node.name}
+        subtitle={node.description || undefined}
+        className="max-w-4xl border-b border-border pb-8"
+      />
 
       {isLeaf && blocks.length > 0 && (
         <section className="mt-10 rounded-2xl border border-primary-200 bg-primary-50 p-5 sm:p-7">
@@ -312,7 +316,7 @@ export default function CurriculumNodePage() {
       )}
 
       {children.length > 0 && (
-        <section className="mt-10 rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-7">
+        <section className="mt-10">
           <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
             <div>
               <h2>Explore {node.name}</h2>
@@ -331,7 +335,7 @@ export default function CurriculumNodePage() {
               const childHref = `/curriculum/${encodeURIComponent(groupId)}/${childPath}${resourceFocus ? `?resource=${encodeURIComponent(resourceFocus)}` : ''}`;
 
               return (
-                <Link key={child.id} to={childHref} className="group flex min-h-24 items-center gap-4 rounded-xl border border-border bg-white p-4 text-foreground no-underline shadow-sm transition hover:border-primary-300 hover:bg-primary-50 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
+                <Link key={child.id} to={childHref} className={UI.curriculumTile}>
                   <span className="min-w-0 flex-1">
                     <strong>{child.name}</strong>
                   </span>
@@ -367,7 +371,7 @@ export default function CurriculumNodePage() {
       )}
 
       {relationships.length > 0 && (
-        <section className="mt-10 rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-7">
+        <section className="mt-10">
           <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
             <div>
               <h2>Connected learning</h2>
@@ -380,7 +384,7 @@ export default function CurriculumNodePage() {
                 key={`${relationship.relationship_type}-${relationship.target_id}-${index}`}
                 to={`/curriculum/${encodeURIComponent(groupId)}/${slugify(relationship.target_slug || relationship.target_name)}`}
                 onClick={(event) => openRelatedNode(event, relationship)}
-                className="flex min-h-20 items-center justify-between gap-3 rounded-xl border border-border bg-white p-4 text-foreground no-underline shadow-sm transition hover:border-primary-300 hover:bg-primary-50"
+                className={UI.curriculumRelatedTile}
               >
                 <span>{relationship.target_name}</span>
               </Link>
