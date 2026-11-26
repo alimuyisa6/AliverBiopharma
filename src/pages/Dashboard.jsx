@@ -495,7 +495,7 @@ export default function Dashboard() {
   return (
     <Container>
       <div className={pageWrap}>
-        <section className="rounded-3xl border border-primary-100 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 p-5 text-white shadow-xl sm:p-8" aria-labelledby="welcome-title">
+        <section className="rounded-3xl border border-primary-100 bg-primary-900 p-5 text-white shadow-xl sm:p-8" aria-labelledby="welcome-title">
           <div>
             <h1 id="welcome-title" className="text-3xl text-white sm:text-4xl lg:text-5xl">
               Welcome back{userName ? `, ${userName}` : ''}
@@ -715,7 +715,7 @@ export default function Dashboard() {
                     <strong className="text-primary-900">{quiz.recent_pass_rate ?? 0}%</strong>
                   </div>
                   <div className="h-3 overflow-hidden rounded-full bg-slate-200" role="img" aria-label={`${quiz.recent_pass_rate ?? 0}% recent pass rate`}>
-                    <span className="block h-full rounded-full bg-gradient-to-r from-primary-600 to-secondary-500" style={{ width: `${Math.max(0, Math.min(100, Number(quiz.recent_pass_rate) || 0))}%` }} />
+                    <span className="block h-full rounded-full bg-primary-600" style={{ width: `${Math.max(0, Math.min(100, Number(quiz.recent_pass_rate) || 0))}%` }} />
                   </div>
                   {Array.isArray(quiz.score_trend) && quiz.score_trend.length > 0 ? (
                     <div className="space-y-3 rounded-xl bg-white p-3 sm:p-4">

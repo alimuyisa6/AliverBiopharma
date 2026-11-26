@@ -66,7 +66,7 @@ function MetricValue({ value, label, detail, variant = 'dark' }) {
 
 function LibraryImpact({ stats }) {
   return (
-    <section className="grid gap-7 rounded-3xl bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 p-6 text-white shadow-xl shadow-primary-900/10 sm:p-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:p-10" aria-labelledby="stats-library-title">
+    <section className="grid gap-7 rounded-3xl bg-primary-900 p-6 text-white shadow-xl shadow-primary-900/10 sm:p-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:p-10" aria-labelledby="stats-library-title">
       <div>
         
         <h3 id="stats-library-title" className="mt-3 text-2xl font-bold text-white sm:text-3xl">Knowledge that keeps growing.</h3>

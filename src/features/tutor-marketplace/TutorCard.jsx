@@ -17,11 +17,11 @@ export default function TutorCard({ tutor, onContact, user }) {
       : 'Online';
 
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-primary-200 hover:shadow-xl hover:shadow-primary-900/10">
-      <div className="h-1.5 w-full bg-gradient-to-r from-primary-700 via-primary-500 to-secondary-400" />
+    <article className="ab-card group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-primary-200 hover:shadow-xl hover:shadow-primary-900/10">
+      <div className="h-1.5 w-full bg-primary-700" />
       <div className="flex flex-1 flex-col p-5 sm:p-6">
         <div className="flex items-start gap-4">
-          <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-primary-100 bg-gradient-to-br from-primary-50 to-secondary-50 text-lg font-extrabold text-primary-800 shadow-inner">
+          <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-primary-100 bg-primary-50 text-lg font-extrabold text-primary-800 shadow-inner">
             {tutor.avatar_url ? (
               <img
                 src={tutor.avatar_url}

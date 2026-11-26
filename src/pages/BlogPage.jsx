@@ -120,13 +120,13 @@ export default function BlogPage() {
   const hasShare = share?.facebook || share?.x || share?.linkedin || share?.whatsapp;
 
   return (
-    <main className="blog-page min-h-screen w-full overflow-x-clip bg-gradient-to-b from-primary-50 via-white to-slate-50 text-foreground">
+    <main className="blog-page min-h-screen w-full overflow-x-clip bg-primary-50 text-foreground">
       {!slug && !loading && !error && featured && (
-        <section className="relative isolate overflow-hidden bg-gradient-to-br from-primary-900 via-primary-900 to-primary-700 px-4 py-12 text-white sm:px-6 sm:py-16 lg:py-20">
+        <section className="relative isolate overflow-hidden bg-primary-900 px-4 py-12 text-white sm:px-6 sm:py-16 lg:py-20">
           <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
             <div className="absolute -right-20 -top-24 h-80 w-80 rounded-full border-[36px] border-white/10" />
             <div className="absolute -bottom-36 left-[8%] h-72 w-72 rounded-full border-[28px] border-secondary-300/20" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_20%,rgba(255,255,255,.12),transparent_35%)]" />
+            <div className="absolute inset-0 bg-primary-800/30" />
           </div>
           <div className="mx-auto grid w-full max-w-7xl gap-10 md:grid-cols-[minmax(0,1fr)_minmax(15rem,22rem)] md:items-center">
             <div className="max-w-3xl">

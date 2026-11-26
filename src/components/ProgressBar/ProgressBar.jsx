@@ -23,18 +23,23 @@ export function ProgressRing({
   const safeValue = Math.min(safeMax, Math.max(0, Number(value) || 0));
   const progress = Math.round((safeValue / safeMax) * 100);
   const sizeClass = { sm: 'h-10 w-10 text-[10px]', md: 'h-14 w-14 text-xs', lg: 'h-20 w-20 text-sm', xl: 'h-24 w-24 text-base' }[size] || 'h-14 w-14 text-xs';
-  const ringPadding = variant === 'thin' ? 'p-1' : 'p-1.5';
+  const ringColor = getProgressRingColor(tone);
+  const circumference = 2 * Math.PI * 42;
+  const ringOffset = circumference * (1 - progress / 100);
   return (
     <span
-      className={`inline-flex shrink-0 items-center justify-center rounded-full ${sizeClass} ${ringPadding}`}
-      style={{ background: `conic-gradient(${getProgressRingColor(tone)} ${progress}%, #e2e8f0 0)` }}
+      className={`relative inline-flex shrink-0 items-center justify-center rounded-full ${sizeClass}`}
       role="progressbar"
       aria-valuenow={safeValue}
       aria-valuemin={0}
       aria-valuemax={safeMax}
       aria-label={ariaLabel || `${progress}% complete`}
     >
-      <span className="flex h-full w-full items-center justify-center rounded-full bg-white font-bold text-slate-800">{label ?? `${progress}%`}</span>
+      <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full -rotate-90" aria-hidden="true">
+        <circle cx="50" cy="50" r="42" fill="none" stroke="#e2e8f0" strokeWidth={variant === 'thin' ? 7 : 10} />
+        <circle cx="50" cy="50" r="42" fill="none" stroke={ringColor} strokeWidth={variant === 'thin' ? 7 : 10} strokeLinecap="round" strokeDasharray={circumference} strokeDashoffset={ringOffset} />
+      </svg>
+      <span className="relative z-10 font-bold text-slate-800">{label ?? `${progress}%`}</span>
     </span>
   );
 }
@@ -48,7 +53,7 @@ export default function ProgressBar({ value = 0, max = 100, variant = 'primary',
     warning: 'bg-amber-500',
     danger: 'bg-red-600',
     info: 'bg-sky-600',
-    gradient: 'bg-gradient-to-r from-primary-600 to-secondary-500'
+    gradient: 'bg-primary-600'
   };
   const colorClass = colors[variant.replace(/^progress-/, '')] || 'bg-primary-600';
   return (

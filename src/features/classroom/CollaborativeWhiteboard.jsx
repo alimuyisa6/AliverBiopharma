@@ -416,7 +416,6 @@ export default function CollaborativeWhiteboard({ roomId, user, isTutor = false 
         </div>
 
         <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-inner">
-          <div className="pointer-events-none absolute inset-0 opacity-[0.28]" style={{ backgroundImage: 'radial-gradient(#cbd5e1 0.8px, transparent 0.8px)', backgroundSize: '18px 18px' }} />
           <svg ref={svgRef} viewBox={`0 0 ${BOARD_WIDTH} ${BOARD_HEIGHT}`} role="img" aria-label="Shared drawing surface. Use pointer or touch to draw." className={`relative block aspect-[5/3] w-full touch-none select-none ${tool === 'eraser' ? 'cursor-cell' : 'cursor-crosshair'}`} onPointerDown={beginStroke} onPointerMove={moveStroke} onPointerUp={finishStroke} onPointerCancel={finishStroke} onLostPointerCapture={finishStroke}>
             <rect x="0" y="0" width={BOARD_WIDTH} height={BOARD_HEIGHT} fill="transparent" />
             {strokes.map(renderStroke)}
