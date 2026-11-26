@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { getRequest } from '../../api/client';
 import Icon from '../../components/Icon/Icon';
+import { UI } from '../../design-system';
 
 export default function QuizWeakAreas({ user, level, class_name }) {
   const [weakAreas, setWeakAreas] = useState([]);
@@ -20,8 +21,8 @@ export default function QuizWeakAreas({ user, level, class_name }) {
   const classLabel = class_name || '';
 
   return (
-    <section className="mx-auto mt-8 w-full max-w-7xl px-4 sm:px-6">
-      <div className="flex flex-col gap-4 rounded-2xl border border-secondary-200 bg-secondary-50 p-5 sm:flex-row sm:items-start sm:p-6">
+    <section className={`${UI.container} mt-8`}>
+      <div className={UI.quizWeakAreaPanel}>
         <Icon name="triangle-exclamation" className="h-8 w-8 shrink-0 text-secondary-800" />
 
         <div className="min-w-0 flex-1">
@@ -32,7 +33,7 @@ export default function QuizWeakAreas({ user, level, class_name }) {
 
           <div className="mt-4 flex flex-wrap gap-2.5">
             {weakAreas.map((area, idx) => (
-              <span key={idx} className="rounded-full border border-secondary-300 bg-white px-3 py-2 text-sm font-semibold leading-5 text-secondary-900 shadow-sm">
+              <span key={idx} className={UI.quizWeakAreaTag}>
                 {area.topic_name}
               </span>
             ))}
