@@ -1,4 +1,5 @@
 import Icon from '../Icon/Icon';
+import { UI } from '../../design-system';
 
 const BADGE_STYLES = {
   primary: 'bg-primary-50 text-primary-800 ring-1 ring-primary-100',
@@ -14,7 +15,7 @@ const BADGE_STYLES = {
 
 export default function Badge({ children, variant = 'primary', icon, className = '' }) {
   return (
-    <span className={`inline-flex min-h-6 items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-bold leading-4 ${BADGE_STYLES[variant] || BADGE_STYLES.primary} ${className}`.trim()}>
+    <span className={`${UI.badgeBase} ${BADGE_STYLES[variant] || BADGE_STYLES.primary} ${className}`.trim()}>
       {icon && <Icon name={icon} className="h-3.5 w-3.5 shrink-0" />}
       {children}
     </span>
