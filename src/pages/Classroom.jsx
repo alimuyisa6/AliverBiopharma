@@ -125,7 +125,8 @@ export default function Classroom() {
   }
 
   return (
-    <main className="min-h-screen w-full bg-primary-100 px-4 py-6 sm:px-6 lg:px-8 lg:py-10">\n      <div className="mx-auto w-full max-w-[1440px]">
+    <main className="min-h-screen w-full bg-primary-100 px-4 py-6 sm:px-6 lg:px-8 lg:py-10">
+      <div className="mx-auto w-full max-w-[1440px]">
       <section className="overflow-hidden rounded-[2rem] border border-primary-200 bg-white shadow-md">
         <div className="relative isolate overflow-hidden bg-primary-950 px-5 py-7 text-white sm:px-8 sm:py-9 lg:px-10">
           <div className="pointer-events-none absolute -right-10 -top-20 -z-10 h-64 w-64 rounded-full border-[36px] border-white/5" />
@@ -257,6 +258,7 @@ export default function Classroom() {
           )}
         </div>
       </section>
+      </div>
     </main>
   );
 }
