@@ -15,7 +15,7 @@ function ChallengeCard({ challenge, onOpen }) {
 
   return (
     <article className="grid min-w-0 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl shadow-slate-900/5 dark:border-slate-800 dark:bg-slate-900 lg:grid-cols-[0.85fr_1.15fr]">
-      <div className="relative flex min-h-[240px] flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-blue-950 via-blue-800 to-indigo-700 p-7 text-white sm:min-h-[300px] sm:p-10">
+      <div className="relative flex min-h-[240px] flex-col items-center justify-center overflow-hidden bg-primary-900 p-7 text-white sm:min-h-[300px] sm:p-10">
         <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full border border-white/10" />
         <div className="absolute -bottom-20 -left-16 h-56 w-56 rounded-full border border-white/10" />
         <div className="relative flex h-28 w-28 items-center justify-center rounded-3xl border border-white/20 bg-white/10 shadow-2xl backdrop-blur-sm sm:h-36 sm:w-36">
@@ -63,7 +63,7 @@ function ChallengeCard({ challenge, onOpen }) {
             <span className="font-bold tabular-nums text-slate-900 dark:text-white">{Math.round(progress)}%</span>
           </div>
           <div className="h-2.5 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
-            <div className="h-full rounded-full bg-gradient-to-r from-blue-600 to-indigo-500 transition-all duration-500" style={{ width: progress + '%' }} />
+            <div className="h-full rounded-full bg-primary-600 transition-all duration-500" style={{ width: progress + '%' }} />
           </div>
         </div>
 
