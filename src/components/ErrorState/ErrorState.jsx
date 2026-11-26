@@ -1,8 +1,9 @@
 import Icon from '../Icon/Icon';
+import { UI } from '../../design-system';
 
 export default function ErrorState({ message = 'Something went wrong', onRetry }) {
   return (
-    <div className="mx-auto flex w-full max-w-xl flex-col items-center rounded-2xl border border-red-200 bg-red-50/70 px-5 py-8 text-center sm:px-8">
+    <div className={UI.errorState}>
       <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-red-100 text-red-700">
         <Icon name="exclamation-triangle" className="h-6 w-6" />
       </span>
