@@ -41,7 +41,7 @@ Base audited: `main` at `9883fe099bab75bb116d5ce40b380b438f2feb9c` (PR #227).
 - [ ] `src/pages/Auth.jsx` — pending line-by-line review
 - [ ] `src/pages/BlogPage.jsx` — pending line-by-line review
 - [ ] `src/pages/ChallengeRunner.jsx` — pending line-by-line review
-- [ ] `src/pages/Challenges.jsx` — pending line-by-line review
+- [x] `src/pages/Challenges.jsx` — reviewed end-to-end; removed static inline background colors and dark/blue-only styling; full-width primary/secondary section bands and shared challenge cards applied. Empty-state illustration retained because it provides meaningful context.
 - [ ] `src/pages/Classroom.jsx` — pending line-by-line review
 - [ ] `src/pages/ClassroomRoom.jsx` — pending line-by-line review
 - [ ] `src/pages/ClinicalSimulationsPage.jsx` — pending line-by-line review
@@ -65,8 +65,8 @@ Base audited: `main` at `9883fe099bab75bb116d5ce40b380b438f2feb9c` (PR #227).
 - [ ] `src/pages/Profile.jsx` — pending line-by-line review
 - [ ] `src/pages/QuestionBankPage.jsx` — pending line-by-line review
 - [ ] `src/pages/Quiz.jsx` — pending line-by-line review
-- [ ] `src/pages/QuizAttemptResult.jsx` — pending line-by-line review
-- [ ] `src/pages/QuizReview.jsx` — pending line-by-line review
+- [x] `src/pages/QuizAttemptResult.jsx` — reviewed end-to-end; removed legacy page/card classes and migrated result, answer review, status and actions to shared contracts.
+- [x] `src/pages/QuizReview.jsx` — reviewed end-to-end; replaced legacy CSS classes with Tailwind and shared controls, kept marking workflow and validation logic unchanged.
 - [ ] `src/pages/Recall.jsx` — pending line-by-line review
 - [ ] `src/pages/Resources.jsx` — pending line-by-line review
 - [ ] `src/pages/TutorApply.jsx` — pending line-by-line review
