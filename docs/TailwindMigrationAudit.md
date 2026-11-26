@@ -161,12 +161,12 @@ Base audited: `main` at `9883fe099bab75bb116d5ce40b380b438f2feb9c` (PR #227).
 - [ ] `src/components/charts/index.js` — pending line-by-line review
 - [ ] `src/components/charts/useChartTheme.js` — pending line-by-line review
 - [ ] `src/components/dashboard/HomeDashboardCard.jsx` — pending line-by-line review
-- [ ] `src/components/quiz/QuizAnswerLoader.jsx` — pending line-by-line review
+- [x] `src/components/quiz/QuizAnswerLoader.jsx` — reviewed; SVG animation and runtime status colors retained because they are intrinsic to the feedback indicator.
 - [ ] `src/components/quiz/QuizChallenges.jsx` — pending line-by-line review
 - [ ] `src/components/quiz/QuizDashboard.jsx` — pending line-by-line review
 - [ ] `src/components/quiz/QuizHero.jsx` — pending line-by-line review
 - [ ] `src/components/quiz/QuizLearningPath.jsx` — pending line-by-line review
-- [ ] `src/components/quiz/QuizQuestionRenderer.jsx` — pending line-by-line review
+- [x] `src/components/quiz/QuizQuestionRenderer.jsx` — reviewed end-to-end; question, option, label, field, mark-for-review, and feedback states now use central contracts across all question types.
 - [ ] `src/components/quiz/QuizWeakAreas.jsx` — pending line-by-line review
 - [ ] `src/components/recall/RecallAnalyticsHub.jsx` — pending line-by-line review
 - [ ] `src/components/recall/RecallInsightsTab.jsx` — pending line-by-line review
