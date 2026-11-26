@@ -30,9 +30,9 @@ export default function QuizWeakAreas({ user, level, class_name }) {
             {levelName && <span className="text-sm leading-6 text-slate-600"> — {levelName}{classLabel ? ` · ${classLabel}` : ''}</span>}
           </h4>
 
-          <div className="mt-4 flex flex-wrap gap-2">
+          <div className="mt-4 flex flex-wrap gap-2.5">
             {weakAreas.map((area, idx) => (
-              <span key={idx} className="rounded-full border border-secondary-300 bg-white px-3 py-2 text-sm font-semibold leading-5 text-secondary-900">
+              <span key={idx} className="rounded-full border border-secondary-300 bg-white px-3 py-2 text-sm font-semibold leading-5 text-secondary-900 shadow-sm">
                 {area.topic_name}
               </span>
             ))}
