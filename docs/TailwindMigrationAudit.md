@@ -51,7 +51,7 @@ Base audited: `main` at `9883fe099bab75bb116d5ce40b380b438f2feb9c` (PR #227).
 - [ ] `src/pages/Dashboard.jsx` — pending line-by-line review
 - [ ] `src/pages/Donate.jsx` — pending line-by-line review
 - [ ] `src/pages/FaqPage.jsx` — pending line-by-line review
-- [ ] `src/pages/FlashcardsPage.jsx` — pending line-by-line review
+- [x] `src/pages/FlashcardsPage.jsx` — reviewed end-to-end; removed static inline colors, uses full-width solid primary section background, and applies shared page/deck contracts. The introductory illustration remains because it supports the page hero.
 - [ ] `src/pages/Glossary.jsx` — pending line-by-line review
 - [ ] `src/pages/GlossaryView.jsx` — pending line-by-line review
 - [ ] `src/pages/Home.jsx` — pending line-by-line review
@@ -100,9 +100,9 @@ Base audited: `main` at `9883fe099bab75bb116d5ce40b380b438f2feb9c` (PR #227).
 - [x] `src/components/EmptyState/EmptyState.jsx` — reviewed; migrated shared styling to central `UI` Tailwind contracts.
 - [x] `src/components/ErrorState/ErrorState.jsx` — reviewed; migrated shared styling to central `UI` Tailwind contracts.
 - [ ] `src/components/FileUpload/FileUpload.jsx` — pending line-by-line review
-- [ ] `src/components/FlashcardDeckView.jsx` — pending line-by-line review
-- [ ] `src/components/FlashcardWelcome.jsx` — pending line-by-line review
-- [ ] `src/components/Flashcardprogress.jsx` — pending line-by-line review
+- [x] `src/components/FlashcardDeckView.jsx` — reviewed end-to-end; flashcard mode surfaces now use the Aliver palette and shared form/card contracts; runtime study state and behavior preserved.
+- [x] `src/components/FlashcardWelcome.jsx` — reviewed; welcome flip panels now use central primary/secondary palette contracts.
+- [x] `src/components/Flashcardprogress.jsx` — reviewed; completion summary uses shared card contract and palette-aligned result colors.
 - [ ] `src/components/GlobalLoader/GlobalLoader.jsx` — pending line-by-line review
 - [ ] `src/components/Hero/Hero.jsx` — pending line-by-line review
 - [ ] `src/components/Icon/Icon.jsx` — pending line-by-line review
@@ -119,7 +119,7 @@ Base audited: `main` at `9883fe099bab75bb116d5ce40b380b438f2feb9c` (PR #227).
 - [x] `src/components/PageHeader/PageHeader.jsx` — reviewed; consumes central contracts, supports an additive wrapper class, and exposes an opt-in illustration slot.
 - [ ] `src/components/PageTransition.jsx` — pending line-by-line review
 - [ ] `src/components/ProfilePictureUpload/ProfilePictureUpload.jsx` — pending line-by-line review
-- [ ] `src/components/ProgressBar/ProgressBar.jsx` — pending line-by-line review
+- [ ] `src/components/ProgressBar/ProgressBar.jsx` — pending line-by-line review (not changed in this batch; flashcard page now requests the solid primary variant).
 - [ ] `src/components/RichText/RichText.jsx` — pending line-by-line review
 - [ ] `src/components/ScrollMemory.jsx` — pending line-by-line review
 - [ ] `src/components/ScrollToTop.jsx` — pending line-by-line review
