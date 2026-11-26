@@ -58,7 +58,7 @@ Base audited: `main` at `9883fe099bab75bb116d5ce40b380b438f2feb9c` (PR #227).
 - [ ] `src/pages/LegalPage.jsx` — pending line-by-line review
 - [ ] `src/pages/NoteDetail.jsx` — pending line-by-line review
 - [ ] `src/pages/NoteLearningExplanation.jsx` — pending line-by-line review
-- [ ] `src/pages/NotesPage.jsx` — pending line-by-line review
+- [x] `src/pages/NotesPage.jsx` — reviewed end-to-end; page shell, headings, section kickers, and resource cards now use central Tailwind contracts. Existing purposeful empty-state illustration retained.
 - [ ] `src/pages/PageInfo.jsx` — pending line-by-line review
 - [ ] `src/pages/PastPapers.jsx` — pending line-by-line review
 - [ ] `src/pages/PdfLibraryPage.jsx` — pending line-by-line review
