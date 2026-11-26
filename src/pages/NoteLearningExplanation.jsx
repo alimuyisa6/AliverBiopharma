@@ -10,6 +10,8 @@ import {
   streamAIAssistant
 } from '../api/client';
 import Spinner from '../components/Spinner/Spinner';
+import EmptyState from '../components/EmptyState/EmptyState';
+import { UI } from '../design-system';
 
 function levelKey(level) {
   const value = typeof level === 'string'
@@ -170,23 +172,24 @@ export default function NoteLearningExplanation() {
 
   if (!threadId) {
     return (
-      <section className="mx-auto min-h-screen w-full max-w-5xl bg-background px-4 py-10 sm:px-6 lg:px-8">
-        <header className="mb-8 border-b border-border pb-7">
+      <section className={UI.narrowPage}>
+        <header className={UI.narrowPageHeader}>
           <Link to="/notes" className="mb-5 inline-flex min-h-10 items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold text-primary-800 no-underline transition hover:bg-primary-50">← Back to study notes</Link>
           
-          <h1 className="text-3xl font-extrabold tracking-tight text-primary-950 sm:text-4xl">Your learning history</h1>
-          <p>Return here to revisit questions you asked about a study note.</p>
+          <h1 className={UI.pageTitleHeading}>Your learning history</h1>
+          <p className={UI.pageTitleDescription}>Return here to revisit questions you asked about a study note.</p>
         </header>
-        {error && <div className="mb-6 rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-7"><p role="alert">{error}</p></div>}
+        {error && <div className={`${UI.card} mb-6 p-5 sm:p-7`}><p role="alert">{error}</p></div>}
         {!error && history.length === 0 && (
-          <div className="mb-6 rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-7">
-            <h2 className="text-xl font-bold text-primary-950">No saved explanations yet</h2>
-            <p>Need help understanding a study note? Ask your question at the end of the note. Your saved explanation will appear here.</p>
-            <Link to="/notes">Browse study notes</Link>
-          </div>
+          <EmptyState
+            icon="book-open"
+            title="No saved explanations yet"
+            description="Need help understanding a study note? Ask your question at the end of the note. Your saved explanation will appear here."
+            action={<Link to="/notes" className="font-bold text-primary-800 underline underline-offset-4">Browse study notes</Link>}
+          />
         )}
         {history.map((item) => (
-          <article className="mb-6 rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-7" key={item.id}>
+          <article className={`${UI.card} mb-6 p-5 sm:p-7`} key={item.id}>
             
             <h2 className="text-lg font-bold leading-snug text-primary-950">{item.learner_question}</h2>
             {item.explanation && <p>{item.explanation.slice(0, 260)}{item.explanation.length > 260 ? '…' : ''}</p>}
@@ -200,9 +203,9 @@ export default function NoteLearningExplanation() {
 
   if (error && !thread) {
     return (
-      <section className="mx-auto min-h-screen w-full max-w-5xl bg-background px-4 py-10 sm:px-6 lg:px-8">
-        <div className="mb-6 rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-7">
-          <h1 className="text-3xl font-extrabold text-primary-950">Explanation unavailable</h1>
+      <section className={UI.narrowPage}>
+        <div className={`${UI.card} mb-6 p-5 sm:p-7`}>
+          <h1 className={UI.pageTitleHeading}>Explanation unavailable</h1>
           <p role="alert">{error}</p>
           <Link to="/learning/explanation">Back to learning history</Link>
         </div>
@@ -211,15 +214,15 @@ export default function NoteLearningExplanation() {
   }
 
   return (
-    <section className="mx-auto min-h-screen w-full max-w-5xl bg-background px-4 py-10 sm:px-6 lg:px-8">
-      <header className="mb-8 border-b border-border pb-7">
+    <section className={UI.narrowPage}>
+      <header className={UI.narrowPageHeader}>
         
         
-        <h1 className="text-3xl font-extrabold tracking-tight text-primary-950 sm:text-4xl">{noteTitle}</h1>
-        <p>Your question and explanation are saved here, so you can continue where you left off.</p>
+        <h1 className={UI.pageTitleHeading}>{noteTitle}</h1>
+        <p className={UI.pageTitleDescription}>Your question and explanation are saved here, so you can continue where you left off.</p>
       </header>
 
-      <div className="mb-6 rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-7">
+      <div className={`${UI.card} mb-6 p-5 sm:p-7`}>
         <div className="grid max-h-[60vh] min-h-48 gap-4 overflow-y-auto rounded-xl bg-slate-50 p-4 sm:p-6" ref={bodyRef} aria-live="polite">
           {messages.map((message) => (
             <article
@@ -247,7 +250,7 @@ export default function NoteLearningExplanation() {
             rows={3}
             placeholder="What would you like your AI tutor to explain further?"
             disabled={streaming}
-           className="block min-h-32 w-full min-w-0 resize-y rounded-xl border border-border bg-white px-4 py-3 text-sm leading-6 text-foreground shadow-sm outline-none transition placeholder:text-slate-400 focus:border-primary-500 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
+           className={`${UI.inputBase} min-h-32 resize-y text-sm leading-6`} />
           <button type="submit" disabled={!input.trim() || streaming || saving} className="inline-flex min-h-11 items-center justify-center rounded-xl bg-primary-700 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-primary-800 disabled:cursor-not-allowed disabled:opacity-50">
             {streaming ? 'Writing your explanation…' : 'Ask AI tutor'}
           </button>
