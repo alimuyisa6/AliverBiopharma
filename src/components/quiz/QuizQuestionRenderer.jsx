@@ -79,7 +79,7 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
       )}
 
       {type === 'multiple_select' && (
-        <div className="grid gap-3" role="group" aria-label="Choose all correct answers">
+        <div className="grid gap-3 sm:gap-3.5" role="group" aria-label="Choose all correct answers">
           {optionRows.map((option) => (
             <label key={option.id} className={`flex min-h-16 cursor-pointer items-center gap-3 rounded-xl border p-4 text-left text-sm font-semibold leading-6 transition focus-within:ring-2 focus-within:ring-primary-200 ${draft.includes(option.id) ? "border-primary-500 bg-primary-50 text-primary-950" : "border-slate-200 bg-white text-slate-800 hover:border-primary-300 hover:bg-primary-50/40"}`}>
               <input type="checkbox" checked={draft.includes(option.id)} disabled={disabled || Boolean(answer)} onChange={(event) => setDraft((current) => event.target.checked ? [...current, option.id] : current.filter((item) => item !== option.id))}  className="h-4 w-4 shrink-0 accent-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-700" />
@@ -128,7 +128,7 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
             const correctOption = answer?.correct_option;
             const stateClass = answer ? option === correctOption ? 'correct' : option === selected ? 'incorrect' : '' : '';
             return (
-              <button key={option} type="button" className={`flex min-h-16 items-center gap-3 rounded-xl border p-4 text-left font-semibold leading-6 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:cursor-not-allowed ${stateClass === "correct" ? "border-emerald-300 bg-emerald-50 text-emerald-950" : stateClass === "incorrect" ? "border-rose-300 bg-rose-50 text-rose-950" : "border-border bg-white text-slate-800 hover:border-primary-300"}`} onClick={() => onSubmit(option)} disabled={disabled || Boolean(answer)}>
+              <button key={option} type="button" className={`flex min-h-16 items-center gap-3 rounded-xl border p-4 text-left font-semibold leading-6 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:cursor-not-allowed ${stateClass === "correct" ? "border-emerald-300 bg-emerald-50 text-emerald-950" : stateClass === "incorrect" ? "border-rose-300 bg-rose-50 text-rose-950" : "border-slate-200 bg-white text-slate-800 hover:border-primary-300 hover:bg-primary-50/40"}`} onClick={() => onSubmit(option)} disabled={disabled || Boolean(answer)}>
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-sm font-extrabold text-primary-800">{option}</span>
                 <span className="min-w-0 flex-1 leading-6">{question[`option_${option.toLowerCase()}`]}</span>
               </button>
