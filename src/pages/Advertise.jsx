@@ -47,7 +47,7 @@ export default function Advertise() {
   return (
     <main className="advertise-page min-h-screen bg-background text-foreground">
       <section className="relative isolate overflow-hidden bg-primary-900 text-white">
-        <div className="absolute inset-0 -z-0 bg-[radial-gradient(ellipse_at_top_right,rgba(37,99,166,0.75),transparent_55%)]" aria-hidden="true" />
+        <div className="absolute inset-0 -z-0 bg-primary-800/30" aria-hidden="true" />
         <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1.05fr_0.95fr] lg:py-28">
           <div className="max-w-2xl">
             <span className="inline-flex rounded-full border border-secondary-200/40 bg-secondary-400/15 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-orange-100">Advertise with AliverBiopharm</span>
