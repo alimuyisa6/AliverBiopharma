@@ -17,6 +17,7 @@ Base audited: `main` at `9883fe099bab75bb116d5ce40b380b438f2feb9c` (PR #227).
 - 211 files under `src/` (181 JSX, 29 JS, 1 CSS), approximately 41,128 lines.
 - 41 page modules, 104 component modules, and 30 feature modules.
 - One stylesheet exists: `src/styles.css` (927 lines).
+- Stylesheet review found duplicate base/body/focus declarations, broad global heading-to-paragraph spacing with `!important`, color utility overrides, overlapping profile rules, and legacy page-scoped selectors. These are not being deleted blindly: each selector group must be checked against its actual JSX consumers and migrated before removal.
 - The central `UI` contracts are currently used primarily by the home hero; most controls still duplicate literal class strings or legacy selectors.
 - Static and dynamic inline styles coexist; they must be classified individually rather than removed indiscriminately.
 - Baseline `npm run build` passes (3,352 modules transformed). `npm run test:security` passes (18/18). The verification runtime is Node 25.9 while the project specifies Node 22.x; the build emits an existing mixed static/dynamic import warning for `src/utils/cache.js`.
@@ -25,7 +26,7 @@ Base audited: `main` at `9883fe099bab75bb116d5ce40b380b438f2feb9c` (PR #227).
 
 ### Central stylesheet (1 files)
 
-- [ ] `src/styles.css` — pending line-by-line review
+- [!] `src/styles.css` — reviewed line by line; cleanup blocked pending consumer-by-consumer migration and visual regression checks. Broad global spacing and legacy selectors remain intentionally in place for now.
 
 ### Design system (1 files)
 
