@@ -760,8 +760,6 @@ header nav { min-width: 0; }
   .resources-view p { color: #334155; }
   .pdf-library-page :is(h1, h2, h3) { color: #15304b; }
   .pdf-library-page p { color: #334155; }
-  .flashcard-subject-section :is(h1, h2, h3) { color: #15304b; }
-  .flashcard-subject-section .section-subtitle { color: #334155; }
 }
 
 
