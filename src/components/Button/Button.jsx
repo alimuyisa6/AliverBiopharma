@@ -11,7 +11,7 @@ const variantStyles = {
   success: 'bg-emerald-700 text-white shadow-sm hover:bg-emerald-800',
   link: 'bg-transparent px-0 text-primary-700 underline underline-offset-4 hover:text-primary-900',
   warm: 'bg-secondary-600 text-white shadow-sm hover:bg-secondary-700',
-  gradient: 'bg-gradient-to-r from-primary-700 to-secondary-600 text-white shadow-sm hover:from-primary-800 hover:to-secondary-700',
+  gradient: 'bg-primary-800 text-white shadow-sm hover:bg-primary-900',
   info: 'bg-sky-700 text-white shadow-sm hover:bg-sky-800',
   warning: 'bg-amber-500 text-amber-950 shadow-sm hover:bg-amber-600',
   dark: 'bg-slate-900 text-white shadow-sm hover:bg-slate-800',
@@ -41,7 +41,7 @@ const Button = forwardRef(function Button(
   ref
 ) {
   const classes = [
-    'inline-flex min-h-10 items-center justify-center gap-2 whitespace-nowrap rounded-xl px-4 py-2 text-sm font-semibold leading-5 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:cursor-not-allowed disabled:opacity-60',
+    'ab-btn inline-flex min-h-10 items-center justify-center gap-2 whitespace-nowrap rounded-xl px-4 py-2 text-sm font-semibold leading-5 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:cursor-not-allowed disabled:opacity-60',
     variantStyles[variant] || variantStyles.primary,
     size === 'sm' && 'min-h-8 px-3 py-1.5 text-xs',
     size === 'lg' && 'min-h-12 px-5 py-3 text-base',
