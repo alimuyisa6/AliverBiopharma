@@ -281,7 +281,7 @@ export default function NoteDetail() {
       const regex = new RegExp(`(${escapedText})`, 'gi');
 
       enhancedHtml = enhancedHtml.replace(regex, (match) => {
-        return `<a href="/notes/read?id=${link.target_note_id}" class="note-inline-link" data-note-id="${link.target_note_id}" data-note-title="${link.target_title}" data-note-preview="${link.target_content_preview || ''}" data-note-read-time="${link.target_read_time || ''}">${match}</a>`;
+        return `<a href="/notes/read?id=${link.target_note_id}" class="font-semibold text-primary-700 underline decoration-primary-300 underline-offset-4 hover:text-primary-950" data-note-link="true" data-note-id="${link.target_note_id}" data-note-title="${link.target_title}" data-note-preview="${link.target_content_preview || ''}" data-note-read-time="${link.target_read_time || ''}">${match}</a>`;
       });
     }
 
@@ -294,8 +294,8 @@ export default function NoteDetail() {
     const diagrams = metadata.diagrams || [];
 
     const imageHtml = (img) => {
-      const caption = img.caption ? `<figcaption class="note-image-caption">${img.caption}</figcaption>` : '';
-      return `<figure class="note-image-wrapper" data-image-src="${img.src}">
+      const caption = img.caption ? `<figcaption class="mt-3 text-center text-sm leading-6 text-muted">${img.caption}</figcaption>` : '';
+      return `<figure class="my-6 grid justify-items-center gap-2 overflow-hidden rounded-2xl border border-border bg-slate-50 p-3 sm:p-5" data-image-src="${img.src}">
         <img src="${img.src}" alt="${img.caption || 'Illustration for this note'}" loading="lazy" />
         ${caption}
       </figure>`;
@@ -303,8 +303,8 @@ export default function NoteDetail() {
 
     const diagramHtml = (diagram) => {
       if (diagram.type === 'mermaid') {
-        const caption = diagram.caption ? `<figcaption class="note-image-caption">${diagram.caption}</figcaption>` : '';
-        return `<figure class="note-mermaid-wrapper">
+        const caption = diagram.caption ? `<figcaption class="mt-3 text-center text-sm leading-6 text-muted">${diagram.caption}</figcaption>` : '';
+        return `<figure class="my-6 overflow-x-auto rounded-2xl border border-border bg-white p-4 sm:p-6">
           <div class="mermaid">${diagram.code}</div>
           ${caption}
         </figure>`;
@@ -335,7 +335,7 @@ export default function NoteDetail() {
   }, []);
 
   const handleInlineLinkClick = useCallback((event) => {
-    const link = event.target.closest('.note-inline-link');
+    const link = event.target.closest('[data-note-link="true"]');
     if (!link) return;
     event.preventDefault();
     event.stopPropagation();
@@ -345,7 +345,7 @@ export default function NoteDetail() {
   }, [navigate]);
 
   const handleInlineLinkHover = useCallback((event) => {
-    const link = event.target.closest('.note-inline-link');
+    const link = event.target.closest('[data-note-link="true"]');
     if (!link) {
       hideLinkPreview();
       return;
@@ -502,12 +502,12 @@ export default function NoteDetail() {
   }
 
   if (loading) {
-    return <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8" style={{ paddingTop: 'var(--space-8)' }}><PageSkeleton variant="compact" /></div>;
+    return <div className="mx-auto w-full max-w-7xl px-4 pt-8 sm:px-6 lg:px-8"><PageSkeleton variant="compact" /></div>;
   }
 
   if (fetchError || !note) {
     return (
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8" style={{ paddingTop: 'var(--space-16)' }}>
+      <div className="mx-auto w-full max-w-7xl px-4 pt-16 sm:px-6 lg:px-8">
         <EmptyState
           image={getEmptyStateImage('notes')}
           title="This note is unavailable"
