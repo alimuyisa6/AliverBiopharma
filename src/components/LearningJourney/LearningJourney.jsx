@@ -5,6 +5,7 @@ import { getPdfDownloadUrl, getPastPaperDownloadUrl } from '../../api/client';
 import { getCurriculumNode } from '../../api/curriculumNavigation';
 import { isPremiumAccessError, redirectToSubscription } from '../../utils/subscriptionNavigation';
 import { buildLearningStages } from '../../utils/learningJourney';
+import { UI } from '../../design-system';
 
 const journeyCache = new Map();
 
@@ -125,13 +126,12 @@ export default function LearningJourney({
 
   if (loading) {
     return (
-      <section className="mx-auto mt-12 w-full max-w-7xl border-t border-slate-200 px-4 py-10 sm:px-6" aria-live="polite">
-        <div className="mb-7 max-w-3xl">
-          <span className="text-xs font-bold uppercase tracking-[0.16em] text-secondary-800">Keep learning</span>
-          <h2 className="mt-2 text-xl font-bold leading-7 text-primary-950">Finding your next steps</h2>
+      <section className={`${UI.container} mt-12 border-t border-border py-10 lg:px-8`} aria-live="polite">
+        <div className={`${UI.sectionHeading} max-w-3xl`}>
+          <span className={UI.sectionKicker}>Keep learning</span>
+          <h2 className={UI.sectionHeadingTitle}>Finding your next steps</h2>
           <p>Connecting the reading, revision and practice materials for this learning area.</p>
         </div>
-        <div className="mx-auto mt-8 max-w-7xl px-4 text-sm text-slate-600" />
       </section>
     );
   }
@@ -139,16 +139,16 @@ export default function LearningJourney({
   if (!stages.length) return null;
 
   return (
-    <section className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8" aria-labelledby="learning-journey-title">
-      <div className="mb-5 text-2xl font-bold tracking-tight text-primary-900 sm:text-3xl">
-        <span className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-secondary-700">Keep learning</span>
-        <h2 id="learning-journey-title" className="mt-2 text-xl font-bold leading-7 text-primary-950 sm:text-2xl">Continue exploring{nodeName ? ' ' + nodeName : ''}</h2>
-        <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">These materials are connected to the same curriculum area, so you can move naturally from reading to revision and exam practice.</p>
-      </div>
+    <section className="mt-8" aria-labelledby="learning-journey-title">
+      <header className={UI.sectionHeading}>
+        <span className={UI.sectionKicker}>Keep learning</span>
+        <h2 id="learning-journey-title" className={UI.sectionHeadingTitle}>Continue exploring{nodeName ? ' ' + nodeName : ''}</h2>
+        <p className={UI.sectionHeadingDescription}>These materials are connected to the same curriculum area, so you can move naturally from reading to revision and exam practice.</p>
+      </header>
 
       <div className="grid gap-5 lg:grid-cols-2">
         {stages.map((stage, index) => (
-          <section className={`rounded-2xl border p-5 sm:p-6 ${stage.key === (({ quizzes: "quiz", past_papers: "papers", "past-papers": "papers" })[resourceFocus] || resourceFocus) ? "border-primary-300 bg-primary-50" : "border-slate-200 bg-white"}`} key={stage.key} aria-labelledby={'learning-journey-' + stage.key}>
+          <section className={`${UI.card} p-5 sm:p-6 ${stage.key === (({ quizzes: "quiz", past_papers: "papers", "past-papers": "papers" })[resourceFocus] || resourceFocus) ? "border-primary-300 bg-primary-50" : ""}`} key={stage.key} aria-labelledby={'learning-journey-' + stage.key}>
             <div className="mb-4 flex h-9 w-9 items-center justify-center rounded-full bg-primary-800 text-xs font-bold text-white" aria-hidden="true">
               <span>{String(index + 1).padStart(2, '0')}</span>
             </div>
@@ -184,7 +184,7 @@ export default function LearningJourney({
                   return item.action ? (
                     <button
                       type="button"
-                      className="flex min-h-14 w-full items-center justify-between gap-4 rounded-xl border border-slate-200 bg-white px-4 py-3 text-left text-sm text-slate-800 no-underline transition hover:border-primary-300 hover:bg-primary-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:cursor-wait disabled:opacity-60"
+                      className={UI.learningJourneyResource}
                       key={stage.key + '-' + item.id}
                       onClick={() => openDownload(item, item.action)}
                       disabled={Boolean(downloadId)}
@@ -193,7 +193,7 @@ export default function LearningJourney({
                     </button>
                   ) : (
                     <Link
-                      className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm"
+                      className={UI.learningJourneyResource}
                       key={stage.key + '-' + item.id}
                       to={item.to}
                     >
