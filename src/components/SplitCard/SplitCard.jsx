@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
+import { UI } from '../../design-system';
 
 export default function SplitCard({
   image,
@@ -23,12 +24,12 @@ export default function SplitCard({
   }[badgeVariant] || 'bg-slate-800 text-white';
 
   return (
-    <article className={`flex min-w-0 flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:border-primary-200 hover:shadow-md ${className}`}>
+    <article className={`${UI.mediaCard} ${className}`}>
       <Link to={link} className="relative block aspect-[16/9] overflow-hidden bg-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-600">
         <img src={image || fallbackImage} alt={title} loading="lazy" className="h-full w-full object-cover transition-transform duration-300 hover:scale-[1.03]" />
         {badge && <span className={`absolute left-3 top-3 inline-flex rounded-full px-3 py-1 text-xs font-bold ${badgeStyle}`}>{badge}</span>}
       </Link>
-      <div className="flex min-w-0 flex-1 flex-col gap-4 p-4 sm:p-5">
+      <div className={UI.mediaCardBody}>
         <div className="min-w-0">
           <h3 className="text-lg font-bold leading-7 text-slate-900">{title}</h3>
           {subtitle && <p className="mt-2 text-sm leading-6 text-slate-600">{subtitle}</p>}
