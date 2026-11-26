@@ -30,25 +30,25 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
   }));
 
   return (
-    <div className="w-full rounded-2xl border border-slate-200 bg-white p-5 shadow-md shadow-slate-200/50 sm:p-6 lg:p-8">
+    <div className="w-full overflow-hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-md shadow-slate-200/50 sm:p-6 lg:p-8">
       <div className="mb-5 flex flex-wrap items-center gap-2 border-b border-slate-100 pb-4 sm:mb-7 sm:gap-3">
         <span className="inline-flex items-center gap-2 rounded-lg bg-slate-100 px-3 py-2 text-xs font-bold uppercase tracking-wide text-slate-700"><Icon name="file-lines" /> Question</span>
         <span className="rounded-full bg-primary-50 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary-800">{type.replaceAll('_', ' ')}</span>
-        <button type="button" className={`ml-auto inline-flex min-h-9 items-center gap-2 rounded-lg border px-3 py-2 text-xs font-bold ${marked ? "border-secondary-300 bg-secondary-50 text-secondary-900" : "border-border bg-white text-slate-700 hover:bg-background"}`} onClick={onToggleMark} aria-pressed={Boolean(marked)}><Icon name="flag" /> {marked ? 'Marked for review' : 'Mark for review'}</button>
+        <button type="button" className={`ml-auto inline-flex min-h-10 items-center gap-2 rounded-lg border px-3 py-2 text-xs font-bold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 ${marked ? "border-secondary-300 bg-secondary-50 text-secondary-900" : "border-border bg-white text-slate-700 hover:bg-background"}`} onClick={onToggleMark} aria-pressed={Boolean(marked)}><Icon name="flag" /> {marked ? 'Marked for review' : 'Mark for review'}</button>
       </div>
       <h3 className="mb-6 text-xl font-bold leading-8 tracking-tight text-slate-900 sm:mb-7 sm:text-2xl sm:leading-9">{question.question_text}</h3>
 
       {type === 'essay' && (
         <div className="space-y-4">
           {question.question_data?.instructions && (
-            <p className="rounded-xl border border-primary-100 bg-primary-50 p-4 text-sm leading-6 text-primary-950 sm:p-5">{question.question_data.instructions}</p>
+            <p className="rounded-xl border border-primary-100 bg-primary-50 p-4 text-sm leading-6 text-primary-950 sm:p-5 sm:text-base">{question.question_data.instructions}</p>
           )}
           <div className="flex flex-wrap gap-2">
             <span className="inline-flex items-center gap-1.5 rounded-lg bg-slate-100 px-3 py-2 text-xs font-semibold text-slate-700"><Icon name="clipboard-check" /> {Number(question.question_data?.max_marks) || 10} marks</span>
             {minWords > 0 && <span className="rounded-lg bg-slate-100 px-3 py-2 text-xs font-semibold text-slate-700">Minimum {minWords} words</span>}
             {maxWords > 0 && <span className="rounded-lg bg-slate-100 px-3 py-2 text-xs font-semibold text-slate-700">Maximum {maxWords} words</span>}
           </div>
-          <label className="block text-sm font-semibold leading-5 text-slate-700" htmlFor={`quiz-essay-${question.id}`}>Your written response</label>
+          <label className="mb-1 block text-sm font-semibold leading-5 text-slate-700" htmlFor={`quiz-essay-${question.id}`}>Your written response</label>
           <textarea
             id={`quiz-essay-${question.id}`}
             value={draft}
@@ -58,7 +58,7 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
             maxLength={20000}
             placeholder="Write your answer clearly, explaining the key points..."
            className="block min-h-52 w-full min-w-0 resize-y rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-base leading-7 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-500 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
-          <div className="flex flex-col gap-3 border-t border-slate-100 pt-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-3 border-t border-slate-100 pt-4 sm:flex-row sm:items-center sm:justify-between">
             <span className="text-sm text-slate-500"><strong className="text-slate-700">{wordCount}</strong> words</span>
             {!answer && (
               <Button
@@ -81,7 +81,7 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
       {type === 'multiple_select' && (
         <div className="grid gap-3" role="group" aria-label="Choose all correct answers">
           {optionRows.map((option) => (
-            <label key={option.id} className={`flex min-h-14 cursor-pointer items-center gap-3 rounded-xl border p-4 text-left text-sm font-semibold transition ${draft.includes(option.id) ? "border-primary-500 bg-primary-50 text-primary-950" : "border-border bg-white text-slate-800 hover:border-primary-300 hover:bg-background"}`}>
+            <label key={option.id} className={`flex min-h-16 cursor-pointer items-center gap-3 rounded-xl border p-4 text-left text-sm font-semibold leading-6 transition focus-within:ring-2 focus-within:ring-primary-200 ${draft.includes(option.id) ? "border-primary-500 bg-primary-50 text-primary-950" : "border-slate-200 bg-white text-slate-800 hover:border-primary-300 hover:bg-primary-50/40"}`}>
               <input type="checkbox" checked={draft.includes(option.id)} disabled={disabled || Boolean(answer)} onChange={(event) => setDraft((current) => event.target.checked ? [...current, option.id] : current.filter((item) => item !== option.id))}  className="h-4 w-4 shrink-0 accent-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-700" />
               <span className="min-w-0 flex-1 leading-6">{option.label}</span>
             </label>
@@ -93,7 +93,7 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
       {type === 'true_false' && (
         <div className="grid gap-3">
           {[true, false].map((choice) => (
-            <button key={String(choice)} type="button" className={`flex min-h-14 items-center gap-3 rounded-xl border p-4 text-left font-semibold transition ${draft === choice ? "border-primary-500 bg-primary-50 text-primary-950" : "border-border bg-white text-slate-800 hover:border-primary-300"}`} disabled={disabled || Boolean(answer)} onClick={() => setDraft(choice)}>
+            <button key={String(choice)} type="button" className={`flex min-h-16 items-center gap-3 rounded-xl border p-4 text-left font-semibold leading-6 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 ${draft === choice ? "border-primary-500 bg-primary-50 text-primary-950" : "border-slate-200 bg-white text-slate-800 hover:border-primary-300 hover:bg-primary-50/40"}`} disabled={disabled || Boolean(answer)} onClick={() => setDraft(choice)}>
               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-sm font-extrabold text-primary-800">{choice ? 'T' : 'F'}</span>
               <span className="min-w-0 flex-1 leading-6">{choice ? 'True' : 'False'}</span>
             </button>
@@ -128,7 +128,7 @@ export default function QuizQuestionRenderer({ question, answer, disabled, marke
             const correctOption = answer?.correct_option;
             const stateClass = answer ? option === correctOption ? 'correct' : option === selected ? 'incorrect' : '' : '';
             return (
-              <button key={option} type="button" className={`flex min-h-14 items-center gap-3 rounded-xl border p-4 text-left font-semibold transition disabled:cursor-not-allowed ${stateClass === "correct" ? "border-emerald-300 bg-emerald-50 text-emerald-950" : stateClass === "incorrect" ? "border-rose-300 bg-rose-50 text-rose-950" : "border-border bg-white text-slate-800 hover:border-primary-300"}`} onClick={() => onSubmit(option)} disabled={disabled || Boolean(answer)}>
+              <button key={option} type="button" className={`flex min-h-16 items-center gap-3 rounded-xl border p-4 text-left font-semibold leading-6 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:cursor-not-allowed ${stateClass === "correct" ? "border-emerald-300 bg-emerald-50 text-emerald-950" : stateClass === "incorrect" ? "border-rose-300 bg-rose-50 text-rose-950" : "border-border bg-white text-slate-800 hover:border-primary-300"}`} onClick={() => onSubmit(option)} disabled={disabled || Boolean(answer)}>
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-sm font-extrabold text-primary-800">{option}</span>
                 <span className="min-w-0 flex-1 leading-6">{question[`option_${option.toLowerCase()}`]}</span>
               </button>
