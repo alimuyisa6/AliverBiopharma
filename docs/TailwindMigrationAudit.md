@@ -90,9 +90,9 @@ Base audited: `main` at `9883fe099bab75bb116d5ce40b380b438f2feb9c` (PR #227).
 - [ ] `src/components/Card/Card.jsx` — pending line-by-line review
 - [x] `src/components/Chip/Chip.jsx` — reviewed; migrated shared styling to central `UI` Tailwind contracts.
 - [ ] `src/components/ClassSwitcher/ClassSwitcher.jsx` — pending line-by-line review
-- [ ] `src/components/Container/Container.jsx` — pending line-by-line review
-- [ ] `src/components/Container/Grid/Grid.jsx` — pending line-by-line review
-- [ ] `src/components/ContentSwitcher/ContentSwitcher.jsx` — pending line-by-line review
+- [x] `src/components/Container/Container.jsx` — reviewed; migrated shared layout/card/control styling to central `UI` Tailwind contracts.
+- [x] `src/components/Container/Grid/Grid.jsx` — reviewed; migrated shared layout/card/control styling to central `UI` Tailwind contracts.
+- [x] `src/components/ContentSwitcher/ContentSwitcher.jsx` — reviewed; migrated shared layout/card/control styling to central `UI` Tailwind contracts.
 - [ ] `src/components/CookieConsent/CookieConsent.jsx` — pending line-by-line review
 - [ ] `src/components/Curriculum/InteractiveSymbolExplorer.jsx` — pending line-by-line review
 - [ ] `src/components/DynamicActions.jsx` — pending line-by-line review
@@ -128,9 +128,9 @@ Base audited: `main` at `9883fe099bab75bb116d5ce40b380b438f2feb9c` (PR #227).
 - [ ] `src/components/Skeleton/Skeleton.jsx` — pending line-by-line review
 - [ ] `src/components/Spinner/Accordion/Accordion.jsx` — pending line-by-line review
 - [ ] `src/components/Spinner/Spinner.jsx` — pending line-by-line review
-- [ ] `src/components/SplitCard/SplitCard.jsx` — pending line-by-line review
-- [ ] `src/components/StatCard/StatCard.jsx` — pending line-by-line review
-- [ ] `src/components/StatsGrid/StatsGrid.jsx` — pending line-by-line review
+- [x] `src/components/SplitCard/SplitCard.jsx` — reviewed; migrated shared layout/card/control styling to central `UI` Tailwind contracts.
+- [x] `src/components/StatCard/StatCard.jsx` — reviewed; migrated shared layout/card/control styling to central `UI` Tailwind contracts.
+- [x] `src/components/StatsGrid/StatsGrid.jsx` — reviewed; migrated shared layout/card/control styling to central `UI` Tailwind contracts.
 - [ ] `src/components/StickyNotePolaroidFrame/StickyNotePolaroidFrame.jsx` — pending line-by-line review
 - [ ] `src/components/StorysetIllustration.jsx` — pending line-by-line review
 - [x] `src/components/Textarea/Textarea.jsx` — reviewed; migrated shared styling to central `UI` Tailwind contracts.
