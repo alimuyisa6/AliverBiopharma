@@ -25,6 +25,7 @@ import Button from '../components/Button/Button';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 import LearningJourney from '../components/LearningJourney/LearningJourney';
 import { isPremiumAccessError, redirectToSubscription } from '../utils/subscriptionNavigation';
+import { UI } from '../design-system';
 import { normalizeNoteReactions, calculateReadingPercentage, isReadingProgressComplete } from '../utils/noteReading';
 
 const noteDetailContentCache = new Map();
@@ -502,12 +503,12 @@ export default function NoteDetail() {
   }
 
   if (loading) {
-    return <div className="mx-auto w-full max-w-7xl px-4 pt-8 sm:px-6 lg:px-8"><PageSkeleton variant="compact" /></div>;
+    return <div className={`${UI.container} pt-8 lg:px-8`}><PageSkeleton variant="compact" /></div>;
   }
 
   if (fetchError || !note) {
     return (
-      <div className="mx-auto w-full max-w-7xl px-4 pt-16 sm:px-6 lg:px-8">
+      <div className={`${UI.container} pt-16 lg:px-8`}>
         <EmptyState
           image={getEmptyStateImage('notes')}
           title="This note is unavailable"
@@ -620,11 +621,11 @@ export default function NoteDetail() {
         </>
       )}
 
-      <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className={`${UI.container} py-8 lg:px-8`}>
         <Breadcrumb items={breadcrumb} className="mb-6" />
 
-        <article ref={contentRef} className="min-w-0 rounded-2xl border border-border bg-white shadow-sm">
-          <header className="border-b border-border bg-primary-50 px-5 py-8 sm:px-8 sm:py-10">
+        <article ref={contentRef} className={UI.readingSurface}>
+          <header className={UI.readingHeader}>
             <div
               ref={progressBarRef}
               className="h-1 w-full overflow-hidden bg-primary-100"
@@ -634,11 +635,11 @@ export default function NoteDetail() {
               aria-valuemax="100"
             ><span className="block h-full bg-primary-600 transition-[width] duration-300" style={{ width: `${readProgress}%` }} /></div>
 
-            <h1 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight text-primary-950 sm:text-4xl lg:text-5xl">{note.title}</h1>
+            <h1 className={UI.readingTitle}>{note.title}</h1>
           </header>
 
           <div
-            className="max-w-none px-5 py-6 sm:px-8 sm:py-10 [&_h2]:mt-10 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-primary-900 [&_h3]:mt-7 [&_h3]:text-xl [&_h3]:font-bold [&_h3]:text-primary-900 [&_p]:leading-7 [&_a]:font-semibold [&_a]:text-primary-700 [&_a]:underline [&_ul]:my-5 [&_ol]:my-5 [&_li]:my-1 [&_img]:my-6 [&_img]:rounded-xl [&_table]:my-6 [&_table]:w-full [&_table]:border-collapse [&_th]:bg-primary-50 [&_th]:p-3 [&_td]:border [&_td]:border-border [&_td]:p-3"
+            className={UI.readingContent}
             dangerouslySetInnerHTML={{ __html: finalContent || '<p>Content not available.</p>' }}
           />
         </article>
@@ -726,7 +727,7 @@ export default function NoteDetail() {
         />
 
         {internalLinks.related_articles?.length > 0 && (
-          <section className="mt-10 rounded-2xl border border-border bg-white p-5 sm:p-7" aria-labelledby="note-related-articles-title">
+          <section className="mt-10" aria-labelledby="note-related-articles-title">
             <h2 id="note-related-articles-title" className="mb-4 text-2xl font-bold text-primary-900">Related reading</h2>
             <p>Continue with articles selected for this note.</p>
             <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -744,7 +745,7 @@ export default function NoteDetail() {
           </section>
         )}
 
-        <div className="mt-8 rounded-2xl border border-border bg-white p-5">
+        <section className="mt-8 border-t border-border pt-6" aria-label="Note feedback">
           <p className="text-sm font-semibold text-muted">Was this helpful?</p>
           <div className="mt-3 flex flex-wrap gap-3">
             {[
@@ -772,10 +773,10 @@ export default function NoteDetail() {
               </button>
             ))}
           </div>
-        </div>
+        </section>
 
-        <div className="mt-8 rounded-2xl border border-border bg-white p-5 sm:p-7">
-          <h3 className="mb-5 flex items-center gap-2 text-xl font-bold text-primary-900">
+        <section className="mt-8 border-t border-border pt-6" aria-labelledby="note-discussion-title">
+          <h3 id="note-discussion-title" className="mb-5 flex items-center gap-2 text-xl font-bold text-primary-900">
             <i className="fa-regular fa-comments"></i>
             Discussion {comments.length > 0 && `(${comments.length})`}
           </h3>
@@ -815,26 +816,7 @@ export default function NoteDetail() {
             )}
           </div>
 
-          <div className="mx-auto mt-8 max-w-md text-center" aria-hidden="true">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 150" role="presentation" focusable="false" width="320" height="150">
-              <ellipse cx="160" cy="130" rx="91" ry="7" fill="var(--primary)" opacity=".10" />
-              <g strokeLinejoin="round" strokeLinecap="round">
-                <rect x="42" y="28" width="136" height="82" rx="18" fill="var(--primary-light)" stroke="var(--primary)" strokeWidth="2.5" />
-                <path d="M70 110 61 124 91 110" fill="var(--primary-light)" stroke="var(--primary)" strokeWidth="2.5" />
-                <path d="M69 54h80M69 69h57" fill="none" stroke="var(--primary)" strokeWidth="5" />
-                <rect x="142" y="55" width="136" height="70" rx="17" fill="var(--accent-light)" stroke="var(--accent-dark)" strokeWidth="2.5" />
-                <path d="M244 125 257 138 257 125" fill="var(--accent-light)" stroke="var(--accent-dark)" strokeWidth="2.5" />
-                <path d="M166 78h83M166 93h60" fill="none" stroke="var(--accent-dark)" strokeWidth="5" />
-              </g>
-              <path d="m222 17 4 9 10 2-8 6 1 10-7-6-9 4 4-9-6-8 10 1Z" fill="var(--accent)" stroke="var(--accent-dark)" strokeWidth="1.5" strokeLinejoin="round" />
-              <path d="m85 15 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z" fill="var(--dark-primary)" />
-              <circle cx="292" cy="40" r="4" fill="var(--primary-dark)" opacity=".65" />
-              <circle cx="28" cy="86" r="4" fill="var(--accent)" />
-              <path d="M285 75c8-12 17-11 22-5-2 10-10 15-22 5Zm0 0c-1-9-7-13-14-11 0 8 5 12 14 11Z" fill="var(--primary)" opacity=".8" />
-            </svg>
-            <p className="mt-2 text-xs text-muted">Every thoughtful question helps us grow.</p>
-          </div>
-        </div>
+        </section>
 
         <nav className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6" aria-label="Note navigation">
           {returnToLesson ? (
