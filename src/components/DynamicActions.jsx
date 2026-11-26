@@ -25,7 +25,7 @@ export default function DynamicActions({ pageId, contentType = null, contentId =
     };
   }, [pageId, contentType, contentId]);
 
-  const variantStyles = { primary: 'ab-btn-primary', secondary: 'ab-btn-outline', ghost: 'ab-btn-quiet', danger: 'ab-btn-danger', success: 'bg-emerald-700 text-white hover:bg-emerald-800', warning: 'bg-amber-500 text-amber-950 hover:bg-amber-600', info: 'bg-sky-700 text-white hover:bg-sky-800', outline: 'ab-btn-outline', gradient: 'ab-btn-primary', warm: 'ab-btn-secondary' };
+  const variantStyles = { primary: 'ab-btn-primary', secondary: 'ab-btn-outline', ghost: 'ab-btn-quiet', danger: 'ab-btn-danger', success: 'bg-emerald-700 text-white hover:bg-emerald-800', warning: 'bg-amber-500 text-amber-950 hover:bg-amber-600', info: 'bg-primary-700 text-white hover:bg-primary-800', outline: 'ab-btn-outline', gradient: 'ab-btn-primary', warm: 'ab-btn-secondary' };
 
   const available = actions.filter(
     (action) =>
@@ -69,7 +69,7 @@ export default function DynamicActions({ pageId, contentType = null, contentId =
           <a
             key={action.id}
             href={destination}
-            className={`btn btn-${variant}`}
+            className={`ab-btn inline-flex min-h-10 items-center justify-center rounded-xl px-4 py-2 text-sm font-bold shadow-sm transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 ${variantStyles[variant] || variantStyles.primary}`}
             rel="noopener noreferrer"
           >
             {label}

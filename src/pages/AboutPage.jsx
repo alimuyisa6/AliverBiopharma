@@ -3,7 +3,6 @@ import { getInfoSection } from '../api/client';
 import { getCachedStale } from '../utils/cache';
 import { Link } from 'react-router-dom';
 import { Icon, getIconNameFromClass } from '../design-system.jsx';
-import StorysetIllustration from '../components/StorysetIllustration';
 
 function RichText({ text }) {
   const TOKEN_RE = /([a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,})|((https?:\/\/)[^\s<>"']+)/g;
@@ -20,7 +19,7 @@ function RichText({ text }) {
         href={isEmail ? `mailto:${raw}` : raw}
         target={isEmail ? undefined : '_blank'}
         rel={isEmail ? undefined : 'noopener noreferrer'}
-        className="inline-link"
+        className="font-semibold text-primary-700 underline underline-offset-4 hover:text-primary-900"
       >
         {raw}
       </a>
@@ -32,55 +31,28 @@ function RichText({ text }) {
 }
 
 function TeamCard({ member }) {
-  const socialIcons = {
-    linkedin: 'linkedinBrand',
-    twitter: 'xBrand',
-    instagram: 'instagramBrand',
-    website: 'websiteBrand'
-  };
+  const socialIcons = { linkedin: 'linkedinBrand', twitter: 'xBrand', instagram: 'instagramBrand', website: 'websiteBrand' };
   return (
-    <div className="team-card">
-      <div className="team-card-image">
-        <img
-          src={member.image_url || '/placeholder-avatar.svg'}
-          alt={member.name}
-          loading="lazy"
-        />
+    <article className="grid min-w-0 overflow-hidden rounded-2xl border border-border bg-white shadow-sm">
+      <div className="aspect-[4/3] overflow-hidden bg-primary-50">
+        <img src={member.image_url || '/placeholder-avatar.svg'} alt={member.name} loading="lazy" className="h-full w-full object-cover" />
       </div>
-      <div className="team-card-body">
-        <h3>{member.name}</h3>
-        <p className="team-card-role">{member.role}</p>
-        {member.bio && <p className="team-card-bio">{member.bio}</p>}
-        {member.social && (
-          <div className="team-card-social">
-            {Object.entries(member.social).map(([platform, url]) => {
-              const iconName = socialIcons[platform] || 'websiteBrand';
-              return (
-                <a key={platform} href={url} target="_blank" rel="noopener noreferrer" aria-label={platform} className="team-social-link">
-                  <Icon name={iconName} size={16} />
-                </a>
-              );
-            })}
-          </div>
-        )}
+      <div className="grid content-start gap-2 p-4 sm:p-5">
+        <h3 className="text-lg font-extrabold text-primary-950">{member.name}</h3>
+        <p className="text-sm font-bold text-secondary-700">{member.role}</p>
+        {member.bio && <p className="text-sm leading-6 text-slate-600">{member.bio}</p>}
+        {member.social && <div className="mt-2 flex flex-wrap gap-2">{Object.entries(member.social).map(([platform, url]) => <a key={platform} href={url} target="_blank" rel="noopener noreferrer" aria-label={platform} className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-white text-primary-700 transition hover:border-primary-300 hover:bg-primary-50"><Icon name={socialIcons[platform] || 'websiteBrand'} size={16} /></a>)}</div>}
       </div>
-    </div>
+    </article>
   );
 }
 
 function ContributorCard({ contributor }) {
   return (
-    <div className="contributor-card">
-      <img
-        src={contributor.image_url || '/placeholder-avatar.svg'}
-        alt={contributor.name}
-        loading="lazy"
-      />
-      <div>
-        <strong>{contributor.name}</strong>
-        <span>{contributor.role}</span>
-      </div>
-    </div>
+    <article className="flex min-w-0 items-center gap-3 rounded-xl border border-border bg-white p-4">
+      <img src={contributor.image_url || '/placeholder-avatar.svg'} alt={contributor.name} loading="lazy" className="h-12 w-12 shrink-0 rounded-full bg-primary-50 object-cover" />
+      <div className="min-w-0"><strong className="block break-words text-sm font-bold text-primary-950">{contributor.name}</strong><span className="mt-1 block text-xs leading-5 text-muted">{contributor.role}</span></div>
+    </article>
   );
 }
 
@@ -99,11 +71,11 @@ export default function AboutPage() {
 
   if (!page) {
     return (
-      <section className="w-full px-5 py-16" style={{ backgroundColor: '#F3F6F9' }} aria-busy="true">
-        <div className="mx-auto w-full max-w-5xl space-y-10">
-          <div className="about-loading-block" />
-          <div className="about-loading-line" />
-          <div className="about-loading-line about-loading-line-short" />
+      <section className="w-full bg-background px-5 py-16" aria-busy="true">
+        <div className="mx-auto grid w-full max-w-5xl gap-5">
+          <div className="h-12 max-w-xl animate-pulse rounded-xl bg-slate-200" />
+          <div className="h-5 w-full animate-pulse rounded-lg bg-slate-200" />
+          <div className="h-5 w-2/3 animate-pulse rounded-lg bg-slate-200" />
         </div>
       </section>
     );
@@ -113,13 +85,12 @@ export default function AboutPage() {
     <>
       {page?.hero && (
         <section
-          className="ab-page-hero ab-about-hero relative isolate flex min-h-[420px] w-full items-center overflow-hidden bg-primary-900 bg-cover bg-center"
+          className="relative isolate flex min-h-[420px] w-full items-center overflow-hidden bg-primary-900 bg-cover bg-[center_42%] text-white max-md:bg-[60%_center] bg-[url('https://images.unsplash.com/photo-1579154204601-01588f351e67')]"
           style={page.hero.image_url ? {
             backgroundImage: `url(${page.hero.image_url})`,
-            backgroundColor: '#15304b'
-          } : { backgroundImage: 'url(https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=2000&q=80)' }}
+          } : undefined}
         >
-          <div className="ab-page-hero-overlay absolute inset-0 -z-0 bg-primary-900/90" aria-hidden="true" />
+          <div className="absolute inset-0 -z-0 bg-primary-900/90" aria-hidden="true" />
           <div className="absolute inset-0 -z-0 bg-primary-900/30" aria-hidden="true" />
           <div className="relative z-10 mx-auto w-full max-w-5xl px-5 py-20 sm:py-28">
             
@@ -129,14 +100,14 @@ export default function AboutPage() {
         </section>
       )}
 
-      <section className="about-content-surface w-full px-5 py-14 sm:py-20" style={{ backgroundColor: '#F3F6F9' }}>
-        <div className="mx-auto w-full max-w-5xl space-y-10">
+      <section className="w-full bg-primary-50 px-5 py-14 sm:py-20">
+        <div className="mx-auto grid w-full max-w-5xl gap-8 sm:gap-10">
           {!page?.hero && (
             <h1 className="mb-10 text-4xl font-extrabold text-primary-900 sm:text-5xl">{page?.title || 'About AliverBiopharm'}</h1>
           )}
 
           {page?.mission && (
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+            <div className="grid gap-4 border-b border-border pb-8 last:border-0">
               {page.mission.heading && <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.mission.heading}</h2>}
               {page.mission.content.split('\n\n').map((para, i) => (
                 <p key={i}><RichText text={para} /></p>
@@ -145,7 +116,7 @@ export default function AboutPage() {
           )}
 
           {page?.vision && (
-            <div className="rounded-2xl border border-white/70 p-6 shadow-sm sm:p-8" style={{ backgroundColor: '#EAF2FA' }}>
+            <div className="grid gap-4 border-b border-border pb-8 last:border-0">
               {page.vision.heading && <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.vision.heading}</h2>}
               {page.vision.content.split('\n\n').map((para, i) => (
                 <p key={i}><RichText text={para} /></p>
@@ -154,7 +125,7 @@ export default function AboutPage() {
           )}
 
           {page?.story && (
-            <div className="rounded-2xl border border-white/70 p-6 shadow-sm sm:p-8" style={{ backgroundColor: '#F1EDFA' }}>
+            <div className="grid gap-4 border-b border-border pb-8 last:border-0">
               {page.story.heading && <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.story.heading}</h2>}
               {page.story.content.split('\n\n').map((para, i) => (
                 <p key={i}><RichText text={para} /></p>
@@ -163,7 +134,7 @@ export default function AboutPage() {
           )}
 
           {page?.why_choose_us && (
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+            <div className="grid gap-4 border-b border-border pb-8 last:border-0">
               {page.why_choose_us.heading && <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.why_choose_us.heading}</h2>}
               {page.why_choose_us.content.split('\n\n').map((para, i) => (
                 <p key={i}><RichText text={para} /></p>
@@ -172,7 +143,7 @@ export default function AboutPage() {
           )}
 
           {page?.learning_philosophy && (
-            <div className="rounded-2xl border border-white/70 p-6 shadow-sm sm:p-8" style={{ backgroundColor: '#F8F1E7' }}>
+            <div className="grid gap-4 border-b border-border pb-8 last:border-0">
               {page.learning_philosophy.heading && <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.learning_philosophy.heading}</h2>}
               {page.learning_philosophy.content.split('\n\n').map((para, i) => (
                 <p key={i}><RichText text={para} /></p>
@@ -181,7 +152,7 @@ export default function AboutPage() {
           )}
 
           {page?.founders && (
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+            <div className="grid gap-4 border-b border-border pb-8 last:border-0">
               {page.founders.heading && <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.founders.heading}</h2>}
               {page.founders.content.split('\n\n').map((para, i) => (
                 <p key={i}><RichText text={para} /></p>
@@ -190,7 +161,7 @@ export default function AboutPage() {
           )}
 
           {page?.values && (
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+            <div className="grid gap-4 border-b border-border pb-8 last:border-0">
               {page.values.heading && <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.values.heading}</h2>}
               {page.values.content.split('\n\n').map((para, i) => (
                 <p key={i}><RichText text={para} /></p>
@@ -199,8 +170,8 @@ export default function AboutPage() {
           )}
 
           {page?.team?.length > 0 && (
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-              <div className="mb-5 flex items-center justify-between gap-5"><h2 className="text-2xl font-bold text-primary-900 sm:text-3xl">{page.team_heading || 'Meet our team'}</h2><StorysetIllustration name="team" alt="Our team working together" className="hidden w-32 shrink-0 object-contain sm:block" /></div>
+            <div className="grid gap-4 border-b border-border pb-8 last:border-0">
+              <div className="mb-5"><h2 className="text-2xl font-bold text-primary-900 sm:text-3xl">{page.team_heading || 'Meet our team'}</h2></div>
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {page.team.map((member, idx) => (
                   <TeamCard key={idx} member={member} />
@@ -210,7 +181,7 @@ export default function AboutPage() {
           )}
 
           {page?.contributors?.length > 0 && (
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+            <div className="grid gap-4 border-b border-border pb-8 last:border-0">
               <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.contributors_heading || 'Content contributors and reviewers'}</h2>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {page.contributors.map((contributor, idx) => (
@@ -221,7 +192,7 @@ export default function AboutPage() {
           )}
 
           {page?.commitment_to_quality && (
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+            <div className="grid gap-4 border-b border-border pb-8 last:border-0">
               {page.commitment_to_quality.heading && <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.commitment_to_quality.heading}</h2>}
               {page.commitment_to_quality.content.split('\n\n').map((para, i) => (
                 <p key={i}><RichText text={para} /></p>
@@ -230,7 +201,7 @@ export default function AboutPage() {
           )}
 
           {page?.future && (
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+            <div className="grid gap-4 border-b border-border pb-8 last:border-0">
               {page.future.heading && <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.future.heading}</h2>}
               {page.future.content.split('\n\n').map((para, i) => (
                 <p key={i}><RichText text={para} /></p>
@@ -239,7 +210,7 @@ export default function AboutPage() {
           )}
 
           {page?.legal && (
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+            <div className="grid gap-4 border-b border-border pb-8 last:border-0">
               {page.legal.heading && <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.legal.heading}</h2>}
               {page.legal.content.split('\n\n').map((para, i) => (
                 <p key={i}><RichText text={para} /></p>
@@ -248,11 +219,11 @@ export default function AboutPage() {
           )}
 
           {page?.faq && (
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+            <div className="grid gap-4 border-b border-border pb-8 last:border-0">
               {page.faq.heading && <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.faq.heading}</h2>}
-              <div className="space-y-4">
+              <div className="grid gap-3">
                 {(page.faq.questions || []).map((item, idx) => (
-                  <details key={idx} className="group rounded-2xl border border-slate-300 bg-[#EAF2FA] p-5 shadow-sm transition-shadow open:shadow-md sm:p-6">
+                  <details key={idx} className="group rounded-2xl border border-border bg-white p-5 transition-shadow open:border-primary-300 open:shadow-sm sm:p-6">
                     <summary className="flex cursor-pointer list-none items-start justify-between gap-4 text-left text-base font-bold leading-7 text-slate-900 marker:hidden sm:text-lg [&::-webkit-details-marker]:hidden">
                       <span>{item.question}</span>
                       <span className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary-700 text-white transition-transform group-open:rotate-180" aria-hidden="true">
@@ -269,51 +240,51 @@ export default function AboutPage() {
           )}
 
           {page?.contact && (
-            <div className="about-block about-contact">
+            <section className="grid gap-4 rounded-2xl bg-secondary-50 p-6 sm:p-8">
               {page.contact.heading && <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.contact.heading}</h2>}
-              {page.contact.subtext && <p className="about-contact-subtext"><RichText text={page.contact.subtext} /></p>}
-              <div className="about-contact-details">
+              {page.contact.subtext && <p className="max-w-3xl text-sm leading-7 text-slate-700"><RichText text={page.contact.subtext} /></p>}
+              <div className="flex flex-wrap gap-3">
                 {page.contact.email && (
-                  <a href={`mailto:${page.contact.email}`} className="about-contact-item">
+                  <a href={`mailto:${page.contact.email}`} className="inline-flex min-h-10 items-center gap-2 rounded-xl border border-secondary-200 bg-white px-3 py-2 text-sm font-semibold text-primary-900 no-underline">
                     <Icon name="emailBrand" size={16} /> {page.contact.email}
                   </a>
                 )}
                 {page.contact.phone && (
-                  <div className="about-contact-item">
+                  <div className="inline-flex min-h-10 items-center gap-2 rounded-xl border border-secondary-200 bg-white px-3 py-2 text-sm font-semibold text-primary-900 no-underline">
                     <Icon name="phone" size={16} /> {page.contact.phone}
                   </div>
                 )}
                 {page.contact.address && (
-                  <div className="about-contact-item">
+                  <div className="inline-flex min-h-10 items-center gap-2 rounded-xl border border-secondary-200 bg-white px-3 py-2 text-sm font-semibold text-primary-900 no-underline">
                     <Icon name="locationPin" size={16} /> {page.contact.address}
                   </div>
                 )}
               </div>
               {page.contact.social_links?.length > 0 && (
-                <div className="about-social-links">
+                <div className="flex flex-wrap gap-2">
                   {page.contact.social_links.map((s, i) => (
-                    <a key={i} href={s.url} target="_blank" rel="noopener noreferrer" className="about-social-link">
+                    <a key={i} href={s.url} target="_blank" rel="noopener noreferrer" className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-secondary-200 bg-white text-primary-800 transition hover:bg-secondary-100">
                       <Icon name={getIconNameFromClass(s.icon)} size={16} aria-hidden="true" />
                     </a>
                   ))}
                 </div>
               )}
-            </div>
+            </section>
           )}
 
           {page?.call_to_action && (
-            <div className="about-block about-cta">
-              <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.call_to_action.heading || 'Start learning with AliverBiopharm'}</h2>
-              {page.call_to_action.content && <p className="about-cta-text"><RichText text={page.call_to_action.content} /></p>}
+            <section className="grid gap-4 rounded-3xl bg-primary-900 p-6 text-white sm:p-8">
+              <h2 className="text-2xl font-bold text-white sm:text-3xl">{page.call_to_action.heading || 'Start learning with AliverBiopharm'}</h2>
+              {page.call_to_action.content && <p className="max-w-3xl text-sm leading-7 text-blue-100"><RichText text={page.call_to_action.content} /></p>}
               {page.call_to_action.button_text && (
                 <Link
                   to={page.call_to_action.button_url || '/register'}
-                  className="mt-5 inline-flex min-h-11 items-center justify-center rounded-xl bg-secondary-600 px-6 py-3 font-bold text-white transition hover:bg-secondary-700"
+                  className="mt-2 inline-flex min-h-11 items-center justify-center rounded-xl bg-white px-6 py-3 font-bold text-primary-900 transition hover:bg-primary-50"
                 >
                   {page.call_to_action.button_text}
                 </Link>
               )}
-            </div>
+            </section>
           )}
         </div>
       </section>

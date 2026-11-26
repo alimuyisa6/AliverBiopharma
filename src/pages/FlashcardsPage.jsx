@@ -29,6 +29,7 @@ import { redirectToSubscription } from '../utils/subscriptionNavigation';
 import { useLayout } from '../contexts/LayoutContext';
 import { useToast } from '../components/Toast/Toast';
 import { getCachedStale, setCache } from '../utils/cache';
+import { UI } from '../design-system';
 
 const flashcardPageCache = new Map();
 const flashcardPageRequests = new Map();
@@ -220,12 +221,12 @@ export default function FlashcardsPage() {
   if (!access.canAccess) return <AccessDenied />;
 
   if (stage === STAGE.LOADING) {
-    return <div className="section"><PageSkeleton variant="compact" /></div>;
+    return <div className={`${UI.container} py-8 lg:px-8`}><PageSkeleton variant="compact" /></div>;
   }
 
   if (error) {
     return (
-      <div className="section flashcard-error mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className={`${UI.container} py-8 lg:px-8`}>
         <EmptyState
           image={getEmptyStateImage('general')}
           title="We couldn’t load your flashcards"
@@ -238,70 +239,78 @@ export default function FlashcardsPage() {
 
   if (stage === STAGE.SUBJECT) {
     return (
-      <>
-     <div className="flashcards-page min-h-screen px-4 py-6 text-foreground sm:px-6 lg:px-8" style={{ backgroundColor: '#F3F6F9' }}>
-        <Breadcrumb items={[
-          { label: 'Home', href: '/' },
-          { label: 'Flashcards' },
-          ...(curriculumUnitId ? [{ label: 'Selected learning area' }] : [])
-        ]} />
-        <section className="section flashcard-subject-section mt-8 w-full rounded-2xl border border-white/70 p-5 shadow-sm sm:p-7" style={{ backgroundColor: '#E8F4F2' }}>
-          
-          <div className="flex items-center justify-between gap-5">
-            <h1 className="section-title flashcard-title">{levelName || 'Flashcards'}</h1>
-            <StorysetIllustration name="studying" alt="Learner reviewing flashcards" className="hidden w-28 shrink-0 object-contain sm:block md:w-36" />
-          </div>
+      <main className="min-h-screen bg-background">
+        <div className={`${UI.container} py-6 lg:px-8`}>
+          <Breadcrumb items={[
+            { label: 'Home', href: '/' },
+            { label: 'Flashcards' },
+            ...(curriculumUnitId ? [{ label: 'Selected learning area' }] : [])
+          ]} />
+        </div>
 
-          {classLabel && <p className="flashcard-class">{classLabel}</p>}
+        <section className={UI.flashcardHeroSection}>
+          <div className={UI.container}>
+            <header className="flex items-center justify-between gap-5">
+              <div className="min-w-0">
+                <h1 className={UI.pageTitleHeading}>{levelName || 'Flashcards'}</h1>
+                {classLabel && <div className="mt-2 text-sm font-semibold text-primary-800">{classLabel}</div>}
+              </div>
+              <StorysetIllustration name="studying" alt="Learner reviewing flashcards" className="hidden w-28 shrink-0 object-contain sm:block md:w-36" />
+            </header>
 
-          <AdSlot placement="flashcards" pageContext="flashcards" />
-
-          <p className="section-subtitle flashcard-subtitle">
-            Review key facts and test your recall in {levelName || 'your programme'}. 
-          </p>
-
-          {decks.length === 0 ? (
-            <EmptyState
-              image={getEmptyStateImage('flashcards')}
-              title="No flashcards yet"
-              description={`Flashcard sets for ${classLabel || levelName || 'your programme'} haven’t been added yet.`}
-            />
-          ) : (
-            <div className="flashcard-decks-grid grid grid-cols-1 gap-5 rounded-2xl p-4 sm:grid-cols-2 sm:p-5 xl:grid-cols-3" style={{ backgroundColor: '#F8F1E7' }}>
-              {decks.map((deck) => (
-                <Card
-                  key={deck.id}
-                  image={deck.cover_image_url || deck.image_url || deck.thumbnail_url || 'https://images.pexels.com/photos/16420473/pexels-photo-16420473.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop'}
-                  title={deck.title}
-                  description={deck.description || 'Test your recall of key ideas.'}
-                  className="flashcard-deck-card group h-full overflow-hidden rounded-2xl border border-border bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:border-primary-200 hover:shadow-lg"
-                  footer={
-                    <Button variant="3d" size="sm" icon="play" onClick={() => handleDeckSelect(deck)} disabled={locked}>
-                      Study cards
-                    </Button>
-                  }
-                >
-                  {deck.card_types && (
-                    <div className="flashcard-type-row">
-                      {deck.card_types.map((type) => (
-                        <span key={type} className="chip inline-flex rounded-full border border-secondary-200 bg-secondary-50 px-3 py-1 text-xs font-semibold text-secondary-800">{type.replace('_', ' ')}</span>
-                      ))}
-                    </div>
-                  )}
-                </Card>
-              ))}
+            <div className="mt-6">
+              <AdSlot placement="flashcards" pageContext="flashcards" />
             </div>
-          )}
-          {curriculumUnitId && (
-            <LearningJourney
-              unitId={curriculumUnitId}
-              excludeStages={['flashcards']}
-              returnTo={'/flashcards?unit_id=' + encodeURIComponent(curriculumUnitId)}
-            />
-          )}
+
+            <p className={`${UI.pageTitleDescription} mt-6`}>
+              Review key facts and test your recall in {levelName || 'your programme'}.
+            </p>
+
+            {decks.length === 0 ? (
+              <div className="mt-8">
+                <EmptyState
+                  image={getEmptyStateImage('flashcards')}
+                  title="No flashcards yet"
+                  description={`Flashcard sets for ${classLabel || levelName || 'your programme'} haven’t been added yet.`}
+                />
+              </div>
+            ) : (
+              <div className={`${UI.flashcardDeckGrid} mt-8`}>
+                {decks.map((deck) => (
+                  <Card
+                    key={deck.id}
+                    image={deck.cover_image_url || deck.image_url || deck.thumbnail_url || 'https://images.pexels.com/photos/16420473/pexels-photo-16420473.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop'}
+                    title={deck.title}
+                    description={deck.description || 'Test your recall of key ideas.'}
+                    className={UI.flashcardDeckCard}
+                    footer={
+                      <Button variant="3d" size="sm" icon="play" onClick={() => handleDeckSelect(deck)} disabled={locked}>
+                        Study cards
+                      </Button>
+                    }
+                  >
+                    {deck.card_types && (
+                      <div className="flex flex-wrap gap-2">
+                        {deck.card_types.map((type) => (
+                          <span key={type} className={UI.flashcardTypeBadge}>{type.replace('_', ' ')}</span>
+                        ))}
+                      </div>
+                    )}
+                  </Card>
+                ))}
+              </div>
+            )}
+
+            {curriculumUnitId && (
+              <LearningJourney
+                unitId={curriculumUnitId}
+                excludeStages={['flashcards']}
+                returnTo={'/flashcards?unit_id=' + encodeURIComponent(curriculumUnitId)}
+              />
+            )}
+          </div>
         </section>
-      </div>
-      </>
+      </main>
     );
   }
 

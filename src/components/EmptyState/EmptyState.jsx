@@ -1,8 +1,9 @@
 import Icon from '../Icon/Icon';
+import { UI } from '../../design-system';
 
 export default function EmptyState({ icon, image, title, description, action }) {
   return (
-    <div className="mx-auto flex w-full max-w-xl flex-col items-center justify-center rounded-2xl border border-dashed border-slate-200 bg-slate-50/80 px-5 py-10 text-center sm:px-8 sm:py-12">
+    <div className={UI.emptyState}>
       {image ? (
         <img src={image} alt={title || 'Empty state'} className="mb-5 max-h-40 max-w-full object-contain" loading="lazy" />
       ) : icon ? (

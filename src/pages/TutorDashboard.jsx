@@ -16,17 +16,16 @@ import Spinner from '../components/Spinner/Spinner';
 import Button from '../components/Button/Button';
 import Input from '../components/Input/Input';
 import Select from '../components/Select/Select';
-import Card from '../components/Card/Card';
 import EmptyState from '../components/EmptyState/EmptyState';
 import { useToast } from '../components/Toast/Toast';
-import { useLayout } from '../contexts/LayoutContext';
+import PageHeader from '../components/PageHeader/PageHeader';
+import { UI } from '../design-system';
 
 export default function TutorDashboard() {
   const { user } = useAuth();
   const navigate = useNavigate();
   const { displayName } = useLevelFilter();
   const addToast = useToast();
-  const { bootstrap } = useLayout();
 
   const [tutorStatus, setTutorStatus] = useState(null);
   const [levels, setLevels] = useState([]);
@@ -162,242 +161,60 @@ export default function TutorDashboard() {
   }
 
 
-  function getEmptyStateImage(key) {
-    const uiComponents = bootstrap?.ui_components || [];
-    const component = uiComponents.find((item) => item.component_key === `empty_state_${key}`);
 
-    return component?.properties?.image_url || null;
-  }
 
-  if (loading) {
-    return (
-      <div className="section" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh' }}>
-        <Spinner size="lg" />
-      </div>
-    );
-  }
+  if (loading) return <main className="flex min-h-[60vh] items-center justify-center bg-primary-50" aria-busy="true"><Spinner size="lg" /></main>;
 
-  if (error) {
-    return (
-      <div className="section" style={{ textAlign: 'center', paddingTop: 'var(--space-16)' }}>
-        <EmptyState
-          icon="exclamation-triangle"
-          title="Error"
-          description={error}
-          action={<Button onClick={() => navigate('/login')}>Log In</Button>}
-        />
-      </div>
-    );
-  }
+  if (error) return <main className="min-h-[60vh] bg-primary-50 px-4 py-12"><div className="mx-auto max-w-3xl"><EmptyState icon="exclamation-triangle" title="Error" description={error} action={<Button onClick={() => navigate('/login')}>Log In</Button>} /></div></main>;
 
   const application = tutorStatus;
   const isApproved = application?.status === 'approved';
-
   const statusLabels = {
-    pending: { label: 'Under review', color: 'var(--warning)', icon: 'clock' },
-    scheduled: { label: 'Interview scheduled', color: 'var(--primary)', icon: 'calendar' },
-    interviewed: { label: 'Interview completed', color: 'var(--accent)', icon: 'circle' },
-    approved: { label: 'Approved tutor', color: 'var(--success)', icon: 'circle' },
-    rejected: { label: 'Application rejected', color: 'var(--error)', icon: 'circle-xmark' }
+    pending: { label: 'Under review', tone: 'warning', icon: 'clock' },
+    scheduled: { label: 'Interview scheduled', tone: 'primary', icon: 'calendar' },
+    interviewed: { label: 'Interview completed', tone: 'secondary', icon: 'circle' },
+    approved: { label: 'Approved tutor', tone: 'success', icon: 'circle-check' },
+    rejected: { label: 'Application rejected', tone: 'error', icon: 'circle-xmark' }
   };
-
+  const statusTone = { warning: 'bg-amber-100 text-amber-900', primary: 'bg-primary-100 text-primary-900', secondary: 'bg-secondary-100 text-secondary-900', success: 'bg-emerald-100 text-emerald-900', error: 'bg-red-100 text-red-900' };
   const levelName = displayName || '';
 
   return (
-    <main className="mx-auto w-full max-w-[1440px] px-4 py-6 sm:px-6 lg:px-8 lg:py-10">
-      <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8">
-        <div className="mb-8 border-b border-slate-100 pb-6">
-          <h1 className="m-0 text-3xl font-extrabold tracking-tight text-primary-950 sm:text-4xl">
-            Tutor dashboard{levelName ? ` · ${levelName}` : ''}
-          </h1>
-          <p className="mb-0 mt-3 max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
-            Manage your teaching sessions, create new classrooms, and track your tutoring activity.
-          </p>
-        </div>
+    <main className="min-h-screen w-full bg-primary-50 px-4 py-8 sm:px-6 sm:py-12">
+      <div className="mx-auto grid w-full max-w-7xl gap-8">
+        <PageHeader label="Tutor workspace" title={`Tutor dashboard${levelName ? ` · ${levelName}` : ''}`} subtitle="Manage your teaching sessions, create new classrooms, and track your tutoring activity." />
 
-        {!application && (
-          <EmptyState
-            icon="graduation-cap"
-            title="No Application Found"
-            description="You haven't applied to become a tutor yet."
-            action={<Button onClick={() => navigate('/tutor/apply')} icon="paper-plane">Start Application</Button>}
-          />
-        )}
+        {!application && <EmptyState icon="graduation-cap" title="No Application Found" description="You haven't applied to become a tutor yet." action={<Button onClick={() => navigate('/tutor/apply')} icon="paper-plane">Start Application</Button>} />}
 
         {application && !isApproved && statusLabels[application.status] && (
-          <Card style={{ padding: 'var(--space-8)', maxWidth: 600, margin: '0 auto' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-4)', marginBottom: 'var(--space-6)' }}>
-              <Icon name={statusLabels[application.status].icon} style={{ fontSize: '2rem', color: statusLabels[application.status].color }} />
-              <div>
-                <span className="badge" style={{ background: `${statusLabels[application.status].color}20`, color: statusLabels[application.status].color }}>
-                  {statusLabels[application.status].label}
-                </span>
-                <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-dim)', marginTop: 'var(--space-2)' }}>
-                  Applied {new Date(application.created_at).toLocaleDateString()}
-                </p>
-              </div>
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
-              <p><strong>Level:</strong> {application.level}</p>
-              <p><strong>Class:</strong> {application.class_name}</p>
-              <p><strong>Subjects:</strong> {(application.subjects || []).join(', ')}</p>
-            </div>
-          </Card>
+          <section className={`${UI.card} mx-auto grid w-full max-w-2xl gap-5 p-6 sm:p-8`}>
+            <div className="flex flex-wrap items-center gap-4"><span className={`inline-flex h-12 w-12 items-center justify-center rounded-xl ${statusTone[statusLabels[application.status].tone]}`}><Icon name={statusLabels[application.status].icon} size="1.5rem" /></span><div><span className={`inline-flex rounded-full px-3 py-1.5 text-xs font-bold ${statusTone[statusLabels[application.status].tone]}`}>{statusLabels[application.status].label}</span><p className="mt-2 text-xs text-muted">Applied {new Date(application.created_at).toLocaleDateString()}</p></div></div>
+            <div className="grid gap-3 border-t border-border pt-5 text-sm text-slate-700"><p><strong>Level:</strong> {application.level}</p><p><strong>Class:</strong> {application.class_name}</p><p><strong>Subjects:</strong> {(application.subjects || []).join(', ')}</p></div>
+          </section>
         )}
 
         {isApproved && (
-          <div>
-            <div className="alert alert-success" style={{ marginBottom: 'var(--space-6)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 'var(--space-3)', flexWrap: 'wrap' }}>
-              <div>
-                <Icon name="circle-check" style={{ marginRight: 'var(--space-3)' }} />
-                Approved tutor — {application.display_name || 'Tutor'}
-              </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-2)' }}>
-                <Button variant="secondary" size="sm" onClick={() => navigate('/quiz/review')} icon="clipboard-check">
-                  Essay marking
-                </Button>
-                <Button
-                  variant={showCreateForm ? 'secondary' : 'primary'}
-                  size="sm"
-                  onClick={() => { setShowCreateForm((value) => !value); setCreateError(null); }}
-                  icon={showCreateForm ? 'xmark' : 'plus'}
-                >
-                  {showCreateForm ? 'Cancel' : 'Create Classroom'}
-                </Button>
-              </div>
-            </div>
+          <div className="grid gap-7">
+            <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 sm:p-5"><div className="flex items-center gap-3 text-sm font-bold text-emerald-900"><Icon name="circle-check" />Approved tutor — {application.display_name || 'Tutor'}</div><div className="flex flex-wrap gap-2"><Button variant="secondary" size="sm" onClick={() => navigate('/quiz/review')} icon="clipboard-check">Essay marking</Button><Button variant={showCreateForm ? 'secondary' : 'primary'} size="sm" onClick={() => { setShowCreateForm((value) => !value); setCreateError(null); }} icon={showCreateForm ? 'xmark' : 'plus'}>{showCreateForm ? 'Cancel' : 'Create Classroom'}</Button></div></div>
 
             {showCreateForm && (
-              <Card style={{ padding: 'var(--space-8)', marginBottom: 'var(--space-8)' }}>
-                <h3 style={{ marginBottom: 'var(--space-6)' }}>
-                  <Icon name="plus" style={{ marginRight: 'var(--space-3)', color: 'var(--primary)' }} />
-                  New Classroom
-                </h3>
-
-                <Input
-                  label="Room Title"
-                  placeholder="e.g., Introduction to Cell Biology"
-                  value={form.title}
-                  onChange={(event) => setForm((prev) => ({ ...prev, title: event.target.value }))}
-                  required
-                />
-
+              <section className={`${UI.card} grid gap-5 p-5 sm:p-7`}>
+                <h2 className="flex items-center gap-3 text-xl font-extrabold text-primary-900"><Icon name="plus" className="text-primary-700" />New Classroom</h2>
+                <Input label="Room Title" placeholder="e.g., Introduction to Cell Biology" value={form.title} onChange={(event) => setForm((prev) => ({ ...prev, title: event.target.value }))} required />
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  <Select
-                    label="Level"
-                    value={form.level}
-                    onChange={(event) => {
-                      setForm((prev) => ({ ...prev, level: event.target.value, group_id: '', class_name: '', topic_id: '', topic_name: '' }));
-                      setTopics([]);
-                    }}
-                    options={levels.map((lvl) => ({ value: lvl.key, label: lvl.display_name || lvl.key }))}
-                    placeholder="Choose level..."
-                  />
-
-                  <Select
-                    label={groupLabel}
-                    value={form.group_id}
-                    onChange={(event) => {
-                      const groupId = event.target.value;
-                      const found = (levels.find((lvl) => lvl.key === form.level)?.classes || []).find((cls) => (typeof cls === 'string' ? cls : cls.id) === groupId);
-                      const name = found ? (typeof found === 'string' ? found : found.name) : '';
-
-                      setForm((prev) => ({ ...prev, group_id: groupId, class_name: name, topic_id: '', topic_name: '' }));
-
-                      if (groupId) fetchTopics(groupId);
-                    }}
-                    options={(levels.find((lvl) => lvl.key === form.level)?.classes || []).map((cls) => ({
-                      value: typeof cls === 'string' ? cls : cls.id,
-                      label: typeof cls === 'string' ? cls : cls.name
-                    }))}
-                    placeholder={`Choose ${groupLabel.toLowerCase()}...`}
-                    disabled={!form.level}
-                  />
+                  <Select label="Level" value={form.level} onChange={(event) => { setForm((prev) => ({ ...prev, level: event.target.value, group_id: '', class_name: '', topic_id: '', topic_name: '' })); setTopics([]); }} options={levels.map((lvl) => ({ value: lvl.key, label: lvl.display_name || lvl.key }))} placeholder="Choose level..." />
+                  <Select label={groupLabel} value={form.group_id} onChange={(event) => { const groupId = event.target.value; const found = (levels.find((lvl) => lvl.key === form.level)?.classes || []).find((cls) => (typeof cls === 'string' ? cls : cls.id) === groupId); const name = found ? (typeof found === 'string' ? found : found.name) : ''; setForm((prev) => ({ ...prev, group_id: groupId, class_name: name, topic_id: '', topic_name: '' })); if (groupId) fetchTopics(groupId); }} options={(levels.find((lvl) => lvl.key === form.level)?.classes || []).map((cls) => ({ value: typeof cls === 'string' ? cls : cls.id, label: typeof cls === 'string' ? cls : cls.name }))} placeholder={`Choose ${groupLabel.toLowerCase()}...`} disabled={!form.level} />
                 </div>
-
-                <Select
-                  label={unitLabel}
-                  value={form.topic_id}
-                  onChange={(event) => {
-                    const selected = topics.find((topic) => topic.id === event.target.value);
-
-                    setForm((prev) => ({ ...prev, topic_id: event.target.value, topic_name: selected?.unit_name || selected?.topic_name || '' }));
-                  }}
-                  options={topics.map((topic) => ({ value: topic.id, label: topic.unit_name || topic.topic_name }))}
-                  placeholder={loadingTopics ? `Loading ${unitLabel.toLowerCase()}s...` : `Choose ${unitLabel.toLowerCase()}...`}
-                  disabled={!form.group_id || loadingTopics}
-                />
-
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  <Select
-                    label="Room Type"
-                    value={form.room_type}
-                    onChange={(event) => setForm((prev) => ({ ...prev, room_type: event.target.value }))}
-                    options={[
-                      { value: 'free', label: 'Free Discussion' },
-                      { value: 'hard_topic', label: 'Hard Topic (Scheduled)' },
-                      { value: 'premium', label: 'Premium (Scheduled)' }
-                    ]}
-                  />
-
-                  {(form.room_type === 'hard_topic' || form.room_type === 'premium') && (
-                    <Input
-                      label="Schedule"
-                      type="datetime-local"
-                      value={form.scheduled_at}
-                      onChange={(event) => setForm((prev) => ({ ...prev, scheduled_at: event.target.value }))}
-                    />
-                  )}
-                </div>
-
-                {createError && (
-                  <div className="alert alert-error" style={{ marginTop: 'var(--space-4)' }}>
-                    <Icon name="exclamation-triangle" /> {createError}
-                  </div>
-                )}
-
-                <div style={{ marginTop: 'var(--space-6)' }}>
-                  <Button onClick={handleCreateRoom} loading={submitting} icon="plus">Create Classroom</Button>
-                </div>
-              </Card>
+                <Select label={unitLabel} value={form.topic_id} onChange={(event) => { const selected = topics.find((topic) => topic.id === event.target.value); setForm((prev) => ({ ...prev, topic_id: event.target.value, topic_name: selected?.unit_name || selected?.topic_name || '' })); }} options={topics.map((topic) => ({ value: topic.id, label: topic.unit_name || topic.topic_name }))} placeholder={loadingTopics ? `Loading ${unitLabel.toLowerCase()}s...` : `Choose ${unitLabel.toLowerCase()}...`} disabled={!form.group_id || loadingTopics} />
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2"><Select label="Room Type" value={form.room_type} onChange={(event) => setForm((prev) => ({ ...prev, room_type: event.target.value }))} options={[{ value: 'free', label: 'Free Discussion' }, { value: 'hard_topic', label: 'Hard Topic (Scheduled)' }, { value: 'premium', label: 'Premium (Scheduled)' }]} />{(form.room_type === 'hard_topic' || form.room_type === 'premium') && <Input label="Schedule" type="datetime-local" value={form.scheduled_at} onChange={(event) => setForm((prev) => ({ ...prev, scheduled_at: event.target.value }))} />}</div>
+                {createError && <p className={UI.status.error} role="alert"><Icon name="exclamation-triangle" />{createError}</p>}
+                <div className="flex justify-end border-t border-border pt-4"><Button onClick={handleCreateRoom} loading={submitting} icon="plus">Create Classroom</Button></div>
+              </section>
             )}
 
-            <h3 style={{ marginBottom: 'var(--space-6)' }}>
-              <Icon name="users" style={{ marginRight: 'var(--space-3)', color: 'var(--primary)' }} />
-              Your Active Classrooms ({activeRooms.length})
-            </h3>
-
-            {activeRooms.length === 0 ? (
-              <EmptyState
-                icon="door-closed"
-                title="No Active Classrooms"
-                description="You haven't created any classrooms yet."
-              />
-            ) : (
-              <div className="grid grid-cols-1 gap-5 md:grid-cols-2 2xl:grid-cols-3">
-                {activeRooms.map((room) => (
-                  <Card key={room.id} className="h-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-                    <div style={{ padding: 'var(--space-3) var(--space-4)', background: room.status === 'live' ? 'var(--success)' : room.status === 'open_floor' ? 'var(--primary)' : 'var(--warning)', color: 'var(--text-on-dark)', display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
-                      <Icon name={room.status === 'live' ? 'circle' : room.status === 'open_floor' ? 'users' : 'clock'} />
-                      <span style={{ fontSize: 'var(--text-xs)', fontWeight: 600 }}>
-                        {room.status === 'live' ? 'Live' : room.status === 'open_floor' ? 'Open Floor' : 'Upcoming'}
-                      </span>
-                    </div>
-
-                    <div className="card-body">
-                      <h4 className="card-title">{room.title}</h4>
-                      <p className="card-text">{room.group_label || 'Class'}: {room.group_name || room.class_name} · {room.unit_label || 'Topic'}: {room.unit_name || room.topic_name}</p>
-                    </div>
-
-                    <div className="card-footer" style={{ display: 'flex', gap: 'var(--space-2)' }}>
-                      <Button size="sm" onClick={() => navigate(`/classroom/${room.id}`)} icon="door-open">Enter</Button>
-                      <Button size="sm" variant="danger" onClick={() => handleEndRoom(room.id)} loading={endingRoomId === room.id} loadingLabel="Ending…" icon="stop">End</Button>
-                    </div>
-                  </Card>
-                ))}
-              </div>
-            )}
+            <section className="grid gap-5"><header className="flex flex-wrap items-center justify-between gap-3"><h2 className="flex items-center gap-3 text-xl font-extrabold text-primary-900"><Icon name="users" />Your Active Classrooms</h2><span className="rounded-full bg-primary-100 px-3 py-1.5 text-xs font-bold text-primary-900">{activeRooms.length} rooms</span></header>
+              {activeRooms.length === 0 ? <EmptyState icon="door-closed" title="No Active Classrooms" description="You haven't created any classrooms yet." /> : <div className="grid grid-cols-1 gap-5 md:grid-cols-2 2xl:grid-cols-3">{activeRooms.map((room) => { const roomTone = room.status === 'live' ? 'bg-emerald-700' : room.status === 'open_floor' ? 'bg-primary-800' : 'bg-secondary-700'; const roomIcon = room.status === 'live' ? 'circle' : room.status === 'open_floor' ? 'users' : 'clock'; const roomLabel = room.status === 'live' ? 'Live' : room.status === 'open_floor' ? 'Open Floor' : 'Upcoming'; return <article key={room.id} className="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-sm"><div className={`flex items-center gap-2 px-4 py-3 text-white ${roomTone}`}><Icon name={roomIcon} /><span className="text-xs font-bold">{roomLabel}</span></div><div className="grid flex-1 gap-2 p-5"><h3 className="text-lg font-extrabold text-primary-900">{room.title}</h3><p className="text-sm leading-6 text-muted">{room.group_label || 'Class'}: {room.group_name || room.class_name} · {room.unit_label || 'Topic'}: {room.unit_name || room.topic_name}</p></div><div className="flex flex-wrap gap-2 border-t border-border p-4"><Button size="sm" onClick={() => navigate(`/classroom/${room.id}`)} icon="door-open">Enter</Button><Button size="sm" variant="danger" onClick={() => handleEndRoom(room.id)} loading={endingRoomId === room.id} loadingLabel="Ending…" icon="stop">End</Button></div></article>; })}</div>}
+            </section>
           </div>
         )}
       </div>

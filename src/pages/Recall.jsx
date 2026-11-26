@@ -648,7 +648,7 @@ export default function BioRecall() {
     !isTabView
   ) {
     return (
-      <div className="section recall-loading-wrap">
+      <div className="flex min-h-[60vh] items-center justify-center bg-primary-50">
         <Spinner size="lg" />
       </div>
     );
@@ -705,14 +705,13 @@ export default function BioRecall() {
       ]}
       value={activeTab}
       onChange={setActiveTab}
-      className="recall-content-switcher"
     />
   );
 
   if (isTabView) {
     return (
-      <div className="recall-tab-fullscreen">
-        <div className="recall-tab-fullscreen-header">
+      <div className="fixed inset-0 z-50 flex flex-col bg-background">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border bg-white p-4">
           <Button
             variant="ghost"
             size="sm"
@@ -723,7 +722,7 @@ export default function BioRecall() {
           </Button>
           {renderTabBar()}
         </div>
-        <div className="recall-tab-fullscreen-content">
+        <div className="min-h-0 flex-1 overflow-y-auto p-4 sm:p-6">
           {activeTab === 'progress' && (
             <RecallProgressTab
               xpProgress={xpProgress}
@@ -743,30 +742,30 @@ export default function BioRecall() {
   }
 
   return (
-    <div className="recall-page min-h-screen w-full bg-background text-foreground">
-      <div className="section recall-page-section mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+    <main className="min-h-screen w-full bg-background text-foreground">
+      <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
         <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Recall practice' }]} />
 
-        <header className="recall-page-header mb-8 flex flex-col gap-4 border-b border-border pb-8">
+        <header className="mb-8 flex flex-col gap-4 border-b border-border pb-8">
           
 
           <div className="flex items-center justify-between gap-5">
-            <h1 className="section-title recall-page-title font-fraunces">{levelName || 'Strengthen your learning with active recall'}</h1>
+            <h1 className="text-3xl font-extrabold leading-tight tracking-tight text-primary-900 sm:text-4xl font-fraunces">{levelName || 'Strengthen your learning with active recall'}</h1>
             <StorysetIllustration name="personalGoals" alt="Learner building a consistent study habit" className="hidden w-32 shrink-0 object-contain sm:block" />
           </div>
 
-          <p className="recall-page-intro">
+          <p className="text-sm leading-7 text-muted">
             Use spaced repetition to review key ideas, answer questions, and track your progress.
           </p>
 
           {levelName && (
-            <div className="recall-chips-row">
-              <span className="chip recall-chip-level font-maven-pro">
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex rounded-full bg-primary-100 px-3 py-1.5 text-xs font-bold text-primary-900 font-maven-pro">
                 {levelName}
               </span>
 
               {classLabel && (
-                <span className="chip recall-chip-class font-maven-pro">
+                <span className="inline-flex rounded-full bg-secondary-100 px-3 py-1.5 text-xs font-bold text-secondary-900 font-maven-pro">
                   {groupLabel}: {classLabel}
                 </span>
               )}
@@ -778,19 +777,19 @@ export default function BioRecall() {
           !sessionActive &&
           !showReport &&
           !reviewMode && (
-            <div className="recall-due-banner mb-8 flex flex-col gap-4 rounded-2xl border border-primary-200 bg-primary-50 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
-              <div className="recall-due-banner-content">
+            <div className="mb-8 flex flex-col gap-4 rounded-2xl border border-primary-200 bg-primary-50 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+              <div className="flex items-center gap-3">
                 <Icon
                   name="calendar-clock"
-                  className="recall-due-banner-icon"
+                  className="h-8 w-8 shrink-0 text-primary-700"
                 />
 
                 <div>
-                  <h3 className="recall-due-banner-title font-poppins">
+                  <h3 className="text-lg font-extrabold text-primary-900 font-poppins">
                     {dueTotal} {dueTotal === 1 ? 'review' : 'reviews'} due
                   </h3>
 
-                  <p className="recall-due-banner-text font-source-sans">
+                  <p className="text-sm leading-6 text-muted font-source-sans">
                     Review these questions to strengthen your memory.
                   </p>
                 </div>
@@ -812,10 +811,10 @@ export default function BioRecall() {
           !reviewMode && (
             <>
               {sectionLoading ? (
-                <div className="recall-skeleton">
+                <div className="grid gap-4">
                   <Skeleton height={140} />
 
-                  <div className="recall-skeleton-grid grid grid-cols-1 gap-4 sm:grid-cols-3">
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                     <Skeleton height={100} />
                     <Skeleton height={100} />
                     <Skeleton height={100} />
@@ -823,10 +822,10 @@ export default function BioRecall() {
                 </div>
               ) : (
                 <>
-                  <div className="card recall-intro-card mb-8 flex flex-col gap-5 rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-7">
+                  <div className="mb-8 flex flex-col gap-5 rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-7">
                     <Icon
                       name={levelIcon}
-                      className="recall-intro-icon"
+                      className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary-100 p-3 text-primary-800"
                     />
 
                     <Button
@@ -837,14 +836,14 @@ export default function BioRecall() {
                       Choose a topic
                     </Button>
 
-                    <div className="recall-intro-stats">
+                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                       <div>
                         <Icon
                           name="fire"
-                          className="recall-intro-stat-icon is-accent"
+                          className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary-50 p-2 text-primary-700"
                         />
 
-                        <span className="recall-intro-stat-text font-source-sans">
+                        <span className="mt-2 block text-sm font-semibold text-muted font-source-sans">
                           {streakDays}-day streak
                         </span>
                       </div>
@@ -852,10 +851,10 @@ export default function BioRecall() {
                       <div>
                         <Icon
                           name="star"
-                          className="recall-intro-stat-icon is-accent"
+                          className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary-50 p-2 text-primary-700"
                         />
 
-                        <span className="recall-intro-stat-text font-source-sans">
+                        <span className="mt-2 block text-sm font-semibold text-muted font-source-sans">
                           Level {xpProgress.level} · {xpTotal} XP · {rankTitle}
                         </span>
                       </div>
@@ -864,7 +863,7 @@ export default function BioRecall() {
 
                   {renderTabBar()}
 
-                  <div className="recall-tab-preview-hint">
+                  <div className="flex justify-end py-3">
                     <Button
                       variant="ghost"
                       size="sm"
@@ -875,8 +874,8 @@ export default function BioRecall() {
                     </Button>
                   </div>
 
-                  <div className="recall-sound-toggle-wrap">
-                    <h3 className="recall-section-heading font-poppins">
+                  <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border pb-4">
+                    <h3 className="text-lg font-extrabold text-primary-900 font-poppins">
                       Study preferences
                     </h3>
 
@@ -906,7 +905,7 @@ export default function BioRecall() {
               <ProgressBar
                 value={currentIndex + 1}
                 max={totalQuestions}
-                variant="gradient"
+                variant="primary"
               />
 
               <p className="quiz-progress-label font-source-sans">
@@ -914,14 +913,14 @@ export default function BioRecall() {
                 {totalQuestions}
 
                 {selectedTopic?.topic_name && (
-                  <span className="recall-topic-name">
+                  <span className="ml-2 inline-flex rounded-full bg-primary-100 px-3 py-1 text-xs font-bold text-primary-900">
                     {selectedTopic.topic_name}
                   </span>
                 )}
               </p>
 
               {sessionQuote && (
-                <p className="recall-quote font-fraunces">
+                <p className="rounded-xl bg-primary-50 p-4 text-sm leading-7 text-primary-900 font-fraunces">
                   "{sessionQuote.quote}"
                   {sessionQuote.author
                     ? ` — ${sessionQuote.author}`
@@ -929,12 +928,12 @@ export default function BioRecall() {
                 </p>
               )}
 
-              <Card className="recall-question-card">
+              <Card className="border border-border bg-white p-5">
                 {currentQuestion.question_type ===
                   'cloze' &&
                 currentQuestion.cloze_template ? (
-                  <div className="recall-cloze-container">
-                    <p className="recall-cloze-template font-source-sans">
+                  <div className="grid gap-4">
+                    <p className="text-sm leading-7 text-slate-700 font-source-sans">
                       {currentQuestion.cloze_template
                         .split('___')
                         .map(
@@ -950,7 +949,7 @@ export default function BioRecall() {
                                 array.length -
                                   1 && (
                                 <input
-                                  className="recall-cloze-blank block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
+                                  className={`${UI.inputBase} border-border`}
                                   value={
                                     clozeAnswer
                                   }
@@ -975,7 +974,7 @@ export default function BioRecall() {
                   </div>
                 ) : (
                   <>
-                    <h3 className="recall-question-heading font-poppins">
+                    <h3 className="text-lg font-extrabold leading-7 text-primary-900 font-poppins">
                       {
                         currentQuestion.question_text
                       }
@@ -992,16 +991,16 @@ export default function BioRecall() {
                 )}
 
                 {analyzing && (
-                  <div className="recall-analyzing-row">
+                  <div className="flex items-center gap-3 rounded-xl bg-primary-50 p-4">
                     <Spinner size="sm" />
 
-                    <span className="recall-analyzing-label font-maven-pro">
+                    <span className="text-sm font-semibold text-muted font-maven-pro">
                       Checking
                     </span>
                   </div>
                 )}
 
-                <div className="recall-answer-actions">
+                <div className="flex flex-wrap gap-3">
                   {!feedbackResult ? (
                     <Button
                       onClick={
@@ -1036,8 +1035,8 @@ export default function BioRecall() {
               </Card>
 
               {feedbackResult && (
-                <Card className="recall-feedback-card">
-                  <div className="recall-feedback-header">
+                <Card className="grid gap-4 border border-border bg-white p-5">
+                  <div className="flex items-center gap-3">
                     <Icon
                       name={
                         feedbackResult.strength ===
@@ -1048,14 +1047,14 @@ export default function BioRecall() {
                           ? 'circle'
                           : 'rotate'
                       }
-                      className={`recall-feedback-icon ${
+                      className={`inline-flex h-10 w-10 items-center justify-center rounded-xl ${
                         feedbackResult.strength ===
                         'excellent'
-                          ? 'is-excellent'
+                          ? 'bg-emerald-100 text-emerald-800'
                           : feedbackResult.strength ===
                             'strong'
-                          ? 'is-strong'
-                          : 'is-developing'
+                          ? 'bg-primary-100 text-primary-800'
+                          : 'bg-secondary-100 text-secondary-800'
                       }`}
                     />
 
@@ -1070,7 +1069,7 @@ export default function BioRecall() {
                           : 'Needs Review'}
                       </h4>
 
-                      <p className="recall-feedback-xp font-mono">
+                      <p className="inline-flex w-fit rounded-full bg-secondary-100 px-3 py-1.5 text-xs font-bold text-secondary-900 font-mono">
                         +{feedbackResult.xp_earned} XP
                       </p>
                     </div>
@@ -1086,25 +1085,25 @@ export default function BioRecall() {
                   </p>
 
                   {feedbackResult.note && (
-                    <p className="recall-feedback-note font-open-sans">
+                    <p className="rounded-xl bg-primary-50 p-3 text-sm leading-6 text-slate-700 font-open-sans">
                       {feedbackResult.note}
                     </p>
                   )}
 
                   {feedbackResult.explanation && (
-                    <p className="recall-feedback-explanation font-open-sans">
+                    <p className="text-sm leading-7 text-slate-700 font-open-sans">
                       {
                         feedbackResult.explanation
                       }
                     </p>
                   )}
 
-                  <div className="recall-confidence-section">
-                    <span className="recall-confidence-label font-poppins">
+                  <div className="grid gap-3">
+                    <span className="text-sm font-bold text-primary-900 font-poppins">
                       How well did you recall this?
                     </span>
 
-                    <div className="recall-confidence-buttons">
+                    <div className="flex flex-wrap gap-2">
                       {CONFIDENCE_LEVELS.map(
                         (item) => (
                           <Button
@@ -1139,35 +1138,35 @@ export default function BioRecall() {
         {reviewMode &&
           reviewQuestion && (
             <div>
-              <Card className="recall-question-card">
-                <div className="recall-review-badge font-comfortaa">
+              <Card className="border border-border bg-white p-5">
+                <div className="inline-flex w-fit items-center gap-2 rounded-full bg-secondary-100 px-3 py-1.5 text-xs font-bold text-secondary-900 font-comfortaa">
                   <Icon name="calendar-clock" />
                   Due Review
                 </div>
 
-                <h3 className="recall-question-heading font-poppins">
+                <h3 className="text-lg font-extrabold leading-7 text-primary-900 font-poppins">
                   {reviewQuestion.question_text}
                 </h3>
 
-                <p className="recall-review-answer font-source-sans">
+                <p className="rounded-xl bg-primary-50 p-4 text-sm leading-6 text-slate-700 font-source-sans">
                   <strong>Answer:</strong>{' '}
                   {reviewQuestion.correct_answer}
                 </p>
 
                 {reviewQuestion.explanation && (
-                  <p className="recall-review-explanation font-open-sans">
+                  <p className="text-sm leading-7 text-muted font-open-sans">
                     {
                       reviewQuestion.explanation
                     }
                   </p>
                 )}
 
-                <div className="recall-confidence-section">
-                  <span className="recall-confidence-label font-poppins">
+                <div className="grid gap-3">
+                  <span className="text-sm font-bold text-primary-900 font-poppins">
                     How well did you recall this?
                   </span>
 
-                  <div className="recall-confidence-buttons">
+                  <div className="flex flex-wrap gap-2">
                     {CONFIDENCE_LEVELS.map(
                       (item) => (
                         <Button
@@ -1193,7 +1192,7 @@ export default function BioRecall() {
                   </div>
                 </div>
 
-                <div className="recall-answer-actions">
+                <div className="flex flex-wrap gap-3">
                   <Button
                     variant="secondary"
                     onClick={() => {
@@ -1211,46 +1210,46 @@ export default function BioRecall() {
 
         {showReport &&
           sessionReport && (
-            <Card className="recall-report-card">
+            <Card className="grid gap-5 rounded-2xl border border-border bg-white p-5 shadow-sm">
               <Icon
                 name="trophy"
-                className="recall-report-icon"
+                className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary-100 p-3 text-primary-800"
               />
 
               <h2 className="font-fraunces">
                 Session Complete
               </h2>
 
-              <div className="recall-report-stats">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                 <div>
-                  <div className="recall-report-value is-success font-poppins">
+                  <div className="text-3xl font-extrabold text-emerald-700 font-poppins">
                     {sessionReport.excellent ||
                       0}
                   </div>
 
-                  <div className="recall-report-label font-source-sans">
+                  <div className="text-xs font-semibold text-muted font-source-sans">
                     Excellent
                   </div>
                 </div>
 
                 <div>
-                  <div className="recall-report-value is-primary font-poppins">
+                  <div className="text-3xl font-extrabold text-primary-800 font-poppins">
                     {sessionReport.strong ||
                       0}
                   </div>
 
-                  <div className="recall-report-label font-source-sans">
+                  <div className="text-xs font-semibold text-muted font-source-sans">
                     Strong
                   </div>
                 </div>
 
                 <div>
-                  <div className="recall-report-value is-accent font-poppins">
+                  <div className="text-3xl font-extrabold text-secondary-700 font-poppins">
                     {sessionReport.developing ||
                       0}
                   </div>
 
-                  <div className="recall-report-label font-source-sans">
+                  <div className="text-xs font-semibold text-muted font-source-sans">
                     Needs Review
                   </div>
                 </div>
@@ -1263,7 +1262,7 @@ export default function BioRecall() {
                 %
               </p>
 
-              <p className="recall-report-time font-mono">
+              <p className="text-sm text-muted font-mono">
                 Total time:{' '}
                 {
                   sessionReport.total_time_formatted
@@ -1276,7 +1275,7 @@ export default function BioRecall() {
               </p>
 
               {sessionRecommendation && (
-                <div className="recall-report-recommendation" aria-live="polite">
+                <div className="grid gap-3 rounded-xl bg-primary-50 p-4" aria-live="polite">
                   <h3>{sessionRecommendation.title || 'Recommended next step'}</h3>
                   <p>{sessionRecommendation.message}</p>
                   <Button variant="secondary" onClick={() => navigate(sessionRecommendation.route || '/resources')}>
@@ -1286,17 +1285,17 @@ export default function BioRecall() {
               )}
 
               {newlyAwarded.length > 0 && (
-                <div className="recall-report-achievements">
+                <div className="grid gap-3">
                   <h4 className="font-poppins">
                     New Achievements
                   </h4>
 
-                  <div className="recall-badge-row">
+                  <div className="flex flex-wrap gap-2">
                     {newlyAwarded.map(
                       (achievement) => (
                         <span
                           key={achievement.id}
-                          className="badge badge-accent font-comfortaa"
+                          className="inline-flex items-center gap-2 rounded-full bg-secondary-100 px-3 py-1.5 text-xs font-bold text-secondary-900 font-comfortaa"
                           title={
                             achievement.description ||
                             achievement.name
@@ -1319,7 +1318,7 @@ export default function BioRecall() {
                 </div>
               )}
 
-              <div className="recall-report-actions">
+              <div className="flex flex-wrap gap-3 border-t border-border pt-5">
                 <Button
                   onClick={() => {
                     setShowReport(false);
@@ -1353,9 +1352,9 @@ export default function BioRecall() {
           onClose={closeTopicModal}
           title={`Select a ${unitLabel}`}
         >
-          <div className="recall-topic-modal-list">
+          <div className="grid max-h-[60vh] gap-3 overflow-y-auto">
             {topicList.length === 0 && (
-              <p className="recall-topic-modal-empty font-open-sans">
+              <p className="rounded-xl bg-primary-50 p-4 text-sm leading-6 text-muted font-open-sans">
                 Explore your {unitLabel.toLowerCase()}s here when they are ready for study.
               </p>
             )}
@@ -1363,7 +1362,7 @@ export default function BioRecall() {
             {topicList.map((topic) => (
               <button
                 key={topic.unit_id}
-                className="btn btn-secondary recall-topic-modal-btn font-outfit"
+                className={UI.secondaryButton}
                 onClick={() =>
                   handleStartSession(topic)
                 }
@@ -1373,7 +1372,7 @@ export default function BioRecall() {
                   {topic.topic_name}
                 </span>
 
-                <span className="recall-topic-modal-count font-mono">
+                <span className="text-xs font-semibold text-muted font-mono">
                   {topic.question_count}{' '}
                   questions
                 </span>
@@ -1387,32 +1386,32 @@ export default function BioRecall() {
           onClose={closeDueQueue}
           title={`Review Queue (${dueTotal} due)`}
         >
-          <div className="recall-due-modal-list">
+          <div className="grid max-h-[60vh] gap-3 overflow-y-auto">
             {dueQueue.length === 0 ? (
-              <p className="recall-topic-modal-empty font-open-sans">
+              <p className="rounded-xl bg-primary-50 p-4 text-sm leading-6 text-muted font-open-sans">
                 No reviews due. Great job!
               </p>
             ) : (
               dueQueue.map((item) => (
                 <button
                   key={item.question_id}
-                  className={`btn btn-secondary recall-topic-modal-btn recall-due-queue-btn font-outfit ${
-                    item.is_weak_concept ? 'is-weak' : 'is-strong'
+                  className={`${UI.secondaryButton} w-full justify-between font-outfit ${
+                    item.is_weak_concept ? 'border-secondary-300 bg-secondary-50 text-secondary-900' : 'border-primary-200 bg-primary-50 text-primary-900'
                   }`}
                   onClick={() =>
                     handleStartReview(item)
                   }
                   disabled={locked}
                 >
-                  <span className="recall-due-modal-question font-source-sans">
+                  <span className="min-w-0 flex-1 text-sm font-semibold leading-6 text-primary-900 font-source-sans">
                     {item.question_text}
                   </span>
 
                   <span
-                    className={`badge font-comfortaa ${
+                    className={`inline-flex shrink-0 rounded-full px-3 py-1 text-xs font-bold font-comfortaa ${
                       item.is_weak_concept
-                        ? 'badge-accent'
-                        : 'badge-primary'
+                        ? 'bg-secondary-100 text-secondary-900'
+                        : 'bg-primary-100 text-primary-900'
                     }`}
                   >
                     {item.is_weak_concept
@@ -1425,7 +1424,7 @@ export default function BioRecall() {
           </div>
         </Modal>
       </div>
-    </div>
+    </main>
   );
 }
 

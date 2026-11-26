@@ -17,7 +17,6 @@ const GRAPH_TYPES = [
     title: 'Weekly XP Progress',
     icon: 'chart-line',
     color: 'var(--primary)',
-    gradientTo: 'var(--brand-navy)',
     description: 'Track your XP earnings over the last 7 days. This shows your learning momentum and consistency.',
     insight: 'Consistent daily practice leads to steady XP growth. Aim for at least 20 XP per day to maintain your streak.'
   },
@@ -116,7 +115,6 @@ export default function RecallAnalyticsHub() {
             labels={dayLabels}
             label="XP"
             color="var(--primary)"
-            gradientTo="var(--accent-dark)"
             height={380}
           />
         );
@@ -253,10 +251,12 @@ export default function RecallAnalyticsHub() {
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        {GRAPH_TYPES.map((graph) => (
+        {GRAPH_TYPES.map((graph) => {
+          const iconTone = graph.key === 'confidence' ? 'text-emerald-700' : graph.key === 'topic_mastery' ? 'text-secondary-700' : 'text-primary-700';
+          return (
           <Card key={graph.key} className="h-full rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
             <div className="flex h-full min-w-0 flex-col items-start gap-3">
-              <Icon name={graph.icon} className="h-7 w-7 text-primary-700" style={{ color: graph.color }} />
+              <Icon name={graph.icon} className={`h-7 w-7 ${iconTone}`} />
               <h4 className="text-base font-bold leading-6 text-slate-900">{graph.title}</h4>
               <p className="text-sm leading-6 text-slate-600">{graph.description}</p>
               <Button variant="ghost" size="sm" className="mt-auto inline-flex min-h-9 items-center gap-2 rounded-lg px-3 py-2 text-xs font-bold text-primary-700 hover:bg-primary-50" onClick={() => setActiveGraph(graph.key)}>
@@ -264,7 +264,8 @@ export default function RecallAnalyticsHub() {
               </Button>
             </div>
           </Card>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

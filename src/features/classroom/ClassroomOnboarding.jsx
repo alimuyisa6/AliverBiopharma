@@ -2,14 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { getClassroomLevels, getClassroomTopics } from '../../api/cachedClient';
 
-const CARD_COLOR_CLASS = [
-  'level-card-blue',
-  'level-card-teal',
-  'level-card-violet',
-  'level-card-mint',
-  'level-card-emerald',
-];
-
 export function ClassroomOnboarding({ onComplete }) {
   const [step, setStep] = useState(1);
   const [levels, setLevels] = useState([]);
@@ -113,12 +105,12 @@ export function ClassroomOnboarding({ onComplete }) {
       )}
 
       {step === 2 && selectedLevel && (
-        <div className="onboarding-body">
-          <button className="onboarding-back" onClick={handleBack}>
+        <div className="grid gap-5">
+          <button type="button" className="inline-flex min-h-10 w-fit items-center gap-2 rounded-xl border border-border bg-white px-4 py-2 text-sm font-semibold text-primary-800 hover:bg-primary-50" onClick={handleBack}>
             <i className="fa-solid fa-arrow-left"></i> Back
           </button>
-          <h3>Select Your Class</h3>
-          <div className="onboarding-grid">
+          <h3 className="text-2xl font-extrabold text-primary-900">Select Your Class</h3>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {selectedLevel.classes.map((cls, i) => {
               const isObj = typeof cls !== 'string';
               const key = isObj ? cls.id : cls;
@@ -130,15 +122,15 @@ export function ClassroomOnboarding({ onComplete }) {
                   className={`overflow-hidden rounded-2xl border bg-white shadow-sm transition ${selectedClass === cls ? "border-primary-500 ring-2 ring-primary-100" : "border-border hover:border-primary-300"}`}
                 >
                   {imageUrl && (
-                    <div className="onboarding-card-media">
-                      <img src={imageUrl} alt={label} loading="lazy" />
+                    <div className="aspect-[16/9] overflow-hidden bg-primary-50">
+                      <img src={imageUrl} alt={label} loading="lazy" className="h-full w-full object-cover" />
                     </div>
                   )}
-                  <div className="onboarding-card-body">
+                  <div className="flex min-h-24 items-center gap-3 p-4 text-base font-bold text-primary-950">
                     <i className={`fa-solid ${isObj ? cls.icon || 'fa-mortar-pestle' : selectedLevel.icon}`}></i>
                     <span>{label}</span>
                   </div>
-                  <button type="button" className="onboarding-card-select" onClick={() => handleClassSelect(cls)}>Select class</button>
+                  <button type="button" className="m-4 mt-0 min-h-10 rounded-xl bg-primary-700 px-4 py-2 text-sm font-bold text-white transition hover:bg-primary-800" onClick={() => handleClassSelect(cls)}>Select class</button>
                 </article>
               );
             })}
@@ -147,15 +139,15 @@ export function ClassroomOnboarding({ onComplete }) {
       )}
 
       {step === 3 && (
-        <div className="onboarding-body">
-          <button className="onboarding-back" onClick={handleBack}>
+        <div className="grid gap-5">
+          <button type="button" className="inline-flex min-h-10 w-fit items-center gap-2 rounded-xl border border-border bg-white px-4 py-2 text-sm font-semibold text-primary-800 hover:bg-primary-50" onClick={handleBack}>
             <i className="fa-solid fa-arrow-left"></i> Back
           </button>
-          <h3>Select a Topic</h3>
+          <h3 className="text-2xl font-extrabold text-primary-900">Select a Topic</h3>
           {loadingTopics ? (
-            <div className="classroom-loading"><i className="fa-solid fa-spinner fa-spin"></i></div>
+            <div className="flex min-h-40 items-center justify-center text-primary-700"><i className="fa-solid fa-spinner fa-spin text-2xl" aria-hidden="true" /></div>
           ) : topics.length === 0 ? (
-            <div className="onboarding-empty">No topics available for this class.</div>
+            <div className="rounded-2xl border border-dashed border-primary-200 bg-primary-50 p-6 text-center text-sm text-muted">No topics available for this class.</div>
           ) : (
             <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
               {topics.map((topic) => (
@@ -165,9 +157,9 @@ export function ClassroomOnboarding({ onComplete }) {
                 >
                   <div className="flex min-w-0 items-center gap-3">
                     {topic.is_hard_topic ? (
-                      <i className="fa-solid fa-triangle-exclamation topic-icon-hard"></i>
+                      <i className="fa-solid fa-triangle-exclamation text-secondary-700"></i>
                     ) : (
-                      <i className="fa-solid fa-book-open topic-icon-normal"></i>
+                      <i className="fa-solid fa-book-open text-primary-700"></i>
                     )}
                     <span className="min-w-0 text-sm font-bold text-primary-950">{topic.topic_name}</span>
                     {topic.is_hard_topic && <span className="shrink-0 rounded-full bg-secondary-100 px-2 py-1 text-xs font-bold text-secondary-900">Hard Topic</span>}

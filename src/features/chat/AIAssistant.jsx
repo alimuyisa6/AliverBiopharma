@@ -5,6 +5,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useLayout } from '../../contexts/LayoutContext';
 import { useChat } from '../../contexts/ChatContext';
 import StorysetIllustration from '../../components/StorysetIllustration';
+import { UI } from '../../design-system';
 
 
 function TutorIcon({ name, className = 'h-5 w-5' }) {
@@ -215,23 +216,23 @@ export default function AIAssistant() {
   };
 
   return (
-    <div className="ai-assistant" style={{ "--ai-assistant-footer-offset": `${footerOffset}px` }}>
+    <div className="fixed right-4 z-[60] flex flex-col items-end gap-3 sm:right-6" style={{ bottom: `calc(1rem + ${footerOffset}px)` }}>
       {open && (
-        <section className="ai-assistant-panel" aria-label="AliverBiopharm AI Tutor">
-          <header className="ai-assistant-header">
-            <div className="ai-assistant-heading">
-              <span className="ai-assistant-avatar" aria-hidden="true">
+        <section className="flex h-[min(76vh,680px)] max-h-[78vh] w-[min(92vw,430px)] min-w-0 flex-col overflow-hidden rounded-3xl border border-primary-100 bg-white shadow-2xl shadow-slate-900/20" aria-label="AliverBiopharm AI Tutor">
+          <header className="flex items-center justify-between gap-3 bg-primary-900 p-4 text-white">
+            <div className="flex min-w-0 items-center gap-3">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white/15 text-white" aria-hidden="true">
                 <TutorIcon name="graduation-cap" className="h-6 w-6" />
               </span>
               <div>
-                <h2>AliverBiopharm AI Tutor</h2>
-                <p>{levelName} · {mode === 'pharmacy' ? 'Pharmacy learning mode' : 'Learning support'}</p>
+                <h2 className="mb-1 text-lg font-extrabold text-white">AliverBiopharm AI Tutor</h2>
+                <p className="text-xs text-primary-100">{levelName} · {mode === 'pharmacy' ? 'Pharmacy learning mode' : 'Learning support'}</p>
               </div>
             </div>
 
             <button
               type="button"
-              className="btn btn-ghost btn-sm btn-icon btn-round ai-assistant-close"
+              className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white transition hover:bg-white/20"
               onClick={closeAssistant}
               aria-label="Close AI tutor"
             >
@@ -239,12 +240,12 @@ export default function AIAssistant() {
             </button>
           </header>
 
-          <div className="ai-assistant-modes" role="tablist" aria-label="AI tutor mode">
+          <div className="grid grid-cols-4 gap-1 border-b border-border bg-slate-50 p-2" role="tablist" aria-label="AI tutor mode">
             {MODES.map((item) => (
               <button
                 key={item.key}
                 type="button"
-                className={`ai-assistant-mode${mode === item.key ? ' is-active' : ''}`}
+                className={`inline-flex min-h-10 min-w-0 items-center justify-center gap-1 rounded-xl px-2 text-xs font-bold transition disabled:opacity-50 ${mode === item.key ? 'bg-primary-800 text-white shadow-sm' : 'text-slate-600 hover:bg-white hover:text-primary-800'}`}
                 onClick={() => handleModeChange(item.key)}
                 role="tab"
                 aria-selected={mode === item.key}
@@ -256,44 +257,41 @@ export default function AIAssistant() {
             ))}
           </div>
 
-          <div ref={bodyRef} className="ai-assistant-body">
+          <div ref={bodyRef} className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto bg-primary-50 p-3 sm:p-4">
             <button
               type="button"
-              className="ai-assistant-live-chat"
+              className="flex w-full items-center gap-3 rounded-2xl border border-secondary-200 bg-secondary-50 p-3 text-left text-secondary-900 transition hover:border-secondary-400 hover:bg-secondary-100"
               onClick={handleOpenLiveChat}
             >
-              <svg className="live-chat-animation" viewBox="0 0 64 56" role="img" aria-label="Animated live chat bubbles" focusable="false">
-                <g className="live-chat-bubble live-chat-bubble-back">
+              <svg className="h-12 w-12 shrink-0" viewBox="0 0 64 56" role="img" aria-label="Animated live chat bubbles" focusable="false">
+                <g className="fill-secondary-200 stroke-secondary-800">
                   <path d="M8 7.5A5.5 5.5 0 0 1 13.5 2h25A5.5 5.5 0 0 1 44 7.5v15a5.5 5.5 0 0 1-5.5 5.5H22l-8 6v-6.3A5.5 5.5 0 0 1 8 22.5z" />
-                  <path className="live-chat-bubble-line" d="M16 11h20M16 17h14" />
+                  <path d="M16 11h20M16 17h14" fill="none" stroke="currentColor" strokeWidth="1.5" />
                 </g>
-                <g className="live-chat-bubble live-chat-bubble-front">
+                <g className="fill-white stroke-secondary-800">
                   <path d="M24 25.5A6.5 6.5 0 0 1 30.5 19h23a6.5 6.5 0 0 1 6.5 6.5v13a6.5 6.5 0 0 1-6.5 6.5H43l-8 6v-6h-4.5a6.5 6.5 0 0 1-6.5-6.5z" />
                   <circle cx="34" cy="32" r="1.8" />
                   <circle cx="42" cy="32" r="1.8" />
                   <circle cx="50" cy="32" r="1.8" />
                 </g>
-                <circle className="live-chat-spark" cx="12" cy="43" r="2" />
-                <circle className="live-chat-spark live-chat-spark-two" cx="55" cy="10" r="1.5" />
+                <circle className="fill-secondary-600" cx="12" cy="43" r="2" />
+                <circle className="fill-secondary-600" cx="55" cy="10" r="1.5" />
               </svg>
               <span>
-                <strong>Live Chat</strong>
-                <small>Talk to our support team</small>
+                <strong className="block font-extrabold">Live Chat</strong>
+                <small className="block text-xs text-secondary-800">Talk to our support team</small>
               </span>
               <TutorIcon name="arrow-right" className="h-5 w-5 shrink-0" />
             </button>
             {messages.length === 0 ? (
-              <div className="ai-assistant-welcome">
+              <div className="rounded-2xl border border-primary-100 bg-white p-4 text-center shadow-sm">
                 <StorysetIllustration name="chatbot" alt="AI chatbot illustration" className="mx-auto mb-3 w-full max-w-[180px] object-contain" />
-                <span className="ai-assistant-welcome-icon" aria-hidden="true">
+                <span className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-secondary-100 text-secondary-700" aria-hidden="true">
                   <TutorIcon name="lightbulb" className="h-6 w-6" />
                 </span>
-                <h3>Study with your AI tutor</h3>
-                <p>
-                  Ask for an explanation, a worked example, exam practice, revision help,
-                  or pharmacy calculations.
-                </p>
-                <div className="ai-assistant-starters">
+                <h3 className="mb-2 text-lg font-extrabold text-primary-900">Study with your AI tutor</h3>
+                <p className="mb-4 text-sm leading-6 text-slate-600">Ask for an explanation, a worked example, exam practice, revision help, or pharmacy calculations.</p>
+                <div className="grid gap-2 sm:grid-cols-2">
                   {[
                     ['learn', 'Explain this topic simply'],
                     ['practice', 'Quiz me'],
@@ -303,7 +301,7 @@ export default function AIAssistant() {
                     <button
                       key={starterMode}
                       type="button"
-                      className="ai-assistant-starter"
+                      className="inline-flex min-h-10 items-center justify-center rounded-xl border border-primary-200 bg-primary-50 px-3 py-2 text-xs font-bold text-primary-800 transition hover:border-primary-400 hover:bg-primary-100 disabled:opacity-50"
                       onClick={() => {
                         setMode(starterMode);
                         sendMessage(getStarter(starterMode, levelName));
@@ -319,12 +317,12 @@ export default function AIAssistant() {
               messages.map((message) => (
                 <div
                   key={message.id}
-                  className={`ai-assistant-message ai-assistant-message-${message.role}`}
+                  className={`max-w-[92%] rounded-2xl border p-3 shadow-sm ${message.role === 'user' ? 'ml-auto border-primary-200 bg-primary-100 text-primary-900' : 'mr-auto border-border bg-white text-slate-800'}`}
                 >
-                  <div className="ai-assistant-message-label">
+                  <div className="mb-1 text-xs font-extrabold text-primary-700">
                     {message.role === 'user' ? 'You' : 'AI Tutor'}
                   </div>
-                  <div className="ai-assistant-message-content">
+                  <div className="whitespace-pre-wrap break-words text-sm leading-6">
                     {message.content || 'Thinking…'}
                   </div>
                 </div>
@@ -332,14 +330,14 @@ export default function AIAssistant() {
             )}
 
             {error && (
-              <div className="ai-assistant-error" role="alert">
+              <div className={UI.status.error} role="alert">
                 {error}
               </div>
             )}
           </div>
 
           <form
-            className="ai-assistant-input"
+            className="flex items-end gap-2 border-t border-border bg-white p-3"
             onSubmit={(event) => {
               event.preventDefault();
               sendMessage();
@@ -358,10 +356,10 @@ export default function AIAssistant() {
               maxLength={2000}
               disabled={streaming}
               aria-label="Ask AliverBiopharm AI Tutor"
-             className="block min-h-32 w-full min-w-0 resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
+             className={`${UI.inputBase} min-h-12 max-h-40 flex-1 resize-none border-border px-3 py-2`} />
             <button
               type="submit"
-              className="btn btn-primary ai-assistant-send"
+              className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary-800 p-0 text-white transition hover:bg-primary-900 disabled:cursor-not-allowed disabled:opacity-50"
               disabled={!input.trim() || streaming}
               aria-label="Send to AI tutor"
             >
@@ -373,12 +371,12 @@ export default function AIAssistant() {
 
       <button
         type="button"
-        className={`ai-assistant-toggle${open ? ' is-open' : ''}`}
+        className="inline-flex min-h-12 items-center gap-2 rounded-full border border-primary-600 bg-primary-800 px-4 py-3 text-sm font-extrabold text-white shadow-xl shadow-primary-900/20 transition hover:-translate-y-0.5 hover:bg-primary-900"
         onClick={() => setOpen((current) => !current)}
         aria-label={open ? 'Close AliverBiopharm AI Tutor' : 'Open AliverBiopharm AI Tutor'}
         aria-expanded={open}
       >
-        <span className="ai-assistant-mascot" aria-hidden="true"><TutorIcon name="brain" className="h-6 w-6" /></span>
+        <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/15 text-white" aria-hidden="true"><TutorIcon name="brain" className="h-6 w-6" /></span>
         <span>{open ? 'Close' : 'AI Tutor'}</span>
       </button>
     </div>

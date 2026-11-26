@@ -1,8 +1,9 @@
 import Icon from '../Icon/Icon';
+import { UI } from '../../design-system';
 
 export default function Chip({ children, icon, onRemove, className = '' }) {
   return (
-    <span className={`inline-flex min-h-8 items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold leading-5 text-slate-700 ${className}`}>
+    <span className={`${UI.chipBase} ${className}`}>
       {icon && <Icon name={icon} className="h-4 w-4 shrink-0" />}
       {children}
       {onRemove && (

@@ -2,6 +2,8 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Icon from '../Icon/Icon';
+import Spinner from '../Spinner/Spinner';
+import { UI } from '../../design-system';
 import { globalSearch, searchNotes } from '../../api/client';
 import { useLayout } from '../../contexts/LayoutContext';
 import DOMPurify from 'dompurify';
@@ -132,19 +134,19 @@ export default function SearchOverlay({ open, onClose }) {
             <input
               ref={inputRef}
               type="text"
-              className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-base leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-500 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
+              className={`${UI.inputBase} border-border text-base`}
               placeholder={`Search ${level?.display_name || ''} resources...`}
               value={query}
               onChange={handleChange}
             />
             <button className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 transition hover:bg-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-600" onClick={onClose} aria-label="Close search" type="button">
-              <svg viewBox="0 0 24 24" aria-hidden="true" style={{ width: 20, height: 20, display: "block" }}><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" /></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true" className="block h-5 w-5"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" /></svg>
             </button>
           </div>
 
           {loading && (
             <div className="mt-3 flex min-h-16 items-center justify-center rounded-xl border border-slate-100 bg-white p-4">
-              <div className="spinner" />
+              <Spinner size="sm" />
             </div>
           )}
 

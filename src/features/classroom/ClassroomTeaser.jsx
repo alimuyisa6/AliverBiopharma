@@ -12,7 +12,7 @@ export default function ClassroomTeaser() {
       ctaLabel="Find a live room"
       onCtaClick={() => navigate('/classroom')}
       imageSide="left"
-      backgroundColor="#EAF2FA"
+      backgroundTone="primary"
     />
   );
 }

@@ -2,6 +2,7 @@
 import Icon from './Icon/Icon';
 import Button from './Button/Button';
 import { useNavigate } from 'react-router-dom';
+import { UI } from '../design-system';
 
 export default function FlashcardProgress({ result, onRestart, onHome }) {
   const navigate = useNavigate();
@@ -9,7 +10,7 @@ export default function FlashcardProgress({ result, onRestart, onHome }) {
 
   function scoreClass() {
     if (activity_outcome === 'mastered') return 'text-emerald-700';
-    if (activity_outcome === 'low') return 'text-rose-700';
+    if (activity_outcome === 'low') return 'text-amber-700';
     return 'text-primary-800';
   }
 
@@ -24,7 +25,7 @@ export default function FlashcardProgress({ result, onRestart, onHome }) {
   return (
     <div className="w-full">
       <div className="mx-auto flex min-h-[50vh] w-full max-w-4xl items-center justify-center px-4 py-10">
-        <div className="w-full rounded-3xl border border-primary-100 bg-white p-6 text-center shadow-lg sm:p-8">
+        <div className={`${UI.card} w-full rounded-3xl p-6 text-center shadow-lg sm:p-8`}>
           <Icon name="trophy" className="mx-auto mb-4 h-12 w-12 text-amber-500" />
           <h2 className="text-2xl font-extrabold leading-tight text-primary-950 sm:text-3xl">Session Complete</h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-slate-600">{message()}</p>
@@ -49,7 +50,7 @@ export default function FlashcardProgress({ result, onRestart, onHome }) {
               <div className="mt-2 text-xs font-semibold text-slate-500">Correct</div>
             </div>
             <div>
-              <div className="text-2xl font-extrabold leading-none text-rose-700 sm:text-3xl">{incorrect}</div>
+              <div className="text-2xl font-extrabold leading-none text-amber-700 sm:text-3xl">{incorrect}</div>
               <div className="mt-2 text-xs font-semibold text-slate-500">Missed</div>
             </div>
           </div>

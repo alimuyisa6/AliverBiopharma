@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Icon from '../Icon/Icon';
+import { UI } from '../../design-system';
 
 const ITEMS = [
   { key: 'resources_count', label: 'Resources', icon: 'book-open', accent: 'bg-primary-50 text-primary-700' },
@@ -39,20 +40,20 @@ function AnimatedNumber({ target, label, icon, accent }) {
   const format = (num) => (num >= 1000 ? (num / 1000).toFixed(1).replace(/\.0$/, '') + 'k+' : num);
 
   return (
-    <div className="flex min-w-0 flex-col items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 text-center shadow-sm sm:p-5" ref={ref}>
+    <div className={`${UI.statCard} gap-3`} ref={ref}>
       <span className={`inline-flex h-11 w-11 items-center justify-center rounded-xl ${accent}`}><Icon name={icon} className="h-6 w-6" /></span>
-      <div className="text-2xl font-extrabold leading-none tracking-tight text-slate-900 sm:text-3xl">{format(count)}</div>
-      <div className="text-xs font-semibold leading-5 text-slate-600 sm:text-sm">{label}</div>
+      <div className={UI.statCardValue}>{format(count)}</div>
+      <div className={UI.statCardLabel}>{label}</div>
     </div>
   );
 }
 
 export default function StatsGrid({ stats = {} }) {
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 sm:py-14">
+    <section className={`${UI.container} py-10 sm:py-14`}>
       <span className="mb-3 inline-flex rounded-full bg-secondary-50 px-3 py-1 text-xs font-bold uppercase tracking-wider text-secondary-800">Our Impact</span>
-      <h2 className="text-2xl font-extrabold leading-tight tracking-tight text-primary-950 sm:text-3xl">Trusted by Learners Across Levels</h2>
-      <p className="mt-3 max-w-2xl text-base leading-7 text-slate-600">Every number represents a student who chose to study smarter.</p>
+      <h2 className={UI.sectionHeadingTitle}>Trusted by Learners Across Levels</h2>
+      <p className={`${UI.sectionHeadingDescription} max-w-2xl`}>Every number represents a student who chose to study smarter.</p>
       <div className="mt-7 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
         {ITEMS.map((item) => (
           <AnimatedNumber key={item.key} target={stats[item.key] || 0} label={item.label} icon={item.icon} accent={item.accent} />

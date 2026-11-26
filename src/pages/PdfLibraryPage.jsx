@@ -18,6 +18,8 @@ import LearningJourney from '../components/LearningJourney/LearningJourney';
 import { isPremiumAccessError, redirectToSubscription } from '../utils/subscriptionNavigation';
 import { getCachedStale, setCache } from '../utils/cache';
 import { useToast } from '../components/Toast/Toast';
+import PageHeader from '../components/PageHeader/PageHeader';
+import { UI } from '../design-system';
 
 export default function PdfLibraryPage() {
   const access = useContentAccess();
@@ -106,9 +108,9 @@ export default function PdfLibraryPage() {
 
   if (access.loading) {
     return (
-      <Container className="pdf-library-section">
-        <div className="pdf-library-page w-full text-foreground">
-          <div className="pdf-skeleton-grid grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
+      <Container className="py-8 sm:py-10">
+        <div className="w-full text-foreground">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
             <Skeleton height={160} />
             <Skeleton height={160} />
             <Skeleton height={160} />
@@ -120,7 +122,7 @@ export default function PdfLibraryPage() {
 
   if (!access.canAccess) {
     return (
-      <Container className="pdf-library-section">
+      <Container className="py-8 sm:py-10">
         <EmptyState image={getEmptyStateImage('pdfs')} title="PDF library access is restricted" description="Your account doesn’t currently have access to these PDF resources." />
       </Container>
     );
@@ -131,107 +133,68 @@ export default function PdfLibraryPage() {
   const sortedPdfs = sortPdfs(pdfs);
 
   return (
-    <Container className="pdf-library-section">
-      <div className="pdf-library-page w-full max-w-7xl rounded-2xl px-4 py-8 text-foreground sm:px-6 sm:py-12 lg:px-8" style={{ backgroundColor: '#F3F6F9' }}>
-        <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'PDF library' }]} />
-        <header className="pdf-library-heading mt-8 flex flex-col gap-5 rounded-2xl px-5 py-6 sm:flex-row sm:items-end sm:justify-between sm:px-7" style={{ backgroundColor: '#EAF2FA' }}>
-          <div>
-            <h1 className="section-title pdf-library-title">PDF library</h1>
-            <p className="pdf-library-description">Course notes and reference documents for your programme.</p>
-          </div>
-          {(levelName || classLabel) && (
-            <p className="pdf-library-class">
-              {levelName}{levelName && classLabel ? ' · ' : ''}{classLabel}
-            </p>
-          )}
-        </header>
+    <Container className="py-8 sm:py-10">
+      <div className="w-full min-w-0 text-foreground">
+        <Breadcrumb className="mb-6" items={[{ label: 'Home', href: '/' }, { label: 'PDF library' }]} />
+        <PageHeader
+          title="PDF library"
+          subtitle="Course notes and reference documents for your programme."
+          className="mt-8 border-b border-border bg-primary-50 px-5 py-7 sm:px-8"
+        />
+        {(levelName || classLabel) && <p className="mt-4 text-sm font-semibold text-muted">{levelName}{levelName && classLabel ? ' · ' : ''}{classLabel}</p>}
 
-        <section className="pdf-library-controls mt-8 flex flex-col gap-5 rounded-2xl border border-white/70 p-5 shadow-sm sm:p-6 lg:flex-row lg:items-center lg:justify-between" style={{ backgroundColor: '#F1EDFA' }} aria-labelledby="pdf-library-controls-title">
-          <div className="pdf-library-controls-copy">
-            <h2 id="pdf-library-controls-title">Find a document</h2>
-            <p>Sort by title, author, or file size.</p>
+        <section className="mt-8 grid gap-5 bg-secondary-50 p-5 sm:p-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end" aria-labelledby="pdf-library-controls-title">
+          <div className="max-w-xl">
+            <h2 id="pdf-library-controls-title" className="text-xl font-bold text-primary-900">Find a document</h2>
+            <p className="mt-2 text-sm leading-6 text-muted">Sort by title, author, or file size.</p>
           </div>
-          <div className="toolbar flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div className="result-count flex items-center gap-3 rounded-xl bg-primary-50 px-4 py-3 text-primary-900" aria-live="polite">
-              <span className="result-count-label">PDFs available</span>
-              <strong>{pdfs.length}</strong>
-              <span>{pdfs.length === 1 ? 'PDF' : 'PDFs'}</span>
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+            <div className="inline-flex items-center gap-3 rounded-xl bg-white px-4 py-3 text-sm text-primary-900" aria-live="polite">
+              <span className="font-semibold">PDFs available</span><strong className="text-lg">{pdfs.length}</strong><span>{pdfs.length === 1 ? 'PDF' : 'PDFs'}</span>
             </div>
-            <div className="toolbar-spacer" />
-            <label className="sort-control flex w-full flex-col gap-2 text-sm font-semibold text-slate-700 sm:w-auto sm:flex-row sm:items-center" htmlFor="sortSelect">
+            <label className="flex w-full flex-col gap-2 text-sm font-semibold text-slate-700 sm:w-auto sm:flex-row sm:items-center" htmlFor="sortSelect">
               <span>Sort by:</span>
-              <select className="sort-select block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" id="sortSelect" value={sortBy} onChange={(event) => setSortBy(event.target.value)}>
-                <option value="title">Title</option>
-                <option value="author">Author</option>
-                <option value="size">File size</option>
+              <select className={`${UI.selectBase} border-border sm:min-w-44`} id="sortSelect" value={sortBy} onChange={(event) => setSortBy(event.target.value)}>
+                <option value="title">Title</option><option value="author">Author</option><option value="size">File size</option>
               </select>
             </label>
           </div>
         </section>
 
-        {curriculumUnitId && <p className="pdf-library-class">Showing documents for this topic.</p>}
+        {curriculumUnitId && <p className="mt-5 text-sm font-semibold text-muted">Showing documents for this topic.</p>}
 
         {loading ? (
-          <div className="pdf-skeleton-grid">
-            <Skeleton height={160} />
-            <Skeleton height={160} />
-            <Skeleton height={160} />
-          </div>
+          <div className="grid grid-cols-1 gap-5 py-6 sm:grid-cols-2 xl:grid-cols-3"><Skeleton height={160} /><Skeleton height={160} /><Skeleton height={160} /></div>
         ) : error ? (
           typeof navigator !== 'undefined' && !navigator.onLine ? (
-            <EmptyComponent
-              title="No internet connection"
-              description="We couldn’t load your PDFs. Check your internet connection and try again."
-              onRetry={() => loadPdfs(() => true, true)}
-            />
+            <EmptyComponent title="No internet connection" description="We couldn’t load your PDFs. Check your internet connection and try again." onRetry={() => loadPdfs(() => true, true)} />
           ) : (
             <EmptyState image={getEmptyStateImage('error')} title="We couldn’t load your PDFs" description={error} action={<Button onClick={() => loadPdfs(() => true, true)}>Try again</Button>} />
           )
         ) : pdfs.length === 0 ? (
           <EmptyState image={getEmptyStateImage('pdfs')} title="No PDFs are available for this selection yet." />
         ) : (
-          <div className="pdf-grid grid grid-cols-1 gap-5 rounded-2xl p-4 sm:grid-cols-2 sm:p-5 xl:grid-cols-3" style={{ backgroundColor: '#F8F1E7' }}>
+          <div className="grid grid-cols-1 gap-5 py-6 sm:grid-cols-2 xl:grid-cols-3">
             {sortedPdfs.map((pdf) => (
-              <article key={pdf.id} className="pdf-card flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:border-primary-200 hover:shadow-lg">
-                <span
-                  className={`pdf-premium-ribbon ${pdf.is_premium ? 'pdf-premium-ribbon--premium' : 'pdf-premium-ribbon--free'}`}
-                  aria-label={pdf.is_premium ? 'Premium PDF' : 'Free PDF'}
-                />
-                <div className="pdf-card-artwork relative aspect-[16/10] w-full overflow-hidden bg-primary-50">
-                  <img
-                    src={pdf.cover_image_url || pdf.thumbnail_url || pdf.image_url || 'https://images.pexels.com/photos/7972795/pexels-photo-7972795.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop'}
-                    alt={pdf.title}
-                    loading="lazy"
-                    width="900"
-                    height="600"
-                  />
-                  <span className="pdf-card-image-label">PDF resource</span>
+              <article key={pdf.id} className="flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:border-primary-300 hover:shadow-lg">
+                <span className={`inline-flex w-fit rounded-full px-3 py-1 text-xs font-bold ${pdf.is_premium ? 'bg-secondary-100 text-secondary-900' : 'bg-emerald-100 text-emerald-900'}`} aria-label={pdf.is_premium ? 'Premium PDF' : 'Free PDF'}>{pdf.is_premium ? 'Premium' : 'Free'}</span>
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-primary-50">
+                  <img className="h-full w-full object-cover" src={pdf.cover_image_url || pdf.thumbnail_url || pdf.image_url || 'https://images.pexels.com/photos/7972795/pexels-photo-7972795.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop'} alt={pdf.title} loading="lazy" width="900" height="600" />
+                  <span className="absolute bottom-3 left-3 rounded-lg bg-primary-900/90 px-3 py-1.5 text-xs font-bold text-white">PDF resource</span>
                 </div>
-                <div className="pdf-card-body flex flex-1 flex-col gap-2 p-5">
-                  <h3 className="pdf-card-title">{pdf.title}</h3>
-                  {pdf.author && !/^(aliverbiopharm|aliver biopharm|aliver-biopharma|aliverbiopharm\.com|aliver-biopharma\.vercel\.app)$/i.test(String(pdf.author).trim()) && <p className="pdf-card-author">{pdf.author}</p>}
-                  {pdf.file_size && <span className="pdf-card-size">{pdf.file_size}</span>}
+                <div className="flex flex-1 flex-col gap-2 p-5">
+                  <h3 className="text-lg font-bold leading-6 text-primary-900">{pdf.title}</h3>
+                  {pdf.author && !/^(aliverbiopharm|aliver biopharm|aliver-biopharma|aliverbiopharm\.com|aliver-biopharma\.vercel\.app)$/i.test(String(pdf.author).trim()) && <p className="text-sm text-muted">{pdf.author}</p>}
+                  {pdf.file_size && <span className="text-xs font-semibold text-muted">{pdf.file_size}</span>}
                 </div>
-                <div className="pdf-card-footer mt-auto border-t border-border p-5">
-                  {pdf.is_premium ? (
-                    <Button type="button" variant="primary" onClick={() => handlePremiumPdfDownload(pdf)}>
-                      <Icon name="lock" /> Access premium PDF
-                    </Button>
-                  ) : (
-                    <DynamicActions pageId="pdf-library" contentType="pdf" contentId={pdf.id} className="pdf-download-actions" />
-                  )}
+                <div className="mt-auto border-t border-border p-5">
+                  {pdf.is_premium ? <Button type="button" variant="primary" onClick={() => handlePremiumPdfDownload(pdf)}><Icon name="lock" /> Access premium PDF</Button> : <DynamicActions pageId="pdf-library" contentType="pdf" contentId={pdf.id} />}
                 </div>
               </article>
             ))}
           </div>
         )}
-        {curriculumUnitId && (
-          <LearningJourney
-            unitId={curriculumUnitId}
-            excludeStages={['pdfs']}
-            returnTo={'/pdfs?unit_id=' + encodeURIComponent(curriculumUnitId)}
-          />
-        )}
+        {curriculumUnitId && <LearningJourney unitId={curriculumUnitId} excludeStages={['pdfs']} returnTo={'/pdfs?unit_id=' + encodeURIComponent(curriculumUnitId)} />}
       </div>
     </Container>
   );

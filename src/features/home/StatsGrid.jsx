@@ -55,11 +55,11 @@ function MetricValue({ value, label, detail, variant = 'dark' }) {
   const isDark = variant === 'dark';
   return (
     <div className={isDark
-      ? 'rounded-xl border border-blue-200/30 bg-blue-700/70 p-4 shadow-sm'
-      : 'rounded-xl border border-blue-200 bg-blue-50 p-4 shadow-sm'}>
+      ? 'rounded-xl border border-primary-600 bg-primary-800 p-4 shadow-sm'
+      : 'rounded-xl border border-primary-100 bg-primary-50 p-4 shadow-sm'}>
       <strong className={`block text-2xl font-extrabold tracking-tight sm:text-3xl ${isDark ? 'text-white' : 'text-primary-900'}`}><AnimatedNumber value={value} /></strong>
-      <span className={`mt-1 block text-sm font-semibold ${isDark ? 'text-blue-50' : 'text-primary-800'}`}>{label}</span>
-      {detail && <small className={`mt-1 block text-xs ${isDark ? 'text-blue-100' : 'text-slate-600'}`}>{detail}</small>}
+      <span className={`mt-1 block text-sm font-semibold ${isDark ? 'text-primary-50' : 'text-primary-800'}`}>{label}</span>
+      {detail && <small className={`mt-1 block text-xs ${isDark ? 'text-primary-100' : 'text-slate-600'}`}>{detail}</small>}
     </div>
   );
 }
@@ -70,10 +70,10 @@ function LibraryImpact({ stats }) {
       <div>
         
         <h3 id="stats-library-title" className="mt-3 text-2xl font-bold text-white sm:text-3xl">Knowledge that keeps growing.</h3>
-        <p className="mt-8 max-w-xl text-sm leading-7 text-blue-100">Explore a connected library of learning materials designed to support every stage of your programme.</p>
+        <p className="mt-8 max-w-xl text-sm leading-7 text-primary-100">Explore a connected library of learning materials designed to support every stage of your programme.</p>
         <div className="mt-7">
           <strong className="block text-4xl font-extrabold tracking-tight text-white sm:text-5xl"><AnimatedNumber value={stats.resources_count} /></strong>
-          <span className="mt-1 block text-sm font-semibold text-blue-100">learning resources</span>
+          <span className="mt-1 block text-sm font-semibold text-primary-100">learning resources</span>
         </div>
       </div>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -158,7 +158,7 @@ export function StatsGrid({ stats = {}, scopeLabel = 'All learning levels' }) {
   const passedItems = Array.isArray(stats.most_passed) ? stats.most_passed : [];
 
   return (
-    <section className="w-full bg-[#F3F6F9] px-5 py-16 sm:px-8 sm:py-20 lg:px-12" aria-labelledby="platform-impact-title">
+    <section className="w-full bg-primary-50 px-5 py-16 sm:px-8 sm:py-20 lg:px-12" aria-labelledby="platform-impact-title">
       <div className="mx-auto max-w-7xl">
         <header className="mb-9">
           

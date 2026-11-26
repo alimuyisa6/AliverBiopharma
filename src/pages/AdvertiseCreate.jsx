@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import Icon from '../components/Icon/Icon';
 import AdStepIcon from '../components/Advertising/AdStepIcon';
 import AdCampaignSuccess from '../components/Advertising/AdCampaignSuccess';
+import PageHeader from '../components/PageHeader/PageHeader';
+import { UI } from '../design-system';
 import {
 getAdConfig,
 createAdAdvertiser,
@@ -438,20 +440,11 @@ className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-primar
 Advertising
 </Link>
 
-      <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary-700">
-        Create a campaign
-      </span>
-
-      <h1>
-        Build your
-        <br />
-        campaign.
-      </h1>
-
-      <p>
-        Complete the steps below. Available options and pricing come from
-        the advertising system.
-      </p>
+      <PageHeader
+        label="Create a campaign"
+        title="Build your campaign."
+        subtitle="Complete the steps below. Available options and pricing come from the advertising system."
+      />
     </div>
 
     <div className="mx-auto mb-8 flex max-w-7xl flex-wrap gap-2">
@@ -500,7 +493,7 @@ Advertising
           </div>
 
           <div className="grid gap-5 sm:grid-cols-2">
-            <label>
+            <label className="grid min-w-0 gap-2 text-sm font-semibold text-slate-700">
               Organisation or advertiser name
               <input
                 type="text"
@@ -514,10 +507,10 @@ Advertising
                 placeholder="Organisation name"
                 maxLength={200}
                 required
-               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
+               className={`${UI.inputBase} border-border`} />
             </label>
 
-            <label>
+            <label className="grid min-w-0 gap-2 text-sm font-semibold text-slate-700">
               Contact email
               <input
                 type="email"
@@ -530,10 +523,10 @@ Advertising
                 }
                 placeholder="name@example.com"
                 required
-               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
+               className={`${UI.inputBase} border-border`} />
             </label>
 
-            <label>
+            <label className="grid min-w-0 gap-2 text-sm font-semibold text-slate-700">
               Contact phone
               <input
                 type="tel"
@@ -545,10 +538,10 @@ Advertising
                   )
                 }
                 placeholder="Optional"
-               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
+               className={`${UI.inputBase} border-border`} />
             </label>
 
-            <label>
+            <label className="grid min-w-0 gap-2 text-sm font-semibold text-slate-700">
               Website
               <input
                 type="url"
@@ -560,7 +553,7 @@ Advertising
                   )
                 }
                 placeholder="https://example.com"
-               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
+               className={`${UI.inputBase} border-border`} />
             </label>
           </div>
         </div>
@@ -585,7 +578,7 @@ Advertising
           </div>
 
           <div className="grid gap-5">
-            <label>
+            <label className="grid min-w-0 gap-2 text-sm font-semibold text-slate-700">
               Campaign title
               <input
                 type="text"
@@ -599,10 +592,10 @@ Advertising
                 placeholder="Internal campaign name"
                 maxLength={200}
                 required
-               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
+               className={`${UI.inputBase} border-border`} />
             </label>
 
-            <label>
+            <label className="grid min-w-0 gap-2 text-sm font-semibold text-slate-700">
               Category
               <select
                 value={form.categoryId}
@@ -613,7 +606,7 @@ Advertising
                   )
                 }
                 required
-               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
+               className={`${UI.selectBase} border-border`}>
                 <option value="">
                   Select a category
                 </option>
@@ -631,7 +624,7 @@ Advertising
               </select>
             </label>
 
-            <label>
+            <label className="grid min-w-0 gap-2 text-sm font-semibold text-slate-700">
               Landing page
               <input
                 type="url"
@@ -644,10 +637,10 @@ Advertising
                 }
                 placeholder="https://example.com/your-page"
                 required
-               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
+               className={`${UI.inputBase} border-border`} />
             </label>
 
-            <label>
+            <label className="grid min-w-0 gap-2 text-sm font-semibold text-slate-700">
               Advert headline
               <input
                 type="text"
@@ -661,10 +654,10 @@ Advertising
                 placeholder="A clear message for learners"
                 maxLength={180}
                 required
-               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
+               className={`${UI.inputBase} border-border`} />
             </label>
 
-            <label>
+            <label className="grid min-w-0 gap-2 text-sm font-semibold text-slate-700">
               Advert message
               <textarea
                 value={form.bodyText}
@@ -677,10 +670,10 @@ Advertising
                 placeholder="Explain the opportunity, service or message."
                 rows={5}
                 maxLength={5000}
-               className="block min-h-32 w-full min-w-0 resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
+               className={`${UI.inputBase} min-h-32 resize-y border-border`} />
             </label>
 
-            <label>
+            <label className="grid min-w-0 gap-2 text-sm font-semibold text-slate-700">
               Button text
               <input
                 type="text"
@@ -693,7 +686,7 @@ Advertising
                 }
                 placeholder="Learn more"
                 maxLength={80}
-               className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
+               className={`${UI.inputBase} border-border`} />
             </label>
           </div>
         </div>
@@ -763,7 +756,7 @@ Advertising
             selectedScope.scope_type !==
               'all_levels' && (
               <div className="grid gap-5">
-                <label>
+                <label className="grid min-w-0 gap-2 text-sm font-semibold text-slate-700">
                   Learning level
                   <select
                     value={form.levelId}
@@ -774,7 +767,7 @@ Advertising
                       )
                     }
                     required
-                   className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
+                   className={`${UI.selectBase} border-border`}>
                     <option value="">
                       Select a level
                     </option>
@@ -795,7 +788,7 @@ Advertising
                 {selectedScope.scope_type ===
                   'specific_class' &&
                   form.levelId && (
-                    <label>
+                    <label className="grid min-w-0 gap-2 text-sm font-semibold text-slate-700">
                       Class or programme
                       <select
                         value={form.className}
@@ -806,7 +799,7 @@ Advertising
                           )
                         }
                         required
-                       className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
+                       className={`${UI.selectBase} border-border`}>
                         <option value="">
                           Select a class or programme
                         </option>
@@ -940,7 +933,7 @@ Advertising
             </div>
           </div>
 
-          <label>
+          <label className="grid min-w-0 gap-2 text-sm font-semibold text-slate-700">
             Start date
             <input
               type="date"
@@ -952,7 +945,7 @@ Advertising
                 )
               }
               required
-             className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
+             className={`${UI.inputBase} border-border`} />
           </label>
         </div>
       )}
@@ -1074,7 +1067,7 @@ Advertising
 
       {error && (
         <div
-          className="mb-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-800"
+          className={UI.status.error}
           role="alert"
         >
           {error}
@@ -1086,7 +1079,7 @@ Advertising
           {step > 0 ? (
             <button
               type="button"
-              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-border bg-white px-5 py-3 text-sm font-bold text-primary-800 transition hover:border-primary-200 hover:bg-primary-50 disabled:cursor-not-allowed disabled:opacity-60"
+              className={UI.secondaryButton}
               onClick={previousStep}
               disabled={submitting}
             >
@@ -1104,7 +1097,7 @@ Advertising
           {step < STEP_TITLES.length - 1 ? (
             <button
               type="button"
-              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-primary-700 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-primary-800 disabled:cursor-not-allowed disabled:opacity-60"
+              className={UI.primaryButton}
               onClick={nextStep}
             >
               Continue
@@ -1112,7 +1105,7 @@ Advertising
           ) : (
             <button
               type="submit"
-              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-primary-700 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-primary-800 disabled:cursor-not-allowed disabled:opacity-60"
+              className={UI.primaryButton}
               disabled={submitting}
             >
               {submitting
@@ -1124,8 +1117,8 @@ Advertising
       )}
     </form>
 
-    <aside className="sticky top-24 rounded-3xl border border-primary-800 bg-primary-900 p-6 text-white shadow-xl [&_h2]:text-white [&_p]:text-blue-100 [&_a]:text-orange-100">
-      <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-orange-200">
+    <aside className="sticky top-24 rounded-3xl border border-primary-800 bg-primary-900 p-6 text-white shadow-xl [&_h2]:text-white [&_p]:text-blue-100 [&_a]:text-secondary-100">
+      <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-secondary-200">
         <AdStepIcon
           name={
             step === 0
@@ -1142,7 +1135,7 @@ Advertising
         />
       </div>
 
-      <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary-700">
+      <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary-100">
         Advertising on AliverBiopharm
       </span>
 
@@ -1159,7 +1152,7 @@ Advertising
 
       <Link
         to="/advertise"
-        className="text-sm font-semibold text-primary-700 underline underline-offset-4 hover:text-primary-900"
+        className="text-sm font-semibold text-secondary-100 underline underline-offset-4 hover:text-white"
       >
         Read the advertising guidelines
       </Link>

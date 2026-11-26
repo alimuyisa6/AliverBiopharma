@@ -73,14 +73,13 @@ function FeatureRoute({ feature, children }) {
 
   if (!enabled) {
     return (
-      <div className="section feature-disabled-section">
-        <div className="card feature-disabled-card">
-          <h2 className="feature-disabled-title">Feature Unavailable</h2>
-          <p className="feature-disabled-text">
-            This feature is not currently available for your level. Please check back later.
-          </p>
+      <section className="flex min-h-[60vh] w-full items-center justify-center bg-primary-50 px-4 py-12">
+        <div className="grid w-full max-w-xl justify-items-center gap-4 rounded-2xl border border-border bg-white p-7 text-center shadow-sm sm:p-9">
+          <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-secondary-100 text-secondary-800"><i className="fa-solid fa-lock text-2xl" aria-hidden="true" /></span>
+          <h2 className="text-2xl font-extrabold text-primary-900">Feature Unavailable</h2>
+          <p className="text-sm leading-7 text-muted">This feature is not currently available for your level. Please check back later.</p>
         </div>
-      </div>
+      </section>
     );
   }
 

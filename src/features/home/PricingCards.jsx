@@ -66,7 +66,7 @@ export function PricingCards({ plans = [], user = null }) {
                 <ul className="my-6 flex-1 space-y-3 p-0">
                   {planFeatures(plan.features).map((feature, index) => (
                     <li key={`${plan.id}-feature-${index}`} className="flex items-start gap-3 text-sm leading-6 text-slate-700">
-                      <span aria-hidden="true" className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary-700 text-white" style={{ width: "20px", height: "20px", minWidth: "20px", borderRadius: "9999px", backgroundColor: "#1d4ed8", color: "#ffffff", display: "inline-flex" }}><svg viewBox="0 0 20 20" fill="none" width="12" height="12" style={{ display: "block", width: "12px", height: "12px" }}><path d="M4 10.2 8 14l8-8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg></span>
+                      <span aria-hidden="true" className="mt-0.5 inline-flex h-5 w-5 min-w-5 shrink-0 items-center justify-center rounded-full bg-primary-700 text-white"><svg viewBox="0 0 20 20" fill="none" className="block h-3 w-3"><path d="M4 10.2 8 14l8-8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg></span>
                       <span>{String(feature)}</span>
                     </li>
                   ))}

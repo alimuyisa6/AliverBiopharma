@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import Icon from '../Icon/Icon';
+import { UI } from '../../design-system';
 
 function safeMediaUrl(value) {
   const url = String(value || '').trim();
@@ -16,7 +17,7 @@ export default function InteractiveSymbolExplorer({ config }) {
 
   if (!symbols.length) {
     return (
-      <div className="flex items-start gap-3 rounded-2xl border border-dashed border-slate-200 bg-slate-50 p-4 sm:p-5">
+      <div className={UI.interactiveExplorerEmpty}>
         <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-50 text-primary-700"><Icon name="atom" className="h-6 w-6" /></span>
         <div className="min-w-0">
           <strong className="text-sm font-bold leading-5 text-slate-900">Interactive explorer is being prepared</strong>
@@ -27,13 +28,10 @@ export default function InteractiveSymbolExplorer({ config }) {
   }
 
   return (
-    <div className="grid min-w-0 gap-5 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
-      <div className="min-w-0">
-        
-        {config?.description && <p className="text-sm leading-6 text-slate-600">{config.description}</p>}
-      </div>
+    <div className={UI.interactiveExplorerShell}>
+      {config?.description && <p className="text-sm leading-6 text-slate-600">{config.description}</p>}
       {imageUrl && (
-        <div className="relative overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
+        <div className={UI.interactiveExplorerImage}>
           <img className="block h-auto w-full" src={imageUrl} alt={config?.image_alt || config?.title || 'Interactive learning diagram'} loading="lazy" />
           {symbols.map((symbol, index) => {
             const x = Number(symbol.x);
@@ -61,7 +59,7 @@ export default function InteractiveSymbolExplorer({ config }) {
             const id = String(symbol.id || symbol.label);
             const selected = String(activeId) === id;
             return (
-              <button type="button" key={id} className={`flex min-h-11 items-center gap-3 rounded-xl border px-3 py-2 text-left text-sm font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-600 ${selected ? 'border-primary-200 bg-primary-50 text-primary-900' : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'}`} onClick={() => setActiveId(id)} aria-pressed={selected}>
+              <button type="button" key={id} className={`${UI.interactiveExplorerOption} ${selected ? UI.interactiveExplorerOptionActive : UI.interactiveExplorerOptionInactive}`} onClick={() => setActiveId(id)} aria-pressed={selected}>
                 <span className={`inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-xs font-extrabold ${selected ? 'bg-primary-700 text-white' : 'bg-slate-100 text-slate-600'}`}>{index + 1}</span>
                 <span className="min-w-0 flex-1">{symbol.label}</span>
                 {selected && <Icon name="check" className="h-4 w-4 shrink-0 text-primary-700" />}
@@ -70,8 +68,7 @@ export default function InteractiveSymbolExplorer({ config }) {
           })}
         </div>
         {active && (
-          <article className="min-w-0 rounded-xl border border-primary-100 bg-primary-50/70 p-4 sm:p-5" aria-live="polite">
-            
+          <article className={UI.interactiveExplorerActive} aria-live="polite">
             <h4 className="mt-2 text-lg font-bold leading-7 text-primary-950">{active.label}</h4>
             <p className="mt-2 text-sm leading-6 text-slate-700">{active.description || 'A detailed explanation for this structure will be provided in the lesson content.'}</p>
             {active.image_url && safeMediaUrl(active.image_url) && <img className="mt-4 max-h-64 w-full rounded-xl border border-slate-200 bg-white object-contain" src={safeMediaUrl(active.image_url)} alt={active.image_alt || active.label} loading="lazy" />}

@@ -1,6 +1,7 @@
 import { forwardRef } from 'react';
 import Icon from '../Icon/Icon';
 import Spinner from '../Spinner/Spinner';
+import { UI } from '../../design-system';
 
 const variantStyles = {
   primary: 'ab-btn-primary',
@@ -17,7 +18,7 @@ const variantStyles = {
   dark: 'bg-slate-900 text-white shadow-sm hover:bg-slate-800',
   light: 'bg-slate-100 text-slate-800 hover:bg-slate-200',
   muted: 'bg-slate-100 text-slate-700 hover:bg-slate-200',
-  '3d': 'relative isolate translate-y-0 bg-primary-700 text-white shadow-[0_5px_0_0_rgb(29_78_216)] transition-transform active:translate-y-1 active:shadow-none'
+  '3d': 'relative isolate translate-y-0 bg-primary-700 text-white shadow-[0_5px_0_0_rgb(21_59_96)] transition-transform active:translate-y-1 active:shadow-none'
 };
 
 const Button = forwardRef(function Button(
@@ -41,7 +42,7 @@ const Button = forwardRef(function Button(
   ref
 ) {
   const classes = [
-    'ab-btn inline-flex min-h-10 items-center justify-center gap-2 whitespace-nowrap rounded-xl px-4 py-2 text-sm font-semibold leading-5 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:cursor-not-allowed disabled:opacity-60',
+    UI.buttonBase,
     variantStyles[variant] || variantStyles.primary,
     size === 'sm' && 'min-h-8 px-3 py-1.5 text-xs',
     size === 'lg' && 'min-h-12 px-5 py-3 text-base',

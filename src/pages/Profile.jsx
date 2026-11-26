@@ -52,19 +52,9 @@ import Icon from '../components/Icon/Icon';
 import { useToast } from '../components/Toast/Toast';
 
 import SlideToConfirmButton from '../components/buttons/slide-to-confirm-button';
+import { UI } from '../design-system';
 
-const THEME = {
-  textMain: 'var(--text-main)',
-  textSecondary: 'var(--text-secondary)',
-  textMuted: 'var(--text-muted)',
-  textInverse: 'var(--text-inverse)',
-  accent: 'var(--primary)',
-  success: 'var(--success)',
-  error: 'var(--danger)',
-  bgCard: 'var(--bg-card)',
-  border: 'var(--border-default)',
-  font: 'var(--font-maven)'
-};
+
 
 function collectBrowserDeviceMetadata() {
   if (typeof window === 'undefined') return null;
@@ -157,12 +147,12 @@ function Toggle({ active, onClick, label }) {
   return (
     <button
       type="button"
-      className={`toggle-switch${active ? ' active' : ''}`}
+      className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 ${active ? 'bg-primary-700' : 'bg-slate-300'}`}
       onClick={onClick}
       role="switch"
       aria-checked={active}
       aria-label={label}
-    />
+    ><span className={`inline-block h-4 w-4 rounded-full bg-white shadow transition-transform ${active ? 'translate-x-6' : 'translate-x-1'}`} /></button>
   );
 }
 
@@ -195,7 +185,7 @@ function logProfileError(context, error) {
  * AliverBiopharm's profile-only illustration glyphs.
  * Each symbol is purpose-drawn for its meaning and uses the active brand palette.
  */
-function AliverProfileGlyph({ name, style }) {
+function AliverProfileGlyph({ name, className = '' }) {
   const common = {
     viewBox: '0 0 40 40',
     width: '1em',
@@ -203,10 +193,10 @@ function AliverProfileGlyph({ name, style }) {
     fill: 'none',
     'aria-hidden': true,
     focusable: 'false',
-    style: { flexShrink: 0, overflow: 'visible', ...style },
+    className: `shrink-0 overflow-visible ${className}`,
   };
-  const blue = 'var(--primary, currentColor)';
-  const mint = 'var(--accent, currentColor)';
+  const blue = 'currentColor';
+  const mint = 'currentColor';
   const stroke = { stroke: 'currentColor', strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round' };
   switch (name) {
     case 'alert-circle':
@@ -254,13 +244,13 @@ function ProfileError({ error, title = "We couldn't load this section", onRetry,
   if (!error) return null;
 
   return (
-    <div className="profile-error" role="alert" aria-live="assertive">
-      <div className="profile-error-icon">
+    <div className={UI.profile.error} role="alert" aria-live="assertive">
+      <div className={UI.profile.errorIcon}>
         <AliverProfileGlyph name="alert-circle" />
       </div>
-      <div className="profile-error-body">
-        <h4 style={{ color: THEME.error, fontFamily: THEME.font, margin: 0 }}>{title}</h4>
-        <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, margin: '4px 0 12px' }}>{error}</p>
+      <div className={UI.profile.errorBody}>
+        <h4 className="text-sm font-bold text-red-800">{title}</h4>
+        <p className="mb-3 mt-1 text-sm leading-6 text-slate-700">{error}</p>
         {onRetry && (
           <Button type="button" variant="outline" size="sm" onClick={onRetry}>
             {t('common.retry')}
@@ -609,16 +599,16 @@ export default function Profile() {
   );
 
   const passwordStrength = useMemo(() => {
-    if (!newPassword) return { score: 0, label: '', color: '' };
+    if (!newPassword) return { score: 0, label: '' };
     let score = 0;
     if (newPassword.length >= 10) score++;
     if (newPassword.length >= 14) score++;
     if (/[A-Z]/.test(newPassword) && /[a-z]/.test(newPassword)) score++;
     if (/[0-9]/.test(newPassword)) score++;
     if (/[^A-Za-z0-9]/.test(newPassword)) score++;
-    if (score <= 2) return { score: 1, label: 'Weak', color: THEME.error };
-    if (score <= 3) return { score: 2, label: 'Fair', color: 'var(--warning)' };
-    return { score: 3, label: 'Strong', color: THEME.success };
+    if (score <= 2) return { score: 1, label: 'Weak' };
+    if (score <= 3) return { score: 2, label: 'Fair' };
+    return { score: 3, label: 'Strong' };
   }, [newPassword]);
 
   const setSaveResult = (key, status) => {
@@ -1073,10 +1063,10 @@ export default function Profile() {
           title={t('profile.title')}
           subtitle={t('profile.subtitle')}
         />
-        <div className="profile-loading-skeleton">
+        <div className={UI.profile.loadingSkeleton}>
           <Skeleton variant="avatar" width={96} height={96} />
         </div>
-        <div className="grid grid-cols-2 profile-skeleton-grid">
+        <div className={UI.profile.skeletonGrid}>
           <Card variant="inset" loading={true} loadingLines={4} />
           <Card variant="inset" loading={true} loadingLines={4} />
         </div>
@@ -1089,14 +1079,14 @@ export default function Profile() {
   const initial = (profileMeta?.display_name || profileMeta?.full_name || user?.email || 'S').charAt(0).toUpperCase();
 
   return (
-    <div className="profile-page">
+    <main className={UI.profile.page}>
       <Container>
         {profileError && <ProfileError error={profileError} title={t('profile.profileDataLoadError')} onRetry={loadProfile} />}
         {bundleError && <ProfileError error={bundleError} title={t('profile.settingsDataLoadError')} onRetry={loadBundle} />}
 
-            <section className="profile-overview-panel" aria-labelledby="profile-overview-title">
-              <div className="profile-overview-heading">
-                <span className="profile-overview-icon" aria-hidden="true">
+            <section className={UI.profile.overviewPanel} aria-labelledby="profile-overview-title">
+              <div className={UI.profile.overviewHeading}>
+                <span className={UI.profile.overviewIcon} aria-hidden="true">
                   <AliverProfileGlyph name="user" />
                 </span>
                 <div>
@@ -1105,94 +1095,94 @@ export default function Profile() {
                 </div>
               </div>
 
-              <div className="profile-overview-summary">
-                <div className="profile-summary-identity">
-                  <div className="profile-summary-avatar">
+              <div className={UI.profile.overviewSummary}>
+                <div className={UI.profile.summaryIdentity}>
+                  <div className={UI.profile.summaryAvatar}>
                     <ProfilePictureUpload
                       currentUrl={user?.profile?.profile_picture_url}
                       onUpdate={() => refresh()}
                       size={96}
                     />
                   </div>
-                  <div className="profile-summary-name">
+                  <div className={UI.profile.summaryName}>
                     <h3>{profileMeta?.display_name || profileMeta?.full_name || user?.email || 'Student'}</h3>
                     <p>
                       <AliverProfileGlyph name="graduation-cap" />
                       <span>{profileMeta?.role === 'teacher' ? 'Teacher' : profileMeta?.track || 'Student'}</span>
                     </p>
-                    <span className="profile-summary-status">
+                    <span className={UI.profile.summaryStatus}>
                       <span aria-hidden="true" />
                       {profileMeta?.is_active === false ? 'Inactive' : 'Active'}
                     </span>
                   </div>
                 </div>
 
-                <div className="profile-summary-details">
-                  <div className="profile-summary-detail">
-                    <svg className="profile-detail-symbol profile-detail-symbol-mail" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M4.5 9.5 16 18l11.5-8.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/><path d="M6.5 6.5h19A2.5 2.5 0 0 1 28 9v14a2.5 2.5 0 0 1-2.5 2.5h-19A2.5 2.5 0 0 1 4 23V9a2.5 2.5 0 0 1 2.5-2.5Z" stroke="currentColor" strokeWidth="1.8"/><path d="M4.8 23.2 12 16.8m15.2 6.4L20 16.8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/><circle cx="25.5" cy="6.5" r="3" fill="var(--accent)" stroke="var(--surface-card)" strokeWidth="1.2"/></svg>
-                    <span className="profile-summary-detail-label">{t('profile.email')}:</span>
+                <div className={UI.profile.summaryDetails}>
+                  <div className={UI.profile.summaryDetail}>
+                    <svg className={UI.profile.detailSymbol} viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M4.5 9.5 16 18l11.5-8.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/><path d="M6.5 6.5h19A2.5 2.5 0 0 1 28 9v14a2.5 2.5 0 0 1-2.5 2.5h-19A2.5 2.5 0 0 1 4 23V9a2.5 2.5 0 0 1 2.5-2.5Z" stroke="currentColor" strokeWidth="1.8"/><path d="M4.8 23.2 12 16.8m15.2 6.4L20 16.8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/><circle cx="25.5" cy="6.5" r="3" fill="var(--accent)" stroke="var(--surface-card)" strokeWidth="1.2"/></svg>
+                    <span className={UI.profile.summaryDetailLabel}>{t('profile.email')}:</span>
                     <strong>{profileMeta?.email || user?.email || '—'}</strong>
                   </div>
-                  <div className="profile-summary-detail">
-                    <svg className="profile-detail-symbol profile-detail-symbol-programme" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M4.5 9.5c4.2-1.8 8-.9 11.5 1.8v15c-3.5-2.7-7.3-3.6-11.5-1.8v-15Zm23 0c-4.2-1.8-8-.9-11.5 1.8v15c3.5-2.7 7.3-3.6 11.5-1.8v-15Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round"/><path d="M8 13.5c1.7-.3 3.4 0 4.8.8m-4.8 3c1.7-.3 3.4 0 4.8.8m11.2-4.6c-1.7-.3-3.4 0-4.8.8m4.8 3c-1.7-.3-3.4 0-4.8.8" stroke="currentColor" strokeWidth="1.35" strokeLinecap="round"/><path d="M16 5.5v4" stroke="var(--primary)" strokeWidth="2" strokeLinecap="round"/><circle cx="16" cy="4" r="2" fill="var(--accent)"/></svg>
-                    <span className="profile-summary-detail-label">Programme:</span>
+                  <div className={UI.profile.summaryDetail}>
+                    <svg className={UI.profile.detailSymbol} viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M4.5 9.5c4.2-1.8 8-.9 11.5 1.8v15c-3.5-2.7-7.3-3.6-11.5-1.8v-15Zm23 0c-4.2-1.8-8-.9-11.5 1.8v15c3.5-2.7 7.3-3.6 11.5-1.8v-15Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round"/><path d="M8 13.5c1.7-.3 3.4 0 4.8.8m-4.8 3c1.7-.3 3.4 0 4.8.8m11.2-4.6c-1.7-.3-3.4 0-4.8.8m4.8 3c-1.7-.3-3.4 0-4.8.8" stroke="currentColor" strokeWidth="1.35" strokeLinecap="round"/><path d="M16 5.5v4" stroke="var(--primary)" strokeWidth="2" strokeLinecap="round"/><circle cx="16" cy="4" r="2" fill="var(--accent)"/></svg>
+                    <span className={UI.profile.summaryDetailLabel}>Programme:</span>
                     <strong>{profileMeta?.programme || profileMeta?.track || profileMeta?.class_name || 'Not set yet'}</strong>
                   </div>
-                  <div className="profile-summary-detail">
-                    <svg className="profile-detail-symbol profile-detail-symbol-member" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 3.5 19.1 6l4-.2 1.7 3.6 3.6 1.7-.2 4L30.5 18l-2.3 3.1.2 4-3.6 1.7-1.7 3.6-4-.2L16 32.5l-3.1-2.3-4 .2-1.7-3.6-3.6-1.7.2-4L1.5 18l2.3-3.1-.2-4 3.6-1.7 1.7-3.6 4 .2L16 3.5Z" transform="translate(0 -2)" stroke="currentColor" strokeWidth="1.35" strokeLinejoin="round"/><circle cx="16" cy="16" r="8.2" stroke="currentColor" strokeWidth="1.5"/><path d="M16 10.5v5.8l4 2.3" stroke="var(--primary)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/><circle cx="16" cy="16" r="1.6" fill="var(--accent)"/></svg>
-                    <span className="profile-summary-detail-label">Member Since:</span>
+                  <div className={UI.profile.summaryDetail}>
+                    <svg className={UI.profile.detailSymbol} viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 3.5 19.1 6l4-.2 1.7 3.6 3.6 1.7-.2 4L30.5 18l-2.3 3.1.2 4-3.6 1.7-1.7 3.6-4-.2L16 32.5l-3.1-2.3-4 .2-1.7-3.6-3.6-1.7.2-4L1.5 18l2.3-3.1-.2-4 3.6-1.7 1.7-3.6 4 .2L16 3.5Z" transform="translate(0 -2)" stroke="currentColor" strokeWidth="1.35" strokeLinejoin="round"/><circle cx="16" cy="16" r="8.2" stroke="currentColor" strokeWidth="1.5"/><path d="M16 10.5v5.8l4 2.3" stroke="var(--primary)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/><circle cx="16" cy="16" r="1.6" fill="var(--accent)"/></svg>
+                    <span className={UI.profile.summaryDetailLabel}>Member Since:</span>
                     <strong>{profileMeta?.created_at ? new Date(profileMeta.created_at).toLocaleString(undefined, { day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: '2-digit' }) : '—'}</strong>
                   </div>
                 </div>
               </div>
 
-              <div className="profile-categories">
-                <div className="profile-categories-heading">
+              <div className={UI.profile.categories}>
+                <div className={UI.profile.categoriesHeading}>
                   <span />
                   <h2>Manage your profile</h2>
                   <span />
                 </div>
 
-                <div className="profile-category-grid">
-                  <button type="button" className="profile-category-card" onClick={() => selectSection('overview')}>
-                    <span className="profile-category-icon profile-category-icon-primary"><svg viewBox="0 0 40 40" aria-hidden="true" fill="none"><path d="M7 30.5c1.8-5.8 6.3-8.7 13-8.7s11.2 2.9 13 8.7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/><path d="M20 20.2c4.2 0 7.4-3.3 7.4-7.5S24.2 5.2 20 5.2s-7.4 3.3-7.4 7.5 3.2 7.5 7.4 7.5Z" stroke="currentColor" strokeWidth="1.8"/><path d="M5 18.5v-7l3.2-3.2m26.8 10.2v-7l-3.2-3.2" stroke="var(--accent)" strokeWidth="1.5" strokeLinecap="round"/><circle cx="20" cy="12.7" r="2" fill="var(--primary)"/></svg></span>
+                <div className={UI.profile.categoryGrid}>
+                  <button type="button" className={UI.profile.categoryCard} onClick={() => selectSection('overview')}>
+                    <span className={UI.profile.categoryIconPrimary}><svg viewBox="0 0 40 40" aria-hidden="true" fill="none"><path d="M7 30.5c1.8-5.8 6.3-8.7 13-8.7s11.2 2.9 13 8.7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/><path d="M20 20.2c4.2 0 7.4-3.3 7.4-7.5S24.2 5.2 20 5.2s-7.4 3.3-7.4 7.5 3.2 7.5 7.4 7.5Z" stroke="currentColor" strokeWidth="1.8"/><path d="M5 18.5v-7l3.2-3.2m26.8 10.2v-7l-3.2-3.2" stroke="var(--accent)" strokeWidth="1.5" strokeLinecap="round"/><circle cx="20" cy="12.7" r="2" fill="var(--primary)"/></svg></span>
                     <span>Personal details</span>
                   </button>
-                  <button type="button" className="profile-category-card" onClick={() => selectSection('curriculum')}>
-                    <span className="profile-category-icon"><svg viewBox="0 0 40 40" aria-hidden="true" fill="none"><path d="m4 13.5 16-8 16 8-16 8-16-8Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/><path d="M10 17v8.5c5.7 5.1 14.3 5.1 20 0V17M36 14v10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/><circle cx="36" cy="26.5" r="2" fill="var(--accent)"/><path d="M14 11.5 20 8.7l6 2.8" stroke="var(--primary)" strokeWidth="1.5" strokeLinecap="round"/></svg></span>
+                  <button type="button" className={UI.profile.categoryCard} onClick={() => selectSection('curriculum')}>
+                    <span className={UI.profile.categoryIcon}><svg viewBox="0 0 40 40" aria-hidden="true" fill="none"><path d="m4 13.5 16-8 16 8-16 8-16-8Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/><path d="M10 17v8.5c5.7 5.1 14.3 5.1 20 0V17M36 14v10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/><circle cx="36" cy="26.5" r="2" fill="var(--accent)"/><path d="M14 11.5 20 8.7l6 2.8" stroke="var(--primary)" strokeWidth="1.5" strokeLinecap="round"/></svg></span>
                     <span>Learning programme</span>
                   </button>
-                  <button type="button" className="profile-category-card" onClick={() => selectSection('security')}>
-                    <span className="profile-category-icon"><svg viewBox="0 0 40 40" aria-hidden="true" fill="none"><path d="M20 4.5 32 9v9.3c0 7.7-4.8 13.3-12 17.2-7.2-3.9-12-9.5-12-17.2V9l12-4.5Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/><path d="M20 10v19" stroke="currentColor" strokeWidth="1.5" strokeDasharray="2.5 3"/><path d="m14.5 19.5 3.7 3.6 7.6-8" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><circle cx="29.5" cy="9.5" r="2.3" fill="var(--primary)"/></svg></span>
+                  <button type="button" className={UI.profile.categoryCard} onClick={() => selectSection('security')}>
+                    <span className={UI.profile.categoryIcon}><svg viewBox="0 0 40 40" aria-hidden="true" fill="none"><path d="M20 4.5 32 9v9.3c0 7.7-4.8 13.3-12 17.2-7.2-3.9-12-9.5-12-17.2V9l12-4.5Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/><path d="M20 10v19" stroke="currentColor" strokeWidth="1.5" strokeDasharray="2.5 3"/><path d="m14.5 19.5 3.7 3.6 7.6-8" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><circle cx="29.5" cy="9.5" r="2.3" fill="var(--primary)"/></svg></span>
                     <span>Security</span>
                   </button>
-                  <button type="button" className="profile-category-card" onClick={() => selectSection('preferences')}>
-                    <span className="profile-category-icon profile-category-icon-primary"><svg viewBox="0 0 40 40" aria-hidden="true" fill="none"><path d="m20 5 3 2.2 3.7-.2 1.5 3.4 3.4 1.5-.2 3.7 2.2 3-2.2 3 .2 3.7-3.4 1.5-1.5 3.4-3.7-.2-3 2.2-3-2.2-3.7.2-1.5-3.4-3.4-1.5.2-3.7-2.2-3 2.2-3-.2-3.7 3.4-1.5 1.5-3.4 3.7.2L20 5Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round"/><circle cx="20" cy="19.5" r="6.5" stroke="currentColor" strokeWidth="1.7"/><circle cx="20" cy="19.5" r="2.5" fill="var(--accent)"/><path d="M20 13v2m0 9v2m6.5-6.5h-2m-9 0h-2" stroke="var(--primary)" strokeWidth="1.6" strokeLinecap="round"/></svg></span>
+                  <button type="button" className={UI.profile.categoryCard} onClick={() => selectSection('preferences')}>
+                    <span className={UI.profile.categoryIconPrimary}><svg viewBox="0 0 40 40" aria-hidden="true" fill="none"><path d="m20 5 3 2.2 3.7-.2 1.5 3.4 3.4 1.5-.2 3.7 2.2 3-2.2 3 .2 3.7-3.4 1.5-1.5 3.4-3.7-.2-3 2.2-3-2.2-3.7.2-1.5-3.4-3.4-1.5.2-3.7-2.2-3 2.2-3-.2-3.7 3.4-1.5 1.5-3.4 3.7.2L20 5Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round"/><circle cx="20" cy="19.5" r="6.5" stroke="currentColor" strokeWidth="1.7"/><circle cx="20" cy="19.5" r="2.5" fill="var(--accent)"/><path d="M20 13v2m0 9v2m6.5-6.5h-2m-9 0h-2" stroke="var(--primary)" strokeWidth="1.6" strokeLinecap="round"/></svg></span>
                     <span>Preferences</span>
                   </button>
-                  <button type="button" className="profile-category-card" onClick={() => selectSection('account')}>
-                    <span className="profile-category-icon"><svg viewBox="0 0 40 40" aria-hidden="true" fill="none"><path d="M10 5.5h13l7 7v21H10v-28Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/><path d="M23 5.5v7h7M15 18h10m-10 5h10m-10 5h6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/><path d="M5 10.5v24h20" stroke="var(--primary)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/><circle cx="28" cy="29" r="4" fill="var(--accent)" stroke="var(--surface-card, white)" strokeWidth="1.3"/><path d="m26.5 29 1 1 2-2" stroke="var(--surface-card, white)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg></span>
+                  <button type="button" className={UI.profile.categoryCard} onClick={() => selectSection('account')}>
+                    <span className={UI.profile.categoryIcon}><svg viewBox="0 0 40 40" aria-hidden="true" fill="none"><path d="M10 5.5h13l7 7v21H10v-28Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/><path d="M23 5.5v7h7M15 18h10m-10 5h10m-10 5h6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/><path d="M5 10.5v24h20" stroke="var(--primary)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/><circle cx="28" cy="29" r="4" fill="var(--accent)" stroke="var(--surface-card, white)" strokeWidth="1.3"/><path d="m26.5 29 1 1 2-2" stroke="var(--surface-card, white)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg></span>
                     <span>Account and data</span>
                   </button>
                 </div>
               </div>
             </section>
 
-        <div className="profile-tabs" role="tablist" aria-label={t('profile.profileSections')}>
-          <div className="profile-tabs-wrap">
+        <div className={UI.profile.tabs} role="tablist" aria-label={t('profile.profileSections')}>
+          <div className={UI.profile.tabsWrap}>
             {SECTIONS.map((section, index) => (
-              <div key={section.id} className="profile-tab-item">
+              <div key={section.id} className="min-w-0">
                 <input
                   type="radio"
                   id={`profile-tab-${section.id}`}
                   name="profile-sections"
                   checked={activeSection === section.id}
                   onChange={() => selectSection(section.id)}
-                  className={`profile-tab-radio profile-tab-${index + 1}`}
+                  className={UI.profile.tabRadio}
                 />
                 <label
                   htmlFor={`profile-tab-${section.id}`}
-                  className="profile-tab-label"
+                  className={UI.profile.tabLabel}
                   role="tab"
                   aria-selected={activeSection === section.id}
                   tabIndex={activeSection === section.id ? 0 : -1}
@@ -1201,21 +1191,11 @@ export default function Profile() {
                 </label>
               </div>
             ))}
-            <div
-              className="profile-tab-bar"
-              aria-hidden="true"
-              style={{ transform: `translateX(${SECTIONS.findIndex((section) => section.id === activeSection) * 100}%)` }}
-            />
-            <div
-              className="profile-tab-slidebar"
-              aria-hidden="true"
-              style={{ transform: `translateX(${SECTIONS.findIndex((section) => section.id === activeSection) * 100}%)` }}
-            />
           </div>
         </div>
 
-        <div className="profile-layout">
-          <div className="profile-content">
+        <div className={UI.profile.layout}>
+          <div className={UI.profile.content}>
 
 
             {sectionError && (
@@ -1229,12 +1209,12 @@ export default function Profile() {
             {activeSection === 'overview' && (
               <>
                 <form onSubmit={handleProfileSubmit}>
-                  <Card variant="inset" className="profile-card-main card-lifted">
-                    <h3 className="profile-detail-title">
+                  <Card variant="inset" className={UI.profile.cardMain}>
+                    <h3 className={UI.profile.detailTitle}>
                       <AliverProfileGlyph name="id-card" />
                       Your personal details
                     </h3>
-                    <p className="profile-detail-description">
+                    <p className={UI.profile.detailDescription}>
                       Update your legal and display name. Your display name is shown publicly across reviews and comments.
                     </p>
 
@@ -1255,17 +1235,17 @@ export default function Profile() {
                 </form>
 
                 <form onSubmit={handleBioSubmit}>
-                  <Card variant="inset" className="profile-card card-lifted">
-                    <h3 className="profile-detail-title">
+                  <Card variant="inset" className={UI.profile.card}>
+                    <h3 className={UI.profile.detailTitle}>
                       <AliverProfileGlyph name="pen" />
                       Professional Biography
                     </h3>
-                    <p className="profile-detail-description">
+                    <p className={UI.profile.detailDescription}>
                       Share a brief professional biography outlining your background, interests, and current course of study.
                     </p>
 
                     <textarea
-                      className="block min-h-32 w-full min-w-0 resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
+                      className={`${UI.inputBase} min-h-32 resize-y border-border`}
                       value={bio}
                       onChange={(e) => setBio(e.target.value)}
                       placeholder={t('profile.bioPlaceholder')}
@@ -1282,14 +1262,14 @@ export default function Profile() {
             )}
 
             {activeSection === 'curriculum' && (
-              <Card variant="inset" className="profile-card card-lifted">
-                <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
-                  <AliverProfileGlyph name="route" style={{ color: 'var(--accent)' }} />
+              <Card variant="inset" className={UI.profile.card}>
+                <h3 className={UI.profile.detailTitle}>
+                  <AliverProfileGlyph name="route" className="text-secondary-700" />
                   Learning Curriculum
                 </h3>
-                <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
-                  Your current programme is <strong style={{ color: THEME.textMain }}>{profileMeta?.track || 'Not set yet'}</strong>, {String(profileMeta?.track || '').toLowerCase().includes('pharmacy') ? 'programme' : 'class'}{' '}
-                  <strong style={{ color: THEME.textMain }}>{profileMeta?.class_name || 'Not set yet'}</strong>. Level changes require
+                <p className={UI.profile.detailDescription}>
+                  Your current programme is <strong className="text-primary-900">{profileMeta?.track || 'Not set yet'}</strong>, {String(profileMeta?.track || '').toLowerCase().includes('pharmacy') ? 'programme' : 'class'}{' '}
+                  <strong className="text-primary-900">{profileMeta?.class_name || 'Not set yet'}</strong>. Level changes require
                   administrator approval.
                 </p>
 
@@ -1299,12 +1279,11 @@ export default function Profile() {
 
                 {profileMeta?.role !== 'teacher' && (
                   <form onSubmit={handleLevelChangeRequest}>
-                    <div className="form-group">
-                      <label style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14 }}>New learning programme</label>
+                    <div className={UI.profile.formGroup}>
+                      <label className="text-sm font-semibold text-primary-900">New learning programme</label>
                       <select
-                        className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
-                        style={{ color: THEME.textMain, fontFamily: THEME.font, background: THEME.bgCard, border: `1px solid ${THEME.border}` }}
-                        value={levelReqTrack}
+                        className={`${UI.selectBase} border-border`}
+                              value={levelReqTrack}
                         onChange={(e) => setLevelReqTrack(e.target.value)}
                         required
                         disabled={availableLevelsLoading}
@@ -1319,12 +1298,11 @@ export default function Profile() {
                       {availableLevelsLoading && <Spinner context="data" size="sm" />}
                     </div>
 
-                    <div className="form-group">
-                      <label style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14 }}>Why are you requesting this change?</label>
+                    <div className={UI.profile.formGroup}>
+                      <label className="text-sm font-semibold text-primary-900">Why are you requesting this change?</label>
                       <textarea
-                        className="block min-h-32 w-full min-w-0 resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
-                        style={{ color: THEME.textMain, fontFamily: THEME.font, background: THEME.bgCard, border: `1px solid ${THEME.border}` }}
-                        rows={3}
+                        className={`${UI.inputBase} min-h-32 resize-y border-border`}
+                              rows={3}
                         value={levelReqReason}
                         onChange={(e) => setLevelReqReason(e.target.value)}                        required
                       />
@@ -1339,12 +1317,12 @@ export default function Profile() {
             )}
 
             {activeSection === 'notifications' && (
-              <Card variant="inset" className="profile-card card-lifted">
-                <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
-                  <AliverProfileGlyph name="bell" style={{ color: THEME.accent }} />
+              <Card variant="inset" className={UI.profile.card}>
+                <h3 className={UI.profile.detailTitle}>
+                  <AliverProfileGlyph name="bell" className="text-secondary-700" />
                   Notifications
                 </h3>
-                <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
+                <p className={UI.profile.detailDescription}>
                   Select how you would like to receive updates across in-app, email, and push notification channels.
                 </p>
 
@@ -1352,14 +1330,14 @@ export default function Profile() {
                   <Spinner context="data" size="sm" />
                 ) : (
                   notifPrefs.map((p) => (
-                    <div className="notification-row" key={p.module}>
-                      <div className="profile-row-copy">
-                        <div style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14, fontWeight: 600 }}>
+                    <div className={UI.profile.notificationRow} key={p.module}>
+                      <div className={UI.profile.rowCopy}>
+                        <div className="text-sm font-semibold text-primary-900">
                           {p.module.replace(/_/g, ' ')}
                         </div>
-                        <div style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 12 }}>In-app · Email · Push</div>
+                        <div className="text-xs text-muted">In-app · Email · Push</div>
                       </div>
-                      <div className="profile-toggle-group">
+                      <div className={UI.profile.toggleGroup}>
                         <Toggle active={p.in_app} onClick={() => handleNotifToggle(p.module, 'in_app', p.in_app)} />
                         <Toggle active={p.email} onClick={() => handleNotifToggle(p.module, 'email', p.email)} />
                         <Toggle active={p.push} onClick={() => handleNotifToggle(p.module, 'push', p.push)} />
@@ -1369,7 +1347,7 @@ export default function Profile() {
                 )}
 
                 {!sectionLoading && notifPrefs.length === 0 && !sectionError && (
-                  <p style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 14 }}>
+                  <p className="text-sm text-muted">
                     No notification modules have been configured yet.
                   </p>
                 )}
@@ -1379,12 +1357,12 @@ export default function Profile() {
             {activeSection === 'security' && (
               <>
               <form onSubmit={handlePasswordSubmit}>
-                <Card variant="inset" className="profile-card card-lifted">
-                  <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
-                    <AliverProfileGlyph name="key" style={{ color: 'var(--warning)' }} />
+                <Card variant="inset" className={UI.profile.card}>
+                  <h3 className={UI.profile.detailTitle}>
+                    <AliverProfileGlyph name="key" className="text-amber-700" />
                     Password & Security
                   </h3>
-                  <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
+                  <p className={UI.profile.detailDescription}>
                     We recommend updating your password periodically to maintain account security. Please choose a strong, unique password.
                   </p>
 
@@ -1407,14 +1385,14 @@ export default function Profile() {
                   />
 
                   {newPassword && (
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
-                      <div className="progress-track" style={{ flex: 1 }}>
+                    <div className="mb-4 flex items-center gap-3">
+                      <div className="progress-track" className="h-2 flex-1 overflow-hidden rounded-full bg-slate-100">
                         <div
                           className="progress-fill"
-                          style={{ width: `${(passwordStrength.score / 3) * 100}%`, background: passwordStrength.color }}
+                          style={{ width: `${(passwordStrength.score / 3) * 100}%` }}
                         />
                       </div>
-                      <span style={{ color: passwordStrength.color, fontFamily: THEME.font, fontSize: 12, fontWeight: 500, minWidth: 56, textAlign: 'right' }}>
+                      <span className={`min-w-14 text-right text-xs font-medium ${passwordStrength.score >= 3 ? 'text-emerald-700' : passwordStrength.score === 2 ? 'text-amber-700' : 'text-red-700'}`}>
                         {passwordStrength.label}
                       </span>
                     </div>
@@ -1440,21 +1418,21 @@ export default function Profile() {
                 </Card>
               </form>
 
-              <Card variant="inset" className="profile-card card-lifted">
-                <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
-                  <AliverProfileGlyph name="fingerprint" style={{ color: THEME.accent }} />
+              <Card variant="inset" className={UI.profile.card}>
+                <h3 className={UI.profile.detailTitle}>
+                  <AliverProfileGlyph name="fingerprint" className="text-secondary-700" />
                   Passkeys
                 </h3>
-                <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
+                <p className={UI.profile.detailDescription}>
                   Sign in securely with a passkey stored on your phone, computer, password manager, or security key.
                   Your passkey is handled by your authenticator; AliverBiopharm never receives the private key.
                 </p>
 
-                <div className="profile-passkey-verification" style={{ marginTop: 16, padding: 16, border: `1px solid ${THEME.border}`, borderRadius: 10, background: 'var(--bg-subtle, transparent)' }}>
-                  <div style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14, fontWeight: 600, marginBottom: 6 }}>
+                <div className={UI.profile.passkeyVerification}>
+                  <div className="mb-2 text-sm font-semibold text-primary-900">
                     Verify your identity
                   </div>
-                  <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 13, margin: '0 0 12px' }}>
+                  <p className="mb-3 text-sm leading-6 text-muted">
                     Enter your current password to authorize adding a new passkey to this account. Your password is used only for this verification step.
                   </p>
                   <Input
@@ -1483,17 +1461,17 @@ export default function Profile() {
                   />
                 </div>
 
-                <div style={{ marginTop: 18 }}>
+                <div className="mt-5">
                   {sectionLoading ? (
                     <Spinner context="data" size="sm" />
                   ) : passkeys.length > 0 ? (
                     passkeys.map((passkey) => (
-                      <div className="notification-row" key={passkey.id}>
-                        <div className="profile-row-copy">
-                          <div style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14, fontWeight: 600 }}>
+                      <div className={UI.profile.notificationRow} key={passkey.id}>
+                        <div className={UI.profile.rowCopy}>
+                          <div className="text-sm font-semibold text-primary-900">
                             {passkey.friendly_name || t('profile.passkey')}
                           </div>
-                          <div style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 12 }}>
+                          <div className="text-xs text-muted">
                             Added {passkey.created_at ? new Date(passkey.created_at).toLocaleDateString() : '—'}
                             {passkey.last_used_at
                               ? ` · Last used ${new Date(passkey.last_used_at).toLocaleDateString()}`
@@ -1513,7 +1491,7 @@ export default function Profile() {
                       </div>
                     ))
                   ) : (
-                    <p style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 14, marginTop: 12 }}>
+                    <p className="mt-3 text-sm text-muted">
                       No passkeys are registered yet.
                     </p>
                   )}
@@ -1523,12 +1501,12 @@ export default function Profile() {
             )}
 
             {activeSection === 'devices' && (
-              <Card variant="inset" className="profile-card card-lifted">
-                <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
-                  <AliverProfileGlyph name="laptop" style={{ color: THEME.accent }} />
+              <Card variant="inset" className={UI.profile.card}>
+                <h3 className={UI.profile.detailTitle}>
+                  <AliverProfileGlyph name="laptop" className="text-secondary-700" />
                   Connected Devices
                 </h3>
-                <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
+                <p className={UI.profile.detailDescription}>
                   Review and manage devices with access to your account. Revoke access for any device you do not recognize.
                 </p>
 
@@ -1539,14 +1517,14 @@ export default function Profile() {
                     {devices.map((d) => (
                       <li key={d.id}>
                         <Icon name={/Android/i.test(d.device_platform || d.user_agent || '') ? 'smartphone' : 'laptop'} />
-                        <div className="profile-row-copy">
-                          <div style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14, fontWeight: 600 }}>
+                        <div className={UI.profile.rowCopy}>
+                          <div className="text-sm font-semibold text-primary-900">
                             {d.device_model || (d.device_platform ? `${d.device_platform} ${t('profile.device')}` : t('profile.unknownDevice'))}
                           </div>
-                          <div style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 12, marginTop: 3 }}>
+                          <div className="mt-1 text-xs text-muted">
                             {d.device_platform || t('profile.unknownPlatform')}{d.device_os_version ? ` ${d.device_os_version}` : ''}{d.device_browser ? ` · ${d.device_browser}${d.device_browser_version ? ` ${d.device_browser_version}` : ''}` : ''}
                           </div>
-                          <div style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 11, marginTop: 3, overflowWrap: 'anywhere' }}>
+                          <div className="mt-1 break-all text-xs text-muted">
                             Device ID: {d.device_id || `Session ${d.id}`} · {d.ip_address || 'Unknown IP'} · Signed in {new Date(d.created_at).toLocaleDateString()}
                           </div>
                         </div>
@@ -1556,7 +1534,7 @@ export default function Profile() {
                       </li>
                     ))}
                     {devices.length === 0 && !sectionError && (
-                      <li style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 14, padding: 16 }}>
+                      <li className="p-4 text-sm text-muted">
                         No active sessions found.
                       </li>
                     )}
@@ -1566,16 +1544,16 @@ export default function Profile() {
             )}
 
             {activeSection === 'preferences' && (
-              <Card variant="inset" className="profile-card card-lifted">
-                <h3 className="profile-preferences-title">
-                  <AliverProfileGlyph name="sliders" style={{ color: 'var(--secondary)' }} />
+              <Card variant="inset" className={UI.profile.card}>
+                <h3 className={UI.profile.preferencesTitle}>
+                  <AliverProfileGlyph name="sliders" className="text-secondary-700" />
                   {t('profile.preferencesTheme')}
                 </h3>
-                <p className="profile-preferences-description">
+                <p className={UI.profile.preferencesDescription}>
                   {t('profile.preferencesDescription')}
                 </p>
 
-                <div className="form-group">
+                <div className={UI.profile.formGroup}>
                   <label>{t('profile.appearance')}</label>
                   <div className="theme-swatch-group">
                     {[
@@ -1595,10 +1573,10 @@ export default function Profile() {
                   </div>
                 </div>
 
-                <div className="form-group">
+                <div className={UI.profile.formGroup}>
                   <label>{t('profile.language')}</label>
                   <select
-                    className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
+                    className={`${UI.selectBase} border-border`}
                     value={locale}
                     onChange={(e) => setLocale(e.target.value).catch((error) => {
                       logProfileError('setLocale failed', error);
@@ -1610,13 +1588,13 @@ export default function Profile() {
                       <option key={option.code} value={option.code}>{option.nativeLabel}</option>
                     ))}
                   </select>
-                  <p className="profile-text-muted">{t('profile.languageDescription')}</p>
+                  <p className={UI.profile.textMuted}>{t('profile.languageDescription')}</p>
                 </div>
 
-                <div className="form-group">
+                <div className={UI.profile.formGroup}>
                   <label>Timezone</label>
                   <select
-                    className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
+                    className={`${UI.selectBase} border-border`}
                     value={bundle?.profile?.timezone || user?.profile?.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'}
                     onChange={(e) => handlePreferenceChange('timezone', e.target.value)}
                     aria-label={t('profile.timezonePreference')}
@@ -1635,17 +1613,17 @@ export default function Profile() {
                   </select>
                 </div>
 
-                <hr className="divider profile-divider-lg" />
+                <hr className={UI.profile.dividerLarge} />
 
-                <h4 className="profile-preferences-subtitle">{t('profile.displayReading')}</h4>
-                <div className="profile-preference-grid">
-                  <label className="profile-preference-control">
+                <h4 className={UI.profile.preferencesSubtitle}>{t('profile.displayReading')}</h4>
+                <div className={UI.profile.preferenceGrid}>
+                  <label className={UI.profile.preferenceControl}>
                     <span>{t('profile.fontFamily')}</span>
                     <select
                       value={uiPreferences.font_family}
                       disabled={savingUIPreference === 'font_family'}
                       onChange={(e) => handleUIPreferenceChange('font_family', e.target.value)}
-                     className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
+                     className={`${UI.selectBase} border-border`}>
                       <option value="maven">Maven Pro</option>
                       <option value="system">System Sans</option>
                       <option value="serif">Serif</option>
@@ -1653,13 +1631,13 @@ export default function Profile() {
                     </select>
                   </label>
 
-                  <label className="profile-preference-control">
+                  <label className={UI.profile.preferenceControl}>
                     <span>{t('profile.textSize')}</span>
                     <select
                       value={uiPreferences.font_size}
                       disabled={savingUIPreference === 'font_size'}
                       onChange={(e) => handleUIPreferenceChange('font_size', e.target.value)}
-                     className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
+                     className={`${UI.selectBase} border-border`}>
                       <option value="90">{t('profile.smaller')}</option>
                       <option value="100">Default</option>
                       <option value="110">Large</option>
@@ -1667,26 +1645,26 @@ export default function Profile() {
                     </select>
                   </label>
 
-                  <label className="profile-preference-control">
+                  <label className={UI.profile.preferenceControl}>
                     <span>{t('profile.contentWidth')}</span>
                     <select
                       value={uiPreferences.content_width}
                       disabled={savingUIPreference === 'content_width'}
                       onChange={(e) => handleUIPreferenceChange('content_width', e.target.value)}
-                     className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
+                     className={`${UI.selectBase} border-border`}>
                       <option value="readable">{t('profile.readable')}</option>
                       <option value="wide">{t('profile.wide')}</option>
                       <option value="full">{t('profile.full')}</option>
                     </select>
                   </label>
 
-                  <label className="profile-preference-control">
+                  <label className={UI.profile.preferenceControl}>
                     <span>{t('profile.sectionSpacing')}</span>
                     <select
                       value={uiPreferences.section_spacing}
                       disabled={savingUIPreference === 'section_spacing'}
                       onChange={(e) => handleUIPreferenceChange('section_spacing', e.target.value)}
-                     className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
+                     className={`${UI.selectBase} border-border`}>
                       <option value="compact">{t('profile.compact')}</option>
                       <option value="comfortable">{t('profile.comfortable')}</option>
                       <option value="spacious">{t('profile.spacious')}</option>
@@ -1694,62 +1672,62 @@ export default function Profile() {
                   </label>
                 </div>
 
-                <h4 className="profile-preferences-subtitle">{t('profile.layoutControls')}</h4>
-                <div className="profile-preference-grid">
-                  <label className="profile-preference-control">
+                <h4 className={UI.profile.preferencesSubtitle}>{t('profile.layoutControls')}</h4>
+                <div className={UI.profile.preferenceGrid}>
+                  <label className={UI.profile.preferenceControl}>
                     <span>{t('profile.contentDensity')}</span>
                     <select
                       value={uiPreferences.density}
                       disabled={savingUIPreference === 'density'}
                       onChange={(e) => handleUIPreferenceChange('density', e.target.value)}
-                     className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
+                     className={`${UI.selectBase} border-border`}>
                       <option value="compact">{t('profile.compact')}</option>
                       <option value="comfortable">{t('profile.comfortable')}</option>
                       <option value="spacious">{t('profile.spacious')}</option>
                     </select>
                   </label>
 
-                  <label className="profile-preference-control">
+                  <label className={UI.profile.preferenceControl}>
                     <span>{t('profile.cardsSurfaces')}</span>
                     <select
                       value={uiPreferences.surface_style}
                       disabled={savingUIPreference === 'surface_style'}
                       onChange={(e) => handleUIPreferenceChange('surface_style', e.target.value)}
-                     className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
+                     className={`${UI.selectBase} border-border`}>
                       <option value="card">{t('profile.cardSurfaces')}</option>
                       <option value="flat">{t('profile.flatSurfaces')}</option>
                     </select>
                   </label>
 
-                  <label className="profile-preference-control">
+                  <label className={UI.profile.preferenceControl}>
                     <span>{t('profile.buttonSize')}</span>
                     <select
                       value={uiPreferences.button_size}
                       disabled={savingUIPreference === 'button_size'}
                       onChange={(e) => handleUIPreferenceChange('button_size', e.target.value)}
-                     className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
+                     className={`${UI.selectBase} border-border`}>
                       <option value="small">{t('profile.small')}</option>
                       <option value="medium">{t('profile.default')}</option>
                       <option value="large">{t('profile.large')}</option>
                     </select>
                   </label>
 
-                  <label className="profile-preference-control">
+                  <label className={UI.profile.preferenceControl}>
                     <span>{t('profile.buttonWidth')}</span>
                     <select
                       value={uiPreferences.button_width}
                       disabled={savingUIPreference === 'button_width'}
                       onChange={(e) => handleUIPreferenceChange('button_width', e.target.value)}
-                     className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
+                     className={`${UI.selectBase} border-border`}>
                       <option value="auto">{t('profile.fitText')}</option>
                       <option value="full">{t('profile.fullWidth')}</option>
                     </select>
                   </label>
                 </div>
 
-                <hr className="divider profile-divider-lg" />
+                <hr className={UI.profile.dividerLarge} />
 
-                <h4 className="profile-preferences-subtitle">{t('profile.accessibility')}</h4>
+                <h4 className={UI.profile.preferencesSubtitle}>{t('profile.accessibility')}</h4>
                 {[
                   ['large_text', t('profile.largeTextMode')],
                   ['high_contrast', t('profile.highContrastMode')],
@@ -1758,8 +1736,8 @@ export default function Profile() {
                 ].map(([key, label]) => {
                   const current = !!bundle?.profile?.accessibility?.[key];
                   return (
-                    <div className="notification-row" key={key}>
-                      <div className="profile-row-copy">{label}</div>
+                    <div className={UI.profile.notificationRow} key={key}>
+                      <div className={UI.profile.rowCopy}>{label}</div>
                       <Toggle active={current} label={label} onClick={() => handleAccessibilityToggle(key, current)} />
                     </div>
                   );
@@ -1768,12 +1746,12 @@ export default function Profile() {
             )}
 
             {activeSection === 'referral' && (
-              <Card variant="inset" className="profile-card card-lifted">
-                <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
-                  <AliverProfileGlyph name="gift" style={{ color: 'var(--accent)' }} />
+              <Card variant="inset" className={UI.profile.card}>
+                <h3 className={UI.profile.detailTitle}>
+                  <AliverProfileGlyph name="gift" className="text-secondary-700" />
                   {t('profile.referralProgram')}
                 </h3>
-                <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
+                <p className={UI.profile.detailDescription}>
                   Share your referral code. When someone signs up with it, you can earn experience points.
                 </p>
 
@@ -1781,14 +1759,14 @@ export default function Profile() {
                   <Spinner context="data" size="sm" />
                 ) : referral ? (
                   <>
-                    <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15 }}>
-                      Referral code: <strong style={{ color: THEME.accent }}>{referral.referral_code}</strong>
+                    <p className="text-sm leading-6 text-muted">
+                      Referral code: <strong className="font-bold text-secondary-700">{referral.referral_code}</strong>
                     </p>
 
                     <Button
                       variant="outline"
                       icon="copy"
-                      style={{ marginTop: 12 }}
+                      className="mt-3"
                       onClick={() => {
                         navigator.clipboard.writeText(referral.referral_code);
                         addToast(t('profile.referralCopied'), 'success');
@@ -1797,13 +1775,13 @@ export default function Profile() {
                       Copy code
                     </Button>
 
-                    <p style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 13, marginTop: 8 }}>
+                    <p className="mt-2 text-xs text-muted">
                       {referral.referral_count} friends joined · {referral.total_xp_earned} XP earned
                     </p>
                   </>
                 ) : (
                   !sectionError && (
-                    <p style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 14 }}>
+                    <p className="text-sm text-muted">
                       Referral information isn't available right now.
                     </p>
                   )
@@ -1813,12 +1791,12 @@ export default function Profile() {
 
             {activeSection === 'parent' && (
               <form onSubmit={handleSaveGuardian}>
-                <Card variant="inset" className="profile-card card-lifted">
-                  <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
-                    <AliverProfileGlyph name="user-group" style={{ color: THEME.accent }} />
+                <Card variant="inset" className={UI.profile.card}>
+                  <h3 className={UI.profile.detailTitle}>
+                    <AliverProfileGlyph name="user-group" className="text-secondary-700" />
                     {t('profile.parentGuardianInformation')}
                   </h3>
-                  <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
+                  <p className={UI.profile.detailDescription}>
                     Add a parent or guardian's contact details for emergencies and, where needed, consent verification.
                   </p>
 
@@ -1832,12 +1810,11 @@ export default function Profile() {
                     disabled={savingGuardian}
                   />
 
-                  <div className="form-group">
-                    <label style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14 }}>{t('profile.relationship')}</label>
+                  <div className={UI.profile.formGroup}>
+                    <label className="text-sm font-semibold text-primary-900">{t('profile.relationship')}</label>
                     <select
-                      className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
-                      style={{ color: THEME.textMain, fontFamily: THEME.font, background: THEME.bgCard, border: `1px solid ${THEME.border}` }}
-                      value={guardianRelationship}
+                      className={`${UI.selectBase} border-border`}
+                          value={guardianRelationship}
                       onChange={(e) => setGuardianRelationship(e.target.value)}
                     >
                       <option value="Parent">{t('profile.parent')}</option>
@@ -1854,16 +1831,16 @@ export default function Profile() {
             )}
 
             {activeSection === 'billing' && (
-              <Card variant="inset" className="profile-card card-lifted">
-                <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
-                  <AliverProfileGlyph name="credit-card" style={{ color: THEME.success }} />
+              <Card variant="inset" className={UI.profile.card}>
+                <h3 className={UI.profile.detailTitle}>
+                  <AliverProfileGlyph name="credit-card" className="text-emerald-700" />
                   {t('profile.billingPayments')}
                 </h3>
-                <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
+                <p className={UI.profile.detailDescription}>
                   Choose a plan and pay with USDT on the TRON network (TRC20). Premium access activates automatically after the payment provider confirms your payment. Plans do not renew automatically.
                 </p>
                 {billingPaymentMessage && (
-                  <p role="status" style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 14, marginBottom: 16 }}>
+                  <p role="status" className="mb-4 text-sm leading-6 text-muted">
                     {billingPaymentMessage}
                   </p>
                 )}
@@ -1871,26 +1848,27 @@ export default function Profile() {
                   <Spinner context="data" size="sm" />
                 ) : (
                   <>
-                    <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15 }}>
-                      <strong style={{ color: THEME.textMain }}>{t('profile.currentPlan')}:</strong> {billing?.current_plan?.name || 'Free'}{' '}
+                    <p className="text-sm leading-6 text-muted">
+                      <strong className="text-primary-900">{t('profile.currentPlan')}:</strong> {billing?.current_plan?.name || 'Free'}{' '}
                       {billing?.subscription?.expires_at ? `— expires ${new Date(billing.subscription.expires_at).toLocaleDateString()}` : ''}
                     </p>
 
-                    <div className="profile-plan-list">
-                      <h4 style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 16, fontWeight: 600 }}>{t('profile.availablePlans')}</h4>
+                    <div className={UI.profile.planList}>
+                      <h4 className="text-base font-bold text-primary-900">{t('profile.availablePlans')}</h4>
                       {(billing?.available_plans || []).length === 0 && (
-                        <p className="profile-detail-description">No subscription plans have been published yet. Please check back soon.</p>
+                        <p className={UI.profile.detailDescription}>No subscription plans have been published yet. Please check back soon.</p>
                       )}
                       {(billing?.available_plans || []).map((plan) => (
-                        <div key={plan.id} className="chart-bar-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
-                          <div className={searchParams.get('plan_id') === String(plan.id) ? 'profile-plan-option is-selected' : 'profile-plan-option'}>
-                            <strong style={{ display: 'block', color: THEME.textMain, fontFamily: THEME.font }}>{plan.name}</strong>
-                            <span style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 14 }}>
+                        <div key={plan.id} className="flex flex-wrap items-center justify-between gap-4">
+                          <div className={`${UI.profile.planOption} ${searchParams.get('plan_id') === String(plan.id) ? UI.profile.planOptionSelected : ''}`}>
+                            <strong className="block font-bold text-primary-900">{plan.name}</strong>
+                            <span className="text-sm leading-6 text-muted">
                               {plan.currency} {plan.price_amount} / {plan.duration_days} days · USDT TRC20
                             </span>
                           </div>
                           <Button
                             type="button"
+                            className="w-full sm:w-auto"
                             variant="primary"
                             loading={creatingCryptoPlanId === plan.id}
                             disabled={Boolean(creatingCryptoPlanId) || Boolean(billing?.subscription && ['active', 'awaiting_verification', 'pending'].includes(billing.subscription.status))}
@@ -1907,22 +1885,22 @@ export default function Profile() {
             )}
 
             {activeSection === 'certificates' && (
-              <Card variant="inset" className="profile-card card-lifted">
-                <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
-                  <AliverProfileGlyph name="award" style={{ color: 'var(--accent)' }} />
+              <Card variant="inset" className={UI.profile.card}>
+                <h3 className={UI.profile.detailTitle}>
+                  <AliverProfileGlyph name="award" className="text-secondary-700" />
                   {t('profile.certificatesEarned')}
                 </h3>
-                <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
+                <p className={UI.profile.detailDescription}>
                   {t('profile.certificatesDescription')}
                 </p>
 
                 {sectionLoading ? (
                   <Spinner context="data" size="sm" />
                 ) : (
-                  <div className="table-wrapper">
-                    <table className="data-table" style={{ color: THEME.textMain, fontFamily: THEME.font }}>
+                  <div className={UI.profile.tableWrapper}>
+                    <table className={UI.profile.dataTable} className="font-semibold text-primary-900">
                       <thead>
-                        <tr style={{ color: THEME.textMain }}>
+                        <tr className="text-primary-900">
                           <th>{t('profile.certificate')}</th>
                           <th>{t('profile.dateEarned')}</th>
                           <th>{t('profile.score')}</th>
@@ -1931,18 +1909,18 @@ export default function Profile() {
                       </thead>
                       <tbody>
                         {certificates.map((certificate) => (
-                          <tr key={certificate.id} style={{ color: THEME.textMain }}>
+                          <tr key={certificate.id} className="text-primary-900">
                             <td>{certificate.title}</td>
                             <td>{new Date(certificate.issued_at).toLocaleDateString()}</td>
                             <td>{certificate.score != null ? `${certificate.score}%` : '—'}</td>
                             <td>
-                              <code style={{ color: THEME.textMain, fontFamily: THEME.font }}>{certificate.verification_code}</code>
+                              <code className="font-semibold text-primary-900">{certificate.verification_code}</code>
                             </td>
                           </tr>
                         ))}
                         {certificates.length === 0 && !sectionError && (
                           <tr>
-                            <td colSpan={4} style={{ color: THEME.textMuted, textAlign: 'center' }}>
+                            <td colSpan={4} className="text-center text-sm text-muted">
                               {t('profile.noCertificates')}
                             </td>
                           </tr>
@@ -1954,29 +1932,29 @@ export default function Profile() {
             )}
 
             {activeSection === 'api' && (
-              <Card variant="inset" className="profile-card card-lifted">
-                <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
-                  <AliverProfileGlyph name="terminal" style={{ color: THEME.accent }} />
+              <Card variant="inset" className={UI.profile.card}>
+                <h3 className={UI.profile.detailTitle}>
+                  <AliverProfileGlyph name="terminal" className="text-secondary-700" />
                   {t('profile.apiAccess')}
                 </h3>
-                <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
+                <p className={UI.profile.detailDescription}>
                   {t('profile.apiDescription')}
                 </p>
 
                 {revealedKey && (
-                  <div className="notification-row" style={{ border: '1px solid var(--warning)', borderRadius: 8, padding: 16 }}>
+                  <div className={UI.profile.notificationRow} className="mt-3 rounded-xl border border-amber-200 bg-amber-50 p-4">
                     <div>
-                      <div style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14, fontWeight: 600 }}>
+                      <div className="text-sm font-semibold text-primary-900">
                         {t('profile.copyKeyWarning')}
                       </div>
-                      <code style={{ color: THEME.textMain, fontFamily: THEME.font, display: 'block', marginTop: 8, fontSize: 12 }}>
+                      <code className="mt-2 block break-all font-mono text-xs text-primary-900">
                         {revealedKey}
                       </code>
                     </div>
                   </div>
                 )}
 
-                <Button loading={creatingKey} loadingContext="brand" variant="outline" icon="plus" onClick={handleCreateApiKey} style={{ marginTop: 12 }}>
+                <Button loading={creatingKey} loadingContext="brand" variant="outline" icon="plus" onClick={handleCreateApiKey} className="mt-3">
                   {t('profile.generateNewKey')}
                 </Button>
 
@@ -1984,11 +1962,11 @@ export default function Profile() {
                   <Spinner context="data" size="sm" />
                 ) : (
                   apiKeys.map((key) => (
-                    <div className="notification-row" key={key.id}>
-                      <div className="profile-row-copy">
-                        <div style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14, fontWeight: 600 }}>{key.name}</div>
-                        <div style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 12 }}>
-                          <code style={{ color: THEME.textMuted }}>{key.key_prefix}…</code> · {key.is_active ? t('profile.active') : t('profile.revoked')}
+                    <div className={UI.profile.notificationRow} key={key.id}>
+                      <div className={UI.profile.rowCopy}>
+                        <div className="text-sm font-semibold text-primary-900">{key.name}</div>
+                        <div className="text-xs text-muted">
+                          <code className="text-muted">{key.key_prefix}…</code> · {key.is_active ? t('profile.active') : t('profile.revoked')}
                         </div>
                       </div>
                       {key.is_active && (
@@ -2003,29 +1981,29 @@ export default function Profile() {
             )}
 
             {activeSection === 'webhooks' && (
-              <Card variant="inset" className="profile-card card-lifted">
-                <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
-                  <AliverProfileGlyph name="webhook" style={{ color: 'var(--secondary)' }} />
+              <Card variant="inset" className={UI.profile.card}>
+                <h3 className={UI.profile.detailTitle}>
+                  <AliverProfileGlyph name="webhook" className="text-secondary-700" />
                   {t('profile.webhooks')}
                 </h3>
-                <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
+                <p className={UI.profile.detailDescription}>
                   {t('profile.webhooksDescription')}
                 </p>
 
-                <div className="profile-webhook-input-row">
+                <div className={UI.profile.webhookInputRow}>
                   <Input
                     value={newWebhookUrl}
                     onChange={(e) => setNewWebhookUrl(e.target.value)}
                     placeholder="https://example.com/webhook"
-                    className="profile-webhook-input"
+                    className={UI.profile.webhookInput}
                   />
                   <Button loading={creatingWebhook} loadingContext="brand" variant="outline" icon="plus" onClick={handleCreateWebhook}>
                     {t('profile.addWebhook')}
                   </Button>
                 </div>
-                <div style={{ marginTop: 12, display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+                <div className="mt-3 flex flex-wrap gap-3">
                   {['quiz.completed', 'api_key.created', 'api_key.revoked', 'webhook.test'].map((event) => (
-                    <label key={event} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: THEME.textSecondary, fontSize: 12 }}>
+                    <label key={event} className="inline-flex items-center gap-2 text-xs text-muted">
                       <input
                         type="checkbox"
                         checked={webhookEvents.includes(event)}
@@ -2036,9 +2014,9 @@ export default function Profile() {
                   ))}
                 </div>
                 {webhookSecret && (
-                  <div className="notification-row" style={{ marginTop: 12, border: '1px solid var(--warning)', padding: 12 }}>
-                    <strong style={{ color: THEME.textMain }}>Save this webhook secret now. You won't be able to view it again here.</strong>
-                    <code style={{ display: 'block', marginTop: 6, wordBreak: 'break-all' }}>{webhookSecret}</code>
+                  <div className="mt-3 rounded-xl border border-amber-200 bg-amber-50 p-3">
+                    <strong className="text-primary-900">Save this webhook secret now. You won't be able to view it again here.</strong>
+                    <code className="mt-2 block break-all font-mono text-xs text-amber-950">{webhookSecret}</code>
                   </div>
                 )}
 
@@ -2046,14 +2024,14 @@ export default function Profile() {
                   <Spinner context="data" size="sm" />
                 ) : (
                   webhooks.map((webhook) => (
-                    <div className="notification-row" key={webhook.id}>
-                      <div className="profile-row-copy">
-                        <div style={{ color: THEME.textMain, fontFamily: THEME.font, fontSize: 14, fontWeight: 600 }}>{webhook.url}</div>
-                        <div style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 12 }}>
+                    <div className={UI.profile.notificationRow} key={webhook.id}>
+                      <div className={UI.profile.rowCopy}>
+                        <div className="text-sm font-semibold text-primary-900">{webhook.url}</div>
+                        <div className="text-xs text-muted">
                           {(webhook.events || []).join(', ')} · {webhook.is_active ? t('profile.active') : t('profile.disabled')}
                         </div>
                       </div>
-                      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                      <div className="flex flex-wrap gap-2">
                         <Button variant="outline" size="sm" loading={updatingWebhookId === webhook.id} onClick={() => handleToggleWebhook(webhook)}>
                           {webhook.is_active ? 'Disable' : 'Enable'}
                         </Button>
@@ -2073,36 +2051,36 @@ export default function Profile() {
             )}
 
             {activeSection === 'account' && (
-              <Card variant="inset" className="profile-card card-lifted">
-                <h3 style={{ display: 'flex', alignItems: 'center', gap: 8, color: THEME.textMain, fontFamily: THEME.font, fontSize: 18, fontWeight: 600 }}>
-                  <AliverProfileGlyph name="shield" style={{ color: THEME.error }} />
+              <Card variant="inset" className={UI.profile.card}>
+                <h3 className={UI.profile.detailTitle}>
+                  <AliverProfileGlyph name="shield" className="text-red-700" />
                   {t('profile.accountData')}
                 </h3>
-                <p style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15, marginBottom: 16 }}>
+                <p className={UI.profile.detailDescription}>
                   {t('profile.accountDescription')}
                 </p>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
+                <div className="mb-2 flex items-center gap-3">
                   <span
-                    className="status-indicator-dot"
-                    style={{ background: profileMeta?.is_active === false ? THEME.error : THEME.success }}
+                    className={UI.profile.statusIndicatorDot}
+                    className={profileMeta?.is_active === false ? 'bg-red-600' : 'bg-emerald-600'}
                   />
-                  <span style={{ color: THEME.textSecondary, fontFamily: THEME.font, fontSize: 15 }}>
+                  <span className="text-sm leading-6 text-muted">
                     {profileMeta?.is_active === false ? t('profile.inactiveAccount') : t('profile.activeAccount')}
                   </span>
                 </div>
 
-                <hr className="divider profile-divider" style={{ borderColor: THEME.border }} />
+                <hr className={UI.profile.divider}  />
 
-                <p style={{ color: THEME.textMuted, fontFamily: THEME.font, fontSize: 14 }}>
+                <p className="text-sm text-muted">
                   {t('profile.accountCreated', { date: profileMeta?.created_at ? new Date(profileMeta.created_at).toLocaleDateString() : '—' })}
                 </p>
 
-                <div className="profile-flex-wrap">
+                <div className={UI.profile.flexWrap}>
                   <Button variant="outline" icon="download" loading={exportLoading} loadingContext="brand" loadingLabel={t('profile.preparing')} onClick={handleDataExport}>
                     {t('profile.exportAllData')}
                   </Button>
-                  <div className="profile-account-delete-confirm">
+                  <div className={UI.profile.accountDeleteConfirm}>
                     <p>To permanently delete your account, slide to confirm. You can’t undo this action.</p>
                     <SlideToConfirmButton
                       label={t('profile.requestAccountDeletion')}
@@ -2118,10 +2096,10 @@ export default function Profile() {
           </div>
         </div>
 
-        <div style={{ textAlign: 'right', marginTop: 32, marginBottom: 8, fontFamily: THEME.font, fontStyle: 'italic', color: THEME.textMuted, fontSize: 14 }}>
+        <div className="mb-2 mt-8 text-right text-sm italic text-muted">
           — Ali
         </div>
       </Container>
-    </div>
+    </main>
   );
 }

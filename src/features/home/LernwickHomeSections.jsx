@@ -54,13 +54,13 @@ function resolveStudio(activeLevelName, activeGroupName) {
 
 function PublicPathways() {
   return (
-    <section className="w-full bg-[#E8F4F2] py-16 sm:py-20" id="pathways" aria-labelledby="lernwick-pathways-title">
+    <section className="w-full bg-primary-50 py-16 sm:py-20" id="pathways" aria-labelledby="lernwick-pathways-title">
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
         <div className="mb-9 grid grid-cols-1 items-center gap-5 md:grid-cols-[minmax(0,1fr)_260px]">
           <div>
             
             <h2 id="lernwick-pathways-title">Choose the science you want to explore</h2>
-            <p className="mt-8">Each programme has its own subject focus and learning experience.</p>
+            <p className="mt-8 text-slate-600">Each programme has its own subject focus and learning experience.</p>
           </div>
           <StorysetIllustration name="onlineLearning" alt="Student taking part in online learning" className="mx-auto w-full max-w-[240px] md:max-w-[260px]" />
         </div>
@@ -114,10 +114,10 @@ const learningSteps = {
 function HowLearningWorks({ studio }) {
   const steps = studio ? learningSteps[studio.kind === 'biology-foundations' ? 'olevel' : studio.kind === 'advanced-biology' ? 'alevel' : 'pharmacy'] : learningSteps.general;
   return (
-    <section className="w-full bg-[#526B8A] py-16 sm:py-20" id="how" aria-labelledby="lernwick-how-title">
+    <section className="w-full bg-primary-800 py-16 sm:py-20" id="how" aria-labelledby="lernwick-how-title">
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
         <div className="mx-auto mb-10 flex max-w-5xl flex-col items-center gap-6 text-center sm:flex-row sm:text-left">
-          <div className="min-w-0 flex-1"><h2 id="lernwick-how-title" className="text-white"><span className="organic-letter organic-letter--accent">L</span>earn, practise and progress</h2><p className="mt-8">Your learning journey moves from understanding concepts to applying and strengthening them.</p></div>
+          <div className="min-w-0 flex-1"><h2 id="lernwick-how-title" className="text-white"><span className="text-secondary-200">L</span>earn, practise and progress</h2><p className="mt-8 text-primary-100">Your learning journey moves from understanding concepts to applying and strengthening them.</p></div>
           <StorysetIllustration name="studying" alt="Learner practising and reviewing concepts" className="hidden w-40 shrink-0 object-contain sm:block" />
         </div>
         <ol className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -223,13 +223,13 @@ export function ConnectedLearning() {
 
 function ProgrammeStudio({ studio, activeGroupName, activeGroupId }) {
   return (
-    <section className="w-full bg-[#E8F4F2] py-16 sm:py-20" aria-labelledby="programme-studio-title">
+    <section className="w-full bg-primary-50 py-16 sm:py-20" aria-labelledby="programme-studio-title">
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1fr_0.8fr]">
           <div className="max-w-2xl">
             
             <h2 id="programme-studio-title">{studio.title}</h2>
-            <p className="mt-8">{studio.description}</p>
+            <p className="mt-8 text-slate-600">{studio.description}</p>
           </div>
           <div className="flex min-h-72 items-center justify-center" aria-label={studio.visualLabel}>
             <StorysetIllustration name={studio.visual === 'pharmacy' ? 'medicalResearch' : 'studying'} alt={studio.visualLabel} className="w-full max-w-[300px] object-contain" />

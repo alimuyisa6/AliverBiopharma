@@ -74,8 +74,8 @@ export default function CommunityPage() {
   }, [user]);
 
   return (
-    <div className="home-page">
-      <section className="w-full px-5 py-10 sm:px-8 sm:py-14" style={{ backgroundColor: '#EAF2FA' }} aria-labelledby="community-page-heading">
+    <main className="min-h-screen w-full bg-background">
+      <section className="w-full bg-primary-50 px-5 py-10 sm:px-8 sm:py-14" aria-labelledby="community-page-heading">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-8">
           <div className="min-w-0">
             <h1 id="community-page-heading" className="text-3xl font-bold leading-tight text-primary-900 sm:text-4xl">Learning community</h1>
@@ -99,6 +99,6 @@ export default function CommunityPage() {
         weeklyChallengeAnswer={weeklyChallengeAnswer}
         onWeeklySubmit={handleWeeklyChallengeSubmit} challengeSubmitting={challengeSubmitting}
       />
-    </div>
+    </main>
   );
 }

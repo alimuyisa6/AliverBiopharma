@@ -9,6 +9,7 @@ import EmptyState from '../../components/EmptyState/EmptyState';
 import Spinner from '../../components/Spinner/Spinner';
 import StorysetIllustration from '../../components/StorysetIllustration';
 import { useToast } from '../../components/Toast/Toast';
+import { UI } from '../../design-system';
 
 export default function TutorMarketplaceSection() {
   const { user } = useAuth();
@@ -50,70 +51,28 @@ export default function TutorMarketplaceSection() {
     }
   };
 
-  if (loading) {
-    return (
-      <section className="section">
-        <div className="tutor-section-loading">
-          <Spinner size="lg" />
-        </div>
-      </section>
-    );
-  }
+  if (loading) return <section className="w-full py-12 sm:py-16"><div className="flex min-h-40 items-center justify-center"><Spinner size="lg" /></div></section>;
 
   const backgroundUrl = getUiImage('tutor_section_background') || '/images/tutors.jpg';
 
   return (
-    <section
-      className={`section reveal ${tutors.length > 0 ? 'section-with-bg' : ''}`}
-      style={tutors.length > 0 ? {
-        backgroundImage: `url(${backgroundUrl})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed'
-      } : undefined}
-    >
-      <div className={tutors.length > 0 ? 'section-overlay' : ''}>
-        
-        <div className="mb-8 flex items-center justify-between gap-6">
-          <div><h2 className="section-title">Learn From Someone<br />Who Gets It</h2><p className="section-subtitle mt-8">Browse verified specialists in biology and pharmacy, matched to how you learn best.</p></div>
+    <section className={`relative isolate w-full overflow-hidden px-5 py-12 sm:px-8 sm:py-16 ${tutors.length > 0 ? 'bg-cover bg-center bg-fixed text-white' : 'bg-background text-foreground'}`} style={tutors.length > 0 ? { backgroundImage: `url(${backgroundUrl})` } : undefined}>
+      {tutors.length > 0 && <div className="absolute inset-0 -z-0 bg-primary-900/80" aria-hidden="true" />}
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl gap-8">
+        <header className="flex flex-wrap items-center justify-between gap-6">
+          <div className="min-w-0 max-w-3xl"><h2 className={`text-3xl font-extrabold leading-tight sm:text-4xl ${tutors.length > 0 ? 'text-white' : 'text-primary-900'}`}>Learn From Someone<br />Who Gets It</h2><p className={`mt-4 text-base leading-7 ${tutors.length > 0 ? 'text-primary-100' : 'text-muted'}`}>Browse verified specialists in biology and pharmacy, matched to how you learn best.</p></div>
           <StorysetIllustration name="teaching" alt="Tutor guiding a learner" className="hidden w-36 shrink-0 object-contain sm:block" />
-        </div>
+        </header>
 
         {tutors.length > 0 ? (
           <>
-            <div className="classroom-level-grid">
-              {tutors.map((tutor) => (
-                <SplitCard
-                  key={tutor.id}
-                  image={tutor.avatar_url}
-                  fallbackImage={getUiImage('default_tutor_avatar') || '/images/default-tutor.jpg'}
-                  title={tutor.display_name}
-                  subtitle={tutor.headline || 'Qualified Tutor'}
-                  badge={tutor.specialty || 'Tutor'}
-                  badgeVariant="success"
-                  link={`/tutor/${tutor.id}`}
-                  buttonText="View"
-                  onButtonClick={() => handleContact(tutor)}
-                    contactLoading={contactingId === tutor.user_id}
-                />
-              ))}
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {tutors.map((tutor) => <SplitCard key={tutor.id} image={tutor.avatar_url} fallbackImage={getUiImage('default_tutor_avatar') || '/images/default-tutor.jpg'} title={tutor.display_name} subtitle={tutor.headline || 'Qualified Tutor'} badge={tutor.specialty || 'Tutor'} badgeVariant="success" link={`/tutor/${tutor.id}`} buttonText="View" onButtonClick={() => handleContact(tutor)} contactLoading={contactingId === tutor.user_id} />)}
             </div>
-            <div className="tutor-section-footer">
-              <Link to="/tutors" className="btn btn-primary">Browse All Tutors</Link>
-            </div>
+            <div className="flex flex-wrap gap-3"><Link to="/tutors" className={UI.primaryButton}>Browse All Tutors <Icon name="arrow-right" /></Link></div>
           </>
         ) : (
-          <EmptyState
-            image={getUiImage('empty_state_tutors')}
-            title="Be the first to teach here"
-            description="Our marketplace is just getting started — apply as a tutor and claim your spot before anyone else."
-            action={
-              <div className="tutor-empty-actions">
-                <Link to="/tutors" className="btn btn-secondary">Browse anyway</Link>
-                <Link to="/tutor/apply" className="btn btn-primary">Apply as a Tutor</Link>
-              </div>
-            }
-          />
+          <EmptyState image={getUiImage('empty_state_tutors')} title="Be the first to teach here" description="Our marketplace is just getting started — apply as a tutor and claim your spot before anyone else." action={<div className="flex flex-wrap justify-center gap-3"><Link to="/tutors" className={UI.secondaryButton}>Browse anyway</Link><Link to="/tutor/apply" className={UI.primaryButton}>Apply as a Tutor</Link></div>} />
         )}
       </div>
     </section>

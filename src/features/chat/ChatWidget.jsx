@@ -22,8 +22,8 @@ export function ChatWidget({ chatOpen, chatMessages = [], chatInput, adminOnline
             <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/15 text-white"><svg viewBox="0 0 24 24" className="h-6 w-6" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 13v-1a9 9 0 0 1 18 0v1"/><path d="M5 13h2v6H5a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2Zm14 0h-2v6h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2Z"/></svg></span>
             <div className="min-w-0 flex-1">
               <h2 className="text-lg font-bold text-white">Support</h2>
-              <p className="mt-1 text-xs leading-5 text-blue-100">Questions about your learning experience? We’re here to help.</p>
-              <div className="mt-2 flex items-center gap-2 text-xs text-blue-100"><span className={`h-2 w-2 shrink-0 rounded-full ${adminOnline ? 'bg-emerald-400' : 'bg-orange-300'}`} />{adminOnline ? 'We usually reply within minutes' : 'Currently offline — leave a message'}</div>
+              <p className="mt-1 text-xs leading-5 text-primary-100">Questions about your learning experience? We’re here to help.</p>
+              <div className="mt-2 flex items-center gap-2 text-xs text-primary-100"><span className={`h-2 w-2 shrink-0 rounded-full ${adminOnline ? 'bg-emerald-400' : 'bg-secondary-400'}`} />{adminOnline ? 'We usually reply within minutes' : 'Currently offline — leave a message'}</div>
             </div>
             <button type="button" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-white transition hover:bg-white/15" onClick={onToggle} aria-label="Close chat"><svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
           </header>
@@ -39,7 +39,7 @@ export function ChatWidget({ chatOpen, chatMessages = [], chatInput, adminOnline
             {chatMessages.map((msg) => (
               <div key={msg.id} className={`flex min-w-0 ${msg.sender_type === 'user' ? 'justify-end' : 'justify-start'}`}>
                 <div className={`group relative max-w-[88%] min-w-0 rounded-2xl px-3.5 py-3 shadow-sm ${msg.sender_type === 'user' ? 'rounded-br-md bg-primary-700 text-white' : 'rounded-bl-md border border-slate-200 bg-white text-slate-800'}`}>
-                  <div className={`mb-1 text-[11px] font-bold ${msg.sender_type === 'user' ? 'text-blue-100' : 'text-primary-700'}`}>{msg.sender_type === 'user' ? 'You' : 'Support Team'}</div>
+                  <div className={`mb-1 text-[11px] font-bold ${msg.sender_type === 'user' ? 'text-primary-100' : 'text-primary-700'}`}>{msg.sender_type === 'user' ? 'You' : 'Support Team'}</div>
                   <div className="whitespace-pre-wrap break-words text-sm leading-6">{msg.content}</div>
                   {msg.sender_type === 'user' && <Button className="mt-2 !min-h-7 !px-2 !text-xs" variant="ghost" size="sm" onClick={() => onDeleteMsg(msg.id)} aria-label="Delete message" loading={deletingId === msg.id} loadingContext="default" icon="trash">Delete</Button>}
                 </div>

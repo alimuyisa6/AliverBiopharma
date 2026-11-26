@@ -1,6 +1,7 @@
 /* components/FlashcardWelcome.jsx */
 import { useEffect, useState } from 'react';
 import Icon from './Icon/Icon';
+import { UI } from '../design-system';
 
 export default function FlashcardWelcome({ user, level, discipline, cls, onDone }) {
   const [flipped, setFlipped] = useState(false);
@@ -29,20 +30,20 @@ export default function FlashcardWelcome({ user, level, discipline, cls, onDone 
 
         <div className="relative mx-auto mt-8 w-full max-w-lg [perspective:1000px]">
           <div className={`relative grid min-h-64 [transform-style:preserve-3d] transition-transform duration-700 ${flipped ? '[transform:rotateY(180deg)]' : ''}`}>
-            <div className="absolute inset-0 flex min-h-64 flex-col items-center justify-center gap-4 rounded-2xl border border-blue-200 bg-blue-50 p-6 text-blue-950 shadow-sm [backface-visibility:hidden]">
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-blue-700" aria-hidden="true"><Icon name="hand" plain /></span>
+            <div className={UI.flashcardWelcomeFront}>
+              <span className={UI.flashcardWelcomeIcon} aria-hidden="true"><Icon name="hand" plain /></span>
               <h3 className="text-xl font-bold leading-7">Welcome, {displayName}</h3>
               <p className="text-sm leading-6 text-slate-600">
                 Get ready for your {level} {discipline} flashcards.
               </p>
             </div>
 
-            <div className="absolute inset-0 flex min-h-64 flex-col items-center justify-center gap-4 rounded-2xl border border-teal-200 bg-teal-50 p-6 text-teal-950 shadow-sm [backface-visibility:hidden] [transform:rotateY(180deg)]">
+            <div className={UI.flashcardWelcomeBack}>
               <h3 className="text-xl font-bold leading-7">Please have a seat.</h3>
               <p className="text-sm leading-6 text-slate-600">
                 Loading your personalised study session…
               </p>
-              <span className="inline-flex items-center gap-2 rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-800">
+              <span className={UI.flashcardWelcomeBadge}>
                 <Icon name="layer-group" /> {cls}
               </span>
             </div>

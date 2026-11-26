@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { useLevelFilter } from '../hooks/useLevelFilter';
 import {
   getClassroomLevels,
   getClassroomTopics,
@@ -12,16 +11,16 @@ import Icon from '../components/Icon/Icon';
 import StorysetIllustration from '../components/StorysetIllustration';
 import Spinner from '../components/Spinner/Spinner';
 import Button from '../components/Button/Button';
-import Card from '../components/Card/Card';
 import Textarea from '../components/Textarea/Textarea';
 import { useToast } from '../components/Toast/Toast';
+import PageHeader from '../components/PageHeader/PageHeader';
+import { UI } from '../design-system';
 
-const CARD_ACCENTS = ['primary', 'navy', 'mint'];
+const LEVEL_ICON_TONES = ['bg-primary-100 text-primary-800', 'bg-secondary-100 text-secondary-800', 'bg-emerald-100 text-emerald-800'];
 
 export default function TutorApply() {
   const { user } = useAuth();
   const navigate = useNavigate();
-  const { displayName } = useLevelFilter();
   const addToast = useToast();
 
   const [step, setStep] = useState(1);
@@ -133,195 +132,72 @@ export default function TutorApply() {
     }
   }
 
-  if (loading) {
-    return (
-      <div className="section" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh' }}>
-        <Spinner size="lg" />
-      </div>
-    );
-  }
+  if (loading) return <main className="flex min-h-[60vh] items-center justify-center bg-primary-50" aria-busy="true"><Spinner size="lg" /></main>;
 
   if (existingApplication) {
     const statusLabels = {
-      pending: { label: 'Under review', color: 'var(--warning)' },
-      scheduled: { label: 'Interview scheduled', color: 'var(--primary)' },
-      interviewed: { label: 'Interview completed', color: 'var(--accent)' },
-      approved: { label: 'Approved', color: 'var(--success)' },
-      rejected: { label: 'Rejected', color: 'var(--error)' }
+      pending: { label: 'Under review', tone: 'warning' },
+      scheduled: { label: 'Interview scheduled', tone: 'primary' },
+      interviewed: { label: 'Interview completed', tone: 'secondary' },
+      approved: { label: 'Approved', tone: 'success' },
+      rejected: { label: 'Rejected', tone: 'error' }
     };
-
     const status = statusLabels[existingApplication.status] || statusLabels.pending;
+    const statusTone = { warning: 'bg-amber-100 text-amber-900', primary: 'bg-primary-100 text-primary-900', secondary: 'bg-secondary-100 text-secondary-900', success: 'bg-emerald-100 text-emerald-900', error: 'bg-red-100 text-red-900' }[status.tone];
 
     return (
-      <div className="section" style={{ paddingTop: 'var(--space-6)' }}>
-        
-        <h1 className="section-title" style={{ textAlign: 'left', margin: '0 0 var(--space-2)' }}>
-          Tutor application<br />status
-        </h1>
-        <h2 className="page-intro">
-          Check the latest status of your tutor application.
-        </h2>
-
-        <Card style={{ padding: 'var(--space-8)', textAlign: 'center', maxWidth: 500, margin: '0 auto' }}>
-          <Icon name="circle-info" style={{ fontSize: '3rem', color: status.color, marginBottom: 'var(--space-4)' }} />
-          <h2 style={{ color: status.color, marginBottom: 'var(--space-4)' }}>{status.label}</h2>
-
-          <div style={{ marginBottom: 'var(--space-6)' }}>
-            <p><strong>Level:</strong> {existingApplication.level}</p>
-            <p><strong>Class:</strong> {existingApplication.class_name}</p>
-            <p><strong>Subjects:</strong> {(existingApplication.subjects || []).join(', ')}</p>
-            {existingApplication.rejection_reason && <p style={{ color: 'var(--error)' }}><strong>Reason:</strong> {existingApplication.rejection_reason}</p>}
-            {existingApplication.interview_scheduled_at && <p><strong>Interview:</strong> {new Date(existingApplication.interview_scheduled_at).toLocaleString()}</p>}
-          </div>
-
-          <div style={{ display: 'flex', gap: 'var(--space-4)', justifyContent: 'center' }}>
+      <main className="min-h-screen w-full bg-primary-50 px-4 py-8 sm:px-6 sm:py-12">
+        <div className="mx-auto grid w-full max-w-3xl gap-7">
+          <PageHeader label="Tutor application" title="Application status" subtitle="Check the latest status of your tutor application." />
+          <section className={`${UI.card} mx-auto grid w-full max-w-xl justify-items-center gap-5 p-6 text-center sm:p-8`}>
+            <span className={`inline-flex h-16 w-16 items-center justify-center rounded-2xl ${statusTone}`}><Icon name="circle-info" size="2rem" /></span>
+            <h2 className="text-xl font-extrabold text-primary-900">{status.label}</h2>
+            <div className="grid w-full gap-3 border-y border-border py-5 text-left text-sm text-slate-700"><p><strong>Level:</strong> {existingApplication.level}</p><p><strong>Class:</strong> {existingApplication.class_name}</p><p><strong>Subjects:</strong> {(existingApplication.subjects || []).join(', ')}</p>{existingApplication.rejection_reason && <p className="text-red-700"><strong>Reason:</strong> {existingApplication.rejection_reason}</p>}{existingApplication.interview_scheduled_at && <p><strong>Interview:</strong> {new Date(existingApplication.interview_scheduled_at).toLocaleString()}</p>}</div>
             <Button onClick={() => navigate('/tutor/dashboard')} icon="gauge-high">Tutor Dashboard</Button>
-          </div>
-        </Card>
-      </div>
+          </section>
+        </div>
+      </main>
     );
   }
 
   if (submitted) {
     return (
-      <div className="section" style={{ paddingTop: 'var(--space-6)', textAlign: 'center' }}>
-        <Icon name="circle-check" style={{ fontSize: '3rem', color: 'var(--success)', marginBottom: 'var(--space-4)' }} />
-        <h1 className="section-title">
-          Application<br />submitted
-        </h1>
-        <h2 className="status-description">
-          Your application has been received. We’ll review it and update your status here.
-        </h2>
-
-        <div style={{ display: 'flex', gap: 'var(--space-4)', justifyContent: 'center', marginTop: 'var(--space-6)' }}>
-          <Button onClick={() => navigate('/tutor/dashboard')} icon="gauge-high">Go to Tutor Dashboard</Button>
-          <Button variant="secondary" onClick={() => navigate('/classroom')} icon="users">Back to Classrooms</Button>
-        </div>
-      </div>
+      <main className="flex min-h-[70vh] w-full flex-col items-center justify-center gap-5 bg-primary-50 px-4 py-12 text-center">
+        <span className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-800"><Icon name="circle-check" size="2rem" /></span>
+        <h1 className="text-3xl font-extrabold text-primary-900 sm:text-4xl">Application submitted</h1>
+        <p className="max-w-2xl text-sm leading-7 text-muted">Your application has been received. We’ll review it and update your status here.</p>
+        <div className="flex flex-wrap justify-center gap-3"><Button onClick={() => navigate('/tutor/dashboard')} icon="gauge-high">Go to Tutor Dashboard</Button><Button variant="secondary" onClick={() => navigate('/classroom')} icon="users">Back to Classrooms</Button></div>
+      </main>
     );
   }
 
   return (
-    <div className="tutor-apply-page">
-      <div className="section" style={{ paddingTop: 'var(--space-6)' }}>
-        
-        <div className="flex items-center justify-between gap-5">
-          <div><h1 className="section-title" style={{ textAlign: 'left', margin: '0 0 var(--space-2)' }}>Apply to become a<br />tutor</h1><h2 className="page-intro">Share your knowledge and help learners succeed. Complete the steps below to apply.</h2></div>
-          <StorysetIllustration name="careerProgress" alt="Career growth through tutoring" className="hidden w-36 shrink-0 object-contain sm:block" />
-        </div>
+    <main className="min-h-screen w-full bg-primary-50 px-4 py-8 sm:px-6 sm:py-12">
+      <div className="mx-auto grid w-full max-w-6xl gap-8">
+        <header className="grid items-center gap-5 border-b border-border pb-7 sm:grid-cols-[minmax(0,1fr)_150px]">
+          <PageHeader label="Tutor application" title="Apply to become a tutor" subtitle="Share your knowledge and help learners succeed. Complete the steps below to apply." />
+          <StorysetIllustration name="careerProgress" alt="Career growth through tutoring" className="mx-auto hidden w-36 shrink-0 object-contain sm:block" />
+        </header>
 
-        <div style={{ display: 'flex', justifyContent: 'center', gap: 'var(--space-8)', marginBottom: 'var(--space-8)' }}>
-          {[1, 2, 3].map((number) => (
-            <div key={number} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
-              <span className={`badge ${step >= number ? 'badge-primary' : 'badge-ghost'}`} style={{ borderRadius: '50%', width: 32, height: 32, justifyContent: 'center' }}>
-                {number}
-              </span>
-              <span style={{ fontSize: 'var(--text-sm)', color: step >= number ? 'var(--text-main)' : 'var(--text-muted)' }}>
-                {number === 1 ? 'Level' : number === 2 ? 'Class' : 'Subjects'}
-              </span>
-            </div>
-          ))}
-        </div>
+        <nav className="flex flex-wrap items-center justify-center gap-5 sm:gap-8" aria-label="Application steps">
+          {[1, 2, 3].map((number) => <div key={number} className="flex items-center gap-3"><span className={`inline-flex h-9 w-9 items-center justify-center rounded-full text-sm font-extrabold ${step >= number ? 'bg-primary-800 text-white' : 'bg-slate-200 text-slate-600'}`}>{number}</span><span className={`text-sm font-semibold ${step >= number ? 'text-primary-900' : 'text-muted'}`}>{number === 1 ? 'Level' : number === 2 ? 'Class' : 'Subjects'}</span></div>)}
+        </nav>
 
         {step === 1 && !user?.profile?.track && (
-          <div>
-            <h3 style={{ marginBottom: 'var(--space-6)' }}>Choose the level you’d like to teach</h3>
-
-            <div className="grid grid-cols-3">
-              {levels.map((level, index) => (
-                <Card key={level.key}>
-                  <div className="card-image-placeholder">
-                    <Icon name={level.icon === 'dna' ? 'microscope' : level.icon || 'graduation-cap'} className={`tutor-level-icon tutor-level-icon--${CARD_ACCENTS[index % CARD_ACCENTS.length]}`} />
-                  </div>
-                  <div className="card-body" style={{ textAlign: 'center' }}>
-                    <h3 className="card-title">{level.key}</h3>
-                  </div>
-                  <div className="card-footer">
-                    <Button size="sm" onClick={() => handleLevelSelect(level)}>Select</Button>
-                  </div>
-                </Card>
-              ))}
-            </div>
-          </div>
+          <section className="grid gap-5"><h2 className="text-xl font-extrabold text-primary-900">Choose the level you’d like to teach</h2><div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">{levels.map((level, index) => <article key={level.key} className={`${UI.card} grid gap-4 p-5 text-center`}><span className={`mx-auto inline-flex h-16 w-16 items-center justify-center rounded-2xl ${LEVEL_ICON_TONES[index % LEVEL_ICON_TONES.length]}`}><Icon name={level.icon === 'dna' ? 'microscope' : level.icon || 'graduation-cap'} size="2rem" /></span><h3 className="text-lg font-extrabold text-primary-900">{level.key}</h3><Button size="sm" onClick={() => handleLevelSelect(level)}>Select</Button></article>)}</div></section>
         )}
 
         {step === 2 && selectedLevel && (
-          <div>
-            <Button variant="ghost" onClick={() => setStep(1)} icon="arrow-left" style={{ marginBottom: 'var(--space-6)' }}>Back</Button>
-            <h3 style={{ marginBottom: 'var(--space-6)' }}>Choose the class you’d like to teach in {selectedLevel.key}</h3>
-
-            <div className="grid grid-cols-3">
-              {(selectedLevel.classes || []).map((cls, index) => {
-                const name = typeof cls === 'string' ? cls : cls.name;
-                const icon = typeof cls === 'object' ? cls.icon : null;
-
-                return (
-                  <Card key={name}>
-                    <div className="card-image-placeholder">
-                      <Icon name={icon === 'dna' ? 'microscope' : icon || 'book-open'} className={`tutor-level-icon tutor-level-icon--${CARD_ACCENTS[index % CARD_ACCENTS.length]}`} />
-                    </div>
-                    <div className="card-body" style={{ textAlign: 'center' }}>
-                      <h3 className="card-title">{name}</h3>
-                    </div>
-                    <div className="card-footer">
-                      <Button size="sm" onClick={() => handleClassSelect(cls)}>Select</Button>
-                    </div>
-                  </Card>
-                );
-              })}
-            </div>
-          </div>
+          <section className="grid gap-5"><Button variant="ghost" className="w-fit" onClick={() => setStep(1)} icon="arrow-left">Back</Button><h2 className="text-xl font-extrabold text-primary-900">Choose the class you’d like to teach in {selectedLevel.key}</h2><div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">{(selectedLevel.classes || []).map((cls, index) => { const name = typeof cls === 'string' ? cls : cls.name; const icon = typeof cls === 'object' ? cls.icon : null; return <article key={name} className={`${UI.card} grid gap-4 p-5 text-center`}><span className={`mx-auto inline-flex h-16 w-16 items-center justify-center rounded-2xl ${LEVEL_ICON_TONES[index % LEVEL_ICON_TONES.length]}`}><Icon name={icon === 'dna' ? 'microscope' : icon || 'book-open'} size="2rem" /></span><h3 className="text-lg font-extrabold text-primary-900">{name}</h3><Button size="sm" onClick={() => handleClassSelect(cls)}>Select</Button></article>; })}</div></section>
         )}
 
         {step === 3 && (
-          <div>
-            <Button variant="ghost" onClick={() => setStep(2)} icon="arrow-left" style={{ marginBottom: 'var(--space-6)' }}>Back</Button>
-            <h3 style={{ marginBottom: 'var(--space-6)' }}>
-              Choose the topics you can teach in {selectedClass?.name}
-            </h3>
-
-            {topics.length === 0 ? (
-              <p style={{ color: 'var(--text-dim)', marginBottom: 'var(--space-6)' }}>No topics available for this class.</p>
-            ) : (
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-3)', marginBottom: 'var(--space-8)' }}>
-                {topics.map((topic) => (
-                  <Button
-                    key={topic.id}
-                    variant={selectedTopics.includes(topic.topic_name) ? 'primary' : 'ghost'}
-                    onClick={() => toggleTopic(topic.topic_name)}
-                    icon={selectedTopics.includes(topic.topic_name) ? 'square-check' : 'square'}
-                  >
-                    {topic.topic_name}
-                    {topic.is_hard_topic && <span className="badge badge-error">Hard</span>}
-                  </Button>
-                ))}
-              </div>
-            )}
-
-            <Textarea
-              label="Qualifications"
-              placeholder="Describe your qualifications..."
-              value={qualifications}
-              onChange={(event) => setQualifications(event.target.value)}
-              rows={4}
-            />
-
-            <Textarea
-              label="Teaching Experience"
-              placeholder="Describe your teaching experience..."
-              value={experience}
-              onChange={(event) => setExperience(event.target.value)}
-              rows={4}
-            />
-
-            <div style={{ marginTop: 'var(--space-8)', textAlign: 'right' }}>
-              <Button onClick={handleSubmit} loading={submitting} disabled={selectedTopics.length === 0} icon="paper-plane">
-                Submit application
-              </Button>
-            </div>
-          </div>
+          <section className="grid gap-5"><Button variant="ghost" className="w-fit" onClick={() => setStep(2)} icon="arrow-left">Back</Button><h2 className="text-xl font-extrabold text-primary-900">Choose the topics you can teach in {selectedClass?.name}</h2>
+            {topics.length === 0 ? <p className="rounded-xl bg-white p-4 text-sm text-muted">No topics available for this class.</p> : <div className="flex flex-wrap gap-3">{topics.map((topic) => <Button key={topic.id} variant={selectedTopics.includes(topic.topic_name) ? 'primary' : 'secondary'} onClick={() => toggleTopic(topic.topic_name)} icon={selectedTopics.includes(topic.topic_name) ? 'square-check' : 'square'}>{topic.topic_name}{topic.is_hard_topic && <span className="ml-1 rounded-full bg-red-100 px-2 py-0.5 text-[10px] font-bold text-red-800">Hard</span>}</Button>)}</div>}
+            <div className="grid gap-4 rounded-2xl border border-border bg-white p-5 sm:p-6"><Textarea label="Qualifications" placeholder="Describe your qualifications..." value={qualifications} onChange={(event) => setQualifications(event.target.value)} rows={4} /><Textarea label="Teaching Experience" placeholder="Describe your teaching experience..." value={experience} onChange={(event) => setExperience(event.target.value)} rows={4} /><div className="flex justify-end border-t border-border pt-4"><Button onClick={handleSubmit} loading={submitting} disabled={selectedTopics.length === 0} icon="paper-plane">Submit application</Button></div></div>
+          </section>
         )}
       </div>
-    </div>
+    </main>
   );
 }

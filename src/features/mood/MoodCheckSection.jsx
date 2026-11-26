@@ -1,6 +1,7 @@
 /* features/mood/MoodCheckSection.jsx */
 import Icon from '../../components/Icon/Icon';
 import Button from '../../components/Button/Button';
+import { UI } from '../../design-system';
 
 const MOODS = [
   { key: 'struggling', icon: 'circle-xmark', label: 'Struggling' },
@@ -19,48 +20,22 @@ export function MoodCheckSection({
   onSubmit
 }) {
   return (
-    <section className="mood-check-section section reveal rounded-2xl px-5 py-8 sm:px-8" style={{ backgroundColor: '#E8F4F2' }}>
-      
-      <h2 className="section-title">
-        How Are You<br />Feeling Today?
-      </h2>
-      <p className="section-subtitle">
-        Your feedback helps us improve your learning experience.
-      </p>
-
-      <div className="card card-tone-primary mood-card">
-        <div className="mood-emoji-row">
-          {MOODS.map((mood) => (
-            <Button
-              key={mood.key}
-              variant={moodSelected === mood.key ? 'primary' : 'ghost'}
-              size="sm"
-              onClick={() => onMoodSelect(mood.key)}
-              icon={mood.icon}
-            >
-              {mood.label}
-            </Button>
-          ))}
-        </div>
-
-        {moodSelected && !moodSubmitted && (
-          <div>
-            <textarea
-              className="mood-textarea block min-h-32 w-full min-w-0 resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
-              placeholder="Tell us more (optional)..."
-              value={moodMessage}
-              onChange={(event) => onMessageChange(event.target.value)}
-              rows={3}
-            />
-            <Button onClick={onSubmit} icon="paper-plane">Submit</Button>
+    <section className="w-full bg-secondary-50 px-5 py-10 sm:px-8 sm:py-14" aria-labelledby="mood-check-heading">
+      <div className="mx-auto grid w-full max-w-7xl gap-6">
+        <header className="grid gap-3"><h2 id="mood-check-heading" className="text-2xl font-extrabold text-primary-900 sm:text-3xl">How Are You Feeling Today?</h2><p className="text-sm leading-7 text-muted">Your feedback helps us improve your learning experience.</p></header>
+        <div className="grid w-full max-w-3xl gap-5 rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-7">
+          <div className="flex flex-wrap gap-2" role="group" aria-label="Select how you are feeling">
+            {MOODS.map((mood) => <Button key={mood.key} variant={moodSelected === mood.key ? 'primary' : 'secondary'} size="sm" onClick={() => onMoodSelect(mood.key)} icon={mood.icon} aria-pressed={moodSelected === mood.key}>{mood.label}</Button>)}
           </div>
-        )}
-
-        {moodSubmitted && (
-          <p className="mood-success">
-            <Icon name="circle-check" /> Thanks for sharing!
-          </p>
-        )}
+          {moodSelected && !moodSubmitted && (
+            <div className="grid gap-3">
+              <label htmlFor="mood-feedback" className="text-sm font-semibold text-slate-700">Tell us more (optional)</label>
+              <textarea id="mood-feedback" className={`${UI.inputBase} min-h-32 resize-y border-border`} placeholder="Share anything that would help us improve your learning experience…" value={moodMessage} onChange={(event) => onMessageChange(event.target.value)} rows={3} />
+              <Button onClick={onSubmit} icon="paper-plane">Submit</Button>
+            </div>
+          )}
+          {moodSubmitted && <p className={UI.status.success} role="status"><Icon name="circle-check" /> Thanks for sharing!</p>}
+        </div>
       </div>
     </section>
   );

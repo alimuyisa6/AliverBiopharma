@@ -11,6 +11,7 @@ import { useToast } from '../components/Toast/Toast';
 import Input from '../components/Input/Input';
 import Button from '../components/Button/Button';
 import { useI18n } from '../contexts/I18nContext';
+import { UI } from '../design-system';
 
 export default function TutorMarketplace() {
   const { user } = useAuth();
@@ -111,42 +112,27 @@ export default function TutorMarketplace() {
 
   if (loading) {
     return (
-      <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <main className="mx-auto w-full max-w-7xl bg-primary-50 px-4 py-8 sm:px-6 lg:px-8">
         <div className="flex min-h-[60vh] items-center justify-center py-12">
           <Spinner size="lg" />
         </div>
-      </div>
+      </main>
     );
   }
 
   return (
-    <div className="min-h-screen text-foreground" style={{ backgroundColor: '#F3F6F9' }}>
+    <main className="min-h-screen w-full bg-background text-foreground">
       <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <div className="relative mb-8 overflow-hidden rounded-[2rem] border border-white/70 p-6 shadow-sm sm:p-10 lg:p-12" style={{ backgroundColor: '#F8F1E7' }}>
-          <div className="relative z-10 grid grid-cols-1 items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(260px,0.72fr)] lg:gap-12">
-            <span className="mb-3 inline-flex w-fit items-center gap-2 rounded-full border border-secondary-200 bg-secondary-100 px-3 py-1.5 text-xs font-extrabold uppercase tracking-[0.16em] text-secondary-800">{t('common.tutorMarketplace')}</span>
-
+        <header className="mb-8 grid items-center gap-7 bg-secondary-50 px-5 py-8 sm:px-8 sm:py-10 lg:grid-cols-[minmax(0,1fr)_minmax(260px,0.72fr)] lg:gap-12">
+          <div className="grid gap-4">
+            <span className="inline-flex w-fit items-center gap-2 rounded-full bg-secondary-100 px-3 py-1.5 text-xs font-extrabold uppercase tracking-[0.16em] text-secondary-800">{t('common.tutorMarketplace')}</span>
             <h1 className="max-w-2xl text-4xl font-extrabold leading-[1.08] tracking-tight text-primary-900 sm:text-5xl lg:text-6xl">Find a tutor who fits your needs</h1>
-
-            <p className="mt-0 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
-              For learners, schools, and institutions. Filter tutors by subject, level, and teaching format.
-            </p>
-
-            {getUiImage('tutor_marketplace_hero') && (
-              <div className="w-full overflow-hidden rounded-3xl border-[6px] border-white bg-white p-1 shadow-xl shadow-primary-900/10">
-                <img
-                  src={getUiImage('tutor_marketplace_hero')}
-                  alt="Tutor supporting a learner"
-                  className="aspect-[5/4] max-h-[360px] w-full rounded-2xl object-cover object-center"
-                  loading="lazy"
-                />
-              </div>
-            )}
-
+            <p className="max-w-2xl text-base leading-7 text-slate-700 sm:text-lg">For learners, schools, and institutions. Filter tutors by subject, level, and teaching format.</p>
           </div>
-        </div>
+          {getUiImage('tutor_marketplace_hero') && <img src={getUiImage('tutor_marketplace_hero')} alt="Tutor supporting a learner" className="aspect-[5/4] max-h-[360px] w-full rounded-2xl object-cover object-center" loading="lazy" />}
+        </header>
 
-        <div className="mb-8 grid gap-3 rounded-2xl border border-white/70 p-4 shadow-lg shadow-slate-900/5 md:grid-cols-[minmax(0,1fr)_minmax(12rem,0.4fr)_minmax(12rem,0.4fr)]" style={{ backgroundColor: '#E8F4F2' }}>
+        <section className="mb-8 grid gap-3 bg-primary-50 p-4 md:grid-cols-[minmax(0,1fr)_minmax(12rem,0.4fr)_minmax(12rem,0.4fr)]" aria-label="Tutor filters">
           <Input
             type="text"
             placeholder={level === 'Pharmacy' ? 'Search by name, specialty, or course unit' : 'Search by name, specialty, or subject'}
@@ -158,7 +144,7 @@ export default function TutorMarketplace() {
 
           <select
             aria-label={level === 'Pharmacy' ? 'Filter by course unit' : 'Filter by subject'}
-            className="block min-h-12 w-full min-w-0 rounded-xl border border-border bg-white px-4 py-3 pr-10 text-sm text-foreground shadow-sm outline-none transition hover:border-primary-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
+            className={`${UI.selectBase} border-border`}
             value={subjectFilter}
             onChange={(e) => setSubjectFilter(e.target.value)}
           >
@@ -173,7 +159,7 @@ export default function TutorMarketplace() {
 
           <select
             aria-label="Filter by teaching format"
-            className="block min-h-12 w-full min-w-0 rounded-xl border border-border bg-white px-4 py-3 pr-10 text-sm text-foreground shadow-sm outline-none transition hover:border-primary-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
+            className={`${UI.selectBase} border-border`}
             value={formatFilter}
             onChange={(e) => setFormatFilter(e.target.value)}
           >
@@ -181,12 +167,12 @@ export default function TutorMarketplace() {
             <option value="online">Online</option>
             <option value="in-person">In-person</option>
           </select>
-        </div>
+        </section>
 
-        <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-xl px-4 py-3" style={{ backgroundColor: '#EAF2FA' }}>
-          <div><h2 className="m-0 text-xl font-bold text-primary-900">Available tutors</h2><p className="mt-1 text-sm text-slate-500">{tutors.length} {tutors.length === 1 ? "tutor" : "tutors"} match your search</p></div>
+        <section className="mb-4 flex flex-wrap items-center justify-between gap-3 bg-secondary-50 px-4 py-3" aria-labelledby="available-tutors-heading">
+          <div><h2 id="available-tutors-heading" className="text-xl font-bold text-primary-900">Available tutors</h2><p className="mt-1 text-sm text-slate-500">{tutors.length} {tutors.length === 1 ? "tutor" : "tutors"} match your search</p></div>
           {(search || subjectFilter || formatFilter) && <button type="button" className="inline-flex min-h-10 items-center gap-2 rounded-xl px-3 text-sm font-semibold text-primary-700 transition hover:bg-primary-50" onClick={() => { setSearch(""); setSubjectFilter(""); setFormatFilter(""); }}>Clear filters <span aria-hidden="true">×</span></button>}
-        </div>
+        </section>
 
         {loadError ? (
           <EmptyState
@@ -212,7 +198,7 @@ export default function TutorMarketplace() {
             }
           />
         ) : (
-          <div className="grid grid-cols-1 gap-5 rounded-2xl p-4 sm:grid-cols-2 sm:p-5 xl:grid-cols-3" style={{ backgroundColor: '#F8F1E7' }}>
+          <div className="grid grid-cols-1 gap-5 bg-secondary-50 p-4 sm:grid-cols-2 sm:p-5 xl:grid-cols-3">
             {tutors.map((tutor) => (
               <TutorCard
                 key={tutor.id}
@@ -224,6 +210,6 @@ export default function TutorMarketplace() {
           </div>
         )}
       </div>
-    </div>
+    </main>
   );
 }

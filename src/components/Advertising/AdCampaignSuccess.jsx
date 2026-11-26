@@ -3,6 +3,7 @@
 import { Link } from 'react-router-dom';
 import Icon from '../Icon/Icon';
 import AdStepIcon from './AdStepIcon';
+import { UI } from '../../design-system';
 
 function formatMoney(amount, currency = '') {
   const value = Number(amount);
@@ -108,7 +109,7 @@ export default function AdCampaignSuccess({
     String(reviewStatus).toLowerCase() === 'rejected';
 
   return (
-    <main className="min-h-screen bg-slate-50 px-5 py-12 text-slate-800 sm:px-8">
+    <main className="min-h-screen bg-background px-5 py-12 text-foreground sm:px-8">
       <section className="mx-auto max-w-4xl text-center">
         <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-3xl bg-emerald-100 text-emerald-700">
           <AdStepIcon name="reach" size={42} />
@@ -306,7 +307,7 @@ export default function AdCampaignSuccess({
             {onBack ? (
               <button
                 type="button"
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-primary-700 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-primary-800 disabled:cursor-not-allowed disabled:opacity-60"
+                className={UI.primaryButton}
                 onClick={onBack}
               >
                 Back to advertising
@@ -315,7 +316,7 @@ export default function AdCampaignSuccess({
             ) : (
               <Link
                 to="/advertise"
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-primary-700 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-primary-800 disabled:cursor-not-allowed disabled:opacity-60"
+                className={UI.primaryButton}
               >
                 Back to advertising
                 <Icon name="arrow-left" />
@@ -332,13 +333,13 @@ export default function AdCampaignSuccess({
           </div>
         </div>
 
-        <aside className="sticky top-24 space-y-5 rounded-3xl border border-primary-800 bg-primary-900 p-6 text-white shadow-xl [&_h2]:text-white [&_p]:text-blue-100 [&_a]:text-orange-100">
+        <aside className="sticky top-24 space-y-5 rounded-3xl border border-primary-800 bg-primary-900 p-6 text-white shadow-xl [&_h2]:text-white [&_p]:text-blue-100 [&_a]:text-secondary-100">
           <div className="rounded-2xl border border-white/15 bg-white/10 p-5">
-            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 text-orange-200">
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 text-secondary-200">
               <AdStepIcon name="audience" size={32} />
             </div>
 
-            <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary-700">
+            <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary-100">
               Aliver audience
             </span>
 
@@ -354,11 +355,11 @@ export default function AdCampaignSuccess({
           </div>
 
           <div className="rounded-2xl border border-white/15 bg-white/10 p-5">
-            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 text-orange-200">
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 text-secondary-200">
               <AdStepIcon name="review" size={32} />
             </div>
 
-            <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary-700">
+            <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary-100">
               Responsible advertising
             </span>
 
@@ -375,7 +376,7 @@ export default function AdCampaignSuccess({
 
           <Link
             to="/advertise"
-            className="mt-4 inline-flex text-sm font-semibold text-orange-100 underline underline-offset-4 hover:text-white"
+            className="mt-4 inline-flex text-sm font-semibold text-secondary-100 underline underline-offset-4 hover:text-white"
           >
             Review advertising information
             <Icon name="arrow-right" />
