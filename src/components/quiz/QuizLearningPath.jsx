@@ -21,20 +21,20 @@ export default function QuizLearningPath({ level, class_name }) {
 
   return (
     <section className="mx-auto mt-10 w-full max-w-7xl px-4 sm:px-6">
-      <h3 className="mb-5 flex items-center gap-3 text-2xl font-bold leading-tight text-primary-950 sm:text-3xl">
-        <Icon name="route" className="h-7 w-7 shrink-0 text-secondary-700" />
+      <h3 className="mb-5 flex items-start gap-3 text-xl font-bold leading-8 text-primary-950 sm:text-2xl sm:leading-9">
+        <Icon name="route" className="mt-1 h-7 w-7 shrink-0 text-secondary-700" />
         Your learning<br />path{levelName ? ` in ${levelName}` : ''}
         {class_name && <span className="text-base font-semibold text-slate-600"> – {class_name}</span>}
       </h3>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {paths.map((path) => (
-          <div key={path.id} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-primary-200 hover:shadow-md">
+          <div key={path.id} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-primary-200 hover:shadow-md">
             <Icon
               name={path.icon === 'dna' ? 'microscope' : path.icon || 'book-open'}
-              className={`h-7 w-7 ${path.completed ? "text-green-700" : "text-slate-500"}`}
+              className={`h-7 w-7 ${path.completed ? "text-emerald-700" : "text-primary-600"}`}
             />
-            <div className="mt-3 text-lg font-bold leading-7 text-primary-950">{path.topic_name}</div>
+            <div className="mt-3 text-base font-bold leading-6 text-primary-950">{path.topic_name}</div>
             <div className="mt-1 text-sm leading-6 text-slate-600">{path.completed ? 'Completed' : 'Upcoming'}</div>
           </div>
         ))}
