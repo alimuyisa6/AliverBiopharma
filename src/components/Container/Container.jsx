@@ -1,4 +1,5 @@
-/* components/Container/Container.jsx */
+import { UI } from '../../design-system';
+
 export default function Container({ children, className = '' }) {
-  return <div className={`mx-auto w-full max-w-7xl px-4 sm:px-6 ${className}`.trim()}>{children}</div>;
+  return <div className={`${UI.container} ${className}`.trim()}>{children}</div>;
 }
