@@ -8,6 +8,7 @@ import { useLayout } from '../contexts/LayoutContext';
 import { getNotesList as getNotesStructure } from '../api/client';
 import { getCurriculumNode } from '../api/curriculumNavigation';
 import Icon from '../components/Icon/Icon';
+import { UI } from '../design-system';
 import Skeleton from '../components/Skeleton/Skeleton';
 import EmptyState from '../components/EmptyState/EmptyState';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
@@ -170,11 +171,11 @@ export default function NotesPage() {
 
   return (
     <main className="min-h-screen bg-background">
-      <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+      <div className={`${UI.container} py-8 sm:py-12 lg:px-8`}>
         <header className="flex flex-col gap-6 border-b border-border pb-8 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl">
-            <h1 className="text-4xl font-bold leading-tight tracking-tight text-primary-900 sm:text-5xl">Study notes</h1>
-            <p className="mt-8 max-w-2xl text-base leading-7 text-muted sm:text-lg">Build your understanding step by step. Search your notes, follow your learning path, and revisit ideas that need more practice.</p>
+            <h1 className={UI.pageTitleHeading}>Study notes</h1>
+            <p className={`${UI.pageTitleDescription} max-w-2xl`}>Build your understanding step by step. Search your notes, follow your learning path, and revisit ideas that need more practice.</p>
           </div>
           <div className="flex items-center gap-5 lg:pb-1">
             <StorysetIllustration name="studying" alt="Learner studying with organised notes" className="hidden w-32 shrink-0 object-contain sm:block" />
@@ -208,8 +209,8 @@ export default function NotesPage() {
           <section className="mt-10" aria-labelledby="notes-pathway-title">
             <div className="mb-5 flex items-end justify-between gap-4">
               <div>
-                <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary-700">Continue studying</span>
-                <h2 id="notes-pathway-title" className="mt-2 text-2xl font-bold text-primary-900 sm:text-3xl">Next topics</h2>
+                <span className={UI.sectionKicker}>Continue studying</span>
+                <h2 id="notes-pathway-title" className={`${UI.sectionHeadingTitle} mt-2`}>Next topics</h2>
               </div>
               <span className="text-sm font-semibold text-muted">{contextChildren.length} topics</span>
             </div>
@@ -233,8 +234,8 @@ export default function NotesPage() {
         <section className="mt-10" aria-label="Search study notes">
           <div className="flex flex-col gap-4 border-b border-border pb-5 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary-700">Study library</span>
-              <h2 className="mt-2 text-2xl font-bold text-primary-900 sm:text-3xl">Find a note</h2>
+              <span className={UI.sectionKicker}>Study library</span>
+              <h2 className={`${UI.sectionHeadingTitle} mt-2`}>Find a note</h2>
               {!loading && <p className="mt-1 text-sm text-muted">{filteredNotes.length} {filteredNotes.length === 1 ? 'note' : 'notes'} found</p>}
             </div>
             <label className="flex min-h-12 w-full items-center gap-3 rounded-xl border border-border bg-white px-4 shadow-sm transition focus-within:border-primary-400 focus-within:ring-2 focus-within:ring-primary-100 sm:max-w-md">
@@ -284,8 +285,8 @@ export default function NotesPage() {
         ) : (
           <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
             {filteredNotes.map((note) => (
-              <article key={note.id} className="flex min-h-[360px] flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:border-primary-200 hover:shadow-lg">
-                <div className="aspect-[16/9] w-full overflow-hidden bg-primary-50">
+              <article key={note.id} className={`${UI.resourceCard} min-h-[360px]`}>
+                <div className={UI.resourceCardImage}>
                   <img
                     src={note.cover_image_url || note.thumbnail_url || note.topic_image_url || 'https://images.pexels.com/photos/7972949/pexels-photo-7972949.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop'}
                     alt=""
@@ -293,7 +294,7 @@ export default function NotesPage() {
                     className="h-full w-full object-cover"
                   />
                 </div>
-                <div className="flex flex-1 flex-col p-5 sm:p-6">
+                <div className={UI.resourceCardBody}>
                   <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-muted">
                     <span>{note.read_time ? `${note.read_time} min read` : 'Study note'}</span>
                     {note.is_premium && <span className="rounded-full border border-secondary-200 bg-secondary-50 px-2.5 py-1 text-secondary-800">Premium</span>}
