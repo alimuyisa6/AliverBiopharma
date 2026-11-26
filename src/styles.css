@@ -781,3 +781,54 @@ h3 + p {
     @apply block overflow-x-auto rounded-control border border-border;
   }
 }
+
+/* Homepage and secondary-page hero controls — centralized in the Tailwind entry stylesheet. */
+@layer components {
+  .ab-home-hero-background {
+    @apply absolute inset-0 -z-20 scale-[1.015] bg-cover;
+    background-image: url('https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=2200&q=85');
+    background-position: center 44%;
+  }
+  .ab-home-hero-vignette {
+    @apply absolute inset-0 -z-10;
+    background-color: rgb(5 21 43 / 88%);
+  }
+  .ab-home-hero-layout { @apply relative z-10; }
+  .ab-home-hero-copy { @apply text-white; }
+  .ab-home-hero-copy h1 { @apply text-white; text-wrap: balance; }
+  .ab-home-hero-copy h1 span { color: #72d5f5; }
+  .ab-home-hero-copy > p { color: rgb(239 247 255 / 86%); }
+  .ab-home-hero-copy [class*="rounded-full"][class*="border"] {
+    @apply border border-white/30 bg-white/10 text-sky-50;
+    backdrop-filter: blur(12px);
+  }
+  .ab-home-hero-copy .border-t { @apply border-white/20; }
+  .ab-home-hero-copy strong { @apply text-white; }
+  .ab-home-hero-copy .text-muted { color: rgb(226 240 255 / 72%); }
+  .ab-home-hero-copy a { box-shadow: 0 12px 30px rgb(0 0 0 / 18%); }
+
+  .ab-page-hero { @apply isolate bg-primary-900 bg-cover bg-center text-white; }
+  .ab-page-hero-overlay { @apply z-0 bg-primary-900/90; }
+  .ab-about-hero { background-position: center 42%; }
+  .ab-contact-hero {
+    background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=2000&q=85');
+    background-position: center 40%;
+  }
+  .ab-donate-hero { background-position: center 48%; }
+  .ab-donate-hero:not([style*="background-image"]) {
+    background-image: url('https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&w=1800&q=80');
+  }
+  .faq-page-shell .faq-hero-content,
+  .faq-page-shell .faq-illustration-hero { @apply relative z-10; }
+  .faq-page-shell .faq-hero { @apply min-h-[340px]; }
+}
+
+@media (max-width: 767px) {
+  .ab-home-hero-background { background-position: 62% center; }
+  .ab-home-hero-vignette { background-color: rgb(5 21 43 / 92%); }
+}
+@media (max-width: 760px) {
+  .ab-page-hero { background-position: 60% center; }
+  .ab-page-hero-overlay { @apply bg-primary-900/95; }
+}
+
