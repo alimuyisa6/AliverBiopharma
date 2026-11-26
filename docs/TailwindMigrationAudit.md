@@ -86,7 +86,7 @@ Base audited: `main` at `9883fe099bab75bb116d5ce40b380b438f2feb9c` (PR #227).
 - [ ] `src/components/AnimatedActionButton/AnimatedActionButton.jsx` — pending line-by-line review
 - [x] `src/components/Badge/Badge.jsx` — reviewed; migrated shared styling to central `UI` Tailwind contracts.
 - [ ] `src/components/BiopharmToggle/BiopharmToggle.jsx` — pending line-by-line review
-- [ ] `src/components/Breadcrumb/Breadcrumb.jsx` — pending line-by-line review
+- [x] `src/components/Breadcrumb/Breadcrumb.jsx` — reviewed; breadcrumb spacing, separators, and link/current states now use central palette contracts.
 - [x] `src/components/Button/Button.jsx` — reviewed; migrated shared styling to central `UI` Tailwind contracts.
 - [ ] `src/components/Card/Card.jsx` — pending line-by-line review
 - [x] `src/components/Chip/Chip.jsx` — reviewed; migrated shared styling to central `UI` Tailwind contracts.
@@ -95,7 +95,7 @@ Base audited: `main` at `9883fe099bab75bb116d5ce40b380b438f2feb9c` (PR #227).
 - [x] `src/components/Container/Grid/Grid.jsx` — reviewed; migrated shared layout/card/control styling to central `UI` Tailwind contracts.
 - [x] `src/components/ContentSwitcher/ContentSwitcher.jsx` — reviewed; migrated shared layout/card/control styling to central `UI` Tailwind contracts.
 - [ ] `src/components/CookieConsent/CookieConsent.jsx` — pending line-by-line review
-- [ ] `src/components/Curriculum/InteractiveSymbolExplorer.jsx` — pending line-by-line review
+- [x] `src/components/Curriculum/InteractiveSymbolExplorer.jsx` — reviewed; interactive diagram, option, and active-detail surfaces use central contracts; dynamic marker coordinates remain runtime-driven.
 - [ ] `src/components/DynamicActions.jsx` — pending line-by-line review
 - [x] `src/components/EmptyState/EmptyState.jsx` — reviewed; migrated shared styling to central `UI` Tailwind contracts.
 - [x] `src/components/ErrorState/ErrorState.jsx` — reviewed; migrated shared styling to central `UI` Tailwind contracts.
@@ -108,7 +108,7 @@ Base audited: `main` at `9883fe099bab75bb116d5ce40b380b438f2feb9c` (PR #227).
 - [ ] `src/components/Icon/Icon.jsx` — pending line-by-line review
 - [x] `src/components/Input/Input.jsx` — reviewed; migrated shared styling to central `UI` Tailwind contracts.
 - [ ] `src/components/Layout/Layout.jsx` — pending line-by-line review
-- [ ] `src/components/LearningJourney/LearningJourney.jsx` — pending line-by-line review
+- [x] `src/components/LearningJourney/LearningJourney.jsx` — reviewed; section heading and stage cards use shared contracts, and resource actions are now list rows rather than nested cards.
 - [ ] `src/components/Loading/PageSkeleton.jsx` — pending line-by-line review
 - [ ] `src/components/Maintenance/MaintenanceGate.jsx` — pending line-by-line review
 - [ ] `src/components/Modal/Modal.jsx` — pending line-by-line review
