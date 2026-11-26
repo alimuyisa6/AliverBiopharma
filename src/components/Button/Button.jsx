@@ -18,7 +18,7 @@ const variantStyles = {
   dark: 'bg-slate-900 text-white shadow-sm hover:bg-slate-800',
   light: 'bg-slate-100 text-slate-800 hover:bg-slate-200',
   muted: 'bg-slate-100 text-slate-700 hover:bg-slate-200',
-  '3d': 'relative isolate translate-y-0 bg-primary-700 text-white shadow-[0_5px_0_0_rgb(29_78_216)] transition-transform active:translate-y-1 active:shadow-none'
+  '3d': 'relative isolate translate-y-0 bg-primary-700 text-white shadow-[0_5px_0_0_rgb(21_59_96)] transition-transform active:translate-y-1 active:shadow-none'
 };
 
 const Button = forwardRef(function Button(
