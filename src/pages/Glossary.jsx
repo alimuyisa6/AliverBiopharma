@@ -85,13 +85,6 @@ export default function Glossary() {
     }
   }, [level, class_name]);
 
-  const getLevelColor = (lvl) => {
-    if (lvl === 'O-Level') return 'var(--primary)';
-    if (lvl === 'A-Level') return 'var(--accent)';
-    if (lvl === 'Pharmacy') return 'var(--success)';
-    return 'var(--primary)';
-  };
-
   const groupedTerms = {};
   (terms || []).forEach(term => {
     const cat = term.category || 'General';
@@ -114,7 +107,6 @@ export default function Glossary() {
       termLoading={termLoading}
       sidebarOpen={sidebarOpen}
       groupedTerms={groupedTerms}
-      getLevelColor={getLevelColor}
       onCategoryChange={setSelectedCategory}
       onSearchChange={setSearchQuery}
       onTermClick={handleTermClick}

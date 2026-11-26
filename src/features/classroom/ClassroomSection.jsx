@@ -64,10 +64,8 @@ export function ClassroomSection({ user }) {
 
   if (loading) {
     return (
-      <section id="classroom" className="section">
-        <div className="classroom-loading">
-          <Spinner size="lg" />
-        </div>
+      <section id="classroom" className="w-full py-12 sm:py-16">
+        <div className="flex min-h-40 items-center justify-center"><Spinner size="lg" /></div>
       </section>
     );
   }
@@ -77,22 +75,15 @@ export function ClassroomSection({ user }) {
   return (
     <section
       id="classroom"
-      className={`section reveal ${feed.length > 0 ? 'section-with-bg' : ''}`}
-      style={feed.length > 0 ? {
-        backgroundImage: `url(${backgroundUrl})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed'
-      } : undefined}
+      className={`relative isolate w-full overflow-hidden px-5 py-12 sm:px-8 sm:py-16 ${feed.length > 0 ? 'bg-cover bg-center bg-fixed text-white' : 'bg-background text-foreground'}`}
+      style={feed.length > 0 ? { backgroundImage: `url(${backgroundUrl})` } : undefined}
     >
-      <div className={feed.length > 0 ? 'section-overlay' : ''}>
-        
-        <h2 className="section-title">
-          Where Questions<br />Meet Real Answers
-        </h2>
-        <p className="section-subtitle">
-          Step into live sessions with verified tutors — ask, discuss, and learn in real time.
-        </p>
+      {feed.length > 0 && <div className="absolute inset-0 -z-0 bg-primary-900/80" aria-hidden="true" />}
+      <div className="relative z-10 mx-auto w-full max-w-7xl">
+        <header className="mb-8 max-w-3xl">
+          <h2 className={`text-3xl font-extrabold leading-tight sm:text-4xl ${feed.length > 0 ? 'text-white' : 'text-primary-900'}`}>Where Questions<br />Meet Real Answers</h2>
+          <p className={`mt-4 text-base leading-7 ${feed.length > 0 ? 'text-primary-100' : 'text-muted'}`}>Step into live sessions with verified tutors — ask, discuss, and learn in real time.</p>
+        </header>
 
         {feedError && feed.length > 0 && (
           <div role="status" className="mb-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
@@ -102,49 +93,21 @@ export function ClassroomSection({ user }) {
         )}
 
         {feedError && feed.length === 0 ? (
-          <EmptyState
-            icon="warning"
-            title="Classroom updates are unavailable"
-            description="We could not load live sessions just now. Please try again."
-            action={<Button variant="secondary" onClick={() => { setLoading(true); setRetryKey((value) => value + 1); }}>Try again</Button>}
-          />
+          <EmptyState icon="warning" title="Classroom updates are unavailable" description="We could not load live sessions just now. Please try again." action={<Button variant="secondary" onClick={() => { setLoading(true); setRetryKey((value) => value + 1); }}>Try again</Button>} />
         ) : feed.length === 0 ? (
-          <EmptyState
-            image={getUiImage('empty_state_classroom') || '/Svg%20illustrations/Chat-rafiki.svg'}
-            title="The room is quiet, for now"
-            description="No live discussions are running at the moment. Start one yourself or check back shortly."
-            action={
-              <Button variant="secondary" onClick={() => navigate('/tutor/apply')}>
-                <Icon name="user-pen" /> Become a Tutor
-              </Button>
-            }
-          />
+          <EmptyState image={getUiImage('empty_state_classroom') || '/Svg%20illustrations/Chat-rafiki.svg'} title="The room is quiet, for now" description="No live discussions are running at the moment. Start one yourself or check back shortly." action={<Button variant="secondary" onClick={() => navigate('/tutor/apply')}><Icon name="user-pen" /> Become a Tutor</Button>} />
         ) : (
-          <div className="classroom-level-grid">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {feed.slice(0, 6).map((room) => (
-              <SplitCard
-                key={room.id}
-                image={room.image_url}
-                fallbackImage={getUiImage('default_classroom_thumbnail') || '/images/classroom-default.jpg'}
-                title={`${room.unit_label || 'Topic'}: ${room.unit_name || room.topic_name || room.title}`}
-                subtitle={room.group_name ? `${room.group_label || 'Class'}: ${room.group_name}` : STATUS_LABEL[room.status] || room.status}
-                badge={STATUS_LABEL[room.status] || room.status}
-                badgeVariant={STATUS_VARIANT[room.status] || 'primary'}
-                link={`/classroom/${room.id}`}
-                buttonText={user ? 'Enter' : 'Join'}
-              />
+              <SplitCard key={room.id} image={room.image_url} fallbackImage={getUiImage('default_classroom_thumbnail') || '/images/classroom-default.jpg'} title={`${room.unit_label || 'Topic'}: ${room.unit_name || room.topic_name || room.title}`} subtitle={room.group_name ? `${room.group_label || 'Class'}: ${room.group_name}` : STATUS_LABEL[room.status] || room.status} badge={STATUS_LABEL[room.status] || room.status} badgeVariant={STATUS_VARIANT[room.status] || 'primary'} link={`/classroom/${room.id}`} buttonText={user ? 'Enter' : 'Join'} />
             ))}
           </div>
         )}
 
         {feed.length > 0 && (
-          <div className="classroom-section-actions">
-            <Button onClick={() => navigate('/classroom')}>
-              <Icon name="users" /> {user ? 'View All Rooms' : 'Login to Join'}
-            </Button>
-            <Button variant="secondary" onClick={() => navigate('/tutor/apply')}>
-              <Icon name="user-pen" /> Become a Tutor
-            </Button>
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <Button onClick={() => navigate('/classroom')}><Icon name="users" /> {user ? 'View All Rooms' : 'Login to Join'}</Button>
+            <Button variant="secondary" onClick={() => navigate('/tutor/apply')}><Icon name="user-pen" /> Become a Tutor</Button>
           </div>
         )}
       </div>

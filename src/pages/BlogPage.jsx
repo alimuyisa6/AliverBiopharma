@@ -120,7 +120,7 @@ export default function BlogPage() {
   const hasShare = share?.facebook || share?.x || share?.linkedin || share?.whatsapp;
 
   return (
-    <main className="blog-page min-h-screen w-full overflow-x-clip bg-primary-50 text-foreground">
+    <main className="min-h-screen w-full overflow-x-clip bg-primary-50 text-foreground">
       {!slug && !loading && !error && featured && (
         <section className="relative isolate overflow-hidden bg-primary-900 px-4 py-12 text-white sm:px-6 sm:py-16 lg:py-20">
           <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">

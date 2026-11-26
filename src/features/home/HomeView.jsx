@@ -18,6 +18,7 @@ import DynamicActions from '../../components/DynamicActions';
 import ThreeDButton from '../../components/buttons/ThreeDButton';
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import StorysetIllustration from '../../components/StorysetIllustration';
+import { UI } from '../../design-system';
 
 const CONTINUE_ICON = { note: 'book-open', video: 'play', quiz: 'clipboard-check' };
 
@@ -28,13 +29,13 @@ function ContinueLearningRail({ items, navigate }) {
       <div className="mx-auto mb-7 flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div className="min-w-0">
           
-          <h2>Continue learning</h2>
+          <h2 className={UI.sectionHeadingTitle}>Continue learning</h2>
         </div>
         <Link to="/dashboard" className="text-sm font-bold text-primary-700 hover:text-secondary-700">View all learning activity →</Link>
       </div>
       <div className="mx-auto flex max-w-7xl flex-col gap-3">
         {items.map((item) => (
-          <div key={item.id} className="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:flex-row sm:items-center">
+          <div key={item.id} className="flex flex-col gap-4 border-b border-border py-4 first:pt-0 last:border-0 sm:flex-row sm:items-center">
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary-100 text-xl text-primary-700">
               <Icon name={CONTINUE_ICON[item.type] || 'book-open'} />
             </div>
@@ -138,8 +139,8 @@ function CurriculumSnapshot({ nodes, activeLevelName, activeGroupName, sections 
       <div className="mx-auto mb-6 flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div className="min-w-0">
           
-          <h2 id="home-curriculum-heading" className="home-curriculum-heading mt-2">{selectedNode ? selectedNode.name : `Choose a ${firstStepLabel}`}</h2>
-          <p className="section-description home-curriculum-description mt-8">{description}</p>
+          <h2 id="home-curriculum-heading" className={`${UI.sectionHeadingTitle} mt-2`}>{selectedNode ? selectedNode.name : `Choose a ${firstStepLabel}`}</h2>
+          <p className={`${UI.sectionHeadingDescription} mt-8`}>{description}</p>
         </div>
       </div>
       <div className="mx-auto max-w-7xl rounded-2xl border border-secondary-100 bg-white p-4 shadow-sm sm:p-6">
@@ -165,20 +166,34 @@ function ChallengeTreasureCard({ challenge, onOpen }) {
   const challengeType = challenge.challenge_type || challenge.type;
   const labels = { recall: 'Recall Challenge', flashcards: 'Flashcard Challenge', quiz: 'Quiz Challenge' };
   const icons = { recall: 'brain', flashcards: 'layers', quiz: 'clipboard-check' };
-  return <section className={'section home-challenge-treasure home-challenge-' + (challengeType || 'daily')} aria-labelledby='home-challenge-heading'>
-    <div className='mx-auto flex max-w-7xl items-center justify-between gap-6'><div className='home-challenge-treasure-copy min-w-0 flex-1'><h2 id='home-challenge-heading'>{challenge.title}</h2><p className='mt-8'>{challenge.description}</p><div className='home-challenge-meta'><span><Icon name={icons[challengeType] || 'star'} /> {labels[challengeType] || 'Challenge'}</span><span>+{challenge.reward_xp} XP</span></div><ThreeDButton type='button' variant='solid' iconRight='arrow-right' onClick={onOpen}>{challenge.passed ? 'View challenge' : 'Start challenge'}</ThreeDButton></div><StorysetIllustration name='onlineTest' alt='Learner taking a knowledge challenge' className='hidden w-36 shrink-0 object-contain sm:block md:w-44' /></div>
-  </section>;
+  return (
+    <section className="w-full bg-secondary-50 py-10 sm:py-14" aria-labelledby="home-challenge-heading">
+      <div className="mx-auto grid w-full max-w-7xl items-center gap-7 px-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_180px] lg:px-8">
+        <div className="min-w-0">
+          <span className="text-xs font-bold uppercase tracking-wider text-secondary-800">{labels[challengeType] || 'Daily Challenge'}</span>
+          <h2 id="home-challenge-heading" className="mt-2 text-2xl font-extrabold text-primary-900 sm:text-3xl">{challenge.title}</h2>
+          <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-700">{challenge.description}</p>
+          <div className="mt-4 flex flex-wrap items-center gap-4 text-sm font-semibold text-primary-900"><span className="inline-flex items-center gap-2"><Icon name={icons[challengeType] || 'star'} />{labels[challengeType] || 'Challenge'}</span><span>+{challenge.reward_xp} XP</span></div>
+          <div className="mt-5"><ThreeDButton type="button" variant="solid" iconRight="arrow-right" onClick={onOpen}>{challenge.passed ? 'View challenge' : 'Start challenge'}</ThreeDButton></div>
+        </div>
+        <StorysetIllustration name="onlineTest" alt="Learner taking a knowledge challenge" className="mx-auto hidden w-36 shrink-0 object-contain lg:block" />
+      </div>
+    </section>
+  );
 }
 
 function DailyRecallCard({ recall, onReveal, onStart }) {
   if (!recall) return null;
   const { question_text, meta, score } = recall;
-  const progress = score?.total ? (score.completed / score.total) * 100 : 0;  return (
-    <section className="section section-emerald home-daily-recall-section card-glass">
-      <div className="mx-auto mb-7 flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"><div className="min-w-0"><h2>{question_text}</h2><p className="section-description home-daily-recall-description mt-8">{meta}</p></div></div>
-      <div className="card card-lifted card-surface-solid card-elevation-soft card-density-comfortable row home-daily-recall-card">
-        <div className="min-w-0 flex-1">{score && <div className="home-daily-recall-progress"><div className="home-daily-recall-score"><span>Today's recall</span><strong>{score.completed} / {score.total}</strong><span>· +{score.xp_earned} XP</span></div><div className="progress-track" aria-label={`${Math.round(progress)}% complete`}><span className="progress-fill emerald" style={{ width: `${progress}%` }} /></div></div>}</div>
-        <div className="row-actions home-daily-recall-actions"><ThreeDButton type="button" variant="soft" onClick={onReveal}>Reveal answer</ThreeDButton><ThreeDButton type="button" variant="solid" iconRight="arrow-right" onClick={onStart}>Start recall</ThreeDButton></div>
+  const progress = score?.total ? (score.completed / score.total) * 100 : 0;
+  return (
+    <section className="w-full bg-primary-50 py-10 sm:py-14" aria-labelledby="home-daily-recall-heading">
+      <div className="mx-auto grid w-full max-w-7xl gap-5 px-4 sm:px-6 lg:px-8">
+        <header className="grid gap-2"><h2 id="home-daily-recall-heading" className="text-2xl font-extrabold text-primary-900 sm:text-3xl">{question_text}</h2><p className="text-sm leading-7 text-muted">{meta}</p></header>
+        <div className="grid gap-5 rounded-2xl border border-border bg-white p-5 shadow-sm sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:p-6">
+          {score ? <div className="min-w-0"><div className="mb-2 flex flex-wrap items-center gap-3 text-sm"><strong className="text-primary-900">Today's recall</strong><span className="font-bold text-primary-800">{score.completed} / {score.total}</span><span className="text-muted">· +{score.xp_earned} XP</span></div><div className="h-2.5 w-full overflow-hidden rounded-full bg-slate-100" role="progressbar" aria-valuenow={Math.round(progress)} aria-valuemin={0} aria-valuemax={100}><span className="block h-full rounded-full bg-emerald-600" style={{ width: `${progress}%` }} /></div></div> : <div />}
+          <div className="flex flex-wrap gap-3 sm:justify-end"><ThreeDButton type="button" variant="soft" onClick={onReveal}>Reveal answer</ThreeDButton><ThreeDButton type="button" variant="solid" iconRight="arrow-right" onClick={onStart}>Start recall</ThreeDButton></div>
+        </div>
       </div>
     </section>
   );
@@ -201,7 +216,7 @@ export default function HomeView(props) {
         <LernwickHomeHero user={user} activeLevelName={activeLevelName} activeGroupName={activeGroupName} activeGroupId={activeGroupId} />
       </section>
 
-      <DynamicActions pageId="home" className="home-dynamic-actions" />
+      <DynamicActions pageId="home" className="mx-auto w-full max-w-7xl px-4 py-3 sm:px-6 lg:px-8" />
 
       <ProgrammeDiscovery activeLevelName={activeLevelName} activeGroupName={activeGroupName} activeGroupId={activeGroupId} />
 
@@ -213,7 +228,7 @@ export default function HomeView(props) {
 
       {user && (
         <section className="w-full bg-primary-50 px-5 py-12 sm:px-8 lg:px-12" id="dashboard">
-          {!isDesktopViewport && <ClassSwitcher className="home-scope-switcher" />}
+          {!isDesktopViewport && <ClassSwitcher className="mx-auto mb-4 w-full max-w-xs sm:ml-0 sm:mr-0" />}
           <HomeDashboardCard />
           <ContinueLearningRail items={continueLearning} navigate={navigate} />
         </section>
@@ -224,22 +239,22 @@ export default function HomeView(props) {
         <DailyRecallCard recall={dailyRecall} onReveal={onRevealRecall} onStart={onStartRecall} />
       </section>}
 
-      <section className="home-testimonials-section" id="testimonials">
+      <section className="w-full" id="testimonials">
         <TestimonialSlider quotes={sections?.testimonials?.quotes || []} />
       </section>
 
-      <section className="home-stats-section" aria-label="Platform statistics">
+      <section className="w-full" aria-label="Platform statistics">
         <StatsGrid stats={publicStats || {}} scopeLabel={activeGroupName || activeLevelName || 'All learning levels'} />
       </section>
 
       <PricingCards plans={subscriptionPlans} user={user} />
-      <section className="home-classroom-section" id="classroom"><ClassroomTeaser /></section>
-      <section className="home-tutor-section" id="instructors"><TutorMarketplaceTeaser /></section>
-      <section className="home-advertising-section">
+      <section className="w-full" id="classroom"><ClassroomTeaser /></section>
+      <section className="w-full" id="instructors"><TutorMarketplaceTeaser /></section>
+      <section className="w-full">
         <AdsHomeSection />
         <AdSlot placement="homepage" pageContext="home" />
       </section>
-      <section className="home-newsletter-section" id="newsletter">
+      <section className="w-full" id="newsletter">
         <NewsletterForm email={newsletterEmail} status={newsletterStatus} loading={newsletterLoading} onChange={(event) => setNewsletterEmail(event.target.value)} onSubmit={handleNewsletterSubmit} />
       </section>
       <ChatWidget chatOpen={chatOpen} chatMessages={chatMessages} chatInput={chatInput} adminOnline={adminOnline} onToggle={() => setChatOpen(!chatOpen)} onSend={sendChat} onInputChange={setChatInput} onDeleteMsg={deleteChatMsg} sending={chatSending} deletingId={chatDeletingId} requestLoading={chatRequestLoading} chatBodyRef={chatBodyRef} />

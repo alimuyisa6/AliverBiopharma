@@ -35,6 +35,7 @@ import ContentSwitcher from '../components/ContentSwitcher/ContentSwitcher';
 import LearningJourney from '../components/LearningJourney/LearningJourney';
 import { isPremiumAccessError, redirectToSubscription } from '../utils/subscriptionNavigation';
 import { getCachedStale, setCache } from '../utils/cache';
+import { UI } from '../design-system';
 
 const TABS = [
   { key: 'all', label: 'All papers' },
@@ -584,7 +585,7 @@ export default function PastPapers() {
     <div className="min-h-screen bg-background text-foreground">
       <div className="w-full bg-primary-50 px-4 py-10 sm:px-6 lg:py-14">
         <div className="mx-auto max-w-7xl">
-          <div className="max-w-4xl rounded-3xl border border-primary-100 bg-white p-6 shadow-sm sm:p-10">
+          <div className="grid max-w-4xl gap-4">
             <div className="flex items-center justify-between gap-6">
               <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-primary-950 sm:text-5xl">
               {levelName ? `${levelName} past papers` : 'Past papers'}
@@ -612,11 +613,11 @@ export default function PastPapers() {
                 <strong>{total}</strong> papers
               </span>
               <span className="h-5 w-px bg-border" />
-              <span className="pp-meta-item">
+              <span className="inline-flex items-center gap-1">
                 <strong>{filterOptions.years.length || '—'}</strong> years
               </span>
-              <span className="pp-meta-divider" />
-              <span className="pp-meta-item">
+              <span className="h-5 w-px bg-border" />
+              <span className="inline-flex items-center gap-1">
                 <strong>{filterOptions.subjects.length || '—'}</strong> subjects
               </span>
             </div>
@@ -640,7 +641,6 @@ export default function PastPapers() {
           }))}
           value={activeTab}
           onChange={setActiveTab}
-          className="pp-content-switcher"
         />
 
         {activeTab === 'all' && (
@@ -705,21 +705,21 @@ export default function PastPapers() {
         )}
 
         {showPresets && activeTab === 'all' && user && (
-          <div className="pp-presets mt-4 flex flex-col gap-3 rounded-2xl border border-border bg-white p-4 shadow-sm">
+          <div className="mt-4 flex flex-col gap-3 rounded-2xl border border-border bg-white p-4 shadow-sm">
             {presets.length === 0 ? (
-              <p className="pp-presets-empty">No saved filters yet. Save a filter to reuse it later.</p>
+              <p className="text-sm text-muted">No saved filters yet. Save a filter to reuse it later.</p>
             ) : (
               presets.map((preset) => (
-                <div key={preset.id} className="pp-preset-item">
+                <div key={preset.id} className="flex items-center gap-2 border-b border-border py-2 last:border-0">
                   <button
-                    className="pp-preset-apply"
+                    className="inline-flex min-h-10 flex-1 items-center gap-2 rounded-lg px-3 py-2 text-left text-sm font-semibold text-primary-800 hover:bg-primary-50"
                     onClick={() => handleApplyPreset(preset)}
                   >
                     <Icon name="bookmark" />
                     {preset.name}
                   </button>
                   <button
-                    className="pp-preset-delete"
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-red-700 hover:bg-red-50 disabled:opacity-50"
                     onClick={() => handleDeletePreset(preset.id)}
                     disabled={deletingPresetId === preset.id}
                     aria-label={`Delete ${preset.name}`}
@@ -729,13 +729,13 @@ export default function PastPapers() {
                 </div>
               ))
             )}
-            <div className="pp-preset-form flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
               <input
                 type="text"
                 placeholder="Name this filter…"
                 value={presetName}
                 onChange={(event) => setPresetName(event.target.value)}
-                className="pp-preset-input block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
+                className={`${UI.inputBase} border-border`}
                 maxLength={50}
               />
               <Button
@@ -753,7 +753,7 @@ export default function PastPapers() {
         )}
 
         {showFilters && activeTab === 'all' && (
-          <div className="pp-filters mt-4 grid grid-cols-1 gap-4 rounded-2xl border border-border bg-white p-4 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-4 grid grid-cols-1 gap-4 rounded-2xl border border-border bg-white p-4 sm:grid-cols-2 xl:grid-cols-4">
             <Select
               label="Subject"
               options={filterOptions.subjects.map((subject) => ({
@@ -817,10 +817,10 @@ export default function PastPapers() {
         )}
 
         {papersLoading ? (
-          <div className="pp-skeleton-grid grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
             {Array.from({ length: 6 }, (_, index) => (
-              <div key={index} className="pp-skeleton-card" aria-hidden="true">
-                <div className="pp-skeleton-body">
+              <div key={index} className="rounded-2xl border border-border bg-white p-5" aria-hidden="true">
+                <div className="grid gap-4">
                   <Skeleton width="80%" height={20} borderRadius="var(--radius-sm)" />
                   <Skeleton width="50%" height={14} borderRadius="var(--radius-sm)" />
                   <Skeleton width="100%" height={14} borderRadius="var(--radius-sm)" />
@@ -855,33 +855,29 @@ export default function PastPapers() {
             }
           />
         ) : (
-          <div className="pp-grid grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
             {papers.map((paper) => (
               <article
                 key={paper.id}
-                className={`pp-card ${paper.is_premium ? 'pp-card-premium' : ''}`}
+                className={`relative flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg ${paper.is_premium ? 'border-secondary-300' : 'border-border hover:border-primary-300'}`}
               >
-                <span
-                  className={`pp-premium-ribbon ${paper.is_premium ? 'pp-premium-ribbon--premium' : 'pp-premium-ribbon--free'}`}
-                  aria-label={paper.is_premium ? 'Premium resource' : 'Free resource'}
-                >
-                  <span aria-hidden="true" />
-                </span>
-                <div className="pp-card-artwork relative aspect-[16/10] w-full overflow-hidden bg-primary-50">
+                <span className={`absolute right-3 top-3 z-10 rounded-full px-3 py-1 text-xs font-bold ${paper.is_premium ? 'bg-secondary-100 text-secondary-900' : 'bg-emerald-100 text-emerald-900'}`} aria-label={paper.is_premium ? 'Premium resource' : 'Free resource'}>{paper.is_premium ? 'Premium' : 'Free'}</span>
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-primary-50">
                   <img
                     src={paper.cover_image_url || paper.thumbnail_url || paper.image_url || 'https://images.pexels.com/photos/5428836/pexels-photo-5428836.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop'}
                     alt={paper.subject ? `${paper.subject} past paper` : paper.title}
                     loading="lazy"
                     width="900"
                     height="600"
+                    className="h-full w-full object-cover"
                   />
-                  <span className="pp-card-image-label">{paper.subject || 'Exam paper'}</span>
+                  <span className="absolute bottom-3 left-3 rounded-lg bg-primary-900/90 px-3 py-1.5 text-xs font-bold text-white">{paper.subject || 'Exam paper'}</span>
                 </div>
-                <div className="pp-card-body flex flex-1 flex-col gap-3 p-5">
-                  <div className="pp-card-title-row">
-                    <h3 className="pp-card-title">{paper.title}</h3>
+                <div className="flex flex-1 flex-col gap-3 p-5">
+                  <div className="flex items-start justify-between gap-3">
+                    <h3 className="text-lg font-extrabold leading-6 text-primary-900">{paper.title}</h3>
                     <button
-                      className={`pp-bookmark-btn ${bookmarkedIds.has(paper.id) ? 'active' : ''}`}
+                      className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border transition ${bookmarkedIds.has(paper.id) ? 'border-secondary-300 bg-secondary-50 text-secondary-800' : 'border-border bg-white text-muted hover:bg-primary-50 hover:text-primary-800'}`}
                       onClick={() => handleBookmark(paper.id)}
                       aria-label={bookmarkedIds.has(paper.id) ? 'Remove bookmark' : 'Bookmark paper'}
                       disabled={bookmarkingId === paper.id}
@@ -889,38 +885,38 @@ export default function PastPapers() {
                       <Icon name={bookmarkedIds.has(paper.id) ? 'bookmark-solid' : 'bookmark'} />
                     </button>
                   </div>
-                  <p className="pp-card-subject">{paper.subject}</p>
+                  <p className="text-sm font-semibold text-muted">{paper.subject}</p>
                   {paper.avg_rating > 0 && (
-                    <div className="pp-rating-stars">
+                    <div className="flex items-center gap-1 text-secondary-600">
                       {[1, 2, 3, 4, 5].map((star) => (
                         <span
                           key={star}
                           className={
                             star <= Math.round(paper.avg_rating)
-                              ? 'pp-star-filled'
-                              : 'pp-star-empty'
+                              ? 'text-secondary-600'
+                              : 'text-slate-300'
                           }
                         >
                           <Icon name="star" />
                         </span>
                       ))}
-                      <span className="pp-rating-count">({paper.rating_count || 0})</span>
+                      <span className="ml-1 text-xs text-muted">({paper.rating_count || 0})</span>
                     </div>
                   )}
-                  <div className="pp-card-chips">
-                    {paper.level && <span className="pp-chip">{paper.level}</span>}
-                    {paper.year && <span className="pp-chip pp-chip-accent">{paper.year}</span>}
-                    {paper.paper_type && <span className="pp-chip pp-chip-primary">{paper.paper_type}</span>}
-                    {paper.class_name && <span className="pp-chip pp-chip-emerald">{paper.class_name}</span>}
+                  <div className="flex flex-wrap gap-2">
+                    {paper.level && <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{paper.level}</span>}
+                    {paper.year && <span className="rounded-full bg-secondary-100 px-3 py-1 text-xs font-semibold text-secondary-900">{paper.year}</span>}
+                    {paper.paper_type && <span className="rounded-full bg-primary-100 px-3 py-1 text-xs font-semibold text-primary-900">{paper.paper_type}</span>}
+                    {paper.class_name && <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-900">{paper.class_name}</span>}
                     {downloadedIds.has(paper.id) && (
-                      <span className="pp-chip pp-chip-success">
+                      <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-900">
                         <Icon name="check" /> Downloaded
                       </span>
                     )}
                   </div>
                 </div>
-                <div className="pp-card-footer mt-auto flex flex-wrap items-center gap-3 border-t border-border p-5">
-                  <Button variant="secondary" size="sm" className="pp-card-open" onClick={() => handlePaperOpen(paper)}>
+                <div className="mt-auto flex flex-wrap items-center gap-3 border-t border-border p-5">
+                  <Button variant="secondary" size="sm" className="min-w-28" onClick={() => handlePaperOpen(paper)}>
                     View details
                   </Button>
                   {paper.is_premium ? (
@@ -945,7 +941,7 @@ export default function PastPapers() {
         )}
 
         {!papersLoading && totalPages > 1 && (
-          <div className="pp-pagination">
+          <div className="flex flex-wrap items-center justify-center gap-2 border-t border-border py-6">
             <Button
               variant="secondary"
               size="sm"
@@ -994,28 +990,28 @@ export default function PastPapers() {
       )}
 
       {selectedPaper && (
-        <div className="pp-modal-overlay fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-slate-950/60 p-3 sm:p-6" onClick={handleCloseModal}>
-          <div className="pp-modal my-auto w-full max-w-3xl overflow-hidden rounded-2xl bg-white shadow-2xl" onClick={(event) => event.stopPropagation()}>
-            <div className="pp-modal-header">
+        <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-slate-950/60 p-3 sm:p-6" onClick={handleCloseModal}>
+          <div className="my-auto w-full max-w-3xl overflow-hidden rounded-2xl border border-border bg-white shadow-2xl" onClick={(event) => event.stopPropagation()}>
+            <div className="flex items-start justify-between gap-4 border-b border-border bg-primary-50 p-5 sm:p-6">
               <div>
-                <h2 className="pp-modal-title">{selectedPaper.title}</h2>
-                <p className="pp-modal-subject">{selectedPaper.subject}</p>
+                <h2 className="text-xl font-extrabold text-primary-900 sm:text-2xl">{selectedPaper.title}</h2>
+                <p className="mt-1 text-sm text-muted">{selectedPaper.subject}</p>
               </div>
-              <button className="pp-modal-close" onClick={handleCloseModal} aria-label="Close">
+              <button className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border bg-white text-muted hover:bg-primary-50 hover:text-primary-900" onClick={handleCloseModal} aria-label="Close">
                 <Icon name="xmark" />
               </button>
             </div>
 
-            <div className="pp-modal-body max-h-[80vh] overflow-y-auto p-4 sm:p-6">
-              <div className="pp-modal-meta">
-                {selectedPaper.level && <span className="pp-chip">{selectedPaper.level}</span>}
-                {selectedPaper.year && <span className="pp-chip pp-chip-accent">{selectedPaper.year}</span>}
-                {selectedPaper.paper_type && <span className="pp-chip pp-chip-primary">{selectedPaper.paper_type}</span>}
-                {selectedPaper.exam_board && <span className="pp-chip">{selectedPaper.exam_board}</span>}
-                {selectedPaper.class_name && <span className="pp-chip pp-chip-emerald">{selectedPaper.class_name}</span>}
+            <div className="grid max-h-[80vh] gap-6 overflow-y-auto p-4 sm:p-6">
+              <div className="flex flex-wrap gap-2">
+                {selectedPaper.level && <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{selectedPaper.level}</span>}
+                {selectedPaper.year && <span className="rounded-full bg-secondary-100 px-3 py-1 text-xs font-semibold text-secondary-900">{selectedPaper.year}</span>}
+                {selectedPaper.paper_type && <span className="rounded-full bg-primary-100 px-3 py-1 text-xs font-semibold text-primary-900">{selectedPaper.paper_type}</span>}
+                {selectedPaper.exam_board && <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{selectedPaper.exam_board}</span>}
+                {selectedPaper.class_name && <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-900">{selectedPaper.class_name}</span>}
               </div>
 
-              <div className="pp-modal-actions">
+              <div className="flex flex-wrap gap-3 border-b border-border pb-5">
                 {selectedPaper.is_premium ? (
                   <Button
                     size="sm"
@@ -1044,13 +1040,13 @@ export default function PastPapers() {
                 </Button>
               </div>
 
-              <div className="pp-review-form">
-                <span className="pp-review-label">Your rating</span>
-                <div className="pp-rating-stars">
+              <div className="grid gap-3 border-b border-border pb-6">
+                <span className="text-sm font-bold text-primary-900">Your rating</span>
+                <div className="flex items-center gap-1 text-secondary-600">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <button
                       key={star}
-                      className={`pp-star-btn ${star <= reviewRating ? 'active' : ''}`}
+                      className={`inline-flex h-9 w-9 items-center justify-center rounded-lg ${star <= reviewRating ? 'bg-secondary-100 text-secondary-800' : 'bg-slate-100 text-slate-400'}`}
                       onClick={() => setReviewRating(star)}
                       aria-label={`Rate ${star} star${star !== 1 ? 's' : ''}`}
                     >
@@ -1059,7 +1055,7 @@ export default function PastPapers() {
                   ))}
                 </div>
                 <textarea
-                  className="pp-review-input block min-h-32 w-full min-w-0 resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
+                  className={`${UI.inputBase} min-h-32 resize-y border-border`}
                   placeholder="Share your thoughts on this paper (optional)…"
                   value={reviewComment}
                   onChange={(event) => setReviewComment(event.target.value)}
@@ -1076,34 +1072,29 @@ export default function PastPapers() {
               </div>
 
               {reviewsLoading ? (
-                <div className="pp-reviews-loading">
+                <div className="flex min-h-24 items-center justify-center">
                   <Spinner size="sm" />
                 </div>
               ) : reviews.length === 0 ? (
-                <p className="pp-reviews-empty">No reviews yet. Leave a review to help other learners choose useful papers.</p>
+                <p className="rounded-xl bg-primary-50 p-4 text-sm text-muted">No reviews yet. Leave a review to help other learners choose useful papers.</p>
               ) : (
-                <div className="pp-reviews-list">
+                <div className="grid divide-y divide-border">
                   {reviews.map((review) => (
-                    <div key={review.id} className="pp-review-item">
-                      <div className="pp-review-header">
-                        <div className="pp-review-author">
-                          <div className="pp-review-avatar">
+                    <div key={review.id} className="grid gap-3 py-4">
+                      <div className="flex flex-wrap items-start justify-between gap-3">
+                        <div className="flex min-w-0 items-center gap-3">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary-100 text-sm font-extrabold text-primary-800">
                             {review.display_name?.[0] || 'U'}
                           </div>
                           <div>
-                            <span className="pp-review-name">
+                            <span className="block text-sm font-bold text-primary-900">
                               {review.display_name || 'Anonymous'}
                             </span>
-                            <div className="pp-review-stars">
+                            <div className="mt-1 flex items-center gap-1 text-secondary-600">
                               {[1, 2, 3, 4, 5].map((star) => (
                                 <span
                                   key={star}
-                                  style={{
-                                    color:
-                                      star <= review.rating
-                                        ? 'var(--primary-dark)'
-                                        : 'var(--grey-300)'
-                                  }}
+                                  className={star <= review.rating ? 'text-secondary-600' : 'text-slate-300'}
                                 >
                                   <Icon name="star" />
                                 </span>
@@ -1111,19 +1102,19 @@ export default function PastPapers() {
                             </div>
                           </div>
                         </div>
-                        <div className="pp-review-meta">
-                          <span className="pp-review-date">
+                        <div className="flex flex-wrap items-center gap-3">
+                          <span className="text-xs text-muted">
                             {new Date(review.created_at).toLocaleDateString()}
                           </span>
                           {review.user_id === user?.id && (
-                            <button className="pp-review-delete inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold text-red-700 hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50" onClick={handleDeleteReview} disabled={deletingReview}>
+                            <button className="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold text-red-700 hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50" onClick={handleDeleteReview} disabled={deletingReview}>
                               <Icon name="trash" /> Delete
                             </button>
                           )}
                         </div>
                       </div>
                       {review.comment && (
-                        <p className="pp-review-comment">{review.comment}</p>
+                        <p className="rounded-xl bg-primary-50 p-4 text-sm leading-6 text-slate-700">{review.comment}</p>
                       )}
                     </div>
                   ))}

@@ -32,7 +32,7 @@ export default function HomeDashboardCard() {
   ];
 
   return (
-    <section className="mx-auto w-full max-w-7xl rounded-3xl border border-primary-100 bg-white p-5 shadow-sm sm:p-7" aria-labelledby="home-learning-snapshot-title">
+    <section className="mx-auto w-full max-w-7xl py-2" aria-labelledby="home-learning-snapshot-title">
       <header className="mb-6 flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <StorysetIllustration name="personalGoals" alt="Learner tracking study goals" className="w-16 shrink-0 object-contain sm:w-20" />
@@ -42,7 +42,7 @@ export default function HomeDashboardCard() {
       </header>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
         {metrics.map((metric) => (
-          <article key={metric.label} className="rounded-2xl border border-slate-200 bg-primary-50/60 p-5">
+          <article key={metric.label} className="rounded-2xl border border-border bg-white p-5 shadow-sm">
             <p className="text-xs font-bold uppercase tracking-wider text-slate-500">{metric.label}</p>
             <strong className={`mt-3 block text-3xl font-extrabold tracking-tight ${metric.tone}`}>{metric.value}</strong>
             <p className="mt-2 text-xs font-medium text-slate-500">{metric.detail}</p>

@@ -4,6 +4,8 @@ import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 import Container from '../components/Container/Container';
 import Icon from '../components/Icon/Icon';
 import StorysetIllustration from '../components/StorysetIllustration';
+import PageHeader from '../components/PageHeader/PageHeader';
+import { UI } from '../design-system';
 import { useToast } from '../components/Toast/Toast';
 import {
   archiveTestBlueprint,
@@ -164,63 +166,66 @@ export default function QuestionBankPage() {
   }
 
   return (
-    <Container className="qbank-page mx-auto w-full max-w-7xl px-4 py-8 text-foreground sm:px-6 sm:py-12 lg:px-8">
+    <Container className="py-8 text-foreground sm:py-12">
       <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Resources', href: '/resources' }, { label: 'Question bank', href: null }]} />
-      <header className="qbank-header mb-8 flex items-center justify-between gap-6 border-b border-border pb-8">
-        <div className="min-w-0"><h1>Question bank</h1><p className="mt-6">Find published questions from your active curriculum, review their learning objectives and assemble focused tests for exam practice.</p></div>
-        <StorysetIllustration name="knowledge" alt="Knowledge and question-based learning" className="hidden w-36 shrink-0 object-contain sm:block" />
-      </header>
+      <div className="mt-7 grid items-center gap-5 border-b border-border bg-primary-50 px-5 py-6 sm:grid-cols-[minmax(0,1fr)_160px] sm:px-7">
+        <PageHeader label="Assessment practice" title="Question bank" subtitle="Find published questions from your active curriculum, review their learning objectives and assemble focused tests for exam practice." />
+        <StorysetIllustration name="knowledge" alt="Knowledge and question-based learning" className="mx-auto hidden w-36 shrink-0 object-contain sm:block" />
+      </div>
 
-      <section className="qbank-search-panel mb-8 grid grid-cols-1 gap-4 rounded-2xl border border-border bg-white p-5 shadow-sm sm:grid-cols-2 lg:grid-cols-3" aria-label="Question bank filters">
-        <label className="qbank-search-field">
+      <section className="mb-8 mt-8 grid grid-cols-1 gap-4 bg-secondary-50 p-5 sm:grid-cols-2 lg:grid-cols-3" aria-label="Question bank filters">
+        <label className="grid min-w-0 gap-2 text-sm font-semibold text-slate-700">
           <span>Search questions and concepts</span>
-          <span className="qbank-input-wrap"><Icon name="search" /><input value={filters.search} onChange={(event) => updateFilter('search', event.target.value)} placeholder="Search pharmacology, concepts or learning objectives"  className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" /></span>
+          <span className="relative"><Icon name="search" className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-muted" /><input value={filters.search} onChange={(event) => updateFilter('search', event.target.value)} placeholder="Search pharmacology, concepts or learning objectives" className={`${UI.inputBase} border-border pl-11`} /></span>
         </label>
-        <label><span>Difficulty</span><select value={filters.difficulty} onChange={(event) => updateFilter('difficulty', event.target.value)} className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"><option value="">All levels</option><option value="easy">Easy</option><option value="medium">Moderate</option><option value="hard">Advanced</option></select></label>
-        <label><span>Question format</span><select value={filters.question_type} onChange={(event) => updateFilter('question_type', event.target.value)} className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 text-sm text-slate-800 shadow-sm outline-none transition hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"><option value="">All formats</option>{TYPES.map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>
+        <label className="grid min-w-0 gap-2 text-sm font-semibold text-slate-700"><span>Difficulty</span><select value={filters.difficulty} onChange={(event) => updateFilter('difficulty', event.target.value)} className={`${UI.selectBase} border-border`}><option value="">All levels</option><option value="easy">Easy</option><option value="medium">Moderate</option><option value="hard">Advanced</option></select></label>
+        <label className="grid min-w-0 gap-2 text-sm font-semibold text-slate-700"><span>Question format</span><select value={filters.question_type} onChange={(event) => updateFilter('question_type', event.target.value)} className={`${UI.selectBase} border-border`}><option value="">All formats</option>{TYPES.map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>
       </section>
 
-      <div className="qbank-layout grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1fr)_22rem] xl:items-start">
-        <section className="qbank-results min-w-0 rounded-2xl border border-border bg-white p-4 shadow-sm sm:p-6" aria-labelledby="qbank-results-title">
-          <div className="qbank-section-heading"><div><h2 id="qbank-results-title">Curriculum questions</h2><p>{total} published questions available {filters.unit_id ? 'in this lesson' : 'in your active programme'}</p></div><span>{selected.length}/40 selected</span></div>
-          {loading ? <div className="qbank-empty">Searching your curriculum…</div> : questions.length === 0 ? (
-            <div className="qbank-empty"><Icon name="search" /><h3>No matching questions</h3><p>Try a different search phrase or remove one of the filters.</p></div>
+      <div className="grid min-w-0 grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1fr)_22rem] xl:items-start">
+        <section className="grid min-w-0 gap-5" aria-labelledby="qbank-results-title">
+          <header className="flex flex-wrap items-end justify-between gap-3 border-b border-border pb-4">
+            <div><h2 id="qbank-results-title" className="text-xl font-extrabold text-primary-900 sm:text-2xl">Curriculum questions</h2><p className="mt-2 text-sm text-muted">{total} published questions available {filters.unit_id ? 'in this lesson' : 'in your active programme'}</p></div>
+            <span className="rounded-full bg-primary-100 px-3 py-1.5 text-xs font-bold text-primary-900">{selected.length}/40 selected</span>
+          </header>
+          {loading ? <div className="flex min-h-40 items-center justify-center rounded-2xl border border-border bg-white text-sm font-semibold text-muted" role="status">Searching your curriculum…</div> : questions.length === 0 ? (
+            <div className="grid justify-items-center gap-3 rounded-2xl border border-dashed border-primary-200 bg-white px-6 py-12 text-center"><Icon name="search" className="text-2xl text-primary-700" /><h3 className="text-lg font-bold text-primary-900">No matching questions</h3><p className="text-sm leading-6 text-muted">Try a different search phrase or remove one of the filters.</p></div>
           ) : (
-            <div className="qbank-question-list grid grid-cols-1 gap-4">
+            <div className="grid grid-cols-1 gap-4">
               {questions.map((question) => {
                 const checked = selected.includes(String(question.id));
                 const options = questionOptions(question);
                 return (
-                  <article className={`qbank-question-card flex min-w-0 flex-col rounded-xl border border-border bg-white p-4 shadow-sm sm:p-5${checked ? ' is-selected' : ''}`} key={question.id}>
-                    <div className="qbank-question-topline"><span>{question.curriculum_unit?.name || 'Curriculum lesson'}</span><span>{question.difficulty || 'Standard'}</span><span>{String(question.question_type || 'single_choice').replaceAll('_', ' ')}</span></div>
-                    <h3>{question.question_text}</h3>
-                    {question.image_url && <img className="qbank-question-image" src={question.image_url} alt={question.image_alt_text || 'Question illustration'} loading="lazy" />}
-                    {options.length > 0 && <ol className="qbank-options" type={question.question_type === 'multiple_select' ? 'A' : 'A'}>{options.map((option) => <li key={option.id}>{option.label}</li>)}</ol>}
-                    {question.concept_name && <p className="qbank-concept"><Icon name="brain" /> {question.concept_name}</p>}
-                    {question.learning_objective && <p className="qbank-objective">{question.learning_objective}</p>}
-                    <div className="qbank-question-actions">
-                      <button type="button" className="qbank-detail-button" onClick={() => setExpanded(expanded === question.id ? null : question.id)}>{expanded === question.id ? 'Hide details' : 'Question details'}</button>
-                      <button type="button" className={`qbank-select-button${checked ? ' is-selected' : ''}`} onClick={() => toggleQuestion(question)}><Icon name={checked ? 'circle-check' : 'plus'} /> {checked ? 'Selected' : 'Add to test'}</button>
+                  <article className={`grid min-w-0 gap-4 rounded-2xl border p-4 shadow-sm transition sm:p-5 ${checked ? 'border-primary-400 bg-primary-50' : 'border-border bg-white'}`} key={question.id}>
+                    <div className="flex flex-wrap gap-2 text-xs font-semibold text-muted"><span className="rounded-full bg-primary-50 px-3 py-1 text-primary-800">{question.curriculum_unit?.name || 'Curriculum lesson'}</span><span className="rounded-full bg-secondary-50 px-3 py-1 text-secondary-800">{question.difficulty || 'Standard'}</span><span className="rounded-full bg-slate-100 px-3 py-1 text-slate-700">{String(question.question_type || 'single_choice').replaceAll('_', ' ')}</span></div>
+                    <h3 className="text-base font-bold leading-7 text-primary-950">{question.question_text}</h3>
+                    {question.image_url && <img className="max-h-72 w-full rounded-xl border border-border object-contain" src={question.image_url} alt={question.image_alt_text || 'Question illustration'} loading="lazy" />}
+                    {options.length > 0 && <ol className="grid gap-2 pl-5 text-sm leading-6 text-slate-700" type="A">{options.map((option) => <li key={option.id} className="pl-1">{option.label}</li>)}</ol>}
+                    {question.concept_name && <p className="inline-flex items-center gap-2 text-sm font-semibold text-primary-800"><Icon name="brain" />{question.concept_name}</p>}
+                    {question.learning_objective && <p className="rounded-xl bg-primary-50 p-3 text-sm leading-6 text-slate-700">{question.learning_objective}</p>}
+                    <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border pt-3">
+                      <button type="button" className={UI.secondaryButton} onClick={() => setExpanded(expanded === question.id ? null : question.id)}>{expanded === question.id ? 'Hide details' : 'Question details'}</button>
+                      <button type="button" className={checked ? UI.secondaryButton : UI.primaryButton} onClick={() => toggleQuestion(question)}><Icon name={checked ? 'circle-check' : 'plus'} />{checked ? 'Selected' : 'Add to test'}</button>
                     </div>
-                    {expanded === question.id && <div className="qbank-question-details"><p>Question type: {String(question.question_type || 'single_choice').replaceAll('_', ' ')}</p><p>Difficulty: {question.difficulty || 'Not specified'}</p><p>Concept: {question.concept_name || 'Not classified'}</p><p>Answer explanations are shown after a learner submits the question in a practice session.</p></div>}
+                    {expanded === question.id && <div className="grid gap-2 rounded-xl bg-background p-4 text-sm text-slate-700"><p>Question type: {String(question.question_type || 'single_choice').replaceAll('_', ' ')}</p><p>Difficulty: {question.difficulty || 'Not specified'}</p><p>Concept: {question.concept_name || 'Not classified'}</p><p>Answer explanations are shown after a learner submits the question in a practice session.</p></div>}
                   </article>
                 );
               })}
             </div>
           )}
-          <div className="qbank-pagination"><button type="button" disabled={filters.page <= 0 || loading} onClick={() => setFilters((current) => ({ ...current, page: current.page - 1 }))}>Previous</button><span>Page {filters.page + 1} of {Math.max(1, Math.ceil(total / PAGE_SIZE))}</span><button type="button" disabled={(filters.page + 1) * PAGE_SIZE >= total || loading} onClick={() => setFilters((current) => ({ ...current, page: current.page + 1 }))}>Next</button></div>
+          <nav className="flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4" aria-label="Question bank pagination"><button type="button" className={UI.secondaryButton} disabled={filters.page <= 0 || loading} onClick={() => setFilters((current) => ({ ...current, page: current.page - 1 }))}>Previous</button><span className="text-sm font-semibold text-muted">Page {filters.page + 1} of {Math.max(1, Math.ceil(total / PAGE_SIZE))}</span><button type="button" className={UI.secondaryButton} disabled={(filters.page + 1) * PAGE_SIZE >= total || loading} onClick={() => setFilters((current) => ({ ...current, page: current.page + 1 }))}>Next</button></nav>
         </section>
 
-        <aside className="qbank-builder-panel flex min-w-0 flex-col gap-4 rounded-2xl border border-primary-200 bg-primary-50 p-5 shadow-sm sm:p-6 xl:sticky xl:top-6">
-          <div className="qbank-builder-heading"><span><Icon name="clipboard-check" /></span><div><h2>Custom test builder</h2><p>Target a lesson and build a focused assessment.</p></div></div>
-          <div className="qbank-selection-summary"><strong>{selected.length}</strong><span>questions selected</span></div>
-          <label><span>Test title</span><input value={title} maxLength={120} onChange={(event) => setTitle(event.target.value)} placeholder="e.g. Pharmacokinetics revision"  className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" /></label>
-          <label><span>Description (optional)</span><textarea value={description} maxLength={500} onChange={(event) => setDescription(event.target.value)} rows={3} placeholder="What do you want to practise?"  className="block min-h-32 w-full min-w-0 resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" /></label>
-          <button type="button" className="qbank-primary-button" disabled={saving || selected.length < 2 || !title.trim()} onClick={saveSelection}>{saving ? 'Saving test…' : 'Save custom test'}</button>
-          <button type="button" className="qbank-clear-button" disabled={!selected.length} onClick={() => { setSelected([]); setSelectedUnit(null); }}>Clear selection</button>
-          <p className="qbank-builder-note">Choose 2–40 questions from one lesson. Your saved test keeps its own question order and launches through the secure quiz attempt system.</p>
-          <div className="qbank-saved-tests"><h3>Saved tests</h3>{blueprints.length === 0 ? <p>No saved tests yet.</p> : blueprints.map((blueprint) => <article key={blueprint.id}><div><strong>{blueprint.title}</strong><small>{blueprint.question_count} questions</small></div><button type="button" disabled={launching === blueprint.id || Number(blueprint.question_count) < 2} onClick={() => launchBlueprint(blueprint)}>{launching === blueprint.id ? 'Starting…' : 'Start test'} <Icon name="arrow-right" /></button><button type="button" className="qbank-archive-button" onClick={() => removeBlueprint(blueprint.id)} aria-label={`Archive ${blueprint.title}`}><Icon name="trash" /></button></article>)}</div>
-          <Link className="qbank-back-link" to="/quiz">Return to curriculum practice <Icon name="arrow-right" /></Link>
+        <aside className="grid min-w-0 content-start gap-4 rounded-2xl border border-primary-200 bg-primary-50 p-5 sm:p-6 xl:sticky xl:top-6">
+          <header className="flex items-start gap-3"><span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary-800 text-white"><Icon name="clipboard-check" /></span><div><h2 className="text-lg font-extrabold text-primary-900">Custom test builder</h2><p className="mt-1 text-xs leading-5 text-muted">Target a lesson and build a focused assessment.</p></div></header>
+          <div className="flex items-center gap-3 rounded-xl bg-white p-4"><strong className="text-3xl font-extrabold text-primary-900">{selected.length}</strong><span className="text-sm font-semibold text-muted">questions selected</span></div>
+          <label className="grid gap-2 text-sm font-semibold text-slate-700"><span>Test title</span><input value={title} maxLength={120} onChange={(event) => setTitle(event.target.value)} placeholder="e.g. Pharmacokinetics revision" className={`${UI.inputBase} border-border`} /></label>
+          <label className="grid gap-2 text-sm font-semibold text-slate-700"><span>Description (optional)</span><textarea value={description} maxLength={500} onChange={(event) => setDescription(event.target.value)} rows={3} placeholder="What do you want to practise?" className={`${UI.inputBase} min-h-32 resize-y border-border`} /></label>
+          <button type="button" className={UI.primaryButton} disabled={saving || selected.length < 2 || !title.trim()} onClick={saveSelection}>{saving ? 'Saving test…' : 'Save custom test'}</button>
+          <button type="button" className={UI.secondaryButton} disabled={!selected.length} onClick={() => { setSelected([]); setSelectedUnit(null); }}>Clear selection</button>
+          <p className="text-xs leading-6 text-muted">Choose 2–40 questions from one lesson. Your saved test keeps its own question order and launches through the secure quiz attempt system.</p>
+          <section className="grid gap-3 border-t border-primary-200 pt-4"><h3 className="text-sm font-extrabold text-primary-900">Saved tests</h3>{blueprints.length === 0 ? <p className="text-sm text-muted">No saved tests yet.</p> : blueprints.map((blueprint) => <article key={blueprint.id} className="grid gap-2 rounded-xl border border-border bg-white p-3"><div><strong className="block text-sm text-primary-900">{blueprint.title}</strong><small className="text-xs text-muted">{blueprint.question_count} questions</small></div><div className="flex flex-wrap gap-2"><button type="button" className="inline-flex min-h-9 items-center gap-2 rounded-lg bg-primary-800 px-3 py-2 text-xs font-bold text-white hover:bg-primary-900" disabled={launching === blueprint.id || Number(blueprint.question_count) < 2} onClick={() => launchBlueprint(blueprint)}>{launching === blueprint.id ? 'Starting…' : 'Start test'} <Icon name="arrow-right" /></button><button type="button" className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-red-200 text-red-700 hover:bg-red-50" onClick={() => removeBlueprint(blueprint.id)} aria-label={`Archive ${blueprint.title}`}><Icon name="trash" /></button></div></article>)}</section>
+          <Link className="inline-flex items-center gap-2 text-sm font-bold text-primary-800 hover:text-primary-950" to="/quiz">Return to curriculum practice <Icon name="arrow-right" /></Link>
         </aside>
       </div>
     </Container>

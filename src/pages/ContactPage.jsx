@@ -40,16 +40,16 @@ export default function ContactPage() {
   }, [contactForm]);
 
   return (
-    <main className="contact-page w-full bg-[#EAF2FA]">
-      <section className="ab-page-hero ab-contact-hero relative isolate overflow-hidden px-5 py-16 sm:py-24">
-        <div className="ab-page-hero-overlay absolute inset-0" aria-hidden="true" />
+    <main className="w-full bg-primary-50">
+      <section className="relative isolate overflow-hidden bg-primary-900 bg-cover bg-[center_40%] text-white max-md:bg-[60%_center] bg-[url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d')] px-5 py-16 sm:py-24">
+        <div className="absolute inset-0 bg-primary-900/90" aria-hidden="true" />
         <div className="relative z-10 mx-auto flex max-w-5xl flex-col items-center text-center">
           <h1 className="max-w-3xl text-4xl font-extrabold text-white sm:text-5xl lg:text-6xl">Contact AliverBiopharm</h1>
           <p className="mt-10 max-w-2xl text-lg leading-8 text-white/85 sm:mt-14">Need help with your account, study materials, or a website feature? Send our team a message and we will review your inquiry.</p>
         </div>
       </section>
 
-      <section className="px-5 py-12 sm:py-16" style={{ backgroundColor: '#F1EDFA' }}>
+      <section className="w-full bg-secondary-50 px-5 py-12 sm:py-16">
         <ContactSection
           contactForm={contactForm}
           contactStatus={contactStatus}

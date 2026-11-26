@@ -48,7 +48,7 @@ export default function TutorCard({ tutor, onContact, user }) {
         </div>
 
         {tutor.specialty && (
-          <div className="mt-5 rounded-xl border border-secondary-100 bg-secondary-50/70 px-3.5 py-3">
+          <div className="mt-5 rounded-xl border border-secondary-100 bg-secondary-50 px-3.5 py-3">
             <p className="m-0 text-[11px] font-bold uppercase tracking-wider text-secondary-800">Specialty</p>
             <p className="mt-1 text-sm font-semibold text-slate-800">{tutor.specialty}</p>
           </div>

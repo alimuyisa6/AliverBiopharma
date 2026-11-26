@@ -20,7 +20,7 @@ export default function ResourceIllustration({ type }) {
       viewBox="0 0 24 24"
       width="24"
       height="24"
-      className={`resource-art resource-art-${type}`}
+      className="h-6 w-6 shrink-0 text-primary-700"
       aria-hidden="true"
       focusable="false"
       fill="none"

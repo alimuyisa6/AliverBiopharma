@@ -36,7 +36,7 @@ export function ContactSection({
   };
 
   return (
-    <section className="contact-section mx-auto w-full max-w-6xl">
+    <section className="mx-auto w-full max-w-6xl min-w-0">
       <div className="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.85fr)] lg:items-start">
         <div className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-8">
           <form className="space-y-6" onSubmit={onSubmit}>

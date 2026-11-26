@@ -31,7 +31,7 @@ const categoryStyles = {
   learn: 'border-primary-200 bg-primary-50 text-primary-800',
   practise: 'border-secondary-200 bg-secondary-50 text-secondary-800',
   apply: 'border-emerald-200 bg-emerald-50 text-emerald-800',
-  review: 'border-violet-200 bg-violet-50 text-violet-800'
+  review: 'border-primary-200 bg-primary-50 text-primary-800'
 };
 
 export default function ResourcesView({ navigate, user }) {
@@ -64,12 +64,12 @@ export default function ResourcesView({ navigate, user }) {
   }
 
   return (
-    <div className="resources-view min-h-screen" style={{ backgroundColor: '#F3F6F9' }}>
+    <div className="min-h-screen w-full bg-background">
       <main className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
         <DynamicActions pageId="resources" className="mb-6" />
         <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Resources' }]} />
 
-        <header className="mt-8 grid grid-cols-1 items-center gap-6 rounded-2xl border border-white/70 px-5 py-6 pb-8 sm:grid-cols-[minmax(0,1fr)_auto_180px] sm:px-8" style={{ backgroundColor: '#EAF2FA' }}>
+        <header className="mt-8 grid grid-cols-1 items-center gap-6 border-b border-border bg-primary-50 px-5 py-7 pb-8 sm:grid-cols-[minmax(0,1fr)_auto_180px] sm:px-8">
           <div className="max-w-3xl">
             <span className="inline-flex items-center rounded-full border border-primary-200 bg-primary-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-primary-800">
               Resources <span className="mx-2 text-primary-400">·</span> {levelName}{activeGroup?.name ? ` · ${activeGroup.name}` : ''}
@@ -98,7 +98,7 @@ export default function ResourcesView({ navigate, user }) {
           </section>
         )}
 
-        <section className="mt-10 rounded-2xl px-4 py-5 sm:px-6" style={{ backgroundColor: '#F1EDFA' }} aria-label="Resource filters">
+        <section className="mt-10 w-full bg-secondary-50 px-4 py-6 sm:px-6" aria-label="Resource filters">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div className="flex flex-wrap gap-2" role="group" aria-label="Filter resources">
               {FILTERS.map((item) => {
@@ -132,7 +132,7 @@ export default function ResourcesView({ navigate, user }) {
           </div>
         </section>
 
-        <section className="mt-10 rounded-2xl px-4 py-6 sm:px-6 sm:py-8" style={{ backgroundColor: '#F8F1E7' }} aria-labelledby="resources-grid-heading">
+        <section className="mt-10 w-full bg-primary-50 px-4 py-7 sm:px-6 sm:py-9" aria-labelledby="resources-grid-heading">
           <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <span className="text-xs font-bold uppercase tracking-[0.16em] text-secondary-700">Learn · Practise · Apply · Review</span>
@@ -144,7 +144,7 @@ export default function ResourcesView({ navigate, user }) {
           {filteredTypes.length > 0 ? (
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
               {filteredTypes.map((type) => (
-                <article key={type.key} className="flex min-h-[290px] flex-col rounded-2xl border border-border bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-primary-200 hover:shadow-lg">
+                <article key={type.key} className="flex min-h-[290px] flex-col rounded-2xl border border-border bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-primary-300 hover:shadow-lg">
                   <div className="flex items-center justify-between gap-3">
                     <span className={`inline-flex rounded-full border px-3 py-1 text-xs font-bold ${categoryStyles[type.category]}`}>
                       {CATEGORY_LABELS[type.category]}
@@ -153,7 +153,7 @@ export default function ResourcesView({ navigate, user }) {
                   </div>
 
                   <div className="mt-6 flex flex-1 flex-col">
-                    <div className={`flex h-16 w-16 items-center justify-center rounded-2xl border ${type.category === 'learn' ? 'border-primary-200 bg-primary-50 text-primary-700' : type.category === 'practise' ? 'border-secondary-200 bg-secondary-50 text-secondary-700' : type.category === 'apply' ? 'border-emerald-200 bg-emerald-50 text-emerald-700' : 'border-violet-200 bg-violet-50 text-violet-700'}`}>
+                    <div className={`flex h-16 w-16 items-center justify-center rounded-2xl border ${type.category === 'learn' ? 'border-primary-200 bg-primary-50 text-primary-700' : type.category === 'practise' ? 'border-secondary-200 bg-secondary-50 text-secondary-700' : type.category === 'apply' ? 'border-emerald-200 bg-emerald-50 text-emerald-700' : 'border-primary-200 bg-primary-50 text-primary-700'}`}>
                       <Icon name={type.icon} className="h-8 w-8" />
                     </div>
                     <h3 className="mt-5 text-xl font-bold text-primary-900">{type.label}</h3>

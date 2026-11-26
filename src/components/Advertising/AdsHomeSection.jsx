@@ -4,8 +4,8 @@ import StorysetIllustration from '../StorysetIllustration';
 
 export default function AdsHomeSection() {
   return (
-    <section className="w-full overflow-hidden bg-[#F1EDFA] px-5 py-14 text-primary-900 sm:px-8 sm:py-20 lg:px-12" aria-labelledby="ads-home-title">
-      <div className="mx-auto grid w-full max-w-7xl items-center gap-8 rounded-[2rem] border border-[#E2D9F2] bg-white p-6 shadow-sm sm:p-9 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-12 lg:p-12">
+    <section className="w-full overflow-hidden bg-secondary-50 px-5 py-14 text-primary-900 sm:px-8 sm:py-20 lg:px-12" aria-labelledby="ads-home-title">
+      <div className="mx-auto grid w-full max-w-7xl items-center gap-8 rounded-[2rem] border border-secondary-200 bg-white p-6 shadow-sm sm:p-9 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-12 lg:p-12">
         <div className="min-w-0">
           
           <h2 id="ads-home-title" className="max-w-3xl text-3xl font-extrabold leading-tight tracking-tight text-primary-900 sm:text-4xl lg:text-5xl">

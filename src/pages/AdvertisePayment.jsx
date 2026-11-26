@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Icon from '../components/Icon/Icon';
 import AdStepIcon from '../components/Advertising/AdStepIcon';
+import PageHeader from '../components/PageHeader/PageHeader';
+import { UI } from '../design-system';
 import SlideToConfirmButton from '../components/buttons/slide-to-confirm-button';
 import {
 verifyAdPayment,
@@ -192,26 +194,18 @@ className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-primar
 Advertising
 </Link>
 
-    <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary-700">
-      Campaign payment
-    </span>
-
-    <h1>
-      Confirm your
-      <br />
-      campaign payment.
-    </h1>
-
-    <p>
-      Enter your transaction’s payment reference. We’ll check it against your campaign before it moves forward.
-    </p>
+    <PageHeader
+      label="Campaign payment"
+      title="Confirm your campaign payment."
+      subtitle="Enter your transaction’s payment reference. We’ll check it against your campaign before it moves forward."
+    />
   </section>
 
   <section className="mx-auto grid max-w-7xl items-start gap-8 lg:grid-cols-[minmax(0,1.6fr)_minmax(280px,0.7fr)]">
     <div className="min-w-0 space-y-6 rounded-3xl border border-border bg-white p-5 shadow-sm sm:p-8">
       {error && (
         <div
-          className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-800"
+          className={UI.status.error}
           role="alert"
         >
           {error}
@@ -220,7 +214,7 @@ Advertising
 
       {message && (
         <div
-          className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-800"
+          className={UI.status.success}
           role="status"
         >
           {message}
@@ -241,7 +235,7 @@ Advertising
 
           <button
             type="button"
-            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-primary-700 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-primary-800 disabled:cursor-not-allowed disabled:opacity-60"
+            className={UI.primaryButton}
             onClick={() => navigate('/advertise')}
           >
             Back to advertising
@@ -355,7 +349,7 @@ Advertising
                   </p>
                 </div>
 
-                <label>
+                <label className="grid min-w-0 gap-2 text-sm font-semibold text-slate-700">
                   Payment reference
                   <input
                     type="text"
@@ -367,7 +361,7 @@ Advertising
                     placeholder="Enter payment ID"
                     inputMode="numeric"
                     required
-                   className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-600 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500" />
+                   className={`${UI.inputBase} border-border`} />
                 </label>
 
                 <SlideToConfirmButton
@@ -401,7 +395,7 @@ Advertising
 
               <Link
                 to="/advertise"
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-primary-700 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-primary-800 disabled:cursor-not-allowed disabled:opacity-60"
+                className={UI.primaryButton}
               >
                 Back to advertising
               </Link>
@@ -411,12 +405,12 @@ Advertising
       )}
     </div>
 
-    <aside className="sticky top-24 rounded-3xl border border-primary-800 bg-primary-900 p-6 text-white shadow-xl [&_h2]:text-white [&_p]:text-blue-100 [&_a]:text-orange-100">
-      <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-orange-200">
+    <aside className="sticky top-24 rounded-3xl border border-primary-800 bg-primary-900 p-6 text-white shadow-xl [&_h2]:text-white [&_p]:text-blue-100 [&_a]:text-secondary-100">
+      <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-secondary-200">
         <AdStepIcon name="review" size={38} />
       </div>
 
-      <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary-700">
+      <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary-100">
         Payment & review
       </span>
 
@@ -455,7 +449,7 @@ Advertising
 
       <Link
         to="/advertise"
-        className="mt-5 inline-flex text-sm font-semibold text-primary-700 underline underline-offset-4 hover:text-primary-900"
+        className="mt-5 inline-flex text-sm font-semibold text-secondary-100 underline underline-offset-4 hover:text-white"
       >
         Advertising guidelines
       </Link>

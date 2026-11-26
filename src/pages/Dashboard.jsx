@@ -663,7 +663,7 @@ export default function Dashboard() {
                     <ProgressBar
                       value={platform.xp_progress.xpIntoLevel}
                       max={platform.xp_progress.nextLevelXp}
-                      variant="gradient"
+                      variant="primary"
                     />
                     <p className="text-sm text-slate-600" id="xp-progress-text">
                       {platform.xp_progress.xpIntoLevel}/{platform.xp_progress.nextLevelXp} XP to next level
