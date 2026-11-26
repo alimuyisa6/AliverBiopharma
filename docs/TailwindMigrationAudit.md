@@ -83,12 +83,12 @@ Base audited: `main` at `9883fe099bab75bb116d5ce40b380b438f2feb9c` (PR #227).
 - [ ] `src/components/Advertising/AdStepIcon.jsx` — pending line-by-line review
 - [ ] `src/components/Advertising/AdsHomeSection.jsx` — pending line-by-line review
 - [ ] `src/components/AnimatedActionButton/AnimatedActionButton.jsx` — pending line-by-line review
-- [ ] `src/components/Badge/Badge.jsx` — pending line-by-line review
+- [x] `src/components/Badge/Badge.jsx` — reviewed; migrated shared styling to central `UI` Tailwind contracts.
 - [ ] `src/components/BiopharmToggle/BiopharmToggle.jsx` — pending line-by-line review
 - [ ] `src/components/Breadcrumb/Breadcrumb.jsx` — pending line-by-line review
-- [ ] `src/components/Button/Button.jsx` — pending line-by-line review
+- [x] `src/components/Button/Button.jsx` — reviewed; migrated shared styling to central `UI` Tailwind contracts.
 - [ ] `src/components/Card/Card.jsx` — pending line-by-line review
-- [ ] `src/components/Chip/Chip.jsx` — pending line-by-line review
+- [x] `src/components/Chip/Chip.jsx` — reviewed; migrated shared styling to central `UI` Tailwind contracts.
 - [ ] `src/components/ClassSwitcher/ClassSwitcher.jsx` — pending line-by-line review
 - [ ] `src/components/Container/Container.jsx` — pending line-by-line review
 - [ ] `src/components/Container/Grid/Grid.jsx` — pending line-by-line review
@@ -96,8 +96,8 @@ Base audited: `main` at `9883fe099bab75bb116d5ce40b380b438f2feb9c` (PR #227).
 - [ ] `src/components/CookieConsent/CookieConsent.jsx` — pending line-by-line review
 - [ ] `src/components/Curriculum/InteractiveSymbolExplorer.jsx` — pending line-by-line review
 - [ ] `src/components/DynamicActions.jsx` — pending line-by-line review
-- [ ] `src/components/EmptyState/EmptyState.jsx` — pending line-by-line review
-- [ ] `src/components/ErrorState/ErrorState.jsx` — pending line-by-line review
+- [x] `src/components/EmptyState/EmptyState.jsx` — reviewed; migrated shared styling to central `UI` Tailwind contracts.
+- [x] `src/components/ErrorState/ErrorState.jsx` — reviewed; migrated shared styling to central `UI` Tailwind contracts.
 - [ ] `src/components/FileUpload/FileUpload.jsx` — pending line-by-line review
 - [ ] `src/components/FlashcardDeckView.jsx` — pending line-by-line review
 - [ ] `src/components/FlashcardWelcome.jsx` — pending line-by-line review
@@ -105,7 +105,7 @@ Base audited: `main` at `9883fe099bab75bb116d5ce40b380b438f2feb9c` (PR #227).
 - [ ] `src/components/GlobalLoader/GlobalLoader.jsx` — pending line-by-line review
 - [ ] `src/components/Hero/Hero.jsx` — pending line-by-line review
 - [ ] `src/components/Icon/Icon.jsx` — pending line-by-line review
-- [ ] `src/components/Input/Input.jsx` — pending line-by-line review
+- [x] `src/components/Input/Input.jsx` — reviewed; migrated shared styling to central `UI` Tailwind contracts.
 - [ ] `src/components/Layout/Layout.jsx` — pending line-by-line review
 - [ ] `src/components/LearningJourney/LearningJourney.jsx` — pending line-by-line review
 - [ ] `src/components/Loading/PageSkeleton.jsx` — pending line-by-line review
@@ -123,7 +123,7 @@ Base audited: `main` at `9883fe099bab75bb116d5ce40b380b438f2feb9c` (PR #227).
 - [ ] `src/components/ScrollMemory.jsx` — pending line-by-line review
 - [ ] `src/components/ScrollToTop.jsx` — pending line-by-line review
 - [ ] `src/components/SearchOverlay/SearchOverlay.jsx` — pending line-by-line review
-- [ ] `src/components/Select/Select.jsx` — pending line-by-line review
+- [x] `src/components/Select/Select.jsx` — reviewed; migrated shared styling to central `UI` Tailwind contracts.
 - [ ] `src/components/Seo/Seo.jsx` — pending line-by-line review
 - [ ] `src/components/Skeleton/Skeleton.jsx` — pending line-by-line review
 - [ ] `src/components/Spinner/Accordion/Accordion.jsx` — pending line-by-line review
@@ -133,7 +133,7 @@ Base audited: `main` at `9883fe099bab75bb116d5ce40b380b438f2feb9c` (PR #227).
 - [ ] `src/components/StatsGrid/StatsGrid.jsx` — pending line-by-line review
 - [ ] `src/components/StickyNotePolaroidFrame/StickyNotePolaroidFrame.jsx` — pending line-by-line review
 - [ ] `src/components/StorysetIllustration.jsx` — pending line-by-line review
-- [ ] `src/components/Textarea/Textarea.jsx` — pending line-by-line review
+- [x] `src/components/Textarea/Textarea.jsx` — reviewed; migrated shared styling to central `UI` Tailwind contracts.
 - [ ] `src/components/Toast/Badge/Badge.jsx` — pending line-by-line review
 - [ ] `src/components/Toast/Toast.jsx` — pending line-by-line review
 - [ ] `src/components/TurnstileWidget.jsx` — pending line-by-line review
