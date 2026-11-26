@@ -1,6 +1,7 @@
 import { forwardRef } from 'react';
 import Icon from '../Icon/Icon';
 import Spinner from '../Spinner/Spinner';
+import { UI } from '../../design-system';
 
 const variantStyles = {
   primary: 'ab-btn-primary',
@@ -41,7 +42,7 @@ const Button = forwardRef(function Button(
   ref
 ) {
   const classes = [
-    'ab-btn inline-flex min-h-10 items-center justify-center gap-2 whitespace-nowrap rounded-xl px-4 py-2 text-sm font-semibold leading-5 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:cursor-not-allowed disabled:opacity-60',
+    UI.buttonBase,
     variantStyles[variant] || variantStyles.primary,
     size === 'sm' && 'min-h-8 px-3 py-1.5 text-xs',
     size === 'lg' && 'min-h-12 px-5 py-3 text-base',
