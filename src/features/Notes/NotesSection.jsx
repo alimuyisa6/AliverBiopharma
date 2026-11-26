@@ -30,7 +30,7 @@ export function NotesSection({
           <div className="rounded-2xl border border-border bg-white shadow-sm">
             <div className="p-5 sm:p-7">
               <div className="flex flex-col items-center justify-center gap-3 px-5 py-14 text-center">
-                <i className="text-3xl text-primary-700"></i>
+                <i className="fa-solid fa-book-open text-3xl text-primary-700" aria-hidden="true"></i>
                 <p>No study notes available for your level yet.</p>
                 <span>Check back soon as new notes are added.</span>
               </div>
@@ -106,7 +106,7 @@ export function NotesSection({
                       onClick={() => onReaction(notesContent.subtopicId, 'like')}
                     >
                       <i className="fa-regular fa-thumbs-up"></i>
-                      <span className="reaction-count">{notesReactions?.counts?.like || 0}</span>
+                      <span className="text-xs font-mono font-bold">{notesReactions?.counts?.like || 0}</span>
                     </button>
                     <button type="button"
                       className={`inline-flex min-h-10 items-center gap-2 rounded-xl border px-4 py-2 text-sm font-semibold transition ${notesReactions?.user_reaction === 'love' ? 'border-primary-400 bg-primary-50 text-primary-900' : 'border-border bg-white text-slate-700 hover:bg-slate-50'}`}
