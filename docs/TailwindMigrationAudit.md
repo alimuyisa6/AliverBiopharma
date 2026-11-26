@@ -73,7 +73,7 @@ Base audited: `main` at `9883fe099bab75bb116d5ce40b380b438f2feb9c` (PR #227).
 - [ ] `src/pages/TutorDashboard.jsx` — pending line-by-line review
 - [ ] `src/pages/TutorMarketplace.jsx` — pending line-by-line review
 - [ ] `src/pages/TutorProfile.jsx` — pending line-by-line review
-- [ ] `src/pages/challenges/QuizChallengePage.jsx` — pending line-by-line review
+- [x] `src/pages/challenges/QuizChallengePage.jsx` — reviewed end-to-end; removed dark/blue-only styling in favor of central Aliver contracts for page, panels, question options, progress and actions. Challenge logic untouched.
 - [ ] `src/pages/past-papers.jsx` — pending line-by-line review
 
 ### Components (104 files)
