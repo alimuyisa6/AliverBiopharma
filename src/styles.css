@@ -539,7 +539,8 @@ header nav { min-width: 0; }
   }
   .ab-reading-content p { @apply leading-7; }
   .ab-reading-content a { @apply font-semibold text-primary-700 underline; }
-  .ab-reading-content :is(ul, ol) { @apply my-5 pl-6; }
+  .ab-reading-content ul { @apply my-5 list-disc pl-6; }
+  .ab-reading-content ol { @apply my-5 list-decimal pl-6; }
   .ab-reading-content li { @apply my-1; }
   .ab-reading-content img { @apply my-6 max-w-full rounded-xl; }
   .ab-reading-content table {
