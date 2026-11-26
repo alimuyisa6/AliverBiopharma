@@ -16,6 +16,7 @@ import ProgressBar from './ProgressBar/ProgressBar';
 import Spinner from './Spinner/Spinner';
 import { useToast } from './Toast/Toast';
 import { useSecurityUiLock } from '../hooks/useSecurityUiLock';
+import { UI } from '../design-system';
 
 const MODES = [
   { value: 'flip', icon: 'rotate', label: 'Flip' },
@@ -24,12 +25,7 @@ const MODES = [
   { value: 'structure_identification', icon: 'microscope', label: 'Structure' }
 ];
 
-const MODE_CARD_COLOR = {
-  flip: 'border-blue-200 bg-blue-50 text-blue-950',
-  typed: 'border-teal-200 bg-teal-50 text-teal-950',
-  multiple_choice: 'border-violet-200 bg-violet-50 text-violet-950',
-  structure_identification: 'border-emerald-200 bg-emerald-50 text-emerald-950'
-};
+
 
 export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode: initialMode = 'flip', onComplete, onPremiumRequired, challengeId = null, sourceNoteId = null, activityScope = null, unitId = null }) {
   const [deck, setDeck] = useState(null);
@@ -216,13 +212,13 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
   const isKnown = known.has(card.id);
   const isBookmarked = bookmarked.has(card.id);
   const isLast = index === cards.length - 1;
-  const cardColor = MODE_CARD_COLOR[mode] || 'border-blue-200 bg-blue-50 text-blue-950';
+  const cardColor = UI.flashcardModeColors[mode] || UI.flashcardModeColors.flip;
 
   return (
     <div className="w-full">
-      <div className="mx-auto w-full max-w-5xl px-4 py-6 sm:px-6">
+      <div className={UI.studyContainer}>
         <div className="mb-4">
-          <ProgressBar value={index + 1} max={cards.length} variant="gradient" />
+          <ProgressBar value={index + 1} max={cards.length} variant="primary" />
         </div>
 
         <div className="mb-5 flex flex-wrap gap-2">
@@ -247,15 +243,15 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
 
         {mode === 'flip' && (
           <div className="grid gap-4">
-            <div className={`relative min-h-[18rem] rounded-2xl border p-5 shadow-sm sm:p-8 ${cardColor}`} aria-live="polite">
+            <div className={`${UI.flashcardPrompt} relative min-h-[18rem] sm:p-8 ${cardColor}`} aria-live="polite">
               <span className={`relative grid min-h-[18rem] [transform-style:preserve-3d] transition-transform duration-500 ${flipped ? '[transform:rotateY(180deg)]' : ''}`}>
-                <span className="absolute inset-0 flex min-h-[18rem] flex-col items-start gap-4 rounded-2xl border p-5 [backface-visibility:hidden] sm:p-8">
-                  <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-xs font-bold uppercase tracking-wide text-slate-700">Question</span>
+                <span className={`${UI.flashcardFace} ${cardColor}`}>
+                  <span className={UI.flashcardQuestionBadge}>Question</span>
                   <span className="text-xl font-bold leading-8 sm:text-2xl">{card.front_text}</span>
                   {card.image_url && <img src={card.image_url} alt="" className="mt-3 max-h-72 w-full rounded-xl object-contain" />}
                 </span>
-                <span className="absolute inset-0 flex min-h-[18rem] flex-col items-start gap-4 rounded-2xl border p-5 [backface-visibility:hidden] [transform:rotateY(180deg)] sm:p-8">
-                  <span className="inline-flex items-center gap-2 rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold uppercase tracking-wide text-emerald-800">Answer</span>
+                <span className={`${UI.flashcardFaceBack} ${cardColor}`}>
+                  <span className={UI.flashcardAnswerBadge}>Answer</span>
                   <span className="text-xl font-bold leading-8 sm:text-2xl">{card.back_text}</span>
                 </span>
               </span>
@@ -274,15 +270,15 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
 
         {mode === 'typed' && (
           <div>
-            <div className={`rounded-2xl border p-5 shadow-sm ${cardColor}`}>
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-xs font-bold uppercase tracking-wide text-slate-700">Question</span>
+            <div className={`${UI.flashcardPrompt} ${cardColor}`}>
+              <span className={UI.flashcardQuestionBadge}>Question</span>
               <h3>{card.front_text}</h3>
               {card.image_url && <img src={card.image_url} alt="" className="mt-3 max-h-72 w-full rounded-xl object-contain" />}
             </div>
 
             <div className="mt-4 flex flex-col gap-3 sm:flex-row">
               <input
-                className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-500 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
+                className={`${UI.inputBase} text-sm leading-6`}
                 placeholder="Type your answer..."
                 value={typedAnswer}
                 onChange={(event) => setTypedAnswer(event.target.value)}
@@ -310,8 +306,8 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
 
         {mode === 'multiple_choice' && (
           <div>
-            <div className={`rounded-2xl border p-5 shadow-sm ${cardColor}`}>
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-xs font-bold uppercase tracking-wide text-slate-700">Question</span>
+            <div className={`${UI.flashcardPrompt} ${cardColor}`}>
+              <span className={UI.flashcardQuestionBadge}>Question</span>
               <h3>{card.front_text}</h3>
             </div>
 
@@ -356,8 +352,8 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
 
         {mode === 'structure_identification' && (
           <div>
-            <div className={`rounded-2xl border p-5 shadow-sm ${cardColor}`}>
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-xs font-bold uppercase tracking-wide text-slate-700">Structure</span>
+            <div className={`${UI.flashcardPrompt} ${cardColor}`}>
+              <span className={UI.flashcardQuestionBadge}>Structure</span>
               {card.image_url ? (
                 <img src={card.image_url} alt={card.structure_name || 'Structure'} className="max-h-[28rem] w-full rounded-xl object-contain" />
               ) : (
@@ -379,7 +375,7 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
 
             <div className="mt-4 flex flex-col gap-3 sm:flex-row">
               <input
-                className="block min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-primary-500 focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
+                className={`${UI.inputBase} text-sm leading-6`}
                 placeholder={structureTab === 'name' ? 'What is this structure called?' : 'What is its function?'}
                 value={typedAnswer}
                 onChange={(event) => setTypedAnswer(event.target.value)}
