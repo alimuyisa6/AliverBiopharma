@@ -25,17 +25,17 @@ import Container from '../components/Container/Container';
 import ProgressBar, { ProgressRing } from '../components/ProgressBar/ProgressBar';
 import { useI18n } from '../contexts/I18nContext';
 
-const pageWrap = 'mx-auto w-full max-w-7xl space-y-7 px-3 py-4 sm:px-6 sm:py-10 lg:px-8';
+const pageWrap = 'mx-auto w-full max-w-7xl space-y-7 px-3 py-6 sm:px-6 sm:py-10 lg:px-8';
 const cardBase = 'overflow-hidden rounded-2xl border shadow-card transition-shadow hover:shadow-card-hover';
-const cardPrimary = `${cardBase} border-primary-100 bg-primary-50/80`;
-const cardSecondary = `${cardBase} border-slate-200 bg-white`;
-const panelHeader = 'flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 px-3 py-4 sm:px-6';
+const cardPrimary = `${cardBase} border-primary-200 bg-white`;
+const cardSecondary = `${cardBase} border-secondary-200 bg-secondary-50`;
+const panelHeader = 'flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 bg-primary-50/70 px-3 py-4 sm:px-6';
 const panelBody = 'space-y-4 p-3 sm:p-6';
-const panelTitle = 'text-xl font-bold text-primary-900 sm:text-2xl';
-const sectionIntro = 'max-w-3xl text-sm text-slate-600 sm:text-base';
-const noteText = 'text-sm leading-6 text-slate-600';
-const graphGuide = 'rounded-xl bg-white p-3 text-sm leading-6 text-slate-600 sm:p-4';
-const insightChart = 'space-y-3 rounded-xl bg-white p-3 sm:p-4';
+const panelTitle = 'text-xl font-extrabold text-primary-950 sm:text-2xl';
+const sectionIntro = 'max-w-3xl text-sm leading-7 text-slate-700 sm:text-base';
+const noteText = 'text-sm leading-7 text-slate-700';
+const graphGuide = 'rounded-xl border border-slate-200 bg-white p-3 text-sm leading-7 text-slate-700 sm:p-4';
+const insightChart = 'space-y-3 rounded-xl border border-slate-200 bg-white p-3 sm:p-4';
 const sectionLink = 'inline-flex min-h-10 items-center justify-center gap-2 rounded-xl border border-primary-200 bg-white px-4 py-2 text-sm font-bold text-primary-800 no-underline transition hover:border-primary-400 hover:bg-primary-50 hover:text-primary-900';
 const listGrid = 'grid gap-2';
 const listItem = 'flex items-center justify-between gap-3 rounded-xl border border-slate-100 bg-white px-3 py-3 text-slate-700 no-underline';
@@ -45,9 +45,9 @@ const metricBox = 'flex flex-col gap-1 rounded-xl border border-slate-200 bg-whi
 const metricBoxPass = 'flex flex-col gap-1 rounded-xl border border-emerald-200 bg-emerald-50 p-4';
 const metricBoxFail = 'flex flex-col gap-1 rounded-xl border border-red-200 bg-red-50 p-4';
 const metricValue = 'text-2xl font-extrabold text-primary-900';
-const metricLabel = 'text-xs font-semibold text-slate-600';
+const metricLabel = 'text-xs font-bold text-slate-700';
 const statCell = 'flex flex-col rounded-xl border border-slate-200 bg-white p-3 [&_strong]:text-xl [&_strong]:font-extrabold [&_strong]:text-primary-900 [&_span]:text-xs [&_span]:font-semibold [&_span]:text-slate-600';
-const chartLoading = 'flex min-h-40 items-center justify-center text-sm text-slate-500';
+const chartLoading = 'flex min-h-40 items-center justify-center text-sm font-semibold text-slate-600';
 const skeletonBlock = 'animate-shimmer rounded-xl bg-slate-200';
 
 const downloadStatusStyles = {
@@ -298,7 +298,7 @@ export default function Dashboard() {
 
   if (!access.canAccess) {
     return (
-      <Container>
+      <div className="min-h-screen w-full bg-primary-100"><Container>
         <div className={pageWrap}>
           <EmptyState
             image={getEmptyStateImage('dashboard')}
@@ -306,13 +306,13 @@ export default function Dashboard() {
             description="Your account can't access this area."
           />
         </div>
-      </Container>
+      </Container></div>
     );
   }
 
   if (loading) {
     return (
-      <Container>
+      <div className="min-h-screen w-full bg-primary-100"><Container>
         <div className={pageWrap}>
           <div className="space-y-6" role="status" aria-label="Loading your dashboard">
             <div className="space-y-3">
@@ -327,13 +327,13 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
-      </Container>
+      </Container></div>
     );
   }
 
   if (locked) {
     return (
-      <Container>
+      <div className="min-h-screen w-full bg-primary-100"><Container>
         <div className={pageWrap}>
           <EmptyState
             icon="lock"
@@ -341,13 +341,13 @@ export default function Dashboard() {
             description={reason || 'For your security, this action is temporarily unavailable. Please try again later.'}
           />
         </div>
-      </Container>
+      </Container></div>
     );
   }
 
   if (error || !summary) {
     return (
-      <Container>
+      <div className="min-h-screen w-full bg-primary-100"><Container>
         <div className={pageWrap}>
           <EmptyState
             image={getEmptyStateImage('error')}
@@ -355,7 +355,7 @@ export default function Dashboard() {
             description={error || 'Your dashboard is temporarily unavailable. Please try again.'}
           />
         </div>
-      </Container>
+      </Container></div>
     );
   }
 
@@ -493,7 +493,7 @@ export default function Dashboard() {
   const activityPeriodLabel = activityRange === 'day' ? 'Daily' : activityRange === 'month' ? 'Monthly' : 'Weekly';
 
   return (
-    <Container>
+    <div className="min-h-screen w-full bg-primary-100"><Container>
       <div className={pageWrap}>
         <section className="rounded-3xl border border-primary-100 bg-primary-900 p-5 text-white shadow-xl sm:p-8" aria-labelledby="welcome-title">
           <div>
@@ -1447,6 +1447,6 @@ export default function Dashboard() {
           </aside>
         </div>
       </div>
-    </Container>
+    </Container></div>
   );
 }
