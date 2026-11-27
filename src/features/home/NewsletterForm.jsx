@@ -8,7 +8,7 @@ export function NewsletterForm({ email, status, loading = false, onChange, onSub
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-8 rounded-3xl border border-white/15 bg-white/10 p-6 shadow-xl backdrop-blur sm:p-9 lg:grid-cols-[1fr_0.9fr] lg:gap-14 lg:p-12">
         <div className="max-w-2xl">
           <h2 id="lernwick-newsletter-title" className="text-3xl font-bold leading-tight text-white sm:text-4xl">Keep growing your knowledge.</h2>
-          <StorysetIllustration name="emailCampaign" alt="Email updates and newsletter" className="mt-5 w-40 object-contain sm:w-48 lg:w-56" />
+          <StorysetIllustration name="emailCampaign" alt="Email updates and newsletter" className="mx-auto mt-5 block w-64 object-contain sm:w-72 lg:w-80" />
           <p className="mt-8 text-base leading-8 text-blue-100">Receive updates about new Biology and Pharmacy learning resources, study tools and platform opportunities.</p>
         </div>
         <form onSubmit={onSubmit} className="min-w-0 rounded-2xl border border-white/15 bg-white p-5 text-slate-800 shadow-lg sm:p-6" aria-label="Subscribe to AliverBiopharm updates">
