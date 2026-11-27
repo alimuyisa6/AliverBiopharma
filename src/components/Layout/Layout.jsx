@@ -170,7 +170,7 @@ export default function Layout({ children }) {
               <stop offset="100%" stopColor="#C5A04A" />
               <animateTransform attributeName="gradientTransform" type="translate" values="-720 0;720 0;-720 0" dur="12s" repeatCount="indefinite" />
             </linearGradient>
-            <path id="footer-wave-message-path" d="M0 31 C170 1 330 75 540 42 S900 2 1090 31 1320 67 1440 27" />
+            <path id="footer-wave-message-path" d="M0 51 C170 21 330 95 540 62 S900 22 1090 51 1320 87 1440 47" />
           </defs>
           <g>
             <animateTransform attributeName="transform" type="translate" values="0 0;0 3;0 0;0 -3;0 0" dur="6s" repeatCount="indefinite" />
