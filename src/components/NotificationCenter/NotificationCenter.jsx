@@ -78,7 +78,7 @@ export default function NotificationCenter() {
     <div className="relative inline-flex shrink-0" ref={rootRef}>
       <button
         type="button"
-        className={`relative inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-white text-primary-800 transition hover:border-primary-200 hover:bg-primary-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 ${hasNewNotification ? 'ring-2 ring-secondary-300' : ''}`}
+        className={`relative inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-0 bg-transparent text-white shadow-none transition hover:bg-transparent hover:text-secondary-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${hasNewNotification ? 'ring-2 ring-secondary-200' : ''}`}
         onClick={() => setOpen((current) => !current)}
         aria-label={unreadCount ? `Notifications, ${unreadCount} unread` : 'Notifications'}
         aria-expanded={open}
