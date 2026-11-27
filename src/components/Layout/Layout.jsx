@@ -156,9 +156,11 @@ export default function Layout({ children }) {
     <footer className="relative isolate mt-0 overflow-hidden bg-white text-white">
       <div className="pointer-events-none relative z-0 block h-28 overflow-hidden sm:h-32 lg:h-36" aria-label="Keep learning. Keep growing. Keep advancing.">
         <svg className="absolute inset-0 block h-full w-full" viewBox="0 0 1440 140" preserveAspectRatio="none" focusable="false" aria-hidden="true">
-          <path className="fill-secondary-400" d="M0 34C170 4 330 78 540 45S900 5 1090 34 1320 70 1440 30V140H0Z" />
-          <path className="fill-primary-500" d="M0 57C190 25 390 94 600 67S960 28 1160 58 1350 88 1440 54V140H0Z" />
-          <path className="fill-primary-900" d="M0 81C210 51 410 112 650 87S1010 50 1200 82 1370 108 1440 78V140H0Z" />
+          <g transform="translate(0 30)">
+            <path className="fill-secondary-400" d="M0 34C170 4 330 78 540 45S900 5 1090 34 1320 70 1440 30V140H0Z" />
+            <path className="fill-primary-500" d="M0 57C190 25 390 94 600 67S960 28 1160 58 1350 88 1440 54V140H0Z" />
+            <path className="fill-primary-900" d="M0 81C210 51 410 112 650 87S1010 50 1200 82 1370 108 1440 78V140H0Z" />
+          </g>
         </svg>
         <svg className="absolute inset-0 h-full w-full" viewBox="0 0 1440 140" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
           <defs>
@@ -168,7 +170,7 @@ export default function Layout({ children }) {
               <stop offset="100%" stopColor="#C5A04A" />
               <animateTransform attributeName="gradientTransform" type="translate" values="-720 0;720 0;-720 0" dur="12s" repeatCount="indefinite" />
             </linearGradient>
-            <path id="footer-wave-message-path" d="M45 25 C260 -2 440 2 650 25 S1040 49 1395 17" />
+            <path id="footer-wave-message-path" d="M0 46 C170 16 330 90 540 57 S900 17 1090 46 1320 82 1440 42" />
           </defs>
           <g>
             <animateTransform attributeName="transform" type="translate" values="0 0;0 3;0 0;0 -3;0 0" dur="6s" repeatCount="indefinite" />
