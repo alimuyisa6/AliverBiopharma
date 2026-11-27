@@ -107,8 +107,8 @@ export default function AboutPage() {
           )}
 
           {page?.mission && (
-            <div className="grid gap-4 rounded-2xl border border-primary-100 bg-white p-6 shadow-sm sm:p-8">
-              {page.mission.heading && <h2 className="mb-2 text-2xl font-extrabold text-primary-950 sm:text-3xl">{page.mission.heading}</h2>}
+            <div className="grid gap-4 border-b border-border pb-8 last:border-0">
+              {page.mission.heading && <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.mission.heading}</h2>}
               {page.mission.content.split('\n\n').map((para, i) => (
                 <p key={i} className="text-base leading-8 text-slate-800 sm:text-[1.0625rem]"><RichText text={para} /></p>
               ))}
