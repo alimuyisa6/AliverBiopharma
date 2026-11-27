@@ -162,7 +162,7 @@ export default function Layout({ children }) {
             <path className="fill-primary-900" d="M0 81C210 51 410 112 650 87S1010 50 1200 82 1370 108 1440 78V140H0Z" />
           </g>
         </svg>
-        <svg className="absolute inset-0 h-full w-full" viewBox="0 0 1440 140" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+        <svg className="absolute inset-0 h-full w-full" viewBox="0 0 1440 140" preserveAspectRatio="none" aria-hidden="true" focusable="false">
           <defs>
             <linearGradient id="footer-wave-message-gradient" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
               <stop offset="0%" stopColor="#123B67" />
