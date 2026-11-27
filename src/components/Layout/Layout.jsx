@@ -156,7 +156,7 @@ export default function Layout({ children }) {
     <footer className="relative isolate mt-0 overflow-hidden bg-white text-white">
       <div className="pointer-events-none relative z-0 block h-28 overflow-hidden sm:h-32 lg:h-36" aria-label="Keep learning. Keep growing. Keep advancing.">
         <svg className="absolute inset-0 block h-full w-full" viewBox="0 0 1440 140" preserveAspectRatio="none" focusable="false" aria-hidden="true">
-          <g transform="translate(0 30)">
+          <g transform="translate(0 42)">
             <path className="fill-secondary-400" d="M0 34C170 4 330 78 540 45S900 5 1090 34 1320 70 1440 30V140H0Z" />
             <path className="fill-primary-500" d="M0 57C190 25 390 94 600 67S960 28 1160 58 1350 88 1440 54V140H0Z" />
             <path className="fill-primary-900" d="M0 81C210 51 410 112 650 87S1010 50 1200 82 1370 108 1440 78V140H0Z" />
