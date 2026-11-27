@@ -37,72 +37,70 @@ export default function LernwickHomeHero({
 
   return (
     <section
-      className="relative isolate w-full overflow-hidden bg-primary-900"
+      className="w-full overflow-hidden bg-white"
       aria-labelledby="ab-home-hero-title"
     >
-      <div
-        className="absolute inset-0 -z-20 bg-cover bg-center"
-        style={{ backgroundImage: `url("${heroBackgroundImage}")`, backgroundPosition: 'center 42%' }}
-        aria-hidden="true"
-      />
-      <div className="absolute inset-0 -z-10 bg-slate-950/55" aria-hidden="true" />
-
-      <div className="mx-auto flex min-h-[620px] w-full max-w-7xl items-center px-5 py-14 sm:px-8 sm:py-20 lg:min-h-[700px] lg:px-12 lg:py-24">
-        <div className="w-full max-w-4xl rounded-[1.75rem] border border-white/25 bg-slate-950/45 p-6 text-white shadow-2xl shadow-slate-950/30 backdrop-blur-xl sm:p-9 lg:p-12">
-          {name && (
-            <p className="mb-4 text-sm font-semibold text-white/90">
-              Welcome back, {name}
-            </p>
-          )}
-
-          <h1
-            id="ab-home-hero-title"
-            className="max-w-3xl text-4xl font-extrabold leading-[1.02] tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl xl:text-7xl"
-          >
-            {headingLead}
-            <span className="mt-2 block text-secondary-300">{headingAccent}</span>
-          </h1>
-
-          <p className="mt-6 max-w-2xl text-base leading-8 text-white/90 sm:text-lg">
-            {description}
+      <div className="mx-auto w-full max-w-7xl px-5 pb-10 pt-14 sm:px-8 sm:pb-12 sm:pt-20 lg:px-12 lg:pb-14 lg:pt-24">
+        {name && (
+          <p className="mb-4 text-sm font-semibold text-primary-700">
+            Welcome back, {name}
           </p>
+        )}
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white bg-white px-5 py-3 text-sm font-bold text-primary-900 shadow-lg transition hover:-translate-y-0.5 hover:bg-primary-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
-              to={primaryHref}
-            >
-              {primaryLabel}
-              <Icon name="arrowUpRight" size="sm" aria-hidden="true" />
-            </Link>
-            <Link
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/60 bg-white/10 px-5 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
-              to={secondaryHref}
-            >
-              {secondaryLabel}
-            </Link>
-          </div>
+        <h1
+          id="ab-home-hero-title"
+          className="max-w-4xl text-4xl font-extrabold leading-[1.02] tracking-[-0.04em] text-primary-900 sm:text-5xl lg:text-6xl xl:text-7xl"
+        >
+          {headingLead}
+          <span className="mt-2 block text-secondary-600">{headingAccent}</span>
+        </h1>
 
-          <div
-            className="mt-9 grid grid-cols-2 gap-x-5 gap-y-4 border-t border-white/30 pt-6 sm:grid-cols-4"
-            aria-label="Learning benefits"
+        <p className="mt-6 max-w-3xl text-base leading-8 text-slate-700 sm:text-lg">
+          {description}
+        </p>
+
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <Link
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-primary-900 bg-primary-900 px-5 py-3 text-sm font-bold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-primary-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-700"
+            to={primaryHref}
           >
-            {benefits.map((benefit, index) => (
-              <div className="min-w-0" key={benefit.id || benefit.title || index}>
-                <strong className="block text-sm font-bold text-white">{benefit.title}</strong>
-                <span className="mt-1 block text-xs leading-5 text-white/80">{benefit.detail}</span>
-              </div>
-            ))}
-          </div>
-
-          {learningPath && (
-            <p className="mt-6 text-sm text-white/85">
-              Your current programme:{' '}
-              <strong className="font-semibold text-white">{learningPath}</strong>
-            </p>
-          )}
+            {primaryLabel}
+            <Icon name="arrowUpRight" size="sm" aria-hidden="true" />
+          </Link>
+          <Link
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-primary-200 bg-white px-5 py-3 text-sm font-bold text-primary-900 transition hover:-translate-y-0.5 hover:bg-primary-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-700"
+            to={secondaryHref}
+          >
+            {secondaryLabel}
+          </Link>
         </div>
+
+        <div
+          className="mt-9 grid grid-cols-2 gap-x-5 gap-y-4 border-t border-slate-200 pt-6 sm:grid-cols-4"
+          aria-label="Learning benefits"
+        >
+          {benefits.map((benefit, index) => (
+            <div className="min-w-0" key={benefit.id || benefit.title || index}>
+              <strong className="block text-sm font-bold text-primary-900">{benefit.title}</strong>
+              <span className="mt-1 block text-xs leading-5 text-slate-600">{benefit.detail}</span>
+            </div>
+          ))}
+        </div>
+
+        {learningPath && (
+          <p className="mt-6 text-sm text-slate-600">
+            Your current programme:{' '}
+            <strong className="font-semibold text-primary-900">{learningPath}</strong>
+          </p>
+        )}
       </div>
+
+      <div
+        className="h-[300px] w-full bg-cover bg-center sm:h-[420px] lg:h-[520px]"
+        style={{ backgroundImage: `url("${heroBackgroundImage}")`, backgroundPosition: 'center 42%' }}
+        role="img"
+        aria-label="Students collaborating while studying together"
+      />
     </section>
   );
 }
