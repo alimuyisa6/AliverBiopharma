@@ -92,7 +92,7 @@ export function FaqAccordion({ items, data, standalone = false }) {
                   <span className="min-w-0 flex-1 text-sm font-bold leading-6 text-primary-950 sm:text-base">{item.question}</span>
                   <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary-700 text-white"><FaqSvgIcon name={isActive ? 'minus' : 'plus'} size={21} strokeWidth={2.5} /></span>
                 </button>
-                <div id={`home-faq-answer-${index}`} className="px-5 pb-5 pl-[4.75rem] text-sm leading-7 text-slate-700 sm:pl-20" hidden={!isActive}><p>{item.answer}</p></div>
+                <div id={`home-faq-answer-${index}`} className="px-5 pb-5 pl-[4.75rem] text-sm leading-7 text-slate-800 sm:pl-20" hidden={!isActive}><p>{item.answer}</p></div>
               </article>
             );
           })}
@@ -128,12 +128,12 @@ export function FaqAccordion({ items, data, standalone = false }) {
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           <button type="button" className={`flex min-h-20 w-full items-center gap-4 rounded-2xl border p-4 text-left transition ${activeCategory === 'all' ? 'border-primary-500 bg-primary-50 ring-1 ring-primary-200' : 'border-border bg-white hover:border-primary-300 hover:bg-primary-50'}`} onClick={() => { setActiveCategory('all'); setActiveIndex(null); }}>
             <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary-100 text-primary-800"><FaqSvgIcon name="layer-group" size={21} /></span>
-            <span><strong className="block text-sm font-extrabold text-primary-950">All questions</strong><small className="mt-1 block text-xs leading-5 text-muted">Browse everything</small></span>
+            <span><strong className="block text-sm font-extrabold text-primary-950">All questions</strong><small className="mt-1 block text-xs leading-5 text-slate-600">Browse everything</small></span>
           </button>
           {categories.map(category => (
             <button key={category.id} type="button" className={`flex min-h-20 w-full items-center gap-4 rounded-2xl border p-4 text-left transition ${activeCategory === category.id ? 'border-primary-500 bg-primary-50 ring-1 ring-primary-200' : 'border-border bg-white hover:border-primary-300 hover:bg-primary-50'}`} onClick={() => { setActiveCategory(category.id); setActiveIndex(null); }}>
               <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-secondary-50 text-secondary-700"><FaqSvgIcon name={category.icon || 'circle-question'} size={21} /></span>
-              <span className="min-w-0"><strong className="block text-sm font-extrabold text-primary-950">{category.label}</strong><small className="mt-1 block text-xs leading-5 text-muted">{category.description}</small></span>
+              <span className="min-w-0"><strong className="block text-sm font-extrabold text-primary-950">{category.label}</strong><small className="mt-1 block text-xs leading-5 text-slate-600">{category.description}</small></span>
             </button>
           ))}
         </div>
@@ -156,7 +156,7 @@ export function FaqAccordion({ items, data, standalone = false }) {
       <section className="grid gap-6 lg:grid-cols-[minmax(220px,.7fr)_minmax(0,1.6fr)] lg:gap-10" aria-labelledby="faq-questions-heading">
         <div className="grid content-start gap-3 lg:sticky lg:top-24">
           <h2 id="faq-questions-heading" className="text-2xl font-extrabold leading-tight text-primary-950 sm:text-3xl">{search ? 'Search results' : activeCategory === 'all' ? 'Everything you need to know' : categories.find(category => category.id === activeCategory)?.label || 'Questions'}</h2>
-          <p className="text-sm leading-7 text-muted">{search ? `Showing answers that match “${search}”.` : 'Open a question to read the answer without leaving the page.'}</p>
+          <p className="text-sm leading-7 text-slate-600">{search ? `Showing answers that match “${search}”.` : 'Open a question to read the answer without leaving the page.'}</p>
         </div>
         <div className="grid min-w-0 content-start gap-3">
           {filteredItems.length ? filteredItems.map(({ item, index }) => {
@@ -169,7 +169,7 @@ export function FaqAccordion({ items, data, standalone = false }) {
                   <span className="text-sm font-bold leading-6 sm:text-base">{item.question}</span>
                   <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary-100 text-primary-800"><FaqSvgIcon name={isActive ? 'minus' : 'plus'} size={19} /></span>
                 </button>
-                <div id={`faq-answer-${id}`} className="px-4 pb-5 pl-[4.5rem] text-sm leading-7 text-slate-700 sm:pl-20" hidden={!isActive}>
+                <div id={`faq-answer-${id}`} className="px-4 pb-5 pl-[4.5rem] text-sm leading-7 text-slate-800 sm:pl-20" hidden={!isActive}>
                   <p>{item.answer}</p>
                   {Array.isArray(item.tags) && item.tags.length > 0 && <div className="my-3 flex flex-wrap gap-2">{item.tags.slice(0, 4).map(tag => <span className="rounded-full bg-primary-50 px-3 py-1 text-xs font-semibold text-primary-800" key={tag}>{tag}</span>)}</div>}
                   <button type="button" className="mt-2 inline-flex items-center gap-2 text-xs font-bold text-primary-800 underline underline-offset-4 hover:text-primary-950" onClick={() => navigator.clipboard?.writeText(`${window.location.origin}${window.location.pathname}#faq-${id}`)}><FaqSvgIcon name="link" size={16} /> Copy question link</button>
@@ -180,7 +180,7 @@ export function FaqAccordion({ items, data, standalone = false }) {
             <div className="grid justify-items-center gap-3 rounded-2xl border border-dashed border-primary-200 bg-white px-6 py-12 text-center">
               <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary-50 text-primary-700"><FaqSvgIcon name="magnifying-glass" size={24} /></span>
               <h3 className="text-lg font-extrabold text-primary-950">No matching questions</h3>
-              <p className="max-w-md text-sm leading-6 text-muted">Try a broader search term or browse another topic.</p>
+              <p className="max-w-md text-sm leading-6 text-slate-600">Try a broader search term or browse another topic.</p>
               <button type="button" className="inline-flex min-h-10 items-center justify-center rounded-xl border border-primary-200 bg-primary-50 px-4 py-2 text-sm font-bold text-primary-800 hover:bg-primary-100" onClick={() => { setSearch(''); setActiveCategory('all'); }}>Clear filters</button>
             </div>
           )}
@@ -191,7 +191,7 @@ export function FaqAccordion({ items, data, standalone = false }) {
         <section className="grid gap-5" aria-labelledby="faq-resources-heading">
           <h2 id="faq-resources-heading" className="text-2xl font-extrabold text-primary-950 sm:text-3xl">Go straight to the right resource</h2>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {faq.resources.map(resource => <a className="flex min-h-20 items-center gap-3 rounded-2xl border border-border bg-white p-4 text-primary-900 no-underline transition hover:border-primary-300 hover:bg-primary-50" href={resource.href || '#'} key={`${resource.title}-${resource.href}`}><span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary-50 text-primary-700"><FaqSvgIcon name={resource.icon || 'arrow-right'} size={22} /></span><span className="min-w-0"><strong className="block text-sm font-extrabold">{resource.title}</strong><small className="mt-1 block text-xs leading-5 text-muted">{resource.description}</small></span><FaqSvgIcon name="arrow-up-right-from-square" className="ml-auto shrink-0 text-muted" size={17} /></a>)}
+            {faq.resources.map(resource => <a className="flex min-h-20 items-center gap-3 rounded-2xl border border-border bg-white p-4 text-primary-900 no-underline transition hover:border-primary-300 hover:bg-primary-50" href={resource.href || '#'} key={`${resource.title}-${resource.href}`}><span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary-50 text-primary-700"><FaqSvgIcon name={resource.icon || 'arrow-right'} size={22} /></span><span className="min-w-0"><strong className="block text-sm font-extrabold">{resource.title}</strong><small className="mt-1 block text-xs leading-5 text-slate-600">{resource.description}</small></span><FaqSvgIcon name="arrow-up-right-from-square" className="ml-auto shrink-0 text-slate-600" size={17} /></a>)}
           </div>
         </section>
       )}

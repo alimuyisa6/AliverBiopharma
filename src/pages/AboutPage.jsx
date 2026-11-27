@@ -40,7 +40,7 @@ function TeamCard({ member }) {
       <div className="grid content-start gap-2 p-4 sm:p-5">
         <h3 className="text-lg font-extrabold text-primary-950">{member.name}</h3>
         <p className="text-sm font-bold text-secondary-700">{member.role}</p>
-        {member.bio && <p className="text-sm leading-6 text-slate-600">{member.bio}</p>}
+        {member.bio && <p className="text-sm leading-7 text-slate-700">{member.bio}</p>}
         {member.social && <div className="mt-2 flex flex-wrap gap-2">{Object.entries(member.social).map(([platform, url]) => <a key={platform} href={url} target="_blank" rel="noopener noreferrer" aria-label={platform} className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-white text-primary-700 transition hover:border-primary-300 hover:bg-primary-50"><Icon name={socialIcons[platform] || 'websiteBrand'} size={16} /></a>)}</div>}
       </div>
     </article>
@@ -51,7 +51,7 @@ function ContributorCard({ contributor }) {
   return (
     <article className="flex min-w-0 items-center gap-3 rounded-xl border border-border bg-white p-4">
       <img src={contributor.image_url || '/placeholder-avatar.svg'} alt={contributor.name} loading="lazy" className="h-12 w-12 shrink-0 rounded-full bg-primary-50 object-cover" />
-      <div className="min-w-0"><strong className="block break-words text-sm font-bold text-primary-950">{contributor.name}</strong><span className="mt-1 block text-xs leading-5 text-muted">{contributor.role}</span></div>
+      <div className="min-w-0"><strong className="block break-words text-sm font-bold text-primary-950">{contributor.name}</strong><span className="mt-1 block text-xs leading-5 text-slate-600">{contributor.role}</span></div>
     </article>
   );
 }
@@ -100,17 +100,17 @@ export default function AboutPage() {
         </section>
       )}
 
-      <section className="w-full bg-primary-50 px-5 py-14 sm:py-20">
+      <section className="w-full bg-primary-100 px-5 py-14 sm:py-20">
         <div className="mx-auto grid w-full max-w-5xl gap-8 sm:gap-10">
           {!page?.hero && (
             <h1 className="mb-10 text-4xl font-extrabold text-primary-900 sm:text-5xl">{page?.title || 'About AliverBiopharm'}</h1>
           )}
 
           {page?.mission && (
-            <div className="grid gap-4 border-b border-border pb-8 last:border-0">
-              {page.mission.heading && <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.mission.heading}</h2>}
+            <div className="grid gap-4 rounded-2xl border border-primary-100 bg-white p-6 shadow-sm sm:p-8">
+              {page.mission.heading && <h2 className="mb-2 text-2xl font-extrabold text-primary-950 sm:text-3xl">{page.mission.heading}</h2>}
               {page.mission.content.split('\n\n').map((para, i) => (
-                <p key={i}><RichText text={para} /></p>
+                <p key={i} className="text-base leading-8 text-slate-800 sm:text-[1.0625rem]"><RichText text={para} /></p>
               ))}
             </div>
           )}
@@ -242,7 +242,7 @@ export default function AboutPage() {
           {page?.contact && (
             <section className="grid gap-4 rounded-2xl bg-secondary-50 p-6 sm:p-8">
               {page.contact.heading && <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.contact.heading}</h2>}
-              {page.contact.subtext && <p className="max-w-3xl text-sm leading-7 text-slate-700"><RichText text={page.contact.subtext} /></p>}
+              {page.contact.subtext && <p className="max-w-3xl text-base leading-7 text-slate-800"><RichText text={page.contact.subtext} /></p>}
               <div className="flex flex-wrap gap-3">
                 {page.contact.email && (
                   <a href={`mailto:${page.contact.email}`} className="inline-flex min-h-10 items-center gap-2 rounded-xl border border-secondary-200 bg-white px-3 py-2 text-sm font-semibold text-primary-900 no-underline">

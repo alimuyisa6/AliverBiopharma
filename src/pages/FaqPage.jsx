@@ -15,7 +15,7 @@ export default function FaqPage() {
   }, [level]);
 
   return (
-    <main className="w-full bg-primary-50 px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+    <main className="min-h-screen w-full bg-primary-100 px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
       <FaqAccordion data={sections?.faq} standalone />
     </main>
   );
