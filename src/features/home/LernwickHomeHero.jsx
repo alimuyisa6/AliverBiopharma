@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { UI, Icon } from '../../design-system.jsx';
+import { Icon } from '../../design-system.jsx';
 
 const defaultBenefits = [
   { title: 'Learn', detail: 'Step-by-step' },
@@ -7,6 +7,8 @@ const defaultBenefits = [
   { title: 'Track', detail: 'Your progress' },
   { title: 'Reach', detail: 'Your goals' }
 ];
+
+const heroBackgroundImage = 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=2400&q=85';
 
 export default function LernwickHomeHero({
   user,
@@ -34,48 +36,72 @@ export default function LernwickHomeHero({
   const secondaryHref = heroContent.secondaryHref || '/resources';
 
   return (
-    <section className={UI.hero.section} aria-labelledby="ab-home-hero-title">
-      <div className="ab-home-hero-background" aria-hidden="true" />
-      <div className="ab-home-hero-vignette" aria-hidden="true" />
-      <div className="mx-auto flex w-full max-w-7xl items-center px-5 py-14 sm:px-8 sm:py-18 lg:px-12 lg:py-24 ab-home-hero-layout">
-        <div className="min-w-0 max-w-4xl ab-home-hero-copy">
-          
-          {name && <p className="mb-3 text-sm font-semibold text-primary-700">Welcome back, {name}</p>}
+    <section
+      className="relative isolate w-full overflow-hidden bg-primary-900"
+      aria-labelledby="ab-home-hero-title"
+    >
+      <div
+        className="absolute inset-0 -z-20 bg-cover bg-center"
+        style={{ backgroundImage: `url("${heroBackgroundImage}")`, backgroundPosition: 'center 42%' }}
+        aria-hidden="true"
+      />
+      <div className="absolute inset-0 -z-10 bg-slate-950/55" aria-hidden="true" />
 
-          <h1 id="ab-home-hero-title" className={UI.hero.heading}>
+      <div className="mx-auto flex min-h-[620px] w-full max-w-7xl items-center px-5 py-14 sm:px-8 sm:py-20 lg:min-h-[700px] lg:px-12 lg:py-24">
+        <div className="w-full max-w-4xl rounded-[1.75rem] border border-white/25 bg-slate-950/45 p-6 text-white shadow-2xl shadow-slate-950/30 backdrop-blur-xl sm:p-9 lg:p-12">
+          {name && (
+            <p className="mb-4 text-sm font-semibold text-white/90">
+              Welcome back, {name}
+            </p>
+          )}
+
+          <h1
+            id="ab-home-hero-title"
+            className="max-w-3xl text-4xl font-extrabold leading-[1.02] tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl xl:text-7xl"
+          >
             {headingLead}
-            <span className={UI.hero.accent}>{headingAccent}</span>
+            <span className="mt-2 block text-secondary-300">{headingAccent}</span>
           </h1>
 
-          <p className={UI.hero.description}>{description}</p>
+          <p className="mt-6 max-w-2xl text-base leading-8 text-white/90 sm:text-lg">
+            {description}
+          </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link className={UI.primaryButton} to={primaryHref}>
+            <Link
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white bg-white px-5 py-3 text-sm font-bold text-primary-900 shadow-lg transition hover:-translate-y-0.5 hover:bg-primary-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+              to={primaryHref}
+            >
               {primaryLabel}
               <Icon name="arrowUpRight" size="sm" aria-hidden="true" />
             </Link>
-            <Link className={UI.secondaryButton} to={secondaryHref}>
+            <Link
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/60 bg-white/10 px-5 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+              to={secondaryHref}
+            >
               {secondaryLabel}
             </Link>
           </div>
 
-          <div className="mt-9 grid grid-cols-2 gap-x-5 gap-y-4 border-t border-primary-200/80 pt-6 sm:grid-cols-4" aria-label="Learning benefits">
+          <div
+            className="mt-9 grid grid-cols-2 gap-x-5 gap-y-4 border-t border-white/30 pt-6 sm:grid-cols-4"
+            aria-label="Learning benefits"
+          >
             {benefits.map((benefit, index) => (
               <div className="min-w-0" key={benefit.id || benefit.title || index}>
-                <strong className="block text-sm font-bold text-primary-900">{benefit.title}</strong>
-                <span className="mt-1 block text-xs leading-5 text-muted">{benefit.detail}</span>
+                <strong className="block text-sm font-bold text-white">{benefit.title}</strong>
+                <span className="mt-1 block text-xs leading-5 text-white/80">{benefit.detail}</span>
               </div>
             ))}
           </div>
 
           {learningPath && (
-            <p className="mt-6 text-sm text-muted">
-              Your current programme: <strong className="font-semibold text-primary-800">{learningPath}</strong>
+            <p className="mt-6 text-sm text-white/85">
+              Your current programme:{' '}
+              <strong className="font-semibold text-white">{learningPath}</strong>
             </p>
           )}
         </div>
-
-
       </div>
     </section>
   );
