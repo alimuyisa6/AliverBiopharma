@@ -15,7 +15,7 @@ const illustrations = {
   chat: 'Chat-rafiki.svg',
   marketing: 'Marketing-rafiki.svg',
   medicalResearch: 'Medical research-rafiki.svg',
-  onlineLearning: 'Online learning-rafiki (3).svg',
+  onlineLearning: 'Online learning-rafiki.svg',
   onlineTest: 'Online test-rafiki.svg',
   personalGoals: 'Personal goals-rafiki.svg',
   studying: 'Studying-rafiki.svg',
