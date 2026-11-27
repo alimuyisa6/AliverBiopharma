@@ -30,6 +30,7 @@ import QuizWeakAreas from '../components/quiz/QuizWeakAreas';
 import Icon from '../components/Icon/Icon';
 import StorysetIllustration from '../components/StorysetIllustration';
 import PageSkeleton from '../components/Loading/PageSkeleton';
+import PageHeader from '../components/PageHeader/PageHeader';
 import { getCachedStale, setCache } from '../utils/cache';
 import QuizAnswerLoader from '../components/quiz/QuizAnswerLoader';
 import QuizQuestionRenderer from '../components/quiz/QuizQuestionRenderer';
