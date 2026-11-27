@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { UI, Icon } from '../../design-system.jsx';
+import { Icon } from '../../design-system.jsx';
 
 const defaultBenefits = [
   { title: 'Learn', detail: 'Step-by-step' },
@@ -7,6 +7,8 @@ const defaultBenefits = [
   { title: 'Track', detail: 'Your progress' },
   { title: 'Reach', detail: 'Your goals' }
 ];
+
+const heroBackgroundImage = 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=2400&q=85';
 
 export default function LernwickHomeHero({
   user,
@@ -34,48 +36,71 @@ export default function LernwickHomeHero({
   const secondaryHref = heroContent.secondaryHref || '/resources';
 
   return (
-    <section className={UI.hero.section} aria-labelledby="ab-home-hero-title">
-      <div className="ab-home-hero-background" aria-hidden="true" />
-      <div className="ab-home-hero-vignette" aria-hidden="true" />
-      <div className="mx-auto flex w-full max-w-7xl items-center px-5 py-14 sm:px-8 sm:py-18 lg:px-12 lg:py-24 ab-home-hero-layout">
-        <div className="min-w-0 max-w-4xl ab-home-hero-copy">
-          
-          {name && <p className="mb-3 text-sm font-semibold text-primary-700">Welcome back, {name}</p>}
+    <section
+      className="relative isolate w-full overflow-hidden bg-slate-950"
+      aria-labelledby="ab-home-hero-title"
+    >
+      <div
+        className="absolute inset-0 -z-20 bg-cover bg-center"
+        style={{ backgroundImage: `url("${heroBackgroundImage}")`, backgroundPosition: 'center 42%' }}
+        role="img"
+        aria-label="Students collaborating while studying together"
+      />
+      <div className="absolute inset-0 -z-10 bg-slate-950/65" aria-hidden="true" />
 
-          <h1 id="ab-home-hero-title" className={UI.hero.heading}>
-            {headingLead}
-            <span className={UI.hero.accent}>{headingAccent}</span>
-          </h1>
+      <div className="mx-auto flex min-h-[680px] w-full max-w-7xl flex-col justify-center px-5 py-16 sm:min-h-[720px] sm:px-8 sm:py-20 lg:min-h-[760px] lg:px-12 lg:py-24">
+        {name && (
+          <p className="mb-4 text-sm font-semibold text-white/90">
+            Welcome back, {name}
+          </p>
+        )}
 
-          <p className={UI.hero.description}>{description}</p>
+        <h1
+          id="ab-home-hero-title"
+          className="max-w-4xl text-4xl font-extrabold leading-[1.02] tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl xl:text-7xl"
+        >
+          {headingLead}
+          <span className="mt-2 block text-secondary-300">{headingAccent}</span>
+        </h1>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link className={UI.primaryButton} to={primaryHref}>
-              {primaryLabel}
-              <Icon name="arrowUpRight" size="sm" aria-hidden="true" />
-            </Link>
-            <Link className={UI.secondaryButton} to={secondaryHref}>
-              {secondaryLabel}
-            </Link>
-          </div>
+        <p className="mt-6 max-w-3xl text-base leading-8 text-white/90 sm:text-lg">
+          {description}
+        </p>
 
-          <div className="mt-9 grid grid-cols-2 gap-x-5 gap-y-4 border-t border-primary-200/80 pt-6 sm:grid-cols-4" aria-label="Learning benefits">
-            {benefits.map((benefit, index) => (
-              <div className="min-w-0" key={benefit.id || benefit.title || index}>
-                <strong className="block text-sm font-bold text-primary-900">{benefit.title}</strong>
-                <span className="mt-1 block text-xs leading-5 text-muted">{benefit.detail}</span>
-              </div>
-            ))}
-          </div>
-
-          {learningPath && (
-            <p className="mt-6 text-sm text-muted">
-              Your current programme: <strong className="font-semibold text-primary-800">{learningPath}</strong>
-            </p>
-          )}
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <Link
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-primary-700 bg-primary-700 px-5 py-3 text-sm font-bold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-primary-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            to={primaryHref}
+          >
+            {primaryLabel}
+            <Icon name="arrowUpRight" size="sm" aria-hidden="true" />
+          </Link>
+          <Link
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/80 bg-white px-5 py-3 text-sm font-bold text-primary-900 transition hover:-translate-y-0.5 hover:bg-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            to={secondaryHref}
+          >
+            {secondaryLabel}
+          </Link>
         </div>
 
+        <div
+          className="mt-10 grid max-w-5xl grid-cols-2 gap-x-5 gap-y-5 border-t border-white/35 pt-6 sm:grid-cols-4"
+          aria-label="Learning benefits"
+        >
+          {benefits.map((benefit, index) => (
+            <div className="min-w-0" key={benefit.id || benefit.title || index}>
+              <strong className="block text-sm font-bold text-white">{benefit.title}</strong>
+              <span className="mt-1 block text-xs leading-5 text-white/80">{benefit.detail}</span>
+            </div>
+          ))}
+        </div>
 
+        {learningPath && (
+          <p className="mt-6 text-sm text-white/85">
+            Your current programme:{' '}
+            <strong className="font-semibold text-white">{learningPath}</strong>
+          </p>
+        )}
       </div>
     </section>
   );
