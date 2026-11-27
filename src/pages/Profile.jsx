@@ -1386,7 +1386,7 @@ export default function Profile() {
 
                   {newPassword && (
                     <div className="mb-4 flex items-center gap-3">
-                      <div className="progress-track" className="h-2 flex-1 overflow-hidden rounded-full bg-slate-100">
+                      <div className="progress-track h-2 flex-1 overflow-hidden rounded-full bg-slate-100">
                         <div
                           className="progress-fill"
                           style={{ width: `${(passwordStrength.score / 3) * 100}%` }}
@@ -1898,7 +1898,7 @@ export default function Profile() {
                   <Spinner context="data" size="sm" />
                 ) : (
                   <div className={UI.profile.tableWrapper}>
-                    <table className={UI.profile.dataTable} className="font-semibold text-primary-900">
+                    <table className={`${UI.profile.dataTable} font-semibold text-primary-900`}>
                       <thead>
                         <tr className="text-primary-900">
                           <th>{t('profile.certificate')}</th>
@@ -1942,7 +1942,7 @@ export default function Profile() {
                 </p>
 
                 {revealedKey && (
-                  <div className={UI.profile.notificationRow} className="mt-3 rounded-xl border border-amber-200 bg-amber-50 p-4">
+                  <div className={`${UI.profile.notificationRow} mt-3 rounded-xl border border-amber-200 bg-amber-50 p-4`}>
                     <div>
                       <div className="text-sm font-semibold text-primary-900">
                         {t('profile.copyKeyWarning')}
