@@ -159,7 +159,7 @@ export default function Layout({ children }) {
         <svg className="mx-auto block h-28 w-full max-w-7xl overflow-visible sm:h-32 lg:h-36" viewBox="0 0 1440 170" role="img" aria-labelledby="footer-wave-message-svg-title" focusable="false">
           <title id="footer-wave-message-svg-title">Keep learning. Keep growing. Keep advancing.</title>
           <defs>
-            <linearGradient id="footer-wave-message-gradient" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+            <linearGradient className="footer-wave-message-gradient" id="footer-wave-message-gradient" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
               <stop offset="0%" stopColor="#123B67" />
               <stop offset="48%" stopColor="#2877B8" />
               <stop offset="100%" stopColor="#C5A04A" />
