@@ -62,7 +62,7 @@ function PublicPathways() {
             <h2 id="lernwick-pathways-title">Choose the science you want to explore</h2>
             <p className="mt-8 text-slate-600">Each programme has its own subject focus and learning experience.</p>
           </div>
-          <StorysetIllustration name="onlineLearning" alt="Student taking part in online learning" className="mx-auto w-full max-w-[240px] md:max-w-[260px]" />
+          <StorysetIllustration name="onlineLearning" alt="Student taking part in online learning" className="mx-auto w-full max-w-[240px] origin-center scale-110 object-contain md:max-w-[260px] md:scale-125" />
         </div>
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
           {pathways.map((pathway) => (
