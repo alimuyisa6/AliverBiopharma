@@ -154,30 +154,35 @@ export default function Layout({ children }) {
     </>}
     <main id="main-content" tabIndex="-1" className={`min-h-[60vh] flex-1 ${location.pathname.startsWith('/profile') ? 'bg-primary-50/30' : ''}`} key={routeKey}>{children}</main>
     <footer className="relative isolate mt-0 overflow-hidden bg-white text-white">
-      <section className="w-full bg-white px-4 pb-3 pt-8 sm:px-8 sm:pt-10" aria-labelledby="footer-wave-message-title">
-        <h2 id="footer-wave-message-title" className="sr-only">Keep learning. Keep growing. Keep advancing.</h2>
-        <svg className="mx-auto block h-28 w-full max-w-7xl overflow-visible sm:h-32 lg:h-36" viewBox="0 0 1440 170" role="img" aria-labelledby="footer-wave-message-svg-title" focusable="false">
-          <title id="footer-wave-message-svg-title">Keep learning. Keep growing. Keep advancing.</title>
+      <div className="pointer-events-none relative z-0 block h-28 overflow-hidden sm:h-32 lg:h-36" aria-label="Keep learning. Keep growing. Keep advancing.">
+        <svg className="absolute inset-0 block h-full w-full" viewBox="0 0 1440 140" preserveAspectRatio="none" focusable="false" aria-hidden="true">
+          <path className="fill-secondary-400" d="M0 34C170 4 330 78 540 45S900 5 1090 34 1320 70 1440 30V140H0Z" />
+          <path className="fill-primary-500" d="M0 57C190 25 390 94 600 67S960 28 1160 58 1350 88 1440 54V140H0Z" />
+          <path className="fill-primary-900" d="M0 81C210 51 410 112 650 87S1010 50 1200 82 1370 108 1440 78V140H0Z" />
+        </svg>
+        <svg className="absolute inset-0 h-full w-full" viewBox="0 0 1440 140" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
           <defs>
-            <linearGradient className="footer-wave-message-gradient" id="footer-wave-message-gradient" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+            <linearGradient id="footer-wave-message-gradient" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
               <stop offset="0%" stopColor="#123B67" />
               <stop offset="48%" stopColor="#2877B8" />
               <stop offset="100%" stopColor="#C5A04A" />
               <animateTransform attributeName="gradientTransform" type="translate" values="-720 0;720 0;-720 0" dur="12s" repeatCount="indefinite" />
             </linearGradient>
-            <path id="footer-wave-message-path" d="M35 94 C250 20 430 24 640 92 S1030 164 1405 78" />
+            <path id="footer-wave-message-path" d="M45 25 C260 -2 440 2 650 25 S1040 49 1395 17" />
           </defs>
-          <style>{'@media (prefers-reduced-motion: reduce) { .footer-wave-motion animate, .footer-wave-message-gradient animateTransform { display: none; } }'}</style>
-          <g className="footer-wave-motion">
-            <animateTransform attributeName="transform" type="translate" values="0 0;0 5;0 0;0 -5;0 0" dur="7s" repeatCount="indefinite" />
-            <text fill="url(#footer-wave-message-gradient)" fontFamily="inherit" fontSize="59" fontWeight="800" letterSpacing="1.2">
-              <textPath href="#footer-wave-message-path" startOffset="50%" textAnchor="middle">Keep learning. Keep growing. Keep advancing.</textPath>
+          <g>
+            <animateTransform attributeName="transform" type="translate" values="0 0;0 3;0 0;0 -3;0 0" dur="6s" repeatCount="indefinite" />
+            <text fill="url(#footer-wave-message-gradient)" fontFamily="inherit" fontSize="42" fontWeight="800" letterSpacing="1">
+              <textPath href="#footer-wave-message-path" startOffset="35%" textAnchor="middle">
+                <animate attributeName="startOffset" values="35%;65%;35%" dur="10s" repeatCount="indefinite" />
+                Keep learning. Keep growing. Keep advancing.
+              </textPath>
             </text>
           </g>
+          <style>{'@media (prefers-reduced-motion: reduce) { svg animate, animateTransform { display: none; } }'}</style>
         </svg>
-        <p className="mx-auto mt-1 max-w-2xl text-center text-sm font-medium leading-7 text-slate-600 sm:text-base">Your journey towards pharmaceutical excellence continues with every lesson.</p>
-      </section>
-      <div className="pointer-events-none relative z-0 block h-28 sm:h-32 lg:h-36" aria-hidden="true"><svg className="block h-full w-full" viewBox="0 0 1440 140" preserveAspectRatio="none" focusable="false"><path className="fill-secondary-400" d="M0 34C170 4 330 78 540 45S900 5 1090 34 1320 70 1440 30V140H0Z" /><path className="fill-primary-500" d="M0 57C190 25 390 94 600 67S960 28 1160 58 1350 88 1440 54V140H0Z" /><path className="fill-primary-900" d="M0 81C210 51 410 112 650 87S1010 50 1200 82 1370 108 1440 78V140H0Z" /></svg></div><div className="relative z-10 mx-auto grid w-full max-w-7xl gap-12 bg-primary-900 px-5 pb-12 pt-10 sm:px-8 sm:pt-12 lg:grid-cols-[1fr_1.5fr] lg:pt-14">
+      </div>
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl gap-12 bg-primary-900 px-5 pb-12 pt-10 sm:px-8 sm:pt-12 lg:grid-cols-[1fr_1.5fr] lg:pt-14">
       <div className="max-w-sm"><Link to="/" className="inline-flex min-w-0 max-w-full shrink-0 items-center gap-3 text-xl font-extrabold tracking-tight text-white no-underline">{logo ? <img src={logo} alt="" aria-hidden="true" className="block h-10 max-h-10 w-auto max-w-[12rem] object-contain brightness-0 invert sm:h-12 sm:max-h-12" /> : siteName}</Link><p className="mt-5 max-w-xs text-sm leading-7 text-blue-100">{t('common.footerTagline')}</p>{footer.social_links && Object.keys(footer.social_links).length > 0 && <div className="mt-8 flex flex-wrap items-center gap-4 sm:gap-5" aria-label="Follow Aliver Biopharma">{Object.entries(footer.social_links).map(([platform, url]) => <a key={platform} href={url} target="_blank" rel="noopener noreferrer" className="group inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-white/15 bg-white/10 text-white no-underline shadow-sm transition-all duration-200 hover:-translate-y-1 hover:bg-white/15 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:h-16 sm:w-16" data-platform={platform} aria-label={platform} title={platform}><Icon name={platform} size="2.25rem" plain monochrome className="h-9 w-9 shrink-0 transition-transform duration-200 group-hover:scale-110 sm:h-10 sm:w-10" style={{ color: SOCIAL_BRAND_COLORS[platform.toLowerCase()] || '#E2E8F0' }} /></a>)}</div>}</div>
       <div className="grid gap-10 sm:grid-cols-2">
         <div className="grid content-start gap-8 sm:grid-cols-2">
