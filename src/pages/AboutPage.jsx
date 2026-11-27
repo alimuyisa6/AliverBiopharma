@@ -100,7 +100,7 @@ export default function AboutPage() {
         </section>
       )}
 
-      <section className="w-full bg-primary-100 px-5 py-14 sm:py-20">
+      <section className="w-full bg-primary-100 px-5 py-14 text-slate-800 sm:py-20">
         <div className="mx-auto grid w-full max-w-5xl gap-8 sm:gap-10">
           {!page?.hero && (
             <h1 className="mb-10 text-4xl font-extrabold text-primary-900 sm:text-5xl">{page?.title || 'About AliverBiopharm'}</h1>
