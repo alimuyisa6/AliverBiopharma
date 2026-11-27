@@ -100,15 +100,15 @@ export default function AboutPage() {
         </section>
       )}
 
-      <section className="w-full bg-primary-100 px-5 py-14 sm:py-20">
+      <section className="w-full bg-primary-100 px-5 py-14 text-slate-800 sm:py-20">
         <div className="mx-auto grid w-full max-w-5xl gap-8 sm:gap-10">
           {!page?.hero && (
             <h1 className="mb-10 text-4xl font-extrabold text-primary-900 sm:text-5xl">{page?.title || 'About AliverBiopharm'}</h1>
           )}
 
           {page?.mission && (
-            <div className="grid gap-4 rounded-2xl border border-primary-100 bg-white p-6 shadow-sm sm:p-8">
-              {page.mission.heading && <h2 className="mb-2 text-2xl font-extrabold text-primary-950 sm:text-3xl">{page.mission.heading}</h2>}
+            <div className="grid gap-4 border-b border-border pb-8 last:border-0">
+              {page.mission.heading && <h2 className="mb-5 text-2xl font-bold text-primary-900 sm:text-3xl">{page.mission.heading}</h2>}
               {page.mission.content.split('\n\n').map((para, i) => (
                 <p key={i} className="text-base leading-8 text-slate-800 sm:text-[1.0625rem]"><RichText text={para} /></p>
               ))}
