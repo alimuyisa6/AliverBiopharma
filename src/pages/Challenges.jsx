@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import Icon from '../components/Icon/Icon';
 import StorysetIllustration from '../components/StorysetIllustration';
 import Spinner from '../components/Spinner/Spinner';
@@ -92,18 +93,30 @@ function EmptyState({ onScope }) {
 
 export default function Challenges() {
   const navigate = useNavigate();
+  const { user, loading: authLoading } = useAuth();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (authLoading || !user) {
+      setData(null);
+      setLoading(false);
+      return;
+    }
+
+    setLoading(true);
     getPersonalizedDailyChallenge()
       .then(setData)
       .catch(() => setData(null))
       .finally(() => setLoading(false));
-  }, []);
+  }, [authLoading, user]);
 
-  if (loading) {
+  if (authLoading || loading) {
     return <main className="flex min-h-[60vh] items-center justify-center bg-background px-4 py-12"><Spinner size="lg" /></main>;
+  }
+
+  if (!user) {
+    return <main className="min-h-screen bg-background px-4 py-10 sm:px-6"><div className={UI.challengeEmptyCard}><h2 className={`${UI.sectionHeadingTitle} mt-2`}>Sign in to view your daily challenge</h2><p className="mt-3 text-base leading-7 text-muted">Your personalized challenge is available after you sign in.</p></div></main>;
   }
 
   if (!data?.challenge) {
