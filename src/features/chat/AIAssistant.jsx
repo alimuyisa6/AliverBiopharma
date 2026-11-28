@@ -62,14 +62,14 @@ function getStarter(mode, label) {
   return STARTERS[mode] || `Help me with ${label}.`;
 }
 
-export default function AIAssistant() {
+export default function AIAssistant({ initialOpen = false }) {
   const { isAuthenticated } = useAuth();
   const { level } = useLayout();
   const location = useLocation();
   const navigate = useNavigate();
   const { openLiveChat } = useChat();
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(initialOpen);
   const [mode, setMode] = useState('learn');
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
