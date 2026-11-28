@@ -75,7 +75,7 @@ export function prefetchLearningPages({ userId, level, className, groupId }) {
 
     if (getCached(notesKey) === null) {
       jobs.push(
-        getNotesList(null, { priority: 'background' }).then((data) => {
+        getNotesList(null).then((data) => {
           setCache(notesKey, Array.isArray(data) ? data : []);
         })
       );
@@ -83,7 +83,7 @@ export function prefetchLearningPages({ userId, level, className, groupId }) {
 
     if (getCached(pdfsKey) === null) {
       jobs.push(
-        getPdfsByLevel(null, groupId, pdfScope, { priority: 'background' }).then((data) => {
+        getPdfsByLevel(null, groupId, pdfScope).then((data) => {
           setCache(pdfsKey, Array.isArray(data) ? data : []);
         })
       );
