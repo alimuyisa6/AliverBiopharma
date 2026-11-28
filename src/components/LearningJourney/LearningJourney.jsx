@@ -128,7 +128,7 @@ export default function LearningJourney({
     return (
       <section className={`${UI.container} mt-12 border-t border-border py-10 lg:px-8`} aria-live="polite">
         <div className={`${UI.sectionHeading} max-w-3xl`}>
-          <span className={UI.sectionKicker}>Keep learning</span>
+          <span className="text-xs font-bold uppercase tracking-[0.15em] text-primary-800">Keep learning</span>
           <h2 className={UI.sectionHeadingTitle}>Finding your next steps</h2>
           <p>Connecting the reading, revision and practice materials for this learning area.</p>
         </div>
@@ -148,7 +148,7 @@ export default function LearningJourney({
 
       <div className="grid gap-5 lg:grid-cols-2">
         {stages.map((stage, index) => (
-          <section className={`${UI.card} p-5 sm:p-6 ${stage.key === (({ quizzes: "quiz", past_papers: "papers", "past-papers": "papers" })[resourceFocus] || resourceFocus) ? "border-primary-300 bg-primary-50" : ""}`} key={stage.key} aria-labelledby={'learning-journey-' + stage.key}>
+          <section className={`${UI.card} p-5 text-slate-800 sm:p-6 ${stage.key === (({ quizzes: "quiz", past_papers: "papers", "past-papers": "papers" })[resourceFocus] || resourceFocus) ? "border-primary-400 bg-white ring-2 ring-primary-100" : "bg-white"}`} key={stage.key} aria-labelledby={'learning-journey-' + stage.key}>
             <div className="mb-4 flex h-9 w-9 items-center justify-center rounded-full bg-primary-800 text-xs font-bold text-white" aria-hidden="true">
               <span>{String(index + 1).padStart(2, '0')}</span>
             </div>
@@ -156,7 +156,7 @@ export default function LearningJourney({
               <div className="mb-5 flex flex-wrap items-start gap-3">
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-secondary-50 text-secondary-800"><Icon name={stage.meta.icon} /></span>
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-wide text-secondary-800">Stage {String(index + 1).padStart(2, '0')}</span>
+                  <span className="text-xs font-bold uppercase tracking-wide text-primary-800">Stage {String(index + 1).padStart(2, '0')}</span>
                   <h3 id={'learning-journey-' + stage.key} className="mt-1 text-base font-bold leading-6 text-slate-900">{stage.meta.title}</h3>
                   <p className="mt-1 text-sm leading-6 text-slate-600">{stage.meta.description}</p>
                 </div>

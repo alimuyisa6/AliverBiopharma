@@ -204,7 +204,7 @@ export default function CurriculumNodePage() {
 
   if (loading) {
     return (
-      <Container className="min-h-screen bg-background">
+      <Container className="min-h-screen w-full bg-background text-foreground">
         <div className="flex min-h-[45vh] items-center justify-center">
           <Spinner context="brand" size="lg" />
         </div>
@@ -218,7 +218,7 @@ export default function CurriculumNodePage() {
     const rootLabelPlural = isPharmacy ? 'Course units' : 'Topics';
     const childLabel = isPharmacy ? 'course units' : 'topics';
     return (
-      <Container className="min-h-screen bg-background">
+      <Container className="min-h-screen w-full bg-background text-foreground">
         <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Resources', href: '/resources' }, { label: rootLabelPlural, href: null }]} />
         <PageHeader
           title={`Choose a ${rootLabel}`}
@@ -241,7 +241,7 @@ export default function CurriculumNodePage() {
 
   if (error || !node) {
     return (
-      <Container className="min-h-screen bg-background">
+      <Container className="min-h-screen w-full bg-background text-foreground">
         <div className="mx-auto mt-12 max-w-2xl rounded-2xl border border-red-200 bg-red-50 p-6 text-red-900">
           <Icon name="triangle-exclamation" />
           <h1>This learning item isn’t available</h1>
@@ -278,7 +278,7 @@ export default function CurriculumNodePage() {
   };
 
   return (
-    <Container className="min-h-screen bg-background">
+    <Container className="min-h-screen w-full bg-background text-foreground">
       <Breadcrumb items={breadcrumbItems} />
 
       <PageHeader
@@ -288,10 +288,10 @@ export default function CurriculumNodePage() {
       />
 
       {isLeaf && blocks.length > 0 && (
-        <section className="mt-10 rounded-2xl border border-primary-200 bg-primary-50 p-5 sm:p-7">
+        <section className="mt-10 rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-7">
           <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
             <div>
-              <h2>Study {node.name}</h2>
+              <h2 className="text-2xl font-extrabold tracking-tight text-primary-950 sm:text-3xl">Study {node.name}</h2>
             </div>
           </div>
 
@@ -299,7 +299,7 @@ export default function CurriculumNodePage() {
             {blocks.map((block) => (
               <article
                 key={block.id}
-                className="rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-7"
+                className="rounded-2xl border border-slate-200 bg-white p-5 text-slate-800 shadow-sm sm:p-7 [&_h2]:mb-3 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-primary-950 [&_h3]:mb-3 [&_h3]:text-lg [&_h3]:font-bold [&_h3]:text-slate-900 [&_p]:text-base [&_p]:leading-7 [&_p]:text-slate-700 [&_li]:text-slate-700 [&_strong]:text-slate-900"
               >
                 {block.title && <h3>{block.title}</h3>}
                 {block.locked ? (
@@ -347,11 +347,11 @@ export default function CurriculumNodePage() {
       )}
 
       {isLesson && (
-        <section className="mt-8 rounded-2xl border border-secondary-200 bg-secondary-50 p-6 sm:p-8">
+        <section className="mt-8 rounded-2xl border border-border bg-white p-6 text-slate-800 shadow-sm sm:p-8">
           <div>
-            <span className="text-xs font-bold uppercase tracking-[0.16em] text-secondary-700">Targeted practice</span>
-            <h2>Build a test from this lesson</h2>
-            <p>Search the questions linked to this lesson, select the concepts you want to practise and save a custom assessment.</p>
+            <span className="text-xs font-bold uppercase tracking-[0.16em] text-primary-800">Targeted practice</span>
+            <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-primary-950">Build a test from this lesson</h2>
+            <p className="mt-3 max-w-3xl text-base leading-7 text-slate-700">Search the questions linked to this lesson, select the concepts you want to practise and save a custom assessment.</p>
           </div>
           <Link to={`/question-bank?unit_id=${encodeURIComponent(node.id)}`} className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-xl bg-primary-700 px-4 py-2.5 text-sm font-bold text-white no-underline hover:bg-primary-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
             Open lesson question bank <Icon name="arrow-right" />
