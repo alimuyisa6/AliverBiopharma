@@ -114,7 +114,7 @@ const learningSteps = {
 function HowLearningWorks({ studio }) {
   const steps = studio ? learningSteps[studio.kind === 'biology-foundations' ? 'olevel' : studio.kind === 'advanced-biology' ? 'alevel' : 'pharmacy'] : learningSteps.general;
   return (
-    <section className="w-full bg-primary-800 py-16 sm:py-20" id="how" aria-labelledby="lernwick-how-title">
+    <section className="w-full bg-primary-700 py-16 sm:py-20" id="how" aria-labelledby="lernwick-how-title">
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
         <div className="mx-auto mb-10 flex max-w-5xl flex-col items-center gap-6 text-center sm:flex-row sm:text-left">
           <div className="min-w-0 flex-1"><h2 id="lernwick-how-title" className="text-white"><span className="text-secondary-200">L</span>earn, practise and progress</h2><p className="mt-8 text-primary-100">Your learning journey moves from understanding concepts to applying and strengthening them.</p></div>
