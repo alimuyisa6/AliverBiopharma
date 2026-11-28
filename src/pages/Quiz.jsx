@@ -628,14 +628,14 @@ export default function Quiz() {
   };
 
   if (!isReady || access.loading) {
-    return <div className={`${UI.container} py-6`}><PageSkeleton variant="compact" /></div>;
+    return <main className="min-h-screen w-full bg-background text-foreground"><div className={`${UI.container} py-6`}><PageSkeleton variant="compact" /></div></main>;
   }
 
-  if (access.isPending) return <PendingApprovalScreen />;
-  if (!access.canAccess) return <AccessDenied />;
+  if (access.isPending) return <main className="min-h-screen w-full bg-background text-foreground"><PendingApprovalScreen /></main>;
+  if (!access.canAccess) return <main className="min-h-screen w-full bg-background text-foreground"><AccessDenied /></main>;
 
   if (loading && !quizQuestions.length && !resultData && !currentTopic) {
-    return <div className={`${UI.container} py-6`}><PageSkeleton variant="compact" /></div>;
+    return <main className="min-h-screen w-full bg-background text-foreground"><div className={`${UI.container} py-6`}><PageSkeleton variant="compact" /></div></main>;
   }
 
   if (isQuizCardsPage && curriculumUnitId && currentTopic && !quizQuestions.length && !resultData) {
@@ -718,7 +718,7 @@ export default function Quiz() {
   if (isQuizCardsPage && !currentTopic && !quizQuestions.length && !resultData) {
     return (
       <main className="min-h-screen bg-background text-foreground">
-        <section className="w-full bg-primary-50 py-8 sm:py-10">
+        <section className="w-full bg-background py-8 sm:py-10">
           <div className={UI.container}>
           <button
             type="button"
@@ -1109,7 +1109,7 @@ export default function Quiz() {
             </div>
           </div>
         ) : (
-          <section className="w-full bg-primary-50 py-8">
+          <section className="w-full bg-background py-8">
             <div className={`${UI.container} ${UI.quizTopicGrid}`}>
               {Array.from({ length: totalBlocks }).map((_, index) => {
                 const topicData = allTopics.find((topic) => topic.topic_name === currentTopic);
