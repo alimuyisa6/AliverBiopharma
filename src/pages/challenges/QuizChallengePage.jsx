@@ -154,7 +154,7 @@ export default function QuizChallengePage() {
 
   if (loading) {
     return (
-      <div className={`${UI.quizPage} w-full`}>
+      <div className={UI.quizPage}>
         <div className="flex min-h-[60vh] items-center justify-center">
           <Spinner context="brand" size="lg" />
         </div>
@@ -164,7 +164,7 @@ export default function QuizChallengePage() {
 
   if (error) {
     return (
-      <div className={`${UI.quizPage} w-full`}>
+      <div className={UI.quizPage}>
         <section className={UI.quizPanel}>
           <Icon name="alert-circle" />
           <span className={UI.quizKicker}>Quiz practice</span>
@@ -180,7 +180,7 @@ export default function QuizChallengePage() {
 
   if (!currentQuestion && !result) {
     return (
-      <div className={`${UI.quizPage} w-full`}>
+      <div className={UI.quizPage}>
         <section className={UI.quizPanel}>
           <span className={UI.quizKicker}>Quiz practice</span>
           <h1 className={UI.pageTitleHeading}>Your quiz challenge isn’t ready yet</h1>
@@ -195,7 +195,7 @@ export default function QuizChallengePage() {
 
   if (isComplete) {
     return (
-      <div className={`${UI.quizPage} w-full`}>
+      <div className={UI.quizPage}>
         <section className={UI.quizCompletionPanel}>
           <span className="inline-flex items-center gap-2 rounded-full bg-primary-50 px-3 py-1.5 text-sm font-semibold text-primary-800">
             <Icon name="clipboard-check" /> Quiz Challenge
@@ -223,7 +223,7 @@ export default function QuizChallengePage() {
   }
 
   return (
-    <div className={`${UI.quizPage} w-full`}>
+    <div className={UI.quizPage}>
       <section className={UI.quizMainPanel}>
         <Breadcrumb
           className="mb-4"
