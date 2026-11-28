@@ -166,7 +166,7 @@ export default function PdfLibraryPage() {
           </div>
         </section>
 
-        <section className="mt-8 rounded-2xl bg-secondary-50 p-4 sm:p-6" aria-label="Available PDF documents">
+        <section className="mt-8 rounded-2xl bg-background p-0" aria-label="Available PDF documents">
         {curriculumUnitId && <p className="mb-5 text-sm font-semibold text-secondary-950">Showing documents for this topic.</p>}
 
         {loading ? (
