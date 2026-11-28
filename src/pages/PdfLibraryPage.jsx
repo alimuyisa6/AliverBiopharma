@@ -108,23 +108,27 @@ export default function PdfLibraryPage() {
 
   if (access.loading) {
     return (
-      <Container className="py-8 sm:py-10">
-        <div className="w-full text-foreground">
+      <main className="min-h-screen w-full bg-background text-foreground">
+        <Container className="py-8 sm:py-10">
+        <div className="w-full min-w-0 text-foreground">
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
             <Skeleton height={160} />
             <Skeleton height={160} />
             <Skeleton height={160} />
           </div>
         </div>
-      </Container>
+        </Container>
+      </main>
     );
   }
 
   if (!access.canAccess) {
     return (
-      <Container className="py-8 sm:py-10">
-        <EmptyState image={getEmptyStateImage('pdfs')} title="PDF library access is restricted" description="Your account doesn’t currently have access to these PDF resources." />
-      </Container>
+      <main className="min-h-screen w-full bg-background text-foreground">
+        <Container className="py-8 sm:py-10">
+          <EmptyState image={getEmptyStateImage('pdfs')} title="PDF library access is restricted" description="Your account doesn’t currently have access to these PDF resources." />
+        </Container>
+      </main>
     );
   }
 
@@ -133,35 +137,37 @@ export default function PdfLibraryPage() {
   const sortedPdfs = sortPdfs(pdfs);
 
   return (
-    <Container className="py-8 sm:py-10">
+    <main className="min-h-screen w-full bg-background text-foreground">
+      <Container className="py-8 sm:py-10">
       <div className="w-full min-w-0 text-foreground">
         <Breadcrumb className="mb-6" items={[{ label: 'Home', href: '/' }, { label: 'PDF library' }]} />
         <PageHeader
           title="PDF library"
           subtitle="Course notes and reference documents for your programme."
-          className="mt-8 border-b border-border bg-primary-50 px-5 py-7 sm:px-8"
+          className="mt-8 border-b border-border bg-background px-0 py-7"
         />
         {(levelName || classLabel) && <p className="mt-4 text-sm font-semibold text-muted">{levelName}{levelName && classLabel ? ' · ' : ''}{classLabel}</p>}
 
-        <section className="mt-8 grid gap-5 bg-secondary-50 p-5 sm:p-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end" aria-labelledby="pdf-library-controls-title">
+        <section className="mt-8 grid gap-5 rounded-2xl border border-primary-900 bg-primary-900 p-5 text-white shadow-sm sm:p-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end" aria-labelledby="pdf-library-controls-title">
           <div className="max-w-xl">
-            <h2 id="pdf-library-controls-title" className="text-xl font-bold text-primary-900">Find a document</h2>
-            <p className="mt-2 text-sm leading-6 text-muted">Sort by title, author, or file size.</p>
+            <h2 id="pdf-library-controls-title" className="text-xl font-bold text-white">Find a document</h2>
+            <p className="mt-2 text-sm leading-6 text-primary-100">Sort by title, author, or file size.</p>
           </div>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-            <div className="inline-flex items-center gap-3 rounded-xl bg-white px-4 py-3 text-sm text-primary-900" aria-live="polite">
+            <div className="inline-flex items-center gap-3 rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-sm text-white" aria-live="polite">
               <span className="font-semibold">PDFs available</span><strong className="text-lg">{pdfs.length}</strong><span>{pdfs.length === 1 ? 'PDF' : 'PDFs'}</span>
             </div>
-            <label className="flex w-full flex-col gap-2 text-sm font-semibold text-slate-700 sm:w-auto sm:flex-row sm:items-center" htmlFor="sortSelect">
+            <label className="flex w-full flex-col gap-2 text-sm font-semibold text-white sm:w-auto sm:flex-row sm:items-center" htmlFor="sortSelect">
               <span>Sort by:</span>
-              <select className={`${UI.selectBase} border-border sm:min-w-44`} id="sortSelect" value={sortBy} onChange={(event) => setSortBy(event.target.value)}>
+              <select className={`${UI.selectBase} border-white bg-white text-primary-900 sm:min-w-44`} id="sortSelect" value={sortBy} onChange={(event) => setSortBy(event.target.value)}>
                 <option value="title">Title</option><option value="author">Author</option><option value="size">File size</option>
               </select>
             </label>
           </div>
         </section>
 
-        {curriculumUnitId && <p className="mt-5 text-sm font-semibold text-muted">Showing documents for this topic.</p>}
+        <section className="mt-8 rounded-2xl bg-secondary-50 p-4 sm:p-6" aria-label="Available PDF documents">
+        {curriculumUnitId && <p className="mb-5 text-sm font-semibold text-secondary-950">Showing documents for this topic.</p>}
 
         {loading ? (
           <div className="grid grid-cols-1 gap-5 py-6 sm:grid-cols-2 xl:grid-cols-3"><Skeleton height={160} /><Skeleton height={160} /><Skeleton height={160} /></div>
@@ -194,8 +200,10 @@ export default function PdfLibraryPage() {
             ))}
           </div>
         )}
+        </section>
         {curriculumUnitId && <LearningJourney unitId={curriculumUnitId} excludeStages={['pdfs']} returnTo={'/pdfs?unit_id=' + encodeURIComponent(curriculumUnitId)} />}
       </div>
-    </Container>
+      </Container>
+    </main>
   );
 }
