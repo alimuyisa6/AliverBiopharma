@@ -45,7 +45,7 @@ function DeferredHomeContent({ children, className = '' }) {
     return () => observer.disconnect();
   }, []);
 
-  return <div ref={containerRef} className={isReady ? '' : className}>{isReady ? children : null}</div>;
+  return <div ref={containerRef} className={className}>{isReady ? children : null}</div>;
 }
 
 function ContinueLearningRail({ items, navigate }) {
@@ -255,7 +255,7 @@ export default function HomeView(props) {
       {user && (
         <section className="w-full bg-primary-50 px-5 py-12 sm:px-8 lg:px-12" id="dashboard">
           {!isDesktopViewport && <ClassSwitcher className="mx-auto mb-4 w-full max-w-xs sm:ml-0 sm:mr-0" />}
-          <DeferredHomeContent className="min-h-56"><Suspense fallback={null}><HomeDashboardCard /></Suspense></DeferredHomeContent>
+          <Suspense fallback={null}><HomeDashboardCard /></Suspense>
           <ContinueLearningRail items={continueLearning} navigate={navigate} />
         </section>
       )}
@@ -266,17 +266,17 @@ export default function HomeView(props) {
       </section>}
 
       {sections?.testimonials?.quotes?.length > 0 && <section className="w-full" id="testimonials">
-        <DeferredHomeContent className="min-h-[90rem] md:min-h-[52rem] xl:min-h-[38rem]"><Suspense fallback={null}><TestimonialSlider quotes={sections.testimonials.quotes} /></Suspense></DeferredHomeContent>
+        <DeferredHomeContent className="min-h-[28rem]"><Suspense fallback={null}><TestimonialSlider quotes={sections.testimonials.quotes} /></Suspense></DeferredHomeContent>
       </section>}
 
       <section className="w-full" aria-label="Platform statistics">
-        <DeferredHomeContent className="min-h-[76rem] md:min-h-[62rem]"><Suspense fallback={null}><StatsGrid stats={publicStats || {}} scopeLabel={activeGroupName || activeLevelName || 'All learning levels'} /></Suspense></DeferredHomeContent>
+        <DeferredHomeContent className="min-h-[32rem]"><Suspense fallback={null}><StatsGrid stats={publicStats || {}} scopeLabel={activeGroupName || activeLevelName || 'All learning levels'} /></Suspense></DeferredHomeContent>
       </section>
 
-      <DeferredHomeContent className="min-h-[88rem] md:min-h-[58rem]"><Suspense fallback={null}><PricingCards plans={subscriptionPlans} user={user} /></Suspense></DeferredHomeContent>
-      <section className="w-full" id="classroom"><DeferredHomeContent className="min-h-[34rem]"><Suspense fallback={null}><ClassroomTeaser /></Suspense></DeferredHomeContent></section>
+      <DeferredHomeContent className="min-h-[32rem]"><Suspense fallback={null}><PricingCards plans={subscriptionPlans} user={user} /></Suspense></DeferredHomeContent>
+      <section className="w-full" id="classroom"><DeferredHomeContent className="min-h-96"><Suspense fallback={null}><ClassroomTeaser /></Suspense></DeferredHomeContent></section>
       <section className="w-full" id="instructors"><DeferredHomeContent className="min-h-[34rem]"><Suspense fallback={null}><TutorMarketplaceTeaser /></Suspense></DeferredHomeContent></section>
-      <section className="w-full"><DeferredHomeContent className="min-h-[38rem]"><Suspense fallback={null}><AdsHomeSection /></Suspense><AdSlot placement="homepage" pageContext="home" /></DeferredHomeContent></section>
+      <section className="w-full"><DeferredHomeContent className="min-h-96"><Suspense fallback={null}><AdsHomeSection /></Suspense><AdSlot placement="homepage" pageContext="home" /></DeferredHomeContent></section>
       <section className="w-full" id="newsletter"><DeferredHomeContent className="min-h-[38rem]"><Suspense fallback={null}><NewsletterForm email={newsletterEmail} status={newsletterStatus} loading={newsletterLoading} onChange={(event) => setNewsletterEmail(event.target.value)} onSubmit={handleNewsletterSubmit} /></Suspense></DeferredHomeContent></section>
       <Suspense fallback={null}><ChatWidget chatOpen={chatOpen} chatMessages={chatMessages} chatInput={chatInput} adminOnline={adminOnline} onToggle={() => setChatOpen(!chatOpen)} onSend={sendChat} onInputChange={setChatInput} onDeleteMsg={deleteChatMsg} sending={chatSending} deletingId={chatDeletingId} requestLoading={chatRequestLoading} chatBodyRef={chatBodyRef} /></Suspense>
     </div>
