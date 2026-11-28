@@ -20,8 +20,8 @@ export default function FlashcardWelcome({ user, level, discipline, cls, onDone 
   }, [onDone]);
 
   return (
-    <div className="w-full">
-      <div className="mx-auto flex min-h-[50vh] w-full max-w-4xl flex-col items-center justify-center px-4 py-10 text-center">
+    <div className="min-h-screen w-full bg-background text-foreground">
+      <div className="mx-auto flex min-h-screen w-full max-w-4xl flex-col items-center justify-center px-4 py-10 text-center">
         <span className="mb-3 inline-flex rounded-full bg-secondary-50 px-3 py-1 text-xs font-bold uppercase tracking-wider text-secondary-800">Welcome</span>
         <h2 className="text-2xl font-extrabold leading-tight tracking-tight text-primary-950 sm:text-3xl">You're all set</h2>
         <p className="mt-3 text-sm leading-6 text-slate-600">
