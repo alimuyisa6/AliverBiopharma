@@ -78,11 +78,6 @@ function collectBrowserDeviceMetadata() {
   }
 
   const uaString = navigator.userAgent || '';
-
-  // Android Chrome may expose the exact model through User-Agent Client Hints.
-  // When the legacy UA also contains a manufacturer token, preserve it so the
-  // profile can show a useful device name such as "TECNO KJ5" rather than only
-  // the raw model code.
   const manufacturerMatch = uaString.match(
     /(?:Linux;\\s*Android[^;]*;\\s*)([A-Za-z][A-Za-z0-9._-]*)\\s+([A-Za-z0-9._-]+)/i
   );
@@ -179,12 +174,6 @@ function getExactErrorMessage(error, fallback = 'Something went wrong. Please tr
 function logProfileError(context, error) {
   console.error(`[PROFILE] ${context}`, error);
 }
-
-
-/**
- * AliverBiopharm's profile-only illustration glyphs.
- * Each symbol is purpose-drawn for its meaning and uses the active brand palette.
- */
 function AliverProfileGlyph({ name, className = '' }) {
   const common = {
     viewBox: '0 0 40 40',
@@ -367,9 +356,6 @@ export default function Profile() {
       }
       setProfileMeta(data);
       setBio(data?.bio || '');
-
-      // Keep the editable fields aligned with the authoritative profile response.
-      // This prevents an unchanged form from being treated as a new save.
       const loadedFullName = String(
         data?.full_name ?? data?.name ?? user?.full_name ?? ''
       );
@@ -2062,8 +2048,7 @@ export default function Profile() {
 
                 <div className="mb-2 flex items-center gap-3">
                   <span
-                    className={UI.profile.statusIndicatorDot}
-                    className={profileMeta?.is_active === false ? 'bg-red-600' : 'bg-emerald-600'}
+                    className={`${UI.profile.statusIndicatorDot} ${profileMeta?.is_active === false ? 'bg-red-600' : 'bg-emerald-600'}`}
                   />
                   <span className="text-sm leading-6 text-muted">
                     {profileMeta?.is_active === false ? t('profile.inactiveAccount') : t('profile.activeAccount')}
