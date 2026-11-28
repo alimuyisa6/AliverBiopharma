@@ -221,25 +221,25 @@ export default function FlashcardsPage() {
   if (!access.canAccess) return <AccessDenied />;
 
   if (stage === STAGE.LOADING) {
-    return <div className={`${UI.container} py-8 lg:px-8`}><PageSkeleton variant="compact" /></div>;
+    return <main className="min-h-screen bg-background text-foreground"><div className={`${UI.container} py-8 lg:px-8`}><PageSkeleton variant="compact" /></div></main>;
   }
 
   if (error) {
     return (
-      <div className={`${UI.container} py-8 lg:px-8`}>
+      <main className="min-h-screen bg-background text-foreground"><div className={`${UI.container} py-8 lg:px-8`}>
         <EmptyState
           image={getEmptyStateImage('general')}
           title="We couldn’t load your flashcards"
           description={error}
           action={<Button onClick={init}>Try again</Button>}
         />
-      </div>
+      </div></main>
     );
   }
 
   if (stage === STAGE.SUBJECT) {
     return (
-      <main className="min-h-screen bg-background">
+      <main className="min-h-screen bg-background text-foreground">
         <div className={`${UI.container} py-6 lg:px-8`}>
           <Breadcrumb items={[
             { label: 'Home', href: '/' },
@@ -332,7 +332,7 @@ export default function FlashcardsPage() {
 
   if (stage === STAGE.COMPLETE) {
     return (
-      <>
+      <main className="min-h-screen bg-background text-foreground">
         <FlashcardProgress
           result={sessionResult}
           onRestart={handleRestart}
@@ -345,7 +345,7 @@ export default function FlashcardsPage() {
             returnTo={'/flashcards?unit_id=' + encodeURIComponent(curriculumUnitId)}
           />
         )}
-      </>
+      </main>
     );
   }
   return null;
