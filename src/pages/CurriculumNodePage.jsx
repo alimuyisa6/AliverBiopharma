@@ -218,7 +218,7 @@ export default function CurriculumNodePage() {
     const rootLabelPlural = isPharmacy ? 'Course units' : 'Topics';
     const childLabel = isPharmacy ? 'course units' : 'topics';
     return (
-      <Container className="min-h-screen bg-background">
+      <Container className="min-h-screen w-full bg-background text-foreground">
         <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Resources', href: '/resources' }, { label: rootLabelPlural, href: null }]} />
         <PageHeader
           title={`Choose a ${rootLabel}`}
@@ -241,7 +241,7 @@ export default function CurriculumNodePage() {
 
   if (error || !node) {
     return (
-      <Container className="min-h-screen bg-background">
+      <Container className="min-h-screen w-full bg-background text-foreground">
         <div className="mx-auto mt-12 max-w-2xl rounded-2xl border border-red-200 bg-red-50 p-6 text-red-900">
           <Icon name="triangle-exclamation" />
           <h1>This learning item isn’t available</h1>
@@ -278,7 +278,7 @@ export default function CurriculumNodePage() {
   };
 
   return (
-    <Container className="min-h-screen bg-background">
+    <Container className="min-h-screen w-full bg-background text-foreground">
       <Breadcrumb items={breadcrumbItems} />
 
       <PageHeader
