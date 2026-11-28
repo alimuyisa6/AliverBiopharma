@@ -87,7 +87,7 @@ begin
 
   if new.activity_scope = 'theme' and v_node_type not in ('theme','subtopic') then
     raise exception 'theme scope requires a theme or subtopic node, got %', v_node_type using errcode = '23514';
-  elsif new.activity_scope in ('lesson','note','custom_test') and v_node_type <> 'lesson' then
+  elsif new.activity_scope in ('lesson','note') and v_node_type <> 'lesson' then
     raise exception '% scope requires a lesson node, got %', new.activity_scope, v_node_type using errcode = '23514';
   elsif new.activity_scope like 'custom_test:%' and v_node_type <> 'lesson' then
     raise exception 'custom_test scope requires a lesson node, got %', v_node_type using errcode = '23514';
