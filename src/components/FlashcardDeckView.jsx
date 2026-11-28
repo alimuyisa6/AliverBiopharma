@@ -191,7 +191,7 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
 
   if (loading) {
     return (
-      <div className="flex min-h-[40vh] items-center justify-center px-4 py-10">
+      <div className="flex min-h-screen items-center justify-center bg-background px-4 py-10">
         <Spinner size="lg" />
       </div>
     );
@@ -199,13 +199,13 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
 
   if (!card) {
     return (
-      <div className="mx-auto flex min-h-[40vh] w-full max-w-5xl flex-col items-center justify-center gap-4 px-4 py-10 text-center">
+      <div className="flex min-h-screen w-full items-center justify-center bg-background px-4 py-10"><div className="mx-auto flex w-full max-w-5xl flex-col items-center justify-center gap-4 text-center">
         <Icon name="layer-group" className="h-8 w-8 text-primary-700" />
         <p>No cards in this deck yet.</p>
         <Button variant="ghost" onClick={() => onComplete({ sessionId, total: 0 })} icon="arrow-left">
           Back
         </Button>
-      </div>
+      </div></div>
     );
   }
 
@@ -215,8 +215,9 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
   const cardColor = UI.flashcardModeColors[mode] || UI.flashcardModeColors.flip;
 
   return (
-    <div className="w-full">
+    <div className="min-h-screen w-full bg-background text-foreground">
       <div className={UI.studyContainer}>
+        <div className="mx-auto w-full max-w-5xl">
         <div className="mb-4">
           <ProgressBar value={index + 1} max={cards.length} variant="primary" />
         </div>
@@ -432,6 +433,7 @@ export default function FlashcardDeckView({ deck: deckMeta, knownIds = [], mode:
         <p className="mt-4 flex items-center justify-center gap-2 text-xs text-slate-500">
           <Icon name="keyboard" /> Arrow keys navigate · Space flips
         </p>
+        </div>
       </div>
     </div>
   );
