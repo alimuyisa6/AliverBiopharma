@@ -4,7 +4,8 @@ import Icon from '../Icon/Icon';
 
 export function PendingApprovalScreen() {
   return (
-    <div className="mx-auto flex w-full max-w-5xl items-center justify-center px-4 py-12 sm:px-6">
+    <main className="min-h-screen w-full bg-background text-foreground">
+      <div className="mx-auto flex w-full max-w-5xl items-center justify-center px-4 py-12 sm:px-6">
       <div className="flex w-full max-w-xl flex-col items-center rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm sm:p-8">
         <Icon name="clock" className="mb-4 h-10 w-10 text-amber-600" />
         <h2 className="text-xl font-bold leading-7 text-slate-900 sm:text-2xl">
@@ -31,6 +32,6 @@ export function PendingApprovalScreen() {
           Return Home
         </Link>
       </div>
-    </div>
+    </main>
   );
 }
