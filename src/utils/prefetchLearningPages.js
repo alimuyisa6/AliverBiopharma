@@ -39,6 +39,9 @@ function hasCompletedScope(scope) {
 
 function markCompletedScope(scope) {
   completedScopes.add(scope);
+  if (completedScopes.size > 20) {
+    completedScopes.delete(completedScopes.values().next().value);
+  }
 
   try {
     const stored = JSON.parse(sessionStorage.getItem(PREFETCH_SESSION_KEY) || '[]');
@@ -89,8 +92,10 @@ export function prefetchLearningPages({ userId, level, className, groupId }) {
       );
     }
 
-    await Promise.allSettled(jobs);
-    markCompletedScope(scope);
+    const results = await Promise.allSettled(jobs);
+    if (results.every((result) => result.status === 'fulfilled')) {
+      markCompletedScope(scope);
+    }
   })().finally(() => {
     activePrefetches.delete(scope);
   });
