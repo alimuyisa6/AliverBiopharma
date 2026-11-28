@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
+
+const MotionDiv = lazy(() => import('framer-motion').then(({ motion }) => ({ default: motion.div })));
 import { useNavigate } from 'react-router-dom';
 import Icon from '../Icon/Icon';
 import { useNotifications } from '../../contexts/NotificationContext';
@@ -88,8 +89,9 @@ export default function NotificationCenter() {
         {unreadCount > 0 && <span className="absolute -right-1 -top-1 inline-flex h-5 min-w-5 items-center justify-center rounded-full border-2 border-white bg-red-600 px-1 text-[10px] font-extrabold leading-none text-white">{unreadCount > 99 ? '99+' : unreadCount}</span>}
       </button>
 
-      <AnimatePresence>{open && (
-        <motion.div className="fixed left-3 right-3 top-[5.25rem] z-[100] mx-auto w-full max-w-[27rem] overflow-hidden rounded-2xl border border-slate-200 bg-white text-slate-800 shadow-2xl shadow-slate-900/20" role="dialog" aria-label="Notifications" initial={{ opacity: 0, y: -24, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: -12, scale: 0.985 }} transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}>
+      {open && (
+        <Suspense fallback={<div className="fixed left-3 right-3 top-[5.25rem] z-[100] mx-auto w-full max-w-[27rem] rounded-2xl border border-slate-200 bg-white p-5 text-sm text-slate-600 shadow-2xl">Loading notifications…</div>}>
+        <MotionDiv className="fixed left-3 right-3 top-[5.25rem] z-[100] mx-auto w-full max-w-[27rem] overflow-hidden rounded-2xl border border-slate-200 bg-white text-slate-800 shadow-2xl shadow-slate-900/20" role="dialog" aria-label="Notifications" initial={{ opacity: 0, y: -24, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: -12, scale: 0.985 }} transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}>
           <div className="flex items-center justify-between gap-3 border-b border-slate-100 bg-slate-50 px-4 py-3">
             <span className="text-sm font-bold text-slate-900">Notifications</span>
             {unreadCount > 0 && <button type="button" className="inline-flex min-h-8 items-center rounded-lg px-2 py-1 text-xs font-semibold text-primary-700 hover:bg-primary-50 disabled:opacity-50" onClick={markAllRead} disabled={loading}>Mark all as read</button>}
@@ -130,8 +132,9 @@ export default function NotificationCenter() {
               ))
             )}
           </div>
-        </motion.div>
-      )}</AnimatePresence>
+        </MotionDiv>
+        </Suspense>
+      )}
     </div>
   );
 }

@@ -98,26 +98,8 @@ function AppRoutes() {
   }, [location.pathname, user?.id]);
 
   useEffect(() => {
-    let cancelled = false;
-    let idleId;
-    const activate = () => {
-      if (!cancelled) setAssistantReady(true);
-    };
-
-    if ('requestIdleCallback' in window) {
-      idleId = window.requestIdleCallback(activate, { timeout: 5000 });
-    }
-
-    const timeoutId = window.setTimeout(activate, 4000);
-
-    return () => {
-      cancelled = true;
-      if (idleId !== undefined && 'cancelIdleCallback' in window) {
-        window.cancelIdleCallback(idleId);
-      }
-      window.clearTimeout(timeoutId);
-    };
-  }, []);
+    if (!user?.id) setAssistantReady(false);
+  }, [user?.id]);
   return (
     <>
       <Seo />
@@ -196,7 +178,25 @@ function AppRoutes() {
         <CookieConsent />
         <MaintenanceGate />
       </Layout>
-      {assistantReady && <Suspense fallback={null}><AIAssistant /></Suspense>}
+      {user?.id && !assistantReady && (
+        <div className="fixed bottom-4 right-4 z-[60]">
+          <button
+            type="button"
+            className="inline-flex min-h-12 items-center gap-2 rounded-full border border-primary-600 bg-primary-800 px-4 py-3 text-sm font-extrabold text-white shadow-xl shadow-primary-900/20 transition hover:-translate-y-0.5 hover:bg-primary-900"
+            onClick={() => setAssistantReady(true)}
+            aria-label="Open AliverBiopharm AI Tutor"
+          >
+            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/15 text-white" aria-hidden="true">
+              <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 4a3 3 0 0 0-5.7 1.2A3.5 3.5 0 0 0 5 11.5a3.5 3.5 0 0 0 2.5 6A3 3 0 0 0 12 20V4Zm0 0a3 3 0 0 1 5.7 1.2A3.5 3.5 0 0 1 19 11.5a3.5 3.5 0 0 1-2.5 6A3 3 0 0 0 12 20" />
+                <path d="M8 8h2m4 0h2M7 13h3m4 0h3M9 17h2m2-9v3m0 4v2" />
+              </svg>
+            </span>
+            <span>AI Tutor</span>
+          </button>
+        </div>
+      )}
+      {assistantReady && <Suspense fallback={null}><AIAssistant initialOpen /></Suspense>}
     </>
   );
 }

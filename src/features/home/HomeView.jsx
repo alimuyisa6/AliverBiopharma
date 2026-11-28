@@ -1,19 +1,19 @@
-import { useState, useEffect } from 'react';
+import { lazy, Suspense, useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Icon from '../../components/Icon/Icon';
 import ClassSwitcher from '../../components/ClassSwitcher/ClassSwitcher';
-import { StatsGrid } from './StatsGrid';
-import { PricingCards } from './PricingCards';
-import { TestimonialSlider } from './TestimonialSlider';
-import { ChatWidget } from '../chat/ChatWidget';
-import { NewsletterForm } from './NewsletterForm';
-import ClassroomTeaser from '../classroom/ClassroomTeaser';
-import TutorMarketplaceTeaser from '../tutor-marketplace/TutorMarketplaceTeaser';
-import AdsHomeSection from '../../components/Advertising/AdsHomeSection';
+const StatsGrid = lazy(() => import('./StatsGrid').then((module) => ({ default: module.StatsGrid })));
+const PricingCards = lazy(() => import('./PricingCards').then((module) => ({ default: module.PricingCards })));
+const TestimonialSlider = lazy(() => import('./TestimonialSlider').then((module) => ({ default: module.TestimonialSlider })));
+const ChatWidget = lazy(() => import('../chat/ChatWidget').then((module) => ({ default: module.ChatWidget })));
+const NewsletterForm = lazy(() => import('./NewsletterForm').then((module) => ({ default: module.NewsletterForm })));
+const ClassroomTeaser = lazy(() => import('../classroom/ClassroomTeaser'));
+const TutorMarketplaceTeaser = lazy(() => import('../tutor-marketplace/TutorMarketplaceTeaser'));
+const AdsHomeSection = lazy(() => import('../../components/Advertising/AdsHomeSection'));
 import AdSlot from '../../components/Advertising/AdSlot';
 import LernwickHomeHero from './LernwickHomeHero';
 import { ProgrammeDiscovery, LearningProcess, ConnectedLearning } from './LernwickHomeSections';
-import HomeDashboardCard from '../../components/dashboard/HomeDashboardCard';
+const HomeDashboardCard = lazy(() => import('../../components/dashboard/HomeDashboardCard'));
 import DynamicActions from '../../components/DynamicActions';
 import ThreeDButton from '../../components/buttons/ThreeDButton';
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
@@ -21,6 +21,32 @@ import StorysetIllustration from '../../components/StorysetIllustration';
 import { UI } from '../../design-system';
 
 const CONTINUE_ICON = { note: 'book-open', video: 'play', quiz: 'clipboard-check' };
+
+function DeferredHomeContent({ children, className = '' }) {
+  const containerRef = useRef(null);
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    const element = containerRef.current;
+    if (!element) return undefined;
+    if (typeof IntersectionObserver === 'undefined') {
+      setIsReady(true);
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        setIsReady(true);
+        observer.disconnect();
+      }
+    }, { rootMargin: '700px 0px' });
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
+  return <div ref={containerRef} className={className}>{isReady ? children : null}</div>;
+}
 
 function ContinueLearningRail({ items, navigate }) {
   if (!items?.length) return null;
@@ -229,7 +255,7 @@ export default function HomeView(props) {
       {user && (
         <section className="w-full bg-primary-50 px-5 py-12 sm:px-8 lg:px-12" id="dashboard">
           {!isDesktopViewport && <ClassSwitcher className="mx-auto mb-4 w-full max-w-xs sm:ml-0 sm:mr-0" />}
-          <HomeDashboardCard />
+          <Suspense fallback={null}><HomeDashboardCard /></Suspense>
           <ContinueLearningRail items={continueLearning} navigate={navigate} />
         </section>
       )}
@@ -239,25 +265,20 @@ export default function HomeView(props) {
         <DailyRecallCard recall={dailyRecall} onReveal={onRevealRecall} onStart={onStartRecall} />
       </section>}
 
-      <section className="w-full" id="testimonials">
-        <TestimonialSlider quotes={sections?.testimonials?.quotes || []} />
-      </section>
+      {sections?.testimonials?.quotes?.length > 0 && <section className="w-full" id="testimonials">
+        <DeferredHomeContent className="min-h-[28rem]"><Suspense fallback={null}><TestimonialSlider quotes={sections.testimonials.quotes} /></Suspense></DeferredHomeContent>
+      </section>}
 
       <section className="w-full" aria-label="Platform statistics">
-        <StatsGrid stats={publicStats || {}} scopeLabel={activeGroupName || activeLevelName || 'All learning levels'} />
+        <DeferredHomeContent className="min-h-[32rem]"><Suspense fallback={null}><StatsGrid stats={publicStats || {}} scopeLabel={activeGroupName || activeLevelName || 'All learning levels'} /></Suspense></DeferredHomeContent>
       </section>
 
-      <PricingCards plans={subscriptionPlans} user={user} />
-      <section className="w-full" id="classroom"><ClassroomTeaser /></section>
-      <section className="w-full" id="instructors"><TutorMarketplaceTeaser /></section>
-      <section className="w-full">
-        <AdsHomeSection />
-        <AdSlot placement="homepage" pageContext="home" />
-      </section>
-      <section className="w-full" id="newsletter">
-        <NewsletterForm email={newsletterEmail} status={newsletterStatus} loading={newsletterLoading} onChange={(event) => setNewsletterEmail(event.target.value)} onSubmit={handleNewsletterSubmit} />
-      </section>
-      <ChatWidget chatOpen={chatOpen} chatMessages={chatMessages} chatInput={chatInput} adminOnline={adminOnline} onToggle={() => setChatOpen(!chatOpen)} onSend={sendChat} onInputChange={setChatInput} onDeleteMsg={deleteChatMsg} sending={chatSending} deletingId={chatDeletingId} requestLoading={chatRequestLoading} chatBodyRef={chatBodyRef} />
+      <DeferredHomeContent className="min-h-[32rem]"><Suspense fallback={null}><PricingCards plans={subscriptionPlans} user={user} /></Suspense></DeferredHomeContent>
+      <section className="w-full" id="classroom"><DeferredHomeContent className="min-h-96"><Suspense fallback={null}><ClassroomTeaser /></Suspense></DeferredHomeContent></section>
+      <section className="w-full" id="instructors"><DeferredHomeContent className="min-h-[34rem]"><Suspense fallback={null}><TutorMarketplaceTeaser /></Suspense></DeferredHomeContent></section>
+      <section className="w-full"><DeferredHomeContent className="min-h-96"><Suspense fallback={null}><AdsHomeSection /></Suspense><AdSlot placement="homepage" pageContext="home" /></DeferredHomeContent></section>
+      <section className="w-full" id="newsletter"><DeferredHomeContent className="min-h-[38rem]"><Suspense fallback={null}><NewsletterForm email={newsletterEmail} status={newsletterStatus} loading={newsletterLoading} onChange={(event) => setNewsletterEmail(event.target.value)} onSubmit={handleNewsletterSubmit} /></Suspense></DeferredHomeContent></section>
+      <Suspense fallback={null}><ChatWidget chatOpen={chatOpen} chatMessages={chatMessages} chatInput={chatInput} adminOnline={adminOnline} onToggle={() => setChatOpen(!chatOpen)} onSend={sendChat} onInputChange={setChatInput} onDeleteMsg={deleteChatMsg} sending={chatSending} deletingId={chatDeletingId} requestLoading={chatRequestLoading} chatBodyRef={chatBodyRef} /></Suspense>
     </div>
   );
 }
