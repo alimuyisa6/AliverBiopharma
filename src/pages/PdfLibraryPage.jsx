@@ -126,7 +126,7 @@ export default function PdfLibraryPage() {
     return (
       <main className="min-h-screen w-full bg-background text-foreground">
         <Container className="py-8 sm:py-10">
-          <EmptyState image={getEmptyStateImage('pdfs')} title="PDF library access is restricted" description="Your account doesn’t currently have access to these PDF resources." />
+          <EmptyState image={getEmptyStateImage('pdfs')} title="Access unavailable" description="Your account cannot view these PDFs." />
         </Container>
       </main>
     );
