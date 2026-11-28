@@ -84,7 +84,7 @@ export default function QuizReview() {
     }
   };
 
-  if (loading) return <PageSkeleton />;
+  if (loading) return <main className="min-h-screen w-full bg-background text-foreground"><div className={`${UI.container} py-8`}><PageSkeleton /></div></main>;
 
   return (
     <main className="min-h-screen w-full bg-background text-foreground">
