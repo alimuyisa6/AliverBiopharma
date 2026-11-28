@@ -361,7 +361,7 @@ export function ProtectedRoute({ children }) {
 
   if (!user) {
     return (
-      <div className="w-full">
+      <div className="min-h-screen w-full bg-background text-foreground">
         <aside className="mx-auto my-4 flex max-w-7xl flex-wrap items-center justify-between gap-3 rounded-2xl border border-primary-200 bg-primary-50 px-4 py-3 text-sm text-primary-900" role="note">
           <p className="m-0">Sign in to access this page, or create an account.</p>
           <div className="flex shrink-0 gap-2">
