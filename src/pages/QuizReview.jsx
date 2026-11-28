@@ -84,10 +84,10 @@ export default function QuizReview() {
     }
   };
 
-  if (loading) return <PageSkeleton />;
+  if (loading) return <main className="min-h-screen w-full bg-background text-foreground"><div className={`${UI.container} py-8`}><PageSkeleton /></div></main>;
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen w-full bg-background text-foreground">
       <div className={`${UI.container} py-8 lg:px-8`}>
         <div className="mb-8 flex flex-wrap items-end justify-between gap-5">
           <PageHeader title="Essay marking" subtitle="Review written responses, award marks and provide useful feedback to learners." className="mb-0" />

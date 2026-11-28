@@ -176,7 +176,7 @@ export const UI = Object.freeze({
   flashcardWelcomeBack: 'absolute inset-0 flex min-h-64 flex-col items-center justify-center gap-4 rounded-2xl border border-secondary-200 bg-secondary-50 p-6 text-secondary-950 shadow-sm [backface-visibility:hidden] [transform:rotateY(180deg)]',
   flashcardWelcomeIcon: 'inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary-100 text-primary-700',
   flashcardWelcomeBadge: 'inline-flex items-center gap-2 rounded-full bg-secondary-100 px-3 py-1 text-xs font-bold text-secondary-900',
-  quizPage: 'min-h-screen bg-background px-4 py-8 text-foreground sm:px-6',
+  quizPage: 'min-h-screen w-full bg-background px-4 py-6 text-foreground sm:px-6 sm:py-9',
   quizPanel: 'mx-auto flex max-w-2xl flex-col items-center gap-4 rounded-2xl border border-border bg-white p-8 text-center shadow-sm',
   quizCompletionPanel: 'mx-auto flex max-w-2xl flex-col items-center gap-5 rounded-3xl border border-border bg-white p-8 text-center shadow-lg',
   quizMainPanel: 'mx-auto max-w-4xl',

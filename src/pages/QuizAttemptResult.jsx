@@ -36,11 +36,11 @@ export default function QuizAttemptResult() {
     return () => clearInterval(interval);
   }, [attempt?.status, loadAttempt]);
 
-  if (loading) return <PageSkeleton />;
+  if (loading) return <main className="min-h-screen w-full bg-background text-foreground"><div className={`${UI.container} py-8`}><PageSkeleton /></div></main>;
 
   if (error || !attempt) {
     return (
-      <main className="min-h-screen bg-background py-10">
+      <main className="min-h-screen w-full bg-background py-8 text-foreground">
         <div className={UI.container}>
           <EmptyState
             icon="alert-circle"
@@ -59,7 +59,7 @@ export default function QuizAttemptResult() {
   const marksAwarded = Number(attempt.marks_awarded_total ?? attempt.score) || 0;
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen w-full bg-background text-foreground">
       <div className={`${UI.container} py-8 lg:px-8`}>
         <PageHeader
           title={pending ? 'Your assessment is being marked' : 'Your assessment result'}
